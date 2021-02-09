@@ -1,11 +1,12 @@
-[{
+[
+    {
         "name": "analyses",
-        "en": "analyses",
+        "en": "analysis",
         "ar": "التحاليل"
     },
     {
         "name": "analyses_new",
-        "en": "New analyses",
+        "en": "New Analysis",
         "ar": "تحليل  جديدة"
     },
     {
@@ -15,36 +16,37 @@
     },
     {
         "name": "analyses_add",
-        "en": "Add analyses",
-        "ar": "اضافة تحليل "
+        "en": "Add analysis",
+        "ar": "إضافة تحليل"
     },
     {
         "name": "analyses_edit",
-        "en": "Edit analyses",
-        "ar": "تعديل تحليل "
+        "en": "Edit analysis",
+        "ar": "تعديل تحليل"
     },
     {
         "name": "analyses_details",
-        "en": "analyses Details",
-        "ar": "تفاصيل تحليل "
+        "en": "analysis Details",
+        "ar": "تفاصيل تحليل"
     },
     {
         "name": "analyses_delete",
-        "en": "Delete analyses",
-        "ar": "حذف تحليل "
+        "en": "Delete analysis",
+        "ar": "حذف تحليل"
     },
     {
         "name": "analyses_name",
-        "en": "analyse Name",
-        "ar": "إسم التحليل "
+        "en": "analysis Name",
+        "ar": "إسم التحليل"
     },
     {
         "name": "analyses_price",
-        "en": "analyse Price",
-        "ar": "سعر التحليل "
+        "en": "analysis Price",
+        "ar": "سعر التحليل"
+    },
+    {
+        "name": "analyse_result",
+        "en": "analysis result",
+        "ar": "نتيجة التحليل"
     }
-
-
-
-
 ]

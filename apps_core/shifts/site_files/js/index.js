@@ -202,6 +202,7 @@ app.controller("shifts", function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
+        $scope.openShift = response.data.is_open;
         callback(response.data.is_open);
       }, function (err) {
         callback(true);
@@ -230,15 +231,12 @@ app.controller("shifts", function ($scope, $http, $timeout) {
 
   };
 
-  $scope.close_shift = function (shift) {
+  $scope.openCloseShift = function (shift,active) {
     $scope.error = '';
 
-    shift.to_date = new Date();
-    shift.to_time = {
-      hour: new Date(shift.to_date).getHours(),
-      minute: new Date(shift.to_date).getMinutes()
-    };
-    shift.active = false;
+    if(active)
+    shift.active = true;
+    else shift.active = false;
 
     $scope.busy = true;
     $http({
@@ -315,5 +313,6 @@ app.controller("shifts", function ($scope, $http, $timeout) {
 
 
   $scope.getShiftList();
+  $scope.is_shift_open();
   $scope.getNumberingAuto();
 });

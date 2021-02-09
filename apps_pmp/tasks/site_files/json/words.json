@@ -12,7 +12,7 @@
     {
         "name": "tasks_add",
         "en": "Add Task",
-        "ar": "اضافة مهمة"
+        "ar": "إضافة مهمة"
     },
     {
         "name": "tasks_edit",
@@ -119,7 +119,7 @@
     {
         "name": "add_task",
         "en": "Add Task",
-        "ar": "اضاف المهمة"
+        "ar": "إضاف المهمة"
     },
     {
         "name": "update_task",

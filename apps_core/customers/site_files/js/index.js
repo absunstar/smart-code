@@ -533,6 +533,54 @@ app.controller("customers", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.getFoodsList = function (where) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/foods/all",
+      data: {
+        where: {
+          active: true
+        },
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.foodsList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getDrinksList = function (where) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/drinks/all",
+      data: {
+        where: {
+          active: true
+        },
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.drinksList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.loadMaritalsStatus = function () {
     $scope.busy = true;
     $http({
@@ -720,8 +768,10 @@ app.controller("customers", function ($scope, $http, $timeout) {
 
 
 
-  if (site.feature('gym') || site.feature('academy') || site.feature('school')) {
+  if (site.feature('gym') || site.feature('academy') || site.feature('school') || site.feature('medical')) {
     $scope.getDiseaseList();
     $scope.getMedicineList();
+    $scope.getDrinksList();
+    $scope.getFoodsList();
   }
 });

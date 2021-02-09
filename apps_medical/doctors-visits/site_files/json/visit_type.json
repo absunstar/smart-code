@@ -21,11 +21,5 @@
         "name": "session",
         "name_en": "Session",
         "ar": "جلسة"
-    },
-    {
-        "id": 5,
-        "name": "external_visit",
-        "name_en": "External Visit",
-        "ar": "زيارة خارجية"
     }
 ]

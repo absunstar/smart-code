@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "drinks_admin",
+    "en": "Drinks Admin",
+    "ar": "إدارة المشروبات",
+    "permissions": ["drinks_manage"]
+}]

@@ -78,7 +78,7 @@ module.exports = function init(site) {
 
         let num_obj = {
           company: site.get_company(req),
-          screen: 'medicine',
+          screen: 'medicines',
           date: new Date()
         };
 

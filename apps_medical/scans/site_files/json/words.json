@@ -11,7 +11,7 @@
     {
         "name": "scans_add",
         "en": "Add scans",
-        "ar": "اضافة أشعة "
+        "ar": "إضافة أشعة"
     },
     {
         "name": "scans_edit",
@@ -21,22 +21,27 @@
     {
         "name": "scans_details",
         "en": "scans Details",
-        "ar": "تفاصيل الأشعة "
+        "ar": "تفاصيل الأشعة"
     },
     {
         "name": "scans_delete",
         "en": "Delete scans",
-        "ar": "حذف أشعة "
+        "ar": "حذف أشعة"
     },
     {
         "name": "scans_name",
         "en": "Scan Name",
-        "ar": "إسم الإشاعة "
+        "ar": "إسم الإشاعة"
     },
     {
         "name": "scans_price",
         "en": "Scans Price",
-        "ar": "سعر الإشاعة "
+        "ar": "سعر الإشاعة"
+    },
+    {
+        "name": "scan_result",
+        "en": "Scans Result",
+        "ar": "نتيجة الإشاعة"
     }
     
 ]

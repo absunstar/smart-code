@@ -91,6 +91,8 @@ module.exports = function init(site) {
           disease_doc.code = cb.code;
         }
 
+        disease_doc.disease_treatment = disease_doc.disease_treatment.replace(/\n/g, "<br />");
+
         $disease.add(disease_doc, (err, doc) => {
           if (!err) {
             response.done = true
@@ -123,6 +125,10 @@ module.exports = function init(site) {
     })
 
     if (disease_doc.id) {
+      // console.log(disease_doc.disease_treatment,"ssssssssssssssssssssssss");
+
+      // disease_doc.disease_treatment = disease_doc.disease_treatment.replace(/\n/g, "<br />");
+      // console.log(disease_doc.disease_treatment,"qqqqqqqqqqqqqqqqqqqqqqqq");
       $disease.edit({
         where: {
           id: disease_doc.id

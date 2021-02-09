@@ -24,6 +24,16 @@
         "ar": "زيارة خارجية"
     },
     {
+        "name": "urgent_visit",
+        "en": "Urgent visit",
+        "ar": "زيارة مستعجلة"
+    },
+    {
+        "name": "increase_urgent_visit",
+        "en": "Urgent Visit",
+        "ar": "الزيادة المستعجلة"
+    },
+    {
         "name": "detection_price",
         "en": "Detection price",
         "ar": "سعر الكشف"
@@ -61,7 +71,7 @@
     {
         "name": "clinics_add",
         "en": "Add Clinic",
-        "ar": "اضافة عيادة "
+        "ar": "إضافة عيادة "
     },
     {
         "name": "clinics_edit",

@@ -176,7 +176,7 @@ app.controller("analyses_centers", function ($scope, $http, $timeout) {
 
   };
 
-  $scope.getAnalysesList = function () {
+  $scope.getAnalysisList = function () {
     $scope.busy = true;
     $http({
       method: "POST",
@@ -193,7 +193,7 @@ app.controller("analyses_centers", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
-          $scope.analysesList = response.data.list;
+          $scope.analysisList = response.data.list;
         }
       },
       function (err) {
@@ -303,7 +303,7 @@ app.controller("analyses_centers", function ($scope, $http, $timeout) {
 
 
   $scope.getAnalysesCenterList();
-  $scope.getAnalysesList();
+  $scope.getAnalysisList();
   $scope.getNumberingAuto();
   $scope.getGovList();
 

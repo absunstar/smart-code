@@ -157,6 +157,8 @@
             "insurance_companies_manage",
             "scan_centers_manage",
             "scans_manage",
+            "foods_manage",
+            "drinks_manage",
             "doctors_visits_manage"
         ]
     }

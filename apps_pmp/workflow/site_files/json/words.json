@@ -10,7 +10,7 @@
     {"name" : "workflow_users" , "en":"Users" , "ar" : "يتطلب تصريح"},
     {"name" : "workflow_user" , "en":"User" , "ar" : "منتظر تصريح"},
     {"name" : "workflow_actions" , "en":"Actions" , "ar" : "لوحة التحكم"},
-    {"name" : "workflow_add" , "en":"Add New Workflow" , "ar" : "اضافة أجراء جديد"},
+    {"name" : "workflow_add" , "en":"Add New Workflow" , "ar" : "إضافة أجراء جديد"},
     {"name" : "workflow_edit" , "en":"Edit Workflow" , "ar" : "تعديل اﻻجراء"},
     {"name" : "workflow_delete" , "en":"Delete Workflow" , "ar" : "حذف اﻻجراء"},
     {"name" : "workflow_new" , "en":"New Workflow" , "ar" : " أجراء جديد"},

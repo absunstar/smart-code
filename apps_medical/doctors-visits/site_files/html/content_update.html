@@ -8,6 +8,10 @@
                 ##word.basic_information##
             </a>
 
+            <a class="tab-link" onclick="site.showTabContent(event, '#examinationBeforeDetectionInformation')">
+                ##word.examination_before_detection## </a>
+
+
             <a class="tab-link" onclick="site.showTabContent(event, '#diagnosisInformation')">
                 ##word.diagnosis## </a>
 
@@ -19,6 +23,9 @@
                 ##word.analyses## ##word.requiredy##</a>
             <a class="tab-link" onclick="site.showTabContent(event, '#operationInformation')">
                 ##word.operation## ##word.requiredy##</a>
+
+            <a class="tab-link" onclick="site.showTabContent(event, '#foodsDrinksInformation')">
+                ##word.foods_drinks##</a>
 
             <a class="tab-link " onclick="site.showTabContent(event, '#doctorsVisitsFiles')">
                 ##word.customers_files## </a>
@@ -32,103 +39,205 @@
                 <fieldset>
                     <legend> ##word.basic_information## </legend>
                     <div class="row">
-
                         <div class="row">
-                            <i-list class="col3" label="##word.visit_type##" ng-model="doctors_visits.visit_type"
-                                ng-change="changeDoctorsVisitsPrice()" items="doctors_visitsTypeList" display="##session.lang##"
-                                ng-search="_search.$doctors_visits_type_search"></i-list>
+                            <div class="col8">
 
-                            <div class="col7"></div>
+                                <div class="row">
+                                    <i-list class="col3" label="##word.visit_type##"
+                                        ng-model="doctors_visits.visit_type" ng-change="changeDoctorsVisitsPrice()"
+                                        items="doctorsVisitsTypeList" display="##session.lang##"
+                                        ng-search="_search.$doctors_visits_type_search">
+                                    </i-list>
 
-                            <i-checkbox help-id="cities_active" class="col2" label="##word.active##"
-                                ng-model="doctors_visits.active"></i-checkbox>
-                        </div>
-                        <div class="row">
-                            <i-control class="col2" label="##word.patient_search##" ng-model="patient_search"
-                                ng-keydown="getPatientList($event)"></i-control>
+                                </div>
+                                <div class="row">
+                                    <i-control class="col3" label="##word.patient_search##" ng-model="patient_search"
+                                        ng-keydown="getPatientList($event)"></i-control>
 
-                            <i-list class="col4" label="##word.patient##" v="r" ng-model="doctors_visits.customer"
-                                display="name_##session.lang##" items="customersList"
-                                ng-search="_search.$patients_searching">
-                            </i-list>
+                                    <i-list class="col5" label="##word.patient##" v="r"
+                                        ng-model="doctors_visits.customer" display="name_##session.lang##"
+                                        items="customersList" ng-search="_search.$patients_searching">
+                                    </i-list>
 
-                            <i-button class="col2" ng-show="doctors_visits.customer.id" type="details"
-                                label="##word.customers_details##" ng-click="showPatient(doctors_visits.customer.id)">
-                            </i-button>
+                                    <div class="col1"></div>
 
-                            <i-button type="add" class="col2" label="##word.customers_new##"
-                                ng-click="displayAddCustomer()">
-                            </i-button>
+                                    <div class="col3">
 
-                            <div class="col1"></div>
+                                        <div class="row">
+                                            <i-button type="add" label="##word.customers_new##"
+                                                ng-click="displayAddCustomer()">
+                                            </i-button>
+                                        </div>
 
-                        </div>
+                                        <div class="row">
+                                            <i-button ng-show="doctors_visits.customer.id" type="details"
+                                                label="##word.customers_details##"
+                                                ng-click="showPatient(doctors_visits.customer.id)">
+                                            </i-button>
+                                        </div>
 
-                        <div class="col10">
-                            <div class="row" ng-show="doctors_visits.customer.id">
-                                <fieldset>
+                                    </div>
 
-                                    <table class="table bold center hover">
-                                        <tr>
-                                            <td class="blue"> ##word.customer_name## </td>
-                                            <td colspan="7" class="center">
-                                                {{doctors_visits.customer.name_##session.lang##}}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="blue"> ##word.gender## </td>
-                                            <td colspan="2" class="center">
-                                                {{doctors_visits.customer.gender.##session.lang##}}
-                                            </td>
-                                            <td class="blue"> ##word.child## </td>
-                                            <td colspan="2" ng-show="doctors_visits.customer.child == true">
-                                                <p class="green"> ##word.yes## </p>
-                                            </td>
-                                            <td colspan="2" ng-show="!doctors_visits.customer.child">
-                                                <p class="red"> ##word.no## </p>
-                                            </td>
-                                            <td colspan="2"></td>
-                                        </tr>
+                                </div>
+
+                                <div class="row" ng-show="doctors_visits.customer.id">
+                                    <fieldset>
+
+                                        <table class="table bold center hover">
+                                            <tr>
+                                                <td class="blue"> ##word.customer_name## </td>
+                                                <td colspan="7" class="center">
+                                                    {{doctors_visits.customer.name_##session.lang##}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="blue"> ##word.gender## </td>
+                                                <td colspan="2" class="center">
+                                                    {{doctors_visits.customer.gender.##session.lang##}}
+                                                </td>
+                                                <td class="blue"> ##word.child## </td>
+                                                <td colspan="2" ng-show="doctors_visits.customer.child == true">
+                                                    <p class="green"> ##word.yes## </p>
+                                                </td>
+                                                <td colspan="2" ng-show="!doctors_visits.customer.child">
+                                                    <p class="red"> ##word.no## </p>
+                                                </td>
+                                                <td colspan="2"></td>
+                                            </tr>
 
 
-                                        <tr>
-                                            <td class="blue"> ##word.weight## </td>
-                                            <td colspan="2" class="center"> {{doctors_visits.customer.weight}} </td>
-                                            <td class="blue"> ##word.tall## </td>
-                                            <td colspan="2" class="center"> {{doctors_visits.customer.tall}} </td>
-                                            <td class="blue"> ##word.blood_type## </td>
-                                            <td colspan="2" class="center red"> {{doctors_visits.customer.blood_type.name}}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="blue"> ##word.medicine_notes## </td>
-                                            <td colspan="7" class="center"> {{doctors_visits.customer.medicine_notes}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="blue"> ##word.gov## </td>
-                                            <td colspan="2" class="center"> {{doctors_visits.customer.gov.name}} </td>
-                                            <td class="blue"> ##word.city## </td>
-                                            <td colspan="2" class="center"> {{doctors_visits.customer.city.name}} </td>
-                                            <td class="blue"> ##word.area## </td>
-                                            <td colspan="2" class="center"> {{doctors_visits.customer.area.name}} </td>
-                                        </tr>
+                                            <tr>
+                                                <td class="blue"> ##word.weight## </td>
+                                                <td colspan="2" class="center"> {{doctors_visits.customer.weight}}
+                                                </td>
+                                                <td class="blue"> ##word.tall## </td>
+                                                <td colspan="2" class="center"> {{doctors_visits.customer.tall}}
+                                                </td>
+                                                <td class="blue"> ##word.blood_type## </td>
+                                                <td colspan="2" class="center red">
+                                                    {{doctors_visits.customer.blood_type.name}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="blue"> ##word.medicine_notes## </td>
+                                                <td colspan="7" class="center">
+                                                    {{doctors_visits.customer.medicine_notes}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="blue"> ##word.gov## </td>
+                                                <td colspan="2" class="center"> {{doctors_visits.customer.gov.name}}
+                                                </td>
+                                                <td class="blue"> ##word.city## </td>
+                                                <td colspan="2" class="center">
+                                                    {{doctors_visits.customer.city.name}}
+                                                </td>
+                                                <td class="blue"> ##word.area## </td>
+                                                <td colspan="2" class="center">
+                                                    {{doctors_visits.customer.area.name}}
+                                                </td>
+                                            </tr>
 
-                                        <tr>
-                                            <td class="blue"> ##word.address## </td>
-                                            <td colspan="7" class="center"> {{doctors_visits.customer.address}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="blue"> ##word.mobile## </td>
-                                            <td colspan="4" class="center"> {{doctors_visits.customer.mobile}}</td>
-                                            <td class="blue"> ##word.phone## </td>
-                                            <td colspan="3" class="center"> {{doctors_visits.customer.phone}}</td>
-                                        </tr>
+                                            <tr>
+                                                <td class="blue"> ##word.address## </td>
+                                                <td colspan="7" class="center"> {{doctors_visits.customer.address}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="blue"> ##word.mobile## </td>
+                                                <td colspan="4" class="center"> {{doctors_visits.customer.mobile}}
+                                                </td>
+                                                <td class="blue"> ##word.phone## </td>
+                                                <td colspan="3" class="center"> {{doctors_visits.customer.phone}}
+                                                </td>
+                                            </tr>
 
-                                    </table>
-                                </fieldset>
+                                        </table>
+                                    </fieldset>
+                                </div>
                             </div>
-                        </div>
 
+                            <div class="col4">
+                                <i-checkbox help-id="cities_active" label="##word.active##"
+                                    ng-model="doctors_visits.active">
+                                </i-checkbox>
+
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+
+                                <div class="row">
+
+                                    <div class=" padding margin">
+                                        <table class="table box-shadow " ng-init="discountEditorAdd = true">
+                                            <tr>
+                                                <th colspan="2" class="pointer"
+                                                    ng-click="discountEditorAdd = !discountEditorAdd">
+                                                    ##word.discountes##
+                                                    <i class="fa fa-edit"></i>
+                                                </th>
+                                            </tr>
+                                            <tr ng-hide="discountEditorAdd">
+                                                <td colspan="2">
+                                                    <form>
+
+                                                        <div class="row ">
+                                                            <i-list class="col4" ng-model="discount"
+                                                                ng-search="_search.$discount_name"
+                                                                items="discount_types" label="##word.discount_name##">
+                                                            </i-list>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <i-control class="col4" ng-model="discount.value"
+                                                                type="number" label="##word.discount_value##">
+                                                            </i-control>
+                                                            <div class="col4">
+                                                                <i-radio ng-model="discount.type" ng-value="number"
+                                                                    group="type" label="##word.discount_types_number##">
+                                                                </i-radio>
+
+                                                                <i-radio ng-model="discount.type" group="type"
+                                                                    ng-value="percent"
+                                                                    label="##word.discount_types_percent##">
+                                                                </i-radio>
+                                                            </div>
+                                                            <div class="col4" class="padding">
+                                                                <br>
+                                                                <i-button ng-click="addDiscount() ;calc(doctors_visits)"
+                                                                    label="##word.stores_out_add_discount##"
+                                                                    type="add default">
+                                                                </i-button>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </form>
+                                                </td>
+                                            </tr>
+
+                                            <tr ng-repeat="d1 in doctors_visits.discountes">
+
+                                                <td>
+                                                    <span class="bold red">{{d1.name}} -</span>
+                                                    <span class="bold red" ng-show="d1.type === 'percent'">{{d1.value}}
+                                                        %</span>
+                                                    <span class="bold red"
+                                                        ng-show="d1.type === 'number'">{{d1.value}}$</span>
+                                                    <i-button type="delete"
+                                                        ng-click="deleteDiscount(d1) ; calc(doctors_visits)">
+                                                    </i-button>
+                                                </td>
+
+                                            </tr>
+                                        </table>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
 
                         <br>
                         <br>
@@ -168,7 +277,7 @@
                                     <th>##word.work_day##</th>
                                     <th>##word.work_from##</th>
                                     <th>##word.work_to##</th>
-                                    <th>##word.doctors_visits_price##</th>
+                                    <th>##word.doctor_visit_price##</th>
 
                                 </tr>
                                 <tr>
@@ -181,7 +290,7 @@
                                         {{doctors_visits.selected_time.to.hour}}
                                     </td>
                                     <td>
-                                        <p class="green">{{doctors_visits.doctors_visits_price}}</p>
+                                        <p class="green">{{doctors_visits.doctor_visit_price}}</p>
                                     </td>
 
 
@@ -198,7 +307,8 @@
             <div id="medicinesInformation" class="tab-content">
                 <fieldset>
                     <legend>
-                        <i-button type="add default" ng-click="doctors_visits.medicines_list.push({active:true})"></i-button>
+                        <i-button type="add default" ng-click="doctors_visits.medicines_list.push({active:true})">
+                        </i-button>
                         ##word.medicines##
                     </legend>
                     <div class="row" ng-repeat="info in doctors_visits.medicines_list">
@@ -216,15 +326,54 @@
             <div id="scanInformation" class="tab-content">
                 <fieldset>
                     <legend>
-                        <i-button type="add default" ng-click="doctors_visits.scans_list.push({active:true})"></i-button>
+                        <i-button type="add default" ng-click="doctors_visits.scans_list.push({active:true})">
+                        </i-button>
                         ##word.scans##
                     </legend>
                     <div class="row" ng-repeat="info in doctors_visits.scans_list">
-                        <i-button type="delete default"
-                            ng-click="doctors_visits.scans_list.length ===1 || doctors_visits.scans_list.splice($index,1)"></i-button>
+                        <div class="row">
 
-                        <i-list class="col4" ng-model="info.scans" items="scansList" ng-search="_search.$scanses"
-                            display="name"></i-list>
+                            <div class="col8">
+                                <div class="row">
+
+                                    <div class="row">
+                                        <i-list class="col7" label="##word.scans_name##" ng-model="info.scans"
+                                            items="scansList" ng-search="_search.$scanses" display="name"></i-list>
+                                    </div>
+
+                                    <div class="row">
+
+                                        <i-control class="col7" label="##word.scan_result##" ng-model="info.result">
+                                        </i-control>
+                                    </div>
+
+                                    <i-textarea label="##word.notes##" ng-model="info.notes">
+                                    </i-textarea>
+
+                                </div>
+                            </div>
+                            <div class="col4">
+                                <div class="row">
+                                    <div class="col6"></div>
+
+                                    <i-button type="delete" class="col6" label="##word.delete##"
+                                        ng-click="doctors_visits.scans_list.length ===1 || doctors_visits.scans_list.splice($index,1)">
+                                    </i-button>
+                                </div>
+
+                                <div class="row">
+                                    <i-files label="##word.results_files##" categoty="doctors_visits"
+                                        ng-model="info.files">
+                                    </i-files>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <br>
+                        <br>
+                        <hr style="height:5px;color:grey;background-color:rgb(0, 0, 199)">
                     </div>
                 </fieldset>
             </div>
@@ -232,16 +381,54 @@
             <div id="analysesInformation" class="tab-content">
                 <fieldset>
                     <legend>
-                        <i-button type="add default" ng-click="doctors_visits.analyses_list.push({active:true})"></i-button>
+                        <i-button type="add default" ng-click="doctors_visits.analyses_list.push({active:true})">
+                        </i-button>
                         ##word.analyses##
                     </legend>
                     <div class="row" ng-repeat="info in doctors_visits.analyses_list">
-                        <i-button type="delete default"
-                            ng-click="doctors_visits.analyses_list.length ===1 || doctors_visits.analyses_list.splice($index,1)">
-                        </i-button>
+                        <div class="row">
 
-                        <i-list class="col4" ng-model="info.analyses" items="analysesList" ng-search="_search.$scanses"
-                            display="name"></i-list>
+                            <div class="col8">
+                                <div class="row">
+
+                                    <div class="row">
+                                        <i-list class="col7" label="##word.analyses_name##" ng-model="info.analysis"
+                                            items="analysisList" ng-search="_search.$analyses" display="name"></i-list>
+                                    </div>
+
+                                    <div class="row">
+
+                                        <i-control class="col7" label="##word.analyse_result##" ng-model="info.result">
+                                        </i-control>
+                                    </div>
+
+                                    <i-textarea label="##word.notes##" ng-model="info.notes">
+                                    </i-textarea>
+
+                                </div>
+                            </div>
+                            <div class="col4">
+                                <div class="row">
+                                    <div class="col6"></div>
+
+                                    <i-button type="delete" class="col6" label="##word.delete##"
+                                        ng-click="doctors_visits.analyses_list.length ===1 || doctors_visits.analyses_list.splice($index,1)">
+                                    </i-button>
+                                </div>
+
+                                <div class="row">
+                                    <i-files label="##word.results_files##" categoty="doctors_visits"
+                                        ng-model="info.files">
+                                    </i-files>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <br>
+                        <br>
+                        <hr style="height:5px;color:grey;background-color:rgb(0, 0, 199)">
                     </div>
                 </fieldset>
             </div>
@@ -249,7 +436,8 @@
             <div id="operationInformation" class="tab-content">
                 <fieldset>
                     <legend>
-                        <i-button type="add default" ng-click="doctors_visits.operation_list.push({active:true})"></i-button>
+                        <i-button type="add default" ng-click="doctors_visits.operation_list.push({active:true})">
+                        </i-button>
                         ##word.operation##
                     </legend>
                     <div class="row" ng-repeat="info in doctors_visits.operation_list">
@@ -263,17 +451,168 @@
                 </fieldset>
             </div>
 
+            <div id="foodsDrinksInformation" class="tab-content">
+                <fieldset>
+                    <legend>
+                        ##word.favorite_foods_drinks##
+                    </legend>
+
+                    <div class="row">
+                        <div class="col6">
+                            <div class="row">
+
+                                <h2 class="black">##word.foods##</h2>
+                                <i-button type="add default" ng-click="doctors_visits.favorite_food_list.push({})">
+                                </i-button>
+
+                                <div ng-repeat="f in doctors_visits.favorite_food_list" class="row">
+                                    <i-list class="col8" display="name_##session.lang##" items="foodsList"
+                                        ng-search="favorite_food.$medicines" ng-model="f.food"></i-list>
+                                    <i-button class="col2" type="delete default"
+                                        ng-click="doctors_visits.favorite_food_list.length ==1 || doctors_visits.favorite_food_list.splice($index,1)">
+                                    </i-button>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col6">
+                            <div class="row">
+                                <h2 class="black">##word.drinks##</h2>
+                                <i-button type="add default" ng-click="doctors_visits.favorite_drink_list.push({})">
+                                </i-button>
+
+                                <div ng-repeat="d in doctors_visits.favorite_drink_list" class="row">
+                                    <i-list class="col8" items="drinksList" display="name_##session.lang##"
+                                        ng-search="favorite_drink.$medicines" ng-model="d.drink"></i-list>
+                                    <i-button class="col2" type="delete default"
+                                        ng-click="doctors_visits.favorite_drink_list.length ==1 || doctors_visits.favorite_drink_list.splice($index,1)">
+                                    </i-button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </fieldset>
+
+                <br>
+                <br>
+
+                <fieldset>
+                    <legend>
+                        ##word.forbidden_foods_drinks##
+                    </legend>
+
+                    <div class="row">
+                        <div class="col6">
+                            <div class="row">
+
+                                <h2 class="black">##word.foods##</h2>
+                                <i-button type="add default" ng-click="doctors_visits.forbidden_food_list.push({})">
+                                </i-button>
+
+                                <div ng-repeat="f in doctors_visits.forbidden_food_list" class="row">
+                                    <i-list class="col8" display="name_##session.lang##" items="foodsList"
+                                        ng-search="forbidden_food.$medicines" ng-model="f.food"></i-list>
+                                    <i-button class="col2" type="delete default"
+                                        ng-click="doctors_visits.forbidden_food_list.length ==1 || doctors_visits.forbidden_food_list.splice($index,1)">
+                                    </i-button>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col6">
+                            <div class="row">
+                                <h2 class="black">##word.drinks##</h2>
+                                <i-button type="add default" ng-click="doctors_visits.forbidden_drink_list.push({})">
+                                </i-button>
+
+                                <div ng-repeat="d in doctors_visits.forbidden_drink_list" class="row">
+                                    <i-list class="col8" items="drinksList" display="name_##session.lang##"
+                                        ng-search="forbidden_drink.$medicines" ng-model="d.drink"></i-list>
+                                    <i-button class="col2" type="delete default"
+                                        ng-click="doctors_visits.forbidden_drink_list.length ==1 || doctors_visits.forbidden_drink_list.splice($index,1)">
+                                    </i-button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </fieldset>
+            </div>
+
+            <div id="examinationBeforeDetectionInformation" class="tab-content">
+                <fieldset>
+
+                    <div class="row">
+                        <i-control class="col4" label="##word.blood_pressure##"
+                            ng-model="doctors_visits.ex_before_detection.blood_pressure"></i-control>
+                    </div>
+
+                    <div class="row">
+                        <i-control class="col4" label="##word.breathing##"
+                            ng-model="doctors_visits.ex_before_detection.breathing"></i-control>
+                    </div>
+
+                    <div class="row">
+                        <i-control class="col4" label="##word.heart_beats##"
+                            ng-model="doctors_visits.ex_before_detection.heart_beats"></i-control>
+                    </div>
+
+                    <div class="row">
+                        <i-control class="col4" label="##word.body_temperature##"
+                            ng-model="doctors_visits.ex_before_detection.body_temperature"></i-control>
+                    </div>
+
+                    <div class="row">
+                        <i-control class="col4" label="##word.Sugar##"
+                            ng-model="doctors_visits.ex_before_detection.Sugar"></i-control>
+                    </div>
+
+                    <div class="row">
+                        <i-control class="col4" label="##word.weight##"
+                            ng-model="doctors_visits.ex_before_detection.weight"></i-control>
+                    </div>
+
+
+                    <div class="row">
+                        <i-control class="col7" label="##word.previous_operations##"
+                            ng-model="doctors_visits.ex_before_detection.previous_operations"></i-control>
+                    </div>
+
+                </fieldset>
+
+            </div>
+
+
             <div id="diagnosisInformation" class="tab-content">
                 <div class="row">
                     <div class="row">
 
-                        <i-list label="##word.diagnosis##" class="col4" ng-model="doctors_visits.diagnosis"
+                        <i-list label="##word.diagnosis##" class="col4" ng-model="doctors_visits.diagnosis.type"
                             ng-search="_search.$diagnosis_search" items="diagnosisList" display="ar"></i-list>
                     </div>
 
                     <div class="row">
 
-                        <i-textarea label="##word.notes##" class="col8" ng-model="doctors_visits.doctor_notes"></i-textarea>
+                        <i-textarea label="##word.patient_advice##" class="col8"
+                            ng-model="doctors_visits.diagnosis.patient_advice">
+                        </i-textarea>
+                    </div>
+
+
+                    <div class="row">
+
+                        <i-textarea label="##word.notes##" class="col8"
+                            ng-model="doctors_visits.diagnosis.doctor_notes">
+                        </i-textarea>
                     </div>
 
                 </div>
@@ -284,7 +623,8 @@
                     <legend> ##word.customers_files## </legend>
                     <div class="center">
                         <i-image help-id="cities_logo" ng-model="doctors_visits.image_url"></i-image>
-                        <i-files label="##word.files##" categoty="doctors_visits" ng-model="doctors_visits.files"></i-files>
+                        <i-files label="##word.files##" categoty="doctors_visits" ng-model="doctors_visits.files">
+                        </i-files>
 
                     </div>
                 </fieldset>

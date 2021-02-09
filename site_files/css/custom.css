@@ -244,6 +244,8 @@ nav.sitebottom a.link:hover {
   color: #444;
 }
 
+.multi_lines_text { white-space: pre-line; }
+
 .footer {
   margin: 20px;
   border: 1px solid #bbb;

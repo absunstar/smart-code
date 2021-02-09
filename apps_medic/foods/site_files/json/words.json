@@ -1,0 +1,55 @@
+[{
+        "name": "food",
+        "en": "Food",
+        "ar": "الطعام"
+    },
+    {
+        "name": "foods",
+        "en": "Foods",
+        "ar": "الأطعمة"
+    },
+    {
+        "name": "food_new",
+        "en": "New Foods",
+        "ar": "طعام جديد"
+    },
+    {
+        "name": "food_add",
+        "en": "Add Foods",
+        "ar": "إضافة طعام "
+    },
+    {
+        "name": "food_edit",
+        "en": "Edit Foods",
+        "ar": "تعديل طعام "
+    },
+    {
+        "name": "food_details",
+        "en": "Foods Details",
+        "ar": "تفاصيل الطعام "
+    },
+    {
+        "name": "food_delete",
+        "en": "Delete Foods",
+        "ar": "حذف طعام "
+    },
+    {
+        "name": "food_name_ar",
+        "en": "Foods Name Ar",
+        "ar": "إسم الطعام بالعربي"
+    },
+    {
+        "name": "food_name_en",
+        "en": "Foods Name En",
+        "ar": "إسم الطعام بالإنجليزي"
+    },
+    {
+        "name": "food_notes",
+        "en": "Notes Foods",
+        "ar": "ملاحظات الطعام "
+    }
+
+
+
+
+]

@@ -18,19 +18,14 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
       active: true,
       date: new Date(),
       status: $scope.statusList[0],
-      medicines_list: [{
-        active: true
-      }],
-      scans_list: [{
-        active: true
-      }],
-      analyses_list: [{
-        active: true
-      }],
-      operation_list: [{
-        active: true
-      }],
-
+      medicines_list: [{ active: true }],
+      scans_list: [{ active: true }],
+      analyses_list: [{ active: true }],
+      operation_list: [{ active: true }],
+      favorite_food_list: [{}],
+      favorite_drink_list: [{}],
+      forbidden_food_list: [{}],
+      forbidden_drink_list: [{}]
     };
 
 
@@ -631,9 +626,9 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getAnalysesList = function () {
+  $scope.getAnalysisList = function () {
     $scope.busy = true;
-    $scope.analysesList = [];
+    $scope.analysisList = [];
     $http({
       method: "POST",
       url: "/api/analyses/all",
@@ -648,7 +643,7 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
-          $scope.analysesList = response.data.list;
+          $scope.analysisList = response.data.list;
         }
       },
       function (err) {
@@ -805,34 +800,34 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
 
       if ($scope.doctors_visits.visit_type.id === 1) {
         if ($scope.doctors_visits.doctor_price && $scope.doctors_visits.doctor_price.detection)
-          $scope.doctors_visits.doctors_visits_price = $scope.doctors_visits.doctor_price.detection;
+          $scope.doctors_visits.doctor_visit_price = $scope.doctors_visits.doctor_price.detection;
         else if ($scope.doctors_visits.clinic_price && $scope.doctors_visits.clinic_price.detection)
-          $scope.doctors_visits.doctors_visits_price = $scope.doctors_visits.clinic_price.detection;
+          $scope.doctors_visits.doctor_visit_price = $scope.doctors_visits.clinic_price.detection;
 
       } else if ($scope.doctors_visits.visit_type.id === 2) {
         if ($scope.doctors_visits.doctor_price && $scope.doctors_visits.doctor_price.re_detection)
-          $scope.doctors_visits.doctors_visits_price = $scope.doctors_visits.doctor_price.re_detection;
+          $scope.doctors_visits.doctor_visit_price = $scope.doctors_visits.doctor_price.re_detection;
         else if ($scope.doctors_visits.clinic_price && $scope.doctors_visits.clinic_price.re_detection)
-          $scope.doctors_visits.doctors_visits_price = $scope.doctors_visits.clinic_price.re_detection;
+          $scope.doctors_visits.doctor_visit_price = $scope.doctors_visits.clinic_price.re_detection;
 
       } else if ($scope.doctors_visits.visit_type.id === 3) {
         if ($scope.doctors_visits.doctor_price && $scope.doctors_visits.doctor_price.consultation)
-          $scope.doctors_visits.doctors_visits_price = $scope.doctors_visits.doctor_price.consultation;
+          $scope.doctors_visits.doctor_visit_price = $scope.doctors_visits.doctor_price.consultation;
         else if ($scope.doctors_visits.clinic_price && $scope.doctors_visits.clinic_price.consultation)
-          $scope.doctors_visits.doctors_visits_price = $scope.doctors_visits.clinic_price.consultation;
+          $scope.doctors_visits.doctor_visit_price = $scope.doctors_visits.clinic_price.consultation;
 
       } else if ($scope.doctors_visits.visit_type.id === 4) {
         if ($scope.doctors_visits.doctor_price && $scope.doctors_visits.doctor_price.session)
-          $scope.doctors_visits.doctors_visits_price = $scope.doctors_visits.doctor_price.session;
+          $scope.doctors_visits.doctor_visit_price = $scope.doctors_visits.doctor_price.session;
         else if ($scope.doctors_visits.clinic_price && $scope.doctors_visits.clinic_price.session)
-          $scope.doctors_visits.doctors_visits_price = $scope.doctors_visits.clinic_price.session;
+          $scope.doctors_visits.doctor_visit_price = $scope.doctors_visits.clinic_price.session;
 
-      } else if ($scope.doctors_visits.visit_type.id === 5) {
+      } /* else if ($scope.doctors_visits.visit_type.id === 5) {
         if ($scope.doctors_visits.doctor_price && $scope.doctors_visits.doctor_price.external_visit)
-          $scope.doctors_visits.doctors_visits_price = $scope.doctors_visits.doctor_price.external_visit;
+          $scope.doctors_visits.doctor_visit_price = $scope.doctors_visits.doctor_price.external_visit;
         else if ($scope.doctors_visits.clinic_price && $scope.doctors_visits.clinic_price.external_visit)
-          $scope.doctors_visits.doctors_visits_price = $scope.doctors_visits.clinic_price.external_visit;
-      }
+          $scope.doctors_visits.doctor_visit_price = $scope.doctors_visits.clinic_price.external_visit;
+      } */
 
     }
   };
@@ -841,6 +836,22 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
 
     $scope.doctors_visits.clinic_price = c.detection_price;
     $scope.doctors_visits.doctor_price = d.detection_price;
+
+    if (d.detection_price && d.detection_price.urgent_visit && d.detection_price.urgent_visit.price) {
+
+      $scope.doctors_visits.urgent_visit = {
+        price: d.detection_price.urgent_visit.price,
+        type: d.detection_price.urgent_visit.type ? d.detection_price.urgent_visit.type : c.detection_price.urgent_visit.type,
+      }
+
+    } else if (c.detection_price.urgent_visit && c.detection_price.urgent_visit.price) {
+
+      $scope.doctors_visits.urgent_visit = {
+        price: c.detection_price.urgent_visit.price,
+        type: d.detection_price && d.detection_price.urgent_visit && d.detection_price.urgent_visit.type ? d.detection_price.urgent_visit.type : c.detection_price.urgent_visit.type,
+      }
+
+    }
     $scope.clinic = Object.assign({}, c);
     $scope.doctors_visits.selected_clinic = {
       id: c.id,
@@ -858,36 +869,36 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
 
       if ($scope.doctors_visits.visit_type.id == 1) {
         if ($scope.doctors_visits.doctor_price && $scope.doctors_visits.doctor_price.detection)
-          $scope.doctors_visits.doctors_visits_price = $scope.doctors_visits.doctor_price.detection;
+          $scope.doctors_visits.doctor_visit_price = $scope.doctors_visits.doctor_price.detection;
         else if ($scope.doctors_visits.clinic_price && $scope.doctors_visits.clinic_price.detection)
-          $scope.doctors_visits.doctors_visits_price = $scope.doctors_visits.clinic_price.detection;
+          $scope.doctors_visits.doctor_visit_price = $scope.doctors_visits.clinic_price.detection;
 
       } else if ($scope.doctors_visits.visit_type.id == 2) {
         if ($scope.doctors_visits.doctor_price && $scope.doctors_visits.doctor_price.re_detection)
-          $scope.doctors_visits.doctors_visits_price = $scope.doctors_visits.doctor_price.re_detection;
+          $scope.doctors_visits.doctor_visit_price = $scope.doctors_visits.doctor_price.re_detection;
         else if ($scope.doctors_visits.clinic_price && $scope.doctors_visits.clinic_price.re_detection)
-          $scope.doctors_visits.doctors_visits_price = $scope.doctors_visits.clinic_price.re_detection;
+          $scope.doctors_visits.doctor_visit_price = $scope.doctors_visits.clinic_price.re_detection;
 
       } else if ($scope.doctors_visits.visit_type.id == 3) {
         if ($scope.doctors_visits.doctor_price && $scope.doctors_visits.doctor_price.consultation)
-          $scope.doctors_visits.doctors_visits_price = $scope.doctors_visits.doctor_price.consultation;
+          $scope.doctors_visits.doctor_visit_price = $scope.doctors_visits.doctor_price.consultation;
         else if ($scope.doctors_visits.clinic_price && $scope.doctors_visits.clinic_price.consultation)
-          $scope.doctors_visits.doctors_visits_price = $scope.doctors_visits.clinic_price.consultation;
+          $scope.doctors_visits.doctor_visit_price = $scope.doctors_visits.clinic_price.consultation;
       }
 
       else if ($scope.doctors_visits.visit_type.id == 4) {
         if ($scope.doctors_visits.doctor_price && $scope.doctors_visits.doctor_price.session)
-          $scope.doctors_visits.doctors_visits_price = $scope.doctors_visits.doctor_price.session;
+          $scope.doctors_visits.doctor_visit_price = $scope.doctors_visits.doctor_price.session;
         else if ($scope.doctors_visits.clinic_price && $scope.doctors_visits.clinic_price.session)
-          $scope.doctors_visits.doctors_visits_price = $scope.doctors_visits.clinic_price.session;
+          $scope.doctors_visits.doctor_visit_price = $scope.doctors_visits.clinic_price.session;
       }
 
-      else if ($scope.doctors_visits.visit_type.id == 5) {
+      /* else if ($scope.doctors_visits.visit_type.id == 5) {
         if ($scope.doctors_visits.doctor_price && $scope.doctors_visits.doctor_price.external_visit)
-          $scope.doctors_visits.doctors_visits_price = $scope.doctors_visits.doctor_price.external_visit;
+          $scope.doctors_visits.doctor_visit_price = $scope.doctors_visits.doctor_price.external_visit;
         else if ($scope.doctors_visits.clinic_price && $scope.doctors_visits.clinic_price.external_visit)
-          $scope.doctors_visits.doctors_visits_price = $scope.doctors_visits.clinic_price.external_visit;
-      }
+          $scope.doctors_visits.doctor_visit_price = $scope.doctors_visits.clinic_price.external_visit;
+      } */
 
     }
 
@@ -914,7 +925,7 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
 
   $scope.booking = function (time) {
     $scope.doctors_visits.selected_time = time;
-
+    $scope.calc($scope.doctors_visits);
     site.hideModal('#doctorsVisitsSelectTimes');
 
   };
@@ -1211,6 +1222,112 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.loadTaxTypes = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/tax_types/all",
+      data: {
+        select: {
+          code: 1,
+          id: 1,
+          name: 1,
+          value: 1
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.tax_types = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getFoodsList = function (where) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/foods/all",
+      data: {
+        where: {
+          active: true
+        },
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.foodsList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getDrinksList = function (where) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/drinks/all",
+      data: {
+        where: {
+          active: true
+        },
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.drinksList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.loadDiscountTypes = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/discount_types/all",
+      data: {
+        select: {
+          code: 1,
+          id: 1,
+          name: 1,
+          value: 1,
+          type: 1
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.discount_types = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+
+
   $scope.getDefaultSettings = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -1234,6 +1351,54 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
 
   };
 
+  $scope.addDiscount = function () {
+    $scope.error = '';
+    if (!$scope.discount.value) {
+      $scope.error = '##word.error_discount##';
+      return;
+    } else {
+      $scope.doctors_visits.discountes = $scope.doctors_visits.discountes || [];
+      $scope.doctors_visits.discountes.push({
+        name: $scope.discount.name,
+        value: $scope.discount.value,
+        type: $scope.discount.type
+      });
+    };
+  };
+
+  $scope.deleteDiscount = function (_ds) {
+    $scope.doctors_visits.discountes.splice($scope.doctors_visits.discountes.indexOf(_ds), 1);
+  };
+
+
+  $scope.calc = function (obj) {
+    $scope.error = '';
+    $timeout(() => {
+      obj.total_discount = 0;
+
+      if (obj.urgent_visit && obj.is_urgent_visit) {
+        if (obj.urgent_visit.type == 'percent')
+          obj.urgent_visit.value = obj.doctor_visit_price * site.toNumber(obj.urgent_visit.price) / 100;
+        else obj.urgent_visit.value = site.toNumber(obj.urgent_visit.price);
+        obj.total_value = obj.doctor_visit_price + obj.urgent_visit.value;
+
+      } else obj.total_value = obj.doctor_visit_price;
+
+      if (obj.discountes && obj.discountes.length > 0)
+        obj.discountes.forEach(ds => {
+          if (ds.type == 'percent')
+            obj.total_discount += obj.total_value * site.toNumber(ds.value) / 100;
+          else obj.total_discount += site.toNumber(ds.value);
+        });
+
+      obj.net_value = obj.total_value - obj.total_discount
+
+      $scope.discount = {
+        type: 'number'
+      };
+    }, 250);
+  };
+
   $scope.getNumberingAuto = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -1241,7 +1406,7 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/numbering/get_automatic",
       data: {
-        screen: "doctors_visits_book"
+        screen: "doctors_visits"
       }
     }).then(
       function (response) {
@@ -1261,7 +1426,7 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
   $scope.getSpecialtyList();
   $scope.getMedicinesList();
   $scope.getScansList();
-  $scope.getAnalysesList();
+  $scope.getAnalysisList();
   $scope.getOperationList();
   $scope.getStatus();
   $scope.getDiseaseList();
@@ -1270,9 +1435,13 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
   $scope.getCustomerGroupList();
   $scope.Gender();
   $scope.getBloodType();
+  $scope.getFoodsList();
+  $scope.getDrinksList();
   $scope.getClinicList();
   $scope.getDoctorsVisitsTypeList();
   $scope.getDiagnosisList();
+  $scope.loadDiscountTypes();
+  $scope.loadTaxTypes();
   $scope.getClinicDoctorsVisitsList();
   $scope.getDefaultSettings();
   $scope.getNumberingAuto();

@@ -19,7 +19,7 @@ company
 
 ```json
 [
-    {"name" : "company_add" , "en":"Add" , "ar" : "اضافة"},
+    {"name" : "company_add" , "en":"Add" , "ar" : "إضافة"},
     {"name" : "company_edit" , "en":"Edit" , "ar" : "تعديل"},
     {"name" : "company_delete" , "en":"Delete" , "ar" : "حذف"},
     {"name" : "company_search" , "en":"Search" , "ar" : "بحث"},

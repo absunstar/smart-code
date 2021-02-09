@@ -51,9 +51,9 @@
     {
         "category": "main",
         "feature": "medical",
-        "name": "tickets_book",
-        "en": "Ticket Booking",
-        "ar": "حجز تذكرة"
+        "name": "doctors_visits",
+        "en": "Doctors Visits",
+        "ar": "زيارات الأطباء"
     },
     {
         "category": "main",
@@ -654,7 +654,7 @@
         "category": "general_setting",
         "feature": "medic",
         "name": "medicine",
-        "en": "Medicine",
+        "en": "Medicines",
         "ar": "الأدوية"
     },
     {
@@ -663,6 +663,20 @@
         "name": "disease",
         "en": "Disease",
         "ar": "الأمراض"
+    },
+    {
+        "category": "general_setting",
+        "feature": "medic",
+        "name": "foods",
+        "en": "Foods",
+        "ar": "الأطعمة"
+    },
+    {
+        "category": "general_setting",
+        "feature": "medic",
+        "name": "drinks",
+        "en": "Drinks",
+        "ar": "المشروبات"
     },
     {
         "category": "general_setting",

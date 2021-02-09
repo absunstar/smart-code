@@ -225,7 +225,7 @@
             <a x-features="academy || gym || school || medical" class="tab-link" href="/medicine"
                 x-permissions="medicine_ui || medicine_manage">
                 <img src="/images/medicine.png">
-                <span> ##word.medicine##</span>
+                <span> ##word.medicines##</span>
             </a>
 
             <a x-features="academy || gym || school || medical" class="tab-link" href="/disease"
@@ -234,6 +234,17 @@
                 <span> ##word.diseases##</span>
             </a>
 
+            <a x-features="academy || gym || school || medical" class="tab-link" href="/foods"
+                x-permissions="foods_ui || foods_manage">
+                <img src="/images/foods.png">
+                <span> ##word.foods##</span>
+            </a>
+
+            <a x-features="academy || gym || school || medical" class="tab-link" href="/drinks"
+                x-permissions="drinks_ui || drinks_manage">
+                <img src="/images/drinks.png">
+                <span> ##word.drinks##</span>
+            </a>
 
             <a x-features="restaurant" class="tab-link" href="/tables_group"
                 x-permissions="tables_group_ui || tables_group_manage">
@@ -1219,8 +1230,7 @@
                     <span> ##word.menu_shift## </span>
                 </a>
 
-                <a x-features="school" class="tab-link" href="/shifts"
-                    x-permissions="shifts_ui || shifts_manage">
+                <a x-features="school" class="tab-link" href="/shifts" x-permissions="shifts_ui || shifts_manage">
                     <img src="/images/school_years.png">
                     <span> ##word.menu_shift## </span>
                 </a>

@@ -192,11 +192,14 @@
 
                         <tr>
                             <td class="title">##word.weight##</td>
-                            <td class="center">{{customer.weight}}</td>
+                            <td class="center">{{customer.weight}}
+                                <b class="bold black">##word.k_g##</b>
+                            </td>
                         </tr>
                         <tr>
                             <td class="title">##word.tall##</td>
-                            <td class="center">{{customer.tall}}</td>
+                            <td class="center">{{customer.tall}}
+                                <b class="bold black">##word.c_m##</b>
                         </tr>
                         <tr>
                             <td class="title">##word.blood_type##</td>
@@ -224,8 +227,8 @@
                                     <tr>
                                         <th class="title">##word.allergic_food##</th>
                                     </tr>
-                                    <tr ng-repeat="food in customer.allergic_food_list">
-                                        <td class="center">{{food.name}}</td>
+                                    <tr ng-repeat="f in customer.allergic_food_list">
+                                        <td class="center">{{f.food.name_##session.lang##}}</td>
                                     </tr>
 
                                 </table>
@@ -240,8 +243,8 @@
                                     <tr>
                                         <th class="title">##word.allergic_drink##</th>
                                     </tr>
-                                    <tr ng-repeat="drink in customer.allergic_drink_list">
-                                        <td class="center">{{drink.name}}</td>
+                                    <tr ng-repeat="d in customer.allergic_drink_list">
+                                        <td class="center">{{d.drink.name_##session.lang##}}</td>
                                     </tr>
 
                                 </table>
@@ -261,15 +264,15 @@
                             <table class="table hover bold">
 
                                 <tr>
-                                    <th class="title">##word.medicine##</th>
+                                    <th class="title">##word.medicines##</th>
                                     <th class="title">##word.count_dosage##</th>
                                     <!--                             <th class="title">##word.beginning_dosage##</th>
  -->
                                 </tr>
 
-                                <tr ng-repeat="medicine in customer.medicine_list">
-                                    <td class="center">{{medicine.name.name}}</td>
-                                    <td class="center">{{medicine.count_dosage}}</td>
+                                <tr ng-repeat="m in customer.medicine_list">
+                                    <td class="center">{{m.medicine.name}}</td>
+                                    <td class="center">{{m.count_dosage}}</td>
                                     <!--                             <td class="center">{{medicine.time.##session.lang##}}</td>
  -->
                                 </tr>
@@ -291,8 +294,8 @@
                                     <th class="title">##word.disease_name##</th>
                                 </tr>
 
-                                <tr ng-repeat="disease in customer.disease_list">
-                                    <td class="center">{{disease.name.name}}</td>
+                                <tr ng-repeat="d in customer.disease_list">
+                                    <td class="center">{{d.disease.name}}</td>
                                 </tr>
 
                             </table>
@@ -549,7 +552,7 @@
                         </tr>
 
                         <tr>
-                            <td class="title"> ##word.##session.lang##ea## </td>
+                            <td class="title"> ##word.area## </td>
                             <td class="center"> {{customer.##session.lang##ea.name}} </td>
                         </tr>
 

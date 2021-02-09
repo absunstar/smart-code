@@ -13,37 +13,62 @@
         "en": "New Disease",
         "ar": "مرض جديد"
     },
-
     {
         "name": "disease_add",
         "en": "Add Disease",
-        "ar": "اضافة مرض "
+        "ar": "إضافة مرض"
     },
     {
         "name": "disease_edit",
         "en": "Edit Disease",
-        "ar": "تعديل مرض "
+        "ar": "تعديل مرض"
     },
     {
         "name": "disease_details",
         "en": "disease Details",
-        "ar": "تفاصيل المرض "
+        "ar": "تفاصيل المرض"
     },
     {
         "name": "disease_delete",
         "en": "Delete Disease",
-        "ar": "حذف مرض "
+        "ar": "حذف مرض"
     },
     {
         "name": "disease_name",
         "en": "disease Name",
-        "ar": "إسم المرض "
+        "ar": "إسم المرض"
     },
     {
-        "name": "disease_price",
-        "en": "disease Price",
-        "ar": "سعر المرض "
+        "name": "disease_treatment",
+        "en": "Disease Treatment",
+        "ar": "علاج المرض"
+    },
+    {
+        "name": "definition_disease",
+        "en": "Definition of disease",
+        "ar": "تعريف المرض"
+    },
+    {
+        "name": "symptoms_disease",
+        "en": "Symptoms of the disease",
+        "ar": "أعراض المرض"
+    },
+    {
+        "name": "causes_disease",
+        "en": "The causes of disease",
+        "ar": "أسباب المرض"
+    },
+    {
+        "name": "kinds_disease",
+        "en": "Kinds of the disease",
+        "ar": "أنواع المرض"
+    },
+    {
+        "name": "notes_disease",
+        "en": "Disease Notes",
+        "ar": "ملاحظات المرض"
     }
+
 
 
 

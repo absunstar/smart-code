@@ -181,7 +181,7 @@
                     <table class="table box-shadow">
                         <tr>
                             <th colspan="2" class="pointer" ng-click="discountEditorAdd = !discountEditorAdd">
-                                ##word.stores_out_discountes##
+                                ##word.discountes##
                                 <i class="fa fa-edit"></i>
                             </th>
                         </tr>
@@ -190,12 +190,12 @@
                                 <form>
                                     <div class="row ">
                                         <i-list ng-search="_search.$discount_name" class="col4" ng-model="discount"
-                                            items="discount_types" label="##word.stores_out_discount_name##">
+                                            items="discount_types" label="##word.discount_name##">
                                             {{di.name}}
                                         </i-list>
                                         <div class="col1"></div>
                                         <i-control class="col2" ng-model="discount.value" type="number"
-                                            label="##word.stores_out_discount_value##" type="number"></i-control>
+                                            label="##word.discount_value##" type="number"></i-control>
 
                                     </div>
                                     <div class="row">

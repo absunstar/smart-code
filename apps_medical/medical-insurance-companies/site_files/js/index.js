@@ -260,7 +260,7 @@ app.controller("medicalInsuranceCompanies", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getAnalysesList = function (where) {
+  $scope.getAnalysisList = function (where) {
     $scope.busy = true;
     $scope.analysList = [];
     $http({
@@ -404,7 +404,7 @@ app.controller("medicalInsuranceCompanies", function ($scope, $http, $timeout) {
 
   $scope.getMedicalInsuranceCompanyList();
   $scope.getGovList();
-  $scope.getAnalysesList();
+  $scope.getAnalysisList();
   $scope.getNumberingAuto();
   $scope.getMedicinesList();
   $scope.getOperationList();

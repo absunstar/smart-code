@@ -9,6 +9,11 @@
         "en": "Enterprise Resources Planing",
         "ar": "نظام إدارة المدرسة"
     },
+        {
+        "name": "track_opening_closing_shift",
+        "en": "Track opening and closing of the Year School",
+        "ar": "تتبع فتح و غلق العام الدراسي"
+    },
     {
         "name": "yes",
         "en": "Yes",

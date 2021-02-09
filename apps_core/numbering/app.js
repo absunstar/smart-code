@@ -242,7 +242,6 @@ module.exports = function init(site) {
         Numbering.filter((n) => n.company.id == site.get_company(req).id)[0].screens_list.forEach(_sl => {
 
           if (_sl.name == req.data.screen) {
-
             if (_sl.type_numbering.id == 4) {
               response.isAuto = false;
             } else {
@@ -254,6 +253,7 @@ module.exports = function init(site) {
     } else {
       response.isAuto = false;
     }
+  
 
     response.done = true;
     res.json(response);

@@ -305,41 +305,6 @@
         "ar": "اجمالى الخصم"
     },
     {
-        "name": "stores_out_discountes",
-        "en": "Discountes",
-        "ar": " الخصومات"
-    },
-    {
-        "name": "stores_out_discount",
-        "en": "Discount",
-        "ar": " الخصومات"
-    },
-    {
-        "name": "stores_out_discount_name",
-        "en": "Discount Name",
-        "ar": "الإسم"
-    },
-    {
-        "name": "stores_out_discount_value",
-        "en": "Discount Value",
-        "ar": "القيمة"
-    },
-    {
-        "name": "discount_types_number",
-        "en": "Discount Value",
-        "ar": "مبلغ"
-    },
-    {
-        "name": "discount_types_percent",
-        "en": "Discount Value",
-        "ar": "نسبة"
-    },
-    {
-        "name": "stores_out_add_discount",
-        "en": "Discount Value",
-        "ar": "اضف الخصم"
-    },
-    {
         "name": "stores_out_add_tax",
         "en": "Discount Value",
         "ar": "اضف الضريبة"

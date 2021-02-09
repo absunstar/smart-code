@@ -15,8 +15,7 @@
                 ##word.nursing##</a>
 
             <a class="tab-link" onclick="site.showTabContent(event,'#vacationformation')">
-                ##word.vacations##
-            </a>
+                ##word.vacations##</a>
 
             <a class="tab-link" onclick="site.showTabContent(event,'#loginInformation')">
                 ##word.login_information##</a>
@@ -52,28 +51,37 @@
 
                             <tr>
                                 <td class="title">##word.detection_price##</td>
-                                <td class="center green">{{clinic.detection_price}}</td>
+                                <td class="center green">{{clinic.detection_price.detection}}</td>
                             </tr>
 
                             <tr>
                                 <td class="title">##word.re_detection##</td>
-                                <td class="center green">{{clinic.re_detection}}</td>
+                                <td class="center green">{{clinic.detection_price.re_detection}}</td>
                             </tr>
 
                             <tr>
                                 <td class="title">##word.consultation##</td>
-                                <td class="center green">{{clinic.consultation}}</td>
+                                <td class="center green">{{clinic.detection_price.consultation}}</td>
                             </tr>
 
                             <tr>
                                 <td class="title">##word.session##</td>
-                                <td class="center green">{{clinic.session}}</td>
+                                <td class="center green">{{clinic.detection_price.session}}</td>
                             </tr>
 
                             <tr>
+                                <td class="title">##word.increase_urgent_visit##</td>
+                                <td class="center green">{{clinic.detection_price.urgent_visit.price}}
+                                    <b class="red" ng-show="clinic.detection_price.urgent_visit.type =='number'">$</b>
+                                    <b class="red" ng-show="clinic.detection_price.urgent_visit.type =='percent'">%</b>
+                                </td>
+                            </tr>
+
+
+                            <!-- <tr>
                                 <td class="title">##word.external_visit##</td>
                                 <td class="center green">{{clinic.external_visit}}</td>
-                            </tr>
+                            </tr> -->
 
                             <tr ng-show="clinic.detection_Duration">
                                 <td class="title">##word.detection_Duration##</td>
@@ -103,7 +111,7 @@
                         <i-control disabled help-id="" class="col4" label="##word.shift_name##" ng-model="shift.name">
                         </i-control>
 
-                        <table class="table center hover bold" >
+                        <table class="table center hover bold">
                             <tr>
                                 <th>##word.day##</th>
                                 <th>##word.from##</th>
@@ -135,15 +143,20 @@
                             <th>##word.re_detection##</th>
                             <th>##word.consultation##</th>
                             <th>##word.session##</th>
+                            <th>##word.increase_urgent_visit##</th>
                             <th>##word.detection_Duration##</th>
                         </tr>
                         <tr ng-repeat="doctor in clinic.doctor_list">
                             <td class="center">{{doctor.doctor.name}}</td>
                             <td class="center blue">{{doctor.shift.name}}</td>
-                            <td class="center green">{{doctor.detection_price}}</td>
-                            <td class="center green">{{doctor.re_detection}}</td>
-                            <td class="center green">{{doctor.consultation}}</td>
-                            <td class="center green">{{doctor.session}}</td>
+                            <td class="center green">{{doctor.detection_price.detection}}</td>
+                            <td class="center green">{{doctor.detection_price.re_detection}}</td>
+                            <td class="center green">{{doctor.detection_price.consultation}}</td>
+                            <td class="center green">{{doctor.detection_price.session}}</td>
+                            <td class="center green">{{doctor.detection_price.urgent_visit.price}}
+                                <b class="red" ng-show="doctor.detection_price.urgent_visit.type =='number'">$</b>
+                                <b class="red" ng-show="doctor.detection_price.urgent_visit.type =='percent'">%</b>
+                            </td>
                             <td class="center">{{doctor.detection_Duration}} <b
                                     ng-show="doctor.detection_Duration">##word.minute##</b></td>
 

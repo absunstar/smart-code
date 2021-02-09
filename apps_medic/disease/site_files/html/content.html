@@ -6,8 +6,8 @@
                 <div class="col9">
 
                     <div class="row">
-                        <i-control ng-hide="disabledCode" class="col2" label="##word.code##"
-                            ng-model="disease.code"></i-control>
+                        <i-control ng-hide="disabledCode" class="col2" label="##word.code##" ng-model="disease.code"></i-control>
+                        </i-control>
                         </i-control>
                         <i-control help-id="disease_name" v="r ll2" class="col4" label="##word.disease_name##"
                             ng-model="disease.name"></i-control>
@@ -16,6 +16,39 @@
                             ng-model="disease.active"></i-checkbox>
 
                     </div>
+
+                    <div class="row">
+                        <i-textarea label="##word.definition_disease##" class="col7"
+                            ng-model="disease.definition_disease">
+                        </i-textarea>
+                    </div>
+
+                    <div class="row">
+                        <i-textarea label="##word.symptoms_disease##" class="col7" ng-model="disease.symptoms_disease">
+                        </i-textarea>
+                    </div>
+
+                    <div class="row">
+                        <i-textarea label="##word.disease_treatment##" class="col7"
+                            ng-model="disease.disease_treatment">
+                        </i-textarea>
+                    </div>
+
+                    <div class="row">
+                        <i-textarea label="##word.causes_disease##" class="col7" ng-model="disease.causes_disease">
+                        </i-textarea>
+                    </div>
+
+                    <div class="row">
+                        <i-textarea label="##word.kinds_disease##" class="col7" ng-model="disease.kinds_disease">
+                        </i-textarea>
+                    </div>
+
+                    <div class="row">
+                        <i-textarea label="##word.notes_disease##" class="col7" ng-model="disease.notes_disease">
+                        </i-textarea>
+                    </div>
+
 
                 </div>
 

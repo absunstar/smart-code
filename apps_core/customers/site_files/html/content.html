@@ -269,12 +269,28 @@
                         ##word.medical_info##
                     </legend>
                     <div class="row">
-                        <i-control help-id="" class="col3" type="number" label="##word.weight##"
-                            ng-model="customer.weight"></i-control>
-                        <i-control help-id="" class="col3" type="number" label="##word.tall##" ng-model="customer.tall">
-                        </i-control>
                         <i-list help-id="" class="col3" label="##word.blood_type##" ng-model="customer.blood_type"
                             ng-search="_search.$blood_type" items="bloodTypeList" display="name"></i-list>
+
+                        <i-control help-id="" class="col2" type="number" label="##word.weight##"
+                            ng-model="customer.weight"></i-control>
+
+                        <div class="col1">
+                            <br>
+                            <br>
+                            <p class="bold black">##word.k_g##</p>
+                        </div>
+
+
+
+                        <i-control help-id="" class="col2" type="number" label="##word.tall##" ng-model="customer.tall">
+                        </i-control>
+                        <div class="col1">
+                            <br>
+                            <br>
+                            <p class="bold black">##word.c_m##</p>
+                        </div>
+
                     </div>
 
                     <div class="row">
@@ -295,8 +311,9 @@
                                 <h2 class="black">##word.allergic_food##</h2>
                                 <i-button type="add default" ng-click="customer.allergic_food_list.push({})"></i-button>
 
-                                <div ng-repeat="food in customer.allergic_food_list" class="row">
-                                    <i-control class="col8" ng-model="food.name"></i-control>
+                                <div ng-repeat="f in customer.allergic_food_list" class="row">
+                                    <i-list class="col8" display="name_##session.lang##" items="foodsList"
+                                        ng-search="food.$medicines" ng-model="f.food"></i-list>
                                     <i-button class="col2" type="delete default"
                                         ng-click="customer.allergic_food_list.length ==1 || customer.allergic_food_list.splice($index,1)">
                                     </i-button>
@@ -312,8 +329,9 @@
                                 <i-button type="add default" ng-click="customer.allergic_drink_list.push({})">
                                 </i-button>
 
-                                <div ng-repeat="drink in customer.allergic_drink_list" class="row">
-                                    <i-control class="col8" ng-model="drink.name"></i-control>
+                                <div ng-repeat="d in customer.allergic_drink_list" class="row">
+                                    <i-list class="col8" items="drinksList" display="name_##session.lang##"
+                                        ng-search="drink.$medicines" ng-model="d.drink"></i-list>
                                     <i-button class="col2" type="delete default"
                                         ng-click="customer.allergic_drink_list.length ==1 || customer.allergic_drink_list.splice($index,1)">
                                     </i-button>
@@ -331,11 +349,11 @@
                         ##word.medicines##
                     </legend>
 
-                    <div ng-repeat="medicine in customer.medicine_list" class="row">
+                    <div ng-repeat="m in customer.medicine_list" class="row">
                         <i-list class="col4" items="medicineList" label="##word.medicine##"
-                            ng-search="medicine.$medicines" ng-model="medicine.name"></i-list>
-                        <i-control class="col2" type="number" label="##word.count_dosage##"
-                            ng-model="medicine.count_dosage"></i-control>
+                            ng-search="medicine.$medicines" ng-model="m.medicine"></i-list>
+                        <i-control class="col2" type="number" label="##word.count_dosage##" ng-model="m.count_dosage">
+                        </i-control>
                         <!--   <i-list class="col2" items="timeList" display="##session.lang##"
                             label="##word.beginning_dosage##" ng-model="medicine.time"></i-list> -->
                         <i-button class="col1" type="delete default"
@@ -351,9 +369,9 @@
                         ##word.diseases##
                     </legend>
 
-                    <div ng-repeat="disease in customer.disease_list" class="row">
-                        <i-list class="col5" items="diseaseList" display2="number" space="/-/"
-                            ng-search="disease.$diseases" ng-model="disease.name"></i-list>
+                    <div ng-repeat="d in customer.disease_list" class="row">
+                        <i-list class="col5" items="diseaseList" ng-search="disease.$diseases" ng-model="d.disease">
+                        </i-list>
                         <i-button class="col2" type="delete default"
                             ng-click="customer.disease_list.length ==1 || customer.disease_list.splice($index,1)">
                         </i-button>

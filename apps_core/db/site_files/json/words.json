@@ -1,6 +1,6 @@
 [
     { "name": "amounts_in","en": "Amount In", "ar": "الوارد"},
-    { "name": "amounts_in_add","en": "Add Amount", "ar": "اضافة وارد"},
+    { "name": "amounts_in_add","en": "Add Amount", "ar": "إضافة وارد"},
     { "name": "amounts_in_new","en": "New Amount", "ar": "تسجيل وارد جديد"},
     { "name": "amounts_in_details","en": "Amount  Details", "ar": "تفاصيل وارد"},
     { "name": "amounts_in_edit","en": "Edit Amount", "ar": "تعديل وارد"},

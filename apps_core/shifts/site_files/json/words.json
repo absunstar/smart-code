@@ -9,13 +9,24 @@
         "ar": "الشيفت"
     },
     {
+        "name": "open_new_shift",
+        "en": "Open New Shift",
+        "ar": " فتح شيفت جديد "
+    },
+    {
         "name": "open_shift",
         "en": "Open New Shift",
         "ar": " فتح شيفت جديد "
-    },{
+    },
+    {
         "name": "close_shift",
         "en": "Close Shift",
         "ar": "غلق الشيفت"
+    },
+    {
+        "name": "open_shift",
+        "en": "Open Shift",
+        "ar": "فتح الشيفت"
     },
     {
         "name": "open_shift_not_found",
@@ -36,6 +47,16 @@
         "name": "shift_period",
         "en": "Add Period",
         "ar": "مدة الشيفت"
+    },
+    {
+        "name": "_close",
+        "en": "Close",
+        "ar": "غلق"
+    },
+    {
+        "name": "open",
+        "en": "Open",
+        "ar": "فتح"
     },
     {
         "name": "shifts_add",
@@ -61,6 +82,11 @@
         "name": "shifts_name",
         "en": "Shift Name",
         "ar": "إسم الشيفت "
+    },
+    {
+        "name": "track_opening_closing_shift",
+        "en": "Track opening and closing of the Shift",
+        "ar": "تتبع فتح و غلق الشيفت"
     }
 
 

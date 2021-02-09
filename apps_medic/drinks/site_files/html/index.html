@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="drinks_ui || drinks_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+
+    <div id="main-layout" class="container loaded">
+        <div class="row">
+            <div class="row" ng-controller="drinks">
+                <div x-permissions="drinks_add || drinks_manage" x-import="drinks/add_modal.html"></div>
+                <div x-permissions="drinks_update || drinks_manage" x-import="drinks/update_modal.html"></div>
+                <div x-permissions="drinks_delete || drinks_manage" x-import="drinks/delete_modal.html"></div>
+                <div x-permissions="drinks_view || drinks_manage" x-import="drinks/view_modal.html"></div>
+                <div x-permissions="drinks_search || drinks_manage" x-import="drinks/search_all_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center">##word.drinks##</h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button x-permissions="drinks_add || drinks_manage" type="add" label="##word.drink_new##"
+                        ng-click="displayAddDrinks()"></i-button>
+
+                    <i-button x-permissions="drinks_search || drinks_manage" type="search" label="##word.search_all##"
+                        ng-click="displaySearchModal()"></i-button>
+
+                    <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
+                </div>
+
+                <table x-permissions="login" class="table bold hover loaded" id="t1">
+                    <tr>
+                        <th class="not-print">##word.logo##</th>
+                        <th>##word.code##</th>
+                        <th>##word.drink_name_ar##</th>
+                        <th>##word.drink_name_en##</th>
+                        <th>##word.status##</th>
+                        <th class="not-print">##word.actions##</th>
+                    </tr>
+                    <tr ng-repeat="c in list">
+                        <td class="center not-print">
+                            <i-image view class="logo" ng-model="c.image_url"></i-image>
+                        </td>
+                        <td class="center userPrint blue">{{c.code}}</td>
+                        <td class="center title">{{c.name_ar}}</td>
+                        <td class="center title">{{c.name_en}}</td>
+                        <td class="center">
+                            <p ng-show="c.active ==true" class="green"> ##word.active## </p>
+                            <p ng-show="c.active ==false" class="red"> ##word.not_active## </p>
+                        </td>
+
+                        <td class="center not-print">
+                            <i-button x-permissions="drinks_view || drinks_manage" type="view" label="##word.details##"
+                                ng-click="displayDetailsDrinks(c)"></i-button>
+
+                            <i-button x-permissions="drinks_update || drinks_manage" type="edit" label="##word.edit##"
+                                ng-click="displayUpdateDrinks(c)"></i-button>
+
+                            <i-button x-permissions="drinks_delete || drinks_manage" type="delete" label="##word.delete##"
+                                ng-click="displayDeleteDrinks(c)"></i-button>
+                        </td>
+                    </tr>
+                </table>
+                <i-button x-permissions="drinks_print || drinks_manage" type="print" label="##word.print##"
+                    onclick="site.print('#t1')"></i-button>
+
+                <i-button x-permissions="drinks_export || drinks_manage" label="##word.export_to_excel##"
+                    onclick="export_to_xlsx('t1' , 'drinks.xlsx')"></i-button>
+            </div>
+        </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+    <script x-import="drinks/index.js"></script>
+</body>
+
+</html>

@@ -32,7 +32,7 @@
     {
         "name": "add",
         "en": "Add",
-        "ar": "اضافة"
+        "ar": "إضافة"
     },
     {
         "name": "save",
@@ -650,7 +650,7 @@
     {
         "name": "companies_add",
         "en": "Add Company",
-        "ar": "اضافة شركة"
+        "ar": "إضافة شركة"
     },
     {
         "name": "companies_edit",

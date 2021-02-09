@@ -5,17 +5,47 @@
             <div class="col9">
                 <table id="basicInformationTable" class="table hover bold">
                     <tr>
-                        <td class="title">##word.code##</td>
+                        <td class="title w200">##word.code##</td>
                         <td class="center blue userPrint">{{disease.code}}</td>
                     </tr>
 
                     <tr>
-                        <td class="title">##word.disease_name##</td>
-                        <td class="center">{{disease.name}}</td>
+                        <td class="title w200">##word.disease_name##</td>
+                        <td class="center ">{{disease.name}}</td>
                     </tr>
 
                     <tr>
-                        <td class="title">##word.status##</td>
+                        <td class="title w200">##word.definition_disease##</td>
+                        <td class="center multi_lines_text">{{disease.definition_disease}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title w200">##word.symptoms_disease##</td>
+                        <td class="center multi_lines_text">{{disease.symptoms_disease}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title w200">##word.disease_treatment##</td>
+                        <td class="center multi_lines_text">{{disease.disease_treatment}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title w200">##word.causes_disease##</td>
+                        <td class="center multi_lines_text">{{disease.causes_disease}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title w200">##word.kinds_disease##</td>
+                        <td class="center multi_lines_text">{{disease.kinds_disease}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title w200">##word.notes_disease##</td>
+                        <td class="center multi_lines_text">{{disease.notes_disease}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title w200">##word.status##</td>
                         <td ng-show="disease.active == true" class="green center"> ##word.active## </td>
                         <td ng-show="disease.active == false" class="red center"> ##word.not_active## </td>
                     </tr>

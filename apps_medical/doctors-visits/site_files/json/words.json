@@ -10,7 +10,7 @@
         "ar": "زيارة طبيب جديدة"
     },
     {
-        "name": "doctors_visits_price",
+        "name": "doctor_visit_price",
         "en": "Visit Price",
         "ar": "سعر الزيارة"
     },
@@ -87,7 +87,7 @@
     {
         "name": "doctors_visits_add",
         "en": "Add Doctor Visit",
-        "ar": "اضافة زيارة طبيب"
+        "ar": "إضافة زيارة طبيب"
     },
     {
         "name": "doctors_visits_edit",
@@ -184,11 +184,7 @@
         "en": "Visit Name",
         "ar": "إسم الزيارة"
     },
-    {
-        "name": "diseases",
-        "en": "Drugs",
-        "ar": "الأدوية"
-    },
+
     {
         "name": "scan",
         "en": "Scans",
@@ -245,9 +241,50 @@
         "ar": "عند الطبيب"
     },
     {
-        "name": "Projects",
-        "name_en": "Projects",
+        "name": "done_detection",
+        "name_en": "Done Detection",
         "ar": "تم الكشف"
+    },
+    {
+        "name": "blood_pressure",
+        "name_en": "Blood Pressure",
+        "ar": "ضغط الدم"
+    },
+    {
+        "name": "breathing",
+        "name_en": "Breathing",
+        "ar": "التنفس"
+    },
+    {
+        "name": "heart_beats",
+        "name_en": "Heart Beats",
+        "ar": "نبضات القلب"
+    },
+    {
+        "name": "body_temperature",
+        "name_en": "Body temperature",
+        "ar": "حرارة الجسم"
+    },
+    {
+        "name": "Sugar",
+        "name_en": "Sugar",
+        "ar": "السكر"
+    },
+    
+    {
+        "name": "previous_operations",
+        "name_en": "Previous operations",
+        "ar": "عمليات سابقة"
+    },
+    {
+        "name": "patient_advice",
+        "name_en": "Patient Advice",
+        "ar": "نصائح للمريض"
+    },
+    {
+        "name": "examination_before_detection",
+        "name_en": "Examination before detection",
+        "ar": "فحص قبل الكشف"
     },
     {
         "name": "done_attendance",
@@ -257,11 +294,21 @@
     {
         "name": "done_access_doctor",
         "en": "Access to the doctor",
-        "ar": "تم الدخول للطبيب"
+        "ar": "دخول للطبيب"
     },
     {
         "name": "done_detected",
         "en": "Detected",
         "ar": "تم الكشف"
+    },
+    {
+        "name": "favorite_foods_drinks",
+        "en": "Favorite foods and drinks",
+        "ar": "الأطعمة و المشروبات المفضلة"
+    },
+    {
+        "name": "forbidden_foods_drinks",
+        "en": "Forbidden foods and drinks",
+        "ar": "الأطعمة و المشروبات الممنوعة"
     }
 ]

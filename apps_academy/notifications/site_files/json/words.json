@@ -16,7 +16,7 @@
     {"name" : "notification_date_to" , "en" : "To Date" , "ar" : "الى تاريخ"},
     {"name" : "notification_sort" , "en" : "Sort By" , "ar" : "عرض بالترتيب"},
     {"name" : "notification_show_update" , "en" : "Show Update" , "ar" : "عرض التعديل"},
-    {"name" : "notification_show_add" , "en" : "Show Add" , "ar" : "عرض الاضافة"},
+    {"name" : "notification_show_add" , "en" : "Show Add" , "ar" : "عرض الإضافة"},
     {"name" : "notification_show_delete" , "en" : "Show Delete" , "ar" : "عرض الحذف"},
     {"name" : "notification_display" , "en" : "Display Screen" , "ar" : "شاشة العرض"},
     {"name" : "load_all_notifications" , "en" : "Load Notifications" , "ar" : "عرض أحدث التنبيهات"}

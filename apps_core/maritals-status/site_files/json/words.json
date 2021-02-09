@@ -1,5 +1,5 @@
 [
-    {"name" : "maritals_status_add" , "en" : "Add Marital State" , "ar" : "اضافة حالة اجتماعية"},
+    {"name" : "maritals_status_add" , "en" : "Add Marital State" , "ar" : "إضافة حالة اجتماعية"},
     {"name" : "maritals_status_new" , "en" : "New Marital State" , "ar" : "حالة اجتماعية جديدة"},
     {"name" : "maritals_status_details" , "en" : "Marital State Details" , "ar" : "تفاصيل حالة اجتماعية"},
     {"name" : "maritals_status_edit" , "en" : "Edit Marital State" , "ar" : "تعديل حالة اجتماعية"},

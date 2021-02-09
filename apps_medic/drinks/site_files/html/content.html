@@ -1,0 +1,37 @@
+<div class="form">
+    <div id="basicInformation" class="">
+        <fieldset>
+            <legend> ##word.basic_information## </legend>
+
+            <div class="row">
+
+                <div class="col9">
+
+                    <div class="row">
+                        <i-control ng-hide="disabledCode" class="col2" label="##word.code##" ng-model="drinks.code"></i-control>
+                        </i-control>
+                        <i-control help-id="drinks_name" v="r ll2" class="col4" label="##word.drink_name_ar##"
+                            ng-model="drinks.name_ar"></i-control>
+                        <i-control help-id="drinks_name" v="r ll2" class="col4" label="##word.drink_name_en##"
+                            ng-model="drinks.name_en"></i-control>
+                        <i-checkbox help-id="drinks_active" class="col2" label="##word.active##" ng-model="drinks.active">
+                        </i-checkbox>
+                    </div>
+
+                    <div class="row">
+                        <i-textarea label="##word.drink_notes##" ng-model="drinks.notes"></i-textarea>
+                    </div>
+
+                </div>
+
+                <div class="col3">
+                    <i-image help-id="drinks_logo" ng-model="drinks.image_url"></i-image>
+                </div>
+
+            </div>
+
+        </fieldset>
+
+    </div>
+
+</div>

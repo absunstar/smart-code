@@ -57,7 +57,6 @@ site.importApps(__dirname + '/apps_medical');
 site.importApps(__dirname + '/apps_hr');
 site.importApps(__dirname + '/apps_medic')
 site.importApps(__dirname + '/apps_core');
-
 site.addFeature('medical');
 setTimeout(() => {
   site.importApp(__dirname + '/apps_private/companies');

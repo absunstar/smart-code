@@ -43,6 +43,11 @@ module.exports = function init(site) {
         hour: new Date().getHours(),
         minute: new Date().getMinutes()
       },
+      open_close_list: [{
+        active: true,
+        user: { name: doc.name_ar },
+        date: new Date()
+      }],
       active: true
     }, (err, doc) => { })
   })
@@ -90,6 +95,15 @@ module.exports = function init(site) {
     shifts_doc.company = site.get_company(req)
     shifts_doc.branch = site.get_branch(req)
 
+    shifts_doc.open_close_list = [{
+      active: true,
+      user: site.security.getUserFinger({
+        $req: req,
+        $res: res
+      }),
+      date: new Date()
+    }]
+
     $shifts.find({
 
       where: {
@@ -132,6 +146,21 @@ module.exports = function init(site) {
     shifts_doc.edit_user_info = site.security.getUserFinger({
       $req: req,
       $res: res
+    })
+
+    shifts_doc.to_date = new Date();
+    shifts_doc.to_time = {
+      hour: new Date(shifts_doc.to_date).getHours(),
+      minute: new Date(shifts_doc.to_date).getMinutes()
+    };
+    shifts_doc.open_close_list = shifts_doc.open_close_list || []
+    shifts_doc.open_close_list.push({
+      active: shifts_doc.active ? true : false,
+      user: site.security.getUserFinger({
+        $req: req,
+        $res: res
+      }),
+      date: new Date()
     })
 
     if (shifts_doc.id) {

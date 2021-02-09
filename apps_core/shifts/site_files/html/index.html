@@ -28,7 +28,7 @@
                 </div>
 
                 <div class="top-actions">
-                    <i-button x-permissions="shifts_add || shifts_manage" type="add" label="##word.open_shift##"
+                    <i-button x-permissions="shifts_add || shifts_manage" type="add" label="##word.open_new_shift##"
                         ng-click="displayAddShift()"></i-button>
 
                     <i-button x-permissions="shifts_search || shifts_manage" type="search" label="##word.search_all##"
@@ -60,16 +60,21 @@
                         <td class="center title">{{c.name}}
                         </td>
 
-                        <td class="center green">{{c.from_date |date:'dd - MM - yyyy'}}
-                            <p class="center green"> {{c.from_time.minute}} : {{c.from_time.hour}}</p>
+                        <td class="center">
+                            <i-button type="add" ng-hide="c.active || openShift" label="##word.open_shift##"
+                                ng-click="openCloseShift(c,true); is_shift_open()">
+                            </i-button>
+
+                            <p class="center brown" ng-show="c.active || openShift">{{c.from_date |date:'dd - MM - yyyy'}}</p>
+                            <p class="center green" ng-show="c.active || openShift"> {{c.from_time.minute}} : {{c.from_time.hour}}</p>
                         </td>
 
                         <td class="center">
-                            <i-button type="exit" ng-hide="c.to_date" label="##word.close_shift##"
-                                ng-click="close_shift(c)">
+                            <i-button type="exit" ng-hide="!c.active" label="##word.close_shift##"
+                                ng-click="openCloseShift(c,false); is_shift_open()">
                             </i-button>
-                            <p class="center red" ng-show="c.to_date">{{c.to_date |date:'dd - MM - yyyy'}}</p>
-                            <p class="center red" ng-show="c.to_date"> {{c.to_time.minute}} : {{c.to_time.hour}}</p>
+                            <p class="center brown" ng-show="!c.active">{{c.to_date |date:'dd - MM - yyyy'}}</p>
+                            <p class="center red" ng-show="!c.active"> {{c.to_time.minute}} : {{c.to_time.hour}}</p>
                         </td>
 
 

@@ -1,5 +1,5 @@
 [
-    {"name" : "order_slides_add" , "en" : "Add Orders Slide" , "ar" : "اضافة شريحة طلبات"},
+    {"name" : "order_slides_add" , "en" : "Add Orders Slide" , "ar" : "إضافة شريحة طلبات"},
     {"name" : "order_slides" , "en" : "Orders Slide" , "ar" : " شريحة الطلبات"},
     {"name" : "order_slides_name" , "en" : "Slide Name" , "ar" : "إسم الشريحة"},
     {"name" : "order_slides_from" , "en" : "Slide From" , "ar" : "بداية الشريحة"},

@@ -382,7 +382,7 @@
                                     <tr>
                                         <th colspan="2" class="pointer"
                                             ng-click="discountEditorAdd = !discountEditorAdd">
-                                            ##word.stores_out_discountes##
+                                            ##word.discountes##
                                             <i class="fa fa-edit"></i>
                                         </th>
                                     </tr>
@@ -393,13 +393,13 @@
                                                 <div class="row ">
                                                     <i-list class="col4" ng-model="discount"
                                                         ng-search="_search.$discount_name" items="discount_types"
-                                                        label="##word.stores_out_discount_name##">
+                                                        label="##word.discount_name##">
                                                     </i-list>
                                                 </div>
 
                                                 <div class="row">
                                                     <i-control class="col4" ng-model="discount.value" type="number"
-                                                        label="##word.stores_out_discount_value##"></i-control>
+                                                        label="##word.discount_value##"></i-control>
                                                     <div class="col5 padding">
                                                         <br>
                                                         <i-button ng-click="addDiscount() ;calc(order_customer)"
@@ -452,12 +452,12 @@
                                         <td colspan="2">
                                             <div class="row">
                                                 <i-list class="col6" ng-model="tax"
-                                                    label="##word.stores_out_discount_name##"
+                                                    label="##word.discount_name##"
                                                     ng-search="_search.$taxtypes" items="tax_types"></i-list>
                                             </div>
                                             <div class="row">
                                                 <i-control class="col4" ng-model="tax.value"
-                                                    label="##word.stores_out_discount_value##">
+                                                    label="##word.discount_value##">
                                                 </i-control>
                                                 <div class="col5 padding">
                                                     <br>

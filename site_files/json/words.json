@@ -10,6 +10,16 @@
         "ar": "مرحل"
     },
     {
+        "name": "c_m",
+        "en": "C.M",
+        "ar": "ســـم"
+    },
+    {
+        "name": "k_g",
+        "en": "K.G",
+        "ar": "ك.ج"
+    },
+    {
         "name": "t_o",
         "en": "To.",
         "ar": "إج."
@@ -588,6 +598,16 @@
         "name": "unit_barcode",
         "en": "Unit Barcode",
         "ar": "باركود الوحدة"
+    },
+    {
+        "name": "results_files",
+        "en": "Results files",
+        "ar": "ملفات النتائج"
+    },
+    {
+        "name": "foods_drinks",
+        "name_en": "Foods & Drinks",
+        "ar": "الأطعمة و المشروبات"
     },
     {
         "name": "paid_require",
@@ -1188,6 +1208,51 @@
         "name": "load_more",
         "en": "Load More",
         "ar": "عرض المزيـد"
+    },
+    {
+        "name": "user",
+        "en": "User",
+        "ar": "مستخدم"
+    },
+    {
+        "name": "the_user",
+        "en": "The User",
+        "ar": "المستخدم"
+    },
+    {
+        "name": "discountes",
+        "en": "Discountes",
+        "ar": " الخصومات"
+    },
+    {
+        "name": "stores_out_discount",
+        "en": "Discount",
+        "ar": " الخصم"
+    },
+    {
+        "name": "discount_name",
+        "en": "Discount Name",
+        "ar": "الإسم"
+    },
+    {
+        "name": "discount_value",
+        "en": "Discount Value",
+        "ar": "القيمة"
+    },
+    {
+        "name": "discount_types_number",
+        "en": "Discount Value",
+        "ar": "مبلغ"
+    },
+    {
+        "name": "discount_types_percent",
+        "en": "Discount Value",
+        "ar": "نسبة"
+    },
+    {
+        "name": "stores_out_add_discount",
+        "en": "Discount Value",
+        "ar": "اضف الخصم"
     },
     {
         "name": "items_count",

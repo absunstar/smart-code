@@ -31,7 +31,7 @@ app.controller("analyses", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal('#analysesAddModal');
-          $scope.getAnalysesList();
+          $scope.getAnalysisList();
         } else {
           $scope.error = response.data.error;
         }
@@ -66,7 +66,7 @@ app.controller("analyses", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal('#analysesUpdateModal');
-          $scope.getAnalysesList();
+          $scope.getAnalysisList();
         } else {
           $scope.error = 'Please Login First';
         }
@@ -99,7 +99,7 @@ app.controller("analyses", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal('#analysesDeleteModal');
-          $scope.getAnalysesList();
+          $scope.getAnalysisList();
         } else {
           $scope.error = response.data.error;
         }
@@ -141,7 +141,7 @@ app.controller("analyses", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getAnalysesList = function (where) {
+  $scope.getAnalysisList = function (where) {
     $scope.busy = true;
     $scope.list = [];
     $http({
@@ -220,12 +220,12 @@ app.controller("analyses", function ($scope, $http, $timeout) {
   
   $scope.searchAll = function () {
   
-    $scope.getanalysesList($scope.search);
+    $scope.getanalysisList($scope.search);
     site.hideModal('#analysesSearchModal');
     $scope.search = {};
   };
 
-  $scope.getAnalysesList();
+  $scope.getAnalysisList();
   $scope.getNumberingAuto();
   $scope.getPeriod();
 });

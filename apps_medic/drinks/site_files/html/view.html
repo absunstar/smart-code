@@ -1,0 +1,48 @@
+<div ng-hide="busy" class="row">
+    <div id="basicInformation" class=" ">
+        <fieldset>
+            <legend> ##word.basic_information##</legend>
+            <div class="col9">
+                <table id="basicInformationTable" class="table hover bold">
+                    <tr>
+                        <td class="title">##word.code##</td>
+                        <td class="center userPrint blue">{{drinks.code}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.drink_name_ar##</td>
+                        <td class="center">{{drinks.name_ar}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.drink_name_en##</td>
+                        <td class="center">{{drinks.name_en}}</td>
+                    </tr>
+
+
+                    <tr>
+                        <td class="title">##word.drink_notes##</td>
+                        <td class="center">{{drinks.notes}}</td>
+                    </tr>
+
+                    <!--   <tr>
+                        <td class="title">##word.drinks_price##</td>
+                        <td class="center green">{{drinks.price}}</td>
+                    </tr> -->
+
+                    <tr>
+                        <td class="title">##word.status##</td>
+                        <td ng-show="drinks.active == true" class="green center"> ##word.active## </td>
+                        <td ng-show="drinks.active == false" class="red center"> ##word.not_active## </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="col3">
+                <i-image view ng-model="drinks.image_url"></i-image>
+            </div>
+
+        </fieldset>
+    </div>
+</div>
+<div x-import="drinks/action_info.html"></div>

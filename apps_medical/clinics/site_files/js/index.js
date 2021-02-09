@@ -3,7 +3,6 @@ app.controller("clinics", function ($scope, $http, $timeout) {
 
   $scope.clinic = {};
 
-
   $scope.displayAddClinic = function () {
     $scope.error = '';
     $scope.clinic = {
@@ -13,6 +12,12 @@ app.controller("clinics", function ($scope, $http, $timeout) {
         detection: 0,
         re_detection: 0,
         consultation: 0,
+        session: 0,
+        urgent_visit: {
+          price: 0,
+          type: 'number'
+        }
+
       },
       shift_list: [{
         name: '##word.basic##',

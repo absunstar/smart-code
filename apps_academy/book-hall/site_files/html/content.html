@@ -176,7 +176,7 @@
                         <table class="table box-shadow " ng-init="discountEditorAdd = true">
                             <tr>
                                 <th colspan="2" class="pointer" ng-click="discountEditorAdd = !discountEditorAdd">
-                                    ##word.stores_out_discountes##
+                                    ##word.discountes##
                                     <i class="fa fa-edit"></i>
                                 </th>
                             </tr>
@@ -186,13 +186,13 @@
 
                                         <div class="row ">
                                             <i-list class="col4" ng-model="discount" ng-search="_search.$discount_name"
-                                                items="discount_types" label="##word.stores_out_discount_name##">
+                                                items="discount_types" label="##word.discount_name##">
                                             </i-list>
                                         </div>
 
                                         <div class="row">
                                             <i-control class="col4" ng-model="discount.value"
-                                               type="number" label="##word.stores_out_discount_value##"></i-control>
+                                               type="number" label="##word.discount_value##"></i-control>
                                             <div class="col5 padding">
                                                 <br>
                                                 <i-button ng-click="addDiscount() ;calc(book_hall)"

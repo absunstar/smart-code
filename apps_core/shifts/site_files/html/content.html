@@ -12,13 +12,19 @@
                 </div>
 
                 <div class="row">
-
                     <i-date2 class="col6" label="##word.startup_date##" ng-model="shift.from_date"></i-date2>
                     <div class="col2"></div>
                     <i-time help-id="hour_min" class="col4" label="##word.hour_min##" ng-model="shift.from_time">
                     </i-time>
                 </div>
 
+                <div class="row" ng-show="shift.id">
+
+                    <i-date2 class="col6" label="##word.startup_date##" ng-model="shift.from_date"></i-date2>
+                    <div class="col2"></div>
+                    <i-time help-id="hour_min" class="col4" label="##word.hour_min##" ng-model="shift.from_time">
+                    </i-time>
+                </div>
 
                 <div class="row">
                     <i-textarea ng-model="shift.description" label="##word.description##">
