@@ -159,6 +159,7 @@
             "scans_manage",
             "foods_manage",
             "drinks_manage",
+            "active_substances_manage",
             "doctors_visits_manage"
         ]
     }

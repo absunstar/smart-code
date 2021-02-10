@@ -19,7 +19,7 @@
                         <i-control ng-hide="analyses.immediate==true" type="number" class="col2" label="##word.delivery_time##"
                             ng-model="analyses.delivery_time"></i-control>
                         <i-list ng-hide="analyses.immediate==true" class="col3" label="##word.period##" ng-model="analyses.period"
-                           ng-search="_search.$period_search" items="periodList" display="ar"></i-list>
+                           ng-search="_search.$period_search" items="periodList" display="##session.lang##"></i-list>
 
                         <i-checkbox help-id="immediate_active" class="col2" label="##word.immediate##" ng-model="analyses.immediate"></i-checkbox>
                     </div>

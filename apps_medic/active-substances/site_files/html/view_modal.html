@@ -1,0 +1,28 @@
+<div id="reasonsSessionsDetailsModal" class="modal">
+   
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.active_substances_details##
+                <i class="fa fa-file"></i>
+            </h2>
+        </div>
+        <div class="modal-body">
+            <span ng-show="busy">
+                <span class="sr-only">Loading...</span>
+            </span>
+            <div x-import="active-substances/view.html"></div>
+
+        </div>
+        <h2 class="error"> {{error}} </h2>
+        <div class="modal-footer center">
+
+
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#reasonsSessionsDetailsModal')"></i-button>
+            <i-button class="not-print" label="##word.print##" type="print " onclick="site.print('#reasonsSessionsDetailsModal')"></i-button>
+        </div>
+    </div>
+   
+</div>

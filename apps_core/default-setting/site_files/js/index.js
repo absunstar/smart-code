@@ -694,6 +694,26 @@ app.controller("default_setting", function ($scope, $http) {
     )
   };
 
+  $scope.loadItemsType = function () {
+    $scope.busy = true;
+    $scope.itemsTypesList = [];
+    $http({
+      method: "POST",
+      url: "/api/items_types/all",
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.itemsTypesList = response.data;
+
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.loadStores();
   $scope.getPaymentMethodList();
 /*   $scope.getDiscountMethodList();
@@ -708,6 +728,7 @@ app.controller("default_setting", function ($scope, $http) {
   $scope.loadSafesBox();
   $scope.loadSetting();
   $scope.getPrintersPath();
+  $scope.loadItemsType();
   $scope.getTransactionTypeList();
   if (site.feature('restaurant') || site.feature('pos') || site.feature('erp')) {
     $scope.getDeliveryEmployeesList();
@@ -721,7 +742,6 @@ app.controller("default_setting", function ($scope, $http) {
     $scope.getClinicList();
     $scope.getDoctorsVisitsTypeList();
   }
-
   if (site.feature('school')) {
     $scope.getSchoolGradesList();
   }

@@ -13,8 +13,8 @@ module.exports = function init(site) {
   })
 
   site.post({
-    name: "/api/diagnosis/all",
-    path: __dirname + "/site_files/json/diagnosis.json"
+    name: "/api/result_visit/all",
+    path: __dirname + "/site_files/json/result_visit.json"
 
   })
 

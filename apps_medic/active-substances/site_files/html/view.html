@@ -1,0 +1,47 @@
+<div ng-hide="busy" id="v1">
+    <div class="form">
+        <div id="customersGroupViewModal">
+            <fieldset>
+                <legend> ##word.active_substances_informations## </legend>
+                <div class="row">
+                    <div class="col9">
+                        <table class="table hover bold">
+
+                            <tr>
+                                <td class="title">##word.code##</td>
+                                <td class="center blue userPrint">{{active_substances.code}}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="title"> ##word.active_substances_name## </td>
+                                <td class="center"> {{active_substances.name}} </td>
+                            </tr>
+
+                            <tr>
+                                <td class="title">##word.description##</td>
+                                <td class="center">{{active_substances.description}}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="title"> ##word.active## </td>
+                                <td ng-show="active_substances.active == true" class="center green"> ##word.active##
+                                </td>
+                                <td ng-show="active_substances.active == false" class="center red"> ##word.not_active##
+                                </td>
+                            </tr>
+
+                        </table>
+
+                    </div>
+
+                    <div class="col3">
+                        <i-image class="not-print" view ng-model="active_substances.image_url"> </i-image>
+                    </div>
+
+
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
+<div x-import="active-substances/action_info.html"></div>

@@ -184,7 +184,6 @@
         "en": "Visit Name",
         "ar": "إسم الزيارة"
     },
-
     {
         "name": "scan",
         "en": "Scans",
@@ -196,9 +195,24 @@
         "ar": "التحاليل"
     },
     {
+        "name": "result_visit",
+        "en": "The result of the visit",
+        "ar": "نتيجة الزيارة"
+    },
+    {
         "name": "diagnosis",
         "en": "Diagnosis",
         "ar": "التشخيص"
+    },
+    {
+        "name": "special_notes",
+        "en": "Special Notes",
+        "ar": "ملاحظات خاصة"
+    },
+    {
+        "name": "diagnosis_after_visit",
+        "en": "Diagnosis After Visit",
+        "ar": "التشخيص بعد الزيارة"
     },
     {
         "name": "status",
@@ -300,6 +314,21 @@
         "name": "done_detected",
         "en": "Detected",
         "ar": "تم الكشف"
+    },
+    {
+        "name": "medicine_unit",
+        "en": "Medicine Unit",
+        "ar": "وحدة الدواء"
+    },
+    {
+        "name": "medicine_search",
+        "en": "Medicines Search",
+        "ar": "بحث الأدوية"
+    },
+    {
+        "name": "alternative_medicines",
+        "en": "Alternative Medicines",
+        "ar": "أدوية بديلة"
     },
     {
         "name": "favorite_foods_drinks",

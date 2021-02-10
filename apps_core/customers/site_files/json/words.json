@@ -20,6 +20,11 @@
         "ar": "بداية الجرعة"
     },
     {
+        "name": "timing_dosage",
+        "en": "Timing Of Dosage",
+        "ar": "توقيت الجرعة"
+    },
+    {
         "name": "other_fee",
         "en": "Other Fee",
         "ar": "رسوم أخرى"
@@ -27,7 +32,7 @@
     {
         "name": "count_dosage",
         "en": "Count Of Dosage",
-        "ar": " عدد الجرعات اليومية"
+        "ar": "عدد الجرعات"
     },
     {
         "name": "count_hours_dosage",

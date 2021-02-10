@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "active_substances_admin",
+    "en": "active Substancess Admin",
+    "ar": "إدارةالمواد الفعالة",
+    "permissions": ["active_substances_manage"]
+}]

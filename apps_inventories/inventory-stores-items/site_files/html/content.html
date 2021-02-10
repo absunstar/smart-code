@@ -8,6 +8,10 @@
 
                 <a class="tab-link" onclick="site.showTabContent(event, '#stores_items_sizes')">
                     ##word.stores_items_sizes## </a>
+
+                <a class="tab-link" onclick="site.showTabContent(event, '#informationInstructions')"
+                    ng-show="category_item.item_type.id === 3">
+                    ##word.information_instructions## </a>
             </div>
 
             <div class="tabs-content">
@@ -35,11 +39,12 @@
                                             ng-search="_search.$category_item.$items_group_search"
                                             label="##word.item_group##" items="itemsGroupList"></i-list>
 
-                                        <i-list class="col6" ng-hide="category_item.service_item"
-                                            ng-model="category_item.main_unit" v="r"
-                                            ng-change="addMainUnit(category_item)"
-                                            ng-search="_search.$category_item.$main_unit_search"
-                                            label="##word.main_unit##" items="unitsList"></i-list>
+                                        <i-list class="col5" ng-model="category_item.item_type"
+                                            display="##session.lang##"
+                                            ng-search="_search.$category_item.$item_type_search"
+                                            label="##word.item_type##" items="itemsTypesList"></i-list>
+
+
 
                                     </div>
                                 </div>
@@ -55,7 +60,7 @@
                                     </div>
                                     <br>
                                     <br>
-                                    <div class="row" ng-hide="category_item.service_item">
+                                    <div class="row" ng-hide="category_item.item_type.id === 2">
 
                                         <i-checkbox label="##word.stores_items_allow_buy##"
                                             ng-model="category_item.allow_buy">
@@ -64,21 +69,13 @@
                                     <br>
                                     <br>
 
-                                    <div class="row" ng-hide="category_item.service_item">
+                                    <div class="row" ng-hide="category_item.item_type.id === 2">
 
                                         <i-checkbox label="##word.stores_items_is_pos##"
                                             ng-model="category_item.is_pos">
                                         </i-checkbox>
                                     </div>
 
-                                    <div class="row">
-                                        <h2 class="indigoD bold"
-                                            ng-show="category_item.$edit && category_item.service_item">
-                                            ##word.service_item##</h2>
-                                        <i-checkbox ng-hide="category_item.$edit" label="##word.service_item##"
-                                            ng-model="category_item.service_item">
-                                        </i-checkbox>
-                                    </div>
                                 </div>
                             </div>
 
@@ -88,49 +85,64 @@
                             <br>
                             <br>
 
-                            <div class="row" ng-hide="category_item.service_item">
-                                <i-list class="col4" ng-model="unit" ng-search="_search.$category_item.$unit_search"
-                                    label="##word.unit##" items="unitsList"></i-list>
+                            <div class="row" ng-hide="category_item.item_type.id === 2">
+                                <div class="row">
 
-                                <i-button class="col2" type="add" label="##word.add_unit##"
-                                    ng-click="addUnitsList(unit)">
-                                </i-button>
+                                    <i-list class="col4" ng-model="category_item.main_unit" v="r"
+                                        ng-change="addMainUnit(category_item)"
+                                        ng-search="_search.$category_item.$main_unit_search" label="##word.main_unit##"
+                                        items="unitsList"></i-list>
 
-                                <div class="col1"></div>
 
-                                <div class="col4"
-                                    ng-show="category_item.units_list.length > 0 && !category_item.service_item">
+                                    <i-list class="col4" ng-model="unit" ng-search="_search.$category_item.$unit_search"
+                                        label="##word.unit##" items="unitsList"></i-list>
 
-                                    <table class="table hover loaded" id="t1">
-
-                                        <tr>
-                                            <th>##word.unit##</th>
-                                            <th>##word.unit_convert##</th>
-                                            <th>##word.actions##</th>
-                                        </tr>
-
-                                        <tr ng-repeat="c in category_item.units_list track by $index">
-
-                                            <td>
-                                                <p class="bold text-center"> <br> {{c.name}} </p>
-                                            </td>
-
-                                            <td>
-                                                <i-control ng-disabled="category_item.main_unit.id == c.id || c.$edit"
-                                                    ng-model="c.convert" type="number">
-                                                </i-control>
-                                            </td>
-
-                                            <td>
-                                                <i-button type="delete center"
-                                                    ng-hide="category_item.main_unit.id == c.id || c.$edit"
-                                                    ng-click="deleteUnit(c)">
-                                                </i-button>
-                                            </td>
-
-                                        </tr>
-                                    </table>
+                                    <i-button class="col2" type="add" label="##word.add_unit##"
+                                        ng-click="addUnitsList(unit)">
+                                    </i-button>
                                 </div>
+
+                                <div class="row">
+
+                                    <div class="col4"></div>
+
+                                    <div class="col4" ng-show="category_item.units_list.length > 0">
+
+                                        <table class="table hover loaded" id="t1">
+
+                                            <tr>
+                                                <th>##word.unit##</th>
+                                                <th>##word.unit_convert##</th>
+                                                <th>##word.actions##</th>
+                                            </tr>
+
+                                            <tr ng-repeat="c in category_item.units_list track by $index">
+
+                                                <td>
+                                                    <p class="bold text-center"> <br> {{c.name}} </p>
+                                                </td>
+
+                                                <td>
+                                                    <i-control
+                                                        ng-disabled="category_item.main_unit.id == c.id || c.$edit"
+                                                        ng-model="c.convert" type="number">
+                                                    </i-control>
+                                                </td>
+
+                                                <td>
+                                                    <i-button type="delete center"
+                                                        ng-hide="category_item.main_unit.id == c.id || c.$edit"
+                                                        ng-click="deleteUnit(c)">
+                                                    </i-button>
+                                                </td>
+
+                                            </tr>
+                                        </table>
+                                    </div>
+
+
+                                </div>
+
 
                             </div>
 
@@ -160,8 +172,9 @@
                                     <th>##word.logo##</th>
                                     <th>##word.stores_items_sizes##</th>
                                     <th>##word.item_code##</th>
-                                    <th ng-hide="category_item.service_item">##word.stores_current_balance##</th>
-                                    <th ng-hide="category_item.service_item">##word.stores_items_start_count##</th>
+                                    <th ng-hide="category_item.item_type.id === 2">##word.stores_current_balance##</th>
+                                    <th ng-hide="category_item.item_type.id === 2">##word.stores_items_start_count##
+                                    </th>
                                     <th>##word.actions##</th>
                                 </tr>
 
@@ -182,7 +195,7 @@
                                         <p class="center blue userPrint">{{itm.barcode}}</p>
                                     </td>
 
-                                    <td ng-hide="category_item.service_item">
+                                    <td ng-hide="category_item.item_type.id === 2">
                                         <br>
                                         <p class="center bold green" ng-show="itm.current_count > 0">
                                             {{itm.current_count}} </p>
@@ -191,13 +204,13 @@
                                             {{itm.current_count}} </p>
                                     </td>
 
-                                    <td ng-hide="category_item.service_item">
+                                    <td ng-hide="category_item.item_type.id === 2">
                                         <br>
                                         <p class="center blue">{{itm.start_count}}</p>
                                     </td>
 
                                     <td>
-                                        <div class="row" ng-hide="category_item.service_item">
+                                        <div class="row" ng-hide="category_item.item_type.id === 2">
 
                                             <div class="col5">
                                                 <div class="row center">
@@ -244,7 +257,7 @@
 
                                         <div class="row center">
                                             <div class="row center">
-                                                <i-button type="view" ng-show="category_item.service_item"
+                                                <i-button type="view" ng-show="category_item.item_type.id === 2"
                                                     label="##word.units##" ng-click="viewUnits(itm)">
                                                 </i-button>
                                             </div>
@@ -259,6 +272,52 @@
                         </div>
                     </fieldset>
 
+                </div>
+
+                <div id="informationInstructions" class="tab-content" ng-show="category_item.item_type.id === 3">
+                    <fieldset>
+
+                        <br>
+                        <div class="row">
+
+                            <i-list class="col5" ng-model="category_item.information_instructions.active_substance"
+                                ng-search="_search.$category_item.$active_substance_search"
+                                label="##word.active_substance##" items="activeSubstancesList"></i-list>
+
+                        </div>
+
+                        <br>
+
+                        <div class="row">
+
+                            <i-textarea class="co7" label="##word.indications##"
+                                ng-model="category_item.information_instructions.indications">
+                            </i-textarea>
+
+                        </div>
+
+                        <br>
+
+                        <div class="row">
+
+                            <i-textarea class="co7" label="##word.contraindications##"
+                                ng-model="category_item.information_instructions.contraindications">
+                            </i-textarea>
+                        </div>
+
+                        <br>
+
+                        <div class="row">
+
+                            <i-textarea class="co7" label="##word.how_use##"
+                                ng-model="category_item.information_instructions.how_use">
+                            </i-textarea>
+
+                        </div>
+
+                        <br>
+
+                    </fieldset>
                 </div>
             </div>
 

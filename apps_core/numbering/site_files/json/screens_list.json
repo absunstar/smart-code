@@ -127,6 +127,13 @@
     },
     {
         "category": "inventory",
+        "feature": "medic",
+        "name": "active_substances",
+        "en": "Active Substances",
+        "ar": "المواد الفعالة"
+    },
+    {
+        "category": "inventory",
         "feature": "pos",
         "name": "units",
         "en": "Units",

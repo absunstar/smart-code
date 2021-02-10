@@ -1,0 +1,21 @@
+[
+    {
+        "id" : 1,
+        "name": "store_item",
+        "en": "Store Item",
+        "ar": "صنف مخزني"
+    },
+    {
+        "id" : 2,
+        "name": "service_item",
+        "en": "Service Item",
+        "ar": "صنف خدمي"
+    },
+    {
+        "id" : 3,
+        "name": "medical_cosmetic",
+        "en": "Medical or Cosmetic",
+        "ar": "طبي أو تجميلي"
+    }
+
+]

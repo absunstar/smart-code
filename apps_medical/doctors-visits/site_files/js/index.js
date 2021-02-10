@@ -486,34 +486,112 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
 
   };
 
-  $scope.getMedicinesList = function (where) {
+  $scope.getMedicinesList = function (ev, item) {
+
+    $scope.error = '';
+    let barcode = '';
+
+    if (ev.which !== 13 && ev != 'alt_view') {
+      return;
+    }
+
     $scope.busy = true;
-    $scope.medicinesList = [];
+
+    let where = {};
+    where = { 'item_type.id': 3 };
+
+    if (ev === 'alt_view' && item.information_instructions.active_substance && item.information_instructions.active_substance.id) {
+
+      where = { 'item_type.id': 3, 'information_instructions.active_substance.id': item.information_instructions.active_substance.id }
+      barcode = item.barcode
+    }
+
+    $scope.medicine = $scope.medicine || {
+      search: '',
+      item: {},
+      list: [],
+      alternative_list: []
+    };
+
+
+    $scope.medicine.alternative_list = [];
+    $scope.medicine.list = [];
+    $scope.medicine.item = {};
+
     $http({
       method: "POST",
-      url: "/api/medicine/all",
+      url: "/api/stores_items/sizes_all",
       data: {
-        select: {
-          id: 1,
-          name: 1
-        }
+        search: $scope.medicine.search,
+        barcode: barcode,
+        where: where
       }
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
-          $scope.medicinesList = response.data.list;
+
+          if (ev === 'alt_view') {
+            $scope.medicine.alternative_list = response.data.list;
+            site.showModal('#selectItemsModal');
+
+          } else {
+            $scope.medicine.list = response.data.list;
+          }
+
+          $scope.medicine.search = '';
         }
       },
       function (err) {
         $scope.busy = false;
         $scope.error = err;
       }
-
     )
 
   };
 
+
+  $scope.selectMedicine = function (item) {
+
+    $scope.doctors_visits.medicines_list = $scope.doctors_visits.medicines_list || [];
+
+    let foundSize = $scope.doctors_visits.medicines_list.some(_itemSize => _itemSize.barcode === item.barcode);
+
+    if (!foundSize) {
+      item.count = 1;
+      $scope.doctors_visits.medicines_list.unshift(item)
+    }
+  };
+
+
+  /*  $scope.getMedicinesList = function (where) {
+     $scope.busy = true;
+     $scope.medicinesList = [];
+     $http({
+       method: "POST",
+       url: "/api/medicine/all",
+       data: {
+         select: {
+           id: 1,
+           name: 1
+         }
+       }
+     }).then(
+       function (response) {
+         $scope.busy = false;
+         if (response.data.done && response.data.list.length > 0) {
+           $scope.medicinesList = response.data.list;
+         }
+       },
+       function (err) {
+         $scope.busy = false;
+         $scope.error = err;
+       }
+ 
+     )
+ 
+   };
+  */
   $scope.displayAddCustomer = function () {
     $scope.error = '';
     $scope.customer = {
@@ -1082,16 +1160,16 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getDiagnosisList = function () {
+  $scope.getResultVisitList = function () {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/diagnosis/all",
+      url: "/api/result_visit/all",
       data: {}
     }).then(
       function (response) {
         $scope.busy = false;
-        $scope.diagnosisList = response.data;
+        $scope.resultVisitList = response.data;
 
       },
       function (err) {
@@ -1424,8 +1502,8 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
 
   $scope.getDoctorsVisitsList();
   $scope.getSpecialtyList();
-  $scope.getMedicinesList();
-  $scope.getScansList();
+/*   $scope.getMedicinesList();
+ */  $scope.getScansList();
   $scope.getAnalysisList();
   $scope.getOperationList();
   $scope.getStatus();
@@ -1439,7 +1517,7 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
   $scope.getDrinksList();
   $scope.getClinicList();
   $scope.getDoctorsVisitsTypeList();
-  $scope.getDiagnosisList();
+  $scope.getResultVisitList();
   $scope.loadDiscountTypes();
   $scope.loadTaxTypes();
   $scope.getClinicDoctorsVisitsList();

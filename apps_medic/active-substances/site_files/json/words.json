@@ -1,0 +1,15 @@
+[
+
+    {"name" : "active_substances_informations" , "en" : "Active Substance Informations" , "ar" : "بيانات مادة فعالة"},
+    {"name" : "active_substances" , "en" : "Active Substances" , "ar" : "المواد الفعالة"},
+    {"name" : "active_substances_menus" , "en" : "Active Substance Menu" , "ar" : "قائمة المادة الفعالة"},
+    {"name" : "active_substances_code" , "en" : "Active Substance Code" , "ar" : "كود المادة الفعالة"},
+    {"name" : "active_substances_name" , "en" : "Active Substance Name" , "ar" : "إسم المادة الفعالة"},
+    {"name" : "active_substance" , "en" : "Active Substance" , "ar" : "المادة الفعالة"},
+    {"name" : "active_substances_new" , "en" : "New Active Substance" , "ar" : "مادة فعالة جديدة"},
+    {"name" : "active_substances_details" , "en" : "Active Substance Details" , "ar" : "تفاصيل مادة فعالة"},
+    {"name" : "active_substances_update" , "en" : "Edit Active Substance" , "ar" : "تعديل مادة فعالة"},
+    {"name" : "active_substances_delete" , "en" : "Delte Active Substance" , "ar" : "حذف مادة فعالة"},
+    {"name" : "active_substances_add_name" , "en" : "Add Active Substance" , "ar" : "إضافة مادة فعالة"}
+
+]

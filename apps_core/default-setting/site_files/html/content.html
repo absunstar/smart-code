@@ -405,10 +405,15 @@
                             ng-search="_search.$$items_group_search" label="##word.item_group##" items="itemsGroupList">
                         </i-list>
 
+                        <i-list class="col3" ng-model="default_setting.inventory.item_type" display="##session.lang##"
+                            ng-search="_search.$category_item.$item_type_search" label="##word.item_type##"
+                            items="itemsTypesList"></i-list>
+
+
                         <i-list class="col3" ng-model="default_setting.inventory.store" items="storesList"
                             ng-search="_search.$_store" label="##word.store##"></i-list>
 
-                        <i-list class="col4" ng-model="default_setting.inventory.unit" ng-search="_search.$search_unit"
+                        <i-list class="col3" ng-model="default_setting.inventory.unit" ng-search="_search.$search_unit"
                             label="##word.unit##" items="unitsList">
                         </i-list>
 

@@ -252,7 +252,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
         method: "POST",
         url: "/api/stores_items/all",
         data: {
-          where: { service_item: { $ne: true } },
+          where: { 'item_type.id': { $ne: 2 } },
 
           search: $scope.item.search_item_name
         }
@@ -400,7 +400,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.store_stock.items = [];
 
-    where = { item_group: item_group, service_item: { $ne: true } }
+    where = { item_group: item_group, 'item_type.id': { $ne: 2 } }
     $http({
       method: "POST",
       url: "/api/stores_items/all",
@@ -487,7 +487,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/stores_items/all",
       data: {
-        where: { service_item: { $ne: true } },
+        where: { 'item_type.id': { $ne: 2 } },
       }
     }).then(
       function (response) {
@@ -571,7 +571,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
         method: "POST",
         url: "/api/stores_items/all",
         data: {
-          where: { barcode: $scope.search_barcode, service_item: { $ne: true } }
+          where: { barcode: $scope.search_barcode, 'item_type.id': { $ne: 2 } }
         }
       }).then(
         function (response) {

@@ -15,6 +15,11 @@
         "ar": "حد إعادة الطلب"
     },
     {
+        "name": "item_type",
+        "en": "Item Type",
+        "ar": "نوع الصنف"
+    },
+    {
         "name": "work_patch",
         "en": "Works Patch",
         "ar": "يعمل بالتشغيلة"
@@ -28,6 +33,26 @@
         "name": "patch",
         "en": "Patch",
         "ar": "التشغيلة"
+    },
+    {
+        "name": "indications",
+        "en": "Indications",
+        "ar": "دواعي الإستعمال"
+    },
+    {
+        "name": "contraindications",
+        "en": "Contraindications",
+        "ar": "موانع الإستعمال"
+    },
+    {
+        "name": "how_use",
+        "en": "How To Use",
+        "ar": "طريقة الإستعمال"
+    },
+    {
+        "name": "information_instructions",
+        "en": "Information Instructions",
+        "ar": "معلومات إرشادية"
     },
     {
         "name": "service_item",

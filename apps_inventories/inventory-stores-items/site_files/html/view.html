@@ -7,6 +7,10 @@
 
             <a class="tab-link" onclick="site.showTabContent(event, '#stores_items_sizes')">
                 ##word.stores_items_sizes## </a>
+
+            <a class="tab-link" onclick="site.showTabContent(event, '#informationInstructions')"
+                ng-show="category_item.item_type.id === 3">
+                ##word.information_instructions## </a>
         </div>
 
 
@@ -34,13 +38,17 @@
                                     <td class="center">{{category_item.name}}</td>
                                 </tr>
 
+                                <tr>
+                                    <td class="title">##word.item_type##</td>
+                                    <td class="center">{{category_item.item_type.##session.lang##}}</td>
+                                </tr>
 
                                 <tr>
                                     <td class="title">##word.item_group##</td>
                                     <td class="center">{{category_item.item_group.name}}</td>
                                 </tr>
 
-                                <tr ng-hide="category_item.service_item">
+                                <tr ng-hide="category_item.item_type.id === 2">
                                     <td class="title">##word.main_unit##</td>
                                     <td class="center">{{category_item.main_unit.name}}</td>
                                 </tr>
@@ -53,7 +61,7 @@
                                     </td>
                                 </tr>
 
-                                <tr ng-hide="category_item.service_item">
+                                <tr ng-hide="category_item.item_type.id === 2">
 
                                     <td class="title">##word.stores_items_allow_buy##</td>
                                     <td ng-show="category_item.allow_buy == true" class="green center"> ##word.yes##
@@ -63,15 +71,8 @@
                                 </tr>
 
 
-                                <tr ng-hide="category_item.service_item">
+                                <tr ng-hide="category_item.item_type.id === 2">
                                     <td class="title">##word.stores_items_is_pos##</td>
-                                    <td ng-show="category_item.is_pos == true" class="green center"> ##word.yes##
-                                    </td>
-                                    <td ng-show="category_item.is_pos == false" class="red center"> ##word.not##
-                                    </td>
-                                </tr>
-                                <tr ng-show="category_item.service_item">
-                                    <td class="title">##word.service_item##</td>
                                     <td ng-show="category_item.is_pos == true" class="green center"> ##word.yes##
                                     </td>
                                     <td ng-show="category_item.is_pos == false" class="red center"> ##word.not##
@@ -143,8 +144,8 @@
                             <th>##word.stores_items_sizes##</th>
                             <th>##word.item_code##</th>
 
-                            <th ng-hide="category_item.service_item">##word.stores_current_balance##</th>
-                            <th ng-hide="category_item.service_item">##word.stores_start_balance##</th>
+                            <th ng-hide="category_item.item_type.id === 2">##word.stores_current_balance##</th>
+                            <th ng-hide="category_item.item_type.id === 2">##word.stores_start_balance##</th>
                             <th>##word.actions##</th>
                         </tr>
 
@@ -164,14 +165,14 @@
                                 <p class="bold blue userPrint">{{item.barcode}}</p>
                             </td>
 
-                            <td ng-hide="category_item.service_item">
+                            <td ng-hide="category_item.item_type.id === 2">
                                 <br>
                                 <p class="center bold green" ng-show="item.current_count > 0">
                                     {{item.current_count}} </p>
                                 <p class="bold red center" ng-show="item.current_count == 0 ||item.current_count < 0">
                                     {{item.current_count}} </p>
                             </td>
-                            <td ng-hide="category_item.service_item">
+                            <td ng-hide="category_item.item_type.id === 2">
                                 <br>
                                 <p class="bold center"> {{item.start_count}} </p>
                             </td>
@@ -186,7 +187,7 @@
                                     </p>
                                 </div>
 
-                                <div class="row center" ng-hide="category_item.service_item">
+                                <div class="row center" ng-hide="category_item.item_type.id === 2">
                                     <i-button type="view" label="##word.branches_balances##"
                                         ng-click=" item.view = true ; branchesBalances(item)">
                                     </i-button>
@@ -200,6 +201,46 @@
                             </td>
                         </tr>
                     </table>
+                </fieldset>
+            </div>
+
+            <div id="informationInstructions" class="tab-content" ng-show="category_item.item_type.id === 3">
+                <fieldset>
+
+                    <div class="row">
+
+                        <table class="table hover bold">
+
+                            <tr>
+                                <td class="title w200">##word.active_substance##</td>
+                                <td class="center">
+                                    <p>{{category_item.active_substance.name}}</p>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="title">##word.indications##</td>
+                                <td class="center">
+                                    <p>{{category_item.indications}}</p>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="title">##word.contraindications##</td>
+                                <td class="center">
+                                    <p>{{category_item.contraindications}}</p>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="title">##word.how_use##</td>
+                                <td class="center">
+                                    <p>{{category_item.how_use}}</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
                 </fieldset>
             </div>
         </div>

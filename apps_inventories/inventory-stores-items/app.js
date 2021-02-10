@@ -572,13 +572,18 @@ module.exports = function init(site) {
   });
 
 
-
   site.get({
     name: "stores_items",
     path: __dirname + "/site_files/html/index.html",
     parser: "html",
     compress: true
   })
+
+  site.post({
+    name: "/api/items_types/all",
+    path: __dirname + "/site_files/json/items_types.json"
+  })
+
 
   site.post("/api/stores_items/add", (req, res) => {
     let response = {}
@@ -602,6 +607,7 @@ module.exports = function init(site) {
     })
 
     stores_items_doc.sizes.forEach(_size => {
+      _size.item_type = stores_items_doc.item_type
       _size.size_units_list.forEach(_size_unit => {
         let indx = stores_items_doc.units_list.findIndex(_unit1 => _unit1.id == _size_unit.id);
         if (stores_items_doc.units_list[indx] && stores_items_doc.units_list[indx].convert)
@@ -700,8 +706,8 @@ module.exports = function init(site) {
     let h = new Date().getHours().toString()
     let m = new Date().getMinutes().toString()
 
-
     stores_items_doc.sizes.forEach((_size, i) => {
+      _size.item_type = stores_items_doc.item_type
       if (!_size.barcode || _size.barcode == null)
         _size.barcode = stores_items_doc.company.id + stores_items_doc.id + d + h + m + i
 
@@ -731,6 +737,7 @@ module.exports = function init(site) {
         $res: res
       }, (err, item_doc) => {
         if (!err) {
+
           response.done = true
           let obj = { sizes_list: [] }
           let exist = false
@@ -852,8 +859,8 @@ module.exports = function init(site) {
     let store_id = where['store_id']
     let unit_id = where['unit_id']
     let barcode = where['barcode']
-    let search = req.body.search
     let limit = where.limit || undefined
+    let search = req.body.search
 
     if (search) {
       where.$or = []
@@ -869,6 +876,11 @@ module.exports = function init(site) {
       where.$or.push({
         'sizes.barcode': search
       })
+
+      where.$or.push({
+        'sizes.active_substance.name': search
+      })
+
 
       where.$or.push({
         'sizes.size_units_list.barcode': search
@@ -1343,6 +1355,42 @@ module.exports = function init(site) {
     }
 
     let where = req.body.where || {}
+    let search = req.body.search
+
+
+    if (search) {
+      where.$or = []
+
+      where.$or.push({
+        'sizes.size': site.get_RegExp(search, 'i')
+      })
+
+      where.$or.push({
+        'sizes.size_en': site.get_RegExp(search, 'i')
+      })
+
+      where.$or.push({
+        'sizes.barcode': search
+      })
+
+      where.$or.push({
+        'sizes.active_substance.name': search
+      })
+
+
+      where.$or.push({
+        'sizes.size_units_list.barcode': search
+      })
+
+      where.$or.push({
+        'name': site.get_RegExp(search, 'i')
+      })
+
+      where.$or.push({
+        'item_group.name': search
+      })
+
+    }
 
     where['company.id'] = site.get_company(req).id
 
@@ -1355,16 +1403,23 @@ module.exports = function init(site) {
       limit: req.body.limit
     }, (err, docs, count) => {
       if (!err) {
-        response.done = true
         let arr_sizes = [];
+
+        response.done = true
+
         if (docs && docs.length > 0) {
-          docs.forEach(item => {
-            if (item.sizes && item.sizes.length > 0)
-              item.sizes.forEach(size => {
-                size.itm_id = item.id
-                size.stores_item_name = item.name
-                arr_sizes.unshift(size)
+          docs.forEach(_item => {
+            if (_item.sizes && _item.sizes.length > 0) {
+              _item.sizes.forEach(_size => {
+                _size.unit = _size.size_units_list.find(_unit => { return _unit.id === _item.main_unit.id });
+                _size.information_instructions = _item.information_instructions
+                _size.name = _item.name
+                _size.itm_id = _item.id
+                _size.stores_item_name = _item.name
+                if (req.body.barcode != _size.barcode)
+                  arr_sizes.unshift(_size)
               })
+            }
           })
         }
         response.count = count

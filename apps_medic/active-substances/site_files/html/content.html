@@ -1,0 +1,36 @@
+<div class="form">
+    <div id="reasonsSessionsAddModal">
+        <fieldset>
+            <legend> ##word.active_substances_informations## </legend>
+            <div class="row">
+                <div class="col9">
+
+                    <div class="row">
+                        <i-control ng-hide="disabledCode" class="col2" label="##word.code##"
+                            ng-model="active_substances.code">
+                        </i-control>
+
+                        <i-control v="r" class="col5" label="##word.active_substances_name##"
+                            ng-model="active_substances.name"></i-control>
+
+                        <div class="col3"></div>
+
+                        <i-checkbox class="col2" label="##word.active##" ng-model="active_substances.active">
+                        </i-checkbox>
+                    </div>
+
+                    <div class="row">
+                        <i-textarea ng-model="active_substances.description" class="col7" label="##word.description##">
+                        </i-textarea>
+                    </div>
+
+
+                </div>
+
+                <div class="col3">
+                    <i-image category="active_substances" ng-model="active_substances.image_url"> </i-image>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>

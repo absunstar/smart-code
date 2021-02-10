@@ -1275,7 +1275,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
         data: {
           where: {
             "item_group.id": group.id,
-            service_item: { $ne: true },
+            'item_type.id': { $ne: 2 },
             "is_pos": true
           }
         }

@@ -185,6 +185,9 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       if ($scope.defaultSettings.inventory.item_group)
         $scope.category_item.item_group = $scope.defaultSettings.inventory.item_group;
 
+      if ($scope.defaultSettings.inventory.item_type)
+        $scope.category_item.item_type = $scope.defaultSettings.inventory.item_type;
+
       if ($scope.defaultSettings.inventory.unit) {
         $scope.category_item.main_unit = $scope.defaultSettings.inventory.unit;
         $scope.category_item.units_list = [{
@@ -222,7 +225,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       let existBarcodeUnit_list = [];
 
       $scope.category_item.sizes.forEach(_size => {
-        if ($scope.category_item.service_item) _size.service_item = true;
+
         let total_complex_av = 0;
 
         if (_size.item_complex && _size.complex_items && _size.complex_items.length > 0) {
@@ -326,10 +329,6 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     }
 
     $scope.category_item.sizes.forEach(_size => {
-
-      if ($scope.category_item.service_item) {
-        _size.service_item = true;
-      }
 
     });
 
@@ -591,6 +590,53 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
         if (response.data.done) {
           $scope.unitsList = response.data.list;
         }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.loadActiveSubstances = function () {
+    $scope.busy = true;
+    $scope.activeSubstancesList = [];
+    $http({
+      method: "POST",
+      url: "/api/active_substances/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          code: 1
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.activeSubstancesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.loadItemsType = function () {
+    $scope.busy = true;
+    $scope.itemsTypesList = [];
+    $http({
+      method: "POST",
+      url: "/api/items_types/all",
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.itemsTypesList = response.data;
+
       },
       function (err) {
         $scope.busy = false;
@@ -1709,6 +1755,8 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
   $scope.loadUnits();
   $scope.loadAll();
   $scope.loadItems();
+  $scope.loadItemsType();
+  $scope.loadActiveSubstances();
   $scope.loadUnitsBarcodesList();
   if (site.feature('restaurant'))
     $scope.loadKitchens();

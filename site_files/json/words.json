@@ -595,6 +595,16 @@
         "ar": "عنوان الفاتورة العلوي"
     },
     {
+        "name": "medicine",
+        "en": "Medicine",
+        "ar": "الدواء"
+    },
+    {
+        "name": "medicines",
+        "en": "Medicines",
+        "ar": "الأدوية"
+    },
+    {
         "name": "unit_barcode",
         "en": "Unit Barcode",
         "ar": "باركود الوحدة"

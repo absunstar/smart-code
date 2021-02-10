@@ -1,0 +1,72 @@
+<div id="selectItemsModal" class="modal" fixed>
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.stores_out_items##
+            </h2>
+        </div>
+        <div class="modal-body">
+            <form>
+
+                <div class="row">
+
+                    <fieldset>
+                        <legend> ##word.stores_items_sizes## </legend>
+
+                        <div class="row">
+
+                            <table class="table center bold hover">
+                                <tr>
+                                    <th>##word.serial##</th>
+                                    <th>##word.barcode##</th>
+                                    <th>##word.medicine_name##</th>
+                                    <th>##word.stores_out_item_size##</th>
+                                    <th>##word.medicine_unit##</th>
+                                    <th>##word.actions##</th>
+                                </tr>
+
+                                <tr ng-repeat="itm in medicine.alternative_list">
+
+                                    <td> <br> {{$index + 1}}
+
+                                    </td>
+                                    <td> <br>
+                                        <p class="userPrint">{{itm.barcode}}</p>
+                                    </td>
+
+                                    <td> <br> {{itm.name}}</td>
+
+                                    <td>
+                                        <p>{{itm.size}}</p>
+                                        <p>{{itm.size_en}}</p>
+                                    </td>
+
+                                    <td>
+                                        <i-list ng-model="itm.unit" ng-search="_search.$category_item.$unit_search"
+                                            space=" - " ng-change="ChangeUnitPatch(itm);" display2="barcode"
+                                            items="itm.size_units_list">
+                                        </i-list>
+                                    </td>
+
+                                    <td>
+                                        <i-button type="add" label="##word.add##" ng-hide="itm.$select" ng-click="selectMedicine(itm) ; itm.$select = true">
+                                        </i-button>
+
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+
+                    </fieldset>
+                </div>
+            </form>
+        </div>
+        <h2 class="error center bold">{{error}}</h2>
+        <div class="modal-footer center">
+            <i-button type="add" label="##word.stores_out_add_to_items##" ng-click="addToItems()"></i-button>
+            <i-button type="close" label=" ##word.close##" onclick="site.hideModal('#selectItemsModal')"></i-button>
+        </div>
+    </div>
+</div>
