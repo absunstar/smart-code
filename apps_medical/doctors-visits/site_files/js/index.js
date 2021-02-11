@@ -6,7 +6,7 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
   $scope.displayAddDoctorsVisits = function () {
     $scope.error = '';
     $scope.doctors_visits = {};
-    $scope.patient_search = '';
+    $scope.customer_search = '';
     $scope.doctor_search = '';
     $scope.clinic_search = {};
     $scope.address = false;
@@ -52,6 +52,8 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
       $scope.error = v.messages[0].ar;
       return;
     }
+
+    $scope.clinic = $scope.clinic || {};
     $scope.clinic.vacation_list = $scope.clinic.vacation_list || [];
     let found_vacation = $scope.clinic.vacation_list.some(_vacation => new Date($scope.doctors_visits.date) == new Date(_vacation.date));
 
@@ -76,6 +78,12 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
           $scope.error = 'Please Login First';
           if (response.data.error.like('*Must Enter Code*')) {
             $scope.error = "##word.must_enter_code##"
+
+          } else if (response.data.error.like('*holding ticket for this patient*')) {
+            $scope.error = "##word.err_hold_ticket_patient##"
+
+          } else if (response.data.error.like('*must selected time*')) {
+            $scope.error = "##word.must_selected_time##"
           }
         }
       },
@@ -88,7 +96,7 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
   $scope.displayDynamicDoctorsVisits = function () {
     $scope.error = '';
     $scope.doctors_visits = {};
-    $scope.patient_search = '';
+    $scope.doctor_search = '';
     $scope.doctor_search = '';
     $scope.clinic_search = {};
     $scope.address = false;
@@ -393,7 +401,6 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
         where: where,
         /*  select: {
            id: 1,
-           hospital: 1,
            name: 1,
            doctor_list: 1,
            specialty: 1
@@ -404,7 +411,37 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
           $scope.clinicList = response.data.list;
+          console.log($scope.clinicList);
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
 
+  $scope.getClinicList2 = function (where) {
+    $scope.busy = true;
+
+    $http({
+      method: "POST",
+      url: "/api/clinics/all",
+      data: {
+        where: where,
+        select: {
+          id: 1,
+          name: 1,
+          doctor_list: 1,
+          specialty: 1
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.clinicList2 = response.data.list;
+          console.log($scope.clinicList);
         }
       },
       function (err) {
@@ -415,8 +452,9 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
   };
 
   $scope.getClinicBookList = function (doctors_visits) {
-    $scope.busy = true;
 
+    $scope.error = '';
+    $scope.busy = true;
 
     $http({
       method: "POST",
@@ -430,7 +468,6 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
         },
         /*  select: {
            id: 1,
-           hospital: 1,
            name: 1,
            doctor_list: 1,
            specialty: 1
@@ -658,7 +695,7 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/customers/all",
       data: {
-        search: $scope.patient_search,
+        search: $scope.doctor_search,
         select: {
 
         }
@@ -853,7 +890,7 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
 
         if (response.data.done) {
           $scope.customer = response.data.doc;
-          site.showModal('#customerDetailsModal')
+          site.showModal('#customerDetailsModal');
           document.querySelector('#customerDetailsModal .tab-link').click();
 
         }
@@ -865,7 +902,7 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
 
     )
 
-  }
+  };
 
   /*   $scope.showDoctors = function (clinic) {
       $scope.doctors_visits.selected_clinic = clinic;
@@ -1449,6 +1486,13 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
   };
 
 
+  $scope.viewInformationInstructions = function (c) {
+    $scope.view_info_instruc = c;
+    site.showModal('#informationInstructionsModal');
+
+  };
+
+
   $scope.calc = function (obj) {
     $scope.error = '';
     $timeout(() => {
@@ -1516,6 +1560,7 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
   $scope.getFoodsList();
   $scope.getDrinksList();
   $scope.getClinicList();
+  $scope.getClinicList2();
   $scope.getDoctorsVisitsTypeList();
   $scope.getResultVisitList();
   $scope.loadDiscountTypes();

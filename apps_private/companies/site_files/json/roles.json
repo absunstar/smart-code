@@ -160,7 +160,8 @@
             "foods_manage",
             "drinks_manage",
             "active_substances_manage",
-            "doctors_visits_manage"
+            "doctors_visits_manage",
+            "patients_tickets_manage"
         ]
     }
 ]

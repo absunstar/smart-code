@@ -45,6 +45,12 @@ module.exports = function init(site) {
     doctors_visits_doc.$req = req
     doctors_visits_doc.$res = res
 
+    if (!doctors_visits_doc.selected_time) {
+      response.error = 'must selected time';
+      res.json(response);
+      return;
+    }
+
     doctors_visits_doc.company = site.get_company(req);
     doctors_visits_doc.branch = site.get_branch(req);
 
@@ -79,9 +85,6 @@ module.exports = function init(site) {
     }
 
 
-
-
-
     let whereObj = {
       date: new Date(doctors_visits_doc.date),
       'selected_clinic.id': doctors_visits_doc.selected_clinic.id,
@@ -101,23 +104,61 @@ module.exports = function init(site) {
       }
     }
 
+
     $doctors_visits.findMany({
       where: whereObj,
     }, (err, docs, count) => {
       if (!err) {
 
         doctors_visits_doc.visit_number = count + 1
-        
-        $doctors_visits.add(doctors_visits_doc, (err, doc) => {
 
-          if (!err) {
-            response.done = true
-            response.doc = doc
+        site.getPatientTicket(doctors_visits_doc.customer, callBackGet => {
+
+          if (!callBackGet) {
+
+            site.addPatientTicket(doctors_visits_doc, callBackAdd => {
+              doctors_visits_doc.patient_ticket_id = callBackAdd.id
+
+              $doctors_visits.add(doctors_visits_doc, (err, doc) => {
+
+                if (!err) {
+                  response.done = true
+                  response.doc = doc
+
+                } else {
+                  response.error = err.message
+                }
+                res.json(response)
+              })
+
+            })
+
+
 
           } else {
-            response.error = err.message
+
+            if (callBackGet.status && callBackGet.status.id === 2) {
+              response.error = 'holding ticket for this patient';
+              res.json(response);
+              return;
+
+            }
+
+            doctors_visits_doc.patient_ticket_id = callBackGet.id
+
+            $doctors_visits.add(doctors_visits_doc, (err, doc) => {
+
+              if (!err) {
+                response.done = true
+                response.doc = doc
+
+              } else {
+                response.error = err.message
+              }
+              res.json(response)
+            })
           }
-          res.json(response)
+
         })
 
       }
@@ -571,8 +612,8 @@ module.exports = function init(site) {
       where['status.id'] = where['status.id']
     }
 
-    if (where['patient.id']) {
-      where['patient.id'] = parseInt(where['patient.id'])
+    if (where['customer.id']) {
+      where['customer.id'] = parseInt(where['customer.id'])
     }
 
     if (where['address']) {
@@ -619,9 +660,9 @@ module.exports = function init(site) {
       delete where['status_search']
     }
 
-    if (where['patient_search']) {
-      where['patient.id'] = where['patient_search'].id;
-      delete where['patient_search']
+    if (where['customer_search']) {
+      where['customer.id'] = where['customer_search'].id;
+      delete where['customer_search']
     }
 
     where['company.id'] = site.get_company(req).id

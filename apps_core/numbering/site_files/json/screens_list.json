@@ -16,6 +16,20 @@
     {
         "category": "main",
         "feature": "medical",
+        "name": "doctors_visits",
+        "en": "Doctors Visits",
+        "ar": "زيارات الأطباء"
+    },
+    {
+        "category": "main",
+        "feature": "medical",
+        "name": "patients_tickets",
+        "en": "Patients Tickets",
+        "ar": "تذكرة مريض"
+    },
+    {
+        "category": "main",
+        "feature": "medical",
         "name": "doctors",
         "en": "Doctors",
         "ar": "الأطباء"
@@ -48,13 +62,7 @@
         "en": "Medical Insurance Companies",
         "ar": "شركات التأمين الطبي"
     },
-    {
-        "category": "main",
-        "feature": "medical",
-        "name": "doctors_visits",
-        "en": "Doctors Visits",
-        "ar": "زيارات الأطباء"
-    },
+  
     {
         "category": "main",
         "feature": "order",

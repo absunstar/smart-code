@@ -600,6 +600,11 @@
         "ar": "الدواء"
     },
     {
+        "name": "holding",
+        "en": "Holding",
+        "ar": "تعليق"
+    },
+    {
         "name": "medicines",
         "en": "Medicines",
         "ar": "الأدوية"

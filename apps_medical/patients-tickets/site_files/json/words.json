@@ -1,0 +1,73 @@
+[{
+        "name": "patients_tickets",
+        "en": "Patients Ticket",
+        "ar": "تذاكر المرضى"
+    },
+    {
+        "name": "patients_tickets_new",
+        "en": "New Patients Ticket",
+        "ar": "تذكرة مريض  جديد"
+    },
+    {
+        "name": "err_unclosing_ticket_patient",
+        "en": "There is an unclosing ticket for the same patient",
+        "ar": "يوجد تذكرة غير مغلقة لنفس المريض"
+    },
+    {
+        "name": "opening_date",
+        "en": "Opening Date",
+        "ar": "تاريخ الفتح"
+    },
+    {
+        "name": "closing_date",
+        "en": "Closing Date",
+        "ar": "تاريخ الإغلاق"
+    },
+    {
+        "name": "close_ticket",
+        "en": "Close the ticket",
+        "ar": "إغلاق التذكرة"
+    },
+    {
+        "name": "open_ticket",
+        "en": "Open the ticket",
+        "ar": "فتح التذكرة"
+    },
+    {
+        "name": "holding_ticket",
+        "en": "Holding the ticket",
+        "ar": "تعليق التذكرة"
+    },
+     {
+        "name": "err_hold_ticket_patient",
+        "en": "There is an Holding ticket for the same patient",
+        "ar": "يوجد تذكرة معلقة لنفس المريض"
+    },
+    {
+        "name": "patients_tickets_add",
+        "en": "Add Patients Ticket",
+        "ar": "إضافة تذكرة مريض "
+    },
+    {
+        "name": "patients_tickets_edit",
+        "en": "Edit Patients Ticket",
+        "ar": "تعديل تذكرة مريض "
+    },
+    {
+        "name": "patients_tickets_details",
+        "en": "Patients Ticket Details",
+        "ar": "تفاصيل التذكرة مريض "
+    },
+    {
+        "name": "patients_tickets_delete",
+        "en": "Delete Patients Ticket",
+        "ar": "حذف تذكرة مريض "
+    },
+    {
+        "name": "patients_tickets_name",
+        "en": "Patients Ticket Name",
+        "ar": "إسم التذكرة مريض "
+    }
+
+
+]

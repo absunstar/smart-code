@@ -1,0 +1,137 @@
+<div ng-hide="busy" class="row">
+    <div id="basicInformation" class="tab-content">
+        <fieldset>
+            <legend> ##word.basic_information##</legend>
+            <div class="col9">
+                <div class="row">
+                    <br>
+                    <i-button type="details" label="##word.customers_details##"
+                        ng-click="showPatient(patients_tickets.customer.id)"></i-button>
+                    <div class="row">
+                        <div class="row" ng-show="patients_tickets.customer.id">
+                            <fieldset>
+
+                                <table class="table bold center hover">
+                                    <tr>
+                                        <td class="blue"> ##word.customer_name## </td>
+                                        <td colspan="7" class="center">
+                                            {{patients_tickets.customer.name_##session.lang##}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="blue"> ##word.gender## </td>
+                                        <td colspan="2" class="center">
+                                            {{patients_tickets.customer.gender.##session.lang##}}
+                                        </td>
+                                        <td class="blue"> ##word.child## </td>
+                                        <td colspan="2" ng-show="patients_tickets.customer.child == true">
+                                            <p class="green"> ##word.yes## </p>
+                                        </td>
+                                        <td colspan="2" ng-show="!patients_tickets.customer.child">
+                                            <p class="red"> ##word.no## </p>
+                                        </td>
+                                        <td colspan="2"></td>
+                                    </tr>
+
+
+                                    <tr>
+                                        <td class="blue"> ##word.weight## </td>
+                                        <td colspan="2" class="center"> {{patients_tickets.customer.weight}}
+                                        </td>
+                                        <td class="blue"> ##word.tall## </td>
+                                        <td colspan="2" class="center"> {{patients_tickets.customer.tall}}
+                                        </td>
+                                        <td class="blue"> ##word.blood_type## </td>
+                                        <td colspan="2" class="center red">
+                                            {{patients_tickets.customer.blood_type.name}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="blue"> ##word.medicine_notes## </td>
+                                        <td colspan="7" class="center">
+                                            {{patients_tickets.customer.medicine_notes}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="blue"> ##word.gov## </td>
+                                        <td colspan="2" class="center"> {{patients_tickets.customer.gov.name}}
+                                        </td>
+                                        <td class="blue"> ##word.city## </td>
+                                        <td colspan="2" class="center">
+                                            {{patients_tickets.customer.city.name}} </td>
+                                        <td class="blue"> ##word.area## </td>
+                                        <td colspan="2" class="center">
+                                            {{patients_tickets.customer.area.name}} </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="blue"> ##word.address## </td>
+                                        <td colspan="7" class="center"> {{patients_tickets.customer.address}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="blue"> ##word.mobile## </td>
+                                        <td colspan="4" class="center"> {{patients_tickets.customer.mobile}}
+                                        </td>
+                                        <td class="blue"> ##word.phone## </td>
+                                        <td colspan="3" class="center"> {{patients_tickets.customer.phone}}
+                                        </td>
+                                    </tr>
+
+                                </table>
+                            </fieldset>
+                        </div>
+                    </div>
+
+                    <br>
+                    <br>
+
+                    <table class="table hover bold">
+
+                        <tr>
+                            <td class="title">##word.visit_code##</td>
+                            <td class="blue center userPrint"> {{patients_tickets.code}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="title">##word.opening_date##</td>
+                            <td class="center">
+                                <p class="brown"> {{patients_tickets.opening_date |date:"dd - MM - yyyy"}} </p>
+                                <p class="green"> {{patients_tickets.opening_date |date:"hh:mm"}} </p>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title">##word.closing_date##</td>
+                            <td class="center">
+                                <p class="brown"> {{patients_tickets.closing_date |date:"dd - MM - yyyy"}} </p>
+                                <p class="red"> {{patients_tickets.closing_date |date:"hh:mm"}} </p>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title">##word.status##</td>
+                            <td class="center" ng-class="{
+                                'green' : patients_tickets.status.id === 1,
+                                'blue' : patients_tickets.status.id === 2,
+                                'red' : patients_tickets.status.id === 3}">
+                                {{patients_tickets.status.##session.lang##}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="title">##word.notes##</td>
+                            <td class="center lines_text"> {{patients_tickets.notes}}</td>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+
+            <div class="col3">
+                <i-image view ng-model="patients_tickets.image_url"></i-image>
+            </div>
+
+        </fieldset>
+    </div>
+</div>
+<div x-import="patients-tickets/action_info.html"></div>

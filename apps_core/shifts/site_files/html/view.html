@@ -16,7 +16,7 @@
                         <tr>
                             <td class="title">##word.startup_date##</td>
 
-                            <td class="center green">{{shift.from_date |date:'dd - MM - yyyy'}}
+                            <td class="center brown">{{shift.from_date |date:'dd - MM - yyyy'}}
                                 <p class="center green"> {{shift.from_time.minute}} : {{shift.from_time.hour}}</p>
                             </td>
                         </tr>
@@ -25,7 +25,7 @@
                             <td class="title">##word.deadline_date##</td>
 
                             <td class="center">
-                                <p class="center red" ng-show="shift.to_date">{{shift.to_date |date:'dd - MM - yyyy'}}
+                                <p class="center brown" ng-show="shift.to_date">{{shift.to_date |date:'dd - MM - yyyy'}}
                                 </p>
                                 <p class="center red" ng-show="shift.to_date"> {{shift.to_time.minute}} :
                                     {{shift.to_time.hour}}</p>

@@ -195,6 +195,31 @@
         "ar": "التحاليل"
     },
     {
+        "name": "prescription_treatment",
+        "en": "Prescription treatment",
+        "ar": "الروشتة العلاجية"
+    },
+    {
+        "name": "transferred_department",
+        "en": "Transferred Department",
+        "ar": "القسم المحول له"
+    },
+    {
+        "name": "next_counseling_date",
+        "name_en": "Next Counseling Date",
+        "ar": "تاريخ الإستشارة القادم"
+    },
+    {
+        "name": "next_counseling_re_detection",
+        "name_en": "Next re-detection Date",
+        "ar": "تاريخ إعادة الكشف القادم"
+    },
+    {
+        "name": "must_selected_time",
+        "en": "Must Selected Time",
+        "ar": "يجب إختيار ميعاد"
+    },
+    {
         "name": "result_visit",
         "en": "The result of the visit",
         "ar": "نتيجة الزيارة"
@@ -284,7 +309,6 @@
         "name_en": "Sugar",
         "ar": "السكر"
     },
-    
     {
         "name": "previous_operations",
         "name_en": "Previous operations",

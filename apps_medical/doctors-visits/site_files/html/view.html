@@ -287,9 +287,9 @@
                     </legend>
 
                     <div class="row">
-                        <div class="col2"></div>
+                        <div class="col1"></div>
 
-                        <div class="col8">
+                        <div class="col10">
 
                             <table class="table center bold hover">
                                 <tr>
@@ -300,6 +300,7 @@
                                     <th>##word.medicine_unit##</th>
                                     <th>##word.timing_dosage##</th>
                                     <th>##word.notes##</th>
+                                    <th>##word.actions##</th>
                                 </tr>
 
                                 <tr ng-repeat="itm in doctors_visits.medicines_list">
@@ -327,8 +328,14 @@
                                         {{itm.timing_dosage}}
                                     </td>
 
-                                    <td class="multi_lines_text center">
+                                    <td class="lines_text center">
                                         {{itm.notes}}
+                                    </td>
+
+                                    <td>
+                                        <i-button label="##word.information_instructions##"
+                                            ng-click="viewInformationInstructions(itm)">
+                                        </i-button>
                                     </td>
 
 
@@ -336,7 +343,7 @@
                             </table>
                         </div>
 
-                        <div class="col2"></div>
+                        <div class="col1"></div>
 
                     </div>
 
@@ -611,18 +618,37 @@
                         <div class="col9">
                             <table class="table hover bold">
                                 <tr>
-                                    <td class="title">##word.diagnosis##</td>
+                                    <td class="title">##word.result_visit##</td>
                                     <td class="center"> {{doctors_visits.diagnosis.result_visit.##session.lang##}} </td>
                                 </tr>
 
+                                <tr ng-show="doctors_visits.diagnosis.result_visit.id === 4">
+                                    <td class="title">##word.transferred_department##</td>
+                                    <td class="center">
+                                        {{doctors_visits.diagnosis.transferred_department.specialty.name}} -
+                                        {{doctors_visits.diagnosis.transferred_department.name}} </td>
+                                </tr>
+
+                                <tr ng-show="doctors_visits.diagnosis.result_visit.id === 2">
+                                    <td class="title">##word.next_counseling_date##</td>
+                                    <td class="brown center"> {{doctors_visits.diagnosis.counseling_date | date : 'dd -
+                                        MM - yyyy'}}</td>
+                                </tr>
+
+                                <tr ng-show="doctors_visits.diagnosis.result_visit.id === 3">
+                                    <td class="title">##word.next_counseling_re_detection##</td>
+                                    <td class="brown center"> {{doctors_visits.diagnosis.counseling_re_detection | date
+                                        : 'dd - MM - yyyy'}}</td>
+                                </tr>
+
                                 <tr>
-                                    <td class="title">##word.patient_advice##</td>
-                                    <td class="center"> {{doctors_visits.diagnosis.patient_advice}} </td>
+                                    <td class="title">##word.prescription_treatment##</td>
+                                    <td class="center lines_text"> {{doctors_visits.diagnosis.prescription_treatment}} </td>
                                 </tr>
 
                                 <tr>
                                     <td class="title">##word.special_notes##</td>
-                                    <td class="center"> {{doctors_visits.diagnosis.special_notes}} </td>
+                                    <td class="center lines_text"> {{doctors_visits.diagnosis.special_notes}} </td>
                                 </tr>
 
                             </table>

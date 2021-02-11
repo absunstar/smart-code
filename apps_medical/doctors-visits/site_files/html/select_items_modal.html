@@ -1,4 +1,4 @@
-<div id="selectItemsModal" class="modal" fixed>
+<div id="selectItemsModal" class="modal">
     <div class="modal-content">
         <div class="modal-header">
             <span class="close">&times;</span>
@@ -50,8 +50,18 @@
                                     </td>
 
                                     <td>
-                                        <i-button type="add" label="##word.add##" ng-hide="itm.$select" ng-click="selectMedicine(itm) ; itm.$select = true">
-                                        </i-button>
+
+                                        <div class="row center">
+                                            <i-button label="##word.information_instructions##"
+                                                ng-click="viewInformationInstructions(itm)">
+                                            </i-button>
+                                        </div>
+
+                                        <div class="row center">
+                                            <i-button type="add" label="##word.add##" ng-hide="itm.$select"
+                                                ng-click="selectMedicine(itm) ; itm.$select = true">
+                                            </i-button>
+                                        </div>
 
                                     </td>
                                 </tr>
@@ -65,7 +75,6 @@
         </div>
         <h2 class="error center bold">{{error}}</h2>
         <div class="modal-footer center">
-            <i-button type="add" label="##word.stores_out_add_to_items##" ng-click="addToItems()"></i-button>
             <i-button type="close" label=" ##word.close##" onclick="site.hideModal('#selectItemsModal')"></i-button>
         </div>
     </div>

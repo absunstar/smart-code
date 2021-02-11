@@ -1,0 +1,25 @@
+<div id="patientsTicketsUpdateModal" class="modal" fixed>
+        
+    <div class="modal-content  ">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.patients_tickets_edit##
+                <i class="fa fa-pencil"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+
+            <div x-import="patients-tickets/content.html"></div>
+            <div x-import="patients-tickets/action_info.html"></div>
+        </div>
+
+        <div class="modal-footer center">
+            <h2 class="error"> {{error}} </h2>
+            <i-button type="edit" label="##word.edit##" ng-click="updatePatientsTickets(patients_tickets)"></i-button>
+            <i-button type="close" label="##word.close##" onclick="site.hideModal( '#patientsTicketsUpdateModal')"></i-button>
+        </div>
+    </div>
+    
+</div>
