@@ -11,8 +11,8 @@
                 ##word.medicines## </a>
             <a class="tab-link" onclick="site.showTabContent(event, '#scanInformation')">
                 ##word.scan## </a>
-            <a class="tab-link" onclick="site.showTabContent(event, '#analysesInformation')">
-                ##word.analyses## </a>
+            <a class="tab-link" onclick="site.showTabContent(event, '#analysisInformation')">
+                ##word.analysis## </a>
             <a class="tab-link" onclick="site.showTabContent(event, '#operationInformation')">
                 ##word.operation## </a>
             <a class="tab-link" onclick="site.showTabContent(event, '#foodsDrinksInformation')">
@@ -34,79 +34,77 @@
                                 <i-button type="details" label="##word.customers_details##"
                                     ng-click="showPatient(doctors_visits.customer.id)"></i-button>
                                 <div class="row">
-                                    <div class="row" ng-show="doctors_visits.customer.id">
-                                        <fieldset>
+                                    <fieldset class="col11" ng-show="doctors_visits.customer.id">
 
-                                            <table class="table bold center hover">
-                                                <tr>
-                                                    <td class="blue"> ##word.customer_name## </td>
-                                                    <td colspan="7" class="center">
-                                                        {{doctors_visits.customer.name_##session.lang##}}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="blue"> ##word.gender## </td>
-                                                    <td colspan="2" class="center">
-                                                        {{doctors_visits.customer.gender.##session.lang##}}
-                                                    </td>
-                                                    <td class="blue"> ##word.child## </td>
-                                                    <td colspan="2" ng-show="doctors_visits.customer.child == true">
-                                                        <p class="green"> ##word.yes## </p>
-                                                    </td>
-                                                    <td colspan="2" ng-show="!doctors_visits.customer.child">
-                                                        <p class="red"> ##word.no## </p>
-                                                    </td>
-                                                    <td colspan="2"></td>
-                                                </tr>
+                                        <table class="table bold center hover">
+                                            <tr>
+                                                <td class="blue"> ##word.customer_name## </td>
+                                                <td colspan="7" class="center">
+                                                    {{doctors_visits.customer.name_##session.lang##}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="blue"> ##word.gender## </td>
+                                                <td colspan="2" class="center">
+                                                    {{doctors_visits.customer.gender.##session.lang##}}
+                                                </td>
+                                                <td class="blue"> ##word.child## </td>
+                                                <td colspan="2" ng-show="doctors_visits.customer.child == true">
+                                                    <p class="green"> ##word.yes## </p>
+                                                </td>
+                                                <td colspan="2" ng-show="!doctors_visits.customer.child">
+                                                    <p class="red"> ##word.no## </p>
+                                                </td>
+                                                <td colspan="2"></td>
+                                            </tr>
 
 
-                                                <tr>
-                                                    <td class="blue"> ##word.weight## </td>
-                                                    <td colspan="2" class="center"> {{doctors_visits.customer.weight}}
-                                                    </td>
-                                                    <td class="blue"> ##word.tall## </td>
-                                                    <td colspan="2" class="center"> {{doctors_visits.customer.tall}}
-                                                    </td>
-                                                    <td class="blue"> ##word.blood_type## </td>
-                                                    <td colspan="2" class="center red">
-                                                        {{doctors_visits.customer.blood_type.name}}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="blue"> ##word.medicine_notes## </td>
-                                                    <td colspan="7" class="center">
-                                                        {{doctors_visits.customer.medicine_notes}}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="blue"> ##word.gov## </td>
-                                                    <td colspan="2" class="center"> {{doctors_visits.customer.gov.name}}
-                                                    </td>
-                                                    <td class="blue"> ##word.city## </td>
-                                                    <td colspan="2" class="center">
-                                                        {{doctors_visits.customer.city.name}} </td>
-                                                    <td class="blue"> ##word.area## </td>
-                                                    <td colspan="2" class="center">
-                                                        {{doctors_visits.customer.area.name}} </td>
-                                                </tr>
+                                            <tr>
+                                                <td class="blue"> ##word.weight## </td>
+                                                <td colspan="2" class="center"> {{doctors_visits.customer.weight}}
+                                                </td>
+                                                <td class="blue"> ##word.tall## </td>
+                                                <td colspan="2" class="center"> {{doctors_visits.customer.tall}}
+                                                </td>
+                                                <td class="blue"> ##word.blood_type## </td>
+                                                <td colspan="2" class="center red">
+                                                    {{doctors_visits.customer.blood_type.name}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="blue"> ##word.medicine_notes## </td>
+                                                <td colspan="7" class="center">
+                                                    {{doctors_visits.customer.medicine_notes}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="blue"> ##word.gov## </td>
+                                                <td colspan="2" class="center"> {{doctors_visits.customer.gov.name}}
+                                                </td>
+                                                <td class="blue"> ##word.city## </td>
+                                                <td colspan="2" class="center">
+                                                    {{doctors_visits.customer.city.name}} </td>
+                                                <td class="blue"> ##word.area## </td>
+                                                <td colspan="2" class="center">
+                                                    {{doctors_visits.customer.area.name}} </td>
+                                            </tr>
 
-                                                <tr>
-                                                    <td class="blue"> ##word.address## </td>
-                                                    <td colspan="7" class="center"> {{doctors_visits.customer.address}}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="blue"> ##word.mobile## </td>
-                                                    <td colspan="4" class="center"> {{doctors_visits.customer.mobile}}
-                                                    </td>
-                                                    <td class="blue"> ##word.phone## </td>
-                                                    <td colspan="3" class="center"> {{doctors_visits.customer.phone}}
-                                                    </td>
-                                                </tr>
+                                            <tr>
+                                                <td class="blue"> ##word.address## </td>
+                                                <td colspan="7" class="center"> {{doctors_visits.customer.address}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="blue"> ##word.mobile## </td>
+                                                <td colspan="4" class="center"> {{doctors_visits.customer.mobile}}
+                                                </td>
+                                                <td class="blue"> ##word.phone## </td>
+                                                <td colspan="3" class="center"> {{doctors_visits.customer.phone}}
+                                                </td>
+                                            </tr>
 
-                                            </table>
-                                        </fieldset>
-                                    </div>
+                                        </table>
+                                    </fieldset>
                                 </div>
 
                                 <br>
@@ -249,7 +247,8 @@
                                 </tr>
 
                                 <tr>
-                                    <td ng-show="doctors_visits.total_value"> {{doctors_visits.total_value}}</td>
+                                    <td ng-show="doctors_visits.total_value" class="red"> {{doctors_visits.total_value}}
+                                    </td>
                                     <td ng-show="doctors_visits.is_urgent_visit"> {{doctors_visits.urgent_visit.value}}
                                     </td>
                                     <td class="red" ng-show="doctors_visits.total_discount">
@@ -394,10 +393,10 @@
                 </fieldset>
             </div>
 
-            <div id="analysesInformation" class="tab-content">
+            <div id="analysisInformation" class="tab-content">
                 <fieldset>
                     <legend>
-                        ##word.analyses##
+                        ##word.analysis##
                     </legend>
 
                     <div class="row">
@@ -406,14 +405,14 @@
 
                         <table class="table hover center">
                             <tr>
-                                <th>##word.analyses##</th>
+                                <th>##word.analysis##</th>
                                 <th>##word.analyse_result##</th>
                                 <th>##word.notes##</th>
                                 <th>##word.results_files##</th>
 
                             </tr>
 
-                            <tr ng-repeat="info in doctors_visits.analyses_list">
+                            <tr ng-repeat="info in doctors_visits.analysis_list">
 
                                 <td>
                                     <h3 class="black bold ">{{info.analysis.name}}</h3>
@@ -643,7 +642,8 @@
 
                                 <tr>
                                     <td class="title">##word.prescription_treatment##</td>
-                                    <td class="center lines_text"> {{doctors_visits.diagnosis.prescription_treatment}} </td>
+                                    <td class="center lines_text"> {{doctors_visits.diagnosis.prescription_treatment}}
+                                    </td>
                                 </tr>
 
                                 <tr>

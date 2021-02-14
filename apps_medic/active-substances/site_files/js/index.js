@@ -10,7 +10,7 @@ app.controller("active_substances", function ($scope, $http, $timeout) {
       image_url: '/images/active_substances.png',
       active: true
     };
-    site.showModal('#reasonsSessionsAddModal');
+    site.showModal('#activeSubstancesAddModal');
   };
 
   $scope.addActiveSubstances = function () {
@@ -19,7 +19,7 @@ app.controller("active_substances", function ($scope, $http, $timeout) {
     }
     $scope.error = '';
 
-    const v = site.validated('#reasonsSessionsAddModal');
+    const v = site.validated('#activeSubstancesAddModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
@@ -34,7 +34,7 @@ app.controller("active_substances", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#reasonsSessionsAddModal');
+          site.hideModal('#activeSubstancesAddModal');
           $scope.getActiveSubstancesList();
         } else {
           $scope.error = response.data.error;
@@ -57,7 +57,7 @@ app.controller("active_substances", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.detailsActiveSubstances(active_substances);
     $scope.active_substances = {};
-    site.showModal('#reasonsSessionsUpdateModal');
+    site.showModal('#activeSubstancesUpdateModal');
   };
 
   $scope.updateActiveSubstances = function () {
@@ -66,7 +66,7 @@ app.controller("active_substances", function ($scope, $http, $timeout) {
     }
     $scope.error = '';
 
-    const v = site.validated('#reasonsSessionsUpdateModal');
+    const v = site.validated('#activeSubstancesUpdateModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
@@ -80,7 +80,7 @@ app.controller("active_substances", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#reasonsSessionsUpdateModal');
+          site.hideModal('#activeSubstancesUpdateModal');
           $scope.list.forEach((b, i) => {
             if (b.id == response.data.doc.id) {
               $scope.list[i] = response.data.doc;
@@ -100,7 +100,7 @@ app.controller("active_substances", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.detailsActiveSubstances(active_substances);
     $scope.active_substances = {};
-    site.showModal('#reasonsSessionsDetailsModal');
+    site.showModal('#activeSubstancesDetailsModal');
   };
 
   $scope.detailsActiveSubstances = function (active_substances) {
@@ -131,7 +131,7 @@ app.controller("active_substances", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.detailsActiveSubstances(active_substances);
     $scope.active_substances = {};
-    site.showModal('#reasonsSessionsDeleteModal');
+    site.showModal('#activeSubstancesDeleteModal');
   };
 
   $scope.deleteActiveSubstances = function () {
@@ -148,7 +148,7 @@ app.controller("active_substances", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#reasonsSessionsDeleteModal');
+          site.hideModal('#activeSubstancesDeleteModal');
           $scope.list.forEach((b, i) => {
             if (b.id == response.data.doc.id) {
               $scope.list.splice(i, 1);
@@ -193,7 +193,7 @@ app.controller("active_substances", function ($scope, $http, $timeout) {
   $scope.searchAll = function () {
     $scope._search = {};
     $scope.getActiveSubstancesList($scope.search);
-    site.hideModal('#reasonsSessionsSearchModal');
+    site.hideModal('#activeSubstancesSearchModal');
     $scope.search = {}
 
   };
@@ -221,29 +221,6 @@ app.controller("active_substances", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getScreenType = function () {
-    $scope.busy = true;
-
-    $http({
-      method: "POST",
-      url: "/api/numbering_transactions_status/get",
-      data: {
-        screen_name: "active_substances"
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data) {
-          $scope.disabledCode = response.data.doc == 'auto' ? true : false;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
-  $scope.getScreenType();
   $scope.getActiveSubstancesList();
   $scope.getNumberingAuto();
 

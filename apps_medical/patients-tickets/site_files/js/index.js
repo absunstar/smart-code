@@ -252,6 +252,119 @@ app.controller("patients_tickets", function ($scope, $http, $timeout) {
 
   };
 
+  $scope.addCustomer = function () {
+    $scope.error = '';
+    if ($scope.busy) {
+      return;
+    }
+
+    const v = site.validated('#customerAddModal');
+    if (!v.ok) {
+      $scope.error = v.messages[0].ar;
+      return;
+    }
+
+    $scope.busy = true;
+
+    $http({
+      method: "POST",
+      url: "/api/customers/add",
+      data: $scope.customer
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          site.hideModal('#customerAddModal');
+          $scope.count = $scope.list.length;
+        } else {
+          $scope.error = 'Please Login First';
+          if (response.data.error.like('*Must Enter Code*')) {
+            $scope.error = "##word.must_enter_code##";
+          }
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    )
+  };
+
+  $scope.getGovList = function (where) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/goves/all",
+      data: {
+        where: {
+          active: true
+        },
+        select: { id: 1, name: 1, code: 1 }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.govList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getCityList = function (gov) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/city/all",
+      data: {
+        where: {
+          'gov.id': gov.id,
+          active: true
+        },
+        select: { id: 1, name: 1, code: 1 }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.cityList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getAreaList = function (city) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/area/all",
+      data: {
+        where: {
+          'city.id': city.id,
+          active: true
+        },
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.areaList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.getPatientsTicketsList = function (where) {
     $scope.busy = true;
     $scope.list = [];

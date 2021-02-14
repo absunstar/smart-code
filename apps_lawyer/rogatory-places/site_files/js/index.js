@@ -199,20 +199,20 @@ app.controller("rogatory_places", function ($scope, $http, $timeout) {
 
   };
 
-  $scope.getScreenPlace = function () {
+  $scope.getNumberingAuto = function () {
+    $scope.error = '';
     $scope.busy = true;
-
     $http({
       method: "POST",
-      url: "/api/numbering_transactions_status/get",
+      url: "/api/numbering/get_automatic",
       data: {
-        screen_name: "rogatory_places"
+        screen: "rogatory_places"
       }
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data) {
-          $scope.disabledCode = response.data.doc == 'auto' ? true : false;
+        if (response.data.done) {
+          $scope.disabledCode = response.data.isAuto;
         }
       },
       function (err) {
@@ -221,7 +221,9 @@ app.controller("rogatory_places", function ($scope, $http, $timeout) {
       }
     )
   };
-  $scope.getScreenPlace();
+
+  
+  $scope.getNumberingAuto();
   $scope.getRogatoryPlacesList();
 
 });

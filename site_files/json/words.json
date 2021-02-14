@@ -590,9 +590,44 @@
         "ar": "كود الصنف"
     },
     {
+        "name": "has_been_delivered",
+        "en": "Has been delivered",
+        "ar": "تم التسليم"
+    },
+    {
+        "name": "delivery_has_not_been_done",
+        "en": "Delivery has not been done",
+        "ar": "لم يتم التسليم"
+    },
+    {
         "name": "invoice_top_title",
         "en": "invoice top title",
         "ar": "عنوان الفاتورة العلوي"
+    },
+    {
+        "name": "normal_range",
+        "en": "Normal Range",
+        "ar": "المعدل الطبيعي"
+    },
+    {
+        "name": "result",
+        "en": "Result",
+        "ar": "النتيجة"
+    },
+    {
+        "name": "males",
+        "en": "Males",
+        "ar": "ذكور"
+    },
+    {
+        "name": "females",
+        "en": "Females",
+        "ar": "إناث"
+    },
+    {
+        "name": "children",
+        "en": "Children",
+        "ar": "أطفال"
     },
     {
         "name": "medicine",

@@ -1,7 +1,0 @@
-[{
-    "module_name" : "general" ,
-    "name": "analyses_admin",
-    "en": "Analyses Admin",
-    "ar": "إدارة التحاليل",
-    "permissions": ["analyses_manage"]
-}]

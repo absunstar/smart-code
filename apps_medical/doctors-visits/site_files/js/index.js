@@ -20,7 +20,7 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
       status: $scope.statusList[0],
       medicines_list: [{ active: true }],
       scans_list: [{ active: true }],
-      analyses_list: [{ active: true }],
+      analysis_list: [{ active: true }],
       operation_list: [{ active: true }],
       favorite_food_list: [{}],
       favorite_drink_list: [{}],
@@ -113,7 +113,7 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
       scans_list: [{
         active: true
       }],
-      analyses_list: [{
+      analysis_list: [{
         active: true
       }],
       operation_list: [{
@@ -746,7 +746,7 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
     $scope.analysisList = [];
     $http({
       method: "POST",
-      url: "/api/analyses/all",
+      url: "/api/analysis/all",
       data: {
 
         select: {
@@ -1441,8 +1441,6 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
     )
   };
 
-
-
   $scope.getDefaultSettings = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -1492,12 +1490,88 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
 
   };
 
+  $scope.getGovList = function (where) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/goves/all",
+      data: {
+        where: {
+          active: true
+        },
+        select: { id: 1, name: 1, code: 1 }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.govList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getCityList = function (gov) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/city/all",
+      data: {
+        where: {
+          'gov.id': gov.id,
+          active: true
+        },
+        select: { id: 1, name: 1, code: 1 }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.cityList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getAreaList = function (city) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/area/all",
+      data: {
+        where: {
+          'city.id': city.id,
+          active: true
+        },
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.areaList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
 
   $scope.calc = function (obj) {
     $scope.error = '';
     $timeout(() => {
       obj.total_discount = 0;
-
+      obj.total_value = 0;
+      
       if (obj.urgent_visit && obj.is_urgent_visit) {
         if (obj.urgent_visit.type == 'percent')
           obj.urgent_visit.value = obj.doctor_visit_price * site.toNumber(obj.urgent_visit.price) / 100;
@@ -1513,7 +1587,7 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
           else obj.total_discount += site.toNumber(ds.value);
         });
 
-      obj.net_value = obj.total_value - obj.total_discount
+      obj.net_value = obj.total_value - obj.total_discount;
 
       $scope.discount = {
         type: 'number'

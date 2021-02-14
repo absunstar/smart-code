@@ -1,7 +1,0 @@
-[{
-    "module_name" : "general" ,
-    "name": "analyses_centers_admin",
-    "en": "Analyses Centers Admin",
-    "ar": "إدارة مراكز التحاليل",
-    "permissions": ["analyses_centers_manage"]
-}]

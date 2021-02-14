@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="analysis_requests_ui || analysis_requests_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+    <div id="main-layout" class="container loaded">
+        <div class="row">
+            <div class="row" ng-controller="analysis_requests" x-permissions="login">
+                <div x-permissions="analysis_requests_add || analysis_requests_manage"
+                    x-import="analysis-requests/add_modal.html"></div>
+                <div x-import="analysis-requests/update_modal.html"></div>
+                <div x-import="analysis-requests/delete_modal.html"></div>
+                <div x-import="analysis-requests/view_modal.html"></div>
+                <div x-permissions="analysis_requests_search || analysis_requests_manage"
+                    x-import="analysis-requests/search_all_modal.html"></div>
+                <div x-import="analysis-requests/delivery_analyzis.html"></div>
+                <div x-import="customers/add_modal.html"></div>
+                <div x-import="customers/view_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center"> ##word.analysis_requests## </h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button type="add" x-permissions="analysis_requests_add || analysis_requests_manage"
+                        label="##word.analysis_requests_new##" ng-click="displayAddAnalysisRequests()"></i-button>
+                    <i-button type="search" x-permissions="analysis_requests_search || analysis_requests_manage"
+                        label="##word.search_all##" onclick="site.showModal('#analysisRequestsSearchModal')"></i-button>
+
+                    <span ng-show="busy">
+                        <span class="sr-only">Loading...</span>
+                    </span>
+                    <h3 class="bold text-center"> ##word.count## : {{count}} </h3>
+                    <br>
+                </div>
+
+                <table class="table loaded center hover bold" id="t1">
+                    <tr>
+                        <th class="not-print"> ##word.logo## </th>
+                        <th>##word.code##</th>
+                        <th> ##word.date## </th>
+                        <th> ##word.status## </th>
+
+                        <th class="not-print"> ##word.actions## </th>
+                    </tr>
+                    <tr ng-repeat="c in list | orderBy : '-id'">
+                        <td class="not-print">
+                            <i-image view class="logo" ng-model="c.image_url"></i-image>
+                        </td>
+
+                        <td class="center blue userPrint">{{c.code}}</td>
+
+                        <td class="center brown"> <br> {{c.date | date :'dd - MM - yyyy'}}</td>
+
+                        <td>
+                            <p ng-show="c.active == true" class="green"> ##word.active## </p>
+                            <p ng-show="c.active == false" class="red"> ##word.not_active## </p>
+                        </td>
+
+                        <td class="center not-print">
+                            <i-button type="details" x-permissions="analysis_requests_view || analysis_requests_manage"
+                                label="##word.details##" ng-click="displayDetailsAnalysisRequests(c)"></i-button>
+
+                            <i-button type="save" label="##word.delivery_analyzes##" ng-click="showDeliveryAnalyzes(c)">
+                            </i-button>
+
+                            <i-button type="update" x-permissions="analysis_requests_edit || analysis_requests_manage"
+                                label="##word.update##" ng-click="displayUpdateAnalysisRequests(c)"></i-button>
+
+                            <i-button type="delete" x-permissions="analysis_requests_delete || analysis_requests_manage"
+                                label="##word.delete##" ng-click="displayDeleteAnalysisRequests(c)"></i-button>
+                        </td>
+                    </tr>
+                </table>
+
+                <div class="row">
+                    <i-button x-permissions="analysis_requests_print || analysis_requests_manage" type="print"
+                        label="##word.print##" onclick="site.print('#t1')"></i-button>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div x-import="scripts.html"></div>
+
+    <script x-permissions="login" x-import="analysis-requests/index.js"></script>
+</body>
+
+</html>

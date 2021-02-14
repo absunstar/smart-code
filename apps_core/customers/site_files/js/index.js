@@ -410,9 +410,6 @@ app.controller("customers", function ($scope, $http, $timeout) {
     )
   };
 
-
-
-
   $scope.getGovList = function (where) {
     $scope.busy = true;
     $http({

@@ -19,8 +19,8 @@
                 ##word.medicines## ##word.requiredy##</a>
             <a class="tab-link" onclick="site.showTabContent(event, '#scanInformation')">
                 ##word.scan## ##word.requiredy##</a>
-            <a class="tab-link" onclick="site.showTabContent(event, '#analysesInformation')">
-                ##word.analyses## ##word.requiredy##</a>
+            <a class="tab-link" onclick="site.showTabContent(event, '#analysisInformation')">
+                ##word.analysis## ##word.requiredy##</a>
             <a class="tab-link" onclick="site.showTabContent(event, '#operationInformation')">
                 ##word.operation## ##word.requiredy##</a>
 
@@ -462,22 +462,22 @@
                 </fieldset>
             </div>
 
-            <div id="analysesInformation" class="tab-content">
+            <div id="analysisInformation" class="tab-content">
                 <fieldset>
                     <legend>
-                        <i-button type="add default" ng-click="doctors_visits.analyses_list.push({active:true})">
+                        <i-button type="add default" ng-click="doctors_visits.analysis_list.push({active:true})">
                         </i-button>
-                        ##word.analyses##
+                        ##word.analysis##
                     </legend>
-                    <div class="row" ng-repeat="info in doctors_visits.analyses_list">
+                    <div class="row" ng-repeat="info in doctors_visits.analysis_list">
                         <div class="row">
 
                             <div class="col8">
                                 <div class="row">
 
                                     <div class="row">
-                                        <i-list class="col7" label="##word.analyses_name##" ng-model="info.analysis"
-                                            items="analysisList" ng-search="_search.$analyses" display="name"></i-list>
+                                        <i-list class="col7" label="##word.analysis_name##" ng-model="info.analysis"
+                                            items="analysisList" ng-search="_search.$analysis" display="name"></i-list>
                                     </div>
 
                                     <div class="row">
@@ -496,7 +496,7 @@
                                     <div class="col6"></div>
 
                                     <i-button type="delete" class="col6" label="##word.delete##"
-                                        ng-click="doctors_visits.analyses_list.length ===1 || doctors_visits.analyses_list.splice($index,1)">
+                                        ng-click="doctors_visits.analysis_list.length ===1 || doctors_visits.analysis_list.splice($index,1)">
                                     </i-button>
                                 </div>
 

@@ -40,7 +40,6 @@ module.exports = function init(site) {
         active: true,
       },
       (err, doc1) => {
-        site.call('[register][scan_centers][add]', doc1)
 
       },
     );

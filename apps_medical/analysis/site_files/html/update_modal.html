@@ -1,0 +1,26 @@
+<div id="analysisUpdateModal" class="modal" fixed>
+        
+    <div class="modal-content ">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.analysis_edit##
+                <i class="fa fa-pencil"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+
+            <div x-import="analysis/content.html"></div>
+            <div x-import="analysis/action_info.html"></div>
+
+        </div>
+
+        <div class="modal-footer center">
+            <h2 class="error"> {{error}} </h2>
+            <i-button type="edit" label="##word.edit##" ng-click="updateAnalysis(analysis)"></i-button>
+            <i-button type="close" label="##word.close##" onclick="site.hideModal( '#analysisUpdateModal')"></i-button>
+        </div>
+    </div>
+    
+</div>

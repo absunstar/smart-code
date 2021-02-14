@@ -265,7 +265,7 @@ app.controller("medicalInsuranceCompanies", function ($scope, $http, $timeout) {
     $scope.analysList = [];
     $http({
       method: "POST",
-      url: "/api/analyses/all",
+      url: "/api/analysis/all",
       data: {
         where: {
           active: true

@@ -1,0 +1,89 @@
+<div class="form">
+    <div id="basicInformation" class="tab-content">
+        <fieldset>
+            <legend> ##word.basic_information## </legend>
+            <div class="row">
+                <div class="col9">
+                    <div class="row">
+                        <i-control ng-hide="disabledCode" class="col2" label="##word.code##" ng-model="analysis.code">
+                        </i-control>
+                        <i-control help-id="analysis_name" v="r ll2" class="col4" label="##word.analysis_name##"
+                            ng-model="analysis.name"></i-control>
+                        <i-control help-id="analysis_price" v="r" type="number" class="col2"
+                            label="##word.analysis_price##" ng-model="analysis.price"></i-control>
+                        <div class="col2"></div>
+                        <i-checkbox help-id="analysis_active" class="col2" label="##word.active##"
+                            ng-model="analysis.active"></i-checkbox>
+                    </div>
+
+                    <div class="row">
+                        <i-control ng-hide="analysis.immediate==true" type="number" class="col2"
+                            label="##word.delivery_time##" ng-model="analysis.delivery_time"></i-control>
+                        <i-list ng-hide="analysis.immediate==true" class="col3" label="##word.period##"
+                            ng-model="analysis.period" ng-search="_search.$period_search" items="periodList"
+                            display="##session.lang##"></i-list>
+
+                        <i-checkbox help-id="immediate_active" class="col2" label="##word.immediate##"
+                            ng-model="analysis.immediate"></i-checkbox>
+                    </div>
+
+                    <div class="row">
+                        <fieldset class="col7">
+                            <legend>##word.normal_range##</legend>
+                            <br>
+                            <br>
+                            <div class="row">
+                                <div class="col4">
+                                    <h2 class="bold black">##word.males## : </h2>
+                                </div>
+
+                                <i-control type="number" class="col4" label="##word.from##"
+                                    ng-model="analysis.male.from"></i-control>
+
+                                <i-control type="number" class="col4" label="##word.to##" ng-model="analysis.male.to">
+                                </i-control>
+
+                            </div>
+
+                            <br>
+
+                            <div class="row">
+                                <div class="col4">
+                                    <h2 class="bold black">##word.females## : </h2>
+                                </div>
+
+                                <i-control type="number" class="col4" label="##word.from##"
+                                    ng-model="analysis.female.from"></i-control>
+
+                                <i-control type="number" class="col4" label="##word.to##" ng-model="analysis.female.to">
+                                </i-control>
+
+                            </div>
+
+                            <br>
+
+                            <div class="row">
+                                <div class="col4">
+                                    <h2 class="bold black">##word.child## : </h2>
+                                </div>
+
+                                <i-control type="number" class="col4" label="##word.from##"
+                                    ng-model="analysis.child.from"></i-control>
+
+                                <i-control type="number" class="col4" label="##word.to##" ng-model="analysis.child.to">
+                                </i-control>
+
+                            </div>
+
+                        </fieldset>
+                    </div>
+
+                </div>
+
+                <div class="col3">
+                    <i-image help-id="analysis_logo" ng-model="analysis.image_url"></i-image>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>

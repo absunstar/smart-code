@@ -1,0 +1,22 @@
+[
+
+    {"name" : "analysis_requests_informations" , "en" : "Analysis Requests Informations" , "ar" : "بيانات طلب التحاليل"},
+    {"name" : "analysis_requests" , "en" : "Analysis Requests" , "ar" : "طلبات التحاليل"},
+    {"name" : "analysis_request" , "en" : "Analysis Request" , "ar" : "طلب تحاليل"},
+    {"name" : "analysis_requests_menus" , "en" : "Analysis Requests Menu" , "ar" : "قائمة طلب التحاليل"},
+    {"name" : "analysis_requests_code" , "en" : "Analysis Requests Code" , "ar" : "كود طلب التحاليل"},
+    {"name" : "analysis_requests_name" , "en" : "Analysis Requests Name" , "ar" : "إسم طلب التحاليل"},
+    {"name" : "analysis_requests_new" , "en" : "New Analysis Requests" , "ar" : "طلب تحاليل جديد"},
+    {"name" : "analysis_requests_details" , "en" : "Analysis Requests Details" , "ar" : "تفاصيل طلب التحاليل"},
+    {"name" : "analysis_requests_update" , "en" : "Edit Analysis Requests" , "ar" : "تعديل طلب تحاليل"},
+    {"name" : "analysis_requests_delete" , "en" : "Delte Analysis Requests" , "ar" : "حذف طلب تحاليل"},
+    {"name" : "analysis_requests_add_name" , "en" : "Add Analysis Requests" , "ar" : "إضافة طلب تحاليل"},
+    {"name" : "notes_before_analysis" , "en" : "Notes before analysis" , "ar" : "ملاحظات قبل التحليل"},
+    {"name" : "Previous_patient_analysis" , "en" : "Previous Patient Analysis" , "ar" : "تحاليل المريض سابقة"},
+    {"name" : "delivery_analyzes" , "en" : "Delivery of analyzes" , "ar" : "تسليم التحاليل"},
+    {"name" : "delivery_all" , "en" : "Delivery All" , "ar" : "تسليم الكل"},
+    {"name" : "person_delivery" , "en" : "The Person Delivery" , "ar" : "الشخص المستلم"},
+    {"name" : "delivery_data" , "en" : "Delivery Date" , "ar" : "بيانات المستلم"},
+    {"name" : "notes_after_analysis" , "en" : "Notes After analysis" , "ar" : "ملاحظات بعد التحليل"}
+
+]

@@ -1,0 +1,52 @@
+[
+    {
+        "name": "analysis",
+        "en": "analysis",
+        "ar": "التحاليل"
+    },
+    {
+        "name": "analysis_new",
+        "en": "New Analysis",
+        "ar": "تحليل  جديدة"
+    },
+    {
+        "name": "immediate",
+        "en": "Immediate",
+        "ar": "فوري"
+    },
+    {
+        "name": "analysis_add",
+        "en": "Add analysis",
+        "ar": "إضافة تحليل"
+    },
+    {
+        "name": "analysis_edit",
+        "en": "Edit analysis",
+        "ar": "تعديل تحليل"
+    },
+    {
+        "name": "analysis_details",
+        "en": "analysis Details",
+        "ar": "تفاصيل تحليل"
+    },
+    {
+        "name": "analysis_delete",
+        "en": "Delete analysis",
+        "ar": "حذف تحليل"
+    },
+    {
+        "name": "analysis_name",
+        "en": "analysis Name",
+        "ar": "إسم التحليل"
+    },
+    {
+        "name": "analysis_price",
+        "en": "analysis Price",
+        "ar": "سعر التحليل"
+    },
+    {
+        "name": "analyse_result",
+        "en": "analysis result",
+        "ar": "نتيجة التحليل"
+    }
+]

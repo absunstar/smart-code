@@ -1,0 +1,101 @@
+<div ng-hide="busy" class="row">
+    <div id="basicInformation" class="tab-content">
+        <fieldset>
+            <legend> ##word.basic_information##</legend>
+            <div class="col9">
+                <div class="row">
+
+                    <table id="basicInformationTable" class="table hover bold">
+
+                        <tr>
+                            <td class="title">##word.code##</td>
+                            <td class="center userPrint blue">{{analysis.code}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="title">##word.analysis_name##</td>
+                            <td class="center">{{analysis.name}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="title">##word.analysis_price##</td>
+                            <td class="center green">{{analysis.price}}</td>
+                        </tr>
+
+                        <tr ng-hide="analysis.immediate==true">
+                            <td class="title">##word.delivery_time##</td>
+                            <td class="center blue">{{analysis.delivery_time}}</td>
+                        </tr>
+
+                        <tr ng-hide="analysis.immediate==true">
+                            <td class="title">##word.period##</td>
+                            <td class="center blue">{{analysis.period.ar}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="title">##word.immediate##</td>
+                            <td ng-show="analysis.immediate == true" class="green center"> ##word.yes## </td>
+                            <td ng-show="analysis.immediate == false" class="red center"> ##word.no## </td>
+                        </tr>
+
+
+                        <tr>
+                            <td class="title">##word.status##</td>
+                            <td ng-show="analysis.active == true" class="green center"> ##word.active## </td>
+                            <td ng-show="analysis.active == false" class="red center"> ##word.not_active## </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <br>
+                <br>
+
+                <div class="row">
+                    <div class="col7">
+
+                        <fieldset>
+                            <legend> ##word.normal_range##</legend>
+                            <table id="basicInformationTable" class="table hover bold">
+
+                                <tr>
+                                    <td class="title">##word.males##</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="center">##word.from## : <b class="green">{{analysis.male.from}}</b></td>
+                                    <td class="center">##word.to## : <b class="red">{{analysis.male.to}}</b></td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title">##word.females##</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="center">##word.from## : <b class="green">{{analysis.female.from}}</b></td>
+                                    <td class="center">##word.to## : <b class="red">{{analysis.female.to}}</b></td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title">##word.child##</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="center">##word.from## : <b class="green">{{analysis.child.from}}</b></td>
+                                    <td class="center">##word.to## : <b class="red">{{analysis.child.to}}</b></td>
+                                </tr>
+
+                            </table>
+                        </fieldset>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col3">
+                <i-image view ng-model="analysis.image_url"></i-image>
+            </div>
+
+        </fieldset>
+    </div>
+</div>
+<div x-import="analysis/action_info.html"></div>

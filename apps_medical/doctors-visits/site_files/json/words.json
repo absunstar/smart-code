@@ -5,6 +5,11 @@
         "ar": "زيارات الأطباء"
     },
     {
+        "name": "doctor_visit",
+        "en": "Doctor Visit",
+        "ar": "زيارة طبيب"
+    },
+    {
         "name": "doctors_visits_new",
         "en": "New Doctors Visit",
         "ar": "زيارة طبيب جديدة"
@@ -190,8 +195,8 @@
         "ar": "الأشعة"
     },
     {
-        "name": "analyses",
-        "en": "Analyses",
+        "name": "analysis",
+        "en": "Analysis",
         "ar": "التحاليل"
     },
     {

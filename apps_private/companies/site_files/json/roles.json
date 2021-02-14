@@ -152,15 +152,15 @@
             "specialties_manage",
             "nursing_manage",
             "operation_manage",
-            "analyses_manage",
-            "analyses_centers_manage",
+            "analysis_manage",
             "insurance_companies_manage",
-            "scan_centers_manage",
             "scans_manage",
             "foods_manage",
             "drinks_manage",
             "active_substances_manage",
             "doctors_visits_manage",
+            "analysis_requests_manage",
+            "scans_requests_manage",
             "patients_tickets_manage"
         ]
     }
