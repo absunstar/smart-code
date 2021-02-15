@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="scans_requests_ui || scans_requests_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+    <div id="main-layout" class="container loaded">
+        <div class="row">
+            <div class="row" ng-controller="scans_requests" x-permissions="login">
+                <div x-permissions="scans_requests_add || scans_requests_manage"
+                    x-import="scans-requests/add_modal.html"></div>
+                <div x-import="scans-requests/update_modal.html"></div>
+                <div x-import="scans-requests/delete_modal.html"></div>
+                <div x-import="scans-requests/view_modal.html"></div>
+                <div x-permissions="scans_requests_search || scans_requests_manage"
+                    x-import="scans-requests/search_all_modal.html"></div>
+                <div x-import="scans-requests/delivery_scans.html"></div>
+                <div x-import="scans-requests/putting_results_scans.html"></div>
+                <div x-import="scans-requests/delivery_data.html"></div>
+                <div x-import="customers/add_modal.html"></div>
+                <div x-import="customers/view_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center"> ##word.scans_requests## </h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button type="add" x-permissions="scans_requests_add || scans_requests_manage"
+                        label="##word.scans_requests_new##" ng-click="displayAddScansRequests()"></i-button>
+                    <i-button type="search" x-permissions="scans_requests_search || scans_requests_manage"
+                        label="##word.search_all##" onclick="site.showModal('#scansRequestsSearchModal')"></i-button>
+
+                    <span ng-show="busy">
+                        <span class="sr-only">Loading...</span>
+                    </span>
+                    <h3 class="bold text-center"> ##word.count## : {{count}} </h3>
+                    <br>
+                </div>
+
+                <table class="table loaded center hover bold" id="t1">
+                    <tr>
+                        <th class="not-print"> ##word.logo## </th>
+                        <th>##word.code##</th>
+                        <th> ##word.date## </th>
+                        <th> ##word.status## </th>
+
+                        <th class="not-print"> ##word.actions## </th>
+                    </tr>
+                    <tr ng-repeat="c in list | orderBy : '-id'">
+                        <td class="not-print">
+                            <i-image view class="logo" ng-model="c.image_url"></i-image>
+                        </td>
+
+                        <td class="center blue userPrint">{{c.code}}</td>
+
+                        <td class="center brown"> <br> {{c.date | date :'dd - MM - yyyy'}}</td>
+
+                        <td>
+                            <p ng-show="c.active == true" class="green"> ##word.active## </p>
+                            <p ng-show="c.active == false" class="red"> ##word.not_active## </p>
+                        </td>
+
+                        <td class="center not-print">
+                            <i-button type="details" x-permissions="scans_requests_view || scans_requests_manage"
+                                label="##word.details##" ng-click="displayDetailsScansRequests(c)"></i-button>
+
+                            <i-button type="save" ng-hide="c.delivery" label="##word.delivery_scans##"
+                                ng-click="showModalList(c,'delivery')">
+                            </i-button>
+
+                            <i-button ng-hide="c.Putting_results" label="##word.putting_results_scans##"
+                            ng-click="showModalList(c,'result')">
+                            </i-button>
+
+                            <i-button type="update" x-permissions="scans_requests_edit || scans_requests_manage"
+                                label="##word.update##" ng-click="displayUpdateScansRequests(c)"></i-button>
+
+                            <i-button type="delete" x-permissions="scans_requests_delete || scans_requests_manage"
+                                label="##word.delete##" ng-click="displayDeleteScansRequests(c)"></i-button>
+                        </td>
+                    </tr>
+                </table>
+
+                <div class="row">
+                    <i-button x-permissions="scans_requests_print || scans_requests_manage" type="print"
+                        label="##word.print##" onclick="site.print('#t1')"></i-button>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div x-import="scripts.html"></div>
+
+    <script x-permissions="login" x-import="scans-requests/index.js"></script>
+</body>
+
+</html>

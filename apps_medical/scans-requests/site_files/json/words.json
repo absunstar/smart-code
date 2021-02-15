@@ -1,0 +1,23 @@
+[
+
+    {"name" : "scans_requests_informations" , "en" : "Scans Requests Informations" , "ar" : "بيانات طلب الأشعة"},
+    {"name" : "scans_requests" , "en" : "Scans Requests" , "ar" : "طلبات الأشعة"},
+    {"name" : "scans_request" , "en" : "Scans Request" , "ar" : "طلب أشعة"},
+    {"name" : "scans_requests_menus" , "en" : "Scans Requests Menu" , "ar" : "قائمة طلب الأشعة"},
+    {"name" : "scans_requests_code" , "en" : "Scans Requests Code" , "ar" : "كود طلب الأشعة"},
+    {"name" : "scans_requests_name" , "en" : "Scans Requests Name" , "ar" : "إسم طلب الأشعة"},
+    {"name" : "scans_requests_new" , "en" : "New Scans Requests" , "ar" : "طلب أشعة جديد"},
+    {"name" : "scans_requests_details" , "en" : "Scans Requests Details" , "ar" : "تفاصيل طلب الأشعة"},
+    {"name" : "scans_requests_update" , "en" : "Edit Scans Requests" , "ar" : "تعديل طلب أشعة"},
+    {"name" : "scans_requests_delete" , "en" : "Delte Scans Requests" , "ar" : "حذف طلب أشعة"},
+    {"name" : "scans_requests_add_name" , "en" : "Add Scans Requests" , "ar" : "إضافة طلب أشعة"},
+    {"name" : "notes_before_scans" , "en" : "Notes before scans" , "ar" : "ملاحظات قبل الأشعة"},
+    {"name" : "Previous_patient_scans" , "en" : "Previous Patient Scans" , "ar" : "أشعة المريض سابقة"},
+    {"name" : "delivery_scans" , "en" : "Delivery of scans" , "ar" : "تسليم الأشعة"},
+    {"name" : "delivery_all" , "en" : "Delivery All" , "ar" : "تسليم الكل"},
+    {"name" : "person_delivery" , "en" : "The Person Delivery" , "ar" : "الشخص المستلم"},
+    {"name" : "delivery_data" , "en" : "Delivery Date" , "ar" : "بيانات المستلم"},
+    {"name" : "putting_results_scans" , "en" : "Putting results of scans" , "ar" : "وضع نتائج الأشعة"},
+    {"name" : "notes_after_scans" , "en" : "Notes After scans" , "ar" : "ملاحظات بعد الأشعة"}
+
+]

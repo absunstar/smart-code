@@ -55,7 +55,8 @@
 
                             <div class="row">
 
-                                <i-checkbox label="##word.urgent_visit##" ng-click="calc(doctors_visits)" ng-model="doctors_visits.is_urgent_visit">
+                                <i-checkbox label="##word.urgent_visit##" ng-click="calc(doctors_visits)"
+                                    ng-model="doctors_visits.is_urgent_visit">
                                 </i-checkbox>
                             </div>
 
@@ -388,10 +389,18 @@
 
                         <div class="row">
 
-
                             <i-control class="col4" disabled ng-show="doctors_visits.net_value"
                                 ng-model="doctors_visits.net_value" type="number" label="##word.paid_require##">
                             </i-control>
+
+                            <i-control class="col4" ng-change="calc(doctors_visits)"
+                                ng-model="doctors_visits.paid" type="number" label="##word.paid##">
+                            </i-control>
+
+                            <i-control class="col4" disabled ng-model="doctors_visits.remain" type="number"
+                                label="##word.remain##">
+                            </i-control>
+
                         </div>
 
 

@@ -124,11 +124,6 @@
         "ar": "الخزينة"
     },
     {
-        "name": "paid",
-        "en": "Paid",
-        "ar": "الدفعة"
-    },
-    {
         "name": "previous_payments",
         "en": "Previous Payments",
         "ar": "الدفعات السابقة"

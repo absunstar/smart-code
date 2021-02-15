@@ -1571,7 +1571,7 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
     $timeout(() => {
       obj.total_discount = 0;
       obj.total_value = 0;
-      
+
       if (obj.urgent_visit && obj.is_urgent_visit) {
         if (obj.urgent_visit.type == 'percent')
           obj.urgent_visit.value = obj.doctor_visit_price * site.toNumber(obj.urgent_visit.price) / 100;
@@ -1588,7 +1588,7 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
         });
 
       obj.net_value = obj.total_value - obj.total_discount;
-
+      obj.remain = obj.net_value - (obj.paid || 0);
       $scope.discount = {
         type: 'number'
       };

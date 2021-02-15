@@ -1,0 +1,58 @@
+<div id="puttingResultsScansModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.putting_results_scans## <i class="fa fa-plus"></i>
+
+            </h2>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <form class="form">
+                    <fieldset>
+
+                        <table class="table loaded center hover bold">
+                            <tr>
+                                <th>##word.scans_name##</th>
+                                <th>##word.price##</th>
+                                <th> ##word.notes_before_scans##</th>
+                                <th> ##word.notes_after_scans## </th>
+                                <th> ##word.files## </th>
+                            </tr>
+
+                            <tr ng-repeat="a in scans_requests.scans_list">
+
+                                <td class="center">{{a.name}}</td>
+
+                                <td class="center green">{{a.price}}</td>
+
+                                <td class="center lines_text">
+                                    {{a.notes_before_scans}}
+                                </td>
+                            
+                                <td>
+                                    <i-textarea ng-model="a.notes_after_scans"></i-textarea>
+                                </td>
+
+                                <td>
+                                    <i-files ng-model="a.files"></i-files>
+                                </td>
+
+                            </tr>
+                        </table>
+
+                    </fieldset>
+                </form>
+            </div>
+
+            <h2 class="error"> {{error}} </h2>
+            <div class="modal-footer center">
+                <i-button type="save" label="##word.save##" ng-click="updateScansRequests(scans_requests)">
+                </i-button>
+                <i-button type="close" onclick="site.hideModal('#puttingResultsScansModal')" label="##word.close##">
+                </i-button>
+            </div>
+        </div>
+    </div>
+</div>

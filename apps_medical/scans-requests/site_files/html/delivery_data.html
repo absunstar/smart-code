@@ -1,0 +1,110 @@
+<div id="deliveryPersonModal" class="modal small">
+
+    <div class="modal-content small">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.delivery_data## <i class="fa fa-plus"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+
+            <form>
+
+                <div class="row" ng-hide="delivery_person.$view">
+                    <i-control class="col4" label="##word.name##" ng-model="delivery_person.delivery_data.name">
+                    </i-control>
+
+                    <i-control class="col3" label="##word.customers_phone##"
+                        ng-model="delivery_person.delivery_data.phone">
+                    </i-control>
+
+                    <i-control class="col3" label="##word.customers_mobile##"
+                        ng-model="delivery_person.delivery_data.mobile">
+                    </i-control>
+
+                </div>
+
+                <div class="row" ng-hide="delivery_person.$view">
+                    <i-list class="col3" label="##word.gov##" ng-model="delivery_person.delivery_data.gov"
+                        items="govList" display="name" ng-change="getCityList(delivery_person.delivery_data.gov)"
+                        ng-search="_search.$$govNameContact">
+                    </i-list>
+
+                    <i-list class="col4" label="##word.city##" ng-model="delivery_person.delivery_data.city"
+                        items="cityList" ng-change="getAreaList(delivery_person.delivery_data.city)" display="name"
+                        ng-search="_search.$delivery_person.delivery_data.$city_search"></i-list>
+                    <i-list class="col4" label="##word.area##" ng-model="delivery_person.delivery_data.area"
+                        items="areaList" display="name" ng-search="_search.$delivery_person.delivery_data.$area_search">
+                    </i-list>
+                    <i-control class="col6" label="##word.address##" ng-model="delivery_person.delivery_data.address">
+                    </i-control>
+                </div>
+
+
+                <div class="row" ng-show="delivery_person.$view">
+
+
+                    <table class="table hover bold">
+
+                        <tr>
+                            <td class="title">##word.name##</td>
+                            <td class="center">{{delivery_person.delivery_data.name}}</td>
+                        </tr>
+                        <tr>
+                            <td class="title">##word.customers_phone##</td>
+
+                            <td class="center">
+                                <a ng-show="delivery_person.delivery_data.phone"
+                                    href="tel:{{delivery_person.delivery_data.phone}}">
+                                    {{delivery_person.delivery_data.phone}}
+                                    <i class="fa fa-phone" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="title">##word.customers_mobile##</td>
+
+                            <td class="center">
+                                <a ng-show="delivery_person.delivery_data.mobile"
+                                    href="tel:{{delivery_person.delivery_data.mobile}}">
+                                    {{delivery_person.delivery_data.mobile}}
+                                    <i class="fa fa-mobile" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="title">##word.gov##</td>
+                            <td class="center">{{delivery_person.delivery_data.gov.name}}</td>
+                        </tr>
+                        <tr>
+                            <td class="title">##word.city##</td>
+                            <td class="center">{{delivery_person.delivery_data.city.name}}</td>
+                        </tr>
+                        <tr>
+                            <td class="title">##word.area##</td>
+                            <td class="center">{{delivery_person.delivery_data.area.name}}</td>
+                        </tr>
+                        <tr>
+                            <td class="title">##word.address##</td>
+                            <td class="center lines_text">{{delivery_person.delivery_data.address}}</td>
+                        </tr>
+
+
+                    </table>
+
+
+                </div>
+
+            </form>
+        </div>
+
+        <div class="modal-footer center">
+
+
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#deliveryPersonModal')"> </i-button>
+        </div>
+    </div>
+
+</div>

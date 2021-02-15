@@ -1,18 +1,18 @@
 module.exports = function init(site) {
-  const $analysis_requests = site.connectCollection("analysis_requests")
+  const $scans_requests = site.connectCollection("scans_requests")
 
-  //  $analysis_requests.deleteDuplicate({
+  //  $scans_requests.deleteDuplicate({
   //   code: 1,
   //   'company.id': 1
   // }, (err, result) => {
-  //   $analysis_requests.createUnique({
+  //   $scans_requests.createUnique({
   //     code: 1,
   //     'company.id': 1
   //   }, (err, result) => { })
   // }) 
 
   site.get({
-    name: "analysis_requests",
+    name: "scans_requests",
     path: __dirname + "/site_files/html/index.html",
     parser: "html",
     compress: true
@@ -24,7 +24,7 @@ module.exports = function init(site) {
   })
 
 
-  site.post("/api/analysis_requests/add", (req, res) => {
+  site.post("/api/scans_requests/add", (req, res) => {
     let response = {
       done: false
     }
@@ -34,44 +34,44 @@ module.exports = function init(site) {
     //   return
     // }
 
-    let analysis_requests_doc = req.body
-    analysis_requests_doc.$req = req
-    analysis_requests_doc.$res = res
+    let scans_requests_doc = req.body
+    scans_requests_doc.$req = req
+    scans_requests_doc.$res = res
 
 
-    analysis_requests_doc.company = site.get_company(req);
-    analysis_requests_doc.branch = site.get_branch(req);
+    scans_requests_doc.company = site.get_company(req);
+    scans_requests_doc.branch = site.get_branch(req);
 
-    analysis_requests_doc.add_user_info = site.security.getUserFinger({
+    scans_requests_doc.add_user_info = site.security.getUserFinger({
       $req: req,
       $res: res
     })
 
     let num_obj = {
       company: site.get_company(req),
-      screen: 'analysis_requests',
-      date: analysis_requests_doc.date
+      screen: 'scans_requests',
+      date: scans_requests_doc.date
     };
 
     let cb = site.getNumbering(num_obj);
-    if (!analysis_requests_doc.code && !cb.auto) {
+    if (!scans_requests_doc.code && !cb.auto) {
       response.error = 'Must Enter Code';
       res.json(response);
       return;
 
     } else if (cb.auto) {
-      analysis_requests_doc.code = cb.code;
+      scans_requests_doc.code = cb.code;
     }
 
 
-    site.getPatientTicket(analysis_requests_doc.customer, callBackGet => {
+    site.getPatientTicket(scans_requests_doc.customer, callBackGet => {
 
       if (!callBackGet) {
 
-        site.addPatientTicket(analysis_requests_doc, callBackAdd => {
-          analysis_requests_doc.patient_ticket_id = callBackAdd.id
+        site.addPatientTicket(scans_requests_doc, callBackAdd => {
+          scans_requests_doc.patient_ticket_id = callBackAdd.id
 
-          $analysis_requests.add(analysis_requests_doc, (err, doc) => {
+          $scans_requests.add(scans_requests_doc, (err, doc) => {
 
             if (!err) {
               response.done = true
@@ -96,9 +96,9 @@ module.exports = function init(site) {
 
         }
 
-        analysis_requests_doc.patient_ticket_id = callBackGet.id
+        scans_requests_doc.patient_ticket_id = callBackGet.id
 
-        $analysis_requests.add(analysis_requests_doc, (err, doc) => {
+        $scans_requests.add(scans_requests_doc, (err, doc) => {
 
           if (!err) {
             response.done = true
@@ -115,7 +115,7 @@ module.exports = function init(site) {
 
   })
 
-  site.post("/api/analysis_requests/update", (req, res) => {
+  site.post("/api/scans_requests/update", (req, res) => {
     let response = {
       done: false
     }
@@ -126,27 +126,27 @@ module.exports = function init(site) {
       return
     }
 
-    let analysis_requests_doc = req.body
-    analysis_requests_doc.edit_user_info = site.security.getUserFinger({
+    let scans_requests_doc = req.body
+    scans_requests_doc.edit_user_info = site.security.getUserFinger({
       $req: req,
       $res: res
     })
 
-    analysis_requests_doc.analysis_list.forEach(_analysis => {
-      if (_analysis.person_delivery && _analysis.person_delivery.name && !_analysis.delivery_date)
-        _analysis.delivery_date = new Date()
+    scans_requests_doc.scans_list.forEach(_scans => {
+      if (_scans.person_delivery && _scans.person_delivery.name && !_scans.delivery_date)
+        _scans.delivery_date = new Date()
 
     });
 
-    analysis_requests_doc.delivery = analysis_requests_doc.analysis_list.every(_a1 => _a1.person_delivery && _a1.person_delivery.name);
-    analysis_requests_doc.Putting_results = analysis_requests_doc.analysis_list.every(_a2 => _a2.result);
+    scans_requests_doc.delivery = scans_requests_doc.scans_list.every(_a1 => _a1.person_delivery && _a1.person_delivery.name);
+    scans_requests_doc.Putting_results = scans_requests_doc.scans_list.every(_a2 => _a2.notes_after_scans);
 
-    if (analysis_requests_doc.id) {
-      $analysis_requests.edit({
+    if (scans_requests_doc.id) {
+      $scans_requests.edit({
         where: {
-          id: analysis_requests_doc.id
+          id: scans_requests_doc.id
         },
-        set: analysis_requests_doc,
+        set: scans_requests_doc,
         $req: req,
         $req: req,
         $res: res
@@ -165,7 +165,7 @@ module.exports = function init(site) {
     }
   })
 
-  site.post("/api/analysis_requests/view", (req, res) => {
+  site.post("/api/scans_requests/view", (req, res) => {
     let response = {
       done: false
     }
@@ -176,7 +176,7 @@ module.exports = function init(site) {
       return
     }
 
-    $analysis_requests.findOne({
+    $scans_requests.findOne({
       where: {
         id: req.body.id
       }
@@ -191,7 +191,7 @@ module.exports = function init(site) {
     })
   })
 
-  site.post("/api/analysis_requests/delete", (req, res) => {
+  site.post("/api/scans_requests/delete", (req, res) => {
     let response = {
       done: false
     }
@@ -205,7 +205,7 @@ module.exports = function init(site) {
     let id = req.body.id
 
     if (id) {
-      $analysis_requests.delete({
+      $scans_requests.delete({
         id: id,
         $req: req,
         $res: res
@@ -224,7 +224,7 @@ module.exports = function init(site) {
     }
   })
 
-  site.post("/api/analysis_requests/all", (req, res) => {
+  site.post("/api/scans_requests/all", (req, res) => {
     let response = {
       done: false
     }
@@ -259,7 +259,7 @@ module.exports = function init(site) {
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
 
-    $analysis_requests.findMany({
+    $scans_requests.findMany({
       select: req.body.select || {},
       where: where,
       sort: req.body.sort || { id: -1 },

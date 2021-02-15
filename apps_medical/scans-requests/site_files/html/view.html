@@ -2,46 +2,46 @@
     <div class="form">
         <div id="customersGroupViewModal">
             <fieldset>
-                <legend> ##word.analysis_requests_informations## </legend>
+                <legend> ##word.scans_requests_informations## </legend>
                 <div class="row">
                     <div class="col9">
                         <table class="table hover bold">
 
                             <tr>
                                 <td class="title">##word.code##</td>
-                                <td class="center blue userPrint">{{analysis_requests.code}}</td>
+                                <td class="center blue userPrint">{{scans_requests.code}}</td>
                             </tr>
 
-                            <tr ng-show="analysis_requests.total_value">
+                            <tr ng-show="scans_requests.total_value">
                                 <td class="title">##word.total_value##</td>
-                                <td class="center">{{analysis_requests.total_value}}</td>
+                                <td class="center">{{scans_requests.total_value}}</td>
                             </tr>
 
-                            <tr ng-show="analysis_requests.total_discount">
+                            <tr ng-show="scans_requests.total_discount">
                                 <td class="title">##word.total_discount##</td>
-                                <td class="center red">{{analysis_requests.total_discount}}</td>
+                                <td class="center red">{{scans_requests.total_discount}}</td>
                             </tr>
 
-                            <tr ng-show="analysis_requests.net_value">
+                            <tr ng-show="scans_requests.net_value">
                                 <td class="title">##word.net_value##</td>
-                                <td class="center blue">{{analysis_requests.net_value}}</td>
+                                <td class="center blue">{{scans_requests.net_value}}</td>
                             </tr>
 
-                            <tr ng-show="analysis_requests.paid">
+                            <tr ng-show="scans_requests.paid">
                                 <td class="title">##word.paid##</td>
-                                <td class="center green">{{analysis_requests.paid}}</td>
+                                <td class="center green">{{scans_requests.paid}}</td>
                             </tr>
 
                             <tr>
                                 <td class="title">##word.remain##</td>
-                                <td class="center red">{{analysis_requests.remain}}</td>
+                                <td class="center red">{{scans_requests.remain}}</td>
                             </tr>
 
                             <tr>
                                 <td class="title"> ##word.active## </td>
-                                <td ng-show="analysis_requests.active == true" class="center green"> ##word.active##
+                                <td ng-show="scans_requests.active == true" class="center green"> ##word.active##
                                 </td>
-                                <td ng-show="analysis_requests.active == false" class="center red"> ##word.not_active##
+                                <td ng-show="scans_requests.active == false" class="center red"> ##word.not_active##
                                 </td>
                             </tr>
 
@@ -50,27 +50,27 @@
                         <div class="row">
                             <br>
                             <i-button type="details" class="not-print" label="##word.customers_details##"
-                                ng-click="showPatient(analysis_requests.customer.id)"></i-button>
+                                ng-click="showPatient(scans_requests.customer.id)"></i-button>
                             <div class="row">
-                                <fieldset class="col11" ng-show="analysis_requests.customer.id">
+                                <fieldset class="col11" ng-show="scans_requests.customer.id">
 
                                     <table class="table bold center hover">
                                         <tr>
                                             <td class="blue"> ##word.customer_name## </td>
                                             <td colspan="7" class="center">
-                                                {{analysis_requests.customer.name_##session.lang##}}
+                                                {{scans_requests.customer.name_##session.lang##}}
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="blue"> ##word.gender## </td>
                                             <td colspan="2" class="center">
-                                                {{analysis_requests.customer.gender.##session.lang##}}
+                                                {{scans_requests.customer.gender.##session.lang##}}
                                             </td>
                                             <td class="blue"> ##word.child## </td>
-                                            <td colspan="2" ng-show="analysis_requests.customer.child == true">
+                                            <td colspan="2" ng-show="scans_requests.customer.child == true">
                                                 <p class="green"> ##word.yes## </p>
                                             </td>
-                                            <td colspan="2" ng-show="!analysis_requests.customer.child">
+                                            <td colspan="2" ng-show="!scans_requests.customer.child">
                                                 <p class="red"> ##word.no## </p>
                                             </td>
                                             <td colspan="2"></td>
@@ -79,45 +79,45 @@
 
                                         <tr>
                                             <td class="blue"> ##word.weight## </td>
-                                            <td colspan="2" class="center"> {{analysis_requests.customer.weight}}
+                                            <td colspan="2" class="center"> {{scans_requests.customer.weight}}
                                             </td>
                                             <td class="blue"> ##word.tall## </td>
-                                            <td colspan="2" class="center"> {{analysis_requests.customer.tall}}
+                                            <td colspan="2" class="center"> {{scans_requests.customer.tall}}
                                             </td>
                                             <td class="blue"> ##word.blood_type## </td>
                                             <td colspan="2" class="center red">
-                                                {{analysis_requests.customer.blood_type.name}}
+                                                {{scans_requests.customer.blood_type.name}}
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="blue"> ##word.medicine_notes## </td>
                                             <td colspan="7" class="center">
-                                                {{analysis_requests.customer.medicine_notes}}
+                                                {{scans_requests.customer.medicine_notes}}
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="blue"> ##word.gov## </td>
-                                            <td colspan="2" class="center"> {{analysis_requests.customer.gov.name}}
+                                            <td colspan="2" class="center"> {{scans_requests.customer.gov.name}}
                                             </td>
                                             <td class="blue"> ##word.city## </td>
                                             <td colspan="2" class="center">
-                                                {{analysis_requests.customer.city.name}} </td>
+                                                {{scans_requests.customer.city.name}} </td>
                                             <td class="blue"> ##word.area## </td>
                                             <td colspan="2" class="center">
-                                                {{analysis_requests.customer.area.name}} </td>
+                                                {{scans_requests.customer.area.name}} </td>
                                         </tr>
 
                                         <tr>
                                             <td class="blue"> ##word.address## </td>
-                                            <td colspan="7" class="center"> {{analysis_requests.customer.address}}
+                                            <td colspan="7" class="center"> {{scans_requests.customer.address}}
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="blue"> ##word.mobile## </td>
-                                            <td colspan="4" class="center"> {{analysis_requests.customer.mobile}}
+                                            <td colspan="4" class="center"> {{scans_requests.customer.mobile}}
                                             </td>
                                             <td class="blue"> ##word.phone## </td>
-                                            <td colspan="3" class="center"> {{analysis_requests.customer.phone}}
+                                            <td colspan="3" class="center"> {{scans_requests.customer.phone}}
                                             </td>
                                         </tr>
 
@@ -129,8 +129,8 @@
                     </div>
 
                     <div class="col3 not-print">
-                        <i-image view ng-model="analysis_requests.image_url"> </i-image>
-                        <i-files label="##word.files##" view ng-model="analysis_requests.files"></i-files>
+                        <i-image view ng-model="scans_requests.image_url"> </i-image>
+                        <i-files label="##word.files##" view ng-model="scans_requests.files"></i-files>
                     </div>
 
 
@@ -140,44 +140,35 @@
                 <br>
                 <br>
 
-                <div class="row" ng-show="analysis_requests.analysis_list.length > 0">
+                <div class="row" ng-show="scans_requests.scans_list.length > 0">
                     <fieldset>
-                        <legend> ##word.analysis## ##word.requiredy##</legend>
+                        <legend> ##word.scans## ##word.requiredy##</legend>
 
                         <br>
                         <br>
                         <table class="table loaded center hover bold">
                             <tr>
-                                <th>##word.analysis_name##</th>
+                                <th>##word.scans_name##</th>
                                 <th>##word.price##</th>
-                                <th> ##word.normal_range## </th>
-                                <th> ##word.notes_before_analysis##</th>
-                                <th> ##word.result## </th>
-                                <th> ##word.notes_after_analysis## </th>
+                                <th> ##word.notes_before_scans##</th>
+                                <th> ##word.notes_after_scans## </th>
                                 <th> ##word.person_delivery## </th>
                                 <th> ##word.delivery_date## </th>
                                 <th> ##word.files## </th>
                             </tr>
 
-                            <tr ng-repeat="a in analysis_requests.analysis_list">
+                            <tr ng-repeat="a in scans_requests.scans_list">
 
                                 <td class="center">{{a.name}}</td>
+
                                 <td class="center green">{{a.price}}</td>
 
-                                <td class="center">
-                                    <b class="green">{{a.from}}</b> - <b class="red">{{a.to}}</b>
+                                <td class="center lines_text">
+                                    {{a.notes_before_scans}}
                                 </td>
 
                                 <td class="center lines_text">
-                                    {{a.notes_before_analysis}}
-                                </td>
-
-                                <td class="center blue">
-                                    {{a.result}}
-                                </td>
-
-                                <td class="center lines_text">
-                                    {{a.notes_after_analysis}}
+                                    {{a.notes_after_scans}}
                                 </td>
 
                                 <td>
@@ -208,47 +199,37 @@
                 <br>
                 <br>
 
-                <div class="row" ng-show="analysis_requests.last_analysis_list.length > 0">
+                <div class="row" ng-show="scans_requests.last_scans_list.length > 0">
                     <fieldset>
-                        <legend>##word.Previous_patient_analysis##</legend>
+                        <legend>##word.Previous_patient_scans##</legend>
 
                         <br>
                         <br>
                         <table class="table loaded center hover bold">
                             <tr>
-                                <td style="background : gray" class="white">##word.analysis_name##</td>
+                                <td style="background : gray" class="white">##word.scans_name##</td>
                                 <td style="background : gray" class="white">##word.date##</td>
                                 <td style="background : gray" class="white">##word.price##</td>
-                                <td style="background : gray" class="white"> ##word.normal_range## </td>
-                                <td style="background : gray" class="white"> ##word.notes_before_analysis##
-                                </td>
-                                <td style="background : gray" class="white"> ##word.result## </td>
-                                <td style="background : gray" class="white"> ##word.notes_after_analysis##
-                                </td>
+                                <td style="background : gray" class="white"> ##word.notes_before_scans##</td>
+                                <td style="background : gray" class="white"> ##word.notes_after_scans##</td>
                             </tr>
-                            <tr ng-repeat="l in analysis_requests.last_analysis_list">
+                            <tr ng-repeat="l in scans_requests.last_scans_list">
 
                                 <td class="center">{{l.name}}</td>
+
                                 <td class="center">
                                     <p class="brown"> {{l.date |date:"dd - MM - yyyy"}} </p>
                                     <p class="green"> {{l.date |date:"hh:mm"}} </p>
                                 </td>
+
                                 <td class="center green">{{l.price}}</td>
 
-                                <td class="center">
-                                    <b class="green">{{l.from}}</b> - <b class="red">{{l.to}}</b>
+                                <td class="center lines_text">
+                                    {{l.notes_before_scans}}
                                 </td>
 
                                 <td class="center lines_text">
-                                    {{l.notes_before_analysis}}
-                                </td>
-
-                                <td class="center blue">
-                                    {{l.result}}
-                                </td>
-
-                                <td class="center lines_text">
-                                    {{l.notes_after_analysis}}
+                                    {{l.notes_after_scans}}
                                 </td>
 
                             </tr>
@@ -261,4 +242,4 @@
         </div>
     </div>
 </div>
-<div x-import="analysis-requests/action_info.html"></div>
+<div x-import="scans-requests/action_info.html"></div>

@@ -235,7 +235,6 @@
                     <br>
                     <div class="row">
 
-
                         <div class="col2"></div>
                         <div class="col8">
                             <table class="table center hover bold">
@@ -244,16 +243,27 @@
                                     <th ng-show="doctors_visits.is_urgent_visit">##word.urgent_visit##</th>
                                     <th ng-show="doctors_visits.total_discount">##word.total_discount##</th>
                                     <th ng-show="doctors_visits.net_value">##word.paid_require##</th>
+                                    <th ng-show="doctors_visits.net_value">##word.paid##</th>
+                                    <th ng-show="doctors_visits.net_value">##word.remain##</th>
                                 </tr>
 
                                 <tr>
                                     <td ng-show="doctors_visits.total_value" class="red"> {{doctors_visits.total_value}}
                                     </td>
+
                                     <td ng-show="doctors_visits.is_urgent_visit"> {{doctors_visits.urgent_visit.value}}
                                     </td>
+
                                     <td class="red" ng-show="doctors_visits.total_discount">
                                         {{doctors_visits.total_discount}}</td>
-                                    <td class="green" ng-show="doctors_visits.net_value"> {{doctors_visits.net_value}}
+
+                                    <td class="blue" ng-show="doctors_visits.net_value"> {{doctors_visits.net_value}}
+                                    </td>
+
+                                    <td class="green" ng-show="doctors_visits.net_value"> {{doctors_visits.paid}}
+                                    </td>
+
+                                    <td class="red" ng-show="doctors_visits.net_value"> {{doctors_visits.remain}}
                                     </td>
 
                                 </tr>
@@ -373,7 +383,7 @@
                             <tr ng-repeat="info in doctors_visits.scans_list">
 
                                 <td>
-                                    <h3 class="black bold ">{{info.scans.name}}</h3>
+                                    <h3 class="black bold ">{{info.scan.name}}</h3>
                                 </td>
 
                                 <td>{{info.result}}</td>

@@ -1,42 +1,42 @@
-app.controller("analysis_requests", function ($scope, $http, $timeout) {
+app.controller("scans_requests", function ($scope, $http, $timeout) {
   $scope._search = {};
 
-  $scope.analysis_requests = {};
+  $scope.scans_requests = {};
 
   $scope.delivery_person_list = [
     {
-      id : 1,
+      id: 1,
       name: 'patient_himself',
       ar: 'المريض نفسه',
       en: 'The patient himself',
     },
     {
-      id : 2,
+      id: 2,
       name: 'another_person',
       ar: 'شخص أخر',
       en: 'Another Person',
     }
   ];
 
-  $scope.displayAddAnalysisRequests = function () {
+  $scope.displayAddScansRequests = function () {
     $scope._search = {};
     $scope.error = '';
-    $scope.analysis_requests = {
-      image_url: '/images/analysis_requests.png',
+    $scope.scans_requests = {
+      image_url: '/images/scans_requests.png',
       date: new Date(),
-      analysis_list: [],
+      scans_list: [],
       active: true
     };
-    site.showModal('#analysisRequestsAddModal');
+    site.showModal('#scansRequestsAddModal');
   };
 
-  $scope.addAnalysisRequests = function () {
+  $scope.addScansRequests = function () {
     if ($scope.busy) {
       return;
     }
     $scope.error = '';
 
-    const v = site.validated('#analysisRequestsAddModal');
+    const v = site.validated('#scansRequestsAddModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
@@ -45,14 +45,14 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
 
     $http({
       method: "POST",
-      url: "/api/analysis_requests/add",
-      data: $scope.analysis_requests
+      url: "/api/scans_requests/add",
+      data: $scope.scans_requests
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#analysisRequestsAddModal');
-          $scope.getAnalysisRequestsList();
+          site.hideModal('#scansRequestsAddModal');
+          $scope.getScansRequestsList();
         } else {
           $scope.error = 'Please Login First';
           if (response.data.error.like('*Must Enter Code*')) {
@@ -70,22 +70,22 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.displayUpdateAnalysisRequests = function (analysis_requests) {
+  $scope.displayUpdateScansRequests = function (scans_requests) {
     $scope._search = {};
 
     $scope.error = '';
-    $scope.detailsAnalysisRequests(analysis_requests);
-    $scope.analysis_requests = {};
-    site.showModal('#analysisRequestsUpdateModal');
+    $scope.detailsScansRequests(scans_requests);
+    $scope.scans_requests = {};
+    site.showModal('#scansRequestsUpdateModal');
   };
 
-  $scope.updateAnalysisRequests = function (analysis_requests) {
+  $scope.updateScansRequests = function (scans_requests) {
     if ($scope.busy) {
       return;
     }
     $scope.error = '';
 
-    const v = site.validated('#analysisRequestsUpdateModal');
+    const v = site.validated('#scansRequestsUpdateModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
@@ -93,15 +93,15 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/analysis_requests/update",
-      data: analysis_requests
+      url: "/api/scans_requests/update",
+      data: scans_requests
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#analysisRequestsUpdateModal');
-          site.hideModal('#deliveryAnalysisModal');
-          site.hideModal('#puttingResultsAnalysisModal');
+          site.hideModal('#scansRequestsUpdateModal');
+          site.hideModal('#deliveryScansModal');
+          site.hideModal('#puttingResultsScansModal');
           $scope.list.forEach((b, i) => {
             if (b.id == response.data.doc.id) {
               $scope.list[i] = response.data.doc;
@@ -118,27 +118,27 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.displayDetailsAnalysisRequests = function (analysis_requests) {
+  $scope.displayDetailsScansRequests = function (scans_requests) {
     $scope.error = '';
-    $scope.detailsAnalysisRequests(analysis_requests);
-    $scope.analysis_requests = {};
-    site.showModal('#analysisRequestsDetailsModal');
+    $scope.detailsScansRequests(scans_requests);
+    $scope.scans_requests = {};
+    site.showModal('#scansRequestsDetailsModal');
   };
 
-  $scope.detailsAnalysisRequests = function (analysis_requests) {
+  $scope.detailsScansRequests = function (scans_requests) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/analysis_requests/view",
+      url: "/api/scans_requests/view",
       data: {
-        id: analysis_requests.id
+        id: scans_requests.id
       }
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
           response.data.doc.date = new Date(response.data.doc.date);
-          $scope.analysis_requests = response.data.doc;
+          $scope.scans_requests = response.data.doc;
         } else {
           $scope.error = response.data.error;
         }
@@ -149,28 +149,28 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.displayDeleteAnalysisRequests = function (analysis_requests) {
+  $scope.displayDeleteScansRequests = function (scans_requests) {
     $scope.error = '';
-    $scope.detailsAnalysisRequests(analysis_requests);
-    $scope.analysis_requests = {};
-    site.showModal('#analysisRequestsDeleteModal');
+    $scope.detailsScansRequests(scans_requests);
+    $scope.scans_requests = {};
+    site.showModal('#scansRequestsDeleteModal');
   };
 
-  $scope.deleteAnalysisRequests = function () {
+  $scope.deleteScansRequests = function () {
     $scope.error = '';
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/analysis_requests/delete",
+      url: "/api/scans_requests/delete",
       data: {
-        id: $scope.analysis_requests.id
+        id: $scope.scans_requests.id
 
       }
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#analysisRequestsDeleteModal');
+          site.hideModal('#scansRequestsDeleteModal');
           $scope.list.forEach((b, i) => {
             if (b.id == response.data.doc.id) {
               $scope.list.splice(i, 1);
@@ -187,7 +187,7 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getAnalysisRequestsList = function (where, type) {
+  $scope.getScansRequestsList = function (where, type) {
     $scope.busy = true;
     if (!type) {
       $scope.list = [];
@@ -195,7 +195,7 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
     $scope.count = 0;
     $http({
       method: "POST",
-      url: "/api/analysis_requests/all",
+      url: "/api/scans_requests/all",
       data: {
         where: where
       }
@@ -207,11 +207,11 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
             $scope.list = response.data.list;
             $scope.count = response.data.count;
           } else {
-            $scope.analysis_requests.last_analysis_list = [];
-            response.data.list.forEach(_analysis => {
-              _analysis.analysis_list.forEach(_analysis_list => {
-                _analysis_list.date = _analysis.date;
-                $scope.analysis_requests.last_analysis_list.push(_analysis_list);
+            $scope.scans_requests.last_scans_list = [];
+            response.data.list.forEach(_scans => {
+              _scans.scans_list.forEach(_scans_list => {
+                _scans_list.date = _scans.date;
+                $scope.scans_requests.last_scans_list.push(_scans_list);
               })
             });
           }
@@ -226,8 +226,8 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
 
   $scope.searchAll = function () {
     $scope._search = {};
-    $scope.getAnalysisRequestsList($scope.search);
-    site.hideModal('#analysisRequestsSearchModal');
+    $scope.getScansRequestsList($scope.search);
+    site.hideModal('#scansRequestsSearchModal');
     $scope.search = {}
 
   };
@@ -373,19 +373,19 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.loadAnalysis = function () {
+  $scope.loadScans = function () {
     $scope.error = '';
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/analysis/all",
+      url: "/api/scans/all",
       data: {
       }
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $scope.analysisList = response.data.list;
+          $scope.scansList = response.data.list;
         }
       },
       function (err) {
@@ -399,7 +399,7 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.busy = true;
     $scope.doctorsVisitsList = [];
-    if ($scope.analysis_requests.customer) {
+    if ($scope.scans_requests.customer) {
 
       $http({
         method: "POST",
@@ -409,10 +409,10 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
             code: 1,
             id: 1,
             selected_clinic: 1,
-            analysis_list: 1
+            scans_list: 1
           },
           where: {
-            'customer.id': $scope.analysis_requests.customer.id
+            'customer.id': $scope.scans_requests.customer.id
           }
         }
       }).then(
@@ -437,8 +437,8 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
       $scope.error = '##word.error_discount##';
       return;
     } else {
-      $scope.analysis_requests.discountes = $scope.analysis_requests.discountes || [];
-      $scope.analysis_requests.discountes.unshift({
+      $scope.scans_requests.discountes = $scope.scans_requests.discountes || [];
+      $scope.scans_requests.discountes.unshift({
         name: $scope.discount.name,
         value: $scope.discount.value,
         type: $scope.discount.type
@@ -447,28 +447,28 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
   };
 
   $scope.deleteDiscount = function (_ds) {
-    $scope.analysis_requests.discountes.splice($scope.analysis_requests.discountes.indexOf(_ds), 1);
+    $scope.scans_requests.discountes.splice($scope.scans_requests.discountes.indexOf(_ds), 1);
   };
 
-  $scope.showModalList = function (analysis_requests, type) {
-    $scope.analysis_requests = analysis_requests;
+  $scope.showModalList = function (scans_requests, type) {
+    $scope.scans_requests = scans_requests;
     if (type === 'delivery') {
-      site.showModal('#deliveryAnalysisModal');
+      site.showModal('#deliveryScansModal');
 
     } else if (type === 'result') {
 
-      site.showModal('#puttingResultsAnalysisModal');
+      site.showModal('#puttingResultsScansModal');
     }
 
   };
 
   $scope.setPersonDelivery = function () {
 
-    $scope.analysis_requests.analysis_list.forEach(_analysis => {
+    $scope.scans_requests.scans_list.forEach(_scans => {
 
-      if (!_analysis.person_delivery) {
-        _analysis.person_delivery = Object.assign({}, $scope.analysis_requests.$person_delivery);
-        _analysis.delivery_data = Object.assign({}, $scope.analysis_requests.$delivery_data);
+      if (!_scans.person_delivery) {
+        _scans.person_delivery = Object.assign({}, $scope.scans_requests.$person_delivery);
+        _scans.delivery_data = Object.assign({}, $scope.scans_requests.$delivery_data);
       };
 
     });
@@ -476,9 +476,9 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
 
 
 
-  $scope.showPersonDelivery = function (analysis_requests, type) {
+  $scope.showPersonDelivery = function (scans_requests, type) {
 
-    $scope.delivery_person = Object.assign({}, analysis_requests);
+    $scope.delivery_person = Object.assign({}, scans_requests);
     if (type === 'view') {
       $scope.delivery_person.$view = true;
     }
@@ -491,61 +491,48 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
 
 
 
-  $scope.getDoctorVisitAnalysis = function (doctor_visit) {
+  $scope.getDoctorVisitScans = function (doctor_visit) {
 
-    doctor_visit.analysis_list = doctor_visit.analysis_list || [];
+    doctor_visit.scans_list = doctor_visit.scans_list || [];
 
-    let analysisList = [];
+    let scansList = [];
 
-    $scope.analysisList.forEach(_an => {
-      let found = doctor_visit.analysis_list.some(_a => _a.analysis && _a.analysis.id === _an.id);
+    $scope.scansList.forEach(_an => {
+      let found = doctor_visit.scans_list.some(_a => _a.scan && _a.scan.id === _an.id);
 
       if (found) {
-        analysisList.unshift(_an)
+        scansList.unshift(_an)
       }
     });
 
-    analysisList.forEach(_a_l => {
+    scansList.forEach(_a_l => {
       $timeout(() => {
-        $scope.changeAnalysisList(_a_l);
+        $scope.changeScansList(_a_l);
       }, 250);
     });
   };
 
 
-  $scope.changeAnalysisList = function (analysis) {
+  $scope.changeScansList = function (scans) {
 
     let obj = {
-      id: analysis.id,
-      name: analysis.name,
-      code: analysis.code,
-      immediate: analysis.immediate,
-      delivery_time: analysis.delivery_time,
-      price: analysis.price,
-      period: analysis.period,
+      id: scans.id,
+      name: scans.name,
+      code: scans.code,
+      immediate: scans.immediate,
+      delivery_time: scans.delivery_time,
+      price: scans.price,
+      period: scans.period,
       result: 0,
     };
 
-    if ($scope.analysis_requests.customer && $scope.analysis_requests.customer.id) {
-      if ($scope.analysis_requests.customer.child) {
-        obj.from = analysis.child.from;
-        obj.to = analysis.child.to;
 
-      } else if ($scope.analysis_requests.customer.gender && $scope.analysis_requests.customer.gender.name == 'male') {
-        obj.from = analysis.male.from;
-        obj.to = analysis.male.to;
 
-      } else if ($scope.analysis_requests.customer.gender && $scope.analysis_requests.customer.gender.name == 'female') {
-        obj.from = analysis.female.from;
-        obj.to = analysis.female.to;
-      };
-    };
+    let found_scans = $scope.scans_requests.scans_list.some(_scans => _scans.id === scans.id);
 
-    let found_analysis = $scope.analysis_requests.analysis_list.some(_analysis => _analysis.id === analysis.id);
-
-    if (!found_analysis) {
-      $scope.analysis_requests.analysis_list.unshift(obj);
-      $scope.calc($scope.analysis_requests);
+    if (!found_scans) {
+      $scope.scans_requests.scans_list.unshift(obj);
+      $scope.calc($scope.scans_requests);
     };
 
   };
@@ -556,8 +543,8 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
       obj.total_discount = 0;
       obj.total_value = 0;
 
-      if (obj.analysis_list && obj.analysis_list.length > 0) {
-        obj.analysis_list.forEach(_a => {
+      if (obj.scans_list && obj.scans_list.length > 0) {
+        obj.scans_list.forEach(_a => {
           obj.total_value += _a.price;
         });
       }
@@ -660,7 +647,7 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/numbering/get_automatic",
       data: {
-        screen: "analysis_requests"
+        screen: "scans_requests"
       }
     }).then(
       function (response) {
@@ -677,8 +664,8 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
   };
 
 
-  $scope.getAnalysisRequestsList();
-  $scope.loadAnalysis();
+  $scope.getScansRequestsList();
+  $scope.loadScans();
   $scope.getGovList();
   $scope.loadDiscountTypes();
   $scope.getNumberingAuto();

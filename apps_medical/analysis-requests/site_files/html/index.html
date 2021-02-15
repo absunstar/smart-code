@@ -23,7 +23,9 @@
                 <div x-import="analysis-requests/view_modal.html"></div>
                 <div x-permissions="analysis_requests_search || analysis_requests_manage"
                     x-import="analysis-requests/search_all_modal.html"></div>
-                <div x-import="analysis-requests/delivery_analyzis.html"></div>
+                <div x-import="analysis-requests/delivery_analysis.html"></div>
+                <div x-import="analysis-requests/putting_results_analysis.html"></div>
+                <div x-import="analysis-requests/delivery_data.html"></div>
                 <div x-import="customers/add_modal.html"></div>
                 <div x-import="customers/view_modal.html"></div>
 
@@ -71,7 +73,12 @@
                             <i-button type="details" x-permissions="analysis_requests_view || analysis_requests_manage"
                                 label="##word.details##" ng-click="displayDetailsAnalysisRequests(c)"></i-button>
 
-                            <i-button type="save" label="##word.delivery_analyzes##" ng-click="showDeliveryAnalyzes(c)">
+                            <i-button type="save" ng-hide="c.delivery" label="##word.delivery_analyzes##"
+                                ng-click="showModalList(c,'delivery')">
+                            </i-button>
+
+                            <i-button ng-hide="c.Putting_results" label="##word.putting_results_analysis##"
+                            ng-click="showModalList(c,'result')">
                             </i-button>
 
                             <i-button type="update" x-permissions="analysis_requests_edit || analysis_requests_manage"

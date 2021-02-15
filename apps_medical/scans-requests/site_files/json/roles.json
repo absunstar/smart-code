@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "scans_requests_admin",
+    "en": "Scans Requests Admin",
+    "ar": "إدارة طلبات الأشعة",
+    "permissions": ["scans_requests_manage"]
+}]

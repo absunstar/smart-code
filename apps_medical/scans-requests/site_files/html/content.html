@@ -1,21 +1,21 @@
 <div class="form">
-    <div id="analysisRequestsAddModal">
+    <div id="scansRequestsAddModal">
         <fieldset>
-            <legend> ##word.analysis_requests_informations## </legend>
+            <legend> ##word.scans_requests_informations## </legend>
             <div class="row">
                 <div class="col9">
 
                     <div class="row">
                         <i-control ng-hide="disabledCode" class="col2" label="##word.code##"
-                            ng-model="analysis_requests.code">
+                            ng-model="scans_requests.code">
                         </i-control>
 
-                        <i-date2 class="col4" ng-model="analysis_requests.date" label="##word.date##" v="r">
+                        <i-date2 class="col4" ng-model="scans_requests.date" label="##word.date##" v="r">
                         </i-date2>
 
                         <div class="col3"></div>
 
-                        <i-checkbox class="col2" label="##word.active##" ng-model="analysis_requests.active">
+                        <i-checkbox class="col2" label="##word.active##" ng-model="scans_requests.active">
                         </i-checkbox>
                     </div>
 
@@ -24,15 +24,14 @@
                             <i-control class="col2" label="##word.patient_search##" ng-model="doctor_search"
                                 ng-keydown="getPatientList($event)"></i-control>
 
-                            <i-list class="col4" label="##word.patient##" v="r" ng-model="analysis_requests.customer"
+                            <i-list class="col4" label="##word.patient##" v="r" ng-model="scans_requests.customer"
                                 display="name_##session.lang##" items="customersList"
                                 ng-search="_search.$patients_searching"
-                                ng-change="loadDoctorsVisits();getAnalysisRequestsList({'customer.id' :analysis_requests.customer.id},'get_last')">
+                                ng-change="loadDoctorsVisits();getScansRequestsList({'customer.id' :scans_requests.customer.id},'get_last')">
                             </i-list>
 
-                            <i-button class="col3" ng-show="analysis_requests.customer.id" type="details"
-                                label="##word.customers_details##"
-                                ng-click="showPatient(analysis_requests.customer.id)">
+                            <i-button class="col3" ng-show="scans_requests.customer.id" type="details"
+                                label="##word.customers_details##" ng-click="showPatient(scans_requests.customer.id)">
                             </i-button>
 
                             <div class="col1"></div>
@@ -44,26 +43,26 @@
 
                         <br>
                         <br>
-                        <div class="row" ng-show="analysis_requests.customer.id">
+                        <div class="row" ng-show="scans_requests.customer.id">
                             <fieldset class="col11">
 
                                 <table class="table bold center hover">
                                     <tr>
                                         <td class="blue"> ##word.customer_name## </td>
                                         <td colspan="7" class="center">
-                                            {{analysis_requests.customer.name_##session.lang##}}
+                                            {{scans_requests.customer.name_##session.lang##}}
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="blue"> ##word.gender## </td>
                                         <td colspan="2" class="center">
-                                            {{analysis_requests.customer.gender.##session.lang##}}
+                                            {{scans_requests.customer.gender.##session.lang##}}
                                         </td>
                                         <td class="blue"> ##word.child## </td>
-                                        <td colspan="2" ng-show="analysis_requests.customer.child == true">
+                                        <td colspan="2" ng-show="scans_requests.customer.child == true">
                                             <p class="green"> ##word.yes## </p>
                                         </td>
-                                        <td colspan="2" ng-show="!analysis_requests.customer.child">
+                                        <td colspan="2" ng-show="!scans_requests.customer.child">
                                             <p class="red"> ##word.no## </p>
                                         </td>
                                         <td colspan="2"></td>
@@ -72,39 +71,39 @@
 
                                     <tr>
                                         <td class="blue"> ##word.weight## </td>
-                                        <td colspan="2" class="center"> {{analysis_requests.customer.weight}} </td>
+                                        <td colspan="2" class="center"> {{scans_requests.customer.weight}} </td>
                                         <td class="blue"> ##word.tall## </td>
-                                        <td colspan="2" class="center"> {{analysis_requests.customer.tall}} </td>
+                                        <td colspan="2" class="center"> {{scans_requests.customer.tall}} </td>
                                         <td class="blue"> ##word.blood_type## </td>
                                         <td colspan="2" class="center red">
-                                            {{analysis_requests.customer.blood_type.name}}
+                                            {{scans_requests.customer.blood_type.name}}
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="blue"> ##word.medicine_notes## </td>
-                                        <td colspan="7" class="center"> {{analysis_requests.customer.medicine_notes}}
+                                        <td colspan="7" class="center"> {{scans_requests.customer.medicine_notes}}
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="blue"> ##word.gov## </td>
-                                        <td colspan="2" class="center"> {{analysis_requests.customer.gov.name}} </td>
+                                        <td colspan="2" class="center"> {{scans_requests.customer.gov.name}} </td>
                                         <td class="blue"> ##word.city## </td>
-                                        <td colspan="2" class="center"> {{analysis_requests.customer.city.name}}
+                                        <td colspan="2" class="center"> {{scans_requests.customer.city.name}}
                                         </td>
                                         <td class="blue"> ##word.area## </td>
-                                        <td colspan="2" class="center"> {{analysis_requests.customer.area.name}}
+                                        <td colspan="2" class="center"> {{scans_requests.customer.area.name}}
                                         </td>
                                     </tr>
 
                                     <tr>
                                         <td class="blue"> ##word.address## </td>
-                                        <td colspan="7" class="center"> {{analysis_requests.customer.address}}</td>
+                                        <td colspan="7" class="center"> {{scans_requests.customer.address}}</td>
                                     </tr>
                                     <tr>
                                         <td class="blue"> ##word.mobile## </td>
-                                        <td colspan="4" class="center"> {{analysis_requests.customer.mobile}}</td>
+                                        <td colspan="4" class="center"> {{scans_requests.customer.mobile}}</td>
                                         <td class="blue"> ##word.phone## </td>
-                                        <td colspan="3" class="center"> {{analysis_requests.customer.phone}}</td>
+                                        <td colspan="3" class="center"> {{scans_requests.customer.phone}}</td>
                                     </tr>
 
                                 </table>
@@ -121,14 +120,14 @@
                                 ng-search="_search.$patients_searching">
                             </i-list>
 
-                            <i-button type="add" class="col2" ng-click="getDoctorVisitAnalysis(doctor_visit)">
+                            <i-button type="add" class="col2" ng-click="getDoctorVisitScans(doctor_visit)">
                             </i-button>
 
-                            <i-list class="col4" label="##word.analysis##" ng-model="analysis" items="analysisList"
+                            <i-list class="col4" label="##word.scans##" ng-model="scans" items="scansList"
                                 ng-search="_search.$patients_searching">
                             </i-list>
 
-                            <i-button type="add" class="col2" ng-click="changeAnalysisList(analysis)">
+                            <i-button type="add" class="col2" ng-click="changeScansList(scans)">
                             </i-button>
                         </div>
 
@@ -143,33 +142,9 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 <div class="col3">
-                    <i-image category="analysis_requests" ng-model="analysis_requests.image_url"> </i-image>
-                    <i-files label="##word.files##" categoty="pathients" ng-model="analysis_requests.files"></i-files>
+                    <i-image category="scans_requests" ng-model="scans_requests.image_url"> </i-image>
+                    <i-files label="##word.files##" categoty="pathients" ng-model="scans_requests.files"></i-files>
                     <br>
                     <br>
                     <div class=" padding margin">
@@ -204,7 +179,7 @@
                                             </div>
                                             <div class="col4" class="padding">
                                                 <br>
-                                                <i-button ng-click="addDiscount() ;calc(analysis_requests)"
+                                                <i-button ng-click="addDiscount() ;calc(scans_requests)"
                                                     label="##word.stores_out_add_discount##" type="add default">
                                                 </i-button>
                                             </div>
@@ -215,14 +190,14 @@
                                 </td>
                             </tr>
 
-                            <tr ng-repeat="d1 in analysis_requests.discountes">
+                            <tr ng-repeat="d1 in scans_requests.discountes">
 
                                 <td>
                                     <span class="bold red">{{d1.name}} -</span>
                                     <span class="bold red" ng-show="d1.type === 'percent'">{{d1.value}}
                                         %</span>
                                     <span class="bold red" ng-show="d1.type === 'number'">{{d1.value}}$</span>
-                                    <i-button type="delete" ng-click="deleteDiscount(d1) ; calc(analysis_requests)">
+                                    <i-button type="delete" ng-click="deleteDiscount(d1) ; calc(scans_requests)">
                                     </i-button>
                                 </td>
 
@@ -237,40 +212,32 @@
                 <br>
                 <br>
 
-                <div class="row" ng-show="analysis_requests.analysis_list.length > 0">
+                <div class="row" ng-show="scans_requests.scans_list.length > 0">
                     <fieldset>
-                        <legend> ##word.analysis## ##word.requiredy##</legend>
+                        <legend> ##word.scans## ##word.requiredy##</legend>
                         <table class="table loaded center hover bold">
                             <tr>
-                                <th>##word.analysis_name##</th>
+                                <th>##word.scans_name##</th>
                                 <th>##word.price##</th>
-                                <th> ##word.normal_range## </th>
-                                <th> ##word.notes_before_analysis## </th>
+                                <th> ##word.notes_before_scans## </th>
                                 <th> ##word.actions## </th>
                             </tr>
 
-                            <tr ng-repeat="c in analysis_requests.analysis_list">
+                            <tr ng-repeat="c in scans_requests.scans_list">
 
                                 <td class="center"><br> {{c.name}}</td>
 
                                 <td class="center green"><br> {{c.price}}</td>
 
-                                <td class="center">
-                                    <br>
-                                    <b class="green">{{c.from}}</b> - <b class="red">{{c.to}}</b>
-                                </td>
-
                                 <td>
-                                    <i-textarea ng-model="c.notes_before_analysis">
+                                    <i-textarea ng-model="c.notes_before_scans">
                                     </i-textarea>
-
                                 </td>
 
                                 <td>
                                     <i-button type="delete"
-                                        ng-click="analysis_requests.analysis_list.splice($index,1);calc(analysis_requests)">
+                                        ng-click="scans_requests.scans_list.splice($index,1);calc(scans_requests)">
                                     </i-button>
-
                                 </td>
 
                             </tr>
@@ -284,31 +251,30 @@
 
                 <div class="row">
 
-                    <fieldset class="col6" ng-show="analysis_requests.analysis_list.length > 0">
+                    <fieldset class="col6" ng-show="scans_requests.scans_list.length > 0">
                         <div class="row">
 
-                            <i-control class="col3" ng-show="analysis_requests.total_value" disabled
-                                ng-model="analysis_requests.total_value" type="number" label="##word.total_value##">
+                            <i-control class="col3" ng-show="scans_requests.total_value" disabled
+                                ng-model="scans_requests.total_value" type="number" label="##word.total_value##">
                             </i-control>
 
-                            <i-control class="col3" ng-show="analysis_requests.total_discount" disabled
-                                ng-model="analysis_requests.total_discount" type="number"
-                                label="##word.total_discount##">
+                            <i-control class="col3" ng-show="scans_requests.total_discount" disabled
+                                ng-model="scans_requests.total_discount" type="number" label="##word.total_discount##">
                             </i-control>
 
                         </div>
 
                         <div class="row">
 
-                            <i-control class="col3" disabled ng-show="analysis_requests.net_value"
-                                ng-model="analysis_requests.net_value" type="number" label="##word.paid_require##">
+                            <i-control class="col3" disabled ng-show="scans_requests.net_value"
+                                ng-model="scans_requests.net_value" type="number" label="##word.paid_require##">
                             </i-control>
 
-                            <i-control class="col3" ng-change="calc(analysis_requests)"
-                                ng-model="analysis_requests.paid" type="number" label="##word.paid##">
+                            <i-control class="col3" ng-change="calc(scans_requests)" ng-model="scans_requests.paid"
+                                type="number" label="##word.paid##">
                             </i-control>
 
-                            <i-control class="col3" disabled ng-model="analysis_requests.remain" type="number"
+                            <i-control class="col3" disabled ng-model="scans_requests.remain" type="number"
                                 label="##word.remain##">
                             </i-control>
 
@@ -324,26 +290,26 @@
                 <br>
                 <br>
 
-                <div class="row" ng-show="analysis_requests.last_analysis_list.length > 0">
+                <div class="row" ng-show="scans_requests.last_scans_list.length > 0">
                     <fieldset>
-                        <legend>##word.Previous_patient_analysis##</legend>
+                        <legend>##word.Previous_patient_scans##</legend>
 
                         <br>
                         <br>
                         <table class="table loaded center hover bold">
+
                             <tr>
-                                <td style="background : gray" class="white">##word.analysis_name##</td>
+                                <td style="background : gray" class="white">##word.scans_name##</td>
                                 <td style="background : gray" class="white">##word.date##</td>
                                 <td style="background : gray" class="white">##word.price##</td>
-                                <td style="background : gray" class="white"> ##word.normal_range## </td>
-                                <td style="background : gray" class="white"> ##word.notes_before_analysis##
-                                </td>
-                                <td style="background : gray" class="white"> ##word.result## </td>
-                                <td style="background : gray" class="white"> ##word.notes_after_analysis## </td>
+                                <td style="background : gray" class="white"> ##word.notes_before_scans##</td>
+                                <td style="background : gray" class="white"> ##word.notes_after_scans## </td>
                             </tr>
-                            <tr ng-repeat="l in analysis_requests.last_analysis_list">
+
+                            <tr ng-repeat="l in scans_requests.last_scans_list">
 
                                 <td class="center">{{l.name}}</td>
+
                                 <td class="center">
                                     <p class="brown"> {{l.date |date:"dd - MM - yyyy"}} </p>
                                     <p class="green"> {{l.date |date:"hh:mm"}} </p>
@@ -351,23 +317,16 @@
 
                                 <td class="center green">{{l.price}}</td>
 
-                                <td class="center">
-                                    <b class="green">{{l.from}}</b> - <b class="red">{{l.to}}</b>
+                                <td class="center lines_text">
+                                    {{l.notes_before_scans}}
                                 </td>
 
                                 <td class="center lines_text">
-                                    {{l.notes_before_analysis}}
-                                </td>
-
-                                <td class="center blue">
-                                    {{l.result}}
-                                </td>
-
-                                <td class="center lines_text">
-                                    {{l.notes_after_analysis}}
+                                    {{l.notes_after_scans}}
                                 </td>
 
                             </tr>
+
                         </table>
                     </fieldset>
 

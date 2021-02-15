@@ -2,6 +2,6 @@
     "module_name" : "public" ,
     "name": "analysis_requests_admin",
     "en": "Analysis Requests Admin",
-    "ar": "إدارة طبلات التحاليل",
+    "ar": "إدارة طلبات التحاليل",
     "permissions": ["analysis_requests_manage"]
 }]

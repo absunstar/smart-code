@@ -1,13 +1,13 @@
 module.exports = function init(site) {
 
-  let collection_name = 'analysis_requests'
+  let collection_name = 'scans_requests'
 
   let source = {
     name: 'Analysis Requests System',
     ar: ' نظام طلبات التحاليل'
   }
 
-  let image_url = '/images/analysis_requests.png'
+  let image_url = '/images/scans_requests.png'
   let add_message = {
     name: 'New Analysis Request Added',
     ar: 'تم إضافة طلب تحاليل جديد'

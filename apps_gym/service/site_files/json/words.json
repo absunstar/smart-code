@@ -108,11 +108,7 @@
         "en": "Total Assembler Services Price",
         "ar": "إجمالي سعر الخدمات المجمعة"
     },
-    {
-        "name": "paid",
-        "en": "Paid",
-        "ar": "المدفوع"
-    },
+    
     {
         "name": "services_price",
         "en": "Service Price",

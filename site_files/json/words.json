@@ -600,6 +600,21 @@
         "ar": "لم يتم التسليم"
     },
     {
+        "name": "delivery_date",
+        "en": "Delivery Date",
+        "ar": "تاريخ التسليم"
+    },
+    {
+        "name": "paid",
+        "en": "Paid",
+        "ar": "المدفوع"
+    },
+    {
+        "name": "remain",
+        "en": "Remain",
+        "ar": "الباقي"
+    },
+    {
         "name": "invoice_top_title",
         "en": "invoice top title",
         "ar": "عنوان الفاتورة العلوي"

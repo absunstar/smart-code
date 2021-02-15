@@ -17,6 +17,7 @@
     {"name" : "delivery_all" , "en" : "Delivery All" , "ar" : "تسليم الكل"},
     {"name" : "person_delivery" , "en" : "The Person Delivery" , "ar" : "الشخص المستلم"},
     {"name" : "delivery_data" , "en" : "Delivery Date" , "ar" : "بيانات المستلم"},
+    {"name" : "putting_results_analysis" , "en" : "Putting results of analysis" , "ar" : "وضع نتائج التحاليل"},
     {"name" : "notes_after_analysis" , "en" : "Notes After analysis" , "ar" : "ملاحظات بعد التحليل"}
 
 ]

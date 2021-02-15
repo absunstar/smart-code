@@ -1,11 +1,11 @@
-<div id="analysisRequestsDetailsModal" class="modal">
+<div id="scansRequestsDetailsModal" class="modal">
    
 
     <div class="modal-content">
         <div class="modal-header">
             <span class="close">&times;</span>
             <h2>
-                ##word.analysis_requests_details##
+                ##word.scans_requests_details##
                 <i class="fa fa-file"></i>
             </h2>
         </div>
@@ -13,15 +13,15 @@
             <span ng-show="busy">
                 <span class="sr-only">Loading...</span>
             </span>
-            <div x-import="analysis-requests/view.html"></div>
+            <div x-import="scans-requests/view.html"></div>
 
         </div>
         <h2 class="error"> {{error}} </h2>
         <div class="modal-footer center not-print">
 
 
-            <i-button type="close" label="##word.close##" onclick="site.hideModal('#analysisRequestsDetailsModal')"></i-button>
-            <i-button class="not-print" label="##word.print##" type="print " onclick="site.print('#analysisRequestsDetailsModal')"></i-button>
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#scansRequestsDetailsModal')"></i-button>
+            <i-button class="not-print" label="##word.print##" type="print " onclick="site.print('#scansRequestsDetailsModal')"></i-button>
         </div>
     </div>
    
