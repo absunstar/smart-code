@@ -261,6 +261,13 @@
     },
     {
         "category": "accounting",
+        "feature": "medical",
+        "name": "patient_ticket",
+        "en": "Patient Ticket",
+        "ar": "تذكرة مريض"
+    },
+    {
+        "category": "accounting",
         "feature": "pos",
         "name": "purchases_invoices",
         "en": "Purchases Invoices",
@@ -538,6 +545,13 @@
         "name": "scans",
         "en": "Scans",
         "ar": "الإشاعات"
+    },
+    {
+        "category": "general_setting",
+        "feature": "medical",
+        "name": "prices_codes",
+        "en": "Prices Codes",
+        "ar": "أكواد الأسعار"
     },
     {
         "category": "general_setting",

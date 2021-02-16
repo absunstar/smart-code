@@ -276,4 +276,23 @@ module.exports = function init(site) {
     })
   })
 
+  site.getScansRequests = function (where, callback) {
+
+    callback = callback || {};
+
+    $scans_requests.findMany({
+      where: {
+        'customer.id': where.customer.id,
+        patient_ticket_id: where.id
+      },
+
+    }, (err, docs) => {
+      if (!err && docs)
+        callback(docs)
+      else callback(false)
+
+    })
+  }
+
+
 }

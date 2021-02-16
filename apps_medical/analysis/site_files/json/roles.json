@@ -1,5 +1,5 @@
 [{
-    "module_name" : "general" ,
+    "module_name" : "public" ,
     "name": "analysis_admin",
     "en": "Analysis Admin",
     "ar": "إدارة التحاليل",

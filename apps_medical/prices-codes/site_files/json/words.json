@@ -1,0 +1,15 @@
+[
+
+    {"name" : "prices_codes_informations" , "en" : "Price Code Informations" , "ar" : "بيانات كود سعر"},
+    {"name" : "prices_codes" , "en" : "Prices Codes" , "ar" : "أكواد الأسعار"},
+    {"name" : "prices_codes_menus" , "en" : "Price Code Menu" , "ar" : "قائمة كود سعر"},
+    {"name" : "prices_codes_code" , "en" : "Price Code Code" , "ar" : "كود كود سعر"},
+    {"name" : "prices_codes_name" , "en" : "Price Code Name" , "ar" : "إسم كود سعر"},
+    {"name" : "price_code" , "en" : "Price Code" , "ar" : "كود سعر"},
+    {"name" : "prices_codes_new" , "en" : "New Price Code" , "ar" : "كود سعر جديدة"},
+    {"name" : "prices_codes_details" , "en" : "Price Code Details" , "ar" : "تفاصيل كود سعر"},
+    {"name" : "prices_codes_update" , "en" : "Edit Price Code" , "ar" : "تعديل كود سعر"},
+    {"name" : "prices_codes_delete" , "en" : "Delte Price Code" , "ar" : "حذف كود سعر"},
+    {"name" : "prices_codes_add_name" , "en" : "Add Price Code" , "ar" : "إضافة كود سعر"}
+
+]

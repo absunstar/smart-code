@@ -16,6 +16,24 @@ module.exports = function init(site) {
   })
 
 
+  site.on('delete Patient Ticket', invoiceId => {
+
+    $patients_tickets.findOne({ id: invoiceId }, (err, doc) => {
+      if (doc) {
+        doc.closing_date = ''
+        doc.status = {
+          id: 1,
+          ar: 'مفتوحة',
+          en: 'Opening',
+        }
+        console.log(doc);
+        $patients_tickets.update(doc);
+      }
+    });
+  });
+
+
+
   site.post("/api/patients_tickets/add", (req, res) => {
     let response = {
       done: false
@@ -202,6 +220,12 @@ module.exports = function init(site) {
       done: false
     }
 
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
     let where = req.body.where || {}
 
     if (where['city']) {
@@ -235,6 +259,129 @@ module.exports = function init(site) {
       res.json(response)
     })
   })
+
+
+
+  site.post("/api/patients_tickets/display_data", (req, res) => {
+    let response = {}
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
+
+    response.cb = {
+      analysis_requests: { list: [], total_value: 0, total_discount: 0, net_value: 0, paid: 0, remain: 0 },
+      scans_requests: { list: [], total_value: 0, total_discount: 0, net_value: 0, paid: 0, remain: 0 },
+      operations_requests: { list: [], total_value: 0, total_discount: 0, net_value: 0, paid: 0, remain: 0 },
+      doctors_visits: { list: [], total_value: 0, total_discount: 0, net_value: 0, paid: 0, remain: 0, urgent_visit: 0 },
+      total_value: 0,
+      total_discount: 0,
+      net_value: 0,
+      paid: 0,
+      remain: 0
+    }
+
+
+
+    site.getAnalysisRequests(req.body.where, cbAnalysisRequests => {
+      site.getOperationsRequests(req.body.where, cbOperationsRequests => {
+        site.getScansRequests(req.body.where, cbScansRequests => {
+          site.getDoctorsVisits(req.body.where, cbDoctorsVisits => {
+
+            if (cbAnalysisRequests && cbAnalysisRequests.length > 0) {
+
+              cbAnalysisRequests.forEach(_analysisR => {
+                _analysisR.analysis_list = _analysisR.analysis_list || []
+                response.cb.analysis_requests.total_value += (_analysisR.total_value || 0)
+                response.cb.analysis_requests.total_discount += (_analysisR.total_discount || 0)
+                response.cb.analysis_requests.net_value += (_analysisR.net_value || 0)
+                response.cb.analysis_requests.paid += (_analysisR.paid || 0)
+                response.cb.analysis_requests.remain += (_analysisR.remain || 0)
+
+                _analysisR.analysis_list.forEach(_al => {
+                  response.cb.analysis_requests.list.push(_al)
+                });
+
+              });
+
+            }
+
+            if (cbOperationsRequests && cbOperationsRequests.length > 0) {
+
+              cbOperationsRequests.forEach(_operationsR => {
+                _operationsR.operations_list = _operationsR.operations_list || []
+
+                response.cb.operations_requests.total_value += (_operationsR.total_value || 0)
+                response.cb.operations_requests.total_discount += (_operationsR.total_discount || 0)
+                response.cb.operations_requests.net_value += (_operationsR.net_value || 0)
+                response.cb.operations_requests.paid += (_operationsR.paid || 0)
+                response.cb.operations_requests.remain += (_operationsR.remain || 0)
+
+                _operationsR.operations_list.forEach(_al => {
+                  response.cb.operations_requests.list.push(_al)
+                });
+
+              });
+
+            }
+
+            if (cbScansRequests && cbScansRequests.length > 0) {
+
+              cbScansRequests.forEach(_scansR => {
+                _scansR.scans_list = _scansR.scans_list || []
+
+                response.cb.scans_requests.total_value += (_scansR.total_value || 0)
+                response.cb.scans_requests.total_discount += (_scansR.total_discount || 0)
+                response.cb.scans_requests.net_value += (_scansR.net_value || 0)
+                response.cb.scans_requests.paid += (_scansR.paid || 0)
+                response.cb.scans_requests.remain += (_scansR.remain || 0)
+
+                _scansR.scans_list.forEach(_al => {
+                  response.cb.scans_requests.list.push(_al)
+                });
+
+              });
+
+            }
+
+            if (cbDoctorsVisits && cbDoctorsVisits.length > 0) {
+
+              cbDoctorsVisits.forEach(_doctorsVisits => {
+
+                response.cb.doctors_visits.total_value += (_doctorsVisits.total_value || 0)
+                response.cb.doctors_visits.total_discount += (_doctorsVisits.total_discount || 0)
+                response.cb.doctors_visits.net_value += (_doctorsVisits.net_value || 0)
+                response.cb.doctors_visits.paid += (_doctorsVisits.paid || 0)
+                response.cb.doctors_visits.urgent_visit += (_doctorsVisits.urgent_visit.value || 0)
+                response.cb.doctors_visits.remain += (_doctorsVisits.remain || 0)
+                response.cb.doctors_visits.list.push(_doctorsVisits)
+
+              });
+
+            }
+
+            response.cb.total_value = response.cb.analysis_requests.total_value + response.cb.scans_requests.total_value + response.cb.operations_requests.total_value + response.cb.doctors_visits.total_value
+            response.cb.total_discount = response.cb.analysis_requests.total_discount + response.cb.scans_requests.total_discount + response.cb.operations_requests.total_discount + response.cb.doctors_visits.total_discount
+            response.cb.net_value = response.cb.analysis_requests.net_value + response.cb.scans_requests.net_value + response.cb.operations_requests.net_value + response.cb.doctors_visits.net_value
+            response.cb.paid = response.cb.analysis_requests.paid + response.cb.scans_requests.paid + response.cb.operations_requests.paid + response.cb.doctors_visits.paid
+            response.cb.remain = response.cb.net_value - response.cb.paid
+
+            response.cb.analysis_requests.list.reverse()
+            response.cb.scans_requests.list.reverse()
+            response.cb.operations_requests.list.reverse()
+            response.cb.doctors_visits.list.reverse()
+
+            res.json(response)
+
+          })
+        })
+      })
+    })
+
+  })
+
 
   site.getPatientTicket = function (customer, callback) {
 

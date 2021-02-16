@@ -1,5 +1,4 @@
 [
-
     {"name" : "scans_requests_informations" , "en" : "Scans Requests Informations" , "ar" : "بيانات طلب الأشعة"},
     {"name" : "scans_requests" , "en" : "Scans Requests" , "ar" : "طلبات الأشعة"},
     {"name" : "scans_request" , "en" : "Scans Request" , "ar" : "طلب أشعة"},

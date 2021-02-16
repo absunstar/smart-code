@@ -1,0 +1,23 @@
+<div id="pricesCodesAddModal" class="modal" fixed>
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.prices_codes_add_name##
+                <i class="fa fa-plus"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+            <div x-import="prices-codes/content.html"></div>
+        </div>
+
+        <div class="modal-footer center">
+            <h2 class="error"> {{error}} </h2>
+            <h2 class="green center"> {{success}} </h2>
+            <i-button type="add" label="##word.add##" ng-click="addPricesCodes()"></i-button>
+            
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#pricesCodesAddModal')"></i-button>
+        </div>
+    </div>
+</div>

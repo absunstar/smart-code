@@ -1,0 +1,344 @@
+<div class="form">
+    <div id="operationsRequestsAddModal">
+        <fieldset>
+            <legend> ##word.operations_requests_informations## </legend>
+            <div class="row">
+                <div class="col9">
+
+                    <div class="row">
+                        <i-control ng-hide="disabledCode" class="col2" label="##word.code##"
+                            ng-model="operations_requests.code">
+                        </i-control>
+
+                        <i-date2 class="col4" ng-model="operations_requests.date" label="##word.date##" v="r">
+                        </i-date2>
+
+                        <div class="col3"></div>
+
+                        <i-checkbox class="col2" label="##word.active##" ng-model="operations_requests.active">
+                        </i-checkbox>
+                    </div>
+
+                    <div class="row">
+                        <div class="row">
+                            <i-control class="col2" label="##word.patient_search##" ng-model="doctor_search"
+                                ng-keydown="getPatientList($event)"></i-control>
+
+                            <i-list class="col4" label="##word.patient##" v="r" ng-model="operations_requests.customer"
+                                display="name_##session.lang##" items="customersList"
+                                ng-search="_search.$patients_searching"
+                                ng-change="loadDoctorsVisits();getOperationsRequestsList({'customer.id' :operations_requests.customer.id},'get_last')">
+                            </i-list>
+
+                            <i-button class="col3" ng-show="operations_requests.customer.id" type="details"
+                                label="##word.customers_details##"
+                                ng-click="showPatient(operations_requests.customer.id)">
+                            </i-button>
+
+                            <div class="col1"></div>
+
+                            <i-button type="add" label="##word.customers_new##" ng-click="displayAddCustomer()">
+                            </i-button>
+
+                        </div>
+
+                        <br>
+                        <br>
+                        <div class="row" ng-show="operations_requests.customer.id">
+                            <fieldset class="col11">
+
+                                <table class="table bold center hover">
+                                    <tr>
+                                        <td class="blue"> ##word.customer_name## </td>
+                                        <td colspan="7" class="center">
+                                            {{operations_requests.customer.name_##session.lang##}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="blue"> ##word.gender## </td>
+                                        <td colspan="2" class="center">
+                                            {{operations_requests.customer.gender.##session.lang##}}
+                                        </td>
+                                        <td class="blue"> ##word.child## </td>
+                                        <td colspan="2" ng-show="operations_requests.customer.child == true">
+                                            <p class="green"> ##word.yes## </p>
+                                        </td>
+                                        <td colspan="2" ng-show="!operations_requests.customer.child">
+                                            <p class="red"> ##word.no## </p>
+                                        </td>
+                                        <td colspan="2"></td>
+                                    </tr>
+
+
+                                    <tr>
+                                        <td class="blue"> ##word.weight## </td>
+                                        <td colspan="2" class="center"> {{operations_requests.customer.weight}} </td>
+                                        <td class="blue"> ##word.tall## </td>
+                                        <td colspan="2" class="center"> {{operations_requests.customer.tall}} </td>
+                                        <td class="blue"> ##word.blood_type## </td>
+                                        <td colspan="2" class="center red">
+                                            {{operations_requests.customer.blood_type.name}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="blue"> ##word.medicine_notes## </td>
+                                        <td colspan="7" class="center"> {{operations_requests.customer.medicine_notes}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="blue"> ##word.gov## </td>
+                                        <td colspan="2" class="center"> {{operations_requests.customer.gov.name}} </td>
+                                        <td class="blue"> ##word.city## </td>
+                                        <td colspan="2" class="center"> {{operations_requests.customer.city.name}}
+                                        </td>
+                                        <td class="blue"> ##word.area## </td>
+                                        <td colspan="2" class="center"> {{operations_requests.customer.area.name}}
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="blue"> ##word.address## </td>
+                                        <td colspan="7" class="center"> {{operations_requests.customer.address}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="blue"> ##word.mobile## </td>
+                                        <td colspan="4" class="center"> {{operations_requests.customer.mobile}}</td>
+                                        <td class="blue"> ##word.phone## </td>
+                                        <td colspan="3" class="center"> {{operations_requests.customer.phone}}</td>
+                                    </tr>
+
+                                </table>
+                            </fieldset>
+                        </div>
+
+                        <br>
+                        <br>
+
+                        <div class="row">
+
+                            <i-list class="col4" label="##word.doctor_visit##" ng-model="doctor_visit" display="code"
+                                space=" - " display2="selected_clinic.name" items="doctorsVisitsList"
+                                ng-search="_search.$patients_searching">
+                            </i-list>
+
+                            <i-button type="add" class="col2" ng-click="getDoctorVisitOperations(doctor_visit)">
+                            </i-button>
+
+                            <i-list class="col4" label="##word.operation##" ng-model="operation" items="operationsList"
+                                ng-search="_search.$patients_searching">
+                            </i-list>
+
+                            <i-button type="add" class="col2" ng-click="changeOperationsList(operation)">
+                            </i-button>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+
+
+
+
+
+                <div class="col3">
+                    <i-image category="operations_requests" ng-model="operations_requests.image_url"> </i-image>
+                    <i-files label="##word.files##" categoty="pathients" ng-model="operations_requests.files"></i-files>
+                    <br>
+                    <br>
+                    <div class=" padding margin">
+                        <table class="table box-shadow " ng-init="discountEditorAdd = true">
+                            <tr>
+                                <th colspan="2" class="pointer" ng-click="discountEditorAdd = !discountEditorAdd">
+                                    ##word.discountes##
+                                    <i class="fa fa-edit"></i>
+                                </th>
+                            </tr>
+                            <tr ng-hide="discountEditorAdd">
+                                <td colspan="2">
+                                    <form>
+
+                                        <div class="row ">
+                                            <i-list class="col4" ng-model="discount" ng-search="_search.$discount_name"
+                                                items="discount_types" label="##word.discount_name##">
+                                            </i-list>
+                                        </div>
+
+                                        <div class="row">
+                                            <i-control class="col4" ng-model="discount.value" type="number"
+                                                label="##word.discount_value##"></i-control>
+                                            <div class="col4">
+                                                <i-radio ng-model="discount.type" ng-value="number" group="type"
+                                                    label="##word.discount_types_number##">
+                                                </i-radio>
+
+                                                <i-radio ng-model="discount.type" group="type" ng-value="percent"
+                                                    label="##word.discount_types_percent##">
+                                                </i-radio>
+                                            </div>
+                                            <div class="col4" class="padding">
+                                                <br>
+                                                <i-button ng-click="addDiscount() ;calc(operations_requests)"
+                                                    label="##word.stores_out_add_discount##" type="add default">
+                                                </i-button>
+                                            </div>
+
+                                        </div>
+
+                                    </form>
+                                </td>
+                            </tr>
+
+                            <tr ng-repeat="d1 in operations_requests.discountes">
+
+                                <td>
+                                    <span class="bold red">{{d1.name}} -</span>
+                                    <span class="bold red" ng-show="d1.type === 'percent'">{{d1.value}}
+                                        %</span>
+                                    <span class="bold red" ng-show="d1.type === 'number'">{{d1.value}}$</span>
+                                    <i-button type="delete" ng-click="deleteDiscount(d1) ; calc(operations_requests)">
+                                    </i-button>
+                                </td>
+
+                            </tr>
+                        </table>
+
+                    </div>
+                </div>
+
+                <br>
+                <br>
+                <br>
+                <br>
+
+                <div class="row" ng-show="operations_requests.operations_list.length > 0">
+                    <fieldset>
+                        <legend> ##word.operations## ##word.requiredy##</legend>
+                        <table class="table loaded center hover bold">
+                            <tr>
+                                <th>##word.operation_name##</th>
+                                <th>##word.price_code##</th>
+                                <th> ##word.notes_before_operations## </th>
+                                <th> ##word.actions## </th>
+                            </tr>
+
+                            <tr ng-repeat="c in operations_requests.operations_list">
+
+                                <td class="center"><br> {{c.name}}</td>
+
+                                <td class="center green">
+                                    <i-list ng-model="c.price_code" ng-search="_search.$discount_name"
+                                        items="pricesCodesList">
+                                    </i-list>
+                                </td>
+
+                                <td>
+                                    <i-textarea ng-model="c.notes_before_operations">
+                                    </i-textarea>
+
+                                </td>
+
+                                <td>
+                                    <i-button type="delete"
+                                        ng-click="operations_requests.operations_list.splice($index,1);calc(operations_requests)">
+                                    </i-button>
+
+                                </td>
+
+                            </tr>
+                        </table>
+                    </fieldset>
+
+                </div>
+
+                <br>
+                <br>
+
+                <div class="row">
+
+                    <fieldset class="col6" ng-show="operations_requests.operations_list.length > 0">
+                        <div class="row">
+
+                            <i-control class="col3" ng-show="operations_requests.total_value" disabled
+                                ng-model="operations_requests.total_value" type="number" label="##word.total_value##">
+                            </i-control>
+
+                            <i-control class="col3" ng-show="operations_requests.total_discount" disabled
+                                ng-model="operations_requests.total_discount" type="number"
+                                label="##word.total_discount##">
+                            </i-control>
+
+                        </div>
+
+                        <div class="row">
+
+                            <i-control class="col3" disabled ng-show="operations_requests.net_value"
+                                ng-model="operations_requests.net_value" type="number" label="##word.paid_require##">
+                            </i-control>
+
+                            <i-control class="col3" ng-change="calc(operations_requests)"
+                                ng-model="operations_requests.paid" type="number" label="##word.paid##">
+                            </i-control>
+
+                            <i-control class="col3" disabled ng-model="operations_requests.remain" type="number"
+                                label="##word.remain##">
+                            </i-control>
+
+
+                        </div>
+
+
+                    </fieldset>
+
+                </div>
+
+                <br>
+                <br>
+                <br>
+
+                <div class="row" ng-show="operations_requests.last_operations_list.length > 0">
+                    <fieldset>
+                        <legend>##word.Previous_patient_operations##</legend>
+
+                        <br>
+                        <br>
+                        <table class="table loaded center hover bold">
+                            <tr>
+                                <td style="background : gray" class="white">##word.operations_name##</td>
+                                <td style="background : gray" class="white">##word.date##</td>
+                                <td style="background : gray" class="white"> ##word.notes_before_operations##
+                                </td>
+                                <td style="background : gray" class="white"> ##word.result## </td>
+                                <td style="background : gray" class="white"> ##word.notes_after_operations## </td>
+                            </tr>
+                            <tr ng-repeat="l in operations_requests.last_operations_list">
+
+                                <td class="center">{{l.name}}</td>
+                                <td class="center">
+                                    <p class="brown"> {{l.date |date:"dd - MM - yyyy"}} </p>
+                                    <p class="green"> {{l.date |date:"hh:mm"}} </p>
+                                </td>
+
+                                <td class="center lines_text">
+                                    {{l.notes_before_operations}}
+                                </td>
+
+                                <td class="center blue">
+                                    {{l.result}}
+                                </td>
+
+                                <td class="center lines_text">
+                                    {{l.notes_after_operations}}
+                                </td>
+
+                            </tr>
+                        </table>
+                    </fieldset>
+
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>

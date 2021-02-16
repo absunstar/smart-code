@@ -4,21 +4,21 @@ module.exports = function init(site) {
 
   let source = {
     name: 'Active Substances System',
-    ar: ' نظام أسباب الجلسات'
+    ar: ' نظام المواد الفعالة'
   }
 
   let image_url = '/images/active_substances.png'
   let add_message = {
     name: 'New Active Substance Added',
-    ar: 'تم إضافة سبب جلسة جديد'
+    ar: 'تم إضافة مادة فعالة جديدة'
   }
   let update_message = {
     name: ' Active Substance Updated',
-    ar: 'تم تعديل سبب جلسة'
+    ar: 'تم تعديل مادة فعالة'
   }
   let delete_message = {
     name: ' Active Substance Deleted',
-    ar: 'تم حذف سبب جلسة '
+    ar: 'تم حذف مادة فعالة '
   }
 
 

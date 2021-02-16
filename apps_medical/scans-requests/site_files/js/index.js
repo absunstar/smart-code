@@ -380,6 +380,10 @@ app.controller("scans_requests", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/scans/all",
       data: {
+        where: {
+          active: true
+        },
+        select:{id:1, name:1}
       }
     }).then(
       function (response) {

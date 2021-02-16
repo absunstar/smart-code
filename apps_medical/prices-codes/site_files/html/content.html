@@ -1,0 +1,38 @@
+<div class="form">
+    <div id="pricesCodesAddModal">
+        <fieldset>
+            <legend> ##word.prices_codes_informations## </legend>
+            <div class="row">
+                <div class="col9">
+
+                    <div class="row">
+                        <i-control ng-hide="disabledCode" class="col2" label="##word.code##"
+                            ng-model="prices_codes.code">
+                        </i-control>
+
+                        <i-control v="r" class="col3" label="##word.token##" ng-model="prices_codes.name">
+                        </i-control>
+
+                        <i-control v="r" class="col2" type="number" label="##word.the_amount##" ng-model="prices_codes.price">
+                        </i-control>
+
+                        <div class="col2"></div>
+
+                        <i-checkbox class="col2" label="##word.active##" ng-model="prices_codes.active">
+                        </i-checkbox>
+                    </div>
+
+                    <div class="row">
+                        <i-textarea ng-model="prices_codes.description" class="col7" label="##word.description##">
+                        </i-textarea>
+                    </div>
+
+                </div>
+
+                <div class="col3">
+                    <i-image category="prices_codes" ng-model="prices_codes.image_url"> </i-image>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>

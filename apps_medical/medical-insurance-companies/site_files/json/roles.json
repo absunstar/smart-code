@@ -1,5 +1,5 @@
 [{
-    "module_name" : "general" ,
+    "module_name" : "public" ,
     "name": "insurance_companies_admin",
     "en": "Insurance Companies Admin",
     "ar": "إدارة شركات التأمين",

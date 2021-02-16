@@ -1,0 +1,27 @@
+<div id="operationsRequestsDeleteModal" class="modal">
+        
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.operations_requests_delete##
+                <i class="fa fa-trash"></i>
+            </h2>
+        </div>
+        <div class="modal-body">
+            <span ng-show="busy">
+                <span class="sr-only">Loading...</span>
+            </span>
+            <div x-import="operations-requests/view.html"></div>
+
+        </div>
+        <h2 class="error"> {{error}} </h2>
+        <div class="modal-footer center">
+            <i-button type="delete" label="##word.delete##" ng-click="deleteOperationsRequests(operations_requests)"></i-button>
+            
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#operationsRequestsDeleteModal')"></i-button>
+
+        </div>
+    </div>
+    
+</div>

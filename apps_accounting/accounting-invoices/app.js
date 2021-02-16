@@ -161,6 +161,7 @@ module.exports = function init(site) {
             else if (account_invoices_doc.source_type.id == 12) num_obj.screen = 'payment_employee_advance';
             else if (account_invoices_doc.source_type.id == 13) num_obj.screen = 'school_fees';
             else if (account_invoices_doc.source_type.id == 14) num_obj.screen = 'transfer_safes_balances';
+            else if (account_invoices_doc.source_type.id == 15) num_obj.screen = 'patient_ticket';
 
 
             let cb = site.getNumbering(num_obj);
@@ -315,6 +316,10 @@ module.exports = function init(site) {
                       paid_value.transition_type = 'in'
 
                     }
+
+                  } else if (doc.source_type.id == 15) {
+                    paid_value.operation = { ar: 'تذكرة مريض', en: 'Patient Ticket' }
+                    paid_value.transition_type = 'in'
 
                   }
 
@@ -480,6 +485,10 @@ module.exports = function init(site) {
 
                 } else if (account_invoices_doc.source_type.id == 13) {
                   paid_value.operation = { ar: 'دفعة مصروفات دراسية', en: 'Pay School Fees' }
+                  paid_value.transition_type = 'in'
+
+                } else if (account_invoices_doc.source_type.id == 15) {
+                  paid_value.operation = { ar: 'دفعة تذكرة مريض', en: 'Pay Patient Ticket' }
                   paid_value.transition_type = 'in'
 
                 }
@@ -687,8 +696,11 @@ module.exports = function init(site) {
                     obj.operation = { ar: 'مصروفات دراسية', en: 'School Fees' }
                     obj.transition_type = 'in'
 
-                  }
+                  } else if (account_invoices_doc.source_type.id == 15) {
+                    obj.operation = { ar: 'تذكرة مريض', en: 'Patient Ticket' }
+                    obj.transition_type = 'in'
 
+                  }
 
                 } else {
                   _payment_list.posting = false
@@ -785,6 +797,10 @@ module.exports = function init(site) {
 
                   } else if (account_invoices_doc.source_type.id == 13) {
                     obj.operation = { ar: 'فك ترحيل مصروفات دراسية', en: 'Un Post School Fees' }
+                    obj.transition_type = 'out'
+
+                  } else if (account_invoices_doc.source_type.id == 15) {
+                    obj.operation = { ar: 'فك ترحيل تذكرة مريض', en: 'Un Post Patient Ticket' }
                     obj.transition_type = 'out'
 
                   }
@@ -903,7 +919,6 @@ module.exports = function init(site) {
 
       where['id'] = account_invoices_doc.id
     }
-    console.log(where);
     site.getOpenShift({ companyId: account_invoices_doc.company.id, branchCode: account_invoices_doc.branch.code }, shiftCb => {
       if (shiftCb) {
 
@@ -1043,9 +1058,13 @@ module.exports = function init(site) {
                         obj.transition_type = 'out'
 
                       } else if (response.doc.source_type.id == 13) {
-                        obj.operation = { ar: 'مصروفات دراسية', en: 'School Fees' }
+                        obj.operation = { ar: 'حذف مصروفات دراسية', en: 'Delete School Fees' }
                         obj.transition_type = 'out'
 
+                      } else if (response.doc.source_type.id == 15) {
+                        obj.operation = { ar: 'حذف تذكرة مريض', en: 'Delete Patient Ticket' }
+                        obj.transition_type = 'out'
+                        site.call('delete Patient Ticket', response.doc.invoice_id)
                       }
 
                       if (response.doc.employee && response.doc.employee.id) obj.sourceName = response.doc.employee.name
@@ -1057,10 +1076,10 @@ module.exports = function init(site) {
 
                         if (result.doc.type == 'from') {
                           obj.transition_type = 'in'
-    
+
                         } else if (result.doc.type == 'to') {
                           obj.transition_type = 'out'
-    
+
                         }
 
 

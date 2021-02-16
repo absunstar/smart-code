@@ -1,5 +1,5 @@
 [{
-    "module_name" : "general" ,
+    "module_name" : "public" ,
     "name": "patients_tickets_admin",
     "en": "Patients Tickets Admin",
     "ar": "إدارة تذاكر المرضى",

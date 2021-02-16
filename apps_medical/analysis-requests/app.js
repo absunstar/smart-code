@@ -276,4 +276,22 @@ module.exports = function init(site) {
     })
   })
 
+  site.getAnalysisRequests = function (where, callback) {
+
+    callback = callback || {};
+
+    $analysis_requests.findMany({
+      where: {
+        'customer.id': where.customer.id,
+        patient_ticket_id: where.id
+      },
+
+    }, (err, docs) => {
+      if (!err && docs)
+        callback(docs)
+      else callback(false)
+
+    })
+  }
+
 }

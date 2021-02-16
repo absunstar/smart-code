@@ -148,12 +148,12 @@
             "types_expenses_manage",
             "year_works_manage",
             "clinics_manage",
-            "doctors_manage",
             "specialties_manage",
+            "doctors_manage",
             "nursing_manage",
             "operation_manage",
-            "analysis_manage",
             "insurance_companies_manage",
+            "analysis_manage",
             "scans_manage",
             "foods_manage",
             "drinks_manage",
@@ -161,6 +161,8 @@
             "doctors_visits_manage",
             "analysis_requests_manage",
             "scans_requests_manage",
+            "operations_requests_manage",
+            "prices_codes_manage",
             "patients_tickets_manage"
         ]
     }

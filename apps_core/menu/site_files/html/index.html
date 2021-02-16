@@ -216,7 +216,12 @@
 
                 <a class="tab-link" href="/operation" x-permissions="operation_ui || operation_manage">
                     <img src="/images/operation.png">
-                    <span> ##word.operation##</span>
+                    <span> ##word.operations##</span>
+                </a>
+
+                <a class="tab-link" href="/prices_codes" x-permissions="prices_codes_ui || prices_codes_manage">
+                    <img src="/images/prices_codes.png">
+                    <span> ##word.prices_codes##</span>
                 </a>
 
             </div>
@@ -288,6 +293,12 @@
 
     <div id="accounting_tabs" class="tabs">
         <div class="tabs-header">
+
+            <a class="tab-link" x-features="medical" href="/account_invoices?type=15"
+                x-permissions="account_invoices_ui || account_invoices_manage">
+                <img src="/images/patients_tickets.png">
+                <span>##word.patients_tickets## </span>
+            </a>
 
             <a class="tab-link" x-features="school" href="/account_invoices?type=13"
                 x-permissions="account_invoices_ui || account_invoices_manage">
@@ -912,11 +923,11 @@
                 <span>##word.report## ##word.amount_out_invoice## </span>
             </a>
 
-            <a class="tab-link" href="/report_invoices?type=14"
+            <!-- <a class="tab-link" href="/report_invoices?type=14"
                 x-permissions="report_invoices_ui || report_invoices_manage">
                 <img src="/images/transfer_safes_balances.png">
                 <span>##word.report## ##word.transfer_safes_balances## </span>
-            </a>
+            </a> -->
 
             <a class="tab-link" href="/report_invoices?type=10"
                 x-permissions="report_invoices_ui || report_invoices_manage">
@@ -1064,7 +1075,7 @@
 
                 <a class="tab-link" href="/operation" x-permissions="operation_ui || operation_manage">
                     <img src="/images/operation.png">
-                    <span> ##word.operation##</span>
+                    <span> ##word.operations##</span>
                 </a>
 
                 <a class="tab-link" href="/scans" x-permissions="scans_ui || scans_manage">
@@ -1432,7 +1443,7 @@
                     <span>##word.employees## </span>
                 </a>
 
-                <a x-features="restaurant || pos || academy || gym || erp || school" class="tab-link"
+                <a x-features="restaurant || pos || academy || gym || erp || school || medical" class="tab-link"
                     onclick="site.showTabs(event, '#reporting_tabs')">
                     <img src="/images/report.png">
                     <span>##word.reports## </span>

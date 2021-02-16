@@ -1,0 +1,19 @@
+[
+
+    {"name" : "operations_requests_informations" , "en" : "Operations Requests Informations" , "ar" : "بيانات طلب العمليات"},
+    {"name" : "operations_requests" , "en" : "Operations Requests" , "ar" : "طلبات العمليات"},
+    {"name" : "operations_request" , "en" : "Operations Request" , "ar" : "طلب عمليات"},
+    {"name" : "operations_requests_menus" , "en" : "Operations Requests Menu" , "ar" : "قائمة طلب العمليات"},
+    {"name" : "operations_requests_code" , "en" : "Operations Requests Code" , "ar" : "كود طلب العمليات"},
+    {"name" : "operations_requests_name" , "en" : "Operations Requests Name" , "ar" : "إسم طلب العمليات"},
+    {"name" : "operations_requests_new" , "en" : "New Operations Requests" , "ar" : "طلب عمليات جديد"},
+    {"name" : "operations_requests_details" , "en" : "Operations Requests Details" , "ar" : "تفاصيل طلب العمليات"},
+    {"name" : "operations_requests_update" , "en" : "Edit Operations Requests" , "ar" : "تعديل طلب عمليات"},
+    {"name" : "operations_requests_delete" , "en" : "Delte Operations Requests" , "ar" : "حذف طلب عمليات"},
+    {"name" : "operations_requests_add_name" , "en" : "Add Operations Requests" , "ar" : "إضافة طلب عمليات"},
+    {"name" : "notes_before_operations" , "en" : "Notes before operations" , "ar" : "ملاحظات قبل العملية"},
+    {"name" : "Previous_patient_operations" , "en" : "Previous Patient Operations" , "ar" : "عمليات المريض سابقة"},
+    {"name" : "putting_results_operations" , "en" : "Putting results of operations" , "ar" : "وضع نتائج العمليات"},
+    {"name" : "notes_after_operations" , "en" : "Notes After operations" , "ar" : "ملاحظات بعد العملية"}
+
+]

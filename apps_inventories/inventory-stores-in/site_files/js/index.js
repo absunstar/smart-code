@@ -86,7 +86,9 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       return;
     }
 
-    account_invoices.posting = true;
+    if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.work_posting)
+      account_invoices.posting = false;
+    else account_invoices.posting = true;
 
     $http({
       method: "POST",

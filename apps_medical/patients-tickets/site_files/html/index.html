@@ -22,12 +22,15 @@
                     x-import="patients-tickets/add_modal.html"></div>
                 <div x-permissions="patients_tickets_update || patients_tickets_manage"
                     x-import="patients-tickets/update_modal.html"></div>
+                <div x-permissions="patients_tickets_update || patients_tickets_manage"
+                    x-import="patients-tickets/display_data.html"></div>
                 <div x-permissions="patients_tickets_delete || patients_tickets_manage"
                     x-import="patients-tickets/delete_modal.html"></div>
                 <div x-permissions="patients_tickets_view || patients_tickets_manage"
                     x-import="patients-tickets/view_modal.html"></div>
                 <div x-permissions="patients_tickets_search || patients_tickets_manage"
                     x-import="patients-tickets/search_all_modal.html"></div>
+                <div x-import="patients-tickets/account_invoice.html"></div>
                 <div x-import="customers/add_modal.html"></div>
                 <div x-import="customers/view_modal.html"></div>
 
@@ -63,6 +66,7 @@
                         </td>
 
                         <td class="center userPrint blue">{{c.code}}</td>
+
                         <td class="center">{{c.customer.name_##session.lang##}}</td>
 
                         <td class="center">
@@ -74,7 +78,7 @@
                             <p class="brown" ng-show="c.status.id === 3"> {{c.closing_date |date:"dd - MM - yyyy"}} </p>
                             <p class="red" ng-show="c.status.id === 3"> {{c.closing_date |date:"hh:mm"}} </p>
                             <i-button type="exit" ng-hide="c.status.id === 3" label="##word.close_ticket##"
-                                ng-click="updatePatientsTickets(c, 'close')"></i-button>
+                                ng-click="displayDetails(c,'close')"></i-button>
                         </td>
 
                         <td class="center" ng-class="{
@@ -85,7 +89,7 @@
 
                         <td class="center not-print">
                             <i-button x-permissions="patients_tickets_view || patients_tickets_manage" type="view"
-                                label="##word.details##" ng-click="displayDetailsPatientsTickets(c)"></i-button>
+                                label="##word.details##" ng-click="displayDetails(c,'view')"></i-button>
 
                             <i-button type="fa fa-pause" ng-show="c.status.id === 1" label="##word.holding_ticket##"
                                 ng-click="updatePatientsTickets(c, 'hold')"></i-button>

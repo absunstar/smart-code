@@ -722,10 +722,10 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/scans/all",
       data: {
-        select: {
-          id: 1,
-          name: 1
-        }
+        where: {
+          active: true
+        },
+        select: { id: 1, name: 1 }
       }
     }).then(
       function (response) {
@@ -1620,8 +1620,8 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
 
   $scope.getDoctorsVisitsList();
   $scope.getSpecialtyList();
-/*   $scope.getMedicinesList();
- */  $scope.getScansList();
+  /*$scope.getMedicinesList();*/
+  $scope.getScansList();
   $scope.getAnalysisList();
   $scope.getOperationList();
   $scope.getStatus();

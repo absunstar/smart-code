@@ -68,5 +68,10 @@
         "id": 14,
         "en": "Transfer of safes balances",
         "ar": "تحويل أرصدة الخزن"
+    },
+    {
+        "id": 15,
+        "en": "Patient Ticket",
+        "ar": "تذكرة مريض"
     }
 ]

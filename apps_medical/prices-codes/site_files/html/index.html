@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="prices_codes_ui || prices_codes_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+    <div id="main-layout" class="container loaded">
+        <div class="row">
+            <div class="row" ng-controller="prices_codes" x-permissions="login">
+                <div x-permissions="prices_codes_add || prices_codes_manage" x-import="prices-codes/add_modal.html">
+                </div>
+                <div x-import="prices-codes/update_modal.html"></div>
+                <div x-import="prices-codes/delete_modal.html"></div>
+                <div x-import="prices-codes/view_modal.html"></div>
+                <div x-permissions="prices_codes_search || prices_codes_manage"
+                    x-import="prices-codes/search_all_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center"> ##word.prices_codes## </h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button type="add" x-permissions="prices_codes_add || prices_codes_manage"
+                        label="##word.prices_codes_new##" ng-click="displayAddPricesCodes()"></i-button>
+                    <i-button type="search" x-permissions="prices_codes_search || prices_codes_manage"
+                        label="##word.search_all##" onclick="site.showModal('#pricesCodesSearchModal')"></i-button>
+
+                    <span ng-show="busy">
+                        <span class="sr-only">Loading...</span>
+                    </span>
+                    <h3 class="bold text-center"> ##word.count## : {{count}} </h3>
+                    <br>
+                </div>
+
+                <table class="table loaded center hover bold" id="t1">
+                    <tr>
+                        <th class="not-print"> ##word.logo## </th>
+                        <th>##word.code##</th>
+                        <th> ##word.token## </th>
+                        <th> ##word.price## </th>
+                        <th> ##word.status## </th>
+
+                        <th class="not-print"> ##word.actions## </th>
+                    </tr>
+                    <tr ng-repeat="c in list | orderBy : '-id'">
+                        <td class="not-print">
+                            <i-image view class="logo" ng-model="c.image_url"></i-image>
+                        </td>
+
+                        <td class="center blue userPrint">{{c.code}}</td>
+
+                        <td> {{c.name}} </td>
+
+                        <td class="green"> {{c.price}} </td>
+
+                        <td>
+                            <p ng-show="c.active == true" class="green"> ##word.active## </p>
+                            <p ng-show="c.active == false" class="red"> ##word.not_active## </p>
+                        </td>
+
+                        <td class="center not-print">
+                            <i-button type="details" x-permissions="prices_codes_view || prices_codes_manage"
+                                label="##word.details##" ng-click="displayDetailsPricesCodes(c)"></i-button>
+
+                            <i-button type="update" x-permissions="prices_codes_edit || prices_codes_manage"
+                                label="##word.update##" ng-click="displayUpdatePricesCodes(c)"></i-button>
+
+                            <i-button type="delete" x-permissions="prices_codes_delete || prices_codes_manage"
+                                label="##word.delete##" ng-click="displayDeletePricesCodes(c)"></i-button>
+                        </td>
+                    </tr>
+                </table>
+
+                <div class="row">
+                    <i-button x-permissions="prices_codes_print || prices_codes_manage" type="print"
+                        label="##word.print##" onclick="site.print('#t1')"></i-button>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div x-import="scripts.html"></div>
+
+    <script x-permissions="login" x-import="prices-codes/index.js"></script>
+</body>
+
+</html>

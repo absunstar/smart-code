@@ -5,6 +5,16 @@
         "ar": "عميل جديد"
     },
     {
+        "name": "token",
+        "en": "Token",
+        "ar": "الرمز"
+    },
+    {
+        "name": "display_data",
+        "en": "Display Data",
+        "ar": "عرض البيانات"
+    },
+    {
         "name": "post",
         "en": "Post",
         "ar": "مرحل"
@@ -733,6 +743,16 @@
         "name": "total_value",
         "en": "Total Value",
         "ar": "القيمة الإجمالية"
+    },
+    {
+        "name": "total",
+        "en": "Total",
+        "ar": "الإجمالي"
+    },
+    {
+        "name": "invoices",
+        "en": "Invoices",
+        "ar": "فواتير"
     },
     {
         "name": "safe_box",

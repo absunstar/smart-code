@@ -3,22 +3,22 @@ module.exports = function init(site) {
   let collection_name = 'scans_requests'
 
   let source = {
-    name: 'Analysis Requests System',
-    ar: ' نظام طلبات التحاليل'
+    name: 'Scans Requests System',
+    ar: ' نظام طلبات الأشعة'
   }
 
   let image_url = '/images/scans_requests.png'
   let add_message = {
-    name: 'New Analysis Request Added',
-    ar: 'تم إضافة طلب تحاليل جديد'
+    name: 'New Scans Request Added',
+    ar: 'تم إضافة طلب أشعة جديد'
   }
   let update_message = {
-    name: ' Analysis Request Updated',
-    ar: 'تم تعديل طلب تحاليل'
+    name: ' Scans Request Updated',
+    ar: 'تم تعديل طلب أشعة'
   }
   let delete_message = {
-    name: ' Analysis Request Deleted',
-    ar: 'تم حذف طلب تحاليل '
+    name: ' Scans Request Deleted',
+    ar: 'تم حذف طلب أشعة '
   }
 
 

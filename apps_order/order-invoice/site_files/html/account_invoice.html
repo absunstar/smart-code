@@ -13,7 +13,7 @@
                 <div class="row">
 
                     <div class="row">
-                        <i-control ng-disabled="disabledCodeInvoice" class="col3" label="##word.code##"
+                        <i-control ng-hide="disabledCodeInvoice" class="col3" label="##word.code##"
                             ng-model="account_invoices.code"></i-control>
 
                         <i-date2 class="col5" ng-model="account_invoices.date" label="##word.date##"></i-date2>
@@ -27,7 +27,7 @@
                             display="##session.lang##">
                         </i-list>
 
-                        <i-list class="col3 padding" ng-search="_search.$currency_search"
+                        <i-list class="col3" ng-search="_search.$currency_search"
                             ng-model="account_invoices.currency"
                             ng-change="getSafeByType(account_invoices) ; calc(account_invoices)" items="currenciesList"
                             label="##word.currency##">
@@ -80,7 +80,7 @@
         <h2 class="error">{{error}}</h2>
 
         <div class="modal-footer center">
-            <i-button type="add" label="##word.add##" ng-click="addAccountInvoice(account_invoices)"></i-button>
+            <i-button type="add" label="##word.create_an_invoice##" ng-click="addAccountInvoice(account_invoices)"></i-button>
             <i-button class="not-print" label="##word.print_invoice##" type="print "
                 ng-click="printAccountInvoive(account_invoices)">
             </i-button>

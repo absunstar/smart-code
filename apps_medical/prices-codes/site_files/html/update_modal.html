@@ -1,0 +1,24 @@
+<div id="pricesCodesUpdateModal" class="modal" fixed>
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.prices_codes_update##
+                <i class="fa fa-pencil"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+            <div x-import="prices-codes/content.html"></div>
+            <div x-import="prices-codes/action_info.html"></div>
+        </div>
+
+        <div class="modal-footer center">
+            <h2 class="error"> {{error}} </h2>
+            <i-button type="save" label="##word.save##" ng-click="updatePricesCodes(prices_codes)" ></i-button>
+            
+            <i-button type="close" label="##word.close##"onclick="site.hideModal( '#pricesCodesUpdateModal')" ></i-button>
+        </div>
+    </div>
+</div>

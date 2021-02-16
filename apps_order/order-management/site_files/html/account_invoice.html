@@ -12,7 +12,7 @@
             <form class="form">
                 <div class="row">
                     <div class="row">
-                        <i-control ng-disabled="disabledCodeInvoice" class="col3" label="##word.code##"
+                        <i-control ng-hide="disabledCodeInvoice" class="col3" label="##word.code##"
                             ng-model="account_invoices.code"></i-control>
 
                         <i-date2 class="col5" ng-model="account_invoices.date" label="##word.date##"></i-date2>
@@ -79,7 +79,7 @@
         <h2 class="error">{{error}}</h2>
 
         <div class="modal-footer center">
-            <i-button type="add" label="##word.add##" ng-click="addAccountInvoice()"></i-button>
+            <i-button type="add" label="##word.create_an_invoice##" ng-click="addAccountInvoice()"></i-button>
             <i-button class="not-print" label="##word.print_invoice##" type="print " ng-click="printAccountInvoive()">
             </i-button>
 

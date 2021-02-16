@@ -154,7 +154,7 @@
                                 <th> ##word.notes_after_scans## </th>
                                 <th> ##word.person_delivery## </th>
                                 <th> ##word.delivery_date## </th>
-                                <th> ##word.files## </th>
+                                <th class="not-print"> ##word.files## </th>
                             </tr>
 
                             <tr ng-repeat="a in scans_requests.scans_list">
@@ -185,7 +185,7 @@
                                     <p class="green"> {{a.delivery_date |date:"hh:mm"}} </p>
                                 </td>
 
-                                <td>
+                                <td class="not-print">
                                     <i-files view ng-model="a.files"></i-files>
                                 </td>
 

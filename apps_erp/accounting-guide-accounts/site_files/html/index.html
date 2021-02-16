@@ -35,14 +35,14 @@
                 </div>
 
                 <div x-permissions="login" class="row">
-                    <i-treeview display="name_##session.lang##" class="col6" label="##word.accounting_guide_accounts##"
+                    <i-treeview display="name_##session.lang##" class="col5" label="##word.accounting_guide_accounts##"
                         ng-model="parent_guide_account" ng-click="accounting_guide_accounts_view = parent_guide_account"
                         ng-node="displayAddGuideAccounts(null)" ng-add="displayAddGuideAccounts(parent_guide_account)"
                         ng-edit="displayUpdateGuideAccounts(parent_guide_account)"
                         ng-delete="displayDeleteGuideAccounts(parent_guide_account)" nodes="list">
                     </i-treeview>
-                    <div ng-show="parent_guide_account" class="col5" x-import="accounting-guide-accounts/view.html"></div>
                     <div class="col1"></div>
+                    <div ng-show="parent_guide_account" class="col6" x-import="accounting-guide-accounts/view.html"></div>
 
                 </div>
 

@@ -729,4 +729,22 @@ module.exports = function init(site) {
 
   }
 
+  site.getDoctorsVisits = function (where, callback) {
+
+    callback = callback || {};
+
+    $doctors_visits.findMany({
+      where: {
+        'customer.id': where.customer.id,
+        patient_ticket_id: where.id
+      },
+
+    }, (err, docs) => {
+      if (!err && docs)
+        callback(docs)
+      else callback(false)
+
+    })
+  }
+
 }

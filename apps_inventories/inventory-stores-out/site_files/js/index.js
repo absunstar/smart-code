@@ -201,7 +201,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
             $scope.store_out.store = JSON.parse('##user.store##');
           } else if ($scope.defaultSettings.inventory.store)
             $scope.store_out.store = $scope.defaultSettings.inventory.store;
-            
+
 
           if ('##user.type##' == 'delegate') {
             $scope.store_out.delegate = $scope.delegatesList[0];
@@ -1628,7 +1628,10 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       }
 
 
-      account_invoices.posting = true;
+      if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.work_posting)
+        account_invoices.posting = false;
+      else account_invoices.posting = true;
+
 
       $http({
         method: "POST",
@@ -2178,7 +2181,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     $scope.error = '';
 
     if (site.toNumber("##query.type##") == 4 && store_out.posting) {
-       store_out.posting = false;
+      store_out.posting = false;
       $scope.error = '##word.from_order_management_screen##';
       return;
     };

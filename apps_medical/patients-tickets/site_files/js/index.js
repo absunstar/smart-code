@@ -416,6 +416,337 @@ app.controller("patients_tickets", function ($scope, $http, $timeout) {
     )
   };
 
+
+  $scope.displayDetails = function (patients_tickets, type) {
+    $scope.busy = true;
+    $scope.error = '';
+
+    let where = {
+      id: patients_tickets.id,
+      customer: patients_tickets.customer,
+    };
+
+
+    $http({
+      method: "POST",
+      url: "/api/patients_tickets/display_data",
+      data: {
+        where: where
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.ticket_data = response.data.cb;
+
+        if (type === 'view') {
+
+          site.showModal('#displayDataModal');
+
+        } else if (type === 'close') {
+          $scope.patients_tickets = patients_tickets;
+          $scope.displayAccountInvoice($scope.ticket_data);
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    )
+  };
+
+  $scope.displayAccountInvoice = function (patients_tickets) {
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.account_invoices = {
+          image_url: '/images/account_invoices.png',
+          date: new Date(),
+          invoice_id: $scope.patients_tickets.id,
+          customer: $scope.patients_tickets.customer,
+          shift: shift,
+          net_value: patients_tickets.net_value,
+          paid_up: patients_tickets.paid,
+          invoice_code: $scope.patients_tickets.code,
+          total_discount: patients_tickets.total_discount,
+          source_type: {
+            id: 15,
+            en: "Patient Ticket",
+            ar: "تذكرة مريض"
+          },
+          active: true
+        };
+
+        if ($scope.defaultSettings.accounting) {
+          if ($scope.defaultSettings.accounting.currency)
+            $scope.account_invoices.currency = $scope.currenciesList.find(_c => { return _c.id === $scope.defaultSettings.accounting.currency.id });
+          if ($scope.defaultSettings.accounting.payment_method) {
+            $scope.account_invoices.payment_method = $scope.defaultSettings.accounting.payment_method;
+            $scope.loadSafes($scope.account_invoices.payment_method, $scope.account_invoices.currency);
+
+            if ($scope.account_invoices.payment_method.id == 1)
+              $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe_box;
+            else $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe_bank;
+          }
+        }
+        if ($scope.account_invoices.currency) {
+          $scope.amount_currency = site.toNumber($scope.account_invoices.net_value) / site.toNumber($scope.account_invoices.currency.ex_rate);
+          $scope.amount_currency = site.toNumber($scope.amount_currency);
+
+        }
+
+        $scope.calc($scope.account_invoices);
+
+        site.showModal('#accountInvoiceModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
+  };
+
+  $scope.getPaymentMethodList = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.paymentMethodList = [];
+    $http({
+      method: "POST",
+      url: "/api/payment_method/all"
+
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.paymentMethodList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getSafeByType = function (obj) {
+    $scope.error = '';
+    if ($scope.defaultSettings.accounting && obj.payment_method) {
+      $scope.loadSafes(obj.payment_method, obj.currency);
+      if (obj.payment_method.id == 1) {
+        if ($scope.defaultSettings.accounting.safe_box)
+          obj.safe = $scope.defaultSettings.accounting.safe_box
+      } else {
+        if ($scope.defaultSettings.accounting.safe_bank)
+          obj.safe = $scope.defaultSettings.accounting.safe_bank
+      }
+    }
+  };
+
+  $scope.loadSafes = function (method, currency) {
+    $scope.error = '';
+    $scope.busy = true;
+
+    if (currency && currency.id && method && method.id) {
+
+      let where = { 'currency.id': currency.id };
+
+      if (method.id == 1)
+        where['type.id'] = 1;
+      else where['type.id'] = 2;
+
+      $http({
+        method: "POST",
+        url: "/api/safes/all",
+        data: {
+          select: {
+            id: 1,
+            name: 1,
+            commission: 1,
+            currency: 1,
+            type: 1,
+            code: 1
+          },
+          where: where
+        }
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done) $scope.safesList = response.data.list;
+
+        },
+        function (err) {
+          $scope.busy = false;
+          $scope.error = err;
+        }
+      )
+    }
+  };
+
+  $scope.loadCurrencies = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/currency/all",
+      data: {
+        select: {
+          id: 1,
+          name: 1,
+          minor_currency: 1,
+          ex_rate: 1,
+          code: 1
+        },
+        where: {
+          active: true
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.currenciesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.calc = function (obj) {
+    $scope.error = '';
+    $timeout(() => {
+
+      obj.net_value = obj.net_value || 0;
+      obj.total_discount = site.toNumber(obj.total_discount);
+      obj.net_value = site.toNumber(obj.net_value);
+
+      if (obj.currency) {
+        $scope.amount_currency = obj.net_value / site.toNumber(obj.currency.ex_rate);
+        $scope.amount_currency = site.toNumber($scope.amount_currency);
+      }
+
+    }, 250);
+  };
+
+  $scope.addAccountInvoice = function (account_invoices) {
+    $scope.error = '';
+    $scope.busy = true;
+
+    if (account_invoices.paid_up > 0 && !account_invoices.safe) {
+      $scope.error = "##word.should_select_safe##";
+      return;
+
+    } else if (account_invoices.paid_up > $scope.amount_currency) {
+      $scope.error = "##word.err_net_value##";
+      return;
+    }
+
+    if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.work_posting)
+      account_invoices.posting = false;
+    else account_invoices.posting = true;
+
+
+    $http({
+      method: "POST",
+      url: "/api/account_invoices/add",
+      data: account_invoices
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.account_invoices = response.data.doc;
+          $scope.updatePatientsTickets($scope.patients_tickets, 'close');
+          site.hideModal('#accountInvoiceModal');
+        } else {
+          $scope.error = response.data.error;
+          if (response.data.error.like('*Must Enter Code*')) {
+            $scope.error = "##word.must_enter_code##"
+          }
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    )
+  };
+
+  $scope.get_open_shift = function (callback) {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/shifts/get_open_shift",
+      data: {
+        where: {
+          active: true
+        },
+        select: {
+          id: 1,
+          name: 1,
+          code: 1,
+          from_date: 1,
+          from_time: 1,
+          to_date: 1,
+          to_time: 1
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.shift = response.data.doc;
+          callback(response.data.doc);
+        } else {
+          callback(null);
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+        callback(null);
+      }
+    )
+  };
+
+  $scope.getNumberingAutoInvoice = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/numbering/get_automatic",
+      data: {
+        screen: "patient_ticket"
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.disabledCodeInvoice = response.data.isAuto;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getDefaultSettings = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/default_setting/get",
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.defaultSettings = response.data.doc;
+
+        };
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+
+  };
+
+
   $scope.displaySearchModal = function () {
     $scope.error = '';
     site.showModal('#patientsTicketsSearchModal');
@@ -423,7 +754,6 @@ app.controller("patients_tickets", function ($scope, $http, $timeout) {
   };
 
   $scope.searchAll = function () {
-
     $scope.getPatientsTicketsList($scope.search);
     site.hideModal('#patientsTicketsSearchModal');
     $scope.search = {};
@@ -432,5 +762,9 @@ app.controller("patients_tickets", function ($scope, $http, $timeout) {
 
   $scope.getPatientsTicketsList();
   $scope.getNumberingAuto();
+  $scope.loadCurrencies();
+  $scope.getPaymentMethodList();
+  $scope.getDefaultSettings();
+  $scope.getNumberingAutoInvoice();
 
 });

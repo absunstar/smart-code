@@ -1,0 +1,67 @@
+<div id="puttingResultsOperationsModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.putting_results_operations## <i class="fa fa-plus"></i>
+            </h2>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <form class="form">
+                    <fieldset>
+
+                        <table class="table loaded center hover bold">
+                            <tr>
+                                <th>##word.operations_name##</th>
+                                <th>##word.price##</th>
+                                <th> ##word.normal_range## </th>
+                                <th> ##word.notes_before_operations##</th>
+                                <th class="w150"> ##word.result## </th>
+                                <th> ##word.notes_after_operations## </th>
+                                <th> ##word.files## </th>
+                            </tr>
+
+                            <tr ng-repeat="a in operations_requests.operations_list">
+
+                                <td class="center">{{a.name}}</td>
+
+                                <td class="center green">{{a.price}}</td>
+
+                                <td class="center">
+                                    <b class="green">{{a.from}}</b> - <b class="red">{{a.to}}</b>
+                                </td>
+
+                                <td class="center lines_text">
+                                    {{a.notes_before_operations}}
+                                </td>
+
+                                <td>
+                                    <i-control type="number" ng-model="a.result"></i-control>
+                                </td>
+
+                                <td>
+                                    <i-textarea ng-model="a.notes_after_operations"></i-textarea>
+                                </td>
+
+                                <td>
+                                    <i-files ng-model="a.files"></i-files>
+                                </td>
+
+                            </tr>
+                        </table>
+
+                    </fieldset>
+                </form>
+            </div>
+
+            <h2 class="error"> {{error}} </h2>
+            <div class="modal-footer center">
+                <i-button type="save" label="##word.save##" ng-click="updateOperationsRequests(operations_requests)">
+                </i-button>
+                <i-button type="close" onclick="site.hideModal('#puttingResultsOperationsModal')" label="##word.close##">
+                </i-button>
+            </div>
+        </div>
+    </div>
+</div>

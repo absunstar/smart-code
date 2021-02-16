@@ -1,0 +1,52 @@
+<div ng-hide="busy" id="v1">
+    <div class="form">
+        <div id="customersGroupViewModal">
+            <fieldset>
+                <legend> ##word.prices_codes_informations## </legend>
+                <div class="row">
+                    <div class="col9">
+                        <table class="table hover bold">
+
+                            <tr>
+                                <td class="title">##word.code##</td>
+                                <td class="center blue userPrint">{{prices_codes.code}}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="title"> ##word.token## </td>
+                                <td class="center"> {{prices_codes.name}} </td>
+                            </tr>
+
+                            <tr>
+                                <td class="title"> ##word.price## </td>
+                                <td class="center green"> {{prices_codes.price}} </td>
+                            </tr>
+
+                            <tr>
+                                <td class="title">##word.description##</td>
+                                <td class="center">{{prices_codes.description}}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="title"> ##word.active## </td>
+                                <td ng-show="prices_codes.active == true" class="center green"> ##word.active##
+                                </td>
+                                <td ng-show="prices_codes.active == false" class="center red"> ##word.not_active##
+                                </td>
+                            </tr>
+
+                        </table>
+
+                    </div>
+
+                    <div class="col3">
+                        <i-image class="not-print" view ng-model="prices_codes.image_url"> </i-image>
+                    </div>
+
+
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
+<div x-import="prices-codes/action_info.html"></div>

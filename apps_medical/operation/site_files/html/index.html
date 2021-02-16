@@ -25,7 +25,7 @@
                 <div x-permissions="operation_search || operation_manage" x-import="operation/search_all_modal.html"></div>
 
                 <div class="row">
-                    <h1 class="bold text-center">##word.operation##</h1>
+                    <h1 class="bold text-center">##word.operations##</h1>
                 </div>
 
                 <div class="top-actions">
@@ -41,7 +41,7 @@
                         <th class="not-print">##word.logo##</th>
                         <th>##word.code##</th>
                         <th>##word.operation_name##</th>
-                        <th>##word.operation_price##</th>
+                        <!-- <th>##word.operation_price##</th> -->
                         <th>##word.status##</th>
                         <th class="not-print">##word.actions##</th>
                     </tr>
@@ -51,7 +51,7 @@
                         </td>
                         <td class="center userPrint blue">{{c.code}}</td>
                         <td class="center title">{{c.name}}</td>
-                        <td class="center green">{{c.price}}</td>
+                        <!-- <td class="center green">{{c.price}}</td> -->
 
                         <td class="center">
                             <p ng-show="c.active ==true" class="green"> ##word.active## </p>

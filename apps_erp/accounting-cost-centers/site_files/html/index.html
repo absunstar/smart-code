@@ -35,14 +35,14 @@
                 </div>
 
                 <div x-permissions="login" class="row">
-                    <i-treeview display="name_##session.lang##" class="col6" label="##word.accounting_cost_centers##"
+                    <i-treeview display="name_##session.lang##" class="col5" label="##word.accounting_cost_centers##"
                         ng-model="parent_cost_center" ng-click="accounting_cost_centers_view = parent_cost_center"
                         ng-node="displayAddCostCenters(null)" ng-add="displayAddCostCenters(parent_cost_center)"
                         ng-edit="displayUpdateCostCenters(parent_cost_center)"
                         ng-delete="displayDeleteCostCenters(parent_cost_center)" nodes="list">
                     </i-treeview>
-                    <div ng-show="parent_cost_center" class="col5" x-import="accounting-cost-centers/view.html"></div>
                     <div class="col1"></div>
+                    <div ng-show="parent_cost_center" class="col6" x-import="accounting-cost-centers/view.html"></div>
                 </div>
 
             </div>

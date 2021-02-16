@@ -120,7 +120,8 @@
         .bg_font_item {
             background-image: linear-gradient(#3f51b5, #001fcec2);
             height: max-content;
-
+            border-bottom-left-radius: 7px;
+            border-bottom-right-radius: 7px;
         }
 
         .font_name_group {
@@ -273,6 +274,22 @@
                     <!-- style="background-color: {{g.color}};" -->
 
                     <div class="col6">
+
+                        <div class="row">
+                            <i-button type="bg-green" label="##word.new_order##" ng-click="newOrderInvoice()">
+                            </i-button>
+
+                            <i-button type="bg-blue" label="##word.open_orders##" ng-click="viewInvoicesActiveList()">
+                            </i-button>
+
+                            <i-button x-permissions="order_invoice_cancel_order || order_invoice_manage" type="bg-red"
+                                label="##word.cancel_order##" ng-click="cancelOrderInvoice()">
+                            </i-button>
+                        </div>
+
+                        <br>
+                        <br>
+
                         <div class="row">
                             <div class="item-groups ">
                                 <a class="item pointer center" style="background-color: {{g.color}};"
@@ -284,7 +301,6 @@
                             </div>
                             <hr style="height:7px;background-image:linear-gradient(rgb(90 79 255), rgb(227 225 255));">
                         </div>
-
 
                         <div class="row">
                             <div class="item-list" ng-show="itemsList.length > 0">
@@ -335,19 +351,6 @@
                         <div class="row" ng-hide="'##user.type##' == 'table'">
                             <div class="row ">
                                 <h2 class="bold center red">{{error}}</h2>
-
-                                <div class="row">
-                                    <i-button type="bg-green" label="##word.new_order##" ng-click="newOrderInvoice()">
-                                    </i-button>
-
-                                    <i-button type="bg-blue" label="##word.open_orders##"
-                                        ng-click="viewInvoicesActiveList()">
-                                    </i-button>
-
-                                    <i-button x-permissions="order_invoice_cancel_order || order_invoice_manage"
-                                        type="bg-red" label="##word.cancel_order##" ng-click="cancelOrderInvoice()">
-                                    </i-button>
-                                </div>
 
                                 <div class="row">
                                     <i-date2 class="col6" ng-model="order_invoice.date" label="##word.date##"></i-date2>
@@ -645,8 +648,7 @@
                                     <tr ng-hide="taxEditorAdd">
                                         <td colspan="2">
                                             <div class="row">
-                                                <i-list class="col6" ng-model="tax"
-                                                    label="##word.discount_name##"
+                                                <i-list class="col6" ng-model="tax" label="##word.discount_name##"
                                                     ng-search="_search.$taxtypes" items="tax_types"></i-list>
                                             </div>
                                             <div class="row">

@@ -50,6 +50,7 @@
                     <tr>
                         <th class="not-print"> ##word.logo## </th>
                         <th>##word.code##</th>
+                        <th>##word.customer_name##</th>
                         <th> ##word.date## </th>
                         <th> ##word.status## </th>
 
@@ -62,6 +63,8 @@
 
                         <td class="center blue userPrint">{{c.code}}</td>
 
+                        <td class="center">{{c.customer.name}}</td>
+                     
                         <td class="center brown"> <br> {{c.date | date :'dd - MM - yyyy'}}</td>
 
                         <td>
