@@ -1,203 +1,346 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="myApp">
+  <head x-import="head.html">
+    <style>
+      #posts {
+        display: block;
+        padding: 5px;
+        margin: 5px;
+      }
 
-<head x-import="head.html">
-  <style>
-    #posts {
-      display: block;
-      padding: 5px;
-      margin: 5px;
-    }
+      .post {
+        position: relative;
+        display: inline-grid;
+        border: 1px solid #5369e0;
+        background: #fff;
+        color: #000;
+        border-radius: 15px;
+        text-align: center;
+        line-height: 1.8;
+        width: 320px;
+        height: 470px;
+        margin: 15px;
+      }
 
-    .post {
-      position: relative;
-      display: inline-grid;
-      border: 1px solid #5369e0;
-      background: #fff;
-      color: #000;
-      border-radius: 15px;
-      text-align: center;
-      line-height: 1.8;
-      width: 320px;
-      height: 470px;
-      margin: 15px;
-    }
+      .post h2 {
+        height: 50px;
+        font-family: cursive;
+        border-radius: 15px;
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+        font-size: 20px;
+        text-align: center;
+        font-weight: bold;
+        color: #fff;
+        padding: 5px;
+        background: #3f51b5;
+        text-shadow: 1px 1px 8px #000000;
+      }
 
-    .post h2 {
-      height: 50px;
-      font-family: cursive;
-      border-radius: 15px;
-      border-bottom-left-radius: 0px;
-      border-bottom-right-radius: 0px;
-      font-size: 20px;
-      text-align: center;
-      font-weight: bold;
-      color: #fff;
-      padding: 5px;
-      background: #3f51b5;
-      text-shadow: 1px 1px 8px #000000;
-    }
+      .post img {
+        margin-top: 20px !important;
+        margin-bottom: 20px !important;
+        border-radius: 20px;
+        width: 120px;
+        min-height: 180px;
+      }
 
-    .post img {
-      margin-top: 20px !important;
-      margin-bottom: 20px !important;
-      border-radius: 20px;
-      width: 120px;
-      min-height: 180px;
-    }
+      .icc img {
+        margin-top: 20px !important;
+        margin-bottom: 20px !important;
+        width: 170px;
+      }
 
-    .icc img {
-      margin-top: 20px !important;
-      margin-bottom: 20px !important;
-      width: 170px;
-    }
+      .post p {
+        padding: 15px;
+        text-align: right !important;
+        border-radius: 15px;
+        color: #ffffff;
+        background: #3f51b5;
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
+        min-height: 200px;
+        font-size: 16px;
+        text-shadow: 1px 1px 1px #5369e0;
+      }
 
-    .post p {
-      padding: 15px;
-      text-align: right !important;
-      border-radius: 15px;
-      color: #ffffff;
-      background: #3f51b5;
-      border-top-left-radius: 0px;
-      border-top-right-radius: 0px;
-      min-height: 200px;
-      font-size: 16px;
-      text-shadow: 1px 1px 1px #5369e0;
-    }
+      div.create {
+        display: inline-block;
+        padding: 20px;
+        background: #117380;
+        border-radius: 20px;
+        transition: all 0.2s ease;
+        margin: 20px !important;
+      }
 
-    div.create {
-      display: inline-block;
-      padding: 20px;
-      background: #117380;
-      border-radius: 20px;
-      transition: all .2s ease;
-      margin: 20px;
-    }
+      div.create:hover {
+        box-shadow: 1px 1px 14px 6px #000;
+      }
 
-    div.create:hover {
-      box-shadow: 1px 1px 14px 6px #000;
-    }
+      div.create a {
+        color: #fff;
+        font-size: 22px;
+      }
 
-    div.create a {
-      color: #fff;
-      font-size: 22px;
-    }
+      .img__description {
+        position: absolute;
+        top: 51px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        font-size: 19px;
+        border-radius: 0px;
+        line-height: 1.8;
+        background: #3f51b5;
+        color: #fff;
+        visibility: hidden;
+        opacity: 0;
+        box-shadow: 1px 1px 10px 1px #000;
+        transition: opacity 0.3s, visibility 0.3s;
+      }
 
-    .img__description {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      font-size:19px;
-      border-radius: 15px;
-      line-height: 1.8;
-      background: #556ae2;
-      color: #fff;
-      visibility: hidden;
-      opacity: 0;
-      transition: opacity .3s, visibility .3s;
-    }
+      .post:hover .img__description {
+        visibility: visible;
+        box-shadow: 0 4px 8px 0 rgb(0 0 0 / 77%), 0 6px 20px 0 rgb(0 0 0 / 77%);
+        padding: 18px;
+        opacity: 1;
+      }
 
-    .post:hover .img__description {
-      visibility: visible;
-      box-shadow: 0 4px 8px 0 rgb(0 0 0 / 77%), 0 6px 20px 0 rgb(0 0 0 / 77%);
-      padding: 18px;
-      opacity: 1;
-    }
-  </style>
-</head>
+      a.social-browser {
+        display: inline-block;
+        text-align: center;
+        cursor: pointer;
+        text-decoration: none;
+        border: 3px solid #4caf50;
+        width: 80%;
+      }
+      a.social-browser:hover {
+        transform: scale(1.1);
+      }
+      a.social-browser p {
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 18px;
+        font-weight: bold;
+        color: green;
+      }
+      a.social-browser img {
+        width: 64px;
+        height: 64px;
+        vertical-align: middle;
+      }
+    </style>
+  </head>
 
-<body class="##session.lang##">
-  <nav class="sitebar" x-import="sitebar/index.html" ng-controller="sitebar"></nav>
+  <body class="##session.lang##">
+    <nav class="sitebar" x-import="sitebar/index.html" ng-controller="sitebar"></nav>
 
-  <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
 
-  <div id="main-layout">
-    <div class="center icc hidden">
-      <img ng-src="/images/icc.png" />
-    </div>
+    <div id="main-layout">
+      <div class="center icc hidden">
+        <img ng-src="/images/icc.png" />
+      </div>
 
-    <div class="footer" x-features="!login && !site.dynamic">
-      <br>
-      <br>
-      <div class="row">
-        <div class="col1"></div>
-        <div class="col5">
-          <h2 class="center red bold">##word.try_application##</h2>
-          <h2 class="center">##word.security_user_email## : <span> test </span></h2>
-          <h2 class="center">##word.security_user_password## : <span> test </span></h2>
-        </div>
-        <div class="col2"></div>
+      <div class="footer" x-features="!login && !site.dynamic">
+       
+        <div class="row">
+          <div class="col1"></div>
+          <div class="col5">
+            <h2 class="center blue bold">##word.try_application##</h2>
+            <br>
+            <h2 class="center">##word.security_user_email## : <span> test </span></h2>
+            <h2 class="center">##word.security_user_password## : <span> test </span></h2>
+          </div>
+          <div class="col2"></div>
 
-        <div class="col4">
-          <div class="create center">
-            <a onclick="site.showModal('#companyRegisterModal');"> <span class="bold"> ##word.create## ##word.companies_new## </span>
-            </a>
+          <div class="col4">
+            <div class="create center">
+              <a onclick="site.showModal('#companyRegisterModal');"> <span class="bold"> ##word.create## ##word.companies_new## </span> </a>
+            </div>
           </div>
         </div>
+       
+       
+        
+      </div>
 
+      <br>
+
+      <div class="row center">
+        <a class="social-browser" target="_blank" href="http://social-browser.com">
+          <p>Download Social Browser ( اضغط هنا لتحميل المتصفح الاجتماعى لتفعيل كل المميزات )</p>
+          <img
+            ng-src="https://social-browser.com/images/logo.png"
+            alt="Social Browser المتصفح الاجتماعى"
+            onerror="this.onerror=null;this.src='/images/no.png'"
+            src="//social-browser.com/images/logo.png"
+          />
+        </a>
       </div>
       <br>
       <br>
+      <div id="posts" class="center"></div>
 
-     
-
-      <br>
-      <br>
-
-    </div>
-    <!-- <div class="footer" x-feature="!login"> 
-
-      <iframe width="2300" height="600" target="_blank" src="https://www.youtube.com/embed/PpDoLqPZg5M&t=301s" frameborder="0" allowfullscreen>
-      </iframe>
-    </div> -->
-
-    <div id="posts" class="center"></div>
-    <h2 class="center">Download <a target="_blank" href="https://social-browser.com##new_tab##"> Social Browser </a> For
-      Best Browsing</h2>
-    <br />
-    <div class="footer" x-feature="!login">
-      <div class="row egypt hidden">
-        <h2 class="center">whats up <span> +201090061266 </span></h2>
-        <h2 class="center">Email <span> call.smart.code@gmail.com </span></h2>
+      <div class="row padding">
+        <table class="table">
+          <tr>
+            <th class="font-20" colspan="5"> أسعار البرامج والمواقع </th>
+          </tr>
+          <tr>
+            <th class="bold "> أسم البرنامج </th>
+            <th> تكلفة البرنامج </th>
+            <th>  ( أختيارى ) تكلفة التركيب </th>
+            <th>  ( أختيارى ) تكلفة الدعم الشهرى</th>
+            <th>  ( أختيارى ) تكلفة التدريب ( online ) </th>
+          </tr>
+          <tr>
+            <td class="bold "> إدارة نقاط البيع والمحالات التجارية</td>
+            <td class="center bold green"> مجانى </td>
+            <td class="center bold green"> 30$ </td>
+            <td class="center bold green"> 15$ </td>
+            <td class="center bold green"> 20$ </td>
+          </tr>
+          <tr>
+            <td class="bold "> إدارة المدارس والدروس الخصوصية </td>
+            <td class="center bold green"> مجانى </td>
+            <td class="center bold green"> 30$ </td>
+            <td class="center bold green"> 15$ </td>
+            <td class="center bold green"> 20$ </td>
+          </tr>
+          <tr>
+            <td class="bold "> أدارة العيادة </td>
+            <td class="center bold green"> مجانى </td>
+            <td class="center bold green"> 30$ </td>
+            <td class="center bold green"> 15$ </td>
+            <td class="center bold green"> 20$ </td>
+          </tr>
+          <tr>
+            <td class="bold "> إدارة المطاعم والكافيهات</td>
+            <td class="center bold green"> مجانى </td>
+            <td class="center bold green"> 30$ </td>
+            <td class="center bold green"> 15$ </td>
+            <td class="center bold green"> 20$ </td>
+          </tr>
+          <tr>
+            <td class="bold "> إدارة الصالات الرياضية والعلاجية </td>
+            <td class="center bold green"> مجانى </td>
+            <td class="center bold green"> 30$ </td>
+            <td class="center bold green"> 15$ </td>
+            <td class="center bold green"> 20$ </td>
+          </tr>
+          <tr>
+            <td class="bold "> إدارة مكاتب المحامين </td>
+            <td class="center bold green"> مجانى </td>
+            <td class="center bold green"> 30$ </td>
+            <td class="center bold green"> 15$ </td>
+            <td class="center bold green"> 20$ </td>
+          </tr>
+          <tr>
+            <td class="bold "> موقع إخبارى ديناميكى </td>
+            <td class="center bold green"> مجانى </td>
+            <td class="center bold green"> 30$ </td>
+            <td class="center bold green"> 15$ </td>
+            <td class="center bold green"> 20$ </td>
+          </tr>
+        </table>
       </div>
-      <div class="row mt hidden">
-        <div class="center mt">
-          <img ng-src="/images/mt.jpeg" />
+      
+     <br>
+     <br>
+     <br>
+      <div class="row padding">
+        <table class="table">
+          <tr>
+            <th class="font-20" colspan="3"> أسعار الخدمات الشهرية </th>
+          </tr>
+          <tr>
+            <th> أسم الخدمة </th>
+            <th> تكلفة الخدمة شهريا </th>
+            <th> تكلفة الخدمة سنويا </th>
+          </tr>
+          <tr>
+            <td class="center bold "> تفعيل أكثر من نسخة </td>
+            <td class="center bold green"> مجانى </td>
+            <td class="center bold green"> مجانى </td>
+          </tr>
+          <tr>
+            <td class="center bold "> فرع واحد </td>
+            <td class="center bold green"> مجانى </td>
+            <td class="center bold green"> مجانى </td>
+          </tr>
+          <tr>
+            <td class="center bold "> 50 عميل  </td>
+            <td class="center bold green"> مجانى </td>
+            <td class="center bold green"> مجانى </td>
+          </tr>
+          <tr>
+            <td class="center bold "> 5 موظفين  </td>
+            <td class="center bold green"> مجانى </td>
+            <td class="center bold green"> مجانى </td>
+          </tr>
+          <tr>
+            <td class="center bold "> 50 صنف  </td>
+            <td class="center bold green"> مجانى </td>
+            <td class="center bold green"> مجانى </td>
+          </tr>
+          <tr>
+            <td class="center bold "> فرع جديد </td>
+            <td class="center bold green"> 5$ </td>
+            <td class="center bold green"> 50$ </td>
+          </tr>
+          <tr>
+            <td class="center bold "> 100 عميل أضافى</td>
+            <td class="center bold green"> 1$ </td>
+            <td class="center bold green"> 10$ </td>
+          </tr>
+          <tr>
+            <td class="center bold "> 20 موظف أضافى</td>
+            <td class="center bold green"> 1$ </td>
+            <td class="center bold green"> 10$ </td>
+          </tr>
+          <tr>
+            <td class="center bold "> 100 صنف أضافى </td>
+            <td class="center bold green"> 1$ </td>
+            <td class="center bold green"> 10$ </td>
+          </tr>
+          <tr>
+            <td class="center bold "> سيرفر أون لاين </td>
+            <td class="center bold green"> 10$ </td>
+            <td class="center bold green"> 100$ </td>
+          </tr>
+        </table>
+      </div>
+      <br />
+      <br />
+      <br />
+      <div class="footer" x-feature="!login">
+        <div class="row egypt hidden">
+          <h2 class="center">whats up <span> +201090061266 </span></h2>
+          <h2 class="center">Email <span> call.smart.code@gmail.com </span></h2>
         </div>
-        <h2 class="center">whats up <span> +201282141131 </span></h2>
-        <h2 class="center">
-          <span>
-            شركة ميدانى تكنولوجى <br />
-            الجيزة-الهرم<br />
-            رقم بريدى 12515<br />
-          </span>
-        </h2>
-      </div>
-
-      <br />
-      <br />
-      <!-- <div class="row oman hidden">
+        <div class="row mt hidden">
+          <div class="center mt">
+            <img ng-src="/images/mt.jpeg" />
+          </div>
+          <h2 class="center">whats up <span> +201282141131 </span></h2>
           <h2 class="center">
-            فرع عمان
             <span>
-              مشاريع الزوراء المتحده ش.م.م <br />
-              فرع : سيرفت للبرامج <br />
-              مسقط - السيب - المعبيله <br />
-              ص.ب 598 رمز بريدى 133
+              شركة ميدانى تكنولوجى <br />
+              الجيزة-الهرم<br />
+              رقم بريدى 12515<br />
             </span>
           </h2>
-          <h2 class="center">تليفونات عمان <span> 0096891246272 - 0096898927057 </span></h2>
-        </div> -->
+        </div>
+
+        <br />
+        <br />
+      </div>
     </div>
-  </div>
 
-  <div x-import="scripts.html"></div>
+    <div x-import="scripts.html"></div>
 
-
-
-  <script id="post-template" type="x-tmpl-mustache">
+    <script id="post-template" type="x-tmpl-mustache">
       <div class="post img__wrap" >
         <h2> {{title_##session.lang##}} </h2>
         <img src="{{image_url}}" alt="">
@@ -206,102 +349,101 @@
 
       </div>
     </script>
-  <script>
-    let busy = false;
+    <script>
+      let busy = false;
 
-    if ('##req.headers.host##'.like('*icc*')) {
-      $('.icc').removeClass('hidden');
-    } else if ('##req.headers.host##'.like('*mt*')) {
-      $('.mt').removeClass('hidden');
-    } else {
-      $('.egypt , .oman').removeClass('hidden');
-    }
-
-    function loadPosts(more) {
-      if (busy) {
-        return;
+      if ('##req.headers.host##'.like('*icc*')) {
+        $('.icc').removeClass('hidden');
+      } else if ('##req.headers.host##'.like('*mt*')) {
+        $('.mt').removeClass('hidden');
+      } else {
+        $('.egypt').removeClass('hidden');
       }
 
-      if (typeof Mustache == 'undefined') {
-        return;
+      function loadPosts(more) {
+        if (busy) {
+          return;
+        }
+
+        if (typeof Mustache == 'undefined') {
+          return;
+        }
+
+        if (busy) return;
+        busy = true;
+
+        $('.posts-loading').remove();
+        $('#posts').append('<p class="posts-loading"> <img src="/images/loading.gif"> </p>');
+
+        busy = true;
+
+        site.getData(
+          {
+            url: '/json/app_features.json',
+            method: 'POST',
+          },
+          function (res) {
+            busy = false;
+
+            var rendered = '';
+            var post_template = $('#post-template').html();
+            Mustache.parse(post_template);
+
+            for (var i = 0; i < res.length; i++) {
+              try {
+                var post = {};
+
+                if (res[i].feature == 'public') {
+                  post = res[i];
+                  rendered += Mustache.render(post_template, post);
+                } else if (res[i].feature == 'gym' && site.features.like('*gym*')) {
+                  post = res[i];
+                  rendered += Mustache.render(post_template, post);
+                } else if (res[i].feature == 'school' && site.features.like('*school*')) {
+                  post = res[i];
+                  rendered += Mustache.render(post_template, post);
+                } else if (res[i].feature == 'academy' && site.features.like('*academy*')) {
+                  post = res[i];
+                  rendered += Mustache.render(post_template, post);
+                } else if (res[i].feature == 'restaurant' && site.features.like('*restaurant*')) {
+                  post = res[i];
+                  rendered += Mustache.render(post_template, post);
+                } else if (res[i].feature == 'lawyer' && site.features.like('*lawyer*')) {
+                  post = res[i];
+                  rendered += Mustache.render(post_template, post);
+                } else if (res[i].feature == 'pos' && site.features.like('*pos*')) {
+                  post = res[i];
+                  rendered += Mustache.render(post_template, post);
+                } else if (res[i].feature == 'order') {
+                  if (site.features.like('*restaurant*') || site.features.like('*pos*')) {
+                    post = res[i];
+                    rendered += Mustache.render(post_template, post);
+                  }
+                } else if (res[i].feature == 'pos') {
+                  if (site.features.like('*erp*') || site.features.like('*gym*') || site.features.like('*restaurant*') || site.features.like('*academy*')) {
+                    post = res[i];
+                    rendered += Mustache.render(post_template, post);
+                  }
+                }
+              } catch (error) {}
+            }
+
+            $('#posts').append('<span class="line"></span><span class="line"></span><span class="line"></span>');
+            $('#posts').append(rendered);
+
+            busy = false;
+            $('.posts-loading').remove();
+          },
+        );
       }
 
-      if (busy) return;
-      busy = true;
+      loadPosts();
 
-      $('.posts-loading').remove();
-      $('#posts').append('<p class="posts-loading"> <img src="/images/loading.gif"> </p>');
+      var app = app || angular.module('myApp', []);
 
-      busy = true;
-
-      site.getData(
-        {
-          url: '/json/app_features.json',
-          method: 'POST',
-        },
-        function (res) {
-          busy = false;
-
-          var rendered = '';
-          var post_template = $('#post-template').html();
-          Mustache.parse(post_template);
-
-          for (var i = 0; i < res.length; i++) {
-            try {
-              var post = {};
-
-              if (res[i].feature == 'public') {
-                post = res[i];
-                rendered += Mustache.render(post_template, post);
-              } else if (res[i].feature == 'gym' && site.features.like('*gym*')) {
-                post = res[i];
-                rendered += Mustache.render(post_template, post);
-              } else if (res[i].feature == 'school' && site.features.like('*school*')) {
-                post = res[i];
-                rendered += Mustache.render(post_template, post);
-              } else if (res[i].feature == 'academy' && site.features.like('*academy*')) {
-                post = res[i];
-                rendered += Mustache.render(post_template, post);
-              } else if (res[i].feature == 'restaurant' && site.features.like('*restaurant*')) {
-                post = res[i];
-                rendered += Mustache.render(post_template, post);
-              } else if (res[i].feature == 'lawyer' && site.features.like('*lawyer*')) {
-                post = res[i];
-                rendered += Mustache.render(post_template, post);
-              } else if (res[i].feature == 'pos' && site.features.like('*pos*')) {
-                post = res[i];
-                rendered += Mustache.render(post_template, post);
-              } else if (res[i].feature == 'order') {
-                if (site.features.like('*restaurant*') || site.features.like('*pos*')) {
-                  post = res[i];
-                  rendered += Mustache.render(post_template, post);
-                }
-              } else if (res[i].feature == 'pos') {
-                if (site.features.like('*erp*') || site.features.like('*gym*') || site.features.like('*restaurant*') || site.features.like('*academy*')) {
-                  post = res[i];
-                  rendered += Mustache.render(post_template, post);
-                }
-              }
-            } catch (error) { }
-          }
-
-          $('#posts').append('<span class="line"></span><span class="line"></span><span class="line"></span>');
-          $('#posts').append(rendered);
-
-          busy = false;
-          $('.posts-loading').remove();
-        },
-      );
-    }
-
-    loadPosts();
-
-    var app = app || angular.module('myApp', []);
-
-    function scope() {
-      return angular.element(document.getElementById('main-layout')).scope();
-    }
-  </script>
-</body>
-
+      function scope() {
+        return angular.element(document.getElementById('main-layout')).scope();
+      }
+    </script>
+  </body>
 </html>
