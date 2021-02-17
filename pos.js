@@ -13,10 +13,7 @@ const site = require('isite')({
     limit: 100000,
   },
   security: {
-    admin: {
-      email: 'pos',
-      password: 'P@$$w0rd',
-    },
+    keys: ['e698f2679be5ba5c9c0b0031cb5b057c' , '9705a3a85c1b21118532fefcee840f99'],
   },
 });
 
@@ -79,8 +76,10 @@ setTimeout(() => {
   site.ready = true;
 }, 1000 * 2);
 
-
 site.run();
+
+console.log(site.md5('@admin'));
+console.log(site.md5('@admin@P@$$W)RD'));
 
 // site.on('zk attend', attend=>{
 //     console.log(attend)
