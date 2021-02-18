@@ -1,22 +1,22 @@
 <style>
-    .tab-link img {
-        width: 32px;
-        height: 32px;
-        padding: 1px;
-        background: #fff;
-        border-radius: 25px;
-        margin: 0px;
-    }
+  .tab-link img {
+    width: 32px;
+    height: 32px;
+    padding: 1px;
+    background: #fff;
+    border-radius: 25px;
+    margin: 0px;
+  }
 
-    .tab-link span {
-        padding-right: 50px;
-        padding-left: 50px;
-        vertical-align: super;
-    }
+  .tab-link span {
+    padding-right: 50px;
+    padding-left: 50px;
+    vertical-align: super;
+  }
 </style>
 
 <div class="main-menu">
-    <!-- <div class="tabs" ng-show="'##user.type##' == 'customer'">
+  <!-- <div class="tabs" ng-show="'##user.type##' == 'customer'">
 
         <a class="tab-link" href="/customers" x-permissions="customers_ui || customers_manage">
             <img src="/images/customer.png">
@@ -34,1582 +34,1374 @@
         </a>
     </div> -->
 
-
-
-    <div id="security_tabs" class="tabs">
-
+    <div id="company_tabs" class="tabs">
         <div class="tabs-header">
-            <a class="tab-link" href="/notifications" x-permissions="nationalities_ui || nationalities_manage">
-                <img src="/images/monitor.png">
-                <span> ##word.menu_monitor## </span>
+          <div class="" x-features="medical">
+            <a class="tab-link" href="/patients_tickets" x-permissions="patients_tickets_ui || patients_tickets_manage">
+              <img src="/images/patients_tickets.png" />
+              <span> ##word.patients_tickets## </span>
             </a>
-
-            <a class="tab-link" href="/security/users">
-                <img src="/images/users.png">
-                <span> ##word.menu_users## </span>
+    
+            <a class="tab-link" href="/doctors_visits" x-permissions="doctors_visits_ui || doctors_visits_manage">
+              <img src="/images/doctors_visits.png" />
+              <span> ##word.doctors_visits## </span>
             </a>
-
-            <a class="tab-link" href="/companies" x-permissions="admin">
-                <img src="/images/company.png">
-                <span> ##word.menu_company## </span>
+    
+            <a class="tab-link" href="/analysis_requests" x-permissions="analysis_requests_ui || analysis_requests_manage">
+              <img src="/images/analysis_requests.png" />
+              <span> ##word.analysis_requests## </span>
             </a>
-
-            <a class="tab-link" onclick="site.showTabs(event, '#main_tabs')">
-                <img src="/images/back_icon.png">
-                <span> ##word.main_menu##</span>
+    
+            <a class="tab-link" href="/scans_requests" x-permissions="scans_requests_ui || scans_requests_manage">
+              <img src="/images/scans_requests.png" />
+              <span> ##word.scans_requests## </span>
             </a>
+          </div>
+    
+          <div class="" x-features="lawyer">
+            <a class="tab-link" href="/oppenents" x-permissions="oppenents_ui || oppenents_manage">
+              <img src="/images/oppenents.png" />
+              <span> ##word.oppenents##</span>
+            </a>
+    
+            <a class="tab-link" href="/oppenents_lawyers" x-permissions="oppenents_lawyers_ui || oppenents_lawyers_manage">
+              <img src="/images/oppenents_lawyers.png" />
+              <span> ##word.oppenents_lawyers##</span>
+            </a>
+    
+            <a class="tab-link" href="/office_lawyers" x-permissions="office_lawyers_ui || office_lawyers_manage">
+              <img src="/images/office_lawyers.png" />
+              <span> ##word.office_lawyers##</span>
+            </a>
+    
+            <a class="tab-link" href="/administrative_business" x-permissions="administrative_business_ui || administrative_business_manage">
+              <img src="/images/administrative_business.png" />
+              <span> ##word.administrative_business##</span>
+            </a>
+    
+            <a class="tab-link" href="/rogatory_add" x-permissions="rogatory_add_ui || rogatory_add_manage">
+              <img src="/images/rogatory_add.png" />
+              <span> ##word.rogatory_add##</span>
+            </a>
+    
+            <a class="tab-link" href="/lawsuit_add" x-permissions="lawsuit_add_ui || lawsuit_add_manage">
+              <img src="/images/lawsuit_add.png" />
+              <span> ##word.lawsuit_add##</span>
+            </a>
+    
+            <a class="tab-link" href="/session_add" x-permissions="session_add_ui || session_add_manage">
+              <img src="/images/session_add.png" />
+              <span> ##word.session_add##</span>
+            </a>
+          </div>
+    
+          <div class="" x-features="gym">
+            <a class="tab-link" href="/request_service" x-permissions="request_service_ui || request_service_manage">
+              <img src="/images/request_service.png" />
+              <span> ##word.request_service_management##</span>
+            </a>
+    
+            <a class="tab-link" href="/attend_subscribers" x-permissions="attend_subscribers_ui || attend_subscribers_manage">
+              <img src="/images/attend_subscribers.png" />
+              <span> ##word.attend_subscribers##</span>
+            </a>
+    
+            <a class="tab-link" href="/attend_session" x-permissions="attend_session_ui || attend_session_manage">
+              <img src="/images/attend_session.png" />
+              <span> ##word.attend_session##</span>
+            </a>
+    
+            <a class="tab-link" href="/report_info" x-permissions="report_info_ui || report_info_manage">
+              <img src="/images/customer_info.png" />
+              <span>##word.report_info_name##</span>
+            </a>
+          </div>
+    
+          <div class="" x-features="school">
+            <a class="tab-link" href="/attend_students" x-permissions="attend_students_ui || attend_students_manage">
+              <img src="/images/attend_students.png" />
+              <span> ##word.attend_students##</span>
+            </a>
+    
+            <a class="tab-link" href="/exams" x-permissions="exams_ui || exams_manage">
+              <img src="/images/exams.png" />
+              <span> ##word.exams##</span>
+            </a>
+    
+            <a class="tab-link" href="/seating_numbers" x-permissions="seating_numbers_ui || seating_numbers_manage">
+              <img src="/images/seating_numbers.png" />
+              <span> ##word.seating_numbers##</span>
+            </a>
+          </div>
+    
+          <div class="" x-features="academy">
+            <a class="tab-link" href="/book_hall" x-permissions="book_hall_ui || book_hall_manage">
+              <img src="images/book_hall.png" />
+              <span> ##word.book_hall##</span>
+            </a>
+    
+            <a class="tab-link" href="/book_course" x-permissions="book_course_ui || book_course_manage">
+              <img src="images/book_course.png" />
+              <span> ##word.book_course##</span>
+            </a>
+    
+            <a class="tab-link" href="/hosting" x-permissions="hosting_ui || hosting_manage">
+              <img src="images/hosting.png" />
+              <span> ##word.hosting##</span>
+            </a>
+    
+            <a class="tab-link" href="/account_course" x-permissions="account_course_ui || account_course_manage">
+              <img src="images/account_course.png" />
+              <span> ##word.account_course##</span>
+            </a>
+    
+            <a class="tab-link" href="/create_course" x-permissions="create_course_ui || create_course_manage">
+              <img src="images/create_course.png" />
+              <span> ##word.create_course##</span>
+            </a>
+          </div>
+    
+          <div x-features="restaurant || pos || erp || gym || academy || school">
 
+            <a class="tab-link" href="/stores_out?type=3" x-permissions="stores_out_ui || stores_out_manage">
+                <img src="/images/sales_invoice_store.png" />
+                <span>##word.sales_invoice_store##</span>
+              </a>
+
+            <a class="tab-link" href="/stores_in?type=1" x-permissions="stores_in_ui || stores_in_manage">
+              <img src="/images/purchases_invoice.png" />
+              <span>##word.stores_ins## </span>
+            </a>
+    
+            <a class="tab-link" href="/stores_out?type=6" x-permissions="stores_out_ui || stores_out_manage">
+                <img src="/images/return_sales_invoice.png" />
+                <span>##word.return_sales_invoice##</span>
+              </a>
+    
+            <a class="tab-link" href="/stores_in?type=4" x-permissions="stores_in_ui || stores_in_manage">
+              <img src="/images/return_purchase_invoice.png" />
+              <span>##word.returns_purchase_invoices## </span>
+            </a>
+    
+          
+    
+            <a class="tab-link" href="/transfer_branch" x-permissions="transfer_branch_ui || transfer_branch_manage">
+              <img src="/images/transfer_branch.png" />
+              <span>##word.system_transfer_items_menus##</span>
+            </a>
+    
+            <a class="tab-link" href="/stores_assemble" x-permissions="stores_assemble_ui || stores_assemble_manage">
+              <img src="/images/store_assemble.png" />
+              <span>##word.stores_assemble##</span>
+            </a>
+    
+            <a class="tab-link" href="/stores_dismantle" x-permissions="stores_dismantle_ui || stores_dismantle_manage">
+              <img src="/images/store_dismantle.png" />
+              <span>##word.stores_dismantle##</span>
+            </a>
+    
+            <a class="tab-link" href="/units_switch" x-permissions="units_switch_ui || units_switch_manage">
+              <img src="/images/units_switch.png" />
+              <span>##word.units_switch##</span>
+            </a>
+    
+            <a class="tab-link" href="/stores_stock" x-permissions="stores_stock_ui || stores_stock_manage">
+              <img src="/images/store_stock.png" />
+              <span>##word.store_stock_menu##</span>
+            </a>
+          </div>
+    
+          <div class="" x-features="restaurant || pos || erp">
+            <a class="tab-link" href="/order_invoice" x-permissions="order_invoice_ui || order_invoice_manage">
+              <img src="/images/order_invoice.png" />
+              <span> ##word.order_invoice_menus## </span>
+            </a>
+    
+            <a class="tab-link" href="/order_management" x-permissions="order_management_ui || order_management_manage">
+              <img src="/images/order_management.png" />
+              <span> ##word.order_management_menus## </span>
+            </a>
+    
+            <a class="tab-link" href="/order_customer" x-permissions="order_customer_ui || order_customer_manage">
+              <img src="/images/order_customer.png" />
+              <span> ##word.order_customer_menus## </span>
+            </a>
+    
+            <a class="tab-link" href="/order_distributor" x-permissions="order_distributor_ui || order_distributor_manage">
+              <img src="/images/order_distributor.png" />
+              <span>##word.order_distributor_menus## </span>
+            </a>
+    
+            <a x-features="pos || erp" class="tab-link" href="/itineraries" x-permissions="itineraries_ui || itineraries_manage">
+              <img src="/images/itinerary.png" />
+              <span> ##word.itineraries## </span>
+            </a>
+          </div>
+    
+          <div class="" x-features="restaurant">
+            <a class="tab-link" href="/order_kitchen" x-permissions="order_kitchen_ui || order_kitchen_manage">
+              <img src="/images/order_kitchen.png" />
+              <span>##word.order_kitchen_management##</span>
+            </a>
+          </div>
+    
+          <a class="tab-link" onclick="site.showTabs(event, '#main_tabs')">
+            <img src="/images/back_icon.png" />
+            <span> ##word.main_menu##</span>
+          </a>
         </div>
+      </div>
+
+  <div id="security_tabs" class="tabs">
+    <div class="tabs-header">
+      <a class="tab-link" href="/notifications" x-permissions="nationalities_ui || nationalities_manage">
+        <img src="/images/monitor.png" />
+        <span> ##word.menu_monitor## </span>
+      </a>
+
+      <a class="tab-link" href="/security/users">
+        <img src="/images/users.png" />
+        <span> ##word.menu_users## </span>
+      </a>
+
+      <a class="tab-link" href="/companies" x-permissions="admin">
+        <img src="/images/company.png" />
+        <span> ##word.menu_company## </span>
+      </a>
+
+      <a class="tab-link" onclick="site.showTabs(event, '#main_tabs')">
+        <img src="/images/back_icon.png" />
+        <span> ##word.main_menu##</span>
+      </a>
     </div>
+  </div>
 
-    <div id="general_tabs" class="tabs">
-        <div class="tabs-header">
-            <a x-features="restaurant || pos || academy || gym || erp || school || medical" class="tab-link"
-                href="/default_setting" x-permissions="default_setting_ui || default_setting_manage">
-                <img src="/images/default_setting.png">
-                <span>##word.default_setting_menus## </span>
-            </a>
+  <div id="general_tabs" class="tabs">
+    <div class="tabs-header">
+      <a x-features="restaurant || pos || academy || gym || erp || school || medical" class="tab-link" href="/default_setting" x-permissions="default_setting_ui || default_setting_manage">
+        <img src="/images/default_setting.png" />
+        <span>##word.default_setting_menus## </span>
+      </a>
 
-            <a class="tab-link" href="/numbering" x-permissions="numbering_ui || numbering_manage">
-                <img src="/images/numbering.png">
-                <span> ##word.numbering_screen## </span>
-            </a>
+      <a class="tab-link" href="/numbering" x-permissions="numbering_ui || numbering_manage">
+        <img src="/images/numbering.png" />
+        <span> ##word.numbering_screen## </span>
+      </a>
 
-            <a x-features="restaurant || pos || academy || gym || erp || school" class="tab-link" href="/shifts"
-                x-permissions="shifts_ui || shifts_manage">
-                <img src="/images/shift.png">
-                <span> ##word.menu_shift## </span>
-            </a>
+      <a x-features="restaurant || pos || academy || gym || erp || school" class="tab-link" href="/shifts" x-permissions="shifts_ui || shifts_manage">
+        <img src="/images/shift.png" />
+        <span> ##word.menu_shift## </span>
+      </a>
 
-            <a class="tab-link" href="/printers_path" x-permissions="printers_path_ui || printers_path_manage">
-                <img src="/images/printer_path.png">
-                <span> ##word.printers_path## </span>
-            </a>
+      <a class="tab-link" href="/printers_path" x-permissions="printers_path_ui || printers_path_manage">
+        <img src="/images/printer_path.png" />
+        <span> ##word.printers_path## </span>
+      </a>
 
+      <div class="" x-features="lawyer">
+        <a class="tab-link" href="/courts" x-permissions="courts_ui || courts_manage">
+          <img src="images/court.png" />
+          <span>##word.courts## </span>
+        </a>
 
-            <div class="" x-features="lawyer">
+        <a class="tab-link" href="/circles" x-permissions="circles_ui || circles_manage">
+          <img src="images/circle.png" />
+          <span>##word.circles## </span>
+        </a>
 
-                <a class="tab-link" href="/courts" x-permissions="courts_ui || courts_manage">
-                    <img src="images/court.png">
-                    <span>##word.courts## </span>
-                </a>
+        <a class="tab-link" href="/adjectives" x-permissions="adjectives_ui || adjectives_manage">
+          <img src="images/adjectives.png" />
+          <span>##word.adjectives## </span>
+        </a>
 
-                <a class="tab-link" href="/circles" x-permissions="circles_ui || circles_manage">
-                    <img src="images/circle.png">
-                    <span>##word.circles## </span>
-                </a>
+        <a class="tab-link" href="/reasons_sessions" x-permissions="reasons_sessions_ui || reasons_sessions_manage">
+          <img src="images/reasons_sessions.png" />
+          <span>##word.reasons_sessions## </span>
+        </a>
 
-                <a class="tab-link" href="/adjectives" x-permissions="adjectives_ui || adjectives_manage">
-                    <img src="images/adjectives.png">
-                    <span>##word.adjectives## </span>
-                </a>
+        <a class="tab-link" href="/request_types" x-permissions="request_types_ui || request_types_manage">
+          <img src="images/request_types.png" />
+          <span>##word.request_types## </span>
+        </a>
 
-                <a class="tab-link" href="/reasons_sessions"
-                    x-permissions="reasons_sessions_ui || reasons_sessions_manage">
-                    <img src="images/reasons_sessions.png">
-                    <span>##word.reasons_sessions## </span>
-                </a>
+        <a class="tab-link" href="/rogatory_types" x-permissions="rogatory_add_ui || rogatory_add_manage">
+          <img src="images/rogatory_types.png" />
+          <span>##word.rogatory_types## </span>
+        </a>
 
-                <a class="tab-link" href="/request_types" x-permissions="request_types_ui || request_types_manage">
-                    <img src="images/request_types.png">
-                    <span>##word.request_types## </span>
-                </a>
+        <a class="tab-link" href="/rogatory_places" x-permissions="rogatory_places_ui || rogatory_places_manage">
+          <img src="images/rogatory_places.png" />
+          <span>##word.rogatory_places## </span>
+        </a>
 
-                <a class="tab-link" href="/rogatory_types" x-permissions="rogatory_add_ui || rogatory_add_manage">
-                    <img src="images/rogatory_types.png">
-                    <span>##word.rogatory_types## </span>
-                </a>
+        <a class="tab-link" href="/lawsuit_status" x-permissions="lawsuit_status_ui || lawsuit_status_manage">
+          <img src="images/lawsuit_status.png" />
+          <span>##word.lawsuit_status## </span>
+        </a>
 
-                <a class="tab-link" href="/rogatory_places"
-                    x-permissions="rogatory_places_ui || rogatory_places_manage">
-                    <img src="images/rogatory_places.png">
-                    <span>##word.rogatory_places## </span>
-                </a>
+        <a class="tab-link" href="/lawsuit_types" x-permissions="lawsuit_types_ui || lawsuit_types_manage">
+          <img src="images/lawsuit_types.png" />
+          <span>##word.lawsuit_types## </span>
+        </a>
 
-                <a class="tab-link" href="/lawsuit_status" x-permissions="lawsuit_status_ui || lawsuit_status_manage">
-                    <img src="images/lawsuit_status.png">
-                    <span>##word.lawsuit_status## </span>
-                </a>
+        <a class="tab-link" href="/lawsuit_degrees" x-permissions="lawsuit_degrees_ui || lawsuit_degrees_manage">
+          <img src="images/lawsuit_degrees.png" />
+          <span>##word.lawsuit_degrees## </span>
+        </a>
+      </div>
 
-                <a class="tab-link" href="/lawsuit_types" x-permissions="lawsuit_types_ui || lawsuit_types_manage">
-                    <img src="images/lawsuit_types.png">
-                    <span>##word.lawsuit_types## </span>
-                </a>
+      <a class="tab-link" href="/goves" x-permissions="goves_ui || goves_manage">
+        <img src="/images/gov.png" />
+        <span> ##word.menu_goves## </span>
+      </a>
 
-                <a class="tab-link" href="/lawsuit_degrees"
-                    x-permissions="lawsuit_degrees_ui || lawsuit_degrees_manage">
-                    <img src="images/lawsuit_degrees.png">
-                    <span>##word.lawsuit_degrees## </span>
-                </a>
+      <a class="tab-link" href="/city" x-permissions="city_ui || city_manage">
+        <img src="/images/city.png" />
+        <span> ##word.menu_city## </span>
+      </a>
 
+      <a class="tab-link" href="/area" x-permissions="area_ui || area_manage">
+        <img src="/images/area.png" />
+        <span> ##word.menu_area## </span>
+      </a>
 
-            </div>
+      <div class="" x-features="school">
+        <a class="tab-link" href="/students_years" x-permissions="students_years_ui || students_years_manage">
+          <img src="/images/students_years.png" />
+          <span> ##word.students_years##</span>
+        </a>
 
+        <a class="tab-link" href="/subjects" x-permissions="subjects_ui || subjects_manage">
+          <img src="/images/subjects.png" />
+          <span> ##word.subjects##</span>
+        </a>
 
-            <a class="tab-link" href="/goves" x-permissions="goves_ui || goves_manage">
-                <img src="/images/gov.png">
-                <span> ##word.menu_goves## </span>
-            </a>
-
-            <a class="tab-link" href="/city" x-permissions="city_ui || city_manage">
-                <img src="/images/city.png">
-                <span> ##word.menu_city## </span>
-            </a>
-
-            <a class="tab-link" href="/area" x-permissions="area_ui || area_manage">
-                <img src="/images/area.png">
-                <span> ##word.menu_area## </span>
-            </a>
-
-
-
-
-            <div class="" x-features="school">
-                <a class="tab-link" href="/students_years" x-permissions="students_years_ui || students_years_manage">
-                    <img src="/images/students_years.png">
-                    <span> ##word.students_years##</span>
-                </a>
-
-                <a class="tab-link" href="/subjects" x-permissions="subjects_ui || subjects_manage">
-                    <img src="/images/subjects.png">
-                    <span> ##word.subjects##</span>
-                </a>
-
-                <!-- <a class="tab-link" href="/school_years" x-permissions="school_years_ui || school_years_manage">
+        <!-- <a class="tab-link" href="/school_years" x-permissions="school_years_ui || school_years_manage">
                     <img src="/images/school_years.png">
                     <span> ##word.school_years##</span>
                 </a> -->
 
-                <a class="tab-link" href="/school_grades" x-permissions="school_grades_ui || school_grades_manage">
-                    <img src="/images/school_grades.png">
-                    <span> ##word.school_grades##</span>
-                </a>
+        <a class="tab-link" href="/school_grades" x-permissions="school_grades_ui || school_grades_manage">
+          <img src="/images/school_grades.png" />
+          <span> ##word.school_grades##</span>
+        </a>
+      </div>
 
-            </div>
+      <a class="tab-link" x-features="academy || gym" href="/service" x-permissions="service_ui || service_manage">
+        <img src="/images/service.png" />
+        <span> ##word.service_management##</span>
+      </a>
 
-            <a class="tab-link" x-features="academy || gym" href="/service"
-                x-permissions="service_ui || service_manage">
-                <img src="/images/service.png">
-                <span> ##word.service_management##</span>
-            </a>
+      <a class="tab-link" href="/hall" x-features="gym || academy || school" x-permissions="hall_ui || hall_manage">
+        <img src="/images/hall.png" />
+        <span> ##word.halls##</span>
+      </a>
 
-            <a class="tab-link" href="/hall" x-features="gym || academy || school"
-                x-permissions="hall_ui || hall_manage">
-                <img src="/images/hall.png">
-                <span> ##word.halls##</span>
-            </a>
+      <div x-features="medical">
+        <a class="tab-link" href="/scans" x-permissions="scans_ui || scans_manage">
+          <img src="/images/scans.png" />
+          <span> ##word.scans##</span>
+        </a>
 
-            <div x-features="medical">
+        <a class="tab-link" href="/analysis" x-permissions="analysis_ui || analysis_manage">
+          <img src="/images/analysis.png" />
+          <span> ##word.analysis##</span>
+        </a>
 
-                <a class="tab-link" href="/scans" x-permissions="scans_ui || scans_manage">
-                    <img src="/images/scans.png">
-                    <span> ##word.scans##</span>
-                </a>
+        <a class="tab-link" href="/medical_specialties" x-permissions="specialties_ui || specialties_manage">
+          <img src="/images/medical_specialty.png" />
+          <span> ##word.medical_specialties##</span>
+        </a>
 
-                <a class="tab-link" href="/analysis" x-permissions="analysis_ui || analysis_manage">
-                    <img src="/images/analysis.png">
-                    <span> ##word.analysis##</span>
-                </a>
+        <a class="tab-link" href="/operation" x-permissions="operation_ui || operation_manage">
+          <img src="/images/operation.png" />
+          <span> ##word.operations##</span>
+        </a>
 
-                <a class="tab-link" href="/medical_specialties" x-permissions="specialties_ui || specialties_manage">
-                    <img src="/images/medical_specialty.png">
-                    <span> ##word.medical_specialties##</span>
-                </a>
+        <a class="tab-link" href="/prices_codes" x-permissions="prices_codes_ui || prices_codes_manage">
+          <img src="/images/prices_codes.png" />
+          <span> ##word.prices_codes##</span>
+        </a>
+      </div>
 
-                <a class="tab-link" href="/operation" x-permissions="operation_ui || operation_manage">
-                    <img src="/images/operation.png">
-                    <span> ##word.operations##</span>
-                </a>
+      <a x-features="academy || gym || school || medical" class="tab-link" href="/medicine" x-permissions="medicine_ui || medicine_manage">
+        <img src="/images/medicine.png" />
+        <span> ##word.medicines##</span>
+      </a>
 
-                <a class="tab-link" href="/prices_codes" x-permissions="prices_codes_ui || prices_codes_manage">
-                    <img src="/images/prices_codes.png">
-                    <span> ##word.prices_codes##</span>
-                </a>
+      <a x-features="academy || gym || school || medical" class="tab-link" href="/disease" x-permissions="disease_ui || disease_manage">
+        <img src="/images/disease.png" />
+        <span> ##word.diseases##</span>
+      </a>
 
-            </div>
+      <a x-features="academy || gym || school || medical" class="tab-link" href="/foods" x-permissions="foods_ui || foods_manage">
+        <img src="/images/foods.png" />
+        <span> ##word.foods##</span>
+      </a>
 
+      <a x-features="academy || gym || school || medical" class="tab-link" href="/drinks" x-permissions="drinks_ui || drinks_manage">
+        <img src="/images/drinks.png" />
+        <span> ##word.drinks##</span>
+      </a>
 
-            <a x-features="academy || gym || school || medical" class="tab-link" href="/medicine"
-                x-permissions="medicine_ui || medicine_manage">
-                <img src="/images/medicine.png">
-                <span> ##word.medicines##</span>
-            </a>
+      <a x-features="restaurant" class="tab-link" href="/tables_group" x-permissions="tables_group_ui || tables_group_manage">
+        <img src="/images/tables_group.png" />
+        <span>##word.tables_group##</span>
+      </a>
 
-            <a x-features="academy || gym || school || medical" class="tab-link" href="/disease"
-                x-permissions="disease_ui || disease_manage">
-                <img src="/images/disease.png">
-                <span> ##word.diseases##</span>
-            </a>
+      <a x-features="restaurant" class="tab-link" href="/tables" x-permissions="tables_ui || tables_manage">
+        <img src="/images/tables.png" />
+        <span>##word.tables##</span>
+      </a>
 
-            <a x-features="academy || gym || school || medical" class="tab-link" href="/foods"
-                x-permissions="foods_ui || foods_manage">
-                <img src="/images/foods.png">
-                <span> ##word.foods##</span>
-            </a>
+      <a x-features="restaurant" class="tab-link" href="/kitchen" x-permissions="kitchen_ui || kitchen_manage">
+        <img src="/images/kitchen.png" />
+        <span>##word.kitchens##</span>
+      </a>
 
-            <a x-features="academy || gym || school || medical" class="tab-link" href="/drinks"
-                x-permissions="drinks_ui || drinks_manage">
-                <img src="/images/drinks.png">
-                <span> ##word.drinks##</span>
-            </a>
+      <a class="tab-link" href="/militaries_status" x-permissions="militaries_status_ui || militaries_status_manage">
+        <img src="images/military.png" />
+        <span>##word.system_military_menus## </span>
+      </a>
 
-            <a x-features="restaurant" class="tab-link" href="/tables_group"
-                x-permissions="tables_group_ui || tables_group_manage">
-                <img src="/images/tables_group.png">
-                <span>##word.tables_group##</span>
-            </a>
+      <a class="tab-link" href="/maritals_status" x-permissions="maritals_status_ui || maritals_status_manage">
+        <img src="images/marital.png" />
+        <span>##word.system_social_status_menus## </span>
+      </a>
 
-            <a x-features="restaurant" class="tab-link" href="/tables" x-permissions="tables_ui || tables_manage">
-                <img src="/images/tables.png">
-                <span>##word.tables##</span>
-            </a>
+      <a class="tab-link" href="/reset" x-permissions="reset_ui || reset_manage">
+        <img src="/images/reset.png" />
+        <span> ##word.reset## </span>
+      </a>
 
-            <a x-features="restaurant" class="tab-link" href="/kitchen" x-permissions="kitchen_ui || kitchen_manage">
-                <img src="/images/kitchen.png">
-                <span>##word.kitchens##</span>
-            </a>
-
-            <a class="tab-link" href="/militaries_status"
-                x-permissions="militaries_status_ui || militaries_status_manage">
-                <img src="images/military.png">
-                <span>##word.system_military_menus## </span>
-            </a>
-
-            <a class="tab-link" href="/maritals_status" x-permissions="maritals_status_ui || maritals_status_manage">
-                <img src="images/marital.png">
-                <span>##word.system_social_status_menus## </span>
-            </a>
-
-            <a class="tab-link" href="/reset" x-permissions="reset_ui || reset_manage">
-                <img src="/images/reset.png">
-                <span> ##word.reset## </span>
-            </a>
-
-            <a class="tab-link" onclick="site.showTabs(event, '#main_tabs')">
-                <img src="/images/back_icon.png">
-                <span> ##word.main_menu##</span>
-            </a>
-
-        </div>
+      <a class="tab-link" onclick="site.showTabs(event, '#main_tabs')">
+        <img src="/images/back_icon.png" />
+        <span> ##word.main_menu##</span>
+      </a>
     </div>
+  </div>
 
-    <div id="accounting_tabs" class="tabs">
-        <div class="tabs-header">
+  <div id="accounting_tabs" class="tabs">
+    <div class="tabs-header">
+      <a class="tab-link" x-features="medical" href="/account_invoices?type=15" x-permissions="account_invoices_ui || account_invoices_manage">
+        <img src="/images/patients_tickets.png" />
+        <span>##word.patients_tickets## </span>
+      </a>
 
-            <a class="tab-link" x-features="medical" href="/account_invoices?type=15"
-                x-permissions="account_invoices_ui || account_invoices_manage">
-                <img src="/images/patients_tickets.png">
-                <span>##word.patients_tickets## </span>
-            </a>
+      <a class="tab-link" x-features="school" href="/account_invoices?type=13" x-permissions="account_invoices_ui || account_invoices_manage">
+        <img src="/images/school_fees.png" />
+        <span>##word.school_fees## </span>
+      </a>
 
-            <a class="tab-link" x-features="school" href="/account_invoices?type=13"
-                x-permissions="account_invoices_ui || account_invoices_manage">
-                <img src="/images/school_fees.png">
-                <span>##word.school_fees## </span>
-            </a>
+      <a class="tab-link" x-features="gym" href="/account_invoices?type=4" x-permissions="account_invoices_ui || account_invoices_manage">
+        <img src="/images/order_invoice.png" />
+        <span>##word.orders_service_invoice## </span>
+      </a>
 
-            <a class="tab-link" x-features="gym" href="/account_invoices?type=4"
-                x-permissions="account_invoices_ui || account_invoices_manage">
-                <img src="/images/order_invoice.png">
-                <span>##word.orders_service_invoice## </span>
-            </a>
+      <a class="tab-link" href="/account_invoices?type=1" x-permissions="account_invoices_ui || account_invoices_manage">
+        <img src="/images/pic_money_in.png" />
+        <span>##word.purchase_invoice## </span>
+      </a>
 
-            <a class="tab-link" href="/account_invoices?type=1"
-                x-permissions="account_invoices_ui || account_invoices_manage">
-                <img src="/images/pic_money_in.png">
-                <span>##word.purchase_invoice## </span>
-            </a>
+      <a class="tab-link" href="/account_invoices?type=2" x-permissions="account_invoices_ui || account_invoices_manage">
+        <img src="/images/store_out.png" />
+        <span>##word.sales_invoice## </span>
+      </a>
 
-            <a class="tab-link" href="/account_invoices?type=2"
-                x-permissions="account_invoices_ui || account_invoices_manage">
-                <img src="/images/store_out.png">
-                <span>##word.sales_invoice## </span>
-            </a>
+      <a class="tab-link" x-features="pos || restaurant || erp" href="/account_invoices?type=3" x-permissions="account_invoices_ui || account_invoices_manage">
+        <img src="/images/order_invoice.png" />
+        <span>##word.orders_screen_invoice## </span>
+      </a>
 
-            <a class="tab-link" x-features="pos || restaurant || erp" href="/account_invoices?type=3"
-                x-permissions="account_invoices_ui || account_invoices_manage">
-                <img src="/images/order_invoice.png">
-                <span>##word.orders_screen_invoice## </span>
-            </a>
+      <a class="tab-link" href="/account_invoices?type=8" x-permissions="account_invoices_ui || account_invoices_manage">
+        <img src="/images/amount_in.png" />
+        <span>##word.amount_in_invoice## </span>
+      </a>
 
-            <a class="tab-link" href="/account_invoices?type=8"
-                x-permissions="account_invoices_ui || account_invoices_manage">
-                <img src="/images/amount_in.png">
-                <span>##word.amount_in_invoice## </span>
-            </a>
+      <a class="tab-link" href="/account_invoices?type=9" x-permissions="account_invoices_ui || account_invoices_manage">
+        <img src="/images/amount_out1.png" />
+        <span>##word.amount_out_invoice## </span>
+      </a>
 
-            <a class="tab-link" href="/account_invoices?type=9"
-                x-permissions="account_invoices_ui || account_invoices_manage">
-                <img src="/images/amount_out1.png">
-                <span>##word.amount_out_invoice## </span>
-            </a>
+      <a class="tab-link" href="/transfer_safes" x-permissions="transfer_safes_ui || transfer_safes_manage">
+        <img src="/images/transfer_safes.png" />
+        <span>##word.transfer_safes_balances## </span>
+      </a>
 
-            <a class="tab-link" href="/transfer_safes" x-permissions="transfer_safes_ui || transfer_safes_manage">
-                <img src="/images/transfer_safes.png">
-                <span>##word.transfer_safes_balances## </span>
-            </a>
+      <a class="tab-link" href="/account_invoices?type=10" x-permissions="account_invoices_ui || account_invoices_manage">
+        <img src="/images/recharge_customer_balance.png" />
+        <span>##word.recharge_customer_balance## </span>
+      </a>
 
-            <a class="tab-link" href="/account_invoices?type=10"
-                x-permissions="account_invoices_ui || account_invoices_manage">
-                <img src="/images/recharge_customer_balance.png">
-                <span>##word.recharge_customer_balance## </span>
-            </a>
+      <a class="tab-link" href="/account_invoices?type=11" x-permissions="account_invoices_ui || account_invoices_manage">
+        <img src="/images/emp_advances1.png" />
+        <span>##word.employee_advance## </span>
+      </a>
 
-            <a class="tab-link" href="/account_invoices?type=11"
-                x-permissions="account_invoices_ui || account_invoices_manage">
-                <img src="/images/emp_advances1.png">
-                <span>##word.employee_advance## </span>
-            </a>
+      <a class="tab-link" href="/account_invoices?type=12" x-permissions="account_invoices_ui || account_invoices_manage">
+        <img src="/images/emp_advances2.png" />
+        <span>##word.payment_employee_advance## </span>
+      </a>
 
-            <a class="tab-link" href="/account_invoices?type=12"
-                x-permissions="account_invoices_ui || account_invoices_manage">
-                <img src="/images/emp_advances2.png">
-                <span>##word.payment_employee_advance## </span>
-            </a>
+      <a class="tab-link" x-features="erp" href="/journal_entries" x-permissions="journal_entries_ui || journal_entries_manage">
+        <img src="/images/journal_entries.png" />
+        <span> ##word.journal_entries## </span>
+      </a>
 
-            <a class="tab-link" x-features="erp" href="/journal_entries"
-                x-permissions="journal_entries_ui || journal_entries_manage">
-                <img src="/images/journal_entries.png">
-                <span> ##word.journal_entries## </span>
-            </a>
+      <a class="tab-link" x-features="erp" href="/financial_years" x-permissions="financial_years_ui || financial_years_manage">
+        <img src="/images/financial_years.png" />
+        <span> ##word.financial_years## </span>
+      </a>
 
-            <a class="tab-link" x-features="erp" href="/financial_years"
-                x-permissions="financial_years_ui || financial_years_manage">
-                <img src="/images/financial_years.png">
-                <span> ##word.financial_years## </span>
-            </a>
+      <a class="tab-link" x-features="erp" href="/accounting_guide_accounts" x-permissions="accounting_guide_accounts_ui || accounting_guide_accounts_manage">
+        <img src="/images/accounting_guide_accounts.png" />
+        <span> ##word.accounting_guide_accounts## </span>
+      </a>
 
-            <a class="tab-link" x-features="erp" href="/accounting_guide_accounts"
-                x-permissions="accounting_guide_accounts_ui || accounting_guide_accounts_manage">
-                <img src="/images/accounting_guide_accounts.png">
-                <span> ##word.accounting_guide_accounts## </span>
-            </a>
+      <a class="tab-link" x-features="erp" href="/accounting_cost_centers" x-permissions="accounting_cost_centers_ui || accounting_cost_centers_manage">
+        <img src="/images/accounting_cost_centers.png" />
+        <span> ##word.accounting_cost_centers## </span>
+      </a>
 
-            <a class="tab-link" x-features="erp" href="/accounting_cost_centers"
-                x-permissions="accounting_cost_centers_ui || accounting_cost_centers_manage">
-                <img src="/images/accounting_cost_centers.png">
-                <span> ##word.accounting_cost_centers## </span>
-            </a>
+      <a class="tab-link" x-features="erp" href="/accounting_guide_budget" x-permissions="accounting_guide_budget_ui || accounting_guide_budget_manage">
+        <img src="/images/accounting_guide_budget.png" />
+        <span> ##word.guide_categories_accounting_guide_budget## </span>
+      </a>
 
-            <a class="tab-link" x-features="erp" href="/accounting_guide_budget"
-                x-permissions="accounting_guide_budget_ui || accounting_guide_budget_manage">
-                <img src="/images/accounting_guide_budget.png">
-                <span> ##word.guide_categories_accounting_guide_budget## </span>
-            </a>
+      <a class="tab-link" x-features="erp" href="/accounting_guide_income_list" x-permissions="accounting_guide_income_list_ui || accounting_guide_income_list_manage">
+        <img src="/images/accounting_guide_income_list.png" />
+        <span> ##word.guide_categories_accounting_guide_income_list## </span>
+      </a>
 
-            <a class="tab-link" x-features="erp" href="/accounting_guide_income_list"
-                x-permissions="accounting_guide_income_list_ui || accounting_guide_income_list_manage">
-                <img src="/images/accounting_guide_income_list.png">
-                <span> ##word.guide_categories_accounting_guide_income_list## </span>
-            </a>
+      <a class="tab-link" href="/safes" x-permissions="safes_ui || safes_manage">
+        <img src="/images/safe.png" />
+        <span> ##word.system_safe_menus## </span>
+      </a>
+      <a class="tab-link" href="/currency" x-permissions="currency_ui || currency_manage">
+        <img src="/images/currency.png" />
+        <span> ##word.currencies## </span>
+      </a>
 
-            <a class="tab-link" href="/safes" x-permissions="safes_ui || safes_manage">
-                <img src="/images/safe.png">
-                <span> ##word.system_safe_menus## </span>
-            </a>
-            <a class="tab-link" href="/currency" x-permissions="currency_ui || currency_manage">
-                <img src="/images/currency.png">
-                <span> ##word.currencies## </span>
-            </a>
+      <a class="tab-link" href="/in_out_names" x-permissions="in_out_names_ui || in_out_names_manage">
+        <img src="/images/pic_in_out.png" />
+        <span>##word.system_in_out_names_menus##</span>
+      </a>
 
-            <a class="tab-link" href="/in_out_names" x-permissions="in_out_names_ui || in_out_names_manage">
-                <img src="/images/pic_in_out.png">
-                <span>##word.system_in_out_names_menus##</span>
-            </a>
+      <a class="tab-link" href="/tax_types" x-permissions="tax_types_ui || tax_types_manage">
+        <img src="/images/tax_type.png" />
+        <span>##word.tax_types##</span>
+      </a>
 
+      <a class="tab-link" href="/discount_types" x-permissions="discount_types_ui || discount_types_manage">
+        <img src="/images/discount_type.png" />
+        <span>##word.discount_types##</span>
+      </a>
 
-            <a class="tab-link" href="/tax_types" x-permissions="tax_types_ui || tax_types_manage">
-                <img src="/images/tax_type.png">
-                <span>##word.tax_types##</span>
-            </a>
-
-            <a class="tab-link" href="/discount_types" x-permissions="discount_types_ui || discount_types_manage">
-                <img src="/images/discount_type.png">
-                <span>##word.discount_types##</span>
-            </a>
-
-            <a class="tab-link" onclick="site.showTabs(event, '#main_tabs')">
-                <img src="/images/back_icon.png">
-                <span> ##word.main_menu##</span>
-            </a>
-
-        </div>
+      <a class="tab-link" onclick="site.showTabs(event, '#main_tabs')">
+        <img src="/images/back_icon.png" />
+        <span> ##word.main_menu##</span>
+      </a>
     </div>
+  </div>
 
-    <div id="inventory_tabs" class="tabs">
-        <div class="tabs-header">
+  <div id="inventory_tabs" class="tabs">
+    <div class="tabs-header">
+      <a class="tab-link" onclick="site.showTabs(event, '#purchase_store')">
+        <img src="/images/purchase_store.png" />
+        <span>##word.purchase_store##</span>
+      </a>
 
+      <a class="tab-link" onclick="site.showTabs(event, '#sales_store')">
+        <img src="/images/sales_store.png" />
+        <span>##word.sales_store##</span>
+      </a>
 
-            <a class="tab-link" onclick="site.showTabs(event, '#purchase_store')">
-                <img src="/images/purchase_store.png">
-                <span>##word.purchase_store##</span>
-            </a>
+      <a class="tab-link" onclick="site.showTabs(event, '#inventories')">
+        <img src="/images/inventories.png" />
+        <span>##word.inventories##</span>
+      </a>
 
-            <a class="tab-link" onclick="site.showTabs(event, '#sales_store')">
-                <img src="/images/sales_store.png">
-                <span>##word.sales_store##</span>
-            </a>
-
-            <a class="tab-link" onclick="site.showTabs(event, '#inventories')">
-                <img src="/images/inventories.png">
-                <span>##word.inventories##</span>
-            </a>
-
-            <a class="tab-link" onclick="site.showTabs(event, '#main_tabs')">
-                <img src="/images/back_icon.png">
-                <span> ##word.main_menu##</span>
-            </a>
-
-        </div>
+      <a class="tab-link" onclick="site.showTabs(event, '#main_tabs')">
+        <img src="/images/back_icon.png" />
+        <span> ##word.main_menu##</span>
+      </a>
     </div>
+  </div>
 
-    <div id="purchase_store" class="tabs">
-        <div class="tabs-header">
+  <div id="purchase_store" class="tabs">
+    <div class="tabs-header">
+      <a class="tab-link" href="/stores_in?type=1" x-permissions="stores_in_ui || stores_in_manage">
+        <img src="/images/purchases_invoice.png" />
+        <span>##word.stores_ins## </span>
+      </a>
 
-            <a class="tab-link" href="/stores_in?type=1" x-permissions="stores_in_ui || stores_in_manage">
-                <img src="/images/purchases_invoice.png">
-                <span>##word.stores_ins## </span>
-            </a>
+      <a class="tab-link" href="/stores_in?type=4" x-permissions="stores_in_ui || stores_in_manage">
+        <img src="/images/return_purchase_invoice.png" />
+        <span>##word.returns_purchase_invoices## </span>
+      </a>
 
-            <a class="tab-link" href="/stores_in?type=4" x-permissions="stores_in_ui || stores_in_manage">
-                <img src="/images/return_purchase_invoice.png">
-                <span>##word.returns_purchase_invoices## </span>
-            </a>
+      <a x-features="restaurant || pos || academy || gym || erp || school" class="tab-link" href="/vendors" x-permissions="vendors_ui || vendors_manage">
+        <img src="/images/vendor.png" />
+        <span> ##word.vendors## </span>
+      </a>
 
-            <a x-features="restaurant || pos || academy || gym || erp || school" class="tab-link" href="/vendors"
-                x-permissions="vendors_ui || vendors_manage">
-                <img src="/images/vendor.png">
-                <span> ##word.vendors## </span>
-            </a>
+      <a x-features="restaurant || pos || academy || gym || erp || school" class="tab-link" href="/vendors_group" x-permissions="vendors_group_ui || vendors_group_manage">
+        <img src="/images/vendor_group.png" />
+        <span> ##word.vendors_group## </span>
+      </a>
 
-
-            <a x-features="restaurant || pos || academy || gym || erp || school" class="tab-link" href="/vendors_group"
-                x-permissions="vendors_group_ui || vendors_group_manage">
-                <img src="/images/vendor_group.png">
-                <span> ##word.vendors_group## </span>
-            </a>
-
-            <a class="tab-link" onclick="site.showTabs(event, '#inventory_tabs')">
-                <img src="/images/back_icon.png">
-                <span> ##word.inventory_transactions##</span>
-            </a>
-        </div>
+      <a class="tab-link" onclick="site.showTabs(event, '#inventory_tabs')">
+        <img src="/images/back_icon.png" />
+        <span> ##word.inventory_transactions##</span>
+      </a>
     </div>
+  </div>
 
-    <div id="sales_store" class="tabs">
-        <div class="tabs-header">
+  <div id="sales_store" class="tabs">
+    <div class="tabs-header">
+      <a class="tab-link" href="/stores_out?type=3" x-permissions="stores_out_ui || stores_out_manage">
+        <img src="/images/sales_invoice_store.png" />
+        <span>##word.sales_invoice_store##</span>
+      </a>
 
+      <a class="tab-link" href="/stores_out?type=6" x-permissions="stores_out_ui || stores_out_manage">
+        <img src="/images/return_sales_invoice.png" />
+        <span>##word.return_sales_invoice##</span>
+      </a>
 
-            <a class="tab-link" href="/stores_out?type=3" x-permissions="stores_out_ui || stores_out_manage">
-                <img src="/images/sales_invoice_store.png">
-                <span>##word.sales_invoice_store##</span>
-            </a>
+      <a class="tab-link" href="/stores_out?type=4" x-permissions="stores_out_ui || stores_out_manage">
+        <img src="/images/orders_screen_store.png" />
+        <span>##word.orders_screen_permission##</span>
+      </a>
 
+      <a class="tab-link" href="/customers" x-permissions="customers_ui || customers_manage">
+        <img src="/images/customer.png" />
+        <span> ##word.customers## </span>
+      </a>
 
-            <a class="tab-link" href="/stores_out?type=6" x-permissions="stores_out_ui || stores_out_manage">
-                <img src="/images/return_sales_invoice.png">
-                <span>##word.return_sales_invoice##</span>
-            </a>
+      <a class="tab-link" href="/customers_group" x-permissions="customers_group_ui || customers_group_manage">
+        <img src="/images/vendor_group.png" />
+        <span> ##word.customers_groups## </span>
+      </a>
 
-            <a class="tab-link" href="/stores_out?type=4" x-permissions="stores_out_ui || stores_out_manage">
-                <img src="/images/orders_screen_store.png">
-                <span>##word.orders_screen_permission##</span>
-            </a>
-
-            <a class="tab-link" href="/customers" x-permissions="customers_ui || customers_manage">
-                <img src="/images/customer.png">
-                <span> ##word.customers## </span>
-            </a>
-
-            <a class="tab-link" href="/customers_group" x-permissions="customers_group_ui || customers_group_manage">
-                <img src="/images/vendor_group.png">
-                <span> ##word.customers_groups## </span>
-            </a>
-
-            <a class="tab-link" onclick="site.showTabs(event, '#inventory_tabs')">
-                <img src="/images/back_icon.png">
-                <span> ##word.inventory_transactions##</span>
-            </a>
-        </div>
+      <a class="tab-link" onclick="site.showTabs(event, '#inventory_tabs')">
+        <img src="/images/back_icon.png" />
+        <span> ##word.inventory_transactions##</span>
+      </a>
     </div>
+  </div>
 
-    <div id="inventories" class="tabs">
-        <div class="tabs-header">
-            <a class="tab-link" href="/stores_items" x-permissions="stores_items_ui || stores_items_manage">
-                <img src="/images/pic_catagories.png">
-                <span>##word.stores_items##</span>
-            </a>
+  <div id="inventories" class="tabs">
+    <div class="tabs-header">
+      <a class="tab-link" href="/stores_items" x-permissions="stores_items_ui || stores_items_manage">
+        <img src="/images/pic_catagories.png" />
+        <span>##word.stores_items##</span>
+      </a>
 
-            <a class="tab-link" x-features="medical" href="/active_substances"
-                x-permissions="active_substances_ui || active_substances_manage">
-                <img src="/images/active_substances.png">
-                <span>##word.active_substances##</span>
-            </a>
+      <a class="tab-link" x-features="medical" href="/active_substances" x-permissions="active_substances_ui || active_substances_manage">
+        <img src="/images/active_substances.png" />
+        <span>##word.active_substances##</span>
+      </a>
 
-            <a class="tab-link" href="/transfer_branch" x-permissions="transfer_branch_ui || transfer_branch_manage">
-                <img src="/images/transfer_branch.png">
-                <span>##word.system_transfer_items_menus##</span>
-            </a>
+      <a class="tab-link" href="/transfer_branch" x-permissions="transfer_branch_ui || transfer_branch_manage">
+        <img src="/images/transfer_branch.png" />
+        <span>##word.system_transfer_items_menus##</span>
+      </a>
 
-            <a class="tab-link" href="/stores_out?type=5" x-permissions="stores_out_ui || stores_out_manage">
-                <img src="/images/damage_store.png">
-                <span>##word.damage_store##</span>
-            </a>
+      <a class="tab-link" href="/stores_out?type=5" x-permissions="stores_out_ui || stores_out_manage">
+        <img src="/images/damage_store.png" />
+        <span>##word.damage_store##</span>
+      </a>
 
-            <a class="tab-link" href="/stores_in?type=3" x-permissions="stores_in_ui || stores_in_manage">
-                <img src="/images/opening_balance.png">
-                <span>##word.opening_balances_store## </span>
-            </a>
+      <a class="tab-link" href="/stores_in?type=3" x-permissions="stores_in_ui || stores_in_manage">
+        <img src="/images/opening_balance.png" />
+        <span>##word.opening_balances_store## </span>
+      </a>
 
-            <a class="tab-link" href="/stores_in?type=2" x-permissions="stores_in_ui || stores_in_manage">
-                <img src="/images/dept_store.png">
-                <span>##word.depts_store## </span>
-            </a>
+      <a class="tab-link" href="/stores_in?type=2" x-permissions="stores_in_ui || stores_in_manage">
+        <img src="/images/dept_store.png" />
+        <span>##word.depts_store## </span>
+      </a>
 
-            <a class="tab-link" href="/stores_assemble" x-permissions="stores_assemble_ui || stores_assemble_manage">
-                <img src="/images/store_assemble.png">
-                <span>##word.stores_assemble##</span>
-            </a>
+      <a class="tab-link" href="/stores_assemble" x-permissions="stores_assemble_ui || stores_assemble_manage">
+        <img src="/images/store_assemble.png" />
+        <span>##word.stores_assemble##</span>
+      </a>
 
-            <a class="tab-link" href="/stores_dismantle" x-permissions="stores_dismantle_ui || stores_dismantle_manage">
-                <img src="/images/store_dismantle.png">
-                <span>##word.stores_dismantle##</span>
-            </a>
+      <a class="tab-link" href="/stores_dismantle" x-permissions="stores_dismantle_ui || stores_dismantle_manage">
+        <img src="/images/store_dismantle.png" />
+        <span>##word.stores_dismantle##</span>
+      </a>
 
-            <a class="tab-link" href="/units_switch" x-permissions="units_switch_ui || units_switch_manage">
-                <img src="/images/units_switch.png">
-                <span>##word.units_switch##</span>
-            </a>
+      <a class="tab-link" href="/units_switch" x-permissions="units_switch_ui || units_switch_manage">
+        <img src="/images/units_switch.png" />
+        <span>##word.units_switch##</span>
+      </a>
 
-            <a class="tab-link" href="/stores_stock" x-permissions="stores_stock_ui || stores_stock_manage">
-                <img src="/images/store_stock.png">
-                <span>##word.store_stock_menu##</span>
-            </a>
+      <a class="tab-link" href="/stores_stock" x-permissions="stores_stock_ui || stores_stock_manage">
+        <img src="/images/store_stock.png" />
+        <span>##word.store_stock_menu##</span>
+      </a>
 
-            <a class="tab-link" href="/items_group" x-permissions="items_group_ui || items_group_manage">
-                <img src="/images/items_group.png">
-                <span>##word.items_group##</span>
-            </a>
+      <a class="tab-link" href="/items_group" x-permissions="items_group_ui || items_group_manage">
+        <img src="/images/items_group.png" />
+        <span>##word.items_group##</span>
+      </a>
 
-            <a class="tab-link" href="/stores" x-permissions="stores_ui || stores_manage">
-                <img src="/images/pic_store2.png">
-                <span>##word.system_stores_menus##</span>
-            </a>
+      <a class="tab-link" href="/stores" x-permissions="stores_ui || stores_manage">
+        <img src="/images/pic_store2.png" />
+        <span>##word.system_stores_menus##</span>
+      </a>
 
-            <a class="tab-link" href="/units" x-permissions="units_ui || units_manage">
-                <img src="/images/unit.png">
-                <span>##word.system_units_menus##</span>
-            </a>
+      <a class="tab-link" href="/units" x-permissions="units_ui || units_manage">
+        <img src="/images/unit.png" />
+        <span>##word.system_units_menus##</span>
+      </a>
 
-            <a class="tab-link" href="/stores_offer" x-permissions="stores_offer_ui || stores_offer_manage">
-                <img src="/images/store_offer.png">
-                <span>##word.store_offer_menu##</span>
-            </a>
+      <a class="tab-link" href="/stores_offer" x-permissions="stores_offer_ui || stores_offer_manage">
+        <img src="/images/store_offer.png" />
+        <span>##word.store_offer_menu##</span>
+      </a>
 
-            <a class="tab-link" onclick="site.showTabs(event, '#inventory_tabs')">
-                <img src="/images/back_icon.png">
-                <span> ##word.inventory_transactions##</span>
-            </a>
-        </div>
+      <a class="tab-link" onclick="site.showTabs(event, '#inventory_tabs')">
+        <img src="/images/back_icon.png" />
+        <span> ##word.inventory_transactions##</span>
+      </a>
     </div>
+  </div>
 
-    <div id="employees_tabs" class="tabs">
-        <div class="tabs-header">
+  <div id="employees_tabs" class="tabs">
+    <div class="tabs-header">
+      <a class="tab-link" href="/employees" x-permissions="employee_ui || employee_manage">
+        <img src="/images/employee_list.png" />
+        <span> ##word.employees## </span>
+      </a>
 
-            <a class="tab-link" href="/employees" x-permissions="employee_ui || employee_manage">
-                <img src="/images/employee_list.png">
-                <span> ##word.employees## </span>
-            </a>
+      <a x-features="gym || school" class="tab-link" href="/trainer" x-permissions="trainer_ui || trainer_manage">
+        <img src="images/trainer.png" />
+        <span> ##word.trainer##</span>
+      </a>
 
-            <a x-features="gym || school" class="tab-link" href="/trainer" x-permissions="trainer_ui || trainer_manage">
-                <img src="images/trainer.png">
-                <span> ##word.trainer##</span>
-            </a>
+      <div class="" x-features="restaurant || pos || erp">
+        <a class="tab-link" href="/delegates" x-permissions="delegate_ui || delegate_manage">
+          <img src="/images/delegate.png" />
+          <span> ##word.delegates## </span>
+        </a>
 
+        <a class="tab-link" href="/delivery_employees" x-permissions="delivery_employee_ui || delivery_employee_manage">
+          <img src="/images/delivery_employee_list.png" />
+          <span> ##word.delivery_employees## </span>
+        </a>
+      </div>
 
-            <div class="" x-features="restaurant || pos || erp">
+      <a class="tab-link" href="/jobs" x-permissions="jobs_ui || jobs_manage">
+        <img src="/images/jobs.png" />
+        <span> ##word.jobs## </span>
+      </a>
 
-                <a class="tab-link" href="/delegates" x-permissions="delegate_ui || delegate_manage">
-                    <img src="/images/delegate.png">
-                    <span> ##word.delegates## </span>
-                </a>
+      <a class="tab-link" href="/employees_degrees" x-permissions="employees_degrees_ui || employees_degrees_manage">
+        <img src="/images/degree.png" />
+        <span>##word.employees_degrees## </span>
+      </a>
 
-                <a class="tab-link" href="/delivery_employees"
-                    x-permissions="delivery_employee_ui || delivery_employee_manage">
-                    <img src="/images/delivery_employee_list.png">
-                    <span> ##word.delivery_employees## </span>
-                </a>
-            </div>
+      <a class="tab-link" href="/attend_employees" x-permissions="attend_employees_ui || attend_employees_manage">
+        <img src="/images/attend_employees.png" />
+        <span> ##word.attend_employees## </span>
+      </a>
 
+      <a class="tab-link" href="/employee_offer" x-permissions="employee_offer_ui || employee_offer_manage">
+        <img src="/images/offer.png" />
+        <span> ##word.system_employees_offers_menus## </span>
+      </a>
 
-            <a class="tab-link" href="/jobs" x-permissions="jobs_ui || jobs_manage">
-                <img src="/images/jobs.png">
-                <span> ##word.jobs## </span>
-            </a>
+      <a class="tab-link" href="/employee_discount" x-permissions="employee_discount_ui || employee_discount_manage">
+        <img src="/images/discount.png" />
+        <span> ##word.system_employees_discount_menus## </span>
+      </a>
 
-            <a class="tab-link" href="/employees_degrees"
-                x-permissions="employees_degrees_ui || employees_degrees_manage">
-                <img src="/images/degree.png">
-                <span>##word.employees_degrees## </span>
-            </a>
+      <a class="tab-link" href="/employees_insurances" x-permissions="employee_insurances_ui || employee_insurances_manage">
+        <img src="/images/Insurance-employee.png" />
+        <span>##word.system_employees_insurance## </span>
+      </a>
 
-            <a class="tab-link" href="/attend_employees" x-permissions="attend_employees_ui || attend_employees_manage">
-                <img src="/images/attend_employees.png">
-                <span> ##word.attend_employees## </span>
-            </a>
+      <a class="tab-link" href="/insurances_slides" x-permissions="insurance_slide_ui || insurance_slide_manage">
+        <img src="/images/insurance_slides.png" />
+        <span>##word.system_insurance_slides## </span>
+      </a>
 
-            <a class="tab-link" href="/employee_offer" x-permissions="employee_offer_ui || employee_offer_manage">
-                <img src="/images/offer.png">
-                <span> ##word.system_employees_offers_menus## </span>
-            </a>
+      <a class="tab-link" href="/facilities_codes" x-permissions="facilities_codes_ui || facilities_codes_manage">
+        <img src="/images/facility_code.png" />
+        <span>##word.menu_facilities##</span>
+      </a>
 
-            <a class="tab-link" href="/employee_discount"
-                x-permissions="employee_discount_ui || employee_discount_manage">
-                <img src="/images/discount.png">
-                <span> ##word.system_employees_discount_menus## </span>
-            </a>
-
-            <a class="tab-link" href="/employees_insurances"
-                x-permissions="employee_insurances_ui || employee_insurances_manage">
-                <img src="/images/Insurance-employee.png">
-                <span>##word.system_employees_insurance## </span>
-            </a>
-
-            <a class="tab-link" href="/insurances_slides" x-permissions="insurance_slide_ui || insurance_slide_manage">
-                <img src="/images/insurance_slides.png">
-                <span>##word.system_insurance_slides## </span>
-            </a>
-
-            <a class="tab-link" href="/facilities_codes" x-permissions="facilities_codes_ui || facilities_codes_manage">
-                <img src="/images/facility_code.png">
-                <span>##word.menu_facilities##</span>
-            </a>
-
-
-            <a class="tab-link" onclick="site.showTabs(event, '#main_tabs')">
-                <img src="/images/back_icon.png">
-                <span> ##word.main_menu##</span>
-            </a>
-
-        </div>
+      <a class="tab-link" onclick="site.showTabs(event, '#main_tabs')">
+        <img src="/images/back_icon.png" />
+        <span> ##word.main_menu##</span>
+      </a>
     </div>
+  </div>
 
-    <div id="reporting_tabs" class="tabs">
-        <div class="tabs-header">
+  <div id="reporting_tabs" class="tabs">
+    <div class="tabs-header">
+      <a class="tab-link" x-features="school" href="/report_invoices?type=13" x-permissions="report_invoices_ui || report_invoices_manage">
+        <img src="/images/school_fees.png" />
+        <span>##word.report## ##word.school_fees## </span>
+      </a>
 
+      <a class="tab-link" x-features="school" href="/report_attend_students" x-permissions="report_attend_students_ui || report_attend_students_manage">
+        <img src="images/attend_students.png" />
+        <span>##word.report_attend_students##</span>
+      </a>
 
-            <a class="tab-link" x-features="school" href="/report_invoices?type=13"
-                x-permissions="report_invoices_ui || report_invoices_manage">
-                <img src="/images/school_fees.png">
-                <span>##word.report## ##word.school_fees## </span>
-            </a>
+      <a class="tab-link" href="/report_attend_employees" x-permissions="report_attend_employees_ui || report_attend_employees_manage">
+        <img src="images/attend_employees.png" />
+        <span>##word.report_attend_employees##</span>
+      </a>
 
-            <a class="tab-link" x-features="school" href="/report_attend_students"
-                x-permissions="report_attend_students_ui || report_attend_students_manage">
-                <img src="images/attend_students.png">
-                <span>##word.report_attend_students##</span>
-            </a>
+      <a class="tab-link" x-features="school" href="/report_exams" x-permissions="report_exams_ui || report_exams_manage">
+        <img src="images/report_exams.png" />
+        <span>##word.report_exams##</span>
+      </a>
 
-            <a class="tab-link" href="/report_attend_employees"
-                x-permissions="report_attend_employees_ui || report_attend_employees_manage">
-                <img src="images/attend_employees.png">
-                <span>##word.report_attend_employees##</span>
-            </a>
+      <a class="tab-link" href="/employees_report" x-permissions="employees_report_ui || employees_report_manage">
+        <img src="images/employees_salary.png" />
+        <span>##word.employees_report##</span>
+      </a>
 
-            <a class="tab-link" x-features="school" href="/report_exams"
-                x-permissions="report_exams_ui || report_exams_manage">
-                <img src="images/report_exams.png">
-                <span>##word.report_exams##</span>
-            </a>
+      <a class="tab-link" href="/employees_salary_report" x-permissions="employees_salary_report_ui || employees_salary_report_manage">
+        <img src="images/pic_reportEmployee1.png" />
+        <span>##word.employees_salary_report##</span>
+      </a>
 
-            <a class="tab-link" href="/employees_report" x-permissions="employees_report_ui || employees_report_manage">
-                <img src="images/employees_salary.png">
-                <span>##word.employees_report##</span>
-            </a>
+      <a class="tab-link" x-features="pos || erp || restaurant" href="/report_daily" x-permissions="report_daily_ui || report_daily_manage">
+        <img src="/images/report_daily.png" />
+        <span>##word.report_daily_name##</span>
+      </a>
 
-            <a class="tab-link" href="/employees_salary_report"
-                x-permissions="employees_salary_report_ui || employees_salary_report_manage">
-                <img src="images/pic_reportEmployee1.png">
-                <span>##word.employees_salary_report##</span>
-            </a>
+      <div class="" x-features="gym">
+        <a class="tab-link" href="/report_requests" x-permissions="report_requests_ui || report_requests_manage">
+          <img src="/images/report_requests.png" />
+          <span>##word.report_requests_name##</span>
+        </a>
 
-            <a class="tab-link" x-features="pos || erp || restaurant" href="/report_daily"
-                x-permissions="report_daily_ui || report_daily_manage">
-                <img src="/images/report_daily.png">
-                <span>##word.report_daily_name##</span>
-            </a>
+        <a class="tab-link" href="/report_subscribers" x-permissions="report_subscribers_ui || report_subscribers_manage">
+          <img src="/images/report_subscribers.png" />
+          <span>##word.report_subscribers_name##</span>
+        </a>
 
-            <div class="" x-features="gym">
+        <a class="tab-link" href="/report_info" x-permissions="report_info_ui || report_info_manage">
+          <img src="/images/customer_info.png" />
+          <span>##word.report_info_name##</span>
+        </a>
 
-                <a class="tab-link" href="/report_requests"
-                    x-permissions="report_requests_ui || report_requests_manage">
-                    <img src="/images/report_requests.png">
-                    <span>##word.report_requests_name##</span>
-                </a>
+        <a class="tab-link" href="/report_trainer_attend" x-permissions="report_trainer_attend_ui || report_trainer_attend_manage">
+          <img src="/images/report_trainer_attend.png" />
+          <span>##word.report_trainer_attend##</span>
+        </a>
+      </div>
 
-                <a class="tab-link" href="/report_subscribers"
-                    x-permissions="report_subscribers_ui || report_subscribers_manage">
-                    <img src="/images/report_subscribers.png">
-                    <span>##word.report_subscribers_name##</span>
-                </a>
+      <div class="" x-features="academy">
+        <a class="tab-link" href="/report_student_courses" x-permissions="report_student_courses_ui || report_student_courses_manage">
+          <img src="images/pic_reportEmployee1.png" />
+          <span>##word.report_student_courses##</span>
+        </a>
 
-                <a class="tab-link" href="/report_info" x-permissions="report_info_ui || report_info_manage">
-                    <img src="/images/customer_info.png">
-                    <span>##word.report_info_name##</span>
-                </a>
+        <a class="tab-link" href="/report_tenants_book" x-permissions="report_tenants_book_ui || report_tenants_book_manage">
+          <img src="images/report_tenant.png" />
+          <span>##word.report_tenants_book##</span>
+        </a>
 
-                <a class="tab-link" href="/report_trainer_attend"
-                    x-permissions="report_trainer_attend_ui || report_trainer_attend_manage">
-                    <img src="/images/report_trainer_attend.png">
-                    <span>##word.report_trainer_attend##</span>
-                </a>
+        <a class="tab-link" href="/report_student_hosting" x-permissions="report_student_hosting_ui || report_student_hosting_manage">
+          <img src="images/report_tenant.png" />
+          <span>##word.menu_report_hosting##</span>
+        </a>
 
-            </div>
+        <a class="tab-link" href="/report_trainer_courses" x-permissions="report_trainer_courses_ui || report_trainer_courses_manage">
+          <img src="images/pic_reportEmployee1.png" />
+          <span>##word.report_trainer_courses##</span>
+        </a>
 
+        <a class="tab-link" href="/report_trainer_attend" x-permissions="report_trainer_attend_ui || report_trainer_attend_manage">
+          <img src="images/pic_reportEmployee1.png" />
+          <span> ##word.report_trainer_detailed## </span>
+        </a>
+        <a class="tab-link" href="/report_student_attend" x-permissions="report_student_attend_ui || report_student_attend_manage">
+          <img src="images/pic_reportEmployee1.png" />
+          <span> ##word.report_student_detailed## </span>
+        </a>
+      </div>
 
-            <div class="" x-features="academy">
+      <a class="tab-link" href="/item_transaction" x-permissions="item_transaction_ui || item_transaction_manage">
+        <img src="/images/item_transaction.png" />
+        <span>##word.system_item_transaction_menus##</span>
+      </a>
 
+      <a class="tab-link" href="/report_transaction_total" x-permissions="report_transaction_total_ui || report_transaction_total_manage">
+        <img src="/images/transaction_total.png" />
+        <span>##word.report_transaction_total_name##</span>
+      </a>
 
-                <a class="tab-link" href="/report_student_courses"
-                    x-permissions="report_student_courses_ui || report_student_courses_manage">
-                    <img src="images/pic_reportEmployee1.png">
-                    <span>##word.report_student_courses##</span>
+      <a class="tab-link" href="/report_stores_evaluation" x-permissions="report_stores_evaluation_ui || report_stores_evaluation_manage">
+        <img src="/images/report_stores_evaluation.png" />
+        <span>##word.report_stores_evaluation_name##</span>
+      </a>
 
-                </a>
+      <a class="tab-link" href="/report_stores_movement" x-permissions="report_stores_movement_ui || report_stores_movement_manage">
+        <img src="/images/report_stores_movement.png" />
+        <span>##word.report_stores_movement_name##</span>
+      </a>
 
-                <a class="tab-link" href="/report_tenants_book"
-                    x-permissions="report_tenants_book_ui || report_tenants_book_manage">
-                    <img src="images/report_tenant.png">
-                    <span>##word.report_tenants_book##</span>
+      <a class="tab-link" href="/report_stores_re_order" x-permissions="report_stores_re_order_ui || report_stores_re_order_manage">
+        <img src="/images/report_stores_re_order.png" />
+        <span>##word.report_stores_re_order_name##</span>
+      </a>
 
-                </a>
+      <a class="tab-link" href="/report_stores_balance" x-permissions="report_stores_balance_ui || report_stores_balance_manage">
+        <img src="/images/report_stores_balance.png" />
+        <span>##word.report_stores_balance_name##</span>
+      </a>
 
-                <a class="tab-link" href="/report_student_hosting"
-                    x-permissions="report_student_hosting_ui || report_student_hosting_manage">
-                    <img src="images/report_tenant.png">
-                    <span>##word.menu_report_hosting##</span>
+      <a class="tab-link" href="/report_value_added" x-permissions="report_value_added_ui || report_value_added_manage">
+        <img src="/images/report_value_added.png" />
+        <span>##word.report_value_added_name##</span>
+      </a>
 
-                </a>
+      <a class="tab-link" href="/report_itineraries" x-permissions="report_itineraries_ui || report_itineraries_manage">
+        <img src="/images/report_employee_delegate.png" />
+        <span>##word.report_itineraries_name##</span>
+      </a>
 
-                <a class="tab-link" href="/report_trainer_courses"
-                    x-permissions="report_trainer_courses_ui || report_trainer_courses_manage">
-                    <img src="images/pic_reportEmployee1.png">
-                    <span>##word.report_trainer_courses##</span>
+      <a class="tab-link" href="/safes_payments" x-permissions="safes_payments_ui || safes_payments_manage">
+        <img src="/images/safes_payments.png" />
+        <span>##word.safes_payments##</span>
+      </a>
 
-                </a>
+      <a class="tab-link" href="/report_sales_detailed" x-permissions="report_sales_detailed_ui || report_sales_detailed_manage">
+        <img src="/images/report_sales_detailed.png" />
+        <span>##word.report_sales_detailed_name##</span>
+      </a>
 
+      <a class="tab-link" href="/report_sales_total" x-permissions="report_sales_total_ui || report_sales_total_manage">
+        <img src="/images/report_sales_total.png" />
+        <span>##word.report_sales_total_name##</span>
+      </a>
 
-                <a class="tab-link" href="/report_trainer_attend"
-                    x-permissions="report_trainer_attend_ui || report_trainer_attend_manage">
-                    <img src="images/pic_reportEmployee1.png">
-                    <span> ##word.report_trainer_detailed## </span>
-                </a>
-                <a class="tab-link" href="/report_student_attend"
-                    x-permissions="report_student_attend_ui || report_student_attend_manage">
-                    <img src="images/pic_reportEmployee1.png">
-                    <span> ##word.report_student_detailed## </span>
-                </a>
-
-
-            </div>
-
-
-            <a class="tab-link" href="/item_transaction" x-permissions="item_transaction_ui || item_transaction_manage">
-                <img src="/images/item_transaction.png">
-                <span>##word.system_item_transaction_menus##</span>
-            </a>
-
-            <a class="tab-link" href="/report_transaction_total"
-                x-permissions="report_transaction_total_ui || report_transaction_total_manage">
-                <img src="/images/transaction_total.png">
-                <span>##word.report_transaction_total_name##</span>
-            </a>
-
-            <a class="tab-link" href="/report_stores_evaluation"
-                x-permissions="report_stores_evaluation_ui || report_stores_evaluation_manage">
-                <img src="/images/report_stores_evaluation.png">
-                <span>##word.report_stores_evaluation_name##</span>
-            </a>
-
-            <a class="tab-link" href="/report_stores_movement"
-                x-permissions="report_stores_movement_ui || report_stores_movement_manage">
-                <img src="/images/report_stores_movement.png">
-                <span>##word.report_stores_movement_name##</span>
-            </a>
-
-            <a class="tab-link" href="/report_stores_re_order"
-                x-permissions="report_stores_re_order_ui || report_stores_re_order_manage">
-                <img src="/images/report_stores_re_order.png">
-                <span>##word.report_stores_re_order_name##</span>
-            </a>
-
-            <a class="tab-link" href="/report_stores_balance"
-                x-permissions="report_stores_balance_ui || report_stores_balance_manage">
-                <img src="/images/report_stores_balance.png">
-                <span>##word.report_stores_balance_name##</span>
-            </a>
-
-            <a class="tab-link" href="/report_value_added"
-                x-permissions="report_value_added_ui || report_value_added_manage">
-                <img src="/images/report_value_added.png">
-                <span>##word.report_value_added_name##</span>
-            </a>
-
-
-            <a class="tab-link" href="/report_itineraries"
-                x-permissions="report_itineraries_ui || report_itineraries_manage">
-                <img src="/images/report_employee_delegate.png">
-                <span>##word.report_itineraries_name##</span>
-            </a>
-
-            <a class="tab-link" href="/safes_payments" x-permissions="safes_payments_ui || safes_payments_manage">
-                <img src="/images/safes_payments.png">
-                <span>##word.safes_payments##</span>
-            </a>
-
-            <a class="tab-link" href="/report_sales_detailed"
-                x-permissions="report_sales_detailed_ui || report_sales_detailed_manage">
-                <img src="/images/report_sales_detailed.png">
-                <span>##word.report_sales_detailed_name##</span>
-            </a>
-
-            <a class="tab-link" href="/report_sales_total"
-                x-permissions="report_sales_total_ui || report_sales_total_manage">
-                <img src="/images/report_sales_total.png">
-                <span>##word.report_sales_total_name##</span>
-            </a>
-
-
-            <!-- <a class="tab-link" href="/report_invoices" x-permissions="report_invoices_ui || report_invoices_manage">
+      <!-- <a class="tab-link" href="/report_invoices" x-permissions="report_invoices_ui || report_invoices_manage">
                 <img src="/images/report_invoices.png">
                 <span>##word.report_invoices_name##</span>
             </a> -->
 
+      <a class="tab-link" x-features="gym" href="/report_invoices?type=4" x-permissions="report_invoices_ui || report_invoices_manage">
+        <img src="/images/order_invoice.png" />
+        <span>##word.report## ##word.orders_service_invoice## </span>
+      </a>
 
-            <a class="tab-link" x-features="gym" href="/report_invoices?type=4"
-                x-permissions="report_invoices_ui || report_invoices_manage">
-                <img src="/images/order_invoice.png">
-                <span>##word.report## ##word.orders_service_invoice## </span>
-            </a>
+      <a class="tab-link" href="/report_invoices?type=1" x-permissions="report_invoices_ui || report_invoices_manage">
+        <img src="/images/pic_money_in.png" />
+        <span>##word.report## ##word.purchase_invoice## </span>
+      </a>
 
-            <a class="tab-link" href="/report_invoices?type=1"
-                x-permissions="report_invoices_ui || report_invoices_manage">
-                <img src="/images/pic_money_in.png">
-                <span>##word.report## ##word.purchase_invoice## </span>
-            </a>
+      <a class="tab-link" href="/report_invoices?type=2" x-permissions="report_invoices_ui || report_invoices_manage">
+        <img src="/images/store_out.png" />
+        <span>##word.report## ##word.sales_invoice## </span>
+      </a>
 
-            <a class="tab-link" href="/report_invoices?type=2"
-                x-permissions="report_invoices_ui || report_invoices_manage">
-                <img src="/images/store_out.png">
-                <span>##word.report## ##word.sales_invoice## </span>
-            </a>
+      <a class="tab-link" x-features="pos || restaurant || erp" href="/report_invoices?type=3" x-permissions="report_invoices_ui || report_invoices_manage">
+        <img src="/images/order_invoice.png" />
+        <span>##word.report## ##word.orders_screen_invoice## </span>
+      </a>
 
-            <a class="tab-link" x-features="pos || restaurant || erp" href="/report_invoices?type=3"
-                x-permissions="report_invoices_ui || report_invoices_manage">
-                <img src="/images/order_invoice.png">
-                <span>##word.report## ##word.orders_screen_invoice## </span>
-            </a>
+      <a class="tab-link" href="/report_invoices?type=8" x-permissions="report_invoices_ui || report_invoices_manage">
+        <img src="/images/amount_in.png" />
+        <span>##word.report## ##word.amount_in_invoice## </span>
+      </a>
 
-            <a class="tab-link" href="/report_invoices?type=8"
-                x-permissions="report_invoices_ui || report_invoices_manage">
-                <img src="/images/amount_in.png">
-                <span>##word.report## ##word.amount_in_invoice## </span>
-            </a>
+      <a class="tab-link" href="/report_invoices?type=9" x-permissions="report_invoices_ui || report_invoices_manage">
+        <img src="/images/amount_out1.png" />
+        <span>##word.report## ##word.amount_out_invoice## </span>
+      </a>
 
-            <a class="tab-link" href="/report_invoices?type=9"
-                x-permissions="report_invoices_ui || report_invoices_manage">
-                <img src="/images/amount_out1.png">
-                <span>##word.report## ##word.amount_out_invoice## </span>
-            </a>
-
-            <!-- <a class="tab-link" href="/report_invoices?type=14"
+      <!-- <a class="tab-link" href="/report_invoices?type=14"
                 x-permissions="report_invoices_ui || report_invoices_manage">
                 <img src="/images/transfer_safes_balances.png">
                 <span>##word.report## ##word.transfer_safes_balances## </span>
             </a> -->
 
-            <a class="tab-link" href="/report_invoices?type=10"
-                x-permissions="report_invoices_ui || report_invoices_manage">
-                <img src="/images/recharge_customer_balance.png">
-                <span>##word.report## ##word.recharge_customer_balance## </span>
-            </a>
+      <a class="tab-link" href="/report_invoices?type=10" x-permissions="report_invoices_ui || report_invoices_manage">
+        <img src="/images/recharge_customer_balance.png" />
+        <span>##word.report## ##word.recharge_customer_balance## </span>
+      </a>
 
-            <a class="tab-link" href="/report_invoices?type=11"
-                x-permissions="report_invoices_ui || report_invoices_manage">
-                <img src="/images/emp_advances1.png">
-                <span>##word.report## ##word.employee_advance## </span>
-            </a>
+      <a class="tab-link" href="/report_invoices?type=11" x-permissions="report_invoices_ui || report_invoices_manage">
+        <img src="/images/emp_advances1.png" />
+        <span>##word.report## ##word.employee_advance## </span>
+      </a>
 
-            <a class="tab-link" href="/report_invoices?type=12"
-                x-permissions="report_invoices_ui || report_invoices_manage">
-                <img src="/images/emp_advances2.png">
-                <span>##word.report## ##word.payment_employee_advance## </span>
-            </a>
+      <a class="tab-link" href="/report_invoices?type=12" x-permissions="report_invoices_ui || report_invoices_manage">
+        <img src="/images/emp_advances2.png" />
+        <span>##word.report## ##word.payment_employee_advance## </span>
+      </a>
 
-            <a class="tab-link" href="/report_safes" x-permissions="report_safes_ui || report_safes_manage">
-                <img src="/images/report_safes.png">
-                <span>##word.report_safes_name##</span>
-            </a>
+      <a class="tab-link" href="/report_safes" x-permissions="report_safes_ui || report_safes_manage">
+        <img src="/images/report_safes.png" />
+        <span>##word.report_safes_name##</span>
+      </a>
 
-            <a class="tab-link" x-features="restaurant || pos || erp" href="/report_employee_delegate"
-                x-permissions="report_employee_delegate_ui || report_employee_delegate_manage">
-                <img src="/images/report_employee_delegate.png">
-                <span>##word.report_employees_delegate_name##</span>
-            </a>
+      <a class="tab-link" x-features="restaurant || pos || erp" href="/report_employee_delegate" x-permissions="report_employee_delegate_ui || report_employee_delegate_manage">
+        <img src="/images/report_employee_delegate.png" />
+        <span>##word.report_employees_delegate_name##</span>
+      </a>
 
-            <a class="tab-link" href="/report_invoices_customers"
-                x-permissions="report_invoices_customers_ui || report_invoices_customers_manage">
-                <img src="/images/report_invoices_customers.png">
-                <span>##word.report_invoices_customers_name##</span>
-            </a>
+      <a class="tab-link" href="/report_invoices_customers" x-permissions="report_invoices_customers_ui || report_invoices_customers_manage">
+        <img src="/images/report_invoices_customers.png" />
+        <span>##word.report_invoices_customers_name##</span>
+      </a>
 
-            <a class="tab-link" href="/report_invoices_vendors"
-                x-permissions="report_invoices_vendors_ui || report_invoices_vendors_manage">
-                <img src="/images/report_invoices_vendors.png">
-                <span>##word.report_invoices_vendors_name##</span>
-            </a>
+      <a class="tab-link" href="/report_invoices_vendors" x-permissions="report_invoices_vendors_ui || report_invoices_vendors_manage">
+        <img src="/images/report_invoices_vendors.png" />
+        <span>##word.report_invoices_vendors_name##</span>
+      </a>
 
-            <a class="tab-link" href="/report_invoices_payments"
-                x-permissions="report_invoices_payments_ui || report_invoices_payments_manage">
-                <img src="/images/report_invoices_payments.png">
-                <span>##word.report_invoices_payments_name##</span>
-            </a>
+      <a class="tab-link" href="/report_invoices_payments" x-permissions="report_invoices_payments_ui || report_invoices_payments_manage">
+        <img src="/images/report_invoices_payments.png" />
+        <span>##word.report_invoices_payments_name##</span>
+      </a>
 
-            <a x-features="restaurant || pos || erp" class="tab-link" href="/report_orders"
-                x-permissions="report_orders_ui || report_orders_manage">
-                <img src="/images/report_orders.png">
-                <span>##word.report_orders_name##</span>
-            </a>
+      <a x-features="restaurant || pos || erp" class="tab-link" href="/report_orders" x-permissions="report_orders_ui || report_orders_manage">
+        <img src="/images/report_orders.png" />
+        <span>##word.report_orders_name##</span>
+      </a>
 
-            <a x-features="restaurant || pos || erp" class="tab-link" href="/report_employee_user"
-                x-permissions="report_employee_user_ui || report_employee_user_manage">
-                <img src="/images/report_employee_user.png">
-                <span>##word.report_employee_user_name##</span>
-            </a>
+      <a x-features="restaurant || pos || erp" class="tab-link" href="/report_employee_user" x-permissions="report_employee_user_ui || report_employee_user_manage">
+        <img src="/images/report_employee_user.png" />
+        <span>##word.report_employee_user_name##</span>
+      </a>
 
-            <a x-features="restaurant || pos || erp" class="tab-link" href="/report_full_employees"
-                x-permissions="report_full_employees_ui || report_full_employees_manage">
-                <img src="/images/report_full_employees.png">
-                <span>##word.report_full_employees_name##</span>
-            </a>
+      <a x-features="restaurant || pos || erp" class="tab-link" href="/report_full_employees" x-permissions="report_full_employees_ui || report_full_employees_manage">
+        <img src="/images/report_full_employees.png" />
+        <span>##word.report_full_employees_name##</span>
+      </a>
 
+      <a x-features="restaurant || pos || erp" class="tab-link" href="/report_employee_delivery" x-permissions="report_employee_delivery_ui || report_employee_delivery_manage">
+        <img src="/images/report_employee_delivery.png" />
+        <span>##word.report_employees_delivery_name##</span>
+      </a>
 
-            <a x-features="restaurant || pos || erp" class="tab-link" href="/report_employee_delivery"
-                x-permissions="report_employee_delivery_ui || report_employee_delivery_manage">
-                <img src="/images/report_employee_delivery.png">
-                <span>##word.report_employees_delivery_name##</span>
-            </a>
-
-            <a class="tab-link" onclick="site.showTabs(event, '#main_tabs')">
-                <img src="/images/back_icon.png">
-                <span> ##word.main_menu##</span>
-            </a>
-
-        </div>
+      <a class="tab-link" onclick="site.showTabs(event, '#main_tabs')">
+        <img src="/images/back_icon.png" />
+        <span> ##word.main_menu##</span>
+      </a>
     </div>
-
-    <div id="company_tabs" class="tabs">
-        <div class="tabs-header">
-
-            <div class="" x-features="medical">
-
-                <a class="tab-link" href="/patients_tickets"
-                    x-permissions="patients_tickets_ui || patients_tickets_manage">
-                    <img src="/images/patients_tickets.png">
-                    <span> ##word.patients_tickets## </span>
-                </a>
-
-                <a class="tab-link" href="/doctors_visits" x-permissions="doctors_visits_ui || doctors_visits_manage">
-                    <img src="/images/doctors_visits.png">
-                    <span> ##word.doctors_visits## </span>
-                </a>
-
-                <a class="tab-link" href="/analysis_requests"
-                    x-permissions="analysis_requests_ui || analysis_requests_manage">
-                    <img src="/images/analysis_requests.png">
-                    <span> ##word.analysis_requests## </span>
-                </a>
-
-                <a class="tab-link" href="/scans_requests" x-permissions="scans_requests_ui || scans_requests_manage">
-                    <img src="/images/scans_requests.png">
-                    <span> ##word.scans_requests## </span>
-                </a>
-
-
-
-            </div>
-
-            <div class="" x-features="lawyer">
-
-                <a class="tab-link" href="/oppenents" x-permissions="oppenents_ui || oppenents_manage">
-                    <img src="/images/oppenents.png">
-                    <span> ##word.oppenents##</span>
-                </a>
-
-                <a class="tab-link" href="/oppenents_lawyers"
-                    x-permissions="oppenents_lawyers_ui || oppenents_lawyers_manage">
-                    <img src="/images/oppenents_lawyers.png">
-                    <span> ##word.oppenents_lawyers##</span>
-                </a>
-
-                <a class="tab-link" href="/office_lawyers" x-permissions="office_lawyers_ui || office_lawyers_manage">
-                    <img src="/images/office_lawyers.png">
-                    <span> ##word.office_lawyers##</span>
-                </a>
-
-                <a class="tab-link" href="/administrative_business"
-                    x-permissions="administrative_business_ui || administrative_business_manage">
-                    <img src="/images/administrative_business.png">
-                    <span> ##word.administrative_business##</span>
-                </a>
-
-                <a class="tab-link" href="/rogatory_add" x-permissions="rogatory_add_ui || rogatory_add_manage">
-                    <img src="/images/rogatory_add.png">
-                    <span> ##word.rogatory_add##</span>
-                </a>
-
-                <a class="tab-link" href="/lawsuit_add" x-permissions="lawsuit_add_ui || lawsuit_add_manage">
-                    <img src="/images/lawsuit_add.png">
-                    <span> ##word.lawsuit_add##</span>
-                </a>
-
-                <a class="tab-link" href="/session_add" x-permissions="session_add_ui || session_add_manage">
-                    <img src="/images/session_add.png">
-                    <span> ##word.session_add##</span>
-                </a>
-            </div>
-
-
-            <div class="" x-features="gym">
-
-                <a class="tab-link" href="/request_service"
-                    x-permissions="request_service_ui || request_service_manage">
-                    <img src="/images/request_service.png">
-                    <span> ##word.request_service_management##</span>
-                </a>
-
-                <a class="tab-link" href="/attend_subscribers"
-                    x-permissions="attend_subscribers_ui || attend_subscribers_manage">
-                    <img src="/images/attend_subscribers.png">
-                    <span> ##word.attend_subscribers##</span>
-                </a>
-
-                <a class="tab-link" href="/attend_session" x-permissions="attend_session_ui || attend_session_manage">
-                    <img src="/images/attend_session.png">
-                    <span> ##word.attend_session##</span>
-                </a>
-
-                <a class="tab-link" href="/report_info" x-permissions="report_info_ui || report_info_manage">
-                    <img src="/images/customer_info.png">
-                    <span>##word.report_info_name##</span>
-                </a>
-
-
-            </div>
-
-
-            <div class="" x-features="school">
-
-                <a class="tab-link" href="/attend_students"
-                    x-permissions="attend_students_ui || attend_students_manage">
-                    <img src="/images/attend_students.png">
-                    <span> ##word.attend_students##</span>
-                </a>
-
-                <a class="tab-link" href="/exams" x-permissions="exams_ui || exams_manage">
-                    <img src="/images/exams.png">
-                    <span> ##word.exams##</span>
-                </a>
-
-                <a class="tab-link" href="/seating_numbers"
-                    x-permissions="seating_numbers_ui || seating_numbers_manage">
-                    <img src="/images/seating_numbers.png">
-                    <span> ##word.seating_numbers##</span>
-                </a>
-
-            </div>
-
-
-
-            <div class="" x-features="academy">
-
-                <a class="tab-link" href="/book_hall" x-permissions="book_hall_ui || book_hall_manage">
-                    <img src="images/book_hall.png">
-                    <span> ##word.book_hall##</span>
-                </a>
-
-                <a class="tab-link" href="/book_course" x-permissions="book_course_ui || book_course_manage">
-                    <img src="images/book_course.png">
-                    <span> ##word.book_course##</span>
-                </a>
-
-                <a class="tab-link" href="/hosting" x-permissions="hosting_ui || hosting_manage">
-                    <img src="images/hosting.png">
-                    <span> ##word.hosting##</span>
-                </a>
-
-                <a class="tab-link" href="/account_course" x-permissions="account_course_ui || account_course_manage">
-                    <img src="images/account_course.png">
-                    <span> ##word.account_course##</span>
-                </a>
-
-                <a class="tab-link" href="/create_course" x-permissions="create_course_ui || create_course_manage">
-                    <img src="images/create_course.png">
-                    <span> ##word.create_course##</span>
-                </a>
-
-            </div>
-
-            <div class="" x-features="restaurant || pos || erp">
-
-                <a class="tab-link" href="/order_invoice" x-permissions="order_invoice_ui || order_invoice_manage">
-                    <img src="/images/order_invoice.png">
-                    <span> ##word.order_invoice_menus## </span>
-                </a>
-
-                <a class="tab-link" href="/order_management"
-                    x-permissions="order_management_ui || order_management_manage">
-                    <img src="/images/order_management.png">
-                    <span> ##word.order_management_menus## </span>
-                </a>
-
-                <a class="tab-link" href="/order_customer" x-permissions="order_customer_ui || order_customer_manage">
-                    <img src="/images/order_customer.png">
-                    <span> ##word.order_customer_menus## </span>
-                </a>
-
-                <a class="tab-link" href="/order_distributor"
-                    x-permissions="order_distributor_ui || order_distributor_manage">
-                    <img src="/images/order_distributor.png">
-                    <span>##word.order_distributor_menus## </span>
-                </a>
-
-
-                <a x-features="pos || erp" class="tab-link" href="/itineraries"
-                    x-permissions="itineraries_ui || itineraries_manage">
-                    <img src="/images/itinerary.png">
-                    <span> ##word.itineraries## </span>
-                </a>
-
-
-            </div>
-
-            <div x-features="restaurant || pos || erp || gym || academy || school">
-
-                <a class="tab-link" href="/stores_in?type=1" x-permissions="stores_in_ui || stores_in_manage">
-                    <img src="/images/purchases_invoice.png">
-                    <span>##word.stores_ins## </span>
-                </a>
-
-                <a class="tab-link" href="/stores_out?type=3" x-permissions="stores_out_ui || stores_out_manage">
-                    <img src="/images/sales_invoice_store.png">
-                    <span>##word.sales_invoice_store##</span>
-                </a>
-
-                <a class="tab-link" href="/stores_in?type=4" x-permissions="stores_in_ui || stores_in_manage">
-                    <img src="/images/return_purchase_invoice.png">
-                    <span>##word.returns_purchase_invoices## </span>
-                </a>
-
-                <a class="tab-link" href="/stores_out?type=6" x-permissions="stores_out_ui || stores_out_manage">
-                    <img src="/images/return_sales_invoice.png">
-                    <span>##word.return_sales_invoice##</span>
-                </a>
-
-                <a class="tab-link" href="/transfer_branch"
-                    x-permissions="transfer_branch_ui || transfer_branch_manage">
-                    <img src="/images/transfer_branch.png">
-                    <span>##word.system_transfer_items_menus##</span>
-                </a>
-
-                <a class="tab-link" href="/stores_assemble"
-                    x-permissions="stores_assemble_ui || stores_assemble_manage">
-                    <img src="/images/store_assemble.png">
-                    <span>##word.stores_assemble##</span>
-                </a>
-
-                <a class="tab-link" href="/stores_dismantle"
-                    x-permissions="stores_dismantle_ui || stores_dismantle_manage">
-                    <img src="/images/store_dismantle.png">
-                    <span>##word.stores_dismantle##</span>
-                </a>
-
-                <a class="tab-link" href="/units_switch" x-permissions="units_switch_ui || units_switch_manage">
-                    <img src="/images/units_switch.png">
-                    <span>##word.units_switch##</span>
-                </a>
-
-                <a class="tab-link" href="/stores_stock" x-permissions="stores_stock_ui || stores_stock_manage">
-                    <img src="/images/store_stock.png">
-                    <span>##word.store_stock_menu##</span>
-                </a>
-            </div>
-
-
-            <div class="" x-features="restaurant">
-
-                <a class="tab-link" href="/order_kitchen" x-permissions="order_kitchen_ui || order_kitchen_manage">
-                    <img src="/images/order_kitchen.png">
-                    <span>##word.order_kitchen_management##</span>
-                </a>
-
-            </div>
-
-
-
-            <a class="tab-link" onclick="site.showTabs(event, '#main_tabs')">
-                <img src="/images/back_icon.png">
-                <span> ##word.main_menu##</span>
-            </a>
-
-        </div>
+  </div>
+
+
+
+  <div id="basic_setting" class="tabs">
+    <div class="tabs-header">
+      <a class="tab-link" href="/customers" x-permissions="customers_ui || customers_manage">
+        <img src="/images/customer.png" />
+        <span> ##word.customers## </span>
+      </a>
+
+      <a x-features="gym || school" class="tab-link" href="/trainer" x-permissions="trainer_ui || trainer_manage">
+        <img src="images/trainer.png" />
+        <span> ##word.trainer##</span>
+      </a>
+
+      <div x-features="medical">
+        <a class="tab-link" href="/doctors" x-permissions="doctors_ui || doctors_manage">
+          <img src="/images/doctor.png" />
+          <span> ##word.doctors## </span>
+        </a>
+
+        <a class="tab-link" href="/nursing" x-permissions="nursing_ui || nursing_manage">
+          <img src="/images/nurse.png" />
+          <span> ##word.nursing## </span>
+        </a>
+
+        <a class="tab-link" href="/clinics" x-permissions="clinics_ui || clinics_manage">
+          <img src="/images/clinic.png" />
+          <span> ##word.clinics## </span>
+        </a>
+
+        <a class="tab-link" href="/medical_insurance_companies" x-permissions="insurance_companies_ui || insurance_companies_manage">
+          <img src="/images/insurance.png" />
+          <span> ##word.medical_insurance_companies##</span>
+        </a>
+
+        <a class="tab-link" href="/medical_specialties" x-permissions="specialties_ui || specialties_manage">
+          <img src="/images/medical_specialty.png" />
+          <span> ##word.medical_specialties##</span>
+        </a>
+
+        <a class="tab-link" href="/operation" x-permissions="operation_ui || operation_manage">
+          <img src="/images/operation.png" />
+          <span> ##word.operations##</span>
+        </a>
+
+        <a class="tab-link" href="/scans" x-permissions="scans_ui || scans_manage">
+          <img src="/images/scans.png" />
+          <span> ##word.scans##</span>
+        </a>
+
+        <a class="tab-link" href="/analysis" x-permissions="analysis_ui || analysis_manage">
+          <img src="/images/analysis.png" />
+          <span> ##word.analysis##</span>
+        </a>
+      </div>
+
+      <div x-features="academy">
+        <a class="tab-link" href="/courses" x-permissions="courses_ui || courses_manage">
+          <img src="images/courses.png" />
+          <span> ##word.courses_id##</span>
+        </a>
+
+        <a class="tab-link" href="/tenant" x-permissions="tenant_ui || tenant_manage">
+          <img src="images/tenant.png" />
+          <span> ##word.tenants##</span>
+        </a>
+      </div>
+
+      <div x-features="school">
+        <a class="tab-link" href="/class_schedule" x-permissions="class_schedule_ui || class_schedule_manage">
+          <img src="/images/class_schedule.png" />
+          <span> ##word.class_schedules##</span>
+        </a>
+
+        <a class="tab-link" href="/students_years" x-permissions="students_years_ui || students_years_manage">
+          <img src="/images/students_years.png" />
+          <span> ##word.students_years##</span>
+        </a>
+
+        <a class="tab-link" href="/subjects" x-permissions="subjects_ui || subjects_manage">
+          <img src="/images/subjects.png" />
+          <span> ##word.subjects##</span>
+        </a>
+
+        <a class="tab-link" href="/school_grades" x-permissions="school_grades_ui || school_grades_manage">
+          <img src="/images/school_grades.png" />
+          <span> ##word.school_grades##</span>
+        </a>
+
+        <a class="tab-link" href="/year_works" x-permissions="year_works_ui || year_works_manage">
+          <img src="/images/year_works.png" />
+          <span> ##word.year_works##</span>
+        </a>
+
+        <a class="tab-link" href="/types_expenses" x-permissions="types_expenses_ui || types_expenses_manage">
+          <img src="/images/types_expenses.png" />
+          <span> ##word.types_expenses##</span>
+        </a>
+
+        <a x-features="school" class="tab-link" href="/shifts" x-permissions="shifts_ui || shifts_manage">
+          <img src="/images/school_years.png" />
+          <span> ##word.menu_shift## </span>
+        </a>
+      </div>
+
+      <a class="tab-link" x-features="academy || gym" href="/service" x-permissions="service_ui || service_manage">
+        <img src="/images/service.png" />
+        <span> ##word.service_management##</span>
+      </a>
+
+      <a x-features="restaurant || pos || academy || gym || erp" class="tab-link" href="/shifts" x-permissions="shifts_ui || shifts_manage">
+        <img src="/images/shift.png" />
+        <span> ##word.menu_shift## </span>
+      </a>
+
+      <a class="tab-link" href="/hall" x-features="gym || academy || school" x-permissions="hall_ui || hall_manage">
+        <img src="/images/hall.png" />
+        <span> ##word.halls##</span>
+      </a>
+
+      <div x-features="restaurant">
+        <a class="tab-link" href="/tables_group" x-permissions="tables_group_ui || tables_group_manage">
+          <img src="/images/tables_group.png" />
+          <span>##word.tables_group##</span>
+        </a>
+
+        <a class="tab-link" href="/tables" x-permissions="tables_ui || tables_manage">
+          <img src="/images/tables.png" />
+          <span>##word.tables##</span>
+        </a>
+
+        <a class="tab-link" href="/kitchen" x-permissions="kitchen_ui || kitchen_manage">
+          <img src="/images/kitchen.png" />
+          <span>##word.kitchens##</span>
+        </a>
+      </div>
+
+      <div x-features="restaurant || pos || erp || gym || academy || school">
+        <a class="tab-link" x-features="erp" href="/financial_years" x-permissions="financial_years_ui || financial_years_manage">
+          <img src="/images/financial_years.png" />
+          <span> ##word.financial_years## </span>
+        </a>
+
+        <a class="tab-link" x-features="erp" href="/accounting_guide_accounts" x-permissions="accounting_guide_accounts_ui || accounting_guide_accounts_manage">
+          <img src="/images/accounting_guide_accounts.png" />
+          <span> ##word.accounting_guide_accounts## </span>
+        </a>
+
+        <a class="tab-link" x-features="erp" href="/accounting_cost_centers" x-permissions="accounting_cost_centers_ui || accounting_cost_centers_manage">
+          <img src="/images/accounting_cost_centers.png" />
+          <span> ##word.accounting_cost_centers## </span>
+        </a>
+
+        <a class="tab-link" x-features="erp" href="/accounting_guide_budget" x-permissions="accounting_guide_budget_ui || accounting_guide_budget_manage">
+          <img src="/images/accounting_guide_budget.png" />
+          <span> ##word.guide_categories_accounting_guide_budget## </span>
+        </a>
+
+        <a class="tab-link" x-features="erp" href="/accounting_guide_income_list" x-permissions="accounting_guide_income_list_ui || accounting_guide_income_list_manage">
+          <img src="/images/accounting_guide_income_list.png" />
+          <span> ##word.guide_categories_accounting_guide_income_list## </span>
+        </a>
+
+        <a class="tab-link" href="/safes" x-permissions="safes_ui || safes_manage">
+          <img src="/images/safe.png" />
+          <span> ##word.system_safe_menus## </span>
+        </a>
+        <a class="tab-link" href="/currency" x-permissions="currency_ui || currency_manage">
+          <img src="/images/currency.png" />
+          <span> ##word.currencies## </span>
+        </a>
+
+        <a class="tab-link" href="/in_out_names" x-permissions="in_out_names_ui || in_out_names_manage">
+          <img src="/images/pic_in_out.png" />
+          <span>##word.system_in_out_names_menus##</span>
+        </a>
+
+        <a class="tab-link" href="/tax_types" x-permissions="tax_types_ui || tax_types_manage">
+          <img src="/images/tax_type.png" />
+          <span>##word.tax_types##</span>
+        </a>
+
+        <a class="tab-link" href="/discount_types" x-permissions="discount_types_ui || discount_types_manage">
+          <img src="/images/discount_type.png" />
+          <span>##word.discount_types##</span>
+        </a>
+
+        <a class="tab-link" href="/order_slides" x-permissions="order_slides_ui || order_slides_manage">
+          <img src="/images/slides.png" />
+          <span> ##word.order_slides##</span>
+        </a>
+
+        <a class="tab-link" href="/stores_items" x-permissions="stores_items_ui || stores_items_manage">
+          <img src="/images/pic_catagories.png" />
+          <span>##word.stores_items##</span>
+        </a>
+
+        <a class="tab-link" href="/items_group" x-permissions="items_group_ui || items_group_manage">
+          <img src="/images/items_group.png" />
+          <span>##word.items_group##</span>
+        </a>
+
+        <a class="tab-link" href="/stores" x-permissions="stores_ui || stores_manage">
+          <img src="/images/pic_store2.png" />
+          <span>##word.system_stores_menus##</span>
+        </a>
+
+        <a class="tab-link" href="/units" x-permissions="units_ui || units_manage">
+          <img src="/images/unit.png" />
+          <span>##word.system_units_menus##</span>
+        </a>
+
+        <a class="tab-link" x-features="medical" href="/active_substances" x-permissions="active_substances_ui || active_substances_manage">
+          <img src="/images/active_substances.png" />
+          <span>##word.active_substances##</span>
+        </a>
+      </div>
+
+      <a class="tab-link" onclick="site.showTabs(event, '#main_tabs')">
+        <img src="/images/back_icon.png" />
+        <span> ##word.main_menu##</span>
+      </a>
     </div>
+  </div>
 
-    <div id="basic_setting" class="tabs">
-        <div class="tabs-header">
-            <a class="tab-link" href="/customers" x-permissions="customers_ui || customers_manage">
-                <img src="/images/customer.png">
-                <span> ##word.customers## </span>
-            </a>
-
-            <a x-features="gym || school" class="tab-link" href="/trainer" x-permissions="trainer_ui || trainer_manage">
-                <img src="images/trainer.png">
-                <span> ##word.trainer##</span>
-            </a>
-
-
-            <div x-features="medical">
-
-                <a class="tab-link" href="/doctors" x-permissions="doctors_ui || doctors_manage">
-                    <img src="/images/doctor.png">
-                    <span> ##word.doctors## </span>
-                </a>
-
-                <a class="tab-link" href="/nursing" x-permissions="nursing_ui || nursing_manage">
-                    <img src="/images/nurse.png">
-                    <span> ##word.nursing## </span>
-                </a>
-
-
-                <a class="tab-link" href="/clinics" x-permissions="clinics_ui || clinics_manage">
-                    <img src="/images/clinic.png">
-                    <span> ##word.clinics## </span>
-                </a>
-
-                <a class="tab-link" href="/medical_insurance_companies"
-                    x-permissions="insurance_companies_ui || insurance_companies_manage">
-                    <img src="/images/insurance.png">
-                    <span> ##word.medical_insurance_companies##</span>
-                </a>
-
-                <a class="tab-link" href="/medical_specialties" x-permissions="specialties_ui || specialties_manage">
-                    <img src="/images/medical_specialty.png">
-                    <span> ##word.medical_specialties##</span>
-                </a>
-
-                <a class="tab-link" href="/operation" x-permissions="operation_ui || operation_manage">
-                    <img src="/images/operation.png">
-                    <span> ##word.operations##</span>
-                </a>
-
-                <a class="tab-link" href="/scans" x-permissions="scans_ui || scans_manage">
-                    <img src="/images/scans.png">
-                    <span> ##word.scans##</span>
-                </a>
-
-                <a class="tab-link" href="/analysis" x-permissions="analysis_ui || analysis_manage">
-                    <img src="/images/analysis.png">
-                    <span> ##word.analysis##</span>
-                </a>
-            </div>
-
-            <div x-features="academy">
-                <a class="tab-link" href="/courses" x-permissions="courses_ui || courses_manage">
-                    <img src="images/courses.png">
-                    <span> ##word.courses_id##</span>
-                </a>
-
-                <a class="tab-link" href="/tenant" x-permissions="tenant_ui || tenant_manage">
-                    <img src="images/tenant.png">
-                    <span> ##word.tenants##</span>
-                </a>
-
-            </div>
-
-            <div x-features="school">
-                <a class="tab-link" href="/class_schedule" x-permissions="class_schedule_ui || class_schedule_manage">
-                    <img src="/images/class_schedule.png">
-                    <span> ##word.class_schedules##</span>
-                </a>
-
-                <a class="tab-link" href="/students_years" x-permissions="students_years_ui || students_years_manage">
-                    <img src="/images/students_years.png">
-                    <span> ##word.students_years##</span>
-                </a>
-
-                <a class="tab-link" href="/subjects" x-permissions="subjects_ui || subjects_manage">
-                    <img src="/images/subjects.png">
-                    <span> ##word.subjects##</span>
-                </a>
-
-                <a class="tab-link" href="/school_grades" x-permissions="school_grades_ui || school_grades_manage">
-                    <img src="/images/school_grades.png">
-                    <span> ##word.school_grades##</span>
-                </a>
-
-                <a class="tab-link" href="/year_works" x-permissions="year_works_ui || year_works_manage">
-                    <img src="/images/year_works.png">
-                    <span> ##word.year_works##</span>
-                </a>
-
-
-                <a class="tab-link" href="/types_expenses" x-permissions="types_expenses_ui || types_expenses_manage">
-                    <img src="/images/types_expenses.png">
-                    <span> ##word.types_expenses##</span>
-                </a>
-
-                <a x-features="school" class="tab-link" href="/shifts" x-permissions="shifts_ui || shifts_manage">
-                    <img src="/images/school_years.png">
-                    <span> ##word.menu_shift## </span>
-                </a>
-
-            </div>
-
-
-            <a class="tab-link" x-features="academy || gym" href="/service"
-                x-permissions="service_ui || service_manage">
-                <img src="/images/service.png">
-                <span> ##word.service_management##</span>
-            </a>
-
-            <a x-features="restaurant || pos || academy || gym || erp" class="tab-link" href="/shifts"
-                x-permissions="shifts_ui || shifts_manage">
-                <img src="/images/shift.png">
-                <span> ##word.menu_shift## </span>
-            </a>
-
-            <a class="tab-link" href="/hall" x-features="gym || academy || school"
-                x-permissions="hall_ui || hall_manage">
-                <img src="/images/hall.png">
-                <span> ##word.halls##</span>
-            </a>
-
-            <div x-features="restaurant">
-
-                <a class="tab-link" href="/tables_group" x-permissions="tables_group_ui || tables_group_manage">
-                    <img src="/images/tables_group.png">
-                    <span>##word.tables_group##</span>
-                </a>
-
-
-                <a class="tab-link" href="/tables" x-permissions="tables_ui || tables_manage">
-                    <img src="/images/tables.png">
-                    <span>##word.tables##</span>
-                </a>
-
-                <a class="tab-link" href="/kitchen" x-permissions="kitchen_ui || kitchen_manage">
-                    <img src="/images/kitchen.png">
-                    <span>##word.kitchens##</span>
-                </a>
-            </div>
-
-
-
-            <div x-features="restaurant || pos || erp || gym || academy || school">
-
-                <a class="tab-link" x-features="erp" href="/financial_years"
-                    x-permissions="financial_years_ui || financial_years_manage">
-                    <img src="/images/financial_years.png">
-                    <span> ##word.financial_years## </span>
-                </a>
-
-                <a class="tab-link" x-features="erp" href="/accounting_guide_accounts"
-                    x-permissions="accounting_guide_accounts_ui || accounting_guide_accounts_manage">
-                    <img src="/images/accounting_guide_accounts.png">
-                    <span> ##word.accounting_guide_accounts## </span>
-                </a>
-
-                <a class="tab-link" x-features="erp" href="/accounting_cost_centers"
-                    x-permissions="accounting_cost_centers_ui || accounting_cost_centers_manage">
-                    <img src="/images/accounting_cost_centers.png">
-                    <span> ##word.accounting_cost_centers## </span>
-                </a>
-
-                <a class="tab-link" x-features="erp" href="/accounting_guide_budget"
-                    x-permissions="accounting_guide_budget_ui || accounting_guide_budget_manage">
-                    <img src="/images/accounting_guide_budget.png">
-                    <span> ##word.guide_categories_accounting_guide_budget## </span>
-                </a>
-
-                <a class="tab-link" x-features="erp" href="/accounting_guide_income_list"
-                    x-permissions="accounting_guide_income_list_ui || accounting_guide_income_list_manage">
-                    <img src="/images/accounting_guide_income_list.png">
-                    <span> ##word.guide_categories_accounting_guide_income_list## </span>
-                </a>
-
-                <a class="tab-link" href="/safes" x-permissions="safes_ui || safes_manage">
-                    <img src="/images/safe.png">
-                    <span> ##word.system_safe_menus## </span>
-                </a>
-                <a class="tab-link" href="/currency" x-permissions="currency_ui || currency_manage">
-                    <img src="/images/currency.png">
-                    <span> ##word.currencies## </span>
-                </a>
-
-                <a class="tab-link" href="/in_out_names" x-permissions="in_out_names_ui || in_out_names_manage">
-                    <img src="/images/pic_in_out.png">
-                    <span>##word.system_in_out_names_menus##</span>
-                </a>
-
-
-                <a class="tab-link" href="/tax_types" x-permissions="tax_types_ui || tax_types_manage">
-                    <img src="/images/tax_type.png">
-                    <span>##word.tax_types##</span>
-                </a>
-
-                <a class="tab-link" href="/discount_types" x-permissions="discount_types_ui || discount_types_manage">
-                    <img src="/images/discount_type.png">
-                    <span>##word.discount_types##</span>
-                </a>
-
-
-
-                <a class="tab-link" href="/order_slides" x-permissions="order_slides_ui || order_slides_manage">
-                    <img src="/images/slides.png">
-                    <span> ##word.order_slides##</span>
-                </a>
-
-                <a class="tab-link" href="/stores_items" x-permissions="stores_items_ui || stores_items_manage">
-                    <img src="/images/pic_catagories.png">
-                    <span>##word.stores_items##</span>
-                </a>
-
-                <a class="tab-link" href="/items_group" x-permissions="items_group_ui || items_group_manage">
-                    <img src="/images/items_group.png">
-                    <span>##word.items_group##</span>
-                </a>
-
-                <a class="tab-link" href="/stores" x-permissions="stores_ui || stores_manage">
-                    <img src="/images/pic_store2.png">
-                    <span>##word.system_stores_menus##</span>
-                </a>
-
-                <a class="tab-link" href="/units" x-permissions="units_ui || units_manage">
-                    <img src="/images/unit.png">
-                    <span>##word.system_units_menus##</span>
-                </a>
-
-                <a class="tab-link" x-features="medical" href="/active_substances"
-                    x-permissions="active_substances_ui || active_substances_manage">
-                    <img src="/images/active_substances.png">
-                    <span>##word.active_substances##</span>
-                </a>
-
-            </div>
-
-            <a class="tab-link" onclick="site.showTabs(event, '#main_tabs')">
-                <img src="/images/back_icon.png">
-                <span> ##word.main_menu##</span>
-            </a>
-
-        </div>
+  <div id="empty_tabs" class="tabs">
+    <div class="tabs-header">
+      <a class="tab-link" onclick="site.showTabs(event, '#main_tabs')">
+        <img src="/images/back_icon.png" />
+        <span> ##word.main_menu##</span>
+      </a>
     </div>
+  </div>
 
-    <div id="empty_tabs" class="tabs">
-        <div class="tabs-header">
+  <div id="main_tabs" class="tabs">
+    <div class="tabs-header">
+      <div ng-hide="'##user.type##' == 'customer' || '##user.type##' == 'table' || '##user.type##' == 'delegate'">
+        <a class="tab-link" onclick="site.showTabs(event, '#company_tabs')">
+          <img src="/images/main.png" />
+          <span> ##word.basic_transactions##</span>
+        </a>
 
+        <a class="tab-link" onclick="site.showTabs(event, '#basic_setting')">
+          <img src="/images/basic_setting.png" />
+          <span>##word.basic_setting##</span>
+        </a>
 
-            <a class="tab-link" onclick="site.showTabs(event, '#main_tabs')">
-                <img src="/images/back_icon.png">
-                <span> ##word.main_menu##</span>
-            </a>
+        <a class="tab-link" onclick="site.showTabs(event, '#security_tabs')">
+          <img src="/images/security.png" />
+          <span> ##word.security_system##</span>
+        </a>
 
-        </div>
-    </div>
+        <a x-features="restaurant || pos || academy || gym || erp || school || medical" class="tab-link" onclick="site.showTabs(event, '#inventory_tabs')">
+          <img src="/images/inventory.png" />
+          <span>##word.inventory_transactions##</span>
+        </a>
+        <a class="tab-link" onclick="site.showTabs(event, '#accounting_tabs')">
+          <img src="/images/accounting.png" />
+          <span>##word.financial_transactions## </span>
+        </a>
 
+        <a class="tab-link" onclick="site.showTabs(event, '#general_tabs')">
+          <img src="/images/general_setting.png" />
+          <span>##word.general_setting##</span>
+        </a>
+        <a class="tab-link" onclick="site.showTabs(event, '#employees_tabs')">
+          <img src="/images/delegate.png" />
+          <span>##word.employees## </span>
+        </a>
 
-    <div id="main_tabs" class="tabs">
-        <div class="tabs-header">
-            <div ng-hide="'##user.type##' == 'customer' || '##user.type##' == 'table' || '##user.type##' == 'delegate'">
-                <a class="tab-link" onclick="site.showTabs(event, '#company_tabs')">
-                    <img src="/images/main.png">
-                    <span> ##word.basic_transactions##</span>
-                </a>
+        <a x-features="restaurant || pos || academy || gym || erp || school || medical" class="tab-link" onclick="site.showTabs(event, '#reporting_tabs')">
+          <img src="/images/report.png" />
+          <span>##word.reports## </span>
+        </a>
+      </div>
 
-                <a class="tab-link" onclick="site.showTabs(event, '#basic_setting')">
-                    <img src="/images/basic_setting.png">
-                    <span>##word.basic_setting##</span>
-                </a>
+      <a class="tab-link" ng-show="'##user.type##' == 'delegate'" href="/stores_out" x-permissions="stores_out_ui || stores_out_manage">
+        <img src="/images/store_out.png" />
+        <span>##word.system_stores_out_menus##</span>
+      </a>
 
-                <a class="tab-link" onclick="site.showTabs(event, '#security_tabs')">
-                    <img src="/images/security.png">
-                    <span> ##word.security_system##</span>
-                </a>
-
-                <a x-features="restaurant || pos || academy || gym || erp || school || medical" class="tab-link"
-                    onclick="site.showTabs(event, '#inventory_tabs')">
-                    <img src="/images/inventory.png">
-                    <span>##word.inventory_transactions##</span>
-                </a>
-                <a class="tab-link" onclick="site.showTabs(event, '#accounting_tabs')">
-                    <img src="/images/accounting.png">
-                    <span>##word.financial_transactions## </span>
-                </a>
-
-                <a class="tab-link" onclick="site.showTabs(event, '#general_tabs')">
-                    <img src="/images/general_setting.png">
-                    <span>##word.general_setting##</span>
-                </a>
-                <a class="tab-link" onclick="site.showTabs(event, '#employees_tabs')">
-                    <img src="/images/delegate.png">
-                    <span>##word.employees## </span>
-                </a>
-
-                <a x-features="restaurant || pos || academy || gym || erp || school || medical" class="tab-link"
-                    onclick="site.showTabs(event, '#reporting_tabs')">
-                    <img src="/images/report.png">
-                    <span>##word.reports## </span>
-                </a>
-            </div>
-
-            <a class="tab-link" ng-show="'##user.type##' == 'delegate'" href="/stores_out"
-                x-permissions="stores_out_ui || stores_out_manage">
-                <img src="/images/store_out.png">
-                <span>##word.system_stores_out_menus##</span>
-            </a>
-
-            <!-- <a class="tab-link" ng-show="'##user.type##' == 'delegate'" href="/amounts_in"
+      <!-- <a class="tab-link" ng-show="'##user.type##' == 'delegate'" href="/amounts_in"
                 x-permissions="amounts_in_ui || amounts_in_manage">
                 <img src="/images/amount_in.png">
                 <span>##word.system_amounts_in_menus##</span>
             </a> -->
 
-            <a class="tab-link" ng-show="'##user.type##' == 'delegate'" href="/itineraries"
-                x-permissions="itineraries_ui || itineraries_manage">
-                <img src="/images/itinerary.png">
-                <span>##word.itineraries##</span>
-            </a>
+      <a class="tab-link" ng-show="'##user.type##' == 'delegate'" href="/itineraries" x-permissions="itineraries_ui || itineraries_manage">
+        <img src="/images/itinerary.png" />
+        <span>##word.itineraries##</span>
+      </a>
 
+      <div class="" ng-show="'##user.type##' == 'customer'">
+        <a class="tab-link" href="/customers" x-permissions="customers_ui || customers_manage">
+          <img src="/images/customer.png" />
+          <span> ##word.customers##</span>
+        </a>
 
-            <div class="" ng-show="'##user.type##' == 'customer'">
-                <a class="tab-link" href="/customers" x-permissions="customers_ui || customers_manage">
-                    <img src="/images/customer.png">
-                    <span> ##word.customers##</span>
-                </a>
+        <a class="tab-link" href="/exams" x-permissions="exams_ui || exams_manage">
+          <img src="/images/exams.png" />
+          <span> ##word.exams##</span>
+        </a>
 
-                <a class="tab-link" href="/exams" x-permissions="exams_ui || exams_manage">
-                    <img src="/images/exams.png">
-                    <span> ##word.exams##</span>
-                </a>
-
-                <a class="tab-link" href="/order_customer" x-permissions="order_customer_ui || order_customer_manage">
-                    <img src="/images/order_customer.png">
-                    <span> ##word.order_customer_management##</span>
-                </a>
-            </div>
-
-        </div>
-
+        <a class="tab-link" href="/order_customer" x-permissions="order_customer_ui || order_customer_manage">
+          <img src="/images/order_customer.png" />
+          <span> ##word.order_customer_management##</span>
+        </a>
+      </div>
     </div>
-
+  </div>
 </div>

@@ -78,9 +78,6 @@ setTimeout(() => {
 
 site.run();
 
-console.log(site.md5('@admin'));
-console.log(site.md5('@admin@P@$$W)RD'));
-
 // site.on('zk attend', attend=>{
 //     console.log(attend)
 // })
