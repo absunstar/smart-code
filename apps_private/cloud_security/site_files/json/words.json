@@ -42,6 +42,7 @@
     {"name" : "security_accounting_permissions" , "en" : "Accounting Permissions" , "ar":"صلاحيات موديل الحسابات"},
     {"name" : "security_hr_permissions" , "en" : "HR Permissions" , "ar":"صلاحيات موديل الموظفين"},
     {"name" : "security_inventory_permissions" , "en" : "Inventory Permissions" , "ar":"صلاحيات موديل المخازن"},
+    {"name" : "security_report_permissions" , "en" : "Reporting Permissions" , "ar":"صلاحيات موديل التقارير"},
     {"name" : "security_load_user_companies" , "en" : "Show Branches" , "ar":"عرض الفروع"},
     {"name" : "security_actions" , "en" : "Actions" , "ar":"الاجراءات"},
     {"name" : "actions" , "en" : "Actions" , "ar":"الاجراءات"},

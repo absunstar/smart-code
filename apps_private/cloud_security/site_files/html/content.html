@@ -16,9 +16,12 @@
 
             <a class="tab-link" onclick="site.showTabContent(event, '#securityHrPermissions')">
                 ##word.security_hr_permissions## </a>
-
+            
             <a class="tab-link" onclick="site.showTabContent(event, '#securityInventoryPermissions')">
                 ##word.security_inventory_permissions## </a>
+
+            <a class="tab-link" onclick="site.showTabContent(event, '#securityReportPermissions')">
+                ##word.security_report_permissions## </a>
 
             <a class="tab-link" onclick="site.showTabContent(event, '#securityAssginBranches')">
                 ##word.security_branches## </a>
@@ -203,6 +206,22 @@
                     <div class="row padding">
 
                         <fieldset ng-repeat="screen in inventory_screens">
+                            <legend> {{screen.name}} </legend>
+                            <i-checklist primary="name" label="" items="screen.permissions" display="##session.lang##"
+                                ng-model="user.permissions"></i-checklist>
+                        </fieldset>
+
+                    </div>
+                </div>
+                <i-button type="default left" fa="2x fa-angle-double-left"
+                    onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
+            </div>
+
+            <div id="securityReportPermissions" class="tab-content">
+                <div class="row">
+                    <div class="row padding">
+
+                        <fieldset ng-repeat="screen in report_screens">
                             <legend> {{screen.name}} </legend>
                             <i-checklist primary="name" label="" items="screen.permissions" display="##session.lang##"
                                 ng-model="user.permissions"></i-checklist>

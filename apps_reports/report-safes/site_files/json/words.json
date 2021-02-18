@@ -15,6 +15,11 @@
         "ar": "تقرير الخزينة"
     },
     {
+        "name": "report_safes",
+        "en": "Report Safes",
+        "ar": "تقرير الخزينة"
+    },
+    {
         "name": "report_safes_menus",
         "en": "Report Safes Menu",
         "ar": "قائمة تقرير فاتورة"

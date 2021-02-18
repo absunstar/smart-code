@@ -15,6 +15,11 @@
         "ar": "تقرير دفعات فواتير"
     },
     {
+        "name": "report_invoices_payments",
+        "en": "Report Payments Invoices",
+        "ar": "تقرير دفعات فواتير"
+    },
+    {
         "name": "report_invoices_payments_menus",
         "en": "Report Invoices Menu",
         "ar": "قائمة تقرير فاتورة"

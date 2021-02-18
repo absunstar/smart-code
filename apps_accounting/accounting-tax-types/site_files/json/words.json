@@ -1,7 +1,8 @@
 [
     {"name" : "tax_types_add" , "en" : "Add Tax Type" , "ar" : "إضافة ضريبة"},
     {"name" : "tax_types_new" , "en" : "New Tax Type" , "ar" : "ضريبة جديدة"},
-    {"name" : "tax_types" , "en" : " Taxes Type" , "ar" : "الضرائب "},
+    {"name" : "tax_types" , "en" : "Taxes Type" , "ar" : "الضرائب"},
+    {"name" : "accounting_tax_types" , "en" : "Taxes Type" , "ar" : "الضرائب"},
     {"name" : "tax_types_details" , "en" : "Tax Type Details" , "ar" : "تفاصيل ضريبة"},
     {"name" : "tax_types_edit" , "en" : "Edit Tax Type" , "ar" : "تعديل بيانات ضريبة"},
     {"name" : "tax_types_delete" , "en" : "Delete Tax Type" , "ar" : "حذف ضريبة"},

@@ -1,16 +1,16 @@
-<div id="diseaseDeleteModal" class="modal">
+<div id="medicineDeleteModal" class="modal">
     
     <div class="modal-content">
         <div class="modal-header">
             <span class="close">&times;</span>
             <h2>
-                ##word.disease_delete##
+                ##word.medicine_delete##
                 <i class="fa fa-trash"></i>
             </h2>
         </div>
 
         <div class="modal-body">
-               <div x-import="disease/view.html"></div>
+               <div x-import="medicines/view.html"></div>
 
         </div>
 
@@ -19,9 +19,9 @@
         <div class="modal-footer center">
             <i-button type="print" label="##word.print##" onclick="site.print('#v1')"></i-button>
 
-            <i-button type="delete" label="##word.delete##" ng-click="deleteDisease(disease)"> </i-button>
+            <i-button type="delete" label="##word.delete##" ng-click="deleteMedicine(medicine)"> </i-button>
 
-            <i-button type="close" label="##word.close##" onclick="site.hideModal('#diseaseDeleteModal')"> </i-button>
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#medicineDeleteModal')"> </i-button>
 
         </div>
     </div>

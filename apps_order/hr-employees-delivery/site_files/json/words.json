@@ -5,6 +5,11 @@
         "ar": "موظفين التوصيل"
     },
     {
+        "name": "hr_employees_delivery",
+        "en": "Delivery Employees",
+        "ar": "موظفين التوصيل"
+    },
+    {
         "name": "delivery_employee",
         "en": "Delivery Employee",
         "ar": "موظف التوصيل"

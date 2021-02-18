@@ -5,6 +5,11 @@
         "ar": "القائمة الرئيسية"
     },
     {
+        "name": "basic_transactions",
+        "en": "Basic Transactions",
+        "ar": "المعاملات الأساسية"
+    },
+    {
         "name": "menu_monitor",
         "en": "Monitor",
         "ar": "المراقبة"

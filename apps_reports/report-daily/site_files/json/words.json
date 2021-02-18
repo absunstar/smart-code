@@ -8,5 +8,10 @@
         "name": "report_daily_name",
         "en": "Report Daily",
         "ar": "تقرير اليومية"
+    },
+    {
+        "name": "report_daily",
+        "en": "Report Daily",
+        "ar": "تقرير اليومية"
     }
 ]

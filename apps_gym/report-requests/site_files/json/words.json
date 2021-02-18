@@ -11,8 +11,13 @@
     },
     {
         "name": "report_requests_name",
-        "en": "Report Requests Trainer",
-        "ar": "تقرير طلبات المدربين"
+        "en": "Report Services Requests",
+        "ar": "تقرير طلبات الخدمة"
+    },
+    {
+        "name": "report_requests",
+        "en": "Report Services Requests",
+        "ar": "تقرير طلبات الخدمة"
     },
     {
         "name": "report_requests_menus",
@@ -23,11 +28,6 @@
         "name": "total_items_price",
         "en": "Total Items Price",
         "ar": "مجموع سعر الأصناف"
-    },
-    {
-        "name": "report_requests_name",
-        "en": "Report Invoices Name",
-        "ar": "إسم تقرير فاتورة"
     },
     {
         "name": "source_type",

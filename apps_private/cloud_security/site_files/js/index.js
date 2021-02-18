@@ -112,6 +112,7 @@ app.controller("security", function ($scope, $http, $interval) {
           $scope.accounting_screens = $scope.screens.filter(s => s.module_name == 'accounting');
           $scope.inventory_screens = $scope.screens.filter(s => s.module_name == 'inventory');
           $scope.public_screens = $scope.screens.filter(s => s.module_name == 'public');
+          $scope.report_screens = $scope.screens.filter(s => s.module_name == 'report');
 
           $scope.permissions = response.data.permissions;
 

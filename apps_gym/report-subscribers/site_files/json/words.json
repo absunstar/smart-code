@@ -15,6 +15,11 @@
         "ar": "كشف حساب المشتركين"
     },
     {
+        "name": "report_subscribers",
+        "en": "Account statement Subscribers",
+        "ar": "كشف حساب المشتركين"
+    },
+    {
         "name": "source_type",
         "en": "Source Type",
         "ar": "نوع المصدر"

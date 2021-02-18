@@ -5,6 +5,11 @@
         "ar": "تقرير مبيعات إجمالي الأصناف"
     },
     {
+        "name": "report_sales_total",
+        "en": "Report Items Sales Total",
+        "ar": "تقرير مبيعات إجمالي الأصناف"
+    },
+    {
         "name": "report_total",
         "en": "Report Total",
         "ar": "تقرير إجمالي"

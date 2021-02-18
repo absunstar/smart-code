@@ -195,6 +195,11 @@
         "ar": "كارتة الأصناف"
     },
     {
+        "name": "inventory_item_transaction",
+        "en": "Items Transaction",
+        "ar": "كارتة الأصناف"
+    },
+    {
         "name": "item_transaction_with_discount_yes",
         "en": "Yes",
         "ar": "نعم"

@@ -80,6 +80,7 @@
     {"name" : "stores_assemble_public_count" , "en" : "Public Count" , "ar" : "عدد موحد"},
     {"name" : "stores_assemble_type" , "en" : "Type" , "ar" : "نوع تجميع الصنف"},
     {"name" : "stores_assemble" , "en" : "Assembling Items" , "ar" : "تجميع الأصناف"},
+    {"name" : "inventory_stores_assemble" , "en" : "Assembling Items" , "ar" : "تجميع الأصناف"},
     {"name" : "stores_assemble_total_value_gt" , "en" : "Total Value Greater Than" , "ar" : "اجمالي تجميع الصنف اكبر من"},
     {"name" : "stores_assemble_total_value_lt" , "en" : "Total Value Lower Than" , "ar" : "اجمالي تجميع الصنف اقل من"},
     {"name" : "stores_assemble_result_count" , "en" : "Result Count" , "ar" : "عدد نتائج البحث"},

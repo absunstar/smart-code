@@ -5,6 +5,11 @@
         "ar": "المناديب"
     },
     {
+        "name": "hr_delegates",
+        "en": "Delegates",
+        "ar": "المناديب"
+    },
+    {
         "name": "delegate_new",
         "en": "New Delegate",
         "ar": "مندوب جديد"

@@ -4,6 +4,11 @@
         "ar": "المدربين"
     },
     {
+        "name": "hr_trainer",
+        "en": "Trainers",
+        "ar": "المدربين"
+    },
+    {
         "name": "trainer",
         "en": "Trainer",
         "ar": "المدرب"

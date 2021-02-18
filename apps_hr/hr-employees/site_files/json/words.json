@@ -5,6 +5,11 @@
         "ar": "الموظفين"
     },
     {
+        "name": "hr_employees",
+        "en": "Employees",
+        "ar": "الموظفين"
+    },
+    {
         "name": "employee_new",
         "en": "New Employee",
         "ar": "موظف جديد"

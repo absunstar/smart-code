@@ -13,7 +13,12 @@
         "name": "account_invoices_name",
         "en": "Account Invoices",
         "ar": " فواتير الحسابات"
-    }, 
+    },
+    {
+        "name": "accounting_invoices",
+        "en": "Accounting Invoices",
+        "ar": " فواتير الحسابات"
+    },
     {
         "name": "account_invoices_menus",
         "en": "Account Invoices Menu",
@@ -124,7 +129,6 @@
         "en": "Must Enter Paid",
         "ar": "يجب إدخال مبلغ "
     },
-   
     {
         "name": "paid_up",
         "en": "Paid Up",

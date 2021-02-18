@@ -5,6 +5,11 @@
         "ar": "مجموعات الأصناف"
     },
     {
+        "name": "inventory_items_group",
+        "en": "Items Group",
+        "ar": "مجموعات الأصناف"
+    },
+    {
         "name": "items_group_new",
         "en": "New Items Group",
         "ar": "مجموعة أصناف جديد"

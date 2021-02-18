@@ -5,6 +5,11 @@
         "ar": "تقرير إعادة طلب الأصناف"
     },
     {
+        "name": "report_stores_re_order",
+        "en": "Report Items Re Order",
+        "ar": "تقرير إعادة طلب الأصناف"
+    },
+    {
         "name": "stagnant_items",
         "en": "Stagnant Items",
         "ar": "الأصناف الراكدة"

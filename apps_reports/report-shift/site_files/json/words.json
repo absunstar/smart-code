@@ -5,6 +5,11 @@
         "ar": "تقرير الشيفتات"
     },
     {
+        "name": "report_shift",
+        "en": "Report Shifts",
+        "ar": "تقرير الشيفتات"
+    },
+    {
         "name": "report_shift_menus",
         "en": "Report Shifts Menu",
         "ar": "قائمة تقرير الشيفتات"

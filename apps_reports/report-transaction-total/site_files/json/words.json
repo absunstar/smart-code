@@ -5,6 +5,11 @@
         "ar": "تقرير إجمالي كارتة الصنف"
     },
     {
+        "name": "report_transaction_total",
+        "en": "Report Items Sales Total",
+        "ar": "تقرير إجمالي كارتة الصنف"
+    },
+    {
         "name": "report_total",
         "en": "Report Total",
         "ar": "تقرير إجمالي"

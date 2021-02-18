@@ -473,7 +473,7 @@ module.exports = function init(site) {
 
     site.getEmployeesOffers(Object.assign({}, where), employeesOffersList => {
       site.getEmployeesDiscounts(Object.assign({}, where), employeesDiscountsList => {
-        site.getAttendLeave(Object.assign({}, where), attendLeaveList => {
+        site.getEmployees(Object.assign({}, where), attendLeaveList => {
 
           response.done = true
           empOfferPay = 0

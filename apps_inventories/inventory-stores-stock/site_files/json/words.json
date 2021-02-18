@@ -89,6 +89,7 @@
     {"name" : "stores_stock_public_count" , "en" : "Public Count" , "ar" : "عدد موحد"},
     {"name" : "stores_stock_type" , "en" : "Type" , "ar" : "نوع جرد المخزني"},
     {"name" : "stores_stock" , "en" : "Stock Items" , "ar" : "الجرد المخزني"},
+    {"name" : "inventory_stores_stock" , "en" : "Stock Items" , "ar" : "الجرد المخزني"},
     {"name" : "stores_stock_total_value_gt" , "en" : "Total Value Greater Than" , "ar" : "اجمالي جرد المخزني اكبر من"},
     {"name" : "stores_stock_total_value_lt" , "en" : "Total Value Lower Than" , "ar" : "اجمالي جرد المخزني اقل من"},
     {"name" : "stores_stock_result_count" , "en" : "Result Count" , "ar" : "عدد نتائج البحث"},

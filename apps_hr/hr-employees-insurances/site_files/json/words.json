@@ -1,5 +1,6 @@
 [
     {"name" : "employees_insurances" , "en" : "Employees Insurance" , "ar" : "تأمينات الموظفين"},
+    {"name" : "hr_employees_insurances" , "en" : "Employees Insurance" , "ar" : "تأمينات الموظفين"},
     {"name" : "accounting_employees_insurances" , "en" : "Employees Insurance" , "ar" : "تأمينات الموظفين"},
     {"name" : "employees_insurances_add" , "en" : "Add Employee Insurance" , "ar" : "إضافة تامينات لموظف"},
     {"name" : "employees_insurances_new" , "en" : "New Employee Insurance" , "ar" : "تامينات موظف جديد"},

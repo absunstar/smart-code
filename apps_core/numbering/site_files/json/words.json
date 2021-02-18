@@ -5,6 +5,11 @@
         "ar": "شاشة الترقيم"
     },
     {
+        "name": "numbering",
+        "en": "Numbering Screen",
+        "ar": "شاشة الترقيم"
+    },
+    {
         "name": "screen_name",
         "en": "Screen Name",
         "ar": "إسم الشاشة"

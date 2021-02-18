@@ -1,6 +1,6 @@
 [
     { "name": "employee_discount","en": "Employees Discounts", "ar": "خصومات الموظفين"},
-    { "name": "accounting_employee_discount","en": "Employees Discounts", "ar": "خصومات الموظفين"},
+    { "name": "hr_employee_discount","en": "Employees Discounts", "ar": "خصومات الموظفين"},
     { "name": "employee_discount_add","en": "Add Discount", "ar": "إضافة خصم"},
     { "name": "employee_discount_new","en": "New Amount", "ar": "تسجيل خصم جديد"},
     { "name": "employee_discount_details","en": "Amount  Details", "ar": "تفاصيل الخصم"},

@@ -15,6 +15,11 @@
         "ar": " معلومات المشتركين"
     },
     {
+        "name": "report_info",
+        "en": "Informations Subscribers",
+        "ar": " معلومات المشتركين"
+    },
+    {
         "name": "report_info_menus",
         "en": "Informations Subscribers Menu",
         "ar": "قائمة معلومات المشتركين"

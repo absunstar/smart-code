@@ -5,6 +5,11 @@
         "ar": "بحث"
     },
     {
+        "name": "default_setting",
+        "en": "Default Setting",
+        "ar": "الإعدادات الإفتراضية"
+    },
+    {
         "name": "default_setting_tenant_date_from",
         "en": "Date From",
         "ar": "من تاريخ"

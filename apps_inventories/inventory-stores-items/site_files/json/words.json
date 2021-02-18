@@ -410,6 +410,11 @@
         "ar": "الأصناف المخزنية"
     },
     {
+        "name": "inventory_stores_items",
+        "en": "Stores Items",
+        "ar": "الأصناف المخزنية"
+    },
+    {
         "name": "stores_items_with_discount_yes",
         "en": "Yes",
         "ar": "نعم"

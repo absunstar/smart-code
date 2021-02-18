@@ -15,6 +15,11 @@
         "ar": "تقرير  شامل لطلبات الموظفين"
     },
     {
+        "name": "report_full_orders_employees",
+        "en": "Report Employees order",
+        "ar": "تقرير  شامل لطلبات الموظفين"
+    },
+    {
         "name": "report_full_employees_menus",
         "en": "Report Invoices Menu",
         "ar": "قائمة تقرير فاتورة"

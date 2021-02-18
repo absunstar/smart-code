@@ -18,11 +18,11 @@
     <div id="main-layout" class="container loaded">
         <div class="row">
             <div class="row" ng-controller="disease">
-                <div x-permissions="disease_add || disease_manage" x-import="disease/add_modal.html"></div>
-                <div x-permissions="disease_update || disease_manage" x-import="disease/update_modal.html"></div>
-                <div x-permissions="disease_delete || disease_manage" x-import="disease/delete_modal.html"></div>
-                <div x-permissions="disease_view || disease_manage" x-import="disease/view_modal.html"></div>
-                <div x-permissions="disease_search || disease_manage" x-import="disease/search_all_modal.html"></div>
+                <div x-permissions="disease_add || disease_manage" x-import="diseases/add_modal.html"></div>
+                <div x-permissions="disease_update || disease_manage" x-import="diseases/update_modal.html"></div>
+                <div x-permissions="disease_delete || disease_manage" x-import="diseases/delete_modal.html"></div>
+                <div x-permissions="disease_view || disease_manage" x-import="diseases/view_modal.html"></div>
+                <div x-permissions="disease_search || disease_manage" x-import="diseases/search_all_modal.html"></div>
 
                 <div class="row">
                     <h1 class="bold text-center">##word.diseases##</h1>
@@ -72,7 +72,7 @@
     </div>
 
     <div x-import="scripts.html"></div>
-    <script x-import="disease/index.js"></script>
+    <script x-import="diseases/index.js"></script>
 </body>
 
 </html>

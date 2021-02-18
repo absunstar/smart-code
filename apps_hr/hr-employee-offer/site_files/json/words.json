@@ -1,6 +1,6 @@
 [
     { "name": "employee_offer","en": "Employees Offers", "ar": "مكافاّت الموظفين"}, 
-    { "name": "accounting_employee_offer","en": "Employees Offers", "ar": "مكافاّت الموظفين"}, 
+    { "name": "hr_employee_offer","en": "Employees Offers", "ar": "مكافاّت الموظفين"}, 
     { "name": "employee_offer_add","en": "Add Offer", "ar": "إضافة مكافأة"},
     { "name": "employee_offer_new","en": "New Amount", "ar": "تسجيل عرض جديد"},
     { "name": "employee_offer_details","en": "Amount  Details", "ar": "تفاصيل المكافأة"},

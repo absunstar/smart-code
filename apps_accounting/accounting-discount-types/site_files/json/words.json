@@ -1,4 +1,5 @@
 [
+    {"name" : "accounting_discount_types" , "en" : "Discounts" , "ar" : "الخصومات"},
     {"name" : "discount_types" , "en" : "Discounts" , "ar" : "الخصومات"},
     {"name" : "inventory_discount_types" , "en" : "Discounts" , "ar" : "الخصومات"},
     {"name" : "discount_types_add" , "en" : "Add Discount Type" , "ar" : "إضافة خصم"},
@@ -17,7 +18,5 @@
 
     {"name" : "discount_types_logo" , "en" : "Discount Type Logo" , "ar" : " الشعار"},
     {"name" : "discount_types_img" , "en" : "Discount Type Image" , "ar" : "الملفات"}
-    
-    
 
 ]

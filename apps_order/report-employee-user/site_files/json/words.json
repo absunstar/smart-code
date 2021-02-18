@@ -10,6 +10,11 @@
         "ar": "تقرير طلبات الموظفين"
     },
     {
+        "name": "report_employee_user",
+        "en": "Report Orders Employees",
+        "ar": "تقرير طلبات الموظفين"
+    },
+    {
         "name": "report_employees_delivery_menus",
         "en": "Report Invoices Menu",
         "ar": "قائمة تقرير فاتورة"

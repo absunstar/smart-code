@@ -79,6 +79,7 @@
     {"name" : "stores_dismantle_public_count" , "en" : "Public Count" , "ar" : "عدد موحد"},
     {"name" : "stores_dismantle_type" , "en" : "Type" , "ar" : "نوع تفكيك الصنف"},
     {"name" : "stores_dismantle" , "en" : "Dismantle Items" , "ar" : "تفكيك الأصناف"},
+    {"name" : "inventory_stores_dismantle" , "en" : "Dismantle Items" , "ar" : "تفكيك الأصناف"},
     {"name" : "stores_dismantle_total_value_gt" , "en" : "Total Value Greater Than" , "ar" : "اجمالي تفكيك الصنف اكبر من"},
     {"name" : "stores_dismantle_total_value_lt" , "en" : "Total Value Lower Than" , "ar" : "اجمالي تفكيك الصنف اقل من"},
     {"name" : "stores_dismantle_result_count" , "en" : "Result Count" , "ar" : "عدد نتائج البحث"},

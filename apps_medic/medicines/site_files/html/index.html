@@ -18,11 +18,11 @@
     <div id="main-layout" class="container loaded">
         <div class="row">
             <div class="row" ng-controller="medicine">
-                <div x-permissions="medicine_add || medicine_manage" x-import="medicine/add_modal.html"></div>
-                <div x-permissions="medicine_update || medicine_manage" x-import="medicine/update_modal.html"></div>
-                <div x-permissions="medicine_delete || medicine_manage" x-import="medicine/delete_modal.html"></div>
-                <div x-permissions="medicine_view || medicine_manage" x-import="medicine/view_modal.html"></div>
-                <div x-permissions="medicine_search || medicine_manage" x-import="medicine/search_all_modal.html"></div>
+                <div x-permissions="medicine_add || medicine_manage" x-import="medicines/add_modal.html"></div>
+                <div x-permissions="medicine_update || medicine_manage" x-import="medicines/update_modal.html"></div>
+                <div x-permissions="medicine_delete || medicine_manage" x-import="medicines/delete_modal.html"></div>
+                <div x-permissions="medicine_view || medicine_manage" x-import="medicines/view_modal.html"></div>
+                <div x-permissions="medicine_search || medicine_manage" x-import="medicines/search_all_modal.html"></div>
 
                 <div class="row">
                     <h1 class="bold text-center">##word.medicines##</h1>
@@ -72,7 +72,7 @@
     </div>
 
     <div x-import="scripts.html"></div>
-    <script x-import="medicine/index.js"></script>
+    <script x-import="medicines/index.js"></script>
 </body>
 
 </html>

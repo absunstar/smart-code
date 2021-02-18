@@ -6,6 +6,7 @@
     {"name" : "maritals_status_delete" , "en" : "Delete Marital State" , "ar" : "حذف حالة اجتماعية"},
     {"name" : "maritals_status_logo" , "en" : "Marital State logo" , "ar" : "صورة الحالة الاجتماعية"},
     {"name" : "maritals_status_name" , "en" : "Marital State Name" , "ar" : "الحالة الاجتماعية"},
+    {"name" : "maritals_status" , "en" : "Marital State" , "ar" : "الحالة الاجتماعية"},
 
     
     {"name" : "maritals_status_img" , "en" : "Maritals Status Image" , "ar" : "شعار الحالة الاجتماعية"}

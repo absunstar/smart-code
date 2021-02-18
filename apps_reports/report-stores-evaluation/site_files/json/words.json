@@ -5,6 +5,11 @@
         "ar": "تقرير تقييم المخزون"
     },
     {
+        "name": "report_stores_evaluation",
+        "en": "Report Inventory Evaluation",
+        "ar": "تقرير تقييم المخزون"
+    },
+    {
         "name": "report_total",
         "en": "Report Total",
         "ar": "تقرير إجمالي"

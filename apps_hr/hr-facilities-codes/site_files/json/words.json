@@ -1,6 +1,7 @@
 [
     {"name" : "facilities_codes" , "en" : "Facility" , "ar" : "تعريف المنشاّت"},
     {"name" : "accounting_facilities_codes" , "en" : "Facility" , "ar" : "تعريف المنشاّت"},
+    {"name" : "hr_facilities_codes" , "en" : "Facility" , "ar" : "تعريف المنشاّت"},
     {"name" : "facilities_codes_add" , "en" : "Add Facility" , "ar" : "إضافة منشأة"},
     {"name" : "facilities_codes_name" , "en" : "Facility Name" , "ar" : "إسم المنشأة"},
     {"name" : "facilities_codes_code" , "en" : "Facility Code" , "ar" : "كود المنشأة"},

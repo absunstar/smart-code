@@ -15,6 +15,11 @@
         "ar": "تقرير الفواتير"
     },
     {
+        "name": "report_invoices",
+        "en": "Report Invoices",
+        "ar": "تقرير الفواتير"
+    },
+    {
         "name": "report_invoices_menus",
         "en": "Report Invoices Menu",
         "ar": "قائمة تقرير فاتورة"

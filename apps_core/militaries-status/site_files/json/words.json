@@ -6,6 +6,7 @@
     {"name" : "military_status_delete" , "en" : "Delete MilitaryState" , "ar" : "حذف موقف تجنيد"},
     {"name" : "military_status_logo" , "en" : "MilitaryState logo" , "ar" : "صورة موقف التجنيد"},
     {"name" : "military_status_name" , "en" : "MilitaryState Name" , "ar" : "موقف التجنيد"},
+    {"name" : "militaries_status" , "en" : "Military States" , "ar" : "مواقف التجنيد"},
 
     
     {"name" : "military_status_img" , "en" : "Military Status Image" , "ar" : "شعار موقف النجنيد"}

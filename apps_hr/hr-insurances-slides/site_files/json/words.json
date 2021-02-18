@@ -1,6 +1,6 @@
 [
     {"name" : "insurances_slides" , "en" : "Insurance Slide" , "ar" : "شرائح التأمينات"},
-    {"name" : "accounting_insurances_slides" , "en" : "Insurance Slide" , "ar" : "شرائح التأمينات"},
+    {"name" : "hr_insurances_slides" , "en" : "Insurance Slide" , "ar" : "شرائح التأمينات"},
     {"name" : "insurances_slides_add" , "en" : "Add Insurance Slide" , "ar" : "إضافة شريحة تامينات"},
     {"name" : "insurances_slides_new" , "en" : "New Insurance Slide" , "ar" : "شريحة تامينات جديدة"},
     {"name" : "insurances_slides_delete" , "en" : "Delete Insurance Slide" , "ar" : "حذف شريحة تامينات"},

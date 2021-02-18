@@ -15,6 +15,11 @@
         "ar": "تقرير مبيعات الطلبات"
     },
     {
+        "name": "report_orders",
+        "en": "Report Orders Sales",
+        "ar": "تقرير مبيعات الطلبات"
+    },
+    {
         "name": "report_orders_menus",
         "en": "Report Orders Menu",
         "ar": "قائمة تقارير مبيعات الطلبات "

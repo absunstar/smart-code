@@ -36,6 +36,11 @@
         "ar": "الدرجات الوظيفية"
     },
     {
+        "name": "hr_employees_degrees",
+        "en": "Employees Degrees",
+        "ar": "الدرجات الوظيفية"
+    },
+    {
         "name": "employee_degree",
         "en": "Employee Degree",
         "ar": "درجة وظيفية"

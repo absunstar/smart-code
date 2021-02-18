@@ -5,6 +5,11 @@
         "ar": "تقرير أرصدة الأصناف"
     },
     {
+        "name": "report_stores_balance",
+        "en": "Report Items Balance",
+        "ar": "تقرير أرصدة الأصناف"
+    },
+    {
         "name": "report_total",
         "en": "Report Total",
         "ar": "تقرير إجمالي"
