@@ -675,7 +675,7 @@
     {
         "category": "general_setting",
         "feature": "pos",
-        "name": "orders_slides",
+        "name": "order_slides",
         "en": "Orders Slides",
         "ar": "شرائح الطلبات"
     },

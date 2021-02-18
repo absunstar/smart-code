@@ -19,6 +19,11 @@
         "ar": " فتح شيفت جديد "
     },
     {
+        "name": "re_open_shift",
+        "en": "Re-Open Shift",
+        "ar": "إعادة فتح الشيفت"
+    },
+    {
         "name": "close_shift",
         "en": "Close Shift",
         "ar": "غلق الشيفت"

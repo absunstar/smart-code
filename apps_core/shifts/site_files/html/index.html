@@ -48,6 +48,7 @@
                         <th>##word.deadline_date##</th>
                         <th class="not-print">##word.actions##</th>
                     </tr>
+
                     <tr ng-repeat="c in list">
                         <td class="center not-print">
                             <i-image view class="logo" ng-model="c.image_url"></i-image>
@@ -61,7 +62,7 @@
                         </td>
 
                         <td class="center">
-                            <i-button type="add" ng-hide="c.active || openShift" label="##word.open_shift##"
+                            <i-button type="add" ng-hide="c.active || openShift" label="##word.re_open_shift##"
                                 ng-click="openCloseShift(c,true); is_shift_open()">
                             </i-button>
 

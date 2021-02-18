@@ -21,14 +21,14 @@
             <a class="tab-link" x-features="academy" onclick="site.showTabContent(event,'#accountingInformation')">
                 ##word.accounting##
             </a>
+            <!-- 
+            <a class="tab-link" x-features="pos || erp" onclick="site.showTabContent(event, '#customersBranches')">
+                ##word.customers_branches## </a> 
 
-            <a class="tab-link hide" x-features="pos || erp" onclick="site.showTabContent(event, '#customersBranches')">
-                ##word.customers_branches## </a>
+            <a class="tab-link" x-features="pos || erp" onclick="site.showTabContent(event, '#customers_dealing')">
+                ##word.customers_dealing## </a> -->
 
-            <a class="tab-link" x-features=" pos || erp" onclick="site.showTabContent(event, '#customers_dealing')">
-                ##word.customers_dealing## </a>
-
-            <a class="tab-link" x-features=" pos || erp" onclick="site.showTabContent(event, '#officialDocuments')">
+            <a class="tab-link" x-features="pos || erp" onclick="site.showTabContent(event, '#officialDocuments')">
                 ##word.customers_official_documents## </a>
 
             <a class="tab-link " onclick="site.showTabContent(event, '#openingBalance')">
@@ -141,7 +141,7 @@
                     </div>
                 </fieldset>
 
-                <fieldset class="hide">
+                <fieldset>
                     <legend> ##word.customers_id_inforamation## </legend>
                     <div class="row">
                         <i-list class="col3" label="##word.customers_nationality##" ng-model="customer.nationality"
@@ -639,7 +639,7 @@
                     onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
             </div>
 
-            <div id="customersBranches" class="tab-content">
+            <!-- <div id="customersBranches" class="tab-content">
                 <fieldset ng-repeat="branch in customer.branch_list">
                     <legend>
                         <i-button type="add default" ng-click="customer.branch_list.push({charge: [{}]})"></i-button>
@@ -725,20 +725,10 @@
                 </fieldset>
                 <i-button type="default left" fa="2x fa-angle-double-left"
                     onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
-            </div>
+            </div> -->
 
-            <div id="customersFiles" class="tab-content">
-                <fieldset>
-                    <legend> ##word.customers_files## </legend>
-                    <div class="row">
-                        <i-files ng-model="customer.files"></i-files>
-                    </div>
-                </fieldset>
-                <i-button type="default left" fa="2x fa-angle-double-left"
-                    onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
-            </div>
 
-            <div id="customers_dealing" class="tab-content">
+            <!-- <div id="customers_dealing" class="tab-content">
                 <fieldset ng-repeat="dealCompany in customer.dealing_company">
                     <legend>
                         <i-button type="add default" ng-click="customer.dealing_company.push({})"></i-button>
@@ -766,7 +756,19 @@
 
                 </fieldset>
 
+            </div> -->
+
+            <div id="customersFiles" class="tab-content">
+                <fieldset>
+                    <legend> ##word.customers_files## </legend>
+                    <div class="row">
+                        <i-files ng-model="customer.files"></i-files>
+                    </div>
+                </fieldset>
+                <i-button type="default left" fa="2x fa-angle-double-left"
+                    onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
             </div>
+
 
             <div id="loginInformation" class="tab-content">
                 <fieldset>

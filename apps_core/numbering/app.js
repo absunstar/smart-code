@@ -98,7 +98,7 @@ module.exports = function init(site) {
         } else if (site.features.like('*gym*')) {
 
           moduleListCore.forEach(_mc => {
-            if (_mc.name == 'orders_slides') {
+            if (_mc.name == 'order_slides') {
               _mc.en = 'Sessions Slides'
               _mc.ar = 'شرائح الجلسات'
             }
@@ -142,7 +142,7 @@ module.exports = function init(site) {
             } else if (_mc.name == 'halls') {
               _mc.en = 'classrooms'
               _mc.ar = 'الفصول الدراسية'
-            } else if (_mc.name == 'orders_slides') {
+            } else if (_mc.name == 'order_slides') {
               _mc.en = 'Sessions Slides'
               _mc.ar = 'شرائح الجلسات'
             } else if (_mc.name == 'shifts') {
@@ -167,7 +167,7 @@ module.exports = function init(site) {
             } else if (_mc.name == 'customers_groups') {
               _mc.en = 'patients Group'
               _mc.ar = 'مجموعة المرضى'
-            } else if (_mc.name == 'orders_slides') {
+            } else if (_mc.name == 'order_slides') {
               _mc.en = 'Detection Slides'
               _mc.ar = 'شرائح الكشوفات'
             }

@@ -150,7 +150,7 @@ app.controller("order_slides", function ($scope, $http) {
       method: "POST",
       url: "/api/numbering/get_automatic",
       data: {
-        screen: "services_slides"
+        screen: "order_slides"
       }
     }).then(
       function (response) {

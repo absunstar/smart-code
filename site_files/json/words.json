@@ -1317,42 +1317,42 @@
     {
         "name": "discount_name",
         "en": "Discount Name",
-        "ar": "الإسم"
+        "ar": "إسم الخصم"
     },
     {
         "name": "discount_value",
         "en": "Discount Value",
-        "ar": "القيمة"
+        "ar": "قيمة الخصم"
     },
     {
         "name": "discount_types_number",
         "en": "Discount Value",
-        "ar": "مبلغ"
+        "ar": "مبلغ الخصم"
     },
     {
         "name": "discount_types_percent",
         "en": "Discount Value",
-        "ar": "نسبة"
+        "ar": "نسبة الخصم"
     },
     {
         "name": "stores_out_add_discount",
-        "en": "Discount Value",
-        "ar": "اضف الخصم"
+        "en": "Add Discount",
+        "ar": "أضف الخصم"
     },
     {
         "name": "items_count",
         "en": "Items Count",
-        "ar": "العدد"
+        "ar": "عدد الأصناف"
     },
     {
         "name": "items_price",
         "en": "Items Price",
-        "ar": "السعر"
+        "ar": "سعر الأصناف"
     },
     {
         "name": "items_price_total",
         "en": "Items Price Total",
-        "ar": "إجمالي السعر"
+        "ar": "إجمالي سعر الأصناف"
     },
     {
         "name": "date_from_subscribe",
