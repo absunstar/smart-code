@@ -80,6 +80,37 @@
   }
 </script>
 
+<script x-features="*egytag.com*">
+  function add_script(info) {
+    console.log('Adding Script : ' + info.src);
+    var script = document.createElement('script');
+    script.id = info['id'];
+    script.src = info['src'];
+    script.setAttribute('data-ad-client', info['data-ad-client']);
+    script.setAttribute('async', info['async']);
+    document.querySelector('head').appendChild(script);
+  }
+
+  add_script({
+    src: 'https://www.googletagmanager.com/gtag/js?id=UA-59220588-1',
+    id: 'googletagmanager',
+    async: true,
+  });
+  add_script({
+    src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js',
+    id: 'googlesyndication',
+    'data-ad-client': 'ca-pub-3372007384613151',
+    async: true,
+  });
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag('js', new Date());
+  gtag('config', 'UA-59220588-1');
+</script>
+
 <!-- Load Facebook SDK for JavaScript -->
 <div id="fb-root"></div>
 <script>
