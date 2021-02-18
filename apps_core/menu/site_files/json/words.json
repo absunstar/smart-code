@@ -10,6 +10,11 @@
         "ar": "المعاملات الأساسية"
     },
     {
+        "name": "basic_setting",
+        "en": "Basic Setting",
+        "ar": "الإعدادات الأساسية"
+    },
+    {
         "name": "menu_monitor",
         "en": "Monitor",
         "ar": "المراقبة"
