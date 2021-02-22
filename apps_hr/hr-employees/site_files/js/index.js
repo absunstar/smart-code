@@ -39,6 +39,8 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
           $scope.error = response.data.error;
           if (response.data.error.like('*Must Enter Code*')) {
             $scope.error = "##word.must_enter_code##"
+          } else if (response.data.error.like('*maximum number of adds exceeded*')) {
+            $scope.error = "##word.err_maximum_adds##"
           }
         }
       },
@@ -389,7 +391,7 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
         where: {
           active: true
         },
-        select: { id: 1, name: 1 ,code:1}
+        select: { id: 1, name: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -539,11 +541,11 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
   };
 
   $scope.email_examble = '';
-  if(typeof '##session.company.host##' === 'string'){
-  $scope.email_examble = 'examble##session.company.host##';
+  if (typeof '##session.company.host##' === 'string') {
+    $scope.email_examble = 'examble##session.company.host##';
 
   } else {
-  $scope.email_examble = 'you@examble.com';
+    $scope.email_examble = 'you@examble.com';
 
   }
 

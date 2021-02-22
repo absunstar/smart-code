@@ -611,11 +611,15 @@ module.exports = function init(site) {
     let where = req.body.where || {}
     let limit = where.limit || undefined
     let search = req.body.search || ''
-
+    
     if (search) {
       where.$or = []
       where.$or.push({
-        'customer.name': site.get_RegExp(search, "i")
+        'customer.name_ar': site.get_RegExp(search, "i")
+      })
+
+      where.$or.push({
+        'customer.name_en': site.get_RegExp(search, "i")
       })
 
       where.$or.push({

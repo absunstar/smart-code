@@ -118,6 +118,9 @@ app.controller("stores", function ($scope, $http) {
           $scope.error = response.data.error;
           if (response.data.error.like('*Must Enter Code*')) {
             $scope.error = "##word.must_enter_code##"
+
+          } else if (response.data.error.like('*maximum number of adds exceeded*')) {
+            $scope.error = "##word.err_maximum_adds##"
           }
         }
 

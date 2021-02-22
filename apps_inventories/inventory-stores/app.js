@@ -64,7 +64,7 @@ module.exports = function init(site) {
     }, (err, docs, count) => {
       if (!err && count >= site.get_company(req).store) {
 
-        response.error = 'You have exceeded the maximum number of extensions'
+        response.error = 'The maximum number of adds exceeded'
         res.json(response)
       } else {
 

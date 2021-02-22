@@ -871,6 +871,30 @@
 
   <div id="reporting_tabs" class="tabs">
     <div class="tabs-header">
+
+      <div x-features="medical">
+
+        <a class="tab-link" href="/report_doctors_visits"
+          x-permissions="report_doctors_visits_ui || report_doctors_visits_manage">
+          <img src="/images/report_doctors_visits.png" />
+          <span>##word.report_doctors_visits## </span>
+        </a>
+
+        <a class="tab-link" href="/report_analysis_requests"
+          x-permissions="report_analysis_requests_ui || report_analysis_requests_manage">
+          <img src="/images/report_analysis_requests.png" />
+          <span>##word.report_analysis_requests## </span>
+        </a>
+
+        <a class="tab-link" href="/report_scans_requests"
+          x-permissions="report_scans_requests_ui || report_scans_requests_manage">
+          <img src="/images/report_scans_requests.png" />
+          <span>##word.report_scans_requests## </span>
+        </a>
+
+      </div>
+
+
       <a class="tab-link" x-features="school" href="/report_invoices?type=13"
         x-permissions="report_invoices_ui || report_invoices_manage">
         <img src="/images/school_fees.png" />

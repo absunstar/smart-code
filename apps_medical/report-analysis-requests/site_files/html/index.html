@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="report_scans_requests_ui || report_scans_requests_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+    </nav>
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+    </nav>
+
+    <div id="main-layout" class="container loaded">
+        <div class="row">
+            <div class="row" ng-controller="report_scans_requests" x-permissions="login">
+
+                <div x-import="scans-requests/view_modal.html"></div>
+                <div x-import="scans-requests/delivery_data.html"></div>
+
+                <div x-import="report-scans-requests/search_all_modal.html"></div>
+                <div class="row">
+                    <h1 class="bold text-center"> ##word.report_scans_requests_name## </h1>
+                </div>
+
+                <div class="top-actions">
+                    <!--<i-button type="add" x-permissions="report_scans_requests_add || report_scans_requests_manage"
+                        label="##word.report_scans_requests_new##" ng-click="displayAddReportInvoices()"></i-button>-->
+
+                    <i-button type="search"
+                        x-permissions="report_scans_requests_search || report_scans_requests_manage"
+                        label="##word.search_all##" onclick="site.showModal('#reportAnalysisRequestsSearchModal')">
+                    </i-button>
+
+                    <span ng-show="busy">
+                        <span class="sr-only">Loading...</span>
+                    </span>
+                    <br>
+                </div>
+
+                <div class="row">
+                    <div class="col10">
+                        <div class="row" ng-show="customer.id">
+                            <fieldset>
+
+                                <table class="table bold center hover">
+                                    <tr>
+                                        <td class="blue"> ##word.customer_name## </td>
+                                        <td colspan="7" class="center">
+                                            {{customer.name_##session.lang##}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="blue"> ##word.gender## </td>
+                                        <td colspan="2" class="center">
+                                            {{customer.gender.##session.lang##}}
+                                        </td>
+                                        <td class="blue"> ##word.child## </td>
+                                        <td colspan="2" ng-show="customer.child == true">
+                                            <p class="green"> ##word.yes## </p>
+                                        </td>
+                                        <td colspan="2" ng-show="!customer.child">
+                                            <p class="red"> ##word.no## </p>
+                                        </td>
+                                        <td colspan="2"></td>
+                                    </tr>
+
+
+                                    <tr>
+                                        <td class="blue"> ##word.weight## </td>
+                                        <td colspan="2" class="center"> {{customer.weight}} </td>
+                                        <td class="blue"> ##word.tall## </td>
+                                        <td colspan="2" class="center"> {{customer.tall}} </td>
+                                        <td class="blue"> ##word.blood_type## </td>
+                                        <td colspan="2" class="center red"> {{customer.blood_type.name}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="blue"> ##word.medicine_notes## </td>
+                                        <td colspan="7" class="center"> {{customer.medicine_notes}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="blue"> ##word.gov## </td>
+                                        <td colspan="2" class="center"> {{customer.gov.name}} </td>
+                                        <td class="blue"> ##word.city## </td>
+                                        <td colspan="2" class="center"> {{customer.city.name}} </td>
+                                        <td class="blue"> ##word.area## </td>
+                                        <td colspan="2" class="center"> {{customer.area.name}} </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="blue"> ##word.address## </td>
+                                        <td colspan="7" class="center"> {{customer.address}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="blue"> ##word.mobile## </td>
+                                        <td colspan="4" class="center"> {{customer.mobile}}</td>
+                                        <td class="blue"> ##word.phone## </td>
+                                        <td colspan="3" class="center"> {{customer.phone}}</td>
+                                    </tr>
+
+                                </table>
+                            </fieldset>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="row">
+
+                    <i-control class="col2 r_black" ng-model="total_price" label="##word.total## ##word.price##"
+                        type="number" disabled></i-control>
+
+                    <i-control class="col2 r_darkRed" ng-model="total_discount" label="##word.total_discount##"
+                        type="number" disabled></i-control>
+
+                    <i-control class="col2 r_green" ng-model="total_value" label="##word.total_value##" type="number"
+                        disabled></i-control>
+
+                </div>
+
+                <div class="row">
+                    <fieldset>
+                        <legend> ##word.scans## ##word.requiredy##</legend>
+
+                        <br>
+                        <br>
+                        <table class="table loaded center hover bold">
+                            <tr>
+                                <th>##word.scans_name##</th>
+                                <th>##word.date##</th>
+                                <th> ##word.normal_range## </th>
+                                <th> ##word.notes_before_scans##</th>
+                                <th> ##word.result## </th>
+                                <th> ##word.notes_after_scans## </th>
+                                <th> ##word.person_delivery## </th>
+                                <th> ##word.delivery_date## </th>
+                                <th>##word.price##</th>
+                                <th class="not-print"> ##word.files## </th>
+                            </tr>
+
+                            <tr ng-repeat="a in list">
+
+                                <td class="center">{{a.name}}</td>
+
+                                <td class="center brown"> {{a.date | date : 'dd - MM - yyyy'}}</td>
+
+                                <td class="center">
+                                    <b class="green">{{a.from}}</b> - <b class="red">{{a.to}}</b>
+                                </td>
+
+                                <td class="center lines_text">
+                                    {{a.notes_before_scans}}
+                                </td>
+
+                                <td class="center blue">
+                                    {{a.result}}
+                                </td>
+
+                                <td class="center lines_text">
+                                    {{a.notes_after_scans}}
+                                </td>
+
+                                <td>
+                                    <p ng-show="!a.person_delivery.name">##word.delivery_has_not_been_done##</p>
+                                    <p>{{a.person_delivery.##session.lang##}}</p>
+                                    <i-button type="view" class="not-print"
+                                        ng-show="a.person_delivery.name === 'another_person'"
+                                        ng-click="showPersonDelivery(a,'view')" label="##word.delivery_data##">
+                                    </i-button>
+                                </td>
+
+                                <td class="center">
+                                    <p class="brown"> {{a.delivery_date |date:"dd - MM - yyyy"}} </p>
+                                    <p class="green"> {{a.delivery_date |date:"hh:mm"}} </p>
+                                </td>
+
+                                <td class="center green">{{a.price}}</td>
+
+                                <td class="not-print">
+                                    <i-files view ng-model="a.files"></i-files>
+                                </td>
+
+                            </tr>
+                        </table>
+                        
+                    </fieldset>
+
+                </div>
+
+                <div class="row">
+                    <i-button x-permissions="report_scans_requests_print || report_scans_requests_manage"
+                        type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+                    <i-button x-permissions="report_scans_requests_export || report_scans_requests_manage"
+                        type="export" label="##word.export_to_excel##"
+                        onclick="export_to_xlsx('t1' , 'report_scans_requests.xlsx')">
+                    </i-button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div x-import="scripts.html"></div>
+
+    <script x-permissions="login" x-import="report-scans-requests/index.js"></script>
+</body>
+
+</html>

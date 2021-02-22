@@ -142,35 +142,40 @@
                                     <tr>
                                         <td class="title"> ##word.status## </td>
                                         <td class="center">
-                                            <p class="blue">{{doctors_visits.status.ar}}</p>
-                                            <i-button type="update" label="##word.done_attendance##"
+                                            <p class="blue">{{doctors_visits.status.##session.lang##}}</p>
+                                            <i-button x-permissions="doctors_visits_update || doctors_visits_manage" type="update" label="##word.done_attendance##"
                                                 ng-hide="doctors_visits.status.id!=1"
                                                 ng-show="doctors_visits.status.id==1" ng-click="attend(doctors_visits)">
                                             </i-button>
 
                                             <i-button type="update" label="##word.just_booking##"
+                                            x-permissions="doctors_visits_update || doctors_visits_manage"
                                                 ng-hide="doctors_visits.status.id!=2"
                                                 ng-show="doctors_visits.status.id==2"
                                                 ng-click="without(doctors_visits)"></i-button>
 
 
                                             <i-button type="update" label="##word.done_access_doctor##"
+                                            x-permissions="doctors_visits_update || doctors_visits_manage"
                                                 ng-show="doctors_visits.status.id==2"
                                                 ng-hide="doctors_visits.status.id!=2"
                                                 onclick="site.showModal('#doctorsVisitsNotes')"></i-button>
 
                                             <i-button type="update" class="col6 center" label="##word.sellorder##"
+                                            x-permissions="doctors_visits_update || doctors_visits_manage"
                                                 ng-hide="doctors_visits.status.id!=3"
                                                 ng-show="doctors_visits.status.id==3"
                                                 ng-click="sellorder(doctors_visits)"></i-button>
 
 
                                             <i-button type="update" label="##word.done_detected##"
+                                            x-permissions="doctors_visits_update || doctors_visits_manage"
                                                 ng-show="doctors_visits.status.id==3"
                                                 ng-hide="doctors_visits.status.id!=3"
                                                 ng-click="detection(doctors_visits)"></i-button>
 
                                             <i-button type="update" class="col6 center" label="##word.at_the_doctor##"
+                                            x-permissions="doctors_visits_update || doctors_visits_manage"
                                                 ng-show="doctors_visits.status.id==4"
                                                 ng-hide="doctors_visits.status.id!=4"
                                                 ng-click="atTheDoctor(doctors_visits)"></i-button>
@@ -204,7 +209,7 @@
                     <div class="row">
                         <table class="table center hover bold">
                             <tr>
-                                <th>##word.clinics##</th>
+                                <th>##word.clinic##</th>
                                 <th>##word.specialty##</th>
                                 <th>##word.doctor_name##</th>
                                 <th>##word.shift_name##</th>
@@ -212,8 +217,8 @@
                                 <th>##word.work_from##</th>
                                 <th>##word.work_to##</th>
                                 <th>##word.doctor_visit_price##</th>
-
                             </tr>
+
                             <tr>
                                 <td> {{doctors_visits.selected_clinic.name}}</td>
                                 <td> {{doctors_visits.selected_specialty.name}}</td>
@@ -278,7 +283,7 @@
 
                 </fieldset>
 
-                <div class="row">
+                <div class="row" x-permissions="doctors_visits_update || doctors_visits_manage">
                     <div class="col5"></div>
                     <i-button x-permissions="doctors_visits_update || doctors_visits_manage" class="col1" type="edit"
                         label="##word.edit##" ng-click="displayUpdateDoctorsVisits(doctors_visits)"></i-button>

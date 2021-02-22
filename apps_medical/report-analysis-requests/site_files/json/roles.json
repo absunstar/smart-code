@@ -1,0 +1,7 @@
+[{
+    "module_name" : "report" ,
+    "name": "report_analysis_requests_admin",
+    "en": "Report Analysis Requests Admin",
+    "ar": "إدارة تقرير طلبات التحاليل",
+    "permissions": ["report_analysis_requests_manage"]
+}]

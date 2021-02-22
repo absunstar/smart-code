@@ -745,8 +745,8 @@
         "ar": "القيمة الإجمالية"
     },
     {
-        "name": "total",
-        "en": "Total",
+        "name": "the_total",
+        "en": "The Total",
         "ar": "الإجمالي"
     },
     {
@@ -1368,6 +1368,21 @@
         "name": "date_to",
         "en": "To Date",
         "ar": "الى تاريخ"
+    },
+    {
+        "name": "err_maximum_adds",
+        "en": "The maximum number of adds exceeded",
+        "ar": "تم تجاوز الحد الأقصى لعدد الإضافات"
+    },
+    {
+        "name": "work_time",
+        "en": "Work Time",
+        "ar": "وقت العمل"
+    },
+    {
+        "name": "total",
+        "en": "Total",
+        "ar": "إجمالي"
     },
     {
         "name": "le",

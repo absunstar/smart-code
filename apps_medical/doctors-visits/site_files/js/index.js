@@ -97,7 +97,6 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.doctors_visits = {};
     $scope.doctor_search = '';
-    $scope.doctor_search = '';
     $scope.clinic_search = {};
     $scope.address = false;
     $scope.spicialty = false;
@@ -411,7 +410,6 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
           $scope.clinicList = response.data.list;
-          console.log($scope.clinicList);
         }
       },
       function (err) {
@@ -682,7 +680,6 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
     )
   };
 
-
   $scope.getPatientList = function (ev) {
     $scope.busy = true;
 
@@ -695,7 +692,7 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/customers/all",
       data: {
-        search: $scope.doctor_search,
+        search: $scope.patient_search,
         select: {
 
         }

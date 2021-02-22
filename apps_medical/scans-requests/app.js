@@ -250,6 +250,12 @@ module.exports = function init(site) {
       delete where['customer']
     }
 
+    if (where['scan']) {
+      where['scans_list.id'] = where['scan'].id;
+
+      delete where['scan']
+    }
+
     // if (where['active'] !== 'all') {
     //   where['active'] = true
     // } else {
@@ -265,10 +271,33 @@ module.exports = function init(site) {
       sort: req.body.sort || { id: -1 },
       limit: req.body.limit
     }, (err, docs, count) => {
-      if (!err) {
+      if (!err && docs) {
         response.done = true
         response.list = docs
         response.count = count
+        let all_list = []
+
+        if (req.data.report) {
+
+          docs.forEach(_d => {
+            _d.scans_list = _d.scans_list || []
+
+            _d.scans_list.forEach(_a => {
+              _a.date = _d.date
+              _a.total_discount = _d.total_discount
+              _a.total_value = _d.total_value
+              _a.net_value = _d.net_value
+              if (where['scans_list.id']) {
+                if (_a.id === where['scans_list.id'])
+                  all_list.push(_a)
+
+              } else all_list.push(_a)
+
+            });
+          });
+
+          response.all_list = all_list
+        }
       } else {
         response.error = err.message
       }

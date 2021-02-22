@@ -1,0 +1,7 @@
+[
+    { "module_name" : "report" , "screen_name" : "report-doctors-visits" , "name":"report_doctors_visits_manage" , "en":"Manage" , "ar":"إدارة"},
+    { "module_name" : "report" , "screen_name" : "report-doctors-visits" , "name":"report_doctors_visits_search" , "en":"Search" , "ar":"بحث"},
+    { "module_name" : "report" , "screen_name" : "report-doctors-visits" , "name":"report_doctors_visits_export" , "en":"Export" , "ar":"تصدير"},
+    { "module_name" : "report" , "screen_name" : "report-doctors-visits" , "name":"report_doctors_visits_print" , "en":"Print" , "ar":"طباعة"},
+    { "module_name" : "report" , "screen_name" : "report-doctors-visits" , "name":"report_doctors_visits_ui" , "en":"UI" , "ar":"الواجهة الرسومية"}
+]

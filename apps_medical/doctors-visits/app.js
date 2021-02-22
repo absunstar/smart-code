@@ -620,49 +620,51 @@ module.exports = function init(site) {
       where['address'] = new RegExp(where['address'], "i");
     }
 
-    if (where['date_from'] && where['date_to']) {
-
+    if (where.date) {
+      let d1 = site.toDate(where.date)
+      let d2 = site.toDate(where.date)
+      d2.setDate(d2.getDate() + 1)
+      where.date = {
+        '$gte': d1,
+        '$lt': d2
+      } 
+    } else if (where && where.date_from) {
       let d1 = site.toDate(where.date_from)
       let d2 = site.toDate(where.date_to)
-      d2.setDate(d2.getDate() + 1)
+      d2.setDate(d2.getDate() + 1);
       where.date = {
         '$gte': d1,
         '$lt': d2
       }
       delete where.date_from
       delete where.date_to
-
-    } else if (where['date_from']) {
-
-      let d1 = site.toDate(where.date_from)
-      let d2 = site.toDate(where.date_from)
-      d2.setDate(d2.getDate() + 1)
-
-      where.date = {
-        '$gte': d1,
-        '$lt': d2
-      }
-      delete where.date_from
     }
 
-    if (where['doctor_search']) {
-      where['selected_doctor.id'] = where['doctor_search'].id;
-      delete where['doctor_search']
+
+    if (where['specialty']) {
+      where['selected_specialty.id'] = where['specialty'].id;
+      delete where['specialty']
     }
 
-    if (where['clinic_search']) {
-      where['selected_clinic.id'] = where['clinic_search'].id;
-      delete where['clinic_search']
+    if (where['doctor']) {
+      where['selected_doctor.id'] = where['doctor'].id;
+      delete where['doctor']
     }
 
-    if (where['status_search']) {
-      where['status.id'] = where['status_search'].id;
-      delete where['status_search']
+
+    if (where['clinic']) {
+      where['selected_clinic.id'] = where['clinic'].id;
+      delete where['clinic']
     }
 
-    if (where['customer_search']) {
-      where['customer.id'] = where['customer_search'].id;
-      delete where['customer_search']
+    if (where['status']) {
+      where['status.id'] = where['status'].id;
+      delete where['status']
+    }
+
+    if (where['customer']) {
+      where['customer.id'] = where['customer'].id;
+      delete where['customer']
     }
 
     where['company.id'] = site.get_company(req).id
@@ -723,7 +725,6 @@ module.exports = function init(site) {
       }
 
     })
-    console.log(whereObj.count);
 
     return whereObj
 

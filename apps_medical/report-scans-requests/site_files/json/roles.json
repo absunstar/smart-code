@@ -1,0 +1,7 @@
+[{
+    "module_name" : "report" ,
+    "name": "report_scans_requests_admin",
+    "en": "Report Scans Requests Admin",
+    "ar": "إدارة تقرير طلبات الأشعة",
+    "permissions": ["report_scans_requests_manage"]
+}]

@@ -163,7 +163,10 @@
             "scans_requests_manage",
             "operations_requests_manage",
             "prices_codes_manage",
-            "patients_tickets_manage"
+            "patients_tickets_manage",
+            "report_analysis_requests_manage",
+            "report_scans_requests_manage",
+            "report_doctors_visits_manage"
         ]
     }
 ]

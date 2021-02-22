@@ -250,6 +250,12 @@ module.exports = function init(site) {
       delete where['customer']
     }
 
+    if (where['analysis']) {
+      where['analysis_list.id'] = where['analysis'].id;
+
+      delete where['analysis']
+    }
+
     // if (where['active'] !== 'all') {
     //   where['active'] = true
     // } else {
@@ -265,9 +271,32 @@ module.exports = function init(site) {
       sort: req.body.sort || { id: -1 },
       limit: req.body.limit
     }, (err, docs, count) => {
-      if (!err) {
+      if (!err && docs) {
         response.done = true
         response.list = docs
+        let all_list = []
+
+        if (req.data.report) {
+
+          docs.forEach(_d => {
+            _d.analysis_list = _d.analysis_list || []
+            _d.analysis_list.forEach(_a => {
+              _a.date = _d.date
+              _a.total_discount = _d.total_discount
+              _a.total_value = _d.total_value
+              _a.net_value = _d.net_value
+              if (where['analysis_list.id']) {
+                if (_a.id === where['analysis_list.id'])
+                  all_list.push(_a)
+
+              } else all_list.push(_a)
+
+            });
+          });
+
+          response.all_list = all_list
+        }
+
         response.count = count
       } else {
         response.error = err.message
