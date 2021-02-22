@@ -290,6 +290,15 @@ module.exports = function init(site) {
         res.json(response)
       } else {
 
+        if (customers_doc.username) {
+  
+          let exist_domain = customers_doc.username.includes("@");
+          if (!exist_domain) {
+            customers_doc.username = customers_doc.username + '@' + site.get_company(req).host;
+          }
+        }
+  
+
         $customers.add(customers_doc, (err, doc) => {
           if (!err) {
             response.done = true

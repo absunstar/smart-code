@@ -372,9 +372,22 @@ module.exports = function init(site) {
     );
   });
 
+  site.getDataToDelete = function (data, callback) {
 
+    let where = {};
 
+    if (data.name == 'customer') where['customer.id'] = data.id
 
+    $attend_students.findOne({
+      where: where,
+    }, (err, docs, count) => {
+
+      if (!err) {
+        if (docs) callback(true)
+        else callback(false)
+      }
+    })
+  }
 
   site.post('/api/attend_students/all', (req, res) => {
     let response = {
