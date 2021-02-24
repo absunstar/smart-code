@@ -1,5 +1,110 @@
 [
     {
+        "feature": "medical",
+        "title_ar": "تذاكر المرضى",
+        "title_en": "Patients Tickets",
+        "image_url": "/images/patients_tickets.png",
+        "description_ar": "يتم من خلالها فتح تذكرة مريض ليتم إنشاء معاملات خاصة بالمريض و يمكن تعليق التذكرة لتعليق معاملات المريض و عند غلق التذكرة يتم تجميع المعاملات التي قام بها المريض و إنشاء فاتورة بها و يمكن من خلالها عرض ملخص لجميع معاملات المريض داخل التذكرة الخاصة به",
+        "description_en": "Through it, a patient ticket is opened to create patient-specific transactions, and the ticket can be suspended to suspend the patient’s transactions, and when the ticket is closed, the transactions made by the patient are collected and an invoice is created through which a summary of all the patient’s transactions can be displayed inside his ticket"
+    },
+    {
+        "feature": "medical",
+        "title_ar": "زيارات الأطباء",
+        "title_en": "Doctors Visits",
+        "image_url": "/images/doctors_visits.png",
+        "description_ar": "يتم إختيار تاريخ الزيارة المطلوبة و إسم المريض ويتم إختيار العيادة أو الطبيب و يتم تحديد الميعاد المناسب و يتم إدراج ملاحظات الطبيب و الروشتة الخاصة بالمريض و المطلوب عمله بعد الكشف ليتم إستخدامها فيما بعد",
+        "description_en": "The date of the required visit and the name of the patient are chosen, the clinic or the doctor is chosen, the appropriate date is determined, and the doctor’s notes and the patient’s prescription are included, which is required to be done after the examination to be used later."
+    },
+    {
+        "feature": "medical",
+        "title_ar": "طلبات الأشعة",
+        "title_en": "Scans Requests",
+        "image_url": "/images/scans_requests.png",
+        "description_ar": "يتم تحديد تايخ الطلب و المريض و يتم إضافة الأشعة المطلوبة و كتابة الملاحظات و إدراج ملفات و صور خاصة بالأشعة و متابعة عملية التسليم و تحديد المستلم و إظهار الأشعة السابقة لنفس المريض",
+        "description_en": "The date of the request and the patient is determined, the required Scans are added, notes are written, files and images are inserted, the delivery process is followed up, the recipient is identified, and the Previous scans are shown for the same patient"
+    },
+    {
+        "feature": "medical",
+        "title_ar": "طلبات التحاليل",
+        "title_en": "Analysis Requests",
+        "image_url": "/images/analysis_requests.png",
+        "description_ar": "يتم تحديد تايخ الطلب و المريض و يتم إضافة التحاليل المطلوبة و كتابة الملاحظات و إدراج ملفات و صور خاصة بالأشعة و متابعة عملية التسليم و تحديد المستلم و إظهار التحاليل السابقة لنفس المريض",
+        "description_en": "The date of the request and the patient is determined, the required analysis are added, notes are written, files and images are inserted, the delivery process is followed up, the recipient is identified, and the Previous analysis are shown for the same patient"
+    },
+    {
+        "feature": "medical",
+        "title_ar": "المرضى",
+        "title_en": "Patients",
+        "image_url": "/images/patients.png",
+        "description_ar": "يتم من خلالها إضافة المرضى و الحالة الطبية الكاملة و كافة البيانات المتعلقة بالمريض لإستخدامها فيما بعد",
+        "description_en": "Through it, patients, the complete medical condition, and all patient data are added for later use"
+    },
+    {
+        "feature": "medical",
+        "title_ar": "الأطباء",
+        "title_en": "Doctors",
+        "image_url": "/images/doctors.png",
+        "description_ar": "يتم من خلالها إضافة الأطباء و التخصص و كافة البيانات المتعلقة بالطبيب لإستخدامها فيما بعد",
+        "description_en": "Through it, doctors, specialty, and all data related to the doctor are added for later use"
+    },
+    {
+        "feature": "medical",
+        "title_ar": "التمريض",
+        "title_en": "Nursing",
+        "image_url": "/images/nurse.png",
+        "description_ar": "يتم من خلالها إضافة التمريض و التخصص و كافة البيانات المتعلقة بالتمريض لإستخدامها فيما بعد",
+        "description_en": "Through it, nursing, specialty and all data related to nursing are added for later use"
+    },
+    {
+        "feature": "medical",
+        "title_ar": "العيادات",
+        "title_en": "Clinics",
+        "image_url": "/images/clinic.png",
+        "description_ar": "يتم من خلالها إضافة العيادات و تحديد إسم العيادة و التخصص و أسعار الزيارات و مواعيد العمل و الأطباء و التمريض و الأجازات الخاصة بالعيادة لإستخدامها فيما بعد",
+        "description_en": "Through which the clinics are added, the names of the clinics is determined, the specialty, the prices of the visits, the work hours, the doctors, the nursing, and the vacations for the clinic for later use."
+    },
+    {
+        "feature": "medical",
+        "title_ar": "شركات التأمين الطبي",
+        "title_en": "Medical Insurance Companies",
+        "image_url": "/images/medical_insurance_companies.png",
+        "description_ar": "يتم من خلالها إضافة شركة التأمين و تحديد شرائح التأمين و تحديد كل الأدوية و التحاليل و الأشعة و العمليات خارج شريحة التأمين و التي تحتاج لموافقة ",
+        "description_en": "Through which the insurance company is added, insurance segments are defined, and all drugs, analyzes, radiology, and operations outside the insurance segment are identified that require approval."
+    },
+    {
+        "feature": "medical",
+        "title_ar": "الأشعة",
+        "title_en": "Scans",
+        "image_url": "/images/scans.png",
+        "description_ar": "يتم من خلالها إضافة أسماء الأشعة و تحديد سعرها و مدة تسليمها لإستخدامها فيما بعد",
+        "description_en": "Through it, the names of the Scan is added and its price and delivery period determined for future use"
+    },
+    {
+        "feature": "medical",
+        "title_ar": "التحاليل",
+        "title_en": "Analysis",
+        "image_url": "/images/analysis.png",
+        "description_ar": "يتم من خلالها إضافة أسماء التحاليل و تحديد سعره و مدة تسليمه و المعدل الطبيعي لإستخدامها فيما بعد",
+        "description_en": "Through it, the names of the analysis is added, its price, the period of delivery and the normal rate for its use later"
+    },
+    {
+        "feature": "medical",
+        "title_ar": "التخصصات الطبية",
+        "title_en": "Medical Specialty",
+        "image_url": "/images/medical_specialty.png",
+        "description_ar": "يتم من خلالها إضافة أسماء التخصصات الطبية لإستخدامها فيما بعد",
+        "description_en": "Through it, the names of the medical specialty is added for later use"
+    },
+    {
+        "feature": "medical",
+        "title_ar": "العمليات",
+        "title_en": "Operation",
+        "image_url": "/images/operation.png",
+        "description_ar": "يتم من خلالها إضافة أسماء العمليات لإستخدامه فيما بعد",
+        "description_en": "Through it, the names of the operations is added for later use"
+    },
+  
+    {
         "feature": "school",
         "title_ar": "المدرسين",
         "title_en": "Teachers",

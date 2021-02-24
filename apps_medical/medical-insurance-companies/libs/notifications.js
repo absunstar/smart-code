@@ -7,7 +7,7 @@ module.exports = function init(site) {
     ar: 'نظام شركات التأمين'
   }
 
-  let image_url = '/images/insurance.png'
+  let image_url = '/images/medical_insurance_companies.png'
   let add_message = {
     name: 'New Insurance Companies Added',
     ar: 'تم أضافة شركة تأمين جديدة'

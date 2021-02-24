@@ -270,7 +270,7 @@ app.controller("medicalInsuranceCompanies", function ($scope, $http, $timeout) {
         where: {
           active: true
         },
-        select:{id:1, name:1}
+        select: { id: 1, name: 1, price: 1, delivery_time: 1, period: 1, immediate: 1 }
       }
     }).then(
       function (response) {
@@ -354,7 +354,7 @@ app.controller("medicalInsuranceCompanies", function ($scope, $http, $timeout) {
         where: {
           active: true
         },
-        select:{id:1, name:1}
+        select: { id: 1, name: 1, price: 1, delivery_time: 1, period: 1, immediate: 1 }
       }
     }).then(
       function (response) {

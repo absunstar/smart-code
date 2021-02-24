@@ -14,7 +14,7 @@ module.exports = function init(site) {
       {
         code: "1-Test",
         name: 'شركة تأمين إفتراضية',
-        image_url: '/images/insurance.png',
+        image_url: '/images/medical_insurance_companies.png',
         insurance_slides_list: [{}],
         black_analyse_list: [{}],
         black_scan_list: [{}],

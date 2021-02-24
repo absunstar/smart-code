@@ -380,6 +380,10 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/analysis/all",
       data: {
+        where: {
+          active: true
+        },
+        select: { id: 1, name: 1, price: 1, delivery_time: 1, period: 1, immediate: 1 }
       }
     }).then(
       function (response) {

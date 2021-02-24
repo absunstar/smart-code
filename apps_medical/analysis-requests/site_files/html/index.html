@@ -64,7 +64,7 @@
                         <td class="center blue userPrint">{{c.code}}</td>
                         <td class="center">{{c.customer.name_##session.lang##}}</td>
 
-                        <td class="center brown"> <br> {{c.date | date :'dd - MM - yyyy'}}</td>
+                        <td class="center brown"> {{c.date | date :'dd - MM - yyyy'}}</td>
 
                         <td>
                             <p ng-show="c.active == true" class="green"> ##word.active## </p>
@@ -80,7 +80,7 @@
                             </i-button>
 
                             <i-button ng-hide="c.Putting_results" label="##word.putting_results_analysis##"
-                            ng-click="showModalList(c,'result')">
+                                ng-click="showModalList(c,'result')">
                             </i-button>
 
                             <i-button type="update" x-permissions="analysis_requests_edit || analysis_requests_manage"

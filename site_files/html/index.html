@@ -404,6 +404,9 @@
                 } else if (res[i].feature == 'school' && site.features.like('*school*')) {
                   post = res[i];
                   rendered += Mustache.render(post_template, post);
+                } else if (res[i].feature == 'medical' && site.features.like('*medical*')) {
+                  post = res[i];
+                  rendered += Mustache.render(post_template, post);
                 } else if (res[i].feature == 'academy' && site.features.like('*academy*')) {
                   post = res[i];
                   rendered += Mustache.render(post_template, post);
