@@ -291,7 +291,7 @@
                         <br>
 
                         <div class="row">
-                            <div class="item-groups ">
+                            <div class="item-groups">
                                 <a class="item pointer center" style="background-color: {{g.color}};"
                                     ng-repeat="g in itemsGroupList" ng-click="loadItems(g , $event)"
                                     help-id="menu_monitor">
@@ -426,20 +426,20 @@
                                                     ng-change=" order_invoice.price_delivery_service = order_invoice.area.price_delivery_service"
                                                     ng-search="_search.$order_invoice.$area_search"></i-list>
 
-                                            </div>
-
-                                            <div class="row">
-
                                                 <i-control ng-show="order_invoice.transaction_type.id == 2"
                                                     ng-model="order_invoice.price_delivery_service"
                                                     label="##word.price_delivery_service##"
                                                     ng-change="calc(order_invoice)" class="col3" type="number">
                                                 </i-control>
 
-                                                <i-control class="col6" label="##word.customers_address##"
+                                            </div>
+
+                                            <div class="row">
+
+                                                <i-control class="col8" label="##word.customers_address##"
                                                     ng-model="order_invoice.address"></i-control>
 
-                                                <i-control class="col3" label="##word.customers_mobile##"
+                                                <i-control class="col4" label="##word.customers_mobile##"
                                                     ng-model="order_invoice.customer_mobile">
                                                 </i-control>
 
@@ -459,7 +459,7 @@
                                 <tr>
                                     <th>##word.stores_items_name##</th>
                                     <th>##word.stores_size##</th>
-                                    <th class="w100">##word.items_count##</th>
+                                    <th class="w150">##word.items_count##</th>
                                     <th>##word.price##</th>
                                     <th class="w100">##word.t_o## ##word.price##</th>
                                     <th class="not-print">##word.actions##</th>

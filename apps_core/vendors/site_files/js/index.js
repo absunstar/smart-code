@@ -34,7 +34,7 @@ app.controller("vendors", function ($scope, $http, $timeout) {
     }
 
     $scope.busy = true;
-  
+
     $http({
       method: "POST",
       url: "/api/vendors/add",
@@ -195,9 +195,9 @@ app.controller("vendors", function ($scope, $http, $timeout) {
         if (response.data.done) {
           $scope.vendor = response.data.doc;
           if ($scope.vendor.opening_balance && $scope.vendor.opening_balance.length > 0)
-          $scope.vendor.opening_balance.forEach(o_b => {
-            o_b.$view = true
-          });
+            $scope.vendor.opening_balance.forEach(o_b => {
+              o_b.$view = true
+            });
         } else {
           $scope.error = response.data.error;
         }
@@ -238,7 +238,7 @@ app.controller("vendors", function ($scope, $http, $timeout) {
       }
     )
   };
-  
+
   $scope.getVendorGroupList = function () {
     $http({
       method: "POST",
@@ -247,7 +247,7 @@ app.controller("vendors", function ($scope, $http, $timeout) {
         select: {
           id: 1,
           name: 1,
-          code : 1
+          code: 1
         }
       }
     }).then(
@@ -271,7 +271,7 @@ app.controller("vendors", function ($scope, $http, $timeout) {
         where: {
           active: true
         },
-        select : {id : 1 , name : 1}
+        select: { id: 1, name: 1 }
       }
     }).then(
       function (response) {
@@ -299,7 +299,7 @@ app.controller("vendors", function ($scope, $http, $timeout) {
           'gov.id': gov.id,
           active: true
         },
-        select : {id : 1 , name : 1}
+        select: { id: 1, name: 1 }
       }
     }).then(
       function (response) {
@@ -314,7 +314,7 @@ app.controller("vendors", function ($scope, $http, $timeout) {
       }
     )
   };
-  
+
   $scope.getAreaList = function (city) {
     $scope.busy = true;
     $http({
@@ -386,7 +386,7 @@ app.controller("vendors", function ($scope, $http, $timeout) {
           name: 1,
           minor_currency: 1,
           ex_rate: 1,
-          code : 1
+          code: 1
         },
         where: {
           active: true
@@ -405,6 +405,30 @@ app.controller("vendors", function ($scope, $http, $timeout) {
       }
     )
   };
+
+  $scope.getNationalitiesList = function () {
+    $http({
+      method: "POST",
+      url: "/api/nationalities/all",
+      data: {
+        select: {
+          id: 1,
+          name_ar: 1,
+          name_en: 1,
+          code: 1
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.nationalitiesList = response.data.list;
+      },
+      function (err) {
+        $scope.error = err;
+      }
+    )
+  };
+
 
   $scope.getNumberingAuto = function () {
     $scope.error = '';
@@ -433,6 +457,7 @@ app.controller("vendors", function ($scope, $http, $timeout) {
   $scope.loadCurrencies();
   $scope.getVendorList();
   $scope.getVendorGroupList();
+  $scope.getNationalitiesList();
   $scope.getGovList();
   $scope.getNumberingAuto();
   if (site.feature('erp')) {

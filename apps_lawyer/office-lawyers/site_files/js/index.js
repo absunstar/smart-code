@@ -419,6 +419,30 @@ app.controller("office_lawyers", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.getNationalitiesList = function () {
+    $http({
+      method: "POST",
+      url: "/api/nationalities/all",
+      data: {
+        select: {
+          id: 1,
+          name_ar: 1,
+          name_en: 1,
+          code: 1
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.nationalitiesList = response.data.list;
+      },
+      function (err) {
+        $scope.error = err;
+      }
+    )
+  };
+
+
   $scope.searchAll = function () {
 
     let where = {};
@@ -467,6 +491,7 @@ app.controller("office_lawyers", function ($scope, $http, $timeout) {
   $scope.getOfficeLawyersList();
   $scope.getGovList();
   $scope.getGender();
+  $scope.getNationalitiesList();
   $scope.loadMaritalsStatus();
   $scope.loadMilitariesStatus();
   $scope.getJobsList();

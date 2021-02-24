@@ -68,7 +68,7 @@ module.exports = function init(site) {
         'company.id': site.get_company(req).id,
         /*         'branch.code': site.get_branch(req).code,
          */
-        'name': foods_doc.name,
+        'name_ar': foods_doc.name_ar,
         'name_en,': foods_doc.name_en
       }
     }, (err, doc) => {

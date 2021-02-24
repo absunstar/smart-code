@@ -103,9 +103,7 @@ module.exports = function init(site) {
       else if (site.feature('medical')) companies_doc.feature = 'medical'
 
 
-
       if (companies_doc.username) {
-
 
         if (companies_doc.username.includes("@") && !companies_doc.username.includes(".")) {
           response.error = 'Username must be typed correctly'
@@ -125,7 +123,6 @@ module.exports = function init(site) {
           return;
 
         }
-
 
         let exist_domain = companies_doc.username.includes("@");
         if (!exist_domain) {

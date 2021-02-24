@@ -115,7 +115,10 @@ app.controller('register', function ($scope, $http) {
               $scope.busy = false;
             }
             if (response.data.done) {
-              document.location.href = '/order_customer';
+              if (site.feature('pos') || site.feature('restaurant'))
+                document.location.href = '/order_customer';
+              else document.location.href = '/';
+
               $scope.busy = false;
             }
           }, function (err) {

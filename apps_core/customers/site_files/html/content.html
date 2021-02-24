@@ -145,7 +145,7 @@
                     <legend> ##word.customers_id_inforamation## </legend>
                     <div class="row">
                         <i-list class="col3" label="##word.customers_nationality##" ng-model="customer.nationality"
-                            items="nationalityList" display="name_##session.lang##"
+                            items="nationalitiesList" display="name_##session.lang##"
                             ng-search="_search.$$customernationality">
                         </i-list>
 
@@ -432,7 +432,7 @@
 
                     <div class="row">
                         <i-list class="col3" label="##word.customers_commerical_nationality##"
-                            ng-model="customer.commerical_nationality" items="nationalityList"
+                            ng-model="customer.commerical_nationality" items="nationalitiesList"
                             display="name_##session.lang##" ng-search="_search.$$commericalNationality"></i-list>
 
                         <i-control class="col3" label="##word.customers_financial_system##"
@@ -783,7 +783,8 @@
                     </div>
 
                     <div class="row">
-                        <i class="grayDark bold">{{email_examble}}</i>
+                        <i ng-show="!customer.username" class="grayDark bold">{{email_examble}}</i>
+                        <i ng-show="customer.username" class="grayDark bold">{{customer.username}}{{host}}</i>
                     </div>
 
                 </fieldset>

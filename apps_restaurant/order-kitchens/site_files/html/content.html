@@ -12,10 +12,9 @@
 
     <table x-permissions="login" class="table bold hover loaded" id="t1">
         <tr>
-            <th>##word.code##</th>
+            <th>##word.order_code##</th>
             <th>##word.stores_items_name##</th>
             <th>##word.stores_size##</th>
-            <th>##word.barcode##</th>
             <th>##word.items_count##</th>
             <th>##word.items_notes##</th>
             <th>##word.actions##</th>
@@ -24,12 +23,11 @@
         <tr ng-hide="busy" ng-repeat="i in book_list_report ">
             <td class="">
                 <h2 class=" center blue">{{i.order.code}}</h2>
-                <p class="bold"> {{i.table.name}} / {{i.table.tables_group.name}} </p>
+                <p ng-show="i.table.id" class="bold"> {{i.table.name}} / {{i.table.tables_group.name}} </p>
             </td>
             <td class="center title">{{i.name}}</td>
             <td class="center title">{{i.size}}</td>
-            <td class="center title">{{i.barcode}}</td>
-            <td class="center code">{{i.count}}</td>
+            <td class="center ">{{i.count}}</td>
             <td class="center">{{i.notes}}</td>
 
             <td class="center">

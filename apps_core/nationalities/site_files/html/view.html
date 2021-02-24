@@ -1,0 +1,48 @@
+<div ng-hide="busy" class="row">
+    <div id="basicInformation" class=" ">
+        <fieldset>
+            <legend> ##word.basic_information##</legend>
+            <div class="col9">
+                <table id="basicInformationTable" class="table hover bold">
+                    <tr>
+                        <td class="title">##word.code##</td>
+                        <td class="center userPrint blue">{{nationalities.code}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.nationality_name_ar##</td>
+                        <td class="center">{{nationalities.name_ar}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.nationality_name_en##</td>
+                        <td class="center">{{nationalities.name_en}}</td>
+                    </tr>
+
+
+                    <tr>
+                        <td class="title">##word.nationality_notes##</td>
+                        <td class="center">{{nationalities.notes}}</td>
+                    </tr>
+
+                    <!--   <tr>
+                        <td class="title">##word.nationalities_price##</td>
+                        <td class="center green">{{nationalities.price}}</td>
+                    </tr> -->
+
+                    <tr>
+                        <td class="title">##word.status##</td>
+                        <td ng-show="nationalities.active == true" class="green center"> ##word.active## </td>
+                        <td ng-show="nationalities.active == false" class="red center"> ##word.not_active## </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="col3">
+                <i-image view ng-model="nationalities.image_url"></i-image>
+            </div>
+
+        </fieldset>
+    </div>
+</div>
+<div x-import="nationalities/action_info.html"></div>

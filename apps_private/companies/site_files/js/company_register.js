@@ -36,14 +36,14 @@ app.controller('company_register', function ($scope, $http) {
       $scope.error = v.messages[0].ar;
       return;
     }
-  /*   let user_name = company.username
+    /*   let user_name = company.username
+  
+  
+      let exist_domain = company.username.includes("@");
+      if(!exist_domain){
+        user_name = company.username + '@' + company.host;
+      } */
 
-
-    let exist_domain = company.username.includes("@");
-    if(!exist_domain){
-      user_name = company.username + '@' + company.host;
-    } */
-    
     $scope.busy = true;
     $http({
       method: "POST",
@@ -83,8 +83,12 @@ app.controller('company_register', function ($scope, $http) {
           }).then(function (response) {
             if (response.data.error) {
               $scope.error = response.data.error;
+              if (response.data.error.like('*ername must be typed correctly*')) {
+                $scope.error = "##word.err_username_contain##"
+              }
               $scope.busy = false;
             }
+            
             if (response.data.done) {
               window.location.href = "/";
               $scope.busy = false;

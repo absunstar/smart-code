@@ -1,0 +1,55 @@
+[{
+        "name": "nationality",
+        "en": "Food",
+        "ar": "الجنسية"
+    },
+    {
+        "name": "nationalities",
+        "en": "Nationalities",
+        "ar": "الجنسيات"
+    },
+    {
+        "name": "nationality_new",
+        "en": "New Foods",
+        "ar": "جنسية جديد"
+    },
+    {
+        "name": "nationality_add",
+        "en": "Add Foods",
+        "ar": "إضافة جنسية "
+    },
+    {
+        "name": "nationality_edit",
+        "en": "Edit Foods",
+        "ar": "تعديل جنسية "
+    },
+    {
+        "name": "nationality_details",
+        "en": "Foods Details",
+        "ar": "تفاصيل الجنسية "
+    },
+    {
+        "name": "nationality_delete",
+        "en": "Delete Foods",
+        "ar": "حذف جنسية "
+    },
+    {
+        "name": "nationality_name_ar",
+        "en": "Foods Name Ar",
+        "ar": "إسم الجنسية بالعربي"
+    },
+    {
+        "name": "nationality_name_en",
+        "en": "Foods Name En",
+        "ar": "إسم الجنسية بالإنجليزي"
+    },
+    {
+        "name": "nationality_notes",
+        "en": "Notes Foods",
+        "ar": "ملاحظات الجنسية "
+    }
+
+
+
+
+]

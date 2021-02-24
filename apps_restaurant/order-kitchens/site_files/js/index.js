@@ -50,6 +50,7 @@ app.controller("order_kitchen", function ($scope, $http, $interval) {
   $scope.loadKitchens = function () {
     $scope.error = '';
     $scope.busy = true;
+    $scope.kitchensList = [];
     $http({
       method: "POST",
       url: "/api/kitchen/all",
@@ -66,6 +67,7 @@ app.controller("order_kitchen", function ($scope, $http, $interval) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.kitchensList = response.data.list;
+          $scope.getDefaultSettings(response.data.list);
         }
       },
       function (err) {
@@ -75,7 +77,7 @@ app.controller("order_kitchen", function ($scope, $http, $interval) {
     )
   };
 
-  $scope.getDefaultSettings = function () {
+  $scope.getDefaultSettings = function (kitchensList) {
 
     $scope.busy = true;
     $http({
@@ -89,9 +91,9 @@ app.controller("order_kitchen", function ($scope, $http, $interval) {
           $scope.defaultSettings = response.data.doc;
           $scope.error = '';
           $scope.order_kitchen = {};
-
-          if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.kitchen)
-            $scope.order_kitchen.kitchen = $scope.kitchensList.find(_kitchen => { return _kitchen.id === $scope.defaultSettings.general_Settings.kitchen.id });
+          if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.kitchen){
+            $scope.order_kitchen.kitchen = kitchensList.find(_kitchen => { return _kitchen.id === $scope.defaultSettings.general_Settings.kitchen.id });
+          }
 
           if ($scope.order_kitchen.kitchen && $scope.order_kitchen.kitchen.id) {
             $scope.orderKitchensList();
@@ -158,7 +160,6 @@ app.controller("order_kitchen", function ($scope, $http, $interval) {
   };
 
   $scope.loadKitchens();
-  $scope.getDefaultSettings();
 
   $interval(() => {
     $scope.orderKitchensList();

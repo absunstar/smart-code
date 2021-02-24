@@ -12,7 +12,7 @@ module.exports = function init(site) {
     let response = {
       done: false
     }
-              
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)
@@ -41,7 +41,7 @@ module.exports = function init(site) {
     let response = {
       done: false
     }
-              
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)
@@ -53,12 +53,14 @@ module.exports = function init(site) {
     let where = req.body.where || {}
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
-    
+
     if (where['kitchen']) {
       kitchen = where['kitchen']
       where['book_list.kitchen.id'] = where['kitchen'].id;
       delete where['kitchen']
     }
+
+    where['book_list.done_kitchen'] = { $ne: true }
 
     $order_invoice.findMany({
       select: req.body.select || {},
@@ -70,7 +72,6 @@ module.exports = function init(site) {
     }, (err, docs, count) => {
       if (!err) {
         response.done = true
-
         let book_list_report = [];
         docs.forEach(_order => {
           _order.book_list.forEach(itm => {

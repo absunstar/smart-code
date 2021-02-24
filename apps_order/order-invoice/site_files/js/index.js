@@ -1770,7 +1770,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
   $scope.loadItems = function (group, e) {
 
-    document.querySelectorAll('p').forEach(a => {
+    document.querySelectorAll('z').forEach(a => {
       a.classList.remove('my-hover');
     });
     e.target.classList.add('my-hover');
@@ -1840,13 +1840,13 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
       item.branches_list.forEach(_branch => {
         if (_branch.code == '##session.branch.code##') {
-          if (_branch.kitchen) {
-            kitchenBranch = _branch.kitchen;
+          if (_branch.kitchen && _branch.kitchen.id) {
+            kitchenBranch = $scope.kitchensList.find(_kitchen => { return _kitchen.id === _branch.kitchen.id });
           } else {
             if ($scope.defaultSettings.general_Settings.kitchen)
               kitchenBranch = $scope.kitchensList.find(_kitchen => { return _kitchen.id === $scope.defaultSettings.general_Settings.kitchen.id });
           }
-
+          _branch.stores_list = _branch.stores_list || [];
           _branch.stores_list.forEach(_store => {
             if (_store.store && _store.store.id == $scope.order_invoice.store.id) {
               item.store_count = _store.current_count;
@@ -1856,7 +1856,11 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
           });
         }
       });
-    }
+
+    } else {
+      if ($scope.defaultSettings.general_Settings.kitchen)
+      kitchenBranch = $scope.kitchensList.find(_kitchen => { return _kitchen.id === $scope.defaultSettings.general_Settings.kitchen.id });
+    };
 
     $scope.order_invoice.book_list.forEach(el => {
       if (item.size == el.size && item.barcode == el.barcode && !el.printed) {
@@ -2098,7 +2102,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         obj.net_value = (site.toNumber(obj.total_value) + (obj.service || 0) + (obj.total_tax || 0) + (obj.price_delivery_service || 0)) - (obj.total_discount || 0);
         obj.net_value = site.toNumber(obj.net_value)
       }
-      
+
       if (obj.currency) {
         $scope.amount_currency = obj.net_value / obj.currency.ex_rate;
         $scope.amount_currency = site.toNumber($scope.amount_currency);
@@ -2276,15 +2280,6 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     )
   };
 
-  /*  let header = document.getElementById("myDIV");
-   let btns = header.getElementsByClassName("item");
-   for (let i = 0; i < btns.length; i++) {
-     btns[i].addEventListener("click", function () {
-       let current = document.getElementsByClassName("active");
-       current[0].className = current[0].className.replace(" active", "");
-       this.className += " active";
-     });
-   } */
 
   $scope.getNumberingAutoCustomer = function () {
     $scope.error = '';

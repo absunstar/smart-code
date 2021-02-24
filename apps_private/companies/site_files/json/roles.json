@@ -26,6 +26,7 @@
             "customers_manage",
             "sales_customers_group_manage",
             "default_setting_manage",
+            "nationalities_manage",
             "goves_manage",
             "maritals_status_manage",
             "militaries_status_manage",

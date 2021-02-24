@@ -548,10 +548,10 @@
     },
     {
         "category": "general_setting",
-        "feature": "medical",
-        "name": "prices_codes",
-        "en": "Prices Codes",
-        "ar": "أكواد الأسعار"
+        "feature": "public",
+        "name": "nationalities",
+        "en": "Nationalities",
+        "ar": "الجنسيات"
     },
     {
         "category": "general_setting",
@@ -573,6 +573,13 @@
         "name": "area",
         "en": "Areas",
         "ar": "المناطق"
+    },
+    {
+        "category": "general_setting",
+        "feature": "medical",
+        "name": "prices_codes",
+        "en": "Prices Codes",
+        "ar": "أكواد الأسعار"
     },
     {
         "category": "general_setting",

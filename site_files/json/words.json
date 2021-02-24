@@ -175,6 +175,16 @@
         "ar": "المبلغ"
     },
     {
+        "name": "amount",
+        "en": "Amount",
+        "ar": "مبلغ"
+    },
+    {
+        "name": "percent",
+        "en": "Percent",
+        "ar": "نسبة"
+    },
+    {
         "name": "due_date",
         "en": "Due Date",
         "ar": "تاريخ الاستحقاق"
@@ -1383,6 +1393,11 @@
         "name": "total",
         "en": "Total",
         "ar": "إجمالي"
+    },
+    {
+        "name": "err_username_contain",
+        "en": "Username must contain the characters ( @ ’ . )",
+        "ar": "يجب أن يحتوي إسم المستخدم على الرموز ( @ ’ . ) "
     },
     {
         "name": "le",

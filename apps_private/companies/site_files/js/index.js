@@ -54,6 +54,9 @@ app.controller("companies", function ($scope, $http, $timeout) {
           $scope.count += 1;
         } else {
           $scope.error = response.data.error;
+          if (response.data.error.like('*ername must be typed correctly*')) {
+            $scope.error = "##word.err_username_contain##"
+          }
         }
       },
       function (err) {

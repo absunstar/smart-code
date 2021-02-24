@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "nationalities_admin",
+    "en": "Nationalities Admin",
+    "ar": "إدارة الجنسيات",
+    "permissions": ["nationalities_manage"]
+}]

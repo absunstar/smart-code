@@ -66,9 +66,10 @@ module.exports = function init(site) {
       where: {
 
         'company.id': site.get_company(req).id,
-/*         'branch.code': site.get_branch(req).code,
- */        'name_ar,': drinks_doc.name_ar,
-        'name_en,': drinks_doc.name_en,
+        /*         'branch.code': site.get_branch(req).code,
+         */
+        'name_ar,': drinks_doc.name_ar,
+        'name_en': drinks_doc.name_en,
       }
     }, (err, doc) => {
       if (!err && doc) {

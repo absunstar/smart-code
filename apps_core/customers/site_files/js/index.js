@@ -68,11 +68,17 @@ app.controller("customers", function ($scope, $http, $timeout) {
           $scope.count = $scope.list.length;
         } else {
           $scope.error = response.data.error;
+
           if (response.data.error.like('*Must Enter Code*')) {
             $scope.error = "##word.must_enter_code##"
+
           } else if (response.data.error.like('*maximum number of adds exceeded*')) {
             $scope.error = "##word.err_maximum_adds##"
+
+          } else if (response.data.error.like('*ername must be typed correctly*')) {
+            $scope.error = "##word.err_username_contain##"
           }
+
         }
       },
       function (err) {
@@ -140,6 +146,10 @@ app.controller("customers", function ($scope, $http, $timeout) {
           $scope.getCustomersList();
         } else {
           $scope.error = response.data.error;
+          if (response.data.error.like('*ername must be typed correctly*')) {
+            $scope.error = "##word.err_username_contain##"
+          }
+
         }
       },
       function (err) {
@@ -298,6 +308,30 @@ app.controller("customers", function ($scope, $http, $timeout) {
       }
     )
   };
+
+  $scope.getNationalitiesList = function () {
+    $http({
+      method: "POST",
+      url: "/api/nationalities/all",
+      data: {
+        select: {
+          id: 1,
+          name_ar: 1,
+          name_en: 1,
+          code: 1
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.nationalitiesList = response.data.list;
+      },
+      function (err) {
+        $scope.error = err;
+      }
+    )
+  };
+
 
   $scope.Gender = function () {
     $scope.error = '';
@@ -731,11 +765,14 @@ app.controller("customers", function ($scope, $http, $timeout) {
 
 
   $scope.email_examble = '';
+  $scope.host = '';
   if (typeof '##session.company.host##' === 'string') {
     $scope.email_examble = 'examble@##session.company.host##';
+    $scope.host = '@##session.company.host##';
 
   } else {
     $scope.email_examble = 'you@examble.com';
+    $scope.host = '@examble.com';
 
   }
 
@@ -748,7 +785,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
   $scope.Gender();
   $scope.getGovList();
   $scope.getBloodType();
-
+  $scope.getNationalitiesList();
   $scope.loadMaritalsStatus();
   $scope.loadMilitariesStatus();
 

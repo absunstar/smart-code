@@ -41,6 +41,9 @@
                     <h1 ng-show="##query.type## == 14" class="bold text-center"> ##word.report##
                         ##word.transfer_safes_balances## </h1>
 
+                    <h1 ng-show="##query.type## == 15" class="bold text-center"> ##word.report##
+                        ##word.patients_tickets## </h1>
+
                 </div>
 
                 <div class="top-actions">
@@ -88,7 +91,7 @@
                         <tr>
                             <th class="not-print"> ##word.logo## </th>
                             <th> ##word.date## </th>
-                            <th> ##word.invoices_code## </th>
+                            <th> ##word.code## </th>
                             <th> ##word.source_type## </th>
                             <th ng-show="##query.type## == 3"> ##word.order_type## </th>
                             <th ng-show="##query.type## == 14"> ##word.data_transmitted_from## </th>
@@ -133,7 +136,7 @@
                             </td>
                             <td> {{c.net_value}} </td>
                             <td class="green"> {{c.paid_up ||0}} </td>
-                            <td class="blue"> {{c.remain_amount ||0}} </td>
+                            <td class="red"> {{c.remain_amount ||0}} </td>
                         </tr>
                     </table>
                 </div>

@@ -239,31 +239,44 @@ module.exports = function init(site) {
       image_url: user.image_url
     }
 
+    let company = {}
+    let branch = {}
+
 
     if (req.session.user) {
-
-      customers_doc.company = site.get_company(req)
-      customers_doc.branch = site.get_branch(req)
-
-      user.branch_list = [{
-        company: site.get_company(req),
-        branch: site.get_branch(req)
-      }]
+      company = site.get_company(req)
+      branch = site.get_branch(req)
 
     } else {
       customers_doc.active = true
+      company = customers_doc.company
+      branch = customers_doc.branch
 
-      user.branch_list = [{
-        company: customers_doc.company,
-        branch: customers_doc.branch
-      }]
     }
+
+    user.branch_list = [{
+      company: company,
+      branch: branch
+    }]
+
+    customers_doc.company = {
+      id: company.id,
+      name_ar: company.name_ar,
+      name_en: company.name_en
+    }
+
+    customers_doc.branch = {
+      code: branch.code,
+      name_ar: branch.name_ar,
+      name_en: branch.name_en
+    }
+
 
     user.company = customers_doc.company
     user.branch = customers_doc.branch
 
     let num_obj = {
-      company: site.get_company(req),
+      company: company,
       screen: 'customers',
       date: new Date()
     };
@@ -281,23 +294,38 @@ module.exports = function init(site) {
 
     $customers.findMany({
       where: {
-        'company.id': site.get_company(req).id,
+        'company.id': company.id,
       }
     }, (err, docs, count) => {
-      if (!err && count >= site.get_company(req).customers_count) {
+      if (!err && count >= company.customers_count) {
 
         response.error = 'The maximum number of adds exceeded'
         res.json(response)
+        return;
+
       } else {
 
         if (customers_doc.username) {
-  
-          let exist_domain = customers_doc.username.includes("@");
-          if (!exist_domain) {
-            customers_doc.username = customers_doc.username + '@' + site.get_company(req).host;
+
+          if (!customers_doc.username.includes("@") && !customers_doc.username.includes(".")) {
+            customers_doc.username = customers_doc.username + '@' + company.host;
+
+          } else {
+
+            if (customers_doc.username.includes("@") && !customers_doc.username.includes(".")) {
+              response.error = 'Username must be typed correctly'
+              res.json(response)
+              return;
+
+            } else if (!customers_doc.username.includes("@") && customers_doc.username.includes(".")) {
+              response.error = 'Username must be typed correctly'
+              res.json(response)
+              return;
+
+            }
+
           }
         }
-  
 
         $customers.add(customers_doc, (err, doc) => {
           if (!err) {
@@ -335,12 +363,10 @@ module.exports = function init(site) {
                     //   )
                     // }
 
-                    res.json(response)
                   })
                 } else {
                   response.error = err.message
                 }
-                res.json(response)
               })
             }
           } else {
@@ -413,6 +439,28 @@ module.exports = function init(site) {
           "exams_view"
         ]
       })
+    }
+
+    if (customers_doc.username) {
+
+      if (!customers_doc.username.includes("@") && !customers_doc.username.includes(".")) {
+        customers_doc.username = customers_doc.username + '@' + site.get_company(req).host;
+
+      } else {
+
+        if (customers_doc.username.includes("@") && !customers_doc.username.includes(".")) {
+          response.error = 'Username must be typed correctly'
+          res.json(response)
+          return;
+
+        } else if (!customers_doc.username.includes("@") && customers_doc.username.includes(".")) {
+          response.error = 'Username must be typed correctly'
+          res.json(response)
+          return;
+
+        }
+
+      }
     }
 
     user.permissions = []
