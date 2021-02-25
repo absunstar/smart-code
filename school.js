@@ -17,11 +17,8 @@ const site = require('isite')({
         limit: 100000
     },
     security: {
-        admin: {
-            email: 'school',
-            password: 'P@$$w0rd'
-        }
-    }
+        keys: ['e698f2679be5ba5c9c0b0031cb5b057c' , '9705a3a85c1b21118532fefcee840f99'],
+      }
 })
 
 site.get({

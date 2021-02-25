@@ -1,7 +1,7 @@
 const site = require('isite')({
     port: [80, 40010],
     lang: 'ar',
-    version : '1.0.6',
+    version: '1.0.6',
     name: 'employee',
     theme: 'theme_paper',
     require: {
@@ -13,10 +13,7 @@ const site = require('isite')({
         limit: 100000
     },
     security: {
-        admin: {
-            email: 'employee',
-            password: 'P@$$w0rd'
-        }
+        keys: ['e698f2679be5ba5c9c0b0031cb5b057c', '9705a3a85c1b21118532fefcee840f99'],
     }
 })
 
