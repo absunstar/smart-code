@@ -167,6 +167,7 @@
             "patients_tickets_manage",
             "report_analysis_requests_manage",
             "report_scans_requests_manage",
+            "report_payable_customers_manage",
             "report_doctors_visits_manage"
         ]
     }

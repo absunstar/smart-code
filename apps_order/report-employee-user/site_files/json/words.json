@@ -86,11 +86,6 @@
         "ar": "أمر بيع"
     },
     {
-        "name": "payable",
-        "en": "Payable",
-        "ar": "مستحق الدفع"
-    },
-    {
         "name": "invoice_type",
         "en": "Invoice Type",
         "ar": "نوع الفاتورة"

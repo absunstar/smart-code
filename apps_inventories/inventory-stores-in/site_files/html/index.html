@@ -18,9 +18,9 @@
             <div class="row" ng-controller="stores_in">
                 <div x-permissions="stores_in_add || stores_in_manage" x-import="inventory-stores-in/add_modal.html">
                 </div>
-                <div x-permissions="stores_in_add || stores_in_manage"
-                    x-import="inventory-stores-in/account_invoice.html">
-                </div>
+
+                <div x-import="inventory-stores-in/account_invoice.html"></div>
+
                 <div x-permissions="stores_in_add || stores_in_manage" x-import="inventory-stores-in/patches_list.html">
                 </div>
 
@@ -44,6 +44,8 @@
                     x-import="inventory-stores-in/select_items_modal.html"></div>
 
                 <div x-import="inventory-stores-in/returned.html"></div>
+
+                <div x-import="accounting-invoices/add_payments_modal.html"></div>
 
                 <div class="row">
                     <h1 ng-show="##query.type## == 1" class="bold text-center"> ##word.stores_ins## </h1>

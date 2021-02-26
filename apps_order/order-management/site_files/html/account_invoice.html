@@ -53,6 +53,9 @@
                             ng-model="account_invoices.net_value" label="##word.paid_require##" type="number">
                         </i-control>
 
+                    </div>
+
+                    <div class="row">
                         <i-control class="col3" disabled ng-model="amount_currency" label="##word.amount_currency##"
                             type="number"></i-control>
 
@@ -60,7 +63,8 @@
                             label="##word.paid_up##" type="number">
                         </i-control>
 
-
+                        <i-button class="col2" label="##word.add_payment##" ng-click="paymentsPayable('view')">
+                        </i-button>
                     </div>
 
 

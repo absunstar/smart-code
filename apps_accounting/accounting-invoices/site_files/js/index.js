@@ -44,10 +44,10 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
           };
 
           if (site.toNumber("##query.type##") == 13) {
-            if($scope.defaultSettings.general_Settings.school_grade){
+            if ($scope.defaultSettings.general_Settings.school_grade) {
 
               $scope.account_invoices.school_grade = $scope.schoolGradesList.find(_schoolGrade => { return _schoolGrade.id === $scope.defaultSettings.general_Settings.school_grade.id });
-              if($scope.account_invoices.school_grade && $scope.account_invoices.school_grade.id){
+              if ($scope.account_invoices.school_grade && $scope.account_invoices.school_grade.id) {
 
                 $scope.getStudentsYearsList($scope.account_invoices.school_grade);
               }
@@ -1346,6 +1346,16 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     }
   };
 
+  $scope.paymentsPayable = function (account_invoices, type) {
+    $scope.error = '';
+    account_invoices = account_invoices || {};
+    account_invoices.payable_list = account_invoices.payable_list || [{}];
+    if (type === 'view') {
+      site.showModal('#addPaymentsModal');
+
+    }
+  };
+
   $scope.getDefaultSetting = function () {
     $scope.busy = true;
     $http({
@@ -1675,7 +1685,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
   if (site.feature('school')) {
     $scope.getSchoolGradesList();
   }
-  
+
   $scope.getPaymentMethodList();
   $scope.getNumberingAuto();
 });

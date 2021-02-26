@@ -1,0 +1,43 @@
+<div id="addPaymentsModal" class="modal">
+
+    <div class="modal-content small">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.payments_payable##
+                <i class="fa fa-file"></i>
+            </h2>
+        </div>
+        <div class="modal-body">
+            <span ng-show="busy">
+                <span class="sr-only">Loading...</span>
+            </span>
+            <fieldset>
+                <legend>##word.payments##
+                    <i-button type="add default" ng-click="account_invoices.payable_list.push({})"></i-button>
+                </legend>
+
+                <div class="row" ng-repeat="p in account_invoices.payable_list">
+                    <i-date2 class="col5" ng-model="p.date" label="##word.due_date##"></i-date2>
+                    <i-control ng-model="p.value" class="col3" label="##word.payment_value##" type="number"></i-control>
+                    <div class="col2"></div>
+                    <i-button type="delete default" class="col2"
+                        ng-click="account_invoices.payable_list.length ===1 ||account_invoices.payable_list.splice($index,1)">
+                    </i-button>
+                </div>
+
+
+            </fieldset>
+        </div>
+        <h2 class="error"> {{error}} </h2>
+        <div class="modal-footer center">
+
+            <i-button class="not-print" label="##word.print##" type="print " ng-click="printAccountInvoive()">
+            </i-button>
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#addPaymentsModal')"></i-button>
+            <!--             <i-button class="not-print" label="##word.print##" type="print " onclick="site.print('#accountInvoicesDetailsModal')"></i-button>
+ -->
+        </div>
+    </div>
+
+</div>

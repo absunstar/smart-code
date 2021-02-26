@@ -98,9 +98,9 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $scope.account_invoices = response.data.doc;
           site.hideModal('#accountInvoiceModal');
-          $scope.printAccountInvoive();
+          $scope.printAccountInvoive(response.data.doc);
+          $scope.account_invoices = {};
           $scope.loadAll({ date: new Date() });
         } else {
           $scope.error = response.data.error;
@@ -115,7 +115,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.printAccountInvoive = function () {
+  $scope.printAccountInvoive = function (account_invoices) {
     $scope.error = '';
     if ($scope.busy) return;
     $scope.busy = true;
@@ -129,17 +129,17 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     };
 
 
-    if ($scope.account_invoices && $scope.account_invoices.currency) {
+    if (account_invoices && account_invoices.currency) {
 
-      $scope.account_invoices.total_remain = $scope.account_invoices.net_value - ($scope.account_invoices.paid_up * $scope.account_invoices.currency.ex_rate);
+      account_invoices.total_remain = account_invoices.net_value - (account_invoices.paid_up * account_invoices.currency.ex_rate);
 
-      $scope.account_invoices.total_remain = site.toNumber($scope.account_invoices.total_remain)
-      $scope.account_invoices.total_paid_up = site.toNumber($scope.account_invoices.total_paid_up)
-      $scope.account_invoices.total_tax = site.toNumber($scope.account_invoices.total_tax)
-      $scope.account_invoices.total_discount = site.toNumber($scope.account_invoices.total_discount)
-      $scope.account_invoices.net_value = site.toNumber($scope.account_invoices.net_value)
-      $scope.account_invoices.paid_up = site.toNumber($scope.account_invoices.paid_up)
-      $scope.account_invoices.payment_paid_up = site.toNumber($scope.account_invoices.payment_paid_up)
+      account_invoices.total_remain = site.toNumber(account_invoices.total_remain)
+      account_invoices.total_paid_up = site.toNumber(account_invoices.total_paid_up)
+      account_invoices.total_tax = site.toNumber(account_invoices.total_tax)
+      account_invoices.total_discount = site.toNumber(account_invoices.total_discount)
+      account_invoices.net_value = site.toNumber(account_invoices.net_value)
+      account_invoices.paid_up = site.toNumber(account_invoices.paid_up)
+      account_invoices.payment_paid_up = site.toNumber(account_invoices.payment_paid_up)
 
       let obj_print = {
         data: []
@@ -190,20 +190,20 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       obj_print.data.push({
         type: 'invoice-code',
         name: 'Purchase I',
-        value: $scope.account_invoices.code
+        value: account_invoices.code
       }, {
         type: 'invoice-date',
         name: 'Date',
-        value: site.toDateXF($scope.account_invoices.date)
+        value: site.toDateXF(account_invoices.date)
       }, {
         type: 'space'
       });
 
 
-      if ($scope.account_invoices.vendor)
+      if (account_invoices.vendor)
         obj_print.data.push({
           type: 'text2',
-          value2: $scope.account_invoices.vendor.name_ar,
+          value2: account_invoices.vendor.name_ar,
           value: 'Vendor'
         });
 
@@ -211,7 +211,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         type: 'line'
       });
 
-      if ($scope.account_invoices.current_book_list && $scope.account_invoices.current_book_list.length > 0) {
+      if (account_invoices.current_book_list && account_invoices.current_book_list.length > 0) {
 
         obj_print.data.push({
           type: 'line'
@@ -229,7 +229,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
           type: 'line2'
         });
 
-        $scope.account_invoices.current_book_list.forEach((_current_book_list, i) => {
+        account_invoices.current_book_list.forEach((_current_book_list, i) => {
           _current_book_list.total = site.toNumber(_current_book_list.total);
           obj_print.data.push({
             type: 'invoice-item',
@@ -237,7 +237,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
             name: _current_book_list.size,
             price: site.addSubZero(_current_book_list.total, 2)
           });
-          if (i < $scope.account_invoices.current_book_list.length - 1) {
+          if (i < account_invoices.current_book_list.length - 1) {
             obj_print.data.push({
               type: 'line3'
             });
@@ -248,17 +248,17 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
 
 
-      if ($scope.account_invoices.total_discount)
+      if (account_invoices.total_discount)
         obj_print.data.push({
           type: 'text2',
-          value2: $scope.account_invoices.total_discount,
+          value2: account_invoices.total_discount,
           value: 'Total Discount'
         });
 
-      if ($scope.account_invoices.total_tax)
+      if (account_invoices.total_tax)
         obj_print.data.push({
           type: 'text2',
-          value2: $scope.account_invoices.total_tax,
+          value2: account_invoices.total_tax,
           value: 'Total Tax'
         });
 
@@ -267,19 +267,19 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       });
 
 
-      if ($scope.account_invoices.net_value) {
+      if (account_invoices.net_value) {
 
         obj_print.data.push({
           type: 'invoice-total',
-          value: site.addSubZero($scope.account_invoices.net_value, 2),
+          value: site.addSubZero(account_invoices.net_value, 2),
           name: "Total Value"
         });
       }
 
-      if ($scope.account_invoices.paid_up)
+      if (account_invoices.paid_up)
         obj_print.data.push({
           type: 'text2',
-          value2: site.addSubZero($scope.account_invoices.paid_up, 2),
+          value2: site.addSubZero(account_invoices.paid_up, 2),
           value: "Paid Up"
         });
 
@@ -289,18 +289,18 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         type: 'space'
       });
 
-      if ($scope.account_invoices.total_remain) {
+      if (account_invoices.total_remain) {
         obj_print.data.push({
           type: 'text2b',
-          value2: site.addSubZero($scope.account_invoices.total_remain, 2),
+          value2: site.addSubZero(account_invoices.total_remain, 2),
           value: "Required to pay"
         });
       }
 
-      if ($scope.account_invoices.currency)
+      if (account_invoices.currency)
         obj_print.data.push({
           type: 'text2',
-          value2: $scope.account_invoices.currency.name,
+          value2: account_invoices.currency.name,
           value: "Currency"
         });
 
@@ -315,10 +315,10 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
       }
 
-      if ($scope.account_invoices.code) {
+      if (account_invoices.code) {
         obj_print.data.push({
           type: 'invoice-barcode',
-          value: ($scope.account_invoices.code)
+          value: (account_invoices.code)
         });
       }
 
@@ -894,6 +894,10 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
             $scope.error = '##word.should_open_period##';
           } else {
 
+            if ($scope.account_invoices && $scope.account_invoices.payable_list && $scope.account_invoices.payable_list.length > 0) {
+              $scope.store_in.payable_list = $scope.account_invoices.payable_list;
+            };
+
             $scope.busy = true;
             $http({
               method: "POST",
@@ -908,6 +912,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                     let account_invoices = {
                       image_url: '/images/account_invoices.png',
                       date: response.data.doc.date,
+                      payable_list: response.data.doc.payable_list,
                       invoice_id: response.data.doc.id,
                       invoice_type: response.data.doc.type,
                       vendor: response.data.doc.vendor,
@@ -1487,6 +1492,11 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
           $scope.error = '##word.should_open_period##';
         } else {
 
+          if ($scope.account_invoices && $scope.account_invoices.payable_list && $scope.account_invoices.payable_list.length > 0) {
+            $scope.store_in.payable_list = $scope.account_invoices.payable_list;
+          };
+
+
           $scope.busy = true;
           $http({
             method: "POST",
@@ -1683,10 +1693,11 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                     if (!store_in.posting && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.link_warehouse_account_invoices) {
                       $scope.deleteAccountInvoices(store_in);
 
-                    } else if (store_in.posting && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.link_warehouse_account_invoices) {
+                    } else if ((store_in.type.id === 1 || store_in.type.id === 4) && store_in.posting && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.link_warehouse_account_invoices) {
                       let account_invoices = {
                         image_url: '/images/account_invoices.png',
                         date: response.data.doc.date,
+                        payable_list: response.data.doc.payable_list,
                         invoice_id: response.data.doc.id,
                         invoice_type: response.data.doc.type,
                         vendor: response.data.doc.vendor,
@@ -1765,7 +1776,6 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       return;
     } else {
 
-
       for (let i = 0; i < _store_in_all.length; i++) {
         setTimeout(() => {
           if (!_store_in_all[i].posting) {
@@ -1776,7 +1786,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                 if (testCallback.patchCount) {
                   $scope.error = `##word.err_patch_count##   ( ${testCallback.patch_list.join('-')} )`;
                   _store_in_all[i].posting = false;
-                } else if (testCallback.exist_serial && _store_in_all[i].type.id !== 4) {
+                } else if (testCallback.exist_serial && _store_in_all[i].type.id != 4) {
                   $scope.error = `##word.serial_pre_existing##   ( ${testCallback.patch_list.join('-')} )`;
                   _store_in_all[i].posting = false;
                 } else if (testCallback.errDate) {
@@ -1798,6 +1808,37 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                       }).then(
                         function (response) {
                           if (response.data.done) {
+
+                            if ((_store_in_all[i].type.id === 1 || _store_in_all[i].type.id === 4) &&_store_in_all[i].posting && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.link_warehouse_account_invoices) {
+                              let account_invoices = {
+                                image_url: '/images/account_invoices.png',
+                                date: response.data.doc.date,
+                                payable_list: response.data.doc.payable_list,
+                                invoice_id: response.data.doc.id,
+                                invoice_type: response.data.doc.type,
+                                vendor: response.data.doc.vendor,
+                                total_value_added: response.data.doc.total_value_added,
+                                shift: response.data.doc.shift,
+                                net_value: response.data.doc.net_value,
+                                currency: response.data.doc.currency,
+                                paid_up: response.data.doc.paid_up || 0,
+                                payment_method: response.data.doc.payment_method,
+                                safe: response.data.doc.safe,
+                                invoice_code: response.data.doc.code,
+                                total_discount: response.data.doc.total_discount,
+                                total_tax: response.data.doc.total_tax,
+                                current_book_list: response.data.doc.items,
+                                source_type: {
+                                  id: 1,
+                                  en: "Purchases Store",
+                                  ar: "المشتريات المخزنية"
+                                },
+                                active: true
+                              };
+
+                              $scope.addAccountInvoice(account_invoices)
+                            }
+
 
                           } else {
                             $scope.error = response.data.error;
@@ -1833,6 +1874,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     }
 
   };
+
 
   $scope.getStockItems = function (items, callback) {
     $scope.error = '';
@@ -2418,6 +2460,16 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       )
     }
 
+  };
+
+  $scope.paymentsPayable = function (type) {
+    $scope.error = '';
+    $scope.account_invoices = $scope.account_invoices || {};
+    $scope.account_invoices.payable_list = $scope.account_invoices.payable_list || [{}];
+    if (type === 'view') {
+      site.showModal('#addPaymentsModal');
+
+    }
   };
 
   $scope.getNumberingAutoInvoice = function () {

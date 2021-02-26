@@ -15,6 +15,21 @@
         "ar": " فواتير الحسابات"
     },
     {
+        "name": "payments_payable",
+        "en": "Payments payable",
+        "ar": "المستحقات واجبة الدفع"
+    },
+    {
+        "name": "payment_value",
+        "en": "Payment Value",
+        "ar": "قيمة الدفعة"
+    },
+    {
+        "name": "add_payment",
+        "en": "payment Value",
+        "ar": "إضافة دفعات"
+    },
+    {
         "name": "accounting_invoices",
         "en": "Accounting Invoices",
         "ar": " فواتير الحسابات"
@@ -103,6 +118,11 @@
         "name": "order_type",
         "en": "Order Type",
         "ar": "نوع الطلب"
+    },
+    {
+        "name": "payments",
+        "en": "Payments",
+        "ar": "الدفعات"
     },
     {
         "name": "payment",

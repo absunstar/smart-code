@@ -56,6 +56,7 @@
           <img src="/images/scans_requests.png" />
           <span> ##word.scans_requests## </span>
         </a>
+
       </div>
 
       <div class="" x-features="lawyer">
@@ -94,6 +95,7 @@
           <img src="/images/session_add.png" />
           <span> ##word.session_add##</span>
         </a>
+
       </div>
 
       <div class="" x-features="gym">
@@ -117,6 +119,7 @@
           <img src="/images/customer_info.png" />
           <span>##word.report_info_name##</span>
         </a>
+
       </div>
 
       <div class="" x-features="school">
@@ -189,22 +192,23 @@
             <img src="/images/order_invoice.png" />
             <span> ##word.order_invoice_menus## </span>
           </a>
-  
+
           <a class="tab-link" href="/order_management" x-permissions="order_management_ui || order_management_manage">
             <img src="/images/order_management.png" />
             <span> ##word.order_management_menus## </span>
           </a>
-  
+
           <a class="tab-link" href="/order_customer" x-permissions="order_customer_ui || order_customer_manage">
             <img src="/images/order_customer.png" />
             <span> ##word.order_customer_menus## </span>
           </a>
-  
-          <a class="tab-link" href="/order_distributor" x-permissions="order_distributor_ui || order_distributor_manage">
+
+          <a class="tab-link" href="/order_distributor"
+            x-permissions="order_distributor_ui || order_distributor_manage">
             <img src="/images/order_distributor.png" />
             <span>##word.order_distributor_menus## </span>
           </a>
-  
+
           <a x-features="pos || erp" class="tab-link" href="/itineraries"
             x-permissions="itineraries_ui || itineraries_manage">
             <img src="/images/itinerary.png" />
@@ -238,7 +242,7 @@
         </a>
       </div>
 
-    
+
 
       <div class="" x-features="restaurant">
         <a class="tab-link" href="/order_kitchen" x-permissions="order_kitchen_ui || order_kitchen_manage">
@@ -1010,6 +1014,12 @@
         </a>
       </div>
 
+      <a class="tab-link" href="/report_payable_customers"
+        x-permissions="report_payable_customers_ui || report_payable_customers_manage">
+        <img src="/images/report_payable_customers.png" />
+        <span>##word.report_payable_customers##</span>
+      </a>
+
       <a class="tab-link" href="/item_transaction" x-permissions="item_transaction_ui || item_transaction_manage">
         <img src="/images/item_transaction.png" />
         <span>##word.system_item_transaction_menus##</span>
@@ -1139,6 +1149,7 @@
         <img src="/images/report_employee_delegate.png" />
         <span>##word.report_employees_delegates##</span>
       </a>
+
 
       <a class="tab-link" href="/report_invoices_customers"
         x-permissions="report_invoices_customers_ui || report_invoices_customers_manage">

@@ -67,21 +67,24 @@ module.exports = function init(site) {
       if (doc.under_paid) {
 
         if (obj.return) {
-          doc.under_paid.net_value = doc.under_paid.net_value + obj.net_value;
-          doc.under_paid.total_tax = doc.under_paid.total_tax + obj.total_tax;
-          doc.under_paid.total_discount = doc.under_paid.total_discount + obj.total_discount;
-          doc.under_paid.price_delivery_service = doc.under_paid.price_delivery_service + obj.price_delivery_service;
-          doc.under_paid.service = doc.under_paid.service - obj.service;
+
+          doc.under_paid.net_value = doc.under_paid.net_value + (obj.net_value || 0);
+          doc.under_paid.total_tax = doc.under_paid.total_tax + (obj.total_tax || 0);
+          doc.under_paid.total_discount = doc.under_paid.total_discount + (obj.total_discount || 0);
+          doc.under_paid.price_delivery_service = doc.under_paid.price_delivery_service + (obj.price_delivery_service || 0);
+          doc.under_paid.service = doc.under_paid.service + (obj.service || 0);
+
         } else {
+
           doc.invoice = true;
-          doc.under_paid.net_value = doc.under_paid.net_value - obj.net_value;
-          doc.under_paid.total_tax = doc.under_paid.total_tax - obj.total_tax;
-          doc.under_paid.total_discount = doc.under_paid.total_discount - obj.total_discount;
-          doc.under_paid.price_delivery_service = doc.under_paid.price_delivery_service - obj.price_delivery_service;
-          doc.under_paid.service = doc.under_paid.service - obj.service;
+          doc.under_paid.net_value = doc.under_paid.net_value - (obj.net_value || 0);
+          doc.under_paid.total_tax = doc.under_paid.total_tax - (obj.total_tax || 0);
+          doc.under_paid.total_discount = doc.under_paid.total_discount - (obj.total_discount || 0);
+          doc.under_paid.price_delivery_service = doc.under_paid.price_delivery_service - (obj.price_delivery_service || 0);
+          doc.under_paid.service = doc.under_paid.service - (obj.service || 0);
         }
 
-        if (doc.under_paid.net_value <= 0) doc.status = { id: 5, en: "Closed & paid", ar: "مغلق و تم الدفع" }
+        if (doc.under_paid.net_value <= 0 && obj.remain_amount <= 0) doc.status = { id: 5, en: "Closed & paid", ar: "مغلق و تم الدفع" }
 
         else if (obj.return && doc.under_paid.net_value == doc.net_value) doc.status = { id: 2, en: "Closed Of Orders Screen", ar: "مغلق من شاشة الأوردرات" }
 
@@ -119,35 +122,22 @@ module.exports = function init(site) {
 
 
 
+  site.on('[account_invoices][order_invoice][paid]', (id, callback, next) => {
+    $order_invoice.findOne({ id: id }, (err, doc) => {
+      if (!err && doc) {
 
-
-  order_done_list = []
-  site.on('[account_invoices][order_invoice][paid]', obj => {
-    order_done_list.push(Object.assign({}, obj))
+        if (doc.under_paid.net_value <= 0) {
+          doc.status = { id: 5, en: "Closed & paid", ar: "مغلق و تم الدفع" }
+          $order_invoice.update(doc, () => {
+            next()
+          });
+        }
+      }
+    });
   })
 
-  function order_done_handle(obj) {
-    if (obj == null) {
-      if (order_done_list.length > 0) {
-        obj = order_done_list[0]
-        order_done_handle(obj)
-        order_done_list.splice(0, 1)
-      } else {
-        setTimeout(() => {
-          order_done_handle(null)
-        }, 1000);
-      }
-      return
-    }
 
-    $order_invoice.findOne({ id: obj }, (err, doc) => {
-      if (doc.under_paid.net_value <= 0) doc.status = { id: 5, en: "Closed & paid", ar: "مغلق و تم الدفع" }
-      $order_invoice.update(doc, () => {
-        order_done_handle(null)
-      });
-    });
-  };
-  order_done_handle(null)
+
 
 
   site.get({

@@ -78,6 +78,7 @@ module.exports = function init(site) {
     //   }
     // }
 
+    if (account_invoices_doc.paid_up === 0) account_invoices_doc.posting = true
 
     if (account_invoices_doc.current_book_list && account_invoices_doc.current_book_list.length > 0) {
       account_invoices_doc.total_items_discount = 0
@@ -255,6 +256,7 @@ module.exports = function init(site) {
                       net_value: doc.net_value,
                       total_tax: doc.total_tax,
                       total_discount: doc.total_discount,
+                      remain_amount: doc.remain_amount,
                       price_delivery_service: doc.price_delivery_service,
                       service: doc.service,
                       invoice_id: doc.invoice_id
@@ -505,8 +507,6 @@ module.exports = function init(site) {
             account_invoices_doc.remain_amount = site.toNumber(account_invoices_doc.remain_amount)
             if (account_invoices_doc.source_type.id == 10) account_invoices_doc.remain_amount = 0
 
-
-
             if (account_invoices_doc.id) {
 
               $account_invoices.edit({
@@ -521,8 +521,10 @@ module.exports = function init(site) {
                 if (!err) {
                   response.done = true
                   response.doc = result.doc
-                  if (response.doc.remain_amount <= 0 && response.doc.source_type.id == 3)
-                    site.call('[account_invoices][order_invoice][paid]', response.doc.invoice_id)
+                  if (response.doc.remain_amount <= 0 && response.doc.source_type.id == 3){
+
+                    site.quee('[account_invoices][order_invoice][paid]', response.doc.invoice_id)
+                  }
 
                 } else {
                   response.error = err.message
@@ -852,6 +854,7 @@ module.exports = function init(site) {
                 total_discount: account_invoices_doc.total_discount,
                 price_delivery_service: account_invoices_doc.price_delivery_service,
                 service: account_invoices_doc.service,
+                remain_amount: account_invoices_doc.remain_amount,
                 invoice_id: account_invoices_doc.invoice_id
               }
 
@@ -1102,11 +1105,10 @@ module.exports = function init(site) {
                       total_discount: result.doc.total_discount,
                       price_delivery_service: result.doc.price_delivery_service,
                       service: result.doc.service,
+                      remain_amount: result.doc.remain_amount,
+                      return : true,
                       invoice_id: result.doc.invoice_id
                     }
-
-                    if (!result.doc.posting)
-                      under_paid.return = true
 
                     site.call('[account_invoices][order_invoice][+]', Object.assign({}, under_paid))
                   }

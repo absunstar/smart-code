@@ -1729,7 +1729,6 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
           net_value: $scope.order_invoice.net_value,
         };
 
-
         $scope.addOrderInvoice();
       } else {
         $scope.error = '##word.err_stock_item##';
@@ -1859,7 +1858,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
     } else {
       if ($scope.defaultSettings.general_Settings.kitchen)
-      kitchenBranch = $scope.kitchensList.find(_kitchen => { return _kitchen.id === $scope.defaultSettings.general_Settings.kitchen.id });
+        kitchenBranch = $scope.kitchensList.find(_kitchen => { return _kitchen.id === $scope.defaultSettings.general_Settings.kitchen.id });
     };
 
     $scope.order_invoice.book_list.forEach(el => {
@@ -2113,6 +2112,16 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       };
     }, 250);
 
+  };
+
+  $scope.paymentsPayable = function (type) {
+    $scope.error = '';
+    $scope.account_invoices = $scope.account_invoices || {};
+    $scope.account_invoices.payable_list = $scope.account_invoices.payable_list || [{}];
+    if (type === 'view') {
+      site.showModal('#addPaymentsModal');
+
+    }
   };
 
   $scope.changeCustomerAddresses = function (customer) {

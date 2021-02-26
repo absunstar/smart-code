@@ -117,6 +117,7 @@ app.controller("order_management", function ($scope, $http, $timeout) {
 
 
   $scope.displayAccountInvoice = function (order_invoice) {
+    $scope.order_invoice = order_invoice;
     $scope.get_open_shift((shift) => {
       if (shift) {
         $scope.account_invoices = {
@@ -198,7 +199,6 @@ app.controller("order_management", function ($scope, $http, $timeout) {
       $scope.account_invoices.posting = false;
     else $scope.account_invoices.posting = true;
 
-    $scope.order_invoice.invoice = true;
 
     $http({
       method: "POST",
@@ -892,6 +892,16 @@ app.controller("order_management", function ($scope, $http, $timeout) {
     $scope.getOrderManagementList($scope.search);
     site.hideModal('#reportInvoicesSearchModal');
     $scope.search = {}
+  };
+
+  $scope.paymentsPayable = function (type) {
+    $scope.error = '';
+    $scope.account_invoices = $scope.account_invoices || {};
+    $scope.account_invoices.payable_list = $scope.account_invoices.payable_list || [{}];
+    if (type === 'view') {
+      site.showModal('#addPaymentsModal');
+
+    }
   };
 
   $scope.getNumberingAutoInvoice = function () {

@@ -126,6 +126,8 @@ module.exports = function init(site) {
       $res: res
     })
 
+    
+
     if (order_management_doc.id) {
       $order_invoice.edit({
         where: {
@@ -140,7 +142,7 @@ module.exports = function init(site) {
           response.doc = result.doc
           // site.call('[order_invoice][store_out][posting]', result.doc.id)
 
-          if (result.doc.transaction_type && result.doc.transaction_type.id == 1 && result.doc.table && result.doc.table.id) {
+          if (result.doc.transaction_type && result.doc.transaction_type.id === 1 && result.doc.table && result.doc.table.id) {
 
             if (result.doc.status.id == 1) {
               let table = result.doc.table

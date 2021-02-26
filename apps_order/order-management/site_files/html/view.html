@@ -89,47 +89,7 @@
                             </table>
                         </div>
 
-                        <div class="row">
-                            <table x-permissions="login" class="table bold hover loaded" id="t1">
-                                <tr>
-                                    <th>##word.stores_items_name##</th>
-                                    <th>##word.stores_size##</th>
-                                    <th>##word.items_count##</th>
-                                    <th>##word.items_price##</th>
-                                    <th>##word.items_price_total##</th>
-                                    <th x-features="restaurant">##word.kitchen##</th>
-                                    <th>##word.discount##</th>
-                                    <th>##word.notes##</th>
-                                    <th x-features="restaurant">##word.actions##</th>
-                                </tr>
-                                <tr ng-repeat="c in order_management.book_list">
-                                    <td class="center title">{{c.name}}</td>
-                                    <td class="center title">
-                                        <p>{{c.size}}</p>
-                                        <p>{{c.size_en}}</p>
-                                    </td>
-                                    <td class="center blue">{{c.count}}</td>
-                                    <td class="center">{{c.price}}</td>
-                                    <td class="center green">{{c.total}}</td>
-                                    <td x-features="restaurant" class="center">{{c.kitchen.name}}</td>
-                                    <td class="center red">{{c.discount.value}}
-                                        <b class="red" ng-show="c.discount.type =='number'">$</b>
-                                        <b class="red" ng-show="c.discount.type =='percent'">%</b>
-                                    </td>
-                                    <td class="center">{{c.notes}}</td>
-                                    <td class="center" x-features="restaurant">
-                                        <i-button type="add" ng-show="c.done_kitchen"
-                                            x-permissions="order_management_edit || order_kitchen_manage"
-                                            label="##word.return_to_kitchen##"
-                                            ng-click="returnToKitchen(order_management , c)"></i-button>
 
-                                        <h2 class="red center" ng-show="!c.done_kitchen">
-                                            ##word.in_kitchen##</h2>
-
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
                         <br>
                         <br>
                         <!--   <div class="row">
@@ -163,6 +123,48 @@
                         <i-image class="not-print" view ng-model="order_management.image_url"> </i-image>
                     </div>
 
+                </div>
+
+                <div class="row">
+                    <table x-permissions="login" class="table bold hover loaded" id="t1">
+                        <tr>
+                            <th>##word.stores_items_name##</th>
+                            <th>##word.stores_size##</th>
+                            <th>##word.items_count##</th>
+                            <th>##word.items_price##</th>
+                            <th>##word.items_price_total##</th>
+                            <th x-features="restaurant">##word.kitchen##</th>
+                            <th>##word.discount##</th>
+                            <th>##word.notes##</th>
+                            <th x-features="restaurant">##word.actions##</th>
+                        </tr>
+                        <tr ng-repeat="c in order_management.book_list">
+                            <td class="center title">{{c.name}}</td>
+                            <td class="center title">
+                                <p>{{c.size}}</p>
+                                <p>{{c.size_en}}</p>
+                            </td>
+                            <td class="center blue">{{c.count}}</td>
+                            <td class="center">{{c.price}}</td>
+                            <td class="center green">{{c.total}}</td>
+                            <td x-features="restaurant" class="center">{{c.kitchen.name}}</td>
+                            <td class="center red">{{c.discount.value}}
+                                <b class="red" ng-show="c.discount.type =='number'">$</b>
+                                <b class="red" ng-show="c.discount.type =='percent'">%</b>
+                            </td>
+                            <td class="center">{{c.notes}}</td>
+                            <td class="center" x-features="restaurant">
+                                <i-button type="add" ng-show="c.done_kitchen"
+                                    x-permissions="order_management_edit || order_kitchen_manage"
+                                    label="##word.return_to_kitchen##" ng-click="returnToKitchen(order_management , c)">
+                                </i-button>
+
+                                <h2 class="red center" ng-show="!c.done_kitchen">
+                                    ##word.in_kitchen##</h2>
+
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </fieldset>
         </div>

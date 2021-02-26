@@ -482,6 +482,10 @@
                             <i-control class="col2" ng-model="account_invoices.Paid_from_customer"
                                 ng-change="calc(account_invoices)" label="##word.Paid_from_customer##" type="number">
                             </i-control>
+
+                            <i-button class="col2" label="##word.add_payment##"
+                                ng-click="paymentsPayable(account_invoices,'view')">
+                            </i-button>
                         </div>
 
                         <div class="row"
