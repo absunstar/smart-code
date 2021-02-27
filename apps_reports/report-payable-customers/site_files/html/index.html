@@ -32,17 +32,17 @@
 
                             <table class="table bold center hover">
                                 <tr>
-                                    <td class="blue"> ##word.customer_name## </td>
+                                    <td class="white bg_card"> ##word.customer_name## </td>
                                     <td colspan="7" class="center">
                                         {{customer.name_##session.lang##}}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="blue"> ##word.gender## </td>
+                                    <td class="white bg_card"> ##word.gender## </td>
                                     <td colspan="2" class="center">
                                         {{customer.gender.##session.lang##}}
                                     </td>
-                                    <td class="blue"> ##word.child## </td>
+                                    <td class="white bg_card"> ##word.child## </td>
                                     <td colspan="2" ng-show="customer.child == true">
                                         <p class="green"> ##word.yes## </p>
                                     </td>
@@ -53,24 +53,24 @@
                                 </tr>
 
                                 <tr>
-                                    <td class="blue"> ##word.gov## </td>
+                                    <td class="white bg_card"> ##word.gov## </td>
                                     <td colspan="2" class="center"> {{customer.gov.name}} </td>
-                                    <td class="blue"> ##word.city## </td>
+                                    <td class="white bg_card"> ##word.city## </td>
                                     <td colspan="2" class="center"> {{customer.city.name}}
                                     </td>
-                                    <td class="blue"> ##word.area## </td>
+                                    <td class="white bg_card"> ##word.area## </td>
                                     <td colspan="2" class="center"> {{customer.area.name}}
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <td class="blue"> ##word.address## </td>
+                                    <td class="white bg_card"> ##word.address## </td>
                                     <td colspan="7" class="center"> {{customer.address}}</td>
                                 </tr>
                                 <tr>
-                                    <td class="blue"> ##word.mobile## </td>
+                                    <td class="white bg_card"> ##word.mobile## </td>
                                     <td colspan="4" class="center"> {{customer.mobile}}</td>
-                                    <td class="blue"> ##word.phone## </td>
+                                    <td class="white bg_card"> ##word.phone## </td>
                                     <td colspan="3" class="center"> {{customer.phone}}</td>
                                 </tr>
 
@@ -98,7 +98,7 @@
                 <table class="table loaded center hover bold" id="t1">
                     <tr>
                         <th class="not-print"> ##word.logo## </th>
-                        <th> ##word.code## </th>
+                        <th> ##word.invoice_code## </th>
                         <th> ##word.due_date## </th>
                         <th> ##word.source_type## </th>
                         <th ng-hide="customer.id"> ##word.customer## </th>

@@ -321,9 +321,74 @@ app.controller("report_invoices", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.displayDetails = function (patients_tickets, type) {
+    $scope.busy = true;
+    $scope.error = '';
+
+    let where = {
+      id: patients_tickets.invoice_id,
+      customer: patients_tickets.customer,
+    };
+
+
+    $http({
+      method: "POST",
+      url: "/api/patients_tickets/display_data",
+      data: {
+        where: where
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.ticket_data = response.data.cb;
+
+        if (type === 'view') {
+
+          site.showModal('#displayDataModal');
+
+        } else if (type === 'close') {
+          $scope.patients_tickets = patients_tickets;
+          $scope.displayAccountInvoice($scope.ticket_data);
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    )
+  };
+
+  $scope.getCustomersList = function (ev) {
+    $scope.busy = true;
+    if (ev.which === 13) {
+      $http({
+        method: "POST",
+        url: "/api/customers/all",
+        data: {
+          search: $scope.search_customer,
+          where: {
+            active: true
+          }
+        }
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done && response.data.list.length > 0) {
+            $scope.customersList = response.data.list;
+          }
+        },
+        function (err) {
+          $scope.busy = false;
+          $scope.error = err;
+        }
+      )
+    }
+  };
 
   $scope.searchAll = function () {
     $scope._search = {};
+
+    if ($scope.search) $scope.customer = $scope.search.customer;
+    
     $scope.getReportInvoicesList($scope.search);
     site.hideModal('#reportInvoicesSearchModal');
     $scope.search = {}

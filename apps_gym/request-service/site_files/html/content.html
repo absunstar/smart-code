@@ -28,14 +28,14 @@
                     <div class="row" ng-show="request_service.customer.id">
                         <table class="table bold center hover">
                             <tr>
-                                <td class="blue"> ##word.customer_name## </td>
+                                <td class="bg_card white"> ##word.customer_name## </td>
                                 <td colspan="7" class="center"> {{request_service.customer.name_##session.lang##}}</td>
                             </tr>
                             <tr>
-                                <td class="blue"> ##word.gender## </td>
+                                <td class="bg_card white"> ##word.gender## </td>
                                 <td colspan="2" class="center"> {{request_service.customer.gender.##session.lang##}}
                                 </td>
-                                <td class="blue"> ##word.child## </td>
+                                <td class="bg_card white"> ##word.child## </td>
                                 <td colspan="2" ng-show="request_service.customer.child == true">
                                     <p class="green"> ##word.yes## </p>
                                 </td>
@@ -46,34 +46,34 @@
                             </tr>
 
                             <tr>
-                                <td class="blue"> ##word.weight## </td>
+                                <td class="bg_card white"> ##word.weight## </td>
                                 <td colspan="2" class="center"> {{request_service.customer.weight}} </td>
-                                <td class="blue"> ##word.tall## </td>
+                                <td class="bg_card white"> ##word.tall## </td>
                                 <td colspan="2" class="center"> {{request_service.customer.tall}} </td>
-                                <td class="blue"> ##word.blood_type## </td>
+                                <td class="bg_card white"> ##word.blood_type## </td>
                                 <td colspan="2" class="center red"> {{request_service.customer.blood_type.name}} </td>
                             </tr>
                             <tr>
-                                <td class="blue"> ##word.medicine_notes## </td>
+                                <td class="bg_card white"> ##word.medicine_notes## </td>
                                 <td colspan="7" class="center"> {{request_service.customer.medicine_notes}}</td>
                             </tr>
                             <tr>
-                                <td class="blue"> ##word.gov## </td>
+                                <td class="bg_card white"> ##word.gov## </td>
                                 <td colspan="2" class="center"> {{request_service.customer.gov.name}} </td>
-                                <td class="blue"> ##word.city## </td>
+                                <td class="bg_card white"> ##word.city## </td>
                                 <td colspan="2" class="center"> {{request_service.customer.city.name}} </td>
-                                <td class="blue"> ##word.area## </td>
+                                <td class="bg_card white"> ##word.area## </td>
                                 <td colspan="2" class="center"> {{request_service.customer.area.name}} </td>
                             </tr>
 
                             <tr>
-                                <td class="blue"> ##word.address## </td>
+                                <td class="bg_card white"> ##word.address## </td>
                                 <td colspan="7" class="center"> {{request_service.customer.address}}</td>
                             </tr>
                             <tr>
-                                <td class="blue"> ##word.mobile## </td>
+                                <td class="bg_card white"> ##word.mobile## </td>
                                 <td colspan="4" class="center"> {{request_service.customer.mobile}}</td>
-                                <td class="blue"> ##word.phone## </td>
+                                <td class="bg_card white"> ##word.phone## </td>
                                 <td colspan="3" class="center"> {{request_service.customer.phone}}</td>
                             </tr>
 
@@ -252,8 +252,7 @@
                             display="##session.lang##">
                         </i-list>
 
-                        <i-list class="col3" ng-search="_search.$currency_search"
-                            ng-model="request_service.currency"
+                        <i-list class="col3" ng-search="_search.$currency_search" ng-model="request_service.currency"
                             ng-change="getSafeByType(request_service) ; calc(request_service)" items="currenciesList"
                             label="##word.currency##">
                         </i-list>
@@ -278,6 +277,9 @@
 
                         <i-control class="col2" ng-show="request_service.paid_require && request_service.safe"
                             ng-model="request_service.paid_up" label="##word.paid_up##" type="number"></i-control>
+
+                        <i-button class="col2" ng-show="defaultSettings.accounting.create_invoice_auto" label="##word.add_payment##" ng-click="paymentsPayable('view')">
+                        </i-button>
                     </div>
 
                 </div>

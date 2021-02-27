@@ -129,8 +129,11 @@ app.controller("request_service", function ($scope, $http, $timeout) {
     if ($scope.request_service.paid_up > $scope.amount_currency) {
       $scope.error = "##word.err_net_value##";
       return;
-    }
+    };
 
+    if ($scope.account_invoices && $scope.account_invoices.payable_list && $scope.account_invoices.payable_list.length > 0) {
+      $scope.request_service.payable_list = $scope.account_invoices.payable_list;
+    };
 
     $scope.busy = true;
     $http({
@@ -149,6 +152,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
               invoice_id: request_doc.id,
               customer: request_doc.customer,
               trainer: request_doc.trainer,
+              payable_list: response.data.doc.payable_list,
               hall: request_doc.hall,
               shift: request_doc.shift,
               service_name: request_doc.service_name,
@@ -258,6 +262,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
           site.hideModal('#accountInvoiceModal');
           $scope.printAccountInvoive();
           $scope.getRequestServiceList();
+          $scope.account_invoices = {};
         } else {
           $scope.error = response.data.error;
           if (response.data.error.like('*Must Enter Code*')) {
@@ -421,6 +426,11 @@ app.controller("request_service", function ($scope, $http, $timeout) {
       $scope.error = "##word.err_net_value##";
       return;
     }
+
+    if ($scope.account_invoices && $scope.account_invoices.payable_list && $scope.account_invoices.payable_list.length > 0) {
+      $scope.request_service.payable_list = $scope.account_invoices.payable_list;
+    };
+
 
     $scope.busy = true;
     $http({
@@ -655,7 +665,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
         url: "/api/customers/all",
         data: {
           search: $scope.search_customer,
-          where:{
+          where: {
             active: true
           }
 
@@ -729,10 +739,10 @@ app.controller("request_service", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/trainer/all",
       data: {
-          where: {
-        active : true
-      } 
-    }
+        where: {
+          active: true
+        }
+      }
     }).then(
       function (response) {
         $scope.busy = false;
@@ -946,7 +956,8 @@ app.controller("request_service", function ($scope, $http, $timeout) {
       };
       if (!obj.source_type) {
         obj.paid_require = (site.toNumber(obj.services_price) * site.toNumber(obj.service_count)) - obj.total_discount;
-      }
+      };
+
       $scope.discount = {
         type: 'number'
       };
@@ -954,7 +965,8 @@ app.controller("request_service", function ($scope, $http, $timeout) {
       if (obj.currency) {
         $scope.amount_currency = (obj.paid_require || obj.net_value) / obj.currency.ex_rate;
         $scope.amount_currency = site.toNumber($scope.amount_currency);
-
+        if (!obj.paid_up)
+          obj.paid_up = $scope.amount_currency;
       }
 
     }, 250);
@@ -1104,6 +1116,16 @@ app.controller("request_service", function ($scope, $http, $timeout) {
         $scope.error = err;
       }
     )
+  };
+
+  $scope.paymentsPayable = function (type) {
+    $scope.error = '';
+    $scope.account_invoices = $scope.account_invoices || {};
+    $scope.account_invoices.payable_list = $scope.account_invoices.payable_list || [{}];
+    if (type === 'view') {
+      site.showModal('#addPaymentsModal');
+
+    }
   };
 
   $scope.getNumberingAutoInvoice = function () {

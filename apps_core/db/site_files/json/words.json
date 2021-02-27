@@ -26,7 +26,7 @@
 
     { "name": "amounts_in_date_from","en": "Date From", "ar": "من تاريخ"},
 
-    { "name": "amounts_in_date_to","en": "Date To ", "ar": "الى تاريخ"},
+    { "name": "amounts_in_date_to","en": "Date To ", "ar": "إلى تاريخ"},
 
     { "name": "amounts_in_employees","en": "From Employee", "ar": " إسم الموظف "},
   

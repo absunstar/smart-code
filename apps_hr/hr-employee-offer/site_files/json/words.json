@@ -27,7 +27,7 @@
 
     { "name": "employee_offer_date_from","en": "Date From", "ar": "من تاريخ"},
 
-    { "name": "employee_offer_date_to","en": "Date To ", "ar": "الى تاريخ"},
+    { "name": "employee_offer_date_to","en": "Date To ", "ar": "إلى تاريخ"},
 
     { "name": "employee_offer_employees","en": "From Employee", "ar": " إسم الموظف"},
 

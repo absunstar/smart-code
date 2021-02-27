@@ -123,6 +123,10 @@ popup item:hover {
   overflow-y: auto;
 }
 
+.bg_card  {
+  background: linear-gradient(#6c63f9e0, #1e06c1);
+}
+
 .modal.small .modal-content,
 .modal-content.small {
   width: 50%;

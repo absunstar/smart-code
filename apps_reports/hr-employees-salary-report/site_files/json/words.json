@@ -1,7 +1,7 @@
 [
     { "name": "employees_salary_report_search","en": "Search", "ar": "بحث"},
     { "name": "employees_salary_report_date_from","en": "Date From", "ar": "من تاريخ"},
-    { "name": "employees_salary_report_date_to","en": "Date To", "ar": "الى تاريخ"},
+    { "name": "employees_salary_report_date_to","en": "Date To", "ar": "إلى تاريخ"},
     { "name": "employees_salary_report_Employee_Name","en": "Employee Name", "ar": "أسم الموظف"},
     { "name": "employees_salary_report","en": "Employees Salary Report", "ar": " تقرير مرتبات الموظفين"},
     { "name": "hr_employees_salary_report","en": "Employees Salary Report", "ar": " تقرير مرتبات الموظفين"},

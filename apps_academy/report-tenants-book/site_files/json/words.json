@@ -1,7 +1,7 @@
 [
     { "name": "report_tenants_search","en": "Search", "ar": "بحث"},
     { "name": "report_tenants_date_from","en": "Date From", "ar": "من تاريخ"},
-    { "name": "report_tenants_date_to","en": "Date To", "ar": "الى تاريخ"},
+    { "name": "report_tenants_date_to","en": "Date To", "ar": "إلى تاريخ"},
     { "name": "report_tenants_date","en": "Date", "ar": "التاريخ"},
 
     { "name": "report_tenants_book","en": "Report tenants ", "ar": "تقرير حجز المستأجرين"},

@@ -18,7 +18,19 @@
                             <i-date2 class="col3" ng-model="search.date_to" label="##word.date_to##"></i-date2>
 
                         </div>
+
                         <div class="row">
+
+                            <i-control ng-keydown="getCustomersList($event)" class="col2" ng-model="search_customer"
+                                ng-show="##query.type## == 2 || ##query.type## == 3 || ##query.type## == 4 || ##query.type## == 7 || ##query.type## == 8 || ##query.type## == 10 || ##query.type## == 13 || ##query.type## == 15"
+                                label="##word.search##" type="text">
+                            </i-control>
+                            
+                            <i-list help-id="" ng-search="_search.$customer_search" class="col3"
+                                ng-show="##query.type## == 2 || ##query.type## == 3 || ##query.type## == 4 || ##query.type## == 7 || ##query.type## == 8 || ##query.type## == 10 || ##query.type## == 13 || ##query.type## == 15"
+                                label="##word.customer##" space=" - " display2="code" ng-model="search.customer"
+                                items="customersList" display="name_##session.lang##">
+                            </i-list>
 
                             <i-control class="col3 r_indigo" type="text" label="##word.shift##"
                                 ng-model="search.shift_code">
@@ -27,11 +39,13 @@
                                 label="##word.payment_method##" ng-model="search.payment_method"
                                 items="paymentMethodList" display="##session.lang##">
                             </i-list>
-                            <i-list help-id="" ng-search="_search.$source_type_search" class="col2"
-                                label="##word.source_type##" ng-model="search.source_type" items="sourceTypeList"
-                                display="##session.lang##"></i-list>
 
-                            <!--  <i-list help-id="" ng-search="_search.$order_invoices_type_search" class="col2"
+
+                            <!-- <i-list help-id="" ng-search="_search.$source_type_search" class="col2"
+                                label="##word.source_type##" ng-model="search.source_type" items="sourceTypeList"
+                                display="##session.lang##"></i-list> 
+                                
+                                <i-list help-id="" ng-search="_search.$order_invoices_type_search" class="col2"
                                 x-feature="restaurant" label="##word.invoice_type##"
                                 ng-model="search.order_invoices_type" items="transactionTypeList"
                                 display="##session.lang##">
@@ -39,10 +53,10 @@
                         </div>
 
                         <div class="row" ng-show="##query.type## == 13">
-                          =
 
                             <i-list ng-search="_search.$_students_years" class="col3" display="name"
-                                ng-model="search.students_years" label="##word.students_years##" items="studentsYearsList">
+                                ng-model="search.students_years" label="##word.students_years##"
+                                items="studentsYearsList">
                             </i-list>
 
                             <i-list ng-search="_search.$_types_expenses" class="col3" display="name"

@@ -53,9 +53,12 @@
                         <i-control class="col3" disabled ng-model="amount_currency" label="##word.amount_currency##"
                             type="number"></i-control>
 
-                        <i-control class="col2" ng-show="account_invoices.net_value"
-                            ng-model="account_invoices.paid_up" label="##word.paid_up##" type="number">
+                        <i-control class="col2" ng-show="account_invoices.net_value" ng-model="account_invoices.paid_up"
+                            label="##word.paid_up##" type="number">
                         </i-control>
+
+                        <i-button class="col2" label="##word.add_payment##" ng-click="paymentsPayable('view')">
+                        </i-button>
 
                     </div>
 
@@ -74,7 +77,8 @@
         <h2 class="error">{{error}}</h2>
 
         <div class="modal-footer center">
-            <i-button type="add" label="##word.create_an_invoice##" ng-click="addAccountInvoice(account_invoices)"></i-button>
+            <i-button type="add" label="##word.create_an_invoice##" ng-click="addAccountInvoice(account_invoices)">
+            </i-button>
             <i-button class="not-print" label="##word.print_invoice##" type="print " ng-click="printAccountInvoive()">
             </i-button>
 

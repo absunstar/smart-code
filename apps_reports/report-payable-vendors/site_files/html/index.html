@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="report_payable_vendors_ui || report_payable_vendors_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+    </nav>
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+    </nav>
+
+    <div id="main-layout" class="container loaded">
+        <div class="row">
+            <div class="row" ng-controller="report_payable_vendors" x-permissions="login">
+
+                <div x-import="report-payable-vendors/search_all_modal.html"></div>
+                <div class="row">
+                    <h1 class="bold text-center"> ##word.report_payable_vendors## </h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button type="search"
+                        x-permissions="report_payable_vendors_search || report_payable_vendors_manage"
+                        label="##word.search_all##" onclick="site.showModal('#reportInvoicesVendorsSearchModal')">
+                    </i-button>
+
+                    <div class="row" ng-show="vendor.id">
+                        <fieldset class="col10">
+
+                            <table class="table bold center hover">
+                                <tr>
+                                    <td class="white bg_card"> ##word.vendor_name## </td>
+                                    <td colspan="7" class="center">
+                                        {{vendor.name_##session.lang##}}
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="white bg_card"> ##word.gov## </td>
+                                    <td colspan="2" class="center"> {{vendor.gov.name}} </td>
+                                    <td class="white bg_card"> ##word.city## </td>
+                                    <td colspan="2" class="center"> {{vendor.city.name}}
+                                    </td>
+                                    <td class="white bg_card"> ##word.area## </td>
+                                    <td colspan="2" class="center"> {{vendor.area.name}}
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="white bg_card"> ##word.address## </td>
+                                    <td colspan="7" class="center"> {{vendor.address}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="white bg_card"> ##word.mobile## </td>
+                                    <td colspan="4" class="center"> {{vendor.mobile}}</td>
+                                    <td class="white bg_card"> ##word.phone## </td>
+                                    <td colspan="3" class="center"> {{vendor.phone}}</td>
+                                </tr>
+
+                            </table>
+                        </fieldset>
+                    </div>
+
+
+                    <span ng-show="busy">
+                        <span class="sr-only">Loading...</span>
+                    </span>
+                    <h3 class="bold text-center" ng-hide="vendor.id"> ##word.count## : {{count}} </h3>
+                    <br>
+                </div>
+
+                <div class="row">
+
+                    <i-control id="item_name" class="col2 r_blue" ng-model="total_payments_payable"
+                        label="##word.total_payments_payable##" type="number" disabled></i-control>
+
+                </div>
+
+
+
+                <table class="table loaded center hover bold" id="t1">
+                    <tr>
+                        <th class="not-print"> ##word.logo## </th>
+                        <th> ##word.invoice_code## </th>
+                        <th> ##word.due_date## </th>
+                        <th> ##word.source_type## </th>
+                        <th ng-hide="vendor.id"> ##word.vendor## </th>
+                        <th> ##word.payment_value## </th>
+                    </tr>
+
+                    <tr ng-repeat="c in list | orderBy : '-id'">
+                        <td class="not-print">
+                            <i-image view class="logo" ng-model="c.image_url"></i-image>
+                        </td>
+                        <td class="blue"> {{c.code}} </td>
+                        <td class="brown"> {{c.due_date | date : 'dd - MM - yyyy'}} </td>
+                        <td> {{c.source_type.##session.lang##}} </td>
+                        <td ng-hide="vendor.id"> {{c.vendor.name_##session.lang##}} </td>
+                        <td class="red"> {{c.value || 0}} </td>
+                    </tr>
+                </table>
+
+                <div class="row">
+                    <i-button x-permissions="report_payable_vendors_print || report_payable_vendors_manage"
+                        type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+                    <i-button x-permissions="report_payable_vendors_export || report_payable_vendors_manage"
+                        type="export" label="##word.export_to_excel##"
+                        onclick="export_to_xlsx('t1' , 'report_payable_vendors.xlsx')">
+                    </i-button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div x-import="scripts.html"></div>
+
+    <script x-permissions="login" x-import="report-payable-vendors/index.js"></script>
+</body>
+
+</html>

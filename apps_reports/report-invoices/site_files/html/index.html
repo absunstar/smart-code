@@ -15,7 +15,7 @@
     <div id="main-layout" class="container loaded">
         <div class="row">
             <div class="row" ng-controller="report_invoices" x-permissions="login">
-
+                <div x-features="medical" x-import="patients-tickets/display_data.html"></div>
                 <div x-import="report-invoices/search_all_modal.html"></div>
                 <div class="row">
                     <h1 ng-show="##query.type## == 1" class="bold text-center"> ##word.report##
@@ -82,6 +82,58 @@
                     </div>
                 </div>
 
+                <div class="row" ng-show="customer.id">
+                    <fieldset class="col10">
+
+                        <table class="table bold center hover">
+                            <tr>
+                                <td class="white bg_card"> ##word.customer_name## </td>
+                                <td colspan="7" class="center">
+                                    {{customer.name_##session.lang##}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="white bg_card"> ##word.gender## </td>
+                                <td colspan="2" class="center">
+                                    {{customer.gender.##session.lang##}}
+                                </td>
+                                <td class="white bg_card"> ##word.child## </td>
+                                <td colspan="2" ng-show="customer.child == true">
+                                    <p class="green"> ##word.yes## </p>
+                                </td>
+                                <td colspan="2" ng-show="!customer.child">
+                                    <p class="red"> ##word.no## </p>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+
+                            <tr>
+                                <td class="white bg_card"> ##word.gov## </td>
+                                <td colspan="2" class="center"> {{customer.gov.name}} </td>
+                                <td class="white bg_card"> ##word.city## </td>
+                                <td colspan="2" class="center"> {{customer.city.name}}
+                                </td>
+                                <td class="white bg_card"> ##word.area## </td>
+                                <td colspan="2" class="center"> {{customer.area.name}}
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="white bg_card"> ##word.address## </td>
+                                <td colspan="7" class="center"> {{customer.address}}</td>
+                            </tr>
+                            <tr>
+                                <td class="white bg_card"> ##word.mobile## </td>
+                                <td colspan="4" class="center"> {{customer.mobile}}</td>
+                                <td class="white bg_card"> ##word.phone## </td>
+                                <td colspan="3" class="center"> {{customer.phone}}</td>
+                            </tr>
+
+                        </table>
+                    </fieldset>
+                </div>
+
+
                 <i-button type="save" x-permissions="report_invoices_print || report_invoices_manage"
                     label="##word.print##" ng-click="printAccountInvoive(list)">
                 </i-button>
@@ -90,9 +142,8 @@
                     <table class="table loaded center hover bold" id="t1">
                         <tr>
                             <th class="not-print"> ##word.logo## </th>
-                            <th> ##word.date## </th>
                             <th> ##word.code## </th>
-                            <th> ##word.source_type## </th>
+                            <th> ##word.date## </th>
                             <th ng-show="##query.type## == 3"> ##word.order_type## </th>
                             <th ng-show="##query.type## == 14"> ##word.data_transmitted_from## </th>
                             <th ng-show="##query.type## == 14"> ##word.data_transmitted_to## </th>
@@ -108,15 +159,15 @@
                             <th> ##word.net_value## </th>
                             <th> ##word.paid_up## </th>
                             <th> ##word.remain_amount## </th>
+                            <th ng-show="##query.type## == 15"> ##word.actions## </th>
                         </tr>
 
                         <tr ng-repeat="c in list | orderBy : '-id'">
                             <td class="not-print">
                                 <i-image view class="logo" ng-model="c.image_url"></i-image>
                             </td>
-                            <td class="brown"> {{c.date | date : 'dd - MM - yyyy'}} </td>
                             <td class="blue"> {{c.code}} </td>
-                            <td> {{c.source_type.##session.lang##}} </td>
+                            <td class="brown"> {{c.date | date : 'dd - MM - yyyy'}} </td>
                             <td ng-show="##query.type## == 3"> {{c.order_invoices_type.##session.lang##}} </td>
                             <td ng-show="##query.type## == 14">{{c.safe.name}} / {{c.payment_method.##session.lang##}}
                             </td>
@@ -137,6 +188,10 @@
                             <td> {{c.net_value}} </td>
                             <td class="green"> {{c.paid_up ||0}} </td>
                             <td class="red"> {{c.remain_amount ||0}} </td>
+                            <td  ng-show="##query.type## == 15">
+                                <i-button type="view" label="##word.details##" ng-click="displayDetails(c,'view')">
+                                </i-button>
+                            </td>
                         </tr>
                     </table>
                 </div>

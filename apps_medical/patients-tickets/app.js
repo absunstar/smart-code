@@ -354,8 +354,9 @@ module.exports = function init(site) {
                 response.cb.doctors_visits.total_discount += (_doctorsVisits.total_discount || 0)
                 response.cb.doctors_visits.net_value += (_doctorsVisits.net_value || 0)
                 response.cb.doctors_visits.paid += (_doctorsVisits.paid || 0)
-                response.cb.doctors_visits.urgent_visit += (_doctorsVisits.urgent_visit.value || 0)
                 response.cb.doctors_visits.remain += (_doctorsVisits.remain || 0)
+                if (_doctorsVisits.urgent_visit)
+                  response.cb.doctors_visits.urgent_visit += (_doctorsVisits.urgent_visit.value || 0)
                 response.cb.doctors_visits.list.push(_doctorsVisits)
 
               });

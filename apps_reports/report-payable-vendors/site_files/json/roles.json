@@ -1,0 +1,7 @@
+[{
+    "module_name" : "report" ,
+    "name": "report_payable_vendors_admin",
+    "en": "Payments Payable Vendors Admin",
+    "ar": "الدفعات المستحقة للموردين",
+    "permissions": ["report_payable_vendors_manage"]
+}]

@@ -74,6 +74,12 @@ module.exports = function init(site) {
       delete where['order_invoices_type']
     }
 
+    if (where['customer']) {
+      where['customer.id'] = where['customer'].id;
+      delete where['customer']
+    }
+
+
     if (where['school_year']) {
       where['school_year.id'] = where['school_year'].id;
       delete where['school_year']

@@ -1,7 +1,7 @@
 [
     { "name": "report_trainer_search","en": "Search", "ar": "بحث"},
     { "name": "report_trainer_date_from","en": "Date From", "ar": "من تاريخ"},
-    { "name": "report_trainer_date_to","en": "Date To", "ar": "الى تاريخ"},
+    { "name": "report_trainer_date_to","en": "Date To", "ar": "إلى تاريخ"},
     { "name": "report_trainer_date","en": "Date", "ar": "التاريخ"},
 
     { "name": "report_trainer_courses","en": "Report Student Course", "ar": "تقرير كورسات المدرب"},

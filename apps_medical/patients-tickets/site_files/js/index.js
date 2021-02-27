@@ -743,9 +743,16 @@ app.controller("patients_tickets", function ($scope, $http, $timeout) {
         $scope.error = err;
       }
     )
-
   };
 
+  $scope.paymentsPayable = function (type) {
+    $scope.error = '';
+    $scope.account_invoices = $scope.account_invoices || {};
+    $scope.account_invoices.payable_list = $scope.account_invoices.payable_list || [{}];
+    if (type === 'view') {
+      site.showModal('#addPaymentsModal');
+    }
+  };
 
   $scope.displaySearchModal = function () {
     $scope.error = '';
