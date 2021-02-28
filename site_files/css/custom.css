@@ -114,6 +114,49 @@ popup item:hover {
 .main-menu .tabs-header .tab-link {
   color: #000;
 }
+
+.user-menu {
+  opacity: 1;
+  position: fixed;
+  width: auto;
+  left: 50px;
+  top: 42px;
+  bottom: auto;
+  padding: 15px;
+  text-align: center;
+  border: 1px solid #ddd;
+  background: #fff;
+  border-radius: 0px 0px 0px 0px;
+  overflow: hidden;
+  display: none;
+}
+.en .user-menu {
+  right: 50px;
+  left: auto;
+}
+
+.user-menu .link {
+  background: var(--theme-color);
+  color: #fff;
+  display: block;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 10px 20px;
+  text-align: center;
+  margin: 10px;
+}
+.user-menu .link:hover {
+  transform: scale(1.1);
+}
+.user-menu hr {
+  margin: 10px;
+}
+.info img {
+  height: 35px;
+  width: 35px;
+  border: 4px solid #fbfbfb;
+  border-radius: 20px;
+}
 .modal {
   background-color: #0000006e;
   z-index: 999999;
@@ -123,7 +166,7 @@ popup item:hover {
   overflow-y: auto;
 }
 
-.bg_card  {
+.bg_card {
   background: linear-gradient(#6c63f9e0, #1e06c1);
 }
 
@@ -202,7 +245,9 @@ nav .info {
   float: right;
 }
 nav .info .user-name {
-  color: #bbbbbb;
+  color: #555;
+  font-weight: bold;
+  font-size: 18px;
 }
 
 #btn_login {
