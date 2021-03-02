@@ -30,12 +30,12 @@
 
 
                             <i-list class="col3" label="##word.specialty##" ng-model="search.specialty"
-                                items="specialtyList" display="name" ng-search="_search.$specialty_search">
+                                items="specialtyList" display="name_##session.lang##" ng-search="_search.$specialty_search">
                             </i-list>
 
 
                             <i-list class="col3" label="##word.clinic##" ng-model="search.clinic" items="clinicList"
-                                display="name" ng-search="_search.$clinic_search"></i-list>
+                                display="name_##session.lang##" ng-search="_search.$clinic_search"></i-list>
 
 
                         </div>
@@ -50,7 +50,7 @@
                                 ng-keydown="getDoctorList($event)"></i-control>
 
                             <i-list class="col4" label="##word.doctors##" ng-model="search.doctor" items="doctorList"
-                                display="name" ng-search="_search.$doctors_searching">
+                                display="name_##session.lang##" ng-search="_search.$doctors_searching">
                             </i-list>
 
                             <i-list class="col3" label="##word.status##" ng-model="search.status"

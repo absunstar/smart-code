@@ -3,21 +3,21 @@ module.exports = function init(site) {
   let collection_name = 'active_substances'
 
   let source = {
-    name: 'Active Substances System',
+    en: 'Active Substances System',
     ar: ' نظام المواد الفعالة'
   }
 
   let image_url = '/images/active_substances.png'
   let add_message = {
-    name: 'New Active Substance Added',
+    en: 'New Active Substance Added',
     ar: 'تم إضافة مادة فعالة جديدة'
   }
   let update_message = {
-    name: ' Active Substance Updated',
+    en: ' Active Substance Updated',
     ar: 'تم تعديل مادة فعالة'
   }
   let delete_message = {
-    name: ' Active Substance Deleted',
+    en: ' Active Substance Deleted',
     ar: 'تم حذف مادة فعالة '
   }
 
@@ -31,7 +31,9 @@ module.exports = function init(site) {
           message: add_message,
           value: {
             name: result.doc.name,
-            ar: result.doc.name
+            code: result.doc.code,
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
           },
           add: result.doc,
           action: 'add'
@@ -50,7 +52,9 @@ module.exports = function init(site) {
           message: update_message,
           value: {
             name: result.old_doc.name,
-            ar: result.old_doc.name
+            code: result.old_doc.code,
+            en: result.old_doc.name_en,
+            ar: result.old_doc.name_ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
@@ -70,7 +74,9 @@ module.exports = function init(site) {
           message: delete_message,
           value: {
             name: result.doc.name,
-            ar: result.doc.name
+            code: result.doc.code,
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
           },
           delete: result.doc,
           action: 'delete'

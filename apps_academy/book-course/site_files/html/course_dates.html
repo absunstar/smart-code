@@ -27,10 +27,10 @@
                         <tr>
 
                             <td>
-                                <p>{{book_course.select_book.course.name}}</p>
+                                <p>{{book_course.select_book.course.name_##session.lang##}}</p>
                             </td>
                             <td>
-                                <p>{{book_course.select_book.trainer.name}}</p>
+                                <p>{{book_course.select_book.trainer.name_##session.lang##}}</p>
                             </td>
 
 
@@ -70,7 +70,7 @@
                         <tr ng-repeat="b in book_course.select_book.dates_list">
 
 
-                            <td>{{b.hall.name}}</td>
+                            <td>{{b.hall.name_##session.lang##}}</td>
                             <td class="brown">{{b.date_count | date : 'dd- MM -yyyy'}}</td>
 
                             <td class="blue">{{b.number_lecture}}</td>

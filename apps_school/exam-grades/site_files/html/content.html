@@ -13,14 +13,14 @@
                     </div>
                     <div class="row">
                         <i-list help-id="" class="col4" label="##word.exam##" ng-model="exam_grades.exam"
-                            ng-search="_search.$_exam" items="examsList" display="name"></i-list>
+                            ng-search="_search.$_exam" items="examsList" display="name_##session.lang##"></i-list>
 
                         <i-list help-id="" class="col4" label="##word.students_years##"
                             ng-model="exam_grades.students_years" ng-search="_search.$_students_years"
-                            items="studentsYearsList" display="name"></i-list>
+                            items="studentsYearsList" display="name_##session.lang##"></i-list>
 
                         <i-list help-id="" class="col4" label="##word.hall##" ng-model="exam_grades.hall"
-                            ng-search="_search.$_hall" items="hallsList" display="name"></i-list>
+                            ng-search="_search.$_hall" items="hallsList" display="name_##session.lang##"></i-list>
 
 
                         <div class="col2"></div>

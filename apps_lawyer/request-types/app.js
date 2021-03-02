@@ -26,7 +26,8 @@ module.exports = function init(site) {
   site.on('[company][created]', doc => {
 
     $request_types.add({
-      name: "نوع طلب إفتراضي",
+      name_ar: "نوع طلب إفتراضي",
+      name_en: "Default Request Types",
       code: "1-Test",
       image_url: '/images/request_types.png',
       company: {
@@ -66,6 +67,22 @@ module.exports = function init(site) {
     })
     request_types_doc.company = site.get_company(req)
     request_types_doc.branch = site.get_branch(req)
+
+    let num_obj = {
+      company: site.get_company(req),
+      screen: 'request_types',
+      date: new Date()
+    };
+    let cb = site.getNumbering(num_obj);
+
+    if (!request_types_doc.code && !cb.auto) {
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+
+    } else if (cb.auto) {
+      request_types_doc.code = cb.code;
+    }
 
     $request_types.add(request_types_doc, (err, doc) => {
       if (!err) {

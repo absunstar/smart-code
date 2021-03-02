@@ -496,8 +496,8 @@
     },
     {
         "name": "no_size_error",
-        "en": "please choose size",
-        "ar": " يرجى كتابة الصنف بشكل صحيح "
+        "en": "Please type the item name correctly",
+        "ar": "يرجى كتابة إسم الصنف بشكل صحيح"
     },
     {
         "name": "stores_in_صry",

@@ -3,22 +3,22 @@ module.exports = function init(site) {
   let collection_name = 'companies'
 
   let source = {
-    name: 'company System',
-    ar: ' نظام المطاعم'
+    en: 'company System',
+    ar: ' نظام الشركات'
   }
 
   let image_url = '/images/company.png'
   let add_message = {
-    name: 'New company Added',
-    ar: 'تم إضافة مطعم جديدة'
+    en: 'New company Added',
+    ar: 'تم إضافة شركة جديدة'
   }
   let update_message = {
-    name: ' company Updated',
-    ar: 'تم تعديل مطعم'
+    en: ' company Updated',
+    ar: 'تم تعديل شركة'
   }
   let delete_message = {
-    name: ' company Deleted',
-    ar: 'تم حذف مطعم '
+    en: ' company Deleted',
+    ar: 'تم حذف شركة '
   }
 
 
@@ -31,6 +31,8 @@ module.exports = function init(site) {
           message: add_message,
           value: {
             name: result.doc.name_ar,
+            code: result.doc.code,
+            en: result.doc.name_en,
             ar: result.doc.name_ar
           },
           add: result.doc,
@@ -49,7 +51,9 @@ module.exports = function init(site) {
           source: source,
           message: update_message,
           value: {
-            name: result.old_doc.name_ar,
+            name: result.old_doc.name,
+            code: result.old_doc.code,
+            en: result.old_doc.name_en,
             ar: result.old_doc.name_ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
@@ -70,6 +74,8 @@ module.exports = function init(site) {
           message: delete_message,
           value: {
             name: result.doc.name_ar,
+            code: result.doc.code,
+            en: result.doc.name_en,
             ar: result.doc.name_ar
           },
           delete: result.doc,

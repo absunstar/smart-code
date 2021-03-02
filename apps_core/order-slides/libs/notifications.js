@@ -3,21 +3,21 @@ module.exports = function init(site) {
   let collection_name = 'order_slides'
 
   let source = {
-    name: 'Order Slides System',
+    en: 'Order Slides System',
     ar: 'نظام شرائح الطلبات'
   }
 
   let image_url = '/images/slides.png'
   let add_message = {
-    name: 'New Order Slides Added',
+    en: 'New Order Slides Added',
     ar: 'تم إضافة شريحة طلب جديدة'
   }
   let update_message = {
-    name: ' Order Slides Updated',
+    en: ' Order Slides Updated',
     ar: 'تم تعديل شريحة طلب'
   }
   let delete_message = {
-    name: ' Order Slides Deleted',
+    en: ' Order Slides Deleted',
     ar: 'تم حذف شريحة طلب '
   }
 
@@ -30,7 +30,9 @@ module.exports = function init(site) {
           message: add_message,
           value: {
             name: result.doc.name,
-            ar: result.doc.name
+             code: result.doc.code,
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
           },
           add: result.doc,
           action: 'add'
@@ -49,7 +51,9 @@ module.exports = function init(site) {
           message: update_message,
           value: {
             name: result.old_doc.name,
-            ar: result.old_doc.name
+            code: result.old_doc.code,
+            en: result.old_doc.name_en,
+            ar: result.old_doc.name_ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
@@ -69,7 +73,9 @@ module.exports = function init(site) {
           message: delete_message,
           value: {
             name: result.doc.name,
-            ar: result.doc.name
+             code: result.doc.code,
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
           },
           delete: result.doc,
           action: 'delete'

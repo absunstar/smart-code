@@ -13,7 +13,7 @@ app.controller('sitebottom' , ($scope , $http)=>{
     };
 
     $scope.logout = function(){
-        site.showModal('#logoutModal');
+        site.showModal('#logOutModal');
     };
 
     $scope.changeLang = function(lang){

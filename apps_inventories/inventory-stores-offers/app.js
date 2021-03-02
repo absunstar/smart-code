@@ -11,7 +11,7 @@ module.exports = function init(site) {
         if (_doc.items) _doc.items.forEach(_items => {
           if (objectStock.sizes_list) objectStock.sizes_list.forEach(_size => {
             if (_items.barcode == _size.barcode) {
-              _items.size = _size.size
+              _items.size_ar = _size.size_ar
               _items.size_en = _size.size_en
               _items.name = _size.name
             }

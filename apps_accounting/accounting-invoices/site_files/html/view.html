@@ -23,7 +23,7 @@
 
                                 <tr>
                                     <td class="title"> ##word.shift## </td>
-                                    <td class="center userPrint blue"> {{account_invoices.shift.name}} -
+                                    <td class="center userPrint blue"> {{account_invoices.shift.name_##session.lang##}} -
                                         {{account_invoices.shift.code}} </td>
                                 </tr>
                                 <tr>
@@ -53,50 +53,50 @@
 
                                 <tr ng-show="account_invoices.school_year.id">
                                     <td class="title"> ##word.school_year## </td>
-                                    <td class="center "> {{account_invoices.school_year.name}} </td>
+                                    <td class="center "> {{account_invoices.school_year.name_##session.lang##}} </td>
                                 </tr>
 
                                 <tr ng-show="account_invoices.school_grade.id">
                                     <td class="title"> ##word.school_grade## </td>
-                                    <td class="center "> {{account_invoices.school_grade.name}} </td>
+                                    <td class="center "> {{account_invoices.school_grade.name_##session.lang##}} </td>
                                 </tr>
 
                                 <tr ng-show="account_invoices.students_year.id">
                                     <td class="title"> ##word.students_year## </td>
-                                    <td class="center "> {{account_invoices.students_year.name}} </td>
+                                    <td class="center "> {{account_invoices.students_year.name_##session.lang##}} </td>
                                 </tr>
 
                                 <tr ng-show="account_invoices.types_expenses.id">
                                     <td class="title"> ##word.types_expenses## </td>
-                                    <td class="center "> {{account_invoices.types_expenses.name}} </td>
+                                    <td class="center "> {{account_invoices.types_expenses.name_##session.lang##}} </td>
                                 </tr>
 
 
-                                <tr ng-show="account_invoices.trainer.name">
+                                <tr ng-show="account_invoices.trainer.id">
                                     <td class="title"> ##word.trainer## </td>
-                                    <td class="center"> {{account_invoices.trainer.name}} </td>
+                                    <td class="center"> {{account_invoices.trainer.name_##session.lang##}} </td>
                                 </tr>
-                                <tr ng-show="account_invoices.hall.name">
+                                <tr ng-show="account_invoices.hall.id">
                                     <td class="title"> ##word.hall## </td>
-                                    <td class="center"> {{account_invoices.hall.name}} </td>
+                                    <td class="center"> {{account_invoices.hall.name_##session.lang##}} </td>
                                 </tr>
 
                                 <tr ng-show="account_invoices.service_name">
                                     <td class="title"> ##word.service## </td>
-                                    <td class="center"> {{account_invoices.service_name}} </td>
+                                    <td class="center"> {{account_invoices.service_name_##session.lang##}} </td>
                                 </tr>
 
-                                <tr ng-show="account_invoices.delivery_employee.name">
+                                <tr ng-show="account_invoices.delivery_employee.id">
                                     <td class="title"> ##word.delivery_employee## </td>
-                                    <td class="center"> {{account_invoices.delivery_employee.name}} </td>
+                                    <td class="center"> {{account_invoices.delivery_employee.name_##session.lang##}} </td>
                                 </tr>
-                                <tr ng-show="account_invoices.table.name">
+                                <tr ng-show="account_invoices.table.id">
                                     <td class="title"> ##word.tables_group## </td>
-                                    <td class="center"> {{account_invoices.table.tables_group.name}} </td>
+                                    <td class="center"> {{account_invoices.table.tables_group.name_##session.lang##}} </td>
                                 </tr>
-                                <tr ng-show="account_invoices.table.name">
+                                <tr ng-show="account_invoices.table.id">
                                     <td class="title"> ##word.table## </td>
-                                    <td class="center"> {{account_invoices.table.name}} </td>
+                                    <td class="center"> {{account_invoices.table.name_##session.lang##}} </td>
                                 </tr>
                                 <tr ng-show="account_invoices.service > 0">
                                     <td class="title"> ##word.service## </td>
@@ -153,7 +153,7 @@
 
                                 <tr ng-show="##query.type## == 14">
                                     <td class="title"> ##word.currency## </td>
-                                    <td class="center"> {{account_invoices.currency.name}} - <b
+                                    <td class="center"> {{account_invoices.currency.name_##session.lang##}} - <b
                                             class="blue">{{account_invoices.currency.ex_rate}}</b> </td>
                                 </tr>
 
@@ -164,7 +164,7 @@
 
                                 <tr ng-show="##query.type## == 14">
                                     <td class="title"> ##word.safe## ##word.transmitted_from##</td>
-                                    <td class="center"> {{account_invoices.safe.name}} </td>
+                                    <td class="center"> {{account_invoices.safe.name_##session.lang##}} </td>
                                 </tr>
 
                                 <tr ng-show="##query.type## == 14">
@@ -175,7 +175,7 @@
 
                                 <tr ng-show="##query.type## == 14">
                                     <td class="title"> ##word.safe## ##word.transferee## </td>
-                                    <td class="center"> {{account_invoices.safe_to.name}} </td>
+                                    <td class="center"> {{account_invoices.safe_to.name_##session.lang##}} </td>
                                 </tr>
 
                                 <tr ng-show="account_invoices.date_from">
@@ -216,7 +216,7 @@
 
                                 <tr ng-repeat="c in account_invoices.current_book_list">
                                     <td class="center title">
-                                        <p>{{c.size}}</p>
+                                        <p>{{c.size_ar}}</p>
                                         <p>{{c.size_en}}</p>
                                     </td>
                                     <td class="center userPrint">{{c.barcode}}</td>
@@ -284,11 +284,11 @@
 
                                 <tr ng-repeat="c in account_invoices.payment_list">
                                     <td class="center brown">{{c.date | date : 'dd / MM / yyyy'}}</td>
-                                    <td class="center blue">{{c.shift.name}} - {{c.shift.code}}</td>
+                                    <td class="center blue">{{c.shift.name_##session.lang##}} - {{c.shift.code}}</td>
                                     <td class="center">{{c.payment_method.##session.lang##}}</td>
-                                    <td class="center">{{c.currency.name}} - <b class="blue">{{c.currency.ex_rate}}</b>
+                                    <td class="center">{{c.currency.name_##session.lang##}} - <b class="blue">{{c.currency.ex_rate}}</b>
                                     </td>
-                                    <td class="center blue">{{c.safe.name}}</td>
+                                    <td class="center blue">{{c.safe.name_##session.lang##}}</td>
                                     <td class="center green">{{c.paid_up}}</td>
                                 </tr>
                             </table>

@@ -6,6 +6,10 @@
                 <div class="row">
                     <div class="col9">
                         <table class="table bold">
+                            <tr>
+                                <td class="title">##word.code##</td>
+                                <td class="center blue userPrint">{{administrative_business.code}}</td>
+                            </tr>
 
                             <tr>
                                 <td class="title"> ##word.date## </td>
@@ -14,13 +18,13 @@
 
                             <tr>
                                 <td class="title"> ##word.administrative_business_name## </td>
-                                <td class="center"> {{administrative_business.name}} </td>
+                                <td class="center"> {{administrative_business.name_##session.lang##}} </td>
                             </tr>
 
 
                             <tr>
                                 <td class="title"> ##word.request_type## </td>
-                                <td class="center"> {{administrative_business.request_type.name}} </td>
+                                <td class="center"> {{administrative_business.request_type.name_##session.lang##}} </td>
                             </tr>
 
 

@@ -16,7 +16,6 @@ module.exports = function (site) {
         })
     })
 
-   
 
     workflow.add = function (option, callback) {
         callback = callback || function () {}

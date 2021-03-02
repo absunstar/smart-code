@@ -17,8 +17,10 @@ module.exports = function init(site) {
   site.on('[company][created]', doc => {
 
     $currency.add({
-      name: "عملة إفتراضية",
-      minor_currency: 'عملة مصغرة إفتراضية',
+      name_ar: "عملة إفتراضية",
+      name_en: "Default Currency",
+      minor_currency_ar: 'عملة مصغرة إفتراضية',
+      minor_currency_en: 'Default Minor Currency',
       image_url: '/images/currency.png',
       ex_rate: 1,
       code: "1-Test",

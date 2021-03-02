@@ -119,7 +119,7 @@ app.controller("report_scans_requests", function ($scope, $http, $timeout) {
         where: {
           active: true
         },
-        select: { id: 1, name: 1, price: 1, delivery_time: 1, period: 1, immediate: 1 }
+        select: { id: 1, name_ar: 1, name_en: 1, price: 1, delivery_time: 1, period: 1, immediate: 1 }
 
       }
     }).then(

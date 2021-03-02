@@ -41,12 +41,12 @@
 
                             <tr>
                                 <td class="title">##word.name##</td>
-                                <td class="center">{{clinic.name}}</td>
+                                <td class="center">{{clinic.name_##session.lang##}}</td>
                             </tr>
 
                             <tr>
                                 <td class="title">##word.specialty##</td>
-                                <td class="center">{{clinic.specialty.name}}</td>
+                                <td class="center">{{clinic.specialty.name_##session.lang##}}</td>
                             </tr>
 
                             <tr>
@@ -108,7 +108,7 @@
                     <legend>##word.shifts_information##</legend>
 
                     <div class="row" ng-repeat="shift in clinic.shift_list">
-                        <i-control disabled help-id="" class="col4" label="##word.shift_name##" ng-model="shift.name">
+                        <i-control disabled help-id="" class="col4" label="##word.shift_name##" ng-model="shift.name_##session.lang##">
                         </i-control>
 
                         <table class="table center hover bold">
@@ -147,8 +147,8 @@
                             <th>##word.detection_Duration##</th>
                         </tr>
                         <tr ng-repeat="doctor in clinic.doctor_list">
-                            <td class="center">{{doctor.doctor.name}}</td>
-                            <td class="center blue">{{doctor.shift.name}}</td>
+                            <td class="center">{{doctor.doctor.name_##session.lang##}}</td>
+                            <td class="center blue">{{doctor.shift.name_##session.lang##}}</td>
                             <td class="center green">{{doctor.detection_price.detection}}</td>
                             <td class="center green">{{doctor.detection_price.re_detection}}</td>
                             <td class="center green">{{doctor.detection_price.consultation}}</td>
@@ -177,8 +177,8 @@
                             <th>##word.shift_name##</th>
                         </tr>
                         <tr ng-repeat="nurse in clinic.nurse_list">
-                            <td class="center">{{nurse.nurse.name}}</td>
-                            <td class="center blue">{{nurse.shift.name}}</td>
+                            <td class="center">{{nurse.nurse.name_##session.lang##}}</td>
+                            <td class="center blue">{{nurse.shift.name_##session.lang##}}</td>
                         </tr>
                     </table>
 
@@ -196,7 +196,7 @@
                             <th>##word.date##</th>
                         </tr>
                         <tr ng-repeat="vacation in clinic.vacation_list">
-                            <td class="center">{{vacation.name}}</td>
+                            <td class="center">{{vacation.name_##session.lang##}}</td>
                             <td class="center brown"> {{vacation.date | date : 'dd - MM - yyyy'}} </td>
                         </tr>
                     </table>
@@ -214,7 +214,7 @@
 
                         <tr>
                             <td class="title">##word.email##</td>
-                            <td class="center">{{clinic.username}}</td>
+                            <td class="center">{{clinic.username_##session.lang##}}</td>
                         </tr>
                         <tr>
                             <td class="title">##word.password##</td>

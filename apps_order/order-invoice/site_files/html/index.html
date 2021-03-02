@@ -297,7 +297,7 @@
                                     ng-repeat="g in itemsGroupList" ng-click="loadItems(g , $event)"
                                     help-id="menu_monitor">
                                     <!-- <img ng-src="{{g.image_url}}"> -->
-                                    <p class="center font_name_group">{{g.name}}</p>
+                                    <p class="center font_name_group">{{g.name_##session.lang##}}</p>
                                 </a>
                             </div>
                             <hr style="height:7px;background-image:linear-gradient(rgb(90 79 255), rgb(227 225 255));">
@@ -309,7 +309,7 @@
                                     help-id="menu_monitor">
                                     <img ng-src="{{i.image_url}}">
                                     <div class="bg_font_item">
-                                        <p class="center font_name_items">{{i.name}}</p>
+                                        <p class="center font_name_items">{{i.name_##session.lang##}}</p>
                                     </div>
                                 </a>
                             </div>
@@ -331,7 +331,7 @@
                                             <img ng-src="{{s.image_url}}" onerror="this.src='/images/no.png'">
                                             <!-- <h3> ##word.price## : {{s.price}}</h3> -->
                                             <div class="bg_font_item">
-                                                <h3 class="center font_name_items">{{s.size}}</h3>
+                                                <h3 class="center font_name_items">{{s.size_ar}}</h3>
                                             </div>
                                         </a>
 
@@ -357,7 +357,7 @@
                                     <i-date2 class="col6" ng-model="order_invoice.date" label="##word.date##"></i-date2>
 
                                     <i-control class="col3 r_indigo" disabled label="##word.shift##"
-                                        ng-model="shift.name"></i-control>
+                                        ng-model="shift.name_##session.lang##"></i-control>
 
                                     <i-control ng-hide="disabledCode" class="col3" disabled label="##word.code##"
                                         ng-model="order_invoice.code"></i-control>
@@ -375,7 +375,7 @@
                                         type="bg-blue" label="##word.merge_table##" ng-click="viewInvoicesTablesList()">
                                     </i-button>
                                     <i-list ng-show="order_invoice.transaction_type.id == 2"
-                                        ng-search="_search.$order_invoice_employee" class="col4" display="name"
+                                        ng-search="_search.$order_invoice_employee" class="col4" display="name_##session.lang##"
                                         ng-model="order_invoice.delivery_employee" label="##word.delivery_employee##"
                                         items="deliveryEmployeesList"></i-list>
                                 </div>
@@ -383,7 +383,7 @@
                                 <div class="row" ng-show="order_invoice.transaction_type.id == 1">
                                     <i-button type="bg-blue" label="##word.select_table##" ng-click="showTable()">
                                     </i-button>
-                                    <i-control class="col4" ng-model="order_invoice.table.name" label="##word.table##"
+                                    <i-control class="col4" ng-model="order_invoice.table.name_##session.lang##" label="##word.table##"
                                         type="text" disabled></i-control>
                                     <i-control class="col2" ng-model="order_invoice.count_person"
                                         label="##word.count_person##" type="number"></i-control>
@@ -413,17 +413,17 @@
                                             <div class="row">
 
                                                 <i-list class="col3" label="##word.customers_gov##"
-                                                    ng-model="order_invoice.gov" items="govList" display="name"
+                                                    ng-model="order_invoice.gov" items="govList" display="name_##session.lang##"
                                                     ng-change="getCityList(order_invoice.gov)"
                                                     ng-search="_search.$govNameContact"></i-list>
 
                                                 <i-list class="col3" label="##word.city##" ng-model="order_invoice.city"
                                                     items="cityList" ng-change="getAreaList(order_invoice.city)"
-                                                    display="name" ng-search="_search.$order_invoice_city_search">
+                                                    display="name_##session.lang##" ng-search="_search.$order_invoice_city_search">
                                                 </i-list>
 
                                                 <i-list class="col3" label="##word.area##" ng-model="order_invoice.area"
-                                                    items="areaList" display="name"
+                                                    items="areaList" display="name_##session.lang##"
                                                     ng-change=" order_invoice.price_delivery_service = order_invoice.area.price_delivery_service"
                                                     ng-search="_search.$order_invoice.$area_search"></i-list>
 
@@ -467,9 +467,9 @@
                                 </tr>
 
                                 <tr ng-repeat="size in order_invoice.book_list">
-                                    <td class="center title">{{size.name}}</td>
+                                    <td class="center title">{{size.name_##session.lang##}}</td>
                                     <td class="center title">
-                                        <p>{{size.size}}</p>
+                                        <p>{{size.size_ar}}</p>
                                         <p>{{size.size_en}}</p>
                                     </td>
                                     <td class="center">
@@ -587,7 +587,7 @@
                                             <form>
 
                                                 <div class="row ">
-                                                    <i-list class="col4" ng-model="discount"
+                                                    <i-list class="col4" ng-model="discount" display="name_##session.lang##"
                                                         ng-search="_search.$discount_name" items="discount_types"
                                                         label="##word.discount_name##">
                                                     </i-list>
@@ -622,7 +622,7 @@
                                     <tr ng-repeat="d1 in order_invoice.discountes">
 
                                         <td>
-                                            <span class="bold red">{{d1.name}} -</span>
+                                            <span class="bold red">{{d1.name_##session.lang##}} -</span>
                                             <span class="bold red" ng-show="d1.type === 'percent'">{{d1.value}}
                                                 %</span>
                                             <span class="bold red" ng-show="d1.type === 'number'">{{d1.value}}$</span>
@@ -668,7 +668,7 @@
 
                                     <tr ng-repeat="tx in order_invoice.taxes">
                                         <td>
-                                            <span class="bold red">{{tx.name}} -</span>
+                                            <span class="bold red">{{tx.name_##session.lang##}} -</span>
                                             <span class="bold red">{{tx.value}} %</span>
                                             <i-button type="delete" ng-click="deleteTax(tx) ;calc(order_invoice)">
                                             </i-button>

@@ -23,11 +23,11 @@
                         <i-control ng-keydown="getItemsName($event)" id="item_name" class="col3"
                             ng-model="search_item_name" label="##word.search##" type="text"></i-control>
 
-                        <i-list class="col4" label="##word.stores_in_item_name##" ng-model="selectedItem" display="name"
+                        <i-list class="col4" label="##word.stores_in_item_name##" ng-model="selectedItem" display="name_##session.lang##"
                             items="itemsNameList" ng-search="_search.$item_searching">
                         </i-list>
 
-                        <i-list ng-search="_search.$items_size" class="col3" display="size" ng-model="items_size"
+                        <i-list ng-search="_search.$items_size" class="col3" display="size_ar" display2="size_en" space=" - " ng-model="items_size"
                             label="##word.barcode##" items="selectedItem.sizes">
                         </i-list>
                         <i-button type="add" label="##word.add##" ng-click="incertComplexItem(item)">
@@ -59,11 +59,11 @@
                         <tr class="bold" ng-repeat="i in item.complex_items">
                             <td>
                                 <br>
-                                <p class="center bold blue">{{i.name}}</p>
+                                <p class="center bold blue">{{i.name_##session.lang##}}</p>
                             </td>
                             <td>
                                 <br>
-                                <p class="center bold">{{i.size}}</p>
+                                <p class="center bold">{{i.size_ar}}</p>
                             </td>
                             <td>
                                 <br>

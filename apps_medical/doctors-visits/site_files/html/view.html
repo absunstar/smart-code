@@ -68,7 +68,7 @@
                                                 </td>
                                                 <td class="white bg_card"> ##word.blood_type## </td>
                                                 <td colspan="2" class="center red">
-                                                    {{doctors_visits.customer.blood_type.name}}
+                                                    {{doctors_visits.customer.blood_type.name_##session.lang##}}
                                                 </td>
                                             </tr>
                                             <tr>
@@ -79,14 +79,14 @@
                                             </tr>
                                             <tr>
                                                 <td class="white bg_card"> ##word.gov## </td>
-                                                <td colspan="2" class="center"> {{doctors_visits.customer.gov.name}}
+                                                <td colspan="2" class="center"> {{doctors_visits.customer.gov.name_##session.lang##}}
                                                 </td>
                                                 <td class="white bg_card"> ##word.city## </td>
                                                 <td colspan="2" class="center">
-                                                    {{doctors_visits.customer.city.name}} </td>
+                                                    {{doctors_visits.customer.city.name_##session.lang##}} </td>
                                                 <td class="white bg_card"> ##word.area## </td>
                                                 <td colspan="2" class="center">
-                                                    {{doctors_visits.customer.area.name}} </td>
+                                                    {{doctors_visits.customer.area.name_##session.lang##}} </td>
                                             </tr>
 
                                             <tr>
@@ -220,10 +220,10 @@
                             </tr>
 
                             <tr>
-                                <td> {{doctors_visits.selected_clinic.name}}</td>
-                                <td> {{doctors_visits.selected_specialty.name}}</td>
-                                <td class="title"> {{doctors_visits.selected_doctor.name}}</td>
-                                <td> {{doctors_visits.selected_shift.name}}</td>
+                                <td> {{doctors_visits.selected_clinic.name_##session.lang##}}</td>
+                                <td> {{doctors_visits.selected_specialty.name_##session.lang##}}</td>
+                                <td class="title"> {{doctors_visits.selected_doctor.name_##session.lang##}}</td>
+                                <td> {{doctors_visits.selected_shift.name_##session.lang##}}</td>
                                 <td> {{doctors_visits.selected_time.day.ar}}</td>
                                 <td class="green"> {{doctors_visits.selected_time.from.minute}} :
                                     {{doctors_visits.selected_time.from.hour}}</td>
@@ -324,9 +324,9 @@
                                     <td> <br>
                                         <p class="userPrint">{{itm.barcode}}</p>
                                     </td>
-                                    <td> <br> {{itm.name}}</td>
+                                    <td> <br> {{itm.name_##session.lang##}}</td>
                                     <td>
-                                        <p>{{itm.size}}</p>
+                                        <p>{{itm.size_ar}}</p>
                                         <p>{{itm.size_en}}</p>
                                     </td>
 
@@ -335,7 +335,7 @@
                                     </td>
 
                                     <td>
-                                        {{itm.unit.name}}
+                                        {{itm.unit.name_##session.lang##}}
                                     </td>
 
                                     <td>
@@ -388,7 +388,7 @@
                             <tr ng-repeat="info in doctors_visits.scans_list">
 
                                 <td>
-                                    <h3 class="black bold ">{{info.scan.name}}</h3>
+                                    <h3 class="black bold ">{{info.scan.name_##session.lang##}}</h3>
                                 </td>
 
                                 <td>{{info.result}}</td>
@@ -430,7 +430,7 @@
                             <tr ng-repeat="info in doctors_visits.analysis_list">
 
                                 <td>
-                                    <h3 class="black bold ">{{info.analysis.name}}</h3>
+                                    <h3 class="black bold ">{{info.analysis.name_##session.lang##}}</h3>
                                 </td>
                                 <td>{{info.result}}</td>
                                 <td>{{info.notes}}</td>
@@ -469,7 +469,7 @@
                                 <tr ng-repeat="info in doctors_visits.operation_list">
 
                                     <td>
-                                        <h3 class="black bold ">{{info.operation.name}}</h3>
+                                        <h3 class="black bold ">{{info.operation.name_##session.lang##}}</h3>
                                     </td>
                                 </tr>
                             </table>
@@ -639,8 +639,8 @@
                                 <tr ng-show="doctors_visits.diagnosis.result_visit.id === 4">
                                     <td class="title">##word.transferred_department##</td>
                                     <td class="center">
-                                        {{doctors_visits.diagnosis.transferred_department.specialty.name}} -
-                                        {{doctors_visits.diagnosis.transferred_department.name}} </td>
+                                        {{doctors_visits.diagnosis.transferred_department.specialty.name_##session.lang##}} -
+                                        {{doctors_visits.diagnosis.transferred_department.name_##session.lang##}} </td>
                                 </tr>
 
                                 <tr ng-show="doctors_visits.diagnosis.result_visit.id === 2">

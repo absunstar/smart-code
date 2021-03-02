@@ -11,7 +11,7 @@
                 <div class="row">
                     <i-control ng-keydown="getItemsName($event)" id="item_name" class="col3"
                         ng-model="item.search_item_name" label="##word.search##" type="text"></i-control>
-                    <i-list class="col4" label="##word.stores_in_item_name##" ng-model="item.name" display="name"
+                    <i-list class="col4" label="##word.stores_in_item_name##" ng-model="item.name" display="name_##session.lang##"
                         items="itemsNameList" ng-change="itemsStoresDismantle()" ng-search="item_searching"></i-list>
                 </div>
                 <div class="row">
@@ -75,8 +75,8 @@
                             <div class="row center">
                                 <div class="col2">
                                     <br ng-hide="s.$new">
-                                    <h3 ng-hide="s.$new" class="bold center">{{s.size}}</h3>
-                                    <i-control ng-show="s.$new" ng-model="s.size" type="text">
+                                    <h3 ng-hide="s.$new" class="bold center">{{s.size_ar}}</h3>
+                                    <i-control ng-show="s.$new" ng-model="s.size_ar" type="text">
                                     </i-control>
                                 </div>
 

@@ -5,7 +5,7 @@
 
             <tr>
                 <td class="title">##word.safes_payments_name##</td>
-                <td>{{safe_payment.safe.name}}</td>
+                <td>{{safe_payment.safe.name_##session.lang##}}</td>
             </tr>
 
             <tr>
@@ -55,7 +55,7 @@
 
             <tr ng-show="getSourceId() == 3">
                 <td class="title">##word.vendors_payments_name##</td>
-                <td>{{safe_payment.vendor.name}}</td>
+                <td>{{safe_payment.vendor.name_##session.lang##}}</td>
             </tr>
             <tr>
                 <td class="title">##word.safes_payments_notes##</td>

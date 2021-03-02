@@ -94,15 +94,15 @@
                         <td class="center not-print">
                             <img class="logo" ng-src="{{c.logo}}">
                         </td>
-                        <td class="center">{{c.project.name}}</td>
-                        <td class="center">{{c.name}}</td>
+                        <td class="center">{{c.project.name_##session.lang##}}</td>
+                        <td class="center">{{c.name_##session.lang##}}</td>
                         <td class="center">
                             <P ng-show="c.type.id === 1" class="green bold">{{c.type.##session.lang##}} </P>
                             <P ng-show="c.type.id === 2" class="blue bold"> {{c.type.##session.lang##}} </P>
 
                         </td>
-                        <td class="center">{{c.app.name}}</td>
-                        <td class="center">{{c.developer.name}}</td>
+                        <td class="center">{{c.app.name_##session.lang##}}</td>
+                        <td class="center">{{c.developer.name_##session.lang##}}</td>
                         <td class="center">{{c.percent}} %</td>
                         <td class="center">{{c.time_period}} - {{c.times.##session.lang##}}</td>
                         <td class="center">{{c.startup_date | date:"dd/MM/yyyy"}}</td>
@@ -187,7 +187,7 @@
                                 <span x-permissions="tasks_manage">
                                     ##word.under_way_appointment##
                                     <p ng-repeat="user in c.developerList" ng-show="c.appointment_status.id === 1"  x-permissions="tasks_manage">
-                                        {{user.name}}
+                                        {{user.name_##session.lang##}}
                                         <i-button type="view" label="##word.accept##" ng-click="acceptToTask(c,user)">
                                         </i-button>
 

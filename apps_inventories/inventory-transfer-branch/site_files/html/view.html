@@ -4,13 +4,13 @@
     <div class="row hide">
         <div class="col6 right">
             <div class="row right" ng-repeat="i in defaultSettings.printer_program.invoice_header">
-                <p class=" p_header bold right">{{i.name}}</p>
+                <p class=" p_header bold right">{{i.name_##session.lang##}}</p>
             </div>
         </div>
 
         <div class="col6 left">
             <div class="row left" ng-repeat="i in defaultSettings.printer_program.invoice_header2">
-                <p class=" p_header bold left">{{i.name}}</p>
+                <p class=" p_header bold left">{{i.name_##session.lang##}}</p>
             </div>
         </div>
     </div>
@@ -49,7 +49,7 @@
                 <td class="center">
 
                     <b class="indigoD">##word.store_from## : </b>
-                    <b>{{transfer_branch.store_from.name}}</b>
+                    <b>{{transfer_branch.store_from.name_##session.lang##}}</b>
                 </td>
             </tr>
 
@@ -62,7 +62,7 @@
                 <td class="center">
 
                     <b class="indigoD">##word.store_to## : </b>
-                    <b>{{transfer_branch.store_to.name}}</b>
+                    <b>{{transfer_branch.store_to.name_##session.lang##}}</b>
                 </td>
             </tr>
 
@@ -97,10 +97,10 @@
                 </td>
                 <td class="center">{{itm.barcode}}</td>
                 <td class="center">
-                    <p>{{itm.size}}</p>
+                    <p>{{itm.size_ar}}</p>
                     <p>{{itm.size_en}}</p>
                 </td>
-                <td class="center">{{itm.unit.name}}</td>
+                <td class="center">{{itm.unit.name_##session.lang##}}</td>
                 <td class="center">{{itm.count}}</td>
                 <td class="center hide">{{itm.total_price}}</td>
             </tr>
@@ -128,7 +128,7 @@
     <br>
 
     <div class="row hide" ng-repeat="i in defaultSettings.printer_program.invoice_footer">
-        <p class="p_footer center">{{i.name}}</p>
+        <p class="p_footer center">{{i.name_##session.lang##}}</p>
     </div>
 
     <br />

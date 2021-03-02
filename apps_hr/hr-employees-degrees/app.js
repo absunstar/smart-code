@@ -12,7 +12,8 @@ module.exports = function init(site) {
   site.on('[company][created]', doc => {
 
     $employees_degrees.add({
-      name: "درجة إفتراضية",
+      name_ar: "درجة إفتراضية",
+      name_en : "Default Degree",
       image_url: '/images/employee_degree.png',
       code: "1-Test",
       company: {

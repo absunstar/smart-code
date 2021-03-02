@@ -16,11 +16,11 @@
 
                             <i-list help-id="" v="r" class="col3" label="##word.subject##" ng-model="search.subject"
                                 ng-change="getDegrees()" ng-search="_search.$_subject" items="subjectsList"
-                                display="name">
+                                display="name_##session.lang##">
                             </i-list>
 
                             <i-list help-id="" v="r" class="col3" label="##word.exam##" ng-model="search.exam"
-                                ng-change="getDegrees()" ng-search="_search.$_exam" items="examsList" display="name">
+                                ng-change="getDegrees()" ng-search="_search.$_exam" items="examsList" display="name_##session.lang##">
                             </i-list>
 
                             <i-list help-id="" class="col3" label="##word.exams_type##" ng-model="search.exams_type"
@@ -40,7 +40,7 @@
 
                             <i-list help-id="" class="col3" label="##word.students_years##"
                                 ng-model="search.students_years" ng-search="_search.$_students_years"
-                                items="studentsYearsList" display="name"></i-list>
+                                items="studentsYearsList" display="name_##session.lang##"></i-list>
 
                         </div>
                     </fieldset>

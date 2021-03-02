@@ -7,15 +7,17 @@
                 <i-control ng-hide="disabledCode" class="col2" label="##word.code##" ng-model="discount_type.code">
                 </i-control>
 
-                <i-control v="r" class="col4" ng-model="discount_type.name" type="text"
+                <i-control v="r" class="col3" ng-model="discount_type.name_ar" type="text"
                     label="##word.discount_types_name##"></i-control>
+
+                <i-control class="col3" ng-model="discount_type.name_en" type="text"
+                    label="##word.name_en##"></i-control>
 
                 <i-control v="r" class="col2" ng-model="discount_type.value" label="##word.discount_types_value##"
                     type="number"></i-control>
 
-                <div class="col2"></div>
-
-                <i-checkbox help-id="discount_type_active" class="col2" label="##word.active##" ng-model="discount_type.active">
+                <i-checkbox help-id="discount_type_active" class="col2" label="##word.active##"
+                    ng-model="discount_type.active">
                 </i-checkbox>
             </div>
 

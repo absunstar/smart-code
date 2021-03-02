@@ -25,12 +25,12 @@
 
                                 <tr>
                                     <td class="title"> ##word.amount_transferred## </td>
-                                    <td class="center red"> {{transfer_safes.value_from}} - {{transfer_safes.currency_from.name}} </td>
+                                    <td class="center red"> {{transfer_safes.value_from}} - {{transfer_safes.currency_from.name_##session.lang##}} </td>
                                 </tr>
 
                                 <tr>
                                     <td class="title"> ##word.currency_transferred_to## </td>
-                                    <td class="center green"> {{transfer_safes.value_to}} - {{transfer_safes.currency_to.name}} </td>
+                                    <td class="center green"> {{transfer_safes.value_to}} - {{transfer_safes.currency_to.name_##session.lang##}} </td>
                                 </tr>
 
                             </table>
@@ -49,11 +49,11 @@
                                         </tr>
                                         <tr>
                                             <td class="title"> ##word.amounts_in_safe## </td>
-                                            <td class="center"> {{transfer_safes.safe_from.name}} </td>
+                                            <td class="center"> {{transfer_safes.safe_from.name_##session.lang##}} </td>
                                         </tr>
                                         <tr>
                                             <td class="title"> ##word.currency## </td>
-                                            <td class="center"> {{transfer_safes.currency_from.name}} /
+                                            <td class="center"> {{transfer_safes.currency_from.name_##session.lang##}} /
                                                 {{transfer_safes.currency_from.ex_rate}} </td>
                                         </tr>
 
@@ -95,11 +95,11 @@
                                         </tr>
                                         <tr>
                                             <td class="title"> ##word.amounts_in_safe## </td>
-                                            <td class="center"> {{transfer_safes.safe_to.name}} </td>
+                                            <td class="center"> {{transfer_safes.safe_to.name_##session.lang##}} </td>
                                         </tr>
                                         <tr>
                                             <td class="title"> ##word.currency## </td>
-                                            <td class="center"> {{transfer_safes.currency_to.name}} /
+                                            <td class="center"> {{transfer_safes.currency_to.name_##session.lang##}} /
                                                 {{transfer_safes.currency_to.ex_rate}} </td>
                                         </tr>
 

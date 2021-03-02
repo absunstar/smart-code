@@ -65,7 +65,7 @@
                                     <td class="white bg_card"> ##word.tall## </td>
                                     <td colspan="2" class="center"> {{customer.tall}} </td>
                                     <td class="white bg_card"> ##word.blood_type## </td>
-                                    <td colspan="2" class="center red"> {{customer.blood_type.name}}
+                                    <td colspan="2" class="center red"> {{customer.blood_type.name_##session.lang##}}
                                     </td>
                                 </tr>
                                 <tr>
@@ -74,11 +74,11 @@
                                 </tr>
                                 <tr>
                                     <td class="white bg_card"> ##word.gov## </td>
-                                    <td colspan="2" class="center"> {{customer.gov.name}} </td>
+                                    <td colspan="2" class="center"> {{customer.gov.name_##session.lang##}} </td>
                                     <td class="white bg_card"> ##word.city## </td>
-                                    <td colspan="2" class="center"> {{customer.city.name}} </td>
+                                    <td colspan="2" class="center"> {{customer.city.name_##session.lang##}} </td>
                                     <td class="white bg_card"> ##word.area## </td>
-                                    <td colspan="2" class="center"> {{customer.area.name}} </td>
+                                    <td colspan="2" class="center"> {{customer.area.name_##session.lang##}} </td>
                                 </tr>
 
                                 <tr>
@@ -134,7 +134,7 @@
 
                             <td>
                                 <br ng-show="service.complex_service.length > 0">
-                                {{service.service_name}}
+                                {{service.service_name_##session.lang##}}
                             </td>
 
                             <td class="center brown">
@@ -162,7 +162,7 @@
                                     </tr>
 
                                     <tr ng-repeat="complex_service in service.complex_service">
-                                        <td class="center bold blue">{{complex_service.name}}</td>
+                                        <td class="center bold blue">{{complex_service.name_##session.lang##}}</td>
                                         <td class="center bold">{{complex_service.remain}}</td>
                                     </tr>
                                 </table>

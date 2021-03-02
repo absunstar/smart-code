@@ -9,7 +9,7 @@
 
         <tr>
             <td class="title">##word.shift##</td>
-            <td class="center">{{store_offer.shift.code}} - {{store_offer.shift.name}}</td>
+            <td class="center">{{store_offer.shift.code}} - {{store_offer.shift.name_##session.lang##}}</td>
         </tr>
 
         <tr>
@@ -52,10 +52,10 @@
 
                     <tr ng-repeat="itm in store_offer.items">
                         <td> <br> {{$index + 1}}</td>
-                        <td> <br> {{itm.name}}</td>
+                        <td> <br> {{itm.name_##session.lang##}}</td>
                         <td> <br> {{itm.barcode}}</td>
                         <td>
-                            <p>{{itm.size}}</p>
+                            <p>{{itm.size_ar}}</p>
                             <p>{{itm.size_en}}</p>
                         </td>
 
@@ -67,7 +67,7 @@
                                 </tr>
 
                                 <tr ng-repeat="i in itm.size_units_list">
-                                    <td> {{i.name}} <b ng-show="i.barcode"> - </b> <b class="blue">{{i.barcode}}</b>
+                                    <td> {{i.name_##session.lang##}} <b ng-show="i.barcode"> - </b> <b class="blue">{{i.barcode}}</b>
                                     </td>
                                     <td class="red bold">
                                         <p> </p>

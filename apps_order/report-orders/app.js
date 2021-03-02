@@ -47,9 +47,13 @@ module.exports = function init(site) {
       delete where.date_to
     }
 
-    if (where['size']) {
-      where['book_list.size'] = where['size']
-      delete where['size']
+    if (where['size_ar']) {
+      where['book_list.size_ar'] = where['size_ar']
+      delete where['size_ar']
+    }
+    if (where['size_en']) {
+      where['book_list.size_en'] = where['size_en']
+      delete where['size_en']
     }
     if (where['barcode']) {
       where['book_list.barcode'] = where['barcode']
@@ -83,17 +87,17 @@ module.exports = function init(site) {
         docs.forEach(_doc => {
           let exist = false
           _doc.book_list.forEach(itm => {
-            sizes_list.forEach(size => {
-              if (size.barcode == itm.barcode) {
-                size.count = size.count + itm.count;
+            sizes_list.forEach(_size => {
+              if (_size.barcode == itm.barcode) {
+                _size.count = _size.count + itm.count;
                 exist = true;
               }
             })
 
             if (!exist) {
-              if (where2['size'] || where2['barcode'] || where2['name']) {
+              if (where2['size_ar'] || where2['barcode'] || where2['name']) {
 
-                if (where2['size'] == itm.size || where2['name'] == itm.name || where2['barcode'] == itm.barcode)
+                if (where2['size_ar'] == itm.size_ar || where2['name'] == itm.name || where2['barcode'] == itm.barcode)
                   sizes_list.push(itm);
 
               } else sizes_list.push(itm);

@@ -284,8 +284,8 @@ app.controller("report_daily", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
-          minor_currency: 1,
+          name_ar: 1, name_en: 1,
+          minor_currency_ar: 1, minor_currency_en: 1,
           ex_rate: 1,
           code : 1
         },

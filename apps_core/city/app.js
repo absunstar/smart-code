@@ -20,17 +20,22 @@ module.exports = function init(site) {
       gov: {
         id: doc.id,
         code: doc.code,
-        name: doc.name
+        name_ar: doc.name_ar,
+        name_en: doc.name_en
       },
-      name: "مدينة إفتراضي",
+      name_ar: "مدينة إفتراضي",
+      name_en: "Default City",
+      code : '1-Test',
       image_url: '/images/city.png',
       company: {
         id: doc.company.id,
-        name_ar: doc.company.name_ar
+        name_ar: doc.company.name_ar,
+        name_en: doc.company.name_en
       },
       branch: {
         code: doc.branch.code,
-        name_ar: doc.branch.name_ar
+        name_ar: doc.branch.name_ar,
+        name_en: doc.branch.name_en
       },
       active: true
     }, (err, doc1) => {

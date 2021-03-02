@@ -6,15 +6,10 @@ module.exports = function init(site) {
     if (site.feature('gym') || site.feature('academy') || site.feature('school')) {
 
       $trainer.add({
-        name: site.feature('school') ? "مدرس إفتراضي" : "مدرب إفتراضي",
+        name_ar: site.feature('school') ? "مدرس إفتراضي" : "مدرب إفتراضي",
+        name_en: site.feature('school') ? "Default Teacher" : "Default trainer",
         image_url: '/images/trainer.png',
         code: "1-Test",
-        job: {
-          id: doc.id,
-          name: doc.name,
-          code: doc.code,
-          trainer: doc.trainer,
-        },
         trainer: true,
         company: {
           id: doc.id,
@@ -398,7 +393,11 @@ module.exports = function init(site) {
     if (search) {
       where.$or = []
       where.$or.push({
-        'name': site.get_RegExp(search, "i")
+        'name_ar': site.get_RegExp(search, "i")
+      })
+
+      where.$or.push({
+        'name_en': site.get_RegExp(search, "i")
       })
 
       where.$or.push({

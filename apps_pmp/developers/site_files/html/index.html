@@ -52,9 +52,9 @@
                         <td class="center not-print">
                             <img class="logo" ng-src="{{c.logo}}">
                         </td>
-                        <td class="center">{{c.name}}</td>
+                        <td class="center">{{c.name_##session.lang##}}</td>
                         <td class="center">{{c.points||0}}</td>
-                        <td class="center">{{c.job.name}}</td>
+                        <td class="center">{{c.job.name_##session.lang##}}</td>
                         <td class="center">{{c.mobile}}</td>
                         <td class="center">
                             <p ng-show="c.active ==true" class="green bold"> ##word.active## </p>

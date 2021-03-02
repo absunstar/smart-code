@@ -26,7 +26,8 @@ module.exports = function init(site) {
   site.on('[company][created]', doc => {
 
     $active_substances.add({
-      name: "مادة فعالة إفتراضية",
+      name_ar: "مادة فعالة إفتراضية",
+      name_en: "Default Active Substances",
       code: "1-Test",
       image_url: '/images/active_substances.png',
       company: {

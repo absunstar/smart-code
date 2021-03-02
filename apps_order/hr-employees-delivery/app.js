@@ -5,7 +5,8 @@ module.exports = function init(site) {
 
     if (site.feature('restaurant') || site.feature('pos') || site.feature('erp')) {
       $delivery_employee_list.add({
-        name: "موظف توصيل إفتراضي",
+        name_ar: "موظف توصيل إفتراضي",
+        name_en: "Default Delivery Employee",
         image_url: '/images/delivery_employee_list.png',
         code: "1-Test",
         delivery: true,
@@ -73,7 +74,9 @@ module.exports = function init(site) {
         'branch.code': site.get_branch(req).code,
 
         $or: [{
-          'name': delivery_employee_doc.name
+          'name_ar': delivery_employee_doc.name_ar
+        }, {
+          'name_en': delivery_employee_doc.name_en
         }, {
           'phone': delivery_employee_doc.phone
         }, {
@@ -353,7 +356,11 @@ module.exports = function init(site) {
     if (search) {
       where.$or = []
       where.$or.push({
-        'name': site.get_RegExp(search, "i")
+        'name_ar': site.get_RegExp(search, "i")
+      })
+
+      where.$or.push({
+        'name_en': site.get_RegExp(search, "i")
       })
 
       where.$or.push({
@@ -397,9 +404,14 @@ module.exports = function init(site) {
       delete where.active
     }
 
-    if (where['name']) {
-      where['name'] = site.get_RegExp(where['name'], "i");
+    if (where['name_ar']) {
+      where['name_ar'] = site.get_RegExp(where['name_ar'], "i");
     }
+
+    if (where['name_en']) {
+      where['name_en'] = site.get_RegExp(where['name_en'], "i");
+    }
+
     if (where['address']) {
       where['address'] = site.get_RegExp(where['address'], "i");
     }

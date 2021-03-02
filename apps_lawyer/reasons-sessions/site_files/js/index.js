@@ -199,6 +199,7 @@ app.controller("reasons_sessions", function ($scope, $http, $timeout) {
   };
 
 
+
   $scope.getNumberingAuto = function () {
     $scope.error = '';
     $scope.busy = true;

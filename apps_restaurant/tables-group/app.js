@@ -17,8 +17,8 @@ module.exports = function init(site) {
 
     $tables_group.add({
       code: "1-Test",
-      name: "مجموعة طاولات إفتراضية",
-
+      name_ar: "مجموعة طاولات إفتراضية",
+      name_en: "Default Table Group",
       image_url: '/images/tables_group.png',
       company: {
         id: doc.id,
@@ -83,7 +83,12 @@ module.exports = function init(site) {
       where: {
         'company.id': site.get_company(req).id,
         'branch.code': site.get_branch(req).code,
-        'name': tables_group_doc.name
+        $or: [{
+          'name_ar': tables_group_doc.name_ar
+        },{
+          'name_en': tables_group_doc.name_en
+        }]
+    
       }
     }, (err, doc) => {
       if (!err && doc) {
@@ -214,8 +219,12 @@ module.exports = function init(site) {
 
     let where = req.body.where || {}
 
-    if (where['name']) {
-      where['name'] = site.get_RegExp(where['name'], "i");
+    if (where['name_ar']) {
+      where['name_ar'] = site.get_RegExp(where['name_ar'], "i");
+    }
+
+    if (where['name_en']) {
+      where['name_en'] = site.get_RegExp(where['name_en'], "i");
     }
 
     if (where['code']) {

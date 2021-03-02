@@ -43,6 +43,23 @@ module.exports = function init(site) {
     rogatory_add_doc.company = site.get_company(req)
     rogatory_add_doc.branch = site.get_branch(req)
 
+    let num_obj = {
+      company: site.get_company(req),
+      screen: 'rogatory_add',
+      date: new Date()
+    };
+    let cb = site.getNumbering(num_obj);
+
+    if (!rogatory_add_doc.code && !cb.auto) {
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+
+    } else if (cb.auto) {
+      rogatory_add_doc.code = cb.code;
+    }
+
+    
     $rogatory_add.add(rogatory_add_doc, (err, doc) => {
       if (!err) {
         response.done = true

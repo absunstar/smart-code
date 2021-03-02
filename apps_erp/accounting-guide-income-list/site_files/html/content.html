@@ -2,68 +2,75 @@
     <div id="guideIncomeListAddModal" class="tab-content">
         <fieldset>
             <legend> ##word.accounting_guide_income_list_informations## </legend>
-                <div class="col9">
-                    <div class="row">
-                        <i-control ng-hide="disabledCode" class="col2" label="##word.code##"
+            <div class="col9">
+                <div class="row">
+                    <i-control ng-hide="disabledCode" class="col2" label="##word.code##"
                         ng-model="accounting_guide_income_list.code">
                     </i-control>
-                        <i-control v="r ll3" class="col5" label="##word.accounting_guide_income_list_name##" ng-model="accounting_guide_income_list.name"></i-control>
-                        <div class="col3"></div>
-                        <i-checkbox class="col2" label="##word.active##" ng-model="accounting_guide_income_list.active"></i-checkbox>
-                    </div>
-                    <br>
-                    <br>
-                    <br>
-                    <div class="row">
-                        <h2 class="brown col2">##word.accounting_guide_income_list_side## :</h2>
+                    <i-control v="r ll3" class="col4" label="##word.accounting_guide_income_list_name##"
+                        ng-model="accounting_guide_income_list.name_ar"></i-control>
 
-                        <div id=side_{{print.id}}>
+                    <i-control class="col4" label="##word.name_en##"
+                        ng-model="accounting_guide_income_list.name_en"></i-control>
 
-                            <i-radio class="col2" ng-value="debtor" label="##word.accounting_guide_income_list_debtor##"
-                                ng-model="accounting_guide_income_list.side">
-                            </i-radio>
-
-                            <i-radio class="col2" ng-value="creditor" label="##word.accounting_guide_income_list_creditor##"
-                                ng-model="accounting_guide_income_list.side">
-                            </i-radio>
-
-                        </div>
-                    </div>
-                    <br>
-                    <br>
-                    <br>
-                    <div class="row">
-                        <h2 class="brown col2">##word.accounting_guide_income_list_type## :</h2>
-
-                        <div id=type_{{print.id}}>
-
-                            <i-radio class="col2" ng-value="detailed" label="##word.accounting_guide_income_list_detailed##"
-                                ng-model="accounting_guide_income_list.type">
-                            </i-radio>
-
-                            <i-radio class="col2" ng-value="result" label="##word.accounting_guide_income_list_result##"
-                                ng-model="accounting_guide_income_list.type">
-                            </i-radio>
-
-                            <i-radio class="col2" ng-value="address" label="##word.accounting_guide_income_list_address##"
-                                ng-model="accounting_guide_income_list.type">
-                            </i-radio>
-
-                        </div>
-
-                        <div class="row">
-                            <div class="col4"></div>
-                            <i-control ng-show="accounting_guide_income_list.type == 'result'" class="col3" label="##word.accounting_guide_income_list_resulting##"
-                                ng-model="accounting_guide_income_list.resulting"></i-control>
-                                
-                        </div>
-                    </div>
-
-
+                    <i-checkbox class="col2" label="##word.active##" ng-model="accounting_guide_income_list.active">
+                    </i-checkbox>
                 </div>
-                <div class="col3">
-                    <i-image category="accounting_guide_income_lists" ng-model="accounting_guide_income_list.image_url"></i-image>
+                <br>
+                <br>
+                <br>
+                <div class="row">
+                    <h2 class="brown col2">##word.accounting_guide_income_list_side## :</h2>
+
+                    <div id=side_{{print.id}}>
+
+                        <i-radio class="col2" ng-value="debtor" label="##word.accounting_guide_income_list_debtor##"
+                            ng-model="accounting_guide_income_list.side">
+                        </i-radio>
+
+                        <i-radio class="col2" ng-value="creditor" label="##word.accounting_guide_income_list_creditor##"
+                            ng-model="accounting_guide_income_list.side">
+                        </i-radio>
+
+                    </div>
                 </div>
+                <br>
+                <br>
+                <br>
+                <div class="row">
+                    <h2 class="brown col2">##word.accounting_guide_income_list_type## :</h2>
+
+                    <div id=type_{{print.id}}>
+
+                        <i-radio class="col2" ng-value="detailed" label="##word.accounting_guide_income_list_detailed##"
+                            ng-model="accounting_guide_income_list.type">
+                        </i-radio>
+
+                        <i-radio class="col2" ng-value="result" label="##word.accounting_guide_income_list_result##"
+                            ng-model="accounting_guide_income_list.type">
+                        </i-radio>
+
+                        <i-radio class="col2" ng-value="address" label="##word.accounting_guide_income_list_address##"
+                            ng-model="accounting_guide_income_list.type">
+                        </i-radio>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col4"></div>
+                        <i-control ng-show="accounting_guide_income_list.type == 'result'" class="col3"
+                            label="##word.accounting_guide_income_list_resulting##"
+                            ng-model="accounting_guide_income_list.resulting"></i-control>
+
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col3">
+                <i-image category="accounting_guide_income_lists" ng-model="accounting_guide_income_list.image_url">
+                </i-image>
+            </div>
 
         </fieldset>
     </div>

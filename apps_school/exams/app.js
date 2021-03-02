@@ -58,7 +58,12 @@ module.exports = function init(site) {
 
         'company.id': site.get_company(req).id,
         'branch.code': site.get_branch(req).code,
-        'name': exams_doc.name
+        $or: [{
+          'name_ar': exams_doc.name_ar
+        },{
+          'name_en': exams_doc.name_en
+        }]
+   
       }
     }, (err, doc) => {
       if (!err && doc) {
@@ -512,10 +517,15 @@ module.exports = function init(site) {
       res.json(response)
       return
     }
+
     let where = req.body.where || {}
 
-    if (where['name']) {
-      where['name'] = site.get_RegExp(where['name'], "i");
+    if (where['name_ar']) {
+      where['name_ar'] = site.get_RegExp(where['name_ar'], "i");
+    }
+
+    if (where['name_en']) {
+      where['name_en'] = site.get_RegExp(where['name_en'], "i");
     }
 
     if (req.session.user.type == 'trainer') {

@@ -37,9 +37,13 @@
                             <div class="row">
                                 <i-control ng-hide="disabledCode" class="col2" label="##word.code##"
                                     ng-model="clinic.code"></i-control>
-                                <i-control help-id="" class="col6" label="##word.name##" ng-model="clinic.name">
+
+                                <i-control help-id="" v="r" class="col4" label="##word.name##" ng-model="clinic.name_en">
                                 </i-control>
-                                <div class="col2"></div>
+
+                                <i-control help-id="" class="col4" label="##word.name_en##" ng-model="clinic.name_en">
+                                </i-control>
+
                                 <i-checkbox help-id="" class="col2" label="##word.active##" ng-model="clinic.active">
                                 </i-checkbox>
 
@@ -48,7 +52,7 @@
                             <div class="row">
 
                                 <i-list help-id="" class="col3" label="##word.specialty##" ng-model="clinic.specialty"
-                                    ng-change="getDoctorList(clinic); getNursesList(clinic)" display="name"
+                                    ng-change="getDoctorList(clinic); getNursesList(clinic)" display="name_##session.lang##"
                                     items="specialList" ng-search="_search.$specialty_name">
                                 </i-list>
 
@@ -137,7 +141,7 @@
                             </legend>
 
                             <div class="row">
-                                <i-control help-id="" class="col3" label="##word.shift_name##" ng-model="shift.name">
+                                <i-control help-id="" class="col3" label="##word.shift_name##" ng-model="shift.name_##session.lang##">
                                 </i-control>
 
                                 <fieldset>
@@ -198,10 +202,10 @@
 
                                 <i-list help-id="" class="col3" label="##word.doctors_name##" ng-model="doctor.doctor"
                                     items="doctorList" ng-selected="item.specialty.id === clinic.specialty.id"
-                                    display="name" ng-search="_search.$branch_doctors"></i-list>
+                                    display="name_##session.lang##" ng-search="_search.$branch_doctors"></i-list>
 
                                 <i-list help-id="" primary="name" class="col3" label="##word.shift_name##"
-                                    ng-model="doctor.shift" items="clinic.shift_list" display="name"
+                                    ng-model="doctor.shift" items="clinic.shift_list" display="name_##session.lang##"
                                     ng-search="_search.$branch_shift">
                                 </i-list>
 
@@ -279,11 +283,11 @@
                     <div class="row">
                         <div class="row" ng-repeat="nurse in clinic.nurse_list">
                             <i-list help-id="" class="col3" label="##word.nurse##" ng-model="nurse.nurse"
-                                items="nurseList" ng-selected="item.specialty.id == clinic.specialty.id" display="name"
+                                items="nurseList" ng-selected="item.specialty.id == clinic.specialty.id" display="name_##session.lang##"
                                 ng-search="_search.$branch_nurse"></i-list>
 
                             <i-list help-id="" primary="name" class="col3" label="##word.shift_name##"
-                                ng-model="nurse.shift" items="clinic.shift_list" display="name"
+                                ng-model="nurse.shift" items="clinic.shift_list" display="name_##session.lang##"
                                 ng-search="_search.$branch_shift"></i-list>
                             <i-button type="delete default" class="col1"
                                 ng-click="clinic.nurse_list.length ===1 || clinic.nurse_list.splice($index,1)">
@@ -306,7 +310,10 @@
                     <div class="row">
                         <div class="row" ng-repeat="vacation in clinic.vacation_list">
 
-                            <i-control help-id="" class="col3" label="##word.vacation_name##" ng-model="vacation.name">
+                            <i-control help-id="" class="col3" label="##word.vacation_name##" ng-model="vacation.name_ar">
+                            </i-control>
+
+                            <i-control help-id="" class="col3" label="##word.name_en##" ng-model="vacation.name_en">
                             </i-control>
 
                             <i-date2 class="col4" ng-model="vacation.date" label="##word.date##"></i-date2>

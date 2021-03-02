@@ -34,7 +34,7 @@
                                 <tr>
                                     <td class="title">##word.trainer##</td>
                                     <td>
-                                        <p class="center">{{trainer.name}}</p>
+                                        <p class="center">{{trainer.name_##session.lang##}}</p>
                                     </td>
                                 </tr>
 
@@ -87,11 +87,11 @@
                         <td class="green"> {{c.date_from | date : 'dd - MM - yyyy'}} </td>
                         <td class="red"> {{c.date_to | date : 'dd - MM - yyyy'}} </td>
                         <td class="blue">
-                             <p>{{c.shift.name}}</p> 
+                             <p>{{c.shift.name_##session.lang##}}</p> 
                              <p class="blue">{{c.shift.code}}</p> 
                         </td>
                         <td class="blue"> {{c.code}} </td>
-                        <td ng-hide="trainer.id">{{c.trainer.name}}</td>
+                        <td ng-hide="trainer.id">{{c.trainer.name_##session.lang##}}</td>
                         <td class="red"> {{c.total_discount ||0}} </td>
                         <td> {{c.paid_require}} </td>
                         <td>

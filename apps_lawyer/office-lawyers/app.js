@@ -1,5 +1,5 @@
 module.exports = function init(site) {
-  const $office_lawyers = site.connectCollection("office_lawyers")
+  const $office_lawyers = site.connectCollection("hr_employee_list")
 
   site.get({
     name: "office_lawyers",
@@ -17,13 +17,11 @@ module.exports = function init(site) {
   site.on('[company][created]', doc => {
 
     $office_lawyers.add({
-      group: {
-        id: doc.id,
-        name: doc.name
-      },
       code: "1-Test",
       name_ar: "محامي مكتب إفتراضي",
+      name_en: "Default Office Lawyers",
       image_url: '/images/oppenent.png',
+      lawyer : true,
       company: {
         id: doc.id,
         name_ar: doc.name_ar,
@@ -55,6 +53,23 @@ module.exports = function init(site) {
 
     office_lawyers_doc.company = site.get_company(req)
     office_lawyers_doc.branch = site.get_branch(req)
+
+    let num_obj = {
+      company: site.get_company(req),
+      screen: 'office_lawyers',
+      date: new Date()
+    };
+
+    let cb = site.getNumbering(num_obj);
+
+    if (!office_lawyers_doc.code && !cb.auto) {
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+
+    } else if (cb.auto) {
+      office_lawyers_doc.code = cb.code;
+    }
 
     $office_lawyers.add(office_lawyers_doc, (err, doc) => {
       if (!err) {
@@ -218,6 +233,8 @@ module.exports = function init(site) {
       delete where['active']
     }
 
+
+    where['lawyer'] = true;
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
 

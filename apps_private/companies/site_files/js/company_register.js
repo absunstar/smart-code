@@ -90,8 +90,28 @@ app.controller('company_register', function ($scope, $http) {
             }
             
             if (response.data.done) {
+
               window.location.href = "/";
               $scope.busy = false;
+              
+              $http({
+                method: "POST",
+                url: "/api/numbering/get",
+                data: {
+                  reset: true,
+                  doc: response.data.doc
+    
+                }
+              }).then(
+                function (response) {
+                  if (response.data.done) {
+                  }
+                },
+                function (err) {
+                  $scope.busy = false;
+                  $scope.error = err;
+                }
+              )
             }
           }, function (err) {
             $scope.busy = false;

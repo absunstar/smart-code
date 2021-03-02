@@ -48,11 +48,11 @@
                             ng-keydown="getDoctorList($event)"></i-control>
 
                         <i-list class="col3" label="##word.doctors##" ng-model="default_setting.general_Settings.doctor"
-                            items="doctorList" display="name" ng-search="_search.$doctors_searching">
+                            items="doctorList" display="name_##session.lang##" ng-search="_search.$doctors_searching">
                         </i-list>
 
                         <i-list class="col3" label="##word.specialty##"
-                            ng-model="default_setting.general_Settings.specialty" items="specialtyList" display="name"
+                            ng-model="default_setting.general_Settings.specialty" items="specialtyList" display="name_##session.lang##"
                             ng-search="_search.$specialty_search">
                         </i-list>
 
@@ -62,7 +62,7 @@
                     <div class="row" x-features="medical">
 
                         <i-list class="col3" label="##word.clinic##" ng-model="default_setting.general_Settings.clinic"
-                            items="clinicList" display="name" ng-search="_search.$clinic_search"></i-list>
+                            items="clinicList" display="name_##session.lang##" ng-search="_search.$clinic_search"></i-list>
 
                         <i-list class="col3" label="##word.doctor_visit_type##"
                             ng-model="default_setting.general_Settings.visit_type" items="doctorsVisitsTypeList"
@@ -74,7 +74,7 @@
 
                     <div class="row" x-features="school">
 
-                        <i-list ng-search="_search.$_school_grade" class="col3" display="name"
+                        <i-list ng-search="_search.$_school_grade" class="col3" display="name_##session.lang##"
                             ng-model="default_setting.general_Settings.school_grade" label="##word.school_grade##"
                             items="schoolGradesList"></i-list>
 
@@ -86,7 +86,7 @@
                             items="paymentTypesList" display="##session.lang##">
                         </i-list>
 
-                        <i-list ng-search="_search.$order_invoice_employee" class="col3" display="name"
+                        <i-list ng-search="_search.$order_invoice_employee" class="col3" display="name_##session.lang##"
                             ng-model="default_setting.general_Settings.delivery_employee"
                             label="##word.delivery_employee##" items="deliveryEmployeesList"></i-list>
 
@@ -100,7 +100,7 @@
 
                     <div class="row" x-features="restaurant">
                         <i-list class="col3" ng-model="default_setting.general_Settings.kitchen" items="kitchensList"
-                            display="name" x-features="restaurant" ng-search="_search.$search_kitchen"
+                            display="name_##session.lang##" x-features="restaurant" ng-search="_search.$search_kitchen"
                             label="##word.kitchen_name##">
                         </i-list>
 
@@ -158,7 +158,7 @@
                         <div class="col9">
 
                             <div class="row">
-                                <i-list ng-search="_search.$printers_path" class="col3" display="name"
+                                <i-list ng-search="_search.$printers_path" class="col3" display="name_##session.lang##"
                                     ng-model="default_setting.printer_program.printer_path"
                                     label="##word.basic_printer##" items="printersPathList">
                                 </i-list>
@@ -341,7 +341,7 @@
                         </i-list>
 
                         <i-list class="col3" ng-model="default_setting.accounting.currency" items="currenciesList"
-                            ng-change="loadSafesBank();loadSafesBox()" ng-search="_search.$serach_currency"
+                        display="name_##session.lang##" ng-change="loadSafesBank();loadSafesBox()" ng-search="_search.$serach_currency"
                             label="##word.main_currency##"></i-list>
 
                         <i-list class="col3" ng-model="default_setting.accounting.safe_bank" items="safesBankList"

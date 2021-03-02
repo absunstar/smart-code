@@ -237,7 +237,7 @@ app.controller("office_lawyers", function ($scope, $http, $timeout) {
         where: {
           active: true
         },
-        select: { id: 1, name: 1, code: 1 }
+        select: { id: 1, name_ar: 1, name_en: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -265,7 +265,7 @@ app.controller("office_lawyers", function ($scope, $http, $timeout) {
           'gov.id': gov.id,
           active: true
         },
-        select: { id: 1, name: 1, code: 1 }
+        select: { id: 1, name_ar: 1, name_en: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -307,7 +307,7 @@ app.controller("office_lawyers", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/maritals_status/all",
       data: {
-        select: { id: 1, name: 1, code: 1 }
+        select: { id: 1, name_ar: 1, name_en: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -329,7 +329,7 @@ app.controller("office_lawyers", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/militaries_status/all",
       data: {
-        select: { id: 1, name: 1, code: 1 }
+        select: { id: 1, name_ar: 1, name_en: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -352,7 +352,7 @@ app.controller("office_lawyers", function ($scope, $http, $timeout) {
       url: "/api/jobs/all",
       data: {
         select: {
-          id: 1, active: 1, trainer: 1, name: 1, code: 1
+          id: 1, active: 1, trainer: 1, name_ar: 1, name_en: 1, code: 1
         },
         where: {
           active: true
@@ -488,6 +488,30 @@ app.controller("office_lawyers", function ($scope, $http, $timeout) {
 
   };
 
+  $scope.getNumberingAuto = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/numbering/get_automatic",
+      data: {
+        screen: "office_lawyers"
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.disabledCode = response.data.isAuto;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getNumberingAuto();
   $scope.getOfficeLawyersList();
   $scope.getGovList();
   $scope.getGender();

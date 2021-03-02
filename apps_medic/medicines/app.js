@@ -7,7 +7,8 @@ module.exports = function init(site) {
     if (site.feature('gym') || site.feature('academy')|| site.feature('school') || site.feature('medical'))
       $medicine.add({
         code: "1-Test",
-        name: "دواء إفتراضي",
+        name_ar: "دواء إفتراضي",
+        name_en: "Default Medicine",
         image_url: '/images/medicine.png',
         company: {
           id: doc.id,
@@ -67,8 +68,12 @@ module.exports = function init(site) {
       where: {
 
         'company.id': site.get_company(req).id,
-/*         'branch.code': site.get_branch(req).code,
- */        'name': medicine_doc.name
+        $or: [{
+          'name_ar': medicine_doc.name_ar
+        },{
+          'name_en': medicine_doc.name_en
+        }]
+      
       }
     }, (err, doc) => {
       if (!err && doc) {

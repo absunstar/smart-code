@@ -3,24 +3,24 @@ module.exports = function init(site) {
   let collection_name = 'attend_employees'
 
   let source = {
-    name: 'Attend Employees System',
+    en: 'Attend Employees System',
     ar: 'نظام حضور الموظفين'
   }
 
   let image_url = '/images/attend_students.png'
 
   let add_message = {
-    name: 'New Attend Employees Added',
+    en: 'New Attend Employees Added',
     ar: 'تم إضافة حضور موظفين جديد'
   }
 
   let update_message = {
-    name: ' Attend Employees Updated',
+    en: ' Attend Employees Updated',
     ar: 'تم تعديل حضور موظفين'
   }
 
   let delete_message = {
-    name: ' Attend Employees Deleted',
+    en: ' Attend Employees Deleted',
     ar: 'تم حذف حضور موظفين '
   }
 
@@ -34,7 +34,9 @@ module.exports = function init(site) {
           message: add_message,
           value: {
             name: result.doc.name,
-            ar: result.doc.name
+            code: result.doc.code,
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
           },
           add: result.doc,
           action: 'add'
@@ -53,7 +55,9 @@ module.exports = function init(site) {
           message: update_message,
           value: {
             name: result.old_doc.name,
-            ar: result.old_doc.name
+            code: result.old_doc.code,
+            en: result.old_doc.name_en,
+            ar: result.old_doc.name_ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
@@ -73,7 +77,9 @@ module.exports = function init(site) {
           message: delete_message,
           value: {
             name: result.doc.name,
-            ar: result.doc.name
+            code: result.doc.code,
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
           },
           delete: result.doc,
           action: 'delete'

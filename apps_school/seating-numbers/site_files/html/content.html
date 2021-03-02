@@ -9,7 +9,7 @@
                             ng-model="seating_numbers.code"></i-control>
 
                         <i-control class="col3 r_indigo" type="text" disabled label="##word.shift##"
-                            ng-model="shift.name">
+                            ng-model="shift.name_##session.lang##">
                         </i-control>
 
                         <div class="col1"></div>
@@ -17,14 +17,14 @@
                     </div>
 
                     <div class="row">
-                        <i-list ng-search="_search.$_school_grade" class="col3" display="name" v="r"
+                        <i-list ng-search="_search.$_school_grade" class="col3" display="name_##session.lang##" v="r"
                             ng-change="getStudentsYearsList(seating_numbers.school_grade)"
                             ng-model="seating_numbers.school_grade" label="##word.school_grade##"
                             items="schoolGradesList">
                         </i-list>
 
                         <i-list class="col3" label="##word.students_year##" ng-model="seating_numbers.students_year"
-                            v="r" items="studentsYearsList" display="name" ng-search="_search.$_students_year">
+                            v="r" items="studentsYearsList" display="name_##session.lang##" ng-search="_search.$_students_year">
                         </i-list>
                     </div>
 
@@ -73,8 +73,8 @@
                                     <td class="blue userPrint"> {{c.code}} </td>
                                     <td> {{c.name_##session.lang##}} </td>
                                     <td> {{c.gender.##session.lang##}} </td>
-                                    <td> {{c.school_grade.name}} </td>
-                                    <td> {{c.hall.name}} </td>
+                                    <td> {{c.school_grade.name_##session.lang##}} </td>
+                                    <td> {{c.hall.name_##session.lang##}} </td>
                                     <td class="blue"> {{c.seating_n}} </td>
 
                                 </tr>

@@ -3,14 +3,14 @@ module.exports = function init(site) {
   let collection_name = 'tax_types'
 
   let source = {
-    name : 'Accounting System' ,
+    en : 'Accounting System' ,
     ar : 'نظام الحسابات'
   }
   
   let image_url = '/images/tax_type.png'
-  let add_message = {name : 'New Tax Added' , ar : 'تم إضافة أذن ضريبة جديدة'}
-  let update_message =  {name : ' Tax updated' , ar : 'تم تعديل  ضريبة'}
-  let delete_message =  {name : ' Tax dleteted' , ar : 'تم حذف ضريبة '}
+  let add_message = {en : 'New Tax Added' , ar : 'تم إضافة أذن ضريبة جديدة'}
+  let update_message =  {en : ' Tax updated' , ar : 'تم تعديل  ضريبة'}
+  let delete_message =  {en : ' Tax dleteted' , ar : 'تم حذف ضريبة '}
 
 
   site.on('mongodb after insert', function (result) {
@@ -19,7 +19,9 @@ module.exports = function init(site) {
           icon: image_url,
           source: source,
           message: add_message ,
-          value: { name : result.doc.name , ar : result.doc.name},
+          value: { name : result.doc.name , code: result.doc.code,
+            en: result.doc.name_en,
+            ar: result.doc.name_ar},
           add: result.doc,
           action: 'add'
         }, result : result })
@@ -32,7 +34,10 @@ module.exports = function init(site) {
           icon: image_url,
           source : source,
           message: update_message ,
-          value: {name : result.old_doc.name , ar : result.old_doc.name},
+          value: {name : result.old_doc.name , code: result.old_doc.code,
+            en: result.old_doc.name_en,
+            ar: result.old_doc.name_ar
+          },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
         }, result : result })
@@ -46,7 +51,11 @@ module.exports = function init(site) {
           icon: image_url,
           source: source ,
           message: delete_message ,
-          value: {name : result.doc.name , ar : result.doc.name},
+          value: {name : result.doc.name , 
+            code: result.doc.code,
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
+          },
           delete: result.doc,
           action: 'delete'
         }, result : result })

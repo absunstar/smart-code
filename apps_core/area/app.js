@@ -20,23 +20,29 @@ module.exports = function init(site) {
       gov: {
         id: doc.gov.id,
         code: doc.gov.code,
-        name: doc.gov.name
+        name_ar: doc.gov.name_ar,
+        name_en: doc.gov.name_en
       },
       city: {
         id: doc.id,
         code: doc.code,
-        name: doc.name
+        name_ar: doc.name_ar,
+        name_en: doc.name_en,
       },
-      name: "منطقة إفتراضية",
+      name_ar: "منطقة إفتراضية",
+      name_en: "Default Area",
+      code : '1-Test',
       price_delivery_service: 0,
       image_url: '/images/area.png',
       company: {
         id: doc.company.id,
-        name_ar: doc.company.name_ar
+        name_ar: doc.company.name_ar,
+        name_en: doc.company.name_en,
       },
       branch: {
         code: doc.branch.code,
-        name_ar: doc.branch.name_ar
+        name_ar: doc.branch.name_ar,
+        name_en: doc.branch.name_en,
       },
       active: true
     }, (err, doc) => { })

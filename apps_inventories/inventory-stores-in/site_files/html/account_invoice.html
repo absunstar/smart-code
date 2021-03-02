@@ -28,14 +28,14 @@
 
                         <i-list class="col3" ng-search="_search.$currency_search" ng-model="account_invoices.currency"
                             ng-change="getSafeByType(account_invoices) ; calc(account_invoices)" items="currenciesList"
-                            label="##word.currency##">
+                            display="name_##session.lang##" label="##word.currency##">
                         </i-list>
 
                         <i-control class="col2" disabled ng-model="account_invoices.currency.ex_rate" type="number"
                             label="##word.exchange_rate##"></i-control>
 
                         <i-list ng-search="_search.$order_invoice.$safes_search" class="col4"
-                            ng-model="account_invoices.safe" label="##word.safe##" items="safesList">
+                        display="name_##session.lang##" ng-model="account_invoices.safe" label="##word.safe##" items="safesList">
                         </i-list>
                     </div>
 

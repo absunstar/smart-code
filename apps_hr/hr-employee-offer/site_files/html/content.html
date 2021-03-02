@@ -7,7 +7,7 @@
                 <i-control ng-hide="disabledCode" class="col2" label="##word.code##" ng-model="employee_offer.code">
                 </i-control>
                 <div class="col2"></div>
-                <i-control class="col3 r_indigo" disabled label="##word.shift##" ng-model="shift.name">
+                <i-control class="col3 r_indigo" disabled label="##word.shift##" ng-model="shift.name_##session.lang##">
                 </i-control>
             </div>
             <div class="row">
@@ -25,7 +25,7 @@
 
                 <i-list class="col3" v="r" ng-search="_search.$currency_search"
                     ng-model="employee_offer.currency" items="currenciesList" space=" - " display2="ex_rate"
-                    label="##word.currency##">
+                    display="name_##session.lang##" label="##word.currency##">
                 </i-list>
 
 

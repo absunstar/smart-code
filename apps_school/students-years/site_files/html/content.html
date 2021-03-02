@@ -9,26 +9,37 @@
                             ng-model="students_years.code"></i-control>
 
                         <i-control v="r" class="col4" label="##word.students_years_name##"
-                            ng-model="students_years.name">
+                            ng-model="students_years.name_ar">
                         </i-control>
-                        
-                        <i-list ng-search="_search.$_school_grade" class="col3" display="name"
-                            ng-model="students_years.school_grade" label="##word.school_grade##" items="schoolGradesList">
-                        </i-list>
 
-                        <div class="col1"></div>
+                        <i-control class="col4" label="##word.name_en##" ng-model="students_years.name_en">
+                        </i-control>
+
                         <i-checkbox class="col2" label="##word.active##" ng-model="students_years.active"></i-checkbox>
                     </div>
                     <br>
                     <br>
 
                     <div class="row">
-                        <i-list ng-search="_search.$_types_expenses" class="col3" display="name"
-                            ng-change="addTypesExpensesList(types_expenses)" ng-model="types_expenses"
-                            label="##word.types_expenses##" items="typesExpensesList">
-                        </i-list>
-                        <div class="col1"></div>
 
+                        <i-list ng-search="_search.$_school_grade" class="col3" display="name_##session.lang##"
+                            ng-model="students_years.school_grade" label="##word.school_grade##"
+                            items="schoolGradesList">
+                        </i-list>
+
+                        <i-list ng-search="_search.$_types_expenses" class="col3" display="name_##session.lang##"
+                            ng-model="types_expenses" label="##word.types_expenses##" items="typesExpensesList">
+                        </i-list>
+
+                        <i-button type="add" class="col2" label="##word.add##"
+                            ng-click="addTypesExpensesList(types_expenses)">
+                        </i-button>
+
+                    </div>
+                    <br>
+                    <br>
+
+                    <div class="row">
                         <div class="col6">
 
                             <fieldset>
@@ -43,7 +54,7 @@
                                     <tr ng-repeat="t in students_years.types_expenses_list">
 
                                         <td>
-                                            {{t.name}}
+                                            {{t.name_##session.lang##}}
                                         </td>
 
                                         <td>
@@ -88,7 +99,7 @@
 
                                     <td>
                                         <i-list ng-model="c.subject" v="r" ng-search="_search.$_subject"
-                                            items="subjectsList" display="name"></i-list>
+                                            items="subjectsList" display="name_##session.lang##"></i-list>
                                     </td>
 
                                     <td>

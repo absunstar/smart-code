@@ -4,18 +4,22 @@ module.exports = function init(site) {
   site.on('[company][created]', doc => {
 
     if (site.feature('gym') || site.feature('academy') || site.feature('school')) {
-      let name = ''
+      let name_ar = ''
+      let name_en = ''
 
       if (site.feature('school')) {
-        name = "فصل دراسي إفتراضي"
+        name_ar = "فصل دراسي إفتراضي"
+        name_en = "Default Class Room"
       } else if (site.feature('gym') || site.feature('academy')) {
-        name = "قاعة إفتراضية"
+        name_ar = "قاعة إفتراضية"
+        name_en = "Default Hall"
       }
 
 
       $hall.add({
         code: "1-Test",
-        name: name,
+        name_ar: name_ar,
+        name_en: name_en,
         capaneighborhood: 1,
         image_url: '/images/hall.png',
         company: {
@@ -78,7 +82,12 @@ module.exports = function init(site) {
 
         'company.id': site.get_company(req).id,
         'branch.code': site.get_branch(req).code,
-        'name': hall_doc.name
+        $or: [{
+          'name_ar': hall_doc.name_ar
+        },{
+          'name_en': hall_doc.name_en
+        }]
+     
       }
     }, (err, doc) => {
       if (!err && doc) {

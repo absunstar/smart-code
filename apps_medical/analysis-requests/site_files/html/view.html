@@ -86,7 +86,7 @@
                                             </td>
                                             <td class="white bg_card"> ##word.blood_type## </td>
                                             <td colspan="2" class="center red">
-                                                {{analysis_requests.customer.blood_type.name}}
+                                                {{analysis_requests.customer.blood_type.name_##session.lang##}}
                                             </td>
                                         </tr>
                                         <tr>
@@ -97,14 +97,14 @@
                                         </tr>
                                         <tr>
                                             <td class="white bg_card"> ##word.gov## </td>
-                                            <td colspan="2" class="center"> {{analysis_requests.customer.gov.name}}
+                                            <td colspan="2" class="center"> {{analysis_requests.customer.gov.name_##session.lang##}}
                                             </td>
                                             <td class="white bg_card"> ##word.city## </td>
                                             <td colspan="2" class="center">
-                                                {{analysis_requests.customer.city.name}} </td>
+                                                {{analysis_requests.customer.city.name_##session.lang##}} </td>
                                             <td class="white bg_card"> ##word.area## </td>
                                             <td colspan="2" class="center">
-                                                {{analysis_requests.customer.area.name}} </td>
+                                                {{analysis_requests.customer.area.name_##session.lang##}} </td>
                                         </tr>
 
                                         <tr>
@@ -161,7 +161,7 @@
 
                             <tr ng-repeat="a in analysis_requests.analysis_list">
 
-                                <td class="center">{{a.name}}</td>
+                                <td class="center">{{a.name_##session.lang##}}</td>
                                 <td class="center green">{{a.price}}</td>
 
                                 <td class="center">
@@ -228,7 +228,7 @@
                             </tr>
                             <tr ng-repeat="l in analysis_requests.last_analysis_list">
 
-                                <td class="center">{{l.name}}</td>
+                                <td class="center">{{l.name_##session.lang##}}</td>
                                 <td class="center">
                                     <p class="brown"> {{l.date |date:"dd - MM - yyyy"}} </p>
                                     <p class="green"> {{l.date |date:"hh:mm"}} </p>

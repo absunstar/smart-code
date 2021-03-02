@@ -22,7 +22,8 @@ module.exports = function init(site) {
   site.on('[company][created]', doc => {
 
     $printers_path.add({
-      name: "مسار طابعة إفتراضية",
+      name_ar: "مسار طابعة إفتراضية",
+      name_en: "Default Printers Path",
       type : "نوع إفتراضي",
       code: "1-Test",
       ip : "OneNote",

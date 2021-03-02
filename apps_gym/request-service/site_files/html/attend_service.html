@@ -30,7 +30,7 @@
 
                                     <td>
                                         <br>
-                                        <p class="center bold">{{attend_service.service_name}}</p>
+                                        <p class="center bold">{{attend_service.service_name_##session.lang##}}</p>
                                     </td>
 
                                     <td>
@@ -49,7 +49,7 @@
                                     </td>
 
                                     <td>
-                                        <i-list ng-search="_search.$trainer" display="name"
+                                        <i-list ng-search="_search.$trainer" display="name_##session.lang##"
                                             ng-model="attend_service.trainer_attend" items="trainersList"></i-list>
                                     </td>
 
@@ -87,7 +87,7 @@
                                 <tr class="bold" ng-repeat="s in attend_service.selectedServicesList">
 
                                     <td>
-                                        <p class="center bold">{{s.name}}</p>
+                                        <p class="center bold">{{s.name_##session.lang##}}</p>
                                     </td>
 
                                     <td>
@@ -100,7 +100,7 @@
                                         <p class="center bold" ng-class ="{red : s.remain < 0 ,green : s.remain > 0}">{{s.remain}}</p>
                                     </td>
                                     <td>
-                                        <i-list ng-search="s.$trainer_attend_search" display="name"
+                                        <i-list ng-search="s.$trainer_attend_search" display="name_##session.lang##"
                                             ng-model="s.trainer_attend" items="trainersList"></i-list>
                                     </td>
                                     <td class="center">
@@ -135,11 +135,11 @@
                                 <tr class="bold" ng-repeat="s in attend_service.attend_service_list">
 
                                     <td>
-                                        <p class="center bold">{{s.name}}</p>
+                                        <p class="center bold">{{s.name_##session.lang##}}</p>
                                     </td>
 
                                     <td>
-                                        <p class="center bold">{{s.trainer_attend.name}}</p>
+                                        <p class="center bold">{{s.trainer_attend.name_##session.lang##}}</p>
                                     </td>
 
                                     <td class="center ">

@@ -135,17 +135,18 @@ module.exports = function init(site) {
 
             let paid_value = {
               value: response.doc.baid_go,
-              sourceName: response.doc.trainer_paid.name,
+              source_name_ar: response.doc.trainer_paid.name_ar,
+              source_name_en: response.doc.trainer_paid.name_en,
               company: response.doc.company,
               branch: response.doc.branch,
               date: response.doc.date_paid,
               shift: {
                 id: result.doc.shift.id,
                 code: result.doc.shift.code,
-                name: result.doc.shift.name
+                name_ar: result.doc.shift.name_ar, name_en: result.doc.shift.name_en
               },
               transition_type: 'out',
-              operation: 'دفعة حساب مدرب',
+              operation: {ar: 'دفعة حساب مدرب', en: 'Pay Trainer Account'},
               safe: response.doc.safe
             }
             site.quee('[amounts][safes][+]', paid_value)
@@ -236,6 +237,7 @@ module.exports = function init(site) {
     if (where['name']) {
       where['name'] = site.get_RegExp(where['name'], "i");
     }
+    
     if (where['trainer']) {
       where['trainer.id'] = where['trainer'].id;
       delete where['trainer']

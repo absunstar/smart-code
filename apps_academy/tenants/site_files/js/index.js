@@ -284,7 +284,7 @@ app.controller("tenant", function ($scope, $http, $timeout) {
         where: {
           active: true
         },
-        select : {id : 1 , name : 1}
+        select : {id : 1 , name_ar: 1, name_en: 1}
       }
     }).then(
       function (response) {
@@ -312,7 +312,7 @@ app.controller("tenant", function ($scope, $http, $timeout) {
           'gov.id': gov.id,
           active: true
         },
-        select : {id : 1 , name : 1}
+        select : {id : 1 , name_ar: 1, name_en: 1}
       }
     }).then(
       function (response) {

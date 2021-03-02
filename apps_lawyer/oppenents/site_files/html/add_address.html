@@ -35,7 +35,7 @@
                     <div class="control">
                         <label> ##word.oppenents_gov## </label>
                         <select ng-model="oppenent.gov">
-                            <option ng-repeat="gov in goves" ng-value="gov">{{gov.name}}</option>
+                            <option ng-repeat="gov in goves" ng-value="gov">{{gov.name_##session.lang##}}</option>
                         </select>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                     <div class="control">
                         <label> ##word.oppenents_city## </label>
                         <select ng-model="oppenent.city">
-                            <option ng-repeat="city in Cities" ng-value="city">{{city.name}}</option>
+                            <option ng-repeat="city in Cities" ng-value="city">{{city.name_##session.lang##}}</option>
                         </select>
                     </div>
                 </div>

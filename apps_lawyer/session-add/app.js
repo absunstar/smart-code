@@ -49,6 +49,23 @@ module.exports = function init(site) {
     session_add_doc.company = site.get_company(req)
     session_add_doc.branch = site.get_branch(req)
 
+    let num_obj = {
+      company: site.get_company(req),
+      screen: 'session_add',
+      date: new Date()
+    };
+    let cb = site.getNumbering(num_obj);
+
+    if (!session_add_doc.code && !cb.auto) {
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+
+    } else if (cb.auto) {
+      session_add_doc.code = cb.code;
+    }
+
+
     $session_add.add(session_add_doc, (err, doc) => {
       if (!err) {
         response.done = true

@@ -12,9 +12,17 @@
                         <i-control v="r" class="col2" label="##word.financial_years_code##"
                             ng-model="financial_year.code"></i-control>
 
-                        <i-control class="col4" label="##word.financial_years_name##" ng-model="financial_year.name">
+                        <i-control class="col4" label="##word.financial_years_name##" ng-model="financial_year.name_ar">
                         </i-control>
 
+                        <i-control class="col4" label="##word.name_en##" ng-model="financial_year.name_en">
+                        </i-control>
+
+
+                        <i-checkbox class="col1" label="##word.active##" ng-model="financial_year.active"></i-checkbox>
+                    </div>
+
+                    <div class="row">
                         <i-control v="r" class="col2" label="##word.financial_years_period_count##"
                             ng-model="financial_year.period" type="number"></i-control>
 
@@ -22,9 +30,6 @@
                             items="yearStatusList" disabled display="##session.lang##">
                         </i-list>
 
-                        <div class="col1"></div>
-
-                        <i-checkbox class="col1" label="##word.active##" ng-model="financial_year.active"></i-checkbox>
                     </div>
 
                     <br>

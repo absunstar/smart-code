@@ -1,0 +1,54 @@
+<div id="viewManageUserModal" class="modal small" fixed>
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close"> &times; </span>
+            <h2>
+                ##word.edit##
+                <i class="fa fa-file "></i>
+            </h2>
+
+        </div>
+
+        <div class="modal-body">
+            <div class="row">
+
+                <div class="col4"></div>
+                <div class="col4">
+
+                    <i-image ng-show="viewText === 'logo'" ng-model="manage_user.profile.image_url">
+                    </i-image>
+
+                    <i-control ng-show="viewText === 'name'" label="##word.the_name##"
+                        ng-model="manage_user.profile.name">
+                    </i-control>
+
+                    <i-date ng-show="viewText === 'birth_date'" ng-model="manage_user.profile.birth_date"
+                        label="##word.birth_date##">
+                    </i-date>
+
+                    <i-list ng-show="viewText === 'gender'" ng-search="_search.$gender_search" label="##word.gender##"
+                        ng-model="manage_user.profile.gender" items="genderList" display="##session.lang##">
+                    </i-list>
+
+                    <i-control ng-show="viewText === 'email'" label="##word.email##" ng-model="manage_user.email">
+                    </i-control>
+
+                    <i-control ng-show="viewText === 'phone'" label="##word.phone##" ng-model="manage_user.phone">
+                    </i-control>
+
+                    <i-control ng-show="viewText === 'mobile'" label="##word.mobile##" ng-model="manage_user.mobile">
+                    </i-control>
+
+
+                </div>
+                <div class="col4"></div>
+
+            </div>
+        </div>
+
+        <div class="modal-footer center">
+            <h2 class="error"> {{error}} </h2>
+            <i-button type="close" label="##word.close##" onclick="site.hideModal( '#viewManageUserModal')"> </i-button>
+
+        </div>
+    </div>

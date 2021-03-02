@@ -6,19 +6,25 @@
                 <div class="col9">
 
                     <div class="row">
+                        <i-control ng-hide="disabledCode" class="col2" label="##word.code##"
+                            ng-model="reasons_sessions.code">
+                        </i-control>
 
-                        <i-control v="r" class="col5" label="##word.reasons_sessions_name##"
-                            ng-model="reasons_sessions.name"></i-control>
-                        <div class="col4"></div>
+                        <i-control v="r" class="col4" label="##word.reasons_sessions_name##"
+                            ng-model="reasons_sessions.name_ar"></i-control>
+
+                        <i-control class="col4" label="##word.name_en##"
+                            ng-model="reasons_sessions.name_en"></i-control>
+
                         <i-checkbox class="col2" label="##word.active##" ng-model="reasons_sessions.active">
                         </i-checkbox>
+
                     </div>
 
                     <div class="row">
                         <i-textarea ng-model="reasons_sessions.description" class="col6" label="##word.description##">
                         </i-textarea>
                     </div>
-
 
                 </div>
 

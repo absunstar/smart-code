@@ -11,7 +11,8 @@ module.exports = function init(site) {
   site.on('[company][created]', doc => {
 
     $maritals_status.add({
-      name: "حالة إجتماعية إفتراضية",
+      name_ar: "حالة إجتماعية إفتراضية",
+      name_en: "Default Maritals Status",
       code: "1-Test",
       image_url: '/images/marital.png',
       company: {

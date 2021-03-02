@@ -35,23 +35,33 @@ module.exports = function init(site) {
     let response = {
       done: false,
     };
+    let company = {}
+    if (req.session.user) {
+      company = {
+        id: site.get_company(req).id,
+        name_ar: site.get_company(req).name_ar,
+        name_en: site.get_company(req).name_en
+      }
 
-    if (!req.session.user) {
-      response.error = 'Please Login First';
-      res.json(response);
-      return;
+    } else {
+      company = {
+        id: req.body.doc.id,
+        name_ar: req.body.doc.name_ar,
+        name_en: req.body.doc.name_en
+      }
+
     }
 
-    if (Numbering.some((n) => n.company.id == [site.get_company(req).id]) && !req.body.reset) {
+    if (Numbering.some((n) => n.company.id == [company.id]) && !req.body.reset) {
       response.done = true;
       response.source = 'memory';
-      response.doc = Numbering.filter((n) => n.company.id == site.get_company(req).id)[0];
+      response.doc = Numbering.filter((n) => n.company.id == company.id)[0];
       res.json(response);
 
     } else {
 
       $numbering.delete({
-        'company.id': site.get_company(req).id
+        'company.id': company.id
       }, (err, result) => {
         Numbering = [];
         moduleListCore.forEach((_ml) => {
@@ -67,31 +77,20 @@ module.exports = function init(site) {
 
         let screens_list = []
 
-
-
         if (site.features.like('*erp*')) {
-          screens_list = moduleListCore.filter((i) => i.feature !== 'restaurant' && i.feature !== 'gym' && i.feature !== 'academy' && i.feature !== 'medic' && i.feature !== 'school' && i.feature !== 'medical');
-
-
-
+          screens_list = moduleListCore.filter((i) => i.feature !== 'restaurant' && i.feature !== 'gym' && i.feature !== 'academy' && i.feature !== 'medic' && i.feature !== 'school' && i.feature !== 'medical' && i.feature !== 'lawyer');
 
 
         } else if (site.features.like('*restaurant*')) {
-          screens_list = moduleListCore.filter((i) => i.feature !== 'gym' && i.feature !== 'erp' && i.feature !== 'academy' && i.feature !== 'medic' && i.feature !== 'school' && i.feature !== 'medical');
-
-
-
+          screens_list = moduleListCore.filter((i) => i.feature !== 'gym' && i.feature !== 'erp' && i.feature !== 'academy' && i.feature !== 'medic' && i.feature !== 'school' && i.feature !== 'medical' && i.feature !== 'lawyer');
 
 
         } else if (site.features.like('*pos*')) {
-          screens_list = moduleListCore.filter((i) => i.feature !== 'gym' && i.feature !== 'erp' && i.feature !== 'restaurant' && i.feature !== 'academy' && i.feature !== 'medic' && i.feature !== 'school' && i.feature !== 'medical');
+          screens_list = moduleListCore.filter((i) => i.feature !== 'gym' && i.feature !== 'erp' && i.feature !== 'restaurant' && i.feature !== 'academy' && i.feature !== 'medic' && i.feature !== 'school' && i.feature !== 'medical' && i.feature !== 'lawyer');
 
 
-
-
-
-
-
+        } else if (site.features.like('*lawyer*')) {
+          screens_list = moduleListCore.filter((i) => i.feature !== 'erp' && i.feature !== 'restaurant' && i.feature !== 'gym' && i.feature !== 'academy' && i.feature !== 'medic' && i.feature !== 'school' && i.feature !== 'medical');
 
 
 
@@ -103,7 +102,7 @@ module.exports = function init(site) {
               _mc.ar = 'شرائح الجلسات'
             }
           });
-          screens_list = moduleListCore.filter((i) => i.feature !== 'order' && i.feature !== 'erp' && i.feature !== 'restaurant' && i.feature !== 'academy' && i.feature !== 'school' && i.feature !== 'medical');
+          screens_list = moduleListCore.filter((i) => i.feature !== 'order' && i.feature !== 'erp' && i.feature !== 'restaurant' && i.feature !== 'academy' && i.feature !== 'school' && i.feature !== 'medical' && i.feature !== 'lawyer');
 
           moduleListCore.forEach(_mc => {
             if (_mc.name == 'customers') {
@@ -118,7 +117,7 @@ module.exports = function init(site) {
 
 
 
-          
+
 
         } else if (site.features.like('*academy*')) {
           screens_list = moduleListCore.filter((i) => i.feature !== 'order' && i.feature !== 'erp' && i.feature !== 'restaurant' && i.feature !== 'gym' && i.feature !== 'school' && i.feature !== 'medical');
@@ -184,7 +183,7 @@ module.exports = function init(site) {
         $numbering.add(
           {
             screens_list: screens_list,
-            company: site.get_company(req),
+            company: company,
           },
           (err, doc) => {
             if (!err && doc) {
@@ -253,7 +252,7 @@ module.exports = function init(site) {
     } else {
       response.isAuto = false;
     }
-  
+
 
     response.done = true;
     res.json(response);

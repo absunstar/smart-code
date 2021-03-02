@@ -99,7 +99,8 @@ module.exports = function init(site) {
     let customer = {
       group: {
         id: doc.id,
-        name: doc.name
+        name_ar: doc.name_ar,
+        name_en: doc.name_en
       },
       code: "1-Test",
       name_ar: "عميل إفتراضي",
@@ -122,10 +123,12 @@ module.exports = function init(site) {
       image_url: '/images/customer.png',
       company: {
         id: doc.company.id,
-        name_ar: doc.company.name_ar
+        name_ar: doc.company.name_ar,
+        name_en: doc.company.name_en
       },
       branch: {
         code: doc.branch.code,
+        name_ar: doc.branch.name_ar,
         name_ar: doc.branch.name_ar
       },
       active: true

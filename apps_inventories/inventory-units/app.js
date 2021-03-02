@@ -17,7 +17,8 @@ module.exports = function init(site) {
   site.on('[company][created]', doc => {
     let y = new Date().getFullYear().toString()
     $units.add({
-      name: "وحدة إفتراضية",
+      name_ar: "وحدة إفتراضية",
+      name_en : "Default Unit",
       image_url: '/images/unit.png',
       code: "1-Test",
       company: {

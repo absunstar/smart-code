@@ -31,14 +31,14 @@
                     </div>
                     <div class="row">
                         <i-list class="col3" label="##word.gov##" ng-model="search.gov" items="govList"
-                            ng-change="getCityList(search.gov)" display="name" ng-search="_search.$gov_search"></i-list>
+                            ng-change="getCityList(search.gov)" display="name_##session.lang##" ng-search="_search.$gov_search"></i-list>
 
                         <i-list class="col3" label="##word.city##" ng-model="search.city"
-                            ng-change="getAreaList(search.city)" items="cityList" display="name"
+                            ng-change="getAreaList(search.city)" items="cityList" display="name_##session.lang##"
                             ng-search="_search.$city_search"></i-list>
 
                         <i-list class="col3" label="##word.area##" ng-model="search.area" items="areaList"
-                            display="name" ng-search="_search.$employee.$area_search"></i-list>
+                            display="name_##session.lang##" ng-search="_search.$employee.$area_search"></i-list>
                         <i-control help-id="" class="col3" label="##word.address##" ng-model="search.address">
                         </i-control>
 

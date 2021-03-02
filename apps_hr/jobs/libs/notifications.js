@@ -3,21 +3,21 @@ module.exports = function init(site) {
   let collection_name = 'jobs'
 
   let source = {
-    name: 'Jobs System',
+    en: 'Jobs System',
     ar: 'نظام الوظائف'
   }
 
   let image_url = '/images/jobs.png'
   let add_message = {
-    name: 'New Jobs Added',
+    en: 'New Jobs Added',
     ar: 'تم إضافة وظائف جديدة'
   }
   let update_message = {
-    name: ' Jobs Updated',
+    en: ' Jobs Updated',
     ar: 'تم تعديل وظائف'
   }
   let delete_message = {
-    name: ' Jobs Deleted',
+    en: ' Jobs Deleted',
     ar: 'تم حذف وظائف '
   }
 
@@ -31,7 +31,9 @@ module.exports = function init(site) {
           message: add_message,
           value: {
             name: result.doc.name,
-            ar: result.doc.name
+             code: result.doc.code,
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
           },
           add: result.doc,
           action: 'add'
@@ -50,7 +52,9 @@ module.exports = function init(site) {
           message: update_message,
           value: {
             name: result.old_doc.name,
-            ar: result.old_doc.name
+            code: result.old_doc.code,
+            en: result.old_doc.name_en,
+            ar: result.old_doc.name_ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
@@ -70,7 +74,9 @@ module.exports = function init(site) {
           message: delete_message,
           value: {
             name: result.doc.name,
-            ar: result.doc.name
+             code: result.doc.code,
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
           },
           delete: result.doc,
           action: 'delete'

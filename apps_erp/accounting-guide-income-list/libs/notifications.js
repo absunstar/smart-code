@@ -3,21 +3,21 @@ module.exports = function init(site) {
   let collection_name = 'accounting_guide_income_list'
 
   let source = {
-    name: 'Guide Income List System',
+    en: 'Guide Income List System',
     ar: 'نظام دليل تصنيفات قائمة الدخل '
   }
 
   let image_url = '/images/accounting_guide_income_list.png'
   let add_message = {
-    name: 'New Guide Income List Added',
+    en: 'New Guide Income List Added',
     ar: 'تم أضافة دليل تصنيفات قائمة الدخل جديدة'
   }
   let update_message = {
-    name: ' Guide Income List Updated',
+    en: ' Guide Income List Updated',
     ar: 'تم تعديل دليل تصنيفات قائمة الدخل'
   }
   let delete_message = {
-    name: ' Guide Income List Deleted',
+    en: ' Guide Income List Deleted',
     ar: 'تم حذف دليل تصنيفات قائمة الدخل '
   }
 
@@ -31,7 +31,9 @@ module.exports = function init(site) {
           message: add_message,
           value: {
             name: result.doc.name,
-            ar: result.doc.name
+               code: result.doc.code,
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
           },
           add: result.doc,
           action: 'add'
@@ -50,7 +52,9 @@ module.exports = function init(site) {
           message: update_message,
           value: {
             name: result.old_doc.name,
-            ar: result.old_doc.name
+            code: result.old_doc.code,
+            en: result.old_doc.name_en,
+            ar: result.old_doc.name_ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
@@ -70,7 +74,9 @@ module.exports = function init(site) {
           message: delete_message,
           value: {
             name: result.doc.name,
-            ar: result.doc.name
+               code: result.doc.code,
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
           },
           delete: result.doc,
           action: 'delete'

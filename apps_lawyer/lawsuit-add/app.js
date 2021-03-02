@@ -43,6 +43,24 @@ module.exports = function init(site) {
     lawsuit_add_doc.company = site.get_company(req)
     lawsuit_add_doc.branch = site.get_branch(req)
 
+    
+    let num_obj = {
+      company: site.get_company(req),
+      screen: 'lawsuit_add',
+      date: new Date()
+    };
+    let cb = site.getNumbering(num_obj);
+
+    if (!lawsuit_add_doc.code && !cb.auto) {
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+
+    } else if (cb.auto) {
+      lawsuit_add_doc.code = cb.code;
+    }
+
+
     $lawsuit_add.add(lawsuit_add_doc, (err, doc) => {
       if (!err) {
         response.done = true

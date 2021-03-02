@@ -153,7 +153,7 @@ app.controller("employees_degrees", function ($scope, $http) {
       data: {
         select: {
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           balance: 1,
           code : 1
         }

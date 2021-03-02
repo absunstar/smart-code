@@ -13,7 +13,8 @@ module.exports = function init(site) {
     $medical_insurance_companies.add(
       {
         code: "1-Test",
-        name: 'شركة تأمين إفتراضية',
+        name_ar: 'شركة تأمين إفتراضية',
+        name_en: 'Default Insurance Company',
         image_url: '/images/medical_insurance_companies.png',
         insurance_slides_list: [{}],
         black_analyse_list: [{}],
@@ -98,11 +99,12 @@ module.exports = function init(site) {
 
     $medical_insurance_companies.find({
       where: {
-
         'company.id': site.get_company(req).id,
         'branch.code': site.get_branch(req).code,
         $or: [{
-          'name': medical_insurance_companies_doc.name
+          'name_ar': medical_insurance_companies_doc.name_ar
+        },{
+          'name_en': medical_insurance_companies_doc.name_en
         }, {
           'phone': medical_insurance_companies_doc.phone
         }, {
@@ -334,8 +336,11 @@ module.exports = function init(site) {
     if (where['code']) {
       where['code'] = new RegExp(where['code'], "i");
     }
-    if (where['name']) {
-      where['name'] = new RegExp(where['name'], "i");
+    if (where['name_ar']) {
+      where['name_ar'] = new RegExp(where['name_ar'], "i");
+    }
+    if (where['name_en']) {
+      where['name_en'] = new RegExp(where['name_en'], "i");
     }
     if (where['address']) {
       where['address'] = new RegExp(where['address'], "i");

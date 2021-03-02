@@ -13,7 +13,7 @@ module.exports = function init(site) {
             _doc.current_book_list.forEach(_items => {
               objectInvoice.sizes_list.forEach(_size => {
                 if (_items.barcode === _size.barcode) {
-                  _items.size = _size.size
+                  _items.size_ar = _size.size_ar
                   _items.size_en = _size.size_en
                   _items.name = _size.name
                 }
@@ -201,7 +201,7 @@ module.exports = function init(site) {
                     shift: {
                       id: doc.shift.id,
                       code: doc.shift.code,
-                      name: doc.shift.name
+                      name_ar: doc.shift.name_ar, name_en: doc.shift.name_en
                     }
                   }
 
@@ -306,8 +306,16 @@ module.exports = function init(site) {
 
                   }
 
-                  if (doc.employee && doc.employee.id) paid_value.sourceName = doc.employee.name
-                  if (doc.delegate && doc.delegate.id) paid_value.sourceName = doc.delegate.name
+                  if (doc.employee && doc.employee.id) {
+
+                    paid_value.source_name_ar = doc.employee.name_ar
+                    paid_value.source_name_en = doc.employee.name_en
+                  }
+
+                  if (doc.delegate && doc.delegate.id) {
+                    paid_value.source_name_ar = doc.delegate.name_ar
+                    paid_value.source_name_en = doc.delegate.name_en
+                  }
 
                   if (doc.source_type.id === 14) {
                     paid_value.operation = { en: "Transfer of safes balances", ar: "تحويل أرصدة الخزن" }
@@ -395,7 +403,8 @@ module.exports = function init(site) {
                   shift: {
                     id: account_invoices_doc.shift.id,
                     code: account_invoices_doc.shift.code,
-                    name: account_invoices_doc.shift.name
+                    name_ar: account_invoices_doc.shift.name_ar,
+                    name_en: account_invoices_doc.shift.name_en
                   }
                 }
 
@@ -495,8 +504,17 @@ module.exports = function init(site) {
 
                 }
 
-                if (account_invoices_doc.employee && account_invoices_doc.employee.id) paid_value.sourceName = account_invoices_doc.employee.name
-                if (account_invoices_doc.delegate && account_invoices_doc.delegate.id) paid_value.sourceName = account_invoices_doc.delegate.name
+                if (account_invoices_doc.employee && account_invoices_doc.employee.id) {
+
+                  paid_value.source_name_ar = account_invoices_doc.employee.name_ar
+                  paid_value.source_name_en = account_invoices_doc.employee.name_en
+                }
+
+                if (account_invoices_doc.delegate && account_invoices_doc.delegate.id) {
+
+                  paid_value.source_name_ar = account_invoices_doc.delegate.name_ar
+                  paid_value.source_name_en = account_invoices_doc.delegate.name_en
+                }
 
                 site.quee('[amounts][safes][+]', Object.assign({}, paid_value))
               }
@@ -521,7 +539,7 @@ module.exports = function init(site) {
                 if (!err) {
                   response.done = true
                   response.doc = result.doc
-                  if (response.doc.remain_amount <= 0 && response.doc.source_type.id == 3){
+                  if (response.doc.remain_amount <= 0 && response.doc.source_type.id == 3) {
 
                     site.quee('[account_invoices][order_invoice][paid]', response.doc.invoice_id)
                   }
@@ -599,7 +617,7 @@ module.exports = function init(site) {
                   shift: {
                     id: account_invoices_doc.shift.id,
                     code: account_invoices_doc.shift.code,
-                    name: account_invoices_doc.shift.name
+                    name_ar: account_invoices_doc.shift.name_ar, name_en: account_invoices_doc.shift.name_en
                   }
                 }
 
@@ -810,8 +828,16 @@ module.exports = function init(site) {
                 }
 
 
-                if (account_invoices_doc.employee && account_invoices_doc.employee.id) obj.sourceName = account_invoices_doc.employee.name
-                if (account_invoices_doc.delegate && account_invoices_doc.delegate.id) obj.sourceName = account_invoices_doc.delegate.name
+                if (account_invoices_doc.employee && account_invoices_doc.employee.id){
+
+                  obj.source_name_ar = account_invoices_doc.employee.name_ar
+                  obj.source_name_en = account_invoices_doc.employee.name_en
+                } 
+
+                if (account_invoices_doc.delegate && account_invoices_doc.delegate.id){
+                  obj.source_name_ar = account_invoices_doc.delegate.name_ar
+                  obj.source_name_en = account_invoices_doc.delegate.name_en
+                }
 
                 // if (account_invoices_doc.source_type.id === 14) {
 
@@ -963,7 +989,7 @@ module.exports = function init(site) {
                         shift: {
                           id: result.doc.shift.id,
                           code: result.doc.shift.code,
-                          name: result.doc.shift.name
+                          name_ar: result.doc.shift.name_ar, name_en: result.doc.shift.name_en
                         }
                       }
                       if (result.doc.source_type.id == 1) {
@@ -1070,8 +1096,15 @@ module.exports = function init(site) {
                         site.call('delete Patient Ticket', response.doc.invoice_id)
                       }
 
-                      if (response.doc.employee && response.doc.employee.id) obj.sourceName = response.doc.employee.name
-                      if (response.doc.delegate && response.doc.delegate.id) obj.sourceName = response.doc.delegate.name
+                      if (response.doc.employee && response.doc.employee.id) {
+
+                        obj.source_name_ar = response.doc.employee.name_ar
+                        obj.source_name_en = response.doc.employee.name_en
+                      }
+                      if (response.doc.delegate && response.doc.delegate.id) {
+                        obj.source_name_ar = response.doc.delegate.name_ar
+                        obj.source_name_en = response.doc.delegate.name_en
+                      }
 
 
                       if (result.doc.source_type.id === 14) {
@@ -1106,7 +1139,7 @@ module.exports = function init(site) {
                       price_delivery_service: result.doc.price_delivery_service,
                       service: result.doc.service,
                       remain_amount: result.doc.remain_amount,
-                      return : true,
+                      return: true,
                       invoice_id: result.doc.invoice_id
                     }
 

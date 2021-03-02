@@ -15,23 +15,23 @@
 
                                 <tr>
                                     <td class="title">##word.shift##</td>
-                                    <td class="center">{{class_schedule.shift.name}} - {{class_schedule.shift.code}}
+                                    <td class="center">{{class_schedule.shift.name_##session.lang##}} - {{class_schedule.shift.code}}
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <td class="title"> ##word.school_grade## </td>
-                                    <td class="center"> {{class_schedule.school_grade.name}} </td>
+                                    <td class="center"> {{class_schedule.school_grade.name_##session.lang##}} </td>
                                 </tr>
 
                                 <tr>
                                     <td class="title"> ##word.students_year## </td>
-                                    <td class="center"> {{class_schedule.students_year.name}} </td>
+                                    <td class="center"> {{class_schedule.students_year.name_##session.lang##}} </td>
                                 </tr>
 
                                 <tr>
                                     <td class="title"> ##word.hall## </td>
-                                    <td class="center"> {{class_schedule.hall.name}} </td>
+                                    <td class="center"> {{class_schedule.hall.name_##session.lang##}} </td>
                                 </tr>
 
 
@@ -75,9 +75,9 @@
                             </td>
 
                             <td class="center blue" ng-repeat="s in i.schedules_count_list track by $index">
-                                <p class="blue">{{s.subject.name}}</p>
+                                <p class="blue">{{s.subject.name_##session.lang##}}</p>
                                 <hr>
-                                <p>{{s.trainer.name}}</p>
+                                <p>{{s.trainer.name_##session.lang##}}</p>
                                 <hr>
                                 <p>
                                     <b class="green">{{s.from.minute}} :

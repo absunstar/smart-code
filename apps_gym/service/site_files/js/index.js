@@ -211,7 +211,7 @@ app.controller("service", function ($scope, $http, $timeout) {
         url: "/api/service/all",
         data: {
           where: { name: $scope.search_service, complex_service: false },
-          select: { id: 1, name: 1, code: 1, services_price: 1, selectedServicesList: 1, attend_count: 1 }
+          select: { id: 1, name_ar: 1, name_en: 1, code: 1, services_price: 1, selectedServicesList: 1, attend_count: 1 }
         }
       }).then(
         function (response) {

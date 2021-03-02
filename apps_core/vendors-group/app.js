@@ -17,7 +17,8 @@ module.exports = function init(site) {
   site.on('[company][created]', doc => {
 
     $vendors_group.add({
-      name: "مجموعة موردين إفتراضية",
+      name_ar: "مجموعة موردين إفتراضية",
+      name_en : "Default Vendors Group",
       code: "1-Test",
       image_url: '/images/customer_groups.png',
       company: {

@@ -44,9 +44,9 @@ module.exports = function init(site) {
       where['name'] = site.get_RegExp(where['name'], 'i')
     }
 
-    if (where && where['size']) {
-      where['sizes.size'] = site.get_RegExp(where['size'], 'i')
-      delete where['size']
+    if (where && where['size_ar']) {
+      where['sizes.size_ar'] = site.get_RegExp(where['size_ar'], 'i')
+      delete where['size_ar']
     }
 
     if (where && where['size_en']) {
@@ -99,7 +99,7 @@ module.exports = function init(site) {
               i_store_list.push({
                 name: _doc.name,
                 item_group: _doc.item_group,
-                size: _sizes.size,
+                size_ar: _sizes.size_ar,
                 average_cost: _sizes.average_cost,
                 size_en: _sizes.size_en,
                 barcode: _sizes.barcode,

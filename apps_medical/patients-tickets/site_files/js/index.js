@@ -298,7 +298,7 @@ app.controller("patients_tickets", function ($scope, $http, $timeout) {
         where: {
           active: true
         },
-        select: { id: 1, name: 1, code: 1 }
+        select: { id: 1, name_ar: 1, name_en: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -324,7 +324,7 @@ app.controller("patients_tickets", function ($scope, $http, $timeout) {
           'gov.id': gov.id,
           active: true
         },
-        select: { id: 1, name: 1, code: 1 }
+        select: { id: 1, name_ar: 1, name_en: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -551,7 +551,7 @@ app.controller("patients_tickets", function ($scope, $http, $timeout) {
         data: {
           select: {
             id: 1,
-            name: 1,
+            name_ar: 1, name_en: 1,
             commission: 1,
             currency: 1,
             type: 1,
@@ -581,8 +581,8 @@ app.controller("patients_tickets", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
-          minor_currency: 1,
+          name_ar: 1, name_en: 1,
+          minor_currency_ar: 1, minor_currency_en: 1,
           ex_rate: 1,
           code: 1
         },
@@ -674,7 +674,7 @@ app.controller("patients_tickets", function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           code: 1,
           from_date: 1,
           from_time: 1,

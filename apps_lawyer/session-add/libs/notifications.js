@@ -3,21 +3,21 @@ module.exports = function init(site) {
   let collection_name = 'session_add'
 
   let source = {
-    name: 'Session Add System',
+    en: 'Session Add System',
     ar: ' نظام إضافة الجلسات'
   }
 
   let image_url = '/images/session_add.png'
   let add_message = {
-    name: 'New Session Add Added',
+    en: 'New Session Add Added',
     ar: 'تم إضافة جلسة جديد'
   }
   let update_message = {
-    name: ' Session Add Updated',
+    en: ' Session Add Updated',
     ar: 'تم تعديل إضافة جلسة'
   }
   let delete_message = {
-    name: ' Session Add Deleted',
+    en: ' Session Add Deleted',
     ar: 'تم حذف إضافة جلسة '
   }
 
@@ -31,7 +31,9 @@ module.exports = function init(site) {
           message: add_message,
           value: {
             name: result.doc.name,
-            ar: result.doc.name
+            code: result.doc.code,
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
           },
           add: result.doc,
           action: 'add'
@@ -50,7 +52,9 @@ module.exports = function init(site) {
           message: update_message,
           value: {
             name: result.old_doc.name,
-            ar: result.old_doc.name
+            code: result.old_doc.code,
+            en: result.old_doc.name_en,
+            ar: result.old_doc.name_ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
@@ -70,7 +74,9 @@ module.exports = function init(site) {
           message: delete_message,
           value: {
             name: result.doc.name,
-            ar: result.doc.name
+            code: result.doc.code,
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
           },
           delete: result.doc,
           action: 'delete'

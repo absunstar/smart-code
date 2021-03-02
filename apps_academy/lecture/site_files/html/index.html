@@ -54,8 +54,8 @@
                             <i-image view class="logo" ng-model="c.image_url"></i-image>
                         </td>
                         <td class="center brown">{{c.date |date:"dd - MM - yyyy"}}</td>
-                        <td class="center">{{c.hall.name}}</td>
-                        <td class="center title">{{c.trainer.name}}</td>
+                        <td class="center">{{c.hall.name_##session.lang##}}</td>
+                        <td class="center title">{{c.trainer.name_##session.lang##}}</td>
                         <td class="center green">{{c.from.minute}} : {{c.from.hour}}</td>
                         <td class="center red">{{c.to.minute}} : {{c.to.hour}}</td>
                         <td class="center">

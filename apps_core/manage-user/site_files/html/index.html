@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html lang="en" data-ng-app="myApp" class="bg-white" x-permissions="login">
+
+<head x-import="head.html">
+</head>
+
+<body style="background : white" class=" ##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+
+    <div id="main-layout" class="container loaded" ng-controller="manage_user">
+
+        <div class="row ">
+
+            <br>
+            <h1 class="center bold black"> ##word.manage_your_personal_account## </h1>
+            <br>
+
+            <div x-import="manage-user/content.html"></div>
+            <div x-import="manage-user/view_modal.html"></div>
+            <br>
+            <br>
+            <br>
+
+            <i-button type="save"  label="##word.save##" ng-click="saveSetting()"></i-button>
+
+
+        </div>
+    </div>
+
+
+    <div x-import="scripts.html"></div>
+    <script x-import="manage-user/index.js"></script>
+
+
+</body>
+
+
+</html>
+
+
+

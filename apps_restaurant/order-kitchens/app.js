@@ -27,7 +27,7 @@ module.exports = function init(site) {
       if (!err && doc) {
         response.done = true
         doc.book_list.forEach(book_list => {
-          if (book_list.size == item.size && book_list.barcode === item.barcode)
+          if (book_list.size_ar == item.size_ar && book_list.barcode === item.barcode)
             book_list.done_kitchen = true;
         });
         $order_invoice.update(doc)

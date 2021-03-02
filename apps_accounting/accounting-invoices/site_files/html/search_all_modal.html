@@ -34,17 +34,17 @@
 
                         <div class="row" ng-show="##query.type## == 13">
 
-                            <i-list ng-search="_search.$_school_grade" class="col3" display="name" v="r"
-                                ng-change="getStudentsYearsList(search.school_grade)"
-                                ng-model="search.school_grade" label="##word.school_grade##"
-                                items="schoolGradesList">
+                            <i-list ng-search="_search.$_school_grade" class="col3" display="name_##session.lang##"
+                                v="r" ng-change="getStudentsYearsList(search.school_grade)"
+                                ng-model="search.school_grade" label="##word.school_grade##" items="schoolGradesList">
                             </i-list>
 
-                            <i-list class="col3" label="##word.students_year##" ng-model="search.students_year"
-                                v="r" items="studentsYearsList" display="name" ng-search="_search.$_students_year">
+                            <i-list class="col3" label="##word.students_year##" ng-model="search.students_year" v="r"
+                                items="studentsYearsList" display="name_##session.lang##"
+                                ng-search="_search.$_students_year">
                             </i-list>
 
-                            <i-list ng-search="_search.$_types_expenses" class="col3" display="name"
+                            <i-list ng-search="_search.$_types_expenses" class="col3" display="name_##session.lang##"
                                 ng-model="search.types_expenses" label="##word.types_expenses##"
                                 items="search.students_year.types_expenses_list"></i-list>
                         </div>
@@ -57,7 +57,8 @@
                             </i-list>
 
                             <i-list ng-search="_search.$order_invoice.$currency_search" class="col3"
-                                ng-model="search.currency" label="##word.currency##" items="currenciesList"></i-list>
+                                display="name_##session.lang##" ng-model="search.currency" label="##word.currency##"
+                                items="currenciesList"></i-list>
 
                             <i-list ng-search="_search.$order_invoice.$safes_search" class="col3" ng-model="search.safe"
                                 label="##word.safe##" items="getSafesList"></i-list>

@@ -17,7 +17,7 @@
 
                     <i-control help-id="" class="col3" label="##word.nathional_id##" ng-model="search.nathional_id"></i-control>
                     <i-list class="col3" label="##word.specialty##" ng-model="search.specialty" items="specialtyList"
-                    display="name" ng-search="_search.$specialty_search"></i-list>
+                    display="name_##session.lang##" ng-search="_search.$specialty_search"></i-list>
 
                     <div class="control col3">
                         <label> ##word.status## </label>
@@ -29,9 +29,9 @@
                 </div>
                 <div class="row">
                     <i-list class="col3" label="##word.gov##" ng-model="search.gov" items="govList" ng-change="getCityList(search.gov)"
-                        display="name" ng-search="_search.$gov_search"></i-list>
+                        display="name_##session.lang##" ng-search="_search.$gov_search"></i-list>
 
-                    <i-list class="col3" label="##word.city##" ng-model="search.city" items="cityList" display="name"
+                    <i-list class="col3" label="##word.city##" ng-model="search.city" items="cityList" display="name_##session.lang##"
                         ng-search="_search.$city_search"></i-list>
 
                     <i-control help-id="" class="col4" label="##word.address##" ng-model="search.address"></i-control>

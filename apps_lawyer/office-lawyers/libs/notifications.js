@@ -3,21 +3,21 @@ module.exports = function init(site) {
   let collection_name = 'office_lawyers'
 
   let source = {
-    name: 'Offices Lawyers System',
+    en: 'Offices Lawyers System',
     ar: ' نظام محامين المكتب'
   }
 
   let image_url = '/images/vendor.png'
   let add_message = {
-    name: 'New Office Lawyer Added',
+    en: 'New Office Lawyer Added',
     ar: 'تم إضافة محامي مكتب جديدة'
   }
   let update_message = {
-    name: ' Office Lawyer Updated',
+    en: ' Office Lawyer Updated',
     ar: 'تم تعديل محامي مكتب'
   }
   let delete_message = {
-    name: ' Office Lawyer Deleted',
+    en: ' Office Lawyer Deleted',
     ar: 'تم حذف محامي مكتب '
   }
 
@@ -31,6 +31,8 @@ module.exports = function init(site) {
           message: add_message,
           value: {
             name: result.doc.name_ar,
+            code: result.doc.code,
+            en: result.doc.name_en,
             ar: result.doc.name_ar
           },
           add: result.doc,
@@ -50,6 +52,8 @@ module.exports = function init(site) {
           message: update_message,
           value: {
             name: result.old_doc.name_ar,
+            code: result.old_doc.code,
+            en: result.old_doc.name_en,
             ar: result.old_doc.name_ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
@@ -70,6 +74,8 @@ module.exports = function init(site) {
           message: delete_message,
           value: {
             name: result.doc.name_ar,
+            code: result.doc.code,
+            en: result.doc.name_en,
             ar: result.doc.name_ar
           },
           delete: result.doc,

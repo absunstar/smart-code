@@ -17,7 +17,7 @@ module.exports = function init(site) {
         if (_doc.items) _doc.items.forEach(_items => {
           if (objectStoreIn.sizes_list) objectStoreIn.sizes_list.forEach(_size => {
             if (_items.barcode == _size.barcode) {
-              _items.size = _size.size
+              _items.size_ar = _size.size_ar
               _items.size_en = _size.size_en
               _items.name = _size.name
             }
@@ -163,7 +163,7 @@ module.exports = function init(site) {
                         _itm.shift = {
                           id: doc.shift.id,
                           code: doc.shift.code,
-                          name: doc.shift.name
+                          name_ar: doc.shift.name_ar, name_en: doc.shift.name_en
                         }
 
                         if (doc.type.id == 4) {
@@ -368,7 +368,7 @@ module.exports = function init(site) {
                               _itm.shift = {
                                 id: result.doc.shift.id,
                                 code: result.doc.shift.code,
-                                name: result.doc.shift.name
+                                name_ar: result.doc.shift.name_ar, name_en: result.doc.shift.name_en
                               }
 
 
@@ -506,7 +506,8 @@ module.exports = function init(site) {
                               _itm.shift = {
                                 id: stores_in_doc.shift.id,
                                 code: stores_in_doc.shift.code,
-                                name: stores_in_doc.shift.name
+                                name_ar: stores_in_doc.shift.name_ar,
+                                name_en: stores_in_doc.shift.name_en
                               }
                               if (result.doc.type.id == 4) {
                                 _itm.set_average = 'sum_average'
@@ -687,9 +688,9 @@ module.exports = function init(site) {
       delete where['name']
     }
 
-    if (where['size']) {
-      where['items.size'] = site.get_RegExp(where['size'], 'i')
-      delete where['size']
+    if (where['size_ar']) {
+      where['items.size_ar'] = site.get_RegExp(where['size_ar'], 'i')
+      delete where['size_ar']
     }
 
     if (where['size_en']) {
@@ -828,7 +829,8 @@ module.exports = function init(site) {
                 if (_item.unit == null || undefined)
                   _item.unit = {
                     id: unit.id,
-                    name: unit.name,
+                    name_ar: unit.name_ar, 
+                    name_en: unit.name_en,
                     convert: 1
                   }
               });
@@ -863,8 +865,7 @@ module.exports = function init(site) {
         obj.items.forEach(_itemsObj => {
           doc.return_paid.items.forEach(_itemsDoc => {
 
-            if (_itemsObj.barcode === _itemsDoc.barcode && _itemsObj.size == _itemsDoc.size) {
-
+            if (_itemsObj.barcode === _itemsDoc.barcode && _itemsObj.size_ar == _itemsDoc.size_ar) {
 
               if (_itemsObj.patch_list && _itemsObj.patch_list.length > 0) {
 
@@ -1047,7 +1048,7 @@ module.exports = function init(site) {
                   _itm.shift = {
                     id: doc.shift.id,
                     code: doc.shift.code,
-                    name: doc.shift.name
+                    name_ar: doc.shift.name_ar, name_en: doc.shift.name_en
                   }
 
                   if (doc.type.id == 4) {
@@ -1125,7 +1126,7 @@ module.exports = function init(site) {
                   _itm.shift = {
                     id: result.doc.shift.id,
                     code: result.doc.shift.code,
-                    name: result.doc.shift.name
+                    name_ar: result.doc.shift.name_ar, name_en: result.doc.shift.name_en
                   }
 
                   _itm.current_status = 'storein'

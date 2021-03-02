@@ -36,7 +36,7 @@
                             <div class="control">
                                 <label> ##word.vendors_gov## </label>
                                 <select ng-model="search.gov">
-                                    <option ng-repeat="g in goves" ng-value="g"> {{g.name}} </option>
+                                    <option ng-repeat="g in goves" ng-value="g"> {{g.name_##session.lang##}} </option>
                                 </select>
                             </div>
                         </div>
@@ -82,7 +82,7 @@
                             <div class="control">
                                 <label> ##word.vendors_name## </label>
                                 <select ng-model="search.vendor" ng-change="setCode()">
-                                    <option ng-selected="search.vendor.id == ve.id" ng-repeat="ve in vendors" ng-value="ve"> {{ve.name}} </option>
+                                    <option ng-selected="search.vendor.id == ve.id" ng-repeat="ve in vendors" ng-value="ve"> {{ve.name_##session.lang##}} </option>
                                 </select>
                             </div>
                         </div>
@@ -91,7 +91,7 @@
                             <div class="control">
                                 <label> ##word.vendors_sections## </label>
                                 <select ng-model="search.sections">
-                                    <option ng-repeat="se in sections" ng-value="se"> {{se.name}} </option>
+                                    <option ng-repeat="se in sections" ng-value="se"> {{se.name_##session.lang##}} </option>
                                 </select>
                             </div>
                         </div>

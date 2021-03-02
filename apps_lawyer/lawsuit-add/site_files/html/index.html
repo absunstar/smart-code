@@ -47,6 +47,7 @@
                 <table class="table loaded center hover bold" id="t1">
                     <tr>
                         <th class="not-print"> ##word.logo## </th>
+                        <th> ##word.code## </th>
                         <th> ##word.lawsuit_start_date## </th>
                         <th> ##word.lawsuit_number## </th>
                         <th> ##word.lawsuit_year## </th>
@@ -60,12 +61,13 @@
                         <td class="not-print">
                             <i-image view class="logo" ng-model="c.image_url"></i-image>
                         </td>
+                        <td class="center userPrint blue">{{c.code}}</td>
 
                         <td> {{c.date  | date : 'yyyy - MM - dd'}} </td>
                         <td> {{c.number}} </td>
                         <td> {{c.year}} </td>
-                        <td> {{c.courts.name}} </td>
-                        <td> {{c.circle.name}} </td>
+                        <td> {{c.courts.name_##session.lang##}} </td>
+                        <td> {{c.circle.name_##session.lang##}} </td>
 
                         <td>
                             <p ng-show="c.active == true" class="green"> ##word.active## </p>

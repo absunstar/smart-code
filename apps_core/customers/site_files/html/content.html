@@ -71,7 +71,7 @@
                             <div class="row">
 
                                 <i-list class="col4" label="##word.customers_groups##" ng-model="customer.group"
-                                    items="customerGroupList" display="name" ng-search="_search.$customerGroup">
+                                    items="customerGroupList" display="name_##session.lang##" ng-search="_search.$customerGroup">
                                 </i-list>
 
                                 <i-control x-features="lawyer" help-id="" v="r ll2" class="col4"
@@ -97,7 +97,7 @@
 
                                 <i-list help-id="" x-features="medical" ng-search="_search.$insurance_companies_search"
                                     class="col4" label="##word.medical_insurance_company##"
-                                    ng-model="customer.insurance_company" items="insuranceCompaniesList" display="name">
+                                    ng-model="customer.insurance_company" items="insuranceCompaniesList" display="name_##session.lang##">
                                 </i-list>
 
                                 <i-control class="col4" x-features="gym || academy || school"
@@ -118,18 +118,18 @@
 
                             <div class="row" x-features="school">
 
-                                <i-list ng-search="_search.$_school_grade" class="col4" display="name"
+                                <i-list ng-search="_search.$_school_grade" class="col4" display="name_##session.lang##"
                                     ng-change="getStudentsYearsList(customer.school_grade)"
                                     ng-model="customer.school_grade" label="##word.school_grade##"
                                     items="schoolGradesList">
                                 </i-list>
 
                                 <i-list class="col4" label="##word.students_year##" ng-model="customer.students_year"
-                                    items="studentsYearsList" display="name" ng-search="_search.$_students_year">
+                                    items="studentsYearsList" display="name_##session.lang##" ng-search="_search.$_students_year">
                                 </i-list>
 
                                 <i-list class="col4" label="##word.hall##" ng-model="customer.hall" items="hallsList"
-                                    display="name" ng-search="_search.$_hall">
+                                    display="name_##session.lang##" ng-search="_search.$_hall">
                                 </i-list>
                             </div>
 
@@ -257,7 +257,7 @@
                         <i-control class="col2" label="##word.other_fee##" type="number" ng-model="students.other_fee">
                         </i-control>
                         <i-list class="col4" label="##word.safe##" ng-search="students.$safe_search" items="safesList"
-                            ng-model="students.safe"></i-list>
+                        display="name_##session.lang##"  ng-model="students.safe"></i-list>
                     </div>
                 </fieldset>
             </div>
@@ -270,7 +270,7 @@
                     </legend>
                     <div class="row">
                         <i-list help-id="" class="col3" label="##word.blood_type##" ng-model="customer.blood_type"
-                            ng-search="_search.$blood_type" items="bloodTypeList" display="name"></i-list>
+                            ng-search="_search.$blood_type" items="bloodTypeList" display="name_##session.lang##"></i-list>
 
                         <i-control help-id="" class="col2" type="number" label="##word.weight##"
                             ng-model="customer.weight"></i-control>
@@ -472,7 +472,7 @@
 
                         <i-list class="col4" label="##word.customers_currency_name##" ng-model="openBalance.currency"
                             ng-disabled="openBalance.$view" display2="minor_currency" space=" - " items="currenciesList"
-                            display="name" ng-search="_search.$$currency_name">
+                            display="name_##session.lang##" ng-search="_search.$$currency_name">
                         </i-list>
 
                         <i-radio class="col2" group="bt_{{$index}}" label="##word.customers_debit##"
@@ -519,7 +519,7 @@
                         </i-list>
 
                         <i-list class="col3" label="##word.customers_currency_name##" ng-model="customer.ledger_account"
-                            disabled display="currency.name" ng-search="_search.$search_currency"></i-list>
+                            disabled display="currency.name_##session.lang##" ng-search="_search.$search_currency"></i-list>
 
                         <i-control sign="%" class="col3" label="##word.customers_discount##"
                             ng-model="customer.discount">
@@ -557,7 +557,7 @@
 
                     <div class="row">
                         <i-list class="col4" label="##word.customers_bank_name##" ng-model="bank.bank_name"
-                            items="bankList" display="name" ng-search="_search.$$bankName"></i-list>
+                            items="bankList" display="name_##session.lang##" ng-search="_search.$$bankName"></i-list>
 
                         <i-control class="col4" label="##word.customers_bank_account_number##"
                             ng-model="bank.account_number"></i-control>
@@ -573,14 +573,14 @@
                     <legend> ##word.customers_address_informations## </legend>
                     <div class="row">
                         <i-list class="col3" label="##word.customers_gov##" ng-model="customer.gov" items="govList"
-                            display="name" ng-change="getCityList(customer.gov)" ng-search="_search.$$govNameContact">
+                            display="name_##session.lang##" ng-change="getCityList(customer.gov)" ng-search="_search.$$govNameContact">
                         </i-list>
 
                         <i-list class="col4" label="##word.city##" ng-model="customer.city" items="cityList"
-                            ng-change="getAreaList(customer.city)" display="name"
+                            ng-change="getAreaList(customer.city)" display="name_##session.lang##"
                             ng-search="_search.$customer.$city_search"></i-list>
                         <i-list class="col4" label="##word.area##" ng-model="customer.area" items="areaList"
-                            display="name" ng-search="_search.$customer.$area_search"></i-list>
+                            display="name_##session.lang##" ng-search="_search.$customer.$area_search"></i-list>
                         <i-control class="col6" label="##word.customers_address##" ng-model="customer.address">
                         </i-control>
                     </div>
@@ -665,11 +665,11 @@
 
                         <div class="row">
                             <i-list class="col3" label="##word.customers_branch_gov##" ng-model="branch.gov"
-                                items="govList" display="name" ng-change="getBranchCityList(branch)"
+                                items="govList" display="name_##session.lang##" ng-change="getBranchCityList(branch)"
                                 ng-search="_search.$$govNameBranch"></i-list>
 
                             <i-list class="col3" label="##word.customers_branch_city##" ng-model="branch.city"
-                                items="branch.$cityList" display="name" ng-search="_search.$$cityNameBranch"></i-list>
+                                items="branch.$cityList" display="name_##session.lang##" ng-search="_search.$$cityNameBranch"></i-list>
 
                             <i-control class="col6" label="##word.customers_branch_address##" ng-model="branch.address">
                             </i-control>
@@ -784,7 +784,7 @@
 
                     <div class="row">
                         <i ng-show="!customer.username" class="grayDark bold">{{email_examble}}</i>
-                        <i ng-show="customer.username" class="grayDark bold">{{customer.username}}{{host}}</i>
+                        <i ng-show="customer.username" class="grayDark bold">{{customer.username_##session.lang##}}{{host}}</i>
                     </div>
 
                 </fieldset>

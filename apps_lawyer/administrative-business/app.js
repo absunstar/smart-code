@@ -26,12 +26,14 @@ module.exports = function init(site) {
   site.on('[request_types][administrative_business][add]', doc => {
 
     $administrative_business.add({
-      name: "عمل إداري إفتراضي",
-      code: "1",
+      name_ar: "عمل إداري إفتراضي",
+      name_en: "Default Administrative Business",
+      code: "1-Test",
       image_url: '/images/administrative_business.png',
       date : new Date(),
       request_type : {
-        name : doc.name,
+        name_ar : doc.name_ar,
+        name_en : doc.name_en,
         id : doc.id
       },
       company: doc.company,
@@ -61,6 +63,22 @@ module.exports = function init(site) {
     })
     administrative_business_doc.company = site.get_company(req)
     administrative_business_doc.branch = site.get_branch(req)
+
+    let num_obj = {
+      company: site.get_company(req),
+      screen: 'administrative_business',
+      date: new Date()
+    };
+    let cb = site.getNumbering(num_obj);
+
+    if (!administrative_business_doc.code && !cb.auto) {
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+
+    } else if (cb.auto) {
+      administrative_business_doc.code = cb.code;
+    }
 
     $administrative_business.add(administrative_business_doc, (err, doc) => {
       if (!err) {
@@ -189,8 +207,12 @@ module.exports = function init(site) {
       where['code'] = site.get_RegExp(where['code'], 'i')
     }
 
-    if (where['name']) {
-      where['name'] = site.get_RegExp(where['name'], 'i')
+    if (where['name_ar']) {
+      where['name_ar'] = site.get_RegExp(where['name_ar'], 'i')
+    }
+
+    if (where['name_en']) {
+      where['name_en'] = site.get_RegExp(where['name_en'], 'i')
     }
 
     if (where['request_type']) {

@@ -155,7 +155,7 @@
                     <div class="row padding">
 
                         <fieldset ng-repeat="screen in public_screens">
-                            <legend> {{screen.name}} </legend>
+                            <legend> {{screen.name_##session.lang##}} </legend>
                             <i-checklist primary="name" label="" items="screen.permissions" display="##session.lang##"
                                 ng-model="user.permissions"></i-checklist>
                         </fieldset>
@@ -172,7 +172,7 @@
                     <div class="row padding">
 
                         <fieldset ng-repeat="screen in accounting_screens">
-                            <legend> {{screen.name}} </legend>
+                            <legend> {{screen.name_##session.lang##}} </legend>
                             <i-checklist primary="name" label="" items="screen.permissions" display="##session.lang##"
                                 ng-model="user.permissions"></i-checklist>
                         </fieldset>
@@ -189,7 +189,7 @@
                     <div class="row padding">
 
                         <fieldset ng-repeat="screen in hr_screens">
-                            <legend> {{screen.name}} </legend>
+                            <legend> {{screen.name_##session.lang##}} </legend>
                             <i-checklist primary="name" label="" items="screen.permissions" display="##session.lang##"
                                 ng-model="user.permissions"></i-checklist>
                         </fieldset>
@@ -206,7 +206,7 @@
                     <div class="row padding">
 
                         <fieldset ng-repeat="screen in inventory_screens">
-                            <legend> {{screen.name}} </legend>
+                            <legend> {{screen.name_##session.lang##}} </legend>
                             <i-checklist primary="name" label="" items="screen.permissions" display="##session.lang##"
                                 ng-model="user.permissions"></i-checklist>
                         </fieldset>
@@ -222,7 +222,7 @@
                     <div class="row padding">
 
                         <fieldset ng-repeat="screen in report_screens">
-                            <legend> {{screen.name}} </legend>
+                            <legend> {{screen.name_##session.lang##}} </legend>
                             <i-checklist primary="name" label="" items="screen.permissions" display="##session.lang##"
                                 ng-model="user.permissions"></i-checklist>
                         </fieldset>

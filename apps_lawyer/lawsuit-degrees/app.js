@@ -16,7 +16,8 @@ module.exports = function init(site) {
   site.on('[company][created]', doc => {
 
     $lawsuit_degrees.add({
-      name: "درجة دعوى إفتراضية",
+      name_ar: "درجة دعوى إفتراضية",
+      name_en : "Default Lawsuit Degree",
       code: "1-Test",
       image_url: '/images/lawsuit_degrees.png',
       company: {
@@ -53,6 +54,23 @@ module.exports = function init(site) {
     })
     lawsuit_degrees_doc.company = site.get_company(req)
     lawsuit_degrees_doc.branch = site.get_branch(req)
+
+    let num_obj = {
+      company: site.get_company(req),
+      screen: 'lawsuit_degrees',
+      date: new Date()
+    };
+    let cb = site.getNumbering(num_obj);
+
+    if (!lawsuit_degrees_doc.code && !cb.auto) {
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+
+    } else if (cb.auto) {
+      lawsuit_degrees_doc.code = cb.code;
+    }
+
 
     $lawsuit_degrees.add(lawsuit_degrees_doc, (err, doc) => {
       if (!err) {

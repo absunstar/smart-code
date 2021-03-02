@@ -40,6 +40,7 @@
                 <table class="table loaded center hover bold" id="t1">
                     <tr>
                         <th class="not-print"> ##word.logo## </th>
+                        <th> ##word.code## </th>
                         <th> ##word.reasons_sessions_name## </th>
                         <th> ##word.status## </th>
 
@@ -49,8 +50,9 @@
                         <td class="not-print">
                             <i-image view class="logo" ng-model="c.image_url"></i-image>
                         </td>
+                        <td class="userPrint blue"> {{c.code}} </td>
 
-                        <td> {{c.name}} </td>
+                        <td> {{c.name_##session.lang##}} </td>
 
                         <td>
                             <p ng-show="c.active == true" class="green"> ##word.active## </p>

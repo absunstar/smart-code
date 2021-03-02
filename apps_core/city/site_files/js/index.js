@@ -182,7 +182,7 @@ app.controller("city", function ($scope, $http, $timeout) {
           active: true
         },
         select: {
-          id: 1, name: 1
+          id: 1, name_ar: 1, name_en: 1
         }
       }
     }).then(

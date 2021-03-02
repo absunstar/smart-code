@@ -18,18 +18,22 @@ module.exports = function init(site) {
     $vendors.add({
       group: {
         id: doc.id,
-        name: doc.name
+        name_ar: doc.name_ar,
+        name_en: doc.name_en,
       },
-      code: "1",
+      code: "1-Test",
       name_ar: "مورد إفتراضي",
+      name_en: "Default Vendor",
       image_url: '/images/vendor.png',
       company: {
         id: doc.company.id,
-        name_ar: doc.company.name_ar
+        name_ar: doc.company.name_ar,
+        name_en: doc.company.name_en
       },
       branch: {
         code: doc.branch.code,
-        name_ar: doc.branch.name_ar
+        name_ar: doc.branch.name_ar,
+        name_en: doc.branch.name_en
       },
       active: true
       /*  branch_list: [

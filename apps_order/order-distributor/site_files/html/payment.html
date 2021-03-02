@@ -14,7 +14,7 @@
             <div class="row">
                 <i-date2 class="col7" ng-model="current.payment_date" label="##word.date##"></i-date2>
                 <i-list ng-search="_search.$current.$safes_search" class="col4" ng-model="current.payment_safe"
-                    label="##word.safe##" items="safesList"></i-list>
+                display="name_##session.lang##"  label="##word.safe##" items="safesList"></i-list>
 
             </div>
 
@@ -49,7 +49,7 @@
 
                         <tr ng-repeat="c in current.payment_list">
                             <td class="center brown">{{c.date | date : 'dd / MM / yyyy'}}</td>
-                            <td class="center blue">{{c.safe.name}}
+                            <td class="center blue">{{c.safe.name_##session.lang##}}
                             </td>
                             <td class="center green">{{c.paid_up}}</td>
                         </tr>

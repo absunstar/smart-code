@@ -8,21 +8,25 @@ module.exports = function init(site) {
     $nursing.add({
 
       code: "1-Test",
-      name: "ممرضة إفتراضية",
+      name_ar: "ممرضة إفتراضية",
+      name_en: "Default Nurse",
       image_url: '/images/nurse.png',
       specialty: {
         id: doc.id,
         code: doc.code,
-        name: doc.name,
+        name_ar: doc.name_ar,
+        name_en: doc.name_en
       },
       nurse: true,
       company: {
         id: doc.company.id,
-        name_ar: doc.company.name_ar
+        name_ar: doc.company.name_ar,
+        name_en: doc.company.name_en
       },
       branch: {
         code: doc.branch.code,
-        name_ar: doc.branch.name_ar
+        name_ar: doc.branch.name_ar,
+        name_en: doc.branch.name_en
       },
       active: true
     }, (err, doc1) => { })
@@ -65,7 +69,7 @@ module.exports = function init(site) {
     if (typeof nursing_doc.active === 'undefined') {
       nursing_doc.active = true
     }
-    
+
 
     nursing_doc.nurse = true
     nursing_doc.company = site.get_company(req)
@@ -78,7 +82,9 @@ module.exports = function init(site) {
         'branch.code': site.get_branch(req).code,
 
         $or: [{
-          'name': nursing_doc.name
+          'name_ar': nursing_doc.name_ar
+        }, {
+          'name_en': nursing_doc.name_en
         }, {
           'phone': nursing_doc.phone
         }, {
@@ -127,7 +133,7 @@ module.exports = function init(site) {
           ar: "إدارة الموظفين",
           permissions: ["nursing_manage"]
         }]
-      
+
 
         user.profile = {
           name: user.name,
@@ -369,7 +375,11 @@ module.exports = function init(site) {
     if (search) {
       where.$or = []
       where.$or.push({
-        'name': site.get_RegExp(search, "i")
+        'name_ar': site.get_RegExp(search, "i")
+      })
+
+      where.$or.push({
+        'name_en': site.get_RegExp(search, "i")
       })
 
       where.$or.push({
@@ -413,8 +423,11 @@ module.exports = function init(site) {
       delete where.active
     }
 
-    if (where['name']) {
-      where['name'] = site.get_RegExp(where['name'], "i");
+    if (where['name_ar']) {
+      where['name_ar'] = site.get_RegExp(where['name_ar'], "i");
+    }
+    if (where['name_en']) {
+      where['name_en'] = site.get_RegExp(where['name_en'], "i");
     }
     if (where['address']) {
       where['address'] = site.get_RegExp(where['address'], "i");

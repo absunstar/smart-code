@@ -3,23 +3,23 @@ module.exports = function init(site) {
   let collection_name = 'patients_tickets'
 
   let source = {
-    name: 'Patients Tickets System',
+    en: 'Patients Tickets System',
     ar: 'نظام تذاكر المرضى'
   }
 
   let image_url = '/images/patients_tickets.png'
   let add_message = {
-    name: 'New Patient Ticket Center Added',
+    en: 'New Patient Ticket Center Added',
     ar: 'تم أضافة تذكرة مريض جديد'
   }
 
   let update_message = {
-    name: ' Patient Ticket Center Updated',
+    en: ' Patient Ticket Center Updated',
     ar: 'تم تعديل تذكرة مريض'
   }
 
   let delete_message = {
-    name: ' Patient Ticket Center Deleted',
+    en: ' Patient Ticket Center Deleted',
     ar: 'تم حذف تذكرة مريض '
   }
 
@@ -33,7 +33,9 @@ module.exports = function init(site) {
           message: add_message,
           value: {
             name: result.doc.name,
-            ar: result.doc.name
+            code: result.doc.code,
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
           },
           add: result.doc,
           action: 'add'
@@ -52,7 +54,9 @@ module.exports = function init(site) {
           message: update_message,
           value: {
             name: result.old_doc.name,
-            ar: result.old_doc.name
+            code: result.old_doc.code,
+            en: result.old_doc.name_en,
+            ar: result.old_doc.name_ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
@@ -72,7 +76,9 @@ module.exports = function init(site) {
           message: delete_message,
           value: {
             name: result.doc.name,
-            ar: result.doc.name
+            code: result.doc.code,
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
           },
           delete: result.doc,
           action: 'delete'

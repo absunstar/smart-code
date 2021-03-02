@@ -52,8 +52,8 @@
                             <img class="logo" ng-src="{{c.image_url}}">
                         </td>
                         <td class="center userPrint blue">{{c.code}}</td>
-                        <td class="center title">{{c.name}}</td>
-                        <td class="center">{{c.specialty.name}}</td>
+                        <td class="center title">{{c.name_##session.lang##}}</td>
+                        <td class="center">{{c.specialty.name_##session.lang##}}</td>
                         <td class="center">
                             <p ng-show="c.active ==true" class="green bold"> ##word.active## </p>
                             <p ng-show="c.active ==false" class="red bold"> ##word.not_active## </p>

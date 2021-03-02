@@ -222,7 +222,6 @@ app.controller("rogatory_places", function ($scope, $http, $timeout) {
     )
   };
 
-  
   $scope.getNumberingAuto();
   $scope.getRogatoryPlacesList();
 

@@ -202,7 +202,7 @@ app.controller("kitchen", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           type: 1,
           ip_device: 1,
           Port_device: 1,

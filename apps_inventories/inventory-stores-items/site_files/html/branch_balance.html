@@ -28,7 +28,7 @@
                             <td class="center">{{item.name_##session.lang##}}</td>
 
                             <td class="center" x-feature="restaurant">
-                                <p ng-show="branchesBalance.view">{{item.kitchen.name}}</p>
+                                <p ng-show="branchesBalance.view">{{item.kitchen.name_##session.lang##}}</p>
                                 <i-list ng-hide="branchesBalance.view" class="col4" ng-model="item.kitchen"
                                     ng-search="_search.$kitchen_search" items="itemsKitchenList">
                                 </i-list>
@@ -113,7 +113,7 @@
                         <tr ng-repeat="c in branchUnitBalance.size_units_list">
 
                             <td>
-                                <p class="bold center"> {{c.name}} </p>
+                                <p class="bold center"> {{c.name_##session.lang##}} </p>
                             </td>
                             <td>
                                 <p class="bold center"> {{c.barcode}} </p>

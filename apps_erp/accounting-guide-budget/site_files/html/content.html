@@ -7,9 +7,13 @@
                     <i-control ng-hide="disabledCode" class="col2" label="##word.code##"
                         ng-model="accounting_guide_budget.code">
                     </i-control>
-                    <i-control class="col5" v="r ll2" label="##word.accounting_guide_budget_name##"
-                        ng-model="accounting_guide_budget.name"></i-control>
-                    <div class="col3"></div>
+                    
+                    <i-control class="col4" v="r ll2" label="##word.accounting_guide_budget_name##"
+                        ng-model="accounting_guide_budget.name_ar"></i-control>
+
+                    <i-control class="col4"label="##word.name_en##"
+                        ng-model="accounting_guide_budget.name_en"></i-control>
+                        
                     <i-checkbox class="col2" label="##word.active##" ng-model="accounting_guide_budget.active">
                     </i-checkbox>
                 </div>

@@ -1,7 +1,8 @@
 <h2 class="brand">
   <div class="row">
     <div class="inline title" help-id="brand_title">
-      <a x-feature="test" href="#" onclick="event.stopPropagation(); $('.sitebar .links').toggle(200)"> <i class="fa fa-bars"></i> </a>
+      <a x-feature="test" href="#" onclick="event.stopPropagation(); $('.sitebar .links').toggle(200)"> <i
+          class="fa fa-bars"></i> </a>
 
       <a href="/"> ##word.brand_title## <span> ##word.brand_tag##</span> </a>
     </div>
@@ -16,18 +17,32 @@
       </div>
     </div>
     <div class="info">
-      <a x-features="login" href="#" onclick="event.stopPropagation(); $('.user-menu').toggle()"> <img src="/images/logo.png" alt="" /> </a>
-      <div class="user-menu">
-        <span class="user-name"> ##user.name## </span>
-        <hr>
-        <div class="link" ng-click="logout()">
-          ##word.security_logout##
-        </div>
-      </div>
+      <a x-features="login" href="#" onclick="event.stopPropagation(); $('.user-menu').toggle()"> <img
+          src="##user.profile.image_url##" alt="" /> </a>
 
       <a x-features="!login" id="btn_register" ng-click="customerRegister()"> ##word.customer_register## </a>
 
       <a x-features="!login" id="btn_login" ng-click="login()"> ##word.security_login## </a>
+    </div>
+
+    <div class="user-menu">
+      <div class="center profile">
+        <img class="center" src="##user.profile.image_url##" alt="" /> <br />
+        <span class="user-name"> ##user.name## </span> <br />
+        <h5 class="grayDark userPrint center"> ##user.email## </h5> <br />
+       <div class="center">
+
+         <a id="bord_edit" href="/manage_user" >  
+           <span class="black">##word.manage_your_personal_account##</span>
+          </a>
+        </div>
+
+        <br>
+
+        <div class="link" ng-click="logout()">
+          ##word.security_logout##
+        </div>
+      </div>
     </div>
   </div>
 </h2>

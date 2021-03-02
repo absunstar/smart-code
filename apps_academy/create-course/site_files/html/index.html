@@ -58,16 +58,16 @@
                         <td ng-click="displayDetailsBookHall(c)" class="brown"> <br> {{c.date | date : 'dd- MM
                             -yyyy'}}</td>
                         <td class="center bold blue" ng-click="displayDetailsCreateCourse(c)">
-                            <p>{{c.shift.name}}</p>
+                            <p>{{c.shift.name_##session.lang##}}</p>
                             <p>{{c.shift.code}}</p>
                         </td>
-                        <td ng-click="displayDetailsCreateCourse(c)" class="center title">{{c.course.name}}</td>
+                        <td ng-click="displayDetailsCreateCourse(c)" class="center title">{{c.course.name_##session.lang##}}</td>
                         <td ng-click="displayDetailsCreateCourse(c)" class="center green">{{c.course.price}} $</td>
                         <td ng-click="displayDetailsCreateCourse(c)">
                             <h3 class="blue center">{{c.course.courses_total}}</h3>
                             <h3 class="blue center">{{c.course.period.##session.lang##}}</h3>
                         </td>
-                        <td ng-click="displayDetailsCreateCourse(c)" class="center">{{c.trainer.name}}</td>
+                        <td ng-click="displayDetailsCreateCourse(c)" class="center">{{c.trainer.name_##session.lang##}}</td>
 
                         <td ng-click="displayDetailsCreateCourse(c)" class="center">
                             <p ng-show="c.active ==true" class="green"> ##word.active## </p>

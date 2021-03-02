@@ -3,12 +3,12 @@ module.exports = function init(site) {
   const $discount_types = site.connectCollection("discount_types")
 
   // $discount_types.deleteDuplicate({
-  //   name: 1,
+  //   name_ar: 1, name_en: 1,
   //   value: 1,
   //   type: 1
   // }, (err, result) => {
   //   $discount_types.createUnique({
-  //     name: 1,
+  //     name_ar: 1, name_en: 1,
   //     value: 1,
   //     type: 1
   //   }, (err, result) => {
@@ -19,7 +19,8 @@ module.exports = function init(site) {
   site.on('[company][created]', doc => {
 
     $discount_types.add({
-      name: "خصم إفتراضي",
+      name_ar: "خصم إفتراضي",
+      name_en: "Default Discount",
       image_url: '/images/discount_type.png',
       code: "1-Test",
       value: 1,

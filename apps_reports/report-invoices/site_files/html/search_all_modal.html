@@ -54,12 +54,12 @@
 
                         <div class="row" ng-show="##query.type## == 13">
 
-                            <i-list ng-search="_search.$_students_years" class="col3" display="name"
+                            <i-list ng-search="_search.$_students_years" class="col3" display="name_##session.lang##"
                                 ng-model="search.students_years" label="##word.students_years##"
                                 items="studentsYearsList">
                             </i-list>
 
-                            <i-list ng-search="_search.$_types_expenses" class="col3" display="name"
+                            <i-list ng-search="_search.$_types_expenses" class="col3" display="name_##session.lang##"
                                 ng-model="search.types_expenses" label="##word.types_expenses##"
                                 items="search.students_years.types_expenses_list"></i-list>
                         </div>

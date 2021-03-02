@@ -17,7 +17,8 @@ module.exports = function init(site) {
 
     $items_group.add({
       code: "1-Test",
-      name: "مجموعة أصناف إفتراضية",
+      name_ar: "مجموعة أصناف إفتراضية",
+      name_en : "Default Items Group",
       image_url: '/images/items_group.png',
       company: {
         id: doc.id,
@@ -64,7 +65,12 @@ module.exports = function init(site) {
     $items_group.find({
       where: {
         'company.id': site.get_company(req).id,
-        'name': items_group_doc.name
+        $or: [{
+          'name_ar': items_group_doc.name_ar
+        },{
+          'name_en': items_group_doc.name_en
+        }]
+
       }
     }, (err, doc) => {
       if (!err && doc) {

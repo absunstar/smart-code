@@ -28,11 +28,12 @@
                                 ng-model="delegate_list.code"></i-control>
                             </i-control>
 
-                            <i-control help-id="" v="r ll2" class="col5" label="##word.name##"
-                                ng-model="delegate_list.name"></i-control>
+                            <i-control help-id="" v="r ll2" class="col4" label="##word.name##"
+                                ng-model="delegate_list.name_ar"></i-control>
 
+                            <i-control help-id="" class="col4" label="##word.name_en##" ng-model="delegate_list.name_en">
+                            </i-control>
 
-                            <div class="col3"></div>
                             <i-checkbox help-id="delegate_active" class="col2" label="##word.active##"
                                 ng-model="delegate_list.active"></i-checkbox>
                         </div>
@@ -104,15 +105,15 @@
                         <legend>##word.addresses##</legend>
                         <div class="row">
                             <i-list class="col4" label="##word.gov##" ng-model="delegate_list.gov" items="govList"
-                                ng-change="getCityList(delegate_list.gov)" display="name"
+                                ng-change="getCityList(delegate_list.gov)" display="name_##session.lang##"
                                 ng-search="_search.$delegate.$gov_search"></i-list>
 
                             <i-list class="col4" label="##word.city##" ng-model="delegate_list.city" items="cityList"
-                                ng-change="getAreaList(delegate_list.city)" display="name"
+                                ng-change="getAreaList(delegate_list.city)" display="name_##session.lang##"
                                 ng-search="_search.$delegate.$city_search"></i-list>
 
                             <i-list class="col4" label="##word.area##" ng-model="delegate_list.area" items="areaList"
-                                display="name" ng-search="_search.$delegate.$area_search"></i-list>
+                                display="name_##session.lang##" ng-search="_search.$delegate.$area_search"></i-list>
                         </div>
                         <div class="row">
                             <i-control help-id="" class="col6" label="##word.address##"
@@ -176,12 +177,12 @@
 
                         <i-control help-id="" class="col4" label="##word.email##" ng-model="delegate_list.username">
                         </i-control>
-                        
+
                         <i-control help-id="" class="col4" label="##word.password##" ng-model="delegate_list.password">
                         </i-control>
                     </div>
 
-                    
+
                     <div class="row">
                         <i class="grayDark bold">{{email_examble}}</i>
                     </div>

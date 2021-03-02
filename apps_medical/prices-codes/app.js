@@ -26,7 +26,8 @@ module.exports = function init(site) {
   site.on('[company][created]', doc => {
 
     $prices_codes.add({
-      name: "كود سعر إفتراضي",
+      name_ar: "كود سعر إفتراضي",
+      name_en: "Default Prices Codes",
       code: "1-Test",
       image_url: '/images/prices_codes.png',
       company: {
@@ -206,8 +207,12 @@ module.exports = function init(site) {
       where['code'] = site.get_RegExp(where['code'], 'i')
     }
 
-    if (where['name']) {
-      where['name'] = site.get_RegExp(where['name'], 'i')
+    if (where['name_ar']) {
+      where['name_ar'] = site.get_RegExp(where['name_ar'], 'i')
+    }
+
+    if (where['name_en']) {
+      where['name_en'] = site.get_RegExp(where['name_en'], 'i')
     }
 
     // if (where['active'] !== 'all') {

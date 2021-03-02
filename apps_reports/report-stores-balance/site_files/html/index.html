@@ -52,14 +52,14 @@
                             <tr>
                                 <td class="title">##word.store##</td>
                                 <td>
-                                    <p class="center">{{search.store.name}}</p>
+                                    <p class="center">{{search.store.name_##session.lang##}}</p>
                                 </td>
                             </tr>
 
                             <tr>
                                 <td class="title">##word.unit##</td>
                                 <td>
-                                    <p class="center">{{search.unit.name}}</p>
+                                    <p class="center">{{search.unit.name_##session.lang##}}</p>
                                 </td>
                             </tr>
 
@@ -85,11 +85,11 @@
                         </tr>
 
                         <tr ng-repeat="c in list | orderBy : '-id'">
-                            <td> <br> {{c.item_group.name}} </td>
-                            <td> <br> {{c.name}} </td>
+                            <td> <br> {{c.item_group.name_##session.lang##}} </td>
+                            <td> <br> {{c.name_##session.lang##}} </td>
                             <td>
                                 <br>
-                                <p>{{c.size}}</p>
+                                <p>{{c.size_ar}}</p>
                                 <p>{{c.size_en}}</p>
                             </td>
                             <td> <br>
@@ -110,7 +110,7 @@
                                                     <th> ##word.units## </th>
                                                 </tr>
                                                 <tr ng-repeat="s in b.stores_list">
-                                                    <td> <br> {{s.store.name}} </td>
+                                                    <td> <br> {{s.store.name_##session.lang##}} </td>
                                                     <td>
                                                         <table class="table center hover bold">
                                                             <tr>
@@ -122,7 +122,7 @@
                                                             <tr ng-repeat="u in s.size_units_list">
 
                                                                 <td>
-                                                                    <p>{{u.name}}</p>
+                                                                    <p>{{u.name_##session.lang##}}</p>
                                                                     <p>{{u.barcode}}</p>
                                                                 </td>
 

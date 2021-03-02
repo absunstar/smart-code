@@ -7,7 +7,7 @@
                     <i-control ng-hide="disabledCode" class="col2" label="##word.code##"
                         ng-model="store_in.code"></i-control>
 
-                    <i-control class="col3 r_indigo" disabled label="##word.shift##" ng-model="shift.name">
+                    <i-control class="col3 r_indigo" disabled label="##word.shift##" ng-model="shift.name_##session.lang##">
                     </i-control>
 
                     <i-date2 class="col4" ng-model="store_in.date" label="##word.stores_in_date##" v="r"></i-date2>
@@ -96,13 +96,13 @@
 
                     <tr ng-repeat="itm in store_in.items">
                         <td> <br> {{$index + 1}}</td>
-                        <td> <br> {{itm.name}}</td>
+                        <td> <br> {{itm.name_##session.lang##}}</td>
                         <td> <br>
                             <p class="userPrint">{{itm.barcode}}</p>
                         </td>
                         <td>
                             <br>
-                            <p>{{itm.size}}</p>
+                            <p>{{itm.size_ar}}</p>
                             <p>{{itm.size_en}}</p>
                         </td>
 
@@ -173,9 +173,9 @@
                             <td colspan="2">
                                 <form>
                                     <div class="row ">
-                                        <i-list ng-search="_search.$discount_name" class="col4" ng-model="discount"
+                                        <i-list ng-search="_search.$discount_name" class="col4" ng-model="discount" display="name_##session.lang##"
                                             items="discount_types" label="##word.stores_in_discount_name##">
-                                            {{di.name}}
+                                            {{di.name_##session.lang##}}
                                         </i-list>
                                         <div class="col1"></div>
                                         <i-control class="col2" ng-model="discount.value" type="number"
@@ -208,7 +208,7 @@
                         </tr>
                         <tr ng-repeat="d1 in store_in.discountes">
                             <td>
-                                <span>{{d1.name}}</span>
+                                <span>{{d1.name_##session.lang##}}</span>
                                 <span class="blue" ng-show="d1.type === 'percent'">{{d1.value}} %</span>
                                 <span class="blue" ng-show="d1.type === 'number'">{{d1.value}} $</span>
                                 <i-button type="delete" ng-click="deleteDiscount(d1)"></i-button>
@@ -246,7 +246,7 @@
                         </tr>
                         <tr ng-repeat="tx in store_in.taxes">
                             <td>
-                                <span>{{tx.name}}</span>
+                                <span>{{tx.name_##session.lang##}}</span>
                                 <span>{{tx.value}} %</span>
                                 <i-button type="delete" ng-click="deleteTax(tx)"></i-button>
                             </td>
@@ -281,7 +281,7 @@
 
                 <i-list class="col3" ng-search="_search.$currency_search" ng-model="store_in.currency"
                     ng-change="getSafeByType(store_in) ; calc(store_in)" items="currenciesList"
-                    label="##word.currency##">
+                    display="name_##session.lang##" label="##word.currency##">
                 </i-list>
 
                 <i-control class="col2" disabled ng-model="store_in.currency.ex_rate" type="number"
@@ -289,7 +289,7 @@
                 </i-control>
 
                 <i-list ng-search="_search.$order_invoice.$safes_search" class="col4" ng-model="store_in.safe"
-                    label="##word.safe##" items="safesList">
+                display="name_##session.lang##" label="##word.safe##" items="safesList">
                 </i-list>
             </div>
 

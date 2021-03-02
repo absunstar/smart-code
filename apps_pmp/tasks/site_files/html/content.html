@@ -44,15 +44,15 @@
                             <div class="row">
                                 <i-list help-id="" v="r" class="col3" label="##word.project##" ng-model="task.project"
                                     ng-change="getAppList(task.project);getTasksList(task.project);task.app={};task.sub_tasks={};getTaskNameList(task.project)"
-                                    display="name" items="projectList" ng-search="task_project"></i-list>
+                                    display="name_##session.lang##" items="projectList" ng-search="task_project"></i-list>
 
-                                <i-list help-id="" v="r" class="col3" label="##word.apps##" ng-model="task.app" display="name"
+                                <i-list help-id="" v="r" class="col3" label="##word.apps##" ng-model="task.app" display="name_##session.lang##"
                                     items="task.project.app_list" ng-search="task_app"></i-list>
 
                                 <i-checkbox help-id="" class="col3" label="##word.sub_task##" ng-model="task.sub_task"></i-checkbox>
 
                                 <i-list help-id="" ng-show="task.sub_task === true" class="col3" label="##word.tasks##"
-                                    ng-model="task.sub_tasks" display="name" items="taskNamelist" ng-search="task_tasks"></i-list>
+                                    ng-model="task.sub_tasks" display="name_##session.lang##" items="taskNamelist" ng-search="task_tasks"></i-list>
                             </div>
 
                             <div class="row">
@@ -103,7 +103,7 @@
                     </legend>
                     <div class="row" ng-repeat=" developer in task.developers_tracking_list">
                         <i-list class="col4" label="##word.developers##" ng-model="developer.name" items="developerList"
-                            display="name" ng-search="task_developer"></i-list>
+                            display="name_##session.lang##" ng-search="task_developer"></i-list>
 
                         <div class="col4">
                             <br><br>
@@ -118,7 +118,7 @@
             <div id="taskStatus" class="tab-content">
                 <div class="row">
                     <i-list class="col4" label="##word.review_by##" ng-model="task.review" items="developerList"
-                        display="name" ng-search="task_review"></i-list>
+                        display="name_##session.lang##" ng-search="task_review"></i-list>
                 </div>
 
                 <div class="row">

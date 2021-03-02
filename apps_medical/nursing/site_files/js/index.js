@@ -182,7 +182,7 @@ app.controller("nursing", function ($scope, $http, $timeout) {
           active: true
         },
         select:{
-          id: 1 , name : 1
+          id: 1 , name_ar: 1, name_en: 1
         }
       }
     }).then(
@@ -210,7 +210,7 @@ app.controller("nursing", function ($scope, $http, $timeout) {
         where: {
           active: true
         },
-        select: { id: 1, name: 1 ,code:1}
+        select: { id: 1, name_ar: 1, name_en: 1 ,code:1}
       }
     }).then(
       function (response) {

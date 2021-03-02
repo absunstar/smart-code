@@ -12,7 +12,8 @@ module.exports = function init(site) {
   site.on('[company][created]', doc => {
 
     $insurances_slides.add({
-      name: "شريحة تأمين إفتراضية",
+      name_ar: "شريحة تأمين إفتراضية",
+      name_en : "Default Insurances Slides",
       image_url: '/images/insurance_slides.png',
       value: 1,
       code: "1-Test",

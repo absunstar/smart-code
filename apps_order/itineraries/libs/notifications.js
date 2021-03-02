@@ -3,21 +3,21 @@ module.exports = function init(site) {
   let collection_name = 'itineraries'
 
   let source = {
-    name: 'Itineraries System',
+    en: 'Itineraries System',
     ar: 'نظام خطوط السير'
   }
 
   let image_url = '/images/itinerary.png'
   let add_message = {
-    name: 'New Itinerary Added',
+    en: 'New Itinerary Added',
     ar: 'تم إضافة خط سير جديد'
   }
   let update_message = {
-    name: ' Itinerary Updated',
+    en: ' Itinerary Updated',
     ar: 'تم تعديل خط سير'
   }
   let delete_message = {
-    name: ' Itinerary Deleted',
+    en: ' Itinerary Deleted',
     ar: 'تم حذف خط سير '
   }
 
@@ -31,7 +31,9 @@ module.exports = function init(site) {
           message: add_message,
           value: {
             name: result.doc.name,
-            ar: result.doc.name
+            code: result.doc.code,
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
           },
           add: result.doc,
           action: 'add'
@@ -50,7 +52,9 @@ module.exports = function init(site) {
           message: update_message,
           value: {
             name: result.old_doc.name,
-            ar: result.old_doc.name
+            code: result.old_doc.code,
+            en: result.old_doc.name_en,
+            ar: result.old_doc.name_ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
@@ -70,7 +74,9 @@ module.exports = function init(site) {
           message: delete_message,
           value: {
             name: result.doc.name,
-            ar: result.doc.name
+            code: result.doc.code,
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
           },
           delete: result.doc,
           action: 'delete'

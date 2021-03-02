@@ -7,9 +7,13 @@
                     <div class="row">
                         <i-control ng-hide="disabledCode" class="col2" label="##word.code##"
                             ng-model="printer_path.code"></i-control>
-                        <i-control v="r" class="col4" label="##word.printers_path_name##" ng-model="printer_path.name">
+
+                        <i-control v="r" class="col4" label="##word.printers_path_name##" ng-model="printer_path.name_ar">
                         </i-control>
-                        <div class="col4"></div>
+
+                        <i-control class="col4" label="##word.name_en##" ng-model="printer_path.name_en">
+                        </i-control>
+
                         <i-checkbox class="col2" label="##word.active##" ng-model="printer_path.active"></i-checkbox>
                     </div>
 

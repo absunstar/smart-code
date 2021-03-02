@@ -33,7 +33,7 @@ module.exports = function init(site) {
 
       if (!err && doc) {
         doc.book_list.forEach(book_list => {
-          if (book_list.size == item.size && book_list.barcode == item.barcode)
+          if (book_list.size_ar == item.size_ar && book_list.barcode === item.barcode)
             book_list.done_kitchen = false;
         });
         $order_invoice.update(doc, (err, result) => {

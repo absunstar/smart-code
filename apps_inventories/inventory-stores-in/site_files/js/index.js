@@ -234,7 +234,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
           obj_print.data.push({
             type: 'invoice-item',
             count: _current_book_list.count,
-            name: _current_book_list.size,
+            name: _current_book_list.size_ar,
             price: site.addSubZero(_current_book_list.total, 2)
           });
           if (i < account_invoices.current_book_list.length - 1) {
@@ -300,7 +300,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       if (account_invoices.currency)
         obj_print.data.push({
           type: 'text2',
-          value2: account_invoices.currency.name,
+          value2: account_invoices.currency.name_ar,
           value: "Currency"
         });
 
@@ -369,7 +369,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       $scope.store_in.discountes = $scope.store_in.discountes || [];
 
       $scope.store_in.discountes.unshift({
-        name: $scope.discount.name,
+        name_ar: $scope.discount.name_ar, name_en: $scope.discount.name_en,
         value: $scope.discount.value,
         type: $scope.discount.type
       });
@@ -1054,7 +1054,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
             $scope.store_in.items.push({
               image_url: $scope.item.image_url,
               name: _size.name,
-              size: _size.size,
+              size_ar: _size.size_ar,
               value_added: _size.value_added,
               total_v_a: _size.total_v_a,
               item_group: _size.item_group,
@@ -1913,7 +1913,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           type: 1,
           code: 1
         }
@@ -1938,8 +1938,8 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
-          minor_currency: 1,
+          name_ar: 1, name_en: 1,
+          minor_currency_ar: 1, minor_currency_en: 1,
           ex_rate: 1,
           code: 1
         },
@@ -1998,7 +1998,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         data: {
           select: {
             id: 1,
-            name: 1,
+            name_ar: 1, name_en: 1,
             commission: 1,
             currency: 1,
             type: 1,
@@ -2072,7 +2072,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           code: 1
         }
       }
@@ -2098,7 +2098,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           value: 1,
           code: 1
         }
@@ -2125,7 +2125,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         select: {
           code: 1,
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           value: 1,
           type: 1
         }
@@ -2402,7 +2402,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           code: 1,
           from_date: 1,
           from_time: 1,

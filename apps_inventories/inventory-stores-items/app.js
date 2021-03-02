@@ -38,7 +38,8 @@ module.exports = function init(site) {
         average_cost: site.toNumber(totalCostAll) / site.toNumber(total_unit),
         size_units_list: [{
           id: obj.unit.id,
-          name: obj.unit.name,
+          name_ar: obj.unit.name_ar,
+          name_en: obj.unit.name_en,
           barcode: obj.unit.barcode,
           current_count: obj.type == 'sum' ? obj.count : (-Math.abs(obj.count)),
           start_count: obj.source_type && obj.source_type.id == 3 && obj.store_in ? site.toNumber(obj.count) : 0,
@@ -66,7 +67,7 @@ module.exports = function init(site) {
           size_units_list: [{
             patch_list: obj.patch_list,
             id: obj.unit.id,
-            name: obj.unit.name,
+            name_ar: obj.unit.name_ar, name_en: obj.unit.name_en,
             barcode: obj.unit.barcode,
             start_count: obj.source_type && obj.source_type.id == 3 && obj.store_in ? site.toNumber(obj.count) : 0,
             current_count: obj.type == 'sum' ? obj.count : (-Math.abs(obj.count)),
@@ -97,7 +98,7 @@ module.exports = function init(site) {
         size_units_list: [{
           patch_list: obj.patch_list,
           id: obj.unit.id,
-          name: obj.unit.name,
+          name_ar: obj.unit.name_ar, name_en: obj.unit.name_en,
           barcode: obj.unit.barcode,
           start_count: obj.source_type && obj.source_type.id == 3 && obj.store_in ? site.toNumber(obj.count) : 0,
           current_count: obj.type == 'sum' ? obj.count : (-Math.abs(obj.count)),
@@ -298,7 +299,7 @@ module.exports = function init(site) {
 
                     _size.branches_list[indxBranch].size_units_list.push({
                       id: obj.unit.id,
-                      name: obj.unit.name,
+                      name_ar: obj.unit.name_ar, name_en: obj.unit.name_en,
                       barcode: obj.unit.barcode,
                       start_count: obj.source_type && obj.source_type.id == 3 && obj.store_in ? site.toNumber(obj.count) : 0,
                       current_count: obj.type == 'sum' ? obj.count : (-Math.abs(obj.count)),
@@ -446,7 +447,7 @@ module.exports = function init(site) {
                         _size.branches_list[indxBranch].stores_list[indxStore].size_units_list.push({
                           patch_list: obj.patch_list,
                           id: obj.unit.id,
-                          name: obj.unit.name,
+                          name_ar: obj.unit.name_ar, name_en: obj.unit.name_en,
                           barcode: obj.unit.barcode,
                           start_count: obj.source_type && obj.source_type.id == 3 && obj.store_in ? site.toNumber(obj.count) : 0,
                           current_count: obj.type == 'sum' ? obj.count : (-Math.abs(obj.count)),
@@ -741,26 +742,29 @@ module.exports = function init(site) {
           response.done = true
           let obj = { sizes_list: [] }
           let exist = false
-          let foundName = false;
+          let foundNameAr = false;
+          let foundNameEn = false;
 
           obj.company = item_doc.doc.company
 
-          if (item_doc.doc.name === item_doc.old_doc.name) foundName = true
+          if (item_doc.doc.name_ar === item_doc.old_doc.name_ar) foundNameAr = true
+          if (item_doc.doc.name_en === item_doc.old_doc.name_en) foundNameEn = true
 
           item_doc.doc.sizes.forEach(_size => {
             let foundSize = false;
             let foundNameEn = false;
             item_doc.old_doc.sizes.map(old_size => {
-              if (_size.size === old_size.size) foundSize = true
+              if (_size.size_ar === old_size.size_ar) foundSize = true
               if (_size.size_en === old_size.size_en) foundNameEn = true
             })
 
-            if (!foundSize || !foundNameEn || !foundName) {
+            if (!foundSize || !foundNameEn || !foundNameAr || !foundNameEn) {
               obj.sizes_list.push({
-                size: _size.size,
+                size_ar: _size.size_ar,
                 barcode: _size.barcode,
                 size_en: _size.size_en,
-                name: item_doc.doc.name
+                name_ar: item_doc.doc.name_ar,
+                name_en: item_doc.doc.name_en
               })
               exist = true
             }
@@ -866,7 +870,7 @@ module.exports = function init(site) {
       where.$or = []
 
       where.$or.push({
-        'sizes.size': site.get_RegExp(search, 'i')
+        'sizes.size_ar': site.get_RegExp(search, 'i')
       })
 
       where.$or.push({
@@ -878,43 +882,45 @@ module.exports = function init(site) {
       })
 
       where.$or.push({
-        'sizes.active_substance.name': search
+        'sizes.active_substance.name_ar': search
       })
 
+      where.$or.push({
+        'sizes.active_substance.name_en': search
+      })
 
       where.$or.push({
         'sizes.size_units_list.barcode': search
       })
 
       where.$or.push({
-        'name': site.get_RegExp(search, 'i')
+        'name_ar': site.get_RegExp(search, 'i')
       })
 
       where.$or.push({
-        'item_group.name': search
+        'name_en': site.get_RegExp(search, 'i')
+      })
+
+      where.$or.push({
+        'item_group.name_ar': search
+      })
+
+      where.$or.push({
+        'item_group.name_en': search
       })
 
     }
 
     where['company.id'] = site.get_company(req).id
 
-    //  if (req.body.search) {
-    //   where = {
-    //     $or: [
-    //       { 'sizes.size': req.body.search },
-    //       { 'sizes.size_units_list.barcode': req.body.search },
-    //       { 'sizes.barcode': req.body.search }
-    //     ]
-    //   }
-    // } 
 
     if (where['name']) {
       where['name'] = site.get_RegExp(where['name'], 'i')
     }
 
-    if (where['size']) {
-      where['sizes.size'] = site.get_RegExp(where['size'], 'i')
-      delete where['size']
+    if (where['size_ar']) {
+      where['sizes.size_ar'] = site.get_RegExp(where['size_ar'], 'i')
+      delete where['size_ar']
     }
 
     if (where['size_en']) {
@@ -1100,23 +1106,10 @@ module.exports = function init(site) {
 
 
 
-        // site.getDefaultSetting(req, callback => {
-        //   let unit = {}
-
-        //   if (callback.inventory) {
-        //     if (callback.inventory.unit)
-        //       unit = callback.inventory.unit
-        //   }
 
         docs.forEach(_docs => {
 
-          // _docs.main_unit.id = unit.id
-          // _docs.main_unit.name = unit.name
 
-          // _docs.units_list.forEach(_units_main => {
-          //   _units_main.id = unit.id
-          //   _units_main.name = unit.name
-          // });
 
           if (_docs.sizes && _docs.sizes.length > 0)
             _docs.sizes.forEach(_sizes => {
@@ -1130,8 +1123,6 @@ module.exports = function init(site) {
 
               if (_sizes.size_units_list && _sizes.size_units_list.length > 0)
                 _sizes.size_units_list.forEach(_units_size => {
-                  // _units_size.id = unit.id
-                  // _units_size.name = unit.name
                   _units_size.current_count = 0
                   _units_size.start_count = 0
                   _units_size.total_buy_cost = 0
@@ -1151,7 +1142,6 @@ module.exports = function init(site) {
             $stores_items.update(_docs)
           }
         });
-        // });
 
       } else {
         response.error = err.message
@@ -1197,7 +1187,7 @@ module.exports = function init(site) {
 
             _doc.units_list = [{
               id: unit.id,
-              name: unit.name,
+              name_ar: unit.name_ar, name_en: unit.name_en,
               convert: 1
             }]
 
@@ -1215,7 +1205,7 @@ module.exports = function init(site) {
 
                   _sizes.size_units_list = [{
                     id: unit.id,
-                    name: unit.name,
+                    name_ar: unit.name_ar, name_en: unit.name_en,
                     barcode: _barcode,
                     current_count: _sizes.current_count,
                     start_count: _sizes.start_count,
@@ -1235,7 +1225,7 @@ module.exports = function init(site) {
                     _sizes.branches_list.forEach(_branch => {
                       _branch.size_units_list = [{
                         id: unit.id,
-                        name: unit.name,
+                        name_ar: unit.name_ar, name_en: unit.name_en,
                         barcode: _barcodeUnit,
                         current_count: _branch.current_count,
                         start_count: _branch.start_count,
@@ -1250,7 +1240,7 @@ module.exports = function init(site) {
                         _branch.stores_list.forEach(_store => {
                           _store.size_units_list = [{
                             id: unit.id,
-                            name: unit.name,
+                            name_ar: unit.name_ar, name_en: unit.name_en,
                             barcode: _barcodeUnit,
                             current_count: _store.current_count,
                             start_count: _store.start_count,
@@ -1362,7 +1352,7 @@ module.exports = function init(site) {
       where.$or = []
 
       where.$or.push({
-        'sizes.size': site.get_RegExp(search, 'i')
+        'sizes.size_ar': site.get_RegExp(search, 'i')
       })
 
       where.$or.push({
@@ -1374,7 +1364,11 @@ module.exports = function init(site) {
       })
 
       where.$or.push({
-        'sizes.active_substance.name': search
+        'sizes.active_substance.name_ar': search
+      })
+
+      where.$or.push({
+        'sizes.active_substance.name_en': search
       })
 
 
@@ -1383,11 +1377,19 @@ module.exports = function init(site) {
       })
 
       where.$or.push({
-        'name': site.get_RegExp(search, 'i')
+        'name_ar': site.get_RegExp(search, 'i')
       })
 
       where.$or.push({
-        'item_group.name': search
+        'name_en': site.get_RegExp(search, 'i')
+      })
+
+      where.$or.push({
+        'item_group.name_ar': search
+      })
+
+      where.$or.push({
+        'item_group.name_en': search
       })
 
     }
@@ -1460,9 +1462,9 @@ module.exports = function init(site) {
         if (docs && docs.length > 0) {
           docs.forEach(item => {
             if (item.sizes && item.sizes.length > 0)
-              item.sizes.forEach(size => {
-                if (typeof size.size != 'string') {
-                  list_err.push({ barcode: size.barcode })
+              item.sizes.forEach(_size => {
+                if (typeof _size.size_ar != 'string') {
+                  list_err.push({ barcode: _size.barcode })
                 }
               })
           })
@@ -1513,16 +1515,16 @@ module.exports = function init(site) {
         if (docs && docs.length > 0) {
           docs.forEach(item => {
             if (item.sizes && item.sizes.length > 0)
-              item.sizes.forEach(size => {
+              item.sizes.forEach(_size => {
 
-                if (size.size_units_list && size.size_units_list.length > 0)
-                  size.size_units_list.forEach(_unit => {
+                if (_size.size_units_list && _size.size_units_list.length > 0)
+                  _size.size_units_list.forEach(_unit => {
                     if (_unit.barcode)
                       barcodeArr.push(_unit.barcode)
                   });
 
-                if (size.branches_list && size.branches_list.length > 0) {
-                  size.branches_list.forEach(_branch => {
+                if (_size.branches_list && _size.branches_list.length > 0) {
+                  _size.branches_list.forEach(_branch => {
                     if (_branch.stores_list && _branch.stores_list.length > 0) {
                       _branch.stores_list.forEach(_store => {
                         if (_store.size_units_list && _store.size_units_list.length > 0) {
@@ -1578,10 +1580,10 @@ module.exports = function init(site) {
         if (docs && docs.length > 0) {
           docs.forEach(item => {
             if (item.sizes && item.sizes.length > 0)
-              item.sizes.forEach(size => {
-                size.itm_id = item.id
-                size.stores_item_name = item.name
-                arr_sizes.unshift(size)
+              item.sizes.forEach(_size => {
+                _size.itm_id = item.id
+                _size.stores_item_name = item.name
+                arr_sizes.unshift(_size)
               })
           })
           callback(arr_sizes)
@@ -1662,7 +1664,7 @@ module.exports = function init(site) {
 
             _doc.units_list = [{
               id: unit.id,
-              name: unit.name,
+              name_ar: unit.name_ar, name_en: unit.name_en,
               convert: 1
             }]
 
@@ -1685,7 +1687,7 @@ module.exports = function init(site) {
                   _sizes.size_units_list[0].cost = site.toNumber(_sizes.size_units_list[0].cost)
                   _sizes.size_units_list = [{
                     id: unit.id,
-                    name: unit.name,
+                    name_ar: unit.name_ar, name_en: unit.name_en,
                     barcode: _barcodeUnit,
                     current_count: 0,
                     start_count: 0,
@@ -1712,7 +1714,7 @@ module.exports = function init(site) {
                   //   _sizes.branches_list.forEach(_branch => {
                   //     _branch.size_units_list = [{
                   //       id: unit.id,
-                  //       name: unit.name,
+                  //       name_ar: unit.name_ar, name_en: unit.name_en,
                   //       current_count: 0,
                   //       start_count: 0,
                   //       total_buy_cost: 0,
@@ -1726,7 +1728,7 @@ module.exports = function init(site) {
                   //       _branch.stores_list.forEach(_store => {
                   //         _store.size_units_list = [{
                   //           id: unit.id,
-                  //           name: unit.name,
+                  //           name_ar: unit.name_ar, name_en: unit.name_en,
                   //           current_count: 0,
                   //           start_count: 0,
                   //           total_buy_cost: 0,
@@ -1796,7 +1798,7 @@ module.exports = function init(site) {
 
                   itemsCb.forEach(cbSize => {
 
-                    if (currentSize.barcode === cbSize.barcode && currentSize.size === cbSize.size) {
+                    if (currentSize.barcode === cbSize.barcode && currentSize.size_ar === cbSize.size_ar) {
 
                       let foundUnit = false
                       let foundStores = false

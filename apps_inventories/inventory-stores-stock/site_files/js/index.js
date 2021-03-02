@@ -227,7 +227,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
           $scope.store_stock.items.unshift({
             image_url: $scope.item.image_url,
             name: _size.name,
-            size: _size.size,
+            size_ar: _size.size_ar,
             item_group: _size.item_group,
             work_patch: _size.work_patch,
             work_serial: _size.work_serial,
@@ -936,7 +936,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
     $http({
       method: "POST",
       url: "/api/stores/all",
-      data: { select: { id: 1, name: 1, type: 1, code: 1 } }
+      data: { select: { id: 1, name_ar: 1, name_en: 1, type: 1, code: 1 } }
     }).then(
       function (response) {
         $scope.busy = false;
@@ -960,7 +960,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           code: 1
         }
       }
@@ -1070,11 +1070,11 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
     site.hideModal('#patchesListModal');
   };
 
-  $scope.patchesList = function (itm, size) {
+  $scope.patchesList = function (itm, _size) {
     $scope.error = '';
-    itm.work_serial = size.work_serial;
-    itm.work_patch = size.work_patch;
-    itm.validit = size.validit;
+    itm.work_serial = _size.work_serial;
+    itm.work_patch = _size.work_patch;
+    itm.validit = _size.validit;
     $scope.patch_count = 0;
 
     $http({
@@ -1084,7 +1084,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
         where: {
           store_id: $scope.store_stock.store.id,
           unit_id: itm.id,
-          barcode: size.barcode
+          barcode: _size.barcode
         }
       }
     }).then(
@@ -1207,7 +1207,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
       url: "/api/shifts/get_open_shift",
       data: {
         where: { active: true },
-        select: { id: 1, name: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
+        select: { id: 1, name_ar: 1, name_en: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
       }
     }).then(
       function (response) {

@@ -56,7 +56,7 @@
                             <tr ng-repeat="service in attend_subscribers.service_list">
                                 <td class="center bold blue">
                                     <br ng-show="service.complex_service.length > 0">
-                                    {{service.service_name}}
+                                    {{service.service_name_##session.lang##}}
                                 </td>
                                 <td class="center brown">
                                     <br ng-show="service.complex_service.length > 0">
@@ -79,7 +79,7 @@
                                         </tr>
 
                                         <tr ng-repeat="complex_service in service.complex_service">
-                                            <td class="center bold blue">{{complex_service.name}}</td>
+                                            <td class="center bold blue">{{complex_service.name_##session.lang##}}</td>
                                             <td class="center bold">{{complex_service.remain}}</td>
                                         </tr>
                                     </table>

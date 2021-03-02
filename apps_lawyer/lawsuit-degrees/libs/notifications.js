@@ -3,22 +3,22 @@ module.exports = function init(site) {
   let collection_name = 'lawsuit_degrees'
 
   let source = {
-    name: 'LawSuit Degrees System',
+    en: 'LawSuit Degrees System',
     ar: ' نظام درجات الدعاوي'
   }
 
   let image_url = '/images/lawsuit_degrees.png'
 
   let add_message = {
-    name: 'New LawSuit Degrees Added',
+    en: 'New LawSuit Degrees Added',
     ar: 'تم إضافة درجة دعوى جديدة'
   }
   let update_message = {
-    name: ' LawSuit Degrees Updated',
+    en: ' LawSuit Degrees Updated',
     ar: 'تم تعديل درجة دعوى'
   }
   let delete_message = {
-    name: ' LawSuit Degrees Deleted',
+    en: ' LawSuit Degrees Deleted',
     ar: 'تم حذف درجة دعوى '
   }
 
@@ -32,7 +32,9 @@ module.exports = function init(site) {
           message: add_message,
           value: {
             name: result.doc.name,
-            ar: result.doc.name
+              code: result.doc.code,
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
           },
           add: result.doc,
           action: 'add'
@@ -51,7 +53,9 @@ module.exports = function init(site) {
           message: update_message,
           value: {
             name: result.old_doc.name,
-            ar: result.old_doc.name
+            code: result.old_doc.code,
+            en: result.old_doc.name_en,
+            ar: result.old_doc.name_ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
@@ -71,7 +75,9 @@ module.exports = function init(site) {
           message: delete_message,
           value: {
             name: result.doc.name,
-            ar: result.doc.name
+              code: result.doc.code,
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
           },
           delete: result.doc,
           action: 'delete'

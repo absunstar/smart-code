@@ -31,9 +31,9 @@
                     <td class="code"> {{item.code}} </td>
                     <td> {{item.transaction_type.##session.lang##}} </td>
                     <td> {{item.customer.name_##session.lang##}} </td>
-                    <td> {{item.delivery_employee.name}}</td>
-                    <td x-features="restaurant"> {{item.table.tables_group.name}} </td>
-                    <td x-features="restaurant">{{item.table.name}}</td>
+                    <td> {{item.delivery_employee.name_##session.lang##}}</td>
+                    <td x-features="restaurant"> {{item.table.tables_group.name_##session.lang##}} </td>
+                    <td x-features="restaurant">{{item.table.name_##session.lang##}}</td>
                     <td class="center not-print">
                         <i-button x-permissions="order_invoice_delete || order_invoice_manage" type="delete default"
                             label="##word.delete##" ng-click="deleteOrderInvoice(item)"></i-button>

@@ -27,16 +27,16 @@
     
                 <tr>
                     <td class="title">##word.stores_out_Company_name##</td>
-                    <td>{{store_out.vendor.name}}</td>
+                    <td>{{store_out.vendor.name_##session.lang##}}</td>
                 </tr>
     
                 <tr>
                     <td class="title">##word.stores_out_store_name##</td>
-                    <td>{{store_out.store.name}}</td>
+                    <td>{{store_out.store.name_##session.lang##}}</td>
                 </tr>
                 <tr>
                     <td class="title">##word.stores_out_categry##</td>
-                    <td>{{store_out.category.name}}</td>
+                    <td>{{store_out.category.name_##session.lang##}}</td>
                 </tr>
     
                 <tr>
@@ -61,8 +61,8 @@
 
                             <tr ng-repeat="itm in store_out.items">
                                 <td>{{$index + 1}}</td>
-                                <td>{{itm.name}}</td>
-                                <td>{{itm.size}}</td>
+                                <td>{{itm.name_##session.lang##}}</td>
+                                <td>{{itm.size_ar}}</td>
                                 <td>{{itm.count}}</td>
                                 <td class="not-print">{{itm.cost}}</td>
                                 <td class="not-print">{{itm.price}}</td>
@@ -83,7 +83,7 @@
                                 <th>##word.stores_out_tax_value##</th>
                             </tr>
                             <tr ng-repeat="tax in store_out.taxes">
-                                <td> <p class="text-center"> {{tax.name}} </p> </td>
+                                <td> <p class="text-center"> {{tax.name_##session.lang##}} </p> </td>
                                 <td> <p class="text-center"> {{tax.value}} % </p>   </td>
                             </tr>
                         </table>
@@ -99,7 +99,7 @@
                                 <th>##word.discount_value##</th>
                             </tr>
                             <tr ng-repeat="discount in store_out.discountes">
-                                <td>{{discount.name}}</td>
+                                <td>{{discount.name_##session.lang##}}</td>
                                 <td>
                                     <p class="text-center" ng-show="discount.type == '%'"> {{discount.value}} % </p>
                                     <p class="text-center" ng-show="discount.type == '0'"> {{discount.value}} $ </p>

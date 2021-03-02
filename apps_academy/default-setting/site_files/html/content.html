@@ -31,10 +31,11 @@
                     <div class="row">
 
                         <i-list help-id="" ng-search="_search.$trainer_search" class="col3" label="##word.trainer##"
-                            ng-model="default_setting.general_Settings.trainer" items="trainerList" display="name">
+                            ng-model="default_setting.general_Settings.trainer" items="trainerList"
+                            display="name_##session.lang##">
                         </i-list>
 
-                        <i-list ng-search="_search.$hall" class="col3" display="name"
+                        <i-list ng-search="_search.$hall" class="col3" display="name_##session.lang##"
                             ng-model="default_setting.general_Settings.hall" label="##word.hall##" items="hallList">
                         </i-list>
 
@@ -74,7 +75,7 @@
                     <legend> ##word.printer_program## </legend>
 
                     <div class="row">
-                        <i-list ng-search="_search.$basic_printer" class="col3" display="name"
+                        <i-list ng-search="_search.$basic_printer" class="col3" display="name_##session.lang##"
                             ng-model="default_setting.printer_program.printer_path" label="##word.basic_printer##"
                             items="printersPathList">
                         </i-list>
@@ -109,8 +110,8 @@
                         </i-list>
 
                         <i-list class="col3" ng-model="default_setting.accounting.currency" items="currenciesList"
-                            ng-change="loadSafesBank();loadSafesBox()" ng-search="_search.$serach_currency"
-                            label="##word.main_currency##"></i-list>
+                            display="name_##session.lang##" ng-change="loadSafesBank();loadSafesBox()"
+                            ng-search="_search.$serach_currency" label="##word.main_currency##"></i-list>
 
                         <i-list class="col3" ng-model="default_setting.accounting.safe_bank" items="safesBankList"
                             ng-search="_search.$serach_safes_bank" label="##word.safe_bank##"></i-list>
@@ -176,7 +177,7 @@
                     <div class="row">
                         <i-checkbox label="##word.dont_exceed_maximum_discount_item##"
                             ng-model="default_setting.inventory.dont_max_discount_items"></i-checkbox>
-                            <i-checkbox label="##word.auto_item_code_generation##"
+                        <i-checkbox label="##word.auto_item_code_generation##"
                             ng-model="default_setting.inventory.auto_barcode_generation"></i-checkbox>
 
                         <i-checkbox label="##word.auto_unit_barcode_generation##"

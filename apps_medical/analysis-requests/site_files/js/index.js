@@ -354,7 +354,7 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
         select: {
           code: 1,
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           value: 1,
           type: 1
         }
@@ -383,7 +383,7 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
         where: {
           active: true
         },
-        select: { id: 1, name: 1, price: 1, delivery_time: 1, period: 1, immediate: 1 }
+        select: { id: 1, name_ar: 1, name_en: 1, price: 1, delivery_time: 1, period: 1, immediate: 1 }
       }
     }).then(
       function (response) {
@@ -443,7 +443,7 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
     } else {
       $scope.analysis_requests.discountes = $scope.analysis_requests.discountes || [];
       $scope.analysis_requests.discountes.unshift({
-        name: $scope.discount.name,
+        name_ar: $scope.discount.name_ar, name_en: $scope.discount.name_en,
         value: $scope.discount.value,
         type: $scope.discount.type
       });
@@ -590,7 +590,7 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
         where: {
           active: true
         },
-        select: { id: 1, name: 1, code: 1 }
+        select: { id: 1, name_ar: 1, name_en: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -616,7 +616,7 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
           'gov.id': gov.id,
           active: true
         },
-        select: { id: 1, name: 1, code: 1 }
+        select: { id: 1, name_ar: 1, name_en: 1, code: 1 }
       }
     }).then(
       function (response) {

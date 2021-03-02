@@ -48,11 +48,11 @@
                     </tr>
 
                     <tr ng-repeat="c in list | orderBy : '-id'">
-                        <td> {{c.item_group.name}} </td>
-                        <td> {{c.name}} </td>
+                        <td> {{c.item_group.name_##session.lang##}} </td>
+                        <td> {{c.name_##session.lang##}} </td>
                         <td class="blue"> {{c.barcode}} </td>
                         <td>
-                            <p>{{c.size}} </p>
+                            <p>{{c.size_ar}} </p>
                             <p>{{c.size_en}} </p>
                         </td>
                         <td> {{c.average_cost ||0}} </td>

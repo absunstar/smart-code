@@ -36,7 +36,7 @@
 
                                 <tr>
                                     <td class="title">##word.name##</td>
-                                    <td class="center">{{trainer.name}}</td>
+                                    <td class="center">{{trainer.name_##session.lang##}}</td>
                                 </tr>
 
                                 <tr>
@@ -76,15 +76,15 @@
 
                                     <tr>
                                         <td class="title">##word.marital_status##</td>
-                                        <td class="center">{{trainer.marital_status.name}}</td>
+                                        <td class="center">{{trainer.marital_status.name_##session.lang##}}</td>
                                     </tr>
                                     <tr>
                                         <td class="title">##word.military_status##</td>
-                                        <td class="center">{{trainer.military_status.name}}</td>
+                                        <td class="center">{{trainer.military_status.name_##session.lang##}}</td>
                                     </tr>
                                     <tr>
                                         <td class="title">##word.job##</td>
-                                        <td class="center">{{trainer.job.name}}</td>
+                                        <td class="center">{{trainer.job.name_##session.lang##}}</td>
                                     </tr>
                                     <tr>
                                         <td class="title">##word.qualification##</td>
@@ -108,11 +108,11 @@
 
                                     <tr>
                                         <td class="title">##word.gov##</td>
-                                        <td class="center">{{trainer.gov.name}}</td>
+                                        <td class="center">{{trainer.gov.name_##session.lang##}}</td>
                                     </tr>
                                     <tr>
                                         <td class="title">##word.city##</td>
-                                        <td class="center">{{trainer.city.name}}</td>
+                                        <td class="center">{{trainer.city.name_##session.lang##}}</td>
                                     </tr>
                                     <tr>
                                         <td class="title">##word.address##</td>
@@ -204,7 +204,7 @@
                                 <th class="title">##word.subject_name##</th>
                             </tr>
                             <tr ng-repeat="s in trainer.subject_list">
-                                <td class="center">{{s.subject.name}}</td>
+                                <td class="center">{{s.subject.name_##session.lang##}}</td>
                             </tr>
 
                         </table>
@@ -233,7 +233,7 @@
                     <table class="table hover bold">
                         <tr>
                             <td class="title">##word.email##</td>
-                            <td class="center">{{trainer.username}}</a>
+                            <td class="center">{{trainer.username_##session.lang##}}</a>
                             </td>
                         </tr>
                         <tr>

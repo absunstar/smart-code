@@ -4,7 +4,8 @@ module.exports = function init(site) {
   site.on('[company][created]', doc => {
 
     $employee_list.add({
-      name: "موظف إفتراضي",
+      name_ar: "موظف إفتراضي",
+      name_en : "Default Employee",
       image_url: '/images/employee_list.png',
       code: "1-Test",
       company: {
@@ -352,7 +353,11 @@ module.exports = function init(site) {
     if (search) {
       where.$or = []
       where.$or.push({
-        'name': site.get_RegExp(search, "i")
+        'name_ar': site.get_RegExp(search, "i")
+      })
+
+      where.$or.push({
+        'name_en': site.get_RegExp(search, "i")
       })
 
       where.$or.push({
@@ -463,7 +468,11 @@ module.exports = function init(site) {
     if (search) {
       where.$or = []
       where.$or.push({
-        'name': site.get_RegExp(search, "i")
+        'name_ar': site.get_RegExp(search, "i")
+      })
+
+      where.$or.push({
+        'name_en': site.get_RegExp(search, "i")
       })
 
       where.$or.push({
@@ -516,7 +525,7 @@ module.exports = function init(site) {
   site.getEmployeeAttend = function (data, callback) {
 
     let select = {
-      id: 1, name: 1,
+      id: 1, name_ar: 1, name_en: 1,
       active: 1, finger_code: 1,
       gender: 1,
       company: 1, branch: 1

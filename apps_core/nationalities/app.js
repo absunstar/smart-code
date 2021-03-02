@@ -67,8 +67,12 @@ module.exports = function init(site) {
         'company.id': site.get_company(req).id,
         /*         'branch.code': site.get_branch(req).code,
          */
-        'name_ar': nationalities_doc.name_ar,
-        'name_en': nationalities_doc.name_en
+        $or: [{
+          'name_ar': nationalities_doc.name_ar
+        },{
+          'name_en': nationalities_doc.name_en
+        }]
+      
       }
     }, (err, doc) => {
       if (!err && doc) {

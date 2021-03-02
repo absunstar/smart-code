@@ -25,7 +25,7 @@
 
                             <tr>
                                 <td class="title"> ##word.accounting_guide_accounts_currency## </td>
-                                <td class="center"> {{accounting_guide_accounts_view.currency.name}} </td>
+                                <td class="center"> {{accounting_guide_accounts_view.currency.name_##session.lang##}} </td>
                             </tr>
 
                             <tr>
@@ -60,7 +60,7 @@
                             <tr
                                 ng-show="defaultSettings.accounting.link_gl_accounts_with_income_statement_and_budget == true">
                                 <td class="title"> ##word.accounting_guide_accounts_category## </td>
-                                <td class="center"> {{accounting_guide_accounts_view.category.name}} </td>
+                                <td class="center"> {{accounting_guide_accounts_view.category.name_##session.lang##}} </td>
                             </tr>
 
                             <tr>

@@ -3,21 +3,21 @@ module.exports = function init(site) {
   let collection_name = 'school_years'
 
   let source = {
-    name: 'School Years System',
+    en: 'School Years System',
     ar: ' نظام الأعوام الدراسية'
   }
 
   let image_url = '/images/school_years.png'
   let add_message = {
-    name: 'New School Years Added',
+    en: 'New School Years Added',
     ar: 'تم إضافة عام دراسي جديد'
   }
   let update_message = {
-    name: ' School Years Updated',
+    en: ' School Years Updated',
     ar: 'تم تعديل عام دراسي'
   }
   let delete_message = {
-    name: ' School Years Deleted',
+    en: ' School Years Deleted',
     ar: 'تم حذف عام دراسي '
   }
 
@@ -31,7 +31,9 @@ module.exports = function init(site) {
           message: add_message,
           value: {
             name: result.doc.name,
-            ar: result.doc.name
+            code: result.doc.code,
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
           },
           add: result.doc,
           action: 'add'
@@ -50,7 +52,9 @@ module.exports = function init(site) {
           message: update_message,
           value: {
             name: result.old_doc.name,
-            ar: result.old_doc.name
+            code: result.old_doc.code,
+            en: result.old_doc.name_en,
+            ar: result.old_doc.name_ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
@@ -70,7 +74,9 @@ module.exports = function init(site) {
           message: delete_message,
           value: {
             name: result.doc.name,
-            ar: result.doc.name
+            code: result.doc.code,
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
           },
           delete: result.doc,
           action: 'delete'

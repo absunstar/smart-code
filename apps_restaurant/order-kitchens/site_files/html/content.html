@@ -1,7 +1,7 @@
 <div class="form" id="setting_default">
 
     <div class="row">
-        <i-list class="col4 r_black" ng-model="order_kitchen.kitchen" items="kitchensList" display="name"
+        <i-list class="col4 r_black" ng-model="order_kitchen.kitchen" items="kitchensList" display="name_##session.lang##"
             ng-search="_search.$search_kitchen" ng-change="orderKitchensList()" label="##word.kitchen_name##">
         </i-list>
     </div>
@@ -23,10 +23,10 @@
         <tr ng-hide="busy" ng-repeat="i in book_list_report ">
             <td class="">
                 <h2 class=" center blue">{{i.order.code}}</h2>
-                <p ng-show="i.table.id" class="bold"> {{i.table.name}} / {{i.table.tables_group.name}} </p>
+                <p ng-show="i.table.id" class="bold"> {{i.table.name_##session.lang##}} / {{i.table.tables_group.name_##session.lang##}} </p>
             </td>
-            <td class="center title">{{i.name}}</td>
-            <td class="center title">{{i.size}}</td>
+            <td class="center title">{{i.name_##session.lang##}}</td>
+            <td class="center title">{{i.size_ar}}</td>
             <td class="center ">{{i.count}}</td>
             <td class="center">{{i.notes}}</td>
 

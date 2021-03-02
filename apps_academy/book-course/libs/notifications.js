@@ -3,21 +3,21 @@ module.exports = function init(site) {
   let collection_name = 'book_course'
 
   let source = {
-    name: 'Book Course System',
+    en: 'Book Course System',
     ar: 'نظام حجز الكورسات'
   }
 
   let image_url = '/images/book_course.png'
   let add_message = {
-    name: 'New Book Course Added',
+    en: 'New Book Course Added',
     ar: 'تم إضافة حجز كورس جديد'
   }
   let update_message = {
-    name: ' Book Course Updated',
+    en: ' Book Course Updated',
     ar: 'تم تعديل حجز كورس'
   }
   let delete_message = {
-    name: ' Book Course Deleted',
+    en: ' Book Course Deleted',
     ar: 'تم حذف حجز كورس '
   }
 
@@ -31,7 +31,9 @@ module.exports = function init(site) {
           message: add_message,
           value: {
             name: result.doc.name,
-            ar: result.doc.name
+            code: result.doc.code,
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
           },
           add: result.doc,
           action: 'add'
@@ -50,7 +52,9 @@ module.exports = function init(site) {
           message: update_message,
           value: {
             name: result.old_doc.name,
-            ar: result.old_doc.name
+            code: result.old_doc.code,
+            en: result.old_doc.name_en,
+            ar: result.old_doc.name_ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
@@ -70,7 +74,9 @@ module.exports = function init(site) {
           message: delete_message,
           value: {
             name: result.doc.name,
-            ar: result.doc.name
+            code: result.doc.code,
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
           },
           delete: result.doc,
           action: 'delete'

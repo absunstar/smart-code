@@ -47,7 +47,7 @@
 
                                 <tr ng-show="report_subscribers.safe">
                                     <td class="title"> ##word.safe## </td>
-                                    <td class="center"> {{report_subscribers.safe.name}} </td>
+                                    <td class="center"> {{report_subscribers.safe.name_##session.lang##}} </td>
                                 </tr>
                                 <tr>
                                     <td class="title"> ##word.active## </td>
@@ -68,7 +68,7 @@
                                     <th>##word.items_price_total##</th>
                                 </tr>
                                 <tr ng-repeat="c in report_subscribers.current_book_list">
-                                    <td class="center title">{{c.size}}</td>
+                                    <td class="center title">{{c.size_ar}}</td>
                                     <td class="center blue">{{c.count}}</td>
                                     <td class="center blue">{{c.price}}</td>
                                     <td class="center green">{{c.total}}</td>
@@ -95,7 +95,7 @@
 
                                     <tr ng-repeat="c in report_subscribers.payment_list">
                                         <td class="center brown">{{c.date | date : 'dd / MM / yyyy'}}</td>
-                                        <td class="center blue">{{c.safe.name}}
+                                        <td class="center blue">{{c.safe.name_##session.lang##}}
                                         </td>
                                         <td class="center green">{{c.paid_up}}</td>
                                     </tr>

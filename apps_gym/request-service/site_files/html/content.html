@@ -9,7 +9,7 @@
                             ng-model="request_service.code"></i-control>
 
                         <i-control class="col3 r_indigo" type="text" disabled label="##word.shift##"
-                            ng-model="shift.name"></i-control>
+                            ng-model="shift.name_##session.lang##"></i-control>
 
                         <div class="col2"></div>
 
@@ -51,7 +51,7 @@
                                 <td class="bg_card white"> ##word.tall## </td>
                                 <td colspan="2" class="center"> {{request_service.customer.tall}} </td>
                                 <td class="bg_card white"> ##word.blood_type## </td>
-                                <td colspan="2" class="center red"> {{request_service.customer.blood_type.name}} </td>
+                                <td colspan="2" class="center red"> {{request_service.customer.blood_type.name_##session.lang##}} </td>
                             </tr>
                             <tr>
                                 <td class="bg_card white"> ##word.medicine_notes## </td>
@@ -59,11 +59,11 @@
                             </tr>
                             <tr>
                                 <td class="bg_card white"> ##word.gov## </td>
-                                <td colspan="2" class="center"> {{request_service.customer.gov.name}} </td>
+                                <td colspan="2" class="center"> {{request_service.customer.gov.name_##session.lang##}} </td>
                                 <td class="bg_card white"> ##word.city## </td>
-                                <td colspan="2" class="center"> {{request_service.customer.city.name}} </td>
+                                <td colspan="2" class="center"> {{request_service.customer.city.name_##session.lang##}} </td>
                                 <td class="bg_card white"> ##word.area## </td>
-                                <td colspan="2" class="center"> {{request_service.customer.area.name}} </td>
+                                <td colspan="2" class="center"> {{request_service.customer.area.name_##session.lang##}} </td>
                             </tr>
 
                             <tr>
@@ -85,9 +85,9 @@
 
                     <div class="row">
 
-                        <i-list ng-search="_search.$hall" class="col3" display="name" ng-model="request_service.hall"
+                        <i-list ng-search="_search.$hall" class="col3" display="name_##session.lang##" ng-model="request_service.hall"
                             label="##word.hall##" items="hallsList"></i-list>
-                        <i-list ng-search="_search.$trainer" class="col4" display="name"
+                        <i-list ng-search="_search.$trainer" class="col4" display="name_##session.lang##"
                             ng-model="request_service.trainer" label="##word.trainer##" items="trainersList"></i-list>
 
                     </div>
@@ -95,7 +95,7 @@
                         <i-control ng-keydown="getService($event)" id="service" class="col3" ng-model="search_service"
                             label="##word.search##" type="text"></i-control>
 
-                        <i-list ng-search="_search.$service" class="col4" display="name" ng-model="service"
+                        <i-list ng-search="_search.$service" class="col4" display="name_##session.lang##" ng-model="service"
                             label="##word.service##" ng-change="changeService(request_service)  ;calc(request_service)"
                             items="servicesList"></i-list>
 
@@ -117,7 +117,7 @@
                                             <form>
 
                                                 <div class="row ">
-                                                    <i-list class="col4" ng-model="discount"
+                                                    <i-list class="col4" ng-model="discount" display="name_##session.lang##"
                                                         ng-search="_search.$discount_name" items="discount_types"
                                                         label="##word.discount_name##">
                                                     </i-list>
@@ -149,7 +149,7 @@
                                     <tr ng-repeat="d1 in request_service.discountes">
 
                                         <td>
-                                            <span class="bold red">{{d1.name}} -</span>
+                                            <span class="bold red">{{d1.name_##session.lang##}} -</span>
                                             <span class="bold red" ng-show="d1.type === 'percent'">{{d1.value}} %</span>
                                             <span class="bold red" ng-show="d1.type === 'number'">{{d1.value}}$</span>
                                             <i-button type="delete"
@@ -208,7 +208,7 @@
                                             <tr class="bold" ng-repeat="s in request_service.selectedServicesList">
 
                                                 <td>
-                                                    <p class="center bold">{{s.name}}</p>
+                                                    <p class="center bold">{{s.name_##session.lang##}}</p>
                                                 </td>
 
                                                 <td>
@@ -254,14 +254,14 @@
 
                         <i-list class="col3" ng-search="_search.$currency_search" ng-model="request_service.currency"
                             ng-change="getSafeByType(request_service) ; calc(request_service)" items="currenciesList"
-                            label="##word.currency##">
+                            display="name_##session.lang##" label="##word.currency##">
                         </i-list>
 
                         <i-control class="col2" disabled ng-model="request_service.currency.ex_rate" type="number"
                             label="##word.exchange_rate##"></i-control>
 
                         <i-list ng-search="_search.$order_invoice.$safes_search" class="col4"
-                            ng-model="request_service.safe" label="##word.safe##" items="safesList">
+                        display="name_##session.lang##"  ng-model="request_service.safe" label="##word.safe##" items="safesList">
                         </i-list>
                     </div>
 

@@ -3,21 +3,21 @@ module.exports = function init(site) {
   let collection_name = 'account_invoices'
 
   let source = {
-    name: 'Account Invoices System',
+    en: 'Account Invoices System',
     ar: ' نظام فواتير الحسابات'
   }
 
   let image_url = '/images/account_invoices.png'
   let add_message = {
-    name: 'New Account Invoices Added',
+    en: 'New Account Invoices Added',
     ar: 'تم إضافة فاتورة حسابات جديدة'
   }
   let update_message = {
-    name: ' Account Invoices Updated',
+    en: ' Account Invoices Updated',
     ar: 'تم تعديل فاتورة حسابات'
   }
   let delete_message = {
-    name: ' Account Invoices Deleted',
+    en: ' Account Invoices Deleted',
     ar: 'تم حذف فاتورة حسابات '
   }
 
@@ -31,7 +31,9 @@ module.exports = function init(site) {
           message: add_message,
           value: {
             name: result.doc.code,
-            ar: result.doc.code
+            code: result.doc.code,
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
           },
           add: result.doc,
           action: 'add'
@@ -50,7 +52,9 @@ module.exports = function init(site) {
           message: update_message,
           value: {
             name: result.old_doc.code,
-            ar: result.old_doc.code
+            code: result.old_doc.code,
+            en: result.old_doc.name_en,
+            ar: result.old_doc.name_ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
@@ -70,7 +74,9 @@ module.exports = function init(site) {
           message: delete_message,
           value: {
             name: result.doc.code,
-            ar: result.doc.code
+            code: result.doc.code,
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
           },
           delete: result.doc,
           action: 'delete'

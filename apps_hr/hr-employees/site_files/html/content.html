@@ -30,11 +30,13 @@
                             <i-control ng-hide="disabledCode" class="col2" label="##word.code##"
                                 ng-model="employee_list.code"></i-control>
                             </i-control>
-                            <i-control help-id="" v="r ll2" class="col5" label="##word.name##"
-                                ng-model="employee_list.name"></i-control>
 
+                            <i-control help-id="" v="r ll2" class="col4" label="##word.name##"
+                                ng-model="employee_list.name_ar"></i-control>
 
-                            <div class="col3"></div>
+                            <i-control help-id="" class="col4" label="##word.name_en##"
+                                ng-model="employee_list.name_en"></i-control>
+
                             <i-checkbox help-id="employee_active" class="col2" label="##word.active##"
                                 ng-model="employee_list.active"></i-checkbox>
                         </div>
@@ -101,15 +103,15 @@
                         <legend>##word.addresses##</legend>
                         <div class="row">
                             <i-list class="col4" label="##word.gov##" ng-model="employee_list.gov" items="govList"
-                                ng-change="getCityList(employee_list.gov)" display="name"
+                                ng-change="getCityList(employee_list.gov)" display="name_##session.lang##"
                                 ng-search="_search.$employee.$gov_search"></i-list>
 
                             <i-list class="col4" label="##word.city##" ng-model="employee_list.city" items="cityList"
-                                ng-change="getAreaList(employee_list.city)" display="name"
+                                ng-change="getAreaList(employee_list.city)" display="name_##session.lang##"
                                 ng-search="_search.$employee.$city_search"></i-list>
 
                             <i-list class="col4" label="##word.area##" ng-model="employee_list.area" items="areaList"
-                                display="name" ng-search="_search.$employee.$area_search"></i-list>
+                                display="name_##session.lang##" ng-search="_search.$employee.$area_search"></i-list>
                         </div>
                         <div class="row">
                             <i-control help-id="" class="col6" label="##word.address##"
@@ -184,14 +186,14 @@
 
                     <div class="row">
 
-                        <i-list ng-search="$employee_payable" display="name_##session.lang##" space=" - " display2="code"
-                            class="col4" items="guideAccountList" ng-model="employee_list.employee_payable"
-                            label="##word.employee_payable##">
+                        <i-list ng-search="$employee_payable" display="name_##session.lang##" space=" - "
+                            display2="code" class="col4" items="guideAccountList"
+                            ng-model="employee_list.employee_payable" label="##word.employee_payable##">
                         </i-list>
 
-                        <i-list ng-search="$payable_salaries" display="name_##session.lang##" space=" - " display2="code"
-                            class="col4" items="guideAccountList" ng-model="employee_list.payable_salaries"
-                            label="##word.payable_salaries##">
+                        <i-list ng-search="$payable_salaries" display="name_##session.lang##" space=" - "
+                            display2="code" class="col4" items="guideAccountList"
+                            ng-model="employee_list.payable_salaries" label="##word.payable_salaries##">
                         </i-list>
 
                         <i-list ng-search="$vacation_salary_payable" display="name_##session.lang##" space=" - "
@@ -234,11 +236,11 @@
 
                         <i-control help-id="" class="col4" label="##word.email##" ng-model="employee_list.username">
                         </i-control>
-                        
+
                         <i-control help-id="" class="col4" label="##word.password##" ng-model="employee_list.password">
                         </i-control>
                     </div>
-                    
+
                     <div class="row">
                         <i class="grayDark bold">{{email_examble}}</i>
                     </div>

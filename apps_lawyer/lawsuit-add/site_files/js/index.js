@@ -211,7 +211,7 @@ app.controller("lawsuit_add", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/courts/all",
       data: {
-        select: { id: 1, name: 1, description: 1, code: 1 }
+        select: { id: 1, name_ar: 1, name_en: 1, description: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -262,7 +262,7 @@ app.controller("lawsuit_add", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/lawsuit_status/all",
       data: {
-        select: { id: 1, name: 1, description: 1, code: 1 }
+        select: { id: 1, name_ar: 1, name_en: 1, description: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -285,7 +285,7 @@ app.controller("lawsuit_add", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/adjectives/all",
       data: {
-        select: { id: 1, name: 1, description: 1, code: 1 }
+        select: { id: 1, name_ar: 1, name_en: 1, description: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -307,7 +307,7 @@ app.controller("lawsuit_add", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/lawsuit_degrees/all",
       data: {
-        select: { id: 1, name: 1, description: 1, code: 1 }
+        select: { id: 1, name_ar: 1, name_en: 1, description: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -329,7 +329,7 @@ app.controller("lawsuit_add", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/lawsuit_types/all",
       data: {
-        select: { id: 1, name: 1, description: 1, code: 1 }
+        select: { id: 1, name_ar: 1, name_en: 1, description: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -351,7 +351,7 @@ app.controller("lawsuit_add", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/circles/all",
       data: {
-        select: { id: 1, name: 1, description: 1, code: 1 }
+        select: { id: 1, name_ar: 1, name_en: 1, description: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -561,9 +561,30 @@ app.controller("lawsuit_add", function ($scope, $http, $timeout) {
     }
   };
 
+  $scope.getNumberingAuto = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/numbering/get_automatic",
+      data: {
+        screen: "lawsuit_add"
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.disabledCode = response.data.isAuto;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
 
-
-
+  $scope.getNumberingAuto();
   $scope.getLawsuitAddList();
   $scope.loadCourts();
   $scope.loadAdjectives();

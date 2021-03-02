@@ -18,6 +18,7 @@ module.exports = function init(site) {
     $oppenents.add({
       code: "1-Test",
       name_ar: "خصم إفتراضي",
+      name_en: "Default Oppenent",
       image_url: '/images/oppenents.png',
       company: {
         id: doc.id,
@@ -50,6 +51,23 @@ module.exports = function init(site) {
 
     oppenents_doc.company = site.get_company(req)
     oppenents_doc.branch = site.get_branch(req)
+
+    let num_obj = {
+      company: site.get_company(req),
+      screen: 'oppenents',
+      date: new Date()
+    };
+
+    let cb = site.getNumbering(num_obj);
+
+    if (!oppenents_doc.code && !cb.auto) {
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+
+    } else if (cb.auto) {
+      oppenents_doc.code = cb.code;
+    }
 
     $oppenents.add(oppenents_doc, (err, doc) => {
       if (!err) {

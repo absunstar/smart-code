@@ -7,7 +7,7 @@
 
                     <tr>
                         <td class="title">##word.create_course_name##</td>
-                        <td class="center">{{create_course.course.name}}</td>
+                        <td class="center">{{create_course.course.name_##session.lang##}}</td>
                     </tr>
 
                     <tr>
@@ -17,7 +17,7 @@
 
                     <tr>
                         <td class="title">##word.trainer##</td>
-                        <td class="center">{{create_course.trainer.name}}</td>
+                        <td class="center">{{create_course.trainer.name_##session.lang##}}</td>
                     </tr>
 
                     <tr>
@@ -82,9 +82,9 @@
                                 </tr>
                                 <tr ng-repeat="attend in create_course.dates_list">
         
-                                    <td> <br> {{attend.hall.name}}</td>
+                                    <td> <br> {{attend.hall.name_##session.lang##}}</td>
                                     <td class="brown"> <br> {{attend.date_count | date : 'dd- MM -yyyy'}}</td>
-                                    <td class="title"> <br> {{attend.trainer.name}}</td>
+                                    <td class="title"> <br> {{attend.trainer.name_##session.lang##}}</td>
                                     <td class="blue"> <br> {{attend.number_lecture}}</td>
         
                                     <td class="green"> <br> {{attend.from.minute}} : {{attend.from.hour}}</td>

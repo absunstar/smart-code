@@ -5,22 +5,29 @@
             <div class="row">
                 <div class="col9">
                     <div class="row">
+                        <i-control ng-hide="disabledCode" class="col2" label="##word.code##" ng-model="administrative_business.code">
+                        </i-control>
+
                         <i-date2 ng-model="administrative_business.date" class="col4" label="##word.date##"></i-date2>
 
-                        <div class="col5"></div>
+                        <div class="col4"></div>
+
                         <i-checkbox class="col2" label="##word.active##" ng-model="administrative_business.active">
                         </i-checkbox>
                     </div>
 
                     <div class="row">
                         <i-control v="r" class="col4" label="##word.administrative_business_name##"
-                            ng-model="administrative_business.name">
+                            ng-model="administrative_business.name_ar">
+                        </i-control>
+
+                        <i-control class="col4" label="##word.name_en##" ng-model="administrative_business.name_en">
                         </i-control>
 
                         <i-list help-id="" ng-search="_search.$request_type_search" class="col3"
                             label="##word.request_type##" ng-model="administrative_business.request_type"
-                            items="requestTypeList" display="name">
-                            <i-list>
+                            items="requestTypeList" display="name_##session.lang##">
+                        </i-list>
                     </div>
 
                     <div class="row">

@@ -30,7 +30,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       return
     };
 
-    if (!$scope.item.size) {
+    if (!$scope.item.size_ar) {
       $scope.error = "##word.no_size_error##";
       return
     };
@@ -125,16 +125,16 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
         if (response.data.done && response.data.list.length > 0) {
           $scope.list = response.data.list;
           $scope.count = response.data.count;
-          if (where && (where.barcode || where.size || where.size_en)) {
+          if (where && (where.barcode || where.size_ar || where.size_en)) {
 
             $scope.hideObj = {
               barcode: where.barcode,
-              size: where.size,
+              size_ar: where.size_ar,
               size_en: where.size_en,
             };
             $scope.list.forEach(_item => {
               _item.sizes.forEach(_sizes => {
-                if (_sizes && ((_sizes.size && _sizes.size.contains($scope.hideObj.size)) || (_sizes.size_en && _sizes.size_en.contains($scope.hideObj.size_en)) || (_sizes.barcode && _sizes.barcode === $scope.hideObj.barcode))) {
+                if (_sizes && ((_sizes.size_ar && _sizes.size_ar.contains($scope.hideObj.size_ar)) || (_sizes.size_en && _sizes.size_en.contains($scope.hideObj.size_en)) || (_sizes.barcode && _sizes.barcode === $scope.hideObj.barcode))) {
                   _sizes.$hide = false
                 } else {
                   _sizes.$hide = true
@@ -442,7 +442,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
 
           if ($scope.hideObj) {
             $scope.category_item.sizes.forEach(_sizes => {
-              if (_sizes && ((_sizes.size && _sizes.size.contains($scope.hideObj.size)) || (_sizes.size_en && _sizes.size_en.contains($scope.hideObj.size_en)) || (_sizes.barcode && _sizes.barcode === $scope.hideObj.barcode))) {
+              if (_sizes && ((_sizes.size_ar && _sizes.size_ar.contains($scope.hideObj.size_ar)) || (_sizes.size_en && _sizes.size_en.contains($scope.hideObj.size_en)) || (_sizes.barcode && _sizes.barcode === $scope.hideObj.barcode))) {
 
                 _sizes.$hide = false;
               } else {
@@ -528,7 +528,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           code: 1
         }
       }
@@ -555,7 +555,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           printer_path: 1,
           code: 1
         }
@@ -583,7 +583,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           code: 1
         }
       }
@@ -610,7 +610,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           code: 1
         }
       }
@@ -699,7 +699,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           type: 1,
           code: 1
         }
@@ -828,12 +828,12 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
 
     foundSize = item.complex_items.some(_itemSize => _itemSize.barcode === $scope.items_size.barcode);
 
-    if ($scope.items_size && $scope.items_size.size) {
+    if ($scope.items_size && $scope.items_size.size_ar) {
 
       if (!foundSize) {
         item.complex_items.unshift({
           name: $scope.items_size.name,
-          size: $scope.items_size.size,
+          size_ar: $scope.items_size.size_ar,
           size_en: $scope.items_size.size_en,
           item_group: $scope.items_size.item_group,
           barcode: $scope.items_size.barcode,
@@ -1014,9 +1014,9 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
   };
 
 
-  $scope.viewUnits = function (size) {
+  $scope.viewUnits = function (_size) {
     $scope.error = '';
-    $scope.size = size;
+    $scope.size = _size;
     site.showModal('#unitsModal');
   };
 
@@ -1659,7 +1659,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       url: "/api/shifts/get_open_shift",
       data: {
         where: { active: true },
-        select: { id: 1, name: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
+        select: { id: 1, name_ar: 1, name_en: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
       }
     }).then(
       function (response) {

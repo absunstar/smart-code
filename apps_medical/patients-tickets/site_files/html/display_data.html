@@ -31,7 +31,7 @@
 
                                 <tr ng-repeat="a in ticket_data.analysis_requests.list">
 
-                                    <td class="center">{{a.name}}</td>
+                                    <td class="center">{{a.name_##session.lang##}}</td>
                                     <td class="center green">{{a.price}}</td>
 
                                     <td class="center">
@@ -128,7 +128,7 @@
 
                                 <tr ng-repeat="a in ticket_data.scans_requests.list">
 
-                                    <td class="center">{{a.name}}</td>
+                                    <td class="center">{{a.name_##session.lang##}}</td>
 
                                     <td class="center green">{{a.price}}</td>
 
@@ -218,7 +218,7 @@
 
                                 <tr ng-repeat="a in ticket_data.operations_requests.list">
 
-                                    <td class="center">{{a.name}}</td>
+                                    <td class="center">{{a.name_##session.lang##}}</td>
 
                                     <td class="center green">{{a.price}}</td>
 
@@ -310,10 +310,10 @@
 
                                 <tr ng-repeat="a in ticket_data.doctors_visits.list">
 
-                                    <td> {{a.selected_clinic.name}}</td>
-                                    <td> {{a.selected_specialty.name}}</td>
-                                    <td class="title"> {{a.selected_doctor.name}}</td>
-                                    <td> {{a.selected_shift.name}}</td>
+                                    <td> {{a.selected_clinic.name_##session.lang##}}</td>
+                                    <td> {{a.selected_specialty.name_##session.lang##}}</td>
+                                    <td class="title"> {{a.selected_doctor.name_##session.lang##}}</td>
+                                    <td> {{a.selected_shift.name_##session.lang##}}</td>
                                     <td> {{a.selected_time.day.ar}}</td>
                                     <td class="green"> {{a.selected_time.from.minute}} :
                                         {{a.selected_time.from.hour}}</td>

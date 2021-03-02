@@ -16,7 +16,7 @@
                     <div class="row">
                         <div class="col9">
                             <div class="row">
-                                <i-control class="col2" label="##word.office_lawyers_code##"
+                                <i-control ng-hide="disabledCode" class="col2" label="##word.code##"
                                     ng-model="office_lawyers.code">
                                 </i-control>
 
@@ -66,16 +66,15 @@
                             <div class="row">
 
                                 <i-list help-id="" ng-search="_search.$gender_search" class="col2"
-                                    label="##word.gender##" ng-model="office_lawyers.gender"
-                                    items="genderList" display="##session.lang##">
+                                    label="##word.gender##" ng-model="office_lawyers.gender" items="genderList"
+                                    display="##session.lang##">
                                 </i-list>
 
                                 <i-list ng-search="marital_status" class="col3" items="maritals_status"
                                     ng-model="office_lawyers.marital_status" label="##word.marital_status##">
                                 </i-list>
                                 <i-list ng-search="military_status" class="col3" items="militaries_status"
-                                    ng-model="office_lawyers.military_status"
-                                    label="##word.military_status##">
+                                    ng-model="office_lawyers.military_status" label="##word.military_status##">
                                 </i-list>
                             </div>
 
@@ -97,15 +96,15 @@
                     <legend> ##word.office_lawyers_address_informations## </legend>
                     <div class="row">
                         <i-list class="col3" label="##word.office_lawyers_gov##" ng-model="office_lawyers.gov"
-                            items="govList" display="name" ng-change="getCityList(office_lawyers.gov)"
+                            items="govList" display="name_##session.lang##" ng-change="getCityList(office_lawyers.gov)"
                             ng-search="_search.$$govNameContact">
                         </i-list>
 
                         <i-list class="col4" label="##word.city##" ng-model="office_lawyers.city" items="cityList"
-                            ng-change="getAreaList(office_lawyers.city)" display="name"
+                            ng-change="getAreaList(office_lawyers.city)" display="name_##session.lang##"
                             ng-search="_search.$office_lawyers.$city_search"></i-list>
                         <i-list class="col4" label="##word.area##" ng-model="office_lawyers.area" items="areaList"
-                            display="name" ng-search="_search.$office_lawyers.$area_search"></i-list>
+                            display="name_##session.lang##" ng-search="_search.$office_lawyers.$area_search"></i-list>
                         <i-control class="col6" label="##word.office_lawyers_address##"
                             ng-model="office_lawyers.address">
                         </i-control>

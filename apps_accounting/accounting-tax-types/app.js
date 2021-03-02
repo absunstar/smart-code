@@ -4,12 +4,12 @@ module.exports = function init(site) {
   // site.words.addList(__dirname + '/site_files/json/words.json')
 
   // $tax_types.deleteDuplicate({
-  //   name: 1,
+  //   name_ar: 1, name_en: 1,
   //   value: 1,
   //   type: 1
   // }, (err, result) => {
   //   $tax_types.createUnique({
-  //     name: 1,
+  //     name_ar: 1, name_en: 1,
   //     value: 1,
   //     type: 1
   //   }, (err, result) => {
@@ -29,7 +29,8 @@ module.exports = function init(site) {
   site.on('[company][created]', doc => {
 
     $tax_types.add({
-      name: "ضريبة إفتراضية",
+      name_ar: "ضريبة إفتراضية",
+      name_en: "Default Tax",
       value : 1,
       code: "1-Test",
       image_url: '/images/tax_type.png',

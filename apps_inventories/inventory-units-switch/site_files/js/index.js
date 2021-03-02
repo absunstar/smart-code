@@ -328,7 +328,7 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
             image_url: $scope.item.image_url,
             name: _size.name,
             item_group: _size.item_group,
-            size: _size.size,
+            size_ar: _size.size_ar,
             size_en: _size.size_en,
             size_units_list: _size.size_units_list,
             unit: _size.unit,
@@ -940,7 +940,7 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
     $http({
       method: "POST",
       url: "/api/stores/all",
-      data: { select: { id: 1, name: 1, type: 1, code: 1 } }
+      data: { select: { id: 1, name_ar: 1, name_en: 1, type: 1, code: 1 } }
     }).then(
       function (response) {
         $scope.busy = false;
@@ -967,7 +967,7 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           code: 1
         }
       }
@@ -1400,7 +1400,7 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
       url: "/api/shifts/get_open_shift",
       data: {
         where: { active: true },
-        select: { id: 1, name: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
+        select: { id: 1, name_ar: 1, name_en: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
       }
     }).then(
       function (response) {

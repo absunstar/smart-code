@@ -24,7 +24,7 @@
                             display="##session.lang##">
                         </i-list>
 
-                        <i-list class="col3" ng-search="_search.$currency_search"
+                        <i-list class="col3" ng-search="_search.$currency_search" display="name_##session.lang##"
                             ng-model="account_invoices.currency"
                             ng-change="getSafeByType(account_invoices) ; calc(account_invoices)" items="currenciesList"
                             label="##word.currency##">
@@ -33,8 +33,8 @@
                         <i-control class="col2" disabled ng-model="account_invoices.currency.ex_rate" type="number"
                             label="##word.exchange_rate##"></i-control>
 
-                        <i-list ng-search="_search.$order_invoice.$safes_search" 
-                            class="col4" ng-model="account_invoices.safe" label="##word.safe##" items="safesList">
+                        <i-list ng-search="_search.$order_invoice.$safes_search" class="col4"
+                        display="name_##session.lang##"  ng-model="account_invoices.safe" label="##word.safe##" items="safesList">
                         </i-list>
                     </div>
 
@@ -76,7 +76,8 @@
         <h2 class="error">{{error}}</h2>
 
         <div class="modal-footer center">
-            <i-button type="add" label="##word.create_an_invoice##" ng-click="addAccountInvoice(account_invoices)"></i-button>
+            <i-button type="add" label="##word.create_an_invoice##" ng-click="addAccountInvoice(account_invoices)">
+            </i-button>
             <i-button class="not-print" label="##word.print_invoice##" type="print " ng-click="printAccountInvoive()">
             </i-button>
 

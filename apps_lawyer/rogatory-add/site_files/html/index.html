@@ -40,6 +40,7 @@
                 <table class="table loaded center hover bold" id="t1">
                     <tr>
                         <th class="not-print"> ##word.logo## </th>
+                        <th> ##word.code## </th>
                         <th> ##word.rogatory_start_date## </th>
                         <th> ##word.rogatory_character## </th>
                         <th> ##word.rogatory_number## </th>
@@ -52,6 +53,7 @@
                         <td class="not-print">
                             <i-image view class="logo" ng-model="c.image_url"></i-image>
                         </td>
+                        <td class="userPrint blue"> {{c.code}} </td>
 
                         <td> {{c.date |date:'dd - MM - yyyy'}} </td>
                         <td class="center"> {{c.character}} </td>

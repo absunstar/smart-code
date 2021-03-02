@@ -8,6 +8,11 @@
                         <table class="table hover bold">
 
                             <tr>
+                                <td class="title"> ##word.code## </td>
+                                <td class="center userPrint blue"> {{session_add.code}} </td>
+                            </tr>
+
+                            <tr>
                                 <td class="title"> ##word.session_start_date## </td>
                                 <td class="center"> {{session_add.date  | date : 'yyyy - MM - dd'}} </td>
                             </tr>
@@ -31,7 +36,7 @@
 
                             <tr>
                                 <td class="title">##word.reason##</td>
-                                <td class="center">{{session_add.reason.name}}</td>
+                                <td class="center">{{session_add.reason.name_##session.lang##}}</td>
                             </tr>
 
                             <tr>
@@ -55,7 +60,6 @@
                     <div class="col3">
                         <i-image class="not-print" view ng-model="session_add.image_url"> </i-image>
                     </div>
-
 
                 </div>
             </fieldset>

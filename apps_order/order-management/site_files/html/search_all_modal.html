@@ -34,7 +34,7 @@
                                 ng-model="search.customer" label="##word.customer_name##" items="customersList">
                             </i-list>
 
-                            <i-list ng-search="_search.$order_invoice_employee" class="col3" display="name"
+                            <i-list ng-search="_search.$order_invoice_employee" class="col3" display="name_##session.lang##"
                                 ng-model="search.delivery_employee" label="##word.delivery_employee##"
                                 items="deliveryEmployeesList"></i-list>
                         </div>
@@ -43,11 +43,11 @@
                             <i-control class="col3 r_indigo" type="text" label="##word.shift##"
                                 ng-model="search.shift_code">
                             </i-control>
-                            <i-list ng-search="_search.$tables_group" class="col3" display="name"
+                            <i-list ng-search="_search.$tables_group" class="col3" display="name_##session.lang##"
                                 ng-change="getTablesList(search.tables_group)" ng-model="search.tables_group"
                                 label="##word.tables_group##" items="tablesGroupList">
                             </i-list>
-                            <i-list ng-search="_search.$table" class="col3" display="name" ng-model="search.table"
+                            <i-list ng-search="_search.$table" class="col3" display="name_##session.lang##" ng-model="search.table"
                                 label="##word.table##" items="tablesList">
                             </i-list>
                         </div>

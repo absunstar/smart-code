@@ -12,7 +12,7 @@ module.exports = function init(site) {
         if (_doc.items) _doc.items.forEach(_items => {
           if (objectStock.sizes_list) objectStock.sizes_list.forEach(_size => {
             if (_items.barcode == _size.barcode) {
-              _items.size = _size.size
+              _items.size_ar = _size.size_ar
               _items.size_en = _size.size_en
               _items.name = _size.name
             }
@@ -287,7 +287,8 @@ module.exports = function init(site) {
                         _unit.barcode = _itm.barcode
                         _unit.name = _itm.name
                         _unit.item_group = _itm.item_group
-                        _unit.size = _itm.size
+                        _unit.size_ar = _itm.size_ar
+                        _unit.size_en = _itm.size_en
                         _unit.store = result.doc.store
                         _unit.company = result.doc.company
                         _unit.branch = result.doc.branch
@@ -304,7 +305,7 @@ module.exports = function init(site) {
                         _unit.shift = {
                           id: result.doc.shift.id,
                           code: result.doc.shift.code,
-                          name: result.doc.shift.name
+                          name_ar: result.doc.shift.name_ar, name_en: result.doc.shift.name_en
                         }
                         if (_unit.store_count > _unit.stock_count) {
                           _unit.count = _unit.store_count - _unit.stock_count

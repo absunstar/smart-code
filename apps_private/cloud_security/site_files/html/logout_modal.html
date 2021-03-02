@@ -1,10 +1,10 @@
-<div data-ng-controller="logout" id="logoutModal" class="modal" tabindex="-1" >
+<div data-ng-controller="logout" id="logOutModal" class="modal small" tabindex="-1" >
 
     <div class="modal-content">
 
         <div class="modal-header">
             <span class="close">&times;</span>
-            <h2 class="text-center"> <i class="fa fa-sign-out"></i> ##word.security_logout## </h2>
+            <h2 class="text-center"> <i class="fa fa-sign-out"></i> ##word.security_confirm_logout## </h2>
         </div>
 
         <div class="modal-body">
@@ -17,7 +17,7 @@
 
         </div>
         <div class="modal-footer center">
-            <a class="btn bg-blue" onclick="site.hideModal('#logoutModal')"> <i class="fa fa-times" aria-hidden="true"></i> ##word.close##</a>
+            <a class="btn bg-blue" onclick="site.hideModal('#logOutModal')"> <i class="fa fa-times" aria-hidden="true"></i> ##word.close##</a>
             <a ng-hide="busy" id="loginBtn" ng-click="logout()" class="btn bg-red"> <i class="fa fa-sign-out" aria-hidden="true"></i> ##word.security_logout## </a>
         </div>
 

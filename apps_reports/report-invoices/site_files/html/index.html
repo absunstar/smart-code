@@ -109,12 +109,12 @@
 
                             <tr>
                                 <td class="white bg_card"> ##word.gov## </td>
-                                <td colspan="2" class="center"> {{customer.gov.name}} </td>
+                                <td colspan="2" class="center"> {{customer.gov.name_##session.lang##}} </td>
                                 <td class="white bg_card"> ##word.city## </td>
-                                <td colspan="2" class="center"> {{customer.city.name}}
+                                <td colspan="2" class="center"> {{customer.city.name_##session.lang##}}
                                 </td>
                                 <td class="white bg_card"> ##word.area## </td>
-                                <td colspan="2" class="center"> {{customer.area.name}}
+                                <td colspan="2" class="center"> {{customer.area.name_##session.lang##}}
                                 </td>
                             </tr>
 
@@ -169,9 +169,9 @@
                             <td class="blue"> {{c.code}} </td>
                             <td class="brown"> {{c.date | date : 'dd - MM - yyyy'}} </td>
                             <td ng-show="##query.type## == 3"> {{c.order_invoices_type.##session.lang##}} </td>
-                            <td ng-show="##query.type## == 14">{{c.safe.name}} / {{c.payment_method.##session.lang##}}
+                            <td ng-show="##query.type## == 14">{{c.safe.name_##session.lang##}} / {{c.payment_method.##session.lang##}}
                             </td>
-                            <td ng-show="##query.type## == 14">{{c.safe_to.name}} /
+                            <td ng-show="##query.type## == 14">{{c.safe_to.name_##session.lang##}} /
                                 {{c.payment_method_to.##session.lang##}} </td>
                             <!--  <td ng-show="##query.type## == 1 || ##query.type## == 2 || ##query.type## == 3">
                                 {{c.items_price ||0}} </td> -->

@@ -54,7 +54,7 @@
                             <i-image view class="logo" ng-model="c.image_url"></i-image>
                         </td>
                         <td class="center userPrint blue">{{c.code}}</td>
-                        <td class="center title">{{c.name}}</td>
+                        <td class="center title">{{c.name_##session.lang##}}</td>
                         <td class="center green">{{c.services_price}}</td>
                         <td class="center blue"> {{c.available_period}} ##word.day##</td>
                         <td>
@@ -72,7 +72,7 @@
                                     <tr class="bold" ng-repeat="s in c.selectedServicesList">
 
                                         <td>
-                                            <p class="center bold blue">{{s.name}}</p>
+                                            <p class="center bold blue">{{s.name_##session.lang##}}</p>
                                         </td>
 
                                         <td>

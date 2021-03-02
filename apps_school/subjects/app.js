@@ -15,7 +15,8 @@ module.exports = function init(site) {
   site.on('[company][created]', doc => {
 
     $subjects.add({
-      name: "مادة دراسية إفتراضية",
+      name_ar: "مادة دراسية إفتراضية",
+      name_en: "Default Subjects",
       image_url: '/images/subjects.png',
       code: "1-Test",
       company: {
@@ -65,7 +66,12 @@ module.exports = function init(site) {
         
         'company.id': site.get_company(req).id,
         'branch.code': site.get_branch(req).code,
-        'name': subjects_doc.name
+        $or: [{
+          'name_ar': subjects_doc.name_ar
+        },{
+          'name_en': subjects_doc.name_en
+        }]
+      
       }
     }, (err, doc) => {
       if (!err && doc) {
@@ -215,12 +221,16 @@ module.exports = function init(site) {
 
     let where = req.body.where || {}
 
-    if (where['name']) {
-      where['name'] = site.get_RegExp(where['name'], "i");
+    if (where['name_ar']) {
+      where['name_ar'] = site.get_RegExp(where['name_ar'], "i");
+    }
+
+    if (where['name_en']) {
+      where['name_en'] = site.get_RegExp(where['name_en'], "i");
     }
 
     where['company.id'] = site.get_company(req).id
-    where['branch.code'] = site.get_branch(req).code
+    // where['branch.code'] = site.get_branch(req).code
 
     $subjects.findMany({
       select: req.body.select || {},

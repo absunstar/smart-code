@@ -59,14 +59,14 @@
                         <td class="brown"> {{c.date | date : 'dd- MM -yyyy'}} </td>
 
                         <td>
-                            <p>{{c.safe_from.name}}</p>
-                            <p class="green">{{c.currency_from.name}} / {{c.currency_from.ex_rate}}</p>
+                            <p>{{c.safe_from.name_##session.lang##}}</p>
+                            <p class="green">{{c.currency_from.name_##session.lang##}} / {{c.currency_from.ex_rate}}</p>
 
                         </td>
 
                         <td>
-                            <p>{{c.safe_to.name}}</p>
-                            <p class="green">{{c.currency_to.name}} / {{c.currency_to.ex_rate}}</p>
+                            <p>{{c.safe_to.name_##session.lang##}}</p>
+                            <p class="green">{{c.currency_to.name_##session.lang##}} / {{c.currency_to.ex_rate}}</p>
 
                         </td>
 

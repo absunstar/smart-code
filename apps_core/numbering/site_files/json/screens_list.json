@@ -1,6 +1,27 @@
 [
     {
         "category": "main",
+        "feature": "lawyer",
+        "name": "rogatory_add",
+        "en": "Rogatory Add",
+        "ar": "إضافة التوكيلات"
+    },
+    {
+        "category": "main",
+        "feature": "lawyer",
+        "name": "session_add",
+        "en": "Session Add",
+        "ar": "إضافة الجلسات"
+    },
+    {
+        "category": "main",
+        "feature": "lawyer",
+        "name": "lawsuit_add",
+        "en": "Lawsuit Add",
+        "ar": "إضافة الدعاوي"
+    },
+    {
+        "category": "main",
         "feature": "public",
         "name": "customers",
         "en": "Customers",
@@ -62,7 +83,6 @@
         "en": "Medical Insurance Companies",
         "ar": "شركات التأمين الطبي"
     },
-  
     {
         "category": "main",
         "feature": "order",
@@ -429,6 +449,13 @@
     },
     {
         "category": "hr",
+        "feature": "lawyer",
+        "name": "office_lawyers",
+        "en": "Office Lawyers",
+        "ar": "محاميين المكتب"
+    },
+    {
+        "category": "hr",
         "feature": "medic",
         "name": "trainer",
         "en": "Trainer",
@@ -517,6 +544,97 @@
         "name": "printers_path",
         "en": "Printers Path",
         "ar": "مسار الطابعات"
+    },
+    {
+        "category": "general_setting",
+        "feature": "lawyer",
+        "name": "oppenents",
+        "en": "Oppenents",
+        "ar": "الخصوم"
+    },
+    {
+        "category": "general_setting",
+        "feature": "lawyer",
+        "name": "oppenents_lawyers",
+        "en": "Oppenents Lawyers",
+        "ar": "محاميين الخصوم"
+    },
+    {
+        "category": "general_setting",
+        "feature": "lawyer",
+        "name": "reasons_sessions",
+        "en": "Reasons Sessions",
+        "ar": "أسباب الجلسات"
+    },
+    {
+        "category": "general_setting",
+        "feature": "lawyer",
+        "name": "request_types",
+        "en": "Request Types",
+        "ar": "أنواع الطلبات"
+    },
+    {
+        "category": "general_setting",
+        "feature": "lawyer",
+        "name": "rogatory_places",
+        "en": "Rogatory Places",
+        "ar": "أماكن التوكيلات"
+    },
+    {
+        "category": "general_setting",
+        "feature": "lawyer",
+        "name": "rogatory_types",
+        "en": "Rogatory Types",
+        "ar": "أنواع التوكيلات"
+    },
+    {
+        "category": "general_setting",
+        "feature": "lawyer",
+        "name": "adjectives",
+        "en": "Adjectives",
+        "ar": "الصفات"
+    },
+    {
+        "category": "general_setting",
+        "feature": "lawyer",
+        "name": "administrative_business",
+        "en": "Administrative Business",
+        "ar": "الأعمال الإدارية"
+    },
+    {
+        "category": "general_setting",
+        "feature": "lawyer",
+        "name": "circles",
+        "en": "Circles",
+        "ar": "الدوائر"
+    },
+    {
+        "category": "general_setting",
+        "feature": "lawyer",
+        "name": "courts",
+        "en": "Courts",
+        "ar": "المحاكم"
+    },
+    {
+        "category": "general_setting",
+        "feature": "lawyer",
+        "name": "lawsuit_degrees",
+        "en": "Lawsuit Degrees",
+        "ar": "درجات الدعاوي"
+    },
+    {
+        "category": "general_setting",
+        "feature": "lawyer",
+        "name": "lawsuit_status",
+        "en": "Lawsuit Status",
+        "ar": "حالات الدعاوي"
+    },
+    {
+        "category": "general_setting",
+        "feature": "lawyer",
+        "name": "lawsuit_types",
+        "en": "Lawsuit Types",
+        "ar": "أنواع الدعاوي"
     },
     {
         "category": "general_setting",

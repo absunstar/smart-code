@@ -16,7 +16,8 @@ module.exports = function init(site) {
   site.on('[company][created]', doc => {
 
     $circles.add({
-      name: "دائرة إفتراضية",
+      name_ar: "دائرة إفتراضية",
+      name_en: "Default Circle",
       image_url: '/images/circle.png',
       code: "1-Test",
       company: {
@@ -30,7 +31,7 @@ module.exports = function init(site) {
         name_en: doc.branch_list[0].name_en
       },
       active: true
-    }, (err, doc) => {})
+    }, (err, doc) => { })
   })
 
 
@@ -63,17 +64,38 @@ module.exports = function init(site) {
     $circles.find({
 
       where: {
-        
+
         'company.id': site.get_company(req).id,
-        'branch.code': site.get_branch(req).code,
-        'name': circles_doc.name
+        $or: [{
+          'name_ar': circles_doc.name_ar
+        },{
+          'name_en': circles_doc.name_en
+        }]
+   
       }
     }, (err, doc) => {
       if (!err && doc) {
-        
+
         response.error = 'Name Exists'
         res.json(response)
       } else {
+
+        let num_obj = {
+          company: site.get_company(req),
+          screen: 'circles',
+          date: new Date()
+        };
+        let cb = site.getNumbering(num_obj);
+
+        if (!circles_doc.code && !cb.auto) {
+          response.error = 'Must Enter Code';
+          res.json(response);
+          return;
+
+        } else if (cb.auto) {
+          circles_doc.code = cb.code;
+        }
+
         $circles.add(circles_doc, (err, doc) => {
           if (!err) {
             response.done = true
@@ -187,10 +209,11 @@ module.exports = function init(site) {
 
 
   site.post("/api/circles/all", (req, res) => {
+
     let response = {
       done: false
     }
-          
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)
@@ -199,12 +222,16 @@ module.exports = function init(site) {
 
     let where = req.body.where || {}
 
-    if (where['name']) {
-      where['name'] = site.get_RegExp(where['name'], "i");
+    if (where['name_ar']) {
+      where['name_ar'] = site.get_RegExp(where['name_ar'], "i");
+    }
+
+    if (where['name_en']) {
+      where['name_en'] = site.get_RegExp(where['name_en'], "i");
     }
 
     where['company.id'] = site.get_company(req).id
-    where['branch.code'] = site.get_branch(req).code
+    // where['branch.code'] = site.get_branch(req).code
 
     $circles.findMany({
       select: req.body.select || {},

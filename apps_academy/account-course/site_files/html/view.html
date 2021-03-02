@@ -9,7 +9,7 @@
                         <table id="basicInformationTable" class="table hover bold">
                             <tr>
                                 <td class="title">##word.account_course_name##</td>
-                                <td class="center">{{account_course.course.name}}</td>
+                                <td class="center">{{account_course.course.name_##session.lang##}}</td>
                             </tr>
 
                             <tr>
@@ -29,7 +29,7 @@
 
                             <tr>
                                 <td class="title">##word.trainer##</td>
-                                <td class="center">{{account_course.trainer.name}}</td>
+                                <td class="center">{{account_course.trainer.name_##session.lang##}}</td>
                             </tr>
 
                             <tr>
@@ -78,7 +78,7 @@
 
                                 <tr ng-repeat="info in account_course.dates_list">
                                     <td class="brown"> {{info.date_count | date : 'dd- MM -yyyy'}}</td>
-                                    <td> {{info.trainer.name}}</td>
+                                    <td> {{info.trainer.name_##session.lang##}}</td>
                                     <td class="blue"> {{info.number_lecture}}</td>
 
                                     <td class="green"> {{info.attend_hour.minute}} : {{info.attend_hour.hour}} </td>
@@ -114,7 +114,7 @@
                                     </td>
 
                                     <td>
-                                        <p>{{b.trainer_paid.name}}</p>
+                                        <p>{{b.trainer_paid.name_##session.lang##}}</p>
                                     </td>
 
                                     <td>
@@ -122,7 +122,7 @@
                                     </td>
 
                                     <td>
-                                        <p>{{b.safe.name}}</p>
+                                        <p>{{b.safe.name_##session.lang##}}</p>
                                     </td>
                                 </tr>
 

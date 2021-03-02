@@ -191,7 +191,7 @@ app.controller("employees_salary_report", function ($scope, $http) {
       data: {
         select: {
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           commission: 1,
           type: 1,
           code : 1

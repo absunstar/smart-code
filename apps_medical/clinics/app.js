@@ -88,9 +88,14 @@ module.exports = function init(site) {
     }
     $clinics.find({
       where: {
-        'name': clinics_doc.name,
         'company.id': site.get_company(req).id,
-        'branch.code': site.get_branch(req).code
+        'branch.code': site.get_branch(req).code,
+        $or: [{
+          'name_ar': clinics_doc.name_ar
+        },{
+          'name_en': clinics_doc.name_en
+        }]
+   
       }
     }, (err, doc) => {
       if (!err && doc) {
@@ -324,7 +329,11 @@ module.exports = function init(site) {
     if (search) {
       where.$or = []
       where.$or.push({
-        'name': new RegExp(search, "i")
+        'name_ar': new RegExp(search, "i")
+      })
+
+      where.$or.push({
+        'name_en': new RegExp(search, "i")
       })
     }
 

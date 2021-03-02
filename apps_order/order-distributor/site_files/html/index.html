@@ -67,15 +67,15 @@
                             <h3 class="blue">{{c.code}}</h3>
                              </td>
                         <td ng-click="showDetailes(c)" class="blue"> 
-                            {{c.shift.name}}
+                            {{c.shift.name_##session.lang##}}
                             <h3>{{c.shift.code}}</h3>
                              </td>
-                        <td ng-click="showDetailes(c)"> {{c.delivery_employee.name}} </td>
+                        <td ng-click="showDetailes(c)"> {{c.delivery_employee.name_##session.lang##}} </td>
                         <td ng-click="showDetailes(c)"> {{c.customer.name_##session.lang##}} </td>
                         <td ng-click="showDetailes(c)">
-                            <p>-{{c.gov.name}}</p>
-                            <p>-{{c.city.name}}</p>
-                            <p>-{{c.area.name}}</p>
+                            <p>-{{c.gov.name_##session.lang##}}</p>
+                            <p>-{{c.city.name_##session.lang##}}</p>
+                            <p>-{{c.area.name_##session.lang##}}</p>
                         </td>
                         <td ng-click="showDetailes(c)"> {{c.address}} </td>
 

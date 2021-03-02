@@ -16,7 +16,8 @@ module.exports = function init(site) {
   site.on('[company][created]', doc => {
 
     $lawsuit_status.add({
-      name: "حالة دعوى إفتراضية",
+      name_ar: "حالة دعوى إفتراضية",
+      name_en : "Default Lawsuit Status",
       code: "1-Test",
       image_url: '/images/lawsuit_status.png',
       company: {
@@ -54,6 +55,22 @@ module.exports = function init(site) {
     })
     lawsuit_status_doc.company = site.get_company(req)
     lawsuit_status_doc.branch = site.get_branch(req)
+
+    let num_obj = {
+      company: site.get_company(req),
+      screen: 'lawsuit_status',
+      date: new Date()
+    };
+    let cb = site.getNumbering(num_obj);
+
+    if (!lawsuit_status_doc.code && !cb.auto) {
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+
+    } else if (cb.auto) {
+      lawsuit_status_doc.code = cb.code;
+    }
 
     $lawsuit_status.add(lawsuit_status_doc, (err, doc) => {
       if (!err) {
@@ -182,8 +199,12 @@ module.exports = function init(site) {
       where['code'] = site.get_RegExp(where['code'], 'i')
     }
 
-    if (where['name']) {
-      where['name'] = site.get_RegExp(where['name'], 'i')
+    if (where['name_ar']) {
+      where['name_ar'] = site.get_RegExp(where['name_ar'], 'i')
+    }
+
+    if (where['name_en']) {
+      where['name_en'] = site.get_RegExp(where['name_en'], 'i')
     }
 
     // if (where['active'] !== 'all') {

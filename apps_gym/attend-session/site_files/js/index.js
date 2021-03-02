@@ -251,7 +251,7 @@ app.controller("attend_session", function ($scope, $http, $timeout) {
         url: "/api/request_service/all_session",
         data: {
           search: $scope.attend_session.customer,
-          select: { id: 1, customer: 1, service_id: 1, selectedServicesList: 1, service_name: 1 }
+          select: { id: 1, customer: 1, service_id: 1, selectedServicesList: 1, service_name_ar: 1, name_en: 1 }
         }
       }).then(
         function (response) {
@@ -277,7 +277,7 @@ app.controller("attend_session", function ($scope, $http, $timeout) {
       url: "/api/hall/all",
       data: {
         select: {
-          id: 1, capaneighborhood: 1, active: 1, name: 1 , code : 1
+          id: 1, capaneighborhood: 1, active: 1, name_ar: 1, name_en: 1 , code : 1
         }
       }
     }).then(

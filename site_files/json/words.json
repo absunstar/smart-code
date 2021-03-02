@@ -10,6 +10,31 @@
         "ar": "الرمز"
     },
     {
+        "name": "manage_your_personal_account",
+        "en": "Manage your personal account",
+        "ar": "إدارة حسابك الشخصي"
+    },
+    {
+        "name": "change_profile_picture",
+        "en": "Change profile picture",
+        "ar": "تغيير الصورة الشخصية"
+    },
+    {
+        "name": "profile_photo",
+        "en": "Profile Photo",
+        "ar": "الصورة الشخصية"
+    },
+    {
+        "name": "the_name",
+        "en": "The Name",
+        "ar": "الإسم"
+    },
+    {
+        "name": "token_en",
+        "en": "En. Token",
+        "ar": "الرمز بالإنجليزي"
+    },
+    {
         "name": "display_data",
         "en": "Display Data",
         "ar": "عرض البيانات"
@@ -1023,6 +1048,11 @@
         "name": "invoice_footer",
         "en": "Invoice Footer",
         "ar": "هامش الفاتورة"
+    },
+    {
+        "name": "company_name",
+        "en": "Company Name",
+        "ar": "إسم الشركة"
     },
     {
         "name": "email",

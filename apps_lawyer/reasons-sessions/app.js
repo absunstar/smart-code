@@ -26,7 +26,8 @@ module.exports = function init(site) {
   site.on('[company][created]', doc => {
 
     $reasons_sessions.add({
-      name: "سبب جلسة إفتراضي",
+      name_ar: "سبب جلسة إفتراضي",
+      name_en: "Default Reasons Sessions",
       code: "1-Test",
       image_url: '/images/reasons_sessions.png',
       company: {
@@ -62,6 +63,23 @@ module.exports = function init(site) {
     })
     reasons_sessions_doc.company = site.get_company(req)
     reasons_sessions_doc.branch = site.get_branch(req)
+
+    let num_obj = {
+      company: site.get_company(req),
+      screen: 'reasons_sessions',
+      date: new Date()
+    };
+    let cb = site.getNumbering(num_obj);
+
+    if (!reasons_sessions_doc.code && !cb.auto) {
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+
+    } else if (cb.auto) {
+      reasons_sessions_doc.code = cb.code;
+    }
+
 
     $reasons_sessions.add(reasons_sessions_doc, (err, doc) => {
       if (!err) {

@@ -5,10 +5,10 @@ module.exports = function init(site) {
 
     if (site.feature('academy')) 
       $tenant.add({
-        name: doc.name,
         active: true,
         code: "1-Test",
         name_ar: "مستأجر إفتراضي",
+        name_en: "Default Tenant",
         company: {
           id: doc.id,
           name_ar: doc.name_ar,
@@ -72,7 +72,9 @@ module.exports = function init(site) {
         'branch.code': site.get_branch(req).code,
 
         $or: [{
-          'name': tenant_doc.name
+          'name_ar': tenant_doc.name_ar
+        },{
+          'name_en': tenant_doc.name_en
         }, {
           'phone': tenant_doc.phone
         }, {
@@ -99,7 +101,7 @@ module.exports = function init(site) {
               branch_list: [{}],
               is_tenant: true,
               profile: {
-                name: doc.name,
+                name: doc.name_ar,
                 mobile: doc.mobile,
                 image_url: tenant_doc.image_url
               }
@@ -244,7 +246,11 @@ module.exports = function init(site) {
     if (search) {
       where.$or = []
       where.$or.push({
-        'name': site.get_RegExp(search, "i")
+        'name_ar': site.get_RegExp(search, "i")
+      })
+
+      where.$or.push({
+        'name_en': site.get_RegExp(search, "i")
       })
 
       where.$or.push({

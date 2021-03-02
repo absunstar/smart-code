@@ -3,21 +3,21 @@ module.exports = function init(site) {
   let collection_name = 'financial_years'
 
   let source = {
-    name: 'Financial Year System',
+    en: 'Financial Year System',
     ar: 'نظام السنوات المالية '
   }
 
   let image_url = '/images/financial_years.png'
   let add_message = {
-    name: 'New Financial Year Added',
+    en: 'New Financial Year Added',
     ar: 'تم أضافة سنة مالية جديدة'
   }
   let update_message = {
-    name: ' Financial Year Updated',
+    en: ' Financial Year Updated',
     ar: 'تم تعديل سنة مالية'
   }
   let delete_message = {
-    name: ' Financial Year Deleted',
+    en: ' Financial Year Deleted',
     ar: 'تم حذف سنة مالية '
   }
 
@@ -31,7 +31,9 @@ module.exports = function init(site) {
           message: add_message,
           value: {
             name: result.doc.name,
-            ar: result.doc.name
+             code: result.doc.code,
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
           },
           add: result.doc,
           action: 'add'
@@ -50,7 +52,9 @@ module.exports = function init(site) {
           message: update_message,
           value: {
             name: result.old_doc.name,
-            ar: result.old_doc.name
+            code: result.old_doc.code,
+            en: result.old_doc.name_en,
+            ar: result.old_doc.name_ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
@@ -70,7 +74,9 @@ module.exports = function init(site) {
           message: delete_message,
           value: {
             name: result.doc.name,
-            ar: result.doc.name
+             code: result.doc.code,
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
           },
           delete: result.doc,
           action: 'delete'

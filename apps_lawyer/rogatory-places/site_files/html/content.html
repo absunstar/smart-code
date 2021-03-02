@@ -5,10 +5,18 @@
             <div class="row">
                 <div class="col9">
                     <div class="row">
-
-                        <i-control v="r" class="col5" label="##word.rogatory_places_name##" ng-model="rogatory_places.name">
+                        <i-control ng-hide="disabledCode" class="col2" label="##word.code##"
+                            ng-model="rogatory_places.code">
                         </i-control>
-                        <div class="col4"></div>
+
+                        <i-control v="r" class="col4" label="##word.rogatory_places_name##"
+                            ng-model="rogatory_places.name_ar">
+                        </i-control>
+
+                        <i-control class="col4" label="##word.name_en##"
+                            ng-model="rogatory_places.name_en">
+                        </i-control>
+
                         <i-checkbox class="col2" label="##word.active##" ng-model="rogatory_places.active"></i-checkbox>
                     </div>
 

@@ -25,9 +25,9 @@
                 </div>
                 <div class="row">
                     <i-list class="col4" label="##word.gov##" ng-model="search.gov" items="govList" ng-change="getCityList(search.gov)"
-                        display="name" ng-search="_search.$gov_search"></i-list>
+                        display="name_##session.lang##" ng-search="_search.$gov_search"></i-list>
 
-                    <i-list class="col4" label="##word.city##" ng-model="search.city" items="cityList" display="name"
+                    <i-list class="col4" label="##word.city##" ng-model="search.city" items="cityList" display="name_##session.lang##"
                         ng-search="_search.$city_search"></i-list>
 
                     <i-control help-id="" class="col4" label="##word.address##" ng-model="search.address"></i-control>

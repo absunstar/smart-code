@@ -12,7 +12,8 @@ module.exports = function init(site) {
   site.on('[company][created]', doc => {
 
     $militaries_status.add({
-      name: "موقف تجنيد إفتراضي",
+      name_ar: "موقف تجنيد إفتراضي",
+      name_en: "Default Militaries Status",
       code: "1-Test",
       image_url: '/images/military.png',
       company: {

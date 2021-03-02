@@ -15,17 +15,20 @@ module.exports = function init(site) {
 
 
   site.on('[company][created]', doc => {
-    let name = "شيفت إفتراضي"
+    let name_ar = "شيفت إفتراضي"
+    let name_en = "Default Shift"
     let image = '/images/shift.png'
 
     if (site.feature('school')) {
-      name = 'عام دراسي إفتراضي'
+      name_ar = 'عام دراسي إفتراضي'
+      name_en = "Default Dchool Year"
       image = '/images/school_years.png'
 
     }
 
     $shifts.add({
-      name: name,
+      name_ar: name_ar,
+      name_en: name_en,
       image_url: image,
       code: "1-Test",
       company: {
@@ -319,7 +322,7 @@ module.exports = function init(site) {
     $shifts.findOne({
       select: {
         id: 1,
-        name: 1,
+        name_ar: 1, name_en: 1,
         code: 1,
         from_date: 1,
         from_time: 1,
@@ -332,7 +335,8 @@ module.exports = function init(site) {
         response.done = true
         let obj = {
           id: doc.id,
-          name: doc.name,
+          name_ar: doc.name_ar,
+          name_en: doc.name_en,
           code: doc.code,
           from_date: doc.from_date,
           from_time: doc.from_time,
@@ -367,7 +371,7 @@ module.exports = function init(site) {
     $shifts.findOne({
       select: {
         id: 1,
-        name: 1,
+        name_ar: 1, name_en: 1,
         code: 1,
         from_date: 1,
         from_time: 1,
@@ -380,7 +384,8 @@ module.exports = function init(site) {
         response.done = true
         let obj = {
           id: doc.id,
-          name: doc.name,
+          name_ar: doc.name_ar,
+          name_en: doc.name_en,
           code: doc.code,
           from_date: doc.from_date,
           from_time: doc.from_time,
@@ -449,7 +454,7 @@ module.exports = function init(site) {
     $shifts.findOne({
       select: {
         id: 1,
-        name: 1,
+        name_ar: 1, name_en: 1,
         code: 1,
         from_date: 1,
         from_time: 1,
@@ -461,7 +466,8 @@ module.exports = function init(site) {
       if (!err && doc) {
         let obj = {
           id: doc.id,
-          name: doc.name,
+          name_ar: doc.name_ar,
+          name_en: doc.name_en,
           code: doc.code,
           from_date: doc.from_date,
           from_time: doc.from_time,

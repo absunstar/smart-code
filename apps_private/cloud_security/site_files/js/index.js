@@ -97,7 +97,8 @@ app.controller("security", function ($scope, $http, $interval) {
                 $scope.screens.forEach(s => {
                   let newname = data.find(el => el.name == s.name.replace(/-/g, '_'));
                   if (newname) {
-                    s.name = newname.ar;
+                    s.name_ar = newname.ar;
+                    s.name_en = newname.en;
                   }
 
                 })
@@ -388,7 +389,7 @@ app.controller("security", function ($scope, $http, $interval) {
     $http({
       method: "POST",
       url: "/api/stores/all",
-      data: { select: { id: 1, name: 1, type: 1, code: 1 } }
+      data: { select: { id: 1, name_ar: 1, name_en: 1, type: 1, code: 1 } }
     }).then(
       function (response) {
         $scope.busy = false;

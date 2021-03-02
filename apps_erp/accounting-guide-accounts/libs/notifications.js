@@ -3,21 +3,21 @@ module.exports = function init(site) {
   let collection_name = 'accounting_guide_accounts'
 
   let source = {
-    name: 'Guide Accounts System',
+    en: 'Guide Accounts System',
     ar: 'نظام دليل حسابات '
   }
 
   let image_url = '/images/accounting_guide_accounts.png'
   let add_message = {
-    name: 'New Guide Accounts Added',
+    en: 'New Guide Accounts Added',
     ar: 'تم أضافة دليل حسابات جديدة'
   }
   let update_message = {
-    name: ' Guide Accounts Updated',
+    en: ' Guide Accounts Updated',
     ar: 'تم تعديل دليل حسابات'
   }
   let delete_message = {
-    name: ' Guide Accounts Deleted',
+    en: ' Guide Accounts Deleted',
     ar: 'تم حذف دليل حسابات '
   }
 
@@ -31,6 +31,8 @@ module.exports = function init(site) {
           message: add_message,
           value: {
             name: result.doc.name_ar,
+              code: result.doc.code,
+            en: result.doc.name_en,
             ar: result.doc.name_ar
           },
           add: result.doc,
@@ -50,6 +52,8 @@ module.exports = function init(site) {
           message: update_message,
           value: {
             name: result.old_doc.name_ar,
+            code: result.old_doc.code,
+            en: result.old_doc.name_en,
             ar: result.old_doc.name_ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
@@ -70,6 +74,8 @@ module.exports = function init(site) {
           message: delete_message,
           value: {
             name: result.doc.name_ar,
+              code: result.doc.code,
+            en: result.doc.name_en,
             ar: result.doc.name_ar
           },
           delete: result.doc,

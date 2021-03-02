@@ -14,7 +14,7 @@
 
             <tr>
                 <td class="title">##word.store##</td>
-                <td class="center">{{store_assemble.store.name}}</td>
+                <td class="center">{{store_assemble.store.name_##session.lang##}}</td>
             </tr>
     
             <tr>
@@ -36,15 +36,15 @@
                                 {{$index + 1}}
 
                             </td>
-                            <td class="center">{{itm.name}}</td>
+                            <td class="center">{{itm.name_##session.lang##}}</td>
                             <td class="center">
-                                <p>{{itm.size}}</p>
+                                <p>{{itm.size_ar}}</p>
                                 <p>{{itm.size_en}}</p>
                             </td>
                             <td class="center">
                                 <p class="userPrint blue">{{itm.barcode}}</p>
                             </td>
-                            <td class="center">{{itm.unit.name}}</td>
+                            <td class="center">{{itm.unit.name_##session.lang##}}</td>
                             <td class="center green">{{itm.count}}</td>
                             <td class="center">
                                 <i-button class="not-print" label="##word.patch##"

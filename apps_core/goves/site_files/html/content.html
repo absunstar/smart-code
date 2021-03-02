@@ -5,12 +5,13 @@
             <div class="row">
                 <div class="col9">
                     <div class="row">
-                        <i-control ng-hide="disabledCode" class="col2" label="##word.code##"
-                        ng-model="gov.code"></i-control>
-                        <i-control help-id="goves_name" v="r ll2" class="col5" label="##word.goves_name##"
-                            ng-model="gov.name"></i-control>
+                        <i-control ng-hide="disabledCode" class="col2" label="##word.code##" ng-model="gov.code"></i-control>
+                        </i-control>
+                        <i-control help-id="goves_name" v="r ll2" class="col4" label="##word.goves_name##"
+                            ng-model="gov.name_ar"></i-control>
 
-                        <div class="col3"></div>
+                        <i-control help-id="goves_name_en" class="col4" label="##word.name_en##"
+                            ng-model="gov.name_en"></i-control>
 
                         <i-checkbox help-id="goves_active" class="col2" label="##word.active##" ng-model="gov.active">
                         </i-checkbox>

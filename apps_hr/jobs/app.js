@@ -4,7 +4,8 @@ module.exports = function init(site) {
   site.on('[company][created]', doc => {
     $jobs.add({
       code: "1-Test",
-      name: "موظف إفتراضي",
+      name_ar: "وظيفة إفتراضي",
+      name_en : "Default job",
       image_url: '/images/jobs.png',
       company: {
         id: doc.id,
@@ -63,7 +64,12 @@ module.exports = function init(site) {
       where: {
         'company.id': site.get_company(req).id,
         'branch.code': site.get_branch(req).code,
-        'name': jobs_doc.name
+        $or: [{
+          'name_ar': jobs_doc.name_ar
+        },{
+          'name_en': jobs_doc.name_en
+        }]
+      
       }
     }, (err, doc) => {
       if (!err && doc) {

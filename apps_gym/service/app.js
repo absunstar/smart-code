@@ -5,7 +5,8 @@ module.exports = function init(site) {
 
     $service.add({
       code: "1-Test",
-      name: "خدمة إفتراضية",
+      name_ar: "خدمة إفتراضية",
+      name_en : "Default Service",
       image_url: '/images/service.png',
       company: {
         id: doc.id,
@@ -78,7 +79,12 @@ module.exports = function init(site) {
 
         'company.id': site.get_company(req).id,
         'branch.code': site.get_branch(req).code,
-        'name': service_doc.name
+        $or: [{
+          'name_ar': service_doc.name_ar
+        },{
+          'name_en': service_doc.name_en
+        }]
+      
       }
     }, (err, doc) => {
       if (!err && doc) {

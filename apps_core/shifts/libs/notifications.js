@@ -4,23 +4,23 @@ module.exports = function init(site) {
 
 
   let source = {
-    name: 'Shifts System',
+    en: 'Shifts System',
     ar: 'نظام الشيفتات'
   }
 
   let image_url = '/images/shift.png'
   let add_message = {
-    name: 'New Shift Added',
+    en: 'New Shift Added',
     ar: 'تم إضافة شيفت جديدة'
   }
 
   let update_message = {
-    name: 'Shift Updated',
+    en: 'Shift Updated',
     ar: 'تم تعديل شيفت'
   }
 
   let delete_message = {
-    name: ' Shift Deleted',
+    en: ' Shift Deleted',
     ar: 'تم حذف شيفت '
   }
 
@@ -28,22 +28,22 @@ module.exports = function init(site) {
   if (site.feature('school')) {
 
     source = {
-      name: 'School Years System',
+      en: 'School Years System',
       ar: 'نظام الأعوام الدراسية'
     }
 
     add_message = {
-      name: 'New School Year Added',
+      en: 'New School Year Added',
       ar: 'تم إضافة عام دراسي جديدة'
     }
 
     update_message = {
-      name: 'School Year Updated',
+      en: 'School Year Updated',
       ar: 'تم تعديل عام دراسي'
     }
 
     delete_message = {
-      name: ' School Year Deleted',
+      en: ' School Year Deleted',
       ar: 'تم حذف عام دراسي '
     }
   }
@@ -58,7 +58,9 @@ module.exports = function init(site) {
           message: add_message,
           value: {
             name: result.doc.name,
-            ar: result.doc.name
+            code: result.doc.code,
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
           },
           add: result.doc,
           action: 'add'
@@ -77,7 +79,9 @@ module.exports = function init(site) {
           message: update_message,
           value: {
             name: result.old_doc.name,
-            ar: result.old_doc.name
+            code: result.old_doc.code,
+            en: result.old_doc.name_en,
+            ar: result.old_doc.name_ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
@@ -97,7 +101,9 @@ module.exports = function init(site) {
           message: delete_message,
           value: {
             name: result.doc.name,
-            ar: result.doc.name
+            code: result.doc.code,
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
           },
           delete: result.doc,
           action: 'delete'

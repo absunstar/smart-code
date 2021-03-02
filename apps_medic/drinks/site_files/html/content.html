@@ -10,10 +10,13 @@
                     <div class="row">
                         <i-control ng-hide="disabledCode" class="col2" label="##word.code##" ng-model="drinks.code"></i-control>
                         </i-control>
+
                         <i-control help-id="drinks_name" v="r ll2" class="col4" label="##word.drink_name_ar##"
                             ng-model="drinks.name_ar"></i-control>
-                        <i-control help-id="drinks_name" v="r ll2" class="col4" label="##word.drink_name_en##"
+
+                        <i-control help-id="drinks_name_en" class="col4" label="##word.drink_name_en##"
                             ng-model="drinks.name_en"></i-control>
+
                         <i-checkbox help-id="drinks_active" class="col2" label="##word.active##" ng-model="drinks.active">
                         </i-checkbox>
                     </div>

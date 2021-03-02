@@ -15,7 +15,7 @@
                             ng-search="_search.$branch" label="##word.companies_branch##">
                         </i-list>
 
-                        <i-list ng-search="_search.$store" class="col3" display="name" ng-model="search.store" v="r"
+                        <i-list ng-search="_search.$store" class="col3" display="name_##session.lang##" ng-model="search.store" v="r"
                             label="##word.store##" items="storesList">
                         </i-list>
 
@@ -28,7 +28,7 @@
                     <div class="row">
                     <!--     <i-control class="col2" ng-model="search.name" label="##word.stores_items_name##" type="text">
                         </i-control> -->
-                        <i-control class="col2" ng-model="search.size" label="##word.stores_items_sizes##" type="text">
+                        <i-control class="col2" ng-model="search.size_ar" label="##word.stores_items_sizes##" type="text">
                         </i-control>
                         <i-control class="col2" ng-model="search.size_en" label="##word.size_en##" type="text">
                         </i-control>

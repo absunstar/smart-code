@@ -93,13 +93,13 @@
                                 {{c.customer.name_##session.lang##}}</td>
 
                             <td ng-click="displayDetailsDoctorsVisits(c)">
-                                <p class="center">{{c.selected_clinic.name}}</p>
+                                <p class="center">{{c.selected_clinic.name_##session.lang##}}</p>
                                 <br>
-                                <p class="center blue">{{c.selected_specialty.name}}</p>
+                                <p class="center blue">{{c.selected_specialty.name_##session.lang##}}</p>
 
                             </td>
                             <td ng-click="displayDetailsDoctorsVisits(c)">
-                                <p class="center">{{c.selected_doctor.name}}</p>
+                                <p class="center">{{c.selected_doctor.name_##session.lang##}}</p>
                                 <br>
                                 <p ng-show="c.selected_shift.name" class="green center"> ##word.from## /
                                     {{c.selected_time.from.minute}} : {{c.selected_time.from.hour}}</p>

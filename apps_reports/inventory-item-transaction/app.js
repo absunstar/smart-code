@@ -14,7 +14,7 @@ module.exports = function init(site) {
       if (!err && docs) docs.forEach(_items => {
         if (objectTransaction.sizes_list) objectTransaction.sizes_list.forEach(_size => {
           if (_items.barcode == _size.barcode) {
-            _items.size = _size.size
+            _items.size_ar = _size.size_ar
             _items.size_en = _size.size_en
             _items.name = _size.name
           }
@@ -293,8 +293,12 @@ module.exports = function init(site) {
       where['barcode'] = where['barcode']
     }
 
-    if (where['size']) {
-      where['size'] = site.get_RegExp(where['size'], 'i')
+    if (where['size_ar']) {
+      where['size_ar'] = site.get_RegExp(where['size_ar'], 'i')
+    }
+
+    if (where['size_en']) {
+      where['size_en'] = site.get_RegExp(where['size_en'], 'i')
     }
 
     if (where['vendor']) {
@@ -428,7 +432,7 @@ module.exports = function init(site) {
             docs.forEach(_doc => {
               _doc.unit = {
                 id: unit.id,
-                name: unit.name,
+                name_ar: unit.name_ar, name_en: unit.name_en,
                 barcode: unit.barcode
               }
 

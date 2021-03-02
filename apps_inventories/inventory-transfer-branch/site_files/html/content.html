@@ -5,7 +5,7 @@
                 <div class="row">
                     <i-control ng-hide="disabledCode" class="col2" label="##word.code##" ng-model="transfer_branch.code">
                     </i-control>
-                    <i-control class="col3 r_indigo" type="text" disabled label="##word.shift##" ng-model="shift.name">
+                    <i-control class="col3 r_indigo" type="text" disabled label="##word.shift##" ng-model="shift.name_##session.lang##">
                     </i-control>
                     <i-date2 class="col4" ng-model="transfer_branch.date" label="##word.transfer_branch_date##">
                     </i-date2>
@@ -68,10 +68,10 @@
                                         </i-button>
                                     </div>
                                 </td>
-                                <td> <br> {{itm.name}}</td>
+                                <td> <br> {{itm.name_##session.lang##}}</td>
                                 <td> <br> {{itm.barcode}}</td>
                                 <td>
-                                    <p>{{itm.size}}</p>
+                                    <p>{{itm.size_ar}}</p>
                                     <p>{{itm.size_en}}</p>
                                 </td>
                                 <td>

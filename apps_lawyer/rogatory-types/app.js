@@ -26,7 +26,8 @@ module.exports = function init(site) {
   site.on('[company][created]', doc => {
 
     $rogatory_types.add({
-      name: "نوع توكيل إفتراضي",
+      name_ar: "نوع توكيل إفتراضي",
+      name_en: "Default Rogatory Types",
       code: "1-Test",
       image_url: '/images/rogatory_types.png',
       company: {
@@ -64,6 +65,22 @@ module.exports = function init(site) {
     })
     rogatory_types_doc.company = site.get_company(req)
     rogatory_types_doc.branch = site.get_branch(req)
+
+    let num_obj = {
+      company: site.get_company(req),
+      screen: 'rogatory_types',
+      date: new Date()
+    };
+    let cb = site.getNumbering(num_obj);
+
+    if (!rogatory_types_doc.code && !cb.auto) {
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+
+    } else if (cb.auto) {
+      rogatory_types_doc.code = cb.code;
+    }
 
     $rogatory_types.add(rogatory_types_doc, (err, doc) => {
       if (!err) {

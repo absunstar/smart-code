@@ -43,7 +43,7 @@
                         <span>##word.notification_user##</span>
                     </label>
                     <select ng-show="search.byUser" ng-model="search.user" ng-click="loadUsers()">
-                            <option ng-repeat="u in userList" ng-value="u"> <b>{{u.profile.name}} </b> {{u.email}}</option>                            
+                            <option ng-repeat="u in userList" ng-value="u"> <b>{{u.profile.name_##session.lang##}} </b> {{u.email}}</option>                            
                     </select>
                 </div>
                 <div class="control">

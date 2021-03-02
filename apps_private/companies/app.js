@@ -1,42 +1,42 @@
 module.exports = function init(site) {
   const $companies = site.connectCollection("companies")
 
-  site.on('[register][company][add]', doc => {
+  // site.on('[register][company][add]', doc => {
 
-    $companies.add({
-      name_ar: doc.name,
-      branch_list: [{
-        code: 1,
-        name_ar: "فرع" + " " + doc.name
-      }],
-      active: true,
-      username: doc.username,
-      password: doc.password,
-      image_url: doc.image_url
-    }, (err, doc) => {
-      if (!err && doc) {
-        site.call('[company][created]', doc)
+  //   $companies.add({
+  //     name_ar: doc.name,
+  //     branch_list: [{
+  //       code: 1,
+  //       name_ar: "فرع" + " " + doc.name
+  //     }],
+  //     active: true,
+  //     username: doc.username,
+  //     password: doc.password,
+  //     image_url: doc.image_url
+  //   }, (err, doc) => {
+  //     if (!err && doc) {
+  //       site.call('[company][created]', doc)
 
-        site.call('please add user', {
-          is_company: true,
-          email: doc.username,
-          password: doc.password,
-          roles: [{
-            name: "companies_admin"
-          }],
-          branch_list: [{
-            company: doc,
-            branch: doc.branch_list[0]
-          }],
-          company_id: doc.id,
-          profile: {
-            name: doc.name_ar,
-            image_url: doc.image_url
-          }
-        })
-      }
-    })
-  })
+  //       site.call('please add user', {
+  //         is_company: true,
+  //         email: doc.username,
+  //         password: doc.password,
+  //         roles: [{
+  //           name: "companies_admin"
+  //         }],
+  //         branch_list: [{
+  //           company: doc,
+  //           branch: doc.branch_list[0]
+  //         }],
+  //         company_id: doc.id,
+  //         profile: {
+  //           name: doc.name_ar,
+  //           image_url: doc.image_url
+  //         }
+  //       })
+  //     }
+  //   })
+  // })
 
   site.get_company = function (req) {
     let company = req.session('company')

@@ -5,7 +5,7 @@
                 <div class="row">
                     <i-control ng-hide="disabledCodeSwitch" class="col2" label="##word.code##"
                         ng-model="store_assemble.code"></i-control>
-                    <i-control class="col3 r_indigo" disabled label="##word.shift##" ng-model="shift.name">
+                    <i-control class="col3 r_indigo" disabled label="##word.shift##" ng-model="shift.name_##session.lang##">
                     </i-control>
                     <i-date2 class="col4" ng-model="store_assemble.date" label="##word.stores_assemble_date##" v="r">
                     </i-date2>
@@ -56,14 +56,14 @@
                                 </div>
                             </td>
 
-                            <td> <br> {{itm.name}}</td>
+                            <td> <br> {{itm.name_##session.lang##}}</td>
 
                             <td> <br>
                                 <p class="userPrint">{{itm.barcode}}</p>
                             </td>
 
                             <td>
-                                <p>{{itm.size}}</p>
+                                <p>{{itm.size_ar}}</p>
                                 <p>{{itm.size_en}}</p>
                             </td>
 

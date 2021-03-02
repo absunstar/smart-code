@@ -7,7 +7,7 @@
                         <label> ##word.workflow_title## </label>
                         <input  type="text" ng-modal="workflow.name" list="names">
                         <datalist id="names">
-                            <option ng-repeat="n in names" value="{{n.name}}" ng-click="log(n)" > ID {{n.id}} </option>
+                            <option ng-repeat="n in names" value="{{n.name_##session.lang##}}" ng-click="log(n)" > ID {{n.id}} </option>
                         </datalist>
                     </div>
                 </div>

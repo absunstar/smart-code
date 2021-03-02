@@ -119,7 +119,7 @@
                                             <tr ng-repeat="c in category_item.units_list track by $index">
 
                                                 <td>
-                                                    <p class="bold text-center"> <br> {{c.name}} </p>
+                                                    <p class="bold text-center"> <br> {{c.name_##session.lang##}} </p>
                                                 </td>
 
                                                 <td>
@@ -183,9 +183,9 @@
                                     <td class="not-print center">
                                         <i-image class="logo" ng-model="itm.image_url"></i-image>
                                     </td>
-
+                                    
                                     <td>
-                                        <i-control ng-model="itm.size"></i-control>
+                                        <i-control label="##word.name_size##" ng-model="itm.size_ar"></i-control>
                                         <br>
                                         <i-control label="##word.size_en##" ng-model="itm.size_en"></i-control>
                                     </td>

@@ -15,7 +15,7 @@ module.exports = function init(site) {
   site.post("/api/employee_discount/add", (req, res) => {
     let response = {}
     response.done = false
-            
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)
@@ -64,7 +64,7 @@ module.exports = function init(site) {
   site.post("/api/employee_discount/update", (req, res) => {
     let response = {}
     response.done = false
-            
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)
@@ -97,7 +97,7 @@ module.exports = function init(site) {
   site.post("/api/employee_discount/delete", (req, res) => {
     let response = {}
     response.done = false
-             
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)
@@ -121,14 +121,16 @@ module.exports = function init(site) {
             shift: {
               id: result.doc.shift.id,
               code: result.doc.shift.code,
-              name: result.doc.shift.name
+              name_ar: result.doc.shift.name_ar, name_en: result.doc.shift.name_en
             },
             date: result.doc.date,
             transition_type: 'out',
-            operation: 'حذف خصم موظف',
-            sourceName: result.doc.employee.name
+            operation: { ar: 'حذف خصم موظف', en: 'Delete Employee Discount' },
+
+            source_name_ar: result.doc.employee.name_ar,
+            source_name_en: result.doc.employee.name_en
           }
-          if (Obj.value && Obj.safe && Obj.date && Obj.sourceName) {
+          if (Obj.value && Obj.safe && Obj.date) {
             site.quee('[amounts][safes][+]', Obj)
           }
 
@@ -144,7 +146,7 @@ module.exports = function init(site) {
   site.post("/api/employee_discount/view", (req, res) => {
     let response = {}
     response.done = false
-              
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)
@@ -169,7 +171,7 @@ module.exports = function init(site) {
   site.post("/api/employee_discount/all", (req, res) => {
     let response = {}
     response.done = false
-          
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)
@@ -182,13 +184,13 @@ module.exports = function init(site) {
       let d1 = site.toDate(where.date)
       let d2 = site.toDate(where.date)
       d2.setDate(d2.getDate() + 1)
-      where.date = {'$gte': d1,'$lt': d2}
+      where.date = { '$gte': d1, '$lt': d2 }
 
     } else if (where && where.date_from) {
       let d1 = site.toDate(where.date_from)
       let d2 = site.toDate(where.date_to)
       d2.setDate(d2.getDate() + 1);
-      where.date = {'$gte': d1,'$lt': d2}
+      where.date = { '$gte': d1, '$lt': d2 }
       delete where.date_from
       delete where.date_to
     }
@@ -212,8 +214,8 @@ module.exports = function init(site) {
         '$lt': d2
       }
     }
-    
-    if (where.search && where.search.employee) {      
+
+    if (where.search && where.search.employee) {
       where['employee.id'] = where.search.employee.id
     }
 
@@ -251,7 +253,7 @@ module.exports = function init(site) {
   site.getEmployeesDiscounts = function (whereObj, callback) {
     callback = callback || {};
     let where = whereObj || {}
-   
+
     if (where.date) {
       let d1 = site.toDate(where.date)
       let d2 = site.toDate(where.date)

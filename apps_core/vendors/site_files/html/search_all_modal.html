@@ -28,11 +28,11 @@
                             </i-list>
 
                             <i-list class="col3" label="##word.vendors_gov##" ng-model="search.gov" items="govList"
-                                display="name" ng-change="getCityList(search.gov)" ng-search="_search.$govNameContact">
+                                display="name_##session.lang##" ng-change="getCityList(search.gov)" ng-search="_search.$govNameContact">
                             </i-list>
 
                             <i-list class="col3" v="r" label="##word.vendors_city##" ng-model="search.city"
-                                items="cityList" display="name" ng-search="_search.$cityName"></i-list>
+                                items="cityList" display="name_##session.lang##" ng-search="_search.$cityName"></i-list>
 
                         </div>
 

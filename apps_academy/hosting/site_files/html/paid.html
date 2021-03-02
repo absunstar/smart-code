@@ -13,9 +13,9 @@
             <div class="row">
                 <i-date2 class="col3" type="number" ng-model="hosting.date_paid" label="##word.date##"></i-date2>
                 <i-control class="col2" type="number" ng-model="hosting.paid" label="##word.paid##"></i-control>
-                <i-list class="col3" items="studentList" display="name" ng-model="hosting.student_paid"
+                <i-list class="col3" items="studentList" display="name_##session.lang##" ng-model="hosting.student_paid"
                     ng-search="hosting.$student_search" label="##word.student##"></i-list>
-                <i-list ng-search="hosting.$safes_search" class="col2" ng-model="hosting.safe" display="name"
+                <i-list ng-search="hosting.$safes_search" class="col2" ng-model="hosting.safe" display="name_##session.lang##"
                     label="##word.safe##" items="safesList"></i-list>
 
                 <i-button type="update" class="col2" label="##word.paid_payback##" ng-click="showAccept()"></i-button>
@@ -42,7 +42,7 @@
                             </td>
 
                             <td>
-                                <p>{{b.student_paid.name}}</p>
+                                <p>{{b.student_paid.name_##session.lang##}}</p>
                             </td>
 
                             <td>
@@ -50,7 +50,7 @@
                             </td>
 
                             <td>
-                                <p>{{b.safe.name}}</p>
+                                <p>{{b.safe.name_##session.lang##}}</p>
                             </td>
                         </tr>
 

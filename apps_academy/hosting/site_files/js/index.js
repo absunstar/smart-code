@@ -485,7 +485,7 @@ app.controller("hosting", function ($scope, $http, $timeout) {
         data: {
           select: {
             id: 1,
-            name: 1,
+            name_ar: 1, name_en: 1,
             commission: 1,
             currency: 1,
             type: 1,
@@ -515,8 +515,8 @@ app.controller("hosting", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
-          minor_currency: 1,
+          name_ar: 1, name_en: 1,
+          minor_currency_ar: 1, minor_currency_en: 1,
           ex_rate: 1,
           code : 1
         },
@@ -565,7 +565,7 @@ app.controller("hosting", function ($scope, $http, $timeout) {
       url: "/api/shifts/get_open_shift",
       data: {
         where: { active: true },
-        select: { id: 1, name: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
+        select: { id: 1, name_ar: 1, name_en: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
       }
     }).then(
       function (response) {

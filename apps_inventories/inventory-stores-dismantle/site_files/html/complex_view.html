@@ -28,11 +28,11 @@
                         <tr class="bold" ng-repeat="i in complexView.complex_items">
                             <td>
                                 <br>
-                                <p class="center bold blue">{{i.name}}</p>
+                                <p class="center bold blue">{{i.name_##session.lang##}}</p>
                             </td>
                             <td>
                                 <br>
-                                <p class="center bold">{{i.size}}</p>
+                                <p class="center bold">{{i.size_ar}}</p>
                             </td>
                             <td>
                                 <br>
@@ -44,7 +44,7 @@
                             </td>
                             <td>
                                 <br>
-                                <p class="center bold">{{i.unit.name}} -
+                                <p class="center bold">{{i.unit.name_##session.lang##}} -
                                     {{i.unit.barcode}}</p>
 
                             </td>

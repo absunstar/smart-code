@@ -12,7 +12,7 @@ module.exports = function init(site) {
         if (_doc.items) _doc.items.forEach(_items => {
           if (objectAssemble.sizes_list) objectAssemble.sizes_list.forEach(_size => {
             if (_items.barcode == _size.barcode) {
-              _items.size = _size.size
+              _items.size_ar = _size.size_ar
               _items.size_en = _size.size_en
               _items.name = _size.name
 
@@ -147,7 +147,7 @@ module.exports = function init(site) {
                         _itm.shift = {
                           id: doc.shift.id,
                           code: doc.shift.code,
-                          name: doc.shift.name
+                          name_ar: doc.shift.name_ar, name_en: doc.shift.name_en
                         }
 
                         if (_itm.complex_items && _itm.complex_items.length > 0) {
@@ -164,7 +164,7 @@ module.exports = function init(site) {
                             _complex.shift = {
                               id: doc.shift.id,
                               code: doc.shift.code,
-                              name: doc.shift.name
+                              name_ar: doc.shift.name_ar, name_en: doc.shift.name_en
                             }
                             complex_list.push(_complex)
                           });
@@ -390,7 +390,7 @@ module.exports = function init(site) {
                         _itm.shift = {
                           id: result.doc.shift.id,
                           code: result.doc.shift.code,
-                          name: result.doc.shift.name
+                          name_ar: result.doc.shift.name_ar, name_en: result.doc.shift.name_en
                         }
 
                         if (_itm.complex_items && _itm.complex_items.length > 0) {
@@ -415,7 +415,7 @@ module.exports = function init(site) {
                             _complex.shift = {
                               id: result.doc.shift.id,
                               code: result.doc.shift.code,
-                              name: result.doc.shift.name
+                              name_ar: result.doc.shift.name_ar, name_en: result.doc.shift.name_en
                             }
                             complex_list.push(_complex)
                           });
@@ -519,7 +519,7 @@ module.exports = function init(site) {
                           _itm.shift = {
                             id: result.doc.shift.id,
                             code: result.doc.shift.code,
-                            name: result.doc.shift.name
+                            name_ar: result.doc.shift.name_ar, name_en: result.doc.shift.name_en
                           }
 
                           if (_itm.complex_items && _itm.complex_items.length > 0) {
@@ -537,7 +537,7 @@ module.exports = function init(site) {
                               _complex.shift = {
                                 id: result.doc.shift.id,
                                 code: result.doc.shift.code,
-                                name: result.doc.shift.name
+                                name_ar: result.doc.shift.name_ar, name_en: result.doc.shift.name_en
                               }
                               complex_list.push(Object.assign({}, _complex))
                             });

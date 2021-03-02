@@ -26,7 +26,8 @@ module.exports = function init(site) {
   site.on('[company][created]', doc => {
 
     $rogatory_places.add({
-      name: "مكان توكيل إفتراضي",
+      name_ar: "مكان توكيل إفتراضي",
+      name_en: "Default Rogatory Places",
       code: "1-Test",
       image_url: '/images/rogatory_places.png',
       company: {
@@ -62,6 +63,24 @@ module.exports = function init(site) {
     })
     rogatory_places_doc.company = site.get_company(req)
     rogatory_places_doc.branch = site.get_branch(req)
+
+    
+    let num_obj = {
+      company: site.get_company(req),
+      screen: 'rogatory_places',
+      date: new Date()
+    };
+    let cb = site.getNumbering(num_obj);
+
+    if (!rogatory_places_doc.code && !cb.auto) {
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+
+    } else if (cb.auto) {
+      rogatory_places_doc.code = cb.code;
+    }
+
 
     $rogatory_places.add(rogatory_places_doc, (err, doc) => {
       if (!err) {

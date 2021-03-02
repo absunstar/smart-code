@@ -159,7 +159,7 @@
                             <a class="item pointer " ng-repeat="g in itemsGroupList" ng-click="loadItems(g)"
                                 help-id="menu_monitor">
                                 <img ng-src="{{g.image_url}}">
-                                <h2>{{g.name}}</h2>
+                                <h2>{{g.name_##session.lang##}}</h2>
                             </a>
                         </div>
 
@@ -176,7 +176,7 @@
                                         <a class="item pointer" ng-repeat="i in itemsList" ng-click="showItemsIn(i)"
                                             help-id="menu_monitor">
                                             <img ng-src="{{i.image_url}}">
-                                            <h2>{{i.name}}</h2>
+                                            <h2>{{i.name_##session.lang##}}</h2>
                                         </a>
                                     </div>
                                 </div>
@@ -204,7 +204,7 @@
                                             ng-click="bookList(s)" help-id="menu_monitor">
                                             <img ng-src="{{s.image_url}}" onerror="this.src='/images/no.png'">
                                             <h3> ##word.price## : {{s.price}}</h3>
-                                            <h2>{{s.size}}</h2>
+                                            <h2>{{s.size_ar}}</h2>
                                         </a>
 
                                     </div>
@@ -245,7 +245,7 @@
                                     </i-date2>
 
                                     <i-control class="col3 r_indigo" disabled label="##word.shift##"
-                                        ng-model="shift.name">
+                                        ng-model="shift.name_##session.lang##">
                                     </i-control>
 
                                     <i-control ng-hide="disabledCode" class="col3" disabled label="##word.code##" ng-model="order_customer.code">
@@ -255,7 +255,7 @@
 
                                 <div class="row" ng-hide="'##user.type##' == 'customer'">
 
-                                    <i-list ng-search="_search.$order_customer_employee" class="col4" display="name"
+                                    <i-list ng-search="_search.$order_customer_employee" class="col4" display="name_##session.lang##"
                                         ng-model="order_customer.delivery_employee" label="##word.delivery_employee##"
                                         items="deliveryEmployeesList"></i-list>
                                 </div>
@@ -283,18 +283,18 @@
                                             <div class="row">
 
                                                 <i-list class="col3" label="##word.customers_gov##"
-                                                    ng-model="order_customer.gov" items="govList" display="name"
+                                                    ng-model="order_customer.gov" items="govList" display="name_##session.lang##"
                                                     ng-change="getCityList(order_customer.gov)"
                                                     ng-search="_search.$govNameContact"></i-list>
 
                                                 <i-list class="col3" label="##word.city##"
                                                     ng-model="order_customer.city" items="cityList"
-                                                    ng-change="getAreaList(order_customer.city)" display="name"
+                                                    ng-change="getAreaList(order_customer.city)" display="name_##session.lang##"
                                                     ng-search="_search.$order_customer_city_search">
                                                 </i-list>
 
                                                 <i-list class="col3" label="##word.area##"
-                                                    ng-model="order_customer.area" items="areaList" display="name"
+                                                    ng-model="order_customer.area" items="areaList" display="name_##session.lang##"
                                                     ng-change=" order_customer.price_delivery_service = order_customer.area.price_delivery_service"
                                                     ng-search="_search.$order_customer.$area_search"></i-list>
 
@@ -339,9 +339,9 @@
                                 </tr>
 
                                 <tr ng-repeat="size in order_customer.book_list">
-                                    <td class="center title">{{size.name}}</td>
+                                    <td class="center title">{{size.name_##session.lang##}}</td>
                                     <td class="center title">
-                                        <p>{{size.size}}</p>
+                                        <p>{{size.size_ar}}</p>
                                         <p>{{size.size_en}}</p>
                                     </td>
                                     <td class="center">
@@ -391,7 +391,7 @@
                                             <form>
 
                                                 <div class="row ">
-                                                    <i-list class="col4" ng-model="discount"
+                                                    <i-list class="col4" ng-model="discount" display="name_##session.lang##"
                                                         ng-search="_search.$discount_name" items="discount_types"
                                                         label="##word.discount_name##">
                                                     </i-list>
@@ -424,7 +424,7 @@
                                     <tr ng-repeat="d1 in order_customer.discountes">
 
                                         <td>
-                                            <span class="bold red">{{d1.name}} -</span>
+                                            <span class="bold red">{{d1.name_##session.lang##}} -</span>
                                             <span class="bold red" ng-show="d1.type === 'percent'">{{d1.value}}
                                                 %</span>
                                             <span class="bold red" ng-show="d1.type === 'number'">{{d1.value}}$</span>
@@ -472,7 +472,7 @@
 
                                     <tr ng-repeat="tx in order_customer.taxes">
                                         <td>
-                                            <span class="bold red">{{tx.name}} -</span>
+                                            <span class="bold red">{{tx.name_##session.lang##}} -</span>
                                             <span class="bold red">{{tx.value}} %</span>
                                             <i-button type="delete" ng-click="deleteTax(tx) ;calc(order_customer)">
                                             </i-button>

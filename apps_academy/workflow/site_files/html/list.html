@@ -28,13 +28,13 @@
             <p class="center" ng-show="w.type == 'multi-approved'"> ##word.workflow_multi_approved## </p>
         </td>
         <td ng-class="{'bg-gray' : propertyName === 'users'}">
-            <p class="center" ng-repeat="u in w.users"> {{u.name}} </p>
+            <p class="center" ng-repeat="u in w.users"> {{u.name_##session.lang##}} </p>
         </td>
         <td ng-class="{'bg-gray' : propertyName === 'user.name'}">
-            <p class="center"> {{w.user.name}} </p>
+            <p class="center"> {{w.user.name_##session.lang##}} </p>
         </td>
         <td ng-class="{'bg-gray' : propertyName === 'created_date'}">
-            <p class="center"> {{w.created_by.name}} </p>
+            <p class="center"> {{w.created_by.name_##session.lang##}} </p>
             <p class="center blue small">{{w.created_date | date:"dd/MM/yyyy h:mma"}}</p>
         </td>
         <td class="not-print">

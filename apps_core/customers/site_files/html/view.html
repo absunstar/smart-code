@@ -76,12 +76,12 @@
 
                                 <tr x-feature="lawyer">
                                     <td class="title">##word.marital_status##</td>
-                                    <td class="center">{{customer.marital_status.name}}</td>
+                                    <td class="center">{{customer.marital_status.name_##session.lang##}}</td>
                                 </tr>
 
                                 <tr x-feature="lawyer">
                                     <td class="title">##word.military_status##</td>
-                                    <td class="center">{{customer.military_status.name}}</td>
+                                    <td class="center">{{customer.military_status.name_##session.lang##}}</td>
                                 </tr>
 
                                 <tr x-features="gym || academy || school">
@@ -91,7 +91,7 @@
 
                                 <tr x-features="medical">
                                     <td class="title"> ##word.medical_insurance_company## </td>
-                                    <td class="center"> {{customer.insurance_company.name}} </td>
+                                    <td class="center"> {{customer.insurance_company.name_##session.lang##}} </td>
                                 </tr>
 
 
@@ -114,22 +114,22 @@
 
                                 <tr>
                                     <td class="title"> ##word.customers_groups## </td>
-                                    <td class="center"> {{customer.group.name}} </td>
+                                    <td class="center"> {{customer.group.name_##session.lang##}} </td>
                                 </tr>
 
                                 <tr x-features="school">
                                     <td class="title"> ##word.school_grade## </td>
-                                    <td class="center"> {{customer.school_grade.name}} </td>
+                                    <td class="center"> {{customer.school_grade.name_##session.lang##}} </td>
                                 </tr>
 
                                 <tr x-features="school">
                                     <td class="title"> ##word.students_year## </td>
-                                    <td class="center"> {{customer.students_year.name}} </td>
+                                    <td class="center"> {{customer.students_year.name_##session.lang##}} </td>
                                 </tr>
 
                                 <tr x-features="school">
                                     <td class="title"> ##word.hall## </td>
-                                    <td class="center"> {{customer.hall.name}} </td>
+                                    <td class="center"> {{customer.hall.name_##session.lang##}} </td>
                                 </tr>
 
                                 <tr>
@@ -203,7 +203,7 @@
                         </tr>
                         <tr>
                             <td class="title">##word.blood_type##</td>
-                            <td class="center red">{{customer.blood_type.name}}</td>
+                            <td class="center red">{{customer.blood_type.name_##session.lang##}}</td>
                         </tr>
                         <tr>
                             <td class="title">##word.medicine_notes##</td>
@@ -271,7 +271,7 @@
                                 </tr>
 
                                 <tr ng-repeat="m in customer.medicine_list">
-                                    <td class="center">{{m.medicine.name}}</td>
+                                    <td class="center">{{m.medicine.name_##session.lang##}}</td>
                                     <td class="center">{{m.count_dosage}}</td>
                                     <!--                             <td class="center">{{medicine.time.##session.lang##}}</td>
  -->
@@ -295,7 +295,7 @@
                                 </tr>
 
                                 <tr ng-repeat="d in customer.disease_list">
-                                    <td class="center">{{d.disease.name}}</td>
+                                    <td class="center">{{d.disease.name_##session.lang##}}</td>
                                 </tr>
 
                             </table>
@@ -326,7 +326,7 @@
 
                         <tr>
                             <td class="title"> ##word.customers_tax_office_name## </td>
-                            <td class="center"> {{customer.tax_office_name}} </td>
+                            <td class="center"> {{customer.tax_office_name_##session.lang##}} </td>
                         </tr>
 
                         <tr>
@@ -341,12 +341,12 @@
 
                         <tr>
                             <td class="title"> ##word.customers_activity_name## </td>
-                            <td class="center"> {{customer.activity_name}} </td>
+                            <td class="center"> {{customer.activity_name_##session.lang##}} </td>
                         </tr>
 
                         <tr>
                             <td class="title"> ##word.customers_financier_name## </td>
-                            <td class="center"> {{customer.financier_name}} </td>
+                            <td class="center"> {{customer.financier_name_##session.lang##}} </td>
                         </tr>
 
 
@@ -361,7 +361,7 @@
                     <table class="table hover">
                         <tr>
                             <td class="title"> ##word.customers_commercial_name## </td>
-                            <td class="center"> {{customer.commercial_name}} </td>
+                            <td class="center"> {{customer.commercial_name_##session.lang##}} </td>
                         </tr>
 
                         <tr>
@@ -371,12 +371,12 @@
 
                         <tr>
                             <td class="title"> ##word.customers_used_name_in_trade## </td>
-                            <td class="center"> {{customer.used_tarde_name}} </td>
+                            <td class="center"> {{customer.used_tarde_name_##session.lang##}} </td>
                         </tr>
 
                         <tr>
                             <td class="title"> ##word.customers_trader_name## </td>
-                            <td class="center"> {{customer.trader_name}} </td>
+                            <td class="center"> {{customer.trader_name_##session.lang##}} </td>
                         </tr>
 
 
@@ -424,7 +424,7 @@
 
                         <tr>
                             <td class="title"> ##word.customers_currency_name## </td>
-                            <td class="center"> {{openBalance.currency.name}} </td>
+                            <td class="center"> {{openBalance.currency.name_##session.lang##}} </td>
                         </tr>
 
                         <tr>
@@ -484,7 +484,7 @@
 
                         <tr>
                             <td class="title"> ##word.customers_currency_name## </td>
-                            <td class="center"> {{customer.ledger_account.currency.name}} </td>
+                            <td class="center"> {{customer.ledger_account.currency.name_##session.lang##}} </td>
                         </tr>
 
                         <tr>
@@ -543,17 +543,17 @@
                     <table class="table hover">
                         <tr>
                             <td class="title"> ##word.customers_gov## </td>
-                            <td class="center"> {{customer.gov.name}} </td>
+                            <td class="center"> {{customer.gov.name_##session.lang##}} </td>
                         </tr>
 
                         <tr>
                             <td class="title"> ##word.customers_city## </td>
-                            <td class="center"> {{customer.city.name}} </td>
+                            <td class="center"> {{customer.city.name_##session.lang##}} </td>
                         </tr>
 
                         <tr>
                             <td class="title"> ##word.area## </td>
-                            <td class="center"> {{customer.##session.lang##ea.name}} </td>
+                            <td class="center"> {{customer.##session.lang##ea.name_##session.lang##}} </td>
                         </tr>
 
                         <tr>
@@ -705,7 +705,7 @@
 
                             <tr>
                                 <td class="title"> ##word.customers_branch_name## </td>
-                                <td class="center"> {{branch.name}} </td>
+                                <td class="center"> {{branch.name_##session.lang##}} </td>
                             </tr>
 
                             <tr>
@@ -715,12 +715,12 @@
 
                             <tr>
                                 <td class="title"> ##word.customers_branch_gov## </td>
-                                <td class="center"> {{branch.gov.name}} </td>
+                                <td class="center"> {{branch.gov.name_##session.lang##}} </td>
                             </tr>
 
                             <tr>
                                 <td class="title"> ##word.customers_branch_city## </td>
-                                <td class="center"> {{branch.city.name}} </td>
+                                <td class="center"> {{branch.city.name_##session.lang##}} </td>
                             </tr>
 
                             <tr>
@@ -780,7 +780,7 @@
                         <table class="table hover">
                             <tr>
                                 <td class="title"> ##word.customers_charge_name## </td>
-                                <td class="center"> {{charge.name}} </td>
+                                <td class="center"> {{charge.name_##session.lang##}} </td>
                             </tr>
 
                             <tr>
@@ -850,7 +850,7 @@
 
                         <tr>
                             <td class="title">##word.dad_name##</td>
-                            <td class="center">{{customer.dad_name}}</td>
+                            <td class="center">{{customer.dad_name_##session.lang##}}</td>
                         </tr>
                         <tr>
                             <td class="title">##word.dad_mobile##</td>
@@ -882,7 +882,7 @@
 
                         <tr>
                             <td class="title">##word.mom_name##</td>
-                            <td class="center">{{customer.mom_name}}</td>
+                            <td class="center">{{customer.mom_name_##session.lang##}}</td>
                         </tr>
                         <tr>
                             <td class="title">##word.mom_mobile##</td>
@@ -916,7 +916,7 @@
                         </tr>
                         <tr>
                             <td class="title">##word.host_name##</td>
-                            <td class="center">{{customer.host_name}}</td>
+                            <td class="center">{{customer.host_name_##session.lang##}}</td>
                         </tr>
                         <tr>
                             <td class="title">##word.host_mobile##</td>
@@ -972,7 +972,7 @@
 
                             <tr>
                                 <td class="title"> ##word.customers_branch_name## </td>
-                                <td class="center"> {{dealCompany.branch.name}} </td>
+                                <td class="center"> {{dealCompany.branch.name_##session.lang##}} </td>
                             </tr>
                         </table>
 
@@ -990,7 +990,7 @@
                     <table class="table hover bold">
                         <tr>
                             <td class="title">##word.email##</td>
-                            <td class="center">{{customer.username}}</td>
+                            <td class="center">{{customer.username_##session.lang##}}</td>
                         </tr>
                         <tr>
                             <td class="title">##word.password##</td>

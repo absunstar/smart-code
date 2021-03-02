@@ -28,7 +28,7 @@
                                         <div class="control">
                                             <label>##word.safes_payments_name##</label>
                                             <select ng-model="safe_payment.safe">
-                                                <option ng-repeat="sa in safes" ng-value="sa">{{sa.name}}</option>
+                                                <option ng-repeat="sa in safes" ng-value="sa">{{sa.name_##session.lang##}}</option>
                                             </select>
                                         </div>
                                     </div>
@@ -80,7 +80,7 @@
                                 <div class="control">
                                     <label>##word.customers_payments_name##</label>
                                     <select ng-model="safe_payment.customer" ng-change="setCustomerCode()">
-                                        <option ng-repeat="cu in customers" ng-value="cu" ng-selected="safe_payment.customer.id == cu.id">{{cu.name}}</option>
+                                        <option ng-repeat="cu in customers" ng-value="cu" ng-selected="safe_payment.customer.id == cu.id">{{cu.name_##session.lang##}}</option>
                                     </select>
                                 </div>
                             </div>
@@ -98,7 +98,7 @@
                                 <div class="control">
                                     <label>##word.vendors_payments_name##</label>
                                     <select ng-model="safe_payment.vendor" ng-change="setVendorCode()">
-                                        <option ng-repeat="ve in vendors" ng-value="ve" ng-selected="safe_payment.vendor.id == ve.id">{{ve.name}}</option>
+                                        <option ng-repeat="ve in vendors" ng-value="ve" ng-selected="safe_payment.vendor.id == ve.id">{{ve.name_##session.lang##}}</option>
                                     </select>
                                 </div>
                             </div>

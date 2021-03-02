@@ -23,7 +23,7 @@
                             <table class="table hover">
                                 <tr>
                                     <td class="title"> ##word.oppenents_code## </td>
-                                    <td class="center blue"> {{oppenent.code}} </td>
+                                    <td class="center blue userPrint"> {{oppenent.code}} </td>
                                 </tr>
 
                                 <tr>
@@ -54,12 +54,12 @@
 
                                 <tr>
                                     <td class="title">##word.marital_status##</td>
-                                    <td class="center">{{oppenent.marital_status.name}}</td>
+                                    <td class="center">{{oppenent.marital_status.name_##session.lang##}}</td>
                                 </tr>
 
                                 <tr>
                                     <td class="title">##word.military_status##</td>
-                                    <td class="center">{{oppenent.military_status.name}}</td>
+                                    <td class="center">{{oppenent.military_status.name_##session.lang##}}</td>
                                 </tr>
 
                                 <tr>
@@ -118,17 +118,17 @@
                     <table class="table hover">
                         <tr>
                             <td class="title"> ##word.oppenents_gov## </td>
-                            <td class="center"> {{oppenent.gov.name}} </td>
+                            <td class="center"> {{oppenent.gov.name_##session.lang##}} </td>
                         </tr>
 
                         <tr>
                             <td class="title"> ##word.oppenents_city## </td>
-                            <td class="center"> {{oppenent.city.name}} </td>
+                            <td class="center"> {{oppenent.city.name_##session.lang##}} </td>
                         </tr>
 
                         <tr>
                             <td class="title"> ##word.area## </td>
-                            <td class="center"> {{oppenent.area.name}} </td>
+                            <td class="center"> {{oppenent.area.name_##session.lang##}} </td>
                         </tr>
 
                         <tr>

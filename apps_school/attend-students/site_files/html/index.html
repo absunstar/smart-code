@@ -63,9 +63,9 @@
 
                         <td class="center userPrint blue">{{c.code}}</td>
                         <td class="center brown">{{c.date |date:'dd - MM - yyyy'}}</td>
-                        <td class="center">{{c.school_grade.name}}</td>
-                        <td class="center">{{c.students_year.name}}</td>
-                        <td class="center">{{c.hall.name}}</td>
+                        <td class="center">{{c.school_grade.name_##session.lang##}}</td>
+                        <td class="center">{{c.students_year.name_##session.lang##}}</td>
+                        <td class="center">{{c.hall.name_##session.lang##}}</td>
                         <td class="center not-print">
 
                             <i-button x-permissions="attend_students_view || attend_students_manage" type="view"

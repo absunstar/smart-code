@@ -10,7 +10,7 @@
                     </tr>
                     <tr>
                         <td class="title">##word.service_name##</td>
-                        <td class="center">{{service.name}}</td>
+                        <td class="center">{{service.name_##session.lang##}}</td>
                     </tr>
                     <tr>
                         <td class="title">##word.services_price##</td>
@@ -50,7 +50,7 @@
                                     <tr class="bold" ng-repeat="s in service.selectedServicesList">
 
                                         <td>
-                                            <p class="center bold">{{s.name}}</p>
+                                            <p class="center bold">{{s.name_##session.lang##}}</p>
                                         </td>
 
                                         <td>

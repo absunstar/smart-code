@@ -16,7 +16,8 @@
                     <div class="row">
                         <div class="col9">
                             <div class="row">
-                                <i-control class="col2" label="##word.oppenents_code##" ng-model="oppenent.code">
+                                <i-control ng-hide="disabledCode" class="col2" label="##word.code##"
+                                    ng-model="oppenent.code">
                                 </i-control>
 
                                 <i-control class="col4" label="##word.oppenents_name_ar##" ng-model="oppenent.name_ar">
@@ -42,8 +43,8 @@
                             <div class="row">
 
                                 <i-list help-id="" ng-search="_search.$gender_search" class="col2"
-                                    label="##word.gender##" ng-model="oppenent.gender"
-                                    items="genderList" display="##session.lang##">
+                                    label="##word.gender##" ng-model="oppenent.gender" items="genderList"
+                                    display="##session.lang##">
                                 </i-list>
 
                                 <i-list ng-search="marital_status" class="col3" items="maritals_status"
@@ -72,14 +73,15 @@
                     <legend> ##word.oppenents_address_informations## </legend>
                     <div class="row">
                         <i-list class="col3" label="##word.oppenents_gov##" ng-model="oppenent.gov" items="govList"
-                            display="name" ng-change="getCityList(oppenent.gov)" ng-search="_search.$$govNameContact">
+                            display="name_##session.lang##" ng-change="getCityList(oppenent.gov)"
+                            ng-search="_search.$$govNameContact">
                         </i-list>
 
                         <i-list class="col4" label="##word.city##" ng-model="oppenent.city" items="cityList"
-                            ng-change="getAreaList(oppenent.city)" display="name"
+                            ng-change="getAreaList(oppenent.city)" display="name_##session.lang##"
                             ng-search="_search.$oppenent.$city_search"></i-list>
                         <i-list class="col4" label="##word.area##" ng-model="oppenent.area" items="areaList"
-                            display="name" ng-search="_search.$oppenent.$area_search"></i-list>
+                            display="name_##session.lang##" ng-search="_search.$oppenent.$area_search"></i-list>
                         <i-control class="col6" label="##word.oppenents_address##" ng-model="oppenent.address">
                         </i-control>
                     </div>

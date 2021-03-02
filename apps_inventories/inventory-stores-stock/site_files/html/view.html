@@ -15,12 +15,12 @@
 
             <tr>
                 <td class="title">##word.shift##</td>
-                <td class="center">{{store_stock.shift.code}} - {{store_stock.shift.name}}</td>
+                <td class="center">{{store_stock.shift.code}} - {{store_stock.shift.name_##session.lang##}}</td>
             </tr>
 
             <tr>
                 <td class="title">##word.store##</td>
-                <td class="center">{{store_stock.store.name}}</td>
+                <td class="center">{{store_stock.store.name_##session.lang##}}</td>
             </tr>
 
             <tr>
@@ -42,10 +42,10 @@
 
                         <tr ng-repeat="itm in store_stock.items">
                             <td> <br> {{$index + 1}}</td>
-                            <td> <br> {{itm.name}}</td>
+                            <td> <br> {{itm.name_##session.lang##}}</td>
                             <td> <br> {{itm.barcode}}</td>
                             <td>
-                                <p>{{itm.size}}</p>
+                                <p>{{itm.size_ar}}</p>
                                 <p>{{itm.size_en}}</p>
                             </td>
 
@@ -60,7 +60,7 @@
                                     </tr>
 
                                     <tr ng-repeat="i in itm.size_units_list">
-                                        <td> {{i.name}} <b ng-show="i.barcode"> - </b> <b class="blue">{{i.barcode}}</b>
+                                        <td> {{i.name_##session.lang##}} <b ng-show="i.barcode"> - </b> <b class="blue">{{i.barcode}}</b>
                                         </td>
                                         <td class="green"> {{i.store_count}}</td>
                                         <td> {{i.stock_count}}</td>

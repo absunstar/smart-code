@@ -111,7 +111,7 @@ app.controller("safes_payments", function ($scope, $http) {
         data: {
           select: {
             id: 1,
-            name: 1,
+            name_ar: 1, name_en: 1,
             commission: 1,
             currency: 1,
             type: 1,

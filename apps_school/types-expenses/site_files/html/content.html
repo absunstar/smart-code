@@ -7,10 +7,13 @@
                     <div class="row">
                         <i-control ng-hide="disabledCode" class="col2" label="##word.code##"
                             ng-model="types_expenses.code"></i-control>
-                        <i-control class="col4" label="##word.types_expenses_name##" ng-model="types_expenses.name">
+
+                        <i-control class="col4" label="##word.types_expenses_name##" ng-model="types_expenses.name_ar">
                         </i-control>
 
-                        <div class="col4"></div>
+                        <i-control class="col4" label="##word.name_en##" ng-model="types_expenses.name_en">
+                        </i-control>
+
                         <i-checkbox class="col2" label="##word.active##" ng-model="types_expenses.active"></i-checkbox>
                     </div>
 

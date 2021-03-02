@@ -46,7 +46,7 @@
                                         ##word.employees_salary_report_Employee_Name##
                                     </td>
                                     <td>
-                                        <p class="bold"> {{employee_salary_report.employee.name}} </p>
+                                        <p class="bold"> {{employee_salary_report.employee.name_##session.lang##}} </p>
                                     </td>
                                 </tr>
 
@@ -69,7 +69,7 @@
                                         ##word.employees_salary_report_Division##
                                     </td>
                                     <td>
-                                        <p class="bold"> {{employee_salary_report.employee.department.name}} </p>
+                                        <p class="bold"> {{employee_salary_report.employee.department.name_##session.lang##}} </p>
                                     </td>
                                 </tr> -->
                                 <tr>
@@ -78,7 +78,7 @@
                                         ##word.employees_salary_report_job##
                                     </td>
                                     <td>
-                                        <p> {{employee_salary_report.employee.job.name}} </p>
+                                        <p> {{employee_salary_report.employee.job.name_##session.lang##}} </p>
                                     </td>
                                 </tr>
 
@@ -88,7 +88,7 @@
                                         ##word.employees_salary_report_degree##
                                     </td>
                                     <td>
-                                        <p> {{employee_salary_report.employee.degree.name}} </p>
+                                        <p> {{employee_salary_report.employee.degree.name_##session.lang##}} </p>
                                     </td>
                                 </tr>
 
@@ -176,25 +176,25 @@
                         <table class="table bold center hover">
                             <tr>
                                 <td class="white bg_card"> ##word.employee_name## </td>
-                                <td colspan="7" class="center"> {{employee_salary_report.employee.name}}
+                                <td colspan="7" class="center"> {{employee_salary_report.employee.name_##session.lang##}}
                                     <i class="white bg_card">({{employee_salary_report.employee.national_id}})</i>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="white bg_card"> ##word.employee_degree## </td>
-                                <td colspan="2" class="center"> {{employee_salary_report.employee.degree.name}} </td>
+                                <td colspan="2" class="center"> {{employee_salary_report.employee.degree.name_##session.lang##}} </td>
                                 <td class="white bg_card"> ##word.job## </td>
-                                <td colspan="2" class="center"> {{employee_salary_report.employee.job.name}} </td>
+                                <td colspan="2" class="center"> {{employee_salary_report.employee.job.name_##session.lang##}} </td>
                                 <td class="white bg_card"> ##word.salary## </td>
                                 <td colspan="2" class="center"> {{employee_salary_report.employee.salary}} </td>
                             </tr>
                             <tr>
                                 <td class="white bg_card"> ##word.gov## </td>
-                                <td colspan="2" class="center"> {{employee_salary_report.employee.gov.name}} </td>
+                                <td colspan="2" class="center"> {{employee_salary_report.employee.gov.name_##session.lang##}} </td>
                                 <td class="white bg_card"> ##word.city## </td>
-                                <td colspan="2" class="center"> {{employee_salary_report.employee.city.name}} </td>
+                                <td colspan="2" class="center"> {{employee_salary_report.employee.city.name_##session.lang##}} </td>
                                 <td class="white bg_card"> ##word.area## </td>
-                                <td colspan="2" class="center"> {{employee_salary_report.employee.area.name}} </td>
+                                <td colspan="2" class="center"> {{employee_salary_report.employee.area.name_##session.lang##}} </td>
                             </tr>
                             <tr>
                                 <td class="white bg_card"> ##word.address## </td>

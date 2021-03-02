@@ -6,8 +6,10 @@
                 <div class="col9">
                     <i-control ng-hide="disabledCode" class="col2" label="##word.code##"
                     ng-model="vendor_group.code"></i-control>
-                    <i-control v="r" class="col5" label="##word.vendors_group_name##" ng-model="vendor_group.name"></i-control>
-                    <div class="col2"></div>
+                    
+                    <i-control v="r" class="col4" label="##word.vendors_group_name##" ng-model="vendor_group.name_ar"></i-control>
+                    <i-control class="col4" label="##word.name_en##" ng-model="vendor_group.name_en"></i-control>
+                    
                     <i-checkbox class="col2" label="##word.active##" ng-model="vendor_group.active"></i-checkbox>
                 </div>
 

@@ -3,21 +3,21 @@ module.exports = function init(site) {
   let collection_name = 'vendors'
 
   let source = {
-    name: 'Vendors System',
+    en: 'Vendors System',
     ar: ' نظام الموردين'
   }
 
   let image_url = '/images/vendor.png'
   let add_message = {
-    name: 'New Vendors Added',
+    en: 'New Vendors Added',
     ar: 'تم إضافة مورد جديدة'
   }
   let update_message = {
-    name: ' Vendors Updated',
+    en: ' Vendors Updated',
     ar: 'تم تعديل مورد'
   }
   let delete_message = {
-    name: ' Vendors Deleted',
+    en: ' Vendors Deleted',
     ar: 'تم حذف مورد '
   }
 
@@ -31,6 +31,8 @@ module.exports = function init(site) {
           message: add_message,
           value: {
             name: result.doc.name_ar,
+             code: result.doc.code,
+            en: result.doc.name_en,
             ar: result.doc.name_ar
           },
           add: result.doc,
@@ -50,6 +52,8 @@ module.exports = function init(site) {
           message: update_message,
           value: {
             name: result.old_doc.name_ar,
+            code: result.old_doc.code,
+            en: result.old_doc.name_en,
             ar: result.old_doc.name_ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
@@ -70,6 +74,8 @@ module.exports = function init(site) {
           message: delete_message,
           value: {
             name: result.doc.name_ar,
+             code: result.doc.code,
+            en: result.doc.name_en,
             ar: result.doc.name_ar
           },
           delete: result.doc,

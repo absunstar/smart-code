@@ -3,13 +3,13 @@
     <div class="row hide">
         <div class="col6 right">
             <div class="row right" ng-repeat="i in defaultSettings.printer_program.invoice_header">
-                <p class=" p_header bold right">{{i.name}}</p>
+                <p class=" p_header bold right">{{i.name_##session.lang##}}</p>
             </div>
         </div>
 
         <div class="col6 left">
             <div class="row left" ng-repeat="i in defaultSettings.printer_program.invoice_header2">
-                <p class=" p_header bold left">{{i.name}}</p>
+                <p class=" p_header bold left">{{i.name_##session.lang##}}</p>
             </div>
         </div>
     </div>
@@ -42,7 +42,7 @@
             <tr>
                 <td>
                     <b class="indigoD"> ##word.store## : </b>
-                    <b>{{store_in.store.name}}</b>
+                    <b>{{store_in.store.name_##session.lang##}}</b>
                 </td>
 
                 <td class="center" ng-show="store_in.vendor.id">
@@ -62,7 +62,7 @@
                         </tr>
                         <tr ng-repeat="tax in store_in.taxes">
                             <td>
-                                <p class="text-center"> {{tax.name}} </p>
+                                <p class="text-center"> {{tax.name_##session.lang##}} </p>
                             </td>
                             <td>
                                 <p class="text-center"> {{tax.value}} % </p>
@@ -81,7 +81,7 @@
                             <th>##word.stores_in_discount_value##</th>
                         </tr>
                         <tr ng-repeat="discount in store_in.discountes">
-                            <td>{{discount.name}}</td>
+                            <td>{{discount.name_##session.lang##}}</td>
                             <td>
                                 <p class="text-center" ng-show="discount.type == 'number'"> {{discount.value}} % </p>
                                 <p class="text-center" ng-show="discount.type == 'percent'"> {{discount.value}}
@@ -149,11 +149,11 @@
                 </td>
 
                 <td class="center">
-                    {{itm.name}}
+                    {{itm.name_##session.lang##}}
                 </td>
 
                 <td class="center ">
-                    {{itm.unit.name}}
+                    {{itm.unit.name_##session.lang##}}
                 </td>
 
                 <td class="center ">
@@ -222,7 +222,7 @@
     <br>
 
     <div class="row hide" ng-repeat="i in defaultSettings.printer_program.invoice_footer">
-        <p class="p_footer center">{{i.name}}</p>
+        <p class="p_footer center">{{i.name_##session.lang##}}</p>
     </div>
 
 

@@ -36,7 +36,7 @@
                                 <tr>
                                     <td class="title">##word.delegate##</td>
                                     <td>
-                                        <h3 class="center bold">{{delegate.name}}</h3>
+                                        <h3 class="center bold">{{delegate.name_##session.lang##}}</h3>
                                     </td>
                                 </tr>
 
@@ -100,7 +100,7 @@
                         <td class="blue"> {{c.shift.code}} </td>
                         <td class="blue"> {{c.number}} </td>
                         <td> {{c.type.##session.lang##}} </td>
-                        <td ng-hide="delegate.id"> {{c.delegate.name}} </td>
+                        <td ng-hide="delegate.id"> {{c.delegate.name_##session.lang##}} </td>
                         <td class="red"> {{c.total_tax ||0}} </td>
                         <td> {{c.total_discount ||0}} </td>
                         <td>{{c.total_value}}</td>

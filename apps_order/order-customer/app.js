@@ -12,7 +12,7 @@ module.exports = function init(site) {
         if (_doc.book_list) _doc.book_list.forEach(_items => {
           if (objectOrder.sizes_list) objectOrder.sizes_list.forEach(_size => {
             if (_items.barcode == _size.barcode) {
-              _items.size = _size.size
+              _items.size_ar = _size.size_ar
               _items.size_en = _size.size_en
               _items.name = _size.name
             }
@@ -484,13 +484,19 @@ module.exports = function init(site) {
     if (search) {
       where.$or = []
       where.$or.push({
-        'table.name': site.get_RegExp(search, "i")
+        'table.name_ar': site.get_RegExp(search, "i")
+      })
+      where.$or.push({
+        'table.name_en': site.get_RegExp(search, "i")
       })
       where.$or.push({
         'customer.name_ar': site.get_RegExp(search, "i")
       })
       where.$or.push({
-        'tables_group.name': site.get_RegExp(search, "i")
+        'tables_group.name_en': site.get_RegExp(search, "i")
+      })
+      where.$or.push({
+        'tables_group.name_en': site.get_RegExp(search, "i")
       })
     }
 

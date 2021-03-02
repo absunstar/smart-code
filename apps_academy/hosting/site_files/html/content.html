@@ -62,7 +62,7 @@
                     </i-list>
 
                     <i-list class="col3 " ng-search="_search.$currency_search"
-                        ng-model="hosting.currency" ng-change="getSafeByType(hosting) ; calc(hosting)"
+                    display="name_##session.lang##" ng-model="hosting.currency" ng-change="getSafeByType(hosting) ; calc(hosting)"
                         items="currenciesList" label="##word.currency##">
                     </i-list>
 
@@ -71,7 +71,7 @@
                     </i-control>
 
                     <i-list ng-search="_search.$order_invoice.$safes_search" class="col4" ng-model="hosting.safe"
-                        label="##word.safe##" items="safesList">
+                    display="name_##session.lang##" label="##word.safe##" items="safesList">
                     </i-list>
                 </div>
 

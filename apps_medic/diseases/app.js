@@ -3,10 +3,11 @@ module.exports = function init(site) {
 
 
   site.on('[company][created]', doc => {
-    if (site.feature('gym') || site.feature('academy')|| site.feature('school') || site.feature('medical'))
+    if (site.feature('gym') || site.feature('academy') || site.feature('school') || site.feature('medical'))
       $disease.add({
         code: "1-Test",
-        name: "مرض إفتراضي",
+        name_ar: "مرض إفتراضي",
+        name_en: "Default disease",
         image_url: '/images/disease.png',
         company: {
           id: doc.id,
@@ -64,10 +65,12 @@ module.exports = function init(site) {
      */
     $disease.find({
       'company.id': site.get_company(req).id,
-/*       'branch.code': site.get_branch(req).code,
- */      where: {
-        'name': disease_doc.name
-      }
+      $or: [{
+        'name_ar': disease_doc.name_ar
+      },{
+        'name_en': disease_doc.name_en
+      }]
+    
     }, (err, doc) => {
       if (!err && doc) {
 
@@ -124,7 +127,7 @@ module.exports = function init(site) {
     })
 
     if (disease_doc.id) {
-    
+
       $disease.edit({
         where: {
           id: disease_doc.id
@@ -209,7 +212,7 @@ module.exports = function init(site) {
     let response = {
       done: false
     }
-          
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)
@@ -224,7 +227,7 @@ module.exports = function init(site) {
     }
 
     where['company.id'] = site.get_company(req).id
-   
+
     $disease.findMany({
       select: req.body.select || {},
       where: where,

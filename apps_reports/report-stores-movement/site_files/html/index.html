@@ -44,14 +44,14 @@
                             <tr>
                                 <td class="title">##word.unit##</td>
                                 <td>
-                                    <p class="center">{{search.unit.name}}</p>
+                                    <p class="center">{{search.unit.name_##session.lang##}}</p>
                                 </td>
                             </tr>
 
                             <tr>
                                 <td class="title">##word.store##</td>
                                 <td>
-                                    <p class="center">{{search.store.name}}</p>
+                                    <p class="center">{{search.store.name_##session.lang##}}</p>
                                 </td>
                             </tr>
 
@@ -77,10 +77,10 @@
                         </tr>
 
                         <tr ng-repeat="c in list | orderBy : '-id'">
-                            <td> {{c.item_group.name}} </td>
-                            <td> {{c.name}} </td>
+                            <td> {{c.item_group.name_##session.lang##}} </td>
+                            <td> {{c.name_##session.lang##}} </td>
                             <td>
-                                <p>{{c.size}}</p>
+                                <p>{{c.size_ar}}</p>
                                 <p>{{c.size_en}}</p>
                             </td>
                             <td > {{c.barcode}} </td>

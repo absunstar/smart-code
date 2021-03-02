@@ -146,17 +146,19 @@ module.exports = function init(site) {
 
             let paid_value = {
               value: response.doc.baid_go,
-              sourceName: response.doc.student_paid.name,
-              company : response.doc.company,
-              branch : response.doc.branch,
+              source_name_ar: response.doc.student_paid.name_ar,
+              source_name_en: response.doc.student_paid.name_en,
+              company: response.doc.company,
+              branch: response.doc.branch,
               date: response.doc.date_paid,
               shift: {
                 id: result.doc.shift.id,
                 code: result.doc.shift.code,
-                name: result.doc.shift.name
+                name_ar: result.doc.shift.name_ar, name_en: result.doc.shift.name_en
               },
               transition_type: 'in',
-              operation: 'دفعة إستضافة',
+              operation: { ar: 'دفعة إستضافة', en: 'Pay Hosting' },
+
               safe: response.doc.safe
             }
             site.quee('[amounts][safes][+]', paid_value)
@@ -235,7 +237,7 @@ module.exports = function init(site) {
     let response = {
       done: false
     }
-          
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)

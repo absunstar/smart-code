@@ -64,17 +64,17 @@
 
                                 <tr ng-show="order_management.table">
                                     <td class="title"> ##word.tables_group## </td>
-                                    <td class="center"> {{order_management.table.tables_group.name}} </td>
+                                    <td class="center"> {{order_management.table.tables_group.name_##session.lang##}} </td>
                                 </tr>
 
                                 <tr ng-show="order_management.table">
                                     <td class="title"> ##word.table## </td>
-                                    <td class="center"> {{order_management.table.name}} </td>
+                                    <td class="center"> {{order_management.table.name_##session.lang##}} </td>
                                 </tr>
 
                                 <tr ng-show="order_management.delivery_employee.id">
                                     <td class="title"> ##word.delivery_employee## </td>
-                                    <td class="center"> {{order_management.delivery_employee.name}} </td>
+                                    <td class="center"> {{order_management.delivery_employee.name_##session.lang##}} </td>
                                 </tr>
 
                                 <tr>
@@ -110,7 +110,7 @@
 
                                     <tr ng-repeat="c in order_management.payment_list">
                                         <td class="center brown">{{c.date | date : 'dd / MM / yyyy'}}</td>
-                                        <td class="center blue">{{c.safe.name}}
+                                        <td class="center blue">{{c.safe.name_##session.lang##}}
                                         </td>
                                         <td class="center green">{{c.paid_up}}</td>
                                     </tr>
@@ -139,15 +139,15 @@
                             <th x-features="restaurant">##word.actions##</th>
                         </tr>
                         <tr ng-repeat="c in order_management.book_list">
-                            <td class="center title">{{c.name}}</td>
+                            <td class="center title">{{c.name_##session.lang##}}</td>
                             <td class="center title">
-                                <p>{{c.size}}</p>
+                                <p>{{c.size_ar}}</p>
                                 <p>{{c.size_en}}</p>
                             </td>
                             <td class="center blue">{{c.count}}</td>
                             <td class="center">{{c.price}}</td>
                             <td class="center green">{{c.total}}</td>
-                            <td x-features="restaurant" class="center">{{c.kitchen.name}}</td>
+                            <td x-features="restaurant" class="center">{{c.kitchen.name_##session.lang##}}</td>
                             <td class="center red">{{c.discount.value}}
                                 <b class="red" ng-show="c.discount.type =='number'">$</b>
                                 <b class="red" ng-show="c.discount.type =='percent'">%</b>

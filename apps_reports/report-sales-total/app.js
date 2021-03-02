@@ -62,9 +62,14 @@ module.exports = function init(site) {
       delete where['item_group']
     }
 
-    if (where['size']) {
-      where['items.size'] = site.get_RegExp(where['size'], 'i')
-      delete where['size']
+    if (where['size_ar']) {
+      where['items.size_ar'] = site.get_RegExp(where['size_ar'], 'i')
+      delete where['size_ar']
+    }
+
+    if (where['size_en']) {
+      where['items.size_en'] = site.get_RegExp(where['size_en'], 'i')
+      delete where['size_en']
     }
 
     if (where['barcode']) {

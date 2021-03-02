@@ -320,8 +320,8 @@ app.controller("order_management", function ($scope, $http, $timeout) {
     if ($scope.account_invoices.table)
       obj_print.data.push({
         type: 'text2',
-        value: $scope.account_invoices.table.name,
-        value2: $scope.account_invoices.table.tables_group.name
+        value: $scope.account_invoices.table.name_ar,
+        value2: $scope.account_invoices.table.tables_group.name_ar
       });
 
     if ($scope.account_invoices.current_book_list && $scope.account_invoices.current_book_list.length > 0) {
@@ -354,7 +354,7 @@ app.controller("order_management", function ($scope, $http, $timeout) {
         obj_print.data.push({
           type: 'item',
           value: _current_book_list.count,
-          value2: _current_book_list.size,
+          value2: _current_book_list.size_ar,
           value3: _current_book_list.total
         })
       });
@@ -497,7 +497,7 @@ app.controller("order_management", function ($scope, $http, $timeout) {
         data: {
           select: {
             id: 1,
-            name: 1,
+            name_ar: 1, name_en: 1,
             commission: 1,
             currency: 1,
             type: 1,
@@ -638,7 +638,7 @@ app.controller("order_management", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/tables_group/all",
       data: {
-        select: { id: 1, name: 1, code: 1 },
+        select: { id: 1, name_ar: 1, name_en: 1, code: 1 },
         where: where
       }
     }).then(
@@ -663,7 +663,7 @@ app.controller("order_management", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/tables/all",
       data: {
-        select: { id: 1, name: 1, code: 1, active: 1, busy: 1, tables_group: 1, image_url: 1 },
+        select: { id: 1, name_ar: 1, name_en: 1, code: 1, active: 1, busy: 1, tables_group: 1, image_url: 1 },
 
         where: {
           'tables_group.id': tables_group.id,
@@ -819,8 +819,8 @@ app.controller("order_management", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
-          minor_currency: 1,
+          name_ar: 1, name_en: 1,
+          minor_currency_ar: 1, minor_currency_en: 1,
           ex_rate: 1,
           code: 1
         },
@@ -934,7 +934,7 @@ app.controller("order_management", function ($scope, $http, $timeout) {
       url: "/api/shifts/get_open_shift",
       data: {
         where: { active: true },
-        select: { id: 1, name: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
+        select: { id: 1, name_ar: 1, name_en: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
       }
     }).then(
       function (response) {

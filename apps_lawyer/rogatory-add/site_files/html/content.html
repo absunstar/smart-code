@@ -5,10 +5,15 @@
             <div class="row">
                 <div class="col9">
                     <div class="row">
+
+                        <i-control ng-hide="disabledCode" class="col2" label="##word.code##"
+                            ng-model="rogatory_add.code">
+                        </i-control>
+
                         <i-date2 ng-model="rogatory_add.date" class="col4" label="##word.rogatory_start_date##">
                         </i-date2>
 
-                        <div class="col6"></div>
+                        <div class="col4"></div>
                         <i-checkbox class="col2" label="##word.active##" ng-model="rogatory_add.active"></i-checkbox>
                     </div>
 
@@ -18,7 +23,7 @@
 
                         <i-control class="col2" label="##word.rogatory_number##" ng-model="rogatory_add.number">
                         </i-control>
-                        
+
                         <i-control class="col2" type="number" label="##word.rogatory_year##"
                             ng-model="rogatory_add.year">
                         </i-control>

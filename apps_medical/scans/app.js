@@ -23,7 +23,8 @@ module.exports = function init(site) {
     $scans.add(
       {
         code: "1-Test",
-        name: 'أشعة إفتراضي',
+        name_ar: 'أشعة إفتراضي',
+        name_en: "Default Scan",
         price: 1,
         immediate: true,
         image_url: '/images/scans.png',
@@ -90,9 +91,13 @@ module.exports = function init(site) {
 
     $scans.find({
       where: {
-        'name': scans_doc.name,
+     
+        $or: [{
+          'name_ar': scans_doc.name_ar
+        },{
+          'name_en': scans_doc.name_en
+        }],
         'company.id': site.get_company(req).id,
-        'branch.code': site.get_branch(req).code,
       }
     }, (err, doc) => {
       if (!err && doc) {
@@ -219,11 +224,16 @@ module.exports = function init(site) {
 
 
     where['company.id'] = site.get_company(req).id
-    where['branch.code'] = site.get_branch(req).code
+    // where['branch.code'] = site.get_branch(req).code
 
-    if (where['name']) {
-      where['name'] = new RegExp(where['name'], "i");
+    if (where['name_ar']) {
+      where['name_ar'] = new RegExp(where['name_ar'], "i");
     }
+
+    if (where['name_en']) {
+      where['name_en'] = new RegExp(where['name_en'], "i");
+    }
+
 
     $scans.findMany({
       select: req.body.select || {},

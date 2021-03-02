@@ -35,7 +35,7 @@
 
                                 <tr>
                                     <td class="title">##word.name##</td>
-                                    <td class="center">{{medical_insurance_company.name}}</td>
+                                    <td class="center">{{medical_insurance_company.name_##session.lang##}}</td>
                                 </tr>
 
                                 <tr>
@@ -60,11 +60,11 @@
 
                                     <tr>
                                         <td class="title">##word.gov##</td>
-                                        <td class="center">{{medical_insurance_company.gov.name}}</td>
+                                        <td class="center">{{medical_insurance_company.gov.name_##session.lang##}}</td>
                                     </tr>
                                     <tr>
                                         <td class="title">##word.city##</td>
-                                        <td class="center">{{medical_insurance_company.city.name}}</td>
+                                        <td class="center">{{medical_insurance_company.city.name_##session.lang##}}</td>
                                     </tr>
                                     <tr>
                                         <td class="title">##word.address##</td>
@@ -184,7 +184,7 @@
                             <th>##word.medical_insurance_companies_need_approved##</th>
                         </tr>
                         <tr ng-repeat="s in medical_insurance_company.insurance_slides_list">
-                            <td class="center">{{s.name}}</td>
+                            <td class="center">{{s.name_##session.lang##}}</td>
                             <td class="center blue">{{s.value}}</td>
                             <td class="center blue">{{s.customer_will_pay}} %</td>
                             <td>
@@ -215,7 +215,7 @@
 
                                 </tr>
                                 <tr ng-repeat="black_analyse in medical_insurance_company.black_analyse_list">
-                                    <td class="center blue">{{black_analyse.analyse.name}}</td>
+                                    <td class="center blue">{{black_analyse.analyse.name_##session.lang##}}</td>
                                 </tr>
                             </table>
                         </div>
@@ -228,7 +228,7 @@
                                 </tr>
 
                                 <tr ng-repeat="black_scan in medical_insurance_company.black_scan_list">
-                                    <td class="center blue">{{black_scan.scan.name}}</td>
+                                    <td class="center blue">{{black_scan.scan.name_##session.lang##}}</td>
                                 </tr>
                             </table>
                         </div>
@@ -244,7 +244,7 @@
 
                                 </tr>
                                 <tr ng-repeat="black_medicine in medical_insurance_company.black_medicine_list">
-                                    <td class="center blue">{{black_medicine.medicine.name}}</td>
+                                    <td class="center blue">{{black_medicine.medicine.name_##session.lang##}}</td>
                                 </tr>
 
                             </table>
@@ -258,7 +258,7 @@
                                 </tr>
 
                                 <tr ng-repeat="black_operation in medical_insurance_company.black_operation_list">
-                                    <td class="center blue">{{black_operation.operation.name}}</td>
+                                    <td class="center blue">{{black_operation.operation.name_##session.lang##}}</td>
                                 </tr>
                             </table>
                         </div>
@@ -281,7 +281,7 @@
 
                                 </tr>
                                 <tr ng-repeat="approve_analyse in medical_insurance_company.approve_analyse_list">
-                                    <td class="center blue">{{approve_analyse.analyse.name}}</td>
+                                    <td class="center blue">{{approve_analyse.analyse.name_##session.lang##}}</td>
                                 </tr>
                             </table>
                         </div>
@@ -294,7 +294,7 @@
                                 </tr>
 
                                 <tr ng-repeat="approve_scan in medical_insurance_company.approve_scan_list">
-                                    <td class="center blue">{{approve_scan.scan.name}}</td>
+                                    <td class="center blue">{{approve_scan.scan.name_##session.lang##}}</td>
                                 </tr>
                             </table>
                         </div>
@@ -310,7 +310,7 @@
 
                                 </tr>
                                 <tr ng-repeat="approve_medicine in medical_insurance_company.approve_medicine_list">
-                                    <td class="center blue">{{approve_medicine.medicine.name}}</td>
+                                    <td class="center blue">{{approve_medicine.medicine.name_##session.lang##}}</td>
                                 </tr>
 
                             </table>
@@ -324,7 +324,7 @@
                                 </tr>
 
                                 <tr ng-repeat="approve_operation in medical_insurance_company.approve_operation_list">
-                                    <td class="center blue">{{approve_operation.operation.name}}</td>
+                                    <td class="center blue">{{approve_operation.operation.name_##session.lang##}}</td>
                                 </tr>
                             </table>
                         </div>
@@ -353,7 +353,7 @@
                     <table class="table hover bold">
                         <tr>
                             <td class="title">##word.email##</td>
-                            <td class="center">{{medical_insurance_company.username}}</td>
+                            <td class="center">{{medical_insurance_company.username_##session.lang##}}</td>
                         </tr>
                         <tr>
                             <td class="title">##word.password##</td>

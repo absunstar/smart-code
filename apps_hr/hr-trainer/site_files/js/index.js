@@ -313,7 +313,7 @@ app.controller("trainer", function ($scope, $http, $timeout) {
           active: true
         },
         select: {
-          id: 1, name: 1,
+          id: 1, name_ar: 1, name_en: 1,
           code: 1
         }
       }
@@ -342,7 +342,7 @@ app.controller("trainer", function ($scope, $http, $timeout) {
           active: true
         },
         select: {
-          id: 1, name: 1,
+          id: 1, name_ar: 1, name_en: 1,
           code: 1
         }
       }
@@ -392,7 +392,7 @@ app.controller("trainer", function ($scope, $http, $timeout) {
       url: "/api/maritals_status/all",
       data: {
         select: {
-          id: 1, name: 1,
+          id: 1, name_ar: 1, name_en: 1,
           code: 1
         }
       }
@@ -417,7 +417,7 @@ app.controller("trainer", function ($scope, $http, $timeout) {
       url: "/api/militaries_status/all",
       data: {
         select: {
-          id: 1, name: 1,
+          id: 1, name_ar: 1, name_en: 1,
           code: 1
         }
       }
@@ -468,7 +468,7 @@ app.controller("trainer", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           code: 1
         },
         where: {

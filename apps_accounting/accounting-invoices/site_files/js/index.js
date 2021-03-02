@@ -705,8 +705,8 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
-          minor_currency: 1,
+          name_ar: 1, name_en: 1,
+          minor_currency_ar: 1, minor_currency_en: 1,
           ex_rate: 1,
           code: 1
         },
@@ -771,7 +771,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
         data: {
           select: {
             id: 1,
-            name: 1,
+            name_ar: 1, name_en: 1,
             commission: 1,
             currency: 1,
             type: 1,
@@ -812,7 +812,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           commission: 1,
           currency: 1,
           type: 1,
@@ -1145,8 +1145,8 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     if ($scope.account_invoices.table)
       obj_print.data.push({
         type: 'text2',
-        value: $scope.account_invoices.table.name,
-        value2: $scope.account_invoices.table.tables_group.name
+        value: $scope.account_invoices.table.name_ar,
+        value2: $scope.account_invoices.table.tables_group.name_ar
       });
 
     if ($scope.account_invoices.current_book_list && $scope.account_invoices.current_book_list.length > 0) {
@@ -1173,7 +1173,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
         obj_print.data.push({
           type: 'invoice-item',
           count: _current_book_list.count,
-          name: _current_book_list.size,
+          name: _current_book_list.size_ar,
           price: site.addSubZero(_current_book_list.total, 2)
         });
 
@@ -1432,7 +1432,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       url: "/api/in_out_names/all",
       data: {
         where: { in: true },
-        select: { id: 1, name: 1, code: 1 }
+        select: { id: 1, name_ar: 1, name_en: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -1454,7 +1454,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       url: "/api/in_out_names/all",
       data: {
         where: { out: true },
-        select: { id: 1, name: 1, code: 1 }
+        select: { id: 1, name_ar: 1, name_en: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -1550,7 +1550,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           code: 1
         }
       }
@@ -1572,7 +1572,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           types_expenses_list: 1,
           code: 1
         },
@@ -1653,7 +1653,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       url: "/api/shifts/get_open_shift",
       data: {
         where: { active: true },
-        select: { id: 1, name: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
+        select: { id: 1, name_ar: 1, name_en: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
       }
     }).then(
       function (response) {

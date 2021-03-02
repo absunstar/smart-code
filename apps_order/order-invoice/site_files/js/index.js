@@ -63,7 +63,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           code: 1,
           active: 1,
           busy: 1,
@@ -91,7 +91,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
               data: {
                 select: {
                   id: 1,
-                  name: 1,
+                  name_ar: 1, name_en: 1,
                   code: 1,
                   active: 1,
                   tables_group: 1,
@@ -476,8 +476,8 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       if (_order_invoice.table)
         _kitchen.data.push({
           type: 'text2',
-          value2: _order_invoice.table.name,
-          value: _order_invoice.table.tables_group.name
+          value2: _order_invoice.table.name_ar,
+          value: _order_invoice.table.tables_group.name_ar
         });
 
       _kitchen.data.push({
@@ -509,7 +509,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
           _kitchen.has_items = true;
           _kitchen.data.push({
             type: 'text3',
-            value: item_book.size,
+            value: item_book.size_ar,
             value2: item_book.count,
             value3: item_book.notes || ' ... '
           });
@@ -704,8 +704,8 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     if (obj.table)
       obj_print.data.push({
         type: 'invoice-table',
-        name: obj.table.tables_group.name,
-        value: obj.table.name
+        name: obj.table.tables_group.name_ar,
+        value: obj.table.name_ar
       });
 
     if (obj.book_list && obj.book_list.length > 0) {
@@ -731,7 +731,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         obj_print.data.push({
           type: 'invoice-item',
           count: _current_book_list.count,
-          name: _current_book_list.size,
+          name: _current_book_list.size_ar,
           price: site.addSubZero(_current_book_list.total, 2)
         });
         if (i < obj.book_list.length - 1) {
@@ -814,7 +814,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       obj_print.data.push(
         {
           type: 'text2',
-          value2: obj.currency.name,
+          value2: obj.currency.name_ar,
           value: "Currency"
         });
 
@@ -1045,7 +1045,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           image_url: 1,
           color: 1,
           code: 1
@@ -1077,8 +1077,8 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
-          minor_currency: 1,
+          name_ar: 1, name_en: 1,
+          minor_currency_ar: 1, minor_currency_en: 1,
           ex_rate: 1,
           code: 1
         },
@@ -1137,7 +1137,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         data: {
           select: {
             id: 1,
-            name: 1,
+            name_ar: 1, name_en: 1,
             commission: 1,
             currency: 1,
             type: 1,
@@ -1167,7 +1167,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           type: 1,
           ip_device: 1,
           Port_device: 1,
@@ -1198,7 +1198,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           printer_path: 1,
           code: 1
         }
@@ -1226,7 +1226,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         select: {
           code: 1,
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           value: 1,
           code: 1
         }
@@ -1254,7 +1254,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         select: {
           code: 1,
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           value: 1,
           type: 1,
           code: 1
@@ -1365,7 +1365,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           code: 1
         }
       }
@@ -1391,7 +1391,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           code: 1,
           from_date: 1,
           from_time: 1,
@@ -1428,7 +1428,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           code: 1
         }
       }
@@ -1458,7 +1458,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           code: 1
         }
       }
@@ -1530,7 +1530,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           code: 1
         }
       }
@@ -1566,7 +1566,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           code: 1,
           active: 1,
           busy: 1,
@@ -1655,7 +1655,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     order.book_list.forEach(item => {
       $scope.order_invoice.book_list.forEach(el => {
 
-        if (item.size == el.size && item.barcode == el.barcode) {
+        if (item.size_ar == el.size_ar && item.barcode == el.barcode) {
           exist = true;
 
           el.count = el.count + item.count;
@@ -1862,7 +1862,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     };
 
     $scope.order_invoice.book_list.forEach(el => {
-      if (item.size == el.size && item.barcode == el.barcode && !el.printed) {
+      if (item.size_ar == el.size_ar && item.barcode == el.barcode && !el.printed) {
         exist = true;
         el.total += (item.price - item.discount.value);
         el.count += 1;
@@ -1884,7 +1884,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
           name: item.name,
           store: item.store,
           barcode: item.barcode,
-          size: item.size,
+          size_ar: item.size_ar,
           size_en: item.size_en,
           item_group: item.item_group,
           size_units_list: item.size_units_list,
@@ -2017,7 +2017,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     } else {
       $scope.order_invoice.discountes = $scope.order_invoice.discountes || [];
       $scope.order_invoice.discountes.push({
-        name: $scope.discount.name,
+        name_ar: $scope.discount.name_ar, name_en: $scope.discount.name_en,
         value: $scope.discount.value,
         type: $scope.discount.type
       });
@@ -2033,18 +2033,18 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     };
   };
 
-  $scope.calcSize = function (size) {
+  $scope.calcSize = function (_size) {
     $scope.error = '';
     $timeout(() => {
-      if (!size.count) size.count = 0;
-      if (!size.price) size.price = 0;
+      if (!_size.count) _size.count = 0;
+      if (!_size.price) _size.price = 0;
       let discount = 0;
-      if (size.discount.type == 'number')
-        discount = size.discount.value * size.count;
-      else if (size.discount.type == 'percent')
-        discount = size.discount.value * (size.price * size.count) / 100;
+      if (_size.discount.type == 'number')
+        discount = _size.discount.value * _size.count;
+      else if (_size.discount.type == 'percent')
+        discount = _size.discount.value * (_size.price * _size.count) / 100;
 
-      size.total = (site.toNumber(size.price) * site.toNumber(size.count)) - discount;
+      _size.total = (site.toNumber(_size.price) * site.toNumber(_size.count)) - discount;
 
       $scope.calc($scope.order_invoice);
     }, 100);
@@ -2220,7 +2220,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           code: 1,
           from_date: 1,
           from_time: 1,

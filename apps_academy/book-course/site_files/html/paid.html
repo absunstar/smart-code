@@ -15,7 +15,7 @@
                 <i-control class="col2" type="number" ng-model="book_course.paid" label="##word.paid##"></i-control>
 
                 <i-list ng-search="book_course.$safes_search" class="col3" ng-model="book_course.safe"
-                    label="##word.safe##" items="safesList"></i-list>
+                display="name_##session.lang##"  label="##word.safe##" items="safesList"></i-list>
 
                 <i-button type="update" label="##word.paid_payback##" ng-click="showAccept()"></i-button>
 

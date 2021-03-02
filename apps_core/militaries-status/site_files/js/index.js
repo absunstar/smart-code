@@ -8,7 +8,7 @@ app.controller("militaries_status", function ($scope, $http) {
       method: "POST",
       url: "/api/militaries_status/all",
       data: {
-        select: { id: 1, name: 1 ,code:1}
+        select: { id: 1, name_ar: 1, name_en: 1 ,code:1}
       }
     }).then(
       function (response) {

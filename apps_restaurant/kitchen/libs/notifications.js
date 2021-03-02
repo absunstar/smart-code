@@ -3,21 +3,21 @@ module.exports = function init(site) {
   let collection_name = 'kitchen'
 
   let source = {
-    name: 'Kitchen System',
+    ثى: 'Kitchen System',
     ar: 'نظام المطابخ'
   }
 
   let image_url = '/images/kitchen.png'
   let add_message = {
-    name: 'New Kitchen Added',
+    ثى: 'New Kitchen Added',
     ar: 'تم إضافة مطبخ جديد'
   }
   let update_message = {
-    name: ' Kitchen Updated',
+    ثى: ' Kitchen Updated',
     ar: 'تم تعديل مطبخ'
   }
   let delete_message = {
-    name: ' Kitchen Deleted',
+    ثى: ' Kitchen Deleted',
     ar: 'تم حذف مطبخ '
   }
 
@@ -30,7 +30,9 @@ module.exports = function init(site) {
           message: add_message,
           value: {
             name: result.doc.name,
-            ar: result.doc.name
+            code: result.doc.code,
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
           },
           add: result.doc,
           action: 'add'
@@ -49,7 +51,9 @@ module.exports = function init(site) {
           message: update_message,
           value: {
             name: result.old_doc.name,
-            ar: result.old_doc.name
+            code: result.old_doc.code,
+            en: result.old_doc.name_en,
+            ar: result.old_doc.name_ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
@@ -69,7 +73,9 @@ module.exports = function init(site) {
           message: delete_message,
           value: {
             name: result.doc.name,
-            ar: result.doc.name
+            code: result.doc.code,
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
           },
           delete: result.doc,
           action: 'delete'

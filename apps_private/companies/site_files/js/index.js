@@ -49,9 +49,32 @@ app.controller("companies", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
+
           site.hideModal('#companyAddModal');
           $scope.list.push(response.data.doc);
           $scope.count += 1;
+
+          $scope.busy = true;
+          $http({
+            method: "POST",
+            url: "/api/numbering/get",
+            data: {
+              reset: true,
+              doc: response.data.doc
+
+            }
+          }).then(
+            function (response) {
+              $scope.busy = false;
+              if (response.data.done) {
+              }
+            },
+            function (err) {
+              $scope.busy = false;
+              $scope.error = err;
+            }
+          )
+
         } else {
           $scope.error = response.data.error;
           if (response.data.error.like('*ername must be typed correctly*')) {
@@ -198,7 +221,7 @@ app.controller("companies", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           code: 1
         }
       }
@@ -223,7 +246,7 @@ app.controller("companies", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           code: 1
         }
       }
@@ -276,7 +299,7 @@ app.controller("companies", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           code: 1
         },
         where: {
@@ -306,7 +329,7 @@ app.controller("companies", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           code: 1
         }
       }

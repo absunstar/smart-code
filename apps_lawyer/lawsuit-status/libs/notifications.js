@@ -3,22 +3,22 @@ module.exports = function init(site) {
   let collection_name = 'lawsuit_status'
 
   let source = {
-    name: 'LawSuit Status System',
+    en: 'LawSuit Status System',
     ar: ' نظام حالات الدعاوي'
   }
 
   let image_url = '/images/lawsuit_status.png'
 
   let add_message = {
-    name: 'New LawSuit Status Added',
+    en: 'New LawSuit Status Added',
     ar: 'تم إضافة حالة دعوى جديدة'
   }
   let update_message = {
-    name: ' LawSuit Status Updated',
+    en: ' LawSuit Status Updated',
     ar: 'تم تعديل حالة دعوى'
   }
   let delete_message = {
-    name: ' LawSuit Status Deleted',
+    en: ' LawSuit Status Deleted',
     ar: 'تم حذف حالة دعوى '
   }
 
@@ -32,7 +32,9 @@ module.exports = function init(site) {
           message: add_message,
           value: {
             name: result.doc.name,
-            ar: result.doc.name
+             code: result.doc.code,
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
           },
           add: result.doc,
           action: 'add'
@@ -51,7 +53,9 @@ module.exports = function init(site) {
           message: update_message,
           value: {
             name: result.old_doc.name,
-            ar: result.old_doc.name
+            code: result.old_doc.code,
+            en: result.old_doc.name_en,
+            ar: result.old_doc.name_ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
@@ -71,7 +75,9 @@ module.exports = function init(site) {
           message: delete_message,
           value: {
             name: result.doc.name,
-            ar: result.doc.name
+             code: result.doc.code,
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
           },
           delete: result.doc,
           action: 'delete'

@@ -53,7 +53,7 @@
                                             </i-control>
                                             <!--  <i-list class="col6" label="##word.companies_activity##"
                                             ng-model="company.activity" items="companisActivitiesList"
-                                            display="name" ng-search="_search.$company_activity_search">
+                                            display="name_##session.lang##" ng-search="_search.$company_activity_search">
                                         </i-list> -->
                                         </div>
 
@@ -129,10 +129,10 @@
 
                                     <div class="row">
                                         <i-list class="col3" label="##word.companies_gov##" ng-model="branch.gov"
-                                            ng-change="getCityList(branch.gov)" items="govList" display="name"></i-list>
+                                            ng-change="getCityList(branch.gov)" items="govList" display="name_##session.lang##"></i-list>
 
                                         <i-list class="col3" label="##word.companies_city##" ng-model="branch.city"
-                                            items="cityList" display="name"></i-list>
+                                            items="cityList" display="name_##session.lang##"></i-list>
 
                                         <i-control class="col6" label="##word.companies_address##"
                                             ng-model="branch.address">
@@ -230,8 +230,8 @@
                                     </i-control>
                                 </div>
                                 <div class="row">
-                                    <i ng-show="company.host" class="grayDark bold">{{company.username}}@{{company.host}}</i>
-                                    <i ng-hide="company.host" class="grayDark bold">{{company.username}}@examble.com</i>
+                                    <i ng-show="company.host" class="grayDark bold">{{company.username_##session.lang##}}@{{company.host}}</i>
+                                    <i ng-hide="company.host" class="grayDark bold">{{company.username_##session.lang##}}@examble.com</i>
                                 </div>
 
                             </fieldset>

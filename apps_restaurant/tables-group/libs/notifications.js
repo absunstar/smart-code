@@ -3,21 +3,21 @@ module.exports = function init(site) {
   let collection_name = 'tables_group'
 
   let source = {
-    name: 'Tables Group System',
+    en: 'Tables Group System',
     ar: 'نظام تعريف الطاولات'
   }
 
   let image_url = '/images/tables_group.png'
   let add_message = {
-    name: 'New Tables Group Added',
+    en: 'New Tables Group Added',
     ar: 'تم إضافة مجموعة طاولات جديدة'
   }
   let update_message = {
-    name: ' Tables Group Updated',
+    en: ' Tables Group Updated',
     ar: 'تم تعديل مجموعة طاولات'
   }
   let delete_message = {
-    name: ' Tables Group Deleted',
+    en: ' Tables Group Deleted',
     ar: 'تم حذف مجموعة طاولات '
   }
 
@@ -31,7 +31,9 @@ module.exports = function init(site) {
           message: add_message,
           value: {
             name: result.doc.name,
-            ar: result.doc.name
+            code: result.doc.code,
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
           },
           add: result.doc,
           action: 'add'
@@ -50,7 +52,9 @@ module.exports = function init(site) {
           message: update_message,
           value: {
             name: result.old_doc.name,
-            ar: result.old_doc.name
+            code: result.old_doc.code,
+            en: result.old_doc.name_en,
+            ar: result.old_doc.name_ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
@@ -70,7 +74,9 @@ module.exports = function init(site) {
           message: delete_message,
           value: {
             name: result.doc.name,
-            ar: result.doc.name
+            code: result.doc.code,
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
           },
           delete: result.doc,
           action: 'delete'

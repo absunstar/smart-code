@@ -3,21 +3,21 @@ module.exports = function init(site) {
   let collection_name = 'exam_grades'
 
   let source = {
-    name: 'Exams Grades System',
+    en: 'Exams Grades System',
     ar: ' نظام وضع درجات الإمتحانات'
   }
 
   let image_url = '/images/exam_grades.png'
   let add_message = {
-    name: 'New Exam Grades Added',
+    en: 'New Exam Grades Added',
     ar: 'تم إضافة وضع درجات الإمتحان جديدة'
   }
   let update_message = {
-    name: 'Exam Grades Updated',
+    en: 'Exam Grades Updated',
     ar: 'تم تعديل وضع درجات الإمتحان'
   }
   let delete_message = {
-    name: 'Exam Grades Deleted',
+    en: 'Exam Grades Deleted',
     ar: 'تم حذف وضع درجات الإمتحان '
   }
 
@@ -31,7 +31,9 @@ module.exports = function init(site) {
           message: add_message,
           value: {
             name: result.doc.name,
-            ar: result.doc.name
+            code: result.doc.code,
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
           },
           add: result.doc,
           action: 'add'
@@ -50,7 +52,9 @@ module.exports = function init(site) {
           message: update_message,
           value: {
             name: result.old_doc.name,
-            ar: result.old_doc.name
+            code: result.old_doc.code,
+            en: result.old_doc.name_en,
+            ar: result.old_doc.name_ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
@@ -70,7 +74,9 @@ module.exports = function init(site) {
           message: delete_message,
           value: {
             name: result.doc.name,
-            ar: result.doc.name
+            code: result.doc.code,
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
           },
           delete: result.doc,
           action: 'delete'

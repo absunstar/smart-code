@@ -17,7 +17,8 @@ module.exports = function init(site) {
     $operation.add(
       {
         code: "1-Test",
-        name: 'عملية إفتراضية',
+        name_ar: 'عملية إفتراضية',
+        name_en: "Default Operation",
         image_url: '/images/medical_specialty.png',
         company: {
           id: doc.id,
@@ -65,9 +66,13 @@ module.exports = function init(site) {
 
     $operation.find({
       where: {
-        'name': operation_doc.name,
+  
         'company.id': site.get_company(req).id,
-        'branch.code': site.get_branch(req).code,
+        $or: [{
+          'name_ar': operation_doc.name_ar
+        },{
+          'name_en': operation_doc.name_en
+        }]
       }
     }, (err, doc) => {
       if (!err && doc) {
@@ -209,8 +214,12 @@ module.exports = function init(site) {
 
     let where = req.body.where || {}
 
-    if (where['name']) {
-      where['name'] = new RegExp(where['name'], "i");
+    if (where['name_ar']) {
+      where['name_ar'] = new RegExp(where['name_ar'], "i");
+    }
+
+    if (where['name_en']) {
+      where['name_en'] = new RegExp(where['name_en'], "i");
     }
 
     where['company.id'] = site.get_company(req).id

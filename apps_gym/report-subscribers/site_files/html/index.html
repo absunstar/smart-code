@@ -96,7 +96,7 @@
                         <td class="red"> {{c.date_to | date : 'dd - MM - yyyy'}} </td>
                         <td class="blue"> {{c.code}} </td>
                         <td ng-hide="customer.id">{{c.customer.name_##session.lang##}}</td>
-                        <td>{{c.trainer.name}}</td>
+                        <td>{{c.trainer.name_##session.lang##}}</td>
                         <td class="red"> {{c.total_discount ||0}} </td>
                         <td> {{c.paid_require}} </td>
                         <td class="green"> {{c.total_paid_up || 0}} </td>

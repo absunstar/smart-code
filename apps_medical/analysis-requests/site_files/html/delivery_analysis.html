@@ -51,7 +51,7 @@
 
                         <tr ng-show="l.result" ng-repeat="l in analysis_requests.analysis_list">
 
-                            <td class="center">{{l.name}}</td>
+                            <td class="center">{{l.name_##session.lang##}}</td>
 
                             <td class="center green">{{l.price}}</td>
 
@@ -129,15 +129,15 @@
 
                 <div class="row">
                     <i-list class="col3" label="##word.gov##" ng-model="analysis_requests.$delivery_data.gov"
-                        items="govList" display="name" ng-change="getCityList(analysis_requests.$delivery_data.gov)"
+                        items="govList" display="name_##session.lang##" ng-change="getCityList(analysis_requests.$delivery_data.gov)"
                         ng-search="_search.$govNameContact">
                     </i-list>
 
                     <i-list class="col4" label="##word.city##" ng-model="analysis_requests.$delivery_data.city"
-                        items="cityList" ng-change="getAreaList(analysis_requests.$delivery_data.city)" display="name"
+                        items="cityList" ng-change="getAreaList(analysis_requests.$delivery_data.city)" display="name_##session.lang##"
                         ng-search="_search.$analysis_requests.$delivery_data.$city_search"></i-list>
                     <i-list class="col4" label="##word.area##" ng-model="analysis_requests.$delivery_data.area"
-                        items="areaList" display="name"
+                        items="areaList" display="name_##session.lang##"
                         ng-search="_search.$analysis_requests.$delivery_data.$area_search">
                     </i-list>
                     <i-control class="col6" label="##word.address##"

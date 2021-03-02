@@ -553,8 +553,8 @@ app.controller("request_service", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
-          minor_currency: 1,
+          name_ar: 1, name_en: 1,
+          minor_currency_ar: 1, minor_currency_en: 1,
           ex_rate: 1,
           code: 1
         },
@@ -608,7 +608,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
         data: {
           select: {
             id: 1,
-            name: 1,
+            name_ar: 1, name_en: 1,
             commission: 1,
             currency: 1,
             type: 1,
@@ -693,7 +693,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
         url: "/api/service/all",
         data: {
           where: { name: $scope.search_service },
-          select: { id: 1, name: 1, code: 1, services_price: 1, selectedServicesList: 1, attend_count: 1, available_period: 1, complex_service: 1 }
+          select: { id: 1, name_ar: 1, name_en: 1, code: 1, services_price: 1, selectedServicesList: 1, attend_count: 1, available_period: 1, complex_service: 1 }
         }
       }).then(
         function (response) {
@@ -717,7 +717,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/hall/all",
       data: {
-        select: { id: 1, name: 1, capaneighborhood: 1, code: 1 }
+        select: { id: 1, name_ar: 1, name_en: 1, capaneighborhood: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -767,7 +767,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
         select: {
           code: 1,
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           value: 1,
           type: 1
         }
@@ -915,7 +915,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
     } else {
       $scope.request_service.discountes = $scope.request_service.discountes || [];
       $scope.request_service.discountes.push({
-        name: $scope.discount.name,
+        name_ar: $scope.discount.name_ar, name_en: $scope.discount.name_en,
         value: $scope.discount.value,
         type: $scope.discount.type
       });
@@ -989,7 +989,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           code: 1
         }
       }
@@ -1075,7 +1075,7 @@ app.controller("request_service", function ($scope, $http, $timeout) {
       url: "/api/shifts/get_open_shift",
       data: {
         where: { active: true },
-        select: { id: 1, name: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
+        select: { id: 1, name_ar: 1, name_en: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
       }
     }).then(
       function (response) {

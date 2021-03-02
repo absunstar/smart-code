@@ -15,7 +15,7 @@
                 <i-control class="col2" type="number" ng-model="account_course.paid" label="##word.paid##"></i-control>
                 <i-list class="col3" items="trainerList" ng-model="account_course.trainer_paid" ng-search="account_course.$trainer_search"
                     label="##word.trainer##"></i-list>
-                <i-list ng-search="account_course.$safes_search" class="col2" ng-model="account_course.safe" display="name"
+                <i-list ng-search="account_course.$safes_search" class="col2" ng-model="account_course.safe" display="name_##session.lang##"
                     label="##word.safe##" items="safesList"></i-list>
 
                 <i-button type="update" class="col2" label="##word.paid_payback##" ng-click="showAccept()"></i-button>
@@ -44,10 +44,10 @@
                                 <p class="green">{{b.payment}}</p>
                             </td>
                             <td>
-                                <p>{{b.trainer_paid.name}}</p>
+                                <p>{{b.trainer_paid.name_##session.lang##}}</p>
                             </td>
                             <td>
-                                <p>{{b.safe.name}}</p>
+                                <p>{{b.safe.name_##session.lang##}}</p>
                             </td>
                         </tr>
 

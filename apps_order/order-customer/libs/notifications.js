@@ -3,22 +3,22 @@ module.exports = function init(site) {
   let collection_name = 'order_customer'
 
   let source = {
-    name: 'Order Customer System',
+    en: 'Order Customer System',
     ar: 'نظام شاشة طلبات العملاء'
   }
 
   let image_url = '/images/order_customer.png'
   let add_message = {
-    name: 'New Order Customer Added',
+    en: 'New Order Customer Added',
     ar: 'تم إضافة طلب عميل جديد'
   }
   let update_message = {
-    name: ' Order Customer Updated',
+    en: ' Order Customer Updated',
     ar: 'تم تعديل طلب عميل'
   }
 
   let delete_message = {
-    name: ' Order Customer Deleted',
+    en: ' Order Customer Deleted',
     ar: 'تم حذف طلب عميل '
   }
 
@@ -31,7 +31,9 @@ module.exports = function init(site) {
           message: add_message,
           value: {
             name: result.doc.code,
-            ar: result.doc.code
+            code: result.doc.code,
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
           },
           add: result.doc,
           action: 'add'
@@ -50,7 +52,9 @@ module.exports = function init(site) {
   //         message: update_message,
   //         value: {
   //           name: result.old_doc.code,
-  //           ar: result.old_doc.code
+  //           code: result.old_doc.code,
+   //          en: result.old_doc.name_en,
+   //          ar: result.old_doc.name_ar
   //         },
   //         update: site.objectDiff(result.update.$set, result.old_doc),
   //         action: 'update'
@@ -70,7 +74,9 @@ module.exports = function init(site) {
           message: delete_message,
           value: {
             name: result.doc.code,
-            ar: result.doc.code
+            code: result.doc.code,
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
           },
           delete: result.doc,
           action: 'delete'

@@ -3,21 +3,21 @@ module.exports = function init(site) {
   let collection_name = 'transfer_safes'
 
   let source = {
-    name: 'Transfer Safes System',
+    en: 'Transfer Safes System',
     ar: ' نظام تحويل الخزن'
   }
 
   let image_url = '/images/transfer_safes.png'
   let add_message = {
-    name: 'New Transfer Safes Added',
+    en: 'New Transfer Safes Added',
     ar: 'تم إضافة تحويل خزن جديدة'
   }
   let update_message = {
-    name: ' Transfer Safes Updated',
+    en: ' Transfer Safes Updated',
     ar: 'تم تعديل تحويل خزن'
   }
   let delete_message = {
-    name: ' Transfer Safes Deleted',
+    en: ' Transfer Safes Deleted',
     ar: 'تم حذف تحويل خزن '
   }
 
@@ -31,7 +31,9 @@ module.exports = function init(site) {
           message: add_message,
           value: {
             name: result.doc.name,
-            ar: result.doc.name
+             code: result.doc.code,
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
           },
           add: result.doc,
           action: 'add'
@@ -50,7 +52,9 @@ module.exports = function init(site) {
           message: update_message,
           value: {
             name: result.old_doc.name,
-            ar: result.old_doc.name
+            code: result.old_doc.code,
+            en: result.old_doc.name_en,
+            ar: result.old_doc.name_ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
@@ -70,7 +74,9 @@ module.exports = function init(site) {
           message: delete_message,
           value: {
             name: result.doc.name,
-            ar: result.doc.name
+             code: result.doc.code,
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
           },
           delete: result.doc,
           action: 'delete'

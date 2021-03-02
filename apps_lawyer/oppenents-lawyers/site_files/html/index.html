@@ -41,10 +41,9 @@
                 <table class="table loaded hover center bold" id="t1">
                     <tr>
                             <th class="not-print"> ##word.logo## </th>
-                        <th> ##word.oppenents_lawyers_code## </th>
+                        <th> ##word.code## </th>
                         <th> ##word.oppenents_lawyers_name_ar## </th>
-<!--                         <th> ##word.oppenents_lawyers_balance## </th>
- -->                        <th> ##word.status## </th>
+                        <th> ##word.status## </th>
                         <th class="not-print"> ##word.actions## </th>
                     </tr>
                     <tr ng-repeat="c in list | orderBy: '-id'">
@@ -52,7 +51,7 @@
                             <i-image view class="logo" ng-model="c.image_url"></i-image>
                         </td>
 
-                        <td class="blue"> {{c.code}} </td>
+                        <td class="userPrint blue"> {{c.code}} </td>
                         <td> {{c.name_##session.lang##}} </td>
 
                        <!--  <td class="green bold">

@@ -96,7 +96,7 @@
                                         <td class="white bg_card"> ##word.tall## </td>
                                         <td colspan="2" class="center"> {{doctors_visits.customer.tall}} </td>
                                         <td class="white bg_card"> ##word.blood_type## </td>
-                                        <td colspan="2" class="center red"> {{doctors_visits.customer.blood_type.name}}
+                                        <td colspan="2" class="center red"> {{doctors_visits.customer.blood_type.name_##session.lang##}}
                                         </td>
                                     </tr>
                                     <tr>
@@ -105,11 +105,11 @@
                                     </tr>
                                     <tr>
                                         <td class="white bg_card"> ##word.gov## </td>
-                                        <td colspan="2" class="center"> {{doctors_visits.customer.gov.name}} </td>
+                                        <td colspan="2" class="center"> {{doctors_visits.customer.gov.name_##session.lang##}} </td>
                                         <td class="white bg_card"> ##word.city## </td>
-                                        <td colspan="2" class="center"> {{doctors_visits.customer.city.name}} </td>
+                                        <td colspan="2" class="center"> {{doctors_visits.customer.city.name_##session.lang##}} </td>
                                         <td class="white bg_card"> ##word.area## </td>
-                                        <td colspan="2" class="center"> {{doctors_visits.customer.area.name}} </td>
+                                        <td colspan="2" class="center"> {{doctors_visits.customer.area.name_##session.lang##}} </td>
                                     </tr>
 
                                     <tr>
@@ -142,12 +142,12 @@
                                 <div class="row">
 
                                     <i-list class="col4" label="##word.specialty##" ng-model="doctors_visits.specialty"
-                                        items="specialtyList" display="name" ng-search="_search.$specialty_search">
+                                        items="specialtyList" display="name_##session.lang##" ng-search="_search.$specialty_search">
                                     </i-list>
 
 
                                     <i-list class="col4" label="##word.clinic##" ng-model="doctors_visits.clinic"
-                                        items="clinicList" display="name" ng-search="_search.$clinic_search"></i-list>
+                                        items="clinicList" display="name_##session.lang##" ng-search="_search.$clinic_search"></i-list>
 
                                 </div>
 
@@ -158,7 +158,7 @@
                                         ng-keydown="getDoctorList($event)"></i-control>
 
                                     <i-list class="col5" label="##word.doctors##" ng-model="doctors_visits.doctor"
-                                        items="doctorList" display="name" ng-search="_search.$doctors_searching">
+                                        items="doctorList" display="name_##session.lang##" ng-search="_search.$doctors_searching">
                                     </i-list>
 
                                     <div class="col3"></div>
@@ -193,18 +193,18 @@
 
                                     <td>
                                         <br>
-                                        <h3 class="black bold ">{{c.name}}</h3>
+                                        <h3 class="black bold ">{{c.name_##session.lang##}}</h3>
                                     </td>
 
                                     <td>
                                         <br>
-                                        <h3 class="black bold ">{{c.specialty.name}}</h3>
+                                        <h3 class="black bold ">{{c.specialty.name_##session.lang##}}</h3>
                                     </td>
 
                                     <td>
                                         <div class="row" ng-repeat="d in c.doctor_list">
                                             <div class="col6">
-                                                <h3 class="black bold ">{{d.doctor.name}}</h3>
+                                                <h3 class="black bold ">{{d.doctor.name_##session.lang##}}</h3>
                                             </div>
                                             <div class="col6">
                                                 <i-button type="view" label="##word.view_appointments##"
@@ -245,7 +245,7 @@
                                         <form>
 
                                             <div class="row ">
-                                                <i-list class="col4" ng-model="discount"
+                                                <i-list class="col4" ng-model="discount" display="name_##session.lang##"
                                                     ng-search="_search.$discount_name" items="discount_types"
                                                     label="##word.discount_name##">
                                                 </i-list>
@@ -279,7 +279,7 @@
                                 <tr ng-repeat="d1 in doctors_visits.discountes">
 
                                     <td>
-                                        <span class="bold red">{{d1.name}} -</span>
+                                        <span class="bold red">{{d1.name_##session.lang##}} -</span>
                                         <span class="bold red" ng-show="d1.type === 'percent'">{{d1.value}}
                                             %</span>
                                         <span class="bold red" ng-show="d1.type === 'number'">{{d1.value}}$</span>
@@ -324,15 +324,15 @@
                                 <tr>
 
                                     <td>
-                                        <p class="blue">{{doctors_visits.selected_clinic.name}}</p>
+                                        <p class="blue">{{doctors_visits.selected_clinic.name_##session.lang##}}</p>
                                     </td>
 
                                     <td>
-                                        <p class="blue">{{doctors_visits.selected_doctor.name}}</p>
+                                        <p class="blue">{{doctors_visits.selected_doctor.name_##session.lang##}}</p>
                                     </td>
 
                                     <td>
-                                        <p class="blue">{{doctors_visits.selected_specialty.name}}</p>
+                                        <p class="blue">{{doctors_visits.selected_specialty.name_##session.lang##}}</p>
                                     </td>
 
                                     <td>

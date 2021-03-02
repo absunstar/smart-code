@@ -5,10 +5,16 @@
             <div class="row">
                 <div class="col9">
                     <div class="row">
+
+                        <i-control ng-hide="disabledCode" class="col2" label="##word.code##"
+                            ng-model="session_add.code">
+                        </i-control>
+
                         <i-date2 ng-model="session_add.date" class="col4" label="##word.session_start_date##">
                         </i-date2>
 
-                        <div class="col6"></div>
+                        <div class="col4"></div>
+
                         <i-checkbox class="col2" label="##word.active##" ng-model="session_add.active"></i-checkbox>
                     </div>
 
@@ -26,7 +32,7 @@
                         </i-control>
 
                         <i-list ng-search="reason" class="col4" items="reasonSessionList" ng-model="session_add.reason"
-                            label="##word.reason##">
+                        display="name_##session.lang##"  label="##word.reason##">
                         </i-list>
 
                     </div>

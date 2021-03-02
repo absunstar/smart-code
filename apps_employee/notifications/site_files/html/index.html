@@ -82,16 +82,16 @@
                             <label>
                                 <img class="logo" ng-src="{{n.icon}}">
                                 <br>
-                                <span x-lang="en">{{n.source.name}}</span>
+                                <span x-lang="en">{{n.source.name_##session.lang##}}</span>
                                 <span x-lang="ar">{{n.source.##session.lang##}}</span>
                             </label>
                         </td>
                         <td class="center">
-                            <b x-lang="en">{{n.message.name}}</b>
+                            <b x-lang="en">{{n.message.name_##session.lang##}}</b>
                             <b x-lang="ar">{{n.message.##session.lang##}}</b>
                         </td>
                         <td class="center">
-                            <span x-lang="en">{{n.value.name}}</span>
+                            <span x-lang="en">{{n.value.name_##session.lang##}}</span>
                             <span x-lang="ar">{{n.value.##session.lang##}}</span>
                         </td>
                         <td class="center">
@@ -102,7 +102,7 @@
                         <td class="center">
                             <a href="mailto:{{n.user.email}}">{{n.user.email}}</a>
                             <br>
-                            <b>{{n.user.name}}</b>
+                            <b>{{n.user.name_##session.lang##}}</b>
                             <br> {{n.user.ip}}
                         </td>
                         <td class="center">

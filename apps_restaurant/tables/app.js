@@ -47,19 +47,23 @@ module.exports = function init(site) {
     $tables.add({
       tables_group: {
         id: doc.id,
-        name: doc.name
+        name_ar: doc.name_ar,
+        name_en: doc.name_en
       },
-      code: "1",
-      name: "طاولة إفتراضية",
+      code: "1-Test",
+      name_ar: "طاولة إفتراضية",
+      name_en: "Default Table",
       busy: false,
       image_url: '/images/tables.png',
       company: {
         id: doc.company.id,
-        name_ar: doc.company.name_ar
+        name_ar: doc.company.name_ar,
+        name_en: doc.company.name_en
       },
       branch: {
         code: doc.branch.code,
-        name_ar: doc.branch.name_ar
+        name_ar: doc.branch.name_ar,
+        name_en: doc.branch.name_en
       },
       active: true
     }, (err, doc) => { })
@@ -143,11 +147,17 @@ module.exports = function init(site) {
     tables_doc.company = site.get_company(req)
     tables_doc.branch = site.get_branch(req)
     tables_doc.busy = false
+    
     $tables.find({
       where: {
         'company.id': site.get_company(req).id,
         'branch.code': site.get_branch(req).code,
-        'name': tables_doc.name
+        $or: [{
+          'name_ar': tables_doc.name_ar
+        },{
+          'name_en': tables_doc.name_en
+        }]
+     
       }
     }, (err, doc) => {
       if (!err && doc) {
@@ -388,8 +398,12 @@ module.exports = function init(site) {
 
     let where = req.body.where || {}
 
-    if (where['name']) {
-      where['name'] = site.get_RegExp(where['name'], "i");
+    if (where['name_ar']) {
+      where['name_ar'] = site.get_RegExp(where['name_ar'], "i");
+    }
+
+    if (where['name_en']) {
+      where['name_en'] = site.get_RegExp(where['name_en'], "i");
     }
 
 

@@ -35,7 +35,7 @@
                     <td ng-show="accInvoDetails.source_type.id == 3">{{c.order_invoices_type.##session.lang##}}</td>
                     <td
                         ng-show="accInvoDetails.source_type.id == 2 || accInvoDetails.source_type.id == 8 || accInvoDetails.source_type.id == 9 || accInvoDetails.source_type.id == 11|| accInvoDetails.source_type.id == 12">
-                        {{c.delegate.name}} {{c.employee.name}}
+                        {{c.delegate.name_##session.lang##}} {{c.employee.name_##session.lang##}}
                     </td>
                     <td ng-hide="accInvoDetails.source_type.id == 1 || accInvoDetails.source_type.id == 9 || accInvoDetails.source_type.id == 11 || accInvoDetails.source_type.id == 12">
                         {{c.customer.name_##session.lang##}}
@@ -44,8 +44,8 @@
                         {{c.vendor.name_##session.lang##}}
                     </td>
                     <td class="center">{{c.payment_method.##session.lang##}}</td>
-                    <td class="center">{{c.currency.name}} - <b class="blue">{{c.currency.ex_rate}}</b></td>
-                    <td class="center blue">{{c.safe.name}}</td>
+                    <td class="center">{{c.currency.name_##session.lang##}} - <b class="blue">{{c.currency.ex_rate}}</b></td>
+                    <td class="center blue">{{c.safe.name_##session.lang##}}</td>
                     <td class="center green">{{c.paid_up}}</td>
                 </tr>
 

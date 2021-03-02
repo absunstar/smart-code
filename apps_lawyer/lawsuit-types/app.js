@@ -16,7 +16,8 @@ module.exports = function init(site) {
   site.on('[company][created]', doc => {
 
     $lawsuit_types.add({
-      name: "نوع دعوى إفتراضية",
+      name_ar: "نوع دعوى إفتراضية",
+      name_en : "Default Lawsuit Type",
       code: "1-Test",
       image_url: '/images/lawsuit_types.png',
       company: {
@@ -53,6 +54,22 @@ module.exports = function init(site) {
     })
     lawsuit_types_doc.company = site.get_company(req)
     lawsuit_types_doc.branch = site.get_branch(req)
+
+    let num_obj = {
+      company: site.get_company(req),
+      screen: 'lawsuit_types',
+      date: new Date()
+    };
+    let cb = site.getNumbering(num_obj);
+
+    if (!lawsuit_types_doc.code && !cb.auto) {
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+
+    } else if (cb.auto) {
+      lawsuit_types_doc.code = cb.code;
+    }
 
     $lawsuit_types.add(lawsuit_types_doc, (err, doc) => {
       if (!err) {

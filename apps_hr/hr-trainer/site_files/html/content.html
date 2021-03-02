@@ -30,14 +30,18 @@
                             <i-control ng-hide="disabledCode" class="col2" label="##word.code##"
                                 ng-model="trainer.code"></i-control>
 
-                            <i-control help-id="" v="r ll2" class="col4" label="##word.name##" ng-model="trainer.name">
+                            <i-control help-id="" v="r ll2" class="col4" label="##word.name##" ng-model="trainer.name_ar">
                             </i-control>
 
-                            <i-control help-id="" class="col4" label="##word.national_id##"
-                                ng-model="trainer.national_id"></i-control>
+                            <i-control help-id="" class="col4" label="##word.name_en##" ng-model="trainer.name_en">
+                            </i-control>
 
                             <i-checkbox help-id="trainer_active" class="col2" label="##word.active##"
                                 ng-model="trainer.active"></i-checkbox>
+                        </div>
+                        <div class="row">
+                            <i-control help-id="" class="col4" label="##word.national_id##"
+                                ng-model="trainer.national_id"></i-control>
                         </div>
 
                     </fieldset>
@@ -94,15 +98,16 @@
                         <legend>##word.addresses##</legend>
                         <div class="row">
                             <i-list class="col4" label="##word.gov##" ng-model="trainer.gov" items="govList"
-                                ng-change="getCitiesList(trainer.gov)" display="name" ng-search="trainer.$gov_search">
+                                ng-change="getCitiesList(trainer.gov)" display="name_##session.lang##"
+                                ng-search="trainer.$gov_search">
                             </i-list>
 
                             <i-list class="col4" label="##word.city##" ng-model="trainer.city" items="citiesList"
-                                ng-change="getAreaList(trainer.city)" display="name"
+                                ng-change="getAreaList(trainer.city)" display="name_##session.lang##"
                                 ng-search="trainer.$neighborhood_search"></i-list>
 
                             <i-list class="col4" label="##word.area##" ng-model="trainer.area" items="areaList"
-                                display="name" ng-search="trainer.$area_search"></i-list>
+                                display="name_##session.lang##" ng-search="trainer.$area_search"></i-list>
                         </div>
                         <div class="row">
                             <i-control help-id="" class="col6" label="##word.address##" ng-model="trainer.address">
@@ -162,8 +167,7 @@
                     <div class="row">
 
                         <div ng-repeat="s in trainer.subject_list" class="row">
-                            <i-list ng-search="subject" class="col4" items="subjectsList"
-                                ng-model="s.subject">
+                            <i-list ng-search="subject" class="col4" items="subjectsList" ng-model="s.subject">
                             </i-list>
                             <i-button class="col2" type="delete default"
                                 ng-click="trainer.subject_list.length ==1 || trainer.subject_list.splice($index,1)">
@@ -186,8 +190,9 @@
                     <legend> ##word.login_information## </legend>
                     <div class="row">
 
-                        <i-control help-id="" class="col4" label="##word.email##" ng-model="trainer.username"></i-control>
-                        
+                        <i-control help-id="" class="col4" label="##word.email##" ng-model="trainer.username">
+                        </i-control>
+
                         <i-control help-id="" class="col4" label="##word.password##" ng-model="trainer.password">
                         </i-control>
                     </div>

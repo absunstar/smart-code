@@ -3,21 +3,21 @@ module.exports = function init(site) {
   let collection_name = 'tables'
 
   let source = {
-    name: 'Tables System',
+    en: 'Tables System',
     ar: 'نظام الطاولات'
   }
 
   let image_url = '/images/tables.png'
   let add_message = {
-    name: 'New Tables Added',
+    en: 'New Tables Added',
     ar: 'تم إضافة طاولة جديدة'
   }
   let update_message = {
-    name: ' Tables Updated',
+    en: ' Tables Updated',
     ar: 'تم تعديل طاولة'
   }
   let delete_message = {
-    name: ' Tables Deleted',
+    en: ' Tables Deleted',
     ar: 'تم حذف طاولة '
   }
 
@@ -31,7 +31,9 @@ module.exports = function init(site) {
           message: add_message,
           value: {
             name: result.doc.name,
-            ar: result.doc.name
+            code: result.doc.code,
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
           },
           add: result.doc,
           action: 'add'
@@ -70,7 +72,9 @@ module.exports = function init(site) {
           message: delete_message,
           value: {
             name: result.doc.name,
-            ar: result.doc.name
+            code: result.doc.code,
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
           },
           delete: result.doc,
           action: 'delete'

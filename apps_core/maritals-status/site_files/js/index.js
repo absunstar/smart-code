@@ -8,7 +8,7 @@ app.controller("maritals_status", function ($scope, $http) {
       method: "POST",
       url: "/api/maritals_status/all",
       data: {
-        select : {id:1 , name : 1}
+        select : {id:1 , name_ar: 1, name_en: 1}
       }
     }).then(
       function(response) {

@@ -69,18 +69,18 @@
                         <td ng-click="displayDetailsBook(c)" class="center brown"> <br> {{c.date | date : 'dd - MM
                             -yyyy'}}</td>
                         <td class="center bold blue" ng-click="displayDetailsBook(c)">
-                            <p>{{c.shift.name}}</p>
+                            <p>{{c.shift.name_##session.lang##}}</p>
                             <p>{{c.shift.code}}</p>
                         </td>
                         <td ng-click="displayDetailsBook(c)" class="center "> <br> {{c.customer.name_##session.lang##}}</td>
                         <td ng-click="displayDetailsBook(c)" class="center">
-                            <p>{{c.select_book.course.name}}</p>
+                            <p>{{c.select_book.course.name_##session.lang##}}</p>
                             <br>
                             <p class="green center">{{c.select_book.course.price}}</p>
                             <p class="green">$</p>
 
                         </td>
-                        <td ng-click="displayDetailsBook(c)" class="center"> <br> {{c.select_book.trainer.name}}</td>
+                        <td ng-click="displayDetailsBook(c)" class="center"> <br> {{c.select_book.trainer.name_##session.lang##}}</td>
                         <td ng-click="displayDetailsBook(c)" class="center green"> <br> {{c.total_rest}} $
                         </td>
                         <td ng-click="displayDetailsBook(c)" class="center red"> <br> {{c.rest}} $ </td>

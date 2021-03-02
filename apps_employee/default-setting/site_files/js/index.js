@@ -85,7 +85,7 @@ app.controller("default_setting", function ($scope, $http) {
     $http({
       method: "POST",
       url: "/api/stores/all",
-      data: { select: { id: 1, name: 1, type: 1, code: 1 } }
+      data: { select: { id: 1, name_ar: 1, name_en: 1, type: 1, code: 1 } }
     }).then(
       function (response) {
         $scope.busy = false;
@@ -109,7 +109,7 @@ app.controller("default_setting", function ($scope, $http) {
       data: {
         select: {
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           commission: 1,
           type: 1,
           code: 1
@@ -185,7 +185,7 @@ app.controller("default_setting", function ($scope, $http) {
       url: "/api/hall/all",
       data: {
         select: {
-          id: 1, name: 1, code: 1
+          id: 1, name_ar: 1, name_en: 1, code: 1
         }
       }
     }).then(
@@ -318,7 +318,7 @@ app.controller("default_setting", function ($scope, $http) {
       data: {
         select: {
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           type: 1,
           ip_device: 1,
           Port_device: 1,

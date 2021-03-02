@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col9">
                     <div class="row">
-                        <i-control class="col3 r_indigo" type="text" disabled label="##word.shift##" ng-model="shift.name">
+                        <i-control class="col3 r_indigo" type="text" disabled label="##word.shift##" ng-model="shift.name_##session.lang##">
                         </i-control>
 
                         <i-date2 class="col4" ng-model="book_course.date" label="##word.date##"></i-date2>
@@ -19,7 +19,7 @@
                         <i-control class="col3" label="##word.search_student##" ng-model="student_search"
                             ng-keydown="getStudentsList($event)"></i-control>
 
-                        <i-list class="col4" label="##word.student##" ng-model="book_course.customer" display="name"
+                        <i-list class="col4" label="##word.student##" ng-model="book_course.customer" display="name_##session.lang##"
                             items="studentList" ng-search="students_searching"></i-list>
 
                         <i-button class="col2" ng-show="book_course.customer.id" type="details"
@@ -60,8 +60,8 @@
 
                             <tr>
                                 <td class="title">##word.addresses##</td>
-                                <td colspan="5"> {{book_course.customer.gov.name}} -
-                                    {{book_course.customer.city.name}} - {{book_course.customer.area.name}} -
+                                <td colspan="5"> {{book_course.customer.gov.name_##session.lang##}} -
+                                    {{book_course.customer.city.name_##session.lang##}} - {{book_course.customer.area.name_##session.lang##}} -
                                     {{book_course.customer.address}}
                                 </td>
 
@@ -94,7 +94,7 @@
 
                     <div class="row" ng-show="trainer == 'true'">
 
-                        <i-list help-id="trainer_name" ll2" display="name" class="col5" items="trainerList"
+                        <i-list help-id="trainer_name" ll2" display="name_##session.lang##" class="col5" items="trainerList"
                             ng-search="book_course.$course_search" label="##word.trainer##"
                             ng-model="book_course.trainer"></i-list>
 
@@ -125,11 +125,11 @@
 
 
                                     <td>
-                                        <p>{{c.course.name}}</p>
+                                        <p>{{c.course.name_##session.lang##}}</p>
 
                                     </td>
                                     <td>
-                                        <p class="title">{{c.trainer.name}}</p>
+                                        <p class="title">{{c.trainer.name_##session.lang##}}</p>
 
                                     </td>
                                     <td>
@@ -186,11 +186,11 @@
 
                                     <td>
                                         <br>
-                                        <p>{{book_course.select_book.course.name}}</p>
+                                        <p>{{book_course.select_book.course.name_##session.lang##}}</p>
                                     </td>
                                     <td>
                                         <br>
-                                        <p>{{book_course.select_book.trainer.name}}</p>
+                                        <p>{{book_course.select_book.trainer.name_##session.lang##}}</p>
                                     </td>
 
                                     <td>

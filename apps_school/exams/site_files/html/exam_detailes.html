@@ -13,7 +13,7 @@
                     <div class="row">
                         <div class="col4 right">
                             <div class="row right" ng-repeat="i in defaultSettings.exams_setting.exam_header">
-                                <p class="right p_header bold">{{i.name}}</p>
+                                <p class="right p_header bold">{{i.name_##session.lang##}}</p>
                             </div>
                         </div>
 
@@ -23,14 +23,14 @@
 
                         <div class="col4 left">
                             <div class="row left" ng-repeat="i in defaultSettings.exams_setting.exam_header2">
-                                <p class="left p_header bold">{{i.name}}</p>
+                                <p class="left p_header bold">{{i.name_##session.lang##}}</p>
                             </div>
 
                             <div class="row">
-                                <h3 class="bold black left">##word.subject## : {{exams.subject.name}}</h3>
+                                <h3 class="bold black left">##word.subject## : {{exams.subject.name_##session.lang##}}</h3>
                             </div>
                             <div class="row">
-                                <h3 class="bold black left">{{exams.name}}</h3>
+                                <h3 class="bold black left">{{exams.name_##session.lang##}}</h3>
                             </div>
                             <h3 class="bold blue left">##word.ex_time## : {{exams.exam_time}}
                                 ##word.minute##</h3>
@@ -38,9 +38,9 @@
                     </div>
                     <div class="row">
                         <h3 class="bold black center underline">{{exams.exams_type.##session.lang##}}
-                            {{exams.shift.name}}
+                            {{exams.shift.name_##session.lang##}}
                         </h3>
-                        <h3 class="bold black center">##word.class## : {{exams.students_years.name}}</h3>
+                        <h3 class="bold black center">##word.class## : {{exams.students_years.name_##session.lang##}}</h3>
                     </div>
 
                     <br>

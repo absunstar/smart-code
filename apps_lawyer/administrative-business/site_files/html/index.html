@@ -45,6 +45,7 @@
                 <table class="table loaded center hover bold" id="t1">
                     <tr>
                         <th class="not-print"> ##word.logo## </th>
+                        <th> ##word.code## </th>
                         <th> ##word.date## </th>
                         <th> ##word.administrative_business_name## </th>
                         <th> ##word.request_type## </th>
@@ -57,11 +58,13 @@
                             <i-image view class="logo" ng-model="c.image_url"></i-image>
                         </td>
 
+                        <td class="center userPrint blue">{{c.code}}</td>
+
                         <td class="brown"> {{c.date | date:'dd - MM - yyyy'}} </td>
 
-                        <td> {{c.name}} </td>
+                        <td> {{c.name_##session.lang##}} </td>
 
-                        <td> {{c.request_type.name}} </td>
+                        <td> {{c.request_type.name_##session.lang##}} </td>
 
                         <td>
                             <p ng-show="c.active == true" class="green"> ##word.active## </p>

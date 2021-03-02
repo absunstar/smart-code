@@ -35,7 +35,7 @@
 
                                 <tr>
                                     <td class="title">##word.stores_items_name##</td>
-                                    <td class="center">{{category_item.name}}</td>
+                                    <td class="center">{{category_item.name_##session.lang##}}</td>
                                 </tr>
 
                                 <tr>
@@ -45,12 +45,12 @@
 
                                 <tr>
                                     <td class="title">##word.item_group##</td>
-                                    <td class="center">{{category_item.item_group.name}}</td>
+                                    <td class="center">{{category_item.item_group.name_##session.lang##}}</td>
                                 </tr>
 
                                 <tr ng-hide="category_item.item_type.id === 2">
                                     <td class="title">##word.main_unit##</td>
-                                    <td class="center">{{category_item.main_unit.name}}</td>
+                                    <td class="center">{{category_item.main_unit.name_##session.lang##}}</td>
                                 </tr>
 
                                 <tr>
@@ -104,7 +104,7 @@
                                     <tr ng-repeat="c in category_item.units_list">
 
                                         <td>
-                                            <p class="bold center"> {{c.name}} </p>
+                                            <p class="bold center"> {{c.name_##session.lang##}} </p>
                                         </td>
                                         <td>
                                             <p class="bold blue center"> {{c.convert}} </p>
@@ -158,7 +158,7 @@
 
                             <td class="center bold">
                                 <br>
-                                <p>{{item.size}}</p>
+                                <p>{{item.size_ar}}</p>
                                 <p>{{item.size_en}}</p>
                             </td>
                             <td class="center"> <br>
@@ -215,7 +215,7 @@
                                 <td class="title w200">##word.active_substance##</td>
                                 <td class="center">
                                     <p class="lines_text">
-                                        {{category_item.information_instructions.active_substance.name}}</p>
+                                        {{category_item.information_instructions.active_substance.name_##session.lang##}}</p>
                                 </td>
                             </tr>
 

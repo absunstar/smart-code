@@ -1,0 +1,72 @@
+[
+    {
+        "name": "personal_info",
+        "en": "Personal Info",
+        "ar": "معلومات شخصية"
+    },
+    {
+        "name": "basic_info",
+        "en": "Basic Info",
+        "ar": "معلومات أساسية"
+    },
+    {
+        "name": "companies_branches",
+        "en": "Companies and Branches",
+        "ar": "الشركات و الفروع"
+    },
+    {
+        "name": "contact_info",
+        "en": "Contact Info",
+        "ar": "معلومات الإتصال"
+    },
+    {
+        "name": "general_validity",
+        "en": "General Validity",
+        "ar": "صلاحيات عامة"
+    },
+    {
+        "name": "validity_ar",
+        "en": "Ar. Validity",
+        "ar": "الصلاحية بالعربي"
+    },
+    {
+        "name": "validity_en",
+        "en": "En. Validity",
+        "ar": "الصلاحية بالإنجليزي"
+    },
+    {
+        "name": "public",
+        "en": "Public",
+        "ar": "عام"
+    },
+    {
+        "name": "hr",
+        "en": "HR",
+        "ar": "شئون موظفين"
+    },
+    {
+        "name": "inventory",
+        "en": "Inventory",
+        "ar": "مخازن"
+    },
+    {
+        "name": "accounting",
+        "en": "Accounting",
+        "ar": "حسابات"
+    },
+    {
+        "name": "reports",
+        "en": "Reports",
+        "ar": "تقارير"
+    },
+    {
+        "name": "type",
+        "en": "Type",
+        "ar": "النوع"
+    },
+    {
+        "name": "screens_management",
+        "en": "Screens management",
+        "ar": "إدارة الشاشات"
+    }
+]

@@ -53,8 +53,8 @@
                                     <td class="center"> {{item.code}} </td>
                                     <td class="center"> {{item.customer.name_##session.lang##}} </td>
                                     <td class="center"> {{item.delivery_employee.name_##session.lang##}}</td>
-                                    <td class="center"> {{item.tables_group.name}} </td>
-                                    <td class="center">{{item.table.name}}</td>
+                                    <td class="center"> {{item.tables_group.name_##session.lang##}} </td>
+                                    <td class="center">{{item.table.name_##session.lang##}}</td>
                                 </tr>
                             </table>
                         </div>
@@ -73,7 +73,7 @@
                                 </tr>
 
                                 <tr ng-repeat="c in report_invoices.current_book_list">
-                                    <td class="center title">{{c.size}}</td>
+                                    <td class="center title">{{c.size_ar}}</td>
                                     <td class="center blue">{{c.count}}</td>
                                     <td class="center blue">{{c.price}}</td>
                                     <td class="center green">{{c.total}}</td>
@@ -111,7 +111,7 @@
                             </i-control>
                             <i-list ng-search="_search.$order_invoice.$safes_search"
                                 ng-show="report_invoices.paid_up > 0" class="col4" ng-model="report_invoices.safe"
-                                label="##word.safe##" items="safesList"></i-list>
+                                display="name_##session.lang##" label="##word.safe##" items="safesList"></i-list>
                             <!--  <i-button type="update" label="##word.payable##" ng-click="calc()"></i-button> -->
 
                         </div>

@@ -51,11 +51,11 @@
                             <i-image view class="logo" ng-model="c.image_url"></i-image>
                         </td>
                         <td class="center userPrint blue">{{c.code}}</td>
-                        <td class="center title">{{c.name}}</td>
-                        <td class="center title">{{c.currency.name}}</td>
+                        <td class="center title">{{c.name_##session.lang##}}</td>
+                        <td class="center title">{{c.currency.name_##session.lang##}}</td>
                         <td class="center blue">{{c.type.##session.lang##}}</td>
 
-                        <td class="center">{{c.employee.name}}</td>
+                        <td class="center">{{c.employee.name_##session.lang##}}</td>
 
                         <td class="center">
                             <p class="green" ng-show="c.balance > 0">{{c.balance }}</p>

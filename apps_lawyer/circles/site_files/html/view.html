@@ -5,8 +5,13 @@
             <div class="col9">
                 <table id="basicInformationTable" class="table bold">
                     <tr>
+                        <td class="title">##word.code##</td>
+                        <td class="center blue userPrint">{{circle.code}}</td>
+                    </tr>
+
+                    <tr>
                         <td class="title">##word.circles_name##</td>
-                        <td class="center">{{circle.name}}</td>
+                        <td class="center">{{circle.name_##session.lang##}}</td>
                     </tr>
 
                     <tr>
@@ -19,6 +24,7 @@
                         <td ng-show="circle.active == true" class="green center"> ##word.active## </td>
                         <td ng-show="circle.active == false" class="red center"> ##word.not_active## </td>
                     </tr>
+
                 </table>
             </div>
 

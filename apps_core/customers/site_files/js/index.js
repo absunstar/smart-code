@@ -272,7 +272,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           code: 1
         }
       }
@@ -294,7 +294,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           code: 1
         }
       }
@@ -380,7 +380,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           code: 1
         }
       }
@@ -402,7 +402,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           code: 1
         },
         where: {
@@ -428,7 +428,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           code: 1
         },
         where: {
@@ -455,7 +455,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
         where: {
           active: true
         },
-        select: { id: 1, name: 1, code: 1 }
+        select: { id: 1, name_ar: 1, name_en: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -481,7 +481,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
           'gov.id': gov.id,
           active: true
         },
-        select: { id: 1, name: 1, code: 1 }
+        select: { id: 1, name_ar: 1, name_en: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -620,7 +620,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/maritals_status/all",
       data: {
-        select: { id: 1, name: 1, code: 1 }
+        select: { id: 1, name_ar: 1, name_en: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -662,7 +662,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/militaries_status/all",
       data: {
-        select: { id: 1, name: 1, code: 1 }
+        select: { id: 1, name_ar: 1, name_en: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -711,8 +711,8 @@ app.controller("customers", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
-          minor_currency: 1,
+          name_ar: 1, name_en: 1,
+          minor_currency_ar: 1, minor_currency_en: 1,
           ex_rate: 1,
           code: 1
         },

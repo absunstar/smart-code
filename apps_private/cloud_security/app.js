@@ -479,7 +479,7 @@ module.exports = function init(site) {
 
     site.words.list.forEach((x) => {
       z.forEach((xx) => {
-        if (xx.name.replace(/-/g, '_') == x.name) {
+        if (xx.name && xx.name.replace(/-/g, '_') == x.name) {
           w.push(x);
         }
       });

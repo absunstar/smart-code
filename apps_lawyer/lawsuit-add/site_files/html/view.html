@@ -23,6 +23,11 @@
                             <table class="table bold">
 
                                 <tr>
+                                    <td class="title">##word.code##</td>
+                                    <td class="center blue userPrint">{{lawsuit_add.code}}</td>
+                                </tr>
+
+                                <tr>
                                     <td class="title"> ##word.lawsuit_start_date## </td>
                                     <td class="center"> {{lawsuit_add.date | date:'dd - MM - yyyy'}} </td>
                                 </tr>
@@ -45,12 +50,12 @@
 
                                 <tr>
                                     <td class="title">##word.lawsuit_place##</td>
-                                    <td class="center">{{lawsuit_add.courts.name}}</td>
+                                    <td class="center">{{lawsuit_add.courts.name_##session.lang##}}</td>
                                 </tr>
 
                                 <tr>
                                     <td class="title">##word.circle##</td>
-                                    <td class="center">{{lawsuit_add.circle.name}}</td>
+                                    <td class="center">{{lawsuit_add.circle.name_##session.lang##}}</td>
                                 </tr>
 
                                 <tr>
@@ -72,17 +77,17 @@
 
                                         <tr>
                                             <td class="title">##word.lawsuit_degree##</td>
-                                            <td class="center">{{lawsuit_add.lawsuit_degree.name}}</td>
+                                            <td class="center">{{lawsuit_add.lawsuit_degree.name_##session.lang##}}</td>
                                         </tr>
 
                                         <tr>
                                             <td class="title">##word.lawsuit_type##</td>
-                                            <td class="center">{{lawsuit_add.lawsuit_type.name}}</td>
+                                            <td class="center">{{lawsuit_add.lawsuit_type.name_##session.lang##}}</td>
                                         </tr>
 
                                         <tr>
                                             <td class="title">##word.lawsuit_status##</td>
-                                            <td class="center">{{lawsuit_add.lawsuit_status.name}}</td>
+                                            <td class="center">{{lawsuit_add.lawsuit_status.name_##session.lang##}}</td>
                                         </tr>
 
                                         <tr>

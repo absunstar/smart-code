@@ -27,16 +27,16 @@
     
                 <tr>
                     <td class="title">##word.transfer_branch_Company_name##</td>
-                    <td>{{transfer_branch.vendor.name}}</td>
+                    <td>{{transfer_branch.vendor.name_##session.lang##}}</td>
                 </tr>
     
                 <tr>
                     <td class="title">##word.transfer_branch_store_name##</td>
-                    <td>{{transfer_branch.store.name}}</td>
+                    <td>{{transfer_branch.store.name_##session.lang##}}</td>
                 </tr>
                 <tr>
                     <td class="title">##word.transfer_branch_categry##</td>
-                    <td>{{transfer_branch.category.name}}</td>
+                    <td>{{transfer_branch.category.name_##session.lang##}}</td>
                 </tr>
     
                 <tr>
@@ -64,8 +64,8 @@
                             </tr>
                             <tr ng-repeat="itm in transfer_branch.items">
                                 <td>{{$index + 1}}</td>
-                                <td>{{itm.name}}</td>
-                                <td>{{itm.size}}</td>
+                                <td>{{itm.name_##session.lang##}}</td>
+                                <td>{{itm.size_ar}}</td>
                                 <td>{{itm.count}}</td>
                                 <td class="not-print">{{itm.cost}}</td>
                                 <td class="not-print">{{itm.price}}</td>
@@ -88,7 +88,7 @@
                                 <th>##word.transfer_branch_tax_value##</th>
                             </tr>
                             <tr ng-repeat="tax in transfer_branch.taxes">
-                                <td> <p class="text-center"> {{tax.name}} </p> </td>
+                                <td> <p class="text-center"> {{tax.name_##session.lang##}} </p> </td>
                                 <td> <p class="text-center"> {{tax.value}} % </p>   </td>
                             </tr>
                         </table>
@@ -104,7 +104,7 @@
                                 <th>##word.transfer_branch_discount_value##</th>
                             </tr>
                             <tr ng-repeat="discount in transfer_branch.discountes">
-                                <td>{{discount.name}}</td>
+                                <td>{{discount.name_##session.lang##}}</td>
                                 <td>
                                     <p class="text-center" ng-show="discount.type == '%'"> {{discount.value}} % </p>
                                     <p class="text-center" ng-show="discount.type == '0'"> {{discount.value}} $ </p>

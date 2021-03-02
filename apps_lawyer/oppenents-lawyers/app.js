@@ -17,12 +17,10 @@ module.exports = function init(site) {
   site.on('[company][created]', doc => {
 
     $oppenents_lawyers.add({
-      group: {
-        id: doc.id,
-        name: doc.name
-      },
+    
       code: "1-Test",
       name_ar: "محامي خصم إفتراضي",
+      name_en: "Default Oppenent Lawyer",
       image_url: '/images/oppenent.png',
       company: {
         id: doc.id,
@@ -55,6 +53,22 @@ module.exports = function init(site) {
 
     oppenents_lawyers_doc.company = site.get_company(req)
     oppenents_lawyers_doc.branch = site.get_branch(req)
+
+    let num_obj = {
+      company: site.get_company(req),
+      screen: 'oppenents_lawyers',
+      date: new Date()
+    };
+    let cb = site.getNumbering(num_obj);
+
+    if (!oppenents_lawyers_doc.code && !cb.auto) {
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+
+    } else if (cb.auto) {
+      oppenents_lawyers_doc.code = cb.code;
+    }
 
     $oppenents_lawyers.add(oppenents_lawyers_doc, (err, doc) => {
       if (!err) {

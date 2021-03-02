@@ -1,5 +1,5 @@
 [{
-    "module_name" : "public" ,
+    "module_name" : "hr" ,
     "name": "office_lawyers_admin",
     "en": "Office Admin",
     "ar": "إدارة محامين المكتب",

@@ -9,13 +9,11 @@
                         <i-control ng-hide="disabledCode" class="col2" label="##word.code##" ng-model="currency.code">
                         </i-control>
 
-                        <i-control help-id="currency_name" v="r" class="col4" label="##word.currency_name##"
-                            ng-model="currency.name"></i-control>
+                        <i-control help-id="currency_name_ar" v="r" class="col4" label="##word.currency_name##"
+                            ng-model="currency.name_ar"></i-control>
 
-                        <i-control help-id="ex_rate" class="col2" label="##word.ex_rate##" type="number"
-                            ng-model="currency.ex_rate"></i-control>
-
-                        <div class="col2"></div>
+                        <i-control help-id="currency_name_en" class="col4" label="##word.name_en##"
+                            ng-model="currency.name_en"></i-control>
 
                         <i-checkbox help-id="currency_active" class="col2" label="##word.active##"
                             ng-model="currency.active"></i-checkbox>
@@ -23,8 +21,18 @@
                     </div>
 
                     <div class="row">
-                        <i-control help-id="minor_currency" v="r" class="col4" label="##word.minor_currency##"
-                        ng-model="currency.minor_currency"></i-control>
+
+                        <i-control help-id="minor_currency_ar" v="r" class="col4" label="##word.minor_currency##"
+                            ng-model="currency.minor_currency_ar"></i-control>
+
+                        <i-control help-id="minor_currency_en" v="r" class="col4" label="##word.minor_currency_en##"
+                            ng-model="currency.minor_currency_en"></i-control>
+
+
+                        <i-control help-id="ex_rate" class="col2" label="##word.ex_rate##" type="number"
+                            ng-model="currency.ex_rate"></i-control>
+
+
                     </div>
 
                 </div>

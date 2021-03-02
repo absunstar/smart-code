@@ -25,7 +25,7 @@
                 <div class="control">
                     <label>##word.safes_payments_income_type##</label>
                     <select ng-model="safe_payment.amounts_in">
-                        <option ng-repeat="ai in amounts_in" ng-value="ai">{{ai.name}}</option>
+                        <option ng-repeat="ai in amounts_in" ng-value="ai">{{ai.name_##session.lang##}}</option>
                     </select>
                 </div>
             </div>
@@ -34,7 +34,7 @@
                 <div class="control">
                     <label>##word.safes_payments_output_type##</label>
                     <select ng-model="safe_payment.amounts_out">
-                        <option ng-repeat="ao in amounts_out" ng-value="ao">{{ao.name}}</option>
+                        <option ng-repeat="ao in amounts_out" ng-value="ao">{{ao.name_##session.lang##}}</option>
                     </select>
                 </div>
             </div>
@@ -44,7 +44,7 @@
                 <div class="control">
                     <label>##word.safes_payments_name##</label>
                     <select ng-model="safe_payment.safe" v="r">
-                        <option ng-repeat="sa in safes" ng-value="sa">{{sa.name + ' [ ' + sa.balance + ' ] '}}</option>
+                        <option ng-repeat="sa in safes" ng-value="sa">{{sa.name_##session.lang## + ' [ ' + sa.balance + ' ] '}}</option>
                     </select>
                 </div>
             </div>
@@ -99,7 +99,7 @@
                 <div class="control">
                     <label>##word.vendors_payments_name##</label>
                     <select ng-model="safe_payment.vendor" ng-change="setVendorCode()">
-                        <option ng-repeat="ve in vendors" ng-value="ve" ng-selected="safe_payment.vendor.id == ve.id">{{ve.name}}</option>
+                        <option ng-repeat="ve in vendors" ng-value="ve" ng-selected="safe_payment.vendor.id == ve.id">{{ve.name_##session.lang##}}</option>
                     </select>
                 </div>
             </div>

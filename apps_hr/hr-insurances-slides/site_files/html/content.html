@@ -3,13 +3,16 @@
     <div class="col9">
         <form class="form">
             <div class="row">
-                <i-control ng-hide="disabledCode" class="col2" label="##word.code##"
-                    ng-model="insurance_slide.code"></i-control>
-                    
-                <i-control class="col6" ng-model="insurance_slide.name" type="text"
+                <i-control ng-hide="disabledCode" class="col2" label="##word.code##" ng-model="insurance_slide.code">
+                </i-control>
+
+                <i-control class="col4" ng-model="insurance_slide.name_ar" type="text"
                     label="##word.insurances_slides_name##"></i-control>
 
-                <i-control class="col3" ng-model="insurance_slide.value" type="number"
+                <i-control class="col4" ng-model="insurance_slide.name_en" type="text"
+                    label="##word.name_en##"></i-control>
+
+                <i-control class="col2" ng-model="insurance_slide.value" type="number"
                     label="##word.insurances_slides_value##"></i-control>
             </div>
             <div class="row">

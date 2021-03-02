@@ -39,12 +39,12 @@
 
                             <tr>
                                 <td class="title">##word.name##</td>
-                                <td>{{task.name}}</td>
+                                <td>{{task.name_##session.lang##}}</td>
                             </tr>
 
                             <tr>
                                 <td class="title">##word.project##</td>
-                                <td>{{task.project.name}}</td>
+                                <td>{{task.project.name_##session.lang##}}</td>
                             </tr>
 
                             <tr>
@@ -57,7 +57,7 @@
 
                             <tr>
                                 <td class="title">##word.apps##</td>
-                                <td>{{task.app.name}}</td>
+                                <td>{{task.app.name_##session.lang##}}</td>
                             </tr>
 
                             <tr>
@@ -125,7 +125,7 @@
                         <table id="basicInformationTable" class="table">
                             <tr>
                                 <td class="title">##word.name##</td>
-                                <td>{{task.project.name}}</td>
+                                <td>{{task.project.name_##session.lang##}}</td>
                             </tr>
 
                             <tr>
@@ -168,7 +168,7 @@
                     <table id="appsTable" class="table">
                         <tr>
                             <td class="title">##word.name##</td>
-                            <td>{{pro.name}}</td>
+                            <td>{{pro.name_##session.lang##}}</td>
                         </tr>
 
                         <tr>
@@ -189,7 +189,7 @@
                     <table id="basicInformationTable" class="table">
                         <tr ng-repeat=" x in task.developers_tracking_list">
                             <td class="title">##word.name##</td>
-                            <td>{{x.name.name}}</td>
+                            <td>{{x.name.name_##session.lang##}}</td>
                             <td>
                                 <p ng-repeat="y in x.operations_list">
                                     {{y.status.##session.lang##}} => {{y.date  | date:"dd/MM/yyyy"}}
@@ -220,7 +220,7 @@
                     <table id="imagesTable" class="table">
                         <tr ng-repeat=" x in task.developers_tracking_list">
                             <td class="title">##word.name##</td>
-                            <td>{{x.name.name}}</td>
+                            <td>{{x.name.name_##session.lang##}}</td>
                             <td>{{x.review}}</td>
                         </tr>
                     </table>

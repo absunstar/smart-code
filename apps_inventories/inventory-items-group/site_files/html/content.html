@@ -8,27 +8,30 @@
                 <div class="col9">
 
                     <div class="row">
+
                         <i-control ng-hide="disabledCode" class="col2" label="##word.code##"
                             ng-model="items_group.code"></i-control>
 
                         <i-control help-id="items_group_name" v="r ll2" class="col4" label="##word.items_group_name##"
-                            ng-model="items_group.name"></i-control>
+                            ng-model="items_group.name_ar"></i-control>
 
-                        <i-checkbox class="col2" label="##word.stores_items_is_pos##" ng-model="items_group.is_pos">
-                        </i-checkbox>
-
-                        <div class="col2"></div>
+                        <i-control help-id="items_group_name_en" class="col4" label="##word.name_en##"
+                            ng-model="items_group.name_en"></i-control>
 
                         <i-checkbox help-id="items_group_active" class="col2" label="##word.active##"
                             ng-model="items_group.active"></i-checkbox>
+
                     </div>
 
                     <div class="row" x-features="restaurant || pos || erp">
 
-                        <h2 class="bold black col3">##word.color_in_pos## : </h2> 
+                        <i-checkbox class="col2" label="##word.stores_items_is_pos##" ng-model="items_group.is_pos">
+                        </i-checkbox>
+
+                        <h2 class="bold black col3">##word.color_in_pos## : </h2>
 
                         <div class="col3">
-                            
+
                             <input type="color" class="col2" ng-model="items_group.color" value="#ff0000">
                         </div>
 

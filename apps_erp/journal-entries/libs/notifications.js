@@ -3,22 +3,22 @@ module.exports = function init(site) {
   let collection_name = 'journal_entries'
 
   let source = {
-    name: 'Journal Entries System',
+    en: 'Journal Entries System',
     ar: ' نظام القيود اليومية'
   }
 
   let image_url = '/images/journal_entries.png'
 
   let add_message = {
-    name: 'New Journal Entries Added',
+    en: 'New Journal Entries Added',
     ar: 'تم إضافة قيد يومية جديد'
   }
   let update_message = {
-    name: ' Journal Entries Updated',
+    en: ' Journal Entries Updated',
     ar: 'تم تعديل قيد يومية'
   }
   let delete_message = {
-    name: ' Journal Entries Deleted',
+    en: ' Journal Entries Deleted',
     ar: 'تم حذف قيد يومية '
   }
 
@@ -32,7 +32,9 @@ module.exports = function init(site) {
           message: add_message,
           value: {
             name: result.doc.name,
-            ar: result.doc.name
+            code: result.doc.code,
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
           },
           add: result.doc,
           action: 'add'
@@ -51,7 +53,9 @@ module.exports = function init(site) {
           message: update_message,
           value: {
             name: result.old_doc.name,
-            ar: result.old_doc.name
+            code: result.old_doc.code,
+            en: result.old_doc.name_en,
+            ar: result.old_doc.name_ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
@@ -71,7 +75,9 @@ module.exports = function init(site) {
           message: delete_message,
           value: {
             name: result.doc.name,
-            ar: result.doc.name
+            code: result.doc.code,
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
           },
           delete: result.doc,
           action: 'delete'

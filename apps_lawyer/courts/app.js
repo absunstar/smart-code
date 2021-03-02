@@ -16,7 +16,8 @@ module.exports = function init(site) {
 
   site.on('[company][created]', doc => {
     $courts.add({
-      name: "محكمة إفتراضية",
+      name_ar: "محكمة إفتراضية",
+      name_en : "Default Court",
       code: "1-Test",
       image_url: '/images/court.png',
       company: {
@@ -65,8 +66,12 @@ module.exports = function init(site) {
       where: {
 
         'company.id': site.get_company(req).id,
-        'branch.code': site.get_branch(req).code,
-        'name': courts_doc.name
+        $or: [{
+          'name_ar': courts_doc.name_ar
+        },{
+          'name_en': courts_doc.name_en
+        }]
+      
       }
     }, (err, doc) => {
       if (!err && doc) {
@@ -74,6 +79,24 @@ module.exports = function init(site) {
         response.error = 'Name Exists'
         res.json(response)
       } else {
+
+        let num_obj = {
+          company: site.get_company(req),
+          screen: 'courts',
+          date: new Date()
+        };
+        let cb = site.getNumbering(num_obj);
+
+        if (!courts_doc.code && !cb.auto) {
+          response.error = 'Must Enter Code';
+          res.json(response);
+          return;
+
+        } else if (cb.auto) {
+          courts_doc.code = cb.code;
+        }
+
+
         $courts.add(courts_doc, (err, doc) => {
           if (!err) {
             response.done = true
@@ -200,8 +223,12 @@ module.exports = function init(site) {
 
     let where = req.body.where || {}
 
-    if (where['name']) {
-      where['name'] = site.get_RegExp(where['name'], "i");
+    if (where['name_ar']) {
+      where['name_ar'] = site.get_RegExp(where['name_ar'], "i");
+    }
+
+    if (where['name_en']) {
+      where['name_en'] = site.get_RegExp(where['name_en'], "i");
     }
 
     where['company.id'] = site.get_company(req).id

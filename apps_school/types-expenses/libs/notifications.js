@@ -3,21 +3,21 @@ module.exports = function init(site) {
   let collection_name = 'types_expenses'
 
   let source = {
-    name: 'Types Expenses System',
+    en: 'Types Expenses System',
     ar: ' نظام أنواع المصروفات الدراسية'
   }
 
   let image_url = '/images/types_expenses.png'
   let add_message = {
-    name: 'New Types Expenses Added',
+    en: 'New Types Expenses Added',
     ar: 'تم إضافة نوع مصروفات دراسية جديدة'
   }
   let update_message = {
-    name: 'Types Expenses Updated',
+    en: 'Types Expenses Updated',
     ar: 'تم تعديل نوع مصروفات دراسية'
   }
   let delete_message = {
-    name: 'Types Expenses Deleted',
+    en: 'Types Expenses Deleted',
     ar: 'تم حذف نوع مصروفات دراسية '
   }
 
@@ -31,7 +31,9 @@ module.exports = function init(site) {
           message: add_message,
           value: {
             name: result.doc.name,
-            ar: result.doc.name
+            code: result.doc.code,
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
           },
           add: result.doc,
           action: 'add'
@@ -50,7 +52,9 @@ module.exports = function init(site) {
           message: update_message,
           value: {
             name: result.old_doc.name,
-            ar: result.old_doc.name
+            code: result.old_doc.code,
+            en: result.old_doc.name_en,
+            ar: result.old_doc.name_ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
@@ -70,7 +74,9 @@ module.exports = function init(site) {
           message: delete_message,
           value: {
             name: result.doc.name,
-            ar: result.doc.name
+            code: result.doc.code,
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
           },
           delete: result.doc,
           action: 'delete'

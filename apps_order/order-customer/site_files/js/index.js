@@ -272,7 +272,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
           _kitchen.has_items = true;
           _kitchen.data.push({
             type: 'text3',
-            value: item_book.size,
+            value: item_book.size_ar,
             value2: item_book.count,
             value3: item_book.notes || ' ... '
           });
@@ -473,7 +473,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
         obj_print.data.push({
           type: 'item',
           value: _current_book_list.count,
-          value2: _current_book_list.size,
+          value2: _current_book_list.size_ar,
           value3: _current_book_list.total
         })
       });
@@ -767,7 +767,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           image_url: 1,
           code: 1
         }
@@ -795,8 +795,8 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
-          minor_currency: 1,
+          name_ar: 1, name_en: 1,
+          minor_currency_ar: 1, minor_currency_en: 1,
           ex_rate: 1,
           code: 1
         },
@@ -855,7 +855,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
         data: {
           select: {
             id: 1,
-            name: 1,
+            name_ar: 1, name_en: 1,
             commission: 1,
             currency: 1,
             type: 1,
@@ -885,7 +885,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           type: 1,
           ip_device: 1,
           Port_device: 1,
@@ -916,7 +916,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           printer_path: 1,
           code: 1
         }
@@ -944,7 +944,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
         select: {
           code: 1,
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           value: 1
         }
       }
@@ -971,7 +971,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
         select: {
           code: 1,
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           value: 1,
           type: 1
         }
@@ -1035,7 +1035,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
       url: "/api/shifts/get_open_shift",
       data: {
         where: { active: true },
-        select: { id: 1, name: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
+        select: { id: 1, name_ar: 1, name_en: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
       }
     }).then(
       function (response) {
@@ -1064,7 +1064,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
         where: {
           active: true
         },
-        select: { id: 1, name: 1, code: 1 }
+        select: { id: 1, name_ar: 1, name_en: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -1092,7 +1092,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           code: 1
         }
       }
@@ -1341,7 +1341,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
     }
 
     $scope.order_customer.book_list.forEach(el => {
-      if (item.size == el.size && item.barcode == el.barcode && !el.printed) {
+      if (item.size_ar == el.size_ar && item.barcode == el.barcode && !el.printed) {
         exist = true;
         el.total += (item.price - item.discount.value);
         el.count += 1;
@@ -1363,7 +1363,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
           name: item.name,
           store: item.store,
           barcode: item.barcode,
-          size: item.size,
+          size_ar: item.size_ar,
           size_en: item.size_en,
           item_group: item.item_group,
           unit: item.unit,
@@ -1427,7 +1427,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
     } else {
       $scope.order_customer.discountes = $scope.order_customer.discountes || [];
       $scope.order_customer.discountes.push({
-        name: $scope.discount.name,
+        name_ar: $scope.discount.name_ar, name_en: $scope.discount.name_en,
         value: $scope.discount.value,
         type: $scope.discount.type
       });
@@ -1443,17 +1443,17 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
     };
   };
 
-  $scope.calcSize = function (size) {
+  $scope.calcSize = function (_size) {
     $scope.error = '';
     setTimeout(() => {
       let discount = 0;
-      if (size.price && size.count) {
-        if (size.discount.type == 'number')
-          discount = size.discount.value * size.count;
-        else if (size.discount.type == 'percent')
-          discount = size.discount.value * (size.price * size.count) / 100;
+      if (_size.price && _size.count) {
+        if (_size.discount.type == 'number')
+          discount = _size.discount.value * _size.count;
+        else if (_size.discount.type == 'percent')
+          discount = _size.discount.value * (_size.price * _size.count) / 100;
 
-        size.total = (site.toNumber(size.price) * site.toNumber(size.count)) - discount;
+        _size.total = (site.toNumber(_size.price) * site.toNumber(_size.count)) - discount;
       }
       $scope.calc($scope.order_customer);
     }, 100);
@@ -1537,7 +1537,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
     $http({
       method: "POST",
       url: "/api/stores/all",
-      data: { select: { id: 1, name: 1, type: 1, code: 1 } }
+      data: { select: { id: 1, name_ar: 1, name_en: 1, type: 1, code: 1 } }
     }).then(
       function (response) {
         $scope.busy = false;
@@ -1583,7 +1583,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           code: 1,
           from_date: 1,
           from_time: 1,

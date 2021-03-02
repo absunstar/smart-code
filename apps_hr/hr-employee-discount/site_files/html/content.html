@@ -3,16 +3,16 @@
 
         <form class="form">
             <div class="row">
+
+                <i-control ng-hide="disabledCode" class="col2" label="##word.code##" ng-model="employee_discount.code">
+                </i-control>
+
                 <i-date2 class="col4" ng-model="employee_discount.date" label="##word.employee_discount_date##">
                 </i-date2>
 
-                <i-control ng-hide="disabledCode" class="col2" label="##word.code##"
-                    ng-model="employee_discount.code">
-                </i-control>
-
                 <div class="col2"></div>
 
-                <i-control class="col3 r_indigo" disabled label="##word.shift##" ng-model="shift.name">
+                <i-control class="col3 r_indigo" disabled label="##word.shift##" ng-model="shift.name_##session.lang##">
                 </i-control>
             </div>
             <div class="row ">
@@ -27,8 +27,8 @@
             <div class="row">
                 <i-control class="col2" v="r" ng-model="employee_discount.value" type="number"
                     label="##word.employee_discount_value##"></i-control>
-                    
-                <i-list class="col3" v="r" ng-search="_search.$currency_search"
+
+                <i-list class="col3" v="r" ng-search="_search.$currency_search" display="name_##session.lang##"
                     ng-model="employee_discount.currency" items="currenciesList" space=" - " display2="ex_rate"
                     label="##word.currency##">
                 </i-list>

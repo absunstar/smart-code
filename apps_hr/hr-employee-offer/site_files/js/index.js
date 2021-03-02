@@ -39,7 +39,7 @@ app.controller("employee_offer", function ($scope, $http) {
       data: {
         select: {
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           commission: 1,
           type: 1,
           code : 1
@@ -253,8 +253,8 @@ app.controller("employee_offer", function ($scope, $http) {
       data: {
         select: {
           id: 1,
-          name: 1,
-          minor_currency: 1,
+          name_ar: 1, name_en: 1,
+          minor_currency_ar: 1, minor_currency_en: 1,
           ex_rate: 1,
           code : 1
         },
@@ -289,7 +289,7 @@ app.controller("employee_offer", function ($scope, $http) {
         },
         select: {
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           code: 1,
           from_date: 1,
           from_time: 1,

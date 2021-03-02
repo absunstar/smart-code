@@ -24,17 +24,17 @@
 
                         <tr>
                             <td class="title">##word.trainer##</td>
-                            <td class="center">{{request_service.trainer.name}}</td>
+                            <td class="center">{{request_service.trainer.name_##session.lang##}}</td>
                         </tr>
 
                         <tr>
                             <td class="title">##word.hall##</td>
-                            <td class="center">{{request_service.hall.name}}</td>
+                            <td class="center">{{request_service.hall.name_##session.lang##}}</td>
                         </tr>
 
                         <tr>
                             <td class="title">##word.service##</td>
-                            <td class="center">{{request_service.service_name}}</td>
+                            <td class="center">{{request_service.service_name_##session.lang##}}</td>
                         </tr>
 
                         <tr>
@@ -106,7 +106,7 @@
                                 <tr class="bold" ng-repeat="s in request_service.selectedServicesList">
 
                                     <td>
-                                        <p class="center bold">{{s.name}}</p>
+                                        <p class="center bold">{{s.name_##session.lang##}}</p>
                                     </td>
 
                                     <td>

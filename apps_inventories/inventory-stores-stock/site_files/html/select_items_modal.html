@@ -11,7 +11,7 @@
                 <div class="row">
                     <i-control ng-keydown="getItemsName($event)" id="item_name" class="col3" ng-model="item.search_item_name"
                         label="##word.search##" type="text"></i-control>
-                    <i-list class="col4" label="##word.stores_in_item_name##" ng-model="item.name" display="name"
+                    <i-list class="col4" label="##word.stores_in_item_name##" ng-model="item.name" display="name_##session.lang##"
                         items="itemsNameList" ng-change="itemsStoresStock()" ng-search="item_searching"></i-list>
                 </div>
                 <div class="row">
@@ -32,9 +32,9 @@
 
                             <tr ng-repeat="itm in item.sizes track by $index">
                                 <td> <br> {{$index + 1}}</td>
-                                <td> <br> {{itm.name}}</td>
+                                <td> <br> {{itm.name_##session.lang##}}</td>
                                 <td> <br> {{itm.barcode}}</td>
-                                <td> <br> {{itm.size}}</td>
+                                <td> <br> {{itm.size_ar}}</td>
 
                                 <td>
 
@@ -45,7 +45,7 @@
                                         </tr>
 
                                         <tr ng-repeat="i in itm.size_units_list">
-                                            <td> {{i.name}} <b ng-show="i.barcode"> - </b> <b
+                                            <td> {{i.name_##session.lang##}} <b ng-show="i.barcode"> - </b> <b
                                                     class="blue">{{i.barcode}}</b> </td>
                                             <td> {{i.store_count}}</td>
 

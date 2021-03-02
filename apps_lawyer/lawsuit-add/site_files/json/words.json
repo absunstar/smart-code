@@ -1,6 +1,5 @@
 [
     {"name" : "lawsuit_add_informations" , "en" : "Lawsuit Add Informations" , "ar" : "بيانات إضافة الدعوى"},
-
     {"name" : "lawsuit_add" , "en" : "Lawsuit Add" , "ar" : "إضافة الدعاوي"},
     {"name" : "lawsuit_start_date" , "en" : "Date Of Filing A Lawsuit" , "ar" : "تاريخ رفع الدعوى"},
     {"name" : "lawsuit_add_menus" , "en" : "Lawsuit Add Menu" , "ar" : "قائمة إضافة الدعوى"},

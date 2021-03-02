@@ -18,22 +18,22 @@
 
                         <tr>
                             <td class="title">##word.shift##</td>
-                            <td class="center">{{attend_students.shift.name}} - {{attend_students.shift.code}}</td>
+                            <td class="center">{{attend_students.shift.name_##session.lang##}} - {{attend_students.shift.code}}</td>
                         </tr>
 
                         <tr  ng-show="attend_students.school_grade.id">
                             <td class="title">##word.school_grade##</td>
-                            <td class="center">{{attend_students.school_grade.name}}</td>
+                            <td class="center">{{attend_students.school_grade.name_##session.lang##}}</td>
                         </tr>
 
                         <tr ng-show="attend_students.students_year.id">
                             <td class="title">##word.students_year##</td>
-                            <td class="center">{{attend_students.students_year.name}}</td>
+                            <td class="center">{{attend_students.students_year.name_##session.lang##}}</td>
                         </tr>
 
                         <tr ng-show="attend_students.hall.id">
                             <td class="title">##word.hall##</td>
-                            <td class="center">{{attend_students.hall.name}}</td>
+                            <td class="center">{{attend_students.hall.name_##session.lang##}}</td>
                         </tr>
 
                     </table>

@@ -23,7 +23,7 @@
                         </tr>
 
                         <tr ng-repeat="item in storesBalance.stores_list">
-                            <td class="center">{{item.store.name}} <p ng-show="item.hold" class="red">
+                            <td class="center">{{item.store.name_##session.lang##}} <p ng-show="item.hold" class="red">
                                     ##word.under_stock##</p>
                             </td>
                             <td class="center red">{{item.average_cost}}</td>
@@ -89,7 +89,7 @@
                         <tr ng-repeat="c in storeUnitBalance.size_units_list">
 
                             <td>
-                                <p class="bold center"> {{c.name}} </p>
+                                <p class="bold center"> {{c.name_##session.lang##}} </p>
                             </td>
 
                             <td>

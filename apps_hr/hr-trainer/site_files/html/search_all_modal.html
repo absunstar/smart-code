@@ -30,13 +30,13 @@
                     </div>
                     <div class="row">
                         <i-list class="col3" label="##word.gov##" ng-model="search.gov" items="govList"
-                            ng-change="getCitiesList(search.gov)" display="name" ng-search="gov_search"></i-list>
+                            ng-change="getCitiesList(search.gov)" display="name_##session.lang##" ng-search="gov_search"></i-list>
 
                         <i-list class="col3" label="##word.city##" ng-model="search.city" items="citiesList"
-                            display="name" ng-search="neighborhood_search" ng-change="getAreaList(search.city)">
+                            display="name_##session.lang##" ng-search="neighborhood_search" ng-change="getAreaList(search.city)">
                         </i-list>
                         <i-list class="col3" label="##word.area##" ng-model="search.area" items="areaList"
-                            display="name" ng-search="trainer.$area_search"></i-list>
+                            display="name_##session.lang##" ng-search="trainer.$area_search"></i-list>
                         <i-control help-id="" class="col3" label="##word.address##" ng-model="search.address">
                         </i-control>
 

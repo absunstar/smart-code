@@ -25,6 +25,11 @@
         "ar": "العملة الصغرى"
     },
     {
+        "name": "minor_currency_en",
+        "en": "En. Minor Currency",
+        "ar": "العملة الصغرى بالإنجليزي"
+    },
+    {
         "name": "ex_rate",
         "en": "Exchange rate",
         "ar": "سعر الصرف"

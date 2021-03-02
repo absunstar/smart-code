@@ -59,11 +59,11 @@
                         </td>
                         
                         <td class="blue userPrint"> {{c.code}} </td>
-                        <td>{{c.shift.name}}</td>
-                        <td> {{c.school_grade.name}} </td>
-                        <td> {{c.students_year.name}} </td>
-                        <td> {{c.hall.name}} </td>
-                        <td> {{c.subject.subject.name}} </td>
+                        <td>{{c.shift.name_##session.lang##}}</td>
+                        <td> {{c.school_grade.name_##session.lang##}} </td>
+                        <td> {{c.students_year.name_##session.lang##}} </td>
+                        <td> {{c.hall.name_##session.lang##}} </td>
+                        <td> {{c.subject.subject.name_##session.lang##}} </td>
 
                         <td>
                             <p ng-show="c.active == true" class="green"> ##word.active## </p>

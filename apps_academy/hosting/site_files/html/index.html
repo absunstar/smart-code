@@ -59,8 +59,8 @@
                         </td>
                         <td class="center brown">{{c.date |date:"dd - MM - yyyy"}}</td>
                         <td class="center ">{{c.type.##session.lang##}}</td>
-                        <td class="center">{{c.employee.name}}</td>
-                        <td class="center title">{{c.classroom.name}}</td>
+                        <td class="center">{{c.employee.name_##session.lang##}}</td>
+                        <td class="center title">{{c.classroom.name_##session.lang##}}</td>
                         <td class="center">
                             <p ng-show="c.active ==true" class="green"> ##word.active## </p>
                             <p ng-show="c.active ==false" class="red"> ##word.not_active## </p>

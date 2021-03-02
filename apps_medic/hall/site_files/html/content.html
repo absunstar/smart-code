@@ -5,12 +5,16 @@
             <div class="row">
                 <div class="col9">
                     <div class="row">
-                        <i-control ng-hide="disabledCode" class="col2" label="##word.code##" ng-model="hall.code"></i-control>
+                        <i-control ng-hide="disabledCode" class="col2" label="##word.code##" ng-model="hall.code">
                         </i-control>
-                        <i-control help-id="hall_name" v="r ll2" class="col5" label="##word.hall_name##"
-                            ng-model="hall.name"></i-control>
+                        </i-control>
 
-                        <div class="col3"></div>
+                        <i-control help-id="hall_name" v="r ll2" class="col4" label="##word.hall_name##"
+                            ng-model="hall.name_ar"></i-control>
+
+                        <i-control help-id="hall_name_en" class="col4" label="##word.name_en##"
+                            ng-model="hall.name_en"></i-control>
+
                         <i-checkbox help-id="hall_active" class="col2" label="##word.active##" ng-model="hall.active">
                         </i-checkbox>
                     </div>

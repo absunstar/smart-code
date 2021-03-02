@@ -118,7 +118,8 @@ module.exports = function init(site) {
 
           let paid_value = {
             value : response.doc.baid_go,
-            sourceName: response.doc.customer.name_ar,
+            source_name_ar: response.doc.customer.name_ar,
+            source_name_en: response.doc.customer.name_en,
             academy : response.doc.academy,
             branch : response.doc.branch,
             date: response.doc.date_paid,

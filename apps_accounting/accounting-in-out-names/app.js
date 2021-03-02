@@ -3,10 +3,10 @@ module.exports = function init(site) {
   const $in_out_names = site.connectCollection("in_out_names")
 
   // $in_out_names.deleteDuplicate({
-  //   name: 1
+  //   name_ar: 1, name_en: 1
   // }, (err, result) => {
   //   $in_out_names.createUnique({
-  //     name: 1
+  //     name_ar: 1, name_en: 1
   //   }, (err, result) => {
 
   //   })
@@ -22,7 +22,8 @@ module.exports = function init(site) {
   site.on('[company][created]', doc => {
 
     $in_out_names.add({
-      name: "مسمى وارد إفتراضي",
+      name_ar: "مسمى وارد إفتراضي",
+      name_en: "Default Incoming",
       image_url: '/images/in_out_name.png',
       in: true,
       code: "1-Test",

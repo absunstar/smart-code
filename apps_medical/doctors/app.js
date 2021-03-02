@@ -6,21 +6,25 @@ module.exports = function init(site) {
     $doctors.add({
 
       code: "1-Test",
-      name: "طبيب إفتراضي",
+      name_ar: "طبيب إفتراضي",
+      name_en: "Default Doctor",
       image_url: '/images/doctors.png',
       specialty: {
         id: doc.id,
         code: doc.code,
-        name: doc.name,
+        name_ar: doc.name_ar,
+        name_en: doc.name_en,
       },
       doctor: true,
       company: {
         id: doc.company.id,
-        name_ar: doc.company.name_ar
+        name_ar: doc.company.name_ar,
+        name_en: doc.company.name_en
       },
       branch: {
         code: doc.branch.code,
-        name_ar: doc.branch.name_ar
+        name_ar: doc.branch.name_ar,
+        name_en: doc.branch.name_en
       },
       active: true
     }, (err, doc1) => { })
@@ -72,12 +76,13 @@ module.exports = function init(site) {
     $doctors.find({
 
       where: {
-        'name': doctor_doc.name,
         'company.id': site.get_company(req).id,
         'branch.code': site.get_branch(req).code,
 
         $or: [{
-          'name': doctor_doc.name
+          'name_ar': doctor_doc.name_ar
+        },{
+          'name_en': doctor_doc.name_en
         }, {
           'phone': doctor_doc.phone
         }, {
@@ -370,7 +375,11 @@ module.exports = function init(site) {
     if (search) {
       where.$or = []
       where.$or.push({
-        'name': site.get_RegExp(search, "i")
+        'name_ar': site.get_RegExp(search, "i")
+      })
+
+      where.$or.push({
+        'name_en': site.get_RegExp(search, "i")
       })
 
       where.$or.push({
@@ -414,9 +423,14 @@ module.exports = function init(site) {
       delete where.active
     }
 
-    if (where['name']) {
-      where['name'] = site.get_RegExp(where['name'], "i");
+    if (where['name_ar']) {
+      where['name_ar'] = site.get_RegExp(where['name_ar'], "i");
     }
+
+    if (where['name_en']) {
+      where['name_en'] = site.get_RegExp(where['name_en'], "i");
+    }
+
     if (where['address']) {
       where['address'] = site.get_RegExp(where['address'], "i");
     }

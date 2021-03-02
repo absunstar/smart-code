@@ -3,21 +3,21 @@ module.exports = function init(site) {
   let collection_name = 'rogatory_types'
 
   let source = {
-    name: 'Rogatory Types System',
+    en: 'Rogatory Types System',
     ar: ' نظام أنواع التوكيلات'
   }
 
   let image_url = '/images/rogatory-types.png'
   let add_message = {
-    name: 'New Rogatory Types Added',
+    en: 'New Rogatory Types Added',
     ar: 'تم إضافة نوع توكيل جديد'
   }
   let update_message = {
-    name: ' Rogatory Types Updated',
+    en: ' Rogatory Types Updated',
     ar: 'تم تعديل نوع توكيل'
   }
   let delete_message = {
-    name: ' Rogatory Types Deleted',
+    en: ' Rogatory Types Deleted',
     ar: 'تم حذف نوع توكيل '
   }
 
@@ -31,7 +31,9 @@ module.exports = function init(site) {
           message: add_message,
           value: {
             name: result.doc.name,
-            ar: result.doc.name
+            code: result.doc.code,
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
           },
           add: result.doc,
           action: 'add'
@@ -50,7 +52,9 @@ module.exports = function init(site) {
           message: update_message,
           value: {
             name: result.old_doc.name,
-            ar: result.old_doc.name
+            code: result.old_doc.code,
+            en: result.old_doc.name_en,
+            ar: result.old_doc.name_ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
@@ -70,7 +74,9 @@ module.exports = function init(site) {
           message: delete_message,
           value: {
             name: result.doc.name,
-            ar: result.doc.name
+            code: result.doc.code,
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
           },
           delete: result.doc,
           action: 'delete'

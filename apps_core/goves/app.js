@@ -17,7 +17,8 @@ module.exports = function init(site) {
     $goves.add(
       {
         code: "1-Test",
-        name: 'محافظة إفتراضية',
+        name_ar: 'محافظة إفتراضية',
+        name_en: "Default Gov",
         image_url: '/images/gov.png',
         company: {
           id: doc.id,
@@ -69,7 +70,12 @@ module.exports = function init(site) {
         where: {
           'company.id': site.get_company(req).id,
           'branch.code': site.get_branch(req).code,
-          name: goves_doc.name,
+          $or: [{
+            'name_ar': goves_doc.name_ar
+          },{
+            'name_en': goves_doc.name_en
+          }]
+       
         },
       },
       (err, doc) => {

@@ -23,7 +23,8 @@ module.exports = function init(site) {
     $analysis.add(
       {
         code: "1-Test",
-        name: 'تحليل إفتراضي',
+        name_ar: 'تحليل إفتراضي',
+        name_en: "Default Analysis",
         price: 1,
         immediate: true,
         image_url: '/images/analysis.png',
@@ -73,9 +74,13 @@ module.exports = function init(site) {
 
     $analysis.find({
       where: {
-        'name': analysis_doc.name,
         'company.id': site.get_company(req).id,
-        'branch.code': site.get_branch(req).code,
+        $or: [{
+          'name_ar': analysis_doc.name_ar
+        },{
+          'name_en': analysis_doc.name_en
+        }]
+    
       }
     }, (err, doc) => {
       if (!err && doc) {

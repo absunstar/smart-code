@@ -31,7 +31,7 @@
                     <tr ng-hide="storeInvoDetails.source_type.id == 3">
                         <td>
                             <b class="indigoD"> ##word.store## : </b>
-                            <b>{{storeView.store.name}}</b>
+                            <b>{{storeView.store.name_##session.lang##}}</b>
                         </td>
                         <td class="center"
                             ng-show="storeInvoDetails.source_type.id == 1 || storeInvoDetails.source_type.id == 2">
@@ -51,7 +51,7 @@
                         <td class="center">
 
                             <b class="indigoD">##word.store_from## : </b>
-                            <b>{{storeView.store_from.name}}</b>
+                            <b>{{storeView.store_from.name_##session.lang##}}</b>
                         </td>
                     </tr>
 
@@ -64,7 +64,7 @@
                         <td class="center">
 
                             <b class="indigoD">##word.store_to## : </b>
-                            <b>{{storeView.store_to.name}}</b>
+                            <b>{{storeView.store_to.name_##session.lang##}}</b>
                         </td>
                     </tr>
 
@@ -84,7 +84,7 @@
 
                         <td class="center">
                             <b class="indigoD">##word.delegate## :</b>
-                            <b class="center">{{storeView.delegate.name}} </b>
+                            <b class="center">{{storeView.delegate.name_##session.lang##}} </b>
                         </td>
                     </tr>
 
@@ -98,7 +98,7 @@
                                 </tr>
                                 <tr ng-repeat="tax in storeView.taxes">
                                     <td>
-                                        <p class="text-center"> {{tax.name}} </p>
+                                        <p class="text-center"> {{tax.name_##session.lang##}} </p>
                                     </td>
                                     <td>
                                         <p class="text-center"> {{tax.value}} % </p>
@@ -117,7 +117,7 @@
                                     <th>##word.stores_in_discount_value##</th>
                                 </tr>
                                 <tr ng-repeat="discount in storeView.discountes">
-                                    <td>{{discount.name}}</td>
+                                    <td>{{discount.name_##session.lang##}}</td>
                                     <td>
                                         <p class="text-center" ng-show="discount.type == 'number'"> {{discount.value}} %
                                         </p>
@@ -187,11 +187,11 @@
 
                         <td class="center">{{itm.barcode}}</td>
 
-                        <td class="center">{{itm.name}}</td>
+                        <td class="center">{{itm.name_##session.lang##}}</td>
 
-                        <td class="center">{{itm.unit.name}}</td>
+                        <td class="center">{{itm.unit.name_##session.lang##}}</td>
 
-                        <td class="center" ng-show="storeInvoDetails.source_type.id == 6">{{itm.units_trans.name}}</td>
+                        <td class="center" ng-show="storeInvoDetails.source_type.id == 6">{{itm.units_trans.name_##session.lang##}}</td>
 
                         <td class="center ">{{itm.count}}</td>
 
@@ -231,10 +231,10 @@
 
                     <tr ng-repeat="itm in storeView.items">
                         <td> <br> {{$index + 1}}</td>
-                        <td> <br> {{itm.name}}</td>
+                        <td> <br> {{itm.name_##session.lang##}}</td>
                         <td> <br> {{itm.barcode}}</td>
                         <td>
-                            <p>{{itm.size}}</p>
+                            <p>{{itm.size_ar}}</p>
                             <p>{{itm.size_en}}</p>
                         </td>
 
@@ -249,7 +249,7 @@
                                 </tr>
 
                                 <tr ng-repeat="i in itm.size_units_list">
-                                    <td> {{i.name}} <b ng-show="i.barcode"> - </b> <b class="blue">{{i.barcode}}</b>
+                                    <td> {{i.name_##session.lang##}} <b ng-show="i.barcode"> - </b> <b class="blue">{{i.barcode}}</b>
                                     </td>
                                     <td class="green"> {{i.store_count}}</td>
                                     <td> {{i.stock_count}}</td>

@@ -5,7 +5,8 @@ module.exports = function init(site) {
     if (site.feature('pos') || site.feature('erp') || site.feature('restaurant')) {
 
       $delegate_list.add({
-        name: "مندوب إفتراضي",
+        name_ar: "مندوب إفتراضي",
+        name_en : "Default Delegate",
         image_url: '/images/delegate.png',
         code: "1-Test",
         delegate: true,
@@ -436,7 +437,11 @@ module.exports = function init(site) {
     if (search) {
       where.$or = []
       where.$or.push({
-        'name': site.get_RegExp(search, "i")
+        'name_ar': site.get_RegExp(search, "i")
+      })
+
+      where.$or.push({
+        'name_en': site.get_RegExp(search, "i")
       })
 
       where.$or.push({
@@ -535,7 +540,7 @@ module.exports = function init(site) {
   site.getEmployeeAttend = function (data, callback) {
 
     let select = {
-      id: 1, name: 1,
+      id: 1, name_ar: 1, name_en: 1,
       active: 1, finger_code: 1,
       gender: 1,
       company: 1, branch: 1

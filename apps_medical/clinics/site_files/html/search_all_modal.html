@@ -25,11 +25,11 @@
                 <div class="row">
 
                         <i-list help-id="" v="r" class="col4" label="##word.hospital##" ng-model="search.hospital"
-                            display="name" items="hospitalList" ng-search="_search.$hospital_name">
+                            display="name_##session.lang##" items="hospitalList" ng-search="_search.$hospital_name">
                         </i-list>
 
                         <i-list help-id="" v="r" class="col4" label="##word.specialty##" ng-model="search.specialty"
-                            ng-change="getDoctorList(search)" display="name" items="specialList" ng-search="_search.$specialty_name">
+                            ng-change="getDoctorList(search)" display="name_##session.lang##" items="specialList" ng-search="_search.$specialty_name">
                         </i-list>
 
                     </div>

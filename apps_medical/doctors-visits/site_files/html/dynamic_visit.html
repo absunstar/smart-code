@@ -15,14 +15,14 @@
 
                  
                     <i-list help-id="" v="r" class="col3" label="##word.clinic##" ng-model="dynamic_doctors_visits.clinic"
-                        display="name" items="dynamic_doctors_visits.$clinic_list" ng-search="_search.$clinic_doctors_visits"
+                        display="name_##session.lang##" items="dynamic_doctors_visits.$clinic_list" ng-search="_search.$clinic_doctors_visits"
                         ng-change="getClincDoctorList(dynamic_doctors_visits.clinic)"></i-list>
 
                     <i-list help-id="" v="r" class="col3" label="##word.doctor##" ng-model="dynamic_doctors_visits.doctor"
-                        display="name" items="dynamic_doctors_visits.$doctor_list" ng-search="_search.$doctor_doctors_visits"></i-list>
+                        display="name_##session.lang##" items="dynamic_doctors_visits.$doctor_list" ng-search="_search.$doctor_doctors_visits"></i-list>
 
                     <i-list help-id="" v="r" class="col3" label="##word.shift##" ng-model="dynamic_doctors_visits.shift"
-                        display="name" items="dynamic_doctors_visits.doctor.$shift_list" ng-search="_search.$doctor_doctors_visits">
+                        display="name_##session.lang##" items="dynamic_doctors_visits.doctor.$shift_list" ng-search="_search.$doctor_doctors_visits">
                     </i-list>
 
                     <i-control help-id="" v="r" class="col2" type="number" label="##word.period##"

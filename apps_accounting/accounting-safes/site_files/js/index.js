@@ -245,8 +245,8 @@ app.controller("safes", function ($scope, $http) {
       data: {
         select: {
           id: 1,
-          name: 1,
-          minor_currency: 1,
+          name_ar: 1, name_en: 1,
+          minor_currency_ar: 1, minor_currency_en: 1,
           ex_rate: 1,
           code : 1
         },
@@ -280,8 +280,11 @@ app.controller("safes", function ($scope, $http) {
     if ($scope.search.balance) {
       where['balance'] = site.toNumber($scope.search.balance);
     }
-    if ($scope.search.name) {
-      where['name'] = $scope.search.name;
+    if ($scope.search.name_ar) {
+      where['name_ar'] = $scope.search.name_ar;
+    }
+    if ($scope.search.name_en) {
+      where['name_en'] = $scope.search.name_en;
     }
 
     if ($scope.search.description) {
@@ -322,7 +325,7 @@ app.controller("safes", function ($scope, $http) {
       url: "/api/shifts/get_open_shift",
       data: {
         where: { active: true },
-        select: { id: 1, name: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
+        select: { id: 1, name_ar: 1, name_en: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
       }
     }).then(
       function (response) {

@@ -15,12 +15,12 @@
 
                                 <tr>
                                     <td class="title"> ##word.students_years_name## </td>
-                                    <td class="center"> {{students_years.name}} </td>
+                                    <td class="center"> {{students_years.name_##session.lang##}} </td>
                                 </tr>
 
                                 <tr>
                                     <td class="title"> ##word.school_grade## </td>
-                                    <td class="center"> {{students_years.school_grade.name}} </td>
+                                    <td class="center"> {{students_years.school_grade.name_##session.lang##}} </td>
                                 </tr>
 
                                 <tr>
@@ -49,7 +49,7 @@
 
                                         <tr ng-repeat="c in students_years.types_expenses_list">
 
-                                            <td> {{c.name}} </td>
+                                            <td> {{c.name_##session.lang##}} </td>
                                             <td class="green">
                                                 {{c.value}}
                                             </td>
@@ -80,7 +80,7 @@
                                         </tr>
                                         <tr ng-repeat="c in students_years.subjects_list | orderBy : '-id'">
 
-                                            <td> {{c.subject.name}} </td>
+                                            <td> {{c.subject.name_##session.lang##}} </td>
                                             <td>
                                                 {{c.exam_score_month}}
                                             </td>

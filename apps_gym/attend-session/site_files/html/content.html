@@ -47,7 +47,7 @@
                                     <td class="white bg_card"> ##word.tall## </td>
                                     <td colspan="2" class="center"> {{attend_session.customer.tall}} </td>
                                     <td class="white bg_card"> ##word.blood_type## </td>
-                                    <td colspan="2" class="center red"> {{attend_session.customer.blood_type.name}}
+                                    <td colspan="2" class="center red"> {{attend_session.customer.blood_type.name_##session.lang##}}
                                     </td>
                                 </tr>
                                 <tr>
@@ -56,11 +56,11 @@
                                 </tr>
                                 <tr>
                                     <td class="white bg_card"> ##word.gov## </td>
-                                    <td colspan="2" class="center"> {{attend_session.customer.gov.name}} </td>
+                                    <td colspan="2" class="center"> {{attend_session.customer.gov.name_##session.lang##}} </td>
                                     <td class="white bg_card"> ##word.city## </td>
-                                    <td colspan="2" class="center"> {{attend_session.customer.city.name}} </td>
+                                    <td colspan="2" class="center"> {{attend_session.customer.city.name_##session.lang##}} </td>
                                     <td class="white bg_card"> ##word.area## </td>
-                                    <td colspan="2" class="center"> {{attend_session.customer.area.name}} </td>
+                                    <td colspan="2" class="center"> {{attend_session.customer.area.name_##session.lang##}} </td>
                                 </tr>
 
                                 <tr>
@@ -88,10 +88,10 @@
 
                     <div class="row">
 
-                        <i-list ng-search="_search.$trainer" v="r" class="col4" display="name"
+                        <i-list ng-search="_search.$trainer" v="r" class="col4" display="name_##session.lang##"
                             ng-model="attend_session.trainer" label="##word.trainer##" items="trainersList"></i-list>
 
-                        <i-list ng-search="_search.$hall" class="col4" display="name" v="r"
+                        <i-list ng-search="_search.$hall" class="col4" display="name_##session.lang##" v="r"
                             ng-model="attend_session.hall" label="##word.hall##" items="hallsList">
                         </i-list>
 
@@ -104,7 +104,7 @@
                         <i-control ng-keydown="getService($event)" id="service" class="col3" ng-model="search_service"
                             label="##word.search##" type="text"></i-control>
 
-                        <i-list ng-search="_search.$service" class="col4" v="r" display="name" space=" - "
+                        <i-list ng-search="_search.$service" class="col4" v="r" display="name_##session.lang##" space=" - "
                             display2="general_service" ng-model="attend_session.service" label="##word.service##"
                             items="sessionList"></i-list>
 

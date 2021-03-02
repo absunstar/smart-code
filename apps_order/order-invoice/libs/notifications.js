@@ -3,21 +3,21 @@ module.exports = function init(site) {
   let collection_name = 'order_invoice'
 
   let source = {
-    name: 'Order Invoice System',
+    en: 'Order Invoice System',
     ar: 'نظام شاشة الطلبات'
   }
 
   let image_url = '/images/order_invoice.png'
   let add_message = {
-    name: 'New Order Invoice Added',
+    en: 'New Order Invoice Added',
     ar: 'تم إضافة طلب بيع جديد'
   }
   let update_message = {
-    name: ' Order Invoice Updated',
+    en: ' Order Invoice Updated',
     ar: 'تم تعديل طلب بيع'
   }
   let delete_message = {
-    name: ' Order Invoice Deleted',
+    en: ' Order Invoice Deleted',
     ar: 'تم حذف طلب بيع '
   }
 
@@ -30,7 +30,9 @@ module.exports = function init(site) {
           message: add_message,
           value: {
             name: result.doc.code,
-            ar: result.doc.code
+            code: result.doc.code,
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
           },
           add: result.doc,
           action: 'add'
@@ -69,7 +71,9 @@ module.exports = function init(site) {
           message: delete_message,
           value: {
             name: result.doc.code,
-            ar: result.doc.code
+            code: result.doc.code,
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
           },
           delete: result.doc,
           action: 'delete'

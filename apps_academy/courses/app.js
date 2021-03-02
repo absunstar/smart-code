@@ -50,7 +50,11 @@ module.exports = function init(site) {
         
         'company.id': site.get_company(req).id,
         'branch.code': site.get_branch(req).code,
-        'name': courses_doc.name
+        $or: [{
+          'name_ar': courses_doc.name_ar
+        },{
+          'name_en': courses_doc.name_en
+        }]
       }
     }, (err, doc) => {
       if (!err && doc) {

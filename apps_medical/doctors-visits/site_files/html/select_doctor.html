@@ -20,11 +20,11 @@
                     </tr>
                     <tr ng-repeat="d in doctors_visits.selected_clinic.doctor_list">
                         <td>
-                            <i-control disabled ng-model="d.doctor.name"></i-control>
+                            <i-control disabled ng-model="d.doctor.name_##session.lang##"></i-control>
                         </td>
 
                         <td>
-                            <i-control disabled ng-model="d.shift.name"></i-control>
+                            <i-control disabled ng-model="d.shift.name_##session.lang##"></i-control>
                         </td>
 
                         <td>

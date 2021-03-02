@@ -87,8 +87,8 @@
                         <td ng-hide="vendor.id || customer.id"> {{c.vendor.name_##session.lang##}}
                             {{c.customer.name_##session.lang##}} </td>
                         <td class=""> {{c.payment_method.##session.lang##}} </td>
-                        <td class=""> {{c.safe.name}} </td>
-                        <td class=""> {{c.currency.name}} / <b class="blue">{{c.currency.ex_rate}}</b> </td>
+                        <td class=""> {{c.safe.name_##session.lang##}} </td>
+                        <td class=""> {{c.currency.name_##session.lang##}} / <b class="blue">{{c.currency.ex_rate}}</b> </td>
 
                         <td class="green"> {{c.paid_up || 0}} </td>
                     </tr>

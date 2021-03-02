@@ -29,7 +29,7 @@
 
                                 <tr ng-show="order_distributor.delivery_employee.id">
                                     <td class="title"> ##word.delivery_employee## </td>
-                                    <td class="center"> {{order_distributor.delivery_employee.name}} </td>
+                                    <td class="center"> {{order_distributor.delivery_employee.name_##session.lang##}} </td>
                                 </tr>
 
                                 <tr>
@@ -38,7 +38,7 @@
                                 </tr>
                                 <tr>
                                     <td class="title"> ##word.shift## </td>
-                                    <td class="center "> {{order_distributor.shift.name}}
+                                    <td class="center "> {{order_distributor.shift.name_##session.lang##}}
                                         <h3 class="center bold blue">{{order_distributor.shift.code}}</h3>
                                     </td>
                                 </tr>
@@ -70,12 +70,12 @@
 
                                 <tr ng-show="order_distributor.table">
                                     <td class="title"> ##word.tables_group## </td>
-                                    <td class="center"> {{order_distributor.table.tables_group.name}} </td>
+                                    <td class="center"> {{order_distributor.table.tables_group.name_##session.lang##}} </td>
                                 </tr>
 
                                 <tr ng-show="order_distributor.table">
                                     <td class="title"> ##word.table## </td>
-                                    <td class="center"> {{order_distributor.table.name}} </td>
+                                    <td class="center"> {{order_distributor.table.name_##session.lang##}} </td>
                                 </tr>
 
                                 <tr>
@@ -99,7 +99,7 @@
                                     <th>##word.items_price_total##</th>
                                 </tr>
                                 <tr ng-repeat="c in order_distributor.book_list">
-                                    <td class="center title">{{c.size}}</td>
+                                    <td class="center title">{{c.size_ar}}</td>
                                     <td class="center ">{{c.barcode}}</td>
                                     <td class="center blue">{{c.count}}</td>
                                     <td class="center green">{{c.price}}</td>

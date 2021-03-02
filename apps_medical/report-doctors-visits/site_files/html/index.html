@@ -71,7 +71,7 @@
                                         <td class="white bg_card"> ##word.tall## </td>
                                         <td colspan="2" class="center"> {{customer.tall}} </td>
                                         <td class="white bg_card"> ##word.blood_type## </td>
-                                        <td colspan="2" class="center red"> {{customer.blood_type.name}}
+                                        <td colspan="2" class="center red"> {{customer.blood_type.name_##session.lang##}}
                                         </td>
                                     </tr>
                                     <tr>
@@ -80,11 +80,11 @@
                                     </tr>
                                     <tr>
                                         <td class="white bg_card"> ##word.gov## </td>
-                                        <td colspan="2" class="center"> {{customer.gov.name}} </td>
+                                        <td colspan="2" class="center"> {{customer.gov.name_##session.lang##}} </td>
                                         <td class="white bg_card"> ##word.city## </td>
-                                        <td colspan="2" class="center"> {{customer.city.name}} </td>
+                                        <td colspan="2" class="center"> {{customer.city.name_##session.lang##}} </td>
                                         <td class="white bg_card"> ##word.area## </td>
-                                        <td colspan="2" class="center"> {{customer.area.name}} </td>
+                                        <td colspan="2" class="center"> {{customer.area.name_##session.lang##}} </td>
                                     </tr>
 
                                     <tr>
@@ -141,13 +141,13 @@
 
                             <td class="center brown"> <br> {{doctors_visits.date | date : 'dd - MM - yyyy'}}</td>
 
-                            <td> {{doctors_visits.selected_clinic.name}}
-                                <p class="blue">{{doctors_visits.selected_shift.name}}</p>
+                            <td> {{doctors_visits.selected_clinic.name_##session.lang##}}
+                                <p class="blue">{{doctors_visits.selected_shift.name_##session.lang##}}</p>
 
                             </td>
 
-                            <td class="title"> {{doctors_visits.selected_doctor.name}}
-                                <p class="green">{{doctors_visits.selected_specialty.name}}</p>
+                            <td class="title"> {{doctors_visits.selected_doctor.name_##session.lang##}}
+                                <p class="green">{{doctors_visits.selected_specialty.name_##session.lang##}}</p>
 
                             </td>
 

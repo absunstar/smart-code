@@ -37,7 +37,7 @@
                                 <tr>
                                     <td class="title">##word.delivery_employee##</td>
                                     <td>
-                                        <h3 class="center bold">{{delivery_employee.name}}</h3>
+                                        <h3 class="center bold">{{delivery_employee.name_##session.lang##}}</h3>
                                     </td>
                                 </tr>
 
@@ -91,7 +91,7 @@
                         <td class="brown"> {{c.date | date : 'dd - MM - yyyy'}} </td>
                         <td class="blue"> {{c.code}} </td>
                         <td> {{c.status.##session.lang##}} </td>
-                        <td ng-hide="delivery_employee.id"> {{c.delivery_employee.name}} </td>
+                        <td ng-hide="delivery_employee.id"> {{c.delivery_employee.name_##session.lang##}} </td>
 
                         <td class="blue"> {{c.total_book_list ||0}} </td>
                        <!--  <td> {{c.total_tax ||0}} </td>

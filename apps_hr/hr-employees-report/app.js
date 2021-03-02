@@ -29,7 +29,7 @@ module.exports = function init(site) {
 
     delete doc._id
     delete doc.id
-
+   
 
     $employees_report.add(doc, (err, doc2) => {
       if (!err) {
@@ -39,8 +39,9 @@ module.exports = function init(site) {
           date: doc.date,
           company: doc.company,
           branch: doc.branch,
-          sourceName: doc.name,
-          operation: 'مرتب موظف',
+          source_name_ar: doc.name_ar,
+          source_name_en: doc.name_en,
+          operation: {ar: 'مرتب موظف', en: 'Employee salary'},
           transition_type: 'out',
           description: doc.description
         }

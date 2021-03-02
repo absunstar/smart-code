@@ -5,7 +5,8 @@ module.exports = function init(site) {
   site.on('[currency][safe][add]', doc => {
 
     $safes.add({
-      name: "خزينة نقدي إفتراضي",
+      name_ar: "خزينة نقدي إفتراضي",
+      name_en: "Default Cash Safe",
       code: "1-Test",
       balance: 0,
       type: {
@@ -16,21 +17,25 @@ module.exports = function init(site) {
       image_url: '/images/safe.png',
       currency: {
         id: doc.id,
-        name: doc.name,
+        name_ar: doc.name_ar,
+        name_en: doc.name_en,
         ex_rate: doc.ex_rate
       },
       company: {
         id: doc.company.id,
-        name_ar: doc.company.name_ar
+        name_ar: doc.company.name_ar,
+        name_en: doc.company.name_en,
       },
       branch: {
         code: doc.branch.code,
-        name_ar: doc.branch.name_ar
+        name_ar: doc.branch.name_ar,
+        name_en: doc.branch.name_en
       },
       active: true
     }, (err, _doc) => {
       $safes.add({
-        name: "خزينة بنك إفتراضية",
+        name_ar: "خزينة بنك إفتراضي",
+        name_en: "Default Bank Safe",
         code: "2-Test",
         balance: 0,
         type: {
@@ -41,16 +46,19 @@ module.exports = function init(site) {
         image_url: '/images/safe.png',
         currency: {
           id: doc.id,
-          name: doc.name,
+          name_ar: doc.name_ar,
+          name_en: doc.name_en,
           ex_rate: doc.ex_rate
         },
         company: {
           id: doc.company.id,
-          name_ar: doc.company.name_ar
+          name_ar: doc.company.name_ar,
+          name_en: doc.company.name_en,
         },
         branch: {
           code: doc.branch.code,
-          name_ar: doc.branch.name_ar
+          name_ar: doc.branch.name_ar,
+          name_en: doc.branch.name_en
         },
         active: true
       })
@@ -94,11 +102,11 @@ module.exports = function init(site) {
 
 
   // $safes.deleteDuplicate({
-  //   name: 1,
+  //   name_ar: 1, name_en: 1,
   //   'company.id': 1
   // }, (err, result) => {
   //   $safes.createUnique({
-  //     name: 1,
+  //     name_ar: 1, name_en: 1,
   //     'company.id': 1
 
   //   }, (err, result) => {
@@ -165,7 +173,7 @@ module.exports = function init(site) {
 
         let obj = {
           image_url: doc.image_url,
-          operation: 'خزينة جديدة',
+          operation: { ar: 'خزينة جديدة', en: 'New Safe' },
           pre_balance: 0,
           balance: doc.balance,
           currency: doc.currency,
@@ -173,7 +181,8 @@ module.exports = function init(site) {
           branch: doc.branch,
           value: doc.balance,
           safe: {
-            name: doc.name,
+            name_ar: doc.name_ar,
+            name_en: doc.name_en,
             id: doc.id
           },
           date: new Date(),
@@ -181,7 +190,7 @@ module.exports = function init(site) {
           shift: {
             id: doc.shift.id,
             code: doc.shift.code,
-            name: doc.shift.name
+            name_ar: doc.shift.name_ar, name_en: doc.shift.name_en
           }
         }
         if (doc.balance)

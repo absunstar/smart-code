@@ -45,15 +45,15 @@
                     </td>
 
                     <td ng-hide="storeInvoDetails.source_type.id == 3">
-                        <p class="text-center blue"> <br> {{c.store.name}} </p>
+                        <p class="text-center blue"> <br> {{c.store.name_##session.lang##}} </p>
                     </td>
 
                     <td ng-show="storeInvoDetails.source_type.id == 3">
-                        <p class="text-center blue"> <br> {{c.branch_from.name_ar}} - {{c.store_from.name}} </p>
+                        <p class="text-center blue"> <br> {{c.branch_from.name_ar}} - {{c.store_from.name_##session.lang##}} </p>
                     </td>
 
                     <td ng-show="storeInvoDetails.source_type.id == 3">
-                        <p class="text-center blue"> <br> {{c.branch_to.name_ar}} - {{c.store_to.name}} </p>
+                        <p class="text-center blue"> <br> {{c.branch_to.name_ar}} - {{c.store_to.name_##session.lang##}} </p>
                     </td>
 
                     <td ng-show="storeInvoDetails.source_type.id == 1 || storeInvoDetails.source_type.id == 2">

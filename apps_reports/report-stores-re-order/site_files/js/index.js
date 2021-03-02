@@ -102,7 +102,7 @@ app.controller("report_stores_re_order", function ($scope, $http, $timeout) {
       obj_print.data.push(
         {
           type: 'text3',
-          value: _item.size,
+          value: _item.size_ar,
           value2: _item.total,
           value3: _item.count
         }, { type: 'line' });
@@ -143,7 +143,7 @@ app.controller("report_stores_re_order", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           code : 1
         }
       }
@@ -193,7 +193,7 @@ app.controller("report_stores_re_order", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           code : 1
         }
       }
@@ -238,7 +238,7 @@ app.controller("report_stores_re_order", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/stores/all",
       data: {
-        select: { id: 1, name: 1, type: 1, code: 1 },
+        select: { id: 1, name_ar: 1, name_en: 1, type: 1, code: 1 },
         branchTo: branch
       }
 
@@ -266,7 +266,7 @@ app.controller("report_stores_re_order", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name: 1,
+          name_ar: 1, name_en: 1,
           barcode: 1,
           code : 1
         }

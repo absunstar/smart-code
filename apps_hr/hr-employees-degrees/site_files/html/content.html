@@ -4,8 +4,13 @@
             <div class="row">
                 <i-control ng-hide="disabledCode" class="col2" label="##word.code##" ng-model="employee_degree.code">
                 </i-control>
-                <i-control v="r" ng-model="employee_degree.name" class="col5" type="text"
+
+                <i-control v="r" ng-model="employee_degree.name_ar" class="col4" type="text"
                     label="##word.employees_degrees_name##"></i-control>
+
+                <i-control ng-model="employee_degree.name_en" class="col4" type="text"
+                    label="##word.name_en##"></i-control>
+
                 <i-control v="r" ng-model="employee_degree.salary" class="col2" type="number"
                     label="##word.employees_degrees_salary##"></i-control>
             </div>

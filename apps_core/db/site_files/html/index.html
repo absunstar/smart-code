@@ -22,7 +22,7 @@
               </td>
               <td class="center">
                 <form class="form text-center pointer">
-                  <input id="input_{{collection.name}}" class="hidden" type="file" name="collectionFile" ng-model="collection.path"  />
+                  <input id="input_{{collection.name_##session.lang##}}" class="hidden" type="file" name="collectionFile" ng-model="collection.path"  />
                   <a class="btn add" ng-click="do_click(collection)"> Import </a>
                   <p>{{uploadStatus}}</p>
                 </form>

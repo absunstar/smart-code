@@ -255,7 +255,7 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/maritals_status/all",
       data: {
-        select: { id: 1, name: 1, code: 1 }
+        select: { id: 1, name_ar: 1, name_en: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -277,7 +277,7 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/militaries_status/all",
       data: {
-        select: { id: 1, name: 1, code: 1 }
+        select: { id: 1, name_ar: 1, name_en: 1, code: 1 }
       }
     }).then(
       function (response) {
@@ -300,7 +300,7 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
       url: "/api/jobs/all",
       data: {
         select: {
-          id: 1, active: 1, trainer: 1, name: 1, code: 1
+          id: 1, active: 1, trainer: 1, name_ar: 1, name_en: 1, code: 1
         },
         where: {
           active: true
@@ -391,7 +391,7 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
         where: {
           active: true
         },
-        select: { id: 1, name: 1, code: 1 }
+        select: { id: 1, name_ar: 1, name_en: 1, code: 1 }
       }
     }).then(
       function (response) {

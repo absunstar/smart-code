@@ -97,7 +97,7 @@
                         <div class="row" ng-repeat="developer in project.developers_list">
 
                             <i-list class="col4" label="##word.developers##" ng-model="developer.name"
-                                items="developerList" display="name" ng-search="developer_name"></i-list>
+                                items="developerList" display="name_##session.lang##" ng-search="developer_name"></i-list>
                             <div class="col2">
                                 <br>
                                 <br>

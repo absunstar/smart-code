@@ -22,13 +22,13 @@
                 <div class="row" ng-repeat="g in tablesGroupList">
 
                     <fieldset>
-                        <legend>{{g.name}}</legend>
+                        <legend>{{g.name_##session.lang##}}</legend>
 
                         <div class="item-groups">
                             <a ng-class="{'table-busy' : t.busy }" class="item pointer " ng-repeat="t in g.tables_list" ng-click="selectTable(t , g)"
                                 help-id="menu_monitor">
                                 <img ng-src="{{t.image_url}}">
-                                <h2>{{t.name}}</h2>
+                                <h2>{{t.name_##session.lang##}}</h2>
                             </a>
                         </div>
 

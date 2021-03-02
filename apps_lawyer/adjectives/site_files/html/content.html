@@ -6,11 +6,18 @@
                 <div class="col9">
                     <div class="row">
 
-                        <i-control help-id="adjectives_name" v="r ll2" class="col5" label="##word.adjectives_name##"
-                            ng-model="adjectives.name"></i-control>
-                        <div class="col4"></div>
-                        <i-checkbox help-id="adjectives_active" class="col3" label="##word.active##"
+                        <i-control ng-hide="disabledCode" class="col2" label="##word.code##" ng-model="adjectives.code">
+                        </i-control>
+
+                        <i-control help-id="adjectives_name" v="r ll2" class="col4" label="##word.adjectives_name##"
+                            ng-model="adjectives.name_ar"></i-control>
+
+                        <i-control help-id="adjectives_name_en" class="col4" label="##word.name_en##"
+                            ng-model="adjectives.name_en"></i-control>
+
+                        <i-checkbox help-id="adjectives_active" class="col2" label="##word.active##"
                             ng-model="adjectives.active"></i-checkbox>
+
                     </div>
 
                     <div class="row">
@@ -23,7 +30,9 @@
                 <div class="col3">
                     <i-image help-id="adjectives_logo" ng-model="adjectives.image_url"></i-image>
                 </div>
+
             </div>
+
         </fieldset>
 
     </div>
