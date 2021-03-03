@@ -654,7 +654,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
           url = "/api/order_invoice/invoices";
 
         else if ($scope.account_invoices.source_type.id === 4)
-          url = "/api/request_service/all";
+          url = "/api/request_activity/all";
 
         else if ($scope.account_invoices.source_type.id === 5)
           url = "/api/book_hall/all";
@@ -844,7 +844,8 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     $scope.account_invoices.delivery_employee = item.delivery_employee;
     $scope.account_invoices.table = item.table;
     $scope.account_invoices.services_price = item.services_price;
-    $scope.account_invoices.service_name = item.service_name;
+    $scope.account_invoices.activity_name_ar = item.activity_name_ar;
+    $scope.account_invoices.activity_name_en = item.activity_name_en;
     $scope.account_invoices.date_from = item.date_from;
     $scope.account_invoices.date_to = item.date_to;
     $scope.account_invoices.service = item.service;
@@ -1010,7 +1011,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
 
-        if (site.feature('gym')) $scope.sourceTypeList = response.data.filter(i => i.id != 3 && i.id != 5 && i.id != 6 && i.id != 7);
+        if (site.feature('club')) $scope.sourceTypeList = response.data.filter(i => i.id != 3 && i.id != 5 && i.id != 6 && i.id != 7);
         else if (site.feature('restaurant') || site.feature('pos') || site.feature('erp')) $scope.sourceTypeList = response.data.filter(i => i.id != 4 && i.id != 5 && i.id != 6 && i.id != 7);
         else if (site.feature('academy')) $scope.sourceTypeList = response.data.filter(i => i.id != 4 && i.id != 3);
         else $scope.sourceTypeList = response.data;
@@ -1135,10 +1136,10 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
         value: 'Vendor'
       });
 
-    if ($scope.account_invoices.service_name)
+    if ($scope.account_invoices.activity_name_ar)
       obj_print.data.push({
         type: 'text2',
-        value2: $scope.account_invoices.service_name,
+        value2: $scope.account_invoices.activity_name_ar,
         value: 'Service'
       });
 
@@ -1603,7 +1604,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       if (site.toNumber("##query.type##") == 1) screen = 'purchases_invoices';
       else if (site.toNumber("##query.type##") == 2) screen = 'sales_invoices';
       else if (site.toNumber("##query.type##") == 3) screen = 'o_screen_invoices';
-      else if (site.toNumber("##query.type##") == 4) screen = 'request_service_invoice';
+      else if (site.toNumber("##query.type##") == 4) screen = 'request_activity_invoice';
       else if (site.toNumber("##query.type##") == 5) screen = 'booking_hall';
       else if (site.toNumber("##query.type##") == 6) screen = 'trainer_account';
       else if (site.toNumber("##query.type##") == 7) screen = 'course_booking';

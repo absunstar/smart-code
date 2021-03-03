@@ -77,9 +77,15 @@ app.controller("companies", function ($scope, $http, $timeout) {
 
         } else {
           $scope.error = response.data.error;
+          $scope.busy = false;
+
           if (response.data.error.like('*ername must be typed correctly*')) {
             $scope.error = "##word.err_username_contain##"
+
+          } else if (response.data.error.like('*User Is Exist*')) {
+            $scope.error = "##word.user_exists##"
           }
+
         }
       },
       function (err) {

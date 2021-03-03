@@ -1,0 +1,7 @@
+[{
+    "module_name" : "report" ,
+    "name": "report_requests_admin",
+    "en": "Report Orders Trainer Admin",
+    "ar": "إدارة تقرير الطلبات للمدربين",
+    "permissions": ["report_requests_manage"]
+}]

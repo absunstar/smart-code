@@ -1,0 +1,143 @@
+[{
+        "name": "request_activity",
+        "en": "The request Activity / Subscriptions",
+        "ar": "طلبات الأنشطة / الإشتراكات"
+    },
+    {
+        "name": "request_activity_new",
+        "en": "New request Activity",
+        "ar": "طلب نشاط جديدة"
+    },
+    {
+        "name": "request_activity_add",
+        "en": "Add request Activity",
+        "ar": "إضافة طلب نشاط"
+    },
+    {
+        "name": "total_discount",
+        "en": "Total DiscountS",
+        "ar": "إجمالي الخصومات"
+    },
+
+    {
+        "name": "attend_activities_",
+        "en": "Attend Activitys",
+        "ar": "حضور الأنشطة"
+    },
+    {
+        "name": "leave",
+        "en": "Leave",
+        "ar": "إنصراف"
+    },
+    {
+        "name": "attend_date",
+        "en": "Attend Date",
+        "ar": "تاريخ الحضور"
+    },
+    {
+        "name": "leave_date",
+        "en": "Leave Date",
+        "ar": "تاريخ الإنصراف"
+    },
+    {
+        "name": "activity_name",
+        "en": "Activity Name",
+        "ar": "إسم النشاط"
+    },
+    {
+        "name": "current_attendance",
+        "en": "Current Attendance",
+        "ar": "الحضور الحالي"
+    },
+    {
+        "name": "remain_attendance",
+        "en": "Remain Attendance",
+        "ar": "الحضور المتبقي"
+    },
+    {
+        "name": "beginning_of_day",
+        "en": "The beginning from the day",
+        "ar": " بداية الإشتراك اليوم"
+    },
+    {
+        "name": "date_from",
+        "en": "Start Date",
+        "ar": "تاريخ بداية الإشتراك"
+    },
+    {
+        "name": "start_date_from",
+        "en": "Start Date From",
+        "ar": "تاريخ بداية الإشتراك من"
+    },
+    {
+        "name": "start_date_to",
+        "en": "Start Date To",
+        "ar": "تاريخ بداية الإشتراك إلى"
+    },
+    {
+        "name": "expired_date",
+        "en": "Expired Date",
+        "ar": "تاريخ إنتهاء الإشتراك"
+    },
+    {
+        "name": "expired_date_from",
+        "en": "Expired Date From",
+        "ar": "تاريخ إنتهاء الإشتراك من"
+    },
+    {
+        "name": "expired_date_to",
+        "en": "Expired Date To",
+        "ar": "تاريخ إنتهاء الإشتراك إلى"
+    },
+    {
+        "name": "trainer",
+        "en": "Trainer",
+        "ar": "المدرب"
+    },
+    {
+        "name": "trainers",
+        "en": "Trainers",
+        "ar": "المدربين"
+    },
+    {
+        "name": "request_activity_edit",
+        "en": "Edit request Activity",
+        "ar": "تعديل طلب نشاط"
+    },
+    {
+        "name": "request_activity_details",
+        "en": "request Activity Details",
+        "ar": "تفاصيل طلب النشاط"
+    },
+    {
+        "name": "request_activity_delete",
+        "en": "Delete request Activity",
+        "ar": "حذف طلب نشاط"
+    },
+    {
+        "name": "request_activity_name",
+        "en": "Course Name",
+        "ar": "إسم طلب النشاط "
+    },
+    {
+        "name": "request_activity_price",
+        "en": "Course Price",
+        "ar": "سعر طلب النشاط "
+    },
+    {
+        "name": "request_activity_total",
+        "en": "Total Duration",
+        "ar": "إجمالي المدة "
+    },
+    {
+        "name": "request_activity_capaneighborhood",
+        "en": "Class Capaneighborhood",
+        "ar": "سعة طلب النشاط "
+    },
+    {
+        "name": "request_activity_current",
+        "en": "Number Of Current Students",
+        "ar": "عدد الطلاب الحاليين"
+    }
+    
+]

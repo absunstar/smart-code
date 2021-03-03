@@ -1,0 +1,146 @@
+<div ng-hide="busy" class="row">
+    <div id="basicInformation">
+        <fieldset>
+            <legend> ##word.basic_information##</legend>
+            <div class="col9">
+                <div class="row">
+
+                    <table id="basicInformationTable" class="table hover bold">
+
+                        <tr>
+                            <td class="title">##word.code##</td>
+                            <td class="center userPrint blue">{{request_activity.code}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="title">##word.shift##</td>
+                            <td class="center blue">{{request_activity.shift.code}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="title">##word.customer##</td>
+                            <td class="center">{{request_activity.customer.name_##session.lang##}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="title">##word.trainer##</td>
+                            <td class="center">{{request_activity.trainer.name_##session.lang##}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="title">##word.hall##</td>
+                            <td class="center">{{request_activity.hall.name_##session.lang##}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="title">##word.activity##</td>
+                            <td class="center">{{request_activity.activity_name_##session.lang##}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="title">##word.date_from_subscribe##</td>
+                            <td class="center brown">{{request_activity.date_from | date : 'yyyy - MM - dd'}}
+                                <p class="center green"> {{request_activity.time_from.minute}} :
+                                    {{request_activity.time_from.hour}}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="title">##word.expired_date##</td>
+                            <td class="center red">{{request_activity.date_to | date : 'yyyy - MM - dd'}}
+                                <p class="center red"> {{request_activity.time_to.minute}} :
+                                    {{request_activity.time_to.hour}}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="title">##word.available_period##</td>
+                            <td class="center green">{{request_activity.available_period}}</td>
+                        </tr>
+                        <tr>
+                            <td class="title" ng-show="request_activity.attend_count">##word.attend_count##</td>
+                            <td class="center red">{{request_activity.attend_count}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="title">##word.activities_price##</td>
+                            <td class="center red">{{request_activity.activities_price}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="title">##word.activity_count##</td>
+                            <td class="center blue">{{request_activity.activity_count}}</td>
+                        </tr>
+                        <tr>
+                            <td class="title">##word.total_discount##</td>
+                            <td class="center red">{{request_activity.total_discount}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="title">##word.paid_require##</td>
+                            <td class="center green">{{request_activity.paid_require}}</td>
+                        </tr>
+
+
+
+                        <tr>
+                            <td class="title">##word.status##</td>
+                            <td ng-show="request_activity.active == true" class="green center"> ##word.active## </td>
+                            <td ng-show="request_activity.active == false" class="red center"> ##word.not_active## </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="row" ng-show="request_activity.selectedActivitysList.length > 0">
+                    <div class="col6">
+                        <fieldset>
+                            <legend>##word.complex_activities##</legend>
+
+                            <table class="table hover bold">
+                                <tr>
+                                    <th>##word.activity_name##</th>
+                                    <th>##word.activities_price##</th>
+                                    <!--  <th>##word.attend_count##</th>
+                                            <th>##word.activity_count##</th> -->
+                                    <th>##word.attend_count##</th>
+                                </tr>
+
+                                <tr class="bold" ng-repeat="s in request_activity.selectedActivitysList">
+
+                                    <td>
+                                        <p class="center bold">{{s.name_##session.lang##}}</p>
+                                    </td>
+
+                                    <td>
+                                        <p class="center bold green">{{s.activities_price}}</p>
+                                    </td>
+
+
+                                    <!--   <td>
+                                                <p class="center bold blue">{{s.attend_count}}</p>
+                                            </td>
+                                            <td>
+                                                <p class="center bold blue">{{s.count}}</p>
+                                            </td> -->
+                                    <td>
+                                        <p class="center bold blue">{{s.total_attend_count}}</p>
+                                    </td>
+
+                                </tr>
+
+                            </table>
+                        </fieldset>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="col3">
+                <i-image view ng-model="request_activity.image_url"></i-image>
+            </div>
+
+        </fieldset>
+    </div>
+</div>
+<div x-import="request-activity/action_info.html"></div>

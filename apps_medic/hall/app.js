@@ -3,14 +3,14 @@ module.exports = function init(site) {
 
   site.on('[company][created]', doc => {
 
-    if (site.feature('gym') || site.feature('academy') || site.feature('school')) {
+    if (site.feature('club') || site.feature('academy') || site.feature('school')) {
       let name_ar = ''
       let name_en = ''
 
       if (site.feature('school')) {
         name_ar = "فصل دراسي إفتراضي"
         name_en = "Default Class Room"
-      } else if (site.feature('gym') || site.feature('academy')) {
+      } else if (site.feature('club') || site.feature('academy')) {
         name_ar = "قاعة إفتراضية"
         name_en = "Default Hall"
       }

@@ -670,7 +670,16 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
         } else {
           $scope.error = 'Please Login First';
           if (response.data.error.like('*Must Enter Code*')) {
-            $scope.error = "##word.must_enter_code##";
+            $scope.error = "##word.must_enter_code##"
+
+          } else if (response.data.error.like('*maximum number of adds exceeded*')) {
+            $scope.error = "##word.err_maximum_adds##"
+
+          } else if (response.data.error.like('*ername must be typed correctly*')) {
+            $scope.error = "##word.err_username_contain##"
+            
+          } else if (response.data.error.like('*User Is Exist*')) {
+            $scope.error = "##word.user_exists##"
           }
         }
       },

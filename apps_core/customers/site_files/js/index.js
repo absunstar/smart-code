@@ -68,7 +68,6 @@ app.controller("customers", function ($scope, $http, $timeout) {
           $scope.count = $scope.list.length;
         } else {
           $scope.error = response.data.error;
-
           if (response.data.error.like('*Must Enter Code*')) {
             $scope.error = "##word.must_enter_code##"
 
@@ -77,6 +76,9 @@ app.controller("customers", function ($scope, $http, $timeout) {
 
           } else if (response.data.error.like('*ername must be typed correctly*')) {
             $scope.error = "##word.err_username_contain##"
+
+          } else if (response.data.error.like('*User Is Exist*')) {
+            $scope.error = "##word.user_exists##"
           }
 
         }
@@ -146,10 +148,18 @@ app.controller("customers", function ($scope, $http, $timeout) {
           $scope.getCustomersList();
         } else {
           $scope.error = response.data.error;
-          if (response.data.error.like('*ername must be typed correctly*')) {
-            $scope.error = "##word.err_username_contain##"
-          }
+          if (response.data.error.like('*Must Enter Code*')) {
+            $scope.error = "##word.must_enter_code##"
 
+          } else if (response.data.error.like('*maximum number of adds exceeded*')) {
+            $scope.error = "##word.err_maximum_adds##"
+
+          } else if (response.data.error.like('*ername must be typed correctly*')) {
+            $scope.error = "##word.err_username_contain##"
+
+          } else if (response.data.error.like('*User Is Exist*')) {
+            $scope.error = "##word.user_exists##"
+          }
         }
       },
       function (err) {
@@ -804,7 +814,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
 
 
 
-  if (site.feature('gym') || site.feature('academy') || site.feature('school') || site.feature('medical')) {
+  if (site.feature('club') || site.feature('academy') || site.feature('school') || site.feature('medical')) {
     $scope.getDiseaseList();
     $scope.getMedicineList();
     $scope.getDrinksList();

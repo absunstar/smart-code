@@ -10,6 +10,11 @@
         "ar": "الرمز"
     },
     {
+        "name": "user_exists",
+        "en": "Username already exists. Try another name",
+        "ar": "إسم المستخدم موجود بالفعل جرب إسم آخر"
+    },
+    {
         "name": "manage_your_personal_account",
         "en": "Manage your personal account",
         "ar": "إدارة حسابك الشخصي"

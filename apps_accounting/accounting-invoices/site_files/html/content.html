@@ -56,7 +56,7 @@
                                     <th
                                         ng-show="account_invoices.source_type.id == 4 || account_invoices.source_type.id == 5">
                                         ##word.halls## </th>
-                                    <th ng-show="account_invoices.source_type.id == 4"> ##word.services## </th>
+                                    <th ng-show="account_invoices.source_type.id == 4"> ##word.activities## </th>
 
                                     <th ng-show=" account_invoices.order_invoices_type.id==2">
                                         ##word.delivery_employee##
@@ -100,7 +100,7 @@
                                             ##word.not_found##</b> </td>
 
                                     <td class="center" ng-show="account_invoices.source_type.id == 4">
-                                        {{item.service_name_##session.lang##}} </td>
+                                        {{item.activity_name_##session.lang##}} </td>
 
                                     <td ng-show="account_invoices.order_invoices_type.id ==2" class="center">
                                         {{item.delivery_employee.name_##session.lang##}}</td>
@@ -271,9 +271,9 @@
                                         <td class="center">{{account_invoices.hall.name_##session.lang##}}</td>
                                     </tr>
 
-                                    <tr ng-show="account_invoices.service_name">
-                                        <td class="title">##word.service##</td>
-                                        <td class="center">{{account_invoices.service_name_##session.lang##}}</td>
+                                    <tr ng-show="account_invoices.activity_name_##session.lang##">
+                                        <td class="title">##word.activity##</td>
+                                        <td class="center">{{account_invoices.activity_name_##session.lang##}}</td>
                                     </tr>
 
                                     <tr ng-show="account_invoices.date_from">

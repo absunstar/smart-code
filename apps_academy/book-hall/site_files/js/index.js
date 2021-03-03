@@ -800,7 +800,7 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
     if ($scope.account_invoices.hall)
       obj_print.data.push({
         type: 'text2',
-        value2: $scope.account_invoices.hall.name,
+        value2: $scope.account_invoices.hall.name_ar,
         value: 'Service'
       });
 

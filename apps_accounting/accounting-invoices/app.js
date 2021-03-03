@@ -151,7 +151,7 @@ module.exports = function init(site) {
             if (account_invoices_doc.source_type.id == 1) num_obj.screen = 'purchases_invoices';
             else if (account_invoices_doc.source_type.id == 2) num_obj.screen = 'sales_invoices';
             else if (account_invoices_doc.source_type.id == 3) num_obj.screen = 'o_screen_invoices';
-            else if (account_invoices_doc.source_type.id == 4) num_obj.screen = 'request_service_invoice';
+            else if (account_invoices_doc.source_type.id == 4) num_obj.screen = 'request_activity_invoice';
             else if (account_invoices_doc.source_type.id == 5) num_obj.screen = 'booking_hall';
             else if (account_invoices_doc.source_type.id == 6) num_obj.screen = 'trainer_account';
             else if (account_invoices_doc.source_type.id == 7) num_obj.screen = 'course_booking';
@@ -264,7 +264,7 @@ module.exports = function init(site) {
                     site.call('[account_invoices][order_invoice][+]', Object.assign({}, under_paid))
 
                   } else if (doc.source_type.id == 4) {
-                    paid_value.operation = { ar: 'فاتورة طلب خدمة', en: 'Request Service Invoice' }
+                    paid_value.operation = { ar: 'فاتورة طلب نشاط', en: 'Request Service Invoice' }
                     paid_value.transition_type = 'in'
 
                   } else if (doc.source_type.id == 5) {
@@ -338,7 +338,7 @@ module.exports = function init(site) {
                 }
 
                 if (doc.source_type.id === 4)
-                  site.call('[account_invoices][request_service][+]', doc.invoice_id)
+                  site.call('[account_invoices][request_activity][+]', doc.invoice_id)
 
               } else {
                 response.error = err.message
@@ -464,7 +464,7 @@ module.exports = function init(site) {
                   paid_value.transition_type = 'in'
 
                 } else if (account_invoices_doc.source_type.id == 4) {
-                  paid_value.operation = { ar: 'دفعة فاتورة طلب خدمة', en: 'Pay Request Service' }
+                  paid_value.operation = { ar: 'دفعة فاتورة طلب نشاط', en: 'Pay Request Service' }
                   paid_value.transition_type = 'in'
 
                 } else if (account_invoices_doc.source_type.id == 5) {
@@ -676,7 +676,7 @@ module.exports = function init(site) {
                     obj.transition_type = 'in'
 
                   } else if (account_invoices_doc.source_type.id == 4) {
-                    obj.operation = { ar: 'فاتورة طلب خدمة', en: 'Request Service Invoice' }
+                    obj.operation = { ar: 'فاتورة طلب نشاط', en: 'Request Service Invoice' }
                     obj.transition_type = 'in'
 
                   } else if (account_invoices_doc.source_type.id == 5) {
@@ -778,7 +778,7 @@ module.exports = function init(site) {
                   } else if (account_invoices_doc.source_type.id == 4) {
                     obj.transition_type = 'in'
                     obj.value = (-Math.abs(obj.value))
-                    obj.operation = { ar: 'فك ترحيل فاتورة طلب خدمة', en: 'Un Post Request Service Invoice' }
+                    obj.operation = { ar: 'فك ترحيل فاتورة طلب نشاط', en: 'Un Post Request Service Invoice' }
 
                   } else if (account_invoices_doc.source_type.id == 5) {
                     obj.operation = { ar: 'فك ترحيل فاتورة حجز قاعة', en: 'Un Post Book Hall Invoice' }
@@ -1048,7 +1048,7 @@ module.exports = function init(site) {
 
                         obj.transition_type = 'in'
                         obj.value = (-Math.abs(obj.value))
-                        obj.operation = { ar: 'حذف فاتورة طلب خدمة', en: 'Delete Request Service Invoice' }
+                        obj.operation = { ar: 'حذف فاتورة طلب نشاط', en: 'Delete Request Service Invoice' }
                       } else if (response.doc.source_type.id == 5) {
 
                         obj.operation = { ar: 'حذف فاتورة حجز قاعة', en: 'Delete Book Hall Invoice' }

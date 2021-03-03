@@ -1049,22 +1049,22 @@
     {
         "name": "service_management",
         "en": "Service Management",
-        "ar": "إدارة الخدمات"
+        "ar": "إدارة الأنشطة"
     },
     {
         "name": "service_menus",
         "en": "Service Menu",
-        "ar": "قائمة الخدمات"
+        "ar": "قائمة الأنشطة"
     },
     {
-        "name": "request_service_management",
-        "en": "Request Service / Subscriptions Management",
-        "ar": "إدارة طلبات الخدمات / الإشتراكات"
+        "name": "request_activity_management",
+        "en": "Request Service / Subscriptions",
+        "ar": "طلبات الأنشطة / الإشتراكات"
     },
     {
-        "name": "request_service_menus",
+        "name": "request_activity_menus",
         "en": "Request Service / Subscriptions Menu",
-        "ar": "قائمة طلبات الخدمات / الإشتراكات"
+        "ar": "قائمة طلبات الأنشطة / الإشتراكات"
     },
     {
         "name": "hall_management",

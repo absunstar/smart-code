@@ -314,8 +314,8 @@ app.controller("notifications", function ($scope, $http, $interval) {
     } else if (n.link.collection == 'hall') {
       $scope.hall = n.add;
       site.showModal('#hallViewModal');
-    } else if (n.link.collection == 'request_service') {
-      $scope.request_service = n.add;
+    } else if (n.link.collection == 'request_activity') {
+      $scope.request_activity = n.add;
       site.showModal('#requestServiceViewModal');
     } else if (n.link.collection == 'account_invoices') {
       $scope.account_invoices = n.add;
@@ -516,8 +516,8 @@ app.controller("notifications", function ($scope, $http, $interval) {
     } else if (n.link.collection == 'hall') {
       $scope.hall = n.update;
       site.showModal('#hallViewModal');
-    } else if (n.link.collection == 'request_service') {
-      $scope.request_service = n.update;
+    } else if (n.link.collection == 'request_activity') {
+      $scope.request_activity = n.update;
       site.showModal('#requestServiceViewModal');
     } else if (n.link.collection == 'account_invoices') {
       $scope.account_invoices = n.update;
@@ -718,8 +718,8 @@ app.controller("notifications", function ($scope, $http, $interval) {
     } else if (n.link.collection == 'hall') {
       $scope.hall = n.delete;
       site.showModal('#hallViewModal');
-    } else if (n.link.collection == 'request_service') {
-      $scope.request_service = n.delete;
+    } else if (n.link.collection == 'request_activity') {
+      $scope.request_activity = n.delete;
       site.showModal('#requestServiceViewModal');
     } else if (n.link.collection == 'account_invoices') {
       $scope.account_invoices = n.delete;

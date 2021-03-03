@@ -134,14 +134,14 @@ module.exports = function init(site) {
       active: true
     }
 
-    if (site.feature('gym') || site.feature('school') || site.feature('medical') || site.feature('academy')) {
+    if (site.feature('club') || site.feature('school') || site.feature('medical') || site.feature('academy')) {
       customer.allergic_food_list = [{}];
       customer.allergic_drink_list = [{}];
       customer.medicine_list = [{}];
       customer.disease_list = [{}];
     }
 
-    if (site.feature('gym')) {
+    if (site.feature('club')) {
       customer.name_ar = "مشترك إفتراضي"
       customer.name_en = "Default Subscriber"
 
@@ -181,8 +181,6 @@ module.exports = function init(site) {
       name: customers_doc.name_ar,
       mobile: customers_doc.mobile,
       username: customers_doc.username,
-      email: customers_doc.username,
-      password: customers_doc.password,
       image_url: customers_doc.image_url,
       gender: customers_doc.gender,
       type: 'customer'
@@ -204,7 +202,7 @@ module.exports = function init(site) {
         permissions: ["order_customer_ui", "order_customer_delete_items"]
       }]
 
-    if (site.feature('gym')) {
+    if (site.feature('club')) {
       user.roles.push({
         module_name: "report",
         name: "report_info_user",
@@ -295,6 +293,7 @@ module.exports = function init(site) {
     }
 
 
+
     $customers.findMany({
       where: {
         'company.id': company.id,
@@ -308,7 +307,7 @@ module.exports = function init(site) {
 
       } else {
 
-        if (customers_doc.username) {
+        if (customers_doc.username && customers_doc.password) {
 
           if (!customers_doc.username.includes("@") && !customers_doc.username.includes(".")) {
             customers_doc.username = customers_doc.username + '@' + company.host;
@@ -328,54 +327,67 @@ module.exports = function init(site) {
             }
 
           }
+
+          user.email = customers_doc.username
+          user.password = customers_doc.password
+
         }
 
-        $customers.add(customers_doc, (err, doc) => {
-          if (!err) {
-            response.done = true
-            response.doc = doc
+        site.security.isUserExists(user, function (err, user_found) {
 
-            if (user.password && user.username) {
-              user.ref_info = { id: doc.id }
-              site.security.addUser(user, (err, doc1) => {
-                if (!err) {
-                  delete user._id
-                  delete user.id
-                  doc.user_info = {
-                    id: doc1.id
-                  }
-                  $customers.edit(doc, (err2, doc2) => {
-                    // if (!req.session.user) {
-                    //   site.security.login({
-                    //     email: doc1.email,
-                    //     password: doc1.password,
-                    //     $req: req,
-                    //     $res: res
-                    //   },
-                    //     function (err, user_login) {
-                    //       if (!err) {                        
-                    //         response.user = user_login
-                    //         response.done = true
-                    //       } else {
-                    //         console.log(err)
-                    //         response.error = err.message
-                    //       }
-
-                    //       res.json(response)
-                    //     }
-                    //   )
-                    // }
-
-                  })
-                } else {
-                  response.error = err.message
-                }
-              })
-            }
-          } else {
-            response.error = err.message
+          if (user_found) {
+            response.error = 'User Is Exist'
+            res.json(response)
+            return;
           }
-          res.json(response)
+
+          $customers.add(customers_doc, (err, doc) => {
+            if (!err) {
+              response.done = true
+              response.doc = doc
+
+              if (user.password && user.username) {
+                user.ref_info = { id: doc.id }
+                site.security.addUser(user, (err, doc1) => {
+                  if (!err) {
+                    delete user._id
+                    delete user.id
+                    doc.user_info = {
+                      id: doc1.id
+                    }
+                    $customers.edit(doc, (err2, doc2) => {
+                      // if (!req.session.user) {
+                      //   site.security.login({
+                      //     email: doc1.email,
+                      //     password: doc1.password,
+                      //     $req: req,
+                      //     $res: res
+                      //   },
+                      //     function (err, user_login) {
+                      //       if (!err) {                        
+                      //         response.user = user_login
+                      //         response.done = true
+                      //       } else {
+                      //         console.log(err)
+                      //         response.error = err.message
+                      //       }
+
+                      //       res.json(response)
+                      //     }
+                      //   )
+                      // }
+
+                    })
+                  } else {
+                    response.error = err.message
+                  }
+                })
+              }
+            } else {
+              response.error = err.message
+            }
+            res.json(response)
+          })
         })
       }
     })
@@ -399,8 +411,6 @@ module.exports = function init(site) {
       name: customers_doc.name_ar,
       mobile: customers_doc.mobile,
       username: customers_doc.username,
-      email: customers_doc.username,
-      password: customers_doc.password,
       image_url: customers_doc.image_url,
       gender: customers_doc.gender,
       type: 'customer'
@@ -421,7 +431,7 @@ module.exports = function init(site) {
         permissions: ["order_customer_ui", "order_customer_delete_items"]
       }]
 
-    if (site.feature('gym')) {
+    if (site.feature('club')) {
       user.roles.push({
         module_name: "report",
         name: "report_info_user",
@@ -444,7 +454,8 @@ module.exports = function init(site) {
       })
     }
 
-    if (customers_doc.username) {
+  
+    if (customers_doc.username && customers_doc.password) {
 
       if (!customers_doc.username.includes("@") && !customers_doc.username.includes(".")) {
         customers_doc.username = customers_doc.username + '@' + site.get_company(req).host;
@@ -464,6 +475,10 @@ module.exports = function init(site) {
         }
 
       }
+
+      user.email = customers_doc.username
+      user.password = customers_doc.password
+
     }
 
     user.permissions = []
@@ -491,47 +506,59 @@ module.exports = function init(site) {
       branch: site.get_branch(req)
     }]
 
-    if (customers_doc.id) {
-      $customers.edit({
-        where: {
-          id: customers_doc.id
-        },
-        set: customers_doc,
-        $req: req,
-        $res: res
-      }, (err, result) => {
-        if (!err) {
-          response.done = true
-          response.doc = result.doc
+    site.security.isUserExists(user, function (err, user_found) {
 
-          if (!result.doc.user_info && user.password && user.username) {
-            site.security.addUser(user, (err, doc1) => {
-              if (!err) {
-                delete user._id
-                delete user.id
-                result.doc.user_info = {
-                  id: doc1.id
-                }
-                $customers.edit(result.doc, (err2, doc2) => {
-                  res.json(response)
-                })
-              } else {
-                response.error = err.message
-              }
-              res.json(response)
-            })
-          } else if (result.doc.user_info && result.doc.user_info.id) {
-            site.security.updateUser(user, (err, user_doc) => { })
-          }
-        } else {
-          response.error = err.message
-        }
+      if (user_found) {
+
+        response.error = 'User Is Exist'
         res.json(response)
-      })
-    } else {
-      response.error = 'no id'
-      res.json(response)
-    }
+        return;
+
+      }
+
+
+      if (customers_doc.id) {
+        $customers.edit({
+          where: {
+            id: customers_doc.id
+          },
+          set: customers_doc,
+          $req: req,
+          $res: res
+        }, (err, result) => {
+          if (!err) {
+            response.done = true
+            response.doc = result.doc
+
+            if (!result.doc.user_info && user.password && user.username) {
+              site.security.addUser(user, (err, doc1) => {
+                if (!err) {
+                  delete user._id
+                  delete user.id
+                  result.doc.user_info = {
+                    id: doc1.id
+                  }
+                  $customers.edit(result.doc, (err2, doc2) => {
+                    res.json(response)
+                  })
+                } else {
+                  response.error = err.message
+                }
+                res.json(response)
+              })
+            } else if (result.doc.user_info && result.doc.user_info.id) {
+              site.security.updateUser(user, (err, user_doc) => { })
+            }
+          } else {
+            response.error = err.message
+          }
+          res.json(response)
+        })
+      } else {
+        response.error = 'no id'
+        res.json(response)
+      }
+    })
   })
 
   site.post("/api/customers/view", (req, res) => {

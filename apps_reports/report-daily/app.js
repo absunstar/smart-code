@@ -141,7 +141,7 @@ module.exports = function init(site) {
           source_type: {
             id: 4,
             en: "Orders Service",
-            ar: "طلب خدمة"
+            ar: "طلب نشاط"
           },
           paid_up: 0,
           invoices_list: []

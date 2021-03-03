@@ -112,9 +112,21 @@ app.controller('register', function ($scope, $http) {
 
             if (response.data.error) {
               $scope.error = response.data.error;
+              if (response.data.error.like('*Must Enter Code*')) {
+                $scope.error = "##word.must_enter_code##"
+
+              } else if (response.data.error.like('*maximum number of adds exceeded*')) {
+                $scope.error = "##word.err_maximum_adds##"
+
+              } else if (response.data.error.like('*ername must be typed correctly*')) {
+                $scope.error = "##word.err_username_contain##"
+
+              } else if (response.data.error.like('*User Is Exist*')) {
+                $scope.error = "##word.user_exists##"
+              }
               $scope.busy = false;
-            }
-            if (response.data.done) {
+
+            } else if (response.data.done) {
               if (site.feature('pos') || site.feature('restaurant'))
                 document.location.href = '/order_customer';
               else document.location.href = '/';

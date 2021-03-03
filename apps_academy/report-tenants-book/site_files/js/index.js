@@ -77,7 +77,8 @@ app.controller("report_tenants_book", function ($scope, $http) {
           $scope.bookList.forEach(b => {
           
             $scope.report.tenants_list.push({
-              hall : b.hall.name,
+              hall_ar : b.hall.name_ar,
+              hall_en : b.hall.name_en,
               date : b.date,
               date_from : b.date_from,
               date_to : b.date_to,

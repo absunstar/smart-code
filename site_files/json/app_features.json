@@ -197,8 +197,8 @@
         "title_ar": "القاعات",
         "title_en": "Halls",
         "image_url": "/images/hall.png",
-        "description_ar": "يتم إضافة قاعات التدريب و المحاضرات و ربطها بالطلاب و الخدمات الطلاب بها داخل القاعة لتسهيل و حصر سير العمل",
-        "description_en": "Training rooms and lectures are added and linked to the participants and the services Students to inside the hall to facilitate and limit the work progress."
+        "description_ar": "يتم إضافة قاعات التدريب و المحاضرات و ربطها بالطلاب و الأنشطة الطلاب بها داخل القاعة لتسهيل و حصر سير العمل",
+        "description_en": "Training rooms and lectures are added and linked to the participants and the activities Students to inside the hall to facilitate and limit the work progress."
     },
     {
         "feature": "school",
@@ -229,8 +229,8 @@
         "title_ar": "القاعات",
         "title_en": "Halls",
         "image_url": "/images/hall.png",
-        "description_ar": "يتم إضافة قاعات التدريب و المحاضرات و ربطها بالمشتركين أو الطلاب و الخدمات المشتركين بها داخل القاعة لتسهيل و حصر سير العمل",
-        "description_en": "Training rooms and lectures are added and linked to the participants or students and the services subscribed to inside the hall to facilitate and limit the work progress."
+        "description_ar": "يتم إضافة قاعات التدريب و المحاضرات و ربطها بالمشتركين أو الطلاب و الأنشطة المشتركين بها داخل القاعة لتسهيل و حصر سير العمل",
+        "description_en": "Training rooms and lectures are added and linked to the participants or students and the activities subscribed to inside the hall to facilitate and limit the work progress."
     },
     {
         "feature": "academy",
@@ -481,23 +481,23 @@
         "description_en": "A group of tables is added and linked to a group of tables located in the same place who share the same characteristics"
     },
     {
-        "feature": "gym",
-        "title_ar": "الخدمات والخدمات المجمعة",
-        "title_en": "Services & Bundled services ",
-        "image_url": "/images/service.png",
-        "description_ar": "يتم إضافة خدمات حسب طبيعة عمل الجيم و يمكن إضافة خدمة مجمعة تتكون من خدمات أخرى و يتم تعيين سعر كل خدمة و عدد مرات الحضور",
-        "description_en": "Services are added according to the nature of the work of the gym, and a combined service consisting of other services can be added, and the price of each service and the number of times are set"
+        "feature": "club",
+        "title_ar": "الأنشطة والأنشطة المجمعة",
+        "title_en": "Activities & Bundled activities ",
+        "image_url": "/images/activity.png",
+        "description_ar": "يتم إضافة أنشطة حسب طبيعة عمل النادي و يمكن إضافة نشاط مجمعة تتكون من أنشطة أخرى و يتم تعيين سعر كل نشاط و عدد مرات الحضور",
+        "description_en": "Activities are added according to the nature of the work of the club, and a combined activity consisting of other activities can be added, and the price of each activity and the number of times are set"
     },
     {
-        "feature": "gym",
+        "feature": "club",
         "title_ar": "القاعات",
         "title_en": "Halls",
         "image_url": "/images/hall.png",
-        "description_ar": "يتم إضافة قاعات التدريب و المحاضرات و ربطها بالمشتركين و الخدمات المشتركين بها داخل القاعة لتسهيل و حصر سير العمل",
-        "description_en": "Training rooms and lectures are added and linked to the participants and the services subscribed to inside the hall to facilitate and limit the work progress."
+        "description_ar": "يتم إضافة قاعات التدريب و المحاضرات و ربطها بالمشتركين و الأنشطة المشتركين بها داخل القاعة لتسهيل و حصر سير العمل",
+        "description_en": "Training rooms and lectures are added and linked to the participants and the activities subscribed to inside the hall to facilitate and limit the work progress."
     },
     {
-        "feature": "gym",
+        "feature": "club",
         "title_ar": "الأمراض و الأدوية",
         "title_en": "Diseases and medications",
         "image_url": "/images/disease.png",
@@ -505,36 +505,36 @@
         "description_en": "Kinds of diseases or medications are added, and the participants are linked to them in order to deal with the injured in the appropriate way and to maintain their safety"
     },
     {
-        "feature": "gym",
-        "title_ar": "طلبات الخدمات",
-        "title_en": "Services Requests",
-        "image_url": "/images/request_service.png",
-        "description_ar": "يتيح إضافة طلب خدمات للمشترك و يتم تحديد المشترك و القاعة و المدرب و الخدمة التي يريد الإشتراك بها و يمكن إضافة فاتورة حساب و تسجيل حضور الجلسات للخدمة بالوقت و التاريخ",
-        "description_en": "It allows adding a service request to the subscriber, and the subscriber, the hall, the trainer and the service that he wants to subscribe to are specified, and an account invoice can be added and the attendance of the sessions for the service is recorded by time and date"
+        "feature": "club",
+        "title_ar": "طلبات الأنشطة",
+        "title_en": "Activities Requests",
+        "image_url": "/images/request_activity.png",
+        "description_ar": "يتيح إضافة طلب أنشطة للمشترك و يتم تحديد المشترك و القاعة و المدرب و النشاط التي يريد الإشتراك بها و يمكن إضافة فاتورة حساب و تسجيل حضور الجلسات للنشاط بالوقت و التاريخ",
+        "description_en": "It allows adding a activity request to the subscriber, and the subscriber, the hall, the trainer and the activity that he wants to subscribe to are specified, and an account invoice can be added and the attendance of the sessions for the activity is recorded by time and date"
     },
     {
-        "feature": "gym",
+        "feature": "club",
         "title_ar": "حضور المشتركين",
         "title_en": "Attend subscribers",
         "image_url": "/images/attend_subscribers.png",
-        "description_ar": "يتم تسجيل حضور للمشتركين للجيم بالوقت و التاريخ و يمكن تسجيل الحضور يدويا أو بالبصمة و يتم عرض الخدمات المتاحة للعميل الذي حضر و عرض باقي الفواتير المستحقة على العميل",
-        "description_en": "Attendance of the participants in the gym is recorded by time and date, attendance can be recorded manually or by fingerprint, and the services available to the customer who attended and the remaining bills due on the customer are shown"
+        "description_ar": "يتم تسجيل حضور للمشتركين للنادي بالوقت و التاريخ و يمكن تسجيل الحضور يدويا أو بالبصمة و يتم عرض الأنشطة المتاحة للعميل الذي حضر و عرض باقي الفواتير المستحقة على العميل",
+        "description_en": "Attendance of the participants in the club is recorded by time and date, attendance can be recorded manually or by fingerprint, and the activities available to the customer who attended and the remaining bills due on the customer are shown"
     },
     {
-        "feature": "gym",
+        "feature": "club",
         "title_ar": "حضور الجلسات",
         "title_en": "Attend Sessions",
         "image_url": "/images/attend_session.png",
-        "description_ar": "يتم تسجيل حضور للمشتركين للجلسة بالوقت و التاريخ و إختيار المدرب المصاحب للمشترك خلال الجلسة و يتم خصم الجلسة من مرات حضور المشترك للخدمة",
-        "description_en": "The attendance of the participants is recorded in the session by time and date and the choice of the coach accompanying the participant during the session. The session is deducted from the times the participant attends the service."
+        "description_ar": "يتم تسجيل حضور للمشتركين للجلسة بالوقت و التاريخ و إختيار المدرب المصاحب للمشترك خلال الجلسة و يتم خصم الجلسة من مرات حضور المشترك للنشاط",
+        "description_en": "The attendance of the participants is recorded in the session by time and date and the choice of the coach accompanying the participant during the session. The session is deducted from the times the participant attends the activity."
     },
     {
-        "feature": "gym",
+        "feature": "club",
         "title_ar": "معلومات المشتركين",
         "title_en": "Subscribers Information",
         "image_url": "/images/customer_info.png",
-        "description_ar": "يتم اختيار مشترك و عرض الخدمات المشترك بها و عدد مرات الحضور المتبقية و الفواتير المستحقة وعرض الأيام المتبقية لإنتهاء الخدمة و ظهور الخدمات بألوان مميزة لتسهيل معرفة الأيام المتبقية من الإشتراك لتجديده",
-        "description_en": "A subscriber is chosen, the services offered are subscribed, the number of remaining attendance, the bills due, and the remaining days for the end of service and the appearance of services in distinct colors to facilitate knowledge of the remaining days of the subscription to renew it."
+        "description_ar": "يتم اختيار مشترك و عرض الأنشطة المشترك بها و عدد مرات الحضور المتبقية و الفواتير المستحقة وعرض الأيام المتبقية لإنتهاء النشاط و ظهور الأنشطة بألوان مميزة لتسهيل معرفة الأيام المتبقية من الإشتراك لتجديده",
+        "description_en": "A subscriber is chosen, the activities offered are subscribed, the number of remaining attendance, the bills due, and the remaining days for the end of activity and the appearance of activities in distinct colors to facilitate knowledge of the remaining days of the subscription to renew it."
     },
     {
         "feature": "public",

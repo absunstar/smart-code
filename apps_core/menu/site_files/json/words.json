@@ -40,9 +40,9 @@
         "ar": "فواتير شاشة الطلبات"
     },
     {
-        "name": "orders_service_invoice",
-        "en": "Orders Service Invoice",
-        "ar": "فواتير طلب الخدمة"
+        "name": "orders_activity_invoice",
+        "en": "Orders Activity Invoice",
+        "ar": "فواتير طلب النشاط"
     },
     {
         "name": "booking_hall_invoice",
@@ -310,9 +310,9 @@
         "ar": "الرئيسية"
     },
     {
-        "name": "gym_setting",
-        "en": "Gym Setting",
-        "ar": "إعدادات الجيم"
+        "name": "club_setting",
+        "en": "Club Setting",
+        "ar": "إعدادات النادي"
     },
     {
         "name": "academy_setting",
@@ -1186,23 +1186,23 @@
     },
     {
         "name": "service_management",
-        "en": "Service Management",
-        "ar": "إدارة الخدمات"
+        "en": "Activities Management",
+        "ar": "إدارة الأنشطة"
     },
     {
         "name": "service_menus",
-        "en": "Service Menu",
-        "ar": "قائمة الخدمات"
+        "en": "Activities Menu",
+        "ar": "قائمة الأنشطة"
     },
     {
-        "name": "request_service_management",
-        "en": "Request Service / Subscriptions Management",
-        "ar": "إدارة طلبات الخدمات / الإشتراكات"
+        "name": "request_activity_management",
+        "en": "Request Activities / Subscriptions",
+        "ar": "طلبات الأنشطة / الإشتراكات"
     },
     {
-        "name": "request_service_menus",
-        "en": "Request Service / Subscriptions Menu",
-        "ar": "قائمة طلبات الخدمات / الإشتراكات"
+        "name": "request_activity_menus",
+        "en": "Request Activities / Subscriptions Menu",
+        "ar": "قائمة طلبات الأنشطة / الإشتراكات"
     },
     {
         "name": "hall_management",

@@ -48,7 +48,7 @@
             "report_requests_manage",
             "report_subscribers_manage",
             "report_trainer_attend_manage",
-            "request_service_manage",
+            "request_activity_manage",
             "service_manage",
             "attend_employees_manage",
             "delegate_manage",

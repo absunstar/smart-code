@@ -1,0 +1,25 @@
+<div id="activityUpdateModal" class="modal" fixed>
+        
+    <div class="modal-content ">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.activity_edit##
+                <i class="fa fa-pencil"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+
+            <div x-import="activity/content.html"></div>
+            <div x-import="activity/action_info.html"></div>
+        </div>
+
+        <div class="modal-footer center">
+            <h2 class="error"> {{error}} </h2>
+            <i-button type="edit" label="##word.edit##" ng-click="updateActivity(activity)"></i-button>
+            <i-button type="close" label="##word.close##" onclick="site.hideModal( '#activityUpdateModal')"></i-button>
+        </div>
+    </div>
+    
+</div>

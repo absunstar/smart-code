@@ -1,0 +1,138 @@
+<div class="form">
+    <div id="basicInformation">
+        <fieldset>
+            <legend> ##word.basic_information## </legend>
+            <div class="row">
+                <div class="col9">
+                    <div class="row">
+                        <i-control ng-hide="disabledCode" class="col2" label="##word.code##" ng-model="activity.code">
+                        </i-control>
+
+                        <i-control help-id="activity_name" v="r ll2" class="col4" label="##word.activity_name##"
+                            ng-model="activity.name_ar"></i-control>
+
+                        <i-control help-id="activity_name_en" class="col4" label="##word.name_en##"
+                            ng-model="activity.name_en"></i-control>
+
+                        <i-checkbox help-id="activity_active" class="col2" label="##word.active##"
+                            ng-model="activity.active"></i-checkbox>
+                    </div>
+                    <div class="row">
+
+                        <i-control help-id="activities_price" type="number" v="r" class="col2"
+                            label="##word.activities_price##" ng-model="activity.activities_price"></i-control>
+
+                        <i-control help-id="total_complex_activities_price" ng-show="activity.complex_activity"
+                            type="number" class="col3" disabled label="##word.total_complex_activities_price##"
+                            ng-model="activity.total_complex_activities_price"></i-control>
+
+                        <i-control ng-disabled="activity.complex_activity" help-id="attend_count" class="col2"
+                            label="##word.attend_count##" type="number" ng-model="activity.attend_count"></i-control>
+
+                        <i-control help-id="available_period" class="col2" label="##word.available_period##"
+                            type="number" ng-model="activity.available_period"></i-control>
+
+                        <i-checkbox help-id="complex_activity" class="col2" label="##word.complex_activity##"
+                            ng-model="activity.complex_activity"></i-checkbox>
+
+                    </div>
+
+                    <br>
+
+                    <br>
+
+                    <div class="row" ng-show="activity.complex_activity">
+
+                        <div class="row">
+                            <i-control ng-keydown="getActivity($event)" id="activity" class="col3"
+                                ng-model="search_activity" label="##word.search##" type="text"></i-control>
+
+                            <i-list class="col4" label="##word.activity_name##" ng-model="selectedActivity"
+                                display="name_##session.lang##" items="activitiesList"
+                                ng-search="_search.$item_searching">
+                            </i-list>
+                            <i-button type="add" class="col2" label="##word.add##" ng-click="incertActivities()">
+                            </i-button>
+                        </div>
+
+                        <div class="row" ng-show="activity.selectedActivitiesList.length > 0">
+                            <div class="col6">
+
+                                <table class="table hover bold">
+                                    <tr>
+                                        <th>##word.activity_name##</th>
+                                        <th>##word.activities_price##</th>
+                                        <th>##word.attend_count##</th>
+                                        <th>##word.activity_count##</th>
+                                        <th>##word.total_attend_count##</th>
+                                        <th>##word.actions##</th>
+                                    </tr>
+
+                                    <tr class="bold" ng-repeat="s in activity.selectedActivitiesList">
+
+                                        <td>
+                                            <br>
+                                            <p class="center bold">{{s.name_##session.lang##}}</p>
+                                        </td>
+
+                                        <td>
+                                            <br>
+                                            <p class="center bold green">{{s.activities_price}}</p>
+                                        </td>
+
+                                        <td>
+                                            <br>
+                                            <p class="center bold blue">{{s.attend_count}}</p>
+                                        </td>
+
+                                        <td>
+                                            <i-control ng-model="s.count" ng-change="calc() ; attendCalc(s)"
+                                                type="number"></i-control>
+                                        </td>
+
+                                        <td>
+                                            <br>
+                                            <p class="center bold blue">{{s.total_attend_count}}</p>
+                                        </td>
+
+                                        <td class="center">
+                                            <i-button type="delete" ng-click="deleteActivityList(s) ;calc()"></i-button>
+                                        </td>
+
+                                    </tr>
+
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!--     <i-list class="col3" label="##word.subscriptions_system##"
+                            ng-model="activity.subscriptions_system" items="subscriptionsSystemList" display="##session.lang##"
+                            ng-search="_search.$subscriptions_system"></i-list>
+
+                        <i-control ng-show="activity.subscriptions_system.id ==1" help-id="session_count" type="number"
+                            class="col2" label="##word.session_count##" ng-model="activity.session_count"></i-control>
+
+                        <i-control ng-show="activity.subscriptions_system.id ==1" help-id="session_price" type="number"
+                            class="col2" label="##word.session_price##" ng-change="calc(activity)"
+                            ng-model="activity.session_price"></i-control>
+
+                        <i-control ng-show="activity.subscriptions_system.id ==1" help-id="total_session_price"
+                            type="number" class="col2" label="##word.total_session_price##" ng-change="calc(activity)"
+                            ng-model="activity.total_session_price"></i-control>
+
+                        <i-control ng-show="activity.subscriptions_system.id ==2" help-id="month_price" type="number"
+                            class="col2" label="##word.month_price##" ng-model="activity.month_price"></i-control>
+ -->
+
+                </div>
+
+                <div class="col3">
+                    <i-image help-id="activity_logo" ng-model="activity.image_url"></i-image>
+                </div>
+            </div>
+        </fieldset>
+
+    </div>
+</div>

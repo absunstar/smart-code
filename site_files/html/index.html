@@ -438,7 +438,7 @@
               if (res[i].feature == 'public') {
                 post = res[i];
                 rendered += Mustache.render(post_template, post);
-              } else if (res[i].feature == 'gym' && site.features.like('*gym*')) {
+              } else if (res[i].feature == 'club' && site.features.like('*club*')) {
                 post = res[i];
                 rendered += Mustache.render(post_template, post);
               } else if (res[i].feature == 'school' && site.features.like('*school*')) {
@@ -465,7 +465,7 @@
                   rendered += Mustache.render(post_template, post);
                 }
               } else if (res[i].feature == 'pos') {
-                if (site.features.like('*erp*') || site.features.like('*gym*') || site.features.like('*restaurant*') || site.features.like('*academy*')) {
+                if (site.features.like('*erp*') || site.features.like('*club*') || site.features.like('*restaurant*') || site.features.like('*academy*')) {
                   post = res[i];
                   rendered += Mustache.render(post_template, post);
                 }

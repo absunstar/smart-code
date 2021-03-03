@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="activity_ui || activity_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+
+    <div id="main-layout" class="container loaded">
+        <div class="row">
+            <div class="row" ng-controller="activity">
+                <div x-permissions="activity_add || activity_manage" x-import="activity/add_modal.html"></div>
+                <div x-permissions="activity_update || activity_manage" x-import="activity/update_modal.html"></div>
+                <div x-permissions="activity_delete || activity_manage" x-import="activity/delete_modal.html"></div>
+                <div x-permissions="activity_view || activity_manage" x-import="activity/view_modal.html"></div>
+                <div x-permissions="activity_search || activity_manage" x-import="activity/search_all_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center">##word.activities##</h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button x-permissions="activity_add || activity_manage" type="add" label="##word.activity_new##"
+                        ng-click="displayAddActivity()"></i-button>
+
+                    <i-button x-permissions="activity_search || activity_manage" type="search" label="##word.search_all##"
+                        ng-click="displaySearchModal()"></i-button>
+
+                    <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
+                </div>
+
+                <table x-permissions="login" class="table bold hover loaded" id="t1">
+                    <tr>
+                        <th class="not-print">##word.logo##</th>
+                        <th>##word.code##</th>
+                        <th>##word.activity_name##</th>
+                        <th>##word.activities_price##</th>
+                        <th>##word.available_period##</th>
+                        <th>##word.complex_activities##</th>
+                        <th>##word.status##</th>
+                        <th class="not-print">##word.actions##</th>
+                    </tr>
+                    <tr ng-repeat="c in list">
+                        <td class="center not-print">
+                            <i-image view class="logo" ng-model="c.image_url"></i-image>
+                        </td>
+                        <td class="center userPrint blue">{{c.code}}</td>
+                        <td class="center title">{{c.name_##session.lang##}}</td>
+                        <td class="center green">{{c.activities_price}}</td>
+                        <td class="center blue"> {{c.available_period}} ##word.day##</td>
+                        <td>
+                            <div class="row" ng-show="c.selectedActivitiesList.length > 0">
+
+                                <table class="table hover bold">
+                                    <tr>
+                                        <th>##word.activity_name##</th>
+                                        <th>##word.activities_price##</th>
+                                        <th>##word.attend_count##</th>
+                                        <th>##word.activity_count##</th>
+                                        <th>##word.total_attend_count##</th>
+                                    </tr>
+
+                                    <tr class="bold" ng-repeat="s in c.selectedActivitiesList">
+
+                                        <td>
+                                            <p class="center bold blue">{{s.name_##session.lang##}}</p>
+                                        </td>
+
+                                        <td>
+                                            <p class="center bold green">{{s.activities_price}}</p>
+                                        </td>
+
+                                        <td>
+                                            <p class="center bold ">{{s.attend_count}}</p>
+                                        </td>
+
+                                        <td>
+                                            <p class="center bold blue">{{s.count}}</p>
+                                        </td>
+                                        <td>
+                                            <p class="center bold blue">{{s.total_attend_count}}</p>
+                                        </td>
+                                    </tr>
+
+                                </table>
+                            </div>
+                        </td>
+
+                        <td class="center">
+                            <p ng-show="c.active ==true" class="green"> ##word.active## </p>
+                            <p ng-show="c.active ==false" class="red"> ##word.not_active## </p>
+                        </td>
+
+                        <td class="center not-print">
+                            <i-button x-permissions="activity_view || activity_manage" type="view"
+                                label="##word.details##" ng-click="displayDetailsActivity(c)"></i-button>
+
+                            <i-button x-permissions="activity_update || activity_manage" type="edit" label="##word.edit##"
+                                ng-click="displayUpdateActivity(c)"></i-button>
+
+                            <i-button x-permissions="activity_delete || activity_manage" type="delete"
+                                label="##word.delete##" ng-click="displayDeleteActivity(c)"></i-button>
+                        </td>
+                    </tr>
+                </table>
+                <i-button x-permissions="activity_print || activity_manage" type="print" label="##word.print##"
+                    onclick="site.print('#t1')"></i-button>
+
+                <i-button x-permissions="activity_export || activity_manage" type="export"
+                    label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'activity.xlsx')"></i-button>
+            </div>
+        </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+    <script x-import="activity/index.js"></script>
+</body>
+
+</html>

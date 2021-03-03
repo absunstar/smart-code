@@ -530,7 +530,7 @@ app.controller("trainer", function ($scope, $http, $timeout) {
   $scope.getTrainerList();
   $scope.getGovList();
 
-  if (site.feature('gym') || site.feature('academy') || site.feature('school')) {
+  if (site.feature('club') || site.feature('academy') || site.feature('school')) {
     $scope.getClassRoomsList();
   };
 

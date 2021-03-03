@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "request_activity_admin",
+    "en": "Requests Activities Admin",
+    "ar": "إدارة طلبات الأنشطة",
+    "permissions": ["request_activity_manage"]
+}]

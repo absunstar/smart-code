@@ -99,21 +99,21 @@
     },
     {
         "category": "main",
-        "feature": "gym",
-        "name": "request_service",
-        "en": "Request Service",
-        "ar": "طلبات الخدمات / الإشتراكات"
+        "feature": "club",
+        "name": "request_activity",
+        "en": "Request Activities",
+        "ar": "طلبات الأنشطة / الإشتراكات"
     },
     {
         "category": "main",
-        "feature": "gym",
+        "feature": "club",
         "name": "attend_subscribers",
-        "en": "Attend Subscribers To Gym",
-        "ar": "حضور المشتركين للجيم"
+        "en": "Attend Subscribers To Club",
+        "ar": "حضور المشتركين للنادي"
     },
     {
         "category": "main",
-        "feature": "gym",
+        "feature": "club",
         "name": "attend_session",
         "en": "Attend Subscribers To Session",
         "ar": "حضور الجلسات للمشتركين"
@@ -309,10 +309,10 @@
     },
     {
         "category": "accounting",
-        "feature": "gym",
-        "name": "request_service_invoice",
-        "en": "Request Service Invoices",
-        "ar": "فواتير طلب الخدمة"
+        "feature": "club",
+        "name": "request_activity_invoice",
+        "en": "Request Activity Invoices",
+        "ar": "فواتير طلب النشاط"
     },
     {
         "category": "accounting",
@@ -785,10 +785,10 @@
     },
     {
         "category": "general_setting",
-        "feature": "gym",
-        "name": "services",
-        "en": "Services",
-        "ar": "الخدمات"
+        "feature": "club",
+        "name": "activities",
+        "en": "Activities",
+        "ar": "الأنشطة"
     },
     {
         "category": "general_setting",

@@ -1,0 +1,182 @@
+<div id="attendActivityModal" class="modal">
+    <div class="col2"></div>
+    <div class="modal-content col8">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.search_all## <i class="fa fa-search"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+            <form class="form">
+                <div class="row">
+
+                    <div class="row" ng-hide="attend_activity.selectedActivitysList.length > 0">
+                        <div class="col2"></div>
+                        <div class="col8">
+
+                            <table class="table hover bold">
+                                <tr>
+                                    <th>##word.activity_name##</th>
+                                    <th>##word.attend_count##</th>
+                                    <th>##word.current_attendance##</th>
+                                    <th>##word.remain_attendance##</th>
+                                    <th>##word.trainer##</th> 
+                                    <th>##word.actions##</th>
+                                </tr>
+
+                                <tr class="bold">
+
+                                    <td>
+                                        <br>
+                                        <p class="center bold">{{attend_activity.activity_name_##session.lang##}}</p>
+                                    </td>
+
+                                    <td>
+                                        <br>
+                                        <p class="center bold blue">{{attend_activity.total_real_attend_count}}</p>
+                                    </td>
+
+                                    <td>
+                                        <br>
+                                        <p class="center bold blue">{{attend_activity.current_attendance}}</p>
+                                    </td>
+
+                                    <td>
+                                        <br>
+                                        <p class="center bold blue">{{attend_activity.remain}}</p>
+                                    </td>
+
+                                    <td>
+                                        <i-list ng-search="_search.$trainer" display="name_##session.lang##"
+                                            ng-model="attend_activity.trainer_attend" items="trainersList"></i-list>
+                                    </td>
+
+                                    <td class="center">
+                                        <i-button type="add" label="##word.attend##"
+                                            ng-click="attendNow(attend_activity)">
+                                        </i-button>
+                                    </td>
+
+                                </tr>
+
+                            </table>
+
+                        </div>
+                        <div class="col2"></div>
+
+                    </div>
+
+
+                    <div class="row" ng-show="attend_activity.selectedActivitysList.length > 0">
+                        <div class="col2"></div>
+                        <div class="col8">
+
+
+                            <table class="table hover bold">
+                                <tr>
+                                    <th>##word.activity_name##</th>
+                                    <th>##word.attend_count##</th>
+                                    <th>##word.current_attendance##</th>
+                                    <th>##word.remain##</th>
+                                    <th>##word.trainer##</th>
+                                    <th>##word.actions##</th>
+                                </tr>
+
+                                <tr class="bold" ng-repeat="s in attend_activity.selectedActivitysList">
+
+                                    <td>
+                                        <p class="center bold">{{s.name_##session.lang##}}</p>
+                                    </td>
+
+                                    <td>
+                                        <p class="center bold blue">{{s.total_real_attend_count}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="center bold blue">{{s.current_attendance}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="center bold" ng-class ="{red : s.remain < 0 ,green : s.remain > 0}">{{s.remain}}</p>
+                                    </td>
+                                    <td>
+                                        <i-list ng-search="s.$trainer_attend_search" display="name_##session.lang##"
+                                            ng-model="s.trainer_attend" items="trainersList"></i-list>
+                                    </td>
+                                    <td class="center">
+                                        <i-button type="add" label="##word.attend##" ng-click="attendNow(s)">
+                                        </i-button>
+
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </div>
+                        <div class="col2"></div>
+
+                    </div>
+                    <br>
+                    <br>
+                    <hr>
+                    <br>
+
+                    <div class="row" ng-show="attend_activity.attend_activity_list.length > 0">
+                        <fieldset>
+                            <legend>##word.activities##</legend>
+
+                            <table class="table hover bold">
+                                <tr>
+                                    <th>##word.activity_name##</th>
+                                    <th>##word.trainer##</th>
+                                    <th>##word.attend_date##</th>
+                                    <th>##word.leave_date##</th>
+                                </tr>
+
+                                <tr class="bold" ng-repeat="s in attend_activity.attend_activity_list">
+
+                                    <td>
+                                        <p class="center bold">{{s.name_##session.lang##}}</p>
+                                    </td>
+
+                                    <td>
+                                        <p class="center bold">{{s.trainer_attend.name_##session.lang##}}</p>
+                                    </td>
+
+                                    <td class="center ">
+
+                                        <p class="green" ng-show="s.attend_date">
+                                            {{s.attend_date |date:'dd - MM - yyyy'}}</p>
+
+                                        <p class="green" ng-show="s.attend_date">{{s.attend_time.minute}} :
+                                            {{s.attend_time.hour}}
+                                        </p>
+                                    </td>
+                                    <td class="center ">
+                                        <i-button type="exit" ng-hide="s.leave_date" label="##word.leave##"
+                                            ng-click="leaveNow(s)">
+                                        </i-button>
+                                        <p class="red" ng-show="s.leave_date">
+                                            {{s.leave_date |date:'dd - MM - yyyy'}}</p>
+
+                                        <p class="red" ng-show="s.leave_date">{{s.leave_time.minute}} :
+                                            {{s.leave_time.hour}}
+                                        </p>
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </fieldset>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <h2 class="error">{{error}}</h2>
+
+        <div class="modal-footer center">
+            <i-button type="save" label="##word.save##" ng-click="updateAttendActivity(attend_activity)"></i-button>
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#attendActivityModal')"> </i-button>
+        </div>
+    </div>
+    <div class="col2"></div>
+</div>

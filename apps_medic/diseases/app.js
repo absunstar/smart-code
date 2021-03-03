@@ -3,7 +3,7 @@ module.exports = function init(site) {
 
 
   site.on('[company][created]', doc => {
-    if (site.feature('gym') || site.feature('academy') || site.feature('school') || site.feature('medical'))
+    if (site.feature('club') || site.feature('academy') || site.feature('school') || site.feature('medical'))
       $disease.add({
         code: "1-Test",
         name_ar: "مرض إفتراضي",

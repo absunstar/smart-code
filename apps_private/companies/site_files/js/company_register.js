@@ -83,24 +83,21 @@ app.controller('company_register', function ($scope, $http) {
           }).then(function (response) {
             if (response.data.error) {
               $scope.error = response.data.error;
-              if (response.data.error.like('*ername must be typed correctly*')) {
-                $scope.error = "##word.err_username_contain##"
-              }
+
               $scope.busy = false;
-            }
-            
-            if (response.data.done) {
+
+            } else if (response.data.done) {
 
               window.location.href = "/";
               $scope.busy = false;
-              
+
               $http({
                 method: "POST",
                 url: "/api/numbering/get",
                 data: {
                   reset: true,
                   doc: response.data.doc
-    
+
                 }
               }).then(
                 function (response) {
@@ -112,7 +109,9 @@ app.controller('company_register', function ($scope, $http) {
                   $scope.error = err;
                 }
               )
+
             }
+
           }, function (err) {
             $scope.busy = false;
             $scope.error = err;
@@ -120,6 +119,11 @@ app.controller('company_register', function ($scope, $http) {
 
         } else {
           $scope.error = response.data.error;
+          if (response.data.error.like('*ername must be typed correctly*')) {
+            $scope.error = "##word.err_username_contain##"
+          } else if (response.data.error.like('*User Is Exist*')) {
+            $scope.error = "##word.user_exists##"
+          }
         }
       },
       function (err) {

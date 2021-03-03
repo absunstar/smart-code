@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="request_activity_ui || request_activity_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+    </nav>
+
+    <div id="main-layout" class="container loaded">
+        <div class="row">
+            <div class="row" ng-controller="request_activity">
+                <div x-permissions="request_activity_add || request_activity_manage"
+                    x-import="request-activity/add_modal.html">
+                </div>
+
+                <div x-permissions="request_activity_add || request_activity_manage"
+                    x-import="request-activity/account_invoice.html">
+                </div>
+
+                <div x-permissions="request_activity_add || request_activity_manage" x-import="customers/add_modal.html">
+                </div>
+
+                <div x-permissions="request_activity_update || request_activity_manage"
+                    x-import="request-activity/update_modal.html"></div>
+                <div x-permissions="request_activity_update || request_activity_manage"
+                    x-import="request-activity/attend_activity.html"></div>
+                <div x-permissions="request_activity_delete || request_activity_manage"
+                    x-import="request-activity/delete_modal.html"></div>
+                <div x-permissions="request_activity_view || request_activity_manage"
+                    x-import="request-activity/view_modal.html">
+                </div>
+                <div x-permissions="request_activity_search || request_activity_manage"
+                    x-import="request-activity/search_all_modal.html"></div>
+
+                <div x-import="accounting-invoices/add_payments_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center">##word.request_activity##</h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button x-permissions="request_activity_add || request_activity_manage" type="add"
+                        label="##word.activity_new##" ng-click="displayAddRequestActivity()"></i-button>
+
+                    <i-button x-permissions="request_activity_search || request_activity_manage" type="search"
+                        label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
+
+                    <h2 class="bold red text-center">{{error}}</h2>
+                    <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
+                </div>
+
+                <table x-permissions="login" class="table bold hover pointer loaded" id="t1">
+                    <tr>
+                        <th class="not-print">##word.logo##</th>
+                        <th> ##word.code## </th>
+                        <th>##word.customer##</th>
+                        <th>##word.activity##</th>
+                        <th>##word.date_from_subscribe##</th>
+                        <th>##word.expired_date##</th>
+                        <th>##word.activity_count##</th>
+                        <th>##word.paid_require##</th>
+                        <th>##word.status##</th>
+                        <th class="not-print">##word.actions##</th>
+                    </tr>
+                    <tr ng-repeat="c in list">
+
+                        <td ng-click="displayDetailsRequestActivity(c)" class="center not-print">
+                            <i-image view class="logo" ng-model="c.image_url"></i-image>
+                        </td>
+
+                        <td ng-click="displayDetailsRequestActivity(c)" class="center userPrint blue">{{c.code}}</td>
+
+                        <td ng-click="displayDetailsRequestActivity(c)" class="center title">
+                            {{c.customer.name_##session.lang##}}
+                        </td>
+
+                        <td ng-click="displayDetailsRequestActivity(c)" class="center">{{c.activity_name_##session.lang##}}</td>
+
+                        <td ng-click="displayDetailsRequestActivity(c)" class="center brown">
+                            {{c.date_from | date : 'yyyy - MM - dd'}}
+                            <p class="center green"> {{c.time_from.minute}} : {{c.time_from.hour}}</p>
+                        </td>
+
+                        <td ng-click="displayDetailsRequestActivity(c)" class="center red">
+                            {{c.date_to | date : 'yyyy - MM - dd'}}
+                            <p class="center red"> {{c.time_to.minute}} : {{c.time_to.hour}}</p>
+                        </td>
+
+                        <td ng-click="displayDetailsRequestActivity(c)" class="center blue">{{c.activity_count}}</td>
+
+                        <td ng-click="displayDetailsRequestActivity(c)" class="center green">{{c.paid_require}}</td>
+
+                        <td ng-click="displayDetailsRequestActivity(c)" class="center">
+                            <p ng-show="c.active ==true" class="green"> ##word.active## </p>
+                            <p ng-show="c.active ==false" class="red"> ##word.not_active## </p>
+                        </td>
+
+                        <td class="center not-print">
+
+                            <i-button x-permissions="request_activity_update || request_activity_manage" type="view"
+                                label="##word.attend_activities_##" ng-click="showAttendActivitys(c)"></i-button>
+
+                            <i-button ng-show="!c.invoice && !defaultSettings.accounting.create_invoice_auto"
+                                type="save" label="##word.create_an_invoice##" ng-click="displayAccountInvoice(c)">
+                            </i-button>
+
+                            <i-button x-permissions="request_activity_update || request_activity_manage" type="edit"
+                                label="##word.edit##" ng-click="displayUpdateRequestActivity(c)"></i-button>
+
+                            <i-button x-permissions="request_activity_delete || request_activity_manage" type="delete"
+                                label="##word.delete##" ng-click="displayDeleteRequestActivity(c)"></i-button>
+
+                        </td>
+
+                    </tr>
+                </table>
+                <i-button x-permissions="request_activity_print || request_activity_manage" type="print"
+                    label="##word.print##" onclick="site.print('#t1')"></i-button>
+
+                <i-button x-permissions="request_activity_export || request_activity_manage" type="export"
+                    label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'request_activity.xlsx')">
+                </i-button>
+            </div>
+        </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+    <script x-import="request-activity/index.js"></script>
+</body>
+
+</html>

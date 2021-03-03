@@ -2,7 +2,7 @@ module.exports = function init(site) {
   const $drinks = site.connectCollection("drinks")
 
   site.on('[company][created]', doc => {
-    if (site.feature('gym') || site.feature('academy') || site.feature('school') || site.feature('medical'))
+    if (site.feature('club') || site.feature('academy') || site.feature('school') || site.feature('medical'))
       $drinks.add({
         code: "1-Test",
         name_ar: "مشروب إفتراضي",

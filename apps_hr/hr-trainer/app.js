@@ -3,7 +3,7 @@ module.exports = function init(site) {
 
   site.on('[company][created]', doc => {
 
-    if (site.feature('gym') || site.feature('academy') || site.feature('school')) {
+    if (site.feature('club') || site.feature('academy') || site.feature('school')) {
 
       $trainer.add({
         name_ar: site.feature('school') ? "مدرس إفتراضي" : "مدرب إفتراضي",
@@ -199,6 +199,10 @@ module.exports = function init(site) {
     }
 
     let trainer_doc = req.body
+
+
+
+    
     let user = {}
 
     user = {

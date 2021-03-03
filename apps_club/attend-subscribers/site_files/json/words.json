@@ -1,0 +1,118 @@
+[
+    {
+        "name": "attend_subscribers",
+        "en": "Attend Subscribers",
+        "ar": "حضور المشتركين للنادي"
+    },
+    {
+        "name": "attend_subscribers",
+        "en": "The Attend Subscribers",
+        "ar": "حضور مشترك"
+    },
+    {
+        "name": "attend_subscribers_new",
+        "en": "New Attend Subscribers",
+        "ar": "حضور مشترك جديدة"
+    },
+    {
+        "name": "invoice_remain",
+        "en": "Invoice Remain",
+        "ar": "باقي الفاتورة"
+    },
+    {
+        "name": "subscribers_name",
+        "en": "Subscribers Name",
+        "ar": "إسم المشترك"
+    },
+    {
+        "name": "attend_subscribers_attend",
+        "en": "Attend Time",
+        "ar": "وقت الحضور"
+    },
+    {
+        "name": "attend_subscribers_leave",
+        "en": "Leave Time",
+        "ar": "وقت المغادرة"
+    },
+    {
+        "name": "leave_now",
+        "en": "Leave Now",
+        "ar": "مغادرة الأن"
+    },
+    {
+        "name": "attend_date",
+        "en": "Attend Date",
+        "ar": "تاريخ الحضور"
+    },
+    {
+        "name": "attend_date_from",
+        "en": "Attend Date From",
+        "ar": "تاريخ الحضور من"
+    },
+    {
+        "name": "attend_date_to",
+        "en": "Attend Date To",
+        "ar": "تاريخ الحضور إلى"
+    },
+
+    {
+        "name": "leave_date",
+        "en": "Leave Date",
+        "ar": "تاريخ الإنصراف"
+    },
+    {
+        "name": "leave_date_from",
+        "en": "Leave Date From",
+        "ar": "تاريخ الإنصراف من"
+    },
+    {
+        "name": "leave_date_to",
+        "en": "Leave Date To",
+        "ar": "تاريخ الإنصراف إلى"
+    },
+    
+    {
+        "name": "leave_now",
+        "en": "Leave Now",
+        "ar": "مغادرة الأن"
+    },
+    
+    {
+        "name": "attend_subscribers_add",
+        "en": "Add Attend Subscribers",
+        "ar": "إضافة حضور مشترك"
+    },
+    {
+        "name": "attend_subscribers_edit",
+        "en": "Edit Attend Subscribers",
+        "ar": "تعديل حضور مشترك"
+    },
+    {
+        "name": "attend_subscribers_details",
+        "en": "Attend Subscribers Details",
+        "ar": "تفاصيل حضور مشترك"
+    },
+    {
+        "name": "attend_subscribers_delete",
+        "en": "Delete Attend Subscribers",
+        "ar": "حذف حضور مشترك"
+    },
+    {
+        "name": "attend_subscribers_name",
+        "en": "Course Name",
+        "ar": "إسم الحضور مشترك "
+    },
+    {
+        "name": "attend_subscribers_total",
+        "en": "Total Duration",
+        "ar": "إجمالي المدة "
+    },
+    {
+        "name": "auto_load_attendance",
+        "en": "Auto Load Attendance",
+        "ar": "تحميل تلقائى للبصمة"
+    }
+
+
+    
+]

@@ -9,7 +9,7 @@
             <a class="tab-link" onclick="site.showTabContent(event, '#contactAndAddress')">
                 ##word.customers_contact_and_addresses## </a>
 
-            <a class="tab-link" x-features="gym || academy || school || medical"
+            <a class="tab-link" x-features="club || academy || school || medical"
                 onclick="site.showTabContent(event,'#medicalConditionInformation')">
                 ##word.medical_condition##</a>
 
@@ -100,7 +100,7 @@
                                     ng-model="customer.insurance_company" items="insuranceCompaniesList" display="name_##session.lang##">
                                 </i-list>
 
-                                <i-control class="col4" x-features="gym || academy || school"
+                                <i-control class="col4" x-features="club || academy || school"
                                     label="##word.finger_code##" ng-model="customer.finger_code">
                                 </i-control>
 
@@ -111,7 +111,7 @@
 
                                 <div class="col1"></div>
 
-                                <i-checkbox x-features="gym || school || medical" class="col2" label="##word.child##"
+                                <i-checkbox x-features="club || school || medical" class="col2" label="##word.child##"
                                     ng-model="customer.child"></i-checkbox>
 
                             </div>
@@ -262,7 +262,7 @@
                 </fieldset>
             </div>
 
-            <div id="medicalConditionInformation" x-features="gym || academy || school || medical" class="tab-content">
+            <div id="medicalConditionInformation" x-features="club || academy || school || medical" class="tab-content">
                 <fieldset>
 
                     <legend>

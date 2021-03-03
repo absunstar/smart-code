@@ -1,0 +1,140 @@
+[{
+        "name": "activities",
+        "en": "The Activities",
+        "ar": "الأنشطة"
+    },
+    {
+        "name": "activity",
+        "en": "The Activity",
+        "ar": "النشاط"
+    },
+    {
+        "name": "subscriptions_system",
+        "en": "Subscriptions System",
+        "ar": "نظام الإشتراكات"
+    },
+    {
+        "name": "activity_new",
+        "en": "New Activity",
+        "ar": "نشاط جديدة"
+    },
+    {
+        "name": "session_count",
+        "en": "Sessions Count",
+        "ar": "عدد الجلسات"
+    },
+    {
+        "name": "attend_count",
+        "en": "Attend Count",
+        "ar": "مرات الحضور"
+    },
+    {
+        "name": "total_attend_count",
+        "en": "Total Attend Count",
+        "ar": "إجمالي مرات الحضور"
+    },
+    {
+        "name": "available_period",
+        "en": "Available Period",
+        "ar": "الفترة المتاحة"
+    },
+    {
+        "name": "session_price",
+        "en": "Session Price",
+        "ar": "سعر الجلسة"
+    },
+    {
+        "name": "total_session_price",
+        "en": "Total Session Price",
+        "ar": "إجمالي سعر الجلسات"
+    },
+    {
+        "name": "month_price",
+        "en": "Month Price",
+        "ar": "سعر الشهر"
+    },
+    {
+        "name": "activity_add",
+        "en": "Add Activity",
+        "ar": "إضافة نشاط"
+    },
+    {
+        "name": "activity_edit",
+        "en": "Edit Activity",
+        "ar": "تعديل نشاط"
+    },
+    {
+        "name": "activity_details",
+        "en": "Activity Details",
+        "ar": "تفاصيل النشاط"
+    },
+    {
+        "name": "activity_count",
+        "en": "Activity Count",
+        "ar": "العدد"
+    },
+    {
+        "name": "err_select_activity",
+        "en": "Must Select Activity",
+        "ar": "يجب إختيار نشاط"
+    },
+    {
+        "name": "activity_delete",
+        "en": "Delete Activity",
+        "ar": "حذف نشاط"
+    },
+    {
+        "name": "activity_name",
+        "en": "Activity Name",
+        "ar": "إسم النشاط "
+    },
+    {
+        "name": "activity_price",
+        "en": "Course Price",
+        "ar": "سعر النشاط "
+    },
+    {
+        "name": "complex_activity",
+        "en": "Assembler Activity",
+        "ar": "نشاط مجمعة"
+    },
+    {
+        "name": "complex_activities",
+        "en": "Assembler Activities",
+        "ar": "الأنشطة المجمعة"
+    },
+    {
+        "name": "total_complex_activities_price",
+        "en": "Total Assembler Activities Price",
+        "ar": "إجمالي سعر الأنشطة المجمعة"
+    },
+    
+    {
+        "name": "activities_price",
+        "en": "Activity Price",
+        "ar": "سعر النشاط"
+    },
+    {
+        "name": "activity_total",
+        "en": "Total Duration",
+        "ar": "إجمالي المدة "
+    },
+    {
+        "name": "activity_capaneighborhood",
+        "en": "Class Capaneighborhood",
+        "ar": "سعة النشاط "
+    },
+    {
+        "name": "activity_current",
+        "en": "Number Of Current Students",
+        "ar": "عدد الطلاب الحاليين"
+    },
+    {
+        "name": "activity_remain",
+        "en": "Activity Remain",
+        "ar": "الجلسات الباقية"
+    }
+    
+
+    
+]
