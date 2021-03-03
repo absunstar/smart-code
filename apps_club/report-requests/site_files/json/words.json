@@ -12,12 +12,12 @@
     {
         "name": "report_requests_name",
         "en": "Report Activities Requests",
-        "ar": "تقرير طلبات الأنشطة"
+        "ar": "تقرير طلبات الخدمات/ الأنشطة"
     },
     {
         "name": "report_requests",
         "en": "Report Activities Requests",
-        "ar": "تقرير طلبات الأنشطة"
+        "ar": "تقرير طلبات الخدمات/ الأنشطة"
     },
     {
         "name": "report_requests_menus",

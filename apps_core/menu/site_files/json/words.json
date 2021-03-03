@@ -1197,12 +1197,12 @@
     {
         "name": "request_activity_management",
         "en": "Request Activities / Subscriptions",
-        "ar": "طلبات الأنشطة / الإشتراكات"
+        "ar": "طلبات الخدمات/الأنشطة"
     },
     {
         "name": "request_activity_menus",
         "en": "Request Activities / Subscriptions Menu",
-        "ar": "قائمة طلبات الأنشطة / الإشتراكات"
+        "ar": "قائمة طلبات الخدمات/الأنشطة"
     },
     {
         "name": "hall_management",

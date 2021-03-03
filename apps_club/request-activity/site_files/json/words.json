@@ -1,7 +1,7 @@
 [{
         "name": "request_activity",
         "en": "The request Activity / Subscriptions",
-        "ar": "طلبات الأنشطة / الإشتراكات"
+        "ar": "طلبات الخدمات/الأنشطة"
     },
     {
         "name": "request_activity_new",

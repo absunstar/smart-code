@@ -134,37 +134,6 @@
         "name": "err_total_discount",
         "en": "Total Discount Greater Than Required",
         "ar": "مجموع الخصومات أكبر من المطلوب"
-    },
-    {
-        "name": "err_service",
-        "en": "Service Greater Than Required",
-        "ar": "مبلغ الخدمة أكبر من المطلوب"
-    },
-    {
-        "name": "err_net_value",
-        "en": "Net Value Greater Than Required",
-        "ar": "صافي المبلغ أكبر من المطلوب"
-    },
-  
-    {
-        "name": "report_payable_total_required",
-        "en": "Total Required",
-        "ar": "إجمالي المطلوب"
-    },
-    {
-        "name": "total_paid_up",
-        "en": "Total Rest",
-        "ar": "إجمالي المدفوع"
-    },
-  
-    {
-        "name": "total_remain",
-        "en": "Total Remain",
-        "ar": "إجمالي الباقي"
-    },
-    {
-        "name": "report_payable_add_name",
-        "en": "Add Report Invoices",
-        "ar": "إضافة تقرير فاتورة"
     }
+  
 ]

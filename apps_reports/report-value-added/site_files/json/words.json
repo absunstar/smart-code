@@ -116,8 +116,8 @@
     },
     {
         "name": "err_service",
-        "en": "Service Greater Than Required",
-        "ar": "مبلغ الخدمة أكبر من المطلوب"
+        "en": "Service/Activity Greater Than Required",
+        "ar": "مبلغ الخدمة/النشاط أكبر من المطلوب"
     },
     {
         "name": "err_net_value",

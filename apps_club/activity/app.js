@@ -5,8 +5,8 @@ module.exports = function init(site) {
 
     $activity.add({
       code: "1-Test",
-      name_ar: "نشاط إفتراضي",
-      name_en : "Default Activities",
+      name_ar: "خدمة/نشاط إفتراضي",
+      name_en : "Default Service/Activity",
       image_url: '/images/activity.png',
       company: {
         id: doc.id,

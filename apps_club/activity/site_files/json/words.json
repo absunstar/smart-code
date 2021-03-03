@@ -1,12 +1,12 @@
 [{
         "name": "activities",
-        "en": "The Activities",
-        "ar": "الأنشطة"
+        "en": "The Service/Activity",
+        "ar": "الخدمات/الأنشطة"
     },
     {
         "name": "activity",
-        "en": "The Activity",
-        "ar": "النشاط"
+        "en": "The Service/Activity",
+        "ar": "الخدمة/النشاط"
     },
     {
         "name": "subscriptions_system",
@@ -15,8 +15,8 @@
     },
     {
         "name": "activity_new",
-        "en": "New Activity",
-        "ar": "نشاط جديدة"
+        "en": "New Service/Activity",
+        "ar": "خدمة/نشاط جديد"
     },
     {
         "name": "session_count",
@@ -55,17 +55,17 @@
     },
     {
         "name": "activity_add",
-        "en": "Add Activity",
-        "ar": "إضافة نشاط"
+        "en": "Add Service/Activity",
+        "ar": "إضافة خدمة/نشاط"
     },
     {
         "name": "activity_edit",
         "en": "Edit Activity",
-        "ar": "تعديل نشاط"
+        "ar": "تعديل خدمة/نشاط"
     },
     {
         "name": "activity_details",
-        "en": "Activity Details",
+        "en": "Service/Activity Details",
         "ar": "تفاصيل النشاط"
     },
     {
@@ -75,44 +75,44 @@
     },
     {
         "name": "err_select_activity",
-        "en": "Must Select Activity",
-        "ar": "يجب إختيار نشاط"
+        "en": "Must Select Service/Activity",
+        "ar": "يجب إختيار خدمة/نشاط"
     },
     {
         "name": "activity_delete",
-        "en": "Delete Activity",
-        "ar": "حذف نشاط"
+        "en": "Delete Service/Activity",
+        "ar": "حذف خدمة/نشاط"
     },
     {
         "name": "activity_name",
-        "en": "Activity Name",
-        "ar": "إسم النشاط "
+        "en": "Service/Service/Activity Name",
+        "ar": "إسم خدمة/نشاط "
     },
     {
         "name": "activity_price",
         "en": "Course Price",
-        "ar": "سعر النشاط "
+        "ar": "سعر خدمة/نشاط "
     },
     {
         "name": "complex_activity",
-        "en": "Assembler Activity",
-        "ar": "نشاط مجمعة"
+        "en": "Assembler Service/Activity",
+        "ar": "خدمة/نشاط مجمع"
     },
     {
         "name": "complex_activities",
-        "en": "Assembler Activities",
-        "ar": "الأنشطة المجمعة"
+        "en": "Assembler Services/Activities",
+        "ar": "خدمات/أنشطة مجمعة"
     },
     {
         "name": "total_complex_activities_price",
-        "en": "Total Assembler Activities Price",
-        "ar": "إجمالي سعر الأنشطة المجمعة"
+        "en": "Total Assembler Services/Activities Price",
+        "ar": "إجمالي سعر خدمات/أنشطة مجمعة"
     },
     
     {
         "name": "activities_price",
-        "en": "Activity Price",
-        "ar": "سعر النشاط"
+        "en": "Service/Activity Price",
+        "ar": "سعر الخدمة/النشاط"
     },
     {
         "name": "activity_total",

@@ -1048,23 +1048,23 @@
     },
     {
         "name": "service_management",
-        "en": "Service Management",
-        "ar": "إدارة الأنشطة"
+        "en": "Services/Activities Management",
+        "ar": "إدارة الخدمات/الأنشطة"
     },
     {
-        "name": "service_menus",
-        "en": "Service Menu",
-        "ar": "قائمة الأنشطة"
+        "name": "activity_menus",
+        "en": "Services/Activities Menu",
+        "ar": "قائمة الخدمات/الأنشطة"
     },
     {
         "name": "request_activity_management",
-        "en": "Request Service / Subscriptions",
-        "ar": "طلبات الأنشطة / الإشتراكات"
+        "en": "Request Service / Activities",
+        "ar": "طلبات الخدمات/الأنشطة"
     },
     {
         "name": "request_activity_menus",
-        "en": "Request Service / Subscriptions Menu",
-        "ar": "قائمة طلبات الأنشطة / الإشتراكات"
+        "en": "Request Service / Activities Menu",
+        "ar": "قائمة طلبات الخدمات/الأنشطة"
     },
     {
         "name": "hall_management",
