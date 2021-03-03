@@ -3,8 +3,10 @@
 
 <head x-import="head.html">
   <style>
-    .br_img_15 {
+    .img_brand {
       border-radius: 15px;
+      height: 170px;
+      width: 300px;
     }
 
     #posts {
@@ -150,6 +152,29 @@
   <div id="main-layout">
     <div class="center icc hidden">
       <img ng-src="/images/icc.png" />
+    </div>
+
+
+    <div x-feature="!login">
+   
+      <div class="row mt hidden">
+
+        <div class="center mt">
+          <img class="img_brand" ng-src="/images/mt.jpeg" />
+        </div>
+      </div>
+
+      <div class="row ft hidden">
+
+        <div class="center ft">
+          <img class="img_brand" ng-src="/images/ft.png" />
+        </div>
+
+    
+      </div>
+
+      <br />
+      <br />
     </div>
 
     <div class="footer" x-features="!login && !site.dynamic">
@@ -333,14 +358,10 @@
       </div>
       <div class="row mt hidden">
 
-        <div class="center mt">
-          <img class="br_img_15" ng-src="/images/mt.jpeg" />
-        </div>
-
-        <h2 class="center"> </h2>
+     
         <h2 class="center">
           <span>
-            <h1 class="center">شركة ميدانى تكنولوجى</h1> <br />
+            <h3 class="center bold green">شركة ميدانى تكنولوجى</h3> <br />
 
             الجيزة-الهرم <i class="fa fa-map-marker" aria-hidden="true"></i><br />
             رقم بريدى 12515<br />
@@ -352,13 +373,10 @@
 
       <div class="row ft hidden">
 
-        <div class="center ft">
-          <img class="br_img_15" ng-src="/images/ft.png" />
-        </div>
-
         <h2 class="center">
           <span>
-            <h1 class="center">Future Tech</h1> <br />
+            <h2 class="center bold green">Future Tech</h2> <br />
+
             المنصورة : حي الجامعة <i class="fa fa-map-marker" aria-hidden="true"></i> <br />
             مسجد الصباحي - الدور السابع <br />
 
