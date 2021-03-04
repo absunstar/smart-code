@@ -1,5 +1,5 @@
 [{
-    "module_name" : "public" ,
+    "module_name" : "inventory" ,
     "name": "active_substances_admin",
     "en": "Active Substances Admin",
     "ar": "إدارةالمواد الفعالة",
