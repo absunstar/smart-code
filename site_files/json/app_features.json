@@ -186,8 +186,8 @@
     },
     {
         "feature": "school",
-        "title_ar": "حضور الطلاب",
-        "title_en": "Attend Students",
+        "title_ar": "حضور و غياب الطلاب",
+        "title_en": "Attend & Absence Students",
         "image_url": "/images/attend_students.png",
         "description_ar": "يتم من خلالها تسجيل حضور أو إنصراف أو غياب لجميع الطلاب بالوقت و التاريخ و عمل تقرير مفصل لكل تلميذ و لكل فصل و لكل مرحلة دراسية ",
         "description_en": "Through it, the attendance, departure, or absence of all students is recorded with the time and date, and a detailed report is made for each student, for each class, and for each academic stage"
