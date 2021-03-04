@@ -22,7 +22,7 @@
                             ng-model="search_employee" label="##word.search##" type="text"></i-control>
 
                         <i-list ng-search="_search.$employee" class="col4" display="employee.name"
-                            ng-change="selectEmployee(attend_employees.employee)" ng-model="attend_employees.employee"
+                        display="name_##session.lang##" ng-change="selectEmployee(attend_employees.employee)" ng-model="attend_employees.employee"
                             label="##word.employee_name##" items="employeesList">
                         </i-list>
                         <div class="col1"></div>

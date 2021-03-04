@@ -75,7 +75,7 @@
 
                                     <div class="row">
                                         <i-list ng-search="lawsuit_status" class="col4" items="lawsuitStatusList"
-                                            ng-model="lawsuit_add.lawsuit_status" label="##word.lawsuit_status##">
+                                        display="name_##session.lang##" ng-model="lawsuit_add.lawsuit_status" label="##word.lawsuit_status##">
                                         </i-list>
                                         <i-list ng-search="lawsuit_basic" class="col4" items="lawsuitBasicList"
                                             display="year" display2="number" space=" - "

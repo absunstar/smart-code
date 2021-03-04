@@ -32,11 +32,11 @@
                     <div class="row">
 
                         <i-list ng-search="rogatory_place" class="col3" items="rogatoryPlaceList"
-                            ng-model="rogatory_add.rogatory_place" label="##word.rogatory_place##">
+                        display="name_##session.lang##" ng-model="rogatory_add.rogatory_place" label="##word.rogatory_place##">
                         </i-list>
 
                         <i-list ng-search="rogatory_type" class="col3" items="rogatoryTypeList"
-                            ng-model="rogatory_add.rogatory_type" label="##word.rogatory_type##">
+                        display="name_##session.lang##" ng-model="rogatory_add.rogatory_type" label="##word.rogatory_type##">
                         </i-list>
 
                     </div>

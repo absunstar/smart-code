@@ -169,7 +169,8 @@
             "report_scans_requests_manage",
             "report_payable_customers_manage",
             "report_payable_vendors_manage",
-            "report_doctors_visits_manage"
+            "report_doctors_visits_manage",
+            "vehicles_manage"
         ]
     }
 ]

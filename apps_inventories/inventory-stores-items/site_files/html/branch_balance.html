@@ -30,7 +30,7 @@
                             <td class="center" x-feature="restaurant">
                                 <p ng-show="branchesBalance.view">{{item.kitchen.name_##session.lang##}}</p>
                                 <i-list ng-hide="branchesBalance.view" class="col4" ng-model="item.kitchen"
-                                    ng-search="_search.$kitchen_search" items="itemsKitchenList">
+                                display="name_##session.lang##"   ng-search="_search.$kitchen_search" items="itemsKitchenList">
                                 </i-list>
 
                             </td>

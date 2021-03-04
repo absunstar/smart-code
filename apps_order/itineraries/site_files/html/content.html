@@ -11,7 +11,7 @@
                         <i-date2 class="col4" ng-model="itinerary.date" label="##word.date##"></i-date2>
 
                         <i-list class="col4" ng-model="itinerary.delegate" ng-search="_search.$items_group_search" v="r"
-                            label="##word.delegate##" items="delegatesList">
+                        display="name_##session.lang##"  label="##word.delegate##" items="delegatesList">
                         </i-list>
 
                         <i-checkbox help-id="itineraries_active" class="col2" label="##word.active##"

@@ -18,12 +18,14 @@
                             label="##word.item_group##" items="itemsGroupList"></i-list>
 
                         <i-list class="col3" ng-model="search.unit" ng-search="_search.$unit_search"
-                            label="##word.unit##" items="unitsList"></i-list>
+                        display="name_##session.lang##" label="##word.unit##" items="unitsList"></i-list>
 
                         <i-control class="col2" ng-model="search.name" label="##word.stores_items_name##" type="text">
                         </i-control>
+
                         <i-control class="col2" ng-model="search.size_ar" label="##word.stores_items_sizes##" type="text">
                         </i-control>
+                        
                         <i-control class="col2" ng-model="search.barcode" label="##word.barcode##" type="text">
                         </i-control>
 

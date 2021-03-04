@@ -14,7 +14,7 @@
                 <i-control ng-keydown="getEmployeeList($event)" id="service" class="col3" ng-model="search_employee"
                     label="##word.search##" type="text"></i-control>
                 <i-list class="col4" label="##word.employee_offer_employees##" ng-search="_search.$eng_serach"
-                    ng-model="employee_offer.employee" items="employeeList"></i-list>
+                display="name_##session.lang##"  ng-model="employee_offer.employee" items="employeeList"></i-list>
 
             </div>
 

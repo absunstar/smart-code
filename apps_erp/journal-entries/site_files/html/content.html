@@ -16,7 +16,7 @@
                         <i-date2 class="col8" ng-model="journal_entries.date" label="##word.date##" v="r"></i-date2>
 
                         <i-list ng-search="_search.$document_type_journal_entries" class="col4"
-                            ng-model="journal_entries.document_type" items="namesInList" label="##word.document_type##">
+                        display="name_##session.lang##" ng-model="journal_entries.document_type" items="namesInList" label="##word.document_type##">
                         </i-list>
 
                     </div>

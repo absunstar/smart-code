@@ -28,7 +28,7 @@
                     </i-list>
 
                     <i-list ng-hide="'##user.type##' == 'delegate'" class="col4" ng-model="store_out.delegate"
-                        ng-search="_search.$items_group_search" label="##word.delegate##"
+                    display="name_##session.lang##" ng-search="_search.$items_group_search" label="##word.delegate##"
                         ng-disabled="store_out.retured_number" items="delegatesList">
                     </i-list>
                 </div>
@@ -39,7 +39,7 @@
                         ng-model="store_out.type" items="storesOutTypes" label="##word.transaction_type##"></i-list> -->
 
                     <i-list ng-hide="'##user.type##' == 'delegate'" class="col3" ng-model="store_out.store"
-                        items="storesList" ng-search="_search.$stores_search" label="##word.stores_out_store##">
+                    display="name_##session.lang##" items="storesList" ng-search="_search.$stores_search" label="##word.stores_out_store##">
                     </i-list>
 
                     <i-list class="col2" ng-model="store_out.payment_type" items="paymentTypesList"
@@ -124,7 +124,7 @@
 
                             <td>
                                 <i-list ng-model="itm.unit" ng-search="_search.$category_item.$unit_search" space=" - "
-                                    ng-change="ChangeUnitPatch(itm);" display2="barcode" items="itm.size_units_list">
+                                display="name_##session.lang##"  ng-change="ChangeUnitPatch(itm);" display2="barcode" items="itm.size_units_list">
                                 </i-list>
                             </td>
 
@@ -262,7 +262,7 @@
                                     <form>
                                         <div class="row ">
                                             <i-list ng-search="_search.$tax_name" class="col9" ng-model="tax"
-                                                items="tax_types">
+                                            display="name_##session.lang##" items="tax_types">
                                             </i-list>
                                             <div class="col3">
                                                 <br>

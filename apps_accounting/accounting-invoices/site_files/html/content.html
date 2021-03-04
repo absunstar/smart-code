@@ -333,7 +333,7 @@
                                 </i-checkbox>
 
                                 <i-list ng-search="_search.$source_account_invoices" ng-model="account_invoices.source"
-                                    ng-show="account_invoices.show_source" items="namesInList"
+                                display="name_##session.lang##" ng-show="account_invoices.show_source" items="namesInList"
                                     label="##word.source_name##">
                                 </i-list>
                             </div>
@@ -366,7 +366,7 @@
                                 </i-checkbox>
 
                                 <i-list ng-search="_search.$source_account_invoices" ng-model="account_invoices.source"
-                                    ng-show="account_invoices.show_source" items="namesOutList"
+                                display="name_##session.lang##"  ng-show="account_invoices.show_source" items="namesOutList"
                                     label="##word.source_name##">
                                 </i-list>
                             </div>
@@ -408,7 +408,7 @@
                                     label="##word.delegate##">
                                 </i-checkbox>
                                 <i-list ng-show="account_invoices.show_delegate" ng-model="account_invoices.delegate"
-                                    ng-search="_search.$items_group_search" label="##word.delegate##"
+                                display="name_##session.lang##"  ng-search="_search.$items_group_search" label="##word.delegate##"
                                     items="delegatesList">
                                 </i-list>
                             </div>

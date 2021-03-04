@@ -17,14 +17,14 @@
 
                 <div class="row">
                     <i-list class="col3" ng-model="store_stock.store" items="storesList"
-                        ng-search="_search.$search_stores" label="##word.store##" v="r"></i-list>
+                    display="name_##session.lang##"  ng-search="_search.$search_stores" label="##word.store##" v="r"></i-list>
                 </div>
 
             </div>
 
             <div class="row">
                 <i-list class="col3" ng-model="item_group" ng-change="stockItemsGroup(item_group)"
-                    ng-search="_search.$items_group_search" label="##word.item_group##" items="categories">
+                display="name_##session.lang##"  ng-search="_search.$items_group_search" label="##word.item_group##" items="categories">
                 </i-list>
 
                 <i-control id="search_barcode" class="col3" ng-keydown="getBarcode($event)" class="col3"

@@ -520,7 +520,7 @@
                                             <div class="row">
 
                                                 <i-list ng-model="size_edit.unit" class="col6" label="##word.unit##"
-                                                    ng-change="ChangeUnitPatch(size_edit);"
+                                                display="name_##session.lang##" ng-change="ChangeUnitPatch(size_edit);"
                                                     ng-search="_search.$category_item.$unit_search" space=" - "
                                                     display2="barcode" items="size_edit.size_units_list">
                                                 </i-list>
@@ -649,7 +649,7 @@
                                         <td colspan="2">
                                             <div class="row">
                                                 <i-list class="col6" ng-model="tax" label="##word.discount_name##"
-                                                    ng-search="_search.$taxtypes" items="tax_types"></i-list>
+                                                display="name_##session.lang##" ng-search="_search.$taxtypes" items="tax_types"></i-list>
                                             </div>
                                             <div class="row">
                                                 <i-control class="col4" ng-model="tax.value"

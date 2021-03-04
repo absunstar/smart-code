@@ -1,0 +1,47 @@
+[
+    {
+        "name": "vehicles",
+        "en": "Vehicles/Cars",
+        "ar": "المركبات/السيارات"
+    },
+    {
+        "name": "vehicle",
+        "en": "Vehicle/Car",
+        "ar": "المركبة/السيارة"
+    },
+    {
+        "name": "vehicle_name",
+        "en": "Vehicle/Car Name",
+        "ar": "إسم المركبة/السيارة"
+    },
+    {
+        "name": "vehicles_new",
+        "en": "New Vehicle/Car",
+        "ar": "مركبة/سيارة جديدة"
+    },
+    {
+        "name": "vehicles_add",
+        "en": "Add Vehicle/Car",
+        "ar": "إضافة مركبة/سيارة"
+    },
+    {
+        "name": "vehicles_edit",
+        "en": "Edit Vehicle/Car",
+        "ar": "تعديل مركبة/سيارة"
+    },
+    {
+        "name": "vehicles_details",
+        "en": "Vehicle/Car Details",
+        "ar": "تفاصيل مركبة/سيارة"
+    },
+    {
+        "name": "vehicles_delete",
+        "en": "Delete Vehicle/Car",
+        "ar": "حذف مركبة/سيارة"
+    },
+    {
+        "name": "vehicles_number",
+        "en": "Vehicle/Car Number",
+        "ar": "رقم المركبة/سيارة"
+    }
+]

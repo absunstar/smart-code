@@ -36,10 +36,10 @@
 
                         <div class="row">
                             <i-list class="col3" ng-search="_search.$source_search" ng-model="search.source"
-                                items="sourceList" label="##word.safes_payments_source##"></i-list>
+                            display="name_##session.lang##" items="sourceList" label="##word.safes_payments_source##"></i-list>
 
                             <i-list ng-search="_search.$types" class="col2" ng-model="search.transition_type"
-                                items="transition_types" label="##word.safes_payments_sources##"></i-list>
+                            display="name_##session.lang##" items="transition_types" label="##word.safes_payments_sources##"></i-list>
 
                             <i-control class="col2" ng-model="search.value" type="number"
                                 label="##word.safes_payments_balance##"></i-control>

@@ -31,7 +31,7 @@
                             items="itemsNameList" ng-search="_search.$item_searching">
                         </i-list>
 
-                        <i-list ng-search="_search.$items_size" class="col3" display="size_ar" display2="size_en" space=" - " ng-model="items_size"
+                        <i-list ng-search="_search.$items_size" class="col3" display="size_##session.lang##" ng-model="items_size"
                             label="##word.barcode##" items="selectedItem.sizes">
                         </i-list>
 
@@ -79,7 +79,7 @@
                                 <p ng-show="complexView.view" class="center bold">{{i.unit.name_##session.lang##}} -
                                     {{i.unit.barcode}}</p>
                                 <i-list ng-hide="complexView.view" ng-model="i.unit"
-                                    ng-search="_search.$category_item.$unit_search"
+                                display="name_##session.lang##" space=" - "  ng-search="_search.$category_item.$unit_search"
                                     ng-change=" i.price = i.unit.price ;calcSize(i)" display2="barcode"
                                     items="i.size_units_list"></i-list>
                             </td>

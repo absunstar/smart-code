@@ -36,7 +36,7 @@
                         label="##word.stores_in_Company_name##"></i-list>
 
                     <i-list class="col3" ng-model="store_in.store" items="storesList" ng-search="_search.$search_stores"
-                        label="##word.store##" v="r"></i-list>
+                    display="name_##session.lang##" label="##word.store##" v="r"></i-list>
                 </div>
 
             </div>
@@ -108,7 +108,7 @@
 
                         <td>
                             <i-list ng-disabled="store_in.type.id == 4" ng-model="itm.unit"
-                                ng-search="_search.$category_item.$unit_search"
+                            display="name_##session.lang##" ng-search="_search.$category_item.$unit_search"
                                 ng-change="itm.discount = itm.unit.discount ; itm.cost = itm.unit.cost ; itm.average_cost = itm.unit.average_cost ;calcSize(itm)"
                                 space=" - " display2="barcode" items="itm.size_units_list"></i-list>
                         </td>
@@ -233,7 +233,7 @@
                                 <form>
                                     <div class="row ">
                                         <i-list ng-search="_search.$tax_name" class="col9" ng-model="tax"
-                                            items="tax_types">
+                                        display="name_##session.lang##" items="tax_types">
                                         </i-list>
                                         <div class="col3">
                                             <br>

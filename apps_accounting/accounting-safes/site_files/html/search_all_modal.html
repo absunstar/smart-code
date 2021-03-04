@@ -18,8 +18,8 @@
                             </i-control>
                             <i-control class="col3" ng-model="search.balance" type="number"
                                 label="##word.safes_balance##"></i-control>
-                            <i-list class="col3" ng-search="_search.$eng_search" class="col12"
-                                ng-model="search.employee" items="employees" label="##word.safes_employee_name##">
+                            <i-list class="col3" ng-search="_search.$eng_search"
+                            display="name_##session.lang##" ng-model="search.employee" items="employees" label="##word.safes_employee_name##">
                             </i-list>
                             <i-control class="col3" label="##word.limit##" type="number" ng-model="search.limit">
                             </i-control>

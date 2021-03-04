@@ -52,7 +52,7 @@
 
                             <div class="row">
                                 <i-list class="col6" ng-model="user.store" items="storesList"
-                                    ng-search="_search.$_store" label="##word.store##"></i-list>
+                                display="name_##session.lang##" ng-search="_search.$_store" label="##word.store##"></i-list>
                             </div>
 
                             <i-textarea ng-model="user.profile.notes" label="##word.notes##"></i-textarea>

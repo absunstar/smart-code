@@ -17,8 +17,9 @@
 
                         <div class="row">
                             <i-date2 class="col3" ng-model="search.date" label="##word.employee_offer_date##"></i-date2>
-                            <i-list class="col3" ng-search="_search.$eng_serach" class="col12"
-                                ng-model="search.employee" items="employeeList" label="##word.employee_offer_employees##">
+                            <i-list class="col3" ng-search="_search.$eng_serach" 
+                                display="name_##session.lang##" ng-model="search.employee" items="employeeList"
+                                label="##word.employee_offer_employees##">
                             </i-list>
 
                         </div>

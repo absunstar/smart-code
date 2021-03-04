@@ -15,14 +15,14 @@
                     <fieldset>
                         <legend>##word.search_all##</legend>
                         <div class="row">
-                            <i-list class="col3" ng-search="_search.$employee_search" class="col12"
-                                ng-model="search.employee" items="employees" label="##word.employees_insurances_name##">
+                            <i-list class="col3" ng-search="_search.$employee_search"
+                            display="name_##session.lang##"  ng-model="search.employee" items="employees" label="##word.employees_insurances_name##">
                             </i-list>
                             <i-list ng-search="_search.$facility_search" class="col3" items="facilities_codes"
-                                ng-model="search.facility_name" label="##word.employees_insurances_facility_name##">
+                            display="name_##session.lang##"  ng-model="search.facility_name" label="##word.employees_insurances_facility_name##">
                             </i-list>
                             <i-list ng-search="_search.$slides_search" class="col3" items="insurances_slides"
-                                ng-model="search.insurance_slide" label="##word.employees_insurances_insurance_slide##">
+                            display="name_##session.lang##" ng-model="search.insurance_slide" label="##word.employees_insurances_insurance_slide##">
                             </i-list>
                             <i-control class="col3" label="##word.limit##" type="number" ng-model="search.limit">
                             </i-control>

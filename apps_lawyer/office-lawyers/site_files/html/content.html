@@ -51,11 +51,11 @@
                             <div class="row">
 
                                 <i-list help-id="" class="col3" items="jobsList" ng-search="_search.$employee.$jobs"
-                                    label="##word.job##" ng-model="office_lawyers.job">
+                                display="name_##session.lang##" label="##word.job##" ng-model="office_lawyers.job">
                                 </i-list>
 
                                 <i-list help-id="" class="col3" items="degreeList"
-                                    ng-search="_search.$office_lawyers_degree_search" label="##word.employee_degree##"
+                                display="name_##session.lang##"  ng-search="_search.$office_lawyers_degree_search" label="##word.employee_degree##"
                                     ng-change="office_lawyers.salary = office_lawyers.degree.salary"
                                     ng-model="office_lawyers.degree"></i-list>
 
@@ -71,10 +71,10 @@
                                 </i-list>
 
                                 <i-list ng-search="marital_status" class="col3" items="maritals_status"
-                                    ng-model="office_lawyers.marital_status" label="##word.marital_status##">
+                                display="name_##session.lang##"  ng-model="office_lawyers.marital_status" label="##word.marital_status##">
                                 </i-list>
                                 <i-list ng-search="military_status" class="col3" items="militaries_status"
-                                    ng-model="office_lawyers.military_status" label="##word.military_status##">
+                                display="name_##session.lang##" ng-model="office_lawyers.military_status" label="##word.military_status##">
                                 </i-list>
                             </div>
 

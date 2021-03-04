@@ -35,11 +35,14 @@
                     <i-list class="col4" label="##word.city##" ng-model="delivery_person.delivery_data.city"
                         items="cityList" ng-change="getAreaList(delivery_person.delivery_data.city)" display="name_##session.lang##"
                         ng-search="_search.$delivery_person.delivery_data.$city_search"></i-list>
+
                     <i-list class="col4" label="##word.area##" ng-model="delivery_person.delivery_data.area"
                         items="areaList" display="name_##session.lang##" ng-search="_search.$delivery_person.delivery_data.$area_search">
                     </i-list>
+
                     <i-control class="col6" label="##word.address##" ng-model="delivery_person.delivery_data.address">
                     </i-control>
+                    
                 </div>
 
 

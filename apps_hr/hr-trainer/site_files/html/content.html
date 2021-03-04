@@ -30,7 +30,8 @@
                             <i-control ng-hide="disabledCode" class="col2" label="##word.code##"
                                 ng-model="trainer.code"></i-control>
 
-                            <i-control help-id="" v="r ll2" class="col4" label="##word.name##" ng-model="trainer.name_ar">
+                            <i-control help-id="" v="r ll2" class="col4" label="##word.name##"
+                                ng-model="trainer.name_ar">
                             </i-control>
 
                             <i-control help-id="" class="col4" label="##word.name_en##" ng-model="trainer.name_en">
@@ -58,11 +59,13 @@
 
                         <div class="row">
                             <i-list ng-search="marital_status" class="col3" items="maritals_status"
-                                ng-model="trainer.marital_status" label="##word.marital_status##">
+                                display="name_##session.lang##" ng-model="trainer.marital_status"
+                                label="##word.marital_status##">
                             </i-list>
 
                             <i-list ng-search="military_status" class="col3" items="militaries_status"
-                                ng-model="trainer.military_status" label="##word.military_status##">
+                                display="name_##session.lang##" ng-model="trainer.military_status"
+                                label="##word.military_status##">
                             </i-list>
 
                             <i-list help-id="" class="col3" display="##session.lang##" items="accountingSystemList"
@@ -76,7 +79,7 @@
                             <i-list help-id="" ng-search="_search.$gender_search" class="col2" label="##word.gender##"
                                 ng-model="trainer.gender" items="genderList" display="##session.lang##"></i-list>
 
-                            <i-list help-id="" class="col3" items="degreeList"
+                            <i-list help-id="" class="col3" items="degreeList" display="name_##session.lang##"
                                 ng-search="_search.$employee.$degree_search" label="##word.employee_degree##"
                                 ng-change="trainer.salary = trainer.degree.salary" ng-model="trainer.degree"></i-list>
 
@@ -167,7 +170,8 @@
                     <div class="row">
 
                         <div ng-repeat="s in trainer.subject_list" class="row">
-                            <i-list ng-search="subject" class="col4" items="subjectsList" ng-model="s.subject">
+                            <i-list display="name_##session.lang##" ng-search="subject" class="col4"
+                                items="subjectsList" ng-model="s.subject">
                             </i-list>
                             <i-button class="col2" type="delete default"
                                 ng-click="trainer.subject_list.length ==1 || trainer.subject_list.splice($index,1)">

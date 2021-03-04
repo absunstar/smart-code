@@ -83,7 +83,7 @@
 
                     <div class="row" ng-show="courses == 'true'">
 
-                        <i-list help-id="book_course_name" display="course.name" class="col5" items="courseLoadList"
+                        <i-list help-id="book_course_name" display="course.name_##session.lang##" class="col5" items="courseLoadList"
                             ng-search="book_course.$course_search" label="##word.book_course_name##"
                             ng-model="book_course.course"></i-list>
 
@@ -94,7 +94,7 @@
 
                     <div class="row" ng-show="trainer == 'true'">
 
-                        <i-list help-id="trainer_name" ll2" display="name_##session.lang##" class="col5" items="trainerList"
+                        <i-list help-id="trainer_name" display="name_##session.lang##" class="col5" items="trainerList"
                             ng-search="book_course.$course_search" label="##word.trainer##"
                             ng-model="book_course.trainer"></i-list>
 

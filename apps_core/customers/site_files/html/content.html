@@ -86,10 +86,10 @@
                             <div class="row" x-features="lawyer">
 
                                 <i-list ng-search="marital_status" class="col3" items="maritals_status"
-                                    ng-model="customer.marital_status" label="##word.marital_status##">
+                                display="name_##session.lang##" ng-model="customer.marital_status" label="##word.marital_status##">
                                 </i-list>
                                 <i-list ng-search="military_status" class="col3" items="militaries_status"
-                                    ng-model="customer.military_status" label="##word.military_status##">
+                                display="name_##session.lang##" ng-model="customer.military_status" label="##word.military_status##">
                                 </i-list>
                             </div>
 
@@ -351,9 +351,11 @@
 
                     <div ng-repeat="m in customer.medicine_list" class="row">
                         <i-list class="col4" items="medicineList" label="##word.medicine##"
-                            ng-search="medicine.$medicines" ng-model="m.medicine"></i-list>
+                        display="name_##session.lang##"  ng-search="medicine.$medicines" ng-model="m.medicine"></i-list>
+
                         <i-control class="col2" type="number" label="##word.count_dosage##" ng-model="m.count_dosage">
                         </i-control>
+
                         <!--   <i-list class="col2" items="timeList" display="##session.lang##"
                             label="##word.beginning_dosage##" ng-model="medicine.time"></i-list> -->
                         <i-button class="col1" type="delete default"
@@ -370,7 +372,7 @@
                     </legend>
 
                     <div ng-repeat="d in customer.disease_list" class="row">
-                        <i-list class="col5" items="diseaseList" ng-search="disease.$diseases" ng-model="d.disease">
+                        <i-list class="col5" items="diseaseList" display="name_##session.lang##" ng-search="disease.$diseases" ng-model="d.disease">
                         </i-list>
                         <i-button class="col2" type="delete default"
                             ng-click="customer.disease_list.length ==1 || customer.disease_list.splice($index,1)">

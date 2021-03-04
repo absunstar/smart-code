@@ -14,7 +14,7 @@
                 <i-date2 class="col3" type="number" ng-model="account_course.date_paid" label="##word.date##"></i-date2>
                 <i-control class="col2" type="number" ng-model="account_course.paid" label="##word.paid##"></i-control>
                 <i-list class="col3" items="trainerList" ng-model="account_course.trainer_paid" ng-search="account_course.$trainer_search"
-                    label="##word.trainer##"></i-list>
+                display="name_##session.lang##"  label="##word.trainer##"></i-list>
                 <i-list ng-search="account_course.$safes_search" class="col2" ng-model="account_course.safe" display="name_##session.lang##"
                     label="##word.safe##" items="safesList"></i-list>
 

@@ -50,11 +50,11 @@
                                 <legend>##word.addresses##</legend>
                                 <div class="row">
                                     <i-list class="col3" label="##word.gov##" ng-model="medical_insurance_company.gov"
-                                        items="govList" ng-change="getCityList(medical_insurance_company.gov)"
+                                    display="name_##session.lang##"  items="govList" ng-change="getCityList(medical_insurance_company.gov)"
                                         ng-search="_search.$gov_name"></i-list>
 
                                     <i-list class="col3" label="##word.city##" ng-model="medical_insurance_company.city"
-                                        items="cityList" ng-search="_search.$city_name"></i-list>
+                                    display="name_##session.lang##" items="cityList" ng-search="_search.$city_name"></i-list>
 
                                     <i-control help-id="" class="col6" label="##word.address##"
                                         ng-model="medical_insurance_company.address"></i-control>

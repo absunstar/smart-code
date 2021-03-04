@@ -36,7 +36,7 @@
                                     <div class="row">
 
                                         <i-list class="col6" ng-model="category_item.item_group" v="r"
-                                            ng-search="_search.$category_item.$items_group_search"
+                                        display="name_##session.lang##"  ng-search="_search.$category_item.$items_group_search"
                                             label="##word.item_group##" items="itemsGroupList"></i-list>
 
                                         <i-list class="col5" ng-model="category_item.item_type"
@@ -89,13 +89,13 @@
                                 <div class="row">
 
                                     <i-list class="col4" ng-model="category_item.main_unit" v="r"
-                                        ng-change="addMainUnit(category_item)"
+                                    display="name_##session.lang##" ng-change="addMainUnit(category_item)"
                                         ng-search="_search.$category_item.$main_unit_search" label="##word.main_unit##"
                                         items="unitsList"></i-list>
 
 
                                     <i-list class="col4" ng-model="unit" ng-search="_search.$category_item.$unit_search"
-                                        label="##word.unit##" items="unitsList"></i-list>
+                                    display="name_##session.lang##" label="##word.unit##" items="unitsList"></i-list>
 
                                     <i-button class="col2" type="add" label="##word.add_unit##"
                                         ng-click="addUnitsList(unit)">
@@ -281,7 +281,7 @@
                         <div class="row">
 
                             <i-list class="col5" ng-model="category_item.information_instructions.active_substance"
-                                ng-search="_search.$category_item.$active_substance_search"
+                            display="name_##session.lang##"  ng-search="_search.$category_item.$active_substance_search"
                                 label="##word.active_substance##" items="activeSubstancesList"></i-list>
 
                         </div>

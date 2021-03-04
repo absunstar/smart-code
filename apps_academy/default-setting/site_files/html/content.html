@@ -141,11 +141,11 @@
                     <legend> ##word.inventory_settings## </legend>
                     <div class="row">
                         <i-list class="col3" ng-model="default_setting.inventory.item_group"
-                            ng-search="_search.$$items_group_search" label="##word.item_group##" items="itemsGroupList">
+                        display="name_##session.lang##" ng-search="_search.$$items_group_search" label="##word.item_group##" items="itemsGroupList">
                         </i-list>
 
                         <i-list class="col3" ng-model="default_setting.inventory.store" items="storesList"
-                            ng-search="_search.$_store" label="##word.store##"></i-list>
+                        display="name_##session.lang##"  ng-search="_search.$_store" label="##word.store##"></i-list>
 
                         <i-list ng-search="_search.$storein_type" display="##session.lang##" class="col3"
                             ng-model="default_setting.inventory.type_in" items="storesInTypes"
@@ -158,10 +158,10 @@
                     </div>
                     <div class="row">
                         <i-list class="col4" ng-model="default_setting.inventory.unit" ng-search="_search.$search_unit"
-                            label="##word.unit##" items="unitsList">
+                        display="name_##session.lang##" label="##word.unit##" items="unitsList">
                         </i-list>
                         <i-list class="col3" ng-model="default_setting.inventory.delegate"
-                            ng-search="_search.$$items_group_search" label="##word.delegate##" items="delegatesList">
+                        display="name_##session.lang##" ng-search="_search.$$items_group_search" label="##word.delegate##" items="delegatesList">
                         </i-list>
 
                         <!-- <i-list class="col2" display="##session.lang##" ng-model="default_setting.inventory.buy_price"

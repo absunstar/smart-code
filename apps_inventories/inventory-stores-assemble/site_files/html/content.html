@@ -13,7 +13,7 @@
 
                 <div class="row">
                     <i-list class="col3" ng-model="store_assemble.store" items="storesList"
-                        ng-search="_search.$search_stores" label="##word.store##" v="r"></i-list>
+                    display="name_##session.lang##"  ng-search="_search.$search_stores" label="##word.store##" v="r"></i-list>
                 </div>
 
             </div>
@@ -69,7 +69,7 @@
 
                             <td>
                                 <i-list ng-model="itm.unit" ng-search="_search.$category_item.$unit_search"
-                                    ng-change="itm.store_count = itm.unit.current_count ;calcSize(itm)"
+                                display="name_##session.lang##"  ng-change="itm.store_count = itm.unit.current_count ;calcSize(itm)"
                                    space=" - " display2="barcode" items="itm.size_units_list"></i-list>
                             </td>
 

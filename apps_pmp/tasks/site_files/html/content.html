@@ -102,7 +102,7 @@
                         ##word.developers##
                     </legend>
                     <div class="row" ng-repeat=" developer in task.developers_tracking_list">
-                        <i-list class="col4" label="##word.developers##" ng-model="developer.name" items="developerList"
+                        <i-list class="col4" label="##word.developers##" ng-model="developer.name_##session.lang##" items="developerList"
                             display="name_##session.lang##" ng-search="task_developer"></i-list>
 
                         <div class="col4">

@@ -27,7 +27,7 @@
                             items="itemsNameList" ng-search="_search.$item_searching">
                         </i-list>
 
-                        <i-list ng-search="_search.$items_size" class="col3" display="size_ar" display2="size_en" space=" - " ng-model="items_size"
+                        <i-list ng-search="_search.$items_size" class="col3" display="size_##session.lang##" ng-model="items_size"
                             label="##word.barcode##" items="selectedItem.sizes">
                         </i-list>
                         <i-button type="add" label="##word.add##" ng-click="incertComplexItem(item)">
@@ -75,7 +75,7 @@
                             </td>
                             <td>
                                 <i-list ng-model="i.unit" ng-search="_search.$category_item.$unit_search"
-                                    ng-change=" i.price = i.unit.price ;calcSize(i)" display2="barcode"
+                                display="name_##session.lang##" space=" - "  ng-change=" i.price = i.unit.price ;calcSize(i)" display2="barcode"
                                     items="i.size_units_list"></i-list>
                             </td>
                             <td>

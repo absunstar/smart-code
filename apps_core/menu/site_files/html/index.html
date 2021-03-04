@@ -284,8 +284,7 @@
 
   <div id="general_tabs" class="tabs">
     <div class="tabs-header">
-      <a x-features="restaurant || pos || academy || club || erp || school || medical" class="tab-link"
-        href="/default_setting" x-permissions="default_setting_ui || default_setting_manage">
+      <a class="tab-link" href="/default_setting" x-permissions="default_setting_ui || default_setting_manage">
         <img src="/images/default_setting.png" />
         <span>##word.default_setting_menus## </span>
       </a>
@@ -295,8 +294,7 @@
         <span> ##word.numbering_screen## </span>
       </a>
 
-      <a x-features="restaurant || pos || academy || club || erp || school" class="tab-link" href="/shifts"
-        x-permissions="shifts_ui || shifts_manage">
+      <a class="tab-link" href="/shifts" x-permissions="shifts_ui || shifts_manage">
         <img src="/images/shift.png" />
         <span> ##word.menu_shift## </span>
       </a>
@@ -477,6 +475,11 @@
         <span>##word.kitchens##</span>
       </a>
 
+      <a class="tab-link" x-features="erp || pos || restaurant || school" href="/vehicles" x-permissions="vehicles_ui || vehicles_manage">
+        <img src="/images/vehicles.png" />
+        <span> ##word.vehicles##</span>
+      </a>
+    
       <a class="tab-link" href="/militaries_status" x-permissions="militaries_status_ui || militaries_status_manage">
         <img src="images/military.png" />
         <span>##word.system_military_menus## </span>
@@ -1021,10 +1024,10 @@
       </a>
 
       <a class="tab-link" href="/report_payable_vendors"
-      x-permissions="report_payable_vendors_ui || report_payable_vendors_manage">
-      <img src="/images/report_payable_vendors.png" />
-      <span>##word.report_payable_vendors##</span>
-    </a>
+        x-permissions="report_payable_vendors_ui || report_payable_vendors_manage">
+        <img src="/images/report_payable_vendors.png" />
+        <span>##word.report_payable_vendors##</span>
+      </a>
 
 
       <a class="tab-link" href="/item_transaction" x-permissions="item_transaction_ui || item_transaction_manage">

@@ -17,7 +17,7 @@
                         items="branchesList" v="r" ng-search="_search.$branch_from" label="##word.branch_from##">
                     </i-list>
                     <i-list class="col3" ng-model="transfer_branch.store_from" items="storesFromList" v="r"
-                        ng-search="_search.$store_from" label="##word.store_from##"></i-list>
+                    display="name_##session.lang##"  ng-search="_search.$store_from" label="##word.store_from##"></i-list>
 
                 </div>
 
@@ -27,7 +27,7 @@
                         display="name_##session.lang##" v="r" ng-change="loadStoresTo(transfer_branch.branch_to)"
                         ng-search="_search.$branch_to" label="##word.branch_to##"></i-list>
                     <i-list class="col3" ng-model="transfer_branch.store_to" items="storesToList" v="r"
-                        ng-search="_search.$store_to" label="##word.store_to##"></i-list>
+                    display="name_##session.lang##"  ng-search="_search.$store_to" label="##word.store_to##"></i-list>
 
                 </div>
 
@@ -76,7 +76,7 @@
                                 </td>
                                 <td>
                                     <i-list ng-model="itm.unit" ng-search="_search.$category_item.$unit_search"
-                                        ng-change="itm.store_count = itm.unit.current_count ;calcSize(itm)"
+                                    display="name_##session.lang##" ng-change="itm.store_count = itm.unit.current_count ;calcSize(itm)"
                                         space=" - " display2="barcode" items="itm.size_units_list"></i-list>
                                 </td>
                                 <td class="blue"> <br> {{itm.store_count}}</td>

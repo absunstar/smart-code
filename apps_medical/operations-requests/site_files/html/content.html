@@ -117,7 +117,7 @@
                         <div class="row">
 
                             <i-list class="col4" label="##word.doctor_visit##" ng-model="doctor_visit" display="code"
-                                space=" - " display2="selected_clinic.name" items="doctorsVisitsList"
+                                space=" - " display2="selected_clinic.name_##session.lang##" items="doctorsVisitsList"
                                 ng-search="_search.$patients_searching">
                             </i-list>
 
@@ -125,7 +125,7 @@
                             </i-button>
 
                             <i-list class="col4" label="##word.operation##" ng-model="operation" items="operationsList"
-                                ng-search="_search.$patients_searching">
+                            display="name_##session.lang##"  ng-search="_search.$patients_searching">
                             </i-list>
 
                             <i-button type="add" class="col2" ng-click="changeOperationsList(operation)">
@@ -230,7 +230,7 @@
 
                                 <td class="center green">
                                     <i-list ng-model="c.price_code" ng-search="_search.$discount_name"
-                                        items="pricesCodesList">
+                                    display="name_##session.lang##" items="pricesCodesList">
                                     </i-list>
                                 </td>
 

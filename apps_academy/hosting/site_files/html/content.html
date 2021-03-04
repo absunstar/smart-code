@@ -16,11 +16,11 @@
 
                     <div class="row">
                         <i-list help-id="hosting_name" v="r ll2" ng-search="hosting.$employee_search"
-                            items="employeesList" class="col4" label="##word.employee_name##"
+                        display="name_##session.lang##"  items="employeesList" class="col4" label="##word.employee_name##"
                             ng-model="hosting.employee"></i-list>
 
                         <i-list help-id="hosting_name" v="r ll2" ng-search="hosting.$classroom_search" items="hallsList"
-                            class="col3" label="##word.hall##" ng-model="hosting.classroom"></i-list>
+                        display="name_##session.lang##" class="col3" label="##word.hall##" ng-model="hosting.classroom"></i-list>
                     </div>
 
                     <br>

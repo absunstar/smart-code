@@ -345,10 +345,10 @@
                             label="##word.main_currency##"></i-list>
 
                         <i-list class="col3" ng-model="default_setting.accounting.safe_bank" items="safesBankList"
-                            ng-search="_search.$serach_safes_bank" label="##word.safe_bank##"></i-list>
+                        display="name_##session.lang##" ng-search="_search.$serach_safes_bank" label="##word.safe_bank##"></i-list>
 
                         <i-list class="col3" ng-model="default_setting.accounting.safe_box" items="safesBoxList"
-                            ng-search="_search.$serach_safes_box" label="##word.safe_box##"></i-list>
+                        display="name_##session.lang##" ng-search="_search.$serach_safes_box" label="##word.safe_box##"></i-list>
 
                     </div>
 
@@ -402,7 +402,7 @@
                     <div class="row">
 
                         <i-list class="col3" ng-model="default_setting.inventory.item_group"
-                            ng-search="_search.$$items_group_search" label="##word.item_group##" items="itemsGroupList">
+                        display="name_##session.lang##"  ng-search="_search.$items_group_search" label="##word.item_group##" items="itemsGroupList">
                         </i-list>
 
                         <i-list class="col3" ng-model="default_setting.inventory.item_type" display="##session.lang##"
@@ -411,10 +411,10 @@
 
 
                         <i-list class="col3" ng-model="default_setting.inventory.store" items="storesList"
-                            ng-search="_search.$_store" label="##word.store##"></i-list>
+                        display="name_##session.lang##" ng-search="_search.$_store" label="##word.store##"></i-list>
 
                         <i-list class="col3" ng-model="default_setting.inventory.unit" ng-search="_search.$search_unit"
-                            label="##word.unit##" items="unitsList">
+                        display="name_##session.lang##" label="##word.unit##" items="unitsList">
                         </i-list>
 
                     </div>
@@ -428,7 +428,7 @@
                         </i-list> -->
 
                         <i-list class="col3" ng-model="default_setting.inventory.delegate"
-                            ng-search="_search.$items_group_search" label="##word.delegate##" items="delegatesList">
+                        display="name_##session.lang##"  ng-search="_search.$items_group_search" label="##word.delegate##" items="delegatesList">
                         </i-list>
 
                         <i-control class="col2" type="number" label="##word.value_added##"
