@@ -155,7 +155,7 @@
     },
     {
         "category": "inventory",
-        "feature": "medic",
+        "feature": "pos",
         "name": "active_substances",
         "en": "Active Substances",
         "ar": "المواد الفعالة"
@@ -472,8 +472,8 @@
         "category": "hr",
         "feature": "order",
         "name": "delivery_employees",
-        "en": "Delivery Employees",
-        "ar": "موظفين التوصيل"
+        "en": "Drivers",
+        "ar": "السائقين"
     },
     {
         "category": "hr",
@@ -698,6 +698,20 @@
         "name": "prices_codes",
         "en": "Prices Codes",
         "ar": "أكواد الأسعار"
+    },
+    {
+        "category": "general_setting",
+        "feature": "order",
+        "name": "vehicles_types",
+        "en": "Vehicles/Cars Types",
+        "ar": "أنواع المركبات/السيارات"
+    },
+    {
+        "category": "general_setting",
+        "feature": "order",
+        "name": "vehicles",
+        "en": "Vehicles/Cars",
+        "ar": "المركبات/السيارات"
     },
     {
         "category": "general_setting",

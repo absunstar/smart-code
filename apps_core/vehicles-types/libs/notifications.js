@@ -1,24 +1,26 @@
 module.exports = function init(site) {
 
-  let collection_name = 'school_grades'
+  let collection_name = 'vehicles_types'
 
   let source = {
-    en: 'School Grades System',
-    ar: ' نظام المراحل الدراسية'
+    en: 'Vehicles/Cars Types System',
+    ar: ' نظام أنواع المركبات/السيارات'
   }
 
-  let image_url = '/images/school_grades.png'
+  let image_url = '/images/vehicles_types.png'
   let add_message = {
-    en: 'New School Years Added',
-    ar: 'تم إضافة مرحلة دراسية جديدة'
+    en: 'New Vehicle/Car Type Added',
+    ar: 'تم إضافة مركبة/سيارة جديدة'
   }
+
   let update_message = {
-    en: ' School Years Updated',
-    ar: 'تم تعديل مرحلة دراسية'
+    en: ' Vehicle/Car Type Updated',
+    ar: 'تم تعديل مركبة/سيارة'
   }
+
   let delete_message = {
-    en: ' School Years Deleted',
-    ar: 'تم حذف مرحلة دراسية '
+    en: ' Vehicle/Car Type Deleted',
+    ar: 'تم حذف مركبة/سيارة '
   }
 
 

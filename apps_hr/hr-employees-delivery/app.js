@@ -3,10 +3,11 @@ module.exports = function init(site) {
 
   site.on('[company][created]', doc => {
 
-    if (site.feature('restaurant') || site.feature('pos') || site.feature('erp')) {
+    if (site.feature('restaurant') || site.feature('pos') || site.feature('erp') || site.feature('school')) {
+
       $delivery_employee_list.add({
-        name_ar: "موظف توصيل إفتراضي",
-        name_en: "Default Delivery Employee",
+        name_ar: "سائق إفتراضي",
+        name_en: "Default Driver",
         image_url: '/images/delivery_employee_list.png',
         code: "1-Test",
         delivery: true,
@@ -21,7 +22,10 @@ module.exports = function init(site) {
           name_en: doc.branch_list[0].name_en
         },
         active: true
-      }, (err, doc) => { })
+      }, (err, doc1) => { 
+      site.call('[register][delivery_employee][add]', doc1)
+        
+      })
     }
 
   })

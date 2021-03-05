@@ -120,7 +120,7 @@ module.exports = function init(site) {
 
 
         } else if (site.features.like('*academy*')) {
-          screens_list = moduleListCore.filter((i) => i.feature !== 'order' && i.feature !== 'erp' && i.feature !== 'restaurant' && i.feature !== 'club' && i.feature !== 'school' && i.feature !== 'medical');
+          screens_list = moduleListCore.filter((i) => i.feature !== 'order' && i.feature !== 'erp' && i.feature !== 'restaurant' && i.feature !== 'club' && i.feature !== 'school' && i.feature !== 'medical' && i.feature !== 'lawyer');
 
 
 
@@ -149,13 +149,24 @@ module.exports = function init(site) {
               _mc.ar = 'الأعوام الدراسية'
             }
           });
-          screens_list = moduleListCore.filter((i) => i.feature !== 'order' && i.feature !== 'erp' && i.feature !== 'restaurant' && i.feature !== 'club' && i.feature !== 'academy' && i.feature !== 'medical');
+          screens_list = moduleListCore.filter((i) => i.feature !== 'order' && i.feature !== 'erp' && i.feature !== 'restaurant' && i.feature !== 'club' && i.feature !== 'academy' && i.feature !== 'medical' && i.feature !== 'lawyer');
 
 
+          moduleListCore.forEach(_m => {
+            if (_m.feature === 'order') {
 
+              if (_m.name === 'vehicles') {
+                screens_list.push(_m)
 
+              } else if (_m.name === 'vehicles_types') {
+                screens_list.push(_m)
 
+              } else if (_m.name === 'delivery_employees') {
+                screens_list.push(_m)
+              }
 
+            }
+          });
 
 
         } else if (site.features.like('*medical*')) {
@@ -171,7 +182,7 @@ module.exports = function init(site) {
               _mc.ar = 'شرائح الكشوفات'
             }
           });
-          screens_list = moduleListCore.filter((i) => i.feature !== 'order' && i.feature !== 'erp' && i.feature !== 'restaurant' && i.feature !== 'club' && i.feature !== 'academy' && i.feature !== 'school' && i.feature !== 'medic');
+          screens_list = moduleListCore.filter((i) => i.feature !== 'order' && i.feature !== 'erp' && i.feature !== 'restaurant' && i.feature !== 'club' && i.feature !== 'academy' && i.feature !== 'school' && i.feature !== 'medic' && i.feature !== 'lawyer');
 
           moduleListCore.forEach(_m => {
             if (_m.feature == 'medic' && _m.name != 'hall' && _m.name != 'trainer') {

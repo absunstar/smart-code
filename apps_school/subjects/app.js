@@ -1,5 +1,6 @@
 module.exports = function init(site) {
   const $subjects = site.connectCollection("subjects")
+
   site.get({
     name: 'images',
     path: __dirname + '/site_files/images/'
@@ -30,7 +31,7 @@ module.exports = function init(site) {
         name_en: doc.branch_list[0].name_en
       },
       active: true
-    }, (err, doc) => {})
+    }, (err, doc) => { })
   })
 
 
@@ -63,19 +64,19 @@ module.exports = function init(site) {
     $subjects.find({
 
       where: {
-        
+
         'company.id': site.get_company(req).id,
         'branch.code': site.get_branch(req).code,
         $or: [{
           'name_ar': subjects_doc.name_ar
-        },{
+        }, {
           'name_en': subjects_doc.name_en
         }]
-      
+
       }
     }, (err, doc) => {
       if (!err && doc) {
-        
+
         response.error = 'Name Exists'
         res.json(response)
       } else {
@@ -85,13 +86,13 @@ module.exports = function init(site) {
           screen: 'subjects',
           date: new Date()
         };
-    
+
         let cb = site.getNumbering(num_obj);
         if (!subjects_doc.code && !cb.auto) {
           response.error = 'Must Enter Code';
           res.json(response);
           return;
-    
+
         } else if (cb.auto) {
           subjects_doc.code = cb.code;
         }
@@ -212,7 +213,7 @@ module.exports = function init(site) {
     let response = {
       done: false
     }
-          
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)

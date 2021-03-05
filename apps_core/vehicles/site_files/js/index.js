@@ -226,6 +226,52 @@ app.controller("vehicles", function ($scope, $http, $timeout) {
 
   };
 
+  $scope.getDeliveryEmployeesList = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/delivery_employees/all",
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.deliveryEmployeesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getVehiclesTypes = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/vehicles_types/all",
+      data: {
+        where: {
+          active: true
+        },
+        select: { id: 1, name_ar: 1, name_en: 1 }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.vehiclesTypesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+
   $scope.searchAll = function () {
     $scope.getVehiclesList($scope.search);
     site.hideModal('#vehiclesSearchModal');
@@ -235,4 +281,6 @@ app.controller("vehicles", function ($scope, $http, $timeout) {
   $scope.getVehiclesList();
   $scope.getVehiclesGroupList();
   $scope.getNumberingAuto();
+  $scope.getVehiclesTypes();
+  $scope.getDeliveryEmployeesList();
 });

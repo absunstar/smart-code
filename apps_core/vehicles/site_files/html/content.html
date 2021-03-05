@@ -6,18 +6,33 @@
                 <div class="col9">
                     <div class="row">
 
-                        <i-control ng-hide="disabledCode" class="col2" label="##word.code##"
-                            ng-model="vehicles.code">
+                        <i-control ng-hide="disabledCode" class="col2" label="##word.code##" ng-model="vehicles.code">
                         </i-control>
 
                         <i-control type="text" v="r" class="col4" label="##word.vehicle_name##"
                             ng-model="vehicles.name_ar"></i-control>
 
-                            <i-control type="text" class="col4" label="##word.name_en##"
-                            ng-model="vehicles.name_en"></i-control>
+                        <i-control type="text" class="col4" label="##word.name_en##" ng-model="vehicles.name_en">
+                        </i-control>
 
                         <i-checkbox help-id="vehicles_active" class="col2" label="##word.active##"
                             ng-model="vehicles.active"></i-checkbox>
+
+                    </div>
+
+                    <div class="row">
+                        <i-list class="col4" label="##word.vehicle_type##" ng-model="vehicles.vehicle_type"
+                            items="vehiclesTypesList" display="name_##session.lang##" ng-search="_search.$vehicle_type">
+                        </i-list>
+
+                        <i-list class="col4" label="##word.default_driver##" ng-model="vehicles.default_driver"
+                            items="deliveryEmployeesList" display="name_##session.lang##"
+                            ng-search="_search.$deliveryEmployees">
+                        </i-list>
+
+                        <i-control type="text" class="col4" label="##word.metal_plate_number##"
+                            ng-model="vehicles.metal_plate_number">
+                        </i-control>
 
                     </div>
                 </div>

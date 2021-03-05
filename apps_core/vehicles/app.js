@@ -12,29 +12,31 @@ module.exports = function init(site) {
     compress: true
   })
 
-  site.on('[company][created]', doc => {
-    if (site.feature('pos') || site.feature('erp') || site.feature('restaurant') || site.feature('school')) {
+  site.on('[register][vehicle_type][add]', obj => {
 
-      $vehicles.add({
-        name_ar: "مركبة/سيارة إفتراضية",
-        name_en: "Default Vehicle/Car",
-        image_url: '/images/vehicles.png',
-        code: "1-Test",
-        company: {
-          id: doc.id,
-          name_ar: doc.name_ar,
-          name_en: doc.name_en
-        },
-        branch: {
-          code: doc.branch_list[0].code,
-          name_ar: doc.branch_list[0].name_ar,
-          name_en: doc.branch_list[0].name_en
-        },
-        active: true
-      }, (err, doc) => { })
-    }
+    $vehicles.add({
+      name_ar: "مركبة/سيارة إفتراضية",
+      name_en: "Default Vehicle/Car",
+      image_url: '/images/vehicles.png',
+      code: "1-Test",
+      default_driver : obj.delivery_employee,
+      vehicle_type : obj.vehicles_types,
+      company: {
+        id: obj.vehicles_types.company.id,
+        name_ar: obj.vehicles_types.company.name_ar,
+        name_en: obj.vehicles_types.company.name_en
+      },
+      branch: {
+        code: obj.vehicles_types.branch.code,
+        name_ar: obj.vehicles_types.branch.name_ar,
+        name_en: obj.vehicles_types.branch.name_en
+      },
+      active: true
+    }, (err, doc1) => {
 
+    })
   })
+
 
 
   site.post("/api/vehicles/add", (req, res) => {

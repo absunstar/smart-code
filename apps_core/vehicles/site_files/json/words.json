@@ -43,5 +43,15 @@
         "name": "vehicles_number",
         "en": "Vehicle/Car Number",
         "ar": "رقم المركبة/سيارة"
+    },
+    {
+        "name": "metal_plate_number",
+        "en": "Metal plate number",
+        "ar": "رقم اللوحة المعدنية"
+    },
+    {
+        "name": "default_driver",
+        "en": "Default Driver",
+        "ar": "سائق إفتراضي"
     }
 ]

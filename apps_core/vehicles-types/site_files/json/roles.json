@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "vehicles_types_admin",
+    "en": "Vehicles/Cars Types Admin",
+    "ar": "إدارة أنواع المركبات/السيارات",
+    "permissions": ["vehicles_types_manage"]
+}]
