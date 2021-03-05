@@ -27,7 +27,8 @@ module.exports = function init(site) {
             if (_items.barcode === _size.barcode) {
               _items.size_ar = _size.size_ar
               _items.size_en = _size.size_en
-              _items.name = _size.name
+              _items.name_ar = _size.name_ar
+              _items.name_en = _size.name_en
             }
           })
         });
@@ -576,12 +577,12 @@ module.exports = function init(site) {
     }
 
     where = {}
-    if(req.body.id){
+    if (req.body.id) {
 
       where['id'] = req.body.id
     }
 
-    if(req.body.order_id){
+    if (req.body.order_id) {
 
       where['order_id'] = req.body.order_id
     }
@@ -612,7 +613,7 @@ module.exports = function init(site) {
     let where = req.body.where || {}
     let limit = where.limit || undefined
     let search = req.body.search || ''
-    
+
     if (search) {
       where.$or = []
       where.$or.push({

@@ -326,7 +326,8 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
         if (_size.count > 0 && !foundSize) {
           $scope.units_switch.items.unshift({
             image_url: $scope.item.image_url,
-            name: _size.name,
+            name_ar: _size.name_ar,
+            name_en: _size.name_en,
             item_group: _size.item_group,
             size_ar: _size.size_ar,
             size_en: _size.size_en,
@@ -398,7 +399,8 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
                       });
 
                     if ((_size.barcode == $scope.item.search_item_name) || (_size.size_units_list[indxUnit].barcode === $scope.item.search_item_name)) {
-                      _size.name = _item.name;
+                      _size.name_ar = _item.name_ar;
+                      _size.name_en = _item.name_en;
                       _size.item_group = _item.item_group;
                       _size.store = $scope.units_switch.store;
                       _size.unit = _size.size_units_list[indxUnit];
@@ -475,17 +477,18 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.item.sizes = $scope.item.sizes || [];
     let foundSize = false;
-    if ($scope.item.name && $scope.item.name.sizes && $scope.item.name.sizes.length > 0) {
+    if ($scope.item.itm && $scope.item.itm.sizes && $scope.item.itm.sizes.length > 0) {
 
-      $scope.item.name.sizes.forEach(_item => {
+      $scope.item.itm.sizes.forEach(_item => {
         let foundHold = false;
 
-        _item.name = $scope.item.name.name;
-        _item.item_group = $scope.item.name.item_group;
+        _item.name_ar = $scope.item.itm.name_ar;
+        _item.name_en = $scope.item.itm.name_en;
+        _item.item_group = $scope.item.itm.item_group;
         _item.store = $scope.units_switch.store;
         let indxUnit = 0;
         if (_item.size_units_list && _item.size_units_list.length > 0) {
-          indxUnit = _item.size_units_list.findIndex(_unit => _unit.id == $scope.item.name.main_unit.id);
+          indxUnit = _item.size_units_list.findIndex(_unit => _unit.id == $scope.item.itm.main_unit.id);
           _item.unit = _item.size_units_list[indxUnit];
           _item.count = 1;
           _item.discount = _item.size_units_list[indxUnit].discount;
@@ -519,7 +522,7 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
                 });
                 if (foundStore)
                   _item.branches_list[indxBranch].stores_list[indxStore].size_units_list.forEach(_unit => {
-                    if (_unit.id == $scope.item.name.main_unit.id) {
+                    if (_unit.id == $scope.item.itm.main_unit.id) {
                       _item.store_count = _unit.current_count;
 
                     }
@@ -565,7 +568,8 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
 
                     });
                   if ((_size.barcode == $scope.search_barcode) || _size.size_units_list[indxUnit].barcode === $scope.search_barcode) {
-                    _size.name = response.data.list[0].name;
+                    _size.name_ar = response.data.list[0].name_ar;
+                    _size.name_en = response.data.list[0].name_en;
                     _size.item_group = response.data.list[0].item_group;
                     _size.store = $scope.units_switch.store;
                     _size.unit = _size.size_units_list[indxUnit];

@@ -212,7 +212,6 @@ module.exports = function init(site) {
                     $stores_items.findMany({
                       where: {
                         'sizes.complex_items.barcode': obj.barcode,
-                        'sizes.complex_items.name': obj.name,
                         'company.id': obj.company.id
                       },
                     }, (err, comolex_docs) => {
@@ -914,8 +913,11 @@ module.exports = function init(site) {
     where['company.id'] = site.get_company(req).id
 
 
-    if (where['name']) {
-      where['name'] = site.get_RegExp(where['name'], 'i')
+    if (where['name_ar']) {
+      where['name_ar'] = site.get_RegExp(where['name_ar'], 'i')
+    }
+    if (where['name_en']) {
+      where['name_en'] = site.get_RegExp(where['name_en'], 'i')
     }
 
     if (where['size_ar']) {
@@ -1415,9 +1417,11 @@ module.exports = function init(site) {
               _item.sizes.forEach(_size => {
                 _size.unit = _size.size_units_list.find(_unit => { return _unit.id === _item.main_unit.id });
                 _size.information_instructions = _item.information_instructions
-                _size.name = _item.name
+                _size.name_ar = _item.name_ar
+                _size.name_en = _item.name_en
                 _size.itm_id = _item.id
-                _size.stores_item_name = _item.name
+                _size.stores_item_name_ar = _item.name_ar
+                _size.stores_item_name_en = _item.name_en
                 if (req.body.barcode != _size.barcode)
                   arr_sizes.unshift(_size)
               })
@@ -1582,7 +1586,8 @@ module.exports = function init(site) {
             if (item.sizes && item.sizes.length > 0)
               item.sizes.forEach(_size => {
                 _size.itm_id = item.id
-                _size.stores_item_name = item.name
+                _size.stores_item_name_ar = item.name_ar
+                _size.stores_item_name_en = item.name_en
                 arr_sizes.unshift(_size)
               })
           })

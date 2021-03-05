@@ -233,7 +233,7 @@ app.controller("employee_discount", function ($scope, $http) {
     $http({
       method: "POST",
       url: "/api/employee_discount/delete",
-      data: { _id: $scope.employee_discount._id, name: $scope.employee_discount.name }
+      data: { _id: $scope.employee_discount._id}
     }).then(
       function (response) {
         $scope.busy = false;

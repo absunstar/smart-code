@@ -26,7 +26,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.store_out.taxes = $scope.store_out.taxes || [];
     $scope.store_out.taxes.push({
-      name: $scope.tax.name,
+      name_ar: $scope.tax.name_ar,
+      name_en: $scope.tax.name_en,
       value: $scope.tax.value
     });
     $scope.tax = {};
@@ -37,7 +38,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     $scope.error = '';
     for (let i = 0; i < $scope.store_out.taxes.length; i++) {
       let tx = $scope.store_out.taxes[i];
-      if (tx.name == _tx.name && tx.value == _tx.value)
+      if (tx.name_ar == _tx.name_ar && tx.value == _tx.value)
         $scope.store_out.taxes.splice(i, 1);
     }
     $scope.calc($scope.store_out);
@@ -71,7 +72,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     $scope.error = '';
     for (let i = 0; i < $scope.store_out.discountes.length; i++) {
       let ds = $scope.store_out.discountes[i];
-      if (ds.name == _ds.name && ds.value == _ds.value && ds.type == _ds.type)
+      if (ds.name_ar == _ds.name_ar && ds.value == _ds.value && ds.type == _ds.type)
         $scope.store_out.discountes.splice(i, 1);
     }
     $scope.calc($scope.store_out);
@@ -161,7 +162,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
     $scope.error = '';
     $scope.discount = {
-      name: 'خصم',
+      name_ar: 'خصم',
+      name_en: 'Discount',
       type: 'number'
     };
 
@@ -552,7 +554,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           $scope.store_out.total_value = $scope.store_out.total_value - $scope.store_out.total_value_added;
           if ($scope.currencySetting) {
 
-            site.strings['currency'].ar = ' ' + $scope.currencySetting.name + ' ';
+            site.strings['currency'].ar = ' ' + $scope.currencySetting.name_ar + ' ';
             site.strings['from100'].ar = ' ' + $scope.currencySetting.minor_currency + ' ';
           }
           $scope.store_out.net_value2 = site.stringfiy($scope.store_out.net_value);
@@ -731,7 +733,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
             $scope.store_out.items.push({
               image_url: $scope.item.image_url,
-              name: _size.name,
+              name_ar: _size.name_ar,
+              name_en: _size.name_en,
               size_ar: _size.size_ar,
               value_added: _size.value_added,
               total_v_a: _size.total_v_a,
@@ -834,7 +837,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                       });
 
                     if ((_size.barcode === $scope.item.search_item_name) || (_size.size_units_list[indxUnit].barcode === $scope.item.search_item_name)) {
-                      _size.name = _item.name;
+                      _size.name_ar = _item.name_ar;
+                      _size.name_en = _item.name_en;
                       _size.item_group = _item.item_group;
                       _size.store = $scope.store_out.store;
                       _size.unit = _size.size_units_list[indxUnit];
@@ -934,18 +938,19 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     $scope.item.sizes = $scope.item.sizes || [];
     let foundSize = false;
 
-    if ($scope.item.name && $scope.item.name.sizes && $scope.item.name.sizes.length > 0)
-      $scope.item.name.sizes.forEach(_item => {
+    if ($scope.item.itm && $scope.item.itm.sizes && $scope.item.itm.sizes.length > 0)
+      $scope.item.itm.sizes.forEach(_item => {
         let foundHold = false;
-        _item.name = $scope.item.name.name;
-        _item.item_group = $scope.item.name.item_group;
+        _item.name_ar = $scope.item.itm.name_ar;
+        _item.name_en = $scope.item.itm.name_en;
+        _item.item_group = $scope.item.itm.item_group;
         _item.store = $scope.store_out.store;
         _item.count = 1;
         _item.value_added = _item.not_value_added ? 0 : $scope.defaultSettings.inventory.value_added || 0;
         let indxUnit = 0;
         if (_item.size_units_list && _item.size_units_list.length > 0) {
 
-          indxUnit = _item.size_units_list.findIndex(_unit => _unit.id == $scope.item.name.main_unit.id);
+          indxUnit = _item.size_units_list.findIndex(_unit => _unit.id == $scope.item.itm.main_unit.id);
           _item.unit = _item.size_units_list[indxUnit];
           _item.discount = _item.size_units_list[indxUnit].discount;
           _item.average_cost = _item.size_units_list[indxUnit].average_cost;
@@ -1050,7 +1055,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                     });
 
                   if ((_size.barcode === $scope.search_barcode) || _size.size_units_list[indxUnit].barcode === $scope.search_barcode) {
-                    _size.name = response.data.list[0].name;
+                    _size.name_ar = response.data.list[0].name_ar;
+                    _size.name_en = response.data.list[0].name_en;
                     _size.item_group = response.data.list[0].item_group;
                     _size.store = $scope.store_out.store;
                     _size.unit = _size.size_units_list[indxUnit];

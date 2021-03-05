@@ -451,7 +451,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
       _kitchen.data.push({
         type: 'text2b',
-        value2: _kitchen.name,
+        value2: _kitchen.name_ar,
         value: 'Kitchen'
       });
 
@@ -1827,7 +1827,8 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
           }
         });
         _size.item_id = $scope.current_items.id;
-        _size.name = $scope.current_items.name;
+        _size.name_ar = $scope.current_items.name_ar;
+        _size.name_en = $scope.current_items.name_en;
       });
     }
     site.showModal('#sizesModal');
@@ -1890,7 +1891,8 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         $scope.order_invoice.book_list.push({
           item_id: item.item_id,
           kitchen: kitchenBranch,
-          name: item.name,
+          name_ar: item.name_ar,
+          name_en: item.name_en,
           store: item.store,
           barcode: item.barcode,
           size_ar: item.size_ar,
@@ -1999,7 +2001,8 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       $scope.order_invoice.taxes = $scope.order_invoice.taxes || [];
       if ($scope.tax.value) {
         $scope.order_invoice.taxes.push({
-          name: $scope.tax.name,
+          name_ar: $scope.tax.name_ar,
+          name_en: $scope.tax.name_en,
           value: $scope.tax.value
         });
       };
@@ -2010,7 +2013,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   $scope.deleteTax = function (_tx) {
     for (let i = 0; i < $scope.order_invoice.taxes.length; i++) {
       let tx = $scope.order_invoice.taxes[i];
-      if (tx.name == _tx.name && tx.value == _tx.value) {
+      if (tx.name_ar == _tx.name_ar && tx.value == _tx.value) {
         $scope.order_invoice.taxes.splice(i, 1);
       };
     };
@@ -2036,7 +2039,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   $scope.deleteDiscount = function (_ds) {
     for (let i = 0; i < $scope.order_invoice.discountes.length; i++) {
       let ds = $scope.order_invoice.discountes[i];
-      if (ds.name == _ds.name && ds.value == _ds.value && ds.type == _ds.type) {
+      if (ds.name_ar == _ds.name_ar && ds.value == _ds.value && ds.type == _ds.type) {
         $scope.order_invoice.discountes.splice(i, 1);
       };
     };

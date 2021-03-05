@@ -56,7 +56,8 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     $scope.category_item.units_list.forEach(_size_unit => {
       $scope.item.size_units_list.push({
         id: _size_unit.id,
-        name: _size_unit.name,
+        name_ar: _size_unit.name_ar,
+        name_en: _size_unit.name_en,
         convert: _size_unit.convert,
         price: $scope.item.price,
         cost: $scope.item.cost,
@@ -191,7 +192,8 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       if ($scope.defaultSettings.inventory.unit) {
         $scope.category_item.main_unit = $scope.defaultSettings.inventory.unit;
         $scope.category_item.units_list = [{
-          name: $scope.category_item.main_unit.name,
+          name_ar: $scope.category_item.main_unit.name_ar,
+          name_en: $scope.category_item.main_unit.name_en,
           id: $scope.category_item.main_unit.id,
           convert: 1
         }];
@@ -832,7 +834,8 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
 
       if (!foundSize) {
         item.complex_items.unshift({
-          name: $scope.items_size.name,
+          name_ar: $scope.items_size.name_ar,
+          name_en: $scope.items_size.name_en,
           size_ar: $scope.items_size.size_ar,
           size_en: $scope.items_size.size_en,
           item_group: $scope.items_size.item_group,
@@ -888,7 +891,8 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
             if (response.data.list.length > 0) {
               response.data.list.forEach(_item => {
                 _item.sizes.forEach(_size => {
-                  _size.name = _item.name;
+                  _size.name_ar = _item.name_ar;
+                  _size.name_en = _item.name_en;
                   _size.item_group = _item.item_group;
                   _size.item_id = _item.id;
                   let indxUnit = 0;
@@ -924,7 +928,8 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     if (!found1 && u.id) {
 
       $scope.category_item.units_list.push({
-        name: u.name,
+        name_ar: u.name_ar,
+        name_en: u.name_en,
         id: u.id,
         convert: 1
       });
@@ -937,7 +942,8 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
 
       if (!found) {
         _size.size_units_list.push({
-          name: u.name,
+          name_ar: u.name_ar,
+          name_en: u.name_en,
           id: u.id,
           current_count: 0,
           start_count: 0,
@@ -988,7 +994,8 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
 
       let found = category_item.units_list.some(_unit => _unit.id == category_item.main_unit.id);
       if (!found) category_item.units_list.unshift({
-        name: category_item.main_unit.name,
+        name_ar: category_item.main_unit.name_ar,
+        name_en: category_item.main_unit.name_en,
         id: category_item.main_unit.id,
         convert: 1
       });
@@ -999,7 +1006,8 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
         let found = _size.size_units_list.some(_unit => _unit.id == category_item.main_unit.id);
 
         if (!found) _size.size_units_list.unshift({
-          name: category_item.main_unit.name,
+          name_ar: category_item.main_unit.name_ar,
+          name_en: category_item.main_unit.name_en,
           id: category_item.main_unit.id,
           current_count: 0,
           start_count: 0,
@@ -1104,7 +1112,8 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
 
                       });
                     if ((_size.barcode === c.barcode) || foundUnit) {
-                      _size.name = response.data.list[0].name;
+                      _size.name_ar = response.data.list[0].name_ar;
+                      _size.name_en = response.data.list[0].name_en;
                       _size.item_group = response.data.list[0].item_group;
                       _size.store = $scope.units_switch.store;
                       _size.unit = _size.size_units_list[indxUnit];

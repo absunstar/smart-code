@@ -12,17 +12,19 @@
 
             <div class="row">
 
-                <div class="col7">
+                <div class="col8">
 
                     <div class="row">
 
                         <div class="row center">
 
-                            <i-control class="col3" ng-model="item.size_ar" label="##word.stores_items_size##" type="text">
+                            <i-control class="col4" ng-model="item.size_ar" label="##word.stores_items_size##" type="text">
                             </i-control>
-                            <i-control class="col3" ng-model="item.size_en" label="##word.size_en##" type="text">
+
+                            <i-control class="col4" ng-model="item.size_en" label="##word.size_en##" type="text">
                             </i-control>
-                            <i-control class="col3" ng-hide="defaultSettings.inventory.auto_barcode_generation"
+
+                            <i-control class="col4" ng-hide="defaultSettings.inventory.auto_barcode_generation"
                                 ng-model="item.barcode" label="##word.item_code##" type="text">
                             </i-control>
 
@@ -86,7 +88,8 @@
                     </div>
 
                 </div>
-                <div class="col3" ng-hide="category_item.item_type.id === 2">
+
+                <div class="col2" ng-hide="category_item.item_type.id === 2">
 
                     <i-checkbox label="##word.stores_items_complex##" ng-model="item.item_complex">
                     </i-checkbox>

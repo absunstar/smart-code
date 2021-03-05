@@ -11,7 +11,7 @@
                 <div class="row">
                     <i-control ng-keydown="getItemsName($event)" id="item_name" class="col3" ng-model="item.search_item_name"
                         label="##word.search##" type="text"></i-control>
-                    <i-list class="col4" label="##word.stores_in_item_name##" ng-model="item.name" display="name_##session.lang##"
+                    <i-list class="col4" label="##word.stores_in_item_name##" ng-model="item.itm" display="name_##session.lang##"
                         items="itemsNameList" ng-change="itemsStoresStock()" ng-search="item_searching"></i-list>
                 </div>
                 <div class="row">

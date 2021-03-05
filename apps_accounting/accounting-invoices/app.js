@@ -15,7 +15,8 @@ module.exports = function init(site) {
                 if (_items.barcode === _size.barcode) {
                   _items.size_ar = _size.size_ar
                   _items.size_en = _size.size_en
-                  _items.name = _size.name
+                  _items.name_ar = _size.name_ar
+                  _items.name_en = _size.name_en
                 }
               })
             });
@@ -1361,8 +1362,12 @@ module.exports = function init(site) {
       delete where['shift_code']
     }
 
-    if (where['name'])
-      where['name'] = site.get_RegExp(where['name'], 'i')
+    if (where['name_ar'])
+      where['name_ar'] = site.get_RegExp(where['name_ar'], 'i')
+
+      if (where['name_en'])
+      where['name_en'] = site.get_RegExp(where['name_en'], 'i')
+
 
     if (where['source_type']) {
       where['source_type.id'] = where['source_type'].id;
