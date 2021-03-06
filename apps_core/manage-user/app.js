@@ -28,7 +28,7 @@ module.exports = function init(site) {
     })
   }
 
-  site.post("/api/manage_user/save", (req, res) => {
+  site.post("/api/manage_user/update", (req, res) => {
     let response = {
       done: false
     };

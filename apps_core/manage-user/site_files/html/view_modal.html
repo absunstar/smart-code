@@ -39,7 +39,6 @@
                     <i-control ng-show="viewText === 'mobile'" label="##word.mobile##" ng-model="manage_user.mobile">
                     </i-control>
 
-
                 </div>
                 <div class="col4"></div>
 
@@ -48,7 +47,19 @@
 
         <div class="modal-footer center">
             <h2 class="error"> {{error}} </h2>
-            <i-button type="close" label="##word.close##" onclick="site.hideModal( '#viewManageUserModal')"> </i-button>
+            <div class="row">
+
+                <i-button type="save" ng-show="viewText === 'logo'" label="##word.save##" ng-click="saveEditUser()"></i-button>
+                <i-button type="save" ng-show="viewText === 'name'" label="##word.save##" ng-click="saveEditUser()"></i-button>
+                <i-button type="save" ng-show="viewText === 'birth_date'" label="##word.save##" ng-click="saveEditUser()"></i-button>
+                <i-button type="save" ng-show="viewText === 'gender'" label="##word.save##" ng-click="saveEditUser()"></i-button>
+                <i-button type="save" ng-show="viewText === 'email'" label="##word.save##" ng-click="saveEditUser()"></i-button>
+                <i-button type="save" ng-show="viewText === 'phone'" label="##word.save##" ng-click="saveEditUser()"></i-button>
+                <i-button type="save" ng-show="viewText === 'mobile'" label="##word.save##" ng-click="saveEditUser()"></i-button>
+                <i-button type="close" label="##word.close##" onclick="site.hideModal( '#viewManageUserModal')">
+                </i-button>
+
+            </div>
 
         </div>
     </div>

@@ -193,7 +193,7 @@
                                 <th> ##word.type## </th>
                             </tr>
 
-                            <tr ng-repeat="r in permissions_list">
+                            <tr ng-repeat="r in permissions_list | orderBy : 'module_name'">
                                 <td> {{r.name_ar}} </td>
                                 <td> {{r.name_en}} </td>
                                 <td>

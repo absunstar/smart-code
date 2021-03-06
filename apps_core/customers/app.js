@@ -247,7 +247,6 @@ module.exports = function init(site) {
     if (req.session.user) {
       company = site.get_company(req)
       branch = site.get_branch(req)
-
     } else {
       customers_doc.active = true
       company = customers_doc.company
@@ -300,7 +299,6 @@ module.exports = function init(site) {
       }
     }, (err, docs, count) => {
       if (!err && count >= company.customers_count) {
-
         response.error = 'The maximum number of adds exceeded'
         res.json(response)
         return;
@@ -456,7 +454,6 @@ module.exports = function init(site) {
 
   
     if (customers_doc.username && customers_doc.password) {
-
       if (!customers_doc.username.includes("@") && !customers_doc.username.includes(".")) {
         customers_doc.username = customers_doc.username + '@' + site.get_company(req).host;
 
@@ -507,7 +504,6 @@ module.exports = function init(site) {
     }]
 
     site.security.isUserExists(user, function (err, user_found) {
-
       if (user_found) {
 
         response.error = 'User Is Exist'
@@ -529,6 +525,7 @@ module.exports = function init(site) {
           if (!err) {
             response.done = true
             response.doc = result.doc
+            console.log(user);
 
             if (!result.doc.user_info && user.password && user.username) {
               site.security.addUser(user, (err, doc1) => {
@@ -547,6 +544,7 @@ module.exports = function init(site) {
                 res.json(response)
               })
             } else if (result.doc.user_info && result.doc.user_info.id) {
+              console.log("Ssssssssssssssss");
               site.security.updateUser(user, (err, user_doc) => { })
             }
           } else {
