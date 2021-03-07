@@ -33,7 +33,7 @@
                         <td ng-show="activity.active == false" class="red center"> ##word.not_active## </td>
                     </tr>
 
-                    <tr ng-show="activity.selectedActivitiesList.length > 0">
+                    <tr ng-show="activity.complex_activities_list.length > 0">
                         <td class="title">##word.complex_activities##</td>
                         <td>
                             <div class="row">
@@ -47,7 +47,7 @@
                                         <th>##word.total_attend_count##</th>
                                     </tr>
 
-                                    <tr class="bold" ng-repeat="s in activity.selectedActivitiesList">
+                                    <tr class="bold" ng-repeat="s in activity.complex_activities_list">
 
                                         <td>
                                             <p class="center bold">{{s.name_##session.lang##}}</p>

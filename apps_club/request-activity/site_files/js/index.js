@@ -705,7 +705,7 @@ app.controller("request_activity", function ($scope, $http, $timeout) {
         url: "/api/activity/all",
         data: {
           where: { name: $scope.search_activity },
-          select: { id: 1, name_ar: 1, name_en: 1, code: 1, activities_price: 1, selectedActivitysList: 1, attend_count: 1, available_period: 1, complex_activity: 1 }
+          select: { id: 1, name_ar: 1, name_en: 1, code: 1, activities_price: 1, complex_activities_list: 1, attend_count: 1, available_period: 1, complex_activity: 1 }
         }
       }).then(
         function (response) {
@@ -826,16 +826,16 @@ app.controller("request_activity", function ($scope, $http, $timeout) {
     request_activity.activity_id = $scope.activity.id;
     request_activity.activity_name_ar = $scope.activity.name_ar;
     request_activity.activity_name_en = $scope.activity.name_en;
-    request_activity.selectedActivitysList = $scope.activity.selectedActivitysList;
+    request_activity.complex_activities_list = $scope.activity.complex_activities_list;
     request_activity.attend_count = $scope.activity.attend_count || null;
     request_activity.available_period = $scope.activity.available_period || 0;
     request_activity.activities_price = $scope.activity.activities_price || 0;
-    if (request_activity && request_activity.selectedActivitysList.length > 0) {
-      request_activity.selectedActivitysList.forEach(_selectedActivitysList => {
-        _selectedActivitysList.trainer_attend = request_activity.trainer;
-        _selectedActivitysList.total_real_attend_count = _selectedActivitysList.total_attend_count;
-        _selectedActivitysList.current_attendance = 0;
-        _selectedActivitysList.remain = _selectedActivitysList.total_attend_count;
+    if (request_activity && request_activity.complex_activities_list && request_activity.complex_activities_list.length > 0) {
+      request_activity.complex_activities_list.forEach(_selected_activity_list => {
+        _selected_activity_list.trainer_attend = request_activity.trainer;
+        _selected_activity_list.total_real_attend_count = _selected_activity_list.total_attend_count;
+        _selected_activity_list.current_attendance = 0;
+        _selected_activity_list.remain = _selected_activity_list.total_attend_count;
       });
     } else {
       request_activity.trainer_attend = request_activity.trainer;
@@ -843,7 +843,7 @@ app.controller("request_activity", function ($scope, $http, $timeout) {
       request_activity.current_attendance = 0;
       request_activity.remain = request_activity.attend_count;
     }
-
+    $scope.calc(request_activity);
     $scope.activity = {};
 
   };
@@ -882,12 +882,12 @@ app.controller("request_activity", function ($scope, $http, $timeout) {
     $scope.attend_activity = activity;
 
 
-    if ($scope.attend_activity && $scope.attend_activity.selectedActivitysList.length > 0) {
-      $scope.attend_activity.selectedActivitysList.forEach(_selectedActivitysList => {
-        _selectedActivitysList.trainer_attend = $scope.attend_activity.trainer;
-        _selectedActivitysList.total_real_attend_count = _selectedActivitysList.total_real_attend_count || (_selectedActivitysList.total_attend_count * $scope.attend_activity.activity_count);
-        _selectedActivitysList.current_attendance = _selectedActivitysList.current_attendance || 0;
-        _selectedActivitysList.remain = _selectedActivitysList.remain || (_selectedActivitysList.total_attend_count * $scope.attend_activity.activity_count);
+    if ($scope.attend_activity && $scope.attend_activity.complex_activities_list.length > 0) {
+      $scope.attend_activity.complex_activities_list.forEach(_selected_activity_list => {
+        _selected_activity_list.trainer_attend = $scope.attend_activity.trainer;
+        _selected_activity_list.total_real_attend_count = _selected_activity_list.total_real_attend_count || (_selected_activity_list.total_attend_count * $scope.attend_activity.activity_count);
+        _selected_activity_list.current_attendance = _selected_activity_list.current_attendance || 0;
+        _selected_activity_list.remain = _selected_activity_list.remain || (_selected_activity_list.total_attend_count * $scope.attend_activity.activity_count);
       });
     } else {
       $scope.attend_activity.trainer_attend = $scope.attend_activity.trainer;
@@ -906,9 +906,9 @@ app.controller("request_activity", function ($scope, $http, $timeout) {
             $scope.busy = false;
             if (response.data.done && response.data.doc) {
               $scope.defaultSettings = response.data.doc;
-              if ($scope.attend_activity && $scope.attend_activity.selectedActivitysList.length > 0) {
-                $scope.attend_activity.selectedActivitysList.forEach(selectedActivitysList => {
-                  selectedActivitysList.trainer_attend = $scope.defaultSettings.general_Settings ? $scope.defaultSettings.general_Settings.trainer : null
+              if ($scope.attend_activity && $scope.attend_activity.complex_activities_list.length > 0) {
+                $scope.attend_activity.complex_activities_list.forEach(complex_activities_list => {
+                  complex_activities_list.trainer_attend = $scope.defaultSettings.general_Settings ? $scope.defaultSettings.general_Settings.trainer : null
                 });
               } else {
                 $scope.attend_activity.trainer_attend = $scope.defaultSettings.general_Settings ? $scope.defaultSettings.general_Settings.trainer : null
@@ -939,12 +939,12 @@ app.controller("request_activity", function ($scope, $http, $timeout) {
   $scope.calcActivityCount = function (request_activity) {
     $timeout(() => {
 
-      if (request_activity && request_activity.selectedActivitysList.length > 0) {
-        request_activity.selectedActivitysList.forEach(_selectedActivitysList => {
-          _selectedActivitysList.trainer_attend = request_activity.trainer;
-          _selectedActivitysList.total_real_attend_count = _selectedActivitysList.total_attend_count * request_activity.activity_count;
-          _selectedActivitysList.remain = _selectedActivitysList.total_attend_count * request_activity.activity_count;
-          _selectedActivitysList.current_attendance = 0;
+      if (request_activity && request_activity.complex_activities_list.length > 0) {
+        request_activity.complex_activities_list.forEach(_selected_activity_list => {
+          _selected_activity_list.trainer_attend = request_activity.trainer;
+          _selected_activity_list.total_real_attend_count = _selected_activity_list.total_attend_count * request_activity.activity_count;
+          _selected_activity_list.remain = _selected_activity_list.total_attend_count * request_activity.activity_count;
+          _selected_activity_list.current_attendance = 0;
         });
       } else {
         request_activity.trainer_attend = request_activity.trainer;

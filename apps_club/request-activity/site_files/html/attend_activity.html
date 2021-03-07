@@ -12,7 +12,7 @@
             <form class="form">
                 <div class="row">
 
-                    <div class="row" ng-hide="attend_activity.selectedActivitysList.length > 0">
+                    <div class="row" ng-hide="attend_activity.complex_activities_list.length > 0">
                         <div class="col2"></div>
                         <div class="col8">
 
@@ -69,7 +69,7 @@
                     </div>
 
 
-                    <div class="row" ng-show="attend_activity.selectedActivitysList.length > 0">
+                    <div class="row" ng-show="attend_activity.complex_activities_list.length > 0">
                         <div class="col2"></div>
                         <div class="col8">
 
@@ -84,7 +84,7 @@
                                     <th>##word.actions##</th>
                                 </tr>
 
-                                <tr class="bold" ng-repeat="s in attend_activity.selectedActivitysList">
+                                <tr class="bold" ng-repeat="s in attend_activity.complex_activities_list">
 
                                     <td>
                                         <p class="center bold">{{s.name_##session.lang##}}</p>

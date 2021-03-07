@@ -58,7 +58,7 @@
                         <td class="center green">{{c.activities_price}}</td>
                         <td class="center blue"> {{c.available_period}} ##word.day##</td>
                         <td>
-                            <div class="row" ng-show="c.selectedActivitiesList.length > 0">
+                            <div class="row" ng-show="c.complex_activities_list.length > 0">
 
                                 <table class="table hover bold">
                                     <tr>
@@ -69,7 +69,7 @@
                                         <th>##word.total_attend_count##</th>
                                     </tr>
 
-                                    <tr class="bold" ng-repeat="s in c.selectedActivitiesList">
+                                    <tr class="bold" ng-repeat="s in c.complex_activities_list">
 
                                         <td>
                                             <p class="center bold blue">{{s.name_##session.lang##}}</p>

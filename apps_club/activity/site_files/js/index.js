@@ -27,11 +27,11 @@ app.controller("activity", function ($scope, $http, $timeout) {
 
     if ($scope.activity.complex_activity) {
       $scope.activity.attend_count = 0;
-      $scope.activity.selectedActivitiesList.forEach(s => {
+      $scope.activity.complex_activities_list.forEach(s => {
         $scope.activity.attend_count += (s.attend_count * s.count);
       });
     } else {
-      $scope.activity.selectedActivitiesList = [];
+      $scope.activity.complex_activities_list = [];
     }
 
     $scope.busy = true;
@@ -211,7 +211,7 @@ app.controller("activity", function ($scope, $http, $timeout) {
         url: "/api/activity/all",
         data: {
           where: { name: $scope.search_activity, complex_activity: false },
-          select: { id: 1, name_ar: 1, name_en: 1, code: 1, activities_price: 1, selectedActivitiesList: 1, attend_count: 1 }
+          select: { id: 1, name_ar: 1, name_en: 1, code: 1, activities_price: 1, complex_activities_list: 1, attend_count: 1 }
         }
       }).then(
         function (response) {
@@ -231,11 +231,11 @@ app.controller("activity", function ($scope, $http, $timeout) {
 
   $scope.incertActivities = function () {
     $scope.error = '';
-    $scope.activity.selectedActivitiesList = $scope.activity.selectedActivitiesList || [];
+    $scope.activity.complex_activities_list = $scope.activity.complex_activities_list || [];
 
     if ($scope.selectedActivity && $scope.selectedActivity.id) {
       $scope.selectedActivity.count = 1;
-      $scope.activity.selectedActivitiesList.unshift($scope.selectedActivity);
+      $scope.activity.complex_activities_list.unshift($scope.selectedActivity);
     } else $scope.error = '##word.err_select_activity##';
 
     $scope.selectedActivity = {};
@@ -244,7 +244,7 @@ app.controller("activity", function ($scope, $http, $timeout) {
 
   $scope.deleteActivityList = function (activity) {
     $scope.error = '';
-    $scope.activity.selectedActivitiesList.splice($scope.activity.selectedActivitiesList.indexOf(activity), 1);
+    $scope.activity.complex_activities_list.splice($scope.activity.complex_activities_list.indexOf(activity), 1);
   };
 
   $scope.calc = function () {
@@ -252,7 +252,7 @@ app.controller("activity", function ($scope, $http, $timeout) {
     $timeout(() => {
 
       $scope.activity.total_complex_activities_price = 0;
-      $scope.activity.selectedActivitiesList.map(s => $scope.activity.total_complex_activities_price += Number(s.activities_price) * Number(s.count));
+      $scope.activity.complex_activities_list.map(s => $scope.activity.total_complex_activities_price += Number(s.activities_price) * Number(s.count));
 
     }, 200);
   };
@@ -263,7 +263,7 @@ app.controller("activity", function ($scope, $http, $timeout) {
     $scope.activity.attend_count = 0;
     $timeout(() => {
       if ($scope.activity.complex_activity) {
-        $scope.activity.selectedActivitiesList.forEach(s => {
+        $scope.activity.complex_activities_list.forEach(s => {
           s.total_attend_count = s.attend_count * s.count;
           $scope.activity.attend_count += s.total_attend_count;
         });

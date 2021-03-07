@@ -475,16 +475,18 @@
         <span>##word.kitchens##</span>
       </a>
 
-      <a class="tab-link" x-features="erp || pos || restaurant || school" href="/vehicles" x-permissions="vehicles_ui || vehicles_manage">
+      <a class="tab-link" x-features="erp || pos || restaurant || school" href="/vehicles"
+        x-permissions="vehicles_ui || vehicles_manage">
         <img src="/images/vehicles.png" />
         <span> ##word.vehicles##</span>
       </a>
 
-      <a class="tab-link" x-features="erp || pos || restaurant || school" href="/vehicles_types" x-permissions="vehicles_types_ui || vehicles_types_manage">
+      <a class="tab-link" x-features="erp || pos || restaurant || school" href="/vehicles_types"
+        x-permissions="vehicles_types_ui || vehicles_types_manage">
         <img src="/images/vehicles_types.png" />
         <span> ##word.vehicles_types##</span>
       </a>
-    
+
       <a class="tab-link" href="/militaries_status" x-permissions="militaries_status_ui || militaries_status_manage">
         <img src="images/military.png" />
         <span>##word.system_military_menus## </span>
@@ -967,6 +969,12 @@
           <span>##word.report_requests_name##</span>
         </a>
 
+        <a class="tab-link" href="/report_invoices?type=4"
+          x-permissions="report_invoices_ui || report_invoices_manage">
+          <img src="/images/activity.png" />
+          <span>##word.report## ##word.orders_activity_invoice## </span>
+        </a>
+
         <a class="tab-link" href="/report_subscribers"
           x-permissions="report_subscribers_ui || report_subscribers_manage">
           <img src="/images/report_subscribers.png" />
@@ -1101,11 +1109,6 @@
                 <span>##word.report_invoices_name##</span>
             </a> -->
 
-      <a class="tab-link" x-features="club" href="/report_invoices?type=4"
-        x-permissions="report_invoices_ui || report_invoices_manage">
-        <img src="/images/order_invoice.png" />
-        <span>##word.report## ##word.orders_activity_invoice## </span>
-      </a>
 
       <a class="tab-link" href="/report_invoices?type=1" x-permissions="report_invoices_ui || report_invoices_manage">
         <img src="/images/pic_money_in.png" />
@@ -1326,9 +1329,9 @@
         </a>
       </div>
 
-      <a class="tab-link" x-features="academy || club" href="/service" x-permissions="service_ui || service_manage">
+      <a class="tab-link" x-features="academy || club" href="/activity" x-permissions="activity_ui || activity_manage">
         <img src="/images/activity.png" />
-        <span> ##word.service_management##</span>
+        <span> ##word.activity##</span>
       </a>
 
       <a class="tab-link" href="/hall" x-features="club || academy || school" x-permissions="hall_ui || hall_manage">

@@ -32,8 +32,8 @@ module.exports = function init(site) {
       where: { id: obj.activity.id }
     }, (err, doc) => {
 
-      if (doc.selectedActivitysList && doc.selectedActivitysList.length > 0) {
-        doc.selectedActivitysList.forEach(attend_activity => {
+      if (doc.complex_activities_list && doc.complex_activities_list.length > 0) {
+        doc.complex_activities_list.forEach(attend_activity => {
           if (attend_activity.id == obj.activity.activity_id) {
             attend_activity.current_attendance = attend_activity.current_attendance + 1;
             attend_activity.remain = attend_activity.remain - 1;
@@ -408,8 +408,8 @@ module.exports = function init(site) {
         if (!err) {
           let activities_list = []
           docs.forEach(request_activity => {
-            if (request_activity.selectedActivitysList && request_activity.selectedActivitysList.length > 0) {
-              request_activity.selectedActivitysList.forEach(selectedActivitys => {
+            if (request_activity.complex_activities_list && request_activity.complex_activities_list.length > 0) {
+              request_activity.complex_activities_list.forEach(selectedActivitys => {
 
                 activities_list.push({
                   id: request_activity.id,

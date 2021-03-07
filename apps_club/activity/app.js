@@ -8,6 +8,9 @@ module.exports = function init(site) {
       name_ar: "خدمة/نشاط إفتراضي",
       name_en : "Default Service/Activity",
       image_url: '/images/activity.png',
+      activities_price: 1,
+      attend_count : 1,
+      available_period : 1,
       company: {
         id: doc.id,
         name_ar: doc.name_ar,

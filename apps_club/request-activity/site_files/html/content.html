@@ -96,7 +96,7 @@
                             label="##word.search##" type="text"></i-control>
 
                         <i-list ng-search="_search.$activity" class="col4" display="name_##session.lang##" ng-model="activity"
-                            label="##word.activity##" ng-change="changeActivity(request_activity)  ;calc(request_activity)"
+                            label="##word.activity##" ng-change="changeActivity(request_activity)"
                             items="activitiesList"></i-list>
 
                         <div class="col1"></div>
@@ -193,7 +193,7 @@
                         </div>
 
                         <div class="row">
-                            <div class="row" ng-show="request_activity.selectedActivitysList.length > 0">
+                            <div class="row" ng-show="request_activity.complex_activities_list.length > 0">
                                 <div class="col6">
                                     <fieldset>
                                         <legend>##word.complex_activities##</legend>
@@ -205,7 +205,7 @@
                                                 <th>##word.attend_count##</th>
                                             </tr>
 
-                                            <tr class="bold" ng-repeat="s in request_activity.selectedActivitysList">
+                                            <tr class="bold" ng-repeat="s in request_activity.complex_activities_list">
 
                                                 <td>
                                                     <p class="center bold">{{s.name_##session.lang##}}</p>
