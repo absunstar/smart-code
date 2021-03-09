@@ -2,7 +2,6 @@ app.controller("exams", function ($scope, $http, $timeout) {
   $scope._search = {};
 
   $scope.exams = {};
-
   $scope.displayAddExams = function () {
     $scope.get_open_shift((shift) => {
       if (shift) {
@@ -15,8 +14,9 @@ app.controller("exams", function ($scope, $http, $timeout) {
         };
         if ($scope.defaultSettings.general_Settings) {
 
-          $scope.exams.school_grade = $scope.schoolGradesList.find(_schoolGrade => { return _schoolGrade.id === $scope.defaultSettings.general_Settings.school_grade.id });
           if ($scope.exams.school_grade && $scope.exams.school_grade.id) {
+
+            $scope.exams.school_grade = $scope.schoolGradesList.find(_schoolGrade => { return _schoolGrade.id === $scope.defaultSettings.general_Settings.school_grade.id });
 
             $scope.getStudentsYearsList($scope.exams.school_grade);
           }

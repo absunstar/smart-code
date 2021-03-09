@@ -531,8 +531,8 @@ module.exports = function init(site) {
     if (req.session.user.type == 'trainer') {
       where['add_user_info.id'] = req.session.user.id;
 
-    } else if (req.session.user.type == 'customer' && req.session.user.students_years) {
-      where['students_years.id'] = req.session.user.students_years.id;
+    } else if (req.session.user.type == 'customer') {
+      where['students_year.id'] = req.session.user.students_year_id;
     }
 
     if (where['shift']) {

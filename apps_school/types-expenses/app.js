@@ -11,6 +11,28 @@ module.exports = function init(site) {
   //   }, (err, result) => { })
   // })
 
+  site.on('[company][created]', doc => {
+
+    $types_expenses.add({
+      name_ar: "مصروف دراسي إفتراضي",
+      name_en: "Default School Expenses",
+      image_url: '/images/types_expenses.png',
+      code: "1-Test",
+      company: {
+        id: doc.id,
+        name_ar: doc.name_ar,
+        name_en: doc.name_en
+      },
+      branch: {
+        code: doc.branch_list[0].code,
+        name_ar: doc.branch_list[0].name_ar,
+        name_en: doc.branch_list[0].name_en
+      },
+      active: true
+    }, (err, doc) => { })
+  })
+
+
   site.get({
     name: "types_expenses",
     path: __dirname + "/site_files/html/index.html",

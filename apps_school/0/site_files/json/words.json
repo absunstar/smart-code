@@ -35,6 +35,11 @@
         "ar": "الطلاب"
     },
     {
+        "name": "re_open_shift",
+        "en": "Re-Open School Year",
+        "ar": "إعادة فتح العام الدراسي"
+    },
+    {
         "name": "customers_new",
         "en": "New Student",
         "ar": "طالب جديد"

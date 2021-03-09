@@ -23,6 +23,27 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/images/'
   })
 
+  site.on('[company][created]', doc => {
+
+    $school_grades.add({
+      name_ar: "مرحلة دراسية إفتراضية",
+      name_en: "Default school Grade",
+      image_url: '/images/school_grades.png',
+      code: "1-Test",
+      company: {
+        id: doc.id,
+        name_ar: doc.name_ar,
+        name_en: doc.name_en
+      },
+      branch: {
+        code: doc.branch_list[0].code,
+        name_ar: doc.branch_list[0].name_ar,
+        name_en: doc.branch_list[0].name_en
+      },
+      active: true
+    }, (err, doc) => { })
+  })
+
 
   site.post("/api/school_grades/add", (req, res) => {
     let response = {}

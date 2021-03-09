@@ -212,8 +212,9 @@ module.exports = function init(site) {
       })
     }
     if (site.feature('school')) {
-      user.students_years = customers_doc.students_years
 
+      if (customers_doc.students_year) user.students_year_id = customers_doc.students_year.id
+    
       user.roles.push({
         module_name: "public",
         name: "exams_customer",
@@ -438,7 +439,7 @@ module.exports = function init(site) {
         permissions: ["report_info_ui"]
       })
     } if (site.feature('school')) {
-      user.students_years = customers_doc.students_years
+      if (customers_doc.students_year) user.students_year_id = customers_doc.students_year.id
 
       user.roles.push({
         module_name: "public",
@@ -452,7 +453,7 @@ module.exports = function init(site) {
       })
     }
 
-  
+
     if (customers_doc.username && customers_doc.password) {
       if (!customers_doc.username.includes("@") && !customers_doc.username.includes(".")) {
         customers_doc.username = customers_doc.username + '@' + site.get_company(req).host;
@@ -544,7 +545,6 @@ module.exports = function init(site) {
                 res.json(response)
               })
             } else if (result.doc.user_info && result.doc.user_info.id) {
-              console.log("Ssssssssssssssss");
               site.security.updateUser(user, (err, user_doc) => { })
             }
           } else {
