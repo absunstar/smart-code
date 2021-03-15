@@ -55,27 +55,21 @@
                                 <fieldset class="col11" ng-show="scans_requests.customer.id">
 
                                     <table class="table bold center hover">
+
                                         <tr>
                                             <td class="white bg_card"> ##word.customer_name## </td>
-                                            <td colspan="7" class="center">
-                                                {{scans_requests.customer.name_##session.lang##}}
+                                            <td colspan="5" class="center">
+                                                {{scans_requests.customer.name_##session.lang##}} <b class="red"
+                                                    ng-show="scans_requests.customer.child">(##word.child##)</b>
                                             </td>
-                                        </tr>
-                                        <tr>
+    
                                             <td class="white bg_card"> ##word.gender## </td>
                                             <td colspan="2" class="center">
                                                 {{scans_requests.customer.gender.##session.lang##}}
                                             </td>
-                                            <td class="white bg_card"> ##word.child## </td>
-                                            <td colspan="2" ng-show="scans_requests.customer.child == true">
-                                                <p class="green"> ##word.yes## </p>
-                                            </td>
-                                            <td colspan="2" ng-show="!scans_requests.customer.child">
-                                                <p class="red"> ##word.no## </p>
-                                            </td>
-                                            <td colspan="2"></td>
+    
                                         </tr>
-
+    
 
                                         <tr>
                                             <td class="white bg_card"> ##word.weight## </td>

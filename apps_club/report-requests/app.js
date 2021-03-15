@@ -1,5 +1,5 @@
 module.exports = function init(site) {
-  const $request_service = site.connectCollection("request_service")
+  const $request_activity = site.connectCollection("request_activity")
 
   site.get({
     name: "report_requests",
@@ -77,7 +77,7 @@ module.exports = function init(site) {
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
 
-    $request_service.findMany({
+    $request_activity.findMany({
       select: req.body.select || {},
       where: where,
       sort: req.body.sort || { id: -1 },

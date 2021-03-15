@@ -95,7 +95,7 @@ module.exports = function init(site) {
               invoice_docs.forEach(_invoice => {
                 if (_invoice.invoice_id == _request.id) {
                   _request.total_paid_up = _invoice.total_paid_up
-                  _request.total_remain = _invoice.total_remain
+                  _request.total_remain = _invoice.remain_amount
                 }
 
               });

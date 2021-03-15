@@ -1,0 +1,229 @@
+<div id="productContentModal" class="modal" fixed>
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.product_add##
+                <i class="fa fa-plus "></i>
+            </h2>
+
+        </div>
+
+        <div class="modal-body">
+            <div class="row">
+
+                <fieldset>
+                    <legend> ##word.basic_information## </legend>
+                    <div class="row">
+                        <div class="col9">
+                            <div class="row">
+                                <i-control ng-hide="disabledCode" class="col2" label="##word.code##"
+                                    ng-model="product.code"></i-control>
+                                </i-control>
+                                <i-control help-id="products_name" v="r ll2" class="col4" label="##word.product_name##"
+                                    ng-model="product.name_ar"></i-control>
+
+                                <i-control help-id="products_name_en" class="col4" label="##word.name_en##"
+                                    ng-model="product.name_en"></i-control>
+
+                                <i-checkbox help-id="products_active" class="col2" label="##word.active##"
+                                    ng-model="product.active">
+                                </i-checkbox>
+                            </div>
+
+                            <div class="row">
+                                <i-list help-id="" v="r" class="col4" label="##word.products_group##"
+                                    ng-model="product.products_group" display="name_##session.lang##"
+                                    items="productsGroupsList" ng-search="_search.$products_group">
+                                </i-list>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col3">
+                            <i-image help-id="products_logo" ng-model="product.image_url"></i-image>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <table class="table border">
+                            <tr>
+                                <th>##word.useradd_user_info##</th>
+                                <th>##word.useredit_user_info## </th>
+                            </tr>
+                            <tr>
+
+                                <td class="center">
+                                    <p class="blue"> {{product.add_user_info.name}} </p>
+                                    <small class="green"> {{product.add_user_info.date |date:"hh:mm"}} </small>
+                                    <small> {{product.add_user_info.date |date:"dd - MM - yyyy"}} </small>
+
+                                </td>
+
+                                <td class="center">
+                                    <p class="blue"> {{product.edit_user_info.name}} </p>
+                                    <small class="green"> {{product.edit_user_info.date |date:"hh:mm"}} </small>
+                                    <small> {{product.edit_user_info.date |date:"dd - MM - yyyy"}} </small>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </fieldset>
+
+            </div>
+        </div>
+
+
+
+        <div class="modal-footer center">
+            <h2 class="error"> {{error}} </h2>
+            <i-button type="add" ng-show="product.$add" label="##word.add##" ng-click="addProduct()"></i-button>
+            <i-button type="update" ng-show="product.$update" label="##word.update##" ng-click="updateProduct()">
+            </i-button>
+
+            <i-button type="close" label="##word.close##" onclick="site.hideModal( '#productContentModal')"></i-button>
+        </div>
+    </div>
+
+</div>
+
+
+<div id="productViewModal" class="modal" fixed>
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.product_details##
+                <i class="fa fa-plus "></i>
+            </h2>
+
+        </div>
+
+        <div class="modal-body">
+            <div class="row">
+                <fieldset>
+                    <legend> ##word.basic_information##</legend>
+                    <div class="col9">
+                        <table id="basicInformationTable" class="table hover bold">
+
+                            <tr>
+                                <td class="title">##word.code##</td>
+                                <td class="center userPrint blue">{{product.code}}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="title">##word.product_name##</td>
+                                <td class="center">{{product.name_##session.lang##}}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="title">##word.products_group##</td>
+                                <td class="center">{{product.products_group.name_##session.lang##}}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="title">##word.status##</td>
+                                <td ng-show="product.active == true" class="green center"> ##word.active## </td>
+                                <td ng-show="product.active == false" class="red center"> ##word.not_active## </td>
+                            </tr>
+
+                        </table>
+                    </div>
+
+                    <div class="col3">
+                        <i-image view ng-model="product.image_url"></i-image>
+                    </div>
+
+                </fieldset>
+
+            </div>
+
+            <div class="row">
+                <table class="table border">
+                    <tr>
+                        <th>##word.useradd_user_info##</th>
+                        <th>##word.useredit_user_info## </th>
+                    </tr>
+                    <tr>
+
+                        <td class="center">
+                            <p class="blue"> {{product.add_user_info.name}} </p>
+                            <small class="green"> {{product.add_user_info.date |date:"hh:mm"}} </small>
+                            <small> {{product.add_user_info.date |date:"dd - MM - yyyy"}} </small>
+
+                        </td>
+
+                        <td class="center">
+                            <p class="blue"> {{product.edit_user_info.name}} </p>
+                            <small class="green"> {{product.edit_user_info.date |date:"hh:mm"}} </small>
+                            <small> {{product.edit_user_info.date |date:"dd - MM - yyyy"}} </small>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+
+        <div class="modal-footer center">
+            <h2 class="error"> {{error}} </h2>
+            <i-button type="delete" ng-show="product.$delete" label="##word.delete##" ng-click="deleteProduct()">
+            </i-button>
+
+            <i-button type="close" label="##word.close##" onclick="site.hideModal( '#productViewModal')"></i-button>
+        </div>
+    </div>
+
+</div>
+
+
+<div id="productSearchModal" class="modal small">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.search_all## <i class="fa fa-search"></i>
+
+            </h2>
+        </div>
+
+        <div class="modal-body">
+            <form class="form">
+                <fieldset>
+                    <legend>##word.search_all##</legend>
+                    <div class="row">
+
+                        <i-control class="col4" label="##word.product_name##" ng-model="search.name"></i-control>
+
+                        <i-list help-id="" class="col4" label="##word.products_group##" ng-model="search.products_group"
+                            display="name_##session.lang##" items="productsGroupsList"
+                            ng-search="_search.$products_group">
+                        </i-list>
+
+                        <div class="control col3">
+                            <label> ##word.status## </label>
+                            <select ng-model="search.active">
+                                <option ng-value="true"> ##word.active## </option>
+                                <option ng-value="false"> ##word.not_active## </option>
+                            </select>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+
+        <h2 class="error">{{error}}</h2>
+
+        <div class="modal-footer center">
+
+            <i-button type="search" label="##word.search##" ng-click="searchAllProduct()"> </i-button>
+
+            <i-button type="clear" label="##word.empty_search##" ng-click="search = {}"> </i-button>
+
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#productSearchModal')"> </i-button>
+
+        </div>
+    </div>
+</div>

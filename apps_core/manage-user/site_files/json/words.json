@@ -5,6 +5,21 @@
         "ar": "معلومات شخصية"
     },
     {
+        "name": "current_password",
+        "en": "Current Password",
+        "ar": "كلمة المرور الحالية"
+    },
+    {
+        "name": "current_password_incorrect",
+        "en": "The current password is incorrect",
+        "ar": "كلمة المرور الحالية غير صحيحة"
+    },
+    {
+        "name": "new_password",
+        "en": "New Password",
+        "ar": "كلمة المرور الجديدة"
+    },
+    {
         "name": "basic_info",
         "en": "Basic Info",
         "ar": "معلومات أساسية"

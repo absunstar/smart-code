@@ -21,25 +21,17 @@
 
                         <div class="row" ng-show="attend_session.customer.id">
                             <table class="table bold center hover">
+
                                 <tr>
                                     <td class="white bg_card"> ##word.customer_name## </td>
-                                    <td colspan="7" class="center"> {{attend_session.customer.name_##session.lang##}}
+                                    <td colspan="5" class="center"> {{attend_session.customer.name_##session.lang##}}  <b class="red" ng-show="attend_session.customer.child">(##word.child##)</b>
                                     </td>
-                                </tr>
-                                <tr>
+                                 
                                     <td class="white bg_card"> ##word.gender## </td>
                                     <td colspan="2" class="center"> {{attend_session.customer.gender.##session.lang##}}
                                     </td>
-                                    <td class="white bg_card"> ##word.child## </td>
-                                    <td colspan="2" ng-show="attend_session.customer.child == true">
-                                        <p class="green"> ##word.yes## </p>
-                                    </td>
-                                    <td colspan="2" ng-show="!attend_session.customer.child">
-                                        <p class="red"> ##word.no## </p>
-                                    </td>
-                                    <td colspan="2"></td>
-                                </tr>
 
+                                </tr>
 
                                 <tr>
                                     <td class="white bg_card"> ##word.weight## </td>
@@ -50,10 +42,12 @@
                                     <td colspan="2" class="center red"> {{attend_session.customer.blood_type.name_##session.lang##}}
                                     </td>
                                 </tr>
+
                                 <tr>
                                     <td class="white bg_card"> ##word.medicine_notes## </td>
                                     <td colspan="7" class="center"> {{attend_session.customer.medicine_notes}}</td>
                                 </tr>
+
                                 <tr>
                                     <td class="white bg_card"> ##word.gov## </td>
                                     <td colspan="2" class="center"> {{attend_session.customer.gov.name_##session.lang##}} </td>
@@ -67,6 +61,7 @@
                                     <td class="white bg_card"> ##word.address## </td>
                                     <td colspan="7" class="center"> {{attend_session.customer.address}}</td>
                                 </tr>
+
                                 <tr>
                                     <td class="white bg_card"> ##word.mobile## </td>
                                     <td colspan="4" class="center"> {{attend_session.customer.mobile}}</td>
@@ -101,11 +96,11 @@
                     <br>
 
                     <div class="row">
-                        <i-control ng-keydown="getService($event)" id="service" class="col3" ng-model="search_service"
+                        <i-control ng-keydown="getService($event)" id="activity" class="col3" ng-model="search_activity"
                             label="##word.search##" type="text"></i-control>
 
-                        <i-list ng-search="_search.$service" class="col4" v="r" display="name_##session.lang##" space=" - "
-                            display2="general_service" ng-model="attend_session.service" label="##word.service##"
+                        <i-list ng-search="_search.$activity" class="col4" v="r" display="name_##session.lang##" space=" - "
+                            display2="general_activity_##session.lang##" ng-model="attend_session.activity" label="##word.activity##"
                             items="sessionList"></i-list>
 
                         <div class="col1"></div>
@@ -117,7 +112,7 @@
                         <i-date2 class="col3" ng-model="attend_session.attend_date"
                             label="##word.attend_session_attend##"></i-date2>
                         <i-time help-id="attend_session_attend" class="col3" label="##word.attend_session_attend##"
-                            ng-model="attend_session.attend"></i-time>
+                            ng-model="attend_session.attend_time"></i-time>
                     </div>
 
                     <br>

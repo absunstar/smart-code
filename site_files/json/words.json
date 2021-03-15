@@ -10,6 +10,11 @@
         "ar": "الرمز"
     },
     {
+        "name": "invoice_not_generated",
+        "en": "An invoice has not been generated",
+        "ar": "لم يتم عمل فاتورة"
+    },
+    {
         "name": "user_exists",
         "en": "Username already exists. Try another name",
         "ar": "إسم المستخدم موجود بالفعل جرب إسم آخر"

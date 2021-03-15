@@ -52,6 +52,7 @@ site.importApps(__dirname + '/apps_reports');
 site.importApps(__dirname + '/apps_hr');
 site.importApps(__dirname + '/apps_pos');
 site.importApps(__dirname + '/apps_order');
+site.importApps(__dirname + '/apps_ecommerce');
 site.importApps(__dirname + '/apps_core');
 site.addFeature('pos');
 setTimeout(() => {

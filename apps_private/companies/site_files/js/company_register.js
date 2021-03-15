@@ -39,7 +39,7 @@ app.controller('company_register', function ($scope, $http) {
     /*   let user_name = company.username
   
   
-      let exist_domain = company.username.includes("@");
+      let exist_domain = company.username.contains("@");
       if(!exist_domain){
         user_name = company.username + '@' + company.host;
       } */

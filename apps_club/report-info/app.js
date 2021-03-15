@@ -36,7 +36,7 @@ module.exports = function init(site) {
       where['customer.id'] = req.session.user.ref_info.id
     }
 
-    
+
     if (where['count_ex']) {
       let count_ex = new Date()
       count_ex.setDate(count_ex.getDate() + where['count_ex'])
@@ -58,7 +58,7 @@ module.exports = function init(site) {
       sort: req.body.sort || { id: -1 },
     }, (err, request_docs, count) => {
       if (!err) {
-        response.done = true        
+        response.done = true
         let invoice_id = request_docs.map(_rd => _rd.id)
         $account_invoices.findMany(
           { 'invoice_id': invoice_id }
@@ -67,16 +67,17 @@ module.exports = function init(site) {
               let request_activities_list = [];
               request_docs.forEach(_request_activity => {
                 if (new Date(_request_activity.date_to) >= new Date()) {
-                  request_activities_list.unshift({
+                  request_activities_list.push({
                     customer: _request_activity.customer,
-                    activity_name_en_ar: _request_activity.activity_name_ar,
+                    activity_name_ar: _request_activity.activity_name_ar,
                     activity_name_en: _request_activity.activity_name_en,
-                    complex_service: _request_activity.selectedServicesList,
+                    complex_activity: _request_activity.complex_activities_list,
                     date_from: _request_activity.date_from,
                     date_to: _request_activity.date_to,
                     time_from: _request_activity.time_from,
                     time_to: _request_activity.time_to,
                     remain: _request_activity.remain,
+                    current_attendance: _request_activity.current_attendance,
                     id: _request_activity.id
                   });
                 }
@@ -85,9 +86,14 @@ module.exports = function init(site) {
 
 
               request_activities_list.forEach(_request_activities => {
-                if (_request_activities.complex_service && _request_activities.complex_service.length > 0) {
+                if (_request_activities.complex_activity && _request_activities.complex_activity.length > 0) {
                   let total_remain = 0;
-                  _request_activities.complex_service.map(_complex_service => total_remain += _complex_service.remain)
+                  let total_attendance = 0;
+                  _request_activities.complex_activity.forEach(_complex_activity => {
+
+                    total_remain += _complex_activity.remain
+                    total_attendance += _complex_activity.current_attendance
+                  })
                   _request_activities.remain = total_remain
                 }
 
@@ -99,7 +105,7 @@ module.exports = function init(site) {
                 });
 
                 let gifTime = Math.abs(new Date() - new Date(_request_activities.date_to))
-                _request_activities.ex_service = Math.ceil(gifTime / (1000 * 60 * 60 * 24))
+                _request_activities.ex_activity = Math.ceil(gifTime / (1000 * 60 * 60 * 24))
               });
 
               response.list = request_activities_list

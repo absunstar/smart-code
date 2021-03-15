@@ -76,7 +76,7 @@
         "ar": "أعد كتابة كلمة المرور"
     },
     {
-        "name": "password_err",
+        "name": "password_err_match",
         "en": "password does not match",
         "ar": "كلمة السر غير متطابقة"
     }

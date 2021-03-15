@@ -69,7 +69,7 @@
                         <th> ##word.date## </th>
                         <th> ##word.code## </th>
 <!--                         <th> ##word.source_type## </th>
- -->                        <th ng-show="##query.type## == 4"> ##word.order_invoices_type## </th>
+ -->                        <th ng-show="##query.type## == 3"> ##word.order_invoices_type## </th>
                         <th> ##word.order_value## </th>
                         <th> ##word.total_paid_up## </th>
                         <th
@@ -90,7 +90,7 @@
                       <!--   <td ng-click="displayDetailsAccountInvoices(c)"> {{c.source_type.##session.lang##}} <p
                                 class="blue">{{c.invoice_type.##session.lang##}}</p>
                         </td> -->
-                        <td ng-click="displayDetailsAccountInvoices(c)" ng-show="##query.type## == 4">
+                        <td ng-click="displayDetailsAccountInvoices(c)" ng-show="##query.type## == 3">
                             {{c.order_invoices_type.##session.lang##}}
                         </td>
                         <td ng-click="displayDetailsAccountInvoices(c)" class="bold">

@@ -860,8 +860,8 @@ app.controller("request_activity", function ($scope, $http, $timeout) {
     $scope.attend_activity.attend_activity_list.unshift({
       id: s.activity_id || s.id,
       trainer_attend: s.trainer_attend,
-      name_ar: $scope.attend_activity.activity_name_ar,
-      name_en: $scope.attend_activity.activity_name_en,
+      name_ar:  s.name_ar || s.activity_name_ar,
+      name_en: s.name_en || s.activity_name_en,
       attend_date: new Date(),
       attend_time: {
         hour: new Date().getHours(),
@@ -878,22 +878,35 @@ app.controller("request_activity", function ($scope, $http, $timeout) {
     };
   };
 
-  $scope.showAttendActivitys = function (activity) {
+  $scope.showAttendActivities = function (activity) {
     $scope.attend_activity = activity;
 
 
-    if ($scope.attend_activity && $scope.attend_activity.complex_activities_list.length > 0) {
+    if ($scope.attend_activity && $scope.attend_activity.complex_activities_list && $scope.attend_activity.complex_activities_list.length > 0) {
       $scope.attend_activity.complex_activities_list.forEach(_selected_activity_list => {
         _selected_activity_list.trainer_attend = $scope.attend_activity.trainer;
         _selected_activity_list.total_real_attend_count = _selected_activity_list.total_real_attend_count || (_selected_activity_list.total_attend_count * $scope.attend_activity.activity_count);
         _selected_activity_list.current_attendance = _selected_activity_list.current_attendance || 0;
-        _selected_activity_list.remain = _selected_activity_list.remain || (_selected_activity_list.total_attend_count * $scope.attend_activity.activity_count);
+        if(_selected_activity_list.remain || _selected_activity_list.remain === 0){
+          _selected_activity_list.remain = _selected_activity_list.remain
+        } else {
+          _selected_activity_list.remain = _selected_activity_list.total_attend_count * $scope.attend_activity.activity_count
+
+        }
+    
       });
     } else {
       $scope.attend_activity.trainer_attend = $scope.attend_activity.trainer;
       $scope.attend_activity.total_real_attend_count = $scope.attend_activity.total_real_attend_count || ($scope.attend_activity.attend_count * $scope.attend_activity.activity_count);
       $scope.attend_activity.current_attendance = $scope.attend_activity.current_attendance || 0;
-      $scope.attend_activity.remain = $scope.attend_activity.remain || ($scope.attend_activity.attend_count * $scope.attend_activity.activity_count);
+
+      if($scope.attend_activity.remain || $scope.attend_activity.remain === 0){
+        $scope.attend_activity.remain = $scope.attend_activity.remain
+      } else {
+        $scope.attend_activity.remain = $scope.attend_activity.total_attend_count * $scope.attend_activity.activity_count
+
+      }
+  
     }
 
     /*     $scope.busy = true;
@@ -939,7 +952,7 @@ app.controller("request_activity", function ($scope, $http, $timeout) {
   $scope.calcActivityCount = function (request_activity) {
     $timeout(() => {
 
-      if (request_activity && request_activity.complex_activities_list.length > 0) {
+      if (request_activity && request_activity.complex_activities_list && request_activity.complex_activities_list.length > 0) {
         request_activity.complex_activities_list.forEach(_selected_activity_list => {
           _selected_activity_list.trainer_attend = request_activity.trainer;
           _selected_activity_list.total_real_attend_count = _selected_activity_list.total_attend_count * request_activity.activity_count;

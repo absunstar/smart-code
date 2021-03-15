@@ -311,8 +311,8 @@
         "category": "accounting",
         "feature": "club",
         "name": "request_activity_invoice",
-        "en": "Request Activity Invoices",
-        "ar": "فواتير طلب النشاط"
+        "en": "Request Service Activity Invoices",
+        "ar": "فواتير طلب الخدمة/النشاط"
     },
     {
         "category": "accounting",
@@ -402,7 +402,7 @@
         "category": "accounting",
         "feature": "pos",
         "name": "amounts_in_out_names",
-        "en": "Amounts In & Amounts Out Names",
+        "en": "Amounts In & Out Names",
         "ar": "مسميات الوارد و المنصرف"
     },
     {
@@ -801,8 +801,8 @@
         "category": "general_setting",
         "feature": "club",
         "name": "activities",
-        "en": "Activities",
-        "ar": "الأنشطة"
+        "en": "Services/Activities",
+        "ar": "الخدمات/الأنشطة"
     },
     {
         "category": "general_setting",

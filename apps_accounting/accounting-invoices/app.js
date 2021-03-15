@@ -265,8 +265,12 @@ module.exports = function init(site) {
                     site.call('[account_invoices][order_invoice][+]', Object.assign({}, under_paid))
 
                   } else if (doc.source_type.id == 4) {
+
                     paid_value.operation = { ar: 'فاتورة طلب نشاط', en: 'Request Service Invoice' }
                     paid_value.transition_type = 'in'
+
+                    site.call('[account_invoices][request_activity][+]', doc.invoice_id)
+
 
                   } else if (doc.source_type.id == 5) {
                     paid_value.operation = { ar: 'فاتورة حجز قاعة', en: 'Book Hall Invoice' }
@@ -338,8 +342,7 @@ module.exports = function init(site) {
 
                 }
 
-                if (doc.source_type.id === 4)
-                  site.call('[account_invoices][request_activity][+]', doc.invoice_id)
+
 
               } else {
                 response.error = err.message
@@ -829,13 +832,13 @@ module.exports = function init(site) {
                 }
 
 
-                if (account_invoices_doc.employee && account_invoices_doc.employee.id){
+                if (account_invoices_doc.employee && account_invoices_doc.employee.id) {
 
                   obj.source_name_ar = account_invoices_doc.employee.name_ar
                   obj.source_name_en = account_invoices_doc.employee.name_en
-                } 
+                }
 
-                if (account_invoices_doc.delegate && account_invoices_doc.delegate.id){
+                if (account_invoices_doc.delegate && account_invoices_doc.delegate.id) {
                   obj.source_name_ar = account_invoices_doc.delegate.name_ar
                   obj.source_name_en = account_invoices_doc.delegate.name_en
                 }
@@ -1365,7 +1368,7 @@ module.exports = function init(site) {
     if (where['name_ar'])
       where['name_ar'] = site.get_RegExp(where['name_ar'], 'i')
 
-      if (where['name_en'])
+    if (where['name_en'])
       where['name_en'] = site.get_RegExp(where['name_en'], 'i')
 
 

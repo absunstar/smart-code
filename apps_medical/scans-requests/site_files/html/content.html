@@ -47,26 +47,21 @@
                             <fieldset class="col11">
 
                                 <table class="table bold center hover">
+
                                     <tr>
                                         <td class="white bg_card"> ##word.customer_name## </td>
-                                        <td colspan="7" class="center">
-                                            {{scans_requests.customer.name_##session.lang##}}
+                                        <td colspan="5" class="center">
+                                            {{scans_requests.customer.name_##session.lang##}} <b class="red"
+                                                ng-show="scans_requests.customer.child">(##word.child##)</b>
                                         </td>
-                                    </tr>
-                                    <tr>
+
                                         <td class="white bg_card"> ##word.gender## </td>
                                         <td colspan="2" class="center">
                                             {{scans_requests.customer.gender.##session.lang##}}
                                         </td>
-                                        <td class="white bg_card"> ##word.child## </td>
-                                        <td colspan="2" ng-show="scans_requests.customer.child == true">
-                                            <p class="green"> ##word.yes## </p>
-                                        </td>
-                                        <td colspan="2" ng-show="!scans_requests.customer.child">
-                                            <p class="red"> ##word.no## </p>
-                                        </td>
-                                        <td colspan="2"></td>
+
                                     </tr>
+
 
 
                                     <tr>
@@ -86,12 +81,15 @@
                                     </tr>
                                     <tr>
                                         <td class="white bg_card"> ##word.gov## </td>
-                                        <td colspan="2" class="center"> {{scans_requests.customer.gov.name_##session.lang##}} </td>
+                                        <td colspan="2" class="center">
+                                            {{scans_requests.customer.gov.name_##session.lang##}} </td>
                                         <td class="white bg_card"> ##word.city## </td>
-                                        <td colspan="2" class="center"> {{scans_requests.customer.city.name_##session.lang##}}
+                                        <td colspan="2" class="center">
+                                            {{scans_requests.customer.city.name_##session.lang##}}
                                         </td>
                                         <td class="white bg_card"> ##word.area## </td>
-                                        <td colspan="2" class="center"> {{scans_requests.customer.area.name_##session.lang##}}
+                                        <td colspan="2" class="center">
+                                            {{scans_requests.customer.area.name_##session.lang##}}
                                         </td>
                                     </tr>
 
@@ -124,7 +122,7 @@
                             </i-button>
 
                             <i-list class="col4" label="##word.scans##" ng-model="scans" items="scansList"
-                            display="name_##session.lang##" ng-search="_search.$patients_searching">
+                                display="name_##session.lang##" ng-search="_search.$patients_searching">
                             </i-list>
 
                             <i-button type="add" class="col2" ng-click="changeScansList(scans)">
@@ -144,11 +142,12 @@
 
                 <div class="col3">
                     <i-image category="scans_requests" ng-model="scans_requests.image_url"> </i-image>
-                    <i-files label="##word.files##" categoty="scans_requestssa" ng-model="scans_requests.files"></i-files>
-                  
+                    <i-files label="##word.files##" categoty="scans_requestssa" ng-model="scans_requests.files">
+                    </i-files>
+
                     <br>
                     <br>
-                  
+
                     <div class=" padding margin">
                         <table class="table box-shadow " ng-init="discountEditorAdd = true">
                             <tr>
@@ -162,8 +161,9 @@
                                     <form>
 
                                         <div class="row ">
-                                            <i-list class="col4" ng-model="discount" display="name_##session.lang##" ng-search="_search.$discount_name"
-                                                items="discount_types" label="##word.discount_name##">
+                                            <i-list class="col4" ng-model="discount" display="name_##session.lang##"
+                                                ng-search="_search.$discount_name" items="discount_types"
+                                                label="##word.discount_name##">
                                             </i-list>
                                         </div>
 

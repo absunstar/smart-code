@@ -8,9 +8,14 @@
                     <i-control ng-hide="disabledCode" class="col2" label="##word.code##" ng-model="store.code">
                     </i-control>
 
-                    <i-control class="col4" ng-model="store.name" label="##word.stores_name##" type="text"
+                    <i-control class="col4" ng-model="store.name_ar" label="##word.stores_name##" type="text"
                         id="store_name" v="r"></i-control>
 
+                    <i-control class="col4" ng-model="store.name_en" label="##word.name_en##" type="text"
+                        id="store_name"></i-control>
+
+                </div>
+                <div class="row">
                     <i-list display="##session.lang##" class="col4" ng-model="store.type" items="store_types"
                         ng-search="_search.$serach_store_types" label="##word.stores_type##" v="r"></i-list>
                 </div>
@@ -29,14 +34,14 @@
                                 label="##word.ledger_account##">
                             </i-list>
 
-                            <i-list ng-search="$sales_account" display="name_##session.lang##" space=" - " display2="code"
-                                class="col4" items="guideAccountList" ng-model="store.sales_account"
+                            <i-list ng-search="$sales_account" display="name_##session.lang##" space=" - "
+                                display2="code" class="col4" items="guideAccountList" ng-model="store.sales_account"
                                 label="##word.sales_account##">
                             </i-list>
 
 
-                            <i-list ng-search="$sales_return" display="name_##session.lang##" space=" - " display2="code"
-                                class="col4" items="guideAccountList" ng-model="store.sales_return"
+                            <i-list ng-search="$sales_return" display="name_##session.lang##" space=" - "
+                                display2="code" class="col4" items="guideAccountList" ng-model="store.sales_return"
                                 label="##word.sales_return##">
                             </i-list>
 
@@ -55,8 +60,8 @@
                                 label="##word.discount_allowed##">
                             </i-list>
 
-                            <i-list ng-search="$damage_store" display="name_##session.lang##" space=" - " display2="code"
-                                class="col4" items="guideAccountList" ng-model="store.damage_store"
+                            <i-list ng-search="$damage_store" display="name_##session.lang##" space=" - "
+                                display2="code" class="col4" items="guideAccountList" ng-model="store.damage_store"
                                 label="##word.damage_store##">
                             </i-list>
 

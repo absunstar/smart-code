@@ -31,7 +31,7 @@ module.exports = function init(site) {
           message: add_message,
           value: {
             name: result.doc.name,
-             code: result.doc.code,
+            code: result.doc.code,
             en: result.doc.name_en,
             ar: result.doc.name_ar
           },
@@ -74,7 +74,7 @@ module.exports = function init(site) {
           message: delete_message,
           value: {
             name: result.doc.name,
-             code: result.doc.code,
+            code: result.doc.code,
             en: result.doc.name_en,
             ar: result.doc.name_ar
           },

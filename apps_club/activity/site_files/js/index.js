@@ -210,7 +210,7 @@ app.controller("activity", function ($scope, $http, $timeout) {
         method: "POST",
         url: "/api/activity/all",
         data: {
-          where: { name: $scope.search_activity, complex_activity: false },
+          where: { name: $scope.search_activity, complex_activity: { $ne: true } },
           select: { id: 1, name_ar: 1, name_en: 1, code: 1, activities_price: 1, complex_activities_list: 1, attend_count: 1 }
         }
       }).then(
@@ -235,7 +235,8 @@ app.controller("activity", function ($scope, $http, $timeout) {
 
     if ($scope.selectedActivity && $scope.selectedActivity.id) {
       $scope.selectedActivity.count = 1;
-      $scope.activity.complex_activities_list.unshift($scope.selectedActivity);
+      $scope.selectedActivity.total_attend_count = $scope.selectedActivity.attend_count;
+      $scope.activity.complex_activities_list.unshift(Object.assign({}, $scope.selectedActivity));
     } else $scope.error = '##word.err_select_activity##';
 
     $scope.selectedActivity = {};
@@ -251,21 +252,23 @@ app.controller("activity", function ($scope, $http, $timeout) {
     $scope.error = '';
     $timeout(() => {
 
-      $scope.activity.total_complex_activities_price = 0;
-      $scope.activity.complex_activities_list.map(s => $scope.activity.total_complex_activities_price += Number(s.activities_price) * Number(s.count));
+      $scope.activity.complex_activ_price = 0;
+      $scope.activity.complex_activities_list.map(s => $scope.activity.complex_activ_price += Number(s.activities_price) * Number(s.count));
 
     }, 200);
   };
 
 
-  $scope.attendCalc = function (s) {
+  $scope.attendCalc = function () {
     $scope.error = '';
     $scope.activity.attend_count = 0;
+    $scope.activity.complex_activ_price = 0;
     $timeout(() => {
       if ($scope.activity.complex_activity) {
-        $scope.activity.complex_activities_list.forEach(s => {
-          s.total_attend_count = s.attend_count * s.count;
-          $scope.activity.attend_count += s.total_attend_count;
+        $scope.activity.complex_activities_list.forEach(_s => {
+          _s.total_attend_count = _s.attend_count * _s.count;
+          $scope.activity.attend_count += _s.total_attend_count;
+          $scope.activity.complex_activ_price += Number(_s.activities_price) * Number(_s.count)
         });
       }
     }, 100);

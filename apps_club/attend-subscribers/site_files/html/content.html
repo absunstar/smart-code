@@ -8,7 +8,7 @@
                         <i-control ng-hide="disabledCode" class="col2" label="##word.code##"
                             ng-model="attend_subscribers.code"></i-control>
 
-                        <i-control ng-keydown="getCustomerList($event)" id="service" class="col2"
+                        <i-control ng-keydown="getCustomerList($event)" id="activity" class="col2"
                             ng-model="search_customer" label="##word.search##" type="text"></i-control>
                         <i-list ng-search="_search.$customer" class="col4" display="name_##session.lang##" v="r"
                             ng-model="attend_subscribers.customer" label="##word.subscribers_name##"
@@ -21,24 +21,18 @@
                     <div class="row">
                         <div class="row" ng-show="attend_subscribers.customer.id">
                             <table class="table bold center hover">
+
                                 <tr>
                                     <td class="white bg_card"> ##word.customer_name## </td>
-                                    <td colspan="7" class="center">
-                                        {{attend_subscribers.customer.name_##session.lang##}}</td>
-                                </tr>
-                                <tr>
+                                    <td colspan="5" class="center"> {{attend_subscribers.customer.name_##session.lang##}}  <b class="red" ng-show="attend_subscribers.customer.child">(##word.child##)</b>
+                                    </td>
+                                 
                                     <td class="white bg_card"> ##word.gender## </td>
-                                    <td colspan="2" class="center">
-                                        {{attend_subscribers.customer.gender.##session.lang##}} </td>
-                                    <td class="white bg_card"> ##word.child## </td>
-                                    <td colspan="2" ng-show="attend_subscribers.customer.child == true">
-                                        <p class="green"> ##word.yes## </p>
+                                    <td colspan="2" class="center"> {{attend_subscribers.customer.gender.##session.lang##}}
                                     </td>
-                                    <td colspan="2" ng-show="!attend_subscribers.customer.child">
-                                        <p class="red"> ##word.no## </p>
-                                    </td>
-                                    <td colspan="2"></td>
+
                                 </tr>
+
 
                                 <tr>
                                     <td class="white bg_card"> ##word.weight## </td>

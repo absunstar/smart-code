@@ -187,7 +187,7 @@
                                 <span x-permissions="tasks_manage">
                                     ##word.under_way_appointment##
                                     <p ng-repeat="user in c.developerList" ng-show="c.appointment_status.id === 1"  x-permissions="tasks_manage">
-                                        {{user.name_##session.lang##}}
+                                        {{user.name}}
                                         <i-button type="view" label="##word.accept##" ng-click="acceptToTask(c,user)">
                                         </i-button>
 

@@ -10,7 +10,6 @@ app.controller("attend_employees", function ($scope, $http, $timeout, $interval)
           image_url: '/images/attend_employees.png',
           date: new Date()
         };
-      
         site.showModal('#attendEmployeesAddModal');
       } else $scope.error = '##word.open_shift_not_found##';
     });
@@ -271,7 +270,9 @@ app.controller("attend_employees", function ($scope, $http, $timeout, $interval)
           if (response.data.done) {
 
             if (ev === 'searchAll') {
+
               $scope.attend_employees.attend_list = response.data.list;
+
             } else if (ev.which === 13) {
               $scope.employeesList = response.data.list;
             }
@@ -366,19 +367,23 @@ app.controller("attend_employees", function ($scope, $http, $timeout, $interval)
   };
 
 
-  $scope.selectEmployee = function (c) {
+  $scope.selectEmployee = function () {
+    if($scope.select_employee){
+
     let found = false;
-    if ($scope.attend_employees.attend_list && $scope.attend_employees.attend_list.length > 0) {
-      found = $scope.attend_employees.attend_list.some(_al => c.id == _al.employee.id);
-    } else {
-      $scope.attend_employees.attend_list = []
-    }
+    $scope.attend_employees.attend_list = $scope.attend_employees.attend_list || [];
+
+    found = $scope.attend_employees.attend_list.some(_al => $scope.select_employee.employee.id == _al.employee.id);
 
     if (!found)
-      $scope.attend_employees.attend_list.push(c);
+      $scope.attend_employees.attend_list.push($scope.select_employee);
 
     $scope.search_employee = '';
-    $scope.attend_employees.employee = {};
+    $scope.select_employee = undefined;
+    $scope.employeesList = [];
+
+  }
+
   };
 
 

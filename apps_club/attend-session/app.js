@@ -147,17 +147,17 @@ module.exports = function init(site) {
             customerId: attend_doc.doc.customer.id
           }
 
-          let service_obj = {
-            service: attend_doc.doc.service,
+          let activity_obj = {
+            activity: attend_doc.doc.activity,
             trainer: attend_doc.doc.trainer,
             attend_date: attend_doc.doc.attend_date,
-            attend: attend_doc.doc.attend,
+            attend_time: attend_doc.doc.attend_time,
             leave_date: attend_doc.doc.leave_date,
-            leave: attend_doc.doc.leave,
+            leave_time: attend_doc.doc.leave_time,
           }
 
           site.call('[attend_session][busy][+]', busy_obj)
-          site.call('[attend_session][attend_request][+]', service_obj)
+          site.call('[attend_session][attend_request][+]', activity_obj)
         } else {
           response.error = 'Code Already Exist'
         }

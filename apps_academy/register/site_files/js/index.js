@@ -24,7 +24,7 @@ app.controller("register", function ($scope, $http, $timeout) {
       return;
     };
     if ($scope.academy.academy_password != $scope.academy.academy_password_return) {
-      $scope.error = "##word.password_err##";
+      $scope.error = "##word.password_err_match##";
       return;
     };
     $scope.busy = true;

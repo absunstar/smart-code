@@ -171,7 +171,8 @@
             "report_payable_vendors_manage",
             "report_doctors_visits_manage",
             "vehicles_manage",
-            "vehicles_types_manage"
+            "vehicles_types_manage",
+            "ecommerce_setting_manage"
         ]
     }
 ]

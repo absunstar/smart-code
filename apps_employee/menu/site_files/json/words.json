@@ -92,7 +92,7 @@
     {
         "name": "menu_settings",
         "en": "Setting",
-        "ar": "الاعدادت"
+        "ar": "الإعدادت"
     },
     {
         "name": "menu_setting_tag",
@@ -748,12 +748,12 @@
     },
     {
         "name": "system_in_out_names_menus",
-        "en": "Amounts In & Amounts Out Names",
+        "en": "Amounts In & Out Names",
         "ar": "مسميات الوارد والمنصرف"
     },
     {
         "name": "system_in_out_names",
-        "en": "Add Amounts In and Amounts Out Names",
+        "en": "Add Amounts In & Out Names",
         "ar": "إضافة مسميات الوارد والمنصرف"
     },
     {

@@ -51,7 +51,7 @@ app.controller('register', function ($scope, $http) {
       return;
     };
     if ($scope.customer.password != $scope.customer.password_return) {
-      $scope.error = "##word.password_err##";
+      $scope.error = "##word.password_err_match##";
       $scope.busy = false;
       return;
     };
@@ -150,14 +150,15 @@ app.controller('register', function ($scope, $http) {
   };
 
 
-  $scope.getGovList = function (where) {
+  $scope.getGovList = function (companyId) {
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/goves/all",
       data: {
         where: {
-          active: true
+          active: true,
+          'company.id': companyId
         },
         select: { id: 1, name_ar: 1, name_en: 1, code: 1 }
       }
@@ -250,5 +251,4 @@ app.controller('register', function ($scope, $http) {
 
 
   $scope.getCompanyList();
-  $scope.getGovList();
 });

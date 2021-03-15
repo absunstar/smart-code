@@ -64,7 +64,7 @@ app.controller("in_out_names", function ($scope, $http) {
           site.hideModal('#addInOutNameModal');
           $scope.loadAll();
         } else {
-          $scope.error = '##word.error##';
+          $scope.error = response.data.error;
           if (response.data.error.like('*Must Enter Code*')) {
             $scope.error = "##word.must_enter_code##"
           }

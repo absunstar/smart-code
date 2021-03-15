@@ -54,7 +54,7 @@ module.exports = function init(site) {
                   request_activities_list.push({
                     activity_name_ar: _request_activity.activity_name_ar,
                     activity_name_en: _request_activity.activity_name_en,
-                    complex_service: _request_activity.selectedServicesList,
+                    complex_activity: _request_activity.selected_activities_list,
                     date_from: _request_activity.date_from,
                     date_to: _request_activity.date_to,
                     time_from: _request_activity.time_from,
@@ -68,9 +68,9 @@ module.exports = function init(site) {
 
 
               request_activities_list.forEach(_request_activities => {
-                if (_request_activities.complex_service && _request_activities.complex_service.length > 0) {
+                if (_request_activities.complex_activity && _request_activities.complex_activity.length > 0) {
                   let total_remain = 0;
-                  _request_activities.complex_service.map(_complex_service => total_remain += _complex_service.remain)
+                  _request_activities.complex_activity.map(_complex_activity => total_remain += _complex_activity.remain)
                   _request_activities.remain = total_remain
                 }
 
@@ -95,7 +95,7 @@ module.exports = function init(site) {
                 attend: attend_time,
                 company: customerCb.company,
                 branch: customerCb.branch,
-                service_list: request_activities_list,
+                activity_list: request_activities_list,
                 modifiy: new Date().getTime()
               });
             });
@@ -177,7 +177,7 @@ module.exports = function init(site) {
             request_activities_list.unshift({
               activity_name_ar: _request_activity.activity_name_ar,
               activity_name_en: _request_activity.activity_name_en,
-              complex_service: _request_activity.selectedServicesList,
+              complex_activity: _request_activity.selected_activities_list,
               date_from: _request_activity.date_from,
               date_to: _request_activity.date_to,
               time_from: _request_activity.time_from,
@@ -190,9 +190,9 @@ module.exports = function init(site) {
 
 
         request_activities_list.forEach(_request_activities => {
-          if (_request_activities.complex_service && _request_activities.complex_service.length > 0) {
+          if (_request_activities.complex_activity && _request_activities.complex_activity.length > 0) {
             let total_remain = 0;
-            _request_activities.complex_service.map(_complex_service => total_remain += _complex_service.remain)
+            _request_activities.complex_activity.map(_complex_activity => total_remain += _complex_activity.remain)
             _request_activities.remain = total_remain
           }
 
@@ -205,7 +205,7 @@ module.exports = function init(site) {
           });
         });
 
-        attend_subscribers_doc.service_list = request_activities_list
+        attend_subscribers_doc.activity_list = request_activities_list
 
         let num_obj = {
           company: site.get_company(req),
@@ -418,9 +418,9 @@ module.exports = function init(site) {
       if (!err) {
         response.done = true
         docs.forEach(_doc => {
-          _doc.service_list.forEach(_serviceList => {
-            let gifTime = Math.abs(new Date() - new Date(_serviceList.date_to))
-            _serviceList.ex_service = Math.ceil(gifTime / (1000 * 60 * 60 * 24))
+          _doc.activity_list.forEach(_activityList => {
+            let gifTime = Math.abs(new Date() - new Date(_activityList.date_to))
+            _activityList.ex_activity = Math.ceil(gifTime / (1000 * 60 * 60 * 24))
 
           });
         });

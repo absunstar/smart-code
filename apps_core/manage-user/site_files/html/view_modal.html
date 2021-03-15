@@ -13,7 +13,7 @@
             <div class="row">
 
                 <div class="col4"></div>
-                <div class="col4">
+                <div class="col4 center">
 
                     <i-image ng-show="viewText === 'logo'" ng-model="manage_user.profile.image_url">
                     </i-image>
@@ -39,23 +39,49 @@
                     <i-control ng-show="viewText === 'mobile'" label="##word.mobile##" ng-model="manage_user.mobile">
                     </i-control>
 
+                    <i-control v="r" ng-show="viewText === 'password'" type="password" label="##word.current_password##"
+                        ng-model="manage_user.current_password">
+                    </i-control>
+
+
                 </div>
                 <div class="col4"></div>
+
+            </div>
+
+            <div class="row center" ng-show="viewText === 'password'">
+                <div class="col2"></div>
+                <i-control v="r" class="col4" type="password" label="##word.new_password##"
+                    ng-model="manage_user.new_password">
+                </i-control>
+
+                <i-control v="r" class="col4" type="password" label="##word.security_user_password_return##"
+                    ng-model="manage_user.re_password">
+                </i-control>
 
             </div>
         </div>
 
         <div class="modal-footer center">
             <h2 class="error"> {{error}} </h2>
-            <div class="row">
+            <div class="row center">
 
-                <i-button type="save" ng-show="viewText === 'logo'" label="##word.save##" ng-click="saveEditUser()"></i-button>
-                <i-button type="save" ng-show="viewText === 'name'" label="##word.save##" ng-click="saveEditUser()"></i-button>
-                <i-button type="save" ng-show="viewText === 'birth_date'" label="##word.save##" ng-click="saveEditUser()"></i-button>
-                <i-button type="save" ng-show="viewText === 'gender'" label="##word.save##" ng-click="saveEditUser()"></i-button>
-                <i-button type="save" ng-show="viewText === 'email'" label="##word.save##" ng-click="saveEditUser()"></i-button>
-                <i-button type="save" ng-show="viewText === 'phone'" label="##word.save##" ng-click="saveEditUser()"></i-button>
-                <i-button type="save" ng-show="viewText === 'mobile'" label="##word.save##" ng-click="saveEditUser()"></i-button>
+                <i-button type="save" ng-show="viewText === 'password'" label="##word.save##"
+                    ng-click="editManageUser('password')"></i-button>
+                <i-button type="save" ng-show="viewText === 'logo'" label="##word.save##"
+                    ng-click="editManageUser('logo')"></i-button>
+                <i-button type="save" ng-show="viewText === 'name'" label="##word.save##"
+                    ng-click="editManageUser('name')"></i-button>
+                <i-button type="save" ng-show="viewText === 'birth_date'" label="##word.save##"
+                    ng-click="editManageUser('birth_date')"></i-button>
+                <i-button type="save" ng-show="viewText === 'gender'" label="##word.save##"
+                    ng-click="editManageUser('gender')"></i-button>
+                <i-button type="save" ng-show="viewText === 'email'" label="##word.save##"
+                    ng-click="editManageUser('email')"></i-button>
+                <i-button type="save" ng-show="viewText === 'phone'" label="##word.save##"
+                    ng-click="editManageUser('phone')"></i-button>
+                <i-button type="save" ng-show="viewText === 'mobile'" label="##word.save##"
+                    ng-click="editManageUser('mobile')"></i-button>
                 <i-button type="close" label="##word.close##" onclick="site.hideModal( '#viewManageUserModal')">
                 </i-button>
 

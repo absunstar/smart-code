@@ -250,8 +250,7 @@ app.controller("attend_session", function ($scope, $http, $timeout) {
         method: "POST",
         url: "/api/request_activity/all_session",
         data: {
-          search: $scope.attend_session.customer,
-          select: { id: 1, customer: 1, service_id: 1, selectedServicesList: 1, service_name_ar: 1, name_en: 1 }
+          search: $scope.attend_session.customer
         }
       }).then(
         function (response) {
@@ -304,7 +303,7 @@ app.controller("attend_session", function ($scope, $http, $timeout) {
   $scope.attendNow = function () {
     $scope.attend_session.attend_date = new Date();
 
-    $scope.attend_session.attend = {
+    $scope.attend_session.attend_time = {
       hour: new Date().getHours(),
       minute: new Date().getMinutes()
     };
@@ -312,7 +311,7 @@ app.controller("attend_session", function ($scope, $http, $timeout) {
 
   $scope.leaveNow = function (attend_session) {
     attend_session.leave_date = new Date();
-    attend_session.leave = {
+    attend_session.leave_time = {
       hour: new Date().getHours(),
       minute: new Date().getMinutes()
     };

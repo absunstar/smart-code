@@ -45,7 +45,7 @@ app.controller("report_subscribers", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getReportServicesList = function (where) {
+  $scope.getReportActivitiesList = function (where) {
     $scope.busy = true;
     $scope.list = [];
     $scope.count = 0;
@@ -142,14 +142,14 @@ app.controller("report_subscribers", function ($scope, $http, $timeout) {
   $scope.searchAll = function () {
     $scope._search = {};
 
-    $scope.getReportServicesList($scope.search);
+    $scope.getReportActivitiesList($scope.search);
     if ($scope.search)
       $scope.customer = $scope.search.customer;
     $scope.search = {};
-    site.hideModal('#report-info');
+    site.hideModal('#reportSubscriberSearchModal');
   };
 
-  $scope.getReportServicesList({ date: new Date() });
+  $scope.getReportActivitiesList({ date: new Date() });
   $scope.getPaymentMethodList();
   $scope.getSourceType();
   $scope.getTrainerList();

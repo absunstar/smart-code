@@ -10,7 +10,7 @@
     {"name" : "security_user_name" , "en" : "Name" , "ar":"الأسم"},
     {"name" : "security_user_male" , "en" : "Male" , "ar":"ذكر"},
     {"name" : "security_user_female" , "en" : "Female" , "ar":"أنثى"},
-    {"name": "password_err","en": "password does not match","ar": "كلمة السر غير متطابقة"},
+    {"name": "password_err_match","en": "password does not match","ar": "كلمة السر غير متطابقة"},
     {"name" : "security_user_mobile" , "en" : "Mobile" , "ar":"رقم الموبيل"},
     {"name" : "security_logo" , "en" : "Logo" , "ar":"الشعار"},
     {"name" : "security_entry" , "en" : "Entry" , "ar":"دخول"},

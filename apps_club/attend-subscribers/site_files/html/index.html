@@ -88,65 +88,65 @@
                                 <table class="table bold center hover">
 
                                     <tr>
-                                        <th>##word.service##</th>
+                                        <th>##word.activity##</th>
                                         <th>##word.date_from##</th>
                                         <th>##word.expired_date##</th>
-                                        <th>##word.complex_services##</th>
-                                        <th>##word.service_remain##</th>
+                                        <th>##word.complex_activitys##</th>
+                                        <th>##word.activity_remain##</th>
                                         <th>##word.invoice_remain##</th>
                                     </tr>
 
-                                    <tr ng-repeat="service in c.service_list" ng-class="{
-                                        bg_skyblue : service.ex_service >= 7,
-                                        bg_LawnGreen : service.ex_service == 6 || service.ex_service == 5,
-                                        bg_Gold : service.ex_service == 4 || service.ex_service == 3,
-                                        bg_tomato : service.ex_service == 2 || service.ex_service == 1,
+                                    <tr ng-repeat="activity in c.activity_list" ng-class="{
+                                        bg_skyblue : activity.ex_activity >= 7,
+                                        bg_LawnGreen : activity.ex_activity == 6 || activity.ex_activity == 5,
+                                        bg_Gold : activity.ex_activity == 4 || activity.ex_activity == 3,
+                                        bg_tomato : activity.ex_activity == 2 || activity.ex_activity == 1,
                                         }">
                                         <td>
-                                            <br ng-show="service.complex_service.length > 0">
-                                            {{service.service_name_##session.lang##}}
+                                            <br ng-show="activity.complex_activity.length > 0">
+                                            {{activity.activity_name_##session.lang##}}
                                         </td>
 
                                         <td class="center brown">
-                                            <br ng-show="service.complex_service.length > 0">
-                                            {{service.date_from | date : 'yyyy - MM - dd'}}
-                                            <p class="center green"> {{service.time_from.minute}} :
-                                                {{service.time_from.hour}}
+                                            <br ng-show="activity.complex_activity.length > 0">
+                                            {{activity.date_from | date : 'yyyy - MM - dd'}}
+                                            <p class="center green"> {{activity.time_from.minute}} :
+                                                {{activity.time_from.hour}}
                                             </p>
                                         </td>
 
                                         <td class="center brown">
-                                            <br ng-show="service.complex_service.length > 0">
-                                            {{service.date_to | date : 'yyyy - MM - dd'}}
+                                            <br ng-show="activity.complex_activity.length > 0">
+                                            {{activity.date_to | date : 'yyyy - MM - dd'}}
                                             <p class="center green">
-                                                {{service.time_to.minute}} :
-                                                {{service.time_to.hour}}
+                                                {{activity.time_to.minute}} :
+                                                {{activity.time_to.hour}}
                                             </p>
                                         </td>
 
                                         <td>
                                             <table class="table bold center hover"
-                                                ng-show="service.complex_service.length > 0">
+                                                ng-show="activity.complex_activity.length > 0">
                                                 <tr>
-                                                    <th>##word.service##</th>
-                                                    <th>##word.service_remain##</th>
+                                                    <th>##word.activity##</th>
+                                                    <th>##word.activity_remain##</th>
                                                 </tr>
 
-                                                <tr ng-repeat="complex_service in service.complex_service">
-                                                    <td class="center bold blue">{{complex_service.name_##session.lang##}}</td>
-                                                    <td class="center bold">{{complex_service.remain}}</td>
+                                                <tr ng-repeat="complex_activity in activity.complex_activity">
+                                                    <td class="center bold blue">{{complex_activity.name_##session.lang##}}</td>
+                                                    <td class="center bold">{{complex_activity.remain}}</td>
                                                 </tr>
                                             </table>
 
                                         </td>
 
                                         <td class="center bold ">
-                                            <br ng-show="service.complex_service.length > 0">
-                                            {{service.remain}}
+                                            <br ng-show="activity.complex_activity.length > 0">
+                                            {{activity.remain}}
                                         </td>
                                         <td>
-                                            <br ng-show="service.complex_service.length > 0">
-                                            {{service.invoice_remain || 0}}
+                                            <br ng-show="activity.complex_activity.length > 0">
+                                            {{activity.invoice_remain || 0}}
                                         </td>
                                     </tr>
                                 </table>

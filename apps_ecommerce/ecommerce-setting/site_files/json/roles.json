@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "ecommerce_setting_admin",
+    "en": "Ecommerce Setting Admin",
+    "ar": "إدارة إعدادات المتجر",
+    "permissions": ["ecommerce_setting_manage"]
+}]

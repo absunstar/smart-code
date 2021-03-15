@@ -21,10 +21,11 @@
                         <i-control ng-keydown="searchEmployees($event)" id="service" class="col2"
                             ng-model="search_employee" label="##word.search##" type="text"></i-control>
 
-                        <i-list ng-search="_search.$employee" class="col4" display="employee.name"
-                        display="name_##session.lang##" ng-change="selectEmployee(attend_employees.employee)" ng-model="attend_employees.employee"
+                        <i-list ng-search="_search.$employee" class="col4"
+                        display="employee.name_##session.lang##" ng-change="selectEmployee()" ng-model="select_employee"
                             label="##word.employee_name##" items="employeesList">
                         </i-list>
+
                         <div class="col1"></div>
 
                         <i-button label="##word.search_employees##" class="col2" type="search"
@@ -48,18 +49,23 @@
                             </tr>
 
                             <tr ng-repeat="att_stu in attend_employees.attend_list">
+
                                 <td class="center  blue">
                                     {{$index + 1}}
                                 </td>
+
                                 <td class="not-print">
                                     <i-image view class="logo" ng-model="att_stu.employee.image_url"></i-image>
                                 </td>
+
                                 <td class="center title">{{att_stu.employee.name_##session.lang##}}</td>
 
                                 <td class="center title">
+
                                     <i-button type="add" ng-hide="att_stu.status" label="##word.attend##"
                                         ng-click="attendNow(att_stu,'attend')">
                                     </i-button>
+
                                     <i-button type="exit" ng-hide="att_stu.status" label="##word.absence##"
                                         ng-click="attendNow(att_stu,'absence');">
                                     </i-button>
@@ -67,9 +73,11 @@
                                     <h3 class="green center bold" ng-show="att_stu.status.name == 'attend'">
                                         {{att_stu.status.##session.lang##}}
                                     </h3>
+
                                     <h3 class="red center bold" ng-show="att_stu.status.name == 'absence'">
                                         {{att_stu.status.##session.lang##}}
                                     </h3>
+
                                 </td>
 
                                 <td class="center">

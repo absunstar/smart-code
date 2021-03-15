@@ -59,7 +59,6 @@ app.controller("manage_user", function ($scope, $http) {
 
             });
 
-          console.log($scope.manage_user);
         } else {
           $scope.manage_user = {};
         }
@@ -71,17 +70,52 @@ app.controller("manage_user", function ($scope, $http) {
     )
   };
 
-  $scope.saveManageUser = function (where) {
+  $scope.editManageUser = function (type) {
     $scope.busy = true;
+
+    const v = site.validated('#viewManageUserModal');
+    if (!v.ok && type == 'password') {
+      $scope.error = v.messages[0].ar;
+      return;
+    };
+
     $http({
       method: "POST",
-      url: "/api/manage_user/save",
-      data: $scope.manage_user
+      url: "/api/manage_user/update",
+      data: {
+        user: $scope.manage_user,
+        type: type,
+      }
     }).then(
       function (response) {
         $scope.busy = false;
-        if (!response.data.done) {
-          $scope.error = response.data.error
+        if (response.data.done) {
+          $scope.busy = false;
+          site.hideModal('#viewManageUserModal');
+
+          $scope.login(response.data.doc);
+
+        } else {
+          $scope.error = response.data.error;
+          if (response.data.error.like('*Must Enter Code*')) {
+            $scope.error = "##word.must_enter_code##"
+
+          } else if (response.data.error.like('*maximum number of adds exceeded*')) {
+            $scope.error = "##word.err_maximum_adds##"
+
+          } else if (response.data.error.like('*mail must be typed correctly*')) {
+            $scope.error = "##word.err_username_contain##"
+
+          } else if (response.data.error.like('*User Is Exist*')) {
+            $scope.error = "##word.user_exists##"
+
+          } else if (response.data.error.like('*Password does not match*')) {
+            $scope.error = "##word.password_err_match##"
+
+          } else if (response.data.error.like('*Current Password Error*')) {
+            $scope.error = "##word.current_password_incorrect##"
+          }
+
         }
 
       },
@@ -90,6 +124,57 @@ app.controller("manage_user", function ($scope, $http) {
         $scope.error = err;
       }
     )
+  };
+
+  $scope.login = function (u) {
+    $scope.error = '';
+
+    $scope.busy = true;
+
+    $http({
+      method: 'POST',
+      url: '/api/user/login',
+      data: {
+        $encript: '123',
+        email: site.to123(u.email),
+        password: site.to123(u.password),
+        company: site.to123({
+          id: u.company.id,
+          name_ar: u.company.name_ar,
+          name_en: u.company.name_en,
+          item: u.company.item,
+          store: u.company.store,
+          unit: u.company.unit,
+          currency: u.company.currency,
+          users_count: u.company.users_count,
+          customers_count: u.company.customers_count,
+          employees_count: u.company.employees_count,
+          host: u.company.host,
+        }),
+        branch: site.to123({
+          code: u.branch.code,
+          name_ar: u.branch.name_ar,
+          name_en: u.branch.name_en,
+        }),
+      },
+    }).then(
+      function (response) {
+        console.log(response.data, "xxxxxxxxxxxxxxxxx");
+
+        if (response.data.error) {
+          $scope.error = response.data.error;
+          $scope.busy = false;
+        }
+        if (response.data.done) {
+          console.log("dddddddddddddddddd");
+          window.location.reload(true);
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      },
+    );
   };
 
   $scope.getGender = function () {
@@ -113,6 +198,7 @@ app.controller("manage_user", function ($scope, $http) {
   };
 
   $scope.view = function (type) {
+    $scope.error = '';
     $scope.viewText = type;
     site.showModal('#viewManageUserModal');
   };

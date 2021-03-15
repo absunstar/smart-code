@@ -400,7 +400,7 @@
 
       <a class="tab-link" x-features="academy || club" href="/activity" x-permissions="activity_ui || activity_manage">
         <img src="/images/activity.png" />
-        <span> ##word.activity_management##</span>
+        <span> ##word.activities##</span>
       </a>
 
       <a class="tab-link" href="/hall" x-features="club || academy || school" x-permissions="hall_ui || hall_manage">
@@ -526,7 +526,7 @@
       <a class="tab-link" x-features="club" href="/account_invoices?type=4"
         x-permissions="account_invoices_ui || account_invoices_manage">
         <img src="/images/club_invioce.png" />
-        <span>##word.orders_activity_invoice## </span>
+        <span>##word.request_activity_management## </span>
       </a>
 
       <a class="tab-link" href="/account_invoices?type=1"
@@ -827,7 +827,7 @@
 
       <a x-features="club || school" class="tab-link" href="/trainer" x-permissions="trainer_ui || trainer_manage">
         <img src="images/trainer.png" />
-        <span> ##word.trainer##</span>
+        <span> ##word.trainers##</span>
       </a>
 
       <div class="" x-features="restaurant || pos || erp">
@@ -969,8 +969,7 @@
           <span>##word.report_requests_name##</span>
         </a>
 
-        <a class="tab-link" href="/report_invoices?type=4"
-          x-permissions="report_invoices_ui || report_invoices_manage">
+        <a class="tab-link" href="/report_invoices?type=4" x-permissions="report_invoices_ui || report_invoices_manage">
           <img src="/images/activity.png" />
           <span>##word.report## ##word.orders_activity_invoice## </span>
         </a>
@@ -1331,7 +1330,7 @@
 
       <a class="tab-link" x-features="academy || club" href="/activity" x-permissions="activity_ui || activity_manage">
         <img src="/images/activity.png" />
-        <span> ##word.activity##</span>
+        <span> ##word.activities##</span>
       </a>
 
       <a class="tab-link" href="/hall" x-features="club || academy || school" x-permissions="hall_ui || hall_manage">
@@ -1462,6 +1461,13 @@
 
   <div id="main_tabs" class="tabs">
     <div class="tabs-header">
+
+      <!-- <a class="tab-link" href="/ecommerce_setting" x-permissions=" ecommerce_setting_ui ||
+        ecommerce_setting_manage">
+        <img src="/images/ecommerce_setting.png" />
+        <span>##word.ecommerce_setting##</span>
+      </a> -->
+
       <div ng-hide="'##user.type##' == 'customer' || '##user.type##' == 'table' || '##user.type##' == 'delegate'">
         <a class="tab-link" onclick="site.showTabs(event, '#company_tabs')">
           <img src="/images/main.png" />

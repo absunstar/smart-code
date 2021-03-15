@@ -9,12 +9,10 @@ module.exports = function init(site) {
     compress: true
   })
 
-
   site.post({
     name: '/api/stores/types/all',
     path: __dirname + '/site_files/json/types.json'
   })
-
 
 
   site.on('[company][created]', doc => {

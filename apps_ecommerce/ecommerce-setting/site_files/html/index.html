@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+
+<html lang="en" data-ng-app="myApp" class="bg-white" x-permissions="ecommerce_setting_ui || ecommerce_setting_manage">
+
+<head x-import="head.html">
+</head>
+
+<body style="background : white" class=" ##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+
+    <div id="main-layout" class="container loaded" ng-controller="ecommerce_setting">
+
+        <div x-import="ecommerce-setting/products.html"></div>
+        <div x-import="ecommerce-setting/products_groups.html"></div>
+
+        <div class="row ">
+
+            <br>
+            <h1 class="center bold black"> ##word.ecommerce_setting## </h1>
+            <br>
+
+            <div class="row">
+                <div class="tabs inline-block">
+
+                    <div class="tabs-header">
+                        <a class="tab-link" onclick="site.showTabContent(event, '#products')">
+                            ##word.products## </a>
+
+                        <a class="tab-link" onclick="site.showTabContent(event, '#products_groups')">
+                            ##word.products_groups## </a>
+                    </div>
+
+
+                    <div class="tabs-content">
+
+                        <div id="products" class="tab-content">
+                            <div class="top-actions">
+                                <h3 class="bold text-center"> ##word.count## : {{productsCount}}</h3>
+
+                                <i-button x-permissions="ecommerce_setting_add || ecommerce_setting_manage" type="add"
+                                    label="##word.product_new##" ng-click="displayAddProduct()"></i-button>
+
+                                <i-button x-permissions="ecommerce_setting_search || ecommerce_setting_manage"
+                                    type="search" label="##word.search_all##" ng-click="displayProductSearchModal()">
+                                </i-button>
+                            </div>
+
+                            <div class="row">
+
+                                <table x-permissions="login" class="table hover bold loaded">
+                                    <tr>
+                                        <th class="not-print">##word.logo##</th>
+                                        <th>##word.code##</th>
+                                        <th>##word.the_name##</th>
+                                        <th>##word.products_group##</th>
+                                        <th>##word.status##</th>
+                                        <th class="not-print">##word.actions##</th>
+                                    </tr>
+
+                                    <tr ng-repeat="c in productsList">
+
+                                        <td class="center not-print">
+                                            <i-image view class="logo" ng-model="c.image_url"></i-image>
+                                        </td>
+
+                                        <td class="center userPrint blue">{{c.code}}</td>
+                                        <td class="center title">{{c.name_##session.lang##}}</td>
+                                        <td class="center title">{{c.products_group.name_##session.lang##}}</td>
+                                        <td class="center">
+                                            <p ng-show="c.active ==true" class="green"> ##word.active## </p>
+                                            <p ng-show="c.active ==false" class="red"> ##word.not_active## </p>
+                                        </td>
+
+                                        <td class="center not-print">
+                                            <i-button x-permissions="ecommerce_setting_view || ecommerce_setting_manage"
+                                                type="view" label="##word.details##"
+                                                ng-click="displayDetailsProduct(c)"></i-button>
+
+                                            <i-button
+                                                x-permissions="ecommerce_setting_update || ecommerce_setting_manage"
+                                                type="edit" label="##word.edit##" ng-click="displayUpdateProduct(c)">
+                                            </i-button>
+
+                                            <i-button
+                                                x-permissions="ecommerce_setting_delete || ecommerce_setting_manage"
+                                                type="delete" label="##word.delete##"
+                                                ng-click="displayDeleteProduct(c)"></i-button>
+                                        </td>
+                                    </tr>
+                                </table>
+
+
+                            </div>
+
+                            <i-button type="ecommerce left" fa="2x fa-angle-double-left"
+                                onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
+                        </div>
+
+                        <div id="products_groups" class="tab-content">
+                            <div class="top-actions">
+                                <h3 class="bold text-center"> ##word.count## : {{productsGroupsCount}}</h3>
+
+                                <i-button x-permissions="ecommerce_setting_add || ecommerce_setting_manage" type="add"
+                                    label="##word.products_group_new##" ng-click="displayAddProductGroup()"></i-button>
+
+                                <i-button x-permissions="ecommerce_setting_search || ecommerce_setting_manage"
+                                    type="search" label="##word.search_all##"
+                                    ng-click="displayProductGroupSearchModal()">
+                                </i-button>
+                            </div>
+
+                            <div class="row">
+
+                                <table x-permissions="login" class="table hover bold loaded">
+                                    <tr>
+                                        <th class="not-print">##word.logo##</th>
+                                        <th>##word.code##</th>
+                                        <th>##word.the_name##</th>
+                                        <th>##word.status##</th>
+                                        <th class="not-print">##word.actions##</th>
+                                    </tr>
+
+                                    <tr ng-repeat="c in productsGroupsList">
+
+                                        <td class="center not-print">
+                                            <i-image view class="logo" ng-model="c.image_url"></i-image>
+                                        </td>
+
+                                        <td class="center userPrint blue">{{c.code}}</td>
+                                        <td class="center title">{{c.name_##session.lang##}}</td>
+                                        <td class="center">
+                                            <p ng-show="c.active ==true" class="green"> ##word.active## </p>
+                                            <p ng-show="c.active ==false" class="red"> ##word.not_active## </p>
+                                        </td>
+
+                                        <td class="center not-print">
+                                            <i-button x-permissions="ecommerce_setting_view || ecommerce_setting_manage"
+                                                type="view" label="##word.details##"
+                                                ng-click="displayDetailsProductGroup(c)"></i-button>
+
+                                            <i-button
+                                                x-permissions="ecommerce_setting_update || ecommerce_setting_manage"
+                                                type="edit" label="##word.edit##"
+                                                ng-click="displayUpdateProductGroup(c)">
+                                            </i-button>
+
+                                            <i-button
+                                                x-permissions="ecommerce_setting_delete || ecommerce_setting_manage"
+                                                type="delete" label="##word.delete##"
+                                                ng-click="displayDeleteProductGroup(c)"></i-button>
+                                        </td>
+                                    </tr>
+                                </table>
+
+
+                            </div>
+
+                            <i-button type="ecommerce left" fa="2x fa-angle-double-left"
+                                onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <br>
+            <br>
+            <br>
+
+        </div>
+    </div>
+
+
+    <div x-import="scripts.html"></div>
+    <script x-import="ecommerce-setting/index.js"></script>
+
+
+</body>
+
+
+</html>

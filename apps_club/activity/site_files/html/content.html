@@ -22,9 +22,9 @@
                         <i-control help-id="activities_price" type="number" v="r" class="col2"
                             label="##word.activities_price##" ng-model="activity.activities_price"></i-control>
 
-                        <i-control help-id="total_complex_activities_price" ng-show="activity.complex_activity"
-                            type="number" class="col3" disabled label="##word.total_complex_activities_price##"
-                            ng-model="activity.total_complex_activities_price"></i-control>
+                        <i-control help-id="complex_activ_price" ng-show="activity.complex_activity"
+                            type="number" class="col3" disabled label="##word.complex_activ_price##"
+                            ng-model="activity.complex_activ_price"></i-control>
 
                         <i-control ng-disabled="activity.complex_activity" help-id="attend_count" class="col2"
                             label="##word.attend_count##" type="number" ng-model="activity.attend_count"></i-control>
@@ -56,19 +56,19 @@
                         </div>
 
                         <div class="row" ng-show="activity.complex_activities_list.length > 0">
-                            <div class="col6">
+                            <div class="col10">
 
                                 <table class="table hover bold">
                                     <tr>
                                         <th>##word.activity_name##</th>
                                         <th>##word.activities_price##</th>
                                         <th>##word.attend_count##</th>
-                                        <th>##word.activity_count##</th>
+                                        <th class="w150">##word.activity_count##</th>
                                         <th>##word.total_attend_count##</th>
                                         <th>##word.actions##</th>
                                     </tr>
 
-                                    <tr class="bold" ng-repeat="s in activity.complex_activities_list">
+                                    <tr class="bold" ng-repeat="s in activity.complex_activities_list  track by $index">
 
                                         <td>
                                             <br>
@@ -86,7 +86,7 @@
                                         </td>
 
                                         <td>
-                                            <i-control ng-model="s.count" ng-change="calc() ; attendCalc(s)"
+                                            <i-control ng-model="s.count" ng-change="attendCalc(s)"
                                                 type="number"></i-control>
                                         </td>
 

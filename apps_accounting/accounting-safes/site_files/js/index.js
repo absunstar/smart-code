@@ -89,7 +89,7 @@ app.controller("safes", function ($scope, $http) {
           $scope.loadAll();
         }
 
-        else if (response.data.error.includes('duplicate')) {
+        else if (response.data.error.contains('duplicate')) {
 
           $scope.error = "##word.duplicate_alarm##";
         }

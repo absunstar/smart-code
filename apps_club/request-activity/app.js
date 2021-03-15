@@ -31,36 +31,41 @@ module.exports = function init(site) {
     $request_activity.findOne({
       where: { id: obj.activity.id }
     }, (err, doc) => {
+      if (doc) {
 
-      if (doc.complex_activities_list && doc.complex_activities_list.length > 0) {
-        doc.complex_activities_list.forEach(attend_activity => {
-          if (attend_activity.id == obj.activity.activity_id) {
-            attend_activity.current_attendance = attend_activity.current_attendance + 1;
-            attend_activity.remain = attend_activity.remain - 1;
-          }
-        });
-      } else {
-        doc.current_attendance = doc.current_attendance + 1;
-        doc.remain = doc.remain - 1;
+        if (doc.complex_activities_list && doc.complex_activities_list.length > 0) {
+          doc.complex_activities_list.forEach(attend_activity => {
+            if (attend_activity.id == obj.activity.activity_id) {
+              attend_activity.current_attendance = attend_activity.current_attendance + 1;
+              attend_activity.remain = attend_activity.remain - 1;
+            }
+          });
+        } else {
+          doc.current_attendance = doc.current_attendance + 1;
+          doc.remain = doc.remain - 1;
+        }
+        doc.attend_activity_list = doc.attend_activity_list || []
+        doc.attend_activity_list.unshift({
+          name_ar: obj.activity.name_ar,
+          name_en: obj.activity.name_en,
+          trainer_attend: obj.trainer,
+          attend_date: obj.attend_date,
+          attend_time: obj.attend_time,
+          leave_date: obj.leave_date,
+          leave_time: obj.leave_time,
+        })
+
+        if (!err && doc) $request_activity.edit(doc)
       }
-
-      doc.attend_activity_list.unshift({
-        name: obj.activity.name,
-        trainer_attend: obj.trainer,
-        attend_date: obj.attend_date,
-        attend_time: obj.attend_time,
-        leave_date: obj.leave_date,
-        leave_time: obj.leave_time,
-      })
-
-      if (!err && doc) $request_activity.edit(doc)
     })
+
   })
 
   site.on('[account_invoices][request_activity][+]', function (objId) {
     $request_activity.findOne({ id: objId }, (err, doc) => {
       if (doc) {
         doc.invoice = true
+        doc.invoice_id = objId
         $request_activity.update(doc);
       }
     });
@@ -127,7 +132,7 @@ module.exports = function init(site) {
     } else if (cb.auto) {
       request_activity_doc.code = cb.code;
     }
-    
+
 
     $request_activity.add(request_activity_doc, (err, doc) => {
       if (!err) {
@@ -256,22 +261,21 @@ module.exports = function init(site) {
     let search = req.body.search
 
     if (search) {
-      where.$or = []
       where.$or.push({
         'activity.name_ar': site.get_RegExp(search, "i")
-      },{
+      }, {
         'activity.name_en': site.get_RegExp(search, "i")
-      },{
+      }, {
         'customer.name_ar': site.get_RegExp(search, "i")
-      },{
+      }, {
         'customer.name_en': site.get_RegExp(search, "i")
-      },{
+      }, {
         'trainer.name_ar': site.get_RegExp(search, "i")
-      },{
+      }, {
         'trainer.name_en': site.get_RegExp(search, "i")
-      },{
+      }, {
         'hall.name_ar': site.get_RegExp(search, "i")
-      },{
+      }, {
         'hall.name_en': site.get_RegExp(search, "i")
       })
 
@@ -331,34 +335,32 @@ module.exports = function init(site) {
       delete where['hall']
     }
 
-    where.$or = []
 
-    if (where['activity_name']){
+    if (where['activity_name']) {
       where.$or.push({
         'activity_name_ar': site.get_RegExp(where['activity_name'], 'i'),
         'activity_name_en': site.get_RegExp(where['activity_name'], 'i')
       })
-    } 
+    }
 
-    if (where['customer']){
+    if (where['customer']) {
       where.$or.push({
         'customer.name_ar': site.get_RegExp(where['customer'], 'i'),
         'customer.name_en': site.get_RegExp(where['customer'], 'i')
       })
-    } 
+    }
 
-    if (where['trainer']){
+    if (where['trainer']) {
       where.$or.push({
         'trainer.name_ar': site.get_RegExp(where['trainer'], 'i'),
         'trainer.name_en': site.get_RegExp(where['trainer'], 'i')
       })
-    } 
-    
+    }
+
     if (where['code']) where['code'] = site.get_RegExp(where['code'], "i");
 
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
-
     $request_activity.findMany({
       select: req.body.select || {},
       where: where,
@@ -409,23 +411,27 @@ module.exports = function init(site) {
           let activities_list = []
           docs.forEach(request_activity => {
             if (request_activity.complex_activities_list && request_activity.complex_activities_list.length > 0) {
-              request_activity.complex_activities_list.forEach(selectedActivitys => {
-
-                activities_list.push({
-                  id: request_activity.id,
-                  name: selectedActivitys.name,
-                  general_activity_ar: request_activity.activity_name_ar,
-                  general_activity_en: request_activity.activity_name_en,
-                  activity_id: selectedActivitys.id
-                })
+              request_activity.complex_activities_list.forEach(selectedActivities => {
+                if (selectedActivities.remain) {
+                  activities_list.push({
+                    id: request_activity.id,
+                    name_ar: selectedActivities.name_ar,
+                    name_en: selectedActivities.name_en,
+                    general_activity_ar: request_activity.activity_name_ar,
+                    general_activity_en: request_activity.activity_name_en,
+                    activity_id: selectedActivities.id
+                  })
+                }
               });
             } else {
-              activities_list.push({
-                id: request_activity.id,
-                name_ar: request_activity.activity_name_ar,
-                name_en: request_activity.activity_name_en,
-                activity_id: request_activity.activity_id
-              })
+              if (request_activity.remain) {
+                activities_list.push({
+                  id: request_activity.id,
+                  name_ar: request_activity.activity_name_ar,
+                  name_en: request_activity.activity_name_en,
+                  activity_id: request_activity.activity_id
+                })
+              }
             }
 
           });

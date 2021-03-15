@@ -22,7 +22,7 @@
 
                                 <div class="row">
                                     <i-list v="r" label="##word.security_company##" ng-search="_search.$company_search"
-                                        display="name_##session.lang##" class="col4" items="company_list"
+                                       ng-change="customer.branch = {};getGovList(customer.company.id)" display="name_##session.lang##" class="col4" items="company_list"
                                         ng-model="customer.company">
                                     </i-list>
 

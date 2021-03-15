@@ -308,17 +308,17 @@ module.exports = function init(site) {
 
         if (customers_doc.username && customers_doc.password) {
 
-          if (!customers_doc.username.includes("@") && !customers_doc.username.includes(".")) {
+          if (!customers_doc.username.contains("@") && !customers_doc.username.contains(".")) {
             customers_doc.username = customers_doc.username + '@' + company.host;
 
           } else {
 
-            if (customers_doc.username.includes("@") && !customers_doc.username.includes(".")) {
+            if (customers_doc.username.contains("@") && !customers_doc.username.contains(".")) {
               response.error = 'Username must be typed correctly'
               res.json(response)
               return;
 
-            } else if (!customers_doc.username.includes("@") && customers_doc.username.includes(".")) {
+            } else if (!customers_doc.username.contains("@") && customers_doc.username.contains(".")) {
               response.error = 'Username must be typed correctly'
               res.json(response)
               return;
@@ -455,17 +455,17 @@ module.exports = function init(site) {
 
 
     if (customers_doc.username && customers_doc.password) {
-      if (!customers_doc.username.includes("@") && !customers_doc.username.includes(".")) {
+      if (!customers_doc.username.contains("@") && !customers_doc.username.contains(".")) {
         customers_doc.username = customers_doc.username + '@' + site.get_company(req).host;
 
       } else {
 
-        if (customers_doc.username.includes("@") && !customers_doc.username.includes(".")) {
+        if (customers_doc.username.contains("@") && !customers_doc.username.contains(".")) {
           response.error = 'Username must be typed correctly'
           res.json(response)
           return;
 
-        } else if (!customers_doc.username.includes("@") && customers_doc.username.includes(".")) {
+        } else if (!customers_doc.username.contains("@") && customers_doc.username.contains(".")) {
           response.error = 'Username must be typed correctly'
           res.json(response)
           return;
@@ -504,6 +504,8 @@ module.exports = function init(site) {
       branch: site.get_branch(req)
     }]
 
+
+
     site.security.isUserExists(user, function (err, user_found) {
       if (user_found) {
 
@@ -526,7 +528,6 @@ module.exports = function init(site) {
           if (!err) {
             response.done = true
             response.doc = result.doc
-            console.log(user);
 
             if (!result.doc.user_info && user.password && user.username) {
               site.security.addUser(user, (err, doc1) => {

@@ -95,9 +95,12 @@ module.exports = function init(site) {
       in_out_names_doc.code = cb.code;
     }
 
-    $in_out_names.add(in_out_names_doc, (err, _id) => {
+    $in_out_names.add(in_out_names_doc, (err, doc) => {
       if (!err) {
         response.done = true
+        response.doc = doc
+      } else {
+        response.error = err.message
       }
       res.json(response)
     })
