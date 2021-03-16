@@ -120,7 +120,7 @@ module.exports = function init(site) {
           // d.setMonth(1);
           let num_obj = {
             company: site.get_company(req),
-            screen: 'product',
+            screen: 'products',
             date: new Date()
           };
 

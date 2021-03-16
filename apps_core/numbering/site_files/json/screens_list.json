@@ -149,6 +149,20 @@
     {
         "category": "inventory",
         "feature": "pos",
+        "name": "products",
+        "en": "Products",
+        "ar": "المنتجات"
+    },
+    {
+        "category": "inventory",
+        "feature": "pos",
+        "name": "products_groups",
+        "en": "Products Groups",
+        "ar": "مجموعات المنتجات"
+    },
+    {
+        "category": "inventory",
+        "feature": "pos",
         "name": "stores",
         "en": "Stores",
         "ar": "المخازن"

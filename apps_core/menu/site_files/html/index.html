@@ -1462,11 +1462,11 @@
   <div id="main_tabs" class="tabs">
     <div class="tabs-header">
 
-      <!-- <a class="tab-link" href="/ecommerce_setting" x-permissions=" ecommerce_setting_ui ||
+      <a class="tab-link" x-features="pos" href="/ecommerce_setting" x-permissions=" ecommerce_setting_ui ||
         ecommerce_setting_manage">
         <img src="/images/ecommerce_setting.png" />
         <span>##word.ecommerce_setting##</span>
-      </a> -->
+      </a>
 
       <div ng-hide="'##user.type##' == 'customer' || '##user.type##' == 'table' || '##user.type##' == 'delegate'">
         <a class="tab-link" onclick="site.showTabs(event, '#company_tabs')">

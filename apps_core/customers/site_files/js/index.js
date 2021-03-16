@@ -116,8 +116,6 @@ app.controller("customers", function ($scope, $http, $timeout) {
 
   };
 
-
-
   $scope.updateCustomer = function () {
     $scope.error = '';
     if ($scope.busy) {
@@ -341,7 +339,6 @@ app.controller("customers", function ($scope, $http, $timeout) {
       }
     )
   };
-
 
   $scope.Gender = function () {
     $scope.error = '';

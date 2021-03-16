@@ -189,7 +189,7 @@ app.controller("ecommerce_setting", function ($scope, $http) {
       method: "POST",
       url: "/api/numbering/get_automatic",
       data: {
-        screen: "product"
+        screen: "products"
       }
     }).then(
       function (response) {
@@ -445,9 +445,323 @@ app.controller("ecommerce_setting", function ($scope, $http) {
 
 
 
+
+
+
+
+
+
+
+
+
+  $scope.displayAddCustomer = function () {
+    $scope.error = '';
+
+    $scope.customer = {
+      image_url: '/images/customer.png',
+      active: true,
+
+      balance: 0,
+      branch_list: [{
+        charge: [{}]
+      }],
+      currency_list: [],
+      opening_balance: [{ initial_balance: 0 }],
+      bank_list: [{}],
+      dealing_company: [{}]
+    };
+
+    if (site.feature('medical')) {
+      $scope.customer.image_url = '/images/patients.png';
+      $scope.customer.allergic_food_list = [{}];
+      $scope.customer.allergic_drink_list = [{}];
+      $scope.customer.medicine_list = [{}];
+      $scope.customer.disease_list = [{}];
+
+    } else if (site.feature('school') || site.feature('academy')) {
+      $scope.customer.image_url = '/images/student.png';
+      $scope.customer.allergic_food_list = [{}];
+      $scope.customer.allergic_drink_list = [{}];
+      $scope.customer.medicine_list = [{}];
+      $scope.customer.disease_list = [{}];
+
+    }
+
+    site.showModal('#customerAddModal');
+    document.querySelector('#customerAddModal .tab-link').click();
+  };
+
+  $scope.addCustomer = function () {
+    $scope.error = '';
+    if ($scope.busy) {
+      return;
+    }
+
+    const v = site.validated('#customerAddModal');
+    if (!v.ok) {
+      $scope.error = v.messages[0].ar;
+      return;
+    }
+    $scope.busy = true;
+
+    $http({
+      method: "POST",
+      url: "/api/customers/add",
+      data: $scope.customer
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          site.hideModal('#customerAddModal');
+          $scope.list = $scope.list || [];
+          $scope.list.push(response.data.doc);
+          $scope.getCustomersList();
+          $scope.count = $scope.list.length;
+        } else {
+          $scope.error = response.data.error;
+          if (response.data.error.like('*Must Enter Code*')) {
+            $scope.error = "##word.must_enter_code##"
+
+          } else if (response.data.error.like('*maximum number of adds exceeded*')) {
+            $scope.error = "##word.err_maximum_adds##"
+
+          } else if (response.data.error.like('*ername must be typed correctly*')) {
+            $scope.error = "##word.err_username_contain##"
+
+          } else if (response.data.error.like('*User Is Exist*')) {
+            $scope.error = "##word.user_exists##"
+          }
+
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    )
+  };
+
+  $scope.displayUpdateCustomer = function (customer) {
+    $scope.error = '';
+    $scope.detailsCustomer(customer);
+    $scope.customer = {};
+    site.showModal('#customerUpdateModal');
+    document.querySelector('#customerUpdateModal .tab-link').click();
+  };
+
+  $scope.displaybankingAndAccounting = function (event) {
+
+    site.showTabContent(event, '#bankingAndAccounting');
+
+    let num = 0;
+    let ln = $scope.customer.opening_balance;
+
+    for (let i = 0; i < ln.length; i++) {
+      if (ln[i].initial_balance > 0) {
+        if (ln[i].balance_type == "credit") {
+          num = num - parseInt(ln[i].initial_balance);
+        } else {
+          num = num + parseInt(ln[i].initial_balance);
+        }
+      }
+    }
+
+  };
+
+  $scope.updateCustomer = function () {
+    $scope.error = '';
+    if ($scope.busy) {
+      return;
+    }
+
+    const v = site.validated('#customerUpdateModal');
+    if (!v.ok) {
+      $scope.error = v.messages[0].ar;
+      return;
+    }
+    $scope.busy = true;
+
+    $http({
+      method: "POST",
+      url: "/api/customers/update",
+      data: $scope.customer
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          site.hideModal('#customerUpdateModal');
+          $scope.list.forEach((b, i) => {
+            if (b.id == response.data.doc.id) {
+              $scope.list[i] = response.data.doc;
+            }
+          });
+          $scope.getCustomersList();
+        } else {
+          $scope.error = response.data.error;
+          if (response.data.error.like('*Must Enter Code*')) {
+            $scope.error = "##word.must_enter_code##"
+
+          } else if (response.data.error.like('*maximum number of adds exceeded*')) {
+            $scope.error = "##word.err_maximum_adds##"
+
+          } else if (response.data.error.like('*ername must be typed correctly*')) {
+            $scope.error = "##word.err_username_contain##"
+
+          } else if (response.data.error.like('*User Is Exist*')) {
+            $scope.error = "##word.user_exists##"
+          }
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    )
+  };
+
+  $scope.displayDeleteCustomer = function (customer) {
+    $scope.error = '';
+    $scope.detailsCustomer(customer);
+    $scope.customer = {};
+    site.showModal('#customerDeleteModal');
+    document.querySelector('#customerDeleteModal .tab-link').click();
+  };
+
+  $scope.deleteCustomer = function () {
+    $scope.error = '';
+    if ($scope.busy) {
+      return
+    }
+
+    $scope.busy = true;
+
+    $http({
+      method: "POST",
+      url: "/api/customers/delete",
+      data: {
+        id: $scope.customer.id
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          site.hideModal('#customerDeleteModal');
+          $scope.list.forEach((b, i) => {
+            if (b.id == response.data.doc.id) {
+              $scope.list.splice(i, 1);
+              $scope.count = $scope.list.length;
+            }
+          });
+          $scope.getCustomersList();
+        } else {
+          $scope.error = response.data.error;
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    )
+  };
+
+  $scope.displayDetailsCustomer = function (customer) {
+    $scope.error = '';
+    $scope.detailsCustomer(customer);
+    $scope.customer = {};
+    site.showModal('#customerDetailsModal');
+    document.querySelector('#customerDetailsModal .tab-link').click();
+  };
+
+  $scope.detailsCustomer = function (customer, view) {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/customers/view",
+      data: {
+        id: customer.id
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.customer = response.data.doc;
+          if ($scope.customer.opening_balance && $scope.customer.opening_balance.length > 0)
+            $scope.customer.opening_balance.forEach(o_b => {
+              o_b.$view = true
+            });
+        } else {
+          $scope.error = response.data.error;
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    )
+  };
+
+  $scope.getCustomersList = function (where) {
+    $scope.error = '';
+    $scope.busy = true;
+
+    $scope.list = [];
+    $http({
+      method: "POST",
+      url: "/api/customers/all",
+      data: {
+        where: where
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.customersList = response.data.list;
+          $scope.customersCount = response.data.count;
+        }
+
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getCustomersNumberingAuto = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/numbering/get_automatic",
+      data: {
+        screen: "customers"
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.disabledCodeCustomer = response.data.isAuto;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+
+  $scope.searchAll = function () {
+    $scope.getCustomersList($scope.search);
+    site.hideModal('#customerSearchModal');
+    $scope.search = {};
+  };
+
+
+
+
+
   $scope.getProductList();
   $scope.getProductGroupList();
   $scope.getProductNumberingAuto();
   $scope.getProductGroupNumberingAuto();
-
+  $scope.getCustomersNumberingAuto();
+  $scope.getCustomersList();
 });
