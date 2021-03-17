@@ -8,7 +8,8 @@
                     <i-control ng-hide="disabledCode" class="col2" label="##word.code##" ng-model="store_out.code">
                     </i-control>
 
-                    <i-control class="col3 r_indigo" type="text" disabled label="##word.shift##" ng-model="shift.name_##session.lang##">
+                    <i-control class="col3 r_indigo" type="text" disabled label="##word.shift##"
+                        ng-model="shift.name_##session.lang##">
                     </i-control>
 
                     <i-date2 class="col4" ng-model="store_out.date" label="##word.stores_out_date##"></i-date2>
@@ -23,13 +24,13 @@
 
                     <i-control ng-keydown="getCustomerList($event)" id="service" class="col3" ng-model="search_customer"
                         label="##word.search##" type="text"></i-control>
-                    <i-list ng-search="_search.$customer" class="col4" display="name_##session.lang##" v="r"
+                    <i-list ng-search="_search.$customer" class="col4" display="name_##session.lang##"
                         ng-model="store_out.customer" label="##word.customer##" items="customersList">
                     </i-list>
 
                     <i-list ng-hide="'##user.type##' == 'delegate'" class="col4" ng-model="store_out.delegate"
-                    display="name_##session.lang##" ng-search="_search.$items_group_search" label="##word.delegate##"
-                        ng-disabled="store_out.retured_number" items="delegatesList">
+                        display="name_##session.lang##" ng-search="_search.$items_group_search"
+                        label="##word.delegate##" ng-disabled="store_out.retured_number" items="delegatesList">
                     </i-list>
                 </div>
 
@@ -39,7 +40,8 @@
                         ng-model="store_out.type" items="storesOutTypes" label="##word.transaction_type##"></i-list> -->
 
                     <i-list ng-hide="'##user.type##' == 'delegate'" class="col3" ng-model="store_out.store"
-                    display="name_##session.lang##" items="storesList" ng-search="_search.$stores_search" label="##word.stores_out_store##">
+                        display="name_##session.lang##" items="storesList" ng-search="_search.$stores_search"
+                        label="##word.stores_out_store##">
                     </i-list>
 
                     <i-list class="col2" ng-model="store_out.payment_type" items="paymentTypesList"
@@ -91,8 +93,8 @@
                     <table class="table center bold hover">
                         <tr>
                             <th>##word.serial##</th>
-                            <th>##word.stores_out_item_name##</th>
                             <th>##word.barcode##</th>
+                            <th>##word.stores_out_item_name##</th>
                             <th>##word.stores_out_item_size##</th>
                             <th>##word.unit##</th>
                             <th class="w150">##word.quantity##</th>
@@ -100,7 +102,7 @@
                             <th ng-hide="store_out.type.id == 5" class="w150">##word.discount##</th>
                             <th ng-hide="store_out.type.id == 5">##word.maximum_discount##</th>
                             <th class="w150">##word.value_added##</th>
-                            <th>##word.total_v_a##</th>
+                            <th ng-hide="store_out.type.id == 5">##word.total_v_a##</th>
                             <th>##word.stores_out_item_total##</th>
                             <th>##word.actions##</th>
                         </tr>
@@ -113,10 +115,10 @@
                                     </i-button>
                                 </div>
                             </td>
-                            <td> <br> {{itm.name_##session.lang##}}</td>
                             <td> <br>
                                 <p class="userPrint">{{itm.barcode}}</p>
                             </td>
+                            <td> <br> {{itm.name_##session.lang##}}</td>
                             <td>
                                 <p>{{itm.size_ar}}</p>
                                 <p>{{itm.size_en}}</p>
@@ -124,7 +126,8 @@
 
                             <td>
                                 <i-list ng-model="itm.unit" ng-search="_search.$category_item.$unit_search" space=" - "
-                                display="name_##session.lang##"  ng-change="ChangeUnitPatch(itm);" display2="barcode" items="itm.size_units_list">
+                                    display="name_##session.lang##" ng-change="ChangeUnitPatch(itm);" display2="barcode"
+                                    items="itm.size_units_list">
                                 </i-list>
                             </td>
 
@@ -163,7 +166,7 @@
                                 </i-control>
                             </td>
 
-                            <td> <br> {{itm.total_v_a}}</td>
+                            <td ng-hide="store_out.type.id == 5"> <br> {{itm.total_v_a}}</td>
                             <td class="green"> <br> {{itm.total}}</td>
 
                             <td>
@@ -203,8 +206,9 @@
                                 <td colspan="2">
                                     <form>
                                         <div class="row ">
-                                            <i-list ng-search="_search.$discount_name" class="col4" ng-model="discount" display="name_##session.lang##"
-                                                items="discount_types" label="##word.discount_name##">
+                                            <i-list ng-search="_search.$discount_name" class="col4" ng-model="discount"
+                                                display="name_##session.lang##" items="discount_types"
+                                                label="##word.discount_name##">
                                                 {{di.name_##session.lang##}}
                                             </i-list>
                                             <div class="col1"></div>
@@ -262,7 +266,7 @@
                                     <form>
                                         <div class="row ">
                                             <i-list ng-search="_search.$tax_name" class="col9" ng-model="tax"
-                                            display="name_##session.lang##" items="tax_types">
+                                                display="name_##session.lang##" items="tax_types">
                                             </i-list>
                                             <div class="col3">
                                                 <br>
@@ -322,7 +326,7 @@
                         label="##word.exchange_rate##"></i-control>
 
                     <i-list ng-search="_search.$order_invoice.$safes_search" class="col4" ng-model="store_out.safe"
-                    display="name_##session.lang##" label="##word.safe##" items="safesList">
+                        display="name_##session.lang##" label="##word.safe##" items="safesList">
                     </i-list>
                 </div>
 

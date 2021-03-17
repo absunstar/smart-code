@@ -54,15 +54,16 @@
                 <table class="table center bold hover">
                     <tr>
                         <th>##word.serial##</th>
+                        <th>##word.barcode##</th>
                         <th>##word.stores_offer_item_name##</th>
                         <th>##word.stores_offer_item_size##</th>
-                        <th>##word.barcode##</th>
                         <th>##word.units##</th>
                         <th>##word.actions##</th>
                     </tr>
 
                     <tr ng-repeat="itm in store_offer.items">
                         <td> <br> {{$index + 1}}</td>
+                        <td> <br> {{itm.barcode}}</td>
                         <td> <br> {{itm.name_##session.lang##}}</td>
 
                         <td>
@@ -70,7 +71,6 @@
                             <p>{{itm.size_ar}}</p>
                             <p>{{itm.size_en}}</p>
                         </td>
-                        <td> <br> {{itm.barcode}}</td>
 
                         <td>
                             <table class="table center bold hover">

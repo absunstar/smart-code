@@ -34,16 +34,16 @@
                     <table class="table center bold hover">
                         <tr>
                             <th>##word.serial##</th>
-                            <th>##word.stores_stock_item_name##</th>
                             <th>##word.barcode##</th>
+                            <th>##word.stores_stock_item_name##</th>
                             <th>##word.stores_stock_item_size##</th>
                             <th>##word.units##</th>
                         </tr>
 
                         <tr ng-repeat="itm in store_stock.items">
                             <td> <br> {{$index + 1}}</td>
-                            <td> <br> {{itm.name_##session.lang##}}</td>
                             <td> <br> {{itm.barcode}}</td>
+                            <td> <br> {{itm.name_##session.lang##}}</td>
                             <td>
                                 <p>{{itm.size_ar}}</p>
                                 <p>{{itm.size_en}}</p>
