@@ -17,6 +17,7 @@
                     <legend> ##word.basic_information## </legend>
                     <div class="row">
                         <div class="col9">
+
                             <div class="row">
                                 <i-control ng-hide="disabledProductCode" class="col2" label="##word.code##"
                                     ng-model="product.code"></i-control>
@@ -32,12 +33,60 @@
                                 </i-checkbox>
                             </div>
 
+                            <br>
+
                             <div class="row">
                                 <i-list help-id="" v="r" class="col4" label="##word.products_group##"
                                     ng-model="product.products_group" display="name_##session.lang##"
                                     items="productsGroupsList" ng-search="_search.$products_group">
                                 </i-list>
 
+                                <i-list class="col4" ng-show="product.medic_cosmet" ng-model="product.active_substance"
+                                    display="name_##session.lang##"
+                                    ng-search="_search.$category_item.$active_substance_search"
+                                    label="##word.active_substance##" items="activeSubstancesList"></i-list>
+
+                                <i-control help-id="products_price" type="number" class="col2" label="##word.price##"
+                                    ng-model="product.price">
+                                </i-control>
+
+                                <i-checkbox help-id="products_active" label="##word.medical_cosmetic_product##"
+                                    ng-model="product.medic_cosmet">
+                                </i-checkbox>
+
+                            </div>
+
+                            <br>
+
+                            <div class="row" ng-show="product.medic_cosmet">
+
+
+                                <div class="row">
+
+                                    <i-textarea class="co7" label="##word.indications##" ng-model="product.indications">
+                                    </i-textarea>
+
+                                </div>
+
+                                <br>
+
+                                <div class="row">
+
+                                    <i-textarea class="co7" label="##word.contraindications##"
+                                        ng-model="product.contraindications">
+                                    </i-textarea>
+                                </div>
+
+                                <br>
+
+                                <div class="row">
+
+                                    <i-textarea class="co7" label="##word.how_use##" ng-model="product.how_use">
+                                    </i-textarea>
+
+                                </div>
+
+                                <br>
                             </div>
 
                         </div>
@@ -48,7 +97,7 @@
                     </div>
 
                     <div class="row">
-                        <table class="table border">
+                        <table class="table hover border">
                             <tr>
                                 <th>##word.useradd_user_info##</th>
                                 <th>##word.useredit_user_info## </th>
@@ -124,12 +173,42 @@
                                 <td class="center">{{product.products_group.name_##session.lang##}}</td>
                             </tr>
 
+                            <tr ng-show="product.medic_cosmet">
+                                <td class="title">##word.active_substance##</td>
+                                <td class="center">{{product.active_substance.name_##session.lang##}}</td>
+                            </tr>
+
+                       
+
+                            <tr ng-show="product.medic_cosmet">
+                                <td class="title">##word.indications##</td>
+                                <td class="center">
+                                    <p class="lines_text">{{product.indications}}
+                                    </p>
+                                </td>
+                            </tr>
+
+                            <tr ng-show="product.medic_cosmet">
+                                <td class="title">##word.contraindications##</td>
+                                <td class="center">
+                                    <p class="lines_text">
+                                        {{product.contraindications}}</p>
+                                </td>
+                            </tr>
+
+                            <tr ng-show="product.medic_cosmet">
+                                <td class="title">##word.how_use##</td>
+                                <td class="center">
+                                    <p class="lines_text">{{product.how_use}}</p>
+                                </td>
+                            </tr>
+
                             <tr>
                                 <td class="title">##word.status##</td>
                                 <td ng-show="product.active == true" class="green center"> ##word.active## </td>
                                 <td ng-show="product.active == false" class="red center"> ##word.not_active## </td>
                             </tr>
-
+                            
                         </table>
                     </div>
 
@@ -142,7 +221,7 @@
             </div>
 
             <div class="row">
-                <table class="table border">
+                <table class="table hover border">
                     <tr>
                         <th>##word.useradd_user_info##</th>
                         <th>##word.useredit_user_info## </th>

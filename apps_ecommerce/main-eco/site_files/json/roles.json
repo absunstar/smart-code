@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "main_eco_admin",
+    "en": "Request Types Admin",
+    "ar": "إدارة أنواع الطلبات",
+    "permissions": ["main_eco_manage"]
+}]

@@ -5,6 +5,11 @@
         "ar": "إعدادات المتجر"
     },
     {
+        "name": "medical_cosmetic_product",
+        "en": "Medical or cosmetic product",
+        "ar": "منتج طبي أو تجميلي"
+    },
+    {
         "name": "products",
         "en": "Products",
         "ar": "المنتجات"

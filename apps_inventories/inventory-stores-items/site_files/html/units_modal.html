@@ -58,6 +58,12 @@
                                 <p class="bold center"> {{s.start_count}} </p>
                             </td>
 
+                            
+                            <td ng-hide="category_item.item_type.id === 2">
+                                <br ng-show="_view">
+                                <p ng-show="_view" class="bold red center"> {{s.cost}} </p>
+                                <i-control ng-hide="_view" ng-model="s.cost" type="number"></i-control>
+                            </td>
 
                             <td>
                                 <br ng-show="_view">
@@ -70,12 +76,6 @@
                                 <p ng-show="_view" class="bold  center"> {{s.average_cost}} </p>
                                 <i-control ng-hide="_view" ng-model="s.average_cost" type="number">
                                 </i-control>
-                            </td>
-
-                            <td ng-hide="category_item.item_type.id === 2">
-                                <br ng-show="_view">
-                                <p ng-show="_view" class="bold red center"> {{s.cost}} </p>
-                                <i-control ng-hide="_view" ng-model="s.cost" type="number"></i-control>
                             </td>
 
                             <td class="center bold">

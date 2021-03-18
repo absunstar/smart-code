@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="main_eco_ui || main_eco_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+    <div id="main-layout" class="container loaded">
+        <div class="row">
+            <div class="row" ng-controller="main_eco" x-permissions="login">
+           
+                <div class="row">
+                    <h1 class="bold text-center"> ##word.main_eco## </h1>
+                </div>
+
+                <div class="top-actions">
+                
+                    <span ng-show="busy">
+                        <span class="sr-only">Loading...</span>
+                    </span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div x-import="scripts.html"></div>
+
+    <script x-permissions="login" x-import="main-eco/index.js"></script>
+</body>
+
+</html>
