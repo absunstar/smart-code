@@ -21,7 +21,7 @@
 
                         <table class="table loaded hover center bold">
                             <tr>
-                                <td class="blue userPrint"> ##word.profile_photo## </td>
+                                <td class="blue userPrint"> <br> ##word.profile_photo## </td>
 
                                 <td>
                                     <i-image view class="logo" ng-model="manage_user.profile.image_url"></i-image>
@@ -33,23 +33,25 @@
                                 </td>
                             </tr>
 
+
                             <tr>
-                                <td class="blue userPrint"> ##word.the_name## </td>
+                                <td class="blue "> <br> ##word.email## </td>
 
                                 <td>
-                                    {{manage_user.profile.name}}
+                                    <br>
+                                    {{manage_user.email}}
                                 </td>
 
                                 <td>
-                                    <i-button type="update" label="##word.update##" ng-click="view('name')">
+                                    <i-button type="update" label="##word.update##" ng-click="view('email')">
                                     </i-button>
                                 </td>
                             </tr>
 
-                            <tr ng-hide="manage_user.is_company">
-                                <td class="blue userPrint"> ##word.birth_date## </td>
+                            <!-- <tr ng-hide="manage_user.is_company">
+                                <td class="blue userPrint"> <br> ##word.birth_date## </td>
 
-                                <td>
+                                <td class="brown"> <br>
                                     {{manage_user.profile.birth_date}}
                                 </td>
 
@@ -57,23 +59,11 @@
                                     <i-button type="update" label="##word.update##" ng-click="view('birth_date')">
                                     </i-button>
                                 </td>
-                            </tr>
+                            </tr> -->
 
-                            <tr ng-hide="manage_user.is_company">
-                                <td class="blue"> ##word.gender## </td>
-
-                                <td>
-                                    {{manage_user.profile.gender.##session.lang##}}
-                                </td>
-
-                                <td>
-                                    <i-button type="update" label="##word.update##" ng-click="view('gender')">
-                                    </i-button>
-                                </td>
-                            </tr>
 
                             <tr>
-                                <td class="blue"> ##word.password## </td>
+                                <td class="blue"> <br>  ##word.password## </td>
 
                                 <td>
 
@@ -100,23 +90,38 @@
                     <legend> ##word.contact_info## </legend>
                     <div class="row">
                         <table class="table loaded hover center bold">
-                            <tr>
-                                <td class="blue "> ##word.email## </td>
 
-                                <td>
-                                    {{manage_user.email}}
+
+                            <tr>
+                                <td class="blue userPrint"> <br> ##word.the_name## </td>
+
+                                <td> <br> 
+                                    {{manage_user.profile.name}}
                                 </td>
 
                                 <td>
-                                    <i-button type="update" label="##word.update##" ng-click="view('email')">
+                                    <i-button type="update" label="##word.update##" ng-click="view('name')">
+                                    </i-button>
+                                </td>
+                            </tr>
+
+                            <tr ng-hide="manage_user.is_company">
+                                <td class="blue"> <br>  ##word.gender## </td>
+
+                                <td> <br> 
+                                    {{manage_user.profile.gender.##session.lang##}}
+                                </td>
+
+                                <td>
+                                    <i-button type="update" label="##word.update##" ng-click="view('gender')">
                                     </i-button>
                                 </td>
                             </tr>
 
                             <tr>
-                                <td class="blue"> ##word.mobile## </td>
+                                <td class="blue"> <br>  ##word.mobile## </td>
 
-                                <td>
+                                <td> <br> 
                                     <a href="tel:{{manage_user.profile.mobile}}">
                                         {{manage_user.profile.mobile}}
                                         <i class="fa fa-mobile"></i>
@@ -130,9 +135,9 @@
                             </tr>
 
                             <tr>
-                                <td class="blue"> ##word.phone## </td>
+                                <td class="blue"> <br>  ##word.phone## </td>
 
-                                <td>
+                                <td> <br> 
                                     <a href="tel:{{manage_user.profile.phone}}">
                                         {{manage_user.profile.phone}}
                                         <i class="fa fa-phone"></i>
@@ -144,7 +149,6 @@
                                     </i-button>
                                 </td>
                             </tr>
-
 
                         </table>
                     </div>
@@ -170,8 +174,8 @@
                                 <td class="not-print">
                                     <i-image view class="logo" ng-model="b.company.image_url"></i-image>
                                 </td>
-                                <td> {{b.company.name_##session.lang##}} </td>
-                                <td> {{b.branch.name_##session.lang##}} </td>
+                                <td> <br> {{b.company.name_##session.lang##}} </td>
+                                <td> <br> {{b.branch.name_##session.lang##}} </td>
                             </tr>
 
                         </table>

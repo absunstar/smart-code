@@ -1322,7 +1322,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
           } else if (response.data.error.like('*ername must be typed correctly*')) {
             $scope.error = "##word.err_username_contain##"
-            
+
           } else if (response.data.error.like('*User Is Exist*')) {
             $scope.error = "##word.user_exists##"
           }
@@ -1778,10 +1778,11 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
   $scope.loadItems = function (group, e) {
 
-    document.querySelectorAll('z').forEach(a => {
+    document.querySelectorAll('a').forEach(a => {
       a.classList.remove('my-hover');
     });
-    e.target.classList.add('my-hover');
+
+    e.target.parentNode.classList.add('my-hover');
 
 
     if (!$scope.openShift) {

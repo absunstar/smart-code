@@ -65,6 +65,19 @@ module.exports = function init(site) {
     compress: true
   })
 
+  site.validateEmail = function (email) {
+
+    let re = new RegExp(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+    return re.test(email);
+  }
+
+  site.validatePassword = function (password) {
+
+    let re = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/);
+    return re.test(password);
+  }
+
+
   site.post("/api/companies/add", (req, res) => {
     let response = {
       done: false
@@ -112,6 +125,13 @@ module.exports = function init(site) {
 
       if (companies_doc.username && companies_doc.password) {
 
+        
+
+        // if(!site.validatePassword(companies_doc.password)) {
+        //   response.error = 'Must be not less than 8 characters or numbers and must contain at least one character capital, one number and one special character'
+        //   res.json(response)
+        //   return;
+        // }
 
 
         if (companies_doc.username.includes("@") && !companies_doc.username.includes(".")) {
@@ -125,7 +145,7 @@ module.exports = function init(site) {
           return;
 
         }
-
+     
         if (!companies_doc.host.includes(".")) {
           response.error = 'Host must be typed correctly'
           res.json(response)
@@ -133,18 +153,28 @@ module.exports = function init(site) {
 
         }
 
+
         let exist_domain = companies_doc.username.includes("@");
         if (!exist_domain) {
           companies_doc.username = companies_doc.username + '@' + companies_doc.host;
         }
 
-        if (companies_doc.username)
+        if(!site.validateEmail(companies_doc.username)) {
+          response.error = 'Username must be typed correctly'
+          res.json(response)
+          return;
+        }
+
+        if (companies_doc.username){
+
           user_exist = {
             email: companies_doc.username,
             password: companies_doc.password,
           }
-
+          
+        }
       }
+      
 
       site.security.isUserExists(user_exist, function (err, user_found) {
 
