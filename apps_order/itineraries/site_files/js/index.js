@@ -331,7 +331,7 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
         $scope.itinerary_i = itinerary;
         $scope.itinerary_i.date = new Date();
 
-        $scope.amount_invoices = {
+        $scope.account_invoices = {
           date: new Date(),
           invoice_id: $scope.itinerary.id,
           show_delegate: true,
@@ -347,61 +347,61 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
 
         if (itinerary.mission_type) {
           if (itinerary.mission_type.id == 1) {
-            $scope.amount_invoices.show_customer;
-            $scope.amount_invoices.customer = itinerary.target;
+            $scope.account_invoices.show_customer;
+            $scope.account_invoices.customer = itinerary.target;
 
           } else if (itinerary.mission_type.id == 2) {
-            $scope.amount_invoices.show_vendor;
-            $scope.amount_invoices.vendor = itinerary.target
+            $scope.account_invoices.show_vendor;
+            $scope.account_invoices.vendor = itinerary.target
           }
         }
 
         if ($scope.defaultSettings.accounting) {
-          $scope.amount_invoices.currency = $scope.currencySetting;
+          $scope.account_invoices.currency = $scope.currencySetting;
           if ($scope.defaultSettings.accounting.payment_method) {
-            $scope.amount_invoices.payment_method = $scope.defaultSettings.accounting.payment_method;
-            $scope.loadSafes($scope.amount_invoices.payment_method, $scope.amount_invoices.currency);
+            $scope.account_invoices.payment_method = $scope.defaultSettings.accounting.payment_method;
+            $scope.loadSafes($scope.account_invoices.payment_method, $scope.account_invoices.currency);
 
-            if ($scope.amount_invoices.payment_method.id == 1)
-              $scope.amount_invoices.safe = $scope.defaultSettings.accounting.safe_box;
-            else $scope.amount_invoices.safe = $scope.defaultSettings.accounting.safe_bank;
+            if ($scope.account_invoices.payment_method.id == 1)
+              $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe_box;
+            else $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe_bank;
           }
         }
 
-        if ($scope.amount_invoices.currency) {
-          $scope.amount_currency = site.toNumber($scope.amount_invoices.net_value) / site.toNumber($scope.amount_invoices.currency.ex_rate);
+        if ($scope.account_invoices.currency) {
+          $scope.amount_currency = site.toNumber($scope.account_invoices.net_value) / site.toNumber($scope.account_invoices.currency.ex_rate);
           $scope.amount_currency = site.toNumber($scope.amount_currency);
-          $scope.amount_invoices.value = $scope.amount_currency;
+          $scope.account_invoices.value = $scope.amount_currency;
 
         }
 
-        $scope.calc($scope.amount_invoices);
+        $scope.calc($scope.account_invoices);
 
-        site.showModal('#amountInvoiceModal');
+        site.showModal('#accountInvoiceModal');
       } else $scope.error = '##word.open_shift_not_found##';
     });
   };
 
 
-  $scope.addAmountInvoice = function (amount_invoices) {
+  $scope.addAccountInvoice = function (account_invoices) {
     $scope.error = '';
     $scope.busy = true;
     $scope.detailsCustomer((customer) => {
 
-      if (amount_invoices.value > 0 && !amount_invoices.safe) {
+      if (account_invoices.value > 0 && !account_invoices.safe) {
         $scope.error = "##word.should_select_safe##";
         return;
 
-      } else if (amount_invoices.value > $scope.amount_currency) {
+      } else if (account_invoices.value > $scope.amount_currency) {
         $scope.error = "##word.err_net_value##";
         return;
       }
 
-      if (amount_invoices.customer && amount_invoices.payment_method && amount_invoices.payment_method.id == 5) {
+      if (account_invoices.customer && account_invoices.payment_method && account_invoices.payment_method.id == 5) {
         let totalCustomerBalance = 0;
         totalCustomerBalance = customer.balance + (customer.credit_limit || 0);
 
-        let customerPay = amount_invoices.value * amount_invoices.currency.ex_rate;
+        let customerPay = account_invoices.value * account_invoices.currency.ex_rate;
 
         if (customerPay > totalCustomerBalance) {
           $scope.error = "##word.cannot_exceeded_customer##";
@@ -410,20 +410,20 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
       }
 
       if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.work_posting)
-        amount_invoices.posting = false;
-      else amount_invoices.posting = true;
+        account_invoices.posting = false;
+      else account_invoices.posting = true;
 
-      if (amount_invoices.mission_type && amount_invoices.mission_type.id === 1) {
+      if (account_invoices.mission_type && account_invoices.mission_type.id === 1) {
 
-        amount_invoices.source_type = {
+        account_invoices.source_type = {
           id: 8,
           en: "Amount in",
           ar: "سند قبض"
         }
 
-      } else if (amount_invoices.mission_type && amount_invoices.mission_type.id === 2) {
+      } else if (account_invoices.mission_type && account_invoices.mission_type.id === 2) {
 
-        amount_invoices.source_type = {
+        account_invoices.source_type = {
           id: 9,
           en: "Amount Out",
           ar: "سند صرف"
@@ -433,13 +433,13 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
       $http({
         method: "POST",
         url: "/api/account_invoices/add",
-        data: amount_invoices
+        data: account_invoices
       }).then(
         function (response) {
           $scope.busy = false;
           if (response.data.done) {
             $scope.itinerary_i.invoice = true;
-            site.hideModal('#amountInvoiceModal');
+            site.hideModal('#accountInvoiceModal');
           } else $scope.error = response.data.error;
         },
         function (err) {
@@ -657,8 +657,8 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
     $scope.busy = true;
 
     let customer = '';
-    if ($scope.amount_invoices && $scope.amount_invoices.customer) {
-      customer = $scope.amount_invoices.customer
+    if ($scope.account_invoices && $scope.account_invoices.customer) {
+      customer = $scope.account_invoices.customer
     }
 
     $http({

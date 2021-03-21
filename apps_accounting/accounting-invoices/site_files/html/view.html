@@ -37,16 +37,22 @@
                                     <td class="center"> {{account_invoices.order_invoices_type.##session.lang##}} </td>
                                 </tr>
 
-                                <tr ng-show="account_invoices.tenant.name_##session.lang##">
+                                <tr ng-show="account_invoices.tenant.id">
                                     <td class="title"> ##word.tenant## </td>
                                     <td class="center"> {{account_invoices.tenant.name_##session.lang##}} </td>
                                 </tr>
 
-                                <tr ng-show="account_invoices.customer.name_##session.lang##">
+                                <tr ng-show="account_invoices.customer.id">
                                     <td class="title"> ##word.customer## </td>
                                     <td class="center"> {{account_invoices.customer.name_##session.lang##}} </td>
                                 </tr>
-                                <tr ng-show="account_invoices.vendor.name_##session.lang##">
+
+                                <tr ng-show="account_invoices.delegate.id">
+                                    <td class="title"> ##word.delegate## </td>
+                                    <td class="center"> {{account_invoices.delegate.name_##session.lang##}} </td>
+                                </tr>
+
+                                <tr ng-show="account_invoices.vendor.id">
                                     <td class="title"> ##word.vendor## </td>
                                     <td class="center"> {{account_invoices.vendor.name_##session.lang##}} </td>
                                 </tr>
@@ -90,14 +96,17 @@
                                     <td class="title"> ##word.delivery_employee## </td>
                                     <td class="center"> {{account_invoices.delivery_employee.name_##session.lang##}} </td>
                                 </tr>
+
                                 <tr ng-show="account_invoices.table.id">
                                     <td class="title"> ##word.tables_group## </td>
                                     <td class="center"> {{account_invoices.table.tables_group.name_##session.lang##}} </td>
                                 </tr>
+
                                 <tr ng-show="account_invoices.table.id">
                                     <td class="title"> ##word.table## </td>
                                     <td class="center"> {{account_invoices.table.name_##session.lang##}} </td>
                                 </tr>
+
                                 <tr ng-show="account_invoices.service > 0">
                                     <td class="title"> ##word.service## </td>
                                     <td class="center"> {{account_invoices.service}} </td>

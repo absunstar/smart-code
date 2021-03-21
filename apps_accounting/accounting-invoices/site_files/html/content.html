@@ -12,7 +12,8 @@
 
                         <i-date2 class="col4" ng-model="account_invoices.date" label="##word.date##"></i-date2>
 
-                        <i-control class="col3 r_indigo" disabled label="##word.shift##" ng-model="shift.name_##session.lang##">
+                        <i-control class="col3 r_indigo" disabled label="##word.shift##"
+                            ng-model="shift.name_##session.lang##">
                         </i-control>
 
                     </div>
@@ -22,7 +23,8 @@
                         <div class="row"
                             ng-show="account_invoices.source_type.id ==11 || account_invoices.source_type.id ==12">
                             <i-list label="##word.amounts_in_employees##" ng-search="_search.$eng_account_invoices"
-                                class="col4" ng-model="account_invoices.employee" display="name_##session.lang##" items="employeesList">
+                                class="col4" ng-model="account_invoices.employee" display="name_##session.lang##"
+                                items="employeesList">
                             </i-list>
                         </div>
 
@@ -258,7 +260,8 @@
 
                                     <tr ng-show="account_invoices.table.id">
                                         <td class="title">##word.tables_group##</td>
-                                        <td class="center">{{account_invoices.table.tables_group.name_##session.lang##}}</td>
+                                        <td class="center">{{account_invoices.table.tables_group.name_##session.lang##}}
+                                        </td>
                                     </tr>
 
                                     <tr ng-show="account_invoices.table.id">
@@ -333,8 +336,8 @@
                                 </i-checkbox>
 
                                 <i-list ng-search="_search.$source_account_invoices" ng-model="account_invoices.source"
-                                display="name_##session.lang##" ng-show="account_invoices.show_source" items="namesInList"
-                                    label="##word.source_name##">
+                                    display="name_##session.lang##" ng-show="account_invoices.show_source"
+                                    items="namesInList" label="##word.source_name##">
                                 </i-list>
                             </div>
 
@@ -360,21 +363,17 @@
                         <div class="row" ng-show="account_invoices.source_type.id ==9">
 
                             <div class="col4 control">
-                                <i-checkbox ng-model="account_invoices.show_source"
-                                    ng-click="account_invoices.show_vendor = false; account_invoices.vendor = {}"
-                                    label="##word.source##">
+                                <i-checkbox ng-model="account_invoices.show_source" label="##word.source##">
                                 </i-checkbox>
 
                                 <i-list ng-search="_search.$source_account_invoices" ng-model="account_invoices.source"
-                                display="name_##session.lang##"  ng-show="account_invoices.show_source" items="namesOutList"
-                                    label="##word.source_name##">
+                                    display="name_##session.lang##" ng-show="account_invoices.show_source"
+                                    items="namesOutList" label="##word.source_name##">
                                 </i-list>
                             </div>
 
                             <div class="col7 control">
-                                <i-checkbox ng-model="account_invoices.show_vendor"
-                                    ng-click="account_invoices.show_source = false; account_invoices.source = {}"
-                                    label="##word.vendor##">
+                                <i-checkbox ng-model="account_invoices.show_vendor" label="##word.vendor##">
                                 </i-checkbox>
                                 <div class="row" ng-show="account_invoices.show_vendor">
 
@@ -394,7 +393,6 @@
                             ng-show="account_invoices.source_type.id ==8 || account_invoices.source_type.id ==9">
                             <div class="col4 control">
                                 <i-checkbox ng-model="account_invoices.show_employee"
-                                    ng-click="account_invoices.show_delegate = false; account_invoices.delegate = {}"
                                     label="##word.amounts_in_employees##"></i-checkbox>
                                 <i-list ng-show="account_invoices.show_employee" label="##word.amounts_in_employees##"
                                     ng-search="_search.$eng_account_invoices" ng-model="account_invoices.employee"
@@ -403,13 +401,11 @@
                             </div>
 
                             <div class="col4 control">
-                                <i-checkbox ng-model="account_invoices.show_delegate"
-                                    ng-click="account_invoices.show_employee = false; account_invoices.employee = {}"
-                                    label="##word.delegate##">
+                                <i-checkbox ng-model="account_invoices.show_delegate" label="##word.delegate##">
                                 </i-checkbox>
                                 <i-list ng-show="account_invoices.show_delegate" ng-model="account_invoices.delegate"
-                                display="name_##session.lang##"  ng-search="_search.$items_group_search" label="##word.delegate##"
-                                    items="delegatesList">
+                                    display="name_##session.lang##" ng-search="_search.$items_group_search"
+                                    label="##word.delegate##" items="delegatesList">
                                 </i-list>
                             </div>
                         </div>
@@ -423,8 +419,8 @@
                             </i-list>
 
                             <i-list class="col3" label="##word.students_year##"
-                                ng-model="account_invoices.students_year" items="studentsYearsList" display="name_##session.lang##"
-                                ng-search="_search.$_students_year">
+                                ng-model="account_invoices.students_year" items="studentsYearsList"
+                                display="name_##session.lang##" ng-search="_search.$_students_year">
                             </i-list>
 
                             <i-list ng-search="_search.$_types_expenses" class="col3" display="name_##session.lang##"
@@ -453,8 +449,8 @@
                                 display="##session.lang##">
                             </i-list>
 
-                            <i-list class="col3" ng-search="_search.$currency_search"
-                            display="name_##session.lang##" ng-model="account_invoices.currency"
+                            <i-list class="col3" ng-search="_search.$currency_search" display="name_##session.lang##"
+                                ng-model="account_invoices.currency"
                                 ng-change="getSafeByType(account_invoices) ; calc(account_invoices)"
                                 items="currenciesList" label="##word.currency##"></i-list>
 
@@ -462,7 +458,8 @@
                                 label="##word.exchange_rate##"></i-control>
 
                             <i-list class="col3 " ng-search="_search.$safe_account_invoices"
-                            display="name_##session.lang##"  ng-model="account_invoices.safe" items="safesList" label="##word.amounts_in_safe##">
+                                display="name_##session.lang##" ng-model="account_invoices.safe" items="safesList"
+                                label="##word.amounts_in_safe##">
                             </i-list>
 
                         </div>
