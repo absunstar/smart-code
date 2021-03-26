@@ -47,8 +47,11 @@ module.exports = function init(site) {
           $request_activity.findMany({ where: { 'customer.id': customerCb.id } }, (err, request_activity_doc) => {
             $account_invoices.findMany({ where: { 'customer.id': customerCb.id } }, (err, account_invoices_doc) => {
 
-
               let request_activities_list = [];
+
+              request_activity_doc = request_activity_doc || []
+              account_invoices_doc = account_invoices_doc || []
+
               request_activity_doc.forEach(_request_activity => {
                 if (new Date(_request_activity.date_to) >= new Date()) {
                   request_activities_list.push({
@@ -171,6 +174,8 @@ module.exports = function init(site) {
 
 
         let request_activities_list = [];
+        request_activity_doc = request_activity_doc || []
+        account_invoices_doc = account_invoices_doc || []
         request_activity_doc.forEach(_request_activity => {
 
           if (new Date(_request_activity.date_to) >= new Date()) {
@@ -415,7 +420,7 @@ module.exports = function init(site) {
       },
       limit: req.body.limit
     }, (err, docs, count) => {
-      if (!err) {
+      if (!err && docs) {
         response.done = true
         docs.forEach(_doc => {
           _doc.activity_list.forEach(_activityList => {

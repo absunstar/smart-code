@@ -20,10 +20,9 @@ module.exports = function init(site) {
   })
 
   site.on('[company][created]', doc => {
-
     $in_out_names.add({
       name_ar: "مسمى وارد إفتراضي",
-      name_en: "Default Incoming",
+      name_en: "Default InComing",
       image_url: '/images/in_out_name.png',
       in: true,
       code: "1-Test",
@@ -39,9 +38,11 @@ module.exports = function init(site) {
       },
       active: true
     }, (err, in_out_doc) => {
-
+    
       $in_out_names.add({
-        name: "مسمى منصرف إفتراضي",
+        name_ar: "مسمى منصرف إفتراضي",
+        name_en: "Default OutComing",
+        code: "2-Test",
         image_url: '/images/in_out_name.png',
         out: true,
         company: {
@@ -63,7 +64,7 @@ module.exports = function init(site) {
   site.post("/api/in_out_names/add", (req, res) => {
     let response = {}
     response.done = false
-             
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)
@@ -109,7 +110,7 @@ module.exports = function init(site) {
   site.post("/api/in_out_names/update", (req, res) => {
     let response = {}
     response.done = false
-             
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)
@@ -145,7 +146,7 @@ module.exports = function init(site) {
   site.post("/api/in_out_names/delete", (req, res) => {
     let response = {}
     response.done = false
-            
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)
@@ -169,7 +170,7 @@ module.exports = function init(site) {
   site.post("/api/in_out_names/view", (req, res) => {
     let response = {}
     response.done = false
-              
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)
@@ -193,7 +194,7 @@ module.exports = function init(site) {
 
   site.post("/api/in_out_names/all", (req, res) => {
     let response = {}
-              
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)

@@ -182,6 +182,7 @@ module.exports = function init(site) {
               _mc.ar = 'شرائح الكشوفات'
             }
           });
+
           screens_list = moduleListCore.filter((i) => i.feature !== 'order' && i.feature !== 'erp' && i.feature !== 'restaurant' && i.feature !== 'club' && i.feature !== 'academy' && i.feature !== 'school' && i.feature !== 'medic' && i.feature !== 'lawyer');
 
           moduleListCore.forEach(_m => {
@@ -189,6 +190,22 @@ module.exports = function init(site) {
               screens_list.push(_m)
             }
           });
+
+        } else if (site.features.like('*employee*')) {
+
+          screens_list = moduleListCore.filter((i) => i.feature !== 'order' && i.feature !== 'erp' && i.feature !== 'pos' && i.feature !== 'restaurant' && i.feature !== 'club' && i.feature !== 'academy' && i.feature !== 'school' && i.feature !== 'medic' && i.feature !== 'lawyer' && i.feature !== 'medical');
+          moduleListCore.forEach(_mc => {
+            if (_mc.name === 'amounts_in') screens_list.push(_mc)
+            else if (_mc.name === 'amounts_out') screens_list.push(_mc)
+            else if (_mc.name === 'employee_advance') screens_list.push(_mc)
+            else if (_mc.name === 'payment_employee_advance') screens_list.push(_mc)
+            else if (_mc.name === 'safes') screens_list.push(_mc)
+            else if (_mc.name === 'currencies') screens_list.push(_mc)
+            else if (_mc.name === 'amounts_in_out_names') screens_list.push(_mc)
+            else if (_mc.name === 'taxes_type') screens_list.push(_mc)
+            else if (_mc.name === 'discounts') screens_list.push(_mc)
+          });
+
         }
 
         $numbering.add(

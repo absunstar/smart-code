@@ -1,7 +1,7 @@
 <div class="row" fixed>
     <div class="col8">
         <br>
-        <table class="table bold">
+        <table class="table hover bold">
             <tr>
                 <td class="title">##word.code##</td>
                 <td class="center userPrint blue">{{in_out_name.code}}</td>
@@ -14,19 +14,14 @@
 
 
             <tr>
-                <td class="title">##word.in_out_name_in##</td>
+                <td class="title">##word.type##</td>
                 <td class="center">
-                    <p ng-show="in_out_name.in == true"> نعم </p>
+                    <p ng-show="in_out_name.in == true"> ##word.in_out_name_in## </p>
+                    <p ng-show="in_out_name.out == true"> ##word.in_out_name_out## </p>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="title">##word.in_out_name_out##</td>
-                <td class="center">
-                    <p ng-show="in_out_name.out == true"> نعم </p>
-                </td>
-            </tr>
 
 
             <tr>

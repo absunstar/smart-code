@@ -128,7 +128,7 @@ app.controller("attend_subscribers", function ($scope, $http, $timeout, $interva
   $scope.deleteAttendSubscribers = function () {
     $scope.busy = true;
     $scope.error = '';
-   
+
     $http({
       method: "POST",
       url: "/api/attend_subscribers/delete",
@@ -166,7 +166,7 @@ app.controller("attend_subscribers", function ($scope, $http, $timeout, $interva
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
-          if ($scope.list.length == response.data.list.length) {
+          if (response.data.list && response.data.list.length > 0) {
             response.data.list.forEach((d, i) => {
               if (!$scope.list[i].leave_date && d.leave_date) {
                 $scope.list[i].leave_date = d.leave_date;
@@ -202,7 +202,7 @@ app.controller("attend_subscribers", function ($scope, $http, $timeout, $interva
         data: {
           search: $scope.search_customer
           ,
-          where:{
+          where: {
             active: true
           }
         }

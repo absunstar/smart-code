@@ -6,8 +6,8 @@
     },
     {
         "name": "brand_tag",
-        "en": "Employees",
-        "ar": "موظفين"
+        "en": "HR System",
+        "ar": "نظام الموارد البشرية"
     },
     {
         "name": "companies_basic_information",
@@ -161,13 +161,13 @@
     },
     {
         "name": "companies_name_ar",
-        "en": "company Name Arabic",
-        "ar": "إسم الشركة"
+        "en": "HR System Name Arabic",
+        "ar": "إسم نظام الموارد البشرية"
     },
     {
         "name": "companies_name_en",
-        "en": "company Name English",
-        "ar": "إسم الشركة بالانجليزية"
+        "en": "HR System Name English",
+        "ar": "إسم نظام الموارد البشرية بالانجليزية"
     },
     {
         "name": "companies_excahange_price",
@@ -181,8 +181,8 @@
     },
     {
         "name": "companies_new",
-        "en": "New company",
-        "ar": "مطعم جديد"
+        "en": "New HR System",
+        "ar": "نظام موارد بشرية جديد"
     },
     {
         "name": "companies_country",

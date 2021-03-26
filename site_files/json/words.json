@@ -10,6 +10,16 @@
         "ar": "الرمز"
     },
     {
+        "name": "hr",
+        "en": "Hr",
+        "ar": "الموارد البشرية"
+    },
+    {
+        "name": "hr_management",
+        "en": "Hr Management",
+        "ar": "إدارة الموارد البشرية"
+    },
+    {
         "name": "invoice_not_generated",
         "en": "An invoice has not been generated",
         "ar": "لم يتم عمل فاتورة"

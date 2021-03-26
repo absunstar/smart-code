@@ -125,7 +125,6 @@ module.exports = function init(site) {
 
       if (companies_doc.username && companies_doc.password) {
 
-        
 
         // if(!site.validatePassword(companies_doc.password)) {
         //   response.error = 'Must be not less than 8 characters or numbers and must contain at least one character capital, one number and one special character'
@@ -504,7 +503,6 @@ module.exports = function init(site) {
 
 
     let where = req.body.where || {}
-
     if (site.get_company(req) && site.get_company(req).id) {
       where['id'] = site.get_company(req).id
     }
@@ -543,8 +541,9 @@ module.exports = function init(site) {
 
     let where = req.body.where || {}
 
+    if (req.session.user && req.session.user.is_admin) {
 
-    if (req.session.user && req.session.user.is_company) {
+    }else if (req.session.user && req.session.user.is_company) {
       where['id'] = req.session.user.company_id;
     } else if (site.get_company(req) && site.get_company(req).id) {
       where['company.id'] = site.get_company(req).id

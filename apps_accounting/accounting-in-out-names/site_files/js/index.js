@@ -142,7 +142,7 @@ app.controller("in_out_names", function ($scope, $http) {
     $http({
       method: "POST",
       url: "/api/in_out_names/delete",
-      data: { _id: $scope.in_out_name._id, name: $scope.in_out_name.name }
+      data: { _id: $scope.in_out_name._id }
     }).then(
       function (response) {
         $scope.busy = false;
@@ -180,6 +180,16 @@ app.controller("in_out_names", function ($scope, $http) {
         $scope.error = err;
       }
     )
+  };
+
+  $scope.changeType = function (type) {
+
+    if ($scope.in_out_name.in && type == 'in') {
+      $scope.in_out_name.out = false
+
+    } else if ($scope.in_out_name.out && type == 'out') {
+      $scope.in_out_name.in = false
+    }
   };
 
   $scope.loadAll();

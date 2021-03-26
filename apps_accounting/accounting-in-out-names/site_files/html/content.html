@@ -12,12 +12,18 @@
                 <i-control ng-model="in_out_name.name_en" class="col5" type="text" label="##word.name_en##">
                 </i-control>
             </div>
+
             <div class="row ">
-                <i-checkbox class="col2" label="##word.in_out_name_in##" ng-model="in_out_name.in"></i-checkbox>
-                <i-checkbox class="col2" label="##word.in_out_name_out##" ng-model="in_out_name.out"></i-checkbox>
+
+                <i-checkbox class="col2" ng-click="changeType('in')" label="##word.in_out_name_in##"
+                    ng-model="in_out_name.in"></i-checkbox>
+
+                <i-checkbox class="col2" ng-click="changeType('out')" label="##word.in_out_name_out##"
+                    ng-model="in_out_name.out"></i-checkbox>
             </div>
+            
             <div class="row ">
-                <i-textarea ng-model="in_out_name.details" class="col6" type="text"
+                <i-textarea ng-model="in_out_name.details" class="col8" type="text"
                     label="##word.in_out_name_details##"></i-textarea>
             </div>
         </form>

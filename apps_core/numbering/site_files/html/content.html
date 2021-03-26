@@ -3,7 +3,7 @@
     <div class="tabs">
         <div class="tabs-header">
 
-            <a class="tab-link" onclick="site.showTabContent(event, '#main_tabs')">
+            <a class="tab-link" x-features="!employee" onclick="site.showTabContent(event, '#main_tabs')">
                 <img src="/images/main.png">
                 <span> ##word.main##</span>
             </a>
@@ -21,7 +21,7 @@
 
             <a class="tab-link" onclick="site.showTabContent(event, '#employees_tabs')">
                 <img src="/images/delegate.png">
-                <span>##word.employees## </span>
+                <span>##word.hr## </span>
             </a>
 
             <a class="tab-link" onclick="site.showTabContent(event, '#general_tabs')">
@@ -388,7 +388,7 @@
                                         type="number">
                                     </i-control>
                                 </td>
-                                
+
                                 <td>
                                     <i-control ng-model="screen3.separator_symbol"
                                         ng-show="screen3.type_numbering.id ==3">

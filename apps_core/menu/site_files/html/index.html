@@ -272,7 +272,7 @@
 
       <a class="tab-link" href="/companies" x-permissions="admin">
         <img src="/images/company.png" />
-        <span> ##word.menu_company## </span>
+        <span> ##word.companies## </span>
       </a>
 
       <a class="tab-link" onclick="site.showTabs(event, '#main_tabs')">
@@ -284,7 +284,7 @@
 
   <div id="general_tabs" class="tabs">
     <div class="tabs-header">
-      <a class="tab-link" href="/default_setting" x-permissions="default_setting_ui || default_setting_manage">
+      <a class="tab-link" href="/default_setting" x-features="!employee" x-permissions="default_setting_ui || default_setting_manage">
         <img src="/images/default_setting.png" />
         <span>##word.default_setting_menus## </span>
       </a>
@@ -529,13 +529,13 @@
         <span>##word.request_activity_management## </span>
       </a>
 
-      <a class="tab-link" href="/account_invoices?type=1"
+      <a class="tab-link" x-features="!employee" href="/account_invoices?type=1"
         x-permissions="account_invoices_ui || account_invoices_manage">
         <img src="/images/pic_money_in.png" />
         <span>##word.purchase_invoice## </span>
       </a>
 
-      <a class="tab-link" href="/account_invoices?type=2"
+      <a class="tab-link" x-features="!employee" href="/account_invoices?type=2"
         x-permissions="account_invoices_ui || account_invoices_manage">
         <img src="/images/store_out.png" />
         <span>##word.sales_invoice## </span>
@@ -564,7 +564,7 @@
         <span>##word.transfer_safes_balances## </span>
       </a>
 
-      <a class="tab-link" href="/account_invoices?type=10"
+      <a class="tab-link" x-features="!employee" href="/account_invoices?type=10"
         x-permissions="account_invoices_ui || account_invoices_manage">
         <img src="/images/recharge_customer_balance.png" />
         <span>##word.recharge_customer_balance## </span>
@@ -820,6 +820,12 @@
 
   <div id="employees_tabs" class="tabs">
     <div class="tabs-header">
+
+      <a class="tab-link" href="/attend_employees" x-permissions="attend_employees_ui || attend_employees_manage">
+        <img src="/images/attend_employees.png" />
+        <span> ##word.attend_employees## </span>
+      </a>
+
       <a class="tab-link" href="/employees" x-permissions="employee_ui || employee_manage">
         <img src="/images/employee_list.png" />
         <span> ##word.employees## </span>
@@ -850,11 +856,6 @@
       <a class="tab-link" href="/employees_degrees" x-permissions="employees_degrees_ui || employees_degrees_manage">
         <img src="/images/degree.png" />
         <span>##word.employees_degrees## </span>
-      </a>
-
-      <a class="tab-link" href="/attend_employees" x-permissions="attend_employees_ui || attend_employees_manage">
-        <img src="/images/attend_employees.png" />
-        <span> ##word.attend_employees## </span>
       </a>
 
       <a class="tab-link" href="/employee_offer" x-permissions="employee_offer_ui || employee_offer_manage">
@@ -1462,19 +1463,20 @@
   <div id="main_tabs" class="tabs">
     <div class="tabs-header">
 
-    <!--   <a class="tab-link" x-features="pos" href="/ecommerce_setting" x-permissions=" ecommerce_setting_ui ||
+      <!--   <a class="tab-link" x-features="pos" href="/ecommerce_setting" x-permissions=" ecommerce_setting_ui ||
         ecommerce_setting_manage">
         <img src="/images/ecommerce_setting.png" />
         <span>##word.ecommerce_setting##</span>
       </a> -->
 
       <div ng-hide="'##user.type##' == 'customer' || '##user.type##' == 'table' || '##user.type##' == 'delegate'">
-        <a class="tab-link" onclick="site.showTabs(event, '#company_tabs')">
+
+        <a class="tab-link" onclick="site.showTabs(event, '#company_tabs')" x-features="!employee">
           <img src="/images/main.png" />
           <span> ##word.basic_transactions##</span>
         </a>
 
-        <a class="tab-link" onclick="site.showTabs(event, '#basic_setting')">
+        <a class="tab-link" x-features="!employee" onclick="site.showTabs(event, '#basic_setting')">
           <img src="/images/basic_setting.png" />
           <span>##word.basic_setting##</span>
         </a>
@@ -1500,7 +1502,7 @@
         </a>
         <a class="tab-link" onclick="site.showTabs(event, '#employees_tabs')">
           <img src="/images/delegate.png" />
-          <span>##word.employees## </span>
+          <span>##word.hr## </span>
         </a>
 
         <a x-features="restaurant || pos || academy || club || erp || school || medical" class="tab-link"

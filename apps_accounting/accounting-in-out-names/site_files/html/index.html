@@ -14,7 +14,7 @@
     <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
 
     </nav>
-    <div  id="main-layout" class="container loaded">
+    <div id="main-layout" class="container loaded">
         <div class="row">
             <div class="row" ng-controller="in_out_names">
                 <div x-permissions="in_out_names_add || in_out_names_manage"
@@ -46,8 +46,7 @@
                         <th class="not-print">##word.in_out_name_logo##</th>
                         <th>##word.code##</th>
                         <th>##word.in_out_name_name##</th>
-                        <th>##word.in_out_name_in##</th>
-                        <th>##word.in_out_name_out##</th>
+                        <th>##word.type##</th>
                         <th class="not-print">##word.actions##</th>
                     </tr>
                     <tr ng-repeat="c in list">
@@ -57,12 +56,13 @@
                         </td>
                         <td class="userPrint blue">{{c.code}}</td>
                         <td>{{c.name_##session.lang##}}</td>
+
                         <td>
-                            <p class="green" ng-show="c.in == true"> ##word.yes## </p>
+                            <p class="green" ng-show="c.in == true"> ##word.in_out_name_in## </p>
+
+                            <p class="green" ng-show="c.out == true"> ##word.in_out_name_out## </p>
                         </td>
-                        <td>
-                            <p class="green" ng-show="c.out == true"> ##word.yes## </p>
-                        </td>
+
                         <td class="not-print" class="center">
 
                             <i-button x-permissions="in_out_names_view || in_out_names_manage" type="details"
@@ -77,8 +77,8 @@
                     </tr>
 
                 </table>
-               
-                
+
+
                 <i-button x-permissions="in_out_names_print || in_out_names_manage" type="print" label="##word.print##"
                     onclick="site.print('#t1')"></i-button>
 
@@ -90,7 +90,7 @@
 
     <div x-import="scripts.html"></div>
 
-    <script  x-import="accounting-in-out-names/index.js"></script>
+    <script x-import="accounting-in-out-names/index.js"></script>
 
 
 </body>

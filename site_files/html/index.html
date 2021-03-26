@@ -498,6 +498,11 @@
                   post = res[i];
                   rendered += Mustache.render(post_template, post);
                 }
+              } else if (res[i].feature == 'hr') {
+                if (site.features.like('*employee*')) {
+                  post = res[i];
+                  rendered += Mustache.render(post_template, post);
+                }
               }
             } catch (error) { }
           }
