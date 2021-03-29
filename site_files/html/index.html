@@ -115,6 +115,12 @@
       opacity: 1;
     }
 
+    .img_qelada {
+      border-radius: 15px;
+      height: 270px;
+      width: 350px;
+    }
+
     a.social-browser {
       display: inline-block;
       text-align: center;
@@ -172,6 +178,14 @@
 
       </div>
 
+      <div class="row qelada hidden">
+
+        <div class="center qelada">
+          <img class="img_qelada" ng-src="/images/qelada.png" />
+        </div>
+
+      </div>
+
       <br />
       <br />
     </div>
@@ -188,12 +202,20 @@
           <h2 class="center">##word.security_user_password## : <span> tech </span></h2>
         </div>
 
-        <div class="col5" x-feature="!host.ft">
+        <div class="col5" x-features="!host.ft && !host.qelada">
           <h2 class="center blue bold">##word.try_application##</h2>
           <br>
           <h2 class="center">##word.security_user_email## : <span> test </span></h2>
           <h2 class="center">##word.security_user_password## : <span> test </span></h2>
         </div>
+
+        <div class="col5" x-feature="host.qelada">
+          <h2 class="center blue bold">##word.try_application##</h2>
+          <br>
+          <h2 class="center">##word.security_user_email## : <span> qelada </span></h2>
+          <h2 class="center">##word.security_user_password## : <span> qelada </span></h2>
+        </div>
+
 
         <div class="col2"></div>
 
@@ -402,6 +424,27 @@
         </h2>
       </div>
 
+      <div class="row qelada hidden">
+
+        <h2 class="center">
+          <span>
+            <h2 class="center bold green" style="text-shadow: 3px 3px #b3b3ff;">القلادة جروب</h2> <br />
+
+            القاهرة : مدينة نصر <i class="fa fa-map-marker" aria-hidden="true"></i> <br />
+            35 عمارات العبور صلاح سالم <br />
+
+            <br>
+            <a href="tel:+201015680353"> +201015680353 <i class="fa fa-whatsapp" aria-hidden="true"></i> </a> <br />
+            <a href="tel:0220822434"> 0220822434 <i class="fa fa-phone" aria-hidden="true"></i> </a> <br />
+            <a href="tel:infoaftgroup@gmail.com"> infoaftgroup@gmail.com <i class="fa fa-envelope" aria-hidden="true"></i>
+            </a> <br />
+            <a href="tel:www.alqelada.net"> www.alqelada.net <i class="fa fa-globe" aria-hidden="true"></i> </a>
+            <br />
+
+          </span>
+        </h2>
+      </div>
+
       <br />
       <br />
     </div>
@@ -427,6 +470,8 @@
       $('.mt').removeClass('hidden');
     } else if ('##req.headers.host##'.like('*ft*')) {
       $('.ft').removeClass('hidden');
+    } else if ('##req.headers.host##'.like('*qelada*')) {
+      $('.qelada').removeClass('hidden');
     } else {
       $('.egypt').removeClass('hidden');
     }
