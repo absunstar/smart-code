@@ -24,7 +24,7 @@
             "area_manage",
             "city_manage",
             "customers_manage",
-            "sales_customers_group_manage",
+            "customers_group_manage",
             "default_setting_manage",
             "nationalities_manage",
             "goves_manage",
@@ -170,6 +170,7 @@
             "report_payable_customers_manage",
             "report_payable_vendors_manage",
             "report_doctors_visits_manage",
+            "libraries_manage",
             "vehicles_manage",
             "vehicles_types_manage",
             "ecommerce_setting_manage"

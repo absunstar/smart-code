@@ -1,22 +1,23 @@
-app.controller("subjects", function ($scope, $http, $timeout) {
+app.controller("libraries", function ($scope, $http, $timeout) {
   $scope._search = {};
 
-  $scope.subjects = {};
+  $scope.libraries = {};
 
-  $scope.displayAddSubjects = function () {
+  $scope.displayAddLibraries = function () {
     $scope.error = '';
-    $scope.subjects = {
-      image_url: '/images/subjects.png',
+    $scope.libraries = {
+      image_url: '/images/libraries.png',
       active: true,
+      links_list : [{}],
       busy: false
     };
-    site.showModal('#subjectsAddModal');
+    site.showModal('#librariesAddModal');
 
   };
 
-  $scope.addSubjects = function () {
+  $scope.addLibraries = function () {
     $scope.error = '';
-    const v = site.validated('#subjectsAddModal');
+    const v = site.validated('#librariesAddModal');
 
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
@@ -26,14 +27,14 @@ app.controller("subjects", function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/subjects/add",
-      data: $scope.subjects
+      url: "/api/libraries/add",
+      data: $scope.libraries
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#subjectsAddModal');
-          $scope.getSubjectsList();
+          site.hideModal('#librariesAddModal');
+          $scope.getLibrariesList();
         } else {
           $scope.error = response.data.error;
           if (response.data.error.like('*Must Enter Code*')) {
@@ -47,17 +48,17 @@ app.controller("subjects", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.displayUpdateSubjects = function (subjects) {
+  $scope.displayUpdateLibraries = function (libraries) {
 
     $scope.error = '';
-    $scope.viewSubjects(subjects);
-    $scope.subjects = {};
-    site.showModal('#subjectsUpdateModal');
+    $scope.viewLibraries(libraries);
+    $scope.libraries = {};
+    site.showModal('#librariesUpdateModal');
   };
 
-  $scope.updateSubjects = function () {
+  $scope.updateLibraries = function () {
     $scope.error = '';
-    const v = site.validated('#subjectsUpdateModal');
+    const v = site.validated('#librariesUpdateModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
@@ -65,14 +66,14 @@ app.controller("subjects", function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/subjects/update",
-      data: $scope.subjects
+      url: "/api/libraries/update",
+      data: $scope.libraries
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#subjectsUpdateModal');
-          $scope.getSubjectsList();
+          site.hideModal('#librariesUpdateModal');
+          $scope.getLibrariesList();
         } else {
           $scope.error = 'Please Login First';
         }
@@ -83,27 +84,27 @@ app.controller("subjects", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.displayDetailsSubjects = function (subjects) {
+  $scope.displayDetailsLibraries = function (libraries) {
     $scope.error = '';
-    $scope.viewSubjects(subjects);
-    $scope.subjects = {};
-    site.showModal('#subjectsViewModal');
+    $scope.viewLibraries(libraries);
+    $scope.libraries = {};
+    site.showModal('#librariesViewModal');
   };
 
-  $scope.viewSubjects = function (subjects) {
+  $scope.viewLibraries = function (libraries) {
     $scope.busy = true;
     $scope.error = '';
     $http({
       method: "POST",
-      url: "/api/subjects/view",
+      url: "/api/libraries/view",
       data: {
-        id: subjects.id
+        id: libraries.id
       }
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $scope.subjects = response.data.doc;
+          $scope.libraries = response.data.doc;
         } else {
           $scope.error = response.data.error;
         }
@@ -114,29 +115,29 @@ app.controller("subjects", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.displayDeleteSubjects = function (subjects) {
+  $scope.displayDeleteLibraries = function (libraries) {
     $scope.error = '';
-    $scope.viewSubjects(subjects);
-    $scope.subjects = {};
-    site.showModal('#subjectsDeleteModal');
+    $scope.viewLibraries(libraries);
+    $scope.libraries = {};
+    site.showModal('#librariesDeleteModal');
   };
 
-  $scope.deleteSubjects = function () {
+  $scope.deleteLibraries = function () {
     $scope.busy = true;
     $scope.error = '';
 
     $http({
       method: "POST",
-      url: "/api/subjects/delete",
+      url: "/api/libraries/delete",
       data: {
-        id: $scope.subjects.id
+        id: $scope.libraries.id
       }
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#subjectsDeleteModal');
-          $scope.getSubjectsList();
+          site.hideModal('#librariesDeleteModal');
+          $scope.getLibrariesList();
         } else {
           $scope.error = response.data.error;
         }
@@ -147,13 +148,12 @@ app.controller("subjects", function ($scope, $http, $timeout) {
     )
   };
 
-
-  $scope.getSubjectsList = function (where) {
+  $scope.getLibrariesList = function (where) {
     $scope.busy = true;
     $scope.list = [];
     $http({
       method: "POST",
-      url: "/api/subjects/all",
+      url: "/api/libraries/all",
       data: {
         where: where
       }
@@ -163,7 +163,7 @@ app.controller("subjects", function ($scope, $http, $timeout) {
         if (response.data.done && response.data.list.length > 0) {
           $scope.list = response.data.list;
           $scope.count = response.data.count;
-          site.hideModal('#subjectsSearchModal');
+          site.hideModal('#librariesSearchModal');
           $scope.search = {};
         }
       },
@@ -181,7 +181,7 @@ app.controller("subjects", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/numbering/get_automatic",
       data: {
-        screen: "subjects"
+        screen: "libraries"
       }
     }).then(
       function (response) {
@@ -199,16 +199,67 @@ app.controller("subjects", function ($scope, $http, $timeout) {
 
   $scope.displaySearchModal = function () {
     $scope.error = '';
-    site.showModal('#subjectsSearchModal');
+    site.showModal('#librariesSearchModal');
 
+  };
+
+  $scope.getSchoolGradesList = function () {
+    $http({
+      method: "POST",
+      url: "/api/school_grades/all",
+      data: {
+        select: {
+          id: 1,
+          name_ar: 1, name_en: 1,
+          code: 1
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.schoolGradesList = response.data.list;
+      },
+      function (err) {
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getStudentsYearsList = function (school_grade) {
+    $http({
+      method: "POST",
+      url: "/api/students_years/all",
+      data: {
+        select: {
+          id: 1,
+          name_ar: 1, name_en: 1,
+          code: 1
+        },
+        where: {
+          active: true,
+          'school_grade.id': school_grade.id
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.studentsYearsList = response.data.list;
+      },
+      function (err) {
+        $scope.error = err;
+      }
+    )
   };
 
   $scope.searchAll = function () {
-    $scope.getSubjectsList($scope.search);
-    site.hideModal('#subjectsSearchModal');
+    $scope.getLibrariesList($scope.search);
+    site.hideModal('#librariesSearchModal');
     $scope.search = {};
 
   };
-  $scope.getSubjectsList();
+
+
+  $scope.getLibrariesList();
+  $scope.getSchoolGradesList();
   $scope.getNumberingAuto();
 });

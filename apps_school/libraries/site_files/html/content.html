@@ -1,0 +1,101 @@
+<div class="form">
+    <div id="basicInformation" class="">
+        <fieldset>
+            <legend> ##word.basic_information## </legend>
+            <div class="row">
+                <div class="col9">
+                    <div class="row">
+
+                        <i-control ng-hide="disabledCode" class="col2" label="##word.code##" ng-model="libraries.code">
+                        </i-control>
+
+                        <i-control type="text" v="r" class="col4" label="##word.library_name##"
+                            ng-model="libraries.name_ar"></i-control>
+
+                        <i-control type="text" class="col4" label="##word.name_en##" ng-model="libraries.name_en">
+                        </i-control>
+
+                        <i-checkbox help-id="libraries_active" class="col2" label="##word.active##"
+                            ng-model="libraries.active"></i-checkbox>
+
+                    </div>
+
+                    <div class="row">
+
+                        <i-list ng-search="_search.$_school_grade" v="r" class="col4" display="name_##session.lang##"
+                            ng-change="getStudentsYearsList(libraries.school_grade)" ng-model="libraries.school_grade"
+                            label="##word.school_grade##" items="schoolGradesList">
+                        </i-list>
+
+                        <i-list class="col4" label="##word.students_year##" ng-model="libraries.students_year"
+                            items="studentsYearsList" display="name_##session.lang##"
+                            ng-search="_search.$_students_year">
+                        </i-list>
+
+                    </div>
+
+                    <br>
+                    <br>
+
+                    <div class="row">
+                        <fieldset>
+                            <legend>##word.attach_files##</legend>
+
+                            <div class="row">
+                                <i-files ng-model="libraries.files"></i-files>
+                            </div>
+
+                        </fieldset>
+
+                    </div>
+                </div>
+
+                <div class="col3">
+
+                    <i-image help-id="libraries_logo" ng-model="libraries.image_url"></i-image>
+
+                </div>
+
+            </div>
+            <div class="row">
+                <fieldset>
+
+                    <legend>
+                        ##word.attach_links##
+                        <i-button type="add default" ng-click="libraries.links_list.unshift({})"></i-button>
+                    </legend>
+
+                    <table class="table hover bold loaded">
+                        <tr>
+                            <th class="w400">##word.description_link##</th>
+                            <th>##word.the_link##</th>
+                            <th>##word.actions##</th>
+                        </tr>
+                        <tr ng-repeat="l in libraries.links_list">
+
+                            <td>
+                                <i-control class="center" type="text" ng-model="l.description_link"></i-control>
+                            </td>
+
+                            <td>
+                                <i-control class="center" type="text" ng-model="l.link"></i-control>
+                            </td>
+
+                            <td class="center">
+                                <i-button type="delete default"
+                                    ng-click="libraries.links_list.length ===1 ||libraries.links_list.splice($index,1)">
+                                </i-button>
+
+                            </td>
+                        </tr>
+                    </table>
+
+                </fieldset>
+
+            </div>
+
+
+        </fieldset>
+
+    </div>
+</div>

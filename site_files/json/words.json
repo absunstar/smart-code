@@ -10,6 +10,26 @@
         "ar": "الرمز"
     },
     {
+        "name": "attach_files",
+        "en": "Attach files",
+        "ar": "إرفاق ملفات"
+    },
+    {
+        "name": "attach_links",
+        "en": "Attach links",
+        "ar": "إرفاق روابط"
+    },
+    {
+        "name": "attached_files",
+        "en": "Attached files",
+        "ar": "ملفات مرفقة"
+    },
+    {
+        "name": "attached_links",
+        "en": "Attached links",
+        "ar": "روابط مرفقة"
+    },
+    {
         "name": "hr",
         "en": "Hr",
         "ar": "الموارد البشرية"

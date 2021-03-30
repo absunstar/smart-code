@@ -147,6 +147,13 @@
         "ar": "وضع درجات أعمال السنة"
     },
     {
+        "category": "main",
+        "feature": "school",
+        "name": "libraries",
+        "en": "libraries",
+        "ar": "المكتبات"
+    },
+    {
         "category": "inventory",
         "feature": "pos",
         "name": "products",

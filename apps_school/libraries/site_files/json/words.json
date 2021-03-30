@@ -1,0 +1,57 @@
+[
+    {
+        "name": "libraries",
+        "en": "Libraries",
+        "ar": "المكتبات"
+    },
+    {
+        "name": "library",
+        "en": "Library",
+        "ar": "المكتبة"
+    },
+    {
+        "name": "description_link",
+        "en": "Description of the link",
+        "ar": "وصف الرابط"
+    },
+    {
+        "name": "the_link",
+        "en": "The link",
+        "ar": "الرابط"
+    },
+    {
+        "name": "library_name",
+        "en": "Library Name",
+        "ar": "إسم المكتبة"
+    },
+    {
+        "name": "libraries_new",
+        "en": "New Library",
+        "ar": "مكتبة جديدة"
+    },
+    {
+        "name": "libraries_add",
+        "en": "Add Library",
+        "ar": "إضافة مكتبة"
+    },
+    {
+        "name": "libraries_edit",
+        "en": "Edit Library",
+        "ar": "تعديل مكتبة"
+    },
+    {
+        "name": "libraries_details",
+        "en": "Library Details",
+        "ar": "تفاصيل مكتبة"
+    },
+    {
+        "name": "libraries_delete",
+        "en": "Delete Library",
+        "ar": "حذف مكتبة"
+    },
+    {
+        "name": "libraries_number",
+        "en": "Library Number",
+        "ar": "رقم المكتبة"
+    }
+]

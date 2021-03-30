@@ -40,7 +40,7 @@
                     <br>
 
                     <div class="row">
-                        <div class="col6">
+                        <div class="col8">
 
                             <fieldset>
                                 <legend>##word.types_expenses##</legend>
@@ -77,68 +77,71 @@
 
                     <br>
                     <br>
-                    <div class="row">
-                        <fieldset>
-                            <legend>##word.subjects##
 
-                                <i-button type="add default" ng-click="students_years.subjects_list.push({})">
-                                </i-button>
-                            </legend>
-
-                            <table class="table loaded hover center bold" id="t1">
-                                <tr>
-                                    <th> ##word.subject## </th>
-                                    <th> ##word.exam_score_month## </th>
-                                    <th> ##word.exam_score_midterm## </th>
-                                    <th> ##word.exam_score_mid_year## </th>
-                                    <th> ##word.exam_score_end_year## </th>
-                                    <th> ##word.work_degree_year## </th>
-                                    <th> ##word.actions## </th>
-                                </tr>
-                                <tr ng-repeat="c in students_years.subjects_list | orderBy : '-id'">
-
-                                    <td>
-                                        <i-list ng-model="c.subject" v="r" ng-search="_search.$_subject"
-                                            items="subjectsList" display="name_##session.lang##"></i-list>
-                                    </td>
-
-                                    <td>
-                                        <i-control type="number" v="r" ng-model="c.exam_score_month"></i-control>
-                                    </td>
-
-                                    <td>
-                                        <i-control type="number" v="r" ng-model="c.exam_score_midterm"></i-control>
-                                    </td>
-
-                                    <td>
-                                        <i-control type="number" v="r" ng-model="c.exam_score_mid_year"></i-control>
-                                    </td>
-
-                                    <td>
-                                        <i-control type="number" v="r" ng-model="c.exam_score_end_year"></i-control>
-                                    </td>
-
-                                    <td>
-                                        <i-control type="number" v="r" ng-model="c.work_degree_year"></i-control>
-                                    </td>
-
-                                    <td>
-                                        <i-button type="delete"
-                                            ng-click="students_years.subjects_list.length ==1 || students_years.subjects_list.splice($index,1)">
-                                        </i-button>
-                                    </td>
-
-                                </tr>
-                            </table>
-                        </fieldset>
-
-                    </div>
                 </div>
 
                 <div class="col3">
                     <i-image category="students_years" ng-model="students_years.image_url"> </i-image>
                 </div>
             </div>
+
+            <div class="row">
+                <fieldset>
+                    <legend>##word.subjects##
+
+                        <i-button type="add default" ng-click="students_years.subjects_list.push({})">
+                        </i-button>
+                    </legend>
+
+                    <table class="table loaded hover center bold" id="t1">
+                        <tr>
+                            <th> ##word.subject## </th>
+                            <th> ##word.exam_score_month## </th>
+                            <th> ##word.exam_score_midterm## </th>
+                            <th> ##word.exam_score_mid_year## </th>
+                            <th> ##word.exam_score_end_year## </th>
+                            <th> ##word.work_degree_year## </th>
+                            <th> ##word.actions## </th>
+                        </tr>
+                        <tr ng-repeat="c in students_years.subjects_list | orderBy : '-id'">
+
+                            <td>
+                                <i-list ng-model="c.subject" v="r" ng-search="_search.$_subject" items="subjectsList"
+                                    display="name_##session.lang##"></i-list>
+                            </td>
+
+                            <td>
+                                <i-control type="number" v="r" ng-model="c.exam_score_month"></i-control>
+                            </td>
+
+                            <td>
+                                <i-control type="number" v="r" ng-model="c.exam_score_midterm"></i-control>
+                            </td>
+
+                            <td>
+                                <i-control type="number" v="r" ng-model="c.exam_score_mid_year"></i-control>
+                            </td>
+
+                            <td>
+                                <i-control type="number" v="r" ng-model="c.exam_score_end_year"></i-control>
+                            </td>
+
+                            <td>
+                                <i-control type="number" v="r" ng-model="c.work_degree_year"></i-control>
+                            </td>
+
+                            <td>
+                                <i-button type="delete"
+                                    ng-click="students_years.subjects_list.length ==1 || students_years.subjects_list.splice($index,1)">
+                                </i-button>
+                            </td>
+
+                        </tr>
+                    </table>
+                </fieldset>
+
+            </div>
+
         </fieldset>
     </div>
 </div>

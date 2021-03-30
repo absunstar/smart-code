@@ -211,20 +211,33 @@ module.exports = function init(site) {
         permissions: ["report_info_ui"]
       })
     }
+
     if (site.feature('school')) {
 
+      if (customers_doc.school_grade) user.school_grade_id = customers_doc.school_grade.id
       if (customers_doc.students_year) user.students_year_id = customers_doc.students_year.id
-    
-      user.roles.push({
-        module_name: "public",
-        name: "exams_customer",
-        en: "Exams Students",
-        ar: "إمتحانات الطلاب",
-        permissions: [
-          "exams_ui",
-          "exams_view"
-        ]
-      })
+
+      user.roles.push(
+        {
+          module_name: "public",
+          name: "exams_customer",
+          en: "Exams Students",
+          ar: "إمتحانات الطلاب",
+          permissions: [
+            "exams_ui",
+            "exams_view"
+          ]
+        },
+        {
+          module_name: "public",
+          name: "libraries_student",
+          en: "Libraries Student",
+          ar: "مكتبة الطلاب",
+          permissions: [
+            "libraries_ui",
+            "libraries_view"
+          ]
+        })
     }
 
     user.permissions = []

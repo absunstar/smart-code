@@ -1,0 +1,62 @@
+<div ng-hide="busy" class="row">
+    <div id="basicInformation" class="">
+        <fieldset>
+            <legend> ##word.basic_information##</legend>
+            <div class="col9">
+                <table id="basicInformationTable" class="table bold hover">
+                    <tr>
+                        <td class="title">##word.code##</td>
+                        <td class="center userPrint blue">{{libraries.code}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.library_name##</td>
+                        <td class="center">{{libraries.name_##session.lang##}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title"> ##word.school_grade## </td>
+                        <td class="center"> {{libraries.school_grade.name_##session.lang##}} </td>
+                    </tr>
+
+                    <tr>
+                        <td class="title"> ##word.students_year## </td>
+                        <td class="center"> {{libraries.students_year.name_##session.lang##}} </td>
+                    </tr>
+
+
+                    <tr>
+                        <td class="title">##word.attached_links##</td>
+                        <td class="center">
+                            <p ng-repeat="l in libraries.links_list">
+
+                                <a href="{{l.link}}" target="blank" class="center">{{l.description_link}}</a>
+                                <br>
+                            </p>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.attached_files##</td>
+                        <td class="center">
+                            <i-files view ng-model="libraries.files"></i-files>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td class="title">##word.status##</td>
+                        <td ng-show="libraries.active == true" class="green center"> ##word.active## </td>
+                        <td ng-show="libraries.active == false" class="red center"> ##word.not_active## </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="col3">
+                <i-image view ng-model="libraries.image_url"></i-image>
+            </div>
+
+        </fieldset>
+    </div>
+</div>
+<div x-import="libraries/action_info.html"></div>
