@@ -3,97 +3,173 @@
         <fieldset>
             <legend> ##word.basic_information## </legend>
             <div class="row">
-                <div class="col9">
-                    <div class="row">
+                <div class="row">
 
-                        <i-control ng-hide="disabledCode" class="col2" label="##word.code##" ng-model="libraries.code">
-                        </i-control>
+                    <i-control ng-hide="disabledCode" class="col2" label="##word.code##" ng-model="libraries.code">
+                    </i-control>
 
-                        <i-control type="text" v="r" class="col4" label="##word.library_name##"
-                            ng-model="libraries.name_ar"></i-control>
+                    <i-control type="text" v="r" class="col4" label="##word.library_name##"
+                        ng-model="libraries.name_ar"></i-control>
 
-                        <i-control type="text" class="col4" label="##word.name_en##" ng-model="libraries.name_en">
-                        </i-control>
+                    <i-control type="text" class="col4" label="##word.name_en##" ng-model="libraries.name_en">
+                    </i-control>
 
-                        <i-checkbox help-id="libraries_active" class="col2" label="##word.active##"
-                            ng-model="libraries.active"></i-checkbox>
+                    <i-checkbox help-id="libraries_active" class="col2" label="##word.active##"
+                        ng-model="libraries.active"></i-checkbox>
 
-                    </div>
-
-                    <div class="row">
-
-                        <i-list ng-search="_search.$_school_grade" v="r" class="col4" display="name_##session.lang##"
-                            ng-change="getStudentsYearsList(libraries.school_grade)" ng-model="libraries.school_grade"
-                            label="##word.school_grade##" items="schoolGradesList">
-                        </i-list>
-
-                        <i-list class="col4" label="##word.students_year##" ng-model="libraries.students_year"
-                            items="studentsYearsList" display="name_##session.lang##"
-                            ng-search="_search.$_students_year">
-                        </i-list>
-
-                    </div>
-
-                    <br>
-                    <br>
-
-                    <div class="row">
-                        <fieldset>
-                            <legend>##word.attach_files##</legend>
-
-                            <div class="row">
-                                <i-files ng-model="libraries.files"></i-files>
-                            </div>
-
-                        </fieldset>
-
-                    </div>
                 </div>
 
-                <div class="col3">
+                <div class="row">
 
-                    <i-image help-id="libraries_logo" ng-model="libraries.image_url"></i-image>
+                    <i-list ng-search="_search.$_school_grade" v="r" class="col4" display="name_##session.lang##"
+                        ng-change="getStudentsYearsList(libraries.school_grade)" ng-model="libraries.school_grade"
+                        label="##word.school_grade##" items="schoolGradesList">
+                    </i-list>
+
+                    <i-list class="col4" label="##word.students_year##" ng-model="libraries.students_year"
+                        items="studentsYearsList" display="name_##session.lang##" ng-search="_search.$_students_year">
+                    </i-list>
 
                 </div>
 
             </div>
+
+            <br>
+            <hr>
+            <br>
+
+
             <div class="row">
-                <fieldset>
+                <div class="tabs">
+                    <div class="tabs-header">
 
-                    <legend>
-                        ##word.attach_links##
-                        <i-button type="add default" ng-click="libraries.links_list.unshift({})"></i-button>
-                    </legend>
 
-                    <table class="table hover bold loaded">
-                        <tr>
-                            <th class="w400">##word.description_link##</th>
-                            <th>##word.the_link##</th>
-                            <th>##word.actions##</th>
-                        </tr>
-                        <tr ng-repeat="l in libraries.links_list">
+                        <a class="tab-link" onclick="site.showTabContent(event, '#attachLinks')">
+                            ##word.attach_links## </a>
 
-                            <td>
-                                <i-control class="center" type="text" ng-model="l.description_link"></i-control>
-                            </td>
 
-                            <td>
-                                <i-control class="center" type="text" ng-model="l.link"></i-control>
-                            </td>
+                        <a class="tab-link" onclick="site.showTabContent(event, '#attachImages')">
+                            ##word.attach_images## </a>
 
-                            <td class="center">
-                                <i-button type="delete default"
-                                    ng-click="libraries.links_list.length ===1 ||libraries.links_list.splice($index,1)">
-                                </i-button>
+                        <a class="tab-link" onclick="site.showTabContent(event, '#attachedFiles')">
+                            ##word.attached_files## </a>
+                    </div>
+                    <div class="tabs-content">
 
-                            </td>
-                        </tr>
-                    </table>
+                        <div id="attachImages" class="tab-content">
+                            <fieldset>
+                                <legend>
+                                    ##word.attach_images##
+                                    <i-button type="add default" ng-click="libraries.images_list.unshift({})">
+                                    </i-button>
+                                </legend>
 
-                </fieldset>
+                                <table class="table hover bold loaded">
+                                    <tr>
+                                        <th class="w450">##word.description_image##</th>
+                                        <th>##word.the_image##</th>
+                                        <th>##word.actions##</th>
+                                    </tr>
+                                    <tr ng-repeat="l in libraries.images_list">
 
+                                        <td>
+                                            <i-control class="center" type="text" ng-model="l.description_image">
+                                            </i-control>
+                                        </td>
+
+                                        <td>
+                                            <i-upload ng-model="l.image"></i-upload>
+                                            <p></p>
+                                        </td>
+
+                                        <td class="center">
+                                            <i-button type="delete"
+                                                ng-click="libraries.images_list.length ===1 ||libraries.images_list.splice($index,1)">
+                                            </i-button>
+
+                                        </td>
+                                    </tr>
+                                </table>
+
+                            </fieldset>
+                        </div>
+
+                        <div id="attachLinks" class="tab-content">
+                            <fieldset>
+                                <legend>
+                                    ##word.attach_links##
+                                    <i-button type="add default" ng-click="libraries.links_list.unshift({})">
+                                    </i-button>
+                                </legend>
+
+                                <table class="table hover bold loaded">
+                                    <tr>
+                                        <th class="w450">##word.description_link##</th>
+                                        <th>##word.the_link##</th>
+                                        <th>##word.actions##</th>
+                                    </tr>
+                                    <tr ng-repeat="l in libraries.links_list">
+
+                                        <td>
+                                            <i-control class="center" type="text" ng-model="l.description_link">
+                                            </i-control>
+                                        </td>
+
+                                        <td>
+                                            <i-control class="center" type="text" ng-model="l.link"></i-control>
+                                        </td>
+
+                                        <td class="center">
+                                            <i-button type="delete"
+                                                ng-click="libraries.links_list.length ===1 ||libraries.links_list.splice($index,1)">
+                                            </i-button>
+
+                                        </td>
+                                    </tr>
+                                </table>
+
+                            </fieldset>
+                        </div>
+
+                        <div id="attachedFiles" class="tab-content">
+                            <fieldset>
+                                <legend>
+                                    ##word.attach_files##
+                                    <i-button type="add default" ng-click="libraries.files_list.unshift({})">
+                                    </i-button>
+                                </legend>
+
+                                <table class="table hover bold loaded">
+                                    <tr>
+                                        <th class="w450">##word.description_file##</th>
+                                        <th>##word.the_file##</th>
+                                        <th>##word.actions##</th>
+                                    </tr>
+                                    <tr ng-repeat="l in libraries.files_list">
+
+                                        <td>
+                                            <i-control class="center" type="text" ng-model="l.description_file">
+                                            </i-control>
+                                        </td>
+
+                                        <td>
+                                            <i-upload ng-model="l.file"></i-upload>
+                                        </td>
+
+                                        <td class="center">
+                                            <i-button type="delete"
+                                                ng-click="libraries.files_list.length ===1 ||libraries.files_list.splice($index,1)">
+                                            </i-button>
+
+                                        </td>
+                                    </tr>
+                                </table>
+
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
             </div>
-
 
         </fieldset>
 

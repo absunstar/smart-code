@@ -28,21 +28,82 @@
                     <tr>
                         <td class="title">##word.attached_links##</td>
                         <td class="center">
-                            <p ng-repeat="l in libraries.links_list">
+                           
+                            <table class="table hover center bold loaded">
+                                <tr>
+                                    <th class="w450">##word.description_link##</th>
+                                    <th>##word.the_image##</th>
+                                </tr>
+                                <tr ng-repeat="l in libraries.links_list">
 
-                                <a href="{{l.link}}" target="blank" class="center">{{l.description_link}}</a>
-                                <br>
-                            </p>
+                                    <td>
+                                        {{l.description_link}}
+                                    </td>
+
+                                    <td>
+                                        <a href="{{l.link}}" target="blank" class="center">{{l.link}}</a>
+                                    </td>
+
+
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td class="title">##word.attached_images##</td>
+                        <td class="center">
+
+                            <table class="table hover center bold loaded">
+                                <tr>
+                                    <th class="w450">##word.description_image##</th>
+                                    <th>##word.the_image##</th>
+                                </tr>
+                                <tr ng-repeat="l in libraries.images_list">
+
+                                    <td>
+                                        {{l.description_image}}
+                                    </td>
+
+                                    <td>
+                                        <i-upload ng-model="l.image"></i-upload>
+                                        <p></p>
+                                    </td>
+
+
+                                </tr>
+                            </table>
+
                         </td>
                     </tr>
 
                     <tr>
                         <td class="title">##word.attached_files##</td>
                         <td class="center">
-                            <i-files view ng-model="libraries.files"></i-files>
+
+                            <table class="table hover center bold loaded">
+                                <tr>
+                                    <th class="w450">##word.description_file##</th>
+                                    <th>##word.the_file##</th>
+                                </tr>
+                                <tr ng-repeat="l in libraries.files_list">
+
+                                    <td>
+                                        {{l.description_file}}
+                                    </td>
+
+                                    <td>
+                                        <i-upload ng-model="l.file"></i-upload>
+                                        <p></p>
+                                    </td>
+
+
+                                </tr>
+                            </table>
+
                         </td>
                     </tr>
-
 
                     <tr>
                         <td class="title">##word.status##</td>

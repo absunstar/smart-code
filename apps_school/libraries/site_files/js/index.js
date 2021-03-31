@@ -9,9 +9,12 @@ app.controller("libraries", function ($scope, $http, $timeout) {
       image_url: '/images/libraries.png',
       active: true,
       links_list : [{}],
+      files_list : [{}],
+      images_list : [{}],
       busy: false
     };
     site.showModal('#librariesAddModal');
+    document.querySelector('#librariesAddModal .tab-link').click();
 
   };
 
@@ -54,6 +57,7 @@ app.controller("libraries", function ($scope, $http, $timeout) {
     $scope.viewLibraries(libraries);
     $scope.libraries = {};
     site.showModal('#librariesUpdateModal');
+    document.querySelector('#librariesUpdateModal .tab-link').click();
   };
 
   $scope.updateLibraries = function () {

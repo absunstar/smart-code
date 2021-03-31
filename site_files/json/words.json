@@ -10,13 +10,38 @@
         "ar": "الرمز"
     },
     {
+        "name": "image",
+        "en": "Image",
+        "ar": "صورة"
+    },
+    {
+        "name": "the_image",
+        "en": "The Image",
+        "ar": "الصورة"
+    },
+    {
+        "name": "file",
+        "en": "File",
+        "ar": "ملق"
+    },
+    {
+        "name": "the_file",
+        "en": "The File",
+        "ar": "الملف"
+    },
+    {
+        "name": "attach_images",
+        "en": "Attach Images",
+        "ar": "إرفاق صور"
+    },
+    {
         "name": "attach_files",
-        "en": "Attach files",
+        "en": "Attach Files",
         "ar": "إرفاق ملفات"
     },
     {
         "name": "attach_links",
-        "en": "Attach links",
+        "en": "Attach Links",
         "ar": "إرفاق روابط"
     },
     {
@@ -26,8 +51,13 @@
     },
     {
         "name": "attached_links",
-        "en": "Attached links",
+        "en": "Attached Links",
         "ar": "روابط مرفقة"
+    },
+    {
+        "name": "attached_images",
+        "en": "Attached Images",
+        "ar": "صور مرفقة"
     },
     {
         "name": "hr",

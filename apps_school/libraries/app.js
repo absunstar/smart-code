@@ -20,7 +20,9 @@ module.exports = function init(site) {
       name_en: "Default Libraries",
       code: "1-Test",
       image_url: '/images/libraries.png',
-      links_list : [],
+      links_list: [{}],
+      files_list: [{}],
+      images_list: [{}],
       company: {
         id: doc.id,
         name_ar: doc.name_ar,
@@ -232,13 +234,13 @@ module.exports = function init(site) {
 
     where['company.id'] = site.get_company(req).id
     // where['branch.code'] = site.get_branch(req).code
-    
-    if (req.session.user.type == 'customer') {
-      if(req.session.user.school_grade_id)
-      where['school_grade.id'] = req.session.user.school_grade_id;
 
-      if(req.session.user.students_year_id)
-      where['students_year.id'] = req.session.user.students_year_id;
+    if (req.session.user.type == 'customer') {
+      if (req.session.user.school_grade_id)
+        where['school_grade.id'] = req.session.user.school_grade_id;
+
+      if (req.session.user.students_year_id)
+        where['students_year.id'] = req.session.user.students_year_id;
     }
 
     $libraries.findMany({

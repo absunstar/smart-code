@@ -9,10 +9,31 @@
         "en": "Library",
         "ar": "المكتبة"
     },
+   
+    {
+        "name": "Package",
+        "en": "Package",
+        "ar": "حزمة"
+    },
+    {
+        "name": "new_Package",
+        "en": "New Package",
+        "ar": "حزمة جديدة"
+    },
     {
         "name": "description_link",
-        "en": "Description of the link",
+        "en": "Description of the Link",
         "ar": "وصف الرابط"
+    },
+    {
+        "name": "description_image",
+        "en": "Description of the Image",
+        "ar": "وصف الصورة"
+    },
+    {
+        "name": "description_file",
+        "en": "Description of the File",
+        "ar": "وصف الملف"
     },
     {
         "name": "the_link",
@@ -53,5 +74,35 @@
         "name": "libraries_number",
         "en": "Library Number",
         "ar": "رقم المكتبة"
+    },
+    {
+        "name": "backage_add",
+        "en": "Add Backage",
+        "ar": "إضافة حزمة"
+    },
+    {
+        "name": "backage_edit",
+        "en": "Edit Backage",
+        "ar": "تعديل حزمة"
+    },
+    {
+        "name": "backage_details",
+        "en": "Backage Details",
+        "ar": "تفاصيل حزمة"
+    },
+    {
+        "name": "backage_delete",
+        "en": "Delete Backage",
+        "ar": "حذف حزمة"
+    },
+    {
+        "name": "backage_number",
+        "en": "Backage Number",
+        "ar": "رقم الحزمة"
+    },
+    {
+        "name": "backage_number",
+        "en": "Backage Number",
+        "ar": "رقم الحزمة"
     }
 ]
