@@ -89,7 +89,6 @@
                         <th>##word.price##</th>
                         <th class="w150">##word.discount##</th>
                         <th class="w150">##word.value_added##</th>
-                        <th>##word.total_v_a##</th>
                         <th>##word.stores_in_item_total##</th>
                         <th>##word.actions##</th>
                     </tr>
@@ -101,9 +100,7 @@
                         </td>
                         <td> <br> {{itm.name_##session.lang##}}</td>
                         <td>
-                            <br>
-                            <p>{{itm.size_ar}}</p>
-                            <p>{{itm.size_en}}</p>
+                            <p>{{itm.size_##session.lang##}}</p>
                         </td>
 
                         <td>
@@ -141,8 +138,9 @@
                         <td>
                             <i-control ng-change="calcSize(itm)" type="number" ng-model="itm.value_added">
                             </i-control>
+                           <p class="red">##word.total_v_a##</p>
+                           <p>{{itm.total_v_a}}</p>
                         </td>
-                        <td> <br> {{itm.total_v_a}}</td>
 
                         <td class="green"> <br> {{itm.total}}</td>
 

@@ -33,11 +33,11 @@
                         <tr ng-repeat="s in size.size_units_list track by $index">
 
                             <td>
-                                <br>
+                                
                                 <p class="bold center"> {{s.name_##session.lang##}} </p>
                             </td>
                             <td>
-                                <br ng-show="_view">
+                                <!-- <br ng-show="_view"> -->
                                 <p ng-show="_view" class="bold center"> {{s.barcode}} </p>
 
                                 <i-control ng-hide="_view"
@@ -46,7 +46,7 @@
                             </td>
 
                             <td ng-hide="category_item.item_type.id === 2">
-                                <br>
+                                
                                 <p class="center bold green" ng-show="s.current_count > 0">
                                     {{s.current_count}} </p>
                                 <p class="bold red center" ng-show="s.current_count == 0 ||s.current_count < 0">
@@ -54,25 +54,25 @@
                             </td>
 
                             <td ng-hide="category_item.item_type.id === 2">
-                                <br>
+                                
                                 <p class="bold center"> {{s.start_count}} </p>
                             </td>
 
                             
                             <td ng-hide="category_item.item_type.id === 2">
-                                <br ng-show="_view">
+                                <!-- <br ng-show="_view"> -->
                                 <p ng-show="_view" class="bold red center"> {{s.cost}} </p>
                                 <i-control ng-hide="_view" ng-model="s.cost" type="number"></i-control>
                             </td>
 
                             <td>
-                                <br ng-show="_view">
+                                <!-- <br ng-show="_view"> -->
                                 <p ng-show="_view" class="bold green center"> {{s.price}} </p>
                                 <i-control ng-hide="_view" ng-model="s.price" type="number"></i-control>
                             </td>
 
                             <td>
-                                <br ng-show="_view">
+                                <!-- <br ng-show="_view"> -->
                                 <p ng-show="_view" class="bold  center"> {{s.average_cost}} </p>
                                 <i-control ng-hide="_view" ng-model="s.average_cost" type="number">
                                 </i-control>

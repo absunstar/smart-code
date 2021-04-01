@@ -101,13 +101,13 @@
                             <th ng-hide="store_out.type.id == 5">##word.price##</th>
                             <th ng-hide="store_out.type.id == 5" class="w150">##word.discount##</th>
                             <th ng-hide="store_out.type.id == 5">##word.maximum_discount##</th>
-                            <th class="w150">##word.value_added##</th>
-                            <th ng-hide="store_out.type.id == 5">##word.total_v_a##</th>
+                            <th ng-hide="store_out.type.id == 5" class="w150">##word.value_added##</th>
                             <th>##word.stores_out_item_total##</th>
                             <th>##word.actions##</th>
                         </tr>
 
                         <tr ng-repeat="itm in store_out.items">
+
                             <td> <br ng-hide="itm.work_patch || itm.work_serial"> {{$index + 1}}
                                 <div class="row">
                                     <i-button label="##word.patch##" ng-show="itm.work_patch || itm.work_serial"
@@ -115,13 +115,13 @@
                                     </i-button>
                                 </div>
                             </td>
+
                             <td> <br>
                                 <p class="userPrint">{{itm.barcode}}</p>
                             </td>
                             <td> <br> {{itm.name_##session.lang##}}</td>
                             <td>
-                                <p>{{itm.size_ar}}</p>
-                                <p>{{itm.size_en}}</p>
+                                <p>{{itm.size_##session.lang##}}</p>
                             </td>
 
                             <td>
@@ -161,12 +161,14 @@
 
                             </td>
 
-                            <td>
+                            <td ng-hide="store_out.type.id == 5">
                                 <i-control ng-change="calcSize(itm)" type="number" ng-model="itm.value_added">
                                 </i-control>
+                               <p class="red">##word.total_v_a##</p>
+                               <p>{{itm.total_v_a}}</p>
                             </td>
+    
 
-                            <td ng-hide="store_out.type.id == 5"> <br> {{itm.total_v_a}}</td>
                             <td class="green"> <br> {{itm.total}}</td>
 
                             <td>
