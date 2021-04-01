@@ -121,15 +121,18 @@
   <br />
 
   <div class="row">
-    <table class="table bold hover details">
+    <table class="table center bold hover details">
       <tr>
         <th class="w50">##word.serial##</th>
         <th class="w150">##word.barcode##</th>
         <th class="w250">##word.stores_out_item_name##</th>
         <th class="w50">##word.unit##</th>
         <th class="w50">##word.stores_out_item_count##</th>
-        <th class="w50" x-permissions="stores_out_details_values || stores_out_manage" ng-hide="store_out.type.id ==5">
-          ##word.price##</th>
+
+
+        <th class="w50" x-permissions="stores_out_details_values || stores_out_manage">##word.price##
+        </th>
+
         <th class="w50" x-permissions="stores_out_details_values || stores_out_manage"
           ng-show="defaultSettings.inventory.value_added > 0">##word.total_v_a##</th>
 
@@ -138,15 +141,18 @@
       </tr>
 
       <tr ng-repeat="itm in store_out.items">
+
         <td class="center blue">
           {{$index + 1}}
           <i-button label="##word.patch##" class="not-print" ng-show="itm.work_patch || itm.work_serial" type="view"
             ng-click="viewPatchesList(itm)">
           </i-button>
         </td>
+
         <td class="center userPrint blue">
           {{itm.barcode}}
         </td>
+
         <td class="center">
           {{itm.name_##session.lang##}}
         </td>
@@ -154,9 +160,11 @@
         <td class="center">
           {{itm.unit.name_##session.lang##}}
         </td>
+
         <td class="center">
           {{itm.count}}
         </td>
+
         <td class="center" x-permissions="stores_out_details_values || stores_out_manage"
           ng-hide="store_out.type.id ==5">
           {{itm.price}}
@@ -166,14 +174,14 @@
             %</del>
         </td>
 
-
-        <td x-permissions="stores_out_details_values || stores_out_manage"
-          ng-show="defaultSettings.inventory.value_added > 0" class="center w50 red">
+        <td class="center red" x-permissions="stores_out_details_values || stores_out_manage" ng-show="defaultSettings.inventory.value_added > 0">
           {{itm.total_v_a}}
         </td>
 
-        <td class="center w100" x-permissions="stores_out_details_values || stores_out_manage" class="center">
-          {{itm.total}}</td>
+        <td x-permissions="stores_out_details_values || stores_out_manage">
+          {{itm.total}}
+        </td>
+     
       </tr>
     </table>
   </div>

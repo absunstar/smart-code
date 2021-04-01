@@ -1008,7 +1008,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
           if ($scope.currencySetting) {
 
             site.strings['currency'].ar = ' ' + $scope.currencySetting.name_ar + ' ';
-            site.strings['from100'].ar = ' ' + $scope.currencySetting.minor_currency + ' ';
+            site.strings['from100'].ar = ' ' + ($scope.currencySetting.minor_currency||'') + ' ';
           }
           $scope.store_in.net_value2 = site.stringfiy($scope.store_in.net_value);
         } else $scope.error = response.data.error;

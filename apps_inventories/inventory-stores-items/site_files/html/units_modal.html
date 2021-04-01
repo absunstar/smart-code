@@ -33,12 +33,11 @@
                         <tr ng-repeat="s in size.size_units_list track by $index">
 
                             <td>
-                                
                                 <p class="bold center"> {{s.name_##session.lang##}} </p>
                             </td>
                             <td>
                                 <!-- <br ng-show="_view"> -->
-                                <p ng-show="_view" class="bold center"> {{s.barcode}} </p>
+                                <p ng-show="_view" class="bold userPrint center"> {{s.barcode}} </p>
 
                                 <i-control ng-hide="_view"
                                     ng-disabled="defaultSettings.inventory.auto_unit_barcode_generation"
@@ -80,9 +79,10 @@
 
                             <td class="center bold">
 
-                                <div ng-show="_view">
+                                <div ng-show="_view" class="center">
                                     
                                     <b>##word.discount## : <b class="red">{{s.discount.value}} </b></b>
+                                    <br>
                                     <b>##word.maximum_discount## : <b class="red">{{s.discount.max}}</b></b>
                                     <b class="red" ng-show="s.discount.type == 'number'">
                                         $</b>
