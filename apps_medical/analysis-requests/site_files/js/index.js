@@ -5,13 +5,13 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
 
   $scope.delivery_person_list = [
     {
-      id : 1,
+      id: 1,
       name: 'patient_himself',
       ar: 'المريض نفسه',
       en: 'The patient himself',
     },
     {
-      id : 2,
+      id: 2,
       name: 'another_person',
       ar: 'شخص أخر',
       en: 'Another Person',
@@ -80,10 +80,11 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
   };
 
   $scope.updateAnalysisRequests = function (analysis_requests) {
+    $scope.error = '';
+
     if ($scope.busy) {
       return;
     }
-    $scope.error = '';
 
     const v = site.validated('#analysisRequestsUpdateModal');
     if (!v.ok) {
@@ -98,7 +99,7 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done) {
+        if (response.data.done && response.data.doc) {
           site.hideModal('#analysisRequestsUpdateModal');
           site.hideModal('#deliveryAnalysisModal');
           site.hideModal('#puttingResultsAnalysisModal');
@@ -341,7 +342,7 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
 
           } else if (response.data.error.like('*ername must be typed correctly*')) {
             $scope.error = "##word.err_username_contain##"
-            
+
           } else if (response.data.error.like('*User Is Exist*')) {
             $scope.error = "##word.user_exists##"
           }
@@ -392,7 +393,7 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
         where: {
           active: true
         },
-        select: { id: 1, name_ar: 1, name_en: 1, price: 1, delivery_time: 1, period: 1, immediate: 1 }
+        select: { id: 1, name_ar: 1, name_en: 1, price: 1, delivery_time: 1, period: 1, immediate: 1, male: 1, female: 1, child: 1 }
       }
     }).then(
       function (response) {
@@ -489,11 +490,11 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
 
 
 
-  $scope.showPersonDelivery = function (analysis_requests, type) {
+  $scope.showPersonDelivery = function (analysis, type) {
 
-    $scope.delivery_person = Object.assign({}, analysis_requests);
+    $scope.analysis =  analysis;
     if (type === 'view') {
-      $scope.delivery_person.$view = true;
+      $scope.analysis.$view = true;
     }
 
     site.showModal('#deliveryPersonModal');
@@ -527,10 +528,10 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
 
 
   $scope.changeAnalysisList = function (analysis) {
-
     let obj = {
       id: analysis.id,
-      name: analysis.name,
+      name_ar: analysis.name_ar,
+      name_en: analysis.name_en,
       code: analysis.code,
       immediate: analysis.immediate,
       delivery_time: analysis.delivery_time,
@@ -540,15 +541,15 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
     };
 
     if ($scope.analysis_requests.customer && $scope.analysis_requests.customer.id) {
-      if ($scope.analysis_requests.customer.child) {
+      if ($scope.analysis_requests.customer.child && analysis.child) {
         obj.from = analysis.child.from;
         obj.to = analysis.child.to;
 
-      } else if ($scope.analysis_requests.customer.gender && $scope.analysis_requests.customer.gender.name == 'male') {
+      } else if ($scope.analysis_requests.customer.gender && $scope.analysis_requests.customer.gender.name == 'male' && analysis.male) {
         obj.from = analysis.male.from;
         obj.to = analysis.male.to;
 
-      } else if ($scope.analysis_requests.customer.gender && $scope.analysis_requests.customer.gender.name == 'female') {
+      } else if ($scope.analysis_requests.customer.gender && $scope.analysis_requests.customer.gender.name == 'female' && analysis.female) {
         obj.from = analysis.female.from;
         obj.to = analysis.female.to;
       };

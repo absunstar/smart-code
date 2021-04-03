@@ -15,20 +15,20 @@
 
                     <div class="row">
                         <i-checkbox class="col2" label="##word.delivery_all##"
-                            ng-model="analysis_requests.$delivery_all">
+                            ng-model="analysis_requests.delivery_all">
                         </i-checkbox>
 
-                        <i-list ng-show="analysis_requests.$delivery_all" class="col3" label="##word.person_delivery##"
-                            ng-model="analysis_requests.$person_delivery" display="##session.lang##"
+                        <i-list ng-show="analysis_requests.delivery_all" class="col3" label="##word.person_delivery##"
+                            ng-model="analysis_requests.person_delivery" display="##session.lang##"
                             items="delivery_person_list" ng-search="_search.$p_searching">
                         </i-list>
 
                         <i-button type="view"
-                            ng-show="analysis_requests.$delivery_all && analysis_requests.$person_delivery.name === 'another_person'"
+                            ng-show="analysis_requests.delivery_all && analysis_requests.person_delivery.name === 'another_person'"
                             onclick="site.showModal('#deliveryDataAllModal')" label="##word.delivery_data##">
                         </i-button>
 
-                        <i-button type="add" ng-show="analysis_requests.$delivery_all" ng-click="setPersonDelivery()"
+                        <i-button type="add" ng-show="analysis_requests.delivery_all" ng-click="setPersonDelivery()"
                             label="##word.circulate##">
                         </i-button>
 
@@ -91,16 +91,13 @@
             <h2 class="error"> {{error}} </h2>
             <div class="modal-footer center">
 
-                <i-button type="save" label="##word.save##" ng-click="updateAnalysisRequests(analysis_requests)">
-                </i-button>
+                <i-button type="save" label="##word.save##" ng-click="updateAnalysisRequests(analysis_requests)"></i-button>
                 <i-button type="close" onclick="site.hideModal('#deliveryAnalysisModal')" label="##word.close##">
                 </i-button>
             </div>
         </div>
     </div>
 </div>
-
-
 
 
 <div id="deliveryDataAllModal" class="modal small">
@@ -114,34 +111,34 @@
             <form>
 
                 <div class="row">
-                    <i-control class="col4" label="##word.name##" ng-model="analysis_requests.$delivery_data.name">
+                    <i-control class="col4" label="##word.name##" ng-model="analysis.delivery_data.name">
                     </i-control>
 
                     <i-control class="col3" label="##word.customers_phone##"
-                        ng-model="analysis_requests.$delivery_data.phone">
+                        ng-model="analysis.delivery_data.phone">
                     </i-control>
 
                     <i-control class="col3" label="##word.customers_mobile##"
-                        ng-model="analysis_requests.$delivery_data.mobile">
+                        ng-model="analysis.delivery_data.mobile">
                     </i-control>
 
                 </div>
 
                 <div class="row">
-                    <i-list class="col3" label="##word.gov##" ng-model="analysis_requests.$delivery_data.gov"
-                        items="govList" display="name_##session.lang##" ng-change="getCityList(analysis_requests.$delivery_data.gov)"
+                    <i-list class="col3" label="##word.gov##" ng-model="analysis.delivery_data.gov"
+                        items="govList" display="name_##session.lang##" ng-change="getCityList(analysis.delivery_data.gov)"
                         ng-search="_search.$govNameContact">
                     </i-list>
 
-                    <i-list class="col4" label="##word.city##" ng-model="analysis_requests.$delivery_data.city"
-                        items="cityList" ng-change="getAreaList(analysis_requests.$delivery_data.city)" display="name_##session.lang##"
-                        ng-search="_search.$analysis_requests.$delivery_data.$city_search"></i-list>
-                    <i-list class="col4" label="##word.area##" ng-model="analysis_requests.$delivery_data.area"
+                    <i-list class="col4" label="##word.city##" ng-model="analysis.delivery_data.city"
+                        items="cityList" ng-change="getAreaList(analysis.delivery_data.city)" display="name_##session.lang##"
+                        ng-search="_search.$analysis.delivery_data.$city_search"></i-list>
+                    <i-list class="col4" label="##word.area##" ng-model="analysis.delivery_data.area"
                         items="areaList" display="name_##session.lang##"
-                        ng-search="_search.$analysis_requests.$delivery_data.$area_search">
+                        ng-search="_search.$analysis.delivery_data.$area_search">
                     </i-list>
                     <i-control class="col6" label="##word.address##"
-                        ng-model="analysis_requests.$delivery_data.address">
+                        ng-model="analysis.delivery_data.address">
                     </i-control>
                 </div>
             </form>

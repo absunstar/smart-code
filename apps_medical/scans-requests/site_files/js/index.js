@@ -489,11 +489,11 @@ app.controller("scans_requests", function ($scope, $http, $timeout) {
 
 
 
-  $scope.showPersonDelivery = function (scans_requests, type) {
+  $scope.showPersonDelivery = function (scan, type) {
 
-    $scope.delivery_person = Object.assign({}, scans_requests);
+    $scope.scan = scan;
     if (type === 'view') {
-      $scope.delivery_person.$view = true;
+      $scope.scan.$view = true;
     }
 
     site.showModal('#deliveryPersonModal');
@@ -530,7 +530,8 @@ app.controller("scans_requests", function ($scope, $http, $timeout) {
 
     let obj = {
       id: scans.id,
-      name: scans.name,
+      name_ar: scans.name_ar,
+      name_en: scans.name_en,
       code: scans.code,
       immediate: scans.immediate,
       delivery_time: scans.delivery_time,

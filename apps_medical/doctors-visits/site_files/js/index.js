@@ -378,7 +378,8 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
           $scope.specialtyList = response.data.list;
           $scope.specialtyList.unshift({
             id: 0,
-            name: 'كل التخصصات'
+            name_ar: 'كل التخصصات',
+            name_en: 'All specialties',
           });
         }
       },
@@ -757,7 +758,7 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
         where: {
           active: true
         },
-        select: { id: 1, name_ar: 1, name_en: 1, price: 1, delivery_time: 1, period: 1, immediate: 1 }
+        select: { id: 1, name_ar: 1, name_en: 1, price: 1, delivery_time: 1, period: 1, immediate: 1, male: 1, female: 1, child: 1 }
       }
     }).then(
       function (response) {
@@ -975,12 +976,14 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
     $scope.clinic = Object.assign({}, c);
     $scope.doctors_visits.selected_clinic = {
       id: c.id,
-      name: c.name
+      name_ar: c.name_ar,
+      name_en: c.name_en
     };
 
     $scope.doctors_visits.selected_specialty = {
       id: c.specialty.id,
-      name: c.specialty.name
+      name_ar: c.specialty.name_ar,
+      name_en: c.specialty.name_en
     };
     $scope.doctors_visits.selected_doctor = d.doctor;
     $scope.doctors_visits.selected_shift = {};

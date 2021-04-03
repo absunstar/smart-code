@@ -37,6 +37,13 @@
     {
         "category": "main",
         "feature": "medical",
+        "name": "clinics",
+        "en": "Clinics",
+        "ar": "العيادات"
+    },
+    {
+        "category": "main",
+        "feature": "medical",
         "name": "doctors_visits",
         "en": "Doctors Visits",
         "ar": "زيارات الأطباء"

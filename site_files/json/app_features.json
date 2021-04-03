@@ -186,6 +186,14 @@
     },
     {
         "feature": "school",
+        "title_ar": "المكتبات",
+        "title_en": "Libraries",
+        "image_url": "/images/libraries.png",
+        "description_ar": "يتم من خلاله إضافة محتوى دراسي و يمكن ربطه بمرحلة دراسية أو سنة طلابيه معينه و يتم رفع الفيديوهات أو الصور أو الملفات أو وضع لينكات للمحتوى ليتسنى للطلاب بعد ذلك الدخول على المحتوى للإستفادة منه",
+        "description_en": "Through it, academic content is added and can be linked to a specific study stage or student year, and videos, pictures, files, or links are uploaded to the content so that students can then access the content to take advantage of it."
+    },
+    {
+        "feature": "school",
         "title_ar": "حضور و غياب الطلاب",
         "title_en": "Attend & Absence Students",
         "image_url": "/images/attend_students.png",
@@ -194,10 +202,10 @@
     },
     {
         "feature": "school",
-        "title_ar": "القاعات",
-        "title_en": "Halls",
+        "title_ar": "الفصول الدراسية/القاعات",
+        "title_en": "Halls/Classrooms",
         "image_url": "/images/hall.png",
-        "description_ar": "يتم إضافة قاعات التدريب و المحاضرات و ربطها بالطلاب و الأنشطة الطلاب بها داخل القاعة لتسهيل و حصر سير العمل",
+        "description_ar": "يتم إضافة قاعات التدريب و المحاضرات و ربطها بالطلاب و أنشطة الطلاب بها داخل القاعة لتسهيل و حصر سير العمل",
         "description_en": "Training rooms and lectures are added and linked to the participants and the activities Students to inside the hall to facilitate and limit the work progress."
     },
     {

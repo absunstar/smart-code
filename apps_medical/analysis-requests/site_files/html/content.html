@@ -59,8 +59,6 @@
                                         </td>
     
                                     </tr>
-    
-
 
                                     <tr>
                                         <td class="white bg_card"> ##word.weight## </td>
@@ -72,11 +70,13 @@
                                             {{analysis_requests.customer.blood_type.name_##session.lang##}}
                                         </td>
                                     </tr>
+
                                     <tr>
                                         <td class="white bg_card"> ##word.medicine_notes## </td>
                                         <td colspan="7" class="center"> {{analysis_requests.customer.medicine_notes}}
                                         </td>
                                     </tr>
+
                                     <tr>
                                         <td class="white bg_card"> ##word.gov## </td>
                                         <td colspan="2" class="center"> {{analysis_requests.customer.gov.name_##session.lang##}} </td>
@@ -92,6 +92,7 @@
                                         <td class="white bg_card"> ##word.address## </td>
                                         <td colspan="7" class="center"> {{analysis_requests.customer.address}}</td>
                                     </tr>
+
                                     <tr>
                                         <td class="white bg_card"> ##word.mobile## </td>
                                         <td colspan="4" class="center"> {{analysis_requests.customer.mobile}}</td>
@@ -109,7 +110,7 @@
                         <div class="row">
 
                             <i-list class="col4" label="##word.doctor_visit##" ng-model="doctor_visit" display="code"
-                                space=" - " display2="selected_clinic.name" items="doctorsVisitsList"
+                                space=" - " display2="selected_clinic.name_##session.lang##" items="doctorsVisitsList"
                                 ng-search="_search.$patients_searching">
                             </i-list>
 
