@@ -1256,11 +1256,14 @@ module.exports = function init(site) {
       res.json(response)
       return
     }
+    let where = req.data.where || {}
+
+    if (req.body && req.body.id) {
+      where['id'] = req.body.id
+    }
 
     $account_invoices.findOne({
-      where: {
-        id: req.body.id
-      }
+      where: where
     }, (err, doc) => {
       if (!err) {
         response.done = true

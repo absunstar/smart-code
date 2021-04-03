@@ -23,7 +23,8 @@
 
                                 <tr>
                                     <td class="title"> ##word.shift## </td>
-                                    <td class="center userPrint blue"> {{account_invoices.shift.name_##session.lang##}} -
+                                    <td class="center userPrint blue"> {{account_invoices.shift.name_##session.lang##}}
+                                        -
                                         {{account_invoices.shift.code}} </td>
                                 </tr>
                                 <tr>
@@ -32,7 +33,8 @@
                                         <p class="blue">{{account_invoices.invoice_type.##session.lang##}}
                                     </td>
                                 </tr>
-                                <tr ng-show="##query.type## == 3">
+
+                                <tr ng-show="account_invoices.order_invoices_type.id">
                                     <td class="title"> ##word.order_invoices_type## </td>
                                     <td class="center"> {{account_invoices.order_invoices_type.##session.lang##}} </td>
                                 </tr>
@@ -94,12 +96,14 @@
 
                                 <tr ng-show="account_invoices.delivery_employee.id">
                                     <td class="title"> ##word.delivery_employee## </td>
-                                    <td class="center"> {{account_invoices.delivery_employee.name_##session.lang##}} </td>
+                                    <td class="center"> {{account_invoices.delivery_employee.name_##session.lang##}}
+                                    </td>
                                 </tr>
 
                                 <tr ng-show="account_invoices.table.id">
                                     <td class="title"> ##word.tables_group## </td>
-                                    <td class="center"> {{account_invoices.table.tables_group.name_##session.lang##}} </td>
+                                    <td class="center"> {{account_invoices.table.tables_group.name_##session.lang##}}
+                                    </td>
                                 </tr>
 
                                 <tr ng-show="account_invoices.table.id">
@@ -263,6 +267,13 @@
 
                     <div class="col3">
                         <i-image class="not-print" view ng-model="account_invoices.image_url"> </i-image>
+                        <div class="row center">
+                            <i-button ng-show="account_invoices.$view && account_invoices.remain_amount > 0 && account_invoices.posting "
+                                class="center" x-permissions="account_invoices_edit || account_invoices_manage"
+                                type="edit" label="##word.payment##"
+                                ng-click="displayPaymentInvoices(account_invoices)"></i-button>
+
+                        </div>
                     </div>
 
                 </div>
@@ -295,7 +306,8 @@
                                     <td class="center brown">{{c.date | date : 'dd / MM / yyyy'}}</td>
                                     <td class="center blue">{{c.shift.name_##session.lang##}} - {{c.shift.code}}</td>
                                     <td class="center">{{c.payment_method.##session.lang##}}</td>
-                                    <td class="center">{{c.currency.name_##session.lang##}} - <b class="blue">{{c.currency.ex_rate}}</b>
+                                    <td class="center">{{c.currency.name_##session.lang##}} - <b
+                                            class="blue">{{c.currency.ex_rate}}</b>
                                     </td>
                                     <td class="center blue">{{c.safe.name_##session.lang##}}</td>
                                     <td class="center green">{{c.paid_up}}</td>

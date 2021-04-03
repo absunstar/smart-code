@@ -19,11 +19,16 @@
             <div class="row" ng-controller="stores_out">
                 <div x-permissions="stores_out_add || stores_out_manage" x-import="inventory-stores-out/add_modal.html">
                 </div>
+
                 <div x-permissions="stores_out_add || stores_out_manage" x-import="customers/add_modal.html">
                 </div>
+
                 <div x-permissions="stores_out_add || stores_out_manage"
                     x-import="inventory-stores-out/patches_list.html">
                 </div>
+
+                <div x-import="accounting-invoices/view_modal.html"></div>
+                <div x-import="accounting-invoices/payment.html"></div>
 
                 <div x-permissions="stores_out_add || stores_out_manage"
                     x-import="inventory-stores-out/account_invoice.html">
@@ -92,6 +97,7 @@
                             <br>
                             <p class="bold blue text-center userPrint"> {{c.code}} </p>
                         </td>
+
                         <td>
                             <p class="text-center brown"> <br> {{c.date | date : 'yyyy - MM - dd'}} </p>
                         </td>
@@ -134,6 +140,10 @@
                             <i-button x-permissions="stores_out_update || stores_out_manage" type="update"
                                 ng-show="!c.posting && defaultSettings.general_Settings.work_posting"
                                 label="##word.edit##" ng-click="edit(c)"></i-button>
+
+                            <i-button x-permissions="stores_out_view || stores_out_manage" type="view"
+                                ng-show="c.posting && c.invoice && c.type.id !=5" label="##word.accounting_invoice##"
+                                ng-click="detailsAccountInvoices(c)"></i-button>
 
                             <i-button x-permissions="stores_out_delete || stores_out_manage" type="delete"
                                 ng-hide="c.posting && defaultSettings.general_Settings.work_unposting"

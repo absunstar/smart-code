@@ -5,6 +5,16 @@
         "ar": "عميل جديد"
     },
     {
+        "name": "accounting_details",
+        "en": "Accounting Details",
+        "ar": "تفاصيل الحسابات"
+    },
+    {
+        "name": "accounting_invoice",
+        "en": "Accounting Invoice",
+        "ar": "فاتورة الحسابات"
+    },
+    {
         "name": "token",
         "en": "Token",
         "ar": "الرمز"

@@ -28,6 +28,9 @@
                     x-import="inventory-stores-in/patches_list_re.html">
                 </div>
 
+                <div x-import="accounting-invoices/view_modal.html"></div>
+                <div x-import="accounting-invoices/payment.html"></div>
+
                 <div x-permissions="stores_in_delete || stores_in_manage"
                     x-import="inventory-stores-in/delete_modal.html"></div>
 
@@ -53,6 +56,7 @@
                     <h1 ng-show="##query.type## == 3" class="bold text-center"> ##word.opening_balances_store## </h1>
                     <h1 ng-show="##query.type## == 4" class="bold text-center"> ##word.returns_purchase_invoices## </h1>
                 </div>
+
                 <div class="top-actions">
 
                     <i-button x-permissions="stores_in_add || stores_in_manage" type="add" label="##word.new##"
@@ -72,6 +76,7 @@
 
                     <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
                 </div>
+
                 <table id="t1" class="table loaded center bold hover">
                     <tr>
                         <th class="not-print"> ##word.logo## </th>
@@ -141,6 +146,11 @@
                             <i-button x-permissions="stores_in_update || stores_in_manage" type="update"
                                 ng-show="!c.posting && defaultSettings.general_Settings.work_posting"
                                 label="##word.edit##" ng-click="edit(c)"></i-button>
+
+
+                            <i-button x-permissions="stores_in_view || stores_in_manage" type="view"
+                                ng-show="c.posting && c.invoice && c.type.id != 2 && c.type.id != 3 " label="##word.accounting_details##"
+                                ng-click="detailsAccountInvoices(c)"></i-button>
 
                             <i-button x-permissions="stores_in_delete || stores_in_manage" type="delete"
                                 ng-hide="c.posting && defaultSettings.general_Settings.work_unposting"

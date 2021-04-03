@@ -992,7 +992,6 @@ module.exports = function init(site) {
                           if (_unit.id === unit_id) {
                             patch_list = _unit.patch_list
                           }
-
                         });
                     });
                 });

@@ -1008,7 +1008,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
           if ($scope.currencySetting) {
 
             site.strings['currency'].ar = ' ' + $scope.currencySetting.name_ar + ' ';
-            site.strings['from100'].ar = ' ' + ($scope.currencySetting.minor_currency||'') + ' ';
+            site.strings['from100'].ar = ' ' + ($scope.currencySetting.minor_currency || '') + ' ';
           }
           $scope.store_in.net_value2 = site.stringfiy($scope.store_in.net_value);
         } else $scope.error = response.data.error;
@@ -1240,7 +1240,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
         let indxUnit = 0;
         if (_item.size_units_list && _item.size_units_list.length > 0) {
-          indxUnit = _item.size_units_list.findIndex(_unit => _unit.id == $scope.item.nameitm.main_unit.id);
+          indxUnit = _item.size_units_list.findIndex(_unit => _unit.id == $scope.item.itm.main_unit.id);
 
           _item.unit = _item.size_units_list[indxUnit];
           _item.discount = _item.size_units_list[indxUnit].discount;
@@ -1814,7 +1814,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                         function (response) {
                           if (response.data.done) {
 
-                            if ((_store_in_all[i].type.id === 1 || _store_in_all[i].type.id === 4) &&_store_in_all[i].posting && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.link_warehouse_account_invoices) {
+                            if ((_store_in_all[i].type.id === 1 || _store_in_all[i].type.id === 4) && _store_in_all[i].posting && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.link_warehouse_account_invoices) {
                               let account_invoices = {
                                 image_url: '/images/account_invoices.png',
                                 date: response.data.doc.date,
@@ -2295,6 +2295,120 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         }
       }
     }
+  };
+
+  $scope.detailsAccountInvoices = function (storeIn) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/account_invoices/view",
+      data: {
+        where: {
+          invoice_id: storeIn.id,
+          'source_type.id': 1,
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.store_in = storeIn;
+          $scope.account_invoices = response.data.doc || {};
+          $scope.account_invoices.$view = true;
+
+          site.showModal('#accountInvoicesDetailsModal');
+
+        } else {
+          $scope.error = response.data.error;
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    )
+  };
+
+  $scope.displayPaymentInvoices = function (invoices) {
+    $scope.error = '';
+
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.paid_invoice = invoices;
+        $scope.payment_date = new Date();
+        $scope.paid_invoice.payment_paid_up = 0;
+        if ($scope.defaultSettings.accounting) {
+          $scope.paid_invoice.currency = $scope.currencySetting;
+          if ($scope.defaultSettings.accounting.payment_method) {
+            $scope.paid_invoice.payment_method = $scope.defaultSettings.accounting.payment_method;
+            $scope.loadSafes($scope.paid_invoice.payment_method, $scope.paid_invoice.currency);
+            if ($scope.paid_invoice.payment_method.id === 1)
+              $scope.paid_invoice.safe = $scope.defaultSettings.accounting.safe_box;
+            else $scope.paid_invoice.safe = $scope.defaultSettings.accounting.safe_bank;
+          }
+        }
+        if ($scope.paid_invoice.currency) {
+          $scope.amount_currency = site.toNumber($scope.paid_invoice.remain_amount) / site.toNumber($scope.paid_invoice.currency.ex_rate);
+          $scope.amount_currency = site.toNumber($scope.amount_currency);
+          $scope.paid_invoice.payment_paid_up = $scope.amount_currency;
+        }
+        site.showModal('#invoicesPaymentModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
+  };
+
+  $scope.acceptPaymentInvoice = function () {
+    $scope.error = '';
+
+    if (!$scope.paid_invoice.safe) {
+      $scope.error = "##word.should_select_safe##";
+      return;
+    } else if (!$scope.paid_invoice.payment_paid_up) {
+      $scope.error = "##word.err_paid_up##";
+      return;
+    }
+    else if ($scope.paid_invoice.payment_paid_up > $scope.amount_currency) {
+      $scope.error = "##word.err_paid_up_payment##";
+      return;
+    } else if ($scope.paid_invoice.payment_paid_up > $scope.amount_currency && $scope.paid_invoice.source_type.id != 8 && $scope.paid_invoice.source_type.id != 9 && $scope.paid_invoice.source_type.id != 10 && $scope.paid_invoice.source_type.id != 11) {
+      $scope.error = "##word.err_net_value##";
+      return;
+    }
+
+    $scope.paid_invoice.payment_list = $scope.paid_invoice.payment_list || [];
+    $scope.paid_invoice.payment_list.unshift({
+      paid_up: $scope.paid_invoice.payment_paid_up,
+      payment_method: $scope.paid_invoice.payment_method,
+      currency: $scope.paid_invoice.currency,
+      shift: $scope.shift,
+      safe: $scope.paid_invoice.safe,
+      date: $scope.payment_date,
+    });
+
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/account_invoices/update_payment",
+      data: $scope.paid_invoice
+    }).then(
+      function (response) {
+        $scope.busy = false;
+
+        if (response.data.done) {
+          $scope.detailsAccountInvoices($scope.store_in)
+          site.hideModal('#invoicesPaymentModal');
+        } else {
+          $scope.error = response.data.error;
+          if (response.data.error.like('*n`t Found Open Shi*')) {
+            $scope.error = "##word.open_shift_not_found##"
+          } else if (response.data.error.like('*n`t Open Perio*')) {
+            $scope.error = "##word.should_open_period##"
+          }
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    )
   };
 
 
