@@ -75,8 +75,6 @@
                 {{store_out.retured_number}}</h2>
             <br>
 
-
-
         </div>
         <div class="col3">
             <i-image category="store_out" ng-model="store_out.image_url"> </i-image>
@@ -315,7 +313,7 @@
                 </div>
 
                 <div class="row"
-                    ng-show="store_out.type.id != 5 && defaultSettings.accounting.create_invoice_auto && store_out.payment_type.id == 1">
+                    ng-show="store_out.type.id != 5 && defaultSettings.accounting.create_invoice_auto">
 
                     <i-list help-id="" ng-search="_search.$payment_method_search" class="col2"
                         label="##word.payment_method##" ng-model="store_out.payment_method"
@@ -341,16 +339,16 @@
                         label="##word.stores_out_net_value##"></i-control>
 
                     <i-control class="col3"
-                        ng-show="store_out.type.id != 5 && defaultSettings.accounting.create_invoice_auto && store_out.payment_type.id == 1"
+                        ng-show="store_out.type.id != 5 && defaultSettings.accounting.create_invoice_auto"
                         disabled ng-model="amount_currency" label="##word.amount_currency##" type="number"></i-control>
 
                     <i-control class="col2"
-                        ng-show="store_out.type.id != 5 && defaultSettings.accounting.create_invoice_auto && store_out.payment_type.id == 1"
+                        ng-show="store_out.type.id != 5 && defaultSettings.accounting.create_invoice_auto"
                         ng-model="store_out.paid_up" label="##word.paid_up##" type="number">
                     </i-control>
 
                     <i-control class="col2"
-                        ng-show="store_out.type.id != 5 && defaultSettings.accounting.create_invoice_auto && store_out.payment_type.id == 1"
+                        ng-show="store_out.type.id != 5 && defaultSettings.accounting.create_invoice_auto"
                         ng-model="store_out.Paid_from_customer" ng-change="calc(store_out)"
                         label="##word.Paid_from_customer##" type="number">
                     </i-control>

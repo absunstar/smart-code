@@ -865,7 +865,7 @@ module.exports = function init(site) {
     let limit = where.limit || undefined
     let search = req.body.search
 
-    if (search) {
+    if (search != undefined) {
       where.$or = []
 
       where.$or.push({
@@ -965,11 +965,10 @@ module.exports = function init(site) {
       where['sizes.item_complex'] = true
       delete where['item_complex']
     }
-
     response.done = false
     $stores_items.findMany({
       select: req.body.select,
-      limit: limit,
+      limit: limit || 100,
       where: where,
       sort: {
         id: -1

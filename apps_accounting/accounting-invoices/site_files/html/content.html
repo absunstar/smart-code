@@ -12,6 +12,11 @@
 
                         <i-date2 class="col4" ng-model="account_invoices.date" label="##word.date##"></i-date2>
 
+                        <i-list class="col2" ng-model="account_invoices.payment_type" items="paymentTypesList"
+                            ng-show="account_invoices.source_type.id != 8 && account_invoices.source_type.id!= 9 && account_invoices.source_type.id!= 10  && account_invoices.source_type.id!= 11  && account_invoices.source_type.id!= 14" display="##session.lang##"
+                            ng-search="_search.$search_payment_types" label="##word.payment_type##">
+                        </i-list>
+
                         <i-control class="col3 r_indigo" disabled label="##word.shift##"
                             ng-model="shift.name_##session.lang##">
                         </i-control>

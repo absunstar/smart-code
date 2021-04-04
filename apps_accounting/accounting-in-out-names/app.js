@@ -56,7 +56,9 @@ module.exports = function init(site) {
           name_en: doc.branch_list[0].name_en
         },
         active: true
-      }, (err, doc) => { })
+      }, (errOut, outDoc) => { 
+
+      })
     })
   })
 

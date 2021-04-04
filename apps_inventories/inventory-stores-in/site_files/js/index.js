@@ -30,6 +30,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
           date: new Date(),
           invoice_id: store_in.id,
           vendor: store_in.vendor,
+          payment_type: store_in.payment_type,
           total_value_added: store_in.total_value_added,
           invoice_type: store_in.type,
           shift: shift,
@@ -76,6 +77,12 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
   $scope.addAccountInvoice = function (account_invoices) {
     $scope.error = '';
     $scope.busy = true;
+
+
+    if (account_invoices.paid_up < $scope.amount_currency && account_invoices.payment_type.id == 1) {
+      $scope.error = "##word.amount_must_paid_full##";
+      return;
+    };
 
     if (account_invoices.paid_up > 0 && !account_invoices.safe) {
       $scope.error = "##word.should_select_safe##";
@@ -804,7 +811,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       return;
     };
 
-    if ($scope.store_in.payment_type && $scope.store_in.payment_type.id == 1) {
+    if ($scope.store_in.payment_type) {
 
       if ($scope.store_in.paid_up > $scope.amount_currency) {
         $scope.error = "##word.err_net_value##";
@@ -818,7 +825,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         }
       }
 
-      if ($scope.store_in.paid_up < $scope.amount_currency) {
+      if ($scope.store_in.paid_up < $scope.amount_currency && $scope.store_in.payment_type.id == 1) {
         $scope.error = "##word.amount_must_paid_full##";
         return;
       }
@@ -914,6 +921,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                       image_url: '/images/account_invoices.png',
                       date: response.data.doc.date,
                       payable_list: response.data.doc.payable_list,
+                      payment_type: response.data.doc.payment_type,
                       invoice_id: response.data.doc.id,
                       invoice_type: response.data.doc.type,
                       vendor: response.data.doc.vendor,
@@ -1130,14 +1138,14 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         method: "POST",
         url: "/api/stores_items/all",
         data: {
-          where: { 'item_type.id': { $ne: 2 } },
+          where: {},
           search: $scope.item.search_item_name
         }
       }).then(
         function (response) {
           $scope.busy = false;
           if (response.data.done) {
-            if (response.data.list.length > 0 && $scope.item.search_item_name) {
+            if (response.data.list.length > 0) {
               let foundSize = false;
               $scope.item.sizes = $scope.item.sizes || [];
               response.data.list.forEach(_item => {
@@ -1293,7 +1301,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         method: "POST",
         url: "/api/stores_items/all",
         data: {
-          where: { barcode: $scope.search_barcode, 'item_type.id': { $ne: 2 } }
+          where: { barcode: $scope.search_barcode }
 
         }
       }).then(
@@ -1403,7 +1411,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     };
 
 
-    if ($scope.store_in.payment_type && $scope.store_in.payment_type.id == 1) {
+    if ($scope.store_in.payment_type) {
 
       if ($scope.store_in.paid_up > $scope.amount_currency) {
         $scope.error = "##word.err_net_value##";
@@ -1417,7 +1425,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         }
       }
 
-      if ($scope.store_in.paid_up < $scope.amount_currency) {
+      if ($scope.store_in.paid_up < $scope.amount_currency && $scope.store_in.payment_type.id == 1) {
         $scope.error = "##word.amount_must_paid_full##";
         return;
       }
@@ -1703,6 +1711,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                         image_url: '/images/account_invoices.png',
                         date: response.data.doc.date,
                         payable_list: response.data.doc.payable_list,
+                        payment_type: response.data.doc.payment_type,
                         invoice_id: response.data.doc.id,
                         invoice_type: response.data.doc.type,
                         vendor: response.data.doc.vendor,
@@ -1819,6 +1828,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                                 image_url: '/images/account_invoices.png',
                                 date: response.data.doc.date,
                                 payable_list: response.data.doc.payable_list,
+                                payment_type: response.data.doc.payment_type,
                                 invoice_id: response.data.doc.id,
                                 invoice_type: response.data.doc.type,
                                 vendor: response.data.doc.vendor,

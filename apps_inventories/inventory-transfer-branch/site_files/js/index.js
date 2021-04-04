@@ -338,14 +338,14 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
         method: "POST",
         url: "/api/stores_items/all",
         data: {
-          where: { 'item_type.id': { $ne: 2 } },
+          where: {},
           search: $scope.item.search_item_name
         }
       }).then(
         function (response) {
           $scope.busy = false;
           if (response.data.done) {
-            if (response.data.list.length > 0 && $scope.item.search_item_name) {
+            if (response.data.list.length > 0) {
               let foundSize = false;
               $scope.item.sizes = $scope.item.sizes || [];
 
@@ -522,7 +522,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
         method: "POST",
         url: "/api/stores_items/all",
         data: {
-          where: { barcode: $scope.search_barcode, 'item_type.id': { $ne: 2 } }
+          where: { barcode: $scope.search_barcode}
         }
       }).then(
         function (response) {

@@ -315,7 +315,7 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
         function (response) {
           $scope.busy = false;
           if (response.data.done) {
-            if (response.data.list.length > 0 && $scope.item.search_item_name) {
+            if (response.data.list.length > 0) {
               let foundSize = false;
               $scope.item.sizes = $scope.item.sizes || [];
               response.data.list.forEach(_item => {

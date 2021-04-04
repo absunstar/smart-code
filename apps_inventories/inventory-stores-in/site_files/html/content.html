@@ -270,7 +270,7 @@
             </div>
 
             <div class="row"
-                ng-show="(store_in.type.id== 1 || store_in.type.id== 4) && defaultSettings.accounting.create_invoice_auto && store_in.payment_type.id == 1">
+                ng-show="(store_in.type.id== 1 || store_in.type.id== 4) && defaultSettings.accounting.create_invoice_auto">
 
                 <i-list help-id="" ng-search="_search.$payment_method_search" class="col2"
                     label="##word.payment_method##" ng-model="store_in.payment_method"
@@ -298,11 +298,11 @@
                 </i-control>
 
                 <i-control class="col3" disabled
-                    ng-show="(store_in.type.id== 1 || store_in.type.id== 4)  && defaultSettings.accounting.create_invoice_auto  && store_in.payment_type.id == 1"
+                    ng-show="(store_in.type.id== 1 || store_in.type.id== 4)  && defaultSettings.accounting.create_invoice_auto "
                     ng-model="amount_currency" label="##word.amount_currency##" type="number"></i-control>
 
                 <i-control class="col2"
-                    ng-show="store_in.safe && (store_in.type.id== 1 || store_in.type.id== 4)  && defaultSettings.accounting.create_invoice_auto  && store_in.payment_type.id == 1"
+                    ng-show="store_in.safe && (store_in.type.id== 1 || store_in.type.id== 4)  && defaultSettings.accounting.create_invoice_auto "
                     ng-model="store_in.paid_up" label="##word.paid_up##" type="number">
                 </i-control>
 

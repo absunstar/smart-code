@@ -44,6 +44,11 @@ app.controller("default_setting", function ($scope, $http) {
     }
   };
 
+  $scope.linkPostUnPost = function () {
+    if ($scope.default_setting.general_Settings.work_unposting) {
+      $scope.default_setting.general_Settings.work_posting = true
+    }
+  };
 
 
   $scope.getCustomerList = function (ev) {

@@ -318,7 +318,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         return;
       };
 
-      if ($scope.store_out.payment_type && $scope.store_out.payment_type.id == 1) {
+      if ($scope.store_out.payment_type) {
 
         if ($scope.store_out.type && $scope.store_out.type.id != 5 && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
           if (!$scope.store_out.safe) {
@@ -331,8 +331,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           $scope.error = "##word.err_net_value##";
           return;
         };
-
-        if ($scope.store_out.paid_up < $scope.amount_currency) {
+        
+        if ($scope.store_out.paid_up < $scope.amount_currency && $scope.store_out.payment_type.id == 1) {
           $scope.error = "##word.amount_must_paid_full##";
           return;
         };
@@ -451,11 +451,12 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                 function (response) {
                   if (response.data.done) {
                     if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto && $scope.store_out.type && $scope.store_out.type.id != 5 && !$scope.defaultSettings.general_Settings.work_posting) {
-
+                      
                       let account_invoices = {
                         image_url: '/images/account_invoices.png',
                         date: response.data.doc.date,
                         payable_list: response.data.doc.payable_list,
+                        payment_type: response.data.doc.payment_type,
                         invoice_id: response.data.doc.id,
                         customer: response.data.doc.customer,
                         total_value_added: response.data.doc.total_value_added,
@@ -952,7 +953,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         function (response) {
           $scope.busy = false;
           if (response.data.done) {
-            if (response.data.list.length > 0 && $scope.item.search_item_name) {
+            if (response.data.list.length > 0) {
               let foundSize = false;
               $scope.item.sizes = $scope.item.sizes || [];
               response.data.list.forEach(_item => {
@@ -1290,7 +1291,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     };
 
 
-    if ($scope.store_out.payment_type && $scope.store_out.payment_type.id == 1) {
+    if ($scope.store_out.payment_type) {
 
 
       if ($scope.store_out.type && $scope.store_out.type.id != 5 && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
@@ -1305,7 +1306,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         return;
       }
 
-      if ($scope.store_out.paid_up < $scope.amount_currency) {
+      if ($scope.store_out.paid_up < $scope.amount_currency && $scope.store_out.payment_type.id == 1) {
         $scope.error = "##word.amount_must_paid_full##";
         return;
       }
@@ -1710,6 +1711,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           date: new Date(),
           invoice_id: store_out.id,
           invoice_type: store_out.type,
+          payment_type: store_out.payment_type,
           customer: store_out.customer,
           total_value_added: store_out.total_value_added,
           shift: shift,
@@ -1754,6 +1756,11 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.busy = true;
     $scope.detailsCustomer((customer) => {
+
+      if (account_invoices.paid_up < $scope.amount_currency && account_invoices.payment_type.id == 1) {
+        $scope.error = "##word.amount_must_paid_full##";
+        return;
+      };
 
       if (account_invoices.paid_up > 0 && !account_invoices.safe) {
         $scope.error = "##word.should_select_safe##";
@@ -2394,11 +2401,12 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                     if (!store_out.posting && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.link_warehouse_account_invoices) {
                       $scope.deleteAccountInvoices(store_out);
                     } else if (store_out.posting && store_out.type && !store_out.invoice && store_out.type.id != 5 && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.link_warehouse_account_invoices) {
-
+                      
                       let account_invoices = {
                         image_url: '/images/account_invoices.png',
                         date: response.data.doc.date,
                         invoice_id: response.data.doc.id,
+                        payment_type: response.data.doc.payment_type,
                         payable_list: response.data.doc.payable_list,
                         customer: response.data.doc.customer,
                         total_value_added: response.data.doc.total_value_added,
@@ -2517,6 +2525,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                                 date: response.data.doc.date,
                                 invoice_id: response.data.doc.id,
                                 payable_list: response.data.doc.payable_list,
+                                payment_type: response.data.doc.payment_type,
                                 customer: response.data.doc.customer,
                                 total_value_added: response.data.doc.total_value_added,
                                 invoice_type: response.data.doc.type,

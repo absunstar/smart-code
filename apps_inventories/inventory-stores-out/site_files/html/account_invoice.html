@@ -16,6 +16,9 @@
                         <i-control ng-hide="disabledCodeInvoice" class="col3" label="##word.code##"
                             ng-model="account_invoices.code"></i-control>
                         <i-date2 class="col5" ng-model="account_invoices.date" label="##word.date##"></i-date2>
+
+                        <i-list class="col3" ng-model="account_invoices.payment_type" items="paymentTypesList"
+                        display="##session.lang##"  ng-search="_search.$search_payment_types" label="##word.payment_type##"></i-list>
                     </div>
 
                     <div class="row">
@@ -35,7 +38,8 @@
                             label="##word.exchange_rate##"></i-control>
 
                         <i-list ng-search="_search.$order_invoice.$safes_search" class="col4"
-                        display="name_##session.lang##" ng-model="account_invoices.safe" label="##word.safe##" items="safesList">
+                            display="name_##session.lang##" ng-model="account_invoices.safe" label="##word.safe##"
+                            items="safesList">
                         </i-list>
                     </div>
 
@@ -69,8 +73,7 @@
                             ng-change="calc(account_invoices)" label="##word.Paid_from_customer##" type="number">
                         </i-control>
 
-                        <i-button class="col2" label="##word.add_payment##"
-                            ng-click="paymentsPayable('view')">
+                        <i-button class="col2" label="##word.add_payment##" ng-click="paymentsPayable('view')">
                         </i-button>
 
                     </div>

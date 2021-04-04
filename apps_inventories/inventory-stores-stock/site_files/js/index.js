@@ -253,7 +253,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
         method: "POST",
         url: "/api/stores_items/all",
         data: {
-          where: { 'item_type.id': { $ne: 2 } },
+          where: { },
 
           search: $scope.item.search_item_name
         }
@@ -261,7 +261,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
         function (response) {
           $scope.busy = false;
           if (response.data.done) {
-            if (response.data.list.length > 0 && $scope.item.search_item_name) {
+            if (response.data.list.length > 0) {
               let foundSize = false;
               $scope.item.sizes = $scope.item.sizes || [];
               response.data.list.forEach(_item => {
@@ -403,7 +403,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.store_stock.items = [];
 
-    where = { item_group: item_group, 'item_type.id': { $ne: 2 } }
+    where = { item_group: item_group}
     $http({
       method: "POST",
       url: "/api/stores_items/all",
@@ -491,7 +491,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/stores_items/all",
       data: {
-        where: { 'item_type.id': { $ne: 2 } },
+        where: {},
       }
     }).then(
       function (response) {
@@ -576,7 +576,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
         method: "POST",
         url: "/api/stores_items/all",
         data: {
-          where: { barcode: $scope.search_barcode, 'item_type.id': { $ne: 2 } }
+          where: { barcode: $scope.search_barcode}
         }
       }).then(
         function (response) {

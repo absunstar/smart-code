@@ -39,6 +39,11 @@
                                     <td class="center"> {{account_invoices.order_invoices_type.##session.lang##}} </td>
                                 </tr>
 
+                                <tr ng-show="account_invoices.payment_type.id">
+                                    <td class="title"> ##word.payment_type## </td>
+                                    <td class="center"> {{account_invoices.payment_type.##session.lang##}} </td>
+                                </tr>
+
                                 <tr ng-show="account_invoices.tenant.id">
                                     <td class="title"> ##word.tenant## </td>
                                     <td class="center"> {{account_invoices.tenant.name_##session.lang##}} </td>
