@@ -71,7 +71,8 @@
                             <div class="row">
 
                                 <i-list class="col4" label="##word.customers_groups##" ng-model="customer.group"
-                                    items="customerGroupList" display="name_##session.lang##" ng-search="_search.$customerGroup">
+                                    items="customerGroupList" display="name_##session.lang##"
+                                    ng-search="_search.$customerGroup">
                                 </i-list>
 
                                 <i-control x-features="lawyer" help-id="" v="r ll2" class="col4"
@@ -86,10 +87,12 @@
                             <div class="row" x-features="lawyer">
 
                                 <i-list ng-search="marital_status" class="col3" items="maritals_status"
-                                display="name_##session.lang##" ng-model="customer.marital_status" label="##word.marital_status##">
+                                    display="name_##session.lang##" ng-model="customer.marital_status"
+                                    label="##word.marital_status##">
                                 </i-list>
                                 <i-list ng-search="military_status" class="col3" items="militaries_status"
-                                display="name_##session.lang##" ng-model="customer.military_status" label="##word.military_status##">
+                                    display="name_##session.lang##" ng-model="customer.military_status"
+                                    label="##word.military_status##">
                                 </i-list>
                             </div>
 
@@ -97,7 +100,8 @@
 
                                 <i-list help-id="" x-features="medical" ng-search="_search.$insurance_companies_search"
                                     class="col4" label="##word.medical_insurance_company##"
-                                    ng-model="customer.insurance_company" items="insuranceCompaniesList" display="name_##session.lang##">
+                                    ng-model="customer.insurance_company" items="insuranceCompaniesList"
+                                    display="name_##session.lang##">
                                 </i-list>
 
                                 <i-control class="col4" x-features="club || academy || school"
@@ -125,7 +129,8 @@
                                 </i-list>
 
                                 <i-list class="col4" label="##word.students_year##" ng-model="customer.students_year"
-                                    items="studentsYearsList" display="name_##session.lang##" ng-search="_search.$_students_year">
+                                    items="studentsYearsList" display="name_##session.lang##"
+                                    ng-search="_search.$_students_year">
                                 </i-list>
 
                                 <i-list class="col4" label="##word.hall##" ng-model="customer.hall" items="hallsList"
@@ -257,7 +262,7 @@
                         <i-control class="col2" label="##word.other_fee##" type="number" ng-model="students.other_fee">
                         </i-control>
                         <i-list class="col4" label="##word.safe##" ng-search="students.$safe_search" items="safesList"
-                        display="name_##session.lang##"  ng-model="students.safe"></i-list>
+                            display="name_##session.lang##" ng-model="students.safe"></i-list>
                     </div>
                 </fieldset>
             </div>
@@ -270,7 +275,8 @@
                     </legend>
                     <div class="row">
                         <i-list help-id="" class="col3" label="##word.blood_type##" ng-model="customer.blood_type"
-                            ng-search="_search.$blood_type" items="bloodTypeList" display="name_##session.lang##"></i-list>
+                            ng-search="_search.$blood_type" items="bloodTypeList" display="name_##session.lang##">
+                        </i-list>
 
                         <i-control help-id="" class="col2" type="number" label="##word.weight##"
                             ng-model="customer.weight"></i-control>
@@ -351,7 +357,8 @@
 
                     <div ng-repeat="m in customer.medicine_list" class="row">
                         <i-list class="col4" items="medicineList" label="##word.medicine##"
-                        display="name_##session.lang##"  ng-search="medicine.$medicines" ng-model="m.medicine"></i-list>
+                            display="name_##session.lang##" ng-search="medicine.$medicines" ng-model="m.medicine">
+                        </i-list>
 
                         <i-control class="col2" type="number" label="##word.count_dosage##" ng-model="m.count_dosage">
                         </i-control>
@@ -372,7 +379,8 @@
                     </legend>
 
                     <div ng-repeat="d in customer.disease_list" class="row">
-                        <i-list class="col5" items="diseaseList" display="name_##session.lang##" ng-search="disease.$diseases" ng-model="d.disease">
+                        <i-list class="col5" items="diseaseList" display="name_##session.lang##"
+                            ng-search="disease.$diseases" ng-model="d.disease">
                         </i-list>
                         <i-button class="col2" type="delete default"
                             ng-click="customer.disease_list.length ==1 || customer.disease_list.splice($index,1)">
@@ -521,7 +529,8 @@
                         </i-list>
 
                         <i-list class="col3" label="##word.customers_currency_name##" ng-model="customer.ledger_account"
-                            disabled display="currency.name_##session.lang##" ng-search="_search.$search_currency"></i-list>
+                            disabled display="currency.name_##session.lang##" ng-search="_search.$search_currency">
+                        </i-list>
 
                         <i-control sign="%" class="col3" label="##word.customers_discount##"
                             ng-model="customer.discount">
@@ -533,8 +542,12 @@
 
                     <div class="row">
 
-                        <i-control class="col2" type="number" disabled label="##word.balance##"
-                            ng-model="customer.balance">
+                        <i-control class="col2" type="number" disabled label="##word.balance_creditor##"
+                            ng-model="customer.balance_creditor">
+                        </i-control>
+
+                        <i-control class="col2" type="number" disabled label="##word.balance_debtor##"
+                            ng-model="customer.balance_debtor">
                         </i-control>
 
                         <i-control class="col2" type="number" label="##word.customers_credit_limit##"
@@ -575,7 +588,8 @@
                     <legend> ##word.customers_address_informations## </legend>
                     <div class="row">
                         <i-list class="col3" label="##word.customers_gov##" ng-model="customer.gov" items="govList"
-                            display="name_##session.lang##" ng-change="getCityList(customer.gov)" ng-search="_search.$$govNameContact">
+                            display="name_##session.lang##" ng-change="getCityList(customer.gov)"
+                            ng-search="_search.$$govNameContact">
                         </i-list>
 
                         <i-list class="col4" label="##word.city##" ng-model="customer.city" items="cityList"

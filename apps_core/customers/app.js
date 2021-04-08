@@ -66,23 +66,27 @@ module.exports = function init(site) {
 
 
     $customers.findOne({ id: obj.id }, (err, doc) => {
+
       if (doc) {
 
-        if (obj.sum) {
-          if (!doc.balance) doc.balance = 0
-          doc.balance += obj.paid_up
-          $customers.update(doc, () => {
-            next()
-          });
+        if (!doc.balance_creditor) doc.balance_creditor = 0
+        if (!doc.balance_debtor) doc.balance_debtor = 0
 
-        } else if (obj.minus) {
-          doc.balance -= obj.paid_up
-          $customers.update(doc, () => {
-            next()
-
-          });
-
+        if (obj.sum_creditor) {
+          doc.balance_creditor += obj.balance_creditor
+        } else if (obj.minus_creditor) {
+          doc.balance_creditor -= obj.balance_creditor
         }
+
+        if (obj.sum_debtor) {
+          doc.balance_debtor += obj.balance_debtor
+        } else if (obj.minus_debtor) {
+          doc.balance_debtor -= obj.balance_debtor
+        }
+
+        $customers.update(doc, () => {
+          next()
+        });
 
       } else {
 

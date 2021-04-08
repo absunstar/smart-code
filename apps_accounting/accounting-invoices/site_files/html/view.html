@@ -288,11 +288,11 @@
                         <fieldset>
 
                             <legend>##word.detailes_amounts_paid##</legend>
-                            <i-control disabled class="col2" ng-model="account_invoices.net_value"
+                            <i-control disabled class="col2 r_blue" ng-model="account_invoices.net_value"
                                 label="##word.net_value##" type="number"></i-control>
-                            <i-control disabled class="col2" ng-model="account_invoices.total_paid_up"
+                            <i-control disabled class="col2 r_green" ng-model="account_invoices.total_paid_up"
                                 label="##word.total_paid_up##" type="number"></i-control>
-                            <i-control disabled class="col2" ng-model="account_invoices.remain_amount"
+                            <i-control disabled class="col2 r_darkRed" ng-model="account_invoices.remain_amount"
                                 ng-hide="account_invoices.source_type.id == 8 ||account_invoices.source_type.id == 9 || account_invoices.source_type.id == 10  || account_invoices.source_type.id == 11"
                                 label="##word.total_remain##" type="number"></i-control>
                             <br>

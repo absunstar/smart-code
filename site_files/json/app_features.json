@@ -154,11 +154,19 @@
     },
     {
         "feature": "school",
-        "title_ar": "السنوات الداسية",
+        "title_ar": "الأعوام الداسية",
         "title_en": "School Years",
         "image_url": "/images/school_years.png",
-        "description_ar": "يتم فيها تحديد السنوات الدراسية و التي يتم ربطها بالطلاب و جميع المعاملات المالية الإدارية خلال العام الدراسي",
-        "description_en": "In it, the academic years that are linked to students and all administrative financial transactions are determined during the academic year"
+        "description_ar": "يتم فيها فتح عام دراسي و الذي يتم ربطه بجميع المعاملات المالية و الإدارية لتحديد كل ما تم خلال العام الدراسي لسهولة مراجعته و حصره فيما بعد",
+        "description_en": "They are linked in administrative financial transactions and determine the academic year for easy review and later."
+    },
+    {
+        "feature": "school",
+        "title_ar": "السنوات الطلابية",
+        "title_en": "School Years",
+        "image_url": "/images/students_years.png",
+        "description_ar": "يتم فيها إضافة سنوات طلابية و ربطها بمرحلة دراسية و إرفاق مصروفات دراسية و تحديد قيمتها لكل سنة و تحديد المواد الدراسية الخاصة بكل سنة و تحديد درجات إفتراضية للمواد بالنسبة للسنة مثل درجة إمتحان (الشهر - الميدتيرم - نصف العام - آخر العام -درجة أعمال السنة)",
+        "description_en": "In which student years are added and linked to a study stage, study expenses are attached, their value is determined for each year, study subjects are specified for each year, and default grades for subjects are determined for the year, such as exam score (month - midterm - half year - end of the year - year work grade)"
     },
     {
         "feature": "school",
@@ -183,6 +191,14 @@
         "image_url": "/images/class_schedule.png",
         "description_ar": "يتم من خلاله إنشاء جدول حصص لكل فصل و إختيار المدرس و المادة و بداية و نهاية الحصة",
         "description_en": "Through it, a class schedule is created for each semester and the teacher, subject, beginning and end of the class are selected"
+    },
+    {
+        "feature": "school",
+        "title_ar": "الجلسات عبر الإنترنت",
+        "title_en": "Online Sessions",
+        "image_url": "/images/online_sessions.png",
+        "description_ar": "يتم إنشاء جلسة عن طريق الإنتر نت عن طريق المدرس و يتم تحديد الطلاب المتاح لهم دخول المحاضرة و يمكن للمدرس متابعة أجهزة الطلاب و الدخول عليها لمتابعة ما يفعله الطلاب أثناء الجلسة ",
+        "description_en": "Through it, academic content is added and can be linked to a specific study stage or student year, and videos, pictures, files, or links are uploaded to the content so that students can then access the content to take advantage of it."
     },
     {
         "feature": "school",

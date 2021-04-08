@@ -130,7 +130,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         $scope.amount_currency = site.toNumber($scope.amount_currency);
         if (obj.Paid_from_customer <= $scope.amount_currency) {
           obj.paid_up = obj.Paid_from_customer;
-        } else if (obj.Paid_from_customer > $scope.amount_currency) {
+        } else {
           obj.paid_up = $scope.amount_currency;
         }
       }
@@ -213,8 +213,11 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
         };
 
-        if ($scope.defaultSettings.accounting) {
-          if ($scope.defaultSettings.accounting.create_invoice_auto && $scope.store_out.type && $scope.store_out.type.id != 5) {
+        if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
+
+          if ($scope.store_out.type && $scope.store_out.type.id != 5) {
+
+            $scope.store_out.paid_up = 0;
             $scope.store_out.currency = $scope.currencySetting;
             if ($scope.defaultSettings.accounting.payment_method) {
               $scope.store_out.payment_method = $scope.defaultSettings.accounting.payment_method;
@@ -331,7 +334,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           $scope.error = "##word.err_net_value##";
           return;
         };
-        
+
         if ($scope.store_out.paid_up < $scope.amount_currency && $scope.store_out.payment_type.id == 1) {
           $scope.error = "##word.amount_must_paid_full##";
           return;
@@ -451,7 +454,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                 function (response) {
                   if (response.data.done) {
                     if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto && $scope.store_out.type && $scope.store_out.type.id != 5 && !$scope.defaultSettings.general_Settings.work_posting) {
-                      
+
                       let account_invoices = {
                         image_url: '/images/account_invoices.png',
                         date: response.data.doc.date,
@@ -2130,7 +2133,32 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     $scope.customer = {
       image_url: '/images/customer.png',
       active: true,
+      balance_creditor: 0,
+      balance_debtor: 0,
+      branch_list: [{
+        charge: [{}]
+      }],
+      currency_list: [],
+      opening_balance: [{ initial_balance: 0 }],
+      bank_list: [{}],
+      dealing_company: [{}]
     };
+
+    if (site.feature('medical')) {
+      $scope.customer.image_url = '/images/patients.png';
+      $scope.customer.allergic_food_list = [{}];
+      $scope.customer.allergic_drink_list = [{}];
+      $scope.customer.medicine_list = [{}];
+      $scope.customer.disease_list = [{}];
+
+    } else if (site.feature('school') || site.feature('academy')) {
+      $scope.customer.image_url = '/images/student.png';
+      $scope.customer.allergic_food_list = [{}];
+      $scope.customer.allergic_drink_list = [{}];
+      $scope.customer.medicine_list = [{}];
+      $scope.customer.disease_list = [{}];
+
+    }
     site.showModal('#customerAddModal');
     document.querySelector('#customerAddModal .tab-link').click();
   };
@@ -2401,7 +2429,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                     if (!store_out.posting && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.link_warehouse_account_invoices) {
                       $scope.deleteAccountInvoices(store_out);
                     } else if (store_out.posting && store_out.type && !store_out.invoice && store_out.type.id != 5 && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.link_warehouse_account_invoices) {
-                      
+
                       let account_invoices = {
                         image_url: '/images/account_invoices.png',
                         date: response.data.doc.date,

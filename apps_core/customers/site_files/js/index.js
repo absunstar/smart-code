@@ -9,8 +9,8 @@ app.controller("customers", function ($scope, $http, $timeout) {
     $scope.customer = {
       image_url: '/images/customer.png',
       active: true,
-
-      balance: 0,
+      balance_creditor: 0,
+      balance_debtor: 0,
       branch_list: [{
         charge: [{}]
       }],

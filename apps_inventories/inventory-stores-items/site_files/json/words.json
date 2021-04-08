@@ -111,8 +111,8 @@
     },
     {
         "name": "unit_discount_err",
-        "en": "The Discount Is Greater Than The Maximum Discount",
-        "ar": "الخصم أكبر من الحد الأقصى للخصم"
+        "en": "The Discount Is Greater Than The Maximum Discount In Sizes",
+        "ar": "الخصم أكبر من الحد الأقصى للخصم في المقاسات"
     },
     {
         "name": "err_size",
@@ -166,8 +166,8 @@
     },
     {
         "name": "err_barcode_units",
-        "en": "Must Enter Units Barcode",
-        "ar": "يجب إدخال كود / باركود للوحدات"
+        "en": "Must Enter Units Barcode In Sizes",
+        "ar": "يجب إدخال كود / باركود للوحدات في المقاسات"
     },
     {
         "name": "err_barcode_exist",

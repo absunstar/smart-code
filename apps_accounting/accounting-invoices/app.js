@@ -223,6 +223,9 @@ module.exports = function init(site) {
                     if (doc.invoice_type && doc.invoice_type.id == 6) {
                       paid_value.value = (-Math.abs(paid_value.value))
                       paid_value.operation = { ar: 'مرتجع فاتورة مبيعات', en: 'Return Sales Invoice' }
+
+
+
                       if (doc.payment_method && doc.payment_method.id == 5) {
                         let customerPay = doc.paid_up * doc.currency.ex_rate
                         let customerBalance = {
@@ -233,21 +236,32 @@ module.exports = function init(site) {
                         site.quee('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
                       }
 
-                    } else {
-                      paid_value.operation = { ar: 'فاتورة مبيعات', en: 'Sales Invoice' }
-                      if (doc.payment_method && doc.payment_method.id == 5) {
 
-                        let customerPay = doc.paid_up * doc.currency.ex_rate
-                        let customerBalance = {
-                          id: doc.customer.id,
-                          paid_up: customerPay,
-                          minus: true
-                        }
-                        site.quee('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
+                    } else {
+
+                      paid_value.operation = { ar: 'فاتورة مبيعات', en: 'Sales Invoice' }
+                      paid_value.transition_type = 'in'
+
+                      let customerObj = { id: doc.customer.id };
+                      let foundPayCustomer = false;
+
+                      if (doc.payment_type && doc.payment_type.id === 2) {
+                        customerObj.balance_debtor = (doc.remain_amount - doc.paid_up) * doc.currency.ex_rate
+                        customerObj.sum_debtor = true
+                        foundPayCustomer = true
 
                       }
+
+                      if (doc.payment_method && doc.payment_method.id == 5) {
+                        customerObj.balance_creditor = doc.paid_up * doc.currency.ex_rate
+                        customerObj.minus_creditor = true
+                        foundPayCustomer = true
+
+                      }
+
+                      if (foundPayCustomer) site.quee('[customer][account_invoice][balance]', customerObj)
+
                     }
-                    paid_value.transition_type = 'in'
 
                   } else if (doc.source_type.id == 3) {
                     paid_value.operation = { ar: 'فاتورة شاشة الطلبات', en: 'Orders Screen Invoice' }
@@ -271,7 +285,6 @@ module.exports = function init(site) {
 
                     site.call('[account_invoices][request_activity][+]', doc.invoice_id)
 
-
                   } else if (doc.source_type.id == 5) {
                     paid_value.operation = { ar: 'فاتورة حجز قاعة', en: 'Book Hall Invoice' }
                     paid_value.transition_type = 'in'
@@ -291,8 +304,8 @@ module.exports = function init(site) {
                     let customerPay = doc.paid_up * doc.currency.ex_rate
                     let customerBalance = {
                       id: doc.customer.id,
-                      paid_up: customerPay,
-                      sum: true
+                      balance_creditor: customerPay,
+                      sum_creditor: true
                     }
                     site.quee('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
 
@@ -335,6 +348,18 @@ module.exports = function init(site) {
                   } else if (doc.source_type.id == 15) {
                     paid_value.operation = { ar: 'تذكرة مريض', en: 'Patient Ticket' }
                     paid_value.transition_type = 'in'
+
+                    if (doc.payment_method && doc.payment_method.id == 5) {
+
+                      let customerPay = doc.paid_up * doc.currency.ex_rate
+                      let customerBalance = {
+                        id: doc.customer.id,
+                        paid_up: customerPay,
+                        minus: true
+                      }
+                      site.quee('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
+
+                    }
 
                   }
 
@@ -505,6 +530,17 @@ module.exports = function init(site) {
                 } else if (account_invoices_doc.source_type.id == 15) {
                   paid_value.operation = { ar: 'دفعة تذكرة مريض', en: 'Pay Patient Ticket' }
                   paid_value.transition_type = 'in'
+
+                  if (_payment_list.payment_method && _payment_list.payment_method.id == 5) {
+                    let customerPay = _payment_list.paid_up * _payment_list.currency.ex_rate
+
+                    let customerBalance = {
+                      id: account_invoices_doc.customer.id,
+                      paid_up: customerPay,
+                      minus: true
+                    }
+                    site.quee('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
+                  }
 
                 }
 

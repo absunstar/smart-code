@@ -14,6 +14,8 @@
     {"name" : "customers_name_en" , "en" : "Customer Name English" , "ar" : "إسم العميل بالانجليزية"},
     {"name" : "customer_name" , "en" : "Customer Name" , "ar" : "إسم العميل"},
     {"name" : "customer" , "en" : "Customer " , "ar" : " العميل"},
+    {"name" : "balance_creditor" , "en" : "Balance Creditor " , "ar" : "رصيد دائن"},
+    {"name" : "balance_debtor" , "en" : "Balance Debtor " , "ar" : "رصيد مدين"},
     {
         "name": "beginning_dosage",
         "en": "Beginning Of Dosage",
