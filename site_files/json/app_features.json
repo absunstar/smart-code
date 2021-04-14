@@ -194,11 +194,11 @@
     },
     {
         "feature": "school",
-        "title_ar": "الجلسات عبر الإنترنت",
+        "title_ar": "المحاضرات عبر الإنترنت",
         "title_en": "Online Sessions",
         "image_url": "/images/online_sessions.png",
-        "description_ar": "يتم إنشاء جلسة عن طريق الإنتر نت عن طريق المدرس و يتم تحديد الطلاب المتاح لهم دخول المحاضرة و يمكن للمدرس متابعة أجهزة الطلاب و الدخول عليها لمتابعة ما يفعله الطلاب أثناء الجلسة ",
-        "description_en": "Through it, academic content is added and can be linked to a specific study stage or student year, and videos, pictures, files, or links are uploaded to the content so that students can then access the content to take advantage of it."
+        "description_ar": "يتم إنشاء محاضرة عن طريق الإنتر نت عن طريق المدرس و يتم تحديد الطلاب المتاح لهم دخول المحاضرة و يمكن للمدرس متابعة أجهزة الطلاب و الدخول عليها لمتابعة ما يفعله الطلاب أثناء المحاضرة ",
+        "description_en": "A lecture is created on the Internet by the teacher and the students who are allowed to enter the lecture are identified, and the teacher can follow up on the students ’devices and access them to follow what the students do during the lecture"
     },
     {
         "feature": "school",

@@ -21,7 +21,7 @@ module.exports = function init(site) {
       code: "1-Test",
       name_ar: "محامي خصم إفتراضي",
       name_en: "Default Oppenent Lawyer",
-      image_url: '/images/oppenent.png',
+      image_url: '/images/oppenents_lawyers.png',
       company: {
         id: doc.id,
         name_ar: doc.name_ar,
@@ -234,7 +234,6 @@ module.exports = function init(site) {
 
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
-
     $oppenents_lawyers.findMany({
       select: req.body.select || {},
       where: where,

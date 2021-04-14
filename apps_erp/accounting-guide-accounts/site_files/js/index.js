@@ -424,42 +424,6 @@ app.controller("accounting_guide_accounts", function ($scope, $http, $timeout) {
   $scope.searchAll = function () {
     $scope._search = {};
 
-    let where = {};
-
-    if ($scope.search.code) {
-
-      where['code'] = $scope.search.code;
-    }
-    if ($scope.search.country) {
-
-      where['country'] = $scope.search.country;
-    }
-    if ($scope.search.name_ar) {
-
-      where['name_ar'] = $scope.search.name_ar;
-    }
-    if ($scope.search.name_en) {
-
-      where['name_en'] = $scope.search.name_en;
-    }
-    if ($scope.search.swift_code) {
-
-      where['swift_code'] = $scope.search.swift_code;
-    }
-    if ($scope.search.iban_number) {
-
-      where['iban_number'] = $scope.search.iban_number;
-    }
-    if ($scope.search.customer_service) {
-
-      where['customer_service'] = $scope.search.customer_service;
-    }
-    if ($scope.search.address) {
-
-      where['address'] = $scope.search.address;
-    }
-    where['active'] = 'all';
-
     $scope.getGuideAccountsList(where);
 
     site.hideModal('#guideAccountsSearchModal');

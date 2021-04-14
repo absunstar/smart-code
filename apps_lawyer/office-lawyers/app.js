@@ -20,7 +20,7 @@ module.exports = function init(site) {
       code: "1-Test",
       name_ar: "محامي مكتب إفتراضي",
       name_en: "Default Office Lawyers",
-      image_url: '/images/oppenent.png',
+      image_url: '/images/office_lawyers.png',
       lawyer : true,
       company: {
         id: doc.id,

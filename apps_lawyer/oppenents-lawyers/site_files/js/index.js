@@ -204,9 +204,6 @@ app.controller("oppenents_lawyers", function ($scope, $http, $timeout) {
 
   $scope.getOppenentsLawyersList = function (where) {
     $scope.error = '';
-    if ($scope.busy) {
-      return;
-    }
 
     $scope.busy = true;
     $scope.list = [];
@@ -379,42 +376,6 @@ app.controller("oppenents_lawyers", function ($scope, $http, $timeout) {
 
 
   $scope.searchAll = function () {
-
-    let where = {};
-
-    if ($scope.search.code) {
-
-      where['code'] = $scope.search.code;
-    }
-    if ($scope.search.name_ar) {
-
-      where['name_ar'] = $scope.search.name_ar;
-    }
-    if ($scope.search.name_en) {
-
-      where['name_en'] = $scope.search.name_en;
-    }
-    if ($scope.search.nationality) {
-
-      where['nationality'] = $scope.search.nationality;
-    }
-    if ($scope.search.gov) {
-
-      where['gov'] = $scope.search.gov;
-    }
-    if ($scope.search.city) {
-
-      where['city'] = $scope.search.city;
-    }
-    if ($scope.search.phone) {
-
-      where['phone'] = $scope.search.phone;
-    }
-    if ($scope.search.mobile) {
-
-      where['mobile'] = $scope.search.mobile;
-    }
-    where['active'] = 'all';
 
     $scope.getOppenentsLawyersList(where);
 

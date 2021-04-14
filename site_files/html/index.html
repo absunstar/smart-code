@@ -160,7 +160,6 @@
       <img ng-src="/images/icc.png" />
     </div>
 
-
     <div x-feature="!login">
 
       <div class="row mt hidden">
@@ -466,6 +465,7 @@
         <div class="row">
 
           <div class="col5">
+            <i class="fas fa-road"></i>
 
             <h2 class="center">
               <span>
@@ -487,7 +487,8 @@
             <h2 class="center">
               <span>
                 K.S.A – Jeddah <i class="fa fa-map-marker" aria-hidden="true"></i> <br />
-                Al-Salama Dist. – Abdulrahman Bin Ahmed Alsudayrey St. <i class="fa fa-building"></i> <br />
+                Al-Salama Dist  <br />
+                 Abdulrahman Bin Ahmed Alsudayrey St. <i class="fa fa-building"></i> <br />
                 <br>
 
                 <a href="tel:+966 12 2256256"> +966 12 2256256 <i class="fa fa-phone" aria-hidden="true"></i> </a>
@@ -578,8 +579,11 @@
 
               if (res[i].feature == 'public') {
                 post = res[i];
-                if (!res[i].title_en === 'Work shifts')
-                  rendered += Mustache.render(post_template, post);
+
+                if (res[i].title_en === 'Work shifts' && site.features.like('*school*')) {
+
+                } else rendered += Mustache.render(post_template, post);
+
               } else if (res[i].feature == 'club' && site.features.like('*club*')) {
                 post = res[i];
                 rendered += Mustache.render(post_template, post);

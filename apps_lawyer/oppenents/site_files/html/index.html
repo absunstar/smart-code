@@ -30,7 +30,7 @@
                     </div>
 
                 <div class="top-actions">
-                    <i-button type="add" x-permissions="oppenents_add || oppenents_manage" label="##word.oppenents_new##" ng-click="displayAddCustomer()"></i-button>
+                    <i-button type="add" x-permissions="oppenents_add || oppenents_manage" label="##word.oppenents_new##" ng-click="displayAddOppenents()"></i-button>
 
                     <i-button type="search" x-permissions="oppenents_search || oppenents_manage" label="##word.search_all##" onclick="site.showModal('#oppenentSearchModal')"></i-button>
 
@@ -43,8 +43,7 @@
                             <th class="not-print"> ##word.logo## </th>
                         <th> ##word.oppenents_code## </th>
                         <th> ##word.oppenents_name_ar## </th>
-<!--                         <th> ##word.balance## </th>
- -->                        <th> ##word.status## </th>
+                        <th> ##word.status## </th>
                         <th class="not-print"> ##word.actions## </th>
                     </tr>
                     <tr ng-repeat="c in list | orderBy: '-id'">
@@ -55,29 +54,6 @@
                         <td class="blue userPrint"> {{c.code}} </td>
                         <td> {{c.name_##session.lang##}} </td>
 
-                       <!--  <td class="green bold">
-
-                            <div class="row margin padding" ng-repeat="openBranch in c.opening_balance">
-
-                                <div class="col6">
-                                    <p> {{openBranch.initial_balance}} </p>
-                                </div>
-
-                                <div class="col6">
-                                    <p ng-show="openBranch.balance_type == 'debit'">
-                                        ##word.oppenents_debit##
-                                    </p>
-
-                                    <p ng-show="openBranch.balance_type == 'credit'">
-                                        ##word.oppenents_credit##
-                                    </p>
-                                </div>
-
-                            </div>
-
-                        </td>
- -->
-
                         <td>
                             <p ng-show="c.active == true" class="green"> ##word.active## </p>
                             <p ng-show="c.active == false" class="red"> ##word.not_active## </p>
@@ -85,11 +61,11 @@
 
                         <td class="center not-print">
 
-                            <i-button type="details" x-permissions="oppenents_view || oppenents_manage" label="##word.details##" ng-click="displayDetailsCustomer(c)"></i-button>
+                            <i-button type="details" x-permissions="oppenents_view || oppenents_manage" label="##word.details##" ng-click="displayDetailsOppenents(c)"></i-button>
 
-                            <i-button type="update" x-permissions="oppenents_edit || oppenents_manage" label="##word.update##" ng-click="displayUpdateCustomer(c)"></i-button>
+                            <i-button type="update" x-permissions="oppenents_edit || oppenents_manage" label="##word.update##" ng-click="displayUpdateOppenents(c)"></i-button>
 
-                            <i-button type="delete" x-permissions="oppenents_delete || oppenents_manage" label="##word.delete##" ng-click="displayDeleteCustomer(c)"></i-button>
+                            <i-button type="delete" x-permissions="oppenents_delete || oppenents_manage" label="##word.delete##" ng-click="displayDeleteOppenents(c)"></i-button>
                         </td>
                     </tr>
 

@@ -43,7 +43,10 @@ site.loadLocalApp('client-side')
 site.loadLocalApp('ui-print')
 site.importApp(__dirname + '/apps_private/cloud_security', 'security')
 site.importApp(__dirname + '/apps_private/ui-help')
+site.importApps(__dirname + '/apps_accounting');
 site.importApps(__dirname + '/apps_hr')
+site.importApps(__dirname + '/apps_reports');
+
 site.importApps(__dirname + '/apps_lawyer')
 site.addFeature('lawyer')
 setTimeout(() => {

@@ -3,32 +3,18 @@ app.controller("oppenents", function ($scope, $http, $timeout) {
 
   $scope.oppenent = {};
 
-  $scope.displayAddCustomer = function () {
+  $scope.displayAddOppenents = function () {
     $scope.error = '';
     $scope.oppenent = {
       image_url: '/images/oppenents.png',
-      active: true,
-      allergic_food_list: [{}],
-      allergic_drink_list: [{}],
-      medicine_list: [{}],
-      disease_list: [{}],
-      /*       balance: 0,
-             branch_list: [{
-              charge: [{}]
-            }], 
-            currency_list: [],
-        opening_balance: [{ initial_balance: 0 }], 
-      
-            bank_list: [{}],
-            dealing_company: [{}] */
+      active: true
     };
-    /*     $scope.showOpeningBalance = true;
-     */
+  
     site.showModal('#oppenentAddModal');
     document.querySelector('#oppenentAddModal .tab-link').click();
   };
 
-  $scope.addCustomer = function () {
+  $scope.addOppenents = function () {
     $scope.error = '';
     if ($scope.busy) {
       return;
@@ -63,9 +49,9 @@ app.controller("oppenents", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.displayUpdateCustomer = function (oppenent) {
+  $scope.displayUpdateOppenents = function (oppenent) {
     $scope.error = '';
-    $scope.detailsCustomer(oppenent);
+    $scope.detailsOppenents(oppenent);
     $scope.oppenent = {};
     site.showModal('#oppenentUpdateModal');
     $scope.showOpeningBalance = false;
@@ -104,7 +90,7 @@ app.controller("oppenents", function ($scope, $http, $timeout) {
 
 
 
-  $scope.updateCustomer = function () {
+  $scope.updateOppenents = function () {
     $scope.error = '';
     if ($scope.busy) {
       return;
@@ -141,15 +127,15 @@ app.controller("oppenents", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.displayDeleteCustomer = function (oppenent) {
+  $scope.displayDeleteOppenents = function (oppenent) {
     $scope.error = '';
-    $scope.detailsCustomer(oppenent);
+    $scope.detailsOppenents(oppenent);
     $scope.oppenent = {};
     site.showModal('#oppenentDeleteModal');
     document.querySelector('#oppenentDeleteModal .tab-link').click();
   };
 
-  $scope.deleteCustomer = function () {
+  $scope.deleteOppenents = function () {
     $scope.error = '';
     if ($scope.busy) {
       return
@@ -184,15 +170,15 @@ app.controller("oppenents", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.displayDetailsCustomer = function (oppenent) {
+  $scope.displayDetailsOppenents = function (oppenent) {
     $scope.error = '';
-    $scope.detailsCustomer(oppenent);
+    $scope.detailsOppenents(oppenent);
     $scope.oppenent = {};
     site.showModal('#oppenentDetailsModal');
     document.querySelector('#oppenentDetailsModal .tab-link').click();
   };
 
-  $scope.detailsCustomer = function (oppenent) {
+  $scope.detailsOppenents = function (oppenent) {
     $scope.error = '';
     $scope.busy = true;
     $http({
@@ -221,13 +207,10 @@ app.controller("oppenents", function ($scope, $http, $timeout) {
     site.showModal('#oppenentSendEmailModal');
   };
 
-  $scope.getCustomerList = function (where) {
+  $scope.getOppenentsList = function (where) {
     $scope.error = '';
-    if ($scope.busy) {
-      return;
-    }
 
-    $scope.busy = true;
+
     $scope.list = [];
     $http({
       method: "POST",
@@ -237,14 +220,12 @@ app.controller("oppenents", function ($scope, $http, $timeout) {
       }
     }).then(
       function (response) {
-        $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
           $scope.list = response.data.list;
           $scope.count = response.data.count;
         }
       },
       function (err) {
-        $scope.busy = false;
         $scope.error = err;
       }
     )
@@ -392,50 +373,12 @@ app.controller("oppenents", function ($scope, $http, $timeout) {
       }
     )
   };
-
+  
   $scope.searchAll = function () {
 
-    let where = {};
-
-    if ($scope.search.code) {
-
-      where['code'] = $scope.search.code;
-    }
-    if ($scope.search.name_ar) {
-
-      where['name_ar'] = $scope.search.name_ar;
-    }
-    if ($scope.search.name_en) {
-
-      where['name_en'] = $scope.search.name_en;
-    }
-    if ($scope.search.nationality) {
-
-      where['nationality'] = $scope.search.nationality;
-    }
-    if ($scope.search.gov) {
-
-      where['gov'] = $scope.search.gov;
-    }
-    if ($scope.search.city) {
-
-      where['city'] = $scope.search.city;
-    }
-    if ($scope.search.phone) {
-
-      where['phone'] = $scope.search.phone;
-    }
-    if ($scope.search.mobile) {
-
-      where['mobile'] = $scope.search.mobile;
-    }
-    where['active'] = 'all';
-
-    $scope.getCustomerList(where);
-
+    $scope.getOppenentsList($scope.search);
     site.hideModal('#oppenentSearchModal');
-    $scope.search = {}
-
+    $scope.search ={};
   };
 
   $scope.getNumberingAuto = function () {
@@ -462,7 +405,7 @@ app.controller("oppenents", function ($scope, $http, $timeout) {
   };
 
   $scope.getNumberingAuto();
-  $scope.getCustomerList();
+  $scope.getOppenentsList();
   $scope.getGovList();
   $scope.getGender();
   $scope.loadMaritalsStatus();

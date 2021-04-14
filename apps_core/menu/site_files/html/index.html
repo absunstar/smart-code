@@ -36,6 +36,12 @@
 
   <div id="company_tabs" class="tabs">
     <div class="tabs-header">
+
+      <a class="tab-link" href="/customers" x-permissions="customers_ui || customers_manage">
+        <img src="/images/customer.png" />
+        <span> ##word.customers## </span>
+      </a>
+
       <div class="" x-features="medical">
         <a class="tab-link" href="/patients_tickets" x-permissions="patients_tickets_ui || patients_tickets_manage">
           <img src="/images/patients_tickets.png" />
@@ -290,7 +296,7 @@
 
   <div id="general_tabs" class="tabs">
     <div class="tabs-header">
-      <a class="tab-link" href="/default_setting" x-features="!employee"
+      <a class="tab-link" href="/default_setting" x-features="!employee && !lawyer"
         x-permissions="default_setting_ui || default_setting_manage">
         <img src="/images/default_setting.png" />
         <span>##word.default_setting_menus## </span>
@@ -538,13 +544,13 @@
         <span>##word.request_activity_management## </span>
       </a>
 
-      <a class="tab-link" x-features="!employee" href="/account_invoices?type=1"
+      <a class="tab-link" x-features="!employee && !lawyer" href="/account_invoices?type=1"
         x-permissions="account_invoices_ui || account_invoices_manage">
         <img src="/images/pic_money_in.png" />
         <span>##word.purchase_invoice## </span>
       </a>
 
-      <a class="tab-link" x-features="!employee" href="/account_invoices?type=2"
+      <a class="tab-link" x-features="!employee && !lawyer" href="/account_invoices?type=2"
         x-permissions="account_invoices_ui || account_invoices_manage">
         <img src="/images/store_out.png" />
         <span>##word.sales_invoice## </span>
@@ -830,6 +836,17 @@
   <div id="employees_tabs" class="tabs">
     <div class="tabs-header">
 
+      <a class="tab-link" href="/employees_report" x-permissions="employees_report_ui || employees_report_manage">
+        <img src="images/employees_salary.png" />
+        <span>##word.employees_report##</span>
+      </a>
+
+      <a class="tab-link" x-features="lawyer" href="/office_lawyers"
+        x-permissions="office_lawyers_ui || office_lawyers_manage">
+        <img src="/images/office_lawyers.png" />
+        <span> ##word.office_lawyers##</span>
+      </a>
+
       <a class="tab-link" href="/attend_employees" x-permissions="attend_employees_ui || attend_employees_manage">
         <img src="/images/attend_employees.png" />
         <span> ##word.attend_employees## </span>
@@ -909,11 +926,6 @@
           x-permissions="report_attend_employees_ui || report_attend_employees_manage">
           <img src="images/attend_employees.png" />
           <span>##word.report_attend_employees##</span>
-        </a>
-
-        <a class="tab-link" href="/employees_report" x-permissions="employees_report_ui || employees_report_manage">
-          <img src="images/employees_salary.png" />
-          <span>##word.employees_report##</span>
         </a>
 
         <a class="tab-link" href="/employees_salary_report"
@@ -1077,13 +1089,15 @@
         </a>
       </div>
 
-      <div x-features="!employee">
 
-        <a class="tab-link" href="/report_payable_customers"
-          x-permissions="report_payable_customers_ui || report_payable_customers_manage">
-          <img src="/images/report_payable_customers.png" />
-          <span>##word.report_payable_customers##</span>
-        </a>
+      <a class="tab-link" x-features="!employee && !lawyer" href="/report_payable_customers"
+        x-permissions="report_payable_customers_ui || report_payable_customers_manage">
+        <img src="/images/report_payable_customers.png" />
+        <span>##word.report_payable_customers##</span>
+      </a>
+
+
+      <div x-features="!employee && !lawyer">
 
         <a class="tab-link" href="/report_payable_vendors"
           x-permissions="report_payable_vendors_ui || report_payable_vendors_manage">
@@ -1256,16 +1270,64 @@
   <div id="basic_setting" class="tabs">
     <div class="tabs-header">
 
-      <a x-features="restaurant || pos || academy || club || erp" class="tab-link" href="/shifts"
+      <a x-features="restaurant || pos || academy || club || erp || lawyer" class="tab-link" href="/shifts"
         x-permissions="shifts_ui || shifts_manage">
         <img src="/images/shift.png" />
         <span> ##word.menu_shift## </span>
       </a>
 
-      <a class="tab-link" href="/customers" x-permissions="customers_ui || customers_manage">
-        <img src="/images/customer.png" />
-        <span> ##word.customers## </span>
-      </a>
+      <div class="" x-features="lawyer">
+        <a class="tab-link" href="/courts" x-permissions="courts_ui || courts_manage">
+          <img src="images/court.png" />
+          <span>##word.courts## </span>
+        </a>
+
+        <a class="tab-link" href="/circles" x-permissions="circles_ui || circles_manage">
+          <img src="images/circle.png" />
+          <span>##word.circles## </span>
+        </a>
+
+        <a class="tab-link" href="/adjectives" x-permissions="adjectives_ui || adjectives_manage">
+          <img src="images/adjectives.png" />
+          <span>##word.adjectives## </span>
+        </a>
+
+        <a class="tab-link" href="/reasons_sessions" x-permissions="reasons_sessions_ui || reasons_sessions_manage">
+          <img src="images/reasons_sessions.png" />
+          <span>##word.reasons_sessions## </span>
+        </a>
+
+        <a class="tab-link" href="/request_types" x-permissions="request_types_ui || request_types_manage">
+          <img src="images/request_types.png" />
+          <span>##word.request_types## </span>
+        </a>
+
+        <a class="tab-link" href="/rogatory_types" x-permissions="rogatory_add_ui || rogatory_add_manage">
+          <img src="images/rogatory_types.png" />
+          <span>##word.rogatory_types## </span>
+        </a>
+
+        <a class="tab-link" href="/rogatory_places" x-permissions="rogatory_places_ui || rogatory_places_manage">
+          <img src="images/rogatory_places.png" />
+          <span>##word.rogatory_places## </span>
+        </a>
+
+        <a class="tab-link" href="/lawsuit_status" x-permissions="lawsuit_status_ui || lawsuit_status_manage">
+          <img src="images/lawsuit_status.png" />
+          <span>##word.lawsuit_status## </span>
+        </a>
+
+        <a class="tab-link" href="/lawsuit_types" x-permissions="lawsuit_types_ui || lawsuit_types_manage">
+          <img src="images/lawsuit_types.png" />
+          <span>##word.lawsuit_types## </span>
+        </a>
+
+        <a class="tab-link" href="/lawsuit_degrees" x-permissions="lawsuit_degrees_ui || lawsuit_degrees_manage">
+          <img src="images/lawsuit_degrees.png" />
+          <span>##word.lawsuit_degrees## </span>
+        </a>
+      </div>
+
 
       <a x-features="club || school" class="tab-link" href="/trainer" x-permissions="trainer_ui || trainer_manage">
         <img src="images/trainer.png" />
@@ -1547,8 +1609,7 @@
           <span>##word.hr## </span>
         </a>
 
-        <a x-features="restaurant || pos || academy || club || erp || school || medical || employee" class="tab-link"
-          onclick="site.showTabs(event, '#reporting_tabs')">
+        <a class="tab-link" onclick="site.showTabs(event, '#reporting_tabs')">
           <img src="/images/report.png" />
           <span>##word.reports## </span>
         </a>
