@@ -60,7 +60,6 @@ module.exports = function init(site) {
       lawsuit_add_doc.code = cb.code;
     }
 
-
     $lawsuit_add.add(lawsuit_add_doc, (err, doc) => {
       if (!err) {
         response.done = true

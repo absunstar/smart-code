@@ -3,11 +3,13 @@
 
     {"name" : "status_judgment" , "en" : "Status Judgment" , "ar" : "حالة الحكم"},
     {"name" : "status_session" , "en" : "Status Session" , "ar" : "حالة الجلسة"},
+    {"name" : "sessions" , "en" : "Sessions" , "ar" : "الجلسات"},
+    {"name" : "session" , "en" : "Session" , "ar" : "جلسة"},
     {"name" : "session_add" , "en" : "Session Add" , "ar" : "إضافة الجلسات"},
     {"name" : "session_start_date" , "en" : "Session Date" , "ar" : "تاريخ الجلسة"},
     {"name" : "session_add_menus" , "en" : "Session Add Menu" , "ar" : "قائمة إضافة الجلسة"},
     {"name" : "session_add_code" , "en" : "Session Add Code" , "ar" : "كود إضافة جلسة"},
-    {"name" : "session_add_name" , "en" : "Session Add Name" , "ar" : "إسم جلسة"},
+    {"name" : "session_name" , "en" : "Session Add Name" , "ar" : "إسم جلسة"},
     {"name" : "session_number" , "en" : "Session Number" , "ar" : "رقم جلسة"},
     {"name" : "session_year" , "en" : "For A Year" , "ar" : "لسنة"},
     {"name" : "session_character" , "en" : "Session Character" , "ar" : "حرف الجلسة"},
@@ -16,10 +18,10 @@
     {"name" : "roll_number" , "en" : "Roll Number" , "ar" : "رقم الرول"},
     {"name" : "lawsuit_number" , "en" : "Lawsuit Number" , "ar" : "رقم الدعوى"},
     {"name" : "decision" , "en" : "Decision" , "ar" : "القرار"},
-    {"name" : "session_add_new" , "en" : "New Session Add" , "ar" : "إضافة جلسة جديد"},
-    {"name" : "session_add_details" , "en" : "Session Add Details" , "ar" : "تفاصيل إضافة جلسة"},
-    {"name" : "session_add_update" , "en" : "Edit Session Add" , "ar" : "تعديل إضافة جلسة"},
-    {"name" : "session_add_delete" , "en" : "Delte Session Add" , "ar" : "حذف إضافة جلسة"},
-    {"name" : "session_add_add_name" , "en" : "Add Session Add" , "ar" : "إضافة إضافة جلسة"}
+    {"name" : "session_add_new" , "en" : "New Session" , "ar" : "إضافة جلسة جديد"},
+    {"name" : "session_add_details" , "en" : "Session Details" , "ar" : "تفاصيل جلسة"},
+    {"name" : "session_add_update" , "en" : "Edit Session" , "ar" : "تعديل جلسة"},
+    {"name" : "session_add_delete" , "en" : "Delte Session" , "ar" : "حذف جلسة"},
+    {"name" : "session_add_name" , "en" : "Add Session" , "ar" :  "إضافة جلسة"}
     
 ]

@@ -1,0 +1,30 @@
+<div class="form">
+    <div id="fileTypesAddModal">
+        <fieldset>
+            <legend> ##word.file_type_informations## </legend>
+            <div class="row">
+                <div class="col9">
+                    <div class="row">
+
+                        <i-control ng-hide="disabledCode" class="col2" label="##word.code##"
+                            ng-model="file_type.code">
+                        </i-control>
+
+                        <i-control v="r" class="col4" label="##word.file_type_ar##" ng-model="file_type.name_ar">
+                        </i-control>
+
+                        <i-control class="col4" label="##word.file_type_en##" ng-model="file_type.name_en">
+                        </i-control>
+
+                        <i-checkbox class="col2" label="##word.active##" ng-model="file_type.active"></i-checkbox>
+                    </div>
+
+                </div>
+
+                <div class="col3">
+                    <i-image category="file_type" ng-model="file_type.image_url"> </i-image>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>

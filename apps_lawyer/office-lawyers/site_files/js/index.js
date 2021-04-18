@@ -7,6 +7,7 @@ app.controller("office_lawyers", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.office_lawyers = {
       image_url: '/images/office_lawyers.png',
+      lawyer : true,
       active: true
     };
 

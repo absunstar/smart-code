@@ -20,7 +20,7 @@
                     <legend> ##word.lawsuit_add_informations## </legend>
                     <div class="row">
                         <div class="col9">
-                            <table class="table bold">
+                            <table class="table bold hover">
 
                                 <tr>
                                     <td class="title">##word.code##</td>
@@ -126,11 +126,11 @@
 
                                 <tr>
                                     <th> ##word.oppenents_name## </th>
-                                    <th> ##word.adjective## </th>
+                                    <th> ##word.adjective_in_lawsuit## </th>
                                 </tr>
                                 <tr ng-repeat="c in lawsuit_add.oppenents_list ">
                                     <td> {{c.oppenents.name_##session.lang##}} </td>
-                                    <td> {{c.adjective}} </td>
+                                    <td> {{c.adjective.name_##session.lang##}} </td>
                                 </tr>
                             </table>
                         </div>
@@ -149,13 +149,13 @@
                         <table class="table  center hover bold">
                             <tr>
                                 <th> ##word.oppenents_lawyers## </th>
-                                <th> ##word.adjective## </th>
+                                <th> ##word.adjective_in_lawsuit## </th>
 
                             </tr>
                             <tr ng-repeat="c in lawsuit_add.oppenents_lawyers_list ">
 
                                 <td> {{c.oppenents_lawyer.name_##session.lang##}} </td>
-                                <td> {{c.adjective}} </td>
+                                <td> {{c.adjective.name_##session.lang##}} </td>
 
                             </tr>
                         </table>
@@ -174,13 +174,15 @@
                         <table class="table  center hover bold">
                             <tr>
                                 <th> ##word.client_name## </th>
-                                <th> ##word.adjective## </th>
+                                <th> ##word.rogatory## </th>
+                                <th> ##word.adjective_in_lawsuit## </th>
 
                             </tr>
                             <tr ng-repeat="c in lawsuit_add.clients_list ">
 
                                 <td> {{c.customer.name_##session.lang##}} </td>
-                                <td> {{c.adjective}} </td>
+                                <td> {{c.rogatory.number}} - {{c.rogatory.year}} </td>
+                                <td> {{c.adjective.name_##session.lang##}} </td>
                             </tr>
                         </table>
                     </div>
@@ -197,12 +199,12 @@
                         <table class="table  center hover bold">
                             <tr>
                                 <th> ##word.clients_lawyers## </th>
-                                <th> ##word.adjective## </th>
+                                <th> ##word.adjective_in_lawsuit## </th>
                             </tr>
 
                             <tr ng-repeat="c in lawsuit_add.office_lawyers_list ">
                                 <td> {{c.office_lawyer.name_##session.lang##}} </td>
-                                <td> {{c.adjective}} </td>
+                                <td> {{c.adjective.name_##session.lang##}} </td>
                             </tr>
                         </table>
                     </div>
@@ -210,7 +212,40 @@
             </div>
 
             <div id="lawsuitFiles" class="tab-content">
-                <i-files view ng-model="lawsuit_add.files"></i-files>
+                <br>
+                <br>
+                <div class="row">
+
+                    <table class="table loaded hover center bold">
+                        <tr>
+                            <th> ##word.file_type## </th>
+                            <th> ##word.file_name## </th>
+                            <th> ##word.file_date## </th>
+                            <th> ##word.file_upload_date## </th>
+                            <th> ##word.upload_by## </th>
+                            <th> ##word.the_file## </th>
+                        </tr>
+                        <tr ng-repeat="f in lawsuit_add.files_list">
+
+                            <td> {{f.file_type.name_##session.lang##}} </td>
+                            <td class=""> {{f.file_name}} </td>
+                            <td class="brown center"> {{f.file_date | date : 'dd - MM - yyyy'}}</td>
+
+                            <td class="center">
+                                <p class="brown"> {{f.file_upload_date |date:"dd - MM - yyyy"}} </p>
+                                <p class="green"> {{f.file_upload_date |date:"hh:mm"}} </p>
+                            </td>
+                            <td class=""> {{f.upload_by}} </td>
+
+                            <td>
+
+                                <i-files view ng-model="f.file"></i-files>
+                            </td>
+
+                        </tr>
+
+                    </table>
+                </div>
             </div>
         </div>
     </div>

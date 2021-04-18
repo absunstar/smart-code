@@ -4,7 +4,7 @@ module.exports = function init(site) {
 
   let source = {
     en: 'Lawsuit Add System',
-    ar: ' نظام إضافة الدعاوي'
+    ar: ' نظام الدعاوى'
   }
 
   let image_url = '/images/lawsuit_add.png'
@@ -14,11 +14,11 @@ module.exports = function init(site) {
   }
   let update_message = {
     en: ' Lawsuit Add Updated',
-    ar: 'تم تعديل إضافة دعوى'
+    ar: 'تم تعديل دعوى'
   }
   let delete_message = {
     en: ' Lawsuit Add Deleted',
-    ar: 'تم حذف إضافة دعوى '
+    ar: 'تم حذف دعوى '
   }
 
   site.on('mongodb after insert', function (result) {

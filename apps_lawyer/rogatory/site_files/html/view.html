@@ -1,0 +1,166 @@
+<div ng-hide="busy" class="row">
+
+    <div class="tabs col">
+        <div class="tabs-header full">
+            <a class="tab-link" onclick="site.showTabContent(event, '#rogatoryAddModal')">
+                ##word.lawsuit_data## </a>
+            <a class="tab-link" onclick="site.showTabContent(event, '#clients')">
+                ##word.clients## </a>
+            <a class="tab-link " onclick="site.showTabContent(event, '#rogatoryFiles')">
+                ##word.lawsuit_files## </a>
+        </div>
+
+        <div id="lawsuitAllInfo" class="tabs-content full bold">
+
+            <div id="rogatoryAddModal" class="tab-content">
+
+                <fieldset>
+                    <legend> ##word.rogatory_informations## </legend>
+                    <div class="row">
+                        <div class="col9">
+                            <table class="table hover bold">
+
+                                <tr>
+                                    <td class="title"> ##word.code## </td>
+                                    <td class="center userPrint blue"> {{rogatory.code}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.rogatory_start_date## </td>
+                                    <td class="center"> {{rogatory.date |date:'dd - MM - yyyy'}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.rogatory_character## </td>
+                                    <td class="center"> {{rogatory.character}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.rogatory_number## </td>
+                                    <td class="center"> {{rogatory.number}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.rogatory_year## </td>
+                                    <td class="center"> {{rogatory.year}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.rogatory_place## </td>
+                                    <td class="center"> {{rogatory.rogatory_place.name_##session.lang##}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.rogatory_type## </td>
+                                    <td class="center"> {{rogatory.rogatory_type.name_##session.lang##}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title">##word.description##</td>
+                                    <td class="center">{{rogatory.description}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.active## </td>
+                                    <td ng-show="rogatory.active == true" class="center green"> ##word.active## </td>
+                                    <td ng-show="rogatory.active == false" class="center red"> ##word.not_active##
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="col3">
+                            <i-image class="not-print" view ng-model="rogatory.image_url"> </i-image>
+                        </div>
+
+
+                    </div>
+                </fieldset>
+            </div>
+
+            <div id="clients" class="tab-content">
+
+                <fieldset>
+                    <legend> ##word.clients## </legend>
+
+                    <div class="col10">
+
+                        <table class="table  center hover bold">
+
+                            <tr>
+                                <th> ##word.client_name## </th>
+                                <th> ##word.adjective_in_lawsuit## </th>
+                            </tr>
+
+                            <tr ng-repeat="c in rogatory.clients_list ">
+                                <td> {{c.customer.name_##session.lang##}} </td>
+                                <td> {{c.adjective.name_##session.lang##}} </td>
+                            </tr>
+
+                        </table>
+                    </div>
+                </fieldset>
+
+                <br>
+                <br>
+
+                <fieldset>
+                    <legend> ##word.clients_lawyers## </legend>
+
+                    <div class="col10">
+
+                        <table class="table  center hover bold">
+                            <tr>
+                                <th> ##word.clients_lawyers## </th>
+                                <th> ##word.adjective_in_lawsuit## </th>
+                            </tr>
+
+                            <tr ng-repeat="c in rogatory.office_lawyers_list ">
+                                <td> {{c.office_lawyer.name_##session.lang##}} </td>
+                                <td> {{c.adjective.name_##session.lang##}} </td>
+                            </tr>
+                        </table>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div id="rogatoryFiles" class="tab-content">
+                <br>
+                <br>
+                <div class="row">
+
+                    <table class="table loaded hover center bold">
+                        <tr>
+                            <th> ##word.file_type## </th>
+                            <th> ##word.file_name## </th>
+                            <th> ##word.file_date## </th>
+                            <th> ##word.file_upload_date## </th>
+                            <th> ##word.upload_by## </th>
+                            <th> ##word.the_file## </th>
+                        </tr>
+                        <tr ng-repeat="f in rogatory.files_list">
+
+                            <td> {{f.file_type.name_##session.lang##}} </td>
+                            <td class=""> {{f.file_name}} </td>
+                            <td class="brown center"> {{f.file_date | date : 'dd - MM - yyyy'}}</td>
+
+                            <td class="center">
+                                <p class="brown"> {{f.file_upload_date |date:"dd - MM - yyyy"}} </p>
+                                <p class="green"> {{f.file_upload_date |date:"hh:mm"}} </p>
+                            </td>
+                            <td class=""> {{f.upload_by}} </td>
+
+                            <td>
+
+                                <i-files view ng-model="f.file"></i-files>
+                            </td>
+
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div x-import="rogatory/action_info.html"></div>

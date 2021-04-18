@@ -4,7 +4,7 @@ module.exports = function init(site) {
 
   let source = {
     en: 'LawSuit Types System',
-    ar: ' نظام أنواع الدعاوي'
+    ar: ' نظام أنواع الدعاوى'
   }
 
   let image_url = '/images/lawsuit_types.png'

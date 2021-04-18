@@ -1,0 +1,38 @@
+<div ng-hide="busy" id="v1">
+    <div class="form">
+        <div id="customersGroupViewModal">
+            <fieldset>
+                <legend> ##word.file_type_informations## </legend>
+                <div class="row">
+                    <div class="col9">
+                        <table class="table bold hover">
+                            <tr>
+                                <td class="title"> ##word.code## </td>
+                                <td class="center userPrint blue"> {{file_type.code}} </td>
+                            </tr>
+
+                            <tr>
+                                <td class="title"> ##word.file_type_name## </td>
+                                <td class="center"> {{file_type.name_##session.lang##}} </td>
+                            </tr>
+
+                            <tr>
+                                <td class="title"> ##word.active## </td>
+                                <td ng-show="file_type.active == true" class="center green"> ##word.active## </td>
+                                <td ng-show="file_type.active == false" class="center red"> ##word.not_active##
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="col3">
+                        <i-image class="not-print" view ng-model="file_type.image_url"> </i-image>
+                    </div>
+
+
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
+<div x-import="request-types/action_info.html"></div>

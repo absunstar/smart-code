@@ -4,7 +4,7 @@ module.exports = function init(site) {
 
   let source = {
     en: 'LawSuit Degrees System',
-    ar: ' نظام درجات الدعاوي'
+    ar: ' نظام درجات الدعاوى'
   }
 
   let image_url = '/images/lawsuit_degrees.png'

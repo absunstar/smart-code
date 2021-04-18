@@ -11,8 +11,7 @@
                 onclick="site.showTabContent(event,'#medicalConditionInformation')">
                 ##word.medical_condition##
             </a>
-            <a class="tab-link" onclick="site.showTabContent(event, '#customersFiles')">
-                ##word.customers_files## </a>
+
             <a class="tab-link" x-features="academy || school"
                 onclick="site.showTabContent(event,'#familyInformation')">
                 ##word.family_info##
@@ -34,6 +33,9 @@
 
              <a class="tab-link" onclick="site.showTabContent(event, '#customersDealing')">
                 ##word.customers_dealing## </a> -->
+
+            <a class="tab-link" onclick="site.showTabContent(event, '#customersFiles')">
+                ##word.customers_files## </a>
 
             <a class="tab-link" onclick="site.showTabContent(event,'#loginInformation')">
                 ##word.login_information##
@@ -960,7 +962,41 @@
 
 
             <div id="customersFiles" class="tab-content">
-                <i-files view ng-model="customer.files"></i-files>
+                <br>
+                <br>
+                <div class="row">
+
+                    <table class="table loaded hover center bold">
+                        <tr>
+                            <th> ##word.file_type## </th>
+                            <th> ##word.file_name## </th>
+                            <th> ##word.file_date## </th>
+                            <th> ##word.file_upload_date## </th>
+                            <th> ##word.upload_by## </th>
+                            <th> ##word.the_file## </th>
+                        </tr>
+                        <tr ng-repeat="f in customer.files_list">
+
+                            <td> {{f.file_type.name_##session.lang##}} </td>
+                            <td class=""> {{f.file_name}} </td>
+                            <td class="brown center"> {{f.file_date | date : 'dd - MM - yyyy'}}</td>
+
+                            <td class="center">
+                                <p class="brown"> {{f.file_upload_date |date:"dd - MM - yyyy"}} </p>
+                                <p class="green"> {{f.file_upload_date |date:"hh:mm"}} </p>
+                            </td>
+                            <td class=""> {{f.upload_by}} </td>
+
+                            <td>
+
+                                <i-files view ng-model="f.file"></i-files>
+                            </td>
+
+                        </tr>
+
+                    </table>
+                </div>
+
             </div>
 
             <!-- <div id="customersDealing" class="tab-content">

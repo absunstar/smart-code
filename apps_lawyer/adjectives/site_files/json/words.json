@@ -1,8 +1,8 @@
 [
     {
-        "name": "adjectives",
-        "en":  "Djectives",
-        "ar": "الصفات"
+        "name": "adjectives_in_lawsuit",
+        "en":  "Adjectives In Lawsuit",
+        "ar": "الصفات في الدعوى"
     },
     {
         "name": "adjectives_new",
@@ -32,6 +32,6 @@
     {
         "name": "adjectives_name",
         "en":  "Djectives Name",
-        "ar": "إسم الصفة "
+        "ar": "إسم الصفة"
     }
 ]

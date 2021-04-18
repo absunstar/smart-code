@@ -362,26 +362,26 @@
     },
     {
         "feature": "lawyer",
-        "title_ar": "حالات الدعاوي",
+        "title_ar": "حالات الدعاوى",
         "title_en": "Lawsuit Status",
         "image_url": "/images/lawsuit_status.png",
-        "description_ar": "الشاشة المسئولة عن إضافة و تعريف حالات الدعاوي لإستخدامها في إضافة نشاطات المكتب الأساسية",
+        "description_ar": "الشاشة المسئولة عن إضافة و تعريف حالات الدعاوى لإستخدامها في إضافة نشاطات المكتب الأساسية",
         "description_en": "The screen responsible for adding and defining lawsuit status for use in adding basic office activities"
     },
     {
         "feature": "lawyer",
-        "title_ar": "أنواع الدعاوي",
+        "title_ar": "أنواع الدعاوى",
         "title_en": "Lawsuit Types",
         "image_url": "/images/lawsuit_types.png",
-        "description_ar": "الشاشة المسئولة عن إضافة و تعريف أنواع الدعاوي لإستخدامها في إضافة نشاطات المكتب الأساسية",
+        "description_ar": "الشاشة المسئولة عن إضافة و تعريف أنواع الدعاوى لإستخدامها في إضافة نشاطات المكتب الأساسية",
         "description_en": "The screen responsible for adding and defining lawsuit types for use in adding basic office activities"
     },
     {
         "feature": "lawyer",
-        "title_ar": "درجات الدعاوي",
+        "title_ar": "درجات الدعاوى",
         "title_en": "Lawsuit Degrees",
         "image_url": "/images/lawsuit_degrees.png",
-        "description_ar": "الشاشة المسئولة عن إضافة و تعريف درجات الدعاوي لإستخدامها في إضافة نشاطات المكتب الأساسية",
+        "description_ar": "الشاشة المسئولة عن إضافة و تعريف درجات الدعاوى لإستخدامها في إضافة نشاطات المكتب الأساسية",
         "description_en": "The screen responsible for adding and defining lawsuit degrees for use in adding basic office activities"
     },
     {
@@ -436,13 +436,13 @@
         "feature": "lawyer",
         "title_ar": "إضافة التوكيلات",
         "title_en": "Rogatory Add",
-        "image_url": "/images/rogatory_add.png",
+        "image_url": "/images/rogatory.png",
         "description_ar": "لإضافة توكيل جديد يجب كتابة حرف و رقم و سنة التوكيل و إختيار مكان و نوع التوكيل يتم إدخالهم مسبقاّ من الشاشات المخصصة لإضافتهم",
         "description_en": "To add a new power of attorney, you must enter a letter, number, year of the power of attorney, and choose the place of the power of attorney and the type of power of attorney that is entered in advance from the screens designated for adding them."
     },
     {
         "feature": "lawyer",
-        "title_ar": "إضافة الدعاوي",
+        "title_ar": "إضافة الدعاوى",
         "title_en": "Lawsuit Add",
         "image_url": "/images/lawsuit_add.png",
         "description_ar": "لإضافة دعوى جديدة يجب كتابة رقم و سنة الدعوة و إختيار مكان و دائرة الدعوى و إختيار أسماء الخصوم و محامين الخصوم و إختيار أسماء الموكلين و محامين الموكلين يتم إدخالهم مسبقاّ من الشاشات المخصصة لإضافتهم و يمكن إرفاق ملفات خاصة بالدعوى",
@@ -453,7 +453,7 @@
         "title_ar": "إضافة الجلسات",
         "title_en": "Session Add",
         "image_url": "/images/session_add.png",
-        "description_ar": "لإضافة جلسة جديدة يجب إختيار دعوى أضيفت مسبقاّ من شاشة إضافة الدعاوي و كتابة رقم الرول و الطلبات و القرار و الوصف و إختيار سبب الجلسة المضافة مسبقاّ من شاشة أسباب الجلسات",
+        "description_ar": "لإضافة جلسة جديدة يجب إختيار دعوى أضيفت مسبقاّ من شاشة إضافة الدعاوى و كتابة رقم الرول و الطلبات و القرار و الوصف و إختيار سبب الجلسة المضافة مسبقاّ من شاشة أسباب الجلسات",
         "description_en": "To add a new session, you must choose a case that was added previously from the Add Claims screen, write down the Roll number, requests, decision, description, and choose the reason for the previously added session from the Session Reasons screen."
     },
     {

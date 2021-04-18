@@ -764,6 +764,42 @@ app.controller("customers", function ($scope, $http, $timeout) {
     )
   };
 
+
+  
+  $scope.getFilesTypesList = function (where) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/file_type/all",
+      data: {
+        where: {
+          active: true
+        },
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.files_types_List = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.addFiles = function () {
+    $scope.error = '';
+    $scope.customer.files_list = $scope.customer.files_list || [];
+    $scope.customer.files_list.push({
+      file_date : new Date(),
+      file_upload_date : new Date(),
+      upload_by : '##user.name##',
+    })
+  };
+
   $scope.searchAll = function () {
     $scope.getCustomersList($scope.search);
     site.hideModal('#customerSearchModal');
@@ -786,6 +822,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
 
   $scope.getCustomersList();
   $scope.getHost();
+  $scope.getFilesTypesList();
   $scope.loadCurrencies();
   $scope.getNumberingAuto();
   $scope.getCustomerGroupList();

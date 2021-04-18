@@ -4,11 +4,15 @@
         "ar": "المحاكم"
     },
     {
+        "name": "court",
+        "en": "Court",
+        "ar": "المحكمة"
+    },
+    {
         "name": "courts_new",
         "en": "New Court",
         "ar": "محكمة جديدة"
     },
-
     {
         "name": "courts_add",
         "en": "Add Court",

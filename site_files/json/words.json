@@ -32,7 +32,12 @@
     {
         "name": "file",
         "en": "File",
-        "ar": "ملق"
+        "ar": "ملف"
+    },
+    {
+        "name": "the_file",
+        "en": "The File",
+        "ar": "الملف"
     },
     {
         "name": "the_file",

@@ -2,9 +2,9 @@
     {
         "category": "main",
         "feature": "lawyer",
-        "name": "rogatory_add",
-        "en": "Rogatory Add",
-        "ar": "إضافة التوكيلات"
+        "name": "rogatory",
+        "en": "Rogatory",
+        "ar": "التوكيلات"
     },
     {
         "category": "main",
@@ -18,7 +18,7 @@
         "feature": "lawyer",
         "name": "lawsuit_add",
         "en": "Lawsuit Add",
-        "ar": "إضافة الدعاوي"
+        "ar": "إضافة الدعاوى"
     },
     {
         "category": "main",
@@ -619,8 +619,8 @@
         "category": "general_setting",
         "feature": "lawyer",
         "name": "adjectives",
-        "en": "Adjectives",
-        "ar": "الصفات"
+        "en": "Adjectives In Lawsuit",
+        "ar": "الصفات في الدعوى"
     },
     {
         "category": "general_setting",
@@ -648,21 +648,21 @@
         "feature": "lawyer",
         "name": "lawsuit_degrees",
         "en": "Lawsuit Degrees",
-        "ar": "درجات الدعاوي"
+        "ar": "درجات الدعاوى"
     },
     {
         "category": "general_setting",
         "feature": "lawyer",
         "name": "lawsuit_status",
         "en": "Lawsuit Status",
-        "ar": "حالات الدعاوي"
+        "ar": "حالات الدعاوى"
     },
     {
         "category": "general_setting",
         "feature": "lawyer",
         "name": "lawsuit_types",
         "en": "Lawsuit Types",
-        "ar": "أنواع الدعاوي"
+        "ar": "أنواع الدعاوى"
     },
     {
         "category": "general_setting",
@@ -873,6 +873,13 @@
         "name": "drinks",
         "en": "Drinks",
         "ar": "المشروبات"
+    },
+    {
+        "category": "general_setting",
+        "feature": "public",
+        "name": "file_type",
+        "en": "Files Types",
+        "ar": "أنواع الملفات"
     },
     {
         "category": "general_setting",

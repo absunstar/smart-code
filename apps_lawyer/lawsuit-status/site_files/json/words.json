@@ -1,7 +1,7 @@
 [
     {"name" : "lawsuit_status_informations" , "en" : "Lawsuit Status Informations" , "ar" : "بيانات حالة دعوى"},
 
-    {"name" : "lawsuit_status" , "en" : "Lawsuit Status" , "ar" : "حالات الدعاوي"},
+    {"name" : "lawsuit_status" , "en" : "Lawsuit Status" , "ar" : "حالات الدعاوى"},
     {"name" : "lawsuit_status_code" , "en" : "Lawsuit Status Code" , "ar" : "كود حالة "},
     {"name" : "lawsuit_status_name" , "en" : "Lawsuit Status Name" , "ar" : "إسم الحالة"},
 

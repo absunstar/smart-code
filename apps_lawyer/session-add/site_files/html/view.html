@@ -14,7 +14,7 @@
 
                             <tr>
                                 <td class="title"> ##word.session_start_date## </td>
-                                <td class="center"> {{session_add.date  | date : 'yyyy - MM - dd'}} </td>
+                                <td class="center"> {{session_add.date | date : 'yyyy - MM - dd'}} </td>
                             </tr>
 
                             <tr>
@@ -55,6 +55,61 @@
                             </tr>
 
                         </table>
+
+                        <div class="row" ng-show="session_add.lawsuit.id">
+                            <div class="col9">
+                                <fieldset>
+                                    <legend>##word.lawsuit_data##</legend>
+
+                                    <table class="table bold hover">
+
+                                        <tr>
+                                            <td class="title">##word.code##</td>
+                                            <td class="center blue userPrint">{{session_add.lawsuit.code}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="title"> ##word.lawsuit_start_date## </td>
+                                            <td class="center"> {{session_add.lawsuit.date | date:'dd - MM - yyyy'}}
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="title">##word.lawsuit_number##</td>
+                                            <td class="center">{{session_add.lawsuit.number}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="title">##word.lawsuit_year##</td>
+                                            <td class="center">{{session_add.lawsuit.year}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="title">##word.lawsuit_place##</td>
+                                            <td class="center">{{session_add.lawsuit.courts.name_##session.lang##}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="title">##word.circle##</td>
+                                            <td class="center">{{session_add.lawsuit.circle.name_##session.lang##}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="title">##word.lawsuit_topic##</td>
+                                            <td class="center">{{session_add.lawsuit.lawsuit_topic}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="title">##word.description##</td>
+                                            <td class="center">{{session_add.lawsuit.description}}</td>
+                                        </tr>
+
+                                    </table>
+
+                                </fieldset>
+                            </div>
+
+                        </div>
                     </div>
 
                     <div class="col3">

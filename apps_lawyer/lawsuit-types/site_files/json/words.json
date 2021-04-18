@@ -1,7 +1,7 @@
 [
     {"name" : "lawsuit_types_informations" , "en" : "Lawsuit Types Informations" , "ar" : "بيانات نوع دعوى"},
 
-    {"name" : "lawsuit_types" , "en" : "Lawsuit Types" , "ar" : "أنواع الدعاوي"},
+    {"name" : "lawsuit_types" , "en" : "Lawsuit Types" , "ar" : "أنواع الدعاوى"},
     {"name" : "lawsuit_types_code" , "en" : "Lawsuit Types Code" , "ar" : "كود نوع "},
     {"name" : "lawsuit_types_name" , "en" : "Lawsuit Types Name" , "ar" : "إسم النوع"},
     {"name" : "lawsuit_types_new" , "en" : "New Lawsuit Types" , "ar" : "نوع دعوى جديدة"},

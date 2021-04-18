@@ -1,7 +1,7 @@
 [
     {"name" : "lawsuit_degrees_informations" , "en" : "Lawsuit Degrees Informations" , "ar" : "بيانات درجة دعوى"},
 
-    {"name" : "lawsuit_degrees" , "en" : "Lawsuit Degrees" , "ar" : "درجات الدعاوي"},
+    {"name" : "lawsuit_degrees" , "en" : "Lawsuit Degrees" , "ar" : "درجات الدعاوى"},
     {"name" : "lawsuit_degrees_code" , "en" : "Lawsuit Degrees Code" , "ar" : "كود درجة "},
     {"name" : "lawsuit_degrees_name" , "en" : "Lawsuit Degrees Name" , "ar" : "إسم الدرجة"},
     {"name" : "lawsuit_degrees_new" , "en" : "New Lawsuit Degrees" , "ar" : "درجة دعوى جديدة"},

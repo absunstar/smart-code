@@ -211,8 +211,7 @@ app.controller("session_add", function ($scope, $http, $timeout) {
         url: "/api/lawsuit_add/all",
         data: {
           search: $scope.search_lawsuit,
-          where: {},
-          select: { id: 1, number: 1, year: 1, code: 1 }
+          where: { active: true },
         }
       }).then(
         function (response) {
