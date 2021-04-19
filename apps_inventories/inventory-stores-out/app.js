@@ -56,10 +56,7 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/json/types.json'
   })
 
-  site.post({
-    name: '/api/payment_type/all',
-    path: __dirname + '/site_files/json/payment_type.json'
-  })
+
 
   site.get({
     name: "stores_out",

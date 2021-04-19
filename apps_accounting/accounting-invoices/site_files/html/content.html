@@ -335,10 +335,7 @@
                         <div class="row" ng-show="account_invoices.source_type.id ==8">
 
                             <div class="col4 control">
-                                <i-checkbox ng-model="account_invoices.show_source"
-                                    ng-click="account_invoices.show_customer = false; account_invoices.customer = {}"
-                                    label="##word.source##">
-                                </i-checkbox>
+                                <i-checkbox ng-model="account_invoices.show_source"label="##word.source##"></i-checkbox>
 
                                 <i-list ng-search="_search.$source_account_invoices" ng-model="account_invoices.source"
                                     display="name_##session.lang##" ng-show="account_invoices.show_source"
@@ -348,7 +345,6 @@
 
                             <div class="col7 control">
                                 <i-checkbox ng-model="account_invoices.show_customer"
-                                    ng-click="account_invoices.show_source = false; account_invoices.source = {}"
                                     label="##word.customer##">
                                 </i-checkbox>
                                 <div class="row" ng-show="account_invoices.show_customer">

@@ -793,7 +793,7 @@
         "description_en": "It allows you to register clients or suppliers and link them to transactions, invoices and orders"
     },
     {
-        "feature": "public",
+        "feature": "hr",
         "title_ar": "الوظائف و الدرجات الوظيفية",
         "title_en": "Jobs and job degree",
         "image_url": "/images/degree.png",
@@ -801,7 +801,7 @@
         "description_en": "Jobs and job grades are added, linked to employees, and the salary for each job is determined by job degree"
     },
     {
-        "feature": "public",
+        "feature": "hr",
         "title_ar": "مرتبات الموظفين",
         "title_en": "Employees salaries",
         "image_url": "/images/employees_salary.png",
@@ -809,7 +809,7 @@
         "description_en": "It allows you to pay salaries monthly to employees, make a comprehensive report for the employee, and indicate his participation in the work to determine the value of the salary"
     },
     {
-        "feature": "public",
+        "feature": "hr",
         "title_ar": "الموظفين و المناديب و موظفين التوصيل",
         "title_en": "Employees, delegates, and delivery employees",
         "image_url": "/images/employee_list.png",
@@ -817,7 +817,7 @@
         "description_en": "Employees are added, their terms of reference are added, delegates are added and they are linked to sales invoices, add delivery staff and link them to requests, and detailed reports are made for each of them according to the nature of their work"
     },
     {
-        "feature": "public",
+        "feature": "hr",
         "title_ar": "السلف و سداد السلف",
         "title_en": "Advances and payment of advances",
         "image_url": "/images/emp_advances2.png",
@@ -825,7 +825,7 @@
         "description_en": "It allows you to make advances to employees and create a monthly system for paying advances"
     },
     {
-        "feature": "public",
+        "feature": "hr",
         "title_ar": "مكافئات و خصومات الموظفين",
         "title_en": "Employee bonuses and discounts",
         "image_url": "/images/offer.png",
@@ -833,7 +833,7 @@
         "description_en": "Incentive bonuses or deductions are set for employees and their deduction is added to the monthly salary"
     },
     {
-        "feature": "public",
+        "feature": "hr",
         "title_ar": "التأمينات الإجتماعية",
         "title_en": "Social Security",
         "image_url": "/images/Insurance-employee.png",

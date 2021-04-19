@@ -209,11 +209,11 @@
           <h2 class="center">##word.security_user_password## : <span> tech </span></h2>
         </div>
 
-        <div class="col5" x-features="!host.ft && !host.qelada && !host.ethraa">
+        <div class="col5" x-features="!host.ft && !host.qelada && !host.ethraa && !host.free">
           <h2 class="center blue bold">##word.try_application##</h2>
           <br>
-          <h2 class="center">##word.security_user_email## : <span> test </span></h2>
-          <h2 class="center">##word.security_user_password## : <span> test </span></h2>
+          <h2 class="center">##word.security_user_email## : <span> smart </span></h2>
+          <h2 class="center">##word.security_user_password## : <span> smart </span></h2>
         </div>
 
         <div class="col5" x-feature="host.ethraa">
@@ -221,6 +221,13 @@
           <br>
           <h2 class="center">##word.security_user_email## : <span> ethraa </span></h2>
           <h2 class="center">##word.security_user_password## : <span> ethraa </span></h2>
+        </div>
+
+        <div class="col5" x-feature="host.free">
+          <h2 class="center blue bold">##word.try_application##</h2>
+          <br>
+          <h2 class="center">##word.security_user_email## : <span> free </span></h2>
+          <h2 class="center">##word.security_user_password## : <span> free </span></h2>
         </div>
 
 
@@ -398,7 +405,6 @@
       </div>
       <div class="row mt hidden">
 
-
         <h2 class="center">
           <span>
             <h3 class="center bold green" style="text-shadow: 3px 3px #b3b3ff;font-size: xxx-large">شركة ميدانى تكنولوجى
@@ -487,8 +493,8 @@
             <h2 class="center">
               <span>
                 K.S.A – Jeddah <i class="fa fa-map-marker" aria-hidden="true"></i> <br />
-                Al-Salama Dist  <br />
-                 Abdulrahman Bin Ahmed Alsudayrey St. <i class="fa fa-building"></i> <br />
+                Al-Salama Dist <br />
+                Abdulrahman Bin Ahmed Alsudayrey St. <i class="fa fa-building"></i> <br />
                 <br>
 
                 <a href="tel:+966 12 2256256"> +966 12 2256256 <i class="fa fa-phone" aria-hidden="true"></i> </a>
@@ -540,6 +546,8 @@
       $('.qelada').removeClass('hidden');
     } else if ('##req.headers.host##'.like('*ethraa*')) {
       $('.ethraa').removeClass('hidden');
+    } else if ('##req.headers.host##'.like('*free*')) {
+      $('.free').removeClass('hidden');
     } else {
       $('.egypt').removeClass('hidden');
     }
@@ -616,12 +624,12 @@
                   rendered += Mustache.render(post_template, post);
                 }
               } else if (res[i].feature == 'hr') {
-                if (site.features.like('*employee*')) {
-                  post = res[i];
-                  rendered += Mustache.render(post_template, post);
-                }
+                post = res[i];
+                rendered += Mustache.render(post_template, post);
               }
-            } catch (error) { }
+            } catch (error) {
+
+            }
           }
 
           $('#posts').append('<span class="line"></span><span class="line"></span><span class="line"></span>');
