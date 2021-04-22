@@ -9,6 +9,18 @@
       width: 300px;
     }
 
+    .img_qelada {
+      border-radius: 15px;
+      height: 270px;
+      width: 350px;
+    }
+
+    .img_inout {
+      border-radius: 15px;
+      width: 330px;
+      height: 250px;
+    }
+
     #posts {
       display: block;
       padding: 5px;
@@ -51,13 +63,6 @@
       width: 120px;
       min-height: 180px;
     }
-
-    .icc img {
-      margin-top: 20px !important;
-      margin-bottom: 20px !important;
-      width: 170px;
-    }
-
     .post p {
       padding: 15px;
       text-align: right !important;
@@ -115,12 +120,6 @@
       opacity: 1;
     }
 
-    .img_qelada {
-      border-radius: 15px;
-      height: 270px;
-      width: 350px;
-    }
-
     a.social-browser {
       display: inline-block;
       text-align: center;
@@ -156,11 +155,16 @@
   <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
 
   <div id="main-layout">
-    <div class="center icc hidden">
-      <img ng-src="/images/icc.png" />
-    </div>
 
     <div x-feature="!login">
+
+      <div class="row inout hidden">
+
+        <div class="center inout">
+          <img class="img_inout" ng-src="/images/inout.png" />
+        </div>
+
+      </div>
 
       <div class="row mt hidden">
 
@@ -209,7 +213,14 @@
           <h2 class="center">##word.security_user_password## : <span> tech </span></h2>
         </div>
 
-        <div class="col5" x-features="!host.ft && !host.qelada && !host.ethraa && !host.free">
+        <div class="col5" x-feature="host.inout">
+          <h2 class="center blue bold">##word.try_application##</h2>
+          <br>
+          <h2 class="center">##word.security_user_email## : <span> inout </span></h2>
+          <h2 class="center">##word.security_user_password## : <span> inout </span></h2>
+        </div>
+
+        <div class="col5" x-features="!host.ft && !host.qelada && !host.ethraa && !host.free && !host.inout">
           <h2 class="center blue bold">##word.try_application##</h2>
           <br>
           <h2 class="center">##word.security_user_email## : <span> test </span></h2>
@@ -438,6 +449,28 @@
         </h2>
       </div>
 
+      <div class="row inout hidden">
+
+        <h2 class="center">
+          <span>
+            <h2 class="center bold green" style="text-shadow: 3px 3px #b3b3ff;font-size: xxx-large">InOut</h2>
+            <br />
+
+            المنصورة : شارع الجمهورية - المختلط <i class="fa fa-map-marker" aria-hidden="true"></i> <br />
+            بجوار المصرف المتحد <i class="fa fa-building"></i> <br />
+
+            <br>
+            <a href="tel:01050501011"> 01050501011 <i class="fa fa-whatsapp" aria-hidden="true"></i> </a> <br />
+            <a href="tel:01090691050 "> 01090691050 <i class="fa fa-phone" aria-hidden="true"></i> </a> <br />
+            <a href="tel:01021176968 "> 01021176968 <i class="fa fa-phone" aria-hidden="true"></i> </a> <br />
+
+            <a href="tel:Fb.com/inoutagent"> Fb.com/inoutagent <i class="fa fa-facebook"></i></a>
+            <br />
+
+          </span>
+        </h2>
+      </div>
+
       <div class="row qelada hidden">
 
         <h2 class="center">
@@ -535,8 +568,8 @@
   <script>
     let busy = false;
 
-    if ('##req.headers.host##'.like('*icc*')) {
-      $('.icc').removeClass('hidden');
+    if ('##req.headers.host##'.like('*inout*')) {
+      $('.inout').removeClass('hidden');
     } else if ('##req.headers.host##'.like('*mt*')) {
       $('.mt').removeClass('hidden');
     } else if ('##req.headers.host##'.like('*ft*')) {

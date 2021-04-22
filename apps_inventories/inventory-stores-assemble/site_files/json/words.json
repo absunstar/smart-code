@@ -15,6 +15,7 @@
     {"name" : "stores_assemble_number" , "en" : "Store Assemble Number" , "ar" : "رقم اﻷذن"},
     {"name" : "stores_assemble_supply_number" , "en" : "Store Assemble supply number" , "ar" : " رقم تجميع الصنف"},
     {"name" : "stores_assemble_supply_number_date" , "en" : "supply number date" , "ar" : " تاريخ تجميع الصنف"},
+    {"name" : "no_serials_item" , "en" : "There is no serials for this Item" , "ar" : "لا يوجد سيريلات لهذا الصنف"},
 
     {"name" : "stores_assemble_store_name" , "en" : "Store Assemble" , "ar" : "  إسم المخزن "},
     {"name" : "i_complex" , "en" : "I. Complex" , "ar" : "ص. مجمع"},

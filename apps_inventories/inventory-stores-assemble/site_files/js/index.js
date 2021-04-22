@@ -1076,7 +1076,8 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
             });
             $scope.item_patch.patch_list = response.data.patch_list;
             site.showModal('#patchesComplexListModal');
-          }
+
+          } else $scope.error = '##word.no_serials_item##';
 
         }
       })
