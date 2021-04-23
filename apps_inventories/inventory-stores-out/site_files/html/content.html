@@ -18,26 +18,44 @@
 
                     <i-button type="add" label="##word.customers_new##" ng-click="displayAddCustomer()">
                     </i-button>
+
                 </div>
 
                 <div class="row" ng-hide="store_out.type.id ==5">
 
-                    <i-control ng-keydown="getCustomerList($event)" id="service" class="col3" ng-model="search_customer"
+                    <i-control ng-keydown="getCustomerList($event)" id="service" class="col2" ng-model="search_customer"
                         label="##word.search##" type="text"></i-control>
                     <i-list ng-search="_search.$customer" class="col4" display="name_##session.lang##"
                         ng-model="store_out.customer" label="##word.customer##" items="customersList">
                     </i-list>
+                    <div class="col4">
+                        <br><br>
 
-                    <i-list ng-hide="'##user.type##' == 'delegate'" class="col4" ng-model="store_out.delegate"
-                        display="name_##session.lang##" ng-search="_search.$items_group_search"
-                        label="##word.delegate##" ng-disabled="store_out.retured_number" items="delegatesList">
-                    </i-list>
+                        <fieldset class="row" ng-show="store_out.customer">
+
+                            <div class="col6">
+                                <h3 class="bold red">##word.creditor## : {{store_out.customer.balance_creditor}}
+                                </h3>
+                            </div>
+                            <div class="col6">
+                                <h3 class="bold green">##word.debtor## : {{store_out.customer.balance_debtor}}
+                                </h3>
+                            </div>
+                        </fieldset>
+                    </div>
+
                 </div>
 
                 <div class="row">
 
                     <!-- <i-list display="##session.lang##" ng-search="_search.$search_in_out" class="col3"
                         ng-model="store_out.type" items="storesOutTypes" label="##word.transaction_type##"></i-list> -->
+
+
+                    <i-list ng-hide="'##user.type##' == 'delegate'" class="col4" ng-model="store_out.delegate"
+                        display="name_##session.lang##" ng-search="_search.$items_group_search"
+                        label="##word.delegate##" ng-disabled="store_out.retured_number" items="delegatesList">
+                    </i-list>
 
                     <i-list ng-hide="'##user.type##' == 'delegate'" class="col3" ng-model="store_out.store"
                         display="name_##session.lang##" items="storesList" ng-search="_search.$stores_search"
@@ -144,7 +162,8 @@
 
                             <td ng-hide="store_out.type.id ==5">
                                 <div class="row">
-                                    <i-control ng-change="calcSize(itm)" class="col10" type="number" ng-model="itm.discount.value">
+                                    <i-control ng-change="calcSize(itm)" class="col10" type="number"
+                                        ng-model="itm.discount.value">
                                     </i-control>
                                     <div class="col2">
                                         <br>
@@ -161,14 +180,14 @@
 
                             </td>
 
-                       
+
                             <td ng-hide="store_out.type.id == 5">
                                 <i-control ng-change="calcSize(itm)" type="number" ng-model="itm.value_added">
                                 </i-control>
-                               <p class="red">##word.total_v_a##</p>
-                               <p>{{itm.total_v_a}}</p>
+                                <p class="red">##word.total_v_a##</p>
+                                <p>{{itm.total_v_a}}</p>
                             </td>
-    
+
 
                             <td class="green"> <br> {{itm.total}}</td>
 
@@ -312,8 +331,7 @@
 
                 </div>
 
-                <div class="row"
-                    ng-show="store_out.type.id != 5 && defaultSettings.accounting.create_invoice_auto">
+                <div class="row" ng-show="store_out.type.id != 5 && defaultSettings.accounting.create_invoice_auto">
 
                     <i-list help-id="" ng-search="_search.$payment_method_search" class="col2"
                         label="##word.payment_method##" ng-model="store_out.payment_method"
@@ -339,8 +357,8 @@
                         label="##word.stores_out_net_value##"></i-control>
 
                     <i-control class="col3"
-                        ng-show="store_out.type.id != 5 && defaultSettings.accounting.create_invoice_auto"
-                        disabled ng-model="amount_currency" label="##word.amount_currency##" type="number"></i-control>
+                        ng-show="store_out.type.id != 5 && defaultSettings.accounting.create_invoice_auto" disabled
+                        ng-model="amount_currency" label="##word.amount_currency##" type="number"></i-control>
 
                     <i-control class="col2"
                         ng-show="store_out.type.id != 5 && defaultSettings.accounting.create_invoice_auto"

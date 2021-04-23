@@ -35,6 +35,16 @@
         "ar": "ملف"
     },
     {
+        "name": "debtor",
+        "en": "Debtor",
+        "ar": "مدين"
+    },
+    {
+        "name": "creditor",
+        "en": "Creditor",
+        "ar": "دائن"
+    },
+    {
         "name": "the_file",
         "en": "The File",
         "ar": "الملف"

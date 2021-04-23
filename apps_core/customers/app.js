@@ -120,6 +120,9 @@ module.exports = function init(site) {
           initial_balance: 0
         }
       ],
+      balance_creditor : 0,
+      balance_debtor : 0,
+      credit_limit : 0,
       bank_list: [{}],
       dealing_company: [{}],
       employee_delegate: [{}],

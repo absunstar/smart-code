@@ -1,135 +1,174 @@
 <div ng-hide="busy" class="row">
     <fieldset>
         <legend> ##word.basic_information##</legend>
-        <div class="col9">
-            <div>
-                <table id="basicInformationTable" class="table hover bold">
-                  <!--   <tr>
+        <div class="row">
+
+            <div class="col9">
+                <div>
+                    <table id="basicInformationTable" class="table hover bold">
+                        <!--   <tr>
                         <td class="title">##word.id##</td>
                         <td class="center blue">{{doctor.id}}</td>
                     </tr> -->
 
-                    <tr>
-                        <td class="title">##word.code##</td>
-                        <td class="center userPrint blue">{{doctor.code}}</td>
-                    </tr>
-
-                    <tr>
-                        <td class="title">##word.name##</td>
-                        <td class="center">{{doctor.name_##session.lang##}}</td>
-                    </tr>
-
-                    <tr>
-                        <td class="title">##word.nathional_id##</td>
-                        <td class="center blue">{{doctor.nathional_id}}</td>
-                    </tr>
-
-                    <tr>
-                        <td class="title">##word.specialty##</td>
-                        <td class="center">{{doctor.specialty.name_##session.lang##}}</td>
-                    </tr>
-
-                    <tr>
-                        <td class="title">##word.status##</td>
-                        <td ng-show="doctor.active == true" class="green center"> ##word.active## </td>
-                        <td ng-show="doctor.active == false" class="red center"> ##word.not_active## </td>
-                    </tr>
-
-                </table>
-            </div>
-
-            <br>
-            <hr>
-            <br>
-            <div>
-                <fieldset>
-                    <legend>##word.address_connect##</legend>
-                    <table id="informationTable" class="table hover bold">
-
                         <tr>
-                            <td class="title">##word.gov##</td>
-                            <td class="center">{{doctor.gov.name_##session.lang##}}</td>
-                        </tr>
-                        <tr>
-                            <td class="title">##word.city##</td>
-                            <td class="center">{{doctor.city.name_##session.lang##}}</td>
-                        </tr>
-                        <tr>
-                            <td class="title">##word.address##</td>
-                            <td class="center">{{doctor.address}}</td>
+                            <td class="title">##word.code##</td>
+                            <td class="center userPrint blue">{{doctor.code}}</td>
                         </tr>
 
                         <tr>
-                            <td class="title">##word.phone##</td>
-                            <td class="center">
-                                <a ng-show="doctor.phone" href="tel:{{doctor.phone}}">
-                                    {{doctor.phone}}
-                                    <i class="fa fa-phone" aria-hidden="true"></i>
-                                </a>
-                            </td>
+                            <td class="title">##word.name##</td>
+                            <td class="center">{{doctor.name_##session.lang##}}</td>
                         </tr>
 
                         <tr>
-                            <td class="title">##word.mobile##</td>
-                            <td class="center">
-                                <a ng-show="doctor.mobile" href="tel:{{doctor.mobile}}">
-                                    {{doctor.mobile}}
-                                    <i class="fa fa-mobile" aria-hidden="true"></i>
-                                </a>
-                            </td>
+                            <td class="title">##word.nathional_id##</td>
+                            <td class="center blue">{{doctor.nathional_id}}</td>
                         </tr>
+
                         <tr>
-                            <td class="title">##word.whatsapp##</td>
-                            <td class="center">
-                                <a ng-show="doctor.whatsapp" href="tel:{{doctor.whatsapp}}">
-                                    {{doctor.whatsapp}}
-                                    <i class="fa fa-whatsapp" aria-hidden="true"></i>
-                                </a>
-                            </td>
+                            <td class="title">##word.specialty##</td>
+                            <td class="center">{{doctor.specialty.name_##session.lang##}}</td>
                         </tr>
+
                         <tr>
-                            <td class="title">##word.email##</td>
-                            <td class="center">
-                                <a ng-show="doctor.email" target="_blank" href="tel:{{doctor.email}}">
-                                    {{doctor.email}}
-                                    <i class="fa fa-envelope" aria-hidden="true"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="title">##word.notes##</td>
-                            <td class="center blue">{{doctor.notes}}</td>
+                            <td class="title">##word.status##</td>
+                            <td ng-show="doctor.active == true" class="green center"> ##word.active## </td>
+                            <td ng-show="doctor.active == false" class="red center"> ##word.not_active## </td>
                         </tr>
 
                     </table>
+                </div>
 
+                <br>
+                <hr>
+                <br>
+                <div>
+                    <fieldset>
+                        <legend>##word.address_connect##</legend>
+                        <table id="informationTable" class="table hover bold">
+
+                            <tr>
+                                <td class="title">##word.gov##</td>
+                                <td class="center">{{doctor.gov.name_##session.lang##}}</td>
+                            </tr>
+                            <tr>
+                                <td class="title">##word.city##</td>
+                                <td class="center">{{doctor.city.name_##session.lang##}}</td>
+                            </tr>
+                            <tr>
+                                <td class="title">##word.address##</td>
+                                <td class="center">{{doctor.address}}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="title">##word.phone##</td>
+                                <td class="center">
+                                    <a ng-show="doctor.phone" href="tel:{{doctor.phone}}">
+                                        {{doctor.phone}}
+                                        <i class="fa fa-phone" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="title">##word.mobile##</td>
+                                <td class="center">
+                                    <a ng-show="doctor.mobile" href="tel:{{doctor.mobile}}">
+                                        {{doctor.mobile}}
+                                        <i class="fa fa-mobile" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="title">##word.whatsapp##</td>
+                                <td class="center">
+                                    <a ng-show="doctor.whatsapp" href="tel:{{doctor.whatsapp}}">
+                                        {{doctor.whatsapp}}
+                                        <i class="fa fa-whatsapp" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="title">##word.email##</td>
+                                <td class="center">
+                                    <a ng-show="doctor.email" target="_blank" href="tel:{{doctor.email}}">
+                                        {{doctor.email}}
+                                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="title">##word.notes##</td>
+                                <td class="center blue">{{doctor.notes}}</td>
+                            </tr>
+
+                        </table>
+
+                    </fieldset>
+
+                </div>
+                <br>
+                <fieldset>
+                    <legend> ##word.login_information## </legend>
+
+                    <table class="table hover bold">
+                        <tr>
+                            <td class="title">##word.email##</td>
+                            <td class="center">{{doctor.username}}</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="title">##word.password##</td>
+                            <td class="center">{{doctor.password}}</td>
+                        </tr>
+                    </table>
                 </fieldset>
 
+
             </div>
-            <br>
-            <fieldset>
-                <legend> ##word.login_information## </legend>
 
-                <table class="table hover bold">
-                    <tr>
-                        <td class="title">##word.email##</td>
-                        <td class="center">{{doctor.username}}</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="title">##word.password##</td>
-                        <td class="center">{{doctor.password}}</td>
-                    </tr>
-                </table>
-            </fieldset>
+            <div class="col3">
+                <i-image view ng-model="doctor.image_url"></i-image>
+                <i-files view ng-model="doctor.files"></i-files>
 
-
+            </div>
         </div>
 
-        <div class="col3">
-            <i-image view ng-model="doctor.image_url"></i-image>
-            <i-files view ng-model="doctor.files"></i-files>
 
+        <br>
+        <br>
+        <div class="row">
+
+            <table class="table loaded hover center bold">
+                <tr>
+                    <th> ##word.file_type## </th>
+                    <th> ##word.file_name## </th>
+                    <th> ##word.file_date## </th>
+                    <th> ##word.file_upload_date## </th>
+                    <th> ##word.upload_by## </th>
+                    <th> ##word.the_file## </th>
+                </tr>
+                <tr ng-repeat="f in doctor.files_list">
+
+                    <td> {{f.file_type.name_##session.lang##}} </td>
+                    <td class=""> {{f.file_name}} </td>
+                    <td class="brown center"> {{f.file_date | date : 'dd - MM - yyyy'}}</td>
+
+                    <td class="center">
+                        <p class="brown"> {{f.file_upload_date |date:"dd - MM - yyyy"}} </p>
+                        <p class="green"> {{f.file_upload_date |date:"hh:mm"}} </p>
+                    </td>
+                    <td class=""> {{f.upload_by}} </td>
+
+                    <td>
+
+                        <i-files view ng-model="f.file"></i-files>
+                    </td>
+
+                </tr>
+
+            </table>
         </div>
 
     </fieldset>

@@ -275,13 +275,41 @@
 
             <div id="filesInformation" class="tab-content">
 
-                <fieldset>
-                    <legend> ##word.files## </legend>
-                    <div class="row">
-                        <i-files view ng-model="employee_list.files"></i-files>
+                <br>
+                <br>
+                <div class="row">
 
-                    </div>
-                </fieldset>
+                    <table class="table loaded hover center bold">
+                        <tr>
+                            <th> ##word.file_type## </th>
+                            <th> ##word.file_name## </th>
+                            <th> ##word.file_date## </th>
+                            <th> ##word.file_upload_date## </th>
+                            <th> ##word.upload_by## </th>
+                            <th> ##word.the_file## </th>
+                        </tr>
+                        <tr ng-repeat="f in employee_list.files_list">
+
+                            <td> {{f.file_type.name_##session.lang##}} </td>
+                            <td class=""> {{f.file_name}} </td>
+                            <td class="brown center"> {{f.file_date | date : 'dd - MM - yyyy'}}</td>
+
+                            <td class="center">
+                                <p class="brown"> {{f.file_upload_date |date:"dd - MM - yyyy"}} </p>
+                                <p class="green"> {{f.file_upload_date |date:"hh:mm"}} </p>
+                            </td>
+                            <td class=""> {{f.upload_by}} </td>
+
+                            <td>
+
+                                <i-files view ng-model="f.file"></i-files>
+                            </td>
+
+                        </tr>
+
+                    </table>
+                </div>
+
             </div>
 
 

@@ -178,58 +178,6 @@ app.controller("delivery_employee_list", function ($scope, $http, $timeout) {
 
   };
 
-  $scope.getClassRoomsList = function (where) {
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/hall/all",
-      data: {
-        where: {
-          active: true
-        },
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.hallsList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-
-    )
-
-  };
-
-  $scope.getCoursesList = function (where) {
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/courses/all",
-      data: {
-        where: {
-          active: true
-        },
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.coursesList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-
-    )
-
-  };
-
   $scope.getJobsList = function (where) {
     $scope.busy = true;
     $http({
@@ -376,6 +324,40 @@ app.controller("delivery_employee_list", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.getFilesTypesList = function (where) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/file_type/all",
+      data: {
+        where: {
+          active: true
+        },
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.files_types_List = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.addFiles = function () {
+    $scope.error = '';
+    $scope.delivery_employee_list.files_list = $scope.delivery_employee_list.files_list || [];
+    $scope.delivery_employee_list.files_list.push({
+      file_date : new Date(),
+      file_upload_date : new Date(),
+      upload_by : '##user.name##',
+    })
+  };
+
   $scope.getNumberingAuto = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -424,8 +406,7 @@ app.controller("delivery_employee_list", function ($scope, $http, $timeout) {
 
   $scope.getDeliveryEmployeeList();
   $scope.getGovList();
-  $scope.getClassRoomsList();
-  $scope.getCoursesList();
+  $scope.getFilesTypesList();
   $scope.getJobsList();
   $scope.getNumberingAuto();
   $scope.getDegree();
