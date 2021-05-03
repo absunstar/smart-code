@@ -2,17 +2,17 @@
     {
         "name": "attend_students",
         "en": "Attend Students",
-        "ar": "حضور التلاميذ"
+        "ar": "حضور الطلاب"
     },
     {
         "name": "attend_students",
         "en": "The Attend Students",
-        "ar": "حضور تلاميذ"
+        "ar": "حضور طلاب"
     },
     {
         "name": "attend_students_new",
         "en": "New Attend Students",
-        "ar": "حضور تلاميذ جديدة"
+        "ar": "حضور طلاب جديدة"
     },
     {
         "name": "attend_status",
@@ -22,7 +22,7 @@
     {
         "name": "search_students",
         "en": "Search Students",
-        "ar": "بحث التلاميذ"
+        "ar": "بحث الطلاب"
     },
     {
         "name": "invoice_remain",
@@ -32,7 +32,7 @@
     {
         "name": "student_name",
         "en": "Student Name",
-        "ar": "إسم التلميذ"
+        "ar": "إسم الطالب"
     },
     {
         "name": "attend_students_attend",
@@ -87,27 +87,27 @@
     {
         "name": "attend_students_add",
         "en": "Add Attend Students",
-        "ar": "إضافة حضور تلاميذ"
+        "ar": "إضافة حضور طلاب"
     },
     {
         "name": "attend_students_edit",
         "en": "Edit Attend Students",
-        "ar": "تعديل حضور تلاميذ"
+        "ar": "تعديل حضور طلاب"
     },
     {
         "name": "attend_students_details",
         "en": "Attend Students Details",
-        "ar": "تفاصيل حضور تلاميذ"
+        "ar": "تفاصيل حضور طلاب"
     },
     {
         "name": "attend_students_delete",
         "en": "Delete Attend Students",
-        "ar": "حذف حضور تلاميذ"
+        "ar": "حذف حضور طلاب"
     },
     {
         "name": "attend_students_name",
         "en": "Course Name",
-        "ar": "إسم الحضور تلاميذ "
+        "ar": "إسم الحضور طلاب "
     },
     {
         "name": "attend_students_total",

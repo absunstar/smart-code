@@ -4,15 +4,18 @@ app.controller("account_course", function ($scope, $http, $timeout) {
 
   $scope.displayAddAccountCourse = function () {
     $scope.error = '';
-    $scope.account_course = {
-      image_url: '/images/account_course.png',
-      active: true,
-      dates_list: [],
-      shift: shift,
-      immediate: false
-    };
-    site.showModal('#accountCourseAddModal');
-
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.account_course = {
+          image_url: '/images/account_course.png',
+          active: true,
+          dates_list: [],
+          shift: shift,
+          immediate: false
+        };
+        site.showModal('#accountCourseAddModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.addAccountCourse = function () {
@@ -37,6 +40,9 @@ app.controller("account_course", function ($scope, $http, $timeout) {
           $scope.getAccountCourseList();
         } else {
           $scope.error = response.data.error;
+          if (response.data.error.like('*Must Enter Code*')) {
+            $scope.error = "##word.must_enter_code##"
+          }
         }
       },
       function (err) {
@@ -47,9 +53,13 @@ app.controller("account_course", function ($scope, $http, $timeout) {
 
   $scope.displayUpdateAccountCourse = function (account_course) {
     $scope.error = '';
-    $scope.viewAccountCourse(account_course);
-    $scope.account_course = {};
-    site.showModal('#accountCourseUpdateModal');
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.viewAccountCourse(account_course);
+        $scope.account_course = {};
+        site.showModal('#accountCourseUpdateModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.updateAccountCourse = function () {
@@ -113,10 +123,13 @@ app.controller("account_course", function ($scope, $http, $timeout) {
 
   $scope.displayDeleteAccountCourse = function (account_course) {
     $scope.error = '';
-    $scope.viewAccountCourse(account_course);
-    $scope.account_course = {};
-    site.showModal('#accountCourseDeleteModal');
-
+    $scope.get_open_shift((shift) => {
+      if (shift) {
+        $scope.viewAccountCourse(account_course);
+        $scope.account_course = {};
+        site.showModal('#accountCourseDeleteModal');
+      } else $scope.error = '##word.open_shift_not_found##';
+    });
   };
 
   $scope.deleteAccountCourse = function () {
@@ -353,7 +366,55 @@ app.controller("account_course", function ($scope, $http, $timeout) {
     })
   };
 
+  $scope.get_open_shift = function (callback) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/shifts/get_open_shift",
+      data: {
+        where: { active: true },
+        select: { id: 1, name_ar: 1, name_en: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.shift = response.data.doc;
+          callback(response.data.doc);
+        } else {
+          callback(null);
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+        callback(null);
+      }
+    )
+  };
 
+  $scope.getNumberingAuto = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/numbering/get_automatic",
+      data: {
+        screen: "account_course"
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.disabledCode = response.data.isAuto;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
 
   $scope.displaySearchModal = function () {
     $scope.error = '';
@@ -369,6 +430,7 @@ app.controller("account_course", function ($scope, $http, $timeout) {
   };
 
   $scope.getAccountCourseList();
+  $scope.getNumberingAuto();
   $scope.getCoursesList();
   $scope.getTrainerList();
   $scope.getSafesList();

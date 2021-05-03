@@ -120,6 +120,20 @@ module.exports = function init(site) {
 
 
         } else if (site.features.like('*academy*')) {
+
+          moduleListCore.forEach(_mc => {
+            if (_mc.name == 'customers') {
+              _mc.en = 'Students'
+              _mc.ar = 'الطلاب'
+            } else if (_mc.name == 'customers_groups') {
+              _mc.en = 'Students Group'
+              _mc.ar = 'مجموعة الطلاب'
+            } else if (_mc.name == 'order_slides') {
+              _mc.en = 'Sessions Slides'
+              _mc.ar = 'شرائح الجلسات'
+            }
+          });
+          
           screens_list = moduleListCore.filter((i) => i.feature !== 'order' && i.feature !== 'erp' && i.feature !== 'restaurant' && i.feature !== 'club' && i.feature !== 'school' && i.feature !== 'medical' && i.feature !== 'lawyer');
 
 

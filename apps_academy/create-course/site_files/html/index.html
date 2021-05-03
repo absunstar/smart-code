@@ -42,6 +42,7 @@
                 <table x-permissions="login" class="table bold hover loaded" id="t1">
                     <tr>
                         <th class="not-print">##word.logo##</th>
+                        <th>##word.code##</th>
                         <th>##word.date##</th>
                         <th>##word.shift##</th>
                         <th>##word.create_course_name##</th>
@@ -55,6 +56,7 @@
                         <td ng-click="displayDetailsCreateCourse(c)" class="center not-print">
                             <i-image view class="logo" ng-model="c.image_url"></i-image>
                         </td>
+                        <td ng-click="displayDetailsBookHall(c)" class="center userPrint blue">{{c.code}}</td>
                         <td ng-click="displayDetailsBookHall(c)" class="brown"> <br> {{c.date | date : 'dd- MM
                             -yyyy'}}</td>
                         <td class="center bold blue" ng-click="displayDetailsCreateCourse(c)">

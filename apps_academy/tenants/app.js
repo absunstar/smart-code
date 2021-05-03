@@ -62,6 +62,24 @@ module.exports = function init(site) {
       tenant_doc.active = true
     }
 
+    let num_obj = {
+      company: site.get_company(req),
+      screen: 'tenants',
+      date: new Date()
+    };
+
+    let cb = site.getNumbering(num_obj);
+    if (!tenant_doc.code && !cb.auto) {
+
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+
+    } else if (cb.auto) {
+      tenant_doc.code = cb.code;
+    }
+
+
     tenant_doc.company = site.get_company(req)
     tenant_doc.branch = site.get_branch(req)
 

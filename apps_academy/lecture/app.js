@@ -42,6 +42,23 @@ module.exports = function init(site) {
       lecture_doc.active = true
     }
 
+    let num_obj = {
+      company: site.get_company(req),
+      screen: 'lecture',
+      date: new Date()
+    };
+
+    let cb = site.getNumbering(num_obj);
+    if (!lecture_doc.code && !cb.auto) {
+
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+
+    } else if (cb.auto) {
+      lecture_doc.code = cb.code;
+    }
+
     lecture_doc.company = site.get_company(req)
     lecture_doc.branch = site.get_branch(req)
 

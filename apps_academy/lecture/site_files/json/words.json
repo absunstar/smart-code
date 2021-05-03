@@ -1,6 +1,11 @@
 [{
         "name": "lecture",
         "en": "Lecture",
+        "ar": "المحاضرة"
+    },
+    {
+        "name": "lectures",
+        "en": "Lectures",
         "ar": "المحاضرات"
     },
     {

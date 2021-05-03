@@ -5,22 +5,27 @@
             <div class="row">
                 <div class="col9">
                     <div class="row">
-                        <i-control class="col3 r_indigo" type="text" disabled label="##word.shift##" ng-model="shift.name_##session.lang##">
+                        <i-control ng-hide="disabledCode" class="col2" label="##word.code##"
+                            ng-model="create_course.code">
+                        </i-control>
+
+                        <i-control class="col3 r_indigo" type="text" disabled label="##word.shift##"
+                            ng-model="shift.name_##session.lang##">
                         </i-control>
 
                         <i-date2 class="col4" ng-model="create_course.date" label="##word.date##"></i-date2>
 
-                        <div class="col3"></div>
+                        <div class="col1"></div>
                         <i-checkbox help-id="create_course_active" class="col2" label="##word.active##"
                             ng-model="create_course.active"></i-checkbox>
 
                     </div>
                     <div class="row">
                         <i-list v="r" help-id="create_course_name" class="col4" items="coursesList"
-                        display="name_##session.lang##"  ng-search="create_course.$course_search" label="##word.create_course_name##"
-                            ng-model="create_course.course"></i-list>
+                            display="name_##session.lang##" ng-search="create_course.$course_search"
+                            label="##word.create_course_name##" ng-model="create_course.course"></i-list>
                         <i-control ng-show="create_course.course.id" help-id="create_course_name" type="number"
-                            class="col3" label="##word.create_course_price##" ng-model="create_course.course.price">
+                            class="col2" label="##word.create_course_price##" ng-model="create_course.course.price">
                         </i-control>
                         <div class="col2"></div>
                     </div>
@@ -42,13 +47,21 @@
                     <div class="row">
                         <i-date2 v="r" class="col4" ng-model="create_course.date_from" label="##word.date_from##">
                         </i-date2>
+
                         <i-date2 v="r" class="col4" ng-model="create_course.date_to" label="##word.date_to##">
                         </i-date2>
+
+                        <i-time class="col2" display="##session.lang##" ng-model="create_course.from" label="##word.from##">
+                        </i-time>
+
+                        <i-time class="col2" display="##session.lang##" ng-model="create_course.to" label="##word.to##">
+                        </i-time>
+
                     </div>
 
                     <div class="row">
                         <i-list class="col3" label="##word.hall##" ng-model="create_course.hall" items="hallsList"
-                        display="name_##session.lang##"  ng-search="create_course.$class_room_search"></i-list>
+                            display="name_##session.lang##" ng-search="create_course.$class_room_search"></i-list>
                         <i-control v="r" class="col2" type="number" ng-model="create_course.course.number_lecture"
                             label="##word.number_lecture##"></i-control>
                         <i-button class="col2" type="update" ng-click="createDates()" label="##word.create_lectures##">
@@ -56,39 +69,42 @@
 
                     </div>
 
-                    <fieldset ng-show="create_course.dates_list.length > 0">
-                        <legend>
-                            <i-button type="add default" ng-click="create_course.dates_list.push({})"></i-button>
-                            ##word.dates##
-                        </legend>
-                        <div class="row" ng-repeat="d in create_course.dates_list">
-
-                            <i-list class="col2" label="##word.hall##" ng-model="d.hall" items="classRoomsDateList"
-                            display="name_##session.lang##"  ng-search="create_course.$class_room_search"></i-list>
-
-                            <i-date2 class="col3" ng-model="d.date_count" label="##word.date##"></i-date2>
-
-                            <i-control class="col2" type="number" ng-model="d.number_lecture"
-                                label="##word.number_lecture_hours##"></i-control>
-
-                            <i-time class="col2" display="##session.lang##" ng-model="d.from" label="##word.from##">
-                            </i-time>
-
-                            <i-time class="col2" display="##session.lang##" ng-model="d.to" label="##word.to##">
-                            </i-time>
-
-                            <i-button type="delete default" class="col1"
-                                ng-click="create_course.dates_list.length ===1 ||create_course.dates_list.splice($index,1)">
-                            </i-button>
-
-                        </div>
-                    </fieldset>
 
                 </div>
 
                 <div class="col3">
                     <i-image help-id="create_course_logo" ng-model="create_course.image_url"></i-image>
                 </div>
+            </div>
+            <div class="row">
+                <fieldset ng-show="create_course.dates_list.length > 0">
+                    <legend>
+                        <i-button type="add default" ng-click="create_course.dates_list.push({})"></i-button>
+                        ##word.dates##
+                    </legend>
+                    <div class="row" ng-repeat="d in create_course.dates_list">
+
+                        <i-list class="col2" label="##word.hall##" ng-model="d.hall" items="classRoomsDateList"
+                            display="name_##session.lang##" ng-search="create_course.$class_room_search"></i-list>
+
+                        <i-date2 class="col3" ng-model="d.date" label="##word.date##"></i-date2>
+
+                        <i-control class="col2" type="number" ng-model="d.number_lecture"
+                            label="##word.number_lecture_hours##"></i-control>
+
+                        <i-time class="col2" display="##session.lang##" ng-model="d.from" label="##word.from##">
+                        </i-time>
+
+                        <i-time class="col2" display="##session.lang##" ng-model="d.to" label="##word.to##">
+                        </i-time>
+
+                        <i-button type="delete default" class="col1"
+                            ng-click="create_course.dates_list.length ===1 ||create_course.dates_list.splice($index,1)">
+                        </i-button>
+
+                    </div>
+                </fieldset>
+
             </div>
         </fieldset>
 

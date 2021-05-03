@@ -607,7 +607,7 @@ module.exports = function init(site) {
   })
 
 
-  if (site.feature('school')) {
+  if (site.feature('school') || site.feature('academy')) {
 
     site.getDataToDelete = function (data, callback) {
       callback(null)

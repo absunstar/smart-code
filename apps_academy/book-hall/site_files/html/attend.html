@@ -27,7 +27,7 @@
                         </tr>
 
                         <tr ng-repeat="d in book_hall.dates_list">
-                            <td class="brown">{{d.date_count | date : 'dd- MM -yyyy'}}</td>
+                            <td class="brown">{{d.date | date : 'dd- MM -yyyy'}}</td>
                             <td class="green"> {{d.from.minute}} : {{d.from.hour}} </td>
                             <td class="red"> {{d.to.minute}} : {{d.to.hour}} </td>
                             <td>

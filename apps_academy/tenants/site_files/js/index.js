@@ -6,10 +6,10 @@ app.controller("tenant", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.tenant = {
       image_url: '/images/tenant.png',
-      class_rooms_list : [{}],
-      courses_list : [{}],
+      class_rooms_list: [{}],
+      courses_list: [{}],
       active: true
-      
+
     };
     site.showModal('#tenantAddModal');
     document.querySelector('#tenantAddModal .tab-link').click();
@@ -36,6 +36,9 @@ app.controller("tenant", function ($scope, $http, $timeout) {
           $scope.getTenantList();
         } else {
           $scope.error = response.data.error;
+          if (response.data.error.like('*Must Enter Code*')) {
+            $scope.error = "##word.must_enter_code##"
+          }
         }
       },
       function (err) {
@@ -164,7 +167,7 @@ app.controller("tenant", function ($scope, $http, $timeout) {
           $scope.list = response.data.list;
           $scope.count = response.data.count;
           site.hideModal('#tenantSearchModal');
-          $scope.search ={};
+          $scope.search = {};
 
         }
       },
@@ -284,7 +287,7 @@ app.controller("tenant", function ($scope, $http, $timeout) {
         where: {
           active: true
         },
-        select : {id : 1 , name_ar: 1, name_en: 1}
+        select: { id: 1, name_ar: 1, name_en: 1 }
       }
     }).then(
       function (response) {
@@ -312,7 +315,7 @@ app.controller("tenant", function ($scope, $http, $timeout) {
           'gov.id': gov.id,
           active: true
         },
-        select : {id : 1 , name_ar: 1, name_en: 1}
+        select: { id: 1, name_ar: 1, name_en: 1 }
       }
     }).then(
       function (response) {
@@ -327,7 +330,7 @@ app.controller("tenant", function ($scope, $http, $timeout) {
       }
     )
   };
-  
+
   $scope.getAreaList = function (city) {
     $scope.busy = true;
     $http({
@@ -359,24 +362,48 @@ app.controller("tenant", function ($scope, $http, $timeout) {
 
   };
 
+  $scope.getNumberingAuto = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/numbering/get_automatic",
+      data: {
+        screen: "tenants"
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.disabledCode = response.data.isAuto;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.searchAll = function () {
-  
+
     $scope.getTenantList($scope.search);
     site.hideModal('#tenantSearchModal');
-    $scope.search ={};
+    $scope.search = {};
   };
 
   $scope.email_examble = '';
-  if(typeof '##session.company.host##' === 'string'){
-  $scope.email_examble = 'examble##session.company.host##';
+  if (typeof '##session.company.host##' === 'string') {
+    $scope.email_examble = 'examble##session.company.host##';
 
   } else {
-  $scope.email_examble = 'you@examble.com';
+    $scope.email_examble = 'you@examble.com';
 
   }
 
 
   $scope.getTenantList();
+  $scope.getNumberingAuto();
   $scope.getGovList();
   $scope.getClassRoomsList();
   $scope.getCoursesList();

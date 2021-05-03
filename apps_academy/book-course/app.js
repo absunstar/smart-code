@@ -1,30 +1,30 @@
 module.exports = function init(site) {
   const $book_course = site.connectCollection("book_course")
 
-  function addZero(code, number) {
-    let c = number - code.toString().length
-    for (let i = 0; i < c; i++) {
-      code = '0' + code.toString()
-    }
-    return code
-  }
+  // function addZero(code, number) {
+  //   let c = number - code.toString().length
+  //   for (let i = 0; i < c; i++) {
+  //     code = '0' + code.toString()
+  //   }
+  //   return code
+  // }
 
-  $book_course.newCode = function () {
+  // $book_course.newCode = function () {
 
-    let y = new Date().getFullYear().toString().substr(2, 2)
-    let m = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'][new Date().getMonth()].toString()
-    let d = new Date().getDate()
-    let lastCode = site.storage('ticket_last_code') || 0
-    let lastMonth = site.storage('ticket_last_month') || m
-    if (lastMonth != m) {
-      lastMonth = m
-      lastCode = 0
-    }
-    lastCode++
-    site.storage('ticket_last_code', lastCode)
-    site.storage('ticket_last_month', lastMonth)
-    return  'B-C' + y + lastMonth + addZero(d, 2) + addZero(lastCode, 4)
-  }
+  //   let y = new Date().getFullYear().toString().substr(2, 2)
+  //   let m = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'][new Date().getMonth()].toString()
+  //   let d = new Date().getDate()
+  //   let lastCode = site.storage('ticket_last_code') || 0
+  //   let lastMonth = site.storage('ticket_last_month') || m
+  //   if (lastMonth != m) {
+  //     lastMonth = m
+  //     lastCode = 0
+  //   }
+  //   lastCode++
+  //   site.storage('ticket_last_code', lastCode)
+  //   site.storage('ticket_last_month', lastMonth)
+  //   return  'B-C' + y + lastMonth + addZero(d, 2) + addZero(lastCode, 4)
+  // }
 
   site.get({
     name: 'images',
@@ -60,7 +60,23 @@ module.exports = function init(site) {
     if (typeof book_course_doc.active === 'undefined') {
       book_course_doc.active = true
     }
-    book_course_doc.code = $book_course.newCode()
+ 
+    let num_obj = {
+      company: site.get_company(req),
+      screen: 'book_course',
+      date: new Date()
+    };
+
+    let cb = site.getNumbering(num_obj);
+    if (!book_course_doc.code && !cb.auto) {
+
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+
+    } else if (cb.auto) {
+      book_course_doc.code = cb.code;
+    }
 
     book_course_doc.total_rest = 0
     book_course_doc.rest = 0

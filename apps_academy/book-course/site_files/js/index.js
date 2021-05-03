@@ -55,6 +55,9 @@ app.controller("book_course", function ($scope, $http, $timeout) {
           $scope.getBookCourseList();
         } else {
           $scope.error = response.data.error;
+          if (response.data.error.like('*Must Enter Code*')) {
+            $scope.error = "##word.must_enter_code##"
+          }
         }
       },
       function (err) {
@@ -103,16 +106,13 @@ app.controller("book_course", function ($scope, $http, $timeout) {
   };
 
   $scope.displayDetailsBookCourse = function (book_course) {
-    $scope.get_open_shift((shift) => {
-      if (shift) {
-        $scope.error = '';
-        $scope.viewBookCourse(book_course);
-        $scope.book_course = {};
-        site.showModal('#bookCourseViewModal');
-        document.querySelector('#bookCourseViewModal .tab-link').click();
-        document.querySelector('#studentsViewModal .tab-link').click();
-      } else $scope.error = '##word.open_shift_not_found##';
-    });
+    $scope.error = '';
+    $scope.viewBookCourse(book_course);
+    $scope.book_course = {};
+    site.showModal('#bookCourseViewModal');
+    document.querySelector('#bookCourseViewModal .tab-link').click();
+    document.querySelector('#studentsViewModal .tab-link').click();
+
   };
 
   $scope.viewBookCourse = function (book_course) {
@@ -215,7 +215,7 @@ app.controller("book_course", function ($scope, $http, $timeout) {
       url: "/api/customers/all",
       data: {
         search: $scope.student_search,
-        where:{
+        where: {
           active: true
         }
       }
@@ -313,7 +313,7 @@ app.controller("book_course", function ($scope, $http, $timeout) {
 
     $http({
       method: "POST",
-      url: "/api/students/view",
+      url: "/api/customers/view",
       data: {
         id: id,
         select: {}
@@ -322,8 +322,9 @@ app.controller("book_course", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $scope.students = response.data.doc;
-          site.showModal('#studentsViewModal')
+          $scope.customer = response.data.doc;
+          site.showModal('#customerDetailsModal');
+          document.querySelector('#customerDetailsModal .tab-link').click();
         }
       },
       function (err) {
@@ -477,6 +478,29 @@ app.controller("book_course", function ($scope, $http, $timeout) {
     site.showModal('#bookCourseSearchModal');
   };
 
+  $scope.getNumberingAuto = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/numbering/get_automatic",
+      data: {
+        screen: "book_course"
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.disabledCode = response.data.isAuto;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.searchAll = function () {
     $scope.getBookCourseList($scope.search);
     site.hideModal('#bookCourseSearchModal');
@@ -485,6 +509,7 @@ app.controller("book_course", function ($scope, $http, $timeout) {
   };
 
   $scope.getBookCourseList();
+  $scope.getNumberingAuto();
   $scope.getTrainerList();
   $scope.getCreateCourseLoadList();
   $scope.getSafesList();

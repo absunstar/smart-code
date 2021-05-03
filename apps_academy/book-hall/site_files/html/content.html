@@ -5,13 +5,16 @@
             <div class="row">
                 <div class="col9">
                     <div class="row">
+                        <i-control ng-hide="disabledCode" class="col2" label="##word.code##" ng-model="book_hall.code">
+                        </i-control>
+
                         <i-control class="col3 r_indigo" type="text" disabled label="##word.shift##"
                             ng-model="shift.name_##session.lang##">
                         </i-control>
 
                         <i-date2 class="col4" ng-model="book_hall.date" label="##word.date##"></i-date2>
 
-                        <div class="col3"></div>
+                        <div class="col1"></div>
 
                         <i-checkbox help-id="book_hall_active" class="col2" label="##word.active##"
                             ng-model="book_hall.active"></i-checkbox>
@@ -113,12 +116,12 @@
                             <i-button type="add default" ng-click="book_hall.dates_list.push({})"></i-button>
                             ##word.dates##
                         </legend>
-                        <div class="row" ng-repeat="date in book_hall.dates_list">
+                        <div class="row" ng-repeat="d in book_hall.dates_list">
 
-                            <i-date2 class="col5" ng-model="date.date_count" label="##word.date##"></i-date2>
-                            <i-time class="col2" display="##session.lang##" ng-model="date.from" label="##word.from##">
+                            <i-date2 class="col5" ng-model="d.date" label="##word.date##"></i-date2>
+                            <i-time class="col2" display="##session.lang##" ng-model="d.from" label="##word.from##">
                             </i-time>
-                            <i-time class="col2" display="##session.lang##" ng-model="date.to" label="##word.to##">
+                            <i-time class="col2" display="##session.lang##" ng-model="d.to" label="##word.to##">
                             </i-time>
                             <i-button type="delete default"
                                 ng-click="book_hall.dates_list.length ===1 ||book_hall.dates_list.splice($index,1)">

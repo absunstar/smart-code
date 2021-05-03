@@ -39,6 +39,7 @@
                 <table x-permissions="login" class="table bold hover loaded" id="t1">
                     <tr>
                         <th class="not-print">##word.logo##</th>
+                        <th>##word.code##</th>
                         <th>##word.name##</th>
                         <th>##word.address##</th>
                         <th>##word.mobile##</th>
@@ -49,6 +50,7 @@
                         <td class="center not-print">
                             <i-image view class="logo" ng-model="c.image_url"></i-image>
                         </td>
+                        <td class="center userPrint blue">{{c.code}}</td>
                         <td class="center title">{{c.name_##session.lang##}}</td>
                         <td class="center">{{c.gov.name_##session.lang## + ' - ' + c.city.name_##session.lang## + ' - ' + c.address}}</td>
                         <td class="center blue">{{c.mobile}} <i class="fa fa-mobile" ng-show="c.mobile" aria-hidden="true"></i></td>

@@ -50,6 +50,9 @@ app.controller("create_course", function ($scope, $http, $timeout) {
           $scope.getCreateCourseList();
         } else {
           $scope.error = response.data.error;
+          if (response.data.error.like('*Must Enter Code*')) {
+            $scope.error = "##word.must_enter_code##"
+          }
         }
       },
       function (err) {
@@ -360,10 +363,23 @@ app.controller("create_course", function ($scope, $http, $timeout) {
     $scope.create_course.dates_list = [];
 
     for (let i = 0; i < $scope.create_course.course.number_lecture; i++) {
-      $scope.create_course.dates_list.push({
+
+      let obj = {
         hall: $scope.create_course.hall,
+        from: $scope.create_course.from,
+        to: $scope.create_course.to,
         number_lecture: $scope.create_course.course.number_lecture_hours || 0
-      });
+      };
+
+      if($scope.create_course.date_from && i === 0){
+        obj.date = new Date($scope.create_course.date_from)
+      };
+
+      if($scope.create_course.date_to && i === ($scope.create_course.course.number_lecture-1)){
+        obj.date = new Date($scope.create_course.date_to)
+      };
+
+      $scope.create_course.dates_list.push(obj);
     }
   };
 
@@ -459,6 +475,29 @@ app.controller("create_course", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.getNumberingAuto = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/numbering/get_automatic",
+      data: {
+        screen: "create_course"
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.disabledCode = response.data.isAuto;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.displaySearchModal = function () {
     $scope.error = '';
     site.showModal('#createCourseSearchModal');
@@ -471,6 +510,7 @@ app.controller("create_course", function ($scope, $http, $timeout) {
   };
 
   $scope.getCreateCourseList();
+  $scope.getNumberingAuto();
   $scope.getPeriod();
   $scope.getCoursesList();
   $scope.getDefaultSettings();

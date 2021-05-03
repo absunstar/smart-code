@@ -2,6 +2,6 @@
     "module_name" : "public" ,
     "name": "attend_students_admin",
     "en": "Attend Students Admin",
-    "ar": "إدارة حضور التلاميذ",
+    "ar": "إدارة حضور الطلاب",
     "permissions": ["attend_students_manage"]
 }]

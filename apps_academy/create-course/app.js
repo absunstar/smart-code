@@ -71,6 +71,23 @@ module.exports = function init(site) {
       create_course_doc.active = true
     }
 
+    let num_obj = {
+      company: site.get_company(req),
+      screen: 'create_course',
+      date: new Date()
+    };
+
+    let cb = site.getNumbering(num_obj);
+    if (!create_course_doc.code && !cb.auto) {
+
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+
+    } else if (cb.auto) {
+      create_course_doc.code = cb.code;
+    }
+
     create_course_doc.company = site.get_company(req)
     create_course_doc.branch = site.get_branch(req)
 

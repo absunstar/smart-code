@@ -90,6 +90,23 @@ module.exports = function init(site) {
     account_course_doc.company = site.get_company(req)
     account_course_doc.branch = site.get_branch(req)
 
+    let num_obj = {
+      company: site.get_company(req),
+      screen: 'account_course',
+      date: new Date()
+    };
+
+    let cb = site.getNumbering(num_obj);
+    if (!account_course_doc.code && !cb.auto) {
+
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+
+    } else if (cb.auto) {
+      account_course_doc.code = cb.code;
+    }
+
     $account_course.add(account_course_doc, (err, doc) => {
       if (!err) {
         response.done = true

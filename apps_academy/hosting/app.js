@@ -56,6 +56,24 @@ module.exports = function init(site) {
       hosting_doc.total_required += s.price
     });
 
+    
+    let num_obj = {
+      company: site.get_company(req),
+      screen: 'hosting',
+      date: new Date()
+    };
+
+    let cb = site.getNumbering(num_obj);
+    if (!hosting_doc.code && !cb.auto) {
+
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+
+    } else if (cb.auto) {
+      hosting_doc.code = cb.code;
+    }
+
     $hosting.add(hosting_doc, (err, doc) => {
       if (!err) {
         response.done = true

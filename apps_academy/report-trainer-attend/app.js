@@ -44,7 +44,7 @@ module.exports = function init(site) {
               if (d.attend) {
                 response.list.push({
                   course: b.course,
-                  date_course: d.date_count,
+                  date_course: d.date,
                   attend: d.attend,
                   attend_hour: d.attend_hour,
                   out_hour: d.out_hour,

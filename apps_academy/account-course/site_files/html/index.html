@@ -48,6 +48,7 @@
                 <table x-permissions="login" class="table bold hover loaded" id="t1">
                     <tr>
                         <th class="not-print">##word.logo##</th>
+                        <th>##word.code##</th>
                         <th>##word.account_course_name##</th>
                         <th>##word.account_course_total##</th>
                         <th>##word.account_course##</th>
@@ -60,6 +61,7 @@
                         <td ng-click="displayDetailsAccountCourse(c)" class="center not-print">
                             <i-image view class="logo" ng-model="c.image_url"></i-image>
                         </td>
+                        <td ng-click="displayDetailsAccountCourse(c)" class="center userPrint blue">{{c.code}}</td>
                         <td ng-click="displayDetailsAccountCourse(c)" class="center title">{{c.course.name_##session.lang##}}</td>
                         <td ng-click="displayDetailsAccountCourse(c)">
                             <h3 class="blue center">{{c.courses_total}}</h3>

@@ -5,12 +5,15 @@
             <div class="row">
                 <div class="col9">
                     <div class="row">
+                        <i-control ng-hide="disabledCode" class="col2" label="##word.code##" ng-model="book_course.code">
+                        </i-control>
+
                         <i-control class="col3 r_indigo" type="text" disabled label="##word.shift##" ng-model="shift.name_##session.lang##">
                         </i-control>
 
                         <i-date2 class="col4" ng-model="book_course.date" label="##word.date##"></i-date2>
 
-                        <div class="col3"></div>
+                        <div class="col1"></div>
 
                         <i-checkbox help-id="book_course_active" class="col2" label="##word.active##"
                             ng-model="book_course.active"></i-checkbox>
@@ -23,54 +26,70 @@
                             items="studentList" ng-search="students_searching"></i-list>
 
                         <i-button class="col2" ng-show="book_course.customer.id" type="details"
-                            label="##word.students_details##" ng-click="showStudent(book_course.customer.id)">
+                            label="##word.student_details##" ng-click="showStudent(book_course.customer.id)">
                         </i-button>
 
-
                     </div>
 
-                    <div ng-show="book_course.customer.id" class="col10 dashed">
-                        <table class="table hover center bold">
-                            <tr>
-                                <td class="title">##word.student##</td>
-                                <td colspan="5"> {{book_course.customer.name_##session.lang##}}</td>
-                            </tr>
+                    <div ng-show="book_course.customer.id" class="row margin padding ">
+                        <div class="col10 padding dashed">
 
-                            <tr>
-                                <td class="title">##word.mobile##</td>
-                                <td colspan="2" class="blue "> {{book_course.customer.mobile}}</td>
-                                <td class="title">##word.phone##</td>
-                                <td colspan="2" class="blue "> {{book_course.customer.phone}}</td>
-                            </tr>
+                            <div class="row">
+                                <table class="table bold center hover">
+                                  
+                                    <tr>
+                                        <td class="white bg_card"> ##word.customer_name## </td>
+                                        <td colspan="5" class="center">
+                                            {{book_course.customer.name_##session.lang##}} <b class="red"
+                                                ng-show="book_course.customer.child">(##word.child##)</b>
+                                        </td>
+                                        <td class="white bg_card"> ##word.gender## </td>
+                                        <td colspan="2" class="center"> {{book_course.customer.gender.##session.lang##}}
+                                        </td>
+                                    </tr>
 
-                            <tr>
-                                <td class="title">##word.whatsapp##</td>
-                                <td colspan="2" class="blue "> {{book_course.customer.whatsapp}}</td>
-                                <td class="title">##word.email##</td>
-                                <td colspan="2" class="blue "> {{book_course.customer.email}}</td>
-                            </tr>
+                                    <tr>
+                                        <td class="white bg_card"> ##word.weight## </td>
+                                        <td colspan="2" class="center"> {{book_course.customer.weight}} </td>
+                                        <td class="white bg_card"> ##word.tall## </td>
+                                        <td colspan="2" class="center"> {{book_course.customer.tall}} </td>
+                                        <td class="white bg_card"> ##word.blood_type## </td>
+                                        <td colspan="2" class="center red"> {{book_course.customer.blood_type.name_##session.lang##}}
+                                        </td>
+                                    </tr>
 
-                            <tr>
-                                <td class="title">##word.gender##</td>
-                                <td class="blue "> {{book_course.customer.gender.##session.lang##}}</td>
-                                <td class="title">##word.birth_date##</td>
-                                <td colspan="3" class="brown "> {{book_course.customer.birth_date | date : 'dd - MM -
-                                    yyyy'}}</td>
-                            </tr>
+                                    <tr>
+                                        <td class="white bg_card"> ##word.medicine_notes## </td>
+                                        <td colspan="7" class="center"> {{book_course.customer.medicine_notes}}</td>
+                                    </tr>
 
-                            <tr>
-                                <td class="title">##word.addresses##</td>
-                                <td colspan="5"> {{book_course.customer.gov.name_##session.lang##}} -
-                                    {{book_course.customer.city.name_##session.lang##}} - {{book_course.customer.area.name_##session.lang##}} -
-                                    {{book_course.customer.address}}
-                                </td>
+                                    <tr>
+                                        <td class="white bg_card"> ##word.gov## </td>
+                                        <td colspan="2" class="center"> {{book_course.customer.gov.name_##session.lang##}} </td>
+                                        <td class="white bg_card"> ##word.city## </td>
+                                        <td colspan="2" class="center"> {{book_course.customer.city.name_##session.lang##}} </td>
+                                        <td class="white bg_card"> ##word.area## </td>
+                                        <td colspan="2" class="center"> {{book_course.customer.area.name_##session.lang##}} </td>
+                                    </tr>
 
-                            </tr>
+                                    <tr>
+                                        <td class="white bg_card"> ##word.address## </td>
+                                        <td colspan="7" class="center"> {{book_course.customer.address}}</td>
+                                    </tr>
 
-                        </table>
+                                    <tr>
+                                        <td class="white bg_card"> ##word.mobile## </td>
+                                        <td colspan="4" class="center"> {{book_course.customer.mobile}}</td>
+                                        <td class="white bg_card"> ##word.phone## </td>
+                                        <td colspan="3" class="center"> {{book_course.customer.phone}}</td>
+                                    </tr>
+
+                                </table>
+                            </div>
+                        </div>
+
+
                     </div>
-
-
 
 
                     <div class="row">

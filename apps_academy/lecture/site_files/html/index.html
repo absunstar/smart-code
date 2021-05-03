@@ -25,7 +25,7 @@
                 <div x-permissions="lecture_search || lecture_manage" x-import="lecture/search_all_modal.html"></div>
              
                 <div class="row">
-                    <h1 class="bold text-center">##word.lecture##</h1>
+                    <h1 class="bold text-center">##word.lectures##</h1>
                 </div>
 
                 <div class="top-actions">
@@ -41,6 +41,7 @@
                 <table x-permissions="login" class="table bold hover loaded" id="t1">
                     <tr>
                         <th class="not-print">##word.logo##</th>
+                        <th>##word.code##</th>
                         <th>##word.date##</th>
                         <th>##word.hall##</th>
                         <th>##word.trainer##</th>
@@ -53,6 +54,7 @@
                         <td class="center not-print">
                             <i-image view class="logo" ng-model="c.image_url"></i-image>
                         </td>
+                        <td class="center userPrint blue">{{c.code}}</td>
                         <td class="center brown">{{c.date |date:"dd - MM - yyyy"}}</td>
                         <td class="center">{{c.hall.name_##session.lang##}}</td>
                         <td class="center title">{{c.trainer.name_##session.lang##}}</td>

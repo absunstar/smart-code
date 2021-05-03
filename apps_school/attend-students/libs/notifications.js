@@ -4,24 +4,24 @@ module.exports = function init(site) {
 
   let source = {
     en: 'Attend Students System',
-    ar: 'نظام حضور التلاميذ'
+    ar: 'نظام حضور الطلاب'
   }
 
   let image_url = '/images/attend_students.png'
 
   let add_message = {
     en: 'New Attend Students Added',
-    ar: 'تم إضافة حضور تلاميذ جديد'
+    ar: 'تم إضافة حضور طلاب جديد'
   }
 
   let update_message = {
     en: ' Attend Students Updated',
-    ar: 'تم تعديل حضور تلاميذ'
+    ar: 'تم تعديل حضور طلاب'
   }
 
   let delete_message = {
     en: ' Attend Students Deleted',
-    ar: 'تم حذف حضور تلاميذ '
+    ar: 'تم حذف حضور طلاب '
   }
 
 

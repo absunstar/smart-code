@@ -30,6 +30,11 @@
         "ar": "الصورة"
     },
     {
+        "name": "student_details",
+        "en": "Student Details",
+        "ar": "تفاصيل الطالب"
+    },
+    {
         "name": "file",
         "en": "File",
         "ar": "ملف"

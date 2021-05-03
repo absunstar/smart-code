@@ -6,7 +6,11 @@
                 <div class="col9">
 
                     <div class="row">
+                        <i-control ng-hide="disabledCode" class="col2" label="##word.code##" ng-model="lecture.code">
+                        </i-control>
+
                         <i-date2 label="##word.date##" ng-model="lecture.date" class="col4"></i-date2>
+                        
                         <i-checkbox help-id="lecture_active" class="col2" label="##word.active##"
                             ng-model="lecture.active"></i-checkbox>
                     </div>

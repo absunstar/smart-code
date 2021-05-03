@@ -30,15 +30,16 @@
         "ar": "المصروفات الدراسية"
     },
     {
-        "name": "customers",
-        "en": "Students",
-        "ar": "الطلاب"
-    },
-    {
         "name": "re_open_shift",
         "en": "Re-Open School Year",
         "ar": "إعادة فتح العام الدراسي"
     },
+    {
+        "name": "customers",
+        "en": "Students",
+        "ar": "الطلاب"
+    },
+   
     {
         "name": "customers_new",
         "en": "New Student",

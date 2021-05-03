@@ -6,10 +6,17 @@
                 <div class="col9">
 
                     <div class="row">
+
+                        <i-control ng-hide="disabledCode" class="col2" label="##word.code##" ng-model="hosting.code">
+                        </i-control>
+
                         <i-date2 class="col4" label="##word.date##" ng-model="hosting.date"></i-date2>
+
                         <i-list class="col3" label="##word.hosting_type##" display="##session.lang##" items="hostList"
                         ng-search="hosting.$hosting_type"  ng-model="hosting.type"></i-list>
-                        <div class="col3"></div>
+
+                        <div class="col1"></div>
+
                         <i-checkbox help-id="hosting_active" class="col2" label="##word.active##"
                             ng-model="hosting.active"></i-checkbox>
                     </div>

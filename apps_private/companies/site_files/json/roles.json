@@ -12,6 +12,7 @@
             "create_course_manage",
             "hosting_manage",
             "lecture_admin",
+            "lecture_manage",
             "showNotifications",
             "tenant_manage",
             "discount_types_manage",

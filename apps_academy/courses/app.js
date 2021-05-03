@@ -19,6 +19,40 @@ module.exports = function init(site) {
     compress: true
   })
 
+
+  site.on('[company][created]', (doc) => {
+    $courses.add(
+      {
+        code: "1-Test",
+        name_ar: 'كورس إفتراضي',
+        name_en: "Default Course",
+        image_url: '/images/courses.png',
+        price: 1,
+        courses_total: 1,
+        period: {
+          id: 1,
+          name: "1",
+          en: "Day",
+          ar: "يوم"
+        },
+        number_lecture: 1,
+        company: {
+          id: doc.id,
+          name_ar: doc.name_ar,
+          name_en: doc.name_en
+        },
+        branch: {
+          code: doc.branch_list[0].code,
+          name_ar: doc.branch_list[0].name_ar,
+          name_en: doc.branch_list[0].name_en
+        },
+        active: true,
+      },
+      (err, doc1) => {
+      },
+    );
+  });
+
   site.post("/api/courses/add", (req, res) => {
     let response = {
       done: false
@@ -47,12 +81,12 @@ module.exports = function init(site) {
 
     $courses.find({
       where: {
-        
+
         'company.id': site.get_company(req).id,
         'branch.code': site.get_branch(req).code,
         $or: [{
           'name_ar': courses_doc.name_ar
-        },{
+        }, {
           'name_en': courses_doc.name_en
         }]
       }
@@ -61,6 +95,24 @@ module.exports = function init(site) {
         response.error = 'Name Exists'
         res.json(response)
       } else {
+
+        let num_obj = {
+          company: site.get_company(req),
+          screen: 'courses',
+          date: new Date()
+        };
+
+        let cb = site.getNumbering(num_obj);
+        if (!courses_doc.code && !cb.auto) {
+
+          response.error = 'Must Enter Code';
+          res.json(response);
+          return;
+
+        } else if (cb.auto) {
+          courses_doc.code = cb.code;
+        }
+
         $courses.add(courses_doc, (err, doc) => {
           if (!err) {
             response.done = true
@@ -177,7 +229,7 @@ module.exports = function init(site) {
     let response = {
       done: false
     }
-          
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)
@@ -190,21 +242,21 @@ module.exports = function init(site) {
     if (where['name']) {
       where['name'] = site.get_RegExp(where['name'], "i");
     }
-   
+
     if (where.search && where.search.courses_total) {
-    
+
       where['courses_total'] = where.search.courses_total
     }
     if (where.search && where.search.price) {
-    
+
       where['price'] = where.search.price
     }
-    
+
     delete where.search
 
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
-    
+
     $courses.findMany({
       select: req.body.select || {},
       where: where,

@@ -6,8 +6,8 @@ module.exports = function init(site) {
     if (site.feature('club') || site.feature('academy') || site.feature('school')) {
 
       $trainer.add({
-        name_ar: site.feature('school') ? "مدرس إفتراضي" : "مدرب إفتراضي",
-        name_en: site.feature('school') ? "Default Teacher" : "Default trainer",
+        name_ar: (site.feature('school') || site.feature('academy')) ? "مدرس إفتراضي" : "مدرب إفتراضي",
+        name_en: (site.feature('school') || site.feature('academy')) ? "Default Teacher" : "Default trainer",
         image_url: '/images/trainer.png',
         code: "1-Test",
         trainer: true,

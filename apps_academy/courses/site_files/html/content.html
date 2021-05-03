@@ -4,26 +4,36 @@
             <legend> ##word.basic_information## </legend>
             <div class="row">
                 <div class="col9">
+
                     <div class="row">
+
+                        <i-control ng-hide="disabledCode" class="col2" label="##word.code##" ng-model="courses.code">
+                        </i-control>
 
                         <i-control help-id="courses_name" v="r ll2" class="col4" label="##word.courses_name##"
                             ng-model="courses.name_ar"></i-control>
+
                         <i-control help-id="courses_name_en" class="col4" label="##word.name_en##"
                             ng-model="courses.name_en"></i-control>
-                        <div class="col2"></div>
+
                         <i-checkbox help-id="courses_active" class="col2" label="##word.active##"
                             ng-model="courses.active"></i-checkbox>
+
                     </div>
 
                     <div class="row">
-                        <i-control help-id="courses_name" v="r" type="number" class="col3"
+                        <i-control help-id="courses_name" v="r" type="number" class="col2"
                             label="##word.courses_price##" ng-model="courses.price"></i-control>
+
                         <i-control type="number" class="col2" label="##word.courses_total##"
                             ng-model="courses.courses_total"></i-control>
+
                         <i-list class="col3" ng-search="_search.$period_search" label="##word.period##"
                             ng-model="courses.period" items="periodList" display="##session.lang##"></i-list>
+
                         <i-control ng-show="courses.period.id == 1" type="number" class="col2"
                             label="##word.number_lecture_hours##" ng-model="courses.number_lecture_hours"></i-control>
+
                         <i-control class="col2" type="number" ng-model="courses.number_lecture"
                             label="##word.number_lecture##"></i-control>
                     </div>

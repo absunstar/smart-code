@@ -45,6 +45,7 @@
                 <table x-permissions="login" class="table bold hover loaded" id="t1">
                     <tr>
                         <th class="not-print">##word.logo##</th>
+                        <th>##word.code##</th>
                         <th>##word.date##</th>
                         <th>##word.hosting_type##</th>
                         <th>##word.employee_name##</th>
@@ -57,6 +58,7 @@
                         <td class="center not-print">
                             <i-image view class="logo" ng-model="c.image_url"></i-image>
                         </td>
+                        <td class="center userPrint blue">{{c.code}}</td>
                         <td class="center brown">{{c.date |date:"dd - MM - yyyy"}}</td>
                         <td class="center ">{{c.type.##session.lang##}}</td>
                         <td class="center">{{c.employee.name_##session.lang##}}</td>

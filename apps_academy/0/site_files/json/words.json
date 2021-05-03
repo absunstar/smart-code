@@ -1,0 +1,333 @@
+[
+    {
+        "name": "brand_title",
+        "en": "Smart Code",
+        "ar": "سمـارت كـود"
+    },
+    {
+        "name": "brand_tag",
+        "en": "Academy",
+        "ar": "نظام الأكاديمية"
+    },
+    {
+        "name": "companies_basic_information",
+        "en": "Basic Informations",
+        "ar": "البيانات الاساسية"
+    },
+    {
+        "name": "companies_contact_information",
+        "en": "Contact Informations",
+        "ar": "بيانات الاتصال"
+    },
+    {
+        "name": "companies_phone",
+        "en": "Phone",
+        "ar": "التليفون"
+    },
+    {
+        "name": "companies_mobile",
+        "en": "Mobile",
+        "ar": "المحمول"
+    },
+    {
+        "name": "companies_activity",
+        "en": "Activity",
+        "ar": "النشاط"
+    },
+    {
+        "name": "companies_branches_informations",
+        "en": "Branches Informations",
+        "ar": "بيانات الفروع"
+    },
+    {
+        "name": "companies_branch",
+        "en": "Branch",
+        "ar": "الفرع"
+    },
+    {
+        "name": "companies_branch_information",
+        "en": "Branch Information",
+        "ar": "بيانات الفرع"
+    },
+    {
+        "name": "companies_contact_charge",
+        "en": "Charge Information",
+        "ar": "بيانات المسئول"
+    },
+    {
+        "name": "companies_branch_code",
+        "en": "Branch Code",
+        "ar": "كود الفرع"
+    },
+    {
+        "name": "companies_branch_name",
+        "en": "Branch Name",
+        "ar": "إسم الفرع"
+    },
+    {
+        "name": "companies_branch_name_ar",
+        "en": "Branch Name Arabic",
+        "ar": "إسم الفرع بالعربى"
+    },
+    {
+        "name": "companies_branch_name_en",
+        "en": "Branch Name English",
+        "ar": "إسم الفرع بالانجليزى"
+    },
+    {
+        "name": "companies_branch_notes",
+        "en": "Branch Notes",
+        "ar": "ملاحظات الفرع"
+    },
+    {
+        "name": "companies_charge_name",
+        "en": "Charge Name",
+        "ar": "إسم المسئول"
+    },
+    {
+        "name": "companies_charge_job",
+        "en": "Charge Job",
+        "ar": "الوظيفة"
+    },
+    {
+        "name": "companies_internal_number",
+        "en": "Internal Number",
+        "ar": "الرقم الداخلي"
+    },
+    {
+        "name": "companies_banking_informations",
+        "en": "Banking Informations",
+        "ar": "البنوك"
+    },
+    {
+        "name": "companies_bank_information",
+        "en": "Bank Information",
+        "ar": "بيانات البنك"
+    },
+    {
+        "name": "companies_bank_name",
+        "en": "Bank Name",
+        "ar": "إسم البنك"
+    },
+    {
+        "name": "companies_bank_account_number",
+        "en": "Bank Account Number",
+        "ar": "رقم الحساب"
+    },
+    {
+        "name": "companies_filter_with_date",
+        "en": "Filter With Date",
+        "ar": "تصفية البيانات بالتاريخ"
+    },
+    {
+        "name": "companies_calender_type",
+        "en": "Calender Type",
+        "ar": "نوع التقويم"
+    },
+    {
+        "name": "companies_gegorian",
+        "en": "Gregorian",
+        "ar": "ميلادي"
+    },
+    {
+        "name": "companies_hijri",
+        "en": "Hijri",
+        "ar": "هجري"
+    },
+    {
+        "name": "companies_date",
+        "en": "Date",
+        "ar": "التاريخ"
+    },
+    {
+        "name": "companies_gov",
+        "en": "Gov",
+        "ar": "المحافظة"
+    },
+    {
+        "name": "companies_city",
+        "en": "City",
+        "ar": "المدينة"
+    },
+    {
+        "name": "companies_email",
+        "en": "Email",
+        "ar": "البريد الالكتروني"
+    },
+    {
+        "name": "companies_fax",
+        "en": "Fax",
+        "ar": "الفاكس"
+    },
+    {
+        "name": "companies_name_ar",
+        "en": "Academy Name Arabic",
+        "ar": "إسم نظام الأكاديمية"
+    },
+    {
+        "name": "companies_name_en",
+        "en": "Academy Name English",
+        "ar": "إسم نظام الأكاديمية بالانجليزية"
+    },
+    {
+        "name": "companies_excahange_price",
+        "en": "Exchange Price",
+        "ar": "سعر الصرف"
+    },
+    {
+        "name": "companies_company_swift_code",
+        "en": "Swift Code",
+        "ar": "رقم السويفت"
+    },
+    {
+        "name": "companies_new",
+        "en": "New Academy",
+        "ar": "نظام أكاديمية جديد"
+    },
+    {
+        "name": "companies_country",
+        "en": "Coutntry",
+        "ar": "الدولة"
+    },
+    {
+        "name": "companies_address",
+        "en": "Address",
+        "ar": "العنوان"
+    },
+    {
+        "name": "customers",
+        "en": "Students",
+        "ar": "الطلاب"
+    },
+   
+    {
+        "name": "customers_new",
+        "en": "New Student",
+        "ar": "طالب جديد"
+    },
+    {
+        "name": "customers_add",
+        "en": "Add Student",
+        "ar": "إضافة طالب"
+    },
+    {
+        "name": "customers_edit",
+        "en": "Student Edit",
+        "ar": "تعديل بيانات طالب"
+    },
+    {
+        "name": "customers_details",
+        "en": "Student Details",
+        "ar": "تفاصيل طالب"
+    },
+    {
+        "name": "customers_delete",
+        "en": "Delete Student",
+        "ar": "حذف طالب"
+    },
+    {
+        "name": "customers_indentfy",
+        "en": "Student indentfy",
+        "ar": "نوع الطالب"
+    },
+    {
+        "name": "customers_personal_information",
+        "en": "Personal Information",
+        "ar": "البيانات الشخصية"
+    },
+    {
+        "name": "customers_basic_information",
+        "en": "Basic Information",
+        "ar": "البيانات الاساسية"
+    },
+    {
+        "name": "customers_code",
+        "en": "Student Code",
+        "ar": "كود الطالب"
+    },
+    {
+        "name": "customers_name_ar",
+        "en": "Student Name Arabic",
+        "ar": "إسم الطالب بالعربي"
+    },
+    {
+        "name": "customers_name_en",
+        "en": "Student Name English",
+        "ar": "إسم الطالب بالانجليزية"
+    },
+    {
+        "name": "customer_name",
+        "en": "Student Name",
+        "ar": "إسم الطالب"
+    },
+    {
+        "name": "customer",
+        "en": "Student ",
+        "ar": " الطالب"
+    },
+    {
+        "name": "companies_customer_service",
+        "en": "Student Services",
+        "ar": "خدمة الطلاب"
+    },
+    {
+        "name": "customers_group_informations",
+        "en": "Students Group Informations",
+        "ar": "بيانات مجموعة طلاب"
+    },
+    {
+        "name": "customers_groups",
+        "en": "Students Group",
+        "ar": "مجموعة طلاب"
+    },
+    {
+        "name": "customers_groups_name",
+        "en": "Students Groups",
+        "ar": "مجموعات الطلاب"
+    },
+    {
+        "name": "customers_group_menus",
+        "en": "Students Group Menu",
+        "ar": "قائمة مجموعة الطلاب"
+    },
+    {
+        "name": "customers_group_code",
+        "en": "Students Group Code",
+        "ar": "كود مجموعة الطلاب"
+    },
+    {
+        "name": "customers_group_name",
+        "en": "Students Group Name",
+        "ar": "إسم مجموعة الطلاب"
+    },
+    {
+        "name": "customers_group_new",
+        "en": "New Students Group",
+        "ar": "مجموعة طلاب جديدة"
+    },
+    {
+        "name": "customers_group_details",
+        "en": "Students Group Details",
+        "ar": "تفاصيل مجموعة طلاب"
+    },
+    {
+        "name": "customers_group_update",
+        "en": "Edit Students Group",
+        "ar": "تعديل مجموعة طلاب"
+    },
+    {
+        "name": "customers_group_delete",
+        "en": "Delte Students Group",
+        "ar": "حذف مجموعة طلاب"
+    },
+    {
+        "name": "customers_group_add_name",
+        "en": "Add Students Group",
+        "ar": "إضافة مجموعة طلاب"
+    },
+    {
+        "name": "companies_customer_service",
+        "en": "Customer Services",
+        "ar": "خدمة العملاء"
+    }
+]

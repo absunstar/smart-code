@@ -1,29 +1,21 @@
 const site = require('isite')({
-    port: [80 , 40005],
+    port: [80, 40005],
     lang: 'ar',
-    version : '1.0.6',
+    version: '1.0.6',
     name: 'academy',
-    theme: 'theme_paper',
     require: {
-        features: [],
-        permissions: []
+      features: [],
+      permissions: [],
     },
-    https: {
-        enabled: true,
-        port: 5050
-    },
+    theme: 'theme_paper',
     mongodb: {
-        db: 'smart_code_academies',
-        limit: 100000
+      db: 'smart_code_academy',
+      limit: 100000,
     },
     security: {
-        admin: {
-            email: 'academy',
-            password: 'P@$$w0rd'
-        }
+      keys: ['e698f2679be5ba5c9c0b0031cb5b057c' , '9705a3a85c1b21118532fefcee840f99'],
     }
-})
-
+  });
 site.get({
     name: '/',
     path: site.dir + '/'

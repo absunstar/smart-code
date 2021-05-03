@@ -37,10 +37,7 @@
   <div id="company_tabs" class="tabs">
     <div class="tabs-header">
 
-      <a class="tab-link" href="/customers" x-permissions="customers_ui || customers_manage">
-        <img src="/images/customer.png" />
-        <span> ##word.customers## </span>
-      </a>
+
 
       <div class="" x-features="medical">
         <a class="tab-link" href="/patients_tickets" x-permissions="patients_tickets_ui || patients_tickets_manage">
@@ -152,19 +149,15 @@
       </div>
 
       <div class="" x-features="academy">
-        <a class="tab-link" href="/book_hall" x-permissions="book_hall_ui || book_hall_manage">
-          <img src="images/book_hall.png" />
-          <span> ##word.book_hall##</span>
-        </a>
 
         <a class="tab-link" href="/book_course" x-permissions="book_course_ui || book_course_manage">
           <img src="images/book_course.png" />
           <span> ##word.book_course##</span>
         </a>
 
-        <a class="tab-link" href="/hosting" x-permissions="hosting_ui || hosting_manage">
-          <img src="images/hosting.png" />
-          <span> ##word.hosting##</span>
+        <a class="tab-link" href="/create_course" x-permissions="create_course_ui || create_course_manage">
+          <img src="images/create_course.png" />
+          <span> ##word.create_course##</span>
         </a>
 
         <a class="tab-link" href="/account_course" x-permissions="account_course_ui || account_course_manage">
@@ -172,10 +165,22 @@
           <span> ##word.account_course##</span>
         </a>
 
-        <a class="tab-link" href="/create_course" x-permissions="create_course_ui || create_course_manage">
-          <img src="images/create_course.png" />
-          <span> ##word.create_course##</span>
+        <a class="tab-link" href="/book_hall" x-permissions="book_hall_ui || book_hall_manage">
+          <img src="images/book_hall.png" />
+          <span> ##word.book_hall##</span>
         </a>
+
+        <a class="tab-link" href="/hosting" x-permissions="hosting_ui || hosting_manage">
+          <img src="images/hosting.png" />
+          <span> ##word.hosting##</span>
+        </a>
+
+        <a class="tab-link" href="/lecture" x-permissions="lecture_ui || lecture_manage">
+          <img src="images/lecture.png" />
+          <span> ##word.lectures##</span>
+        </a>
+
+
       </div>
 
       <div x-features="restaurant || pos || erp || club || academy || school">
@@ -369,6 +374,20 @@
         </a>
       </div>
 
+      <div x-features="academy">
+
+        <a class="tab-link" href="/tenant" x-permissions="tenant_ui || tenant_manage">
+          <img src="images/tenant.png" />
+          <span> ##word.tenants##</span>
+        </a>
+
+        <a class="tab-link" href="/courses" x-permissions="courses_ui || courses_manage">
+          <img src="images/courses.png" />
+          <span> ##word.courses_id##</span>
+        </a>
+
+      </div>
+
       <a class="tab-link" href="/nationalities" x-permissions="nationalities_ui || nationalities_manage">
         <img src="/images/nationalities.png" />
         <span> ##word.nationalities## </span>
@@ -413,7 +432,7 @@
 
       </div>
 
-      <a class="tab-link" x-features="academy || club" href="/activity" x-permissions="activity_ui || activity_manage">
+      <a class="tab-link" x-features="club" href="/activity" x-permissions="activity_ui || activity_manage">
         <img src="/images/activity.png" />
         <span> ##word.activities##</span>
       </a>
@@ -450,29 +469,30 @@
         </a>
       </div>
 
-      <a x-features="academy || club || school || medical" class="tab-link" href="/medicine"
-        x-permissions="medicine_ui || medicine_manage">
-        <img src="/images/medicine.png" />
-        <span> ##word.medicines##</span>
-      </a>
 
-      <a x-features="academy || club || school || medical" class="tab-link" href="/disease"
-        x-permissions="disease_ui || disease_manage">
-        <img src="/images/disease.png" />
-        <span> ##word.diseases##</span>
-      </a>
+      <div>
 
-      <a x-features="academy || club || school || medical" class="tab-link" href="/foods"
-        x-permissions="foods_ui || foods_manage">
-        <img src="/images/foods.png" />
-        <span> ##word.foods##</span>
-      </a>
+        <a class="tab-link" href="/medicine" x-permissions="medicine_ui || medicine_manage">
+          <img src="/images/medicine.png" />
+          <span> ##word.medicines##</span>
+        </a>
 
-      <a x-features="academy || club || school || medical" class="tab-link" href="/drinks"
-        x-permissions="drinks_ui || drinks_manage">
-        <img src="/images/drinks.png" />
-        <span> ##word.drinks##</span>
-      </a>
+        <a class="tab-link" href="/disease" x-permissions="disease_ui || disease_manage">
+          <img src="/images/disease.png" />
+          <span> ##word.diseases##</span>
+        </a>
+
+        <a class="tab-link" href="/foods" x-permissions="foods_ui || foods_manage">
+          <img src="/images/foods.png" />
+          <span> ##word.foods##</span>
+        </a>
+
+        <a class="tab-link" href="/drinks" x-permissions="drinks_ui || drinks_manage">
+          <img src="/images/drinks.png" />
+          <span> ##word.drinks##</span>
+        </a>
+      </div>
+
 
       <a x-features="restaurant" class="tab-link" href="/tables_group"
         x-permissions="tables_group_ui || tables_group_manage">
@@ -502,7 +522,7 @@
         <span> ##word.vehicles_types##</span>
       </a>
 
-      
+
       <a class="tab-link" href="/militaries_status" x-permissions="militaries_status_ui || militaries_status_manage">
         <img src="images/military.png" />
         <span>##word.system_military_menus## </span>
@@ -863,7 +883,8 @@
         <span> ##word.employees## </span>
       </a>
 
-      <a x-features="club || school" class="tab-link" href="/trainer" x-permissions="trainer_ui || trainer_manage">
+      <a x-features="club || school || academy" class="tab-link" href="/trainer"
+        x-permissions="trainer_ui || trainer_manage">
         <img src="images/trainer.png" />
         <span> ##word.trainers##</span>
       </a>
@@ -1276,6 +1297,11 @@
   <div id="basic_setting" class="tabs">
     <div class="tabs-header">
 
+      <a class="tab-link" href="/customers" x-permissions="customers_ui || customers_manage">
+        <img src="/images/customer.png" />
+        <span> ##word.customers## </span>
+      </a>
+
       <a x-features="restaurant || pos || academy || club || erp || lawyer" class="tab-link" href="/shifts"
         x-permissions="shifts_ui || shifts_manage">
         <img src="/images/shift.png" />
@@ -1293,7 +1319,7 @@
           <span>##word.circles## </span>
         </a>
 
-      
+
         <a class="tab-link" href="/reasons_sessions" x-permissions="reasons_sessions_ui || reasons_sessions_manage">
           <img src="images/reasons_sessions.png" />
           <span>##word.reasons_sessions## </span>
@@ -1319,7 +1345,7 @@
           <span>##word.adjectives_in_lawsuit## </span>
         </a>
 
-        
+
         <a class="tab-link" href="/lawsuit_status" x-permissions="lawsuit_status_ui || lawsuit_status_manage">
           <img src="images/lawsuit_status.png" />
           <span>##word.lawsuit_status## </span>
@@ -1337,9 +1363,10 @@
       </div>
 
 
-      <a x-features="club || school" class="tab-link" href="/trainer" x-permissions="trainer_ui || trainer_manage">
+      <a x-features="club || school || academy" class="tab-link" href="/trainer"
+        x-permissions="trainer_ui || trainer_manage">
         <img src="images/trainer.png" />
-        <span> ##word.trainer##</span>
+        <span> ##word.trainers##</span>
       </a>
 
       <div x-features="medical">
@@ -1386,15 +1413,17 @@
       </div>
 
       <div x-features="academy">
-        <a class="tab-link" href="/courses" x-permissions="courses_ui || courses_manage">
-          <img src="images/courses.png" />
-          <span> ##word.courses_id##</span>
-        </a>
 
         <a class="tab-link" href="/tenant" x-permissions="tenant_ui || tenant_manage">
           <img src="images/tenant.png" />
           <span> ##word.tenants##</span>
         </a>
+
+        <a class="tab-link" href="/courses" x-permissions="courses_ui || courses_manage">
+          <img src="images/courses.png" />
+          <span> ##word.courses_id##</span>
+        </a>
+
       </div>
 
       <div x-features="school">
@@ -1433,10 +1462,9 @@
           <span> ##word.menu_shift## </span>
         </a>
 
-
       </div>
 
-      <a class="tab-link" x-features="academy || club" href="/activity" x-permissions="activity_ui || activity_manage">
+      <a class="tab-link" x-features="club" href="/activity" x-permissions="activity_ui || activity_manage">
         <img src="/images/activity.png" />
         <span> ##word.activities##</span>
       </a>
