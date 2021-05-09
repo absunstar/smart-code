@@ -17,6 +17,9 @@ app.controller("create_course", function ($scope, $http, $timeout) {
         if ($scope.defaultSettings.general_Settings) {
           if ($scope.defaultSettings.general_Settings.hall)
             $scope.create_course.hall = $scope.defaultSettings.general_Settings.hall;
+
+          if ($scope.defaultSettings.general_Settings.trainer)
+            $scope.create_course.trainer = $scope.defaultSettings.general_Settings.trainer;
         }
 
         site.showModal('#createCourseAddModal');
@@ -341,7 +344,7 @@ app.controller("create_course", function ($scope, $http, $timeout) {
         select: {
           id: 1,
           name_ar: 1, name_en: 1,
-          code : 1
+          code: 1
         }
       }
     }).then(
@@ -371,11 +374,11 @@ app.controller("create_course", function ($scope, $http, $timeout) {
         number_lecture: $scope.create_course.course.number_lecture_hours || 0
       };
 
-      if($scope.create_course.date_from && i === 0){
+      if ($scope.create_course.date_from && i === 0) {
         obj.date = new Date($scope.create_course.date_from)
       };
 
-      if($scope.create_course.date_to && i === ($scope.create_course.course.number_lecture-1)){
+      if ($scope.create_course.date_to && i === ($scope.create_course.course.number_lecture - 1)) {
         obj.date = new Date($scope.create_course.date_to)
       };
 
@@ -482,7 +485,7 @@ app.controller("create_course", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/numbering/get_automatic",
       data: {
-        screen: "create_course"
+        screen: "create_courses"
       }
     }).then(
       function (response) {

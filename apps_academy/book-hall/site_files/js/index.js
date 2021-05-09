@@ -978,7 +978,7 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/numbering/get_automatic",
       data: {
-        screen: "book_halls"
+        screen: "booking_halls"
       }
     }).then(
       function (response) {

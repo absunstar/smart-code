@@ -44,8 +44,8 @@ module.exports = function init(site) {
 
     let num_obj = {
       company: site.get_company(req),
-      screen: 'lecture',
-      date: new Date()
+      screen: 'lectures',
+      date: new Date(lecture_doc.date)
     };
 
     let cb = site.getNumbering(num_obj);

@@ -60,7 +60,7 @@ module.exports = function init(site) {
     let num_obj = {
       company: site.get_company(req),
       screen: 'hosting',
-      date: new Date()
+      date: new Date(hosting_doc.date)
     };
 
     let cb = site.getNumbering(num_obj);

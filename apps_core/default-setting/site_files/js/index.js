@@ -698,6 +698,34 @@ app.controller("default_setting", function ($scope, $http) {
       }
     )
   };
+  $scope.getTrainerList = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/trainer/all",
+      data: {
+        where: {
+          active: true
+        },
+        select: {
+          id: 1,
+          name_ar: 1, name_en: 1,
+          code: 1
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.trainerList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
 
   $scope.loadItemsType = function () {
     $scope.busy = true;
@@ -750,4 +778,9 @@ app.controller("default_setting", function ($scope, $http) {
   if (site.feature('school')) {
     $scope.getSchoolGradesList();
   }
+
+  if (site.feature('academy') || site.feature('school') || site.feature('club')) {
+    $scope.getTrainerList();
+  }
+
 });

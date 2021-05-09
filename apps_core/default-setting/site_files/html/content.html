@@ -40,6 +40,7 @@
                             ng-search="_search.$search_vendor" label="##word.stores_in_Company_name##"></i-list>
 
                     </div>
+
                     <br>
                     <br>
 
@@ -82,6 +83,11 @@
                     </div>
                     <div class="row">
 
+                        <i-list class="col4" x-features="school || club || academy" items="trainerList"
+                            ng-model="default_setting.general_Settings.trainer" display="name_##session.lang##"
+                            ng-search="create_course.$trainer_search" label="##word.trainer##">
+                        </i-list>
+
                         <i-list help-id="" ng-search="_search.$payment_type_search" class="col2"
                             label="##word.payment_type##" ng-model="default_setting.general_Settings.payment_type"
                             items="paymentTypesList" display="##session.lang##">
@@ -121,8 +127,8 @@
                     </div>
 
                     <div class="row">
-                        <i-checkbox label="##word.work_posting##"
-                        ng-click="linkPostUnPost()"  ng-model="default_setting.general_Settings.work_posting">
+                        <i-checkbox label="##word.work_posting##" ng-click="linkPostUnPost()"
+                            ng-model="default_setting.general_Settings.work_posting">
                         </i-checkbox>
                         <i-checkbox label="##word.work_unposting##" ng-click="linkPostUnPost()"
                             ng-model="default_setting.general_Settings.work_unposting">

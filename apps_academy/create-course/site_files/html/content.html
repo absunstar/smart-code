@@ -21,9 +21,15 @@
 
                     </div>
                     <div class="row">
+                        <i-list class="col4" items="trainerList" ng-model="create_course.trainer" v="r"
+                            display="name_##session.lang##" ng-search="create_course.$trainer_search"
+                            label="##word.trainer##">
+                        </i-list>
+
                         <i-list v="r" help-id="create_course_name" class="col4" items="coursesList"
                             display="name_##session.lang##" ng-search="create_course.$course_search"
                             label="##word.create_course_name##" ng-model="create_course.course"></i-list>
+
                         <i-control ng-show="create_course.course.id" help-id="create_course_name" type="number"
                             class="col2" label="##word.create_course_price##" ng-model="create_course.course.price">
                         </i-control>
@@ -51,7 +57,8 @@
                         <i-date2 v="r" class="col4" ng-model="create_course.date_to" label="##word.date_to##">
                         </i-date2>
 
-                        <i-time class="col2" display="##session.lang##" ng-model="create_course.from" label="##word.from##">
+                        <i-time class="col2" display="##session.lang##" ng-model="create_course.from"
+                            label="##word.from##">
                         </i-time>
 
                         <i-time class="col2" display="##session.lang##" ng-model="create_course.to" label="##word.to##">

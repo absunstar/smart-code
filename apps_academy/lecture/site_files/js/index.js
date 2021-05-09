@@ -269,7 +269,7 @@ app.controller("lecture", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/numbering/get_automatic",
       data: {
-        screen: "lecture"
+        screen: "lectures"
       }
     }).then(
       function (response) {

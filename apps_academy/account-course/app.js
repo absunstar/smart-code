@@ -2,13 +2,15 @@ module.exports = function init(site) {
   const $account_course = site.connectCollection("account_course")
 
   site.on('[create_course][account_course][add]', doc => {
-
+  
     $account_course.add({
+      code: doc.code,
       active: true,
       create_course_id: doc.create_course_id,
       course: {
         id: doc.course.id,
-        name: doc.course.name
+        name_ar: doc.course.name_ar,
+        name_en: doc.course.name_en,
       },
       image_url: '/images/account_course.png',
       period: doc.course.period,
@@ -35,7 +37,7 @@ module.exports = function init(site) {
         doc.trainer = obj.trainer
         doc.dates_list = obj.dates_list
         doc.trainer_account = 0
-        
+
         obj.dates_list.forEach(d => {
           doc.trainer_account += d.account_lectures
 
@@ -92,8 +94,8 @@ module.exports = function init(site) {
 
     let num_obj = {
       company: site.get_company(req),
-      screen: 'account_course',
-      date: new Date()
+      screen: 'trainers_account',
+      date: new Date(account_course_doc.date)
     };
 
     let cb = site.getNumbering(num_obj);
@@ -163,7 +165,7 @@ module.exports = function init(site) {
                 name_ar: result.doc.shift.name_ar, name_en: result.doc.shift.name_en
               },
               transition_type: 'out',
-              operation: {ar: 'دفعة حساب مدرب', en: 'Pay Trainer Account'},
+              operation: { ar: 'دفعة حساب مدرب', en: 'Pay Trainer Account' },
               safe: response.doc.safe
             }
             site.quee('[amounts][safes][+]', paid_value)
@@ -242,7 +244,7 @@ module.exports = function init(site) {
     let response = {
       done: false
     }
-          
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)
@@ -254,7 +256,7 @@ module.exports = function init(site) {
     if (where['name']) {
       where['name'] = site.get_RegExp(where['name'], "i");
     }
-    
+
     if (where['trainer']) {
       where['trainer.id'] = where['trainer'].id;
       delete where['trainer']

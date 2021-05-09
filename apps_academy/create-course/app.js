@@ -73,8 +73,8 @@ module.exports = function init(site) {
 
     let num_obj = {
       company: site.get_company(req),
-      screen: 'create_course',
-      date: new Date()
+      screen: 'create_courses',
+      date: new Date(create_course_doc.date)
     };
 
     let cb = site.getNumbering(num_obj);
@@ -96,10 +96,21 @@ module.exports = function init(site) {
         response.done = true
         response.doc = doc
         if (doc.course) {
+          let num_obj = {
+            company: doc.company,
+            screen: 'trainers_account',
+            date: new Date(doc.date)
+          };
+
+          let cb = site.getNumbering(num_obj);
+
           let course = {
+            code: cb.code,
+            trainer: doc.trainer,
             create_course_id: doc.id,
             course: doc.course,
             shift: doc.shift,
+            date: doc.date,
             date_from: doc.date_from,
             date_to: doc.date_to,
             number_lecture: doc.number_lecture,
@@ -108,6 +119,9 @@ module.exports = function init(site) {
             company: doc.company,
             branch: doc.branch
           }
+
+
+
           site.call('[create_course][account_course][add]', course)
         }
       } else {
@@ -273,7 +287,7 @@ module.exports = function init(site) {
     let response = {
       done: false
     }
-          
+
     if (!req.session.user) {
       response.error = 'Please Login First'
       res.json(response)

@@ -80,11 +80,10 @@ module.exports = function init(site) {
     book_hall_doc.$req = req
     book_hall_doc.$res = res
 
-   
     let num_obj = {
       company: site.get_company(req),
-      screen: 'book_halls',
-      date: new Date()
+      screen: 'booking_halls',
+      date: new Date(book_hall_doc.date)
     };
 
     let cb = site.getNumbering(num_obj);

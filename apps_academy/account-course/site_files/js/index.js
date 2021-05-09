@@ -400,7 +400,7 @@ app.controller("account_course", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/numbering/get_automatic",
       data: {
-        screen: "account_course"
+        screen: "trainers_account"
       }
     }).then(
       function (response) {

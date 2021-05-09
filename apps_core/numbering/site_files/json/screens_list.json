@@ -161,6 +161,48 @@
         "ar": "المكتبات"
     },
     {
+        "category": "main",
+        "feature": "academy",
+        "name": "create_courses",
+        "en": "Create Courses",
+        "ar": "إنشاء الكورسات"
+    },
+    {
+        "category": "main",
+        "feature": "academy",
+        "name": "booking_halls",
+        "en": "Booking A Halls",
+        "ar": "حجز قاعات"
+    },
+    {
+        "category": "main",
+        "feature": "academy",
+        "name": "trainers_account",
+        "en": "Trainers Account",
+        "ar": "حساب المدربين"
+    },
+    {
+        "category": "main",
+        "feature": "academy",
+        "name": "book_course",
+        "en": "Form Course Booking",
+        "ar": "إستمارات حجز كورس"
+    },
+    {
+        "category": "main",
+        "feature": "academy",
+        "name": "hosting",
+        "en": "Hosting",
+        "ar": "الإستضافات"
+    },
+    {
+        "category": "main",
+        "feature": "academy",
+        "name": "lectures",
+        "en": "Lectures",
+        "ar": "المحاضرات"
+    },
+    {
         "category": "inventory",
         "feature": "pos",
         "name": "products",
@@ -345,23 +387,23 @@
     {
         "category": "accounting",
         "feature": "academy",
-        "name": "booking_hall",
-        "en": "Booking A Hall",
-        "ar": "حجز قاعة"
+        "name": "booking_hall_i",
+        "en": "Booking A Halls",
+        "ar": "حجز القاعات"
     },
     {
         "category": "accounting",
         "feature": "academy",
-        "name": "trainer_account",
-        "en": "Trainer Account",
-        "ar": "حساب مدرب"
+        "name": "trainers_account_i",
+        "en": "Trainers Account",
+        "ar": "حساب المدربين"
     },
     {
         "category": "accounting",
         "feature": "academy",
-        "name": "course_booking",
+        "name": "book_course_i",
         "en": "Form Course Booking",
-        "ar": "إستمارة حجز كورس"
+        "ar": "إستمارات حجز كورس"
     },
     {
         "category": "accounting",
@@ -558,6 +600,20 @@
         "name": "facilities",
         "en": "Facilities",
         "ar": "تعريف المنشآت"
+    },
+    {
+        "category": "general_setting",
+        "feature": "academy",
+        "name": "courses",
+        "en": "Courses",
+        "ar": "الكورسات"
+    },
+    {
+        "category": "general_setting",
+        "feature": "academy",
+        "name": "tenants",
+        "en": "Tenants",
+        "ar": "المستأجرين"
     },
     {
         "category": "general_setting",

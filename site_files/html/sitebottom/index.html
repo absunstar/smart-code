@@ -13,15 +13,14 @@
       <i class="white">Copyright 2021 © All Rights Reserved</i>
     </div>
 
-    <div class="social-menu">
+    <div class="social-menu egypt hidden">
       <ul>
-
 
         <li>
           <a target="_blank" href="https://www.youtube.com/channel/UCBnjZmeZQ-w1YWo0J9htqCQ"><i
               class="fa fa-youtube"></i></a>
         </li>
-     
+
         <li class="hidden">
           <a target="_blank" href="https://www.instagram.com"><i class="fa fa-instagram"></i></a>
         </li>
@@ -34,10 +33,57 @@
           <a target="_blank" href="https://www.facebook.com/SmartCodeCompany/"><i class="fa fa-facebook"></i></a>
         </li>
 
+      </ul>
+
+    </div>
+
+    <div class="social-menu unqcode hidden">
+      <ul>
+
+        <li>
+          <a target="_blank" href="https://www.youtube.com/channel/UCLwZJN1mJHs2lqwYXLU31tg"><i
+              class="fa fa-youtube"></i></a>
+        </li>
+     
+        <li>
+          <a target="_blank" href="https://www.instagram.com/rqtn/"><i class="fa fa-instagram"></i></a>
+        </li>
+
+        <li>
+          <a target="_blank" href="https://www.facebook.com/itUnqcode"><i class="fa fa-facebook"></i></a>
+        </li>
+
 
       </ul>
 
     </div>
+
+    <script>
+         if ('##req.headers.host##'.like('*inout*')) {
+        $('.inout').removeClass('hidden');
+        $('.price-info').removeClass('hidden');
+      } else if ('##req.headers.host##'.like('*mt*')) {
+        $('.mt').removeClass('hidden');
+        $('.price-info').removeClass('hidden');
+      } else if ('##req.headers.host##'.like('*ft*')) {
+        $('.ft').removeClass('hidden');
+        $('.price-info').removeClass('hidden');
+      } else if ('##req.headers.host##'.like('*qelada*')) {
+        $('.qelada').removeClass('hidden');
+        $('.price-info').removeClass('hidden');
+      } else if ('##req.headers.host##'.like('*ethraa*')) {
+        $('.ethraa').removeClass('hidden');
+        $('.price-info').removeClass('hidden');
+      } else if ('##req.headers.host##'.like('*free*')) {
+        $('.free').removeClass('hidden');
+        $('.price-info').removeClass('hidden');
+      } else if ('##req.headers.host##'.like('*unqcode*')) {
+        $('.unqcode').removeClass('hidden');
+      } else {
+        $('.egypt').removeClass('hidden');
+        $('.price-info').removeClass('hidden');
+      }
+    </script>
 
   </div>
 </div>
