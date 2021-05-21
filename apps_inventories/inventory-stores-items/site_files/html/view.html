@@ -5,7 +5,7 @@
             <a class="tab-link" onclick="site.showTabContent(event, '#basic_information')">
                 ##word.basic_information## </a>
 
-            <a class="tab-link" onclick="site.showTabContent(event, '#stores_items_sizes')">
+            <a class="tab-link" ng-show="category_item.add_sizes" onclick="site.showTabContent(event, '#stores_items_sizes')">
                 ##word.stores_items_sizes## </a>
 
             <a class="tab-link" onclick="site.showTabContent(event, '#informationInstructions')"
@@ -116,6 +116,65 @@
 
 
 
+                        </div>
+                        <div class="row" ng-hide="category_item.add_sizes">
+                            <table class="table center hover">
+                                <tr>
+                                    <th>##word.logo##</th>
+                                    <th>##word.item_code##</th>
+        
+                                    <th ng-hide="category_item.item_type.id === 2">##word.stores_current_balance##</th>
+                                    <th ng-hide="category_item.item_type.id === 2">##word.stores_start_balance##</th>
+                                    <th>##word.actions##</th>
+                                </tr>
+        
+                                <tr ng-repeat="item in category_item.sizes" ng-hide="item.$hide">
+        
+                                    <td>
+                                        <br>
+                                        <i-image view class="logo" ng-model="item.image_url"></i-image>
+                                    </td>
+        
+                                    <td class="center"> <br>
+                                        <p class="bold blue userPrint">{{item.barcode}}</p>
+                                    </td>
+        
+                                    <td ng-hide="category_item.item_type.id === 2">
+                                        <br>
+                                        <p class="center bold green" ng-show="item.current_count > 0">
+                                            {{item.current_count}} </p>
+                                        <p class="bold red center" ng-show="item.current_count == 0 ||item.current_count < 0">
+                                            {{item.current_count}} </p>
+                                    </td>
+                                    <td ng-hide="category_item.item_type.id === 2">
+                                        <br>
+                                        <p class="bold center"> {{item.start_count}} </p>
+                                    </td>
+                                    <td>
+                                        <div class="row center">
+        
+                                            <p>
+                                                <i-button ng-show="item.item_complex == true" type="view"
+                                                    label="##word.complex_items##"
+                                                    ng-click="item.view = true ;showComplexItemsView(item)">
+                                                </i-button>
+                                            </p>
+                                        </div>
+        
+                                        <div class="row center" ng-hide="category_item.item_type.id === 2">
+                                            <i-button type="view" label="##word.branches_balances##"
+                                                ng-click=" item.view = true ; branchesBalances(item)">
+                                            </i-button>
+                                        </div>
+        
+                                        <div class="row center">
+                                            <i-button type="view" label="##word.units##" ng-click="viewUnits(item)">
+                                            </i-button>
+                                        </div>
+        
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
 

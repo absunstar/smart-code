@@ -28,18 +28,19 @@
                         <table class="table center bold hover">
                             <tr>
                                 <th>##word.serial##</th>
-                                <th>##word.stores_offer_item_name##</th>
                                 <th>##word.barcode##</th>
-                                <th>##word.stores_offer_item_size##</th>
+                                <th>##word.stores_offer_item_name##</th>
                                 <th>##word.units##</th>
                                 <th>##word.actions##</th>
                             </tr>
 
                             <tr ng-repeat="itm in item.sizes track by $index">
                                 <td> <br> {{$index + 1}}</td>
-                                <td> <br> {{itm.name_##session.lang##}}</td>
                                 <td> <br> {{itm.barcode}}</td>
-                                <td> <br> {{itm.size_ar}}</td>
+                                <td> <br>
+                                    <p ng-show="itm.add_sizes" class="bold center">{{itm.name_##session.lang##}} {{itm.size_##session.lang##}}</p>
+                                    <p ng-hide="itm.add_sizes" class="bold center">{{itm.size_##session.lang##}}</p>
+                                </td>
 
                                 <td>
 

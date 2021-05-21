@@ -106,15 +106,15 @@
                                 <p ng-hide="c.sizes.length > 0">##word.no_items##</p>
                                 <table ng-show="c.sizes.length > 0" class="table bold hover">
                                     <tr>
-                                        <th>##word.stores_size##</th>
+                                        <th ng-show="c.add_sizes">##word.stores_size##</th>
                                         <th>##word.item_code##</th>
                                         <th>##word.stores_current_balance##</th>
                                         <th>##word.stores_start_balance##</th>
                                     </tr>
 
                                     <tr ng-repeat="_size in c.sizes" ng-hide="_size.$hide">
-                                        <td class="center">
-                                            <p>{{_size.size_ar}}</p>
+                                        <td class="center" ng-show="c.add_sizes">
+                                            <p>{{_size.size_##session.lang##}}</p>
                                             <p>{{_size.size_en}}</p>
                                         </td>
                                         <td class="center blue userPrint">{{_size.barcode}}</td>

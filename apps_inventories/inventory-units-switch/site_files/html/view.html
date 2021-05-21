@@ -26,7 +26,6 @@
                             <th>##word.serial##</th>
                             <th>##word.barcode##</th>
                             <th>##word.units_switch_item_name##</th>
-                            <th>##word.units_switch_item_size##</th>
                             <th>##word.unit##</th>
                             <th>##word.units_trans##</th>
                             <th>##word.units_switch_item_count##</th>
@@ -36,11 +35,11 @@
                         <tr ng-repeat="itm in units_switch.items">
                             <td class="center blue">{{$index + 1}}</td>
                             <td class="center">{{itm.barcode}}</td>
-                            <td class="center">{{itm.name_##session.lang##}}</td>
                             <td class="center">
-                                <p>{{itm.size_ar}}</p>
-                                <p>{{itm.size_en}}</p>
+                                <p ng-show="itm.add_sizes">{{itm.name_##session.lang##}} {{itm.size_##session.lang##}}</p>
+                                <p ng-hide="itm.add_sizes">{{itm.size_##session.lang##}}</p>
                             </td>
+                          
                             <td class="center">{{itm.unit.name_##session.lang##}}</td>
                             <td class="center">{{itm.units_trans.name_##session.lang##}}</td>
                             <td class="center blue">{{itm.count}}</td>

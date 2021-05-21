@@ -579,6 +579,11 @@ module.exports = function init(site) {
     compress: true
   })
 
+  site.get({
+    name: 'images',
+    path: __dirname + '/site_files/images/'
+  })
+
   site.post({
     name: "/api/items_types/all",
     path: __dirname + "/site_files/json/items_types.json"
@@ -593,10 +598,10 @@ module.exports = function init(site) {
       res.json(response)
       return
     }
-
-    let stores_items_doc = req.body
-    stores_items_doc.$req = req
-    stores_items_doc.$res = res
+    let stores_items_doc = req.body.category_item
+    let item_doc = req.body.item
+    // stores_items_doc.$req = req
+    // stores_items_doc.$res = res
 
     stores_items_doc.company = site.get_company(req)
     stores_items_doc.branch = site.get_branch(req)
@@ -606,80 +611,209 @@ module.exports = function init(site) {
       $res: res
     })
 
-    stores_items_doc.sizes.forEach(_size => {
-      _size.item_type = stores_items_doc.item_type
-      _size.size_units_list.forEach(_size_unit => {
-        let indx = stores_items_doc.units_list.findIndex(_unit1 => _unit1.id == _size_unit.id);
-        if (stores_items_doc.units_list[indx] && stores_items_doc.units_list[indx].convert)
-          _size_unit.convert = stores_items_doc.units_list[indx].convert
+    site.getBarcodesList(req, cbBarcodesList => {
 
-        if (!_size_unit.average_cost)
-          _size_unit.average_cost = _size_unit.cost
+      site.getDefaultSetting(req, settingCallback => {
 
-        _size_unit.current_count = 0
-        _size_unit.start_count = 0
-      });
-    });
+        if (!stores_items_doc.add_sizes) {
+          item_doc.size_ar = stores_items_doc.name_ar;
+          item_doc.size_en = stores_items_doc.name_en;
+          item_doc.start_count = 0;
+          item_doc.current_count = 0;
+          item_doc.total_sell_price = 0;
+          item_doc.total_sell_count = 0;
+          item_doc.total_buy_cost = 0;
+          item_doc.total_buy_count = 0;
 
+          item_doc.size_units_list = [];
+          stores_items_doc.units_list.forEach(_size_unit => {
+            item_doc.size_units_list.push({
+              id: _size_unit.id,
+              name_ar: _size_unit.name_ar,
+              name_en: _size_unit.name_en,
+              convert: _size_unit.convert,
+              barcode: _size_unit.barcode,
+              price: _size_unit.price,
+              cost: _size_unit.cost,
+              current_count: 0,
+              start_count: 0,
+              average_cost: _size_unit.average_cost,
+              discount: Object.assign({}, _size_unit.discount)
+            });
+          });
+          stores_items_doc.sizes = [item_doc];
 
-
-    $stores_items.findMany({
-      where: {
-        'company.id': site.get_company(req).id,
-      }
-    }, (err, docs, count) => {
-      if (!err && count >= site.get_company(req).item) {
-
-        response.error = 'The maximum number of adds exceeded'
-        res.json(response)
-      } else {
-
-        let num_obj = {
-          company: site.get_company(req),
-          screen: 'category_items',
-          date: new Date()
-        };
-
-        let cb = site.getNumbering(num_obj);
-        if (!stores_items_doc.code && !cb.auto) {
-          response.error = 'Must Enter Code';
-          res.json(response);
-          return;
-
-        } else if (cb.auto) {
-          stores_items_doc.code = cb.code;
         }
 
-
-        $stores_items.add(stores_items_doc, (err, doc) => {
-          if (!err) {
-            response.done = true
-
-            let d = new Date().getDate().toString()
-            let h = new Date().getHours().toString()
-            let m = new Date().getMinutes().toString()
-            doc.sizes.forEach((_size, i_size) => {
-              if (!_size.barcode || _size.barcode == null)
-                _size.barcode = doc.company.id + doc.id + d + h + m + i_size
-
-              _size.size_units_list.forEach((_size_unit, _i) => {
-                let indx = doc.units_list.findIndex(_unit1 => _unit1.id == _size_unit.id);
-                _size_unit.convert = (doc.units_list[indx] || _size_unit || {}).convert //amr
-
-                if (!_size_unit.average_cost)
-                  _size_unit.average_cost = _size_unit.cost
-
-                if (!_size_unit.barcode || _size_unit.barcode == null)
-                  _size_unit.barcode = doc.company.id + doc.id + (_size_unit.id || 0) + d + h + m + i_size + _i
-              });
-
-            });
-            $stores_items.update(doc)
-
-          } else response.error = err.message
+        if (stores_items_doc.sizes && stores_items_doc.sizes.length < 1 && stores_items_doc.add_sizes) {
+          response.error = 'Should Add Items';
           res.json(response)
+          return;
+        };
+
+
+        let err_barcode = false
+
+        stores_items_doc.sizes.forEach(_size => {
+          if (settingCallback && settingCallback.inventory && !settingCallback.inventory.auto_barcode_generation) {
+
+            if (!_size.barcode || _size.barcode == null) {
+              response.error = "Must Enter Barcode";
+              res.json(response)
+              return;
+            };
+
+            let err_barcode1 = cbBarcodesList.some(_itemSize => _itemSize.barcode === _size.barcode);
+            if (err_barcode1) {
+              err_barcode = true
+            }
+
+          }
+
+          _size.item_type = stores_items_doc.item_type
+
+          _size.size_units_list.forEach(_size_unit => {
+            let indx = stores_items_doc.units_list.findIndex(_unit1 => _unit1.id == _size_unit.id);
+            if (stores_items_doc.units_list[indx] && stores_items_doc.units_list[indx].convert)
+              _size_unit.convert = stores_items_doc.units_list[indx].convert
+
+            if (!_size_unit.average_cost)
+              _size_unit.average_cost = _size_unit.cost
+
+            _size_unit.current_count = 0
+            _size_unit.start_count = 0
+          });
+        });
+
+        if (err_barcode) {
+          response.error = "Barcode Exists";
+          res.json(response)
+          return;
+        }
+
+        let unitDiscount = false;
+        let foundBarcodeUnit = false;
+        let notBarcodeUnit = false;
+        let sizesList = [];
+        let existBarcodeUnitList = [];
+
+        stores_items_doc.sizes.forEach(_size => {
+
+          let total_complex_av = 0;
+
+          if (_size.item_complex && _size.complex_items && _size.complex_items.length > 0) {
+            _size.complex_items.map(_complex => total_complex_av += (_complex.unit.average_cost * _complex.count));
+
+            if (_size.value_add) {
+              if (_size.value_add.type == 'percent')
+                total_complex_av = total_complex_av + ((site.toNumber(_size.value_add.value) * total_complex_av) / 100);
+
+              else total_complex_av = total_complex_av + site.toNumber(_size.value_add.value);
+            }
+          };
+
+          _size.size_units_list.forEach(_unit => {
+
+            if (_size.item_complex && _size.complex_items && _size.complex_items.length > 0) _unit.average_cost = total_complex_av;
+            _unit.average_cost = site.toNumber(_unit.average_cost);
+            if (_unit.barcode === undefined) {
+
+              notBarcodeUnit = true;
+            }
+            let notFoundBarcodeUnitList = sizesList.some(_FbUL => _FbUL === _size.barcode);
+            if (!notFoundBarcodeUnitList) sizesList.push(_size.barcode);
+            if (_unit.discount && _unit.discount.value > _unit.discount.max) unitDiscount = true;
+
+            let fonudExistBu = cbBarcodesList.some(_unit1 => _unit1.barcode === _unit.barcode);
+            if (fonudExistBu) {
+              let foundExistBarcodeUnitList = existBarcodeUnitList.some(_ExBuL => _ExBuL === _size.barcode);
+              if (!foundExistBarcodeUnitList) existBarcodeUnitList.push(_unit.barcode);
+              foundBarcodeUnit = true;
+            }
+          });
+        });
+
+        if (unitDiscount) {
+          response.error = `DiscountUG (${sizesList})`;
+          res.json(response)
+          return;
+        };
+
+        if (settingCallback && settingCallback.inventory && settingCallback.inventory.auto_unit_barcode_generation != true) {
+
+          if (notBarcodeUnit) {
+            response.error = `EnterBU (${sizesList})`;
+            res.json(response)
+            return;
+          };
+
+          if (foundBarcodeUnit) {
+            response.error = `ExistBu (${existBarcodeUnitList})`;
+            res.json(response)
+            return;
+          };
+
+        };
+
+        $stores_items.findMany({
+          where: {
+            'company.id': site.get_company(req).id,
+          }
+        }, (err, docs, count) => {
+          if (!err && count >= site.get_company(req).item) {
+
+            response.error = 'The maximum number of adds exceeded'
+            res.json(response)
+          } else {
+
+            let num_obj = {
+              company: site.get_company(req),
+              screen: 'category_items',
+              date: new Date()
+            };
+
+            let cb = site.getNumbering(num_obj);
+            if (!stores_items_doc.code && !cb.auto) {
+              response.error = 'Must Enter Code';
+              res.json(response);
+              return;
+
+            } else if (cb.auto) {
+              stores_items_doc.code = cb.code;
+            }
+
+
+            $stores_items.add(stores_items_doc, (err, doc) => {
+              if (!err) {
+                response.done = true
+
+                let d = new Date().getDate().toString()
+                let h = new Date().getHours().toString()
+                let m = new Date().getMinutes().toString()
+                doc.sizes.forEach((_size, i_size) => {
+                  if (!_size.barcode || _size.barcode == null)
+                    _size.barcode = doc.company.id + doc.id + d + h + m + i_size
+
+                  _size.size_units_list.forEach((_size_unit, _i) => {
+                    let indx = doc.units_list.findIndex(_unit1 => _unit1.id == _size_unit.id);
+                    _size_unit.convert = (doc.units_list[indx] || _size_unit || {}).convert //amr
+
+                    if (!_size_unit.average_cost)
+                      _size_unit.average_cost = _size_unit.cost
+
+                    if (!_size_unit.barcode || _size_unit.barcode == null)
+                      _size_unit.barcode = doc.company.id + doc.id + (_size_unit.id || 0) + d + h + m + i_size + _i
+                  });
+
+                });
+                $stores_items.update(doc)
+
+              } else response.error = err.message
+              res.json(response)
+            })
+          }
         })
-      }
+      })
     })
 
   })
@@ -695,86 +829,222 @@ module.exports = function init(site) {
       return
     }
 
-    let stores_items_doc = req.body;
+    let stores_items_doc = req.body.category_item
 
     stores_items_doc.edit_user_info = site.security.getUserFinger({
       $req: req,
       $res: res
     });
 
-    let d = new Date().getDate().toString()
-    let h = new Date().getHours().toString()
-    let m = new Date().getMinutes().toString()
+    site.getBarcodesList(req, cbBarcodesList => {
+      site.getDefaultSetting(req, settingCallback => {
 
-    stores_items_doc.sizes.forEach((_size, i) => {
-      _size.item_type = stores_items_doc.item_type
-      if (!_size.barcode || _size.barcode == null)
-        _size.barcode = stores_items_doc.company.id + stores_items_doc.id + d + h + m + i
+        if (!stores_items_doc.add_sizes) {
 
-      _size.size_units_list.forEach((_size_unit, _i) => {
-        let indx = 0;
-        indx = stores_items_doc.units_list.findIndex(_unit1 => _unit1.id == _size_unit.id);
-        _size_unit.convert = stores_items_doc.units_list[indx].convert
+          stores_items_doc.sizes[0].size_ar = stores_items_doc.name_ar
+          stores_items_doc.sizes[0].size_en = stores_items_doc.size_en
 
-        if (!_size_unit.average_cost)
-          _size_unit.average_cost = _size_unit.cost
+        }
 
-        if (!_size_unit.barcode || _size_unit.barcode == null)
-          _size_unit.barcode = stores_items_doc.company.id + stores_items_doc.id + (_size_unit.id || 0) + d + h + m + i + _i
-      });
+        if (stores_items_doc.sizes && stores_items_doc.sizes.length < 1 && stores_items_doc.add_sizes) {
+          response.error = 'Should Add Items';
+          res.json(response)
+          return;
+        };
 
-    });
+        let err_barcode = false
 
+        stores_items_doc.sizes.forEach(_size => {
+          if (settingCallback && settingCallback.inventory && !settingCallback.inventory.auto_barcode_generation) {
 
-    if (stores_items_doc._id) {
-      $stores_items.edit({
-        where: {
-          _id: stores_items_doc._id
-        },
-        set: stores_items_doc,
-        $req: req,
-        $req: req,
-        $res: res
-      }, (err, item_doc) => {
-        if (!err) {
+            if (!_size.barcode || _size.barcode == null) {
+              response.error = "Must Enter Barcode";
+              res.json(response)
+              return;
+            };
 
-          response.done = true
-          let obj = { sizes_list: [] }
-          let exist = false
-          let foundNameAr = false;
-          let foundNameEn = false;
+            // let err_barcode1 = cbBarcodesList.some(_itemSize => _itemSize === _size.barcode);
+            cbBarcodesList.forEach(_cbBarList => {
+              if (_cbBarList.barcode === _size.barcode && _cbBarList.id != stores_items_doc.id) {
+                err_barcode = true
+              }
+            });
+            // if (err_barcode1) {
+            //   err_barcode = true
+            // }
 
-          obj.company = item_doc.doc.company
+          }
 
-          if (item_doc.doc.name_ar === item_doc.old_doc.name_ar) foundNameAr = true
-          if (item_doc.doc.name_en === item_doc.old_doc.name_en) foundNameEn = true
+          _size.item_type = stores_items_doc.item_type
 
-          item_doc.doc.sizes.forEach(_size => {
-            let foundSize = false;
-            let foundNameEn = false;
-            item_doc.old_doc.sizes.map(old_size => {
-              if (_size.size_ar === old_size.size_ar) foundSize = true
-              if (_size.size_en === old_size.size_en) foundNameEn = true
-            })
+          _size.size_units_list.forEach(_size_unit => {
+            let indx = stores_items_doc.units_list.findIndex(_unit1 => _unit1.id == _size_unit.id);
+            if (stores_items_doc.units_list[indx] && stores_items_doc.units_list[indx].convert)
+              _size_unit.convert = stores_items_doc.units_list[indx].convert
 
-            if (!foundSize || !foundNameEn || !foundNameAr || !foundNameEn) {
-              obj.sizes_list.push({
-                size_ar: _size.size_ar,
-                barcode: _size.barcode,
-                size_en: _size.size_en,
-                name_ar: item_doc.doc.name_ar,
-                name_en: item_doc.doc.name_en
-              })
-              exist = true
+            if (!_size_unit.average_cost)
+              _size_unit.average_cost = _size_unit.cost
+
+            _size_unit.current_count = 0
+            _size_unit.start_count = 0
+          });
+        });
+
+        if (err_barcode) {
+          response.error = "Barcode Exists";
+          res.json(response)
+          return;
+        }
+
+        let unitDiscount = false;
+        let foundBarcodeUnit = false;
+        let notBarcodeUnit = false;
+        let sizesList = [];
+        let existBarcodeUnitList = [];
+
+        stores_items_doc.sizes.forEach(_size => {
+
+          let total_complex_av = 0;
+
+          if (_size.item_complex && _size.complex_items && _size.complex_items.length > 0) {
+            _size.complex_items.map(_complex => total_complex_av += (_complex.unit.average_cost * _complex.count));
+
+            if (_size.value_add) {
+              if (_size.value_add.type == 'percent')
+                total_complex_av = total_complex_av + ((site.toNumber(_size.value_add.value) * total_complex_av) / 100);
+
+              else total_complex_av = total_complex_av + site.toNumber(_size.value_add.value);
             }
+          };
+
+          _size.size_units_list.forEach(_unit => {
+
+            if (_size.item_complex && _size.complex_items && _size.complex_items.length > 0) _unit.average_cost = total_complex_av;
+            _unit.average_cost = site.toNumber(_unit.average_cost);
+            if (_unit.barcode === undefined) {
+
+              notBarcodeUnit = true;
+            }
+            let notFoundBarcodeUnitList = sizesList.some(_FbUL => _FbUL === _size.barcode);
+            if (!notFoundBarcodeUnitList) sizesList.push(_size.barcode);
+            if (_unit.discount && _unit.discount.value > _unit.discount.max) unitDiscount = true;
+
+            // let fonudExistBu = cbBarcodesList.some(_unit1 => _unit1.barcode === _unit.barcode);
+
+            cbBarcodesList.forEach(_unit1 => {
+              if (_unit1.barcode === _unit.barcode && _unit1.id != stores_items_doc.id) {
+                let foundExistBarcodeUnitList = existBarcodeUnitList.some(_ExBuL => _ExBuL === _size.barcode);
+              if (!foundExistBarcodeUnitList) existBarcodeUnitList.push(_unit.barcode);
+              foundBarcodeUnit = true;
+              }
+            });
+
+            // if (fonudExistBu) {
+
+            //   let foundExistBarcodeUnitList = existBarcodeUnitList.some(_ExBuL => _ExBuL === _size.barcode);
+            //   if (!foundExistBarcodeUnitList) existBarcodeUnitList.push(_unit.barcode);
+            //   foundBarcodeUnit = true;
+            // }
+          });
+        });
+
+        if (unitDiscount) {
+          response.error = `DiscountUG (${sizesList})`;
+          res.json(response)
+          return;
+        };
+
+        if (settingCallback && settingCallback.inventory && settingCallback.inventory.auto_unit_barcode_generation != true) {
+
+          if (notBarcodeUnit) {
+            response.error = `EnterBU (${sizesList})`;
+            res.json(response)
+            return;
+          };
+
+          if (foundBarcodeUnit) {
+            response.error = `ExistBu (${existBarcodeUnitList})`;
+            res.json(response)
+            return;
+          };
+
+        };
+
+        let d = new Date().getDate().toString()
+        let h = new Date().getHours().toString()
+        let m = new Date().getMinutes().toString()
+
+        stores_items_doc.sizes.forEach((_size, i) => {
+          _size.item_type = stores_items_doc.item_type
+          if (!_size.barcode || _size.barcode == null)
+            _size.barcode = stores_items_doc.company.id + stores_items_doc.id + d + h + m + i
+
+          _size.size_units_list.forEach((_size_unit, _i) => {
+            let indx = 0;
+            indx = stores_items_doc.units_list.findIndex(_unit1 => _unit1.id == _size_unit.id);
+            _size_unit.convert = stores_items_doc.units_list[indx].convert
+
+            if (!_size_unit.average_cost)
+              _size_unit.average_cost = _size_unit.cost
+
+            if (!_size_unit.barcode || _size_unit.barcode == null)
+              _size_unit.barcode = stores_items_doc.company.id + stores_items_doc.id + (_size_unit.id || 0) + d + h + m + i + _i
           });
 
+        });
 
-          if (exist) site.quee('[stores_items][item_name][change]', obj)
-        } else response.error = err.message
-        res.json(response)
+
+        if (stores_items_doc._id) {
+          $stores_items.edit({
+            where: {
+              _id: stores_items_doc._id
+            },
+            set: stores_items_doc,
+            $req: req,
+            $req: req,
+            $res: res
+          }, (err, item_doc) => {
+            if (!err) {
+
+              response.done = true
+              let obj = { sizes_list: [] }
+              let exist = false
+              let foundNameAr = false;
+              let foundNameEn = false;
+
+              obj.company = item_doc.doc.company
+
+              if (item_doc.doc.name_ar === item_doc.old_doc.name_ar) foundNameAr = true
+              if (item_doc.doc.name_en === item_doc.old_doc.name_en) foundNameEn = true
+
+              item_doc.doc.sizes.forEach(_size => {
+                let foundSize = false;
+                let foundNameEn = false;
+                item_doc.old_doc.sizes.map(old_size => {
+                  if (_size.size_ar === old_size.size_ar) foundSize = true
+                  if (_size.size_en === old_size.size_en) foundNameEn = true
+                })
+
+                if (!foundSize || !foundNameEn || !foundNameAr || !foundNameEn) {
+                  obj.sizes_list.push({
+                    size_ar: _size.size_ar,
+                    barcode: _size.barcode,
+                    size_en: _size.size_en,
+                    name_ar: item_doc.doc.name_ar,
+                    name_en: item_doc.doc.name_en
+                  })
+                  exist = true
+                }
+              });
+
+
+              if (exist) site.quee('[stores_items][item_name][change]', obj)
+            } else response.error = err.message
+            res.json(response)
+          });
+        } else res.json(response);
       });
-    } else res.json(response);
+    });
   });
 
   site.post("/api/stores_items/delete", (req, res) => {
@@ -1556,17 +1826,87 @@ module.exports = function init(site) {
     })
   })
 
+  site.getBarcodesList = function (req, callback) {
+    let where = {}
+    where['company.id'] = site.get_company(req).id
+
+    if (where.serial) {
+      where['$or'] = [{ 'sizes.work_patch': true }, { 'sizes.work_serial': true }]
+
+      where['company.id'] = site.get_company(req).id
+      where['sizes.barcode'] = {
+        $in: where.barcodes
+      }
+
+      delete where.serial
+      delete where.barcodes
+
+    }
+
+    $stores_items.findMany({
+      select: req.body.select || {},
+      where: where,
+      sort: req.body.sort || {
+        id: -1
+      },
+      limit: req.body.limit
+    }, (err, docs) => {
+      if (!err) {
+
+        let barcodeArr = [];
+        let serialArr = [];
+        if (docs && docs.length > 0) {
+          docs.forEach(item => {
+            if (item.sizes && item.sizes.length > 0)
+              item.sizes.forEach(_size => {
+                barcodeArr.push({ barcode: _size.barcode, id: item.id })
+                if (_size.size_units_list && _size.size_units_list.length > 0)
+                  _size.size_units_list.forEach(_unit => {
+                    if (_unit.barcode)
+                      barcodeArr.push({ barcode: _unit.barcode, id: item.id })
+                  });
+
+                if (_size.branches_list && _size.branches_list.length > 0) {
+                  _size.branches_list.forEach(_branch => {
+                    if (_branch.stores_list && _branch.stores_list.length > 0) {
+                      _branch.stores_list.forEach(_store => {
+                        if (_store.size_units_list && _store.size_units_list.length > 0) {
+                          _store.size_units_list.forEach(_sizeUnit => {
+                            if (_sizeUnit.patch_list && _sizeUnit.patch_list.length > 0) {
+                              _sizeUnit.patch_list.forEach(_p => {
+                                serialArr.push(_p.patch)
+                              });
+                            }
+                          });
+                        }
+                      });
+                    }
+                  });
+                }
+              })
+          })
+        }
+
+        callback(barcodeArr)
+      } else {
+        callback(null)
+
+      }
+    })
+  }
+
   site.getItemsSizes = function (req, callback) {
     let where = {}
     let barcodes = [];
 
-    if (req.body.items && req.body.items.length > 0)
-      barcodes = req.body.items.map(_item => _item.barcode)
+    if (req.body.items && req.body.items.length > 0) {
 
-    where['company.id'] = site.get_company(req).id
-    where['sizes.barcode'] = {
-      $in: barcodes
+      barcodes = req.body.items.map(_item => _item.barcode)
+      where['sizes.barcode'] = {
+        $in: barcodes
+      }
     }
+    where['company.id'] = site.get_company(req).id
 
     $stores_items.findMany({
       select: req.body.select || {},
@@ -1589,8 +1929,8 @@ module.exports = function init(site) {
                 arr_sizes.unshift(_size)
               })
           })
-          callback(arr_sizes)
         }
+        callback(arr_sizes)
       } else {
         callback(null)
       }

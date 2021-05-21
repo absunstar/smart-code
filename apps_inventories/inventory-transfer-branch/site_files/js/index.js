@@ -308,6 +308,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
             total: _size.total,
             current_count: _size.current_count,
             ticket_code: _size.ticket_code,
+            add_sizes: _size.add_sizes
           });
         }
       });
@@ -356,6 +357,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
                     let foundHold = false;
                     let indxUnit = 0;
 
+                    _size.add_sizes = _item.add_sizes;
                     if (_size.size_units_list && _size.size_units_list.length > 0)
                       _size.size_units_list.forEach((_unit, i) => {
 
@@ -449,8 +451,9 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
     if ($scope.item.itm && $scope.item.itm.sizes && $scope.item.itm.sizes.length > 0)
       $scope.item.itm.sizes.forEach(_item => {
         let foundHold = false;
-        _item.name_ar = $scope.item.itm.name_ar
-        _item.name_en = $scope.item.itm.name_en
+        _item.add_sizes = $scope.item.itm.add_sizes;
+        _item.name_ar = $scope.item.itm.name_ar;
+        _item.name_en = $scope.item.itm.name_en;
         _item.item_group = $scope.item.itm.item_group;
         _item.store_from = $scope.transfer_branch.store_from
         _item.count = 1;
@@ -535,6 +538,8 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
                 response.data.list[0].sizes.forEach(_size => {
                   let foundHold = false;
                   let indxUnit = 0;
+
+                  _size.add_sizes = response.data.list[0].add_sizes;
 
                   if (_size.size_units_list && _size.size_units_list.length > 0)
                     _size.size_units_list.forEach((_unit, i) => {

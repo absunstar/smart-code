@@ -11,8 +11,9 @@
                 <div class="row">
                     <i-control ng-keydown="getItemsName($event)" id="item_name" class="col3"
                         ng-model="item.search_item_name" label="##word.search##" type="text"></i-control>
-                    <i-list class="col4" label="##word.stores_out_item_name##" ng-model="item.itm" display="name_##session.lang##"
-                        items="itemsNameList" ng-change="itemsStoresOut()" ng-search="item_searching"></i-list>
+                    <i-list class="col4" label="##word.stores_out_item_name##" ng-model="item.itm"
+                        display="name_##session.lang##" items="itemsNameList" ng-change="itemsStoresOut()"
+                        ng-search="item_searching"></i-list>
                 </div>
                 <div class="row">
 
@@ -21,10 +22,10 @@
 
                         <div class="row">
                             <div class="col2 center">
-                                <label>##word.stores_out_item_size##</label>
-                                <br>
-                                <i-button type="add" label="##word.stores_out_add_to_sizes##" ng-click="addToSizes()">
-                                </i-button>
+                                <label>##word.stores_out_item_name##</label>
+                                <!--  <br>
+                                 <i-button type="add" label="##word.stores_out_add_to_sizes##" ng-click="addToSizes()">
+                                </i-button> -->
                             </div>
                             <div class="col2 center">
                                 <label>##word.barcode##</label>
@@ -69,17 +70,18 @@
                             <div class="row center">
                                 <div class="col2">
                                     <br ng-hide="s.$new">
-                                    <h3 ng-hide="s.$new" class="bold center">{{s.size_ar}}</h3>
-                                    <i-control ng-show="s.$new" ng-model="s.size_ar" type="text">
-                                    </i-control>
+                                    <h3 class="bold center" ng-show="s.add_sizes">{{s.name_##session.lang##}} {{s.size_##session.lang##}}</h3>
+                                    <h3 class="bold center" ng-show="!s.add_sizes">{{s.size_##session.lang##}}</h3>
+                                    <!-- <i-control ng-show="s.$new" ng-model="s.size_ar" type="text">
+                                    </i-control> -->
                                 </div>
 
                                 <div class="col2">
                                     <br ng-hide="s.$new">
                                     <h3 ng-hide="s.$new" class="bold center">{{s.barcode}}</h3>
 
-                                    <i-control ng-show="s.$new" ng-model="s.barcode" type="text">
-                                    </i-control>
+                                    <!-- <i-control ng-show="s.$new" ng-model="s.barcode" type="text">
+                                    </i-control> -->
                                 </div>
 
                                 <i-control disabled class="col1" ng-model="s.current_count" type="number">

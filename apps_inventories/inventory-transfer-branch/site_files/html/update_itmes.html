@@ -54,7 +54,6 @@
                             <tr>
                                 <th>##word.serial##</th>
                                 <th>##word.transfer_branch_item_name##</th>
-                                <th>##word.transfer_branch_item_size##</th>
                                 <th>##word.transfer_branch_item_count##</th>
                                 <th class="not-print">##word.transfer_branch_item_cost##</th>
                                 <th class="not-print">##word.transfer_branch_item_price##</th>
@@ -64,8 +63,10 @@
                             </tr>
                             <tr ng-repeat="itm in transfer_branch.items">
                                 <td>{{$index + 1}}</td>
-                                <td>{{itm.name_##session.lang##}}</td>
-                                <td>{{itm.size_ar}}</td>
+                                <td>
+                                    <p ng-show="itm.add_sizes">{{itm.name_##session.lang##}} {{itm.size_##session.lang##}}</p>
+                                    <p ng-hide="itm.add_sizes">{{itm.size_##session.lang##}}</p>
+                                </td>
                                 <td>{{itm.count}}</td>
                                 <td class="not-print">{{itm.cost}}</td>
                                 <td class="not-print">{{itm.price}}</td>

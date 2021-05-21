@@ -309,7 +309,8 @@
                                     help-id="menu_monitor">
                                     <img ng-src="{{i.image_url}}">
                                     <div class="bg_font_item">
-                                        <p class="center font_name_items">{{i.name_##session.lang##}}</p>
+                                        <p class="center font_name_items" >{{i.name_##session.lang##}} <b ng-show="i.add_sizes">{{i.sizes[0].size_##session.lang##}}</b></p>
+                                        
                                     </div>
                                 </a>
                             </div>
@@ -331,7 +332,7 @@
                                             <img ng-src="{{s.image_url}}" onerror="this.src='/images/no.png'">
                                             <!-- <h3> ##word.price## : {{s.price}}</h3> -->
                                             <div class="bg_font_item">
-                                                <h3 class="center font_name_items">{{s.size_ar}}</h3>
+                                                <h3 class="center font_name_items">{{s.size_##session.lang##}}</h3>
                                             </div>
                                         </a>
 
@@ -459,7 +460,6 @@
 
                                 <tr>
                                     <th>##word.stores_items_name##</th>
-                                    <th>##word.stores_size##</th>
                                     <th class="w150">##word.items_count##</th>
                                     <th>##word.price##</th>
                                     <th class="w100">##word.t_o## ##word.price##</th>
@@ -467,11 +467,11 @@
                                 </tr>
 
                                 <tr ng-repeat="size in order_invoice.book_list">
-                                    <td class="center title">{{size.name_##session.lang##}}</td>
                                     <td class="center title">
-                                        <p>{{size.size_ar}}</p>
-                                        <p>{{size.size_en}}</p>
+                                        <p ng-show="size.add_sizes">{{size.name_##session.lang##}} {{size.size_##session.lang##}}</p>
+                                        <p ng-hide="size.add_sizes">{{size.size_##session.lang##}}</p>
                                     </td>
+
                                     <td class="center">
                                         <i-control ng-change="calcSize(size)" ng-model="size.count" type="number">
                                         </i-control>

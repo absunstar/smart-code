@@ -204,7 +204,7 @@
                                             ng-click="bookList(s)" help-id="menu_monitor">
                                             <img ng-src="{{s.image_url}}" onerror="this.src='/images/no.png'">
                                             <h3> ##word.price## : {{s.price}}</h3>
-                                            <h2>{{s.size_ar}}</h2>
+                                            <h2>{{s.size_##session.lang##}}</h2>
                                         </a>
 
                                     </div>
@@ -341,8 +341,7 @@
                                 <tr ng-repeat="size in order_customer.book_list">
                                     <td class="center title">{{size.name_##session.lang##}}</td>
                                     <td class="center title">
-                                        <p>{{size.size_ar}}</p>
-                                        <p>{{size.size_en}}</p>
+                                        <p>{{size.size_##session.lang##}}</p>
                                     </td>
                                     <td class="center">
                                         <i-control ng-change="calcSize(size)" ng-model="size.count" type="number">

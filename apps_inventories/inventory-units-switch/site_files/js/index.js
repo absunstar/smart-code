@@ -45,7 +45,7 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
 
           if ($scope.defaultSettings.inventory) {
             if ($scope.defaultSettings.inventory.store)
-            $scope.units_switch.store = $scope.storesList.find(_store => { return _store.id === $scope.defaultSettings.inventory.store.id });
+              $scope.units_switch.store = $scope.storesList.find(_store => { return _store.id === $scope.defaultSettings.inventory.store.id });
 
 
           }
@@ -344,7 +344,8 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
             store_count: _size.store_count,
             cost: _size.cost,
             price: _size.price,
-            current_count: _size.current_count
+            current_count: _size.current_count,
+            add_sizes: _size.add_sizes
           });
         }
       });
@@ -391,6 +392,7 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
                     let foundHold = false;
                     let indxUnit = 0;
 
+                    _size.add_sizes = _item.add_sizes;
                     if (_size.size_units_list && _size.size_units_list.length > 0)
                       _size.size_units_list.forEach((_unit, i) => {
 
@@ -482,6 +484,7 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
       $scope.item.itm.sizes.forEach(_item => {
         let foundHold = false;
 
+        _item.add_sizes = $scope.item.itm.add_sizes;
         _item.name_ar = $scope.item.itm.name_ar;
         _item.name_en = $scope.item.itm.name_en;
         _item.item_group = $scope.item.itm.item_group;
@@ -547,7 +550,7 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
         method: "POST",
         url: "/api/stores_items/all",
         data: {
-          where: { barcode: $scope.search_barcode}
+          where: { barcode: $scope.search_barcode }
         }
       }).then(
         function (response) {
@@ -560,6 +563,7 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
                   let foundHold = false;
                   let indxUnit = 0;
 
+                  _size.add_sizes = response.data.list[0].add_sizes;
                   if (_size.size_units_list && _size.size_units_list.length > 0)
                     _size.size_units_list.forEach((_unit, i) => {
 

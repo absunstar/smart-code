@@ -14,7 +14,6 @@
         <tr>
             <th>##word.order_code##</th>
             <th>##word.stores_items_name##</th>
-            <th>##word.stores_size##</th>
             <th>##word.items_count##</th>
             <th>##word.items_notes##</th>
             <th>##word.actions##</th>
@@ -25,8 +24,10 @@
                 <h2 class=" center blue">{{i.order.code}}</h2>
                 <p ng-show="i.table.id" class="bold"> {{i.table.name_##session.lang##}} / {{i.table.tables_group.name_##session.lang##}} </p>
             </td>
-            <td class="center title">{{i.name_##session.lang##}}</td>
-            <td class="center title">{{i.size_ar}}</td>
+            <td class="center title">
+                <p class="center" ng-show="i.add_sizes">{{i.name_##session.lang##}} {{i.size_##session.lang##}}</p>
+                <p class="center" ng-hide="i.add_sizes">{{i.size_##session.lang##}}</p>
+            </td>
             <td class="center ">{{i.count}}</td>
             <td class="center">{{i.notes}}</td>
 

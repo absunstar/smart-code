@@ -13,8 +13,9 @@
                         <i-date2 class="col4" ng-model="account_invoices.date" label="##word.date##"></i-date2>
 
                         <i-list class="col2" ng-model="account_invoices.payment_type" items="paymentTypesList"
-                            ng-show="account_invoices.source_type.id != 8 && account_invoices.source_type.id!= 9 && account_invoices.source_type.id!= 10  && account_invoices.source_type.id!= 11  && account_invoices.source_type.id!= 14" display="##session.lang##"
-                            ng-search="_search.$search_payment_types" label="##word.payment_type##">
+                            ng-show="account_invoices.source_type.id != 8 && account_invoices.source_type.id!= 9 && account_invoices.source_type.id!= 10  && account_invoices.source_type.id!= 11  && account_invoices.source_type.id!= 14"
+                            display="##session.lang##" ng-search="_search.$search_payment_types"
+                            label="##word.payment_type##">
                         </i-list>
 
                         <i-control class="col3 r_indigo" disabled label="##word.shift##"
@@ -154,8 +155,9 @@
 
                                 <tr ng-repeat="c in account_invoices.current_book_list">
                                     <td class="center title">
-                                        <p>{{c.size_ar}}</p>
-                                        <p>{{c.size_en}}</p>
+                                        <p ng-show="c.add_sizes">{{c.name_##session.lang##}} {{c.size_##session.lang##}}
+                                        </p>
+                                        <p ng-hide="c.add_sizes">{{c.size_##session.lang##}}</p>
                                     </td>
                                     <td class="center blue">{{c.count}}</td>
                                     <td class="center">
@@ -335,7 +337,8 @@
                         <div class="row" ng-show="account_invoices.source_type.id ==8">
 
                             <div class="col4 control">
-                                <i-checkbox ng-model="account_invoices.show_source"label="##word.source##"></i-checkbox>
+                                <i-checkbox ng-model="account_invoices.show_source" label="##word.source##">
+                                </i-checkbox>
 
                                 <i-list ng-search="_search.$source_account_invoices" ng-model="account_invoices.source"
                                     display="name_##session.lang##" ng-show="account_invoices.show_source"
@@ -344,8 +347,7 @@
                             </div>
 
                             <div class="col7 control">
-                                <i-checkbox ng-model="account_invoices.show_customer"
-                                    label="##word.customer##">
+                                <i-checkbox ng-model="account_invoices.show_customer" label="##word.customer##">
                                 </i-checkbox>
                                 <div class="row" ng-show="account_invoices.show_customer">
 

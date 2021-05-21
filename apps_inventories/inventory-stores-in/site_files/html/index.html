@@ -59,8 +59,15 @@
 
                 <div class="top-actions">
 
-                    <i-button x-permissions="stores_in_add || stores_in_manage" type="add" label="##word.new##"
-                        ng-click="newStoreIn()"></i-button>
+                    <i-button x-permissions="stores_in_add || stores_in_manage" type="add" label="##word.new_purchase_invoice##"
+                        ng-show="##query.type## == 1" ng-click="newStoreIn()"></i-button>
+                    <i-button x-permissions="stores_in_add || stores_in_manage" type="add" label="##word.new_debt_store##"
+                        ng-show="##query.type## == 2" ng-click="newStoreIn()"></i-button>
+                    <i-button x-permissions="stores_in_add || stores_in_manage" type="add" label="##word.new_opening_balance##"
+                        ng-show="##query.type## == 3" ng-click="newStoreIn()"></i-button>
+                    <i-button x-permissions="stores_in_add || stores_in_manage" type="add" label="##word.new_return_purchase##"
+                        ng-show="##query.type## == 4" ng-click="newStoreIn()"></i-button>
+
                     <i-button x-permissions="stores_in_search || stores_in_manage" type="search"
                         label="##word.search_all##" onclick="site.showModal('#StoresInSearchModal')"></i-button>
 
@@ -149,8 +156,8 @@
 
 
                             <i-button x-permissions="stores_in_view || stores_in_manage" type="view"
-                                ng-show="c.posting && c.invoice && c.type.id != 2 && c.type.id != 3 " label="##word.accounting_details##"
-                                ng-click="detailsAccountInvoices(c)"></i-button>
+                                ng-show="c.posting && c.invoice && c.type.id != 2 && c.type.id != 3 "
+                                label="##word.accounting_details##" ng-click="detailsAccountInvoices(c)"></i-button>
 
                             <i-button x-permissions="stores_in_delete || stores_in_manage" type="delete"
                                 ng-hide="c.posting && defaultSettings.general_Settings.work_unposting"

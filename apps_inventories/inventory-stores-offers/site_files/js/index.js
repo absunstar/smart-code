@@ -229,6 +229,7 @@ app.controller("stores_offer", function ($scope, $http, $timeout) {
             complex_items: _size.complex_items,
             barcode: _size.barcode,
             ticket_code: _size.ticket_code,
+            add_sizes: _size.add_sizes,
           });
         }
       });
@@ -257,6 +258,7 @@ app.controller("stores_offer", function ($scope, $http, $timeout) {
                 if (_item.sizes && _item.sizes.length > 0)
                   _item.sizes.forEach(_size => {
                     let foundUnit = false;
+                    _size.add_sizes = _item.add_sizes;
 
                     if (_size.size_units_list && _size.size_units_list.length > 0)
                       _size.size_units_list.forEach(_unit => {
@@ -333,8 +335,9 @@ app.controller("stores_offer", function ($scope, $http, $timeout) {
     let foundSize = false;
     if ($scope.item.itm && $scope.item.itm.sizes && $scope.item.itm.sizes.length > 0)
       $scope.item.itm.sizes.forEach(_item => {
-        _item.name_ar = $scope.item.itm.name_ar
-        _item.name_en = $scope.item.itm.name_en
+        _item.add_sizes = $scope.item.itm.add_sizes;
+        _item.name_ar = $scope.item.itm.name_ar;
+        _item.name_en = $scope.item.itm.name_en;
         _item.item_group = $scope.item.itm.item_group;
 
         if (_item.size_units_list && _item.size_units_list.length > 0)
@@ -401,6 +404,7 @@ app.controller("stores_offer", function ($scope, $http, $timeout) {
 
               if (_list.sizes && _list.sizes.length > 0)
                 _list.sizes.forEach(_size => {
+                  _size.add_sizes = _list.add_sizes;
 
                   if (_size.size_units_list && _size.size_units_list.length > 0)
                     _size.size_units_list.forEach(_unit => {
@@ -482,6 +486,7 @@ app.controller("stores_offer", function ($scope, $http, $timeout) {
               if (response.data.list[0].sizes && response.data.list[0].sizes.length > 0)
                 response.data.list[0].sizes.forEach(_size => {
                   let foundUnit = false;
+                  _size.add_sizes = response.data.list[0].add_sizes;
 
                   if (_size.size_units_list && _size.size_units_list.length > 0)
                     _size.size_units_list.forEach(_unit => {

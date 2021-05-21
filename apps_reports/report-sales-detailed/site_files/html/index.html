@@ -44,7 +44,6 @@
                         <th>##word.item_group##</th>
                         <th>##word.barcode##</th>
                         <th>##word.stores_out_item_name##</th>
-                        <th>##word.stores_out_item_size##</th>
                         <th>##word.quantity##</th>
                         <th>##word.stores_price##</th>
                         <th>##word.discount##</th>
@@ -57,10 +56,9 @@
                         <td class="blue"> {{itm.code}}</td>
                         <td> {{itm.type.##session.lang##}}</td>
                         <td> {{itm.item_group.name_##session.lang##}}</td>
-                        <td> {{itm.name_##session.lang##}}</td>
                         <td>
-                            <p>{{itm.size_ar}} </p>
-                            <p>{{itm.size_en}} </p>
+                            <p class="center" ng-show="itm.add_sizes">{{itm.name_##session.lang##}} {{itm.size_##session.lang##}}</p>
+                            <p class="center" ng-hide="itm.add_sizes">{{itm.size_##session.lang##}}</p>
                         </td>
                         <td class="blue"> {{itm.barcode}}</td>
                         <td> {{itm.count}}</td>

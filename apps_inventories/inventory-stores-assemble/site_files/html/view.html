@@ -25,7 +25,6 @@
                             <th>##word.serial##</th>
                             <th>##word.barcode##</th>
                             <th>##word.stores_assemble_item_name##</th>
-                            <th>##word.stores_assemble_item_size##</th>
                             <th>##word.unit##</th>
                             <th>##word.stores_assemble_item_count##</th>
                             <th>##word.actions##</th>
@@ -39,10 +38,10 @@
                             <td class="center">
                                 <p class="userPrint blue">{{itm.barcode}}</p>
                             </td>
-                            <td class="center">{{itm.name_##session.lang##}}</td>
                             <td class="center">
-                                <p>{{itm.size_ar}}</p>
-                                <p>{{itm.size_en}}</p>
+                                <p>{{itm.size_##session.lang##}}</p>
+                                <p ng-show="itm.add_sizes">{{itm.name_##session.lang##}} {{itm.size_##session.lang##}}</p>
+                                <p ng-hide="itm.add_sizes">{{itm.size_##session.lang##}}</p>
                             </td>
                             <td class="center">{{itm.unit.name_##session.lang##}}</td>
                             <td class="center green">{{itm.count}}</td>

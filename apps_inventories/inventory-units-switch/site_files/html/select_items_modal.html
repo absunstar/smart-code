@@ -11,8 +11,9 @@
                 <div class="row">
                     <i-control ng-keydown="getItemsName($event)" id="item_name" class="col3"
                         ng-model="item.search_item_name" label="##word.search##" type="text"></i-control>
-                    <i-list class="col4" label="##word.stores_in_item_name##" ng-model="item.itm" display="name_##session.lang##"
-                        items="itemsNameList" ng-change="itemsStoresAssemble()" ng-search="item_searching"></i-list>
+                    <i-list class="col4" label="##word.stores_in_item_name##" ng-model="item.itm"
+                        display="name_##session.lang##" items="itemsNameList" ng-change="itemsStoresAssemble()"
+                        ng-search="item_searching"></i-list>
                 </div>
                 <div class="row">
 
@@ -22,9 +23,9 @@
                         <div class="row">
                             <div class="col2 center">
                                 <label>##word.stores_in_item_size##</label>
-                                <br>
+                                <!-- <br>
                                 <i-button type="add" label="##word.stores_in_add_to_sizes##" ng-click="addToSizes()">
-                                </i-button>
+                                </i-button> -->
                             </div>
                             <div class="col2 center">
                                 <label>##word.barcode##</label>
@@ -45,19 +46,19 @@
                                 </div>
                             </div>
 
-                       <!--      <div class="col1 center">
+                            <!--      <div class="col1 center">
                                 <div class="control">
                                     <label>##word.stores_in_item_cost##</label>
                                 </div>
                             </div>
  -->
-                          <!--   <div class="col1 center">
+                            <!--   <div class="col1 center">
                                 <div class="control">
                                     <label>##word.stores_in_item_price##</label>
                                 </div>
                             </div> -->
 
-                        <!--     <div class="col1 center">
+                            <!--     <div class="col1 center">
                                 <div class="control">
                                     <label>##word.stores_in_item_total##</label>
                                 </div>
@@ -75,9 +76,10 @@
                             <div class="row center">
                                 <div class="col2">
                                     <br ng-hide="s.$new">
-                                    <h3 ng-hide="s.$new" class="bold center">{{s.size_ar}}</h3>
-                                    <i-control ng-show="s.$new" ng-model="s.size_ar" type="text">
-                                    </i-control>
+                                    <h3 ng-show="s.add_sizes" class="bold center">{{s.name_##session.lang##}} {{s.size_##session.lang##}}</h3>
+                                    <h3 ng-hide="s.add_sizes" class="bold center">{{s.size_##session.lang##}}</h3>
+                                    <!-- <i-control ng-show="s.$new" ng-model="s.size_ar" type="text">
+                                    </i-control> -->
                                 </div>
 
                                 <div class="col2">
@@ -97,7 +99,7 @@
                                 <i-control class="col1" ng-model="s.count" type="number" ng-change="calcSize(s)">
                                 </i-control>
 
-                             <!--    <i-control disabled class="col1" ng-model="s.cost" type="number" ng-change="calcSize(s)">
+                                <!--    <i-control disabled class="col1" ng-model="s.cost" type="number" ng-change="calcSize(s)">
                                 </i-control>
 
                                 <i-control disabled class="col1" ng-model="s.total" type="number">

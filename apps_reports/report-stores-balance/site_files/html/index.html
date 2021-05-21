@@ -78,7 +78,6 @@
                         <tr>
                             <th> ##word.item_group## </th>
                             <th> ##word.stores_items_name## </th>
-                            <th> ##word.stores_size## </th>
                             <th> ##word.barcode## </th>
                             <th> ##word.branches_balances## </th>
 
@@ -86,11 +85,10 @@
 
                         <tr ng-repeat="c in list | orderBy : '-id'">
                             <td> <br> {{c.item_group.name_##session.lang##}} </td>
-                            <td> <br> {{c.name_##session.lang##}} </td>
                             <td>
                                 <br>
-                                <p>{{c.size_ar}}</p>
-                                <p>{{c.size_en}}</p>
+                                <p class="center" ng-show="c.add_sizes">{{c.name_##session.lang##}} {{c.size_##session.lang##}}</p>
+                                <p class="center" ng-hide="c.add_sizes">{{c.size_##session.lang##}}</p>
                             </td>
                             <td> <br>
                                 <p class="blue">{{c.barcode}}</p>

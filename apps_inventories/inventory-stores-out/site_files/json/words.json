@@ -390,6 +390,26 @@
         "ar": "إذن صرف / فاتورة بيع"
     },
     {
+        "name": "new_sales_invoice",
+        "en": "New Sales Invoice",
+        "ar": "فاتورة مبيعات جديدة"
+    },
+    {
+        "name": "new_return_sales",
+        "en": "New Return Sales",
+        "ar": "مرتجع مبيعات جديد"
+    },
+    {
+        "name": "new_damage",
+        "en": "New Damage",
+        "ar": "إهلاك/إتلاف جديد"
+    },
+    {
+        "name": "new_order_invoice",
+        "en": "New Order Invoice",
+        "ar": "فاتورة طلب جديدة"
+    },
+    {
         "name": "stores_out_total_value_gt",
         "en": "Total Value Greater Than",
         "ar": "اجمالي الإذن اكبر من"

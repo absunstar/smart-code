@@ -7,7 +7,8 @@
                     <div class="row">
                         <i-control ng-hide="disabledCodeSwitch" class="col2" label="##word.code##"
                             ng-model="units_switch.code"></i-control>
-                        <i-control class="col3 r_indigo" disabled label="##word.shift##" ng-model="shift.name_##session.lang##">
+                        <i-control class="col3 r_indigo" disabled label="##word.shift##"
+                            ng-model="shift.name_##session.lang##">
                         </i-control>
                         <i-date2 class="col4" ng-model="units_switch.date" label="##word.units_switch_date##" v="r">
                         </i-date2>
@@ -15,7 +16,8 @@
 
                     <div class="row">
                         <i-list class="col3" ng-model="units_switch.store" items="storesList"
-                        display="name_##session.lang##" ng-search="_search.$search_stores" label="##word.store##" v="r"></i-list>
+                            display="name_##session.lang##" ng-search="_search.$search_stores" label="##word.store##"
+                            v="r"></i-list>
 
                     </div>
 
@@ -50,7 +52,6 @@
                     <th>##word.serial##</th>
                     <th>##word.barcode##</th>
                     <th>##word.units_switch_item_name##</th>
-                    <th>##word.units_switch_item_size##</th>
                     <th>##word.unit##</th>
                     <th>##word.units_trans##</th>
                     <th>##word.transfer_branch_item_store_balance##</th>
@@ -70,19 +71,23 @@
                     </td>
 
                     <td> <br> {{itm.barcode}}</td>
-                    <td> <br> {{itm.name_##session.lang##}}</td>
+
                     <td>
-                        <p>{{itm.size_ar}}</p>
-                        <p>{{itm.size_en}}</p>
+                        <br>
+                        <p ng-show="itm.add_sizes">{{itm.name_##session.lang##}} {{itm.size_##session.lang##}}</p>
+                        <p ng-hide="itm.add_sizes">{{itm.size_##session.lang##}}</p>
                     </td>
+
                     <td>
                         <i-list ng-model="itm.unit" ng-search="_search.$category_item.$unit_search"
-                        display="name_##session.lang##" ng-change="itm.store_count = itm.unit.current_count ;calcSize(itm)" display2="barcode"
-                            space=" - "  items="itm.size_units_list"></i-list>
+                            display="name_##session.lang##"
+                            ng-change="itm.store_count = itm.unit.current_count ;calcSize(itm)" display2="barcode"
+                            space=" - " items="itm.size_units_list"></i-list>
                     </td>
                     <td>
                         <i-list ng-model="itm.units_trans" items="itm.size_units_list" v="r" ng-change="calc(itm)"
-                        display="name_##session.lang##" space=" - " ng-search="_search.$category_item.$units_trans_search" display2="barcode">
+                            display="name_##session.lang##" space=" - "
+                            ng-search="_search.$category_item.$units_trans_search" display2="barcode">
                         </i-list>
                     </td>
                     <td class="blue"> <br> {{itm.store_count}}</td>

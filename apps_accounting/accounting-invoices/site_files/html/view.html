@@ -234,8 +234,8 @@
 
                                 <tr ng-repeat="c in account_invoices.current_book_list">
                                     <td class="center title">
-                                        <p>{{c.size_ar}}</p>
-                                        <p>{{c.size_en}}</p>
+                                        <p ng-show="c.add_sizes">{{c.name_##session.lang##}} {{c.size_##session.lang##}}</p>
+                                        <p ng-hide="c.add_sizes">{{c.size_##session.lang##}}</p>
                                     </td>
                                     <td class="center userPrint">{{c.barcode}}</td>
                                     <td class="center blue">{{c.count}}</td>

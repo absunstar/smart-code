@@ -154,7 +154,8 @@
         </td>
 
         <td class="center">
-          {{itm.name_##session.lang##}}
+          <p ng-show="itm.add_sizes">{{itm.name_##session.lang##}} {{itm.size_##session.lang##}}</p>
+          <p ng-hide="itm.add_sizes">{{itm.size_##session.lang##}}</p>
         </td>
 
         <td class="center">
@@ -174,14 +175,15 @@
             %</del>
         </td>
 
-        <td class="center red" x-permissions="stores_out_details_values || stores_out_manage" ng-show="defaultSettings.inventory.value_added > 0">
+        <td class="center red" x-permissions="stores_out_details_values || stores_out_manage"
+          ng-show="defaultSettings.inventory.value_added > 0">
           {{itm.total_v_a}}
         </td>
 
         <td x-permissions="stores_out_details_values || stores_out_manage">
           {{itm.total}}
         </td>
-     
+
       </tr>
     </table>
   </div>

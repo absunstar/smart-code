@@ -46,17 +46,17 @@
                         <th>##word.serial##</th>
                         <th>##word.barcode##</th>
                         <th>##word.stores_offer_item_name##</th>
-                        <th>##word.stores_offer_item_size##</th>
                         <th>##word.units##</th>
                     </tr>
 
                     <tr ng-repeat="itm in store_offer.items">
                         <td> <br> {{$index + 1}}</td>
                         <td> <br> {{itm.barcode}}</td>
-                        <td> <br> {{itm.name_##session.lang##}}</td>
+
                         <td>
-                            <p>{{itm.size_ar}}</p>
-                            <p>{{itm.size_en}}</p>
+                            <br>
+                            <p ng-show="itm.add_sizes">{{itm.name_##session.lang##}} {{itm.size_##session.lang##}}</p>
+                            <p ng-hide="itm.add_sizes">{{itm.size_##session.lang##}}</p>
                         </td>
 
                         <td>

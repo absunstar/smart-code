@@ -64,7 +64,8 @@
 
                                 <tr ng-show="order_management.table">
                                     <td class="title"> ##word.tables_group## </td>
-                                    <td class="center"> {{order_management.table.tables_group.name_##session.lang##}} </td>
+                                    <td class="center"> {{order_management.table.tables_group.name_##session.lang##}}
+                                    </td>
                                 </tr>
 
                                 <tr ng-show="order_management.table">
@@ -74,7 +75,8 @@
 
                                 <tr ng-show="order_management.delivery_employee.id">
                                     <td class="title"> ##word.delivery_employee## </td>
-                                    <td class="center"> {{order_management.delivery_employee.name_##session.lang##}} </td>
+                                    <td class="center"> {{order_management.delivery_employee.name_##session.lang##}}
+                                    </td>
                                 </tr>
 
                                 <tr>
@@ -129,7 +131,6 @@
                     <table x-permissions="login" class="table bold hover loaded" id="t1">
                         <tr>
                             <th>##word.stores_items_name##</th>
-                            <th>##word.stores_size##</th>
                             <th>##word.items_count##</th>
                             <th>##word.items_price##</th>
                             <th>##word.items_price_total##</th>
@@ -139,10 +140,9 @@
                             <th x-features="restaurant">##word.actions##</th>
                         </tr>
                         <tr ng-repeat="c in order_management.book_list">
-                            <td class="center title">{{c.name_##session.lang##}}</td>
                             <td class="center title">
-                                <p>{{c.size_ar}}</p>
-                                <p>{{c.size_en}}</p>
+                                <p ng-show="c.add_sizes">{{c.name_##session.lang##}} {{c.size_##session.lang##}}</p>
+                                <p ng-hide="c.add_sizes">{{c.size_##session.lang##}}</p>
                             </td>
                             <td class="center blue">{{c.count}}</td>
                             <td class="center">{{c.price}}</td>

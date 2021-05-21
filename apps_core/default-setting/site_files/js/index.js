@@ -738,6 +738,7 @@ app.controller("default_setting", function ($scope, $http) {
       function (response) {
         $scope.busy = false;
         $scope.itemsTypesList = response.data;
+        if (site.feature('restaurant')) $scope.itemsTypesList = $scope.itemsTypesList.filter(i => i.id != 3);
 
       },
       function (err) {

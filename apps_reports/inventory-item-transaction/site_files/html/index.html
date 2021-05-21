@@ -24,7 +24,7 @@
                     <i-button type="search" x-permissions="item_transaction_search || item_transaction_manage"
                         label="##word.search_all##" onclick="site.showModal('#itemTransactionSearchModal')"></i-button>
 
-             <!--        <i-button class="left" ng-click="handeItemTransactions()" x-permissions="item_transaction_handle"
+                    <!--        <i-button class="left" ng-click="handeItemTransactions()" x-permissions="item_transaction_handle"
                         label="##word.handle##">
                     </i-button>
  -->
@@ -39,9 +39,8 @@
                             <th>##word.vendor_name##</th>
                             <th>##word.item_group##</th>
                             <th>##word.item_transaction_store##</th>
-                            <th>##word.item_transaction_name##</th>
-                            <th>##word.item_transaction_size##</th>
                             <th>##word.barcode##</th>
+                            <th>##word.item_transaction_name##</th>
                             <th>##word.unit##</th>
                             <th>##word.item_transaction_in##</th>
                             <th>##word.item_transaction_out##</th>
@@ -74,17 +73,16 @@
                             </td>
                             <td>
                                 <br>
-                                <p class="center"> {{c.name_##session.lang##}} </p>
-                            </td>
-                            <td>
-                                <br>
-                                <p class="bold blue center"> {{c.size_ar}} </p>
-                                <p class="bold blue center"> {{c.size_en}} </p>
-                            </td>
-                            <td>
-                                <br>
                                 <h3 class="bold center userPrint"> {{c.barcode}} </h3>
                             </td>
+                            <td>
+                                <br>
+
+                                <p class="center" ng-show="c.add_sizes">{{c.name_##session.lang##}}
+                                    {{c.size_##session.lang##}}</p>
+                                <p class="center" ng-hide="c.add_sizes">{{c.size_##session.lang##}}</p>
+                            </td>
+                         
                             <td>
                                 <p class="bold center"> {{c.unit.name_##session.lang##}} </p>
                                 <br>
@@ -128,30 +126,30 @@
                                 <div ng-show="c.current_status == 'sold'">
 
                                     <p class="center red bold">
-                                        <p class="center">
-                                            ##word.item_transaction_current_status_4##
-                                        </p>
-                                        <br>
-                                        <span>{{c.ticket_code}}</span>
-                                        <p>{{c.source_type.##session.lang##}}</p>
-                                        <br>
-                                        <span class="center blue userPrint">{{c.code}}</span>
+                                    <p class="center">
+                                        ##word.item_transaction_current_status_4##
+                                    </p>
+                                    <br>
+                                    <span>{{c.ticket_code}}</span>
+                                    <p>{{c.source_type.##session.lang##}}</p>
+                                    <br>
+                                    <span class="center blue userPrint">{{c.code}}</span>
                                     </p>
                                 </div>
 
                                 <div ng-show="c.current_status == 'r_sold'">
 
                                     <p class="center red bold">
-                                        <p class="center">
+                                    <p class="center">
 
-                                            ##word.unpost_sales_invoice##
-                                        </p>
-                                        <br>
-                                        <span class="center">{{c.ticket_code}}</span>
-                                        <p class="center">{{c.source_type.##session.lang##}}
-                                        </p>
-                                        <br>
-                                        <span class="center blue userPrint">{{c.code}}</span>
+                                        ##word.unpost_sales_invoice##
+                                    </p>
+                                    <br>
+                                    <span class="center">{{c.ticket_code}}</span>
+                                    <p class="center">{{c.source_type.##session.lang##}}
+                                    </p>
+                                    <br>
+                                    <span class="center blue userPrint">{{c.code}}</span>
                                     </p>
                                 </div>
 
@@ -180,14 +178,14 @@
                                 <div ng-show="c.current_status == 'transferred'">
 
                                     <p class="center red bold">
-                                        <p class="center">
+                                    <p class="center">
 
-                                            ##word.system_transfer_items_menus##
-                                        </p>
-                                        <br>
-                                        <span class="center">{{c.ticket_code}}</span>
-                                        <br>
-                                        <span class="blue center userPrint">{{c.code}}</span>
+                                        ##word.system_transfer_items_menus##
+                                    </p>
+                                    <br>
+                                    <span class="center">{{c.ticket_code}}</span>
+                                    <br>
+                                    <span class="blue center userPrint">{{c.code}}</span>
                                     </p>
 
                                 </div>
@@ -195,12 +193,12 @@
 
 
                                     <p class="center red bold">
-                                        <p class="center">
-                                            ##word.item_transaction_current_status_6##
-                                        </p>
-                                        <br>
-                                        <p class="center"> {{c.source_type.##session.lang##}}</p>
-                                        <span class="blue center userPrint">{{c.code}}</span>
+                                    <p class="center">
+                                        ##word.item_transaction_current_status_6##
+                                    </p>
+                                    <br>
+                                    <p class="center"> {{c.source_type.##session.lang##}}</p>
+                                    <span class="blue center userPrint">{{c.code}}</span>
                                     </p>
 
                                 </div>
@@ -209,12 +207,12 @@
 
 
                                     <p class="center red bold">
-                                        <p class="center">
-                                            ##word.unit_switch##
-                                        </p>
-                                        <br>
-                                        <p class="center"> {{c.source_type.##session.lang##}}</p>
-                                        <span class="blue center userPrint">{{c.code}}</span>
+                                    <p class="center">
+                                        ##word.unit_switch##
+                                    </p>
+                                    <br>
+                                    <p class="center"> {{c.source_type.##session.lang##}}</p>
+                                    <span class="blue center userPrint">{{c.code}}</span>
                                     </p>
 
                                 </div>
@@ -222,34 +220,34 @@
                                 <div ng-show="c.current_status == 'Dismantling'">
 
                                     <p class="center red bold">
-                                        <p class="center">
-                                            ##word.item_transaction_current_status_dismantle##
-                                        </p>
-                                        <br>
-                                        <span class="blue center userPrint">{{c.code}}</span>
+                                    <p class="center">
+                                        ##word.item_transaction_current_status_dismantle##
+                                    </p>
+                                    <br>
+                                    <span class="blue center userPrint">{{c.code}}</span>
                                     </p>
                                 </div>
 
                                 <div ng-show="c.current_status == 'Assembling'">
 
                                     <p class="center red bold">
-                                        <p class="center">
-                                            ##word.item_transaction_current_status_assemble##
-                                        </p>
-                                        <br>
-                                        <span class="blue center userPrint">{{c.code}}</span>
+                                    <p class="center">
+                                        ##word.item_transaction_current_status_assemble##
+                                    </p>
+                                    <br>
+                                    <span class="blue center userPrint">{{c.code}}</span>
                                     </p>
                                 </div>
 
                                 <div ng-show="c.current_status == 'r_storein'">
 
                                     <p class="center red bold">
-                                        <p class="center">
-                                            ##word.unpost_purchase_invoice##
-                                        </p>
-                                        <br>
-                                        <p class="center">{{c.source_type.##session.lang##}}</p>
-                                        <span class="blue center userPrint">{{c.code}}</span>
+                                    <p class="center">
+                                        ##word.unpost_purchase_invoice##
+                                    </p>
+                                    <br>
+                                    <p class="center">{{c.source_type.##session.lang##}}</p>
+                                    <span class="blue center userPrint">{{c.code}}</span>
                                     </p>
 
                                 </div>
@@ -257,13 +255,13 @@
                                 <div ng-show="c.current_status == 'd_storein'">
 
                                     <p class="center red bold">
-                                        <p class="center">
-                                            ##word.delete_purchase_invoice##
-                                        </p>
-                                        <br>
-                                        <p class="center">{{c.source_type.##session.lang##}}
-                                        </p>
-                                        <span class="blue center userPrint">{{c.code}}</span>
+                                    <p class="center">
+                                        ##word.delete_purchase_invoice##
+                                    </p>
+                                    <br>
+                                    <p class="center">{{c.source_type.##session.lang##}}
+                                    </p>
+                                    <span class="blue center userPrint">{{c.code}}</span>
                                     </p>
 
                                 </div>
@@ -271,14 +269,14 @@
                                 <div ng-show="c.current_status == 'r_Assembling'">
 
                                     <p class="center red bold">
-                                        <p class="center">
-                                            ##word.r_Assembling##
-                                        </p>
-                                        <br>
-                                        <p class="center">
-                                            {{c.source_type.##session.lang##}}
-                                        </p>
-                                        <span class="blue center userPrint">{{c.code}}</span>
+                                    <p class="center">
+                                        ##word.r_Assembling##
+                                    </p>
+                                    <br>
+                                    <p class="center">
+                                        {{c.source_type.##session.lang##}}
+                                    </p>
+                                    <span class="blue center userPrint">{{c.code}}</span>
                                     </p>
 
                                 </div>
@@ -287,42 +285,41 @@
                                 <div ng-show="c.current_status == 'd_Assembling'">
 
                                     <p class="center red bold">
-                                        <p class="center">
-                                            ##word.d_Assembling##
-                                        </p>
-                                        <br>
-                                        <p class="center">
-                                            {{c.source_type.##session.lang##}}
-                                        </p>
-                                        <span class="blue center userPrint">{{c.code}}</span>
+                                    <p class="center">
+                                        ##word.d_Assembling##
+                                    </p>
+                                    <br>
+                                    <p class="center">
+                                        {{c.source_type.##session.lang##}}
+                                    </p>
+                                    <span class="blue center userPrint">{{c.code}}</span>
                                     </p>
                                 </div>
 
                                 <div ng-show="c.current_status == 'r_Dismantling'">
 
                                     <p class="center red bold">
-                                        <p class="center">
-                                            ##word.r_Dismantling##
-                                        </p>
-                                        <br>
-                                        <p class="center">
-                                            {{c.source_type.##session.lang##}}
-                                        </p>
-                                        <span
-                                            class="blue center userPrint">{{c.code}}</span>
+                                    <p class="center">
+                                        ##word.r_Dismantling##
+                                    </p>
+                                    <br>
+                                    <p class="center">
+                                        {{c.source_type.##session.lang##}}
+                                    </p>
+                                    <span class="blue center userPrint">{{c.code}}</span>
                                     </p>
                                 </div>
 
                                 <div ng-show="c.current_status == 'd_Dismantling'">
 
                                     <p class="center red bold">
-                                        <p class="center">
-                                            ##word.d_Dismantling##
-                                        </p>
-                                        <br>
-                                        <p class="center">{{c.source_type.##session.lang##}}
-                                        </p>
-                                        <span class="blue center userPrint">{{c.code}}</span>
+                                    <p class="center">
+                                        ##word.d_Dismantling##
+                                    </p>
+                                    <br>
+                                    <p class="center">{{c.source_type.##session.lang##}}
+                                    </p>
+                                    <span class="blue center userPrint">{{c.code}}</span>
                                     </p>
                                 </div>
                             </td>

@@ -15,6 +15,11 @@
         "ar": "حد إعادة الطلب"
     },
     {
+        "name": "add_sizes",
+        "en": "Add Sizes",
+        "ar": "إضافة مقاسات"
+    },
+    {
         "name": "item_type",
         "en": "Item Type",
         "ar": "نوع الصنف"
@@ -127,7 +132,7 @@
     {
         "name": "err_Item_must_correctly",
         "en": "Item Must Be Entered Correctly",
-        "ar": "يجب ادخال الكمية و الصنف بشكل صحيح"
+        "ar": "يجب إدخال الكمية و الصنف بشكل صحيح"
     },
     {
         "name": "stores_items_delete",
@@ -153,6 +158,11 @@
         "name": "add_unit",
         "en": "Add Unit",
         "ar": "إضافة وحدة"
+    },
+    {
+        "name": "units_data",
+        "en": "Units data",
+        "ar": "بيانات الوحدات"
     },
     {
         "name": "unit_convert",

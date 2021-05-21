@@ -54,7 +54,6 @@
                         <th>##word.serial##</th>
                         <th>##word.barcode##</th>
                         <th>##word.stores_dismantle_item_name##</th>
-                        <th>##word.stores_dismantle_item_size##</th>
                         <th>##word.unit##</th>
                         <th>##word.transfer_branch_item_store_balance##</th>
                         <th class="w100">##word.quantity##</th>
@@ -72,10 +71,10 @@
                         <td> <br>
                             <p class="userPrint">{{itm.barcode}}</p>
                         </td>
-                        <td> <br> {{itm.name_##session.lang##}}</td>
                         <td>
-                            <p>{{itm.size_ar}}</p>
-                            <p>{{itm.size_en}}</p>
+                            <br>
+                            <p ng-show="itm.add_sizes">{{itm.name_##session.lang##}} {{itm.size_##session.lang##}}</p>
+                            <p ng-hide="itm.add_sizes">{{itm.size_##session.lang##}}</p>
                         </td>
                         <td>
                             <i-list ng-model="itm.unit" ng-search="_search.$category_item.$unit_search"

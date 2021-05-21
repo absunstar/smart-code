@@ -30,10 +30,31 @@
         "ar": "رصيد إفتتاحي مخزني"
     },
     {
+        "name": "new_opening_balance",
+        "en": "New Opening Balance",
+        "ar": "رصيد إفتتاحي جديد"
+    },
+    {
+        "name": "new_return_purchase",
+        "en": "New Return Purchase",
+        "ar": "مرتجع شراء جديد"
+    },
+    {
+        "name": "new_purchase_invoice",
+        "en": "New Purchase Invoice",
+        "ar": "فاتورة شراء جديدة"
+    },
+    {
+        "name": "new_debt_store",
+        "en": "New Debt Store",
+        "ar": "عهدة مخزنية جديدة"
+    },
+    {
         "name": "return_purchase_invoice",
         "en": "Return Purchase Invoice",
         "ar": "مرتجع فاتورة شراء"
     },
+  
     {
         "name": "stores_in_store",
         "en": "Store",

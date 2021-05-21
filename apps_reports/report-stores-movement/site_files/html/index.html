@@ -70,7 +70,6 @@
                         <tr>
                             <th> ##word.item_group## </th>
                             <th> ##word.stores_items_name## </th>
-                            <th> ##word.stores_size## </th>
                             <th> ##word.barcode## </th>
                             <th> ##word.number_seles## </th>
 
@@ -78,10 +77,9 @@
 
                         <tr ng-repeat="c in list | orderBy : '-id'">
                             <td> {{c.item_group.name_##session.lang##}} </td>
-                            <td> {{c.name_##session.lang##}} </td>
                             <td>
-                                <p>{{c.size_ar}}</p>
-                                <p>{{c.size_en}}</p>
+                                <p class="center" ng-show="c.add_sizes">{{c.name_##session.lang##}} {{c.size_##session.lang##}}</p>
+                                <p class="center" ng-hide="c.add_sizes">{{c.size_##session.lang##}}</p>
                             </td>
                             <td > {{c.barcode}} </td>
                             <td class="green"> {{c.unit_obj.total_sell_count}} </td>

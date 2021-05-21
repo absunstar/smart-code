@@ -9,10 +9,11 @@
         <div class="modal-body">
             <form>
                 <div class="row">
-                    <i-control ng-keydown="getItemsName($event)" id="item_name" class="col3" ng-model="item.search_item_name"
-                        label="##word.search##" type="text"></i-control>
-                    <i-list class="col4" label="##word.stores_in_item_name##" ng-model="item.itm" display="name_##session.lang##"
-                        items="itemsNameList" ng-change="itemsStoresStock()" ng-search="item_searching"></i-list>
+                    <i-control ng-keydown="getItemsName($event)" id="item_name" class="col3"
+                        ng-model="item.search_item_name" label="##word.search##" type="text"></i-control>
+                    <i-list class="col4" label="##word.stores_in_item_name##" ng-model="item.itm"
+                        display="name_##session.lang##" items="itemsNameList" ng-change="itemsStoresStock()"
+                        ng-search="item_searching"></i-list>
                 </div>
                 <div class="row">
 
@@ -25,16 +26,19 @@
                                 <th>##word.serial##</th>
                                 <th>##word.stores_stock_item_name##</th>
                                 <th>##word.barcode##</th>
-                                <th>##word.stores_stock_item_size##</th>
                                 <th>##word.units##</th>
                                 <th>##word.actions##</th>
                             </tr>
 
                             <tr ng-repeat="itm in item.sizes track by $index">
                                 <td> <br> {{$index + 1}}</td>
-                                <td> <br> {{itm.name_##session.lang##}}</td>
-                                <td> <br> {{itm.barcode}}</td>
-                                <td> <br> {{itm.size_ar}}</td>
+
+                                <td> <br>
+                                    <p ng-show="itm.add_sizes" class="bold center">{{itm.name_##session.lang##}} {{itm.size_##session.lang##}}</p>
+                                    <p ng-hide="itm.add_sizes" class="bold center">{{itm.size_##session.lang##}}</p>
+                                </td>
+
+                                <td class="bold center"> <br> {{itm.barcode}}</td>
 
                                 <td>
 

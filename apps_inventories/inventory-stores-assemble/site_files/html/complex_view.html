@@ -15,7 +15,6 @@
                     <table class="table hover">
                         <tr>
                             <th>##word.item_name##</th>
-                            <th>##word.stores_items_sizes##</th>
                             <th>##word.item_code##</th>
                             <th>##word.average_cost##</th>
                             <th>##word.unit##</th>
@@ -24,15 +23,13 @@
                             <th>##word.quantity##</th>
                             <th>##word.patch##</th>
                         </tr>
-
+                        
                         <tr class="bold" ng-repeat="i in complexView.complex_items">
+                        
                             <td>
                                 <br>
-                                <p class="center bold blue">{{i.name_##session.lang##}}</p>
-                            </td>
-                            <td>
-                                <br>
-                                <p class="center bold">{{i.size_ar}}</p>
+                                <p ng-show="i.add_sizes">{{i.name_##session.lang##}} {{i.size_##session.lang##}}</p>
+                                <p ng-hide="i.add_sizes">{{i.size_##session.lang##}}</p>
                             </td>
                             <td>
                                 <br>

@@ -97,8 +97,8 @@
                 </td>
                 <td class="center">{{itm.barcode}}</td>
                 <td class="center">
-                    <p>{{itm.size_ar}}</p>
-                    <p>{{itm.size_en}}</p>
+                    <p ng-show="itm.add_sizes">{{itm.name_##session.lang##}} {{itm.size_##session.lang##}}</p>
+                    <p ng-hide="itm.add_sizes">{{itm.size_##session.lang##}}</p>
                 </td>
                 <td class="center">{{itm.unit.name_##session.lang##}}</td>
                 <td class="center">{{itm.count}}</td>

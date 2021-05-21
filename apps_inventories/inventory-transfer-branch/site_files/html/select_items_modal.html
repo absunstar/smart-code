@@ -60,7 +60,8 @@
                             <div class="row center">
                                 <div class="col2">
                                     <br>
-                                    <h3 class="bold center">{{s.size_ar}}</h3>
+                                    <h3 ng-show="s.add_sizes" class="bold center">{{s.name_##session.lang##}} {{s.size_##session.lang##}}</h3>
+                                    <h3 ng-hide="s.add_sizes" class="bold center">{{s.size_##session.lang##}}</h3>
                                 </div>
 
                                 <div class="col2">

@@ -1085,6 +1085,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
               total: _size.total,
               current_count: _size.current_count,
               ticket_code: _size.ticket_code,
+              add_sizes: _size.add_sizes
             });
           }
         });
@@ -1154,14 +1155,13 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                   _item.sizes.forEach(_size => {
                     let foundHold = false;
                     let indxUnit = 0;
-
+                    _size.add_sizes = _item.add_sizes;
                     if (_size.size_units_list && _size.size_units_list.length > 0)
                       _size.size_units_list.forEach((_unit, i) => {
 
                         if (_unit.id == _item.main_unit.id)
                           indxUnit = i;
                       });
-
 
                     if ((_size.barcode === $scope.item.search_item_name) || (_size.size_units_list[indxUnit].barcode === $scope.item.search_item_name)) {
                       _size.name_ar = _item.name_ar;
@@ -1239,6 +1239,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     if ($scope.item.itm && $scope.item.itm.sizes && $scope.item.itm.sizes.length > 0)
       $scope.item.itm.sizes.forEach(_item => {
         let foundHold = false;
+        _item.add_sizes = $scope.item.itm.add_sizes;
         _item.name_ar = $scope.item.itm.name_ar;
         _item.name_en = $scope.item.itm.name_en;
         _item.item_group = $scope.item.itm.item_group;
@@ -1314,7 +1315,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                 response.data.list[0].sizes.forEach(_size => {
                   let foundHold = false;
                   let indxUnit = 0;
-
+                  _size.add_sizes = response.data.list[0].add_sizes;
                   if (_size.size_units_list && _size.size_units_list.length > 0)
                     _size.size_units_list.forEach((_unit, i) => {
 

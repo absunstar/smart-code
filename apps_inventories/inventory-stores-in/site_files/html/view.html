@@ -144,12 +144,13 @@
                     </i-button>
                 </td>
 
-                <td class="center"> <br>
+                <td class="center">
                     <p class="userPrint blue">{{itm.barcode}}</p>
                 </td>
 
                 <td class="center">
-                    {{itm.name_##session.lang##}}
+                    <p ng-show="itm.add_sizes">{{itm.name_##session.lang##}} {{itm.size_##session.lang##}}</p>
+                    <p ng-hide="itm.add_sizes">{{itm.size_##session.lang##}}</p>
                 </td>
 
                 <td class="center ">

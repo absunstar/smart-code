@@ -73,7 +73,10 @@
                                 </tr>
 
                                 <tr ng-repeat="c in report_invoices.current_book_list">
-                                    <td class="center title">{{c.size_ar}}</td>
+                                    <td class="center title">
+                                        <p ng-show="c.add_sizes">{{c.name_##session.lang##}} {{c.size_##session.lang##}}</p>
+                                        <p ng-hide="c.add_sizes">{{c.size_##session.lang##}}</p>
+                                    </td>
                                     <td class="center blue">{{c.count}}</td>
                                     <td class="center blue">{{c.price}}</td>
                                     <td class="center green">{{c.total}}</td>

@@ -58,8 +58,15 @@
 
                 <div class="top-actions">
 
-                    <i-button x-permissions="stores_out_add || stores_out_manage" type="add" label="##word.new##"
-                        ng-hide="##query.type## == 4" id="clickNew" ng-click="newStoreOut()"></i-button>
+                    <i-button x-permissions="stores_out_add || stores_out_manage" type="add"
+                        label="##word.new_sales_invoice##" ng-show="##query.type## == 3" id="clickNew"
+                        ng-click="newStoreOut()"></i-button>
+
+                    <i-button x-permissions="stores_out_add || stores_out_manage" type="add" label="##word.new_damage##"
+                        ng-show="##query.type## == 5" id="clickNew" ng-click="newStoreOut()"></i-button>
+
+                    <i-button x-permissions="stores_out_add || stores_out_manage" type="add" label="##word.new_return_sales##"
+                        ng-show="##query.type## == 6" id="clickNew" ng-click="newStoreOut()"></i-button>
 
                     <i-button x-permissions="stores_out_search || stores_out_manage" type="search"
                         label="##word.search_all##" onclick="site.showModal('#StoresOutSearchModal')"></i-button>

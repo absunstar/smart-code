@@ -239,6 +239,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
             complex_items: _size.complex_items,
             barcode: _size.barcode,
             ticket_code: _size.ticket_code,
+            add_sizes: _size.add_sizes
           });
         }
       });
@@ -270,6 +271,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
                   _item.sizes.forEach(_size => {
                     let foundHold = false;
                     let foundUnit = false;
+                    _size.add_sizes = _item.add_sizes;
 
                     if (_size.size_units_list && _size.size_units_list.length > 0)
                       _size.size_units_list.forEach(_unit => {
@@ -348,8 +350,9 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
     if ($scope.item.itm && $scope.item.itm.sizes && $scope.item.itm.sizes.length > 0)
       $scope.item.itm.sizes.forEach(_item => {
         let foundHold = false;
-        _item.name_ar = $scope.item.itm.name_ar
-        _item.name_en = $scope.item.itm.name_en
+        _item.add_sizes = $scope.item.itm.add_sizes;
+        _item.name_ar = $scope.item.itm.name_ar;
+        _item.name_en = $scope.item.itm.name_en;
         _item.item_group = $scope.item.itm.item_group;
 
         if (_item.size_units_list && _item.size_units_list.length > 0)
@@ -419,6 +422,8 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
               if (_list.sizes && _list.sizes.length > 0)
                 _list.sizes.forEach(_size => {
                   let foundHold = false;
+
+                  _size.add_sizes = _list.add_sizes;
 
                   if (_size.size_units_list && _size.size_units_list.length > 0)
                     _size.size_units_list.forEach(_unit => {
@@ -505,6 +510,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
                 _list.sizes.forEach(_size => {
                   let foundHold = false;
 
+                  _size.add_sizes = _list.add_sizes;
                   if (_size.size_units_list && _size.size_units_list.length > 0)
                     _size.size_units_list.forEach(_unit => {
                       _unit.validit = _size.validit;
@@ -589,6 +595,7 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
                 response.data.list[0].sizes.forEach(_size => {
                   let foundHold = false;
                   let foundUnit = false;
+                  _size.add_sizes = response.data.list[0].add_sizes;
 
                   if (_size.size_units_list && _size.size_units_list.length > 0)
                     _size.size_units_list.forEach(_unit => {
