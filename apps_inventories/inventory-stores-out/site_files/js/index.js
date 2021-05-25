@@ -895,7 +895,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
               count: _size.count,
               total: _size.total,
               store_count: _size.store_count,
-              add_sizes : _size.add_sizes
+              add_sizes: _size.add_sizes
             });
           }
         });
@@ -1522,42 +1522,45 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     callback = callback || function () { };
     $scope.error = '';
     $scope.busy = true;
+    if (currency) {
 
-    let where = {
-      'currency.id': currency.id
-    };
+      let where = {
+        'currency.id': currency.id
+      };
 
-    if (method.id == 1)
-      where['type.id'] = 1;
-    else where['type.id'] = 2;
+      if (method.id == 1)
+        where['type.id'] = 1;
+      else where['type.id'] = 2;
 
-    $http({
-      method: "POST",
-      url: "/api/safes/all",
-      data: {
-        select: {
-          id: 1,
-          name_ar: 1, name_en: 1,
-          commission: 1,
-          currency: 1,
-          type: 1,
-          code: 1
-        },
-        where: where
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.safesList = response.data.list;
+      $http({
+        method: "POST",
+        url: "/api/safes/all",
+        data: {
+          select: {
+            id: 1,
+            name_ar: 1, name_en: 1,
+            commission: 1,
+            currency: 1,
+            type: 1,
+            code: 1
+          },
+          where: where
         }
-        callback($scope.safesList)
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done) {
+            $scope.safesList = response.data.list;
+          }
+          callback($scope.safesList)
+        },
+        function (err) {
+          $scope.busy = false;
+          $scope.error = err;
+        }
+      )
+    }
+
   };
 
 

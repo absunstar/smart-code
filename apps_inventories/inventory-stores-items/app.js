@@ -1,7 +1,6 @@
 module.exports = function init(site) {
   const $stores_items = site.connectCollection("stores_items")
 
-
   site.on('[transfer_branch][stores_items][add_balance]', (obj, callback, next) => {
     // console.log(new Date().getTime() + ' : [transfer_branch][stores_items][add_balance]')
 
@@ -13,7 +12,6 @@ module.exports = function init(site) {
           delete _pl.select
         });
       }
-
       let total_unit = obj.count * obj.unit.convert;
       total_unit = site.toNumber(total_unit)
 

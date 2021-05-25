@@ -283,10 +283,11 @@ module.exports = function init(site) {
                       });
 
                     if (_itm.size_units_list && _itm.size_units_list.length > 0) {
-
+                      console.log("dddddddddddddddddddddd");
                       _itm.size_units_list.forEach((_unit, i) => {
                         _unit.barcode = _itm.barcode
-                        _unit.name = _itm.name
+                        _unit.name_ar = _itm.name_ar
+                        _unit.name_en = _itm.name_en
                         _unit.item_group = _itm.item_group
                         _unit.size_ar = _itm.size_ar
                         _unit.size_en = _itm.size_en
@@ -299,7 +300,8 @@ module.exports = function init(site) {
                         _unit.stock = true
                         _unit.unit = {
                           id: _unit.id,
-                          name: _unit.name,
+                          name_ar: _unit.name_ar,
+                          name_en: _unit.name_en,
                           barcode: _unit.barcode,
                           convert: _unit.convert
                         }

@@ -1,5 +1,4 @@
 [
-<<<<<<< HEAD
     {
         "name": "brand_title",
         "en": "Smart Code",
@@ -332,16 +331,3 @@
         "ar": "خدمة العملاء"
     }
 ]
-=======
-  {
-    "name": "brand_title",
-    "en": "Smart Code",
-    "ar": "سمـارت كـود"
-  },
-  {
-    "name": "brand_tag",
-    "en": "Academy System",
-    "ar": "نظام الاكادمية"
-  }
-]
->>>>>>> 5b610545b2108619887fbcf00926282c876aea9c
