@@ -59,9 +59,6 @@ module.exports = function init(site) {
   }
   customer_busy_handle(null)
 
-
-
-
   site.on('[customer][account_invoice][balance]', (obj, callback, next) => {
 
 

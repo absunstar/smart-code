@@ -283,7 +283,6 @@ module.exports = function init(site) {
                       });
 
                     if (_itm.size_units_list && _itm.size_units_list.length > 0) {
-                      console.log("dddddddddddddddddddddd");
                       _itm.size_units_list.forEach((_unit, i) => {
                         _unit.barcode = _itm.barcode
                         _unit.name_ar = _itm.name_ar
@@ -308,7 +307,8 @@ module.exports = function init(site) {
                         _unit.shift = {
                           id: result.doc.shift.id,
                           code: result.doc.shift.code,
-                          name_ar: result.doc.shift.name_ar, name_en: result.doc.shift.name_en
+                          name_ar: result.doc.shift.name_ar, 
+                          name_en: result.doc.shift.name_en
                         }
                         if (_unit.store_count > _unit.stock_count) {
                           _unit.count = _unit.store_count - _unit.stock_count

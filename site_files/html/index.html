@@ -207,7 +207,15 @@
             <h2 class="center">##word.security_user_password## : <span> inout </span></h2>
           </div>
 
-          <div class="col5" x-features="!host.ft && !host.qelada && !host.ethraa && !host.free && !host.inout">
+          <div class="col5" x-feature="host.valley">
+            <h2 class="center blue bold">##word.try_application##</h2>
+            <br />
+            <h2 class="center">##word.security_user_email## : <span> test </span></h2>
+            <h2 class="center">##word.security_user_password## : <span> test </span></h2>
+          </div>
+
+
+          <div class="col5" x-features="!host.ft && !host.qelada && !host.ethraa && !host.free && !host.inout && !host.valley">
             <h2 class="center blue bold">##word.try_application##</h2>
             <br />
             <h2 class="center">##word.security_user_email## : <span> test </span></h2>
@@ -466,6 +474,24 @@
           </h2>
         </div>
 
+        <div class="row valley hidden">
+          <h2 class="center">
+            <span>
+              <h2 class="center bold green" style="text-shadow: 3px 3px #b3b3ff; font-size: xxx-large">Tecno Valley</h2>
+              <br />
+
+              الاسماعيليه  : حي السلام <i class="fa fa-map-marker" aria-hidden="true"></i> <br />
+              تقاطع شارع الغابه والمستشفي امام نادي الطيران <i class="fa fa-building"></i> <br />
+
+              <br />
+              <a href="tel:01050501011"> 01030701900 <i class="fa fa-whatsapp" aria-hidden="true"></i> </a> <br />
+              <a href="tel:01090691050 "> 01068576810 <i class="fa fa-phone" aria-hidden="true"></i> </a> <br />
+
+              <br />
+            </span>
+          </h2>
+        </div>
+
         <div class="row qelada hidden">
           <h2 class="center">
             <span>
@@ -568,6 +594,8 @@
         $('.price-info').removeClass('hidden');
       } else if ('##req.headers.host##'.like('*unqcode*')) {
         $('.unqcode').removeClass('hidden');
+      }  else if ('##req.headers.host##'.like('*valley*')) {
+        $('.valley').removeClass('hidden');
       } else {
         $('.egypt').removeClass('hidden');
         $('.price-info').removeClass('hidden');

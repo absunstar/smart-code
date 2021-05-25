@@ -172,6 +172,7 @@ module.exports = function init(site) {
 
               _size.size_units_list.forEach(_unitSize => {
                 if (obj.unit && _unitSize.id == obj.unit.id) {
+
                   if (obj.type == 'sum') {
                     _unitSize.current_count = (_unitSize.current_count || 0) + obj.count
                     if (obj.source_type && obj.source_type.id == 3 && obj.store_in) _unitSize.start_count = site.toNumber(_unitSize.start_count || 0) + site.toNumber(obj.count)
@@ -350,7 +351,7 @@ module.exports = function init(site) {
                       if (obj.stock) _size.branches_list[indxBranch].stores_list[indxStore].hold = false
 
                       _size.branches_list[indxBranch].stores_list[indxStore].size_units_list.forEach(_unitStore => {
-
+                      
                         if (obj.unit && _unitStore.id == obj.unit.id) {
 
                           if (_unitStore.patch_list && _unitStore.patch_list.length > 0) {
@@ -505,7 +506,38 @@ module.exports = function init(site) {
             //   })
             // }
           });
-          $stores_items.update(doc, () => {
+
+          // doc.sizes.forEach(ziiii => {
+          //   ziiii.branches_list.forEach(bbbbbb => {
+          //     bbbbbb.stores_list.forEach(ssssssss => {
+          //       ssssssss.size_units_list.forEach(element => {
+          //         console.log("xxxxxxxxxxxxxxxxxxxxxxx", element);
+          //       });
+          //     });
+          //   });
+          // });
+
+          $stores_items.update(doc, (err,doooc) => {
+            // doooc.doc.sizes.forEach(ziiii => {
+            //   ziiii.branches_list.forEach(bbbbbb => {
+            //     bbbbbb.stores_list.forEach(ssssssss => {
+            //       ssssssss.size_units_list.forEach(element => {
+            //         console.log("aaaaaaaaaaaaaa", element);
+            //       });
+            //     });
+            //   });
+            // });
+
+            // doooc.old_doc.sizes.forEach(ziiii => {
+            //   ziiii.branches_list.forEach(bbbbbb => {
+            //     bbbbbb.stores_list.forEach(ssssssss => {
+            //       ssssssss.size_units_list.forEach(element => {
+            //         console.log("bbbbbbbbbbbbbbbbbb", element);
+            //       });
+            //     });
+            //   });
+            // });
+
             next()
           });
 
