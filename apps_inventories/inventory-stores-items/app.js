@@ -445,7 +445,8 @@ module.exports = function init(site) {
                         _size.branches_list[indxBranch].stores_list[indxStore].size_units_list.push({
                           patch_list: obj.patch_list,
                           id: obj.unit.id,
-                          name_ar: obj.unit.name_ar, name_en: obj.unit.name_en,
+                          name_ar: obj.unit.name_ar,
+                          name_en: obj.unit.name_en,
                           barcode: obj.unit.barcode,
                           start_count: obj.source_type && obj.source_type.id == 3 && obj.store_in ? site.toNumber(obj.count) : 0,
                           current_count: obj.type == 'sum' ? obj.count : (-Math.abs(obj.count)),
@@ -507,36 +508,36 @@ module.exports = function init(site) {
             // }
           });
 
-          // doc.sizes.forEach(ziiii => {
-          //   ziiii.branches_list.forEach(bbbbbb => {
-          //     bbbbbb.stores_list.forEach(ssssssss => {
-          //       ssssssss.size_units_list.forEach(element => {
-          //         console.log("xxxxxxxxxxxxxxxxxxxxxxx", element);
-          //       });
-          //     });
-          //   });
-          // });
+          doc.sizes.forEach(ziiii => {
+            ziiii.branches_list.forEach(bbbbbb => {
+              bbbbbb.stores_list.forEach(ssssssss => {
+                ssssssss.size_units_list.forEach(element => {
+                  console.log("xxxxxxxxxxxxxxxxxxxxxxx", element);
+                });
+              });
+            });
+          });
 
           $stores_items.update(doc, (err,doooc) => {
-            // doooc.doc.sizes.forEach(ziiii => {
-            //   ziiii.branches_list.forEach(bbbbbb => {
-            //     bbbbbb.stores_list.forEach(ssssssss => {
-            //       ssssssss.size_units_list.forEach(element => {
-            //         console.log("aaaaaaaaaaaaaa", element);
-            //       });
-            //     });
-            //   });
-            // });
+            doooc.doc.sizes.forEach(ziiii => {
+              ziiii.branches_list.forEach(bbbbbb => {
+                bbbbbb.stores_list.forEach(ssssssss => {
+                  ssssssss.size_units_list.forEach(element => {
+                    console.log("aaaaaaaaaaaaaa", element);
+                  });
+                });
+              });
+            });
 
-            // doooc.old_doc.sizes.forEach(ziiii => {
-            //   ziiii.branches_list.forEach(bbbbbb => {
-            //     bbbbbb.stores_list.forEach(ssssssss => {
-            //       ssssssss.size_units_list.forEach(element => {
-            //         console.log("bbbbbbbbbbbbbbbbbb", element);
-            //       });
-            //     });
-            //   });
-            // });
+            doooc.old_doc.sizes.forEach(ziiii => {
+              ziiii.branches_list.forEach(bbbbbb => {
+                bbbbbb.stores_list.forEach(ssssssss => {
+                  ssssssss.size_units_list.forEach(element => {
+                    console.log("bbbbbbbbbbbbbbbbbb", element);
+                  });
+                });
+              });
+            });
 
             next()
           });
