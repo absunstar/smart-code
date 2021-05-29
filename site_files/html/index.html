@@ -214,7 +214,6 @@
             <h2 class="center">##word.security_user_password## : <span> test </span></h2>
           </div>
 
-
           <div class="col5" x-features="!host.ft && !host.qelada && !host.ethraa && !host.free && !host.inout && !host.valley">
             <h2 class="center blue bold">##word.try_application##</h2>
             <br />
@@ -400,6 +399,7 @@
       <br />
       <br />
       <br />
+      <div x-import="scripts.html"></div>
       <div class="footer" x-feature="!login">
         <div class="row egypt hidden">
           <h2 class="center">
@@ -480,7 +480,7 @@
               <h2 class="center bold green" style="text-shadow: 3px 3px #b3b3ff; font-size: xxx-large">Techno Valley</h2>
               <br />
 
-              الاسماعيليه  : حي السلام <i class="fa fa-map-marker" aria-hidden="true"></i> <br />
+              الاسماعيليه : حي السلام <i class="fa fa-map-marker" aria-hidden="true"></i> <br />
               تقاطع شارع الغابه والمستشفي امام نادي الطيران <i class="fa fa-building"></i> <br />
 
               <br />
@@ -560,8 +560,6 @@
       </div>
     </div>
 
-    <div x-import="scripts.html"></div>
-
     <script id="post-template" type="x-tmpl-mustache">
       <div class="post img__wrap" >
         <h2> {{title_##session.lang##}} </h2>
@@ -594,7 +592,7 @@
         $('.price-info').removeClass('hidden');
       } else if ('##req.headers.host##'.like('*unqcode*')) {
         $('.unqcode').removeClass('hidden');
-      }  else if ('##req.headers.host##'.like('*valley*')) {
+      } else if ('##req.headers.host##'.like('*valley*')) {
         $('.valley').removeClass('hidden');
       } else {
         $('.egypt').removeClass('hidden');
