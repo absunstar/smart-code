@@ -14,7 +14,7 @@ app.controller("year_works", function ($scope, $http, $timeout) {
           shift: shift,
           active: true
         };
-        if ($scope.defaultSettings.general_Settings) {
+        if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.school_grade) {
 
           $scope.year_works.school_grade = $scope.schoolGradesList.find(_schoolGrade => { return _schoolGrade.id === $scope.defaultSettings.general_Settings.school_grade.id });
           if ($scope.year_works.school_grade && $scope.year_works.school_grade.id) {

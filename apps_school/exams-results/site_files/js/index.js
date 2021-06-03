@@ -1,43 +1,41 @@
-app.controller("seating_numbers", function ($scope, $http, $timeout) {
+app.controller("exams_results", function ($scope, $http, $timeout) {
   $scope._search = {};
 
-  $scope.seating_numbers = {};
+  $scope.exams_results = {};
 
-  $scope.displayAddSeatingNumbers = function () {
+  $scope.displayAddExamsResults = function () {
     $scope.get_open_shift((shift) => {
       if (shift) {
-
         $scope._search = {};
         $scope.error = '';
-        $scope.seating_numbers = {
-          image_url: '/images/seating_numbers.png',
+        $scope.exams_results = {
+          image_url: '/images/exams_results.png',
           students_list: [],
           shift: shift,
+          date: new Date(),
           active: true
         };
-
         if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.school_grade) {
 
-          $scope.seating_numbers.school_grade = $scope.schoolGradesList.find(_schoolGrade => { return _schoolGrade.id === $scope.defaultSettings.general_Settings.school_grade.id });
-          if ($scope.seating_numbers.school_grade && $scope.seating_numbers.school_grade.id) {
+          $scope.exams_results.school_grade = $scope.schoolGradesList.find(_schoolGrade => { return _schoolGrade.id === $scope.defaultSettings.general_Settings.school_grade.id });
+          if ($scope.exams_results.school_grade && $scope.exams_results.school_grade.id) {
 
-            $scope.getStudentsYearsList($scope.seating_numbers.school_grade);
+            $scope.getStudentsYearsList($scope.exams_results.school_grade);
           }
+
         }
-
-        site.showModal('#seatingNumbersAddModal');
-
+        site.showModal('#examsResultsAddModal');
       } else $scope.error = '##word.open_shift_not_found##';
     });
   };
 
-  $scope.addSeatingNumbers = function () {
+  $scope.addExamsResults = function () {
     if ($scope.busy) {
       return;
     }
     $scope.error = '';
 
-    const v = site.validated('#seatingNumbersAddModal');
+    const v = site.validated('#examsResultsAddModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
@@ -46,14 +44,14 @@ app.controller("seating_numbers", function ($scope, $http, $timeout) {
 
     $http({
       method: "POST",
-      url: "/api/seating_numbers/add",
-      data: $scope.seating_numbers
+      url: "/api/exams_results/add",
+      data: $scope.exams_results
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#seatingNumbersAddModal');
-          $scope.getSeatingNumbersList();
+          site.hideModal('#examsResultsAddModal');
+          $scope.getExamsResultsList();
         } else {
           $scope.error = response.data.error;
           if (response.data.error.like('*duplicate key error*')) {
@@ -71,26 +69,27 @@ app.controller("seating_numbers", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.displayUpdateSeatingNumbers = function (seating_numbers) {
+  $scope.displayUpdateExamsResults = function (exams_results) {
+
     $scope.get_open_shift((shift) => {
       if (shift) {
 
         $scope._search = {};
         $scope.error = '';
-        $scope.detailsSeatingNumbers(seating_numbers);
-        $scope.seating_numbers = {};
-        site.showModal('#seatingNumbersUpdateModal');
+        $scope.detailsExamsResults(exams_results);
+        $scope.exams_results = {};
+        site.showModal('#examsResultsUpdateModal');
       } else $scope.error = '##word.open_shift_not_found##';
     });
   };
 
-  $scope.updateSeatingNumbers = function () {
+  $scope.updateExamsResults = function () {
     if ($scope.busy) {
       return;
     }
     $scope.error = '';
 
-    const v = site.validated('#seatingNumbersUpdateModal');
+    const v = site.validated('#examsResultsUpdateModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
@@ -99,13 +98,13 @@ app.controller("seating_numbers", function ($scope, $http, $timeout) {
 
     $http({
       method: "POST",
-      url: "/api/seating_numbers/update",
-      data: $scope.seating_numbers
+      url: "/api/exams_results/update",
+      data: $scope.exams_results
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#seatingNumbersUpdateModal');
+          site.hideModal('#examsResultsUpdateModal');
           $scope.list.forEach((b, i) => {
             if (b.id == response.data.doc.id) {
               $scope.list[i] = response.data.doc;
@@ -121,27 +120,28 @@ app.controller("seating_numbers", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.displayDetailsSeatingNumbers = function (seating_numbers) {
+  $scope.displayDetailsExamsResults = function (exams_results) {
+
     $scope.error = '';
-    $scope.detailsSeatingNumbers(seating_numbers);
-    $scope.seating_numbers = {};
-    site.showModal('#seatingNumbersDetailsModal');
+    $scope.detailsExamsResults(exams_results);
+    $scope.exams_results = {};
+    site.showModal('#examsResultsDetailsModal');
   };
 
-  $scope.detailsSeatingNumbers = function (seating_numbers) {
+  $scope.detailsExamsResults = function (exams_results) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/seating_numbers/view",
+      url: "/api/exams_results/view",
       data: {
-        id: seating_numbers.id
+        id: exams_results.id
       }
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
           response.data.doc.date = new Date(response.data.doc.date);
-          $scope.seating_numbers = response.data.doc;
+          $scope.exams_results = response.data.doc;
         } else {
           $scope.error = response.data.error;
         }
@@ -152,34 +152,34 @@ app.controller("seating_numbers", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.displayDeleteSeatingNumbers = function (seating_numbers) {
+  $scope.displayDeleteExamsResults = function (exams_results) {
     $scope.get_open_shift((shift) => {
       if (shift) {
 
         $scope.error = '';
-        $scope.detailsSeatingNumbers(seating_numbers);
-        $scope.seating_numbers = {};
-        site.showModal('#seatingNumbersDeleteModal');
+        $scope.detailsExamsResults(exams_results);
+        $scope.exams_results = {};
+        site.showModal('#examsResultsDeleteModal');
 
       } else $scope.error = '##word.open_shift_not_found##';
     });
   };
 
-  $scope.deleteSeatingNumbers = function () {
+  $scope.deleteExamsResults = function () {
     $scope.error = '';
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/seating_numbers/delete",
+      url: "/api/exams_results/delete",
       data: {
-        id: $scope.seating_numbers.id
+        id: $scope.exams_results.id
 
       }
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#seatingNumbersDeleteModal');
+          site.hideModal('#examsResultsDeleteModal');
           $scope.list.forEach((b, i) => {
             if (b.id == response.data.doc.id) {
               $scope.list.splice(i, 1);
@@ -196,13 +196,13 @@ app.controller("seating_numbers", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getSeatingNumbersList = function (where) {
+  $scope.getExamsResultsList = function (where) {
     $scope.busy = true;
     $scope.list = [];
     $scope.count = 0;
     $http({
       method: "POST",
-      url: "/api/seating_numbers/all",
+      url: "/api/exams_results/all",
       data: {
         where: where
       }
@@ -223,12 +223,36 @@ app.controller("seating_numbers", function ($scope, $http, $timeout) {
 
   $scope.searchAll = function () {
     $scope._search = {};
-    $scope.getSeatingNumbersList($scope.search);
-    site.hideModal('#seatingNumbersSearchModal');
+    $scope.getExamsResultsList($scope.search);
+    site.hideModal('#examsResultsSearchModal');
     $scope.search = {}
 
   };
 
+  $scope.getHalls = function () {
+    $http({
+      method: "POST",
+      url: "/api/hall/all",
+      data: {
+        select: {
+          id: 1,
+          name_ar: 1, name_en: 1,
+          code: 1
+        },
+        where: {
+          active: true
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.hallsList = response.data.list;
+      },
+      function (err) {
+        $scope.error = err;
+      }
+    )
+  };
 
   $scope.searchStudents = function () {
     if ($scope.busy) {
@@ -236,7 +260,7 @@ app.controller("seating_numbers", function ($scope, $http, $timeout) {
     }
     $scope.error = '';
 
-    const v = site.validated('#seatingNumbersAddModal');
+    const v = site.validated('#examsResultsAddModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
@@ -248,8 +272,9 @@ app.controller("seating_numbers", function ($scope, $http, $timeout) {
       url: "/api/customers/all",
       data: {
         where: {
-          school_grade: $scope.seating_numbers.school_grade,
-          students_year: $scope.seating_numbers.students_year,
+          school_grade: $scope.exams_results.school_grade,
+          students_year: $scope.exams_results.students_year,
+          hall: $scope.exams_results.hall,
           active: true
         }
 
@@ -258,13 +283,13 @@ app.controller("seating_numbers", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
-          $scope.seating_numbers.students_list = response.data.list;
-          let seating_n = $scope.seating_numbers.from - 1;
-          $scope.seating_numbers.students_list.forEach(_student => {
-            if (seating_n < $scope.seating_numbers.to) {
-              seating_n = seating_n + 1;
-              _student.seating_n = seating_n;
-            }
+          $scope.exams_results.students_list = response.data.list;
+          $scope.exams_results.students_list.forEach(_student => {
+            $scope.exams_results.students_year.subjects_list.forEach(_s => {
+              _student.subjects_list = _student.subjects_list || [];
+              if (_s.subject) _s.subject.student_score = 0;
+              _student.subjects_list.push(Object.assign({}, _s.subject));
+            });
           });
         }
       },
@@ -275,6 +300,27 @@ app.controller("seating_numbers", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.getDefaultSettings = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/default_setting/get",
+      data: {}
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.defaultSettings = response.data.doc;
+
+        };
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
 
   $scope.getSchoolGradesList = function () {
     $http({
@@ -325,29 +371,6 @@ app.controller("seating_numbers", function ($scope, $http, $timeout) {
     )
   };
 
-
-  $scope.getDefaultSettings = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/default_setting/get",
-      data: {}
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.doc) {
-          $scope.defaultSettings = response.data.doc;
-
-        };
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
-
   $scope.get_open_shift = function (callback) {
     $scope.busy = true;
     $http({
@@ -375,6 +398,7 @@ app.controller("seating_numbers", function ($scope, $http, $timeout) {
     )
   };
 
+
   $scope.getNumberingAuto = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -382,7 +406,7 @@ app.controller("seating_numbers", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/numbering/get_automatic",
       data: {
-        screen: "seating_numbers"
+        screen: "exams_results"
       }
     }).then(
       function (response) {
@@ -398,9 +422,25 @@ app.controller("seating_numbers", function ($scope, $http, $timeout) {
     )
   };
 
+
+  $scope.calc = function (c) {
+
+    $timeout(() => {
+
+      $scope.error = '';
+      if (c.student_score > c.work_degree_year) {
+        c.student_score = 0;
+        $scope.error = '##word.err_score_higher##';
+      }
+    }, 250);
+
+  };
+
+
   $scope.getNumberingAuto();
   $scope.getSchoolGradesList();
   $scope.getDefaultSettings();
-  $scope.getSeatingNumbersList();
+  $scope.getHalls();
+  $scope.getExamsResultsList();
 
 });

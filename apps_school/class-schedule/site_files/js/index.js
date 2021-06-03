@@ -20,7 +20,7 @@ app.controller("class_schedule", function ($scope, $http, $timeout) {
           max_school_class: 0,
           active: true
         };
-        if ($scope.defaultSettings.general_Settings) {
+        if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.school_grade) {
 
           $scope.class_schedule.school_grade = $scope.schoolGradesList.find(_schoolGrade => { return _schoolGrade.id === $scope.defaultSettings.general_Settings.school_grade.id });
           if ($scope.class_schedule.school_grade && $scope.class_schedule.school_grade.id) {

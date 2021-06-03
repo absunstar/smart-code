@@ -351,7 +351,7 @@ module.exports = function init(site) {
                       if (obj.stock) _size.branches_list[indxBranch].stores_list[indxStore].hold = false
 
                       _size.branches_list[indxBranch].stores_list[indxStore].size_units_list.forEach(_unitStore => {
-                      
+
                         if (obj.unit && _unitStore.id == obj.unit.id) {
 
                           if (_unitStore.patch_list && _unitStore.patch_list.length > 0) {
@@ -508,36 +508,39 @@ module.exports = function init(site) {
             // }
           });
 
-          doc.sizes.forEach(ziiii => {
-            ziiii.branches_list.forEach(bbbbbb => {
-              bbbbbb.stores_list.forEach(ssssssss => {
-                ssssssss.size_units_list.forEach(element => {
-                  console.log("xxxxxxxxxxxxxxxxxxxxxxx", element);
-                });
-              });
-            });
-          });
+          // doc.sizes.forEach(ziiii => {
+          //   ziiii.branches_list.forEach(bbbbbb => {
+          //     bbbbbb.stores_list.forEach(ssssssss => {
+          //       ssssssss.size_units_list.forEach(element => {
+          //       });
+          //     });
+          //   });
+          // });
 
-          $stores_items.update(doc, (err,doooc) => {
-            doooc.doc.sizes.forEach(ziiii => {
-              ziiii.branches_list.forEach(bbbbbb => {
-                bbbbbb.stores_list.forEach(ssssssss => {
-                  ssssssss.size_units_list.forEach(element => {
-                    console.log("aaaaaaaaaaaaaa", element);
-                  });
-                });
-              });
-            });
+          $stores_items.update(doc, (err, doooc) => {
 
-            doooc.old_doc.sizes.forEach(ziiii => {
-              ziiii.branches_list.forEach(bbbbbb => {
-                bbbbbb.stores_list.forEach(ssssssss => {
-                  ssssssss.size_units_list.forEach(element => {
-                    console.log("bbbbbbbbbbbbbbbbbb", element);
-                  });
-                });
-              });
-            });
+            if (obj.current_status == 'stock') {
+              site.holdingItems({... obj.transaction_obj});
+            }
+
+            // doooc.doc.sizes.forEach(ziiii => {
+            //   ziiii.branches_list.forEach(bbbbbb => {
+            //     bbbbbb.stores_list.forEach(ssssssss => {
+            //       ssssssss.size_units_list.forEach(element => {
+            //         console.log("new Doc", element, doooc.doc.id);
+            //       });
+            //     });
+            //   });
+            // });
+
+            // doooc.old_doc.sizes.forEach(ziiii => {
+            //   ziiii.branches_list.forEach(bbbbbb => {
+            //     bbbbbb.stores_list.forEach(ssssssss => {
+            //       ssssssss.size_units_list.forEach(element => {
+            //       });
+            //     });
+            //   });
+            // });
 
             next()
           });
@@ -554,7 +557,7 @@ module.exports = function init(site) {
   })
 
 
-  site.on('holding items', function (obj) {
+  site.holdingItems = function (obj) {
 
     let where = {}
     let barcodes = obj.items.map(_item => _item.barcode)
@@ -597,10 +600,10 @@ module.exports = function init(site) {
             });
           });
         }
-        $stores_items.update(_doc)
+        $stores_items.updateOne(_doc)
       });
     });
-  });
+  };
 
 
   site.get({
@@ -965,8 +968,8 @@ module.exports = function init(site) {
             cbBarcodesList.forEach(_unit1 => {
               if (_unit1.barcode === _unit.barcode && _unit1.id != stores_items_doc.id) {
                 let foundExistBarcodeUnitList = existBarcodeUnitList.some(_ExBuL => _ExBuL === _size.barcode);
-              if (!foundExistBarcodeUnitList) existBarcodeUnitList.push(_unit.barcode);
-              foundBarcodeUnit = true;
+                if (!foundExistBarcodeUnitList) existBarcodeUnitList.push(_unit.barcode);
+                foundBarcodeUnit = true;
               }
             });
 

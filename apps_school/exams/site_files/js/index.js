@@ -12,7 +12,7 @@ app.controller("exams", function ($scope, $http, $timeout) {
           active: true,
           busy: false
         };
-        if ($scope.defaultSettings.general_Settings) {
+        if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.school_grade) {
 
           if ($scope.exams.school_grade && $scope.exams.school_grade.id) {
 

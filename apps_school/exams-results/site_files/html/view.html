@@ -1,0 +1,107 @@
+<div ng-hide="busy">
+    <div class="form">
+        <div id="customersGroupViewModal">
+            <fieldset>
+                <legend> ##word.exams_results_informations## </legend>
+                <div class="row">
+                    <div class="col9">
+                        <div class="row">
+
+                            <table class="table hover bold">
+                                <tr>
+                                    <td class="title"> ##word.code## </td>
+                                    <td class="center userPrint blue"> {{exams_results.code}} </td>
+                                </tr>
+                                <tr>
+                                    <td class="title"> ##word.exams_results_name## </td>
+                                    <td class="center"> {{exams_results.results_name}} </td>
+                                </tr>
+                                <tr>
+                                    <td class="title">##word.shift##</td>
+                                    <td class="center">{{exams_results.shift.name_##session.lang##}} -
+                                        {{exams_results.shift.code}}
+                                    </td>
+                                </tr>
+
+                                <td class="title">
+                                    <b class="indigoD">##word.date## :</b>
+                                    <b class="brown">{{exams_results.date |date:"dd - MM - yyyy" }}
+                                    </b>
+                                </td>
+
+                                <tr>
+                                    <td class="title"> ##word.school_grade## </td>
+                                    <td class="center"> {{exams_results.school_grade.name_##session.lang##}} </td>
+                                </tr>
+                                <tr>
+                                    <td class="title"> ##word.students_year## </td>
+                                    <td class="center"> {{exams_results.students_year.name_##session.lang##}} </td>
+                                </tr>
+                                <tr>
+                                    <td class="title"> ##word.hall## </td>
+                                    <td class="center"> {{exams_results.hall.name_##session.lang##}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.active## </td>
+                                    <td ng-show="exams_results.active == true" class="center green"> ##word.active##
+                                    </td>
+                                    <td ng-show="exams_results.active == false" class="center red">
+                                        ##word.not_active##
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <div class="row">
+                            <fieldset ng-show="exams_results.students_list.length > 0">
+                                <legend>##word.customers_view##</legend>
+
+                                <table class="table loaded hover center bold" id="t1">
+
+                                    <tr>
+                                        <th> ##word.serial## </th>
+                                        <th class="not-print"> ##word.logo## </th>
+                                        <th> ##word.customer_name## </th>
+                                        <th ng-repeat="x in exams_results.students_year.subjects_list track by $index">
+                                            {{x.subject.name_##session.lang##}}
+                                        </th>
+
+                                    </tr>
+
+                                    <tr ng-repeat="c in exams_results.students_list | orderBy : '-id'">
+                                        <td class="center  blue">
+                                            {{$index + 1}}
+                                        </td>
+                                        <td class="not-print">
+                                            <i-image view class="logo" ng-model="c.image_url"></i-image>
+                                        </td>
+                                        <td> {{c.name_##session.lang##}} <p class="blue userPrint"> {{c.code}} </p>
+                                        </td>
+                                        <td ng-repeat="x in c.subjects_list track by $index">
+                                            <p>
+                                                {{x.student_score}}
+                                            </p>
+                                        </td>
+
+                                    </tr>
+                                </table>
+
+                            </fieldset>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col3">
+                        <i-image class="not-print" view ng-model="exams_results.image_url"> </i-image>
+                    </div>
+
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
+<div x-import="exams-results/action_info.html"></div>

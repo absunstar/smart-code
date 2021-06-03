@@ -23,7 +23,6 @@
                                 <p ng-hide="itm.add_sizes">{{itm.size_##session.lang##}}</p>
                             </td>
 
-
                             <td>
                                 <table class="table center bold hover">
                                     <tr>
@@ -37,7 +36,7 @@
                                     <tr ng-repeat="i in itm.size_units_list">
                                         <td> {{i.name_##session.lang##}} <b ng-show="i.barcode"> - </b> <b class="blue">{{i.barcode}}</b>
                                         </td>
-                                        <td class="green"> {{i.store_count}}</td>
+                                        <td class="green"> {{i.store_count || 0}}</td>
                                         <td>
                                             <i-control type="number" ng-change="calcAverage(store_stock)"
                                                 ng-model="i.stock_count"></i-control>

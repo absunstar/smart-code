@@ -60,7 +60,7 @@
                                     <tr ng-repeat="i in itm.size_units_list">
                                         <td> {{i.name_##session.lang##}} <b ng-show="i.barcode"> - </b> <b class="blue">{{i.barcode}}</b>
                                         </td>
-                                        <td class="green"> {{i.store_count}}</td>
+                                        <td class="green"> {{i.store_count || 0}}</td>
                                         <td> {{i.stock_count}}</td>
                                         <td class="red"> {{i.difference_cost}}</td>
                                         <td ng-show="itm.work_patch || itm.work_serial">

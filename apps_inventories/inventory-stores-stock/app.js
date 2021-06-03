@@ -171,7 +171,8 @@ module.exports = function init(site) {
                     response.done = true
                     if (result.doc.status == 2) {
                       result.doc.hold = true
-                      site.call('holding items', Object.assign({}, result.doc))
+                      site.holdingItems(Object.assign({}, result.doc));
+
                     }
 
                   } else {
@@ -225,7 +226,7 @@ module.exports = function init(site) {
                 if (!err) {
                   response.done = true
                   result.doc.hold = false
-                  site.call('holding items', Object.assign({}, result.doc))
+                  site.holdingItems(Object.assign({}, result.doc));
 
                   res.json(response)
                 }
@@ -261,7 +262,6 @@ module.exports = function init(site) {
             res.json(response)
           } else {
 
-
             if (stores_stock_doc._id) {
               $stores_stock.edit({
                 where: {
@@ -273,6 +273,18 @@ module.exports = function init(site) {
               }, (err, result) => {
                 if (!err) {
                   response.done = true
+                  let transaction_obj = {
+                    items: [],
+                    company: result.doc.company,
+                    branch: result.doc.branch,
+                    store: result.doc.store,
+                    hold: false
+                  }
+                  for (let i = 0; i < result.doc.items.length; i++) {
+                    transaction_obj.items.push(result.doc.items[i].barcode)
+
+                  }
+
                   result.doc.items.forEach(_itm => {
                     if (_itm.size_units_list && _itm.size_units_list.length > 0)
                       _itm.size_units_list.forEach(_sl => {
@@ -284,6 +296,7 @@ module.exports = function init(site) {
 
                     if (_itm.size_units_list && _itm.size_units_list.length > 0) {
                       _itm.size_units_list.forEach((_unit, i) => {
+                        _unit.transaction_obj = { ...transaction_obj }
                         _unit.barcode = _itm.barcode
                         _unit.name_ar = _itm.name_ar
                         _unit.name_en = _itm.name_en
@@ -307,23 +320,23 @@ module.exports = function init(site) {
                         _unit.shift = {
                           id: result.doc.shift.id,
                           code: result.doc.shift.code,
-                          name_ar: result.doc.shift.name_ar, 
+                          name_ar: result.doc.shift.name_ar,
                           name_en: result.doc.shift.name_en
                         }
                         if (_unit.store_count > _unit.stock_count) {
                           _unit.count = _unit.store_count - _unit.stock_count
                           _unit.type = 'minus'
                           _unit.transaction_type = 'out'
-                          site.quee('item_transaction - items', Object.assign({}, _unit))
+                          site.quee('item_transaction - items', { ..._unit })
 
-                          site.quee('[transfer_branch][stores_items][add_balance]', Object.assign({}, _unit))
+                          site.quee('[transfer_branch][stores_items][add_balance]', { ..._unit })
 
                         } else if (_unit.stock_count > _unit.store_count) {
                           _unit.count = _unit.stock_count - _unit.store_count
                           _unit.type = 'sum'
                           _unit.transaction_type = 'in'
-                          site.quee('item_transaction + items', Object.assign({}, _unit))
-                          site.quee('[transfer_branch][stores_items][add_balance]', Object.assign({}, _unit))
+                          site.quee('item_transaction + items', { ..._unit })
+                          site.quee('[transfer_branch][stores_items][add_balance]', { ..._unit })
 
                         } else if (_unit.stock_count == _unit.store_count) {
 
@@ -331,16 +344,14 @@ module.exports = function init(site) {
                           _unit.count = _unit.stock_count
                           _unit.type = 'sum'
                           _unit.transaction_type = 'in'
-                          site.quee('item_transaction + items', Object.assign({}, _unit))
-                          site.quee('[transfer_branch][stores_items][add_balance]', Object.assign({}, _unit))
+                          site.quee('item_transaction + items', { ..._unit })
+                          site.quee('[transfer_branch][stores_items][add_balance]', { ..._unit })
                         }
 
                       });
                     }
 
                   });
-                  result.doc.hold = false
-                  site.call('holding items', Object.assign({}, result.doc))
 
                 } else {
                   response.error = err.message

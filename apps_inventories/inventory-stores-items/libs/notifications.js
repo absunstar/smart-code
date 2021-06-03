@@ -39,11 +39,22 @@ module.exports = function init(site) {
   //         source : source,
   //         message: update_message ,
   //         value: {name : result.old_doc.name , code: result.old_doc.code,
-    //          en: result.old_doc.name_en,
-   //           ar: result.old_doc.name_ar},
+  //            en: result.old_doc.name_en,
+  //            ar: result.old_doc.name_ar},
   //         update: site.objectDiff(result.update.$set, result.old_doc),
   //         action: 'update'
   //       }, result : result })
+
+  //         result.doc.sizes.forEach(ziiii => {
+  //           ziiii.branches_list.forEach(bbbbbb => {
+  //             bbbbbb.stores_list.forEach(ssssssss => {
+  //               ssssssss.size_units_list.forEach(element => {
+  //                 console.log("new Doc", element, result.doc.id);
+  //               });
+  //             });
+  //           });
+  //         });
+
   //     }
   // })
 

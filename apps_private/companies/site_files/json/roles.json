@@ -150,6 +150,7 @@
             "subjects_manage",
             "types_expenses_manage",
             "year_works_manage",
+            "exams_results_manage",
             "clinics_manage",
             "specialties_manage",
             "doctors_manage",

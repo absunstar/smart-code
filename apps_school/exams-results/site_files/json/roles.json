@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "exams_results_admin",
+    "en": "Putting Year Works Admin",
+    "ar": "إدارة نتائج الإمتحانات",
+    "permissions": ["exams_results_manage"]
+}]

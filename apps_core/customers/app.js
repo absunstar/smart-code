@@ -524,13 +524,13 @@ module.exports = function init(site) {
 
 
     site.security.isUserExists(user, function (err, user_found) {
-      if (user_found) {
+      // if (user_found) {
 
-        response.error = 'User Is Exist'
-        res.json(response)
-        return;
+      //   response.error = 'User Is Exist'
+      //   res.json(response)
+      //   return;
 
-      }
+      // }
 
 
       if (customers_doc.id) {

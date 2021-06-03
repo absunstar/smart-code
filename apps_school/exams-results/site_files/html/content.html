@@ -1,0 +1,97 @@
+<div class="form">
+    <div id="examsResultsAddModal">
+        <fieldset>
+            <legend> ##word.exams_results_informations## </legend>
+            <div class="row">
+                <div class="col9">
+                    <div class="row">
+                        <i-control ng-hide="disabledCode" class="col2" label="##word.code##"
+                            ng-model="exams_results.code">
+                        </i-control>
+
+                        <i-control class="col3 r_indigo" type="text" disabled label="##word.shift##"
+                            ng-model="shift.name_##session.lang##">
+                        </i-control>
+
+                        <i-checkbox class="col2" label="##word.active##" ng-model="exams_results.active"></i-checkbox>
+                    </div>
+
+                    <div class="row">
+                        <i-date2 class="col4" ng-model="exams_results.date" label="##word.date##" v="r"></i-date2>
+                        <i-control class="col3" label="##word.exams_results_name##"
+                            ng-model="exams_results.results_name">
+                        </i-control>
+
+                    </div>
+
+                    <div class="row">
+
+                        <i-list ng-search="_search.$_school_grade" class="col3" display="name_##session.lang##" v="r"
+                            ng-change="getStudentsYearsList(exams_results.school_grade)"
+                            ng-model="exams_results.school_grade" label="##word.school_grade##"
+                            items="schoolGradesList">
+                        </i-list>
+
+                        <i-list class="col3" label="##word.students_year##" ng-model="exams_results.students_year" v="r"
+                            items="studentsYearsList" display="name_##session.lang##"
+                            ng-search="_search.$_students_year">
+                        </i-list>
+
+                        <i-list help-id="" class="col3" label="##word.hall##" ng-model="exams_results.hall"
+                            ng-search="_search.$_hall" items="hallsList" display="name_##session.lang##"></i-list>
+
+
+                        <i-button label="##word.search_students##" type="search" ng-click="searchStudents()">
+                        </i-button>
+
+                    </div>
+
+                    <br>
+                    <br>
+
+                </div>
+
+                <div class="col3">
+                    <i-image category="exams_results" ng-model="exams_results.image_url"> </i-image>
+                </div>
+            </div>
+            <div class="row">
+                <fieldset ng-show="exams_results.students_list.length > 0">
+                    <legend>##word.customers_view##
+                    </legend>
+
+                    <table class="table loaded hover center bold" id="t1">
+
+                        <tr>
+                            <th> ##word.serial## </th>
+                            <th class="not-print"> ##word.logo## </th>
+                            <th> ##word.customer_name## </th>
+                            <th ng-repeat="x in exams_results.students_year.subjects_list track by $index">
+                                {{x.subject.name_##session.lang##}}
+                            </th>
+
+                        </tr>
+
+                        <tr ng-repeat="c in exams_results.students_list | orderBy : '-id'">
+                            <td class="center  blue">
+                                {{$index + 1}}
+                            </td>
+                            <td class="not-print">
+                                <i-image view class="logo" ng-model="c.image_url"></i-image>
+                            </td>
+                            <td> {{c.name_##session.lang##}} <p class="blue userPrint"> {{c.code}} </p>
+                            </td>
+                            <td ng-repeat="x in c.subjects_list track by $index">
+                                <i-control type="number" ng-model="x.student_score">
+                                </i-control>
+                            </td>
+
+                        </tr>
+                    </table>
+
+                </fieldset>
+
+            </div>
+        </fieldset>
+    </div>
+</div>

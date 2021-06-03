@@ -1001,12 +1001,12 @@ app.controller("stores_stock", function ($scope, $http, $timeout) {
       stock.items.forEach(_itm => {
         _itm.size_units_list.forEach(_itmUnit => {
           let remain = (_itmUnit.stock_count) - _itmUnit.store_count;
-          _itmUnit.difference_cost = remain * _itmUnit.average_cost;
+          _itmUnit.difference_cost = (remain * _itmUnit.average_cost) || 0;
           stock.total_difference_cost += _itmUnit.difference_cost
 
         });
       });
-
+      stock.total_difference_cost = stock.total_difference_cost || 0;
     }, 150);
   };
 

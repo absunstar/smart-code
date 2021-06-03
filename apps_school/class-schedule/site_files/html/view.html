@@ -15,7 +15,8 @@
 
                                 <tr>
                                     <td class="title">##word.shift##</td>
-                                    <td class="center">{{class_schedule.shift.name_##session.lang##}} - {{class_schedule.shift.code}}
+                                    <td class="center">{{class_schedule.shift.name_##session.lang##}} -
+                                        {{class_schedule.shift.code}}
                                     </td>
                                 </tr>
 
@@ -34,7 +35,6 @@
                                     <td class="center"> {{class_schedule.hall.name_##session.lang##}} </td>
                                 </tr>
 
-
                                 <tr>
                                     <td class="title"> ##word.active## </td>
                                     <td ng-show="class_schedule.active == true" class="center green"> ##word.active##
@@ -43,18 +43,17 @@
                                     </td>
                                 </tr>
                             </table>
+
                         </div>
                         <br>
                         <br>
                         <br>
-
 
                     </div>
 
                     <div class="col3">
                         <i-image class="not-print" view ng-model="class_schedule.image_url"> </i-image>
                     </div>
-
 
                 </div>
                 <div class="row">
@@ -80,15 +79,9 @@
                                 <p>{{s.trainer.name_##session.lang##}}</p>
                                 <hr>
                                 <p>
-                                    <b class="green">{{s.from.minute}} :
-                                        {{s.from.hour}}
-                                    </b>
-
+                                    <b class="green">{{s.from.minute}} :{{s.from.hour}}</b>
                                     /
-
-                                    <b class="red">{{s.to.minute}} :
-                                        {{s.to.hour}}
-                                    </b>
+                                    <b class="red">{{s.to.minute}} :{{s.to.hour}}</b>
                                 </p>
                             </td>
                         </tr>

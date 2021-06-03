@@ -156,6 +156,13 @@
     {
         "category": "main",
         "feature": "school",
+        "name": "exams_results",
+        "en": "Exams Results",
+        "ar": "نتائج الإمتحانات"
+    },
+    {
+        "category": "main",
+        "feature": "school",
         "name": "libraries",
         "en": "libraries",
         "ar": "المكتبات"

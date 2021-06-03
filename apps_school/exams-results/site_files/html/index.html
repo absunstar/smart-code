@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="exams_results_ui || exams_results_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+    <div id="main-layout" class="container loaded">
+        <div class="row">
+            <div class="row" ng-controller="exams_results" x-permissions="login">
+                <div x-import="exams-results/add_modal.html"></div>
+                <div x-import="exams-results/update_modal.html"></div>
+                <div x-import="exams-results/delete_modal.html"></div>
+                <div x-import="exams-results/view_modal.html"></div>
+                <div x-import="exams-results/search_all_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center"> ##word.exams_results## </h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button type="add" x-permissions="exams_results_add || exams_results_manage"
+                        label="##word.exams_results_new##" ng-click="displayAddExamsResults()"></i-button>
+                    <i-button type="search" x-permissions="exams_results_search || exams_results_manage"
+                        label="##word.search_all##" onclick="site.showModal('#examsResultsSearchModal')"></i-button>
+
+                    <span ng-show="busy">
+                        <span class="sr-only">Loading...</span>
+                    </span>
+                    <h2 class="bold red text-center">{{error}}</h2>
+                    <h3 class="bold text-center"> ##word.count## : {{count}} </h3>
+                    <br>
+                </div>
+
+                <table class="table loaded hover center bold" id="t1">
+
+                    <tr>
+                        <th class="not-print"> ##word.logo## </th>
+                        <th> ##word.code## </th>
+                        <th>##word.date##</th>
+                        <th> ##word.shift## </th>
+                        <th> ##word.school_grade## </th>
+                        <th> ##word.students_year## </th>
+                        <th> ##word.status## </th>
+                        <th class="not-print"> ##word.actions## </th>
+                    </tr>
+
+                    <tr ng-repeat="c in list | orderBy : '-id'">
+                        <td class="not-print">
+                            <i-image view class="logo" ng-model="c.image_url"></i-image>
+                        </td>
+
+                        <td class="blue userPrint"> {{c.code}} </td>
+                        <td>
+                            <p class="text-center brown"> <br> {{c.date | date : 'yyyy - MM - dd'}} </p>
+                        </td>
+                        <td>{{c.shift.name_##session.lang##}}</td>
+                        <td> {{c.school_grade.name_##session.lang##}} </td>
+                        <td> {{c.students_year.name_##session.lang##}} </td>
+
+                        <td>
+                            <p ng-show="c.active == true" class="green"> ##word.active## </p>
+                            <p ng-show="c.active == false" class="red"> ##word.not_active## </p>
+                        </td>
+
+                        <td class="center not-print">
+                            <i-button type="details" x-permissions="exams_results_view || exams_results_manage"
+                                label="##word.details##" ng-click="displayDetailsExamsResults(c)"></i-button>
+
+                            <i-button type="update" x-permissions="exams_results_edit || exams_results_manage"
+                                label="##word.update##" ng-click="displayUpdateExamsResults(c)"></i-button>
+
+                            <i-button type="delete" x-permissions="exams_results_delete || exams_results_manage"
+                                label="##word.delete##" ng-click="displayDeleteExamsResults(c)"></i-button>
+                        </td>
+                    </tr>
+                </table>
+
+                <div class="row">
+                    <i-button x-permissions="exams_results_print || exams_results_manage" type="print"
+                        label="##word.print##" onclick="site.print('#t1')"></i-button>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div x-import="scripts.html"></div>
+
+    <script x-permissions="login" x-import="exams-results/index.js"></script>
+</body>
+
+</html>

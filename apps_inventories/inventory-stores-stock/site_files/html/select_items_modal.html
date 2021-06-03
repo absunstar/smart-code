@@ -51,7 +51,7 @@
                                         <tr ng-repeat="i in itm.size_units_list">
                                             <td> {{i.name_##session.lang##}} <b ng-show="i.barcode"> - </b> <b
                                                     class="blue">{{i.barcode}}</b> </td>
-                                            <td> {{i.store_count}}</td>
+                                            <td> {{i.store_count || 0}}</td>
 
                                         </tr>
                                     </table>
