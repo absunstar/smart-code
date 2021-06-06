@@ -2845,7 +2845,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
       $scope.store_out.items = [];
 
-      if (i.return_paid.items && i.return_paid.items.length > 0)
+      if (i.return_paid.items && i.return_paid.items.length > 0) {
+
         i.return_paid.items.forEach(_item => {
           _item.r_count = _item.count;
           if (_item.patch_list && _item.patch_list.length > 0) {
@@ -2855,15 +2856,20 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
               _p.count = 0;
             });
           };
-          if (_item.count > 0) $scope.store_out.items.push(_item);
+          if (_item.count > 0) {
+            $scope.store_out.items.push(_item);
+            $scope.calcSize(_item);
+
+          }
         });
-
-      if ($scope.store_out.currency) {
-        $scope.amount_currency = site.toNumber($scope.store_out.net_value) / site.toNumber($scope.store_out.currency.ex_rate);
-        $scope.amount_currency = site.toNumber($scope.amount_currency);
-        $scope.store_out.paid_up = $scope.amount_currency;
-
       }
+
+      /*   if ($scope.store_out.currency) {
+          $scope.amount_currency = site.toNumber($scope.store_out.net_value) / site.toNumber($scope.store_out.currency.ex_rate);
+          $scope.amount_currency = site.toNumber($scope.amount_currency);
+          $scope.store_out.paid_up = $scope.amount_currency;
+  
+        } */
       site.hideModal('#returnedViewModal');
     };
 

@@ -20,7 +20,8 @@ module.exports = function init(site) {
               _items.size_ar = _size.size_ar
               _items.size_en = _size.size_en
               _items.name_ar = _size.name_ar
-              _items.name_en = _size.name_en            }
+              _items.name_en = _size.name_en
+            }
           })
         });
         $stores_in.update(_doc);
@@ -829,7 +830,7 @@ module.exports = function init(site) {
                 if (_item.unit == null || undefined)
                   _item.unit = {
                     id: unit.id,
-                    name_ar: unit.name_ar, 
+                    name_ar: unit.name_ar,
                     name_en: unit.name_en,
                     convert: 1
                   }
@@ -867,41 +868,39 @@ module.exports = function init(site) {
 
             if (_itemsObj.barcode === _itemsDoc.barcode && _itemsObj.size_ar == _itemsDoc.size_ar) {
 
-              if (_itemsObj.patch_list && _itemsObj.patch_list.length > 0) {
+              if (_itemsObj.patch_list && _itemsObj.patch_list.length > 0 && _itemsDoc.patch_list && _itemsDoc.patch_list.length > 0) {
 
-                if (_itemsDoc.patch_list && _itemsDoc.patch_list.length > 0) {
-                  let foundPatshList = []
+                let foundPatshList = []
 
-                  _itemsObj.patch_list.forEach(objPatch => {
-                    let foundPatsh = _itemsDoc.patch_list.some(_p1 => objPatch.patch === _p1.patch)
+                _itemsObj.patch_list.forEach(objPatch => {
+                  let foundPatsh = _itemsDoc.patch_list.some(_p1 => objPatch.patch === _p1.patch)
 
-                    if (!foundPatsh) foundPatshList.push(objPatch)
+                  if (!foundPatsh) foundPatshList.push(objPatch)
 
-                    _itemsDoc.patch_list.forEach(docPatch => {
+                  _itemsDoc.patch_list.forEach(docPatch => {
 
-                      if (objPatch.patch === docPatch.patch) {
-                        if (obj.return) {
-                          docPatch.count = docPatch.count + objPatch.count
+                    if (objPatch.patch === docPatch.patch) {
+                      if (obj.return) {
+                        docPatch.count = docPatch.count + objPatch.count
 
-                        } else {
-                          docPatch.count = docPatch.count - objPatch.count
-                        }
+                      } else {
+                        docPatch.count = docPatch.count - objPatch.count
                       }
+                    }
 
-                    });
                   });
-                  if (obj.return) {
-                    foundPatshList.forEach(fP => {
-                      _itemsDoc.patch_list.push(fP)
-                    });
-                  } else {
-                    let filter_patch = _itemsDoc.patch_list.filter(_p => _p.count !== 0)
-                    _itemsDoc.patch_list = filter_patch
+                });
+                if (obj.return) {
+                  foundPatshList.forEach(fP => {
+                    _itemsDoc.patch_list.push(fP)
+                  });
+                } else {
+                  let filter_patch = _itemsDoc.patch_list.filter(_p => _p.count !== 0)
+                  _itemsDoc.patch_list = filter_patch
 
-                    if (_itemsDoc.patch_list.length === 1 && _itemsDoc.patch_list[0].count === 0)
-                      _itemsDoc.patch_list = []
+                  if (_itemsDoc.patch_list.length === 1 && _itemsDoc.patch_list[0].count === 0)
+                    _itemsDoc.patch_list = []
 
-                  }
                 }
               }
 

@@ -26,7 +26,8 @@
                         <tr>
                             <th>##word.stores_in_date##</th>
                             <th>##word.stores_in_id##</th>
-                            <th>##word.transaction_type##</th>
+                            <th>##word.vendor##</th>
+                            <!-- <th>##word.transaction_type##</th> -->
                             <th>##word.store##</th>
                             <th>##word.net_value##</th>
                         </tr>
@@ -40,9 +41,15 @@
                                 <p class="center blue bold">{{i.code}}</p>
                             </td>
 
+                            
                             <td ng-click="selectReturnedStoreIn(i)">
-                                <p class="bold text-center blue"> {{i.type.##session.lang##}} </p>
+                                <p class="center bold">{{i.vendor.name_##session.lang##}}</p>
                             </td>
+
+
+                            <!-- <td ng-click="selectReturnedStoreIn(i)">
+                                <p class="bold text-center blue"> {{i.type.##session.lang##}} </p>
+                            </td> -->
 
                             <td ng-click="selectReturnedStoreIn(i)">
                                 <p class="center bold">{{i.store.name_##session.lang##}}</p>

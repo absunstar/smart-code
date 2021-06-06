@@ -178,7 +178,7 @@
                                             {{di.name_##session.lang##}}
                                         </i-list>
                                         <div class="col1"></div>
-                                        <i-control class="col2" ng-model="discount.value" type="number"
+                                        <i-control class="col3" ng-model="discount.value" type="number"
                                             label="##word.stores_in_discount_value##" type="text"></i-control>
 
                                     </div>
@@ -188,15 +188,15 @@
                                         <div class="col6">
                                             <div class="row">
                                                 <i-radio class="col6" ng-model="discount.type"
-                                                    label="##word.discount_types_number##" ng-value="number"></i-radio>
+                                                    label="##word.amount##" ng-value="number"></i-radio>
                                                 <i-radio class="col6" ng-model="discount.type"
-                                                    label="##word.discount_types_percent##" ng-value="percent">
+                                                    label="##word.percent##" ng-value="percent">
                                                 </i-radio>
                                             </div>
 
                                         </div>
-
-                                        <div class="col2">
+                                        <div class="col2"></div>
+                                        <div>
                                             <i-button type="add default" label="##word.stores_in_add_discount##"
                                                 ng-click="addDiscount()"></i-button>
                                         </div>
