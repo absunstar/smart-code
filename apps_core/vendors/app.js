@@ -13,6 +13,41 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/images/'
   })
 
+  site.on('[vendor][account_invoice][balance]', (obj, callback, next) => {
+
+    $vendors.findOne({ id: obj.id }, (err, doc) => {
+
+      if (doc) {
+
+        if (!doc.balance_creditor) doc.balance_creditor = 0
+        if (!doc.balance_debtor) doc.balance_debtor = 0
+
+        if (obj.sum_creditor) {
+          doc.balance_creditor += obj.balance_creditor
+        } else if (obj.minus_creditor) {
+          doc.balance_creditor -= obj.balance_creditor
+        }
+
+        if (obj.sum_debtor) {
+          doc.balance_debtor += obj.balance_debtor
+        } else if (obj.minus_debtor) {
+          doc.balance_debtor -= obj.balance_debtor
+        }
+
+        $vendors.update(doc, () => {
+          next()
+        });
+
+      } else {
+
+        next()
+      }
+
+
+    });
+  })
+
+
   site.on('[register][vendor][add]', doc => {
 
     $vendors.add({
@@ -24,6 +59,9 @@ module.exports = function init(site) {
       code: "1-Test",
       name_ar: "مورد إفتراضي",
       name_en: "Default Vendor",
+      balance_creditor : 0,
+      balance_debtor : 0,
+      credit_limit : 0,
       image_url: '/images/vendor.png',
       company: {
         id: doc.company.id,

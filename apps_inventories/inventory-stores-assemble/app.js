@@ -176,7 +176,7 @@ module.exports = function init(site) {
                       })
 
                       complex_list.forEach((_complex, i) => {
-                        site.quee('[transfer_branch][stores_items][add_balance]', Object.assign({}, _complex1))
+                        site.quee('[transfer_branch][stores_items][add_balance]', Object.assign({}, _complex))
                         site.quee('item_transaction - items', Object.assign({}, _complex))
                       });
 

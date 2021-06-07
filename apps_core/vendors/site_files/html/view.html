@@ -284,13 +284,18 @@
 
 
                         <tr>
-                            <td class="title"> ##word.balance## </td>
-                            <td class="center green"> {{vendor.balance}} </td>
+                            <td class="title"> ##word.balance_creditor## </td>
+                            <td class="center green"> {{vendor.balance_creditor ||0}} </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.balance_debtor## </td>
+                            <td class="center green"> {{vendor.balance_debtor ||0}} </td>
                         </tr>
 
                         <tr>
                             <td class="title"> ##word.vendors_credit_limit## </td>
-                            <td class="center"> {{vendor.credit_limit}} </td>
+                            <td class="center"> {{vendor.credit_limit ||0}} </td>
                         </tr>
 
                         <tr>

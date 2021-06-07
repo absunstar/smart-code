@@ -31,14 +31,14 @@
                     <div class="col4">
                         <br><br>
 
-                        <fieldset class="row" ng-show="store_out.customer">
+                        <fieldset class="row" ng-show="store_out.customer.id">
 
                             <div class="col6">
-                                <h3 class="bold red">##word.creditor## : {{store_out.customer.balance_creditor}}
+                                <h3 class="bold red">##word.creditor## : {{store_out.customer.balance_creditor || 0}}
                                 </h3>
                             </div>
                             <div class="col6">
-                                <h3 class="bold green">##word.debtor## : {{store_out.customer.balance_debtor}}
+                                <h3 class="bold green">##word.debtor## : {{store_out.customer.balance_debtor || 0}}
                                 </h3>
                             </div>
                         </fieldset>
@@ -77,7 +77,7 @@
 
             <div class="row" ng-hide="store_out.type.id == 6">
                 <i-control id="search_barcode" class="col4" ng-keydown="getBarcode($event)" class="col3"
-                    ng-model="search_barcode" label="##word.search##" type="text"></i-control>
+                    ng-model="search_barcode" label="##word.items_search##" type="text"></i-control>
                 <div class="col1"></div>
                 <i-button type="search" label=" ##word.select_items##" ng-click="selectItems()">
                 </i-button>

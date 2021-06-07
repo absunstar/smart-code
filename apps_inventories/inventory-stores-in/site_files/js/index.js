@@ -2441,6 +2441,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         $scope.paymentMethodList = response.data;
+        $scope.paymentMethodList = response.data.filter(i => i.id != 5 );
       },
       function (err) {
         $scope.busy = false;

@@ -46,8 +46,9 @@
                     <tr>
                             <th class="not-print"> ##word.logo## </th>
                         <th> ##word.vendors_code## </th>
-                        <th> ##word.vendors_name_ar## </th>
-                        <th> ##word.balance## </th>
+                        <th> ##word.vendor_name## </th>
+                        <th> ##word.balance_creditor## </th>
+                        <th> ##word.balance_debtor## </th>
                         <th> ##word.status## </th>
                         <th class="not-print"> ##word.actions## </th>
                     </tr>
@@ -59,28 +60,8 @@
                         <td class="blue userPrint"> {{c.code}} </td>
                         <td> {{c.name_##session.lang##}} </td>
 
-                        <td class="green bold">
-
-                            <div class="row margin padding" ng-repeat="openBranch in c.opening_balance">
-
-                                <div class="col6">
-                                    <p> {{openBranch.initial_balance}} </p>
-                                </div>
-
-                                <div class="col6">
-                                    <p ng-show="openBranch.balance_type == 'debit'">
-                                        ##word.vendors_debit##
-                                    </p>
-
-                                    <p ng-show="openBranch.balance_type == 'credit'">
-                                        ##word.vendors_credit##
-                                    </p>
-                                </div>
-
-                            </div>
-
-                        </td>
-
+                        <td class="blue"> {{c.balance_creditor || 0}} </td>
+                        <td class="blue"> {{c.balance_debtor || 0}} </td>
 
                         <td>
                             <p ng-show="c.active == true" class="green"> ##word.active## </p>

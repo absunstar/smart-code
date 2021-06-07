@@ -210,16 +210,19 @@
                 <fieldset>
                     <legend> ##word.vendors_accounting_informations## </legend>
                     <div class="row">
-                        <i-control class="col3" label="##word.vendors_period_maturity_purchases##"
-                            ng-model="vendor.period_maturity_purchases"></i-control>
 
-                        <i-list ng-search="$ledger_account" display="name_##session.lang##" space=" - " display2="code"
-                            class="col3" items="guideAccountList" ng-model="vendor.ledger_account"
+                        <i-list x-features="erp" ng-search="$ledger_account" display="name_##session.lang##" space=" - "
+                            display2="code" class="col3" items="guideAccountList" ng-model="vendor.ledger_account"
                             label="##word.ledger_account##">
                         </i-list>
-                        <i-list class="col3" label="##word.customers_currency_name##" ng-model="vendor.ledger_account"
-                            disabled display="currency.name_##session.lang##" ng-search="_search.$search_currency">
+
+                        <i-list x-features="erp" class="col3" label="##word.customers_currency_name##"
+                            ng-model="vendor.ledger_account" disabled display="currency.name_##session.lang##"
+                            ng-search="_search.$search_currency">
                         </i-list>
+
+                        <i-control class="col3" label="##word.vendors_period_maturity_purchases##"
+                            ng-model="vendor.period_maturity_purchases"></i-control>
 
                         <i-control sign="%" class="col3" label="##word.vendors_discount##" ng-model="vendor.discount">
                         </i-control>
@@ -227,8 +230,13 @@
 
                     <div class="row">
 
+                        <i-control class="col2" type="number" disabled label="##word.balance_creditor##"
+                            ng-model="vendor.balance_creditor">
+                        </i-control>
 
-                        <i-control class="col3" label="##word.balance##" ng-model="vendor.balance"></i-control>
+                        <i-control class="col2" type="number" type="number"  disabled label="##word.balance_debtor##"
+                            ng-model="vendor.balance_debtor">
+                        </i-control>
 
                         <i-control class="col3" label="##word.vendors_credit_limit##" ng-model="vendor.credit_limit">
                         </i-control>
@@ -491,7 +499,8 @@
                                 ng-search="_search.$$dealCompanyName"></i-list>
 
                             <i-list class="col6" label="##word.vendors_branch_name##" ng-model="dealCompany.branch"
-                            display="name_##session.lang##" items="dealCompany.company.branch_list" ng-search="_search.$$dealCompanyBranchName">
+                                display="name_##session.lang##" items="dealCompany.company.branch_list"
+                                ng-search="_search.$$dealCompanyBranchName">
                             </i-list>
 
                         </div>

@@ -12,6 +12,11 @@
                     </i-control>
 
                     <i-date2 class="col4" ng-model="store_in.date" label="##word.stores_in_date##" v="r"></i-date2>
+                    <i-list class="col2" ng-model="store_in.payment_type" items="paymentTypesList"
+                        ng-show="(store_in.type.id== 1 || store_in.type.id== 4)" display="##session.lang##"
+                        ng-search="_search.$search_payment_types" label="##word.payment_type##">
+                    </i-list>
+
                 </div>
 
                 <div class="row">
@@ -21,11 +26,8 @@
 
                     <i-date2 class="col4" ng-model="store_in.supply_date" label="##word.stores_in_supply_date##">
                     </i-date2>
-
-                    <i-list class="col2" ng-model="store_in.payment_type" items="paymentTypesList"
-                        ng-show="(store_in.type.id== 1 || store_in.type.id== 4)" display="##session.lang##"
-                        ng-search="_search.$search_payment_types" label="##word.payment_type##">
-                    </i-list>
+                    <i-list class="col3" ng-model="store_in.store" items="storesList" ng-search="_search.$search_stores"
+                        display="name_##session.lang##" label="##word.store##" v="r"></i-list>
 
                 </div>
 
@@ -36,8 +38,21 @@
                         space=" - " display2="code" ng-search="_search.$search_vendor"
                         label="##word.stores_in_Company_name##"></i-list>
 
-                    <i-list class="col3" ng-model="store_in.store" items="storesList" ng-search="_search.$search_stores"
-                        display="name_##session.lang##" label="##word.store##" v="r"></i-list>
+                    <div class="col4">
+                        <br><br>
+
+                        <fieldset class="row" ng-show="store_in.vendor.id">
+
+                            <div class="col6">
+                                <h3 class="bold red">##word.creditor## : {{store_in.vendor.balance_creditor || 0}}
+                                </h3>
+                            </div>
+                            <div class="col6">
+                                <h3 class="bold green">##word.debtor## : {{store_in.vendor.balance_debtor || 0}}
+                                </h3>
+                            </div>
+                        </fieldset>
+                    </div>
                 </div>
 
             </div>
@@ -49,7 +64,7 @@
 
             <div class="row" ng-hide="store_in.type.id == 4">
                 <i-control id="search_barcode" class="col4" ng-keydown="getBarcode($event)" class="col3"
-                    ng-model="search_barcode" label="##word.search##" type="text"></i-control>
+                    ng-model="search_barcode" label="##word.items_search##" type="text"></i-control>
                 <div class="col1"></div>
                 <i-button type="search" label=" ##word.select_items##" ng-click="selectItems()">
                 </i-button>
@@ -136,7 +151,7 @@
                             <b class="" ng-show="itm.discount.type =='percent'">%</b>
                         </td> -->
 
-                        <td ng-hide="##query.type## == 3 || ##query.type## == 2"> 
+                        <td ng-hide="##query.type## == 3 || ##query.type## == 2">
                             <i-control ng-change="calcSize(itm)" type="number" ng-model="itm.value_added">
                             </i-control>
                             <p class="red">##word.total_v_a##</p>
@@ -187,10 +202,10 @@
 
                                         <div class="col6">
                                             <div class="row">
-                                                <i-radio class="col6" ng-model="discount.type"
-                                                    label="##word.amount##" ng-value="number"></i-radio>
-                                                <i-radio class="col6" ng-model="discount.type"
-                                                    label="##word.percent##" ng-value="percent">
+                                                <i-radio class="col6" ng-model="discount.type" label="##word.amount##"
+                                                    ng-value="number"></i-radio>
+                                                <i-radio class="col6" ng-model="discount.type" label="##word.percent##"
+                                                    ng-value="percent">
                                                 </i-radio>
                                             </div>
 
@@ -265,11 +280,13 @@
                     ng-model="store_in.total_tax" type="number" ng-disabled="store_in.type.id !== 4"
                     ng-change="calcReturn(store_in)" label="##word.stores_in_total_tax##"></i-control>
 
-                <i-control ng-hide="##query.type## == 3 || ##query.type## == 2" class="col2" ng-model="store_in.total_value_added" type="number" disabled
-                    label="##word.total_value_added##"></i-control>
+                <i-control ng-hide="##query.type## == 3 || ##query.type## == 2" class="col2"
+                    ng-model="store_in.total_value_added" type="number" disabled label="##word.total_value_added##">
+                </i-control>
 
-                <i-control class="col2" ng-hide="##query.type## == 3 || ##query.type## == 2" ng-model="store_in.total_value" type="number" disabled
-                    label="##word.stores_in_total_value##"></i-control>
+                <i-control class="col2" ng-hide="##query.type## == 3 || ##query.type## == 2"
+                    ng-model="store_in.total_value" type="number" disabled label="##word.stores_in_total_value##">
+                </i-control>
             </div>
 
             <div class="row"

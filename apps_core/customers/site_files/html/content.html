@@ -523,12 +523,12 @@
                     <legend> ##word.customers_accounting_informations## </legend>
                     <div class="row">
 
-                        <i-list ng-search="$ledger_account" display="name_##session.lang##" space=" - " display2="code"
+                        <i-list x-features="erp" ng-search="$ledger_account" display="name_##session.lang##" space=" - " display2="code"
                             class="col3" items="guideAccountList" ng-model="customer.ledger_account"
                             label="##word.ledger_account##">
                         </i-list>
 
-                        <i-list class="col3" label="##word.customers_currency_name##" ng-model="customer.ledger_account"
+                        <i-list x-features="erp" class="col3" label="##word.customers_currency_name##" ng-model="customer.ledger_account"
                             disabled display="currency.name_##session.lang##" ng-search="_search.$search_currency">
                         </i-list>
 

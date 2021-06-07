@@ -20,6 +20,11 @@
         "ar": "إضافة مقاسات"
     },
     {
+        "name": "items_search",
+        "en": "Items search",
+        "ar": "بحث الأصناف"
+    },
+    {
         "name": "item_type",
         "en": "Item Type",
         "ar": "نوع الصنف"

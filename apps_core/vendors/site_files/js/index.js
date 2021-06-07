@@ -8,7 +8,9 @@ app.controller("vendors", function ($scope, $http, $timeout) {
     $scope.vendor = {
       image_url: '/images/vendor.png',
       active: true,
-      balance: 0,
+      balance_creditor: 0,
+      balance_debtor: 0,
+      credit_limit: 0,
       branch_list: [{
         charge: [{}]
       }],
@@ -457,9 +459,9 @@ app.controller("vendors", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.vendor.files_list = $scope.vendor.files_list || [];
     $scope.vendor.files_list.push({
-      file_date : new Date(),
-      file_upload_date : new Date(),
-      upload_by : '##user.name##',
+      file_date: new Date(),
+      file_upload_date: new Date(),
+      upload_by: '##user.name##',
     })
   };
 

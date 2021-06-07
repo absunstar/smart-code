@@ -218,6 +218,23 @@ module.exports = function init(site) {
 
                     } else {
                       paid_value.operation = { ar: 'فاتورة مشتريات', en: 'Purchase Invoice' }
+
+                      // if (doc.vendor && doc.vendor.id) {
+
+                      //   let vendorObj = { id: doc.vendor.id };
+                      //   let foundPayVendor = false;
+
+                      //   if (doc.payment_type && doc.payment_type.id === 2) {
+                      //     vendorObj.balance_creditor = doc.remain_amount
+                      //     vendorObj.sum_creditor = true
+                      //     foundPayVendor = true
+
+                      //   }
+
+                      //   if (foundPayVendor) site.quee('[vendor][account_invoice][balance]', vendorObj)
+                      // }
+
+
                     }
 
                     paid_value.transition_type = 'out'
@@ -228,7 +245,7 @@ module.exports = function init(site) {
                       paid_value.value = (-Math.abs(paid_value.value))
                       paid_value.operation = { ar: 'مرتجع فاتورة مبيعات', en: 'Return Sales Invoice' }
 
-                      if (doc.customer) {
+                      if (doc.customer && doc.customer.id) {
 
                         let customerObj = { id: doc.customer.id };
                         let foundPayCustomer = false;
@@ -255,7 +272,7 @@ module.exports = function init(site) {
 
                       paid_value.operation = { ar: 'فاتورة مبيعات', en: 'Sales Invoice' }
                       paid_value.transition_type = 'in'
-                      if (doc.customer) {
+                      if (doc.customer && doc.customer.id) {
 
                         let customerObj = { id: doc.customer.id };
                         let foundPayCustomer = false;
@@ -294,7 +311,7 @@ module.exports = function init(site) {
                     }
                     site.call('[account_invoices][order_invoice][+]', Object.assign({}, under_paid))
 
-                    if (doc.customer) {
+                    if (doc.customer && doc.customer.id) {
 
                       let customerObj = { id: doc.customer.id };
                       let foundPayCustomer = false;
@@ -322,7 +339,7 @@ module.exports = function init(site) {
                     paid_value.operation = { ar: 'فاتورة طلب نشاط', en: 'Request Service Invoice' }
                     paid_value.transition_type = 'in'
 
-                    if (doc.customer) {
+                    if (doc.customer && doc.customer.id) {
 
                       let customerObj = { id: doc.customer.id };
                       let foundPayCustomer = false;
@@ -355,7 +372,7 @@ module.exports = function init(site) {
                     paid_value.operation = { ar: 'سند قبض', en: 'Amount In' }
                     paid_value.transition_type = 'in'
 
-                    if (doc.customer) {
+                    if (doc.customer && doc.customer.id) {
 
                       let customerObj = { id: doc.customer.id };
                       let foundPayCustomer = false;
@@ -385,7 +402,7 @@ module.exports = function init(site) {
                   } else if (doc.source_type.id == 10) {
                     paid_value.operation = { ar: 'دفعة عميل مقدمة', en: 'Customer Advance Payment' }
                     paid_value.transition_type = 'in'
-                    if (doc.customer) {
+                    if (doc.customer && doc.customer.id) {
                       let customerBalance = {
                         id: doc.customer.id,
                         balance_creditor: doc.paid_up * doc.currency.ex_rate,
@@ -407,7 +424,7 @@ module.exports = function init(site) {
                     paid_value.operation = { ar: 'مصروفات دراسية', en: 'School Fees' }
                     paid_value.transition_type = 'in'
 
-                    if (doc.customer) {
+                    if (doc.customer && doc.customer.id) {
 
                       let customerObj = { id: doc.customer.id };
                       let foundPayCustomer = false;
@@ -457,7 +474,7 @@ module.exports = function init(site) {
                     paid_value.operation = { ar: 'تذكرة مريض', en: 'Patient Ticket' }
                     paid_value.transition_type = 'in'
 
-                    if (doc.customer) {
+                    if (doc.customer && doc.customer.id) {
 
                       let customerObj = { id: doc.customer.id };
                       let foundPayCustomer = false;

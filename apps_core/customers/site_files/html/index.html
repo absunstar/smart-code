@@ -45,7 +45,9 @@
                     <tr>
                         <th class="not-print"> ##word.logo## </th>
                         <th> ##word.customers_code## </th>
-                        <th> ##word.customers_name_ar## </th>
+                        <th> ##word.customer_name## </th>
+                        <th> ##word.balance_creditor## </th>
+                        <th> ##word.balance_debtor## </th>
                         <th> ##word.status## </th>
                         <th class="not-print"> ##word.actions## </th>
                     </tr>
@@ -56,6 +58,10 @@
 
                         <td class="blue userPrint"> {{c.code}} </td>
                         <td> {{c.name_##session.lang##}} </td>
+                        
+                        <td class="blue"> {{c.balance_creditor || 0}} </td>
+                        <td class="blue"> {{c.balance_debtor || 0}} </td>
+
                         <td>
                             <p ng-show="c.active == true" class="green"> ##word.active## </p>
                             <p ng-show="c.active == false" class="red"> ##word.not_active## </p>
