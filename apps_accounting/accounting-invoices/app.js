@@ -414,7 +414,7 @@ module.exports = function init(site) {
                         balance_creditor: doc.paid_up * doc.currency.ex_rate,
                         sum_creditor: true
                       }
-                      site.quee('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
+                      site.quee('[customer][account_invoice][balance]', customerBalance)
                     }
 
                   } else if (doc.source_type.id == 11) {
@@ -1005,7 +1005,7 @@ module.exports = function init(site) {
                       balance_creditor: _payment_list.paid_up * _payment_list.currency.ex_rate,
                       sum_creditor: true
                     }
-                    site.quee('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
+                    site.quee('[customer][account_invoice][balance]', customerBalance)
 
                   } else if (account_invoices_doc.source_type.id == 11) {
                     obj.operation = { ar: 'سلفة موظف', en: 'Employee Advance' }
@@ -1090,7 +1090,7 @@ module.exports = function init(site) {
                       minus_creditor: true
                     }
 
-                    site.quee('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
+                    site.quee('[customer][account_invoice][balance]', customerBalance)
 
                   } else if (account_invoices_doc.source_type.id == 11) {
                     obj.operation = { ar: 'فك ترحيل سلفة موظف', en: 'Un Post Employee Advance' }
@@ -1152,7 +1152,7 @@ module.exports = function init(site) {
               })
 
 
-            if (account_invoices_doc.source_type.id == 1 && account_invoices_doc.vendor && account_invoices_doc.vendor.id ) {
+            if (account_invoices_doc.source_type.id == 1 && account_invoices_doc.vendor && account_invoices_doc.vendor.id) {
 
               if (account_invoices_doc.invoice_type && account_invoices_doc.invoice_type.id == 4) {
 
@@ -1161,7 +1161,7 @@ module.exports = function init(site) {
                   let vendorObj = { id: account_invoices_doc.vendor.id };
 
                   vendorObj.balance_debtor = account_invoices_doc.remain_amount
-                  if (account_invoices_doc.posting){
+                  if (account_invoices_doc.posting) {
                     vendorObj.sum_debtor = true
                   } else {
                     vendorObj.minus_debtor = true
@@ -1179,12 +1179,12 @@ module.exports = function init(site) {
                   let vendorObj = { id: account_invoices_doc.vendor.id };
 
                   vendorObj.balance_creditor = account_invoices_doc.remain_amount
-                  if (account_invoices_doc.posting){
+                  if (account_invoices_doc.posting) {
 
                     vendorObj.sum_creditor = true
                   } else {
                     vendorObj.minus_creditor = true
-                    
+
                   }
 
                   site.quee('[vendor][account_invoice][balance]', vendorObj)
@@ -1443,7 +1443,7 @@ module.exports = function init(site) {
                           balance_creditor: _payment_list.paid_up * _payment_list.currency.ex_rate,
                           minus_creditor: true
                         }
-                        site.quee('[customer][account_invoice][balance]', Object.assign({}, customerBalance))
+                        site.quee('[customer][account_invoice][balance]',  customerBalance)
 
                       } else if (response.doc.source_type.id == 11) {
                         obj.operation = { ar: 'حذف سلفة موظف', en: 'Delete Employee Advance' }
