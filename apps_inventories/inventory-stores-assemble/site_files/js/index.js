@@ -258,7 +258,7 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
 
   $scope.delete = function (store_assemble) {
     $scope.error = '';
-    $scope.getStockItems(store_assemble.items, callback => {
+    $scope.getStockItems(store_assemble.items, store_assemble.store, callback => {
 
       if (!callback) {
 
@@ -771,7 +771,7 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
 
   $scope.posting = function (store_assemble) {
     $scope.error = '';
-    $scope.getStockItems(store_assemble.items, callback => {
+    $scope.getStockItems(store_assemble.items, store_assemble.store, callback => {
       $scope.testPatches(store_assemble, callbackTest => {
 
         if (callbackTest.patchCount) {
@@ -895,13 +895,13 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
     })
   };
 
-  $scope.getStockItems = function (items, callback) {
+  $scope.getStockItems = function (items, store, callback) {
     $scope.error = '';
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/stores_stock/item_stock",
-      data: items
+      data: { items: items, store: store }
     }).then(
       function (response) {
         $scope.busy = false;
@@ -915,7 +915,6 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
         } else {
           callback(false)
         }
-
       },
       function (err) {
         $scope.busy = false;
@@ -923,6 +922,7 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
       }
     )
   };
+
 
 
   $scope.loadStores = function () {

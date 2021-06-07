@@ -1547,7 +1547,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       $scope.error = '##word.err_delete_return##';
       return;
     };
-    $scope.getStockItems(store_in.items, callback => {
+    $scope.getStockItems(store_in.items, store_in.store, callback => {
 
       if (!callback) {
 
@@ -1655,7 +1655,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       return;
     };
 
-    $scope.getStockItems(store_in.items, callback => {
+    $scope.getStockItems(store_in.items, store_in.store, callback => {
 
       $scope.testPatches(store_in, testCallback => {
 
@@ -1795,7 +1795,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         setTimeout(() => {
           if (!_store_in_all[i].posting) {
 
-            $scope.getStockItems(_store_in_all[i].items, callback => {
+            $scope.getStockItems(_store_in_all[i].items, _store_in_all[i].store, callback => {
               $scope.testPatches(_store_in_all[i], testCallback => {
 
                 if (testCallback.patchCount) {
@@ -1892,13 +1892,13 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
   };
 
 
-  $scope.getStockItems = function (items, callback) {
+  $scope.getStockItems = function (items, store, callback) {
     $scope.error = '';
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/stores_stock/item_stock",
-      data: items
+      data: { items: items, store: store }
     }).then(
       function (response) {
         $scope.busy = false;
@@ -2441,7 +2441,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         $scope.paymentMethodList = response.data;
-        $scope.paymentMethodList = response.data.filter(i => i.id != 5 );
+        $scope.paymentMethodList = response.data.filter(i => i.id != 5);
       },
       function (err) {
         $scope.busy = false;

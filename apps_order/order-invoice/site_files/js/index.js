@@ -1770,7 +1770,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
   $scope.closeOrder = function () {
 
-    $scope.getStockItems($scope.order_invoice.book_list, callback => {
+    $scope.getStockItems($scope.order_invoice.book_list, $scope.order_invoice.store, callback => {
 
       if (!callback) {
 
@@ -1805,13 +1805,13 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   };
 
 
-  $scope.getStockItems = function (items, callback) {
+  $scope.getStockItems = function (items, store, callback) {
     $scope.error = '';
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/stores_stock/item_stock",
-      data: items
+      data: { items: items, store: store }
     }).then(
       function (response) {
         $scope.busy = false;
@@ -1825,7 +1825,6 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         } else {
           callback(false)
         }
-
       },
       function (err) {
         $scope.busy = false;
@@ -1863,7 +1862,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
             if (response.data.done) {
               $scope.itemsList = response.data.list;
               $scope.itemsList.forEach(element => {
-                
+
                 console.log(element.add_sizes);
               });
               $scope.current_items = [];
@@ -1896,7 +1895,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         _size.add_sizes = $scope.current_items.add_sizes;
       });
     }
-    if($scope.current_items.sizes.length === 1){
+    if ($scope.current_items.sizes.length === 1) {
       $scope.bookList($scope.current_items.sizes[0]);
     } else {
       site.showModal('#sizesModal');

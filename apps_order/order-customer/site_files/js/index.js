@@ -1199,7 +1199,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
 
   $scope.closeOrder = function () {
 
-    $scope.getStockItems($scope.order_customer.book_list, callback => {
+    $scope.getStockItems($scope.order_customer.book_list,$scope.order_customer.store, callback => {
 
       if (!callback) {
 
@@ -1234,13 +1234,13 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
   };
 
 
-  $scope.getStockItems = function (items, callback) {
+  $scope.getStockItems = function (items, store, callback) {
     $scope.error = '';
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/stores_stock/item_stock",
-      data: items
+      data: { items: items, store: store }
     }).then(
       function (response) {
         $scope.busy = false;
@@ -1254,7 +1254,6 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
         } else {
           callback(false)
         }
-
       },
       function (err) {
         $scope.busy = false;

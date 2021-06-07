@@ -31,13 +31,13 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
               $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe_box;
             else $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe_bank;
           }
-          
+
         };
 
         if ($scope.defaultSettings.general_Settings) {
 
           if ($scope.defaultSettings.general_Settings.payment_type && site.toNumber("##query.type##") != 8 && site.toNumber("##query.type##") != 9 && site.toNumber("##query.type##") != 10 && site.toNumber("##query.type##") != 11 && site.toNumber("##query.type##") != 14)
-          $scope.account_invoices.payment_type = $scope.defaultSettings.general_Settings.payment_type;
+            $scope.account_invoices.payment_type = $scope.defaultSettings.general_Settings.payment_type;
 
           if ($scope.defaultSettings.general_Settings && !$scope.defaultSettings.general_Settings.work_posting)
             $scope.account_invoices.posting = true;
@@ -1002,6 +1002,10 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         $scope.paymentMethodList = response.data;
+        if (site.toNumber("##query.type##") === 1 || site.toNumber("##query.type##") === 5 || site.toNumber("##query.type##") === 6 || site.toNumber("##query.type##") === 9 || site.toNumber("##query.type##") === 11 || site.toNumber("##query.type##") === 12 || site.toNumber("##query.type##") === 14){
+          $scope.paymentMethodList = response.data.filter(i => i.id != 5);
+        }
+
       },
       function (err) {
         $scope.busy = false;
@@ -1058,8 +1062,8 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       port = $scope.defaultSettings.printer_program.printer_path.Port_device || '60080';
     };
 
-    if(account_invoices.currency)
-    account_invoices.total_remain = account_invoices.net_value - (account_invoices.paid_up * account_invoices.currency.ex_rate);
+    if (account_invoices.currency)
+      account_invoices.total_remain = account_invoices.net_value - (account_invoices.paid_up * account_invoices.currency.ex_rate);
 
     account_invoices.total_remain = site.toNumber(account_invoices.total_remain);
     account_invoices.total_paid_up = site.toNumber(account_invoices.total_paid_up);

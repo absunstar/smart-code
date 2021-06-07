@@ -586,7 +586,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       return;
     };
 
-    $scope.getStockItems(store_out.items, callback => {
+    $scope.getStockItems(store_out.items, store_out.store, callback => {
 
       if (!callback) {
 
@@ -2403,7 +2403,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     };
 
 
-    $scope.getStockItems(store_out.items, callback => {
+    $scope.getStockItems(store_out.items, store_out.store, callback => {
 
       $scope.testPatches(store_out, callbackTest => {
 
@@ -2527,7 +2527,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
           if (!_store_out_all[i].posting) {
 
-            $scope.getStockItems(_store_out_all[i].items, callback => {
+            $scope.getStockItems(_store_out_all[i].items, _store_out_all[i].store, callback => {
 
               $scope.testPatches(_store_out_all[i], callbackTest => {
 
@@ -2618,13 +2618,13 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
   };
 
-  $scope.getStockItems = function (items, callback) {
+  $scope.getStockItems = function (items, store, callback) {
     $scope.error = '';
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/stores_stock/item_stock",
-      data: items
+      data: { items: items, store: store }
     }).then(
       function (response) {
         $scope.busy = false;

@@ -271,7 +271,7 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
 
   $scope.delete = function (units_switch) {
     $scope.error = '';
-    $scope.getStockItems(units_switch.items, callback => {
+    $scope.getStockItems(units_switch.items, units_switch.store, callback => {
 
       if (!callback) {
 
@@ -786,7 +786,7 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
 
   $scope.posting = function (units_switch) {
     $scope.error = '';
-    $scope.getStockItems(units_switch.items, callback => {
+    $scope.getStockItems(units_switch.items, units_switch.store, callback => {
 
       let obj = {
         patchCount: false,
@@ -912,13 +912,13 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
     })
   };
 
-  $scope.getStockItems = function (items, callback) {
+  $scope.getStockItems = function (items, store, callback) {
     $scope.error = '';
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/stores_stock/item_stock",
-      data: items
+      data: { items: items, store: store }
     }).then(
       function (response) {
         $scope.busy = false;
@@ -932,7 +932,6 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
         } else {
           callback(false)
         }
-
       },
       function (err) {
         $scope.busy = false;

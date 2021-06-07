@@ -423,11 +423,12 @@ module.exports = function init(site) {
     response.done = false
 
     let where = req.data.where || {};
-    let stock_doc = req.body;
+    let items_doc = req.body.items;
 
     where['$or'] = [{ 'status': 2 }, { 'status': 3 }]
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
+    where['store.id'] = req.body.store.id
 
     $stores_stock.findMany({
       select: req.body.select || {},
@@ -442,10 +443,11 @@ module.exports = function init(site) {
         docs.forEach(_doc => {
           if (_doc.items && _doc.items.length > 0)
             _doc.items.forEach(_item => {
-              stock_doc.forEach(_stockItem => {
+              items_doc.forEach(_stockItem => {
 
-                if (_item.barcode == _stockItem.barcode)
+                if (_item.barcode === _stockItem.barcode) {
                   response.found = true
+                }
 
               });
             });

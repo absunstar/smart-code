@@ -203,7 +203,7 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
 
   $scope.delete = function (store_dismantle) {
     $scope.error = '';
-    $scope.getStockItems(store_dismantle.items, callback => {
+    $scope.getStockItems(store_dismantle.items, store_dismantle.store, callback => {
 
       if (!callback) {
 
@@ -642,7 +642,7 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
 
   $scope.posting = function (store_dismantle) {
     $scope.error = '';
-    $scope.getStockItems(store_dismantle.items, callback => {
+    $scope.getStockItems(store_dismantle.items, store_dismantle.store, callback => {
 
       $scope.testPatches(store_dismantle, callbackTest => {
 
@@ -744,13 +744,13 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
     })
   };
 
-  $scope.getStockItems = function (items, callback) {
+  $scope.getStockItems = function (items, store, callback) {
     $scope.error = '';
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/stores_stock/item_stock",
-      data: items
+      data: { items: items, store: store }
     }).then(
       function (response) {
         $scope.busy = false;
@@ -771,6 +771,7 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
       }
     )
   };
+
 
   $scope.loadStores = function () {
     $scope.error = '';
@@ -803,7 +804,7 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
         select: {
           id: 1,
           name_ar: 1, name_en: 1,
-          code : 1
+          code: 1
         }
       }
     }).then(
