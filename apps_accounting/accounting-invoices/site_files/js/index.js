@@ -19,6 +19,11 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
           source_type: $scope.source_type
         };
 
+        if (site.toNumber("##query.type##") === 16) {
+          $scope.account_invoices.op_ba_value = 0;
+          $scope.account_invoices.op_balance_type = 'creditor';
+        };
+
         if ($scope.defaultSettings.accounting) {
           if ($scope.account_invoices.source_type && $scope.account_invoices.source_type.id === 3)
             $scope.getTransactionTypeList();
@@ -78,6 +83,21 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       if (!v.ok) {
         $scope.error = v.messages[0].ar;
         return;
+
+      }  else if (site.toNumber("##query.type##") === 16) {
+        if (!$scope.account_invoices.target_account || ($scope.account_invoices.target_account && !$scope.account_invoices.target_account.id)) {
+          $scope.error = "##word.target_account_must_selected##";
+          return;
+        }
+        else if (($scope.account_invoices.target_account && $scope.account_invoices.target_account.id === 1 && !$scope.account_invoices.customer)) {
+          $scope.error = "##word.target_customer_account_must_selected##";
+          return;
+        }
+        else if (($scope.account_invoices.target_account && $scope.account_invoices.target_account.id === 2 && !$scope.account_invoices.vendor)) {
+          $scope.error = "##word.target_vendor_account_must_selected##";
+          return;
+        }
+
       } else if ($scope.account_invoices.paid_up > 0 && !$scope.account_invoices.safe) {
         $scope.error = "##word.should_select_safe##";
         return;
@@ -300,6 +320,20 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       if (!v.ok) {
         $scope.error = v.messages[0].ar;
         return;
+      } else if (site.toNumber("##query.type##") === 16) {
+        if (!$scope.account_invoices.target_account || ($scope.account_invoices.target_account && !$scope.account_invoices.target_account.id)) {
+          $scope.error = "##word.target_account_must_selected##";
+          return;
+        }
+        else if (($scope.account_invoices.target_account && $scope.account_invoices.target_account.id === 1 && !$scope.account_invoices.customer)) {
+          $scope.error = "##word.target_customer_account_must_selected##";
+          return;
+        }
+        else if (($scope.account_invoices.target_account && $scope.account_invoices.target_account.id === 2 && !$scope.account_invoices.vendor)) {
+          $scope.error = "##word.target_vendor_account_must_selected##";
+          return;
+        }
+
       } else if ($scope.account_invoices.paid_up > 0 && !$scope.account_invoices.safe) {
         $scope.error = "##word.should_select_safe##";
         return;
@@ -1002,9 +1036,30 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         $scope.paymentMethodList = response.data;
-        if (site.toNumber("##query.type##") === 1 || site.toNumber("##query.type##") === 5 || site.toNumber("##query.type##") === 6 || site.toNumber("##query.type##") === 9 || site.toNumber("##query.type##") === 11 || site.toNumber("##query.type##") === 12 || site.toNumber("##query.type##") === 14){
+        if (site.toNumber("##query.type##") === 1 || site.toNumber("##query.type##") === 5 || site.toNumber("##query.type##") === 6 || site.toNumber("##query.type##") === 9 || site.toNumber("##query.type##") === 11 || site.toNumber("##query.type##") === 12 || site.toNumber("##query.type##") === 14) {
           $scope.paymentMethodList = response.data.filter(i => i.id != 5);
         }
+
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getTargetAccountList = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.targetAccountList = [];
+    $http({
+      method: "POST",
+      url: "/api/target_account/all"
+
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.targetAccountList = response.data;
 
       },
       function (err) {
@@ -1634,20 +1689,22 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     let screen = '';
     if (site.toNumber("##query.type##")) {
 
-      if (site.toNumber("##query.type##") == 1) screen = 'purchases_invoices';
-      else if (site.toNumber("##query.type##") == 2) screen = 'sales_invoices';
-      else if (site.toNumber("##query.type##") == 3) screen = 'o_screen_invoices';
-      else if (site.toNumber("##query.type##") == 4) screen = 'request_activity_invoice';
-      else if (site.toNumber("##query.type##") == 5) screen = 'booking_hall';
-      else if (site.toNumber("##query.type##") == 6) screen = 'trainer_account';
-      else if (site.toNumber("##query.type##") == 7) screen = 'course_booking';
-      else if (site.toNumber("##query.type##") == 8) screen = 'amounts_in';
-      else if (site.toNumber("##query.type##") == 9) screen = 'amounts_out';
-      else if (site.toNumber("##query.type##") == 10) screen = 'recharge_customer_balance';
-      else if (site.toNumber("##query.type##") == 11) screen = 'employee_advance';
-      else if (site.toNumber("##query.type##") == 12) screen = 'payment_employee_advance';
-      else if (site.toNumber("##query.type##") == 13) screen = 'school_fees';
-      else if (site.toNumber("##query.type##") == 14) screen = 'transfer_safes_balances';
+      if (site.toNumber("##query.type##") === 1) screen = 'purchases_invoices';
+      else if (site.toNumber("##query.type##") === 2) screen = 'sales_invoices';
+      else if (site.toNumber("##query.type##") === 3) screen = 'o_screen_invoices';
+      else if (site.toNumber("##query.type##") === 4) screen = 'request_activity_invoice';
+      else if (site.toNumber("##query.type##") === 5) screen = 'booking_hall';
+      else if (site.toNumber("##query.type##") === 6) screen = 'trainer_account';
+      else if (site.toNumber("##query.type##") === 7) screen = 'course_booking';
+      else if (site.toNumber("##query.type##") === 8) screen = 'amounts_in';
+      else if (site.toNumber("##query.type##") === 9) screen = 'amounts_out';
+      else if (site.toNumber("##query.type##") === 10) screen = 'recharge_customer_balance';
+      else if (site.toNumber("##query.type##") === 11) screen = 'employee_advance';
+      else if (site.toNumber("##query.type##") === 12) screen = 'payment_employee_advance';
+      else if (site.toNumber("##query.type##") === 13) screen = 'school_fees';
+      else if (site.toNumber("##query.type##") === 14) screen = 'transfer_safes_balances';
+      else if (site.toNumber("##query.type##") === 15) screen = 'patient_ticket';
+      else if (site.toNumber("##query.type##") === 16) screen = 'opening_balance';
 
 
       $http({
@@ -1720,7 +1777,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
   if (site.feature('school')) {
     $scope.getSchoolGradesList();
   }
-
+  $scope.getTargetAccountList();
   $scope.getPaymentMethodList();
   $scope.getNumberingAuto();
 });

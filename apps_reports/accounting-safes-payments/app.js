@@ -123,10 +123,11 @@ module.exports = function init(site) {
       sort: {
         id: -1
       }
-    }, (err, docs) => {
+    }, (err, docs,count) => {
       if (!err) {
         response.done = true
         response.list = docs
+        response.count = count
 
       } else {
         response.error = err.message

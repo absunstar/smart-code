@@ -31,8 +31,8 @@
             <a class="tab-link" x-features="pos || erp" onclick="site.showTabContent(event, '#officialDocuments')">
                 ##word.customers_official_documents## </a>
 
-            <a class="tab-link " onclick="site.showTabContent(event, '#openingBalance')">
-                ##word.customers_opening_balance## </a>
+            <!-- <a class="tab-link " onclick="site.showTabContent(event, '#openingBalance')">
+                ##word.customers_opening_balance## </a> -->
 
             <a class="tab-link" ng-click="displaybankingAndAccounting(event)">
                 ##word.customers_banking_and_acounting## </a>
@@ -466,7 +466,7 @@
                     onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
             </div>
 
-            <div id="openingBalance" class="tab-content">
+            <!-- <div id="openingBalance" class="tab-content">
                 <fieldset ng-repeat="openBalance in customer.opening_balance">
                     <legend>
                         <i-button type="add default" ng-click="customer.opening_balance.push({})"></i-button>
@@ -517,7 +517,7 @@
                 </fieldset>
                 <i-button type="default left" fa="2x fa-angle-double-left"
                     onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
-            </div>
+            </div> -->
             <div id="bankingAndAccounting" class="tab-content">
                 <fieldset>
                     <legend> ##word.customers_accounting_informations## </legend>

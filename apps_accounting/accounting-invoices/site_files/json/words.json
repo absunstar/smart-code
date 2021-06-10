@@ -15,6 +15,16 @@
         "ar": " فواتير الحسابات"
     },
     {
+        "name": "opening_balance",
+        "en": "Opening Balance",
+        "ar": " رصيد إفتتاحي"
+    },
+    {
+        "name": "target_account",
+        "en": "Target account",
+        "ar": " الحساب المستهدف"
+    },
+    {
         "name": "payments_payable",
         "en": "Payments payable",
         "ar": "المستحقات واجبة الدفع"
@@ -108,6 +118,21 @@
         "name": "value",
         "en": "Value",
         "ar": "القيمة"
+    },
+    {
+        "name": "target_account_must_selected",
+        "en": "The target account must be selected",
+        "ar": "يجب إختيار الحساب المستهدف"
+    },
+    {
+        "name": "target_customer_account_must_selected",
+        "en": "The target customer account must be selected",
+        "ar": "يجب إختيار حساب العميل المستهدف"
+    },
+    {
+        "name": "target_vendor_account_must_selected",
+        "en": "The target vendor account must be selected",
+        "ar": "يجب إختيار حساب المورد المستهدف"
     },
     {
         "name": "payable",

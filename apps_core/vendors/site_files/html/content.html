@@ -5,8 +5,8 @@
                 ##word.vendors_personal_information## </a>
             <a class="tab-link" onclick="site.showTabContent(event, '#officialDocuments')">
                 ##word.vendors_official_documents## </a>
-            <a class="tab-link" onclick="site.showTabContent(event, '#openingBalance')">
-                ##word.vendors_opening_balance## </a>
+            <!-- <a class="tab-link" onclick="site.showTabContent(event, '#openingBalance')">
+                ##word.vendors_opening_balance## </a> -->
             <a class="tab-link" ng-click="displaybankingAndAccounting(event)">
                 ##word.vendors_banking_and_acounting## </a>
             <a class="tab-link" onclick="site.showTabContent(event, '#contactAndAddress')">
@@ -154,7 +154,7 @@
                     onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
             </div>
 
-            <div id="openingBalance" class="tab-content">
+            <!-- <div id="openingBalance" class="tab-content">
                 <fieldset ng-repeat="openBalance in vendor.opening_balance">
                     <legend>
                         <i-button type="add default" ng-click="vendor.opening_balance.push({})"></i-button>
@@ -204,7 +204,7 @@
                 </fieldset>
                 <i-button type="default left" fa="2x fa-angle-double-left"
                     onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
-            </div>
+            </div> -->
 
             <div id="bankingAndAccounting" class="tab-content">
                 <fieldset>
@@ -234,7 +234,7 @@
                             ng-model="vendor.balance_creditor">
                         </i-control>
 
-                        <i-control class="col2" type="number" type="number"  disabled label="##word.balance_debtor##"
+                        <i-control class="col2" type="number" type="number" disabled label="##word.balance_debtor##"
                             ng-model="vendor.balance_debtor">
                         </i-control>
 

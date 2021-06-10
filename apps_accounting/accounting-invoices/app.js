@@ -9,7 +9,8 @@ module.exports = function init(site) {
       if (doc) {
 
         doc.forEach(_doc => {
-          if (_doc.current_book_list)
+          if (_doc.current_book_list) {
+
             _doc.current_book_list.forEach(_items => {
               objectInvoice.sizes_list.forEach(_size => {
                 if (_items.barcode === _size.barcode) {
@@ -20,6 +21,7 @@ module.exports = function init(site) {
                 }
               })
             });
+          }
           $account_invoices.update(_doc);
         });
       }
@@ -46,6 +48,11 @@ module.exports = function init(site) {
   site.post({
     name: '/api/payment_type/all',
     path: __dirname + '/site_files/json/payment_type.json'
+  })
+
+  site.post({
+    name: '/api/target_account/all',
+    path: __dirname + '/site_files/json/target_account.json'
   })
 
   site.post({
@@ -168,6 +175,7 @@ module.exports = function init(site) {
             else if (account_invoices_doc.source_type.id == 13) num_obj.screen = 'school_fees';
             else if (account_invoices_doc.source_type.id == 14) num_obj.screen = 'transfer_safes_balances';
             else if (account_invoices_doc.source_type.id == 15) num_obj.screen = 'patient_ticket';
+            else if (account_invoices_doc.source_type.id == 16) num_obj.screen = 'opening_balance';
 
 
             let cb = site.getNumbering(num_obj);
@@ -315,7 +323,7 @@ module.exports = function init(site) {
                       service: doc.service,
                       invoice_id: doc.invoice_id
                     }
-                    site.call('[account_invoices][order_invoice][+]', Object.assign({}, under_paid))
+                    site.call('[account_invoices][order_invoice][+]', { ...under_paid })
 
                     if (doc.customer && doc.customer.id) {
 
@@ -381,29 +389,35 @@ module.exports = function init(site) {
                     if (doc.customer && doc.customer.id) {
 
                       let customerObj = { id: doc.customer.id };
-                      let foundPayCustomer = false;
 
-                      if (doc.payment_type && doc.payment_type.id === 2) {
-                        customerObj.balance_debtor = doc.remain_amount
-                        customerObj.sum_debtor = true
-                        foundPayCustomer = true
+                      customerObj.balance_creditor = doc.remain_amount
+                      customerObj.sum_creditor = true
 
-                      }
 
-                      if (doc.payment_method && doc.payment_method.id == 5) {
-                        customerObj.balance_creditor = doc.paid_up * doc.currency.ex_rate
-                        customerObj.minus_creditor = true
-                        foundPayCustomer = true
+                      // if (doc.payment_method && doc.payment_method.id == 5) {
+                      //   customerObj.balance_creditor = doc.paid_up * doc.currency.ex_rate
+                      //   customerObj.minus_creditor = true
+                      //   foundPayCustomer = true
 
-                      }
+                      // }
 
-                      if (foundPayCustomer) site.quee('[customer][account_invoice][balance]', customerObj)
+                      site.quee('[customer][account_invoice][balance]', customerObj)
                     }
-
 
                   } else if (doc.source_type.id == 9) {
                     paid_value.operation = { ar: 'سند صرف', en: 'Amount Out' }
                     paid_value.transition_type = 'out'
+
+                    if (doc.vendor && doc.vendor.id) {
+
+                      let vendorObj = { id: doc.vendor.id };
+
+                      vendorObj.balance_creditor = doc.paid_up * doc.currency.ex_rate
+                      vendorObj.sum_creditor = true
+
+                      site.quee('[vendor][account_invoice][balance]', vendorObj)
+
+                    }
 
                   } else if (doc.source_type.id == 10) {
                     paid_value.operation = { ar: 'دفعة عميل مقدمة', en: 'Customer Advance Payment' }
@@ -502,9 +516,50 @@ module.exports = function init(site) {
                       if (foundPayCustomer) site.quee('[customer][account_invoice][balance]', customerObj)
                     }
 
+                  } else if (doc.source_type.id == 16) {
+
+                    if (doc.target_account.id === 1) {
+
+                      let customerObj = { id: doc.customer.id };
+
+                      if (doc.op_balance_type === 'creditor') {
+
+                        customerObj.balance_creditor =  doc.paid_up * doc.currency.ex_rate
+                        customerObj.sum_creditor = true
+
+                      } else if (doc.op_balance_type === 'debtor') {
+
+                        customerObj.balance_debtor = doc.paid_up * doc.currency.ex_rate
+                        customerObj.sum_debtor = true
+                      }
+
+                      site.quee('[customer][account_invoice][balance]', customerObj)
+
+                    } else if (doc.target_account.id === 2) {
+
+                      let vendorObj = { id: doc.vendor.id };
+
+                      if (doc.op_balance_type === 'creditor') {
+
+                        vendorObj.balance_creditor = doc.paid_up * doc.currency.ex_rate
+                        vendorObj.sum_creditor = true
+
+                      } else if (doc.op_balance_type === 'debtor') {
+
+                        vendorObj.balance_debtor = doc.paid_up * doc.currency.ex_rate
+                        vendorObj.sum_debtor = true
+                      }
+
+                      site.quee('[vendor][account_invoice][balance]', vendorObj)
+
+                    }
+
                   }
 
-                  if (doc.safe) site.quee('[amounts][safes][+]', Object.assign({}, paid_value))
+                  if (doc.safe && doc.source_type.id != 16) {
+
+                    site.quee('[amounts][safes][+]', { ...paid_value })
+                  }
 
                 }
 
@@ -740,27 +795,27 @@ module.exports = function init(site) {
                   paid_value.operation = { ar: 'دفعة سند قبض', en: 'Pay Amount In' }
                   paid_value.transition_type = 'in'
 
-                  if (account_invoices_doc.customer && account_invoices_doc.customer.id) {
+                  // if (account_invoices_doc.customer && account_invoices_doc.customer.id) {
 
-                    let customerObj = { id: account_invoices_doc.customer.id };
-                    let foundPayCustomer = false;
+                  //   let customerObj = { id: account_invoices_doc.customer.id };
+                  //   let foundPayCustomer = false;
 
-                    if (account_invoices_doc.payment_type && account_invoices_doc.payment_type.id === 2) {
-                      customerObj.balance_debtor = _payment_list.paid_up * _payment_list.currency.ex_rate
-                      customerObj.minus_debtor = true
-                      foundPayCustomer = true
+                  //   if (account_invoices_doc.payment_type && account_invoices_doc.payment_type.id === 2) {
+                  //     customerObj.balance_debtor = _payment_list.paid_up * _payment_list.currency.ex_rate
+                  //     customerObj.minus_debtor = true
+                  //     foundPayCustomer = true
 
-                    }
+                  //   }
 
-                    if (_payment_list.payment_method && _payment_list.payment_method.id == 5) {
-                      customerObj.balance_creditor = _payment_list.paid_up * _payment_list.currency.ex_rate
-                      customerObj.minus_creditor = true
-                      foundPayCustomer = true
+                  //   if (_payment_list.payment_method && _payment_list.payment_method.id == 5) {
+                  //     customerObj.balance_creditor = _payment_list.paid_up * _payment_list.currency.ex_rate
+                  //     customerObj.minus_creditor = true
+                  //     foundPayCustomer = true
 
-                    }
+                  //   }
 
-                    if (foundPayCustomer) site.quee('[customer][account_invoice][balance]', customerObj)
-                  }
+                  //   if (foundPayCustomer) site.quee('[customer][account_invoice][balance]', customerObj)
+                  // }
 
                 } else if (account_invoices_doc.source_type.id == 9) {
                   paid_value.operation = { ar: 'دفعة سند صرف', en: 'Pay Amount Out' }
@@ -832,7 +887,10 @@ module.exports = function init(site) {
                   paid_value.source_name_en = account_invoices_doc.delegate.name_en
                 }
 
-                site.quee('[amounts][safes][+]', Object.assign({}, paid_value))
+                if (account_invoices_doc.source_type.id != 16) {
+
+                  site.quee('[amounts][safes][+]', { ...paid_value })
+                }
               }
 
             })
@@ -1147,7 +1205,10 @@ module.exports = function init(site) {
                 //   site.quee('[amounts][safes][+]', Object.assign({}, paid_to))
 
                 // }
-                if (account_invoices_doc.safe) site.quee('[amounts][safes][+]', Object.assign({}, obj))
+                if (account_invoices_doc.safe && account_invoices_doc.source_type.id != 16) {
+
+                  site.quee('[amounts][safes][+]', { ...obj })
+                }
 
               })
 
@@ -1192,9 +1253,7 @@ module.exports = function init(site) {
                 }
 
               }
-            }
-
-            if ((account_invoices_doc.source_type.id === 2 && account_invoices_doc.invoice_type.id != 6) || account_invoices_doc.source_type.id === 3 || account_invoices_doc.source_type.id === 4 || account_invoices_doc.source_type.id === 8 || account_invoices_doc.source_type.id === 13 || account_invoices_doc.source_type.id === 15) {
+            } else if ((account_invoices_doc.source_type.id === 2 && account_invoices_doc.invoice_type.id != 6) || account_invoices_doc.source_type.id === 3 || account_invoices_doc.source_type.id === 4 || account_invoices_doc.source_type.id === 8 || account_invoices_doc.source_type.id === 13 || account_invoices_doc.source_type.id === 15) {
 
               if (account_invoices_doc.customer && account_invoices_doc.customer.id) {
 
@@ -1221,9 +1280,7 @@ module.exports = function init(site) {
                 if (foundPayCustomer) site.quee('[customer][account_invoice][balance]', customerObj)
 
               }
-            }
-
-            if (account_invoices_doc.source_type.id === 2 && account_invoices_doc.invoice_type.id === 6) {
+            } else if (account_invoices_doc.source_type.id === 2 && account_invoices_doc.invoice_type.id === 6) {
 
               if (account_invoices_doc.customer && account_invoices_doc.customer.id) {
 
@@ -1248,6 +1305,74 @@ module.exports = function init(site) {
                 if (foundPayCustomer) site.quee('[customer][account_invoice][balance]', customerObj)
               }
 
+            } else if (account_invoices_doc.source_type.id == 16) {
+
+              if (account_invoices_doc.target_account.id === 1) {
+
+                let customerObj = { id: account_invoices_doc.customer.id };
+
+                if (account_invoices_doc.op_balance_type === 'creditor') {
+
+                  customerObj.balance_creditor = account_invoices_doc.paid_up * account_invoices_doc.currency.ex_rate
+                  if (account_invoices_doc.posting) customerObj.sum_creditor = true
+                  else customerObj.minus_creditor = true
+
+                } else if (account_invoices_doc.op_balance_type === 'debtor') {
+
+                  customerObj.balance_debtor = account_invoices_doc.paid_up * account_invoices_doc.currency.ex_rate
+                  if (account_invoices_doc.posting) customerObj.sum_debtor = true
+                  else customerObj.minus_debtor = true
+                }
+
+                site.quee('[customer][account_invoice][balance]', customerObj)
+
+              } else if (account_invoices_doc.target_account.id === 2) {
+
+                let vendorObj = { id: account_invoices_doc.vendor.id };
+
+                if (account_invoices_doc.op_balance_type === 'creditor') {
+
+                  vendorObj.balance_creditor = account_invoices_doc.paid_up * account_invoices_doc.currency.ex_rate
+                  if (account_invoices_doc.posting) vendorObj.sum_creditor = true
+                  else vendorObj.minus_creditor = true
+
+                } else if (account_invoices_doc.op_balance_type === 'debtor') {
+
+                  vendorObj.balance_debtor = account_invoices_doc.paid_up * account_invoices_doc.currency.ex_rate
+                  if (account_invoices_doc.posting) vendorObj.sum_debtor = true
+                  else vendorObj.minus_debtor = true
+                }
+
+                site.quee('[vendor][account_invoice][balance]', vendorObj)
+
+              }
+
+            } else if (account_invoices_doc.source_type.id === 9) {
+
+              if (account_invoices_doc.vendor && account_invoices_doc.vendor.id) {
+
+                let vendorObj = { id: account_invoices_doc.vendor.id };
+
+                vendorObj.balance_creditor = account_invoices_doc.paid_up * account_invoices_doc.currency.ex_rate
+                if (account_invoices_doc.posting) vendorObj.sum_creditor = true
+                else vendorObj.minus_creditor = true
+
+                site.quee('[vendor][account_invoice][balance]', vendorObj)
+
+              }
+            } else if (account_invoices_doc.source_type.id === 8) {
+
+              if (account_invoices_doc.customer && account_invoices_doc.customer.id) {
+
+                let customerObj = { id: account_invoices_doc.customer.id };
+
+                customerObj.balance_creditor = account_invoices_doc.paid_up * account_invoices_doc.currency.ex_rate
+                if (account_invoices_doc.posting) customerObj.sum_creditor = true
+                else customerObj.minus_creditor = true
+
+                site.quee('[customer][account_invoice][balance]', customerObj)
+
+              }
             }
 
             account_invoices_doc.remain_amount = site.toNumber(account_invoices_doc.net_value) - site.toNumber(account_invoices_doc.total_paid_up)
@@ -1271,7 +1396,7 @@ module.exports = function init(site) {
               if (!account_invoices_doc.posting)
                 under_paid.return = true
 
-              site.call('[account_invoices][order_invoice][+]', Object.assign({}, under_paid))
+              site.call('[account_invoices][order_invoice][+]', { ...under_paid })
             }
 
             if (account_invoices_doc._id) {
@@ -1443,7 +1568,7 @@ module.exports = function init(site) {
                           balance_creditor: _payment_list.paid_up * _payment_list.currency.ex_rate,
                           minus_creditor: true
                         }
-                        site.quee('[customer][account_invoice][balance]',  customerBalance)
+                        site.quee('[customer][account_invoice][balance]', customerBalance)
 
                       } else if (response.doc.source_type.id == 11) {
                         obj.operation = { ar: 'حذف سلفة موظف', en: 'Delete Employee Advance' }
@@ -1489,7 +1614,10 @@ module.exports = function init(site) {
                       }
 
 
-                      if (obj.safe) site.quee('[amounts][safes][+]', Object.assign({}, obj))
+                      if (obj.safe && result.doc.source_type.id != 16) {
+
+                        site.quee('[amounts][safes][+]', { ...obj })
+                      }
 
                     })
 
@@ -1522,9 +1650,7 @@ module.exports = function init(site) {
                       }
 
                     }
-                  }
-
-                  if ((result.doc.source_type.id === 2 && result.doc.invoice_type.id != 6) || result.doc.source_type.id === 3 || result.doc.source_type.id === 4 || result.doc.source_type.id === 8 || result.doc.source_type.id === 13 || result.doc.source_type.id === 15) {
+                  } else if ((result.doc.source_type.id === 2 && result.doc.invoice_type.id != 6) || result.doc.source_type.id === 3 || result.doc.source_type.id === 4 || result.doc.source_type.id === 8 || result.doc.source_type.id === 13 || result.doc.source_type.id === 15) {
 
                     if (result.doc.customer) {
 
@@ -1549,9 +1675,7 @@ module.exports = function init(site) {
                       if (foundPayCustomer) site.quee('[customer][account_invoice][balance]', customerObj)
 
                     }
-                  }
-
-                  if (result.doc.source_type.id === 2 && result.doc.invoice_type.id === 6) {
+                  } else if (result.doc.source_type.id === 2 && result.doc.invoice_type.id === 6) {
 
                     if (result.doc.customer) {
 
@@ -1574,6 +1698,68 @@ module.exports = function init(site) {
                       if (foundPayCustomer) site.quee('[customer][account_invoice][balance]', customerObj)
                     }
 
+                  } else if (result.doc.source_type.id == 16) {
+
+                    if (result.doc.target_account.id === 1) {
+
+                      let customerObj = { id: result.doc.customer.id };
+
+                      if (result.doc.op_balance_type === 'creditor') {
+
+                        customerObj.balance_creditor = result.doc.paid_up * result.doc.currency.ex_rate
+                        customerObj.minus_creditor = true
+
+                      } else if (result.doc.op_balance_type === 'debtor') {
+
+                        customerObj.balance_debtor = result.doc.paid_up * result.doc.currency.ex_rate
+                        customerObj.minus_debtor = true
+                      }
+
+                      site.quee('[customer][account_invoice][balance]', customerObj)
+
+                    } else if (result.doc.target_account.id === 2) {
+
+                      let vendorObj = { id: result.doc.vendor.id };
+
+                      if (result.doc.op_balance_type === 'creditor') {
+
+                        vendorObj.balance_creditor = result.doc.paid_up * result.doc.currency.ex_rate
+                        vendorObj.minus_creditor = true
+
+                      } else if (result.doc.op_balance_type === 'debtor') {
+
+                        vendorObj.balance_debtor = result.doc.paid_up * result.doc.currency.ex_rate
+                        vendorObj.minus_debtor = true
+                      }
+
+                      site.quee('[vendor][account_invoice][balance]', vendorObj)
+
+                    }
+
+                  } else if (result.doc.source_type.id === 9) {
+
+                    if (result.doc.vendor && result.doc.vendor.id) {
+
+                      let vendorObj = { id: result.doc.vendor.id };
+
+                      vendorObj.balance_creditor = result.doc.paid_up * result.doc.currency.ex_rate
+                      vendorObj.minus_creditor = true
+
+                      site.quee('[vendor][account_invoice][balance]', vendorObj)
+
+                    }
+                  } else if (result.doc.source_type.id === 8) {
+
+                    if (result.doc.customer && result.doc.customer.id) {
+
+                      let customerObj = { id: result.doc.customer.id };
+
+                      customerObj.balance_creditor = result.doc.paid_up * result.doc.currency.ex_rate
+                      customerObj.minus_creditor = true
+
+                      site.quee('[customer][account_invoice][balance]', customerObj)
+
+                    }
                   }
 
 
@@ -1594,7 +1780,7 @@ module.exports = function init(site) {
                       invoice_id: result.doc.invoice_id
                     }
 
-                    site.call('[account_invoices][order_invoice][+]', Object.assign({}, under_paid))
+                    site.call('[account_invoices][order_invoice][+]', { ...under_paid })
                   }
                 }
 

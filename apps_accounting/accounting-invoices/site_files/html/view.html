@@ -27,10 +27,29 @@
                                         -
                                         {{account_invoices.shift.code}} </td>
                                 </tr>
+
                                 <tr>
+                                    <td class="title"> ##word.paid_up## </td>
+                                    <td class="center ">
+                                        <b class="green">{{account_invoices.paid_up}}</b>
+                                        
+                                        {{account_invoices.paid_up.op_balance_type}}
+                                    </td>
+                                </tr>
+                                <!-- <tr>
                                     <td class="title"> ##word.source_type## </td>
                                     <td class="center"> {{account_invoices.source_type.##session.lang##}}
                                         <p class="blue">{{account_invoices.invoice_type.##session.lang##}}
+                                    </td>
+                                </tr> -->
+
+                                <tr>
+                                    <td class="title"> ##word.target_account## </td>
+                                    <td class="center ">
+                                        <p class="">{{account_invoices.target_account.##session.lang##}}
+                                        </p>
+                                        <p class="blue" ng-show="account_invoices.op_balance_type == 'creditor'">##word.creditor##</p>
+                                        <p class="blue" ng-show="account_invoices.op_balance_type == 'debtor'">##word.debtor##</p>
                                     </td>
                                 </tr>
 
@@ -169,7 +188,7 @@
                                     <td class="center green"> {{account_invoices.net_value}} </td>
                                 </tr>
 
-                                <tr ng-show="##query.type## == 14">
+                                <tr ng-show="##query.type## == 14 || ##query.type## == 16">
                                     <td class="title"> ##word.currency## </td>
                                     <td class="center"> {{account_invoices.currency.name_##session.lang##}} - <b
                                             class="blue">{{account_invoices.currency.ex_rate}}</b> </td>
@@ -234,7 +253,8 @@
 
                                 <tr ng-repeat="c in account_invoices.current_book_list">
                                     <td class="center title">
-                                        <p ng-show="c.add_sizes">{{c.name_##session.lang##}} {{c.size_##session.lang##}}</p>
+                                        <p ng-show="c.add_sizes">{{c.name_##session.lang##}} {{c.size_##session.lang##}}
+                                        </p>
                                         <p ng-hide="c.add_sizes">{{c.size_##session.lang##}}</p>
                                     </td>
                                     <td class="center userPrint">{{c.barcode}}</td>
@@ -273,7 +293,8 @@
                     <div class="col3">
                         <i-image class="not-print" view ng-model="account_invoices.image_url"> </i-image>
                         <div class="row center">
-                            <i-button ng-show="account_invoices.$view && account_invoices.remain_amount > 0 && account_invoices.posting "
+                            <i-button
+                                ng-show="account_invoices.$view && account_invoices.remain_amount > 0 && account_invoices.posting "
                                 class="center" x-permissions="account_invoices_edit || account_invoices_manage"
                                 type="edit" label="##word.payment##"
                                 ng-click="displayPaymentInvoices(account_invoices)"></i-button>
@@ -284,7 +305,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="col7" ng-hide="##query.type## == 14">
+                    <div class="col7" ng-hide="##query.type## == 14 || ##query.type## == 16">
                         <fieldset>
 
                             <legend>##word.detailes_amounts_paid##</legend>

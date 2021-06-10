@@ -196,6 +196,7 @@ app.controller("safes_payments", function ($scope, $http) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.list = response.data.list;
+          $scope.count = response.data.count;
           site.hideModal('#safes_paymentsSearchModal');
         }
       },

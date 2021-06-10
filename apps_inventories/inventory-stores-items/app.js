@@ -520,7 +520,7 @@ module.exports = function init(site) {
           $stores_items.update(doc, (err, doooc) => {
 
             if (obj.current_status == 'stock') {
-              site.holdingItems({... obj.transaction_obj});
+              site.holdingItems({ ...obj.transaction_obj });
             }
 
             // doooc.doc.sizes.forEach(ziiii => {

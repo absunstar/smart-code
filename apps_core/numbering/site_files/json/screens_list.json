@@ -456,6 +456,27 @@
     },
     {
         "category": "accounting",
+        "feature": "pos",
+        "name": "transfer_safes_balances",
+        "en": "Transfer safes balances",
+        "ar": "تحويل أرصدة الخزن"
+    },
+    {
+        "category": "accounting",
+        "feature": "pos",
+        "name": "patient_ticket",
+        "en": "Patient ticket",
+        "ar": "تذكرة مريض"
+    },
+    {
+        "category": "accounting",
+        "feature": "pos",
+        "name": "opening_balance",
+        "en": "Opening balances",
+        "ar": "أرصدة إفتتاحية"
+    },
+    {
+        "category": "accounting",
         "feature": "school",
         "name": "school_fees",
         "en": "School Fees",
