@@ -32,7 +32,7 @@
                             </i-list>
 
                             <i-control ng-show="account_invoices.target_account.id ===1 "
-                                ng-keydown="getCustomerList($event)" id="service" class="col2"
+                                ng-keydown="getCustomersList($event)" id="service" class="col2"
                                 ng-model="search_customer" label="##word.search##" type="text">
                             </i-control>
 
@@ -405,7 +405,7 @@
                                 </i-checkbox>
                                 <div class="row" ng-show="account_invoices.show_customer">
 
-                                    <i-control ng-keydown="getCustomerList($event)" id="service" class="col3"
+                                    <i-control ng-keydown="getCustomersList($event)" id="service" class="col3"
                                         ng-model="search_customer" label="##word.search##" type="text"></i-control>
 
                                     <i-list ng-search="_search.$customer" class="col6" display="name_##session.lang##"
@@ -489,7 +489,7 @@
 
                         <div class="row"
                             ng-show="account_invoices.source_type.id ==10 || account_invoices.source_type.id ==13">
-                            <i-control ng-keydown="getCustomerList($event)" id="service" class="col3"
+                            <i-control ng-keydown="getCustomersList($event)" id="service" class="col3"
                                 ng-model="search_customer" label="##word.search##" type="text"></i-control>
                             <i-list ng-search="_search.$customer" class="col4" display="name_##session.lang##"
                                 ng-model="account_invoices.customer" label="##word.customer##" items="customersList">

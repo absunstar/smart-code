@@ -21,7 +21,7 @@
 
                         <div class="row">
 
-                            <i-control ng-keydown="getCustomersList($event)" class="col2" ng-model="search_customer"
+                            <!-- <i-control ng-keydown="getCustomersList($event)" class="col2" ng-model="search_customer"
                                 ng-show="##query.type## == 2 || ##query.type## == 3 || ##query.type## == 4 || ##query.type## == 7 || ##query.type## == 8 || ##query.type## == 10 || ##query.type## == 13 || ##query.type## == 15"
                                 label="##word.search##" type="text">
                             </i-control>
@@ -30,7 +30,7 @@
                                 ng-show="##query.type## == 2 || ##query.type## == 3 || ##query.type## == 4 || ##query.type## == 7 || ##query.type## == 8 || ##query.type## == 10 || ##query.type## == 13 || ##query.type## == 15"
                                 label="##word.customer##" space=" - " display2="code" ng-model="search.customer"
                                 items="customersList" display="name_##session.lang##">
-                            </i-list>
+                            </i-list> -->
 
                             <i-control class="col3 r_indigo" type="text" label="##word.shift##"
                                 ng-model="search.shift_code">
@@ -50,6 +50,49 @@
                                 ng-model="search.order_invoices_type" items="transactionTypeList"
                                 display="##session.lang##">
                             </i-list> -->
+                        </div>
+
+                        <div class="row" ng-show="##query.type## == 16">
+                            <i-list class="col3" ng-model="search.target_account" items="targetAccountList"
+                                display="##session.lang##" ng-search="_search.$search_target_accounts"
+                                label="##word.target_account##">
+                            </i-list>
+                            <div class="col1"></div>
+                            <div class="col3">
+                                <br>
+                                <i-radio ng-model="search.op_balance_type" ng-value="creditor" group="type"
+                                    label="##word.creditor##"></i-radio>
+
+                                <i-radio ng-model="search.op_balance_type" group="type" ng-value="debtor"
+                                    label="##word.debtor##">
+                                </i-radio>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col4">
+
+                                <div class="row"
+                                    ng-show="##query.type## == 16 || ##query.type## == 2 || ##query.type## == 3 || ##query.type## == 4 || ##query.type## == 7 || ##query.type## == 8 || ##query.type## == 10">
+                                    <i-control ng-keydown="getCustomersList($event)" id="service" class="col4"
+                                        ng-model="search_customer" label="##word.search##" type="text"></i-control>
+                                    <i-list ng-search="_search.$customer" class="col8" display="name_##session.lang##"
+                                        ng-model="search.customer" label="##word.customer##" items="customersList">
+                                    </i-list>
+                                </div>
+                            </div>
+                            <div class="col4">
+
+                                <div class="row"
+                                    ng-show="##query.type## == 16 ||##query.type## == 1 || ##query.type## == 9">
+                                    <i-control ng-keydown="loadVendors($event)" class="col4" ng-model="search_vendor"
+                                        label="##word.search##" type="text"></i-control>
+                                    <i-list ng-model="search.vendor" class="col8" items="vendorsList" space=" - "
+                                        display2="code" display="name_##session.lang##"
+                                        ng-search="_search.$search_vendor" label="##word.stores_in_Company_name##">
+                                    </i-list>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="row" ng-show="##query.type## == 13">

@@ -2022,6 +2022,11 @@ module.exports = function init(site) {
       delete where['source_code']
     }
 
+    if (where['target_account']) {
+      where['target_account.id'] = where['target_account'].id;
+      delete where['target_account']
+    }
+
     if (where['school_year']) {
       where['school_year.id'] = where['school_year'].id;
       delete where['school_year']

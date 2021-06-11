@@ -79,6 +79,10 @@ module.exports = function init(site) {
       delete where['customer']
     }
 
+    if (where['vendor']) {
+      where['vendor.id'] = where['vendor'].id;
+      delete where['vendor']
+    }
 
     if (where['school_year']) {
       where['school_year.id'] = where['school_year'].id;
@@ -88,6 +92,11 @@ module.exports = function init(site) {
     if (where['students_years']) {
       where['students_years.id'] = where['students_years'].id;
       delete where['students_years']
+    }
+
+    if (where['target_account']) {
+      where['target_account.id'] = where['target_account'].id;
+      delete where['target_account']
     }
 
     if (where['types_expenses']) {

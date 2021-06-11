@@ -295,6 +295,27 @@ app.controller("report_invoices", function ($scope, $http, $timeout) {
 
   };
 
+  $scope.getTargetAccountList = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.targetAccountList = [];
+    $http({
+      method: "POST",
+      url: "/api/target_account/all"
+
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.targetAccountList = response.data;
+
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.getStudentsYearsList = function () {
     $http({
       method: "POST",
@@ -384,11 +405,49 @@ app.controller("report_invoices", function ($scope, $http, $timeout) {
     }
   };
 
+  $scope.loadVendors = function (ev) {
+    $scope.error = '';
+    $scope.busy = true;
+    if (ev.which === 13) {
+      $http({
+        method: "POST",
+        url: "/api/vendors/all",
+        data: {
+
+        }
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done) {
+            $scope.vendorsList = response.data.list;
+          }
+        },
+        function (err) {
+          $scope.busy = false;
+          $scope.error = err;
+        }
+      )
+    }
+  };
+
+
   $scope.searchAll = function () {
     $scope._search = {};
 
-    if ($scope.search) $scope.customer = $scope.search.customer;
-    
+    if ($scope.search && $scope.search.customer && $scope.search.customer.id) {
+
+      $scope.customer = $scope.search.customer;
+    }
+    if ($scope.search && $scope.search.vendor && $scope.search.vendor.id) {
+
+      $scope.vendor = $scope.search.vendor;
+    }
+
+    if ($scope.search && $scope.search.target_account && $scope.search.target_account.id) {
+
+      $scope.target_account = $scope.search.target_account;
+    }
+
     $scope.getReportInvoicesList($scope.search);
     site.hideModal('#reportInvoicesSearchModal');
     $scope.search = {}
@@ -405,5 +464,5 @@ app.controller("report_invoices", function ($scope, $http, $timeout) {
   $scope.getPaymentMethodList();
   $scope.getDefaultSettings();
   $scope.getSourceType();
-
+  $scope.getTargetAccountList();
 });

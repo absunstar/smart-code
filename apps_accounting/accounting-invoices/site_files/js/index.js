@@ -1367,7 +1367,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getCustomerList = function (ev) {
+  $scope.getCustomersList = function (ev) {
     $scope.error = '';
     $scope.busy = true;
     if (ev.which === 13) {

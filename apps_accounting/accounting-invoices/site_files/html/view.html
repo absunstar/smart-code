@@ -28,12 +28,10 @@
                                         {{account_invoices.shift.code}} </td>
                                 </tr>
 
-                                <tr>
+                                <tr ng-show="##query.type## == 16">
                                     <td class="title"> ##word.paid_up## </td>
                                     <td class="center ">
                                         <b class="green">{{account_invoices.paid_up}}</b>
-                                        
-                                        {{account_invoices.paid_up.op_balance_type}}
                                     </td>
                                 </tr>
                                 <!-- <tr>
@@ -43,25 +41,19 @@
                                     </td>
                                 </tr> -->
 
-                                <tr>
+                                <tr ng-show="##query.type## == 16">
                                     <td class="title"> ##word.target_account## </td>
                                     <td class="center ">
-                                        <p class="">{{account_invoices.target_account.##session.lang##}}
-                                        </p>
-                                        <p class="blue" ng-show="account_invoices.op_balance_type == 'creditor'">##word.creditor##</p>
-                                        <p class="blue" ng-show="account_invoices.op_balance_type == 'debtor'">##word.debtor##</p>
+                                        <b class="">{{account_invoices.target_account.##session.lang##}}
+                                        </b>
+                                        -
+                                        <b class="blue"
+                                            ng-show="account_invoices.op_balance_type == 'creditor'">##word.creditor##</b>
+                                        <b class="blue"
+                                            ng-show="account_invoices.op_balance_type == 'debtor'">##word.debtor##</b>
                                     </td>
                                 </tr>
 
-                                <tr ng-show="account_invoices.order_invoices_type.id">
-                                    <td class="title"> ##word.order_invoices_type## </td>
-                                    <td class="center"> {{account_invoices.order_invoices_type.##session.lang##}} </td>
-                                </tr>
-
-                                <tr ng-show="account_invoices.payment_type.id">
-                                    <td class="title"> ##word.payment_type## </td>
-                                    <td class="center"> {{account_invoices.payment_type.##session.lang##}} </td>
-                                </tr>
 
                                 <tr ng-show="account_invoices.tenant.id">
                                     <td class="title"> ##word.tenant## </td>
@@ -133,6 +125,16 @@
                                 <tr ng-show="account_invoices.table.id">
                                     <td class="title"> ##word.table## </td>
                                     <td class="center"> {{account_invoices.table.name_##session.lang##}} </td>
+                                </tr>
+                                
+                                <tr ng-show="account_invoices.order_invoices_type.id">
+                                    <td class="title"> ##word.order_invoices_type## </td>
+                                    <td class="center"> {{account_invoices.order_invoices_type.##session.lang##}} </td>
+                                </tr>
+
+                                <tr ng-show="account_invoices.payment_type.id">
+                                    <td class="title"> ##word.payment_type## </td>
+                                    <td class="center"> {{account_invoices.payment_type.##session.lang##}} </td>
                                 </tr>
 
                                 <tr ng-show="account_invoices.service > 0">
