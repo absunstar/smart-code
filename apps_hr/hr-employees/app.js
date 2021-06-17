@@ -130,6 +130,7 @@ module.exports = function init(site) {
         'company.id': site.get_company(req).id,
       }
     }, (err, docs, count) => {
+      console.log(site.get_company(req).employees_count);
       if (!err && count >= site.get_company(req).employees_count) {
 
         response.error = 'The maximum number of adds exceeded'

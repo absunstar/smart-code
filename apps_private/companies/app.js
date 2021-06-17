@@ -144,7 +144,7 @@ module.exports = function init(site) {
           return;
 
         }
-     
+
         if (!companies_doc.host.includes(".")) {
           response.error = 'Host must be typed correctly'
           res.json(response)
@@ -158,22 +158,22 @@ module.exports = function init(site) {
           companies_doc.username = companies_doc.username + '@' + companies_doc.host;
         }
 
-        if(!site.validateEmail(companies_doc.username)) {
+        if (!site.validateEmail(companies_doc.username)) {
           response.error = 'Username must be typed correctly'
           res.json(response)
           return;
         }
 
-        if (companies_doc.username){
+        if (companies_doc.username) {
 
           user_exist = {
             email: companies_doc.username,
             password: companies_doc.password,
           }
-          
+
         }
       }
-      
+
 
       site.security.isUserExists(user_exist, function (err, user_found) {
 
@@ -344,14 +344,23 @@ module.exports = function init(site) {
             }
         }
 
-        site.security.isUserExists(user_exist, function (err, user_found) {
-
-          if (user_found) {
-
-            response.error = 'User Is Exist'
-            res.json(response)
-            return;
-
+        site.security.getUsers({}, (err, usersDocs, count) => {
+          if (!err) {
+            user_found = false
+            for (let i = 0; i < usersDocs.length; i++) {
+              let u = usersDocs[i]
+              if (u.email === companies_doc.username && u.company_id != companies_doc.id) {
+                user_found = true
+              }
+            }
+            
+            if (user_found) {
+              
+              response.error = 'User Is Exist'
+              res.json(response)
+              return;
+              
+            }
           }
 
           $companies.update({
@@ -543,7 +552,7 @@ module.exports = function init(site) {
 
     if (req.session.user && req.session.user.is_admin) {
 
-    }else if (req.session.user && req.session.user.is_company) {
+    } else if (req.session.user && req.session.user.is_company) {
       where['id'] = req.session.user.company_id;
     } else if (site.get_company(req) && site.get_company(req).id) {
       where['company.id'] = site.get_company(req).id

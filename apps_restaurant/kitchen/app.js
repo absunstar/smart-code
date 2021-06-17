@@ -227,12 +227,12 @@ module.exports = function init(site) {
       return
     }
 
-
     let where = req.body.where || {}
 
     if (where['name_ar']) {
       where['name_ar'] = site.get_RegExp(where['name_ar'], "i");
     }
+
     if (where['name_en']) {
       where['name_en'] = site.get_RegExp(where['name_en'], "i");
     }
@@ -240,6 +240,7 @@ module.exports = function init(site) {
     if (where['code']) {
       where['code'] = site.get_RegExp(where['code'], "i");
     }
+
     delete where.search
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code

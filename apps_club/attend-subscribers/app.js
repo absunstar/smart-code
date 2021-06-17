@@ -423,9 +423,13 @@ module.exports = function init(site) {
       if (!err && docs) {
         response.done = true
         docs.forEach(_doc => {
+          _doc.activity_list = _doc.activity_list || []
+
           _doc.activity_list.forEach(_activityList => {
-            let gifTime = Math.abs(new Date() - new Date(_activityList.date_to))
-            _activityList.ex_activity = Math.ceil(gifTime / (1000 * 60 * 60 * 24))
+            if (_activityList.date_to) {
+              let gifTime = Math.abs(new Date() - new Date(_activityList.date_to))
+              _activityList.ex_activity = Math.ceil(gifTime / (1000 * 60 * 60 * 24))
+            }
 
           });
         });
