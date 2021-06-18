@@ -1,8 +1,9 @@
 <div class="form" id="setting_default">
 
     <div class="row">
-        <i-list class="col4 r_black" ng-model="order_kitchen.kitchen" items="kitchensList" display="name_##session.lang##"
-            ng-search="_search.$search_kitchen" ng-change="orderKitchensList()" label="##word.kitchen_name##">
+        <i-list class="col4 r_black" ng-model="order_kitchen.kitchen" items="kitchensList"
+            display="name_##session.lang##" ng-search="_search.$search_kitchen" ng-change="orderKitchensList()"
+            label="##word.kitchen_name##">
         </i-list>
     </div>
 
@@ -10,11 +11,12 @@
     <br>
     <br>
 
-    <table x-permissions="login" class="table bold hover loaded" id="t1">
+    <table x-permissions="login" class="table bold hover center loaded" id="t1">
         <tr>
             <th>##word.order_code##</th>
             <th>##word.stores_items_name##</th>
             <th>##word.items_count##</th>
+            <th>##word.extras_menu##</th>
             <th>##word.items_notes##</th>
             <th>##word.actions##</th>
         </tr>
@@ -22,13 +24,19 @@
         <tr ng-hide="busy" ng-repeat="i in book_list_report ">
             <td class="">
                 <h2 class=" center blue">{{i.order.code}}</h2>
-                <p ng-show="i.table.id" class="bold"> {{i.table.name_##session.lang##}} / {{i.table.tables_group.name_##session.lang##}} </p>
+                <p ng-show="i.table.id" class="bold"> {{i.table.name_##session.lang##}} /
+                    {{i.table.tables_group.name_##session.lang##}} </p>
             </td>
             <td class="center title">
                 <p class="center" ng-show="i.add_sizes">{{i.name_##session.lang##}} {{i.size_##session.lang##}}</p>
                 <p class="center" ng-hide="i.add_sizes">{{i.size_##session.lang##}}</p>
             </td>
             <td class="center ">{{i.count}}</td>
+            <td>
+                <i-button type="view" ng-show="i.extras_items_list.length > 0" label="##word.extras##"
+                    ng-click="showExtrasItems(i)">
+                </i-button>
+            </td>
             <td class="center">{{i.notes}}</td>
 
             <td class="center">

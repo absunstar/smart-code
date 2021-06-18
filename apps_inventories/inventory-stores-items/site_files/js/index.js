@@ -184,13 +184,14 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     if ($scope.defaultSettings.inventory) {
 
       if ($scope.defaultSettings.inventory.item_group)
-        $scope.category_item.item_group = $scope.defaultSettings.inventory.item_group;
+        $scope.category_item.item_group = $scope.itemsGroupList.find(_iG => { return _iG.id === $scope.defaultSettings.inventory.item_group.id });
 
       if ($scope.defaultSettings.inventory.item_type)
         $scope.category_item.item_type = $scope.defaultSettings.inventory.item_type;
 
       if ($scope.defaultSettings.inventory.unit) {
-        $scope.category_item.main_unit = $scope.defaultSettings.inventory.unit;
+        $scope.category_item.main_unit = $scope.unitsList.find(_unit => { return _unit.id === $scope.defaultSettings.inventory.unit.id });
+
         $scope.category_item.units_list = [{
           id: $scope.category_item.main_unit.id,
           name_ar: $scope.category_item.main_unit.name_ar,
@@ -259,7 +260,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
               let err = response.data.error.slice(7);
               $scope.error = "##word.err_barcode_units##" + err;
 
-            }else if (response.data.error.like('*ExistBu*')) {
+            } else if (response.data.error.like('*ExistBu*')) {
               let err = response.data.error.slice(7);
               $scope.error = "##word.err_barcode_exist##" + err;
             }
@@ -334,7 +335,7 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
               let err = response.data.error.slice(7);
               $scope.error = "##word.err_barcode_units##" + err;
 
-            }else if (response.data.error.like('*ExistBu*')) {
+            } else if (response.data.error.like('*ExistBu*')) {
               let err = response.data.error.slice(7);
               $scope.error = "##word.err_barcode_exist##" + err;
             }
@@ -515,6 +516,30 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.addOpeningBalance = function (size, type) {
+
+    $scope.size_balance = size;
+    let obj = { count: 1 };
+    obj.unit = $scope.category_item.units_list[0];
+    obj.store = $scope.storesList.find(_store => { return _store.id === $scope.defaultSettings.inventory.store.id });
+
+    if ($scope.size_balance.opening_palnce_list && $scope.size_balance.opening_palnce_list.length > 0 && type ==='add') {
+
+      $scope.size_balance.opening_palnce_list.push(obj)
+
+    } else {
+      $scope.size_balance.opening_palnce_list = [obj]
+    }
+
+
+    if(type === 'show'){
+
+      site.showModal('#addOpeningBalanceModal');
+    }
+
+  };
+
+
   $scope.loadUnits = function () {
     $scope.busy = true;
     $scope.unitsList = [];
@@ -640,7 +665,8 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
+          name_ar: 1,
+          name_en: 1,
           type: 1,
           code: 1
         }

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="extras_items_ui || extras_items_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+    <div id="main-layout" class="container loaded">
+        <div class="row">
+            <div class="row" ng-controller="extras_items" x-permissions="login">
+                <div x-import="extras-items/add_modal.html"></div>
+                <div x-import="extras-items/update_modal.html"></div>
+                <div x-import="extras-items/delete_modal.html"></div>
+                <div x-import="extras-items/view_modal.html"></div>
+                <div x-import="extras-items/search_all_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center"> ##word.extras_items## </h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button type="add" x-permissions="extras_items_add || extras_items_manage" label="##word.extras_items_new##" ng-click="displayAddExtrasItems()"></i-button>
+                    <i-button type="search" x-permissions="extras_items_search || extras_items_manage" label="##word.search_all##" onclick="site.showModal('#xtrasItemsSearchModal')"></i-button>
+
+                    <span ng-show="busy">
+                        <span class="sr-only">Loading...</span>
+                    </span>
+                    <h3 class="bold text-center"> ##word.count## : {{count}} </h3>
+                    <br>
+                </div>
+
+                <table class="table loaded hover center bold" id="t1">
+                    <tr>
+                        <th class="not-print"> ##word.logo## </th>
+                        <th> ##word.extras_items_code## </th>
+                        <th> ##word.extras_items_name## </th>
+                        <th> ##word.status## </th>
+
+                        <th class="not-print"> ##word.actions## </th>
+                    </tr>
+                    <tr ng-repeat="c in list | orderBy : '-id'">
+                        <td class="not-print">
+                            <i-image view class="logo" ng-model="c.image_url"></i-image>
+                        </td>
+
+                        <td class="blue userPrint"> {{c.code}} </td>
+                        <td> {{c.name_##session.lang##}} </td>
+
+                        <td>
+                            <p ng-show="c.active == true" class="green"> ##word.active## </p>
+                            <p ng-show="c.active == false" class="red"> ##word.not_active## </p>
+                        </td>
+
+                        <td class="center not-print">
+                            <i-button type="details" x-permissions="extras_items_view || extras_items_manage" label="##word.details##" ng-click="displayDetailsExtrasItems(c)"></i-button>
+
+                            <i-button type="update" x-permissions="extras_items_edit || extras_items_manage" label="##word.update##" ng-click="displayUpdateExtrasItems(c)"></i-button>
+
+                            <i-button type="delete" x-permissions="extras_items_delete || extras_items_manage" label="##word.delete##" ng-click="displayDeleteExtrasItems(c)"></i-button>
+                        </td>
+                    </tr>
+                </table>
+
+                <div class="row">
+                    <i-button x-permissions="extras_items_print || extras_items_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div x-import="scripts.html"></div>
+
+    <script x-permissions="login" x-import="extras-items/index.js"></script>
+</body>
+
+</html>

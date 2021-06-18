@@ -3,37 +3,10 @@ module.exports = function init(site) {
   const $safes = site.connectCollection("safes")
 
   site.on('[currency][safe][add]', doc => {
-
-    $safes.add({
-      name_ar: "خزينة نقدي إفتراضي",
-      name_en: "Default Cash Safe",
-      code: "1-Test",
-      balance: 0,
-      type: {
-        id: 1,
-        en: "Cash",
-        ar: "نقدي"
-      },
-      image_url: '/images/safe.png',
-      currency: {
-        id: doc.id,
-        name_ar: doc.name_ar,
-        name_en: doc.name_en,
-        ex_rate: doc.ex_rate
-      },
-      company: {
-        id: doc.company.id,
-        name_ar: doc.company.name_ar,
-        name_en: doc.company.name_en,
-      },
-      branch: {
-        code: doc.branch.code,
-        name_ar: doc.branch.name_ar,
-        name_en: doc.branch.name_en
-      },
-      active: true
-    }, (err, _doc) => {
-      $safes.add({
+    let doc1 = { ...doc }
+    let doc2 = { ...doc }
+    $safes.insertMany(
+      [{
         name_ar: "خزينة بنك إفتراضي",
         name_en: "Default Bank Safe",
         code: "2-Test",
@@ -45,26 +18,55 @@ module.exports = function init(site) {
         },
         image_url: '/images/safe.png',
         currency: {
-          id: doc.id,
-          name_ar: doc.name_ar,
-          name_en: doc.name_en,
-          ex_rate: doc.ex_rate
+          id: doc1.id,
+          name_ar: doc1.name_ar,
+          name_en: doc1.name_en,
+          ex_rate: doc1.ex_rate
         },
         company: {
-          id: doc.company.id,
-          name_ar: doc.company.name_ar,
-          name_en: doc.company.name_en,
+          id: doc1.company.id,
+          name_ar: doc1.company.name_ar,
+          name_en: doc1.company.name_en,
         },
         branch: {
-          code: doc.branch.code,
-          name_ar: doc.branch.name_ar,
-          name_en: doc.branch.name_en
+          code: doc1.branch.code,
+          name_ar: doc1.branch.name_ar,
+          name_en: doc1.branch.name_en
         },
         active: true
-      }, (err, _doc) => {
 
-      })
-    })
+
+      }, {
+        name_ar: "خزينة نقدي إفتراضي",
+        name_en: "Default Cash Safe",
+        code: "1-Test",
+        balance: 0,
+        type: {
+          id: 1,
+          en: "Cash",
+          ar: "نقدي"
+        },
+        image_url: '/images/safe.png',
+        currency: {
+          id: doc2.id,
+          name_ar: doc2.name_ar,
+          name_en: doc2.name_en,
+          ex_rate: doc2.ex_rate
+        },
+        company: {
+          id: doc2.company.id,
+          name_ar: doc2.company.name_ar,
+          name_en: doc2.company.name_en,
+        },
+        branch: {
+          code: doc2.branch.code,
+          name_ar: doc2.branch.name_ar,
+          name_en: doc2.branch.name_en
+        },
+        active: true
+
+      }]
+    )
   })
 
   site.on('[amounts][safes][+]', (obj, callback, next) => {

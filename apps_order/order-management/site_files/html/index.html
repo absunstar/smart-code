@@ -22,6 +22,7 @@
                 <div x-import="order-management/delete_modal.html"></div>
                 <div x-import="order-management/view_modal.html"></div>
                 <div x-import="order-management/search_all_modal.html"></div>
+                <div x-import="order-management/extras_modal.html"></div>
                 <div x-import="accounting-invoices/add_payments_modal.html"></div>
 
                 <div class="row">
@@ -49,10 +50,10 @@
                         <th> ##word.date## </th>
                         <th> ##word.order_code## </th>
                         <th> ##word.transaction_type## </th>
-                        <th> ##word.total_items_price## </th>
                         <th> ##word.stores_out_total_tax## </th>
                         <th> ##word.stores_out_total_discount## </th>
                         <th> ##word.services## </th>
+                        <th> ##word.total_items_price## </th>
                         <th> ##word.net_value## </th>
                         <th> ##word.status## </th>
                         <th> ##word.actions## </th>
@@ -67,16 +68,16 @@
                         <td ng-click="showDetailes(c)" class="pointer"> {{c.transaction_type.##session.lang##}}
                             <p ng-show="c.transaction_type.id ==2" class="blue"> ({{c.status_delivery.##session.lang##}})</p>
                         </td>
-                        <td ng-click="showDetailes(c)" class="pointer blue"> {{c.total_book_list ||0}} </td>
                         <td ng-click="showDetailes(c)" class="pointer"> {{c.total_tax ||0}} </td>
                         <td ng-click="showDetailes(c)" class="pointer"> {{c.total_discount ||0}} </td>
                         <td ng-click="showDetailes(c)" class="pointer">
                             <p ng-show="c.service"> ##word.service## </p>
-                            <p ng-show="c.service">{{c.service}}</p>
+                            <p ng-show="c.service">{{c.service || 0}}</p>
                             <p ng-show="c.price_delivery_service"> ##word.price_delivery_service## </p>
                             <p ng-show="c.price_delivery_service">{{c.price_delivery_service}}</p>
                         </td>
-
+                        
+                        <td ng-click="showDetailes(c)" class="pointer blue"> {{c.total_book_list ||0}} </td>
                         <td ng-click="showDetailes(c)" class="pointer"> {{c.net_value}} </td>
                         <td ng-click="showDetailes(c)" class="pointer">{{c.status.##session.lang##}}</td>
                         <td>

@@ -678,7 +678,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
         if ($scope.defaultSettings.inventory) {
           if ($scope.defaultSettings.inventory.store)
-            $scope.store_in.store = $scope.defaultSettings.inventory.store;
+            $scope.store_in.store = $scope.storesList.find(_store => { return _store.id === $scope.defaultSettings.inventory.store.id });
 
           if ($scope.defaultSettings.general_Settings.payment_type && ($scope.store_in.type.id == 1 || $scope.store_in.type.id == 4))
             $scope.store_in.payment_type = $scope.defaultSettings.general_Settings.payment_type;

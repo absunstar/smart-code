@@ -79,15 +79,15 @@
                         <th> ##word.code## </th>
                         <th ng-show="##query.type## == 16"> ##word.target_account## </th>
                         <th ng-show="##query.type## == 16"> ##word.currency## </th>
-                        <!--                         <th> ##word.source_type## </th>
- -->
                         <th ng-show="##query.type## == 3"> ##word.order_invoices_type## </th>
                         <th ng-hide="##query.type## == 16"> ##word.net_value## </th>
                         <th> ##word.total_paid_up## </th>
+
                         <th
                             ng-hide="##query.type## == 16|| ##query.type## == 8||##query.type## == 9|| ##query.type## == 10  || ##query.type## == 11">
                             ##word.remain_amount## </th>
                         <th class="not-print"> ##word.actions## </th>
+
                     </tr>
                     <tr ng-repeat="c in list | orderBy : '-id'" class="bold pointer">
                         <td ng-click="displayDetailsAccountInvoices(c)" class="not-print">
@@ -99,7 +99,7 @@
                         <td ng-click="displayDetailsAccountInvoices(c)">
                             <p class="userPrint blue">{{c.code}}</p>
                         </td>
-                      
+
                         <td ng-click="displayDetailsAccountInvoices(c)" ng-show="##query.type## == 16" class="bold blue">
                             {{c.target_account.##session.lang##}} :
                             <b ng-show="c.target_account.id === 1">{{c.customer.name_##session.lang##}}</b>
@@ -107,7 +107,7 @@
                             <p class="green" ng-show="c.op_balance_type == 'creditor'">##word.creditor##</p>
                             <p class="green" ng-show="c.op_balance_type == 'debtor'">##word.debtor##</p>
                         </td>
-                        <td>
+                        <td ng-show="##query.type## == 16">
                             {{c.currency.name_##session.lang##}} - <b
                             class="blue">{{c.currency.ex_rate}}</b> 
                         </td>

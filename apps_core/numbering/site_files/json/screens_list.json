@@ -261,6 +261,13 @@
     {
         "category": "inventory",
         "feature": "pos",
+        "name": "extras_items",
+        "en": "Extras items",
+        "ar": "إضافات الأصناف"
+    },
+    {
+        "category": "inventory",
+        "feature": "pos",
         "name": "items_offers",
         "en": "Items Offers",
         "ar": "عروض الأصناف"

@@ -1,0 +1,44 @@
+<div ng-hide="busy" id="v1">
+    <div class="form">
+        <div id="customersGroupViewModal">
+            <fieldset>
+                <legend> ##word.extras_items_informations## </legend>
+                <div class="row">
+                    <div class="col9">
+                        <div class="row">
+
+                            <table class="table hover bold">
+                                <tr>
+                                    <td class="title"> ##word.extras_items_code## </td>
+                                    <td class="center userPrint blue"> {{extras_items.code}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.extras_items_name## </td>
+                                    <td class="center"> {{extras_items.name_##session.lang##}} </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="title"> ##word.active## </td>
+                                    <td ng-show="extras_items.active == true" class="center green"> ##word.active##
+                                    </td>
+                                    <td ng-show="extras_items.active == false" class="center red"> ##word.not_active##
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                 
+
+                    </div>
+
+                    <div class="col3">
+                        <i-image class="not-print" view ng-model="extras_items.image_url"> </i-image>
+                    </div>
+
+
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
+<div x-import="extras-items/action_info.html"></div>

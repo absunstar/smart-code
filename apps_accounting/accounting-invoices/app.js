@@ -524,7 +524,7 @@ module.exports = function init(site) {
 
                       if (doc.op_balance_type === 'creditor') {
 
-                        customerObj.balance_creditor =  doc.paid_up * doc.currency.ex_rate
+                        customerObj.balance_creditor = doc.paid_up * doc.currency.ex_rate
                         customerObj.sum_creditor = true
 
                       } else if (doc.op_balance_type === 'debtor') {
@@ -553,7 +553,7 @@ module.exports = function init(site) {
                       site.quee('[vendor][account_invoice][balance]', vendorObj)
 
                     }
-
+                    doc.net_value = doc.paid_up * doc.currency.ex_rate
                   }
 
                   if (doc.safe && doc.source_type.id != 16) {
@@ -1346,6 +1346,8 @@ module.exports = function init(site) {
                 site.quee('[vendor][account_invoice][balance]', vendorObj)
 
               }
+
+              account_invoices_doc.net_value = account_invoices_doc.paid_up * account_invoices_doc.currency.ex_rate
 
             } else if (account_invoices_doc.source_type.id === 9) {
 

@@ -9,8 +9,8 @@
     {"name" : "discount_types_delete" , "en" : "Delete Discount Type" , "ar" : "حذف خصم"},
     {"name" : "discount_types_name" , "en" : "Discount Type Name" , "ar" : "إسم الخصم"},
     {"name" : "discount_types_value" , "en" : "Discount Type Value" , "ar" : "قيمة الخصم"},
-    {"name" : "discount_types_number" , "en" : "Discount Type Number" , "ar" : "مبلغ"},
-    {"name" : "discount_types_percent" , "en" : "Discount Type Percent" , "ar" : "نسبة"},
+    {"name" : "discount_types_number" , "en" : "Discount Type Number" , "ar" : "مبلغ الخصم"},
+    {"name" : "discount_types_percent" , "en" : "Discount Type Percent" , "ar" : "نسبة الخصم"},
 
     {"name" : "discount_types_type" , "en" : "Discount Type " , "ar" : "نوع الخصم"},
 

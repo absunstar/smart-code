@@ -853,6 +853,11 @@
         <span>##word.system_units_menus##</span>
       </a>
 
+      <a class="tab-link" href="/extras_items" x-permissions="extras_items_ui || extras_items_manage">
+        <img src="/images/extras_items.png" />
+        <span>##word.extras_items##</span>
+      </a>
+
       <a class="tab-link" href="/stores_offer" x-permissions="stores_offer_ui || stores_offer_manage">
         <img src="/images/store_offer.png" />
         <span>##word.store_offer_menu##</span>
@@ -977,7 +982,8 @@
           <span>##word.report## ##word.amount_out_invoice## </span>
         </a>
 
-        <a class="tab-link" href="/report_invoices?type=16" x-permissions="report_invoices_ui || report_invoices_manage">
+        <a class="tab-link" href="/report_invoices?type=16"
+          x-permissions="report_invoices_ui || report_invoices_manage">
           <img src="/images/invoice_opening_balance.png" />
           <span>##word.report## ##word.opening_balance## </span>
         </a>
@@ -1261,7 +1267,7 @@
         <a class="tab-link" href="/report_invoices_vendors"
           x-permissions="report_invoices_vendors_ui || report_invoices_vendors_manage">
           <img src="/images/report_invoices_vendors.png" />
-          <span>##word.report_invoices_vendors##</span>
+          <span>##word.report_invoices_vendors_name##</span>
         </a>
 
         <a class="tab-link" href="/report_invoices_payments"
@@ -1311,6 +1317,12 @@
       <a class="tab-link" href="/customers" x-permissions="customers_ui || customers_manage">
         <img src="/images/customer.png" />
         <span> ##word.customers## </span>
+      </a>
+
+      <a x-features="restaurant || pos || erp" class="tab-link" href="/vendors"
+        x-permissions="vendors_ui || vendors_manage">
+        <img src="/images/vendor.png" />
+        <span> ##word.vendors## </span>
       </a>
 
       <a x-features="restaurant || pos || academy || club || erp || lawyer" class="tab-link" href="/shifts"

@@ -27,31 +27,51 @@
                         label="##word.search_all##" onclick="site.showModal('#reportInvoicesCustomersSearchModal')">
                     </i-button>
 
-                    <div ng-show="customer.id" class="row margin padding dashed">
-                        <div class="col6 padding">
+                    <div class="row" ng-show="customer.id">
+                        <fieldset class="col10">
 
-                            <table class="table hover bold" id="t1">
+                            <table class="table bold center hover">
 
                                 <tr>
-                                    <td class="title">##word.customer##</td>
-                                    <td>
-                                        <h3 class="center bold">{{customer.name_##session.lang##}}</h3>
+                                    <td class="white bg_card"> ##word.customer_name## </td>
+                                    <td colspan="5" class="center">
+                                        {{customer.name_##session.lang##}} <b class="red"
+                                            ng-show="customer.child">(##word.child##)</b>
+                                    </td>
+    
+                                    <td class="white bg_card"> ##word.gender## </td>
+                                    <td colspan="2" class="center">
+                                        {{customer.gender.##session.lang##}}
+                                    </td>
+    
+                                </tr>
+
+                                <tr>
+                                    <td class="white bg_card"> ##word.gov## </td>
+                                    <td colspan="2" class="center"> {{customer.gov.name_##session.lang##}} </td>
+                                    <td class="white bg_card"> ##word.city## </td>
+                                    <td colspan="2" class="center"> {{customer.city.name_##session.lang##}}
+                                    </td>
+                                    <td class="white bg_card"> ##word.area## </td>
+                                    <td colspan="2" class="center"> {{customer.area.name_##session.lang##}}
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <td class="title">##word.requests_count##</td>
-                                    <td>
-                                        <h3 class="center bold blue">{{count}}</h3>
-                                    </td>
-
+                                    <td class="white bg_card"> ##word.address## </td>
+                                    <td colspan="7" class="center"> {{customer.address}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="white bg_card"> ##word.mobile## </td>
+                                    <td colspan="4" class="center"> {{customer.mobile}}</td>
+                                    <td class="white bg_card"> ##word.phone## </td>
+                                    <td colspan="3" class="center"> {{customer.phone}}</td>
                                 </tr>
 
                             </table>
-                        </div>
-
+                        </fieldset>
                     </div>
-
+                    
                     <span ng-show="busy">
                         <span class="sr-only">Loading...</span>
                     </span>

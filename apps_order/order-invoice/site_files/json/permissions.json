@@ -9,5 +9,6 @@
     { "module_name" : "public" , "screen_name" : "order-invoice" , "name":"order_invoice_search" , "en":"Search" , "ar":"بحث"},
     { "module_name" : "public" , "screen_name" : "order-invoice" , "name":"order_invoice_export" , "en":"Export" , "ar":"تصدير"},
     { "module_name" : "public" , "screen_name" : "order-invoice" , "name":"order_invoice_print" , "en":"Print" , "ar":"طباعة"},
+    { "module_name" : "public" , "screen_name" : "order-invoice" , "name":"order_invoice_edit_price" , "en":"Edit price" , "ar":"تعديل سعر البيع"},
     { "module_name" : "public" , "screen_name" : "order-invoice" , "name":"order_invoice_ui" , "en":"UI" , "ar":"الواجهة الرسومية"}
 ]

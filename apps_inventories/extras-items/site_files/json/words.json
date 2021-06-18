@@ -1,0 +1,19 @@
+[
+    {"name" : "extras_items_informations" , "en" : "Extras items Informations" , "ar" : "بيانات إضافات الأصناف"},
+
+    {"name" : "extras" , "en" : "Extras" , "ar" : "الإضافات"},
+    {"name" : "extras_menu" , "en" : "Extras menu" , "ar" : "قائمة الإضافات"},
+    {"name" : "extras_items" , "en" : "Extras items" , "ar" : "إضافات الأصناف"},
+    {"name" : "extras_items_menus" , "en" : "Extras items Menu" , "ar" : "قائمة إضافات الأصناف"},
+    {"name" : "extras_items_code" , "en" : "Extras items Code" , "ar" : "كود إضافة الصنف"},
+    {"name" : "extras_items_name" , "en" : "Extras items Name" , "ar" : "إسم إضافة الصنف"},
+    {"name" : "extras_items_new" , "en" : "New Extra" , "ar" : "إضافة جديدة"},
+    {"name" : "extras_items_details" , "en" : "Extras items Details" , "ar" : "تفاصيل إضافة الصنف"},
+    {"name" : "extras_items_update" , "en" : "Edit Extras items" , "ar" : "تعديل إضافة الصنف"},
+    {"name" : "extras_items_delete" , "en" : "Delte Extras items" , "ar" : "حذف إضافة الصنف"},
+    {"name" : "extras_items_add_name" , "en" : "Add Extras items" , "ar" : "إضافات الأصناف"}
+
+
+    
+    
+]

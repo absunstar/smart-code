@@ -18,7 +18,8 @@
 
                         <div class="row center">
 
-                            <i-control class="col4" ng-model="item.size_ar" label="##word.stores_items_size##" type="text">
+                            <i-control class="col4" ng-model="item.size_ar" label="##word.stores_items_size##"
+                                type="text">
                             </i-control>
 
                             <i-control class="col4" ng-model="item.size_en" label="##word.size_en##" type="text">
@@ -32,13 +33,13 @@
 
                         <div class="row">
                             <i-control class="col3" ng-model="item.cost" label="##word.stores_items_cost##"
-                            ng-hide="category_item.item_type.id === 2"  type="number">
+                                ng-hide="category_item.item_type.id === 2" type="number">
                             </i-control>
                             <i-control class="col3" ng-model="item.price" label="##word.stores_items_price##"
                                 type="number">
                             </i-control>
                             <i-control class="col3" ng-model="item.average_cost" label="##word.average_cost##"
-                               ng-hide="category_item.item_type.id === 2" type="number">
+                                ng-hide="category_item.item_type.id === 2" type="number">
                             </i-control>
                         </div>
 
@@ -56,10 +57,10 @@
 
                                 </div>
                                 <div class="row center">
-                                    <i-radio ng-model="item.discount.type" label="##word.discount_types_number##"
-                                        ng-value="number" group="type" type="radio"></i-radio>
-                                    <i-radio ng-model="item.discount.type" label="##word.discount_types_percent##"
-                                        ng-value="percent" group="type" type="radio"></i-radio>
+                                    <i-radio ng-model="item.discount.type" label="##word.amount##" ng-value="number"
+                                        group="type" type="radio"></i-radio>
+                                    <i-radio ng-model="item.discount.type" label="##word.percent##" ng-value="percent"
+                                        group="type" type="radio"></i-radio>
                                 </div>
                             </div>
 
@@ -68,13 +69,15 @@
                                     ng-model="item.validit">
                                 </i-control>
 
-                                <i-checkbox ng-hide="item.work_serial" label="##word.work_patch##" ng-model="item.work_patch">
+                                <i-checkbox ng-hide="item.work_serial" label="##word.work_patch##"
+                                    ng-model="item.work_patch">
                                 </i-checkbox>
                             </div>
 
                             <div class="col2" ng-hide="category_item.item_type.id === 2">
 
-                                <i-checkbox ng-hide="item.work_patch" label="##word.work_serial##" ng-model="item.work_serial">
+                                <i-checkbox ng-hide="item.work_patch" label="##word.work_serial##"
+                                    ng-model="item.work_serial">
                                 </i-checkbox>
                             </div>
 
@@ -98,6 +101,9 @@
                     <i-button ng-hide="!item.item_complex" type="view" label="##word.complex_items##"
                         ng-click="showComplexItems()"> </i-button>
                     <br>
+
+                    <!-- <i-button ng-hide="category_item.id" label="##word.opening_balance_add##"
+                        ng-click="addOpeningBalance(item,'show')"> </i-button> -->
 
                 </div>
 

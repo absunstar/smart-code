@@ -904,6 +904,13 @@ app.controller("order_management", function ($scope, $http, $timeout) {
     }
   };
 
+  $scope.showExtrasItems = function (size) {
+    $scope.error = '';
+    $scope.size = size;
+    site.showModal('#extrasModal');
+
+  };
+
   $scope.getNumberingAutoInvoice = function () {
     $scope.error = '';
     $scope.busy = true;

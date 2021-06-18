@@ -8,7 +8,6 @@ app.controller("school_grades", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.school_grades = {
       image_url: '/images/school_grades.png',
-      subjects_list: [{}],
       active: true
     };
     site.showModal('#schoolGradesAddModal');
@@ -26,10 +25,6 @@ app.controller("school_grades", function ($scope, $http, $timeout) {
       return;
     };
 
-    if ($scope.school_grades.subjects_list.length < 1) {
-      $scope.error = '##word.err_subject_list##';
-      return;
-    }
     $scope.busy = true;
 
     $http({
@@ -79,10 +74,7 @@ app.controller("school_grades", function ($scope, $http, $timeout) {
       $scope.error = v.messages[0].ar;
       return;
     }
-    if ($scope.school_grades.subjects_list.length < 1) {
-      $scope.error = '##word.err_subject_list##';
-      return;
-    }
+ 
     $scope.busy = true;
 
     $http({

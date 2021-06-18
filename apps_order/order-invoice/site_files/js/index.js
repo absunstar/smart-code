@@ -156,7 +156,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
         if ($scope.defaultSettings.inventory) {
           if ($scope.defaultSettings.inventory.store)
-            $scope.order_invoice.store = $scope.defaultSettings.inventory.store;
+            $scope.order_invoice.store = $scope.storesList.find(_store => { return _store.id === $scope.defaultSettings.inventory.store.id });
         };
 
         if ($scope.defaultSettings.general_Settings) {
@@ -207,180 +207,192 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   };
 
 
-  $scope.addOrderInvoice = function () {
+  $scope.addOrderInvoice = function (order_invoice, type) {
     $scope.error = '';
-    if ($scope.order_invoice.shift) {
+    if (order_invoice.shift) {
+      if (order_invoice.book_list && order_invoice.book_list.length > 0) {
 
-      const v = site.validated('#OrderInvoiceAddModal');
-      if (!v.ok) {
-        $scope.error = v.messages[0].ar;
-        $scope.order_invoice.posting = false;
+        const v = site.validated('#OrderInvoiceAddModal');
+        if (!v.ok) {
+          $scope.error = v.messages[0].ar;
+          order_invoice.posting = false;
 
-        $scope.order_invoice.status = {
-          id: 1,
-          en: "Opened",
-          ar: "مفتوحة"
-        };
-        return;
-      };
-      if (!$scope.order_invoice.transaction_type || ($scope.order_invoice.transaction_type && !$scope.order_invoice.transaction_type.id)) {
-        $scope.error = "##word.err_transaction_type##";
-        $scope.order_invoice.posting = false;
-
-        $scope.order_invoice.status = {
-          id: 1,
-          en: "Opened",
-          ar: "مفتوحة"
-        };
-        return;
-      };
-      if (!$scope.order_invoice.customer && $scope.order_invoice.transaction_type == 2) {
-        $scope.error = "##word.err_customer##";
-        $scope.order_invoice.posting = false;
-
-        $scope.order_invoice.status = {
-          id: 1,
-          en: "Opened",
-          ar: "مفتوحة"
-        };
-        return;
-      };
-      if (!$scope.order_invoice.table && $scope.order_invoice.transaction_type == 1) {
-        $scope.error = "##word.err_table##";
-        $scope.order_invoice.posting = false;
-
-        $scope.order_invoice.status = {
-          id: 1,
-          en: "Opened",
-          ar: "مفتوحة"
-        };
-        return;
-      };
-
-      if ($scope.defaultSettings.inventory && $scope.defaultSettings.inventory.dont_max_discount_items) {
-        let max_discount = false;
-
-        $scope.order_invoice.book_list.forEach(_itemSize => {
-          if (_itemSize.discount.value > _itemSize.discount.max)
-            max_discount = true;
-        });
-
-        if (max_discount) {
-          $scope.error = "##word.err_maximum_discount##";
-          $scope.order_invoice.posting = false;
-
-          $scope.order_invoice.status = {
+          order_invoice.status = {
             id: 1,
             en: "Opened",
             ar: "مفتوحة"
           };
           return;
-        }
-      }
-
-      if (new Date($scope.order_invoice.date) > new Date()) {
-
-        $scope.error = "##word.date_exceed##";
-        $scope.order_invoice.posting = false;
-
-        $scope.order_invoice.status = {
-          id: 1,
-          en: "Opened",
-          ar: "مفتوحة"
         };
-        return;
+        if (!order_invoice.transaction_type || (order_invoice.transaction_type && !order_invoice.transaction_type.id)) {
+          $scope.error = "##word.err_transaction_type##";
+          order_invoice.posting = false;
 
-      };
+          order_invoice.status = {
+            id: 1,
+            en: "Opened",
+            ar: "مفتوحة"
+          };
+          return;
+        };
+        if (!order_invoice.customer && order_invoice.transaction_type == 2) {
+          $scope.error = "##word.err_customer##";
+          order_invoice.posting = false;
 
-      if ($scope.order_invoice.transaction_type.id != 2 && $scope.order_invoice.delivery_employee)
-        $scope.order_invoice.delivery_employee = {};
+          order_invoice.status = {
+            id: 1,
+            en: "Opened",
+            ar: "مفتوحة"
+          };
+          return;
+        };
+        if (!order_invoice.table && order_invoice.transaction_type == 1) {
+          $scope.error = "##word.err_table##";
+          order_invoice.posting = false;
 
-      if ($scope.order_invoice.transaction_type.id != 1 && $scope.order_invoice.table)
-        $scope.order_invoice.table = {};
+          order_invoice.status = {
+            id: 1,
+            en: "Opened",
+            ar: "مفتوحة"
+          };
+          return;
+        };
 
-      if ($scope.order_invoice.transaction_type.id != 1 && $scope.order_invoice.service)
-        $scope.order_invoice.service = 0;
+        if ($scope.defaultSettings.inventory && $scope.defaultSettings.inventory.dont_max_discount_items) {
+          let max_discount = false;
 
-      if ($scope.order_invoice.transaction_type.id != 2 && $scope.order_invoice.price_delivery_service)
-        $scope.order_invoice.price_delivery_service = 0;
+          order_invoice.book_list.forEach(_itemSize => {
+            if (_itemSize.discount.value > _itemSize.discount.max)
+              max_discount = true;
+          });
 
-      let url = '/api/order_invoice/update';
-      if ($scope.order_invoice.id) url = '/api/order_invoice/update';
-      else {
-        url = '/api/order_invoice/add';
+          if (max_discount) {
+            $scope.error = "##word.err_maximum_discount##";
+            order_invoice.posting = false;
 
-        if (site.feature('restaurant') && '##user.type##' == 'table') {
-          $scope.bookingTable('##user.ref_info.id##');
-        }
-      }
-
-      $timeout(() => {
-        $scope.busy = true;
-        $http({
-          method: "POST",
-          url: url,
-          data: $scope.order_invoice
-        }).then(
-          function (response) {
-            $scope.busy = false;
-            if (response.data.done) {
-              if (site.feature('restaurant')) {
-                $scope.sendToKitchens(Object.assign({}, response.data.doc));
-              }
-
-              $scope.order_invoice = response.data.doc;
-
-              if ($scope.order_invoice.status.id == 2) {
-
-                let store_out = {
-                  image_url: '/images/store_out.png',
-                  supply_date: new Date(),
-                  date: $scope.order_invoice.date,
-                  posting: $scope.order_invoice.posting,
-                  order_id: $scope.order_invoice.id,
-                  customer: $scope.order_invoice.customer,
-                  shift: $scope.order_invoice.shift,
-                  net_value: $scope.order_invoice.net_value,
-                  paid_up: $scope.order_invoice.net_value,
-                  payment_method: $scope.order_invoice.payment_method,
-                  store: $scope.order_invoice.store,
-                  order_code: $scope.order_invoice.code,
-                  items: $scope.order_invoice.book_list,
-                  total_discount: $scope.order_invoice.total_discount,
-                  total_tax: $scope.order_invoice.total_tax,
-                  total_value: $scope.order_invoice.total_value,
-                  net_value: $scope.order_invoice.net_value,
-                  type: {
-                    id: 4,
-                    en: "Orders Screen",
-                    ar: "شاشة الطلبات"
-                  },
-                  active: true
-                };
-
-                $scope.addStoresOut(store_out);
-              }
-
-            } else {
-              $scope.error = response.data.error;
-              if (response.data.error.like('*Must Enter Code*')) {
-                $scope.error = "##word.must_enter_code##";
-                $scope.order_invoice.posting = false;
-
-                $scope.order_invoice.status = {
-                  id: 1,
-                  en: "Opened",
-                  ar: "مفتوحة"
-                };
-              }
-
-            }
-          },
-          function (err) {
-            console.log(err);
+            order_invoice.status = {
+              id: 1,
+              en: "Opened",
+              ar: "مفتوحة"
+            };
+            return;
           }
-        )
-      }, 500);
+        }
+
+        if (new Date(order_invoice.date) > new Date()) {
+
+          $scope.error = "##word.date_exceed##";
+          order_invoice.posting = false;
+
+          order_invoice.status = {
+            id: 1,
+            en: "Opened",
+            ar: "مفتوحة"
+          };
+          return;
+
+        };
+
+        if (order_invoice.transaction_type.id != 2 && order_invoice.delivery_employee)
+          order_invoice.delivery_employee = {};
+
+        if (order_invoice.transaction_type.id != 1 && order_invoice.table)
+          order_invoice.table = {};
+
+        if (order_invoice.transaction_type.id != 1 && order_invoice.service)
+          order_invoice.service = 0;
+
+        if (order_invoice.transaction_type.id != 2 && order_invoice.price_delivery_service)
+          order_invoice.price_delivery_service = 0;
+
+        let url = '/api/order_invoice/update';
+        if (order_invoice.id) url = '/api/order_invoice/update';
+        else {
+          url = '/api/order_invoice/add';
+
+          if (site.feature('restaurant') && '##user.type##' == 'table') {
+            $scope.bookingTable('##user.ref_info.id##');
+          }
+        }
+
+        if (type === 'hold') {
+          order_invoice.hold = true
+        } else {
+          order_invoice.hold = false
+
+        }
+
+
+        $timeout(() => {
+          $scope.busy = true;
+          $http({
+            method: "POST",
+            url: url,
+            data: order_invoice
+          }).then(
+            function (response) {
+              $scope.busy = false;
+              if (response.data.done) {
+                if (site.feature('restaurant')) {
+                  $scope.sendToKitchens(Object.assign({}, response.data.doc));
+                }
+
+                order_invoice = response.data.doc;
+
+                if (order_invoice.status.id == 2) {
+
+                  let store_out = {
+                    image_url: '/images/store_out.png',
+                    supply_date: new Date(),
+                    date: order_invoice.date,
+                    posting: order_invoice.posting,
+                    order_id: order_invoice.id,
+                    customer: order_invoice.customer,
+                    shift: order_invoice.shift,
+                    net_value: order_invoice.net_value,
+                    paid_up: order_invoice.net_value,
+                    payment_method: order_invoice.payment_method,
+                    store: order_invoice.store,
+                    order_code: order_invoice.code,
+                    items: order_invoice.book_list,
+                    total_discount: order_invoice.total_discount,
+                    total_tax: order_invoice.total_tax,
+                    total_value: order_invoice.total_value,
+                    net_value: order_invoice.net_value,
+                    type: {
+                      id: 4,
+                      en: "Orders Screen",
+                      ar: "شاشة الطلبات"
+                    },
+                    active: true
+                  };
+
+                  $scope.addStoresOut(store_out);
+                }
+
+              } else {
+                $scope.error = response.data.error;
+                if (response.data.error.like('*Must Enter Code*')) {
+                  $scope.error = "##word.must_enter_code##";
+                  order_invoice.posting = false;
+
+                  order_invoice.status = {
+                    id: 1,
+                    en: "Opened",
+                    ar: "مفتوحة"
+                  };
+                }
+
+              }
+            },
+            function (err) {
+              console.log(err);
+            }
+          )
+        }, 500);
+
+      } else $scope.error = '##word.err_book_list##';
+
     } else $scope.error = '##word.open_shift_not_found##';
   };
 
@@ -1046,7 +1058,8 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
           code: 1
         },
         where: {
-          is_pos: true
+          is_pos: true,
+          active: true
         }
       }
     }).then(
@@ -1054,6 +1067,40 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.itemsGroupList = response.data.list;
+
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.loadXtrasItems = function () {
+    $scope.busy = true;
+    $scope.extrasItemsList = [];
+
+    $http({
+      method: "POST",
+      url: "/api/extras_items/all",
+      data: {
+        select: {
+          id: 1,
+          name_ar: 1,
+          name_en: 1,
+          price: 1,
+          code: 1
+        },
+        where: {
+          active: true
+        }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.extrasItemsList = response.data.list;
 
         }
       },
@@ -1797,7 +1844,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
           net_value: $scope.order_invoice.net_value,
         };
 
-        $scope.addOrderInvoice();
+        $scope.addOrderInvoice($scope.order_invoice, 'add');
       } else {
         $scope.error = '##word.err_stock_item##';
       }
@@ -1861,11 +1908,11 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
             $scope.busy = false;
             if (response.data.done) {
               $scope.itemsList = response.data.list;
-              $scope.itemsList.forEach(element => {
-
-                console.log(element.add_sizes);
-              });
-              $scope.current_items = [];
+              /*    $scope.itemsList.forEach(element => {
+   
+                   console.log(element.add_sizes);
+                 });
+                 $scope.current_items = []; */
             }
           },
           function (err) {
@@ -1910,7 +1957,6 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
     $scope.error = '';
     $scope.order_invoice.book_list = $scope.order_invoice.book_list || [];
-    let exist = false;
     let foundHold = false;
     let kitchenBranch = {};
     if (item.branches_list && item.branches_list.length > 0) {
@@ -1941,42 +1987,40 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
     $scope.order_invoice.book_list.forEach(el => {
       if (item.size_ar == el.size_ar && item.barcode == el.barcode && !el.printed) {
-        exist = true;
         el.total += (item.price - item.discount.value);
-        el.count += 1;
       };
     });
 
-    if (!exist) {
 
-      let indxUnit = item.size_units_list.findIndex(_unit => _unit.id == item.main_unit.id);
+    let indxUnit = item.size_units_list.findIndex(_unit => _unit.id == item.main_unit.id);
 
-      item.unit = item.size_units_list[indxUnit];
-      item.discount = item.size_units_list[indxUnit].discount;
-      item.price = item.size_units_list[indxUnit].price;
-      if (!foundHold) {
+    item.unit = item.size_units_list[indxUnit];
+    item.discount = item.size_units_list[indxUnit].discount;
+    item.price = item.size_units_list[indxUnit].price;
+    if (!foundHold) {
 
-        $scope.order_invoice.book_list.push({
-          item_id: item.item_id,
-          kitchen: kitchenBranch,
-          name_ar: item.name_ar,
-          name_en: item.name_en,
-          store: item.store,
-          barcode: item.barcode,
-          size_ar: item.size_ar,
-          size_en: item.size_en,
-          item_group: item.item_group,
-          size_units_list: item.size_units_list,
-          unit: item.unit,
-          total: (item.price - item.discount.value),
-          vendor: item.vendor,
-          store: item.store,
-          price: item.price,
-          discount: item.discount,
-          count: 1
-        });
-      }
-    };
+      $scope.order_invoice.book_list.push({
+        item_id: item.item_id,
+        kitchen: kitchenBranch,
+        name_ar: item.name_ar,
+        name_en: item.name_en,
+        store: item.store,
+        barcode: item.barcode,
+        size_ar: item.size_ar,
+        size_en: item.size_en,
+        item_group: item.item_group,
+        size_units_list: item.size_units_list,
+        unit: item.unit,
+        total: (item.price - item.discount.value),
+        vendor: item.vendor,
+        store: item.store,
+        price: item.price,
+        discount: item.discount,
+        extras_price: 0,
+        count: 1
+      });
+    }
+
     $scope.calc($scope.order_invoice);
   };
 
@@ -2042,10 +2086,24 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     )
   };
 
+
   $scope.showEditItem = function (item) {
     $scope.error = '';
     $scope.size_edit = item;
     site.showModal('#editItemModal');
+  };
+
+  $scope.addExtrasItems = function (item) {
+    $scope.error = '';
+    if ($scope.extras_items && $scope.extras_items.id) {
+
+      item.extras_items_list = item.extras_items_list || [];
+
+      item.extras_items_list.push($scope.extras_items);
+      $scope.extras_items = {};
+      $scope.calcSize(item);
+    }
+
   };
 
   $scope.deleteItemsList = function (item) {
@@ -2124,7 +2182,15 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       else if (_size.discount.type == 'percent')
         discount = _size.discount.value * (_size.price * _size.count) / 100;
 
-      _size.total = (site.toNumber(_size.price) * site.toNumber(_size.count)) - discount;
+      _size.extras_price = 0;
+      if (_size.extras_items_list && _size.extras_items_list.length > 0) {
+
+        _size.extras_items_list.forEach(_exItm => {
+          _size.extras_price += _exItm.price;
+        });
+      }
+
+      _size.total = ((site.toNumber(_size.price) * site.toNumber(_size.count)) + (_size.extras_price * site.toNumber(_size.count))) - discount;
 
       $scope.calc($scope.order_invoice);
     }, 100);
@@ -2254,7 +2320,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     });
     $scope.order_invoice.table_group = group;
     site.hideModal('#showTablesModal');
-    $scope.addOrderInvoice();
+    $scope.addOrderInvoice($scope.order_invoice, 'add');
   };
 
   $scope.displaySearchModal = function () {
@@ -2364,6 +2430,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
   $scope.getOrderInvoiceList();
   $scope.loadItemsGroups();
+  $scope.loadXtrasItems();
   $scope.loadDiscountTypes();
   $scope.getTransactionTypeList();
   $scope.loadTaxTypes();

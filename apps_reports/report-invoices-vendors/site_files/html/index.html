@@ -27,29 +27,50 @@
                         label="##word.search_all##" onclick="site.showModal('#reportInvoicesVendorsSearchModal')">
                     </i-button>
 
-                    <div ng-show="vendor.id" class="row margin padding dashed">
-                        <div class="col6 padding">
+                    <div class="row" ng-show="vendor.id">
+                        <fieldset class="col10">
 
-                            <table class="table hover bold" id="t1">
+                            <table class="table bold center hover">
 
                                 <tr>
-                                    <td class="title">##word.vendor##</td>
-                                    <td>
-                                        <h3 class="center bold">{{vendor.name_##session.lang##}}</h3>
+                                    <td class="white bg_card"> ##word.vendor_name## </td>
+                                    <td colspan="7" class="center">
+                                        {{vendor.name_##session.lang##}} 
+                                    </td>
+    
+                                </tr>
+
+                                <tr>
+                                    <td class="white bg_card"> ##word.balance_creditor## </td>
+                                    <td colspan="4" class="center"> {{vendor.balance_creditor}}</td>
+                                    <td class="white bg_card"> ##word.balance_debtor## </td>
+                                    <td colspan="3" class="center"> {{vendor.balance_debtor}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="white bg_card"> ##word.gov## </td>
+                                    <td colspan="2" class="center"> {{vendor.gov.name_##session.lang##}} </td>
+                                    <td class="white bg_card"> ##word.city## </td>
+                                    <td colspan="2" class="center"> {{vendor.city.name_##session.lang##}}
+                                    </td>
+                                    <td class="white bg_card"> ##word.area## </td>
+                                    <td colspan="2" class="center"> {{vendor.area.name_##session.lang##}}
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <td class="title">##word.requests_count##</td>
-                                    <td>
-                                        <h3 class="center bold blue">{{count}}</h3>
-                                    </td>
-
+                                    <td class="white bg_card"> ##word.address## </td>
+                                    <td colspan="7" class="center"> {{vendor.address}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="white bg_card"> ##word.mobile## </td>
+                                    <td colspan="4" class="center"> {{vendor.mobile}}</td>
+                                    <td class="white bg_card"> ##word.phone## </td>
+                                    <td colspan="3" class="center"> {{vendor.phone}}</td>
                                 </tr>
 
                             </table>
-                        </div>
-
+                        </fieldset>
                     </div>
 
                     <span ng-show="busy">
@@ -88,6 +109,7 @@
                         <th> ##word.date## </th>
                         <th> ##word.shift## </th>
                         <th> ##word.stores_out_id## </th>
+                        <th> ##word.source_type## </th>
                         <th ng-hide="vendor.id"> ##word.vendor## </th>
                         <th> ##word.stores_out_total_tax## </th>
                         <th> ##word.stores_out_total_discount## </th>
@@ -104,7 +126,11 @@
                         <td class="blue"> {{c.shift.code}} </td>
                         <td class="blue"> {{c.code}} </td>
 
-                        <td ng-hide="vendor.id"> {{c.vendor.name_##session.lang##}} </td>
+                        <td> {{c.source_type.##session.lang##}} </td>
+                        <td ng-hide="vendor.id"> {{c.vendor.name_##session.lang##}} 
+                            <!-- <p>##word.creditor## : {{c.vendor.balance_creditor || 0}}</p>
+                            <p>##word.debtor## : {{c.vendor.balance_debtor || 0}}</p> -->
+                        </td>
                         <td> {{c.total_tax ||0}} </td>
                         <td> {{c.total_discount ||0}} </td>
                         <td class="green"> {{c.net_value}} </td>

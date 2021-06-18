@@ -1,0 +1,27 @@
+<div id="extrasItemsDeleteModal" class="modal">
+        
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.extras_items_delete##
+                <i class="fa fa-trash"></i>
+            </h2>
+        </div>
+        <div class="modal-body">
+            <span ng-show="busy">
+                <span class="sr-only">Loading...</span>
+            </span>
+            <div x-import="extras-items/view.html"></div>
+
+        </div>
+        <h2 class="error"> {{error}} </h2>
+        <div class="modal-footer center">
+            <i-button type="delete" label="##word.delete##" ng-click="deleteExtrasItems(extras_items)"></i-button>
+            
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#xtrasItemsDeleteModal')"></i-button>
+
+        </div>
+    </div>
+    
+</div>

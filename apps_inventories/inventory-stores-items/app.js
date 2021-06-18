@@ -817,9 +817,21 @@ module.exports = function init(site) {
             }
 
 
+
+            // site.quee('[stores_items][stores_in][openingBalance]', { ...stores_items_doc })
+
+            stores_items_doc.sizes.forEach(_size => {
+
+              if (_size.opening_palnce_list) {
+                delete _size.opening_palnce_list
+              }
+
+            })
+
             $stores_items.add(stores_items_doc, (err, doc) => {
               if (!err) {
                 response.done = true
+
 
                 let d = new Date().getDate().toString()
                 let h = new Date().getHours().toString()

@@ -47,7 +47,8 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
 
           if ($scope.defaultSettings.inventory) {
             if ($scope.defaultSettings.inventory.store)
-              $scope.store_dismantle.store = $scope.defaultSettings.inventory.store
+              $scope.store_dismantle.store = $scope.storesList.find(_store => { return _store.id === $scope.defaultSettings.inventory.store.id });
+
 
           }
           if ($scope.defaultSettings.general_Settings && !$scope.defaultSettings.general_Settings.work_posting) {

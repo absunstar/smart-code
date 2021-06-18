@@ -22,6 +22,7 @@
             "tax_types_manage",
             "currency_manage",
             "financial_years_manage",
+            "extras_items_manage",
             "area_manage",
             "city_manage",
             "customers_manage",

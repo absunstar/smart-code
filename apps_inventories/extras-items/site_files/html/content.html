@@ -1,0 +1,37 @@
+<div class="form">
+    <div id="extrasItemsAddModal">
+        <fieldset>
+            <legend> ##word.extras_items_informations## </legend>
+            <div class="row">
+                <div class="col9">
+
+                    <div class="row">
+
+                        <i-control ng-hide="disabledCode" class="col2" label="##word.code##"
+                            ng-model="extras_items.code"></i-control>
+                        <i-checkbox class="col2" label="##word.active##" ng-model="extras_items.active"></i-checkbox>
+
+                    </div>
+
+                    <div class="row">
+
+                        <i-control v="r" class="col4" label="##word.extras_items_name##"
+                            ng-model="extras_items.name_ar">
+                        </i-control>
+
+                        <i-control class="col4" label="##word.name_en##" ng-model="extras_items.name_en">
+                        </i-control>
+
+                        <i-control class="col2" type="number" label="##word.price##" ng-model="extras_items.price">
+                        </i-control>
+                    </div>
+
+                </div>
+
+                <div class="col3">
+                    <i-image category="extras_items" ng-model="extras_items.image_url"> </i-image>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>

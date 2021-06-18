@@ -191,7 +191,7 @@
         }
 
         .btn {
-            min-width: 200px;
+            min-width: 150px;
         }
 
         .btn.saving {
@@ -283,9 +283,14 @@
                             <i-button type="bg-blue" label="##word.open_orders##" ng-click="viewInvoicesActiveList()">
                             </i-button>
 
+                            <i-button ng-hide="order_invoice.hold" label="##word.order_hold##"
+                                ng-click="addOrderInvoice(order_invoice,'hold')">
+                            </i-button>
+
                             <i-button x-permissions="order_invoice_cancel_order || order_invoice_manage" type="bg-red"
                                 label="##word.cancel_order##" ng-click="cancelOrderInvoice()">
                             </i-button>
+
                         </div>
 
                         <br>
@@ -309,8 +314,9 @@
                                     help-id="menu_monitor">
                                     <img ng-src="{{i.image_url}}">
                                     <div class="bg_font_item">
-                                        <p class="center font_name_items" >{{i.name_##session.lang##}} <b ng-show="i.add_sizes">{{i.sizes[0].size_##session.lang##}}</b></p>
-                                        
+                                        <p class="center font_name_items">{{i.name_##session.lang##}} <b
+                                                ng-show="i.add_sizes">{{i.sizes[0].size_##session.lang##}}</b></p>
+
                                     </div>
                                 </a>
                             </div>
@@ -363,6 +369,7 @@
                                     <i-control ng-hide="disabledCode" class="col3" disabled label="##word.code##"
                                         ng-model="order_invoice.code"></i-control>
 
+
                                 </div>
 
                                 <div class="row">
@@ -376,16 +383,16 @@
                                         type="bg-blue" label="##word.merge_table##" ng-click="viewInvoicesTablesList()">
                                     </i-button>
                                     <i-list ng-show="order_invoice.transaction_type.id == 2"
-                                        ng-search="_search.$order_invoice_employee" class="col4" display="name_##session.lang##"
-                                        ng-model="order_invoice.delivery_employee" label="##word.delivery_employee##"
-                                        items="deliveryEmployeesList"></i-list>
+                                        ng-search="_search.$order_invoice_employee" class="col4"
+                                        display="name_##session.lang##" ng-model="order_invoice.delivery_employee"
+                                        label="##word.delivery_employee##" items="deliveryEmployeesList"></i-list>
                                 </div>
 
                                 <div class="row" ng-show="order_invoice.transaction_type.id == 1">
                                     <i-button type="bg-blue" label="##word.select_table##" ng-click="showTable()">
                                     </i-button>
-                                    <i-control class="col4" ng-model="order_invoice.table.name_##session.lang##" label="##word.table##"
-                                        type="text" disabled></i-control>
+                                    <i-control class="col4" ng-model="order_invoice.table.name_##session.lang##"
+                                        label="##word.table##" type="text" disabled></i-control>
                                     <i-control class="col2" ng-model="order_invoice.count_person"
                                         label="##word.count_person##" type="number"></i-control>
                                     <i-control class="col2" ng-model="order_invoice.service" label="##word.service##"
@@ -414,13 +421,15 @@
                                             <div class="row">
 
                                                 <i-list class="col3" label="##word.customers_gov##"
-                                                    ng-model="order_invoice.gov" items="govList" display="name_##session.lang##"
+                                                    ng-model="order_invoice.gov" items="govList"
+                                                    display="name_##session.lang##"
                                                     ng-change="getCityList(order_invoice.gov)"
                                                     ng-search="_search.$govNameContact"></i-list>
 
                                                 <i-list class="col3" label="##word.city##" ng-model="order_invoice.city"
                                                     items="cityList" ng-change="getAreaList(order_invoice.city)"
-                                                    display="name_##session.lang##" ng-search="_search.$order_invoice_city_search">
+                                                    display="name_##session.lang##"
+                                                    ng-search="_search.$order_invoice_city_search">
                                                 </i-list>
 
                                                 <i-list class="col3" label="##word.area##" ng-model="order_invoice.area"
@@ -462,13 +471,16 @@
                                     <th>##word.stores_items_name##</th>
                                     <th class="w150">##word.items_count##</th>
                                     <th>##word.price##</th>
+                                    <th>##word.extras##</th>
                                     <th class="w100">##word.t_o## ##word.price##</th>
                                     <th class="not-print">##word.actions##</th>
                                 </tr>
 
                                 <tr ng-repeat="size in order_invoice.book_list">
                                     <td class="center title">
-                                        <p ng-show="size.add_sizes">{{size.name_##session.lang##}} {{size.size_##session.lang##}}</p>
+                                        <br>
+                                        <p ng-show="size.add_sizes">{{size.name_##session.lang##}}
+                                            {{size.size_##session.lang##}}</p>
                                         <p ng-hide="size.add_sizes">{{size.size_##session.lang##}}</p>
                                     </td>
 
@@ -488,6 +500,7 @@
                                             %</del>
                                     </td>
 
+                                    <td class="center"><br> {{size.extras_price}}</td>
                                     <td class="center green"><br> {{size.total}}</td>
 
                                     <!-- ng-hide="'##user.type##' == 'table'" -->
@@ -514,45 +527,102 @@
 
                                 <div class="modal-body">
                                     <div class="row">
-                                        <div class="col2"></div>
-                                        <div class="col8">
+
+                                        <div class="row">
+
+                                            <i-list ng-model="size_edit.unit" class="col4" label="##word.unit##"
+                                                display="name_##session.lang##" ng-change="ChangeUnitPatch(size_edit);"
+                                                ng-search="_search.$order_invoice.$unit_search" space=" - "
+                                                display2="barcode" items="size_edit.size_units_list">
+                                            </i-list>
+
+                                            <i-control class="col2" type="number" label="##word.discount##"
+                                                ng-change="calcSize(size_edit)" ng-model="size_edit.discount.value">
+                                            </i-control>
+                                            <div class="col2">
+                                                <div class="row">
+
+                                                    <i-radio ng-model="size_edit.discount.type"
+                                                        ng-click="calcSize(size_edit)" label="##word.amount##"
+                                                        ng-value="number" group="type" type="radio">
+                                                    </i-radio>
+                                                </div>
+                                                <div class="row">
+
+                                                    <i-radio ng-model="size_edit.discount.type"
+                                                        ng-click="calcSize(size_edit)" label="##word.percent##"
+                                                        ng-value="percent" group="type" type="radio">
+                                                    </i-radio>
+                                                </div>
+                                            </div>
+
+                                            <i-control class="col2" type="number" label="##word.price##"
+                                                x-permissions="order_invoice_edit_price || order_invoice_manage"
+                                                ng-change="calcSize(size_edit)" ng-model="size_edit.price">
+                                            </i-control>
+
+                                        </div>
+
+                                        <div class="row">
 
                                             <div class="row">
 
-                                                <i-list ng-model="size_edit.unit" class="col6" label="##word.unit##"
-                                                display="name_##session.lang##" ng-change="ChangeUnitPatch(size_edit);"
-                                                    ng-search="_search.$category_item.$unit_search" space=" - "
-                                                    display2="barcode" items="size_edit.size_units_list">
+                                                <i-list class="col5" ng-model="extras_items"
+                                                    ng-search="_search.extras_items_search"
+                                                    display="name_##session.lang##" label="##word.extras_items##"
+                                                    items="extrasItemsList">
                                                 </i-list>
 
-                                                <div class="col4">
-
-                                                    <i-control type="number" label="##word.discount##"
-                                                        ng-change="calcSize(size_edit)"
-                                                        ng-model="size_edit.discount.value">
-                                                    </i-control>
-
-                                                    <div class="row center">
-                                                        <i-radio ng-model="size_edit.discount.type"
-                                                            ng-click="calcSize(size_edit)"
-                                                            label="##word.discount_types_number##" ng-value="number"
-                                                            group="type" type="radio"></i-radio>
-                                                        <i-radio ng-model="size_edit.discount.type"
-                                                            ng-click="calcSize(size_edit)"
-                                                            label="##word.discount_types_percent##" ng-value="percent"
-                                                            group="type" type="radio"></i-radio>
-                                                    </div>
-
+                                                <div>
+                                                    <br>
+                                                    <i-button type="add" label="##word.add##"
+                                                        ng-click="addExtrasItems(size_edit , extras_items)">
+                                                    </i-button>
                                                 </div>
-
                                             </div>
 
                                             <div class="row">
-                                                <i-textarea label="##word.notes##" class="col10"
-                                                    ng-model="size_edit.notes">
-                                                </i-textarea>
+                                                <div ng-show="size_edit.extras_items_list.length > 0">
 
+                                                    <table class="table hover bold center loaded">
+
+                                                        <tr>
+                                                            <th>##word.serial##</th>
+                                                            <th>##word.extras_items_name##</th>
+                                                            <th>##word.price##</th>
+                                                            <th>
+                                                                ##word.actions##
+                                                            </th>
+                                                        </tr>
+
+                                                        <tr
+                                                            ng-repeat="e in size_edit.extras_items_list track by $index">
+                                                            <td>
+                                                                {{$index + 1}}
+                                                            </td>
+                                                            <td>
+                                                                {{e.name_##session.lang##}}
+                                                            </td>
+                                                            <td class="green">
+                                                                {{e.price}}
+                                                            </td>
+
+                                                            <td>
+                                                                <i-button type="delete default"
+                                                                    ng-click="size_edit.extras_items_list.splice($index,1) ; calcSize(size_edit)">
+                                                                </i-button>
+                                                            </td>
+
+                                                        </tr>
+                                                    </table>
+                                                </div>
                                             </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <i-textarea label="##word.notes##" class="col10" ng-model="size_edit.notes">
+                                            </i-textarea>
+
                                         </div>
 
                                     </div>
@@ -587,7 +657,8 @@
                                             <form>
 
                                                 <div class="row ">
-                                                    <i-list class="col4" ng-model="discount" display="name_##session.lang##"
+                                                    <i-list class="col4" ng-model="discount"
+                                                        display="name_##session.lang##"
                                                         ng-search="_search.$discount_name" items="discount_types"
                                                         label="##word.discount_name##">
                                                     </i-list>
@@ -598,11 +669,11 @@
                                                         label="##word.discount_value##"></i-control>
                                                     <div class="col4">
                                                         <i-radio ng-model="discount.type" ng-value="number" group="type"
-                                                            label="##word.discount_types_number##">
+                                                            label="##word.amount##">
                                                         </i-radio>
 
                                                         <i-radio ng-model="discount.type" group="type"
-                                                            ng-value="percent" label="##word.discount_types_percent##">
+                                                            ng-value="percent" label="##word.percent##">
                                                         </i-radio>
                                                     </div>
                                                     <div class="col4" class="padding">
@@ -649,7 +720,8 @@
                                         <td colspan="2">
                                             <div class="row">
                                                 <i-list class="col6" ng-model="tax" label="##word.discount_name##"
-                                                display="name_##session.lang##" ng-search="_search.$taxtypes" items="tax_types"></i-list>
+                                                    display="name_##session.lang##" ng-search="_search.$taxtypes"
+                                                    items="tax_types"></i-list>
                                             </div>
                                             <div class="row">
                                                 <i-control class="col4" ng-model="tax.value"
@@ -710,7 +782,7 @@
 
                             <div class="col4" ng-hide="order_invoice.status.id == 2">
                                 <i-button label="##word.add_to_orders##" type="fa fa-cart-plus saving"
-                                    ng-click="addOrderInvoice()">
+                                    ng-click="addOrderInvoice(order_invoice,'add')">
                                 </i-button>
                                 <br>
                                 <i-button type="closing"

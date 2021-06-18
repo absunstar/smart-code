@@ -19,7 +19,11 @@
         "en": "Select Table",
         "ar": "إختيار الطاولة"
     },
-   
+    {
+        "name": "order_hold",
+        "en": "Order Hold",
+        "ar": "تعليق الطلب"
+    },
     {
         "name": "count_person",
         "en": "Count Person",

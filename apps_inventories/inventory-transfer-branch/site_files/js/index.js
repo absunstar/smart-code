@@ -42,7 +42,8 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
 
         if ($scope.defaultSettings.inventory) {
           if ($scope.defaultSettings.inventory.store)
-            $scope.transfer_branch.store_from = $scope.defaultSettings.inventory.store
+            $scope.transfer_branch.store_from = $scope.storesList.find(_store => { return _store.id === $scope.defaultSettings.inventory.store.id });
+
         } site.showModal('#addTransferBranchModal');
       } else $scope.error = '##word.open_shift_not_found##';
     });

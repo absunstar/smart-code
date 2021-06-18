@@ -65,8 +65,7 @@ module.exports = function init(site) {
 
     } else where['vendor.id'] = { $gte: 1 }
 
-    where['source_type.id'] = 1
-    where['$or'] = [{ 'source_type.id': 1 }, { 'source_type.id': 9 }]
+    where['$or'] = [{ 'source_type.id': 1 }, { 'source_type.id': 9 }, { 'source_type.id': 16 }]
 
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
@@ -78,7 +77,7 @@ module.exports = function init(site) {
       limit: req.body.limit
     }, (err, docs, count) => {
       if (!err) {
-
+        console.log(count);
         response.done = true
         response.list = docs
         response.count = count

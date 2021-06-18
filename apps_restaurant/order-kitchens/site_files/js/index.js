@@ -132,6 +132,13 @@ app.controller("order_kitchen", function ($scope, $http, $interval) {
     )
   };
 
+  $scope.showExtrasItems = function (size) {
+    $scope.error = '';
+    $scope.size = size;
+    site.showModal('#extrasModal');
+
+  };
+
   $scope.get_open_shift = function (callback) {
     $scope.busy = true;
     $http({

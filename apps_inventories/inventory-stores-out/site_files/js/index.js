@@ -202,7 +202,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           if ('##user.type##' == 'delegate') {
             $scope.store_out.store = JSON.parse('##user.store##');
           } else if ($scope.defaultSettings.inventory.store)
-            $scope.store_out.store = $scope.defaultSettings.inventory.store;
+            $scope.store_out.store = $scope.storesList.find(_store => { return _store.id === $scope.defaultSettings.inventory.store.id });
 
 
           if ('##user.type##' == 'delegate') {

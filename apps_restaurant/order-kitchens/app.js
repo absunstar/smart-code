@@ -48,7 +48,6 @@ module.exports = function init(site) {
       return
     }
 
-
     let kitchen = {}
     let where = req.body.where || {}
     where['company.id'] = site.get_company(req).id
@@ -61,6 +60,7 @@ module.exports = function init(site) {
     }
 
     where['book_list.done_kitchen'] = { $ne: true }
+    where['hold'] = { $ne: true }
 
     $order_invoice.findMany({
       select: req.body.select || {},
