@@ -1041,7 +1041,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
       if ($scope.item.sizes && $scope.item.sizes.length > 0)
         $scope.item.sizes.forEach(_size => {
-          foundSize = $scope.store_in.items.some(_itemSize => _itemSize.barcode === _size.barcode);
+          foundSize = $scope.store_in.items.some(_itemSize => _itemSize.barcode === _size.barcode && _itemSize.unit.id === _size.unit.id);
           if (_size.count > 0 && !foundSize) {
 
             let discount = 0;
@@ -1060,7 +1060,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
             }
 
-            $scope.store_in.items.push({
+            let itmObj = {
               image_url: $scope.item.image_url,
               name_ar: _size.name_ar,
               name_en: _size.name_en,
@@ -1086,7 +1086,9 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
               current_count: _size.current_count,
               ticket_code: _size.ticket_code,
               add_sizes: _size.add_sizes
-            });
+            };
+            $scope.store_in.items.push(itmObj);
+            $scope.calcSize(itmObj);
           }
         });
       $scope.calc($scope.store_in);
@@ -1316,12 +1318,17 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                   let foundHold = false;
                   let indxUnit = 0;
                   _size.add_sizes = response.data.list[0].add_sizes;
-                  if (_size.size_units_list && _size.size_units_list.length > 0)
+                  if (_size.size_units_list && _size.size_units_list.length > 0) {
+                    let foundUnit = false;
                     _size.size_units_list.forEach((_unit, i) => {
-
-                      if (_unit.id == response.data.list[0].main_unit.id)
+                      if ($scope.search_barcode === _unit.barcode) {
+                        foundUnit = true
                         indxUnit = i;
+                      } else if (_unit.id === response.data.list[0].main_unit.id && !foundUnit) {
+                        indxUnit = i;
+                      }
                     });
+                  }
 
                   if (_size.branches_list && _size.branches_list.length > 0)
                     _size.branches_list.forEach(_branch => {
@@ -1334,7 +1341,6 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                     });
 
                   if ((_size.barcode === $scope.search_barcode) || _size.size_units_list[indxUnit].barcode === $scope.search_barcode) {
-
                     _size.name_ar = response.data.list[0].name_ar;
                     _size.name_en = response.data.list[0].name_en;
                     _size.item_group = response.data.list[0].item_group;
@@ -1348,7 +1354,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                     _size.price = _size.size_units_list[indxUnit].price;
                     _size.total = _size.count * _size.cost;
 
-                    foundSize = $scope.store_in.items.some(_itemSize => _itemSize.barcode === _size.barcode);
+                    foundSize = $scope.store_in.items.some(_itemSize => _itemSize.barcode === _size.barcode && _itemSize.unit.id === _size.unit.id);
 
                     if (!foundSize && !foundHold)
                       $scope.store_in.items.unshift(_size);
@@ -2182,6 +2188,31 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       )
     }
   };
+
+
+ /*  $scope.showFormNum = function (obj,elementNum) {
+    let elementString = 
+    $scope.formNum = elementNum;
+
+    site.showModal('#viewFormNumModal');
+
+
+  };
+
+
+
+  $scope.editFormNum = function (type) {
+
+    console.log($scope.formNum,"SDfdfdsfsdf");
+    if (type === '1') {
+
+      $scope.formNum = $scope.formNum + '1';
+      $scope.formNum = site.toNumber($scope.formNum);
+    }
+    console.log($scope.formNum);
+  };
+ */
+
 
   $scope.searchAll = function () {
     $scope.error = '';

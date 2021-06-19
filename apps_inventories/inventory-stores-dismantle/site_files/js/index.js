@@ -253,7 +253,7 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
     let foundSize = false;
     if ($scope.item.sizes && $scope.item.sizes.length > 0)
       $scope.item.sizes.forEach(_size => {
-        foundSize = $scope.store_dismantle.items.some(_itemSize => _itemSize.barcode === _size.barcode);
+        foundSize = $scope.store_dismantle.items.some(_itemSize => _itemSize.barcode === _size.barcode && _itemSize.unit.id === _size.unit.id);
         if (_size.count > 0 && !foundSize) {
           $scope.store_dismantle.items.unshift({
             image_url: $scope.item.image_url,
@@ -461,7 +461,7 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
           } else _item.store_count = 0;
 
         } else _item.store_count = 0;
-        foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode === _item.barcode);
+        foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode === _item.barcode && _itemSize.unit.id === _item.unit.id);
         if (!foundSize && _item.item_complex && !foundHold)
           $scope.item.sizes.unshift(_item);
       });
@@ -490,10 +490,17 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
                   let foundHold = false;
                   let indxUnit = 0;
                   _size.add_sizes = response.data.list[0].add_sizes;
-                  if (_size.size_units_list && _size.size_units_list.length > 0)
+                  if (_size.size_units_list && _size.size_units_list.length > 0) {
+                    let foundUnit = false;
                     _size.size_units_list.forEach((_unit, i) => {
-                      if (_unit.id == response.data.list[0].main_unit.id) indxUnit = i;
+                      if ($scope.search_barcode === _unit.barcode) {
+                        foundUnit = true
+                        indxUnit = i;
+                      } else if (_unit.id === response.data.list[0].main_unit.id && !foundUnit) {
+                        indxUnit = i;
+                      }
                     });
+                  }
 
                   if ((_size.barcode === $scope.search_barcode) || _size.size_units_list[indxUnit].barcode === $scope.search_barcode) {
                     _size.name_ar = response.data.list[0].name_ar;
@@ -539,7 +546,7 @@ app.controller("stores_dismantle", function ($scope, $http, $timeout) {
                       } else _size.store_count = 0
 
                     } else _size.store_count = 0
-                    foundSize = $scope.store_dismantle.items.some(_itemSize => _itemSize.barcode === _size.barcode);
+                    foundSize = $scope.store_dismantle.items.some(_itemSize => _itemSize.barcode === _size.barcode && _itemSize.unit.id === _size.unit.id);
                     if (!foundSize && _size.item_complex && !foundHold)
                       $scope.store_dismantle.items.unshift(_size);
                     else if (foundSize) {

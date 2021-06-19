@@ -12,6 +12,7 @@
                     </i-control>
 
                     <i-date2 class="col4" ng-model="store_in.date" label="##word.stores_in_date##" v="r"></i-date2>
+
                     <i-list class="col2" ng-model="store_in.payment_type" items="paymentTypesList"
                         ng-show="(store_in.type.id== 1 || store_in.type.id== 4)" display="##session.lang##"
                         ng-search="_search.$search_payment_types" label="##word.payment_type##">

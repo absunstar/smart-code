@@ -135,6 +135,28 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
   };
 
+  $scope.loadStores = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.storesList = [];
+    $http({
+      method: "POST",
+      url: "/api/stores/all",
+      data: { select: { id: 1, name_ar: 1, name_en: 1, type: 1, code: 1 } }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) $scope.storesList = response.data.list;
+
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+
   $scope.newOrderInvoice = function () {
     $scope.error = '';
     $scope.get_open_shift((shift) => {
@@ -2443,6 +2465,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   $scope.getCustomerGroupList();
   $scope.loadCurrencies();
   $scope.getNumberingAuto();
+  $scope.loadStores();
   $scope.getNumberingAutoInvoice();
   $scope.getNumberingAutoCustomer();
   if (site.feature('restaurant')) {

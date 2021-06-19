@@ -850,7 +850,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
       if ($scope.item.sizes && $scope.item.sizes.length > 0)
         $scope.item.sizes.forEach(_size => {
-          foundSize = $scope.store_out.items.some(_itemSize => _itemSize.barcode === _size.barcode);
+          foundSize = $scope.store_out.items.some(_itemSize => _itemSize.barcode === _size.barcode && _itemSize.unit.id === _size.unit.id);
           if (_size.count > 0 && !foundSize) {
 
             let discount = 0;
@@ -867,8 +867,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
               _size.total = (site.toNumber(_size.total * _size.count) - discount + _size.total_v_a);
               _size.total = site.toNumber(_size.total);
             }
-
-            $scope.store_out.items.push({
+            let itmObj = {
               image_url: $scope.item.image_url,
               name_ar: _size.name_ar,
               name_en: _size.name_en,
@@ -896,10 +895,11 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
               total: _size.total,
               store_count: _size.store_count,
               add_sizes: _size.add_sizes
-            });
+            }
+            $scope.store_out.items.push(itmObj);
+            $scope.calcSize(itmObj);
           }
         });
-      $scope.calc($scope.store_out);
       $scope.item.sizes = [];
     } else $scope.error = "##word.err_transaction_type##";
   };
@@ -1072,12 +1072,49 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     }
   };
 
+  /*  $scope.changeUnitSelect = function (_item) {
+    if (_item.branches_list && _item.branches_list.length > 0) {
+
+      let foundBranch = false;
+      let indxBranch = 0;
+      _item.branches_list.map((_branch, i) => {
+        if (_branch.code == '##session.branch.code##') {
+          foundBranch = true;
+          indxBranch = i;
+        }
+      });
+      if (foundBranch) {
+        if (_item.branches_list[indxBranch].code == '##session.branch.code##') {
+          if (_item.branches_list[indxBranch].stores_list && _item.branches_list[indxBranch].stores_list.length > 0) {
+
+            let foundStore = false;
+            let indxStore = 0;
+            _item.branches_list[indxBranch].stores_list.map((_store, i) => {
+              if (_store.store.id == $scope.store_out.store.id) {
+                _item.store_units_list = _store.size_units_list;
+                foundStore = true;
+                indxStore = i;
+                if (_store.hold) foundHold = true;
+              }
+            });
+            if (foundStore) {
+              _item.store_count = _item.branches_list[indxBranch].stores_list[indxStore].current_count
+            } else _item.store_count = 0;
+          } else _item.store_count = 0;
+        } else _item.store_count = 0;
+      } else _item.store_count = 0;
+    } else {
+      _item.store_count = 0;
+    }
+  }; 
+ */
+
   $scope.itemsStoresOut = function () {
     $scope.error = '';
     $scope.item.sizes = $scope.item.sizes || [];
     let foundSize = false;
+    if ($scope.item.itm && $scope.item.itm.sizes && $scope.item.itm.sizes.length > 0) {
 
-    if ($scope.item.itm && $scope.item.itm.sizes && $scope.item.itm.sizes.length > 0)
       $scope.item.itm.sizes.forEach(_item => {
         let foundHold = false;
         _item.add_sizes = $scope.item.itm.add_sizes;
@@ -1087,7 +1124,9 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         _item.store = $scope.store_out.store;
         _item.count = 1;
         _item.value_added = _item.not_value_added ? 0 : $scope.defaultSettings.inventory.value_added || 0;
+
         let indxUnit = 0;
+
         if (_item.size_units_list && _item.size_units_list.length > 0) {
 
           indxUnit = _item.size_units_list.findIndex(_unit => _unit.id == $scope.item.itm.main_unit.id);
@@ -1126,14 +1165,16 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                     if (_store.hold) foundHold = true;
                   }
                 });
-                if (foundStore)
+                if (foundStore) {
                   _item.store_count = _item.branches_list[indxBranch].stores_list[indxStore].current_count
+                } else _item.store_count = 0;
               } else _item.store_count = 0;
             } else _item.store_count = 0;
           } else _item.store_count = 0;
         } else _item.store_count = 0;
-        foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode === _item.barcode);
 
+          foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode === _item.barcode && _itemSize.unit.id === _item.unit.id);
+          
         if (_item.store_units_list && _item.store_units_list.length > 0) {
           _item.store_units_list.forEach(_ul => {
             if (_ul.id == _item.unit.id) {
@@ -1148,8 +1189,14 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
             }
           });
         };
-        if (!foundSize && !foundHold) $scope.item.sizes.push(_item);
+
+        if (!foundSize && !foundHold) {
+          $scope.item.sizes.push(_item);
+
+        }
       });
+    }
+
   };
 
   $scope.getBarcode = function (ev) {
@@ -1174,13 +1221,17 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                   let indxUnit = 0;
                   _size.add_sizes = response.data.list[0].add_sizes;
 
-                  if (_size.size_units_list && _size.size_units_list.length > 0)
+                  if (_size.size_units_list && _size.size_units_list.length > 0) {
+                    let foundUnit = false;
                     _size.size_units_list.forEach((_unit, i) => {
-
-                      if (_unit.id == response.data.list[0].main_unit.id)
+                      if ($scope.search_barcode === _unit.barcode) {
+                        foundUnit = true
                         indxUnit = i;
+                      } else if (_unit.id === response.data.list[0].main_unit.id && !foundUnit) {
+                        indxUnit = i;
+                      }
                     });
-
+                  }
 
                   if (_size.branches_list && _size.branches_list.length > 0)
                     _size.branches_list.forEach(_branch => {
@@ -1220,7 +1271,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                     _size.count = 1;
                     _size.value_added = _size.not_value_added ? 0 : $scope.defaultSettings.inventory.value_added || 0;
 
-                    foundSize = $scope.store_out.items.some(_itemSize => _itemSize.barcode === _size.barcode);
+                    foundSize = $scope.store_out.items.some(_itemSize => _itemSize.barcode === _size.barcode && _itemSize.unit.id === _size.unit.id);
                     if (_size.store_units_list && _size.store_units_list.length > 0) {
                       _size.store_units_list.forEach(_ul => {
                         if (_ul.id == _size.unit.id) {

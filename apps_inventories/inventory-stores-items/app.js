@@ -658,7 +658,6 @@ module.exports = function init(site) {
           item_doc.total_sell_count = 0;
           item_doc.total_buy_cost = 0;
           item_doc.total_buy_count = 0;
-
           item_doc.size_units_list = [];
           stores_items_doc.units_list.forEach(_size_unit => {
             item_doc.size_units_list.push({
@@ -816,22 +815,28 @@ module.exports = function init(site) {
               stores_items_doc.code = cb.code;
             }
 
+            let opening_balances_obj = {
+              image_url: stores_items_doc.image_url,
+              company: stores_items_doc.company,
+              branch: stores_items_doc.branch,
+              name_ar: stores_items_doc.name_ar,
+              name_en: stores_items_doc.name_en,
+              add_user_info: stores_items_doc.add_user_info,
+              item_group: stores_items_doc.item_group,
+              sizes: stores_items_doc.sizes,
 
+            }
+            site.quee('[stores_items][stores_in][openingBalance]', opening_balances_obj)
 
-            // site.quee('[stores_items][stores_in][openingBalance]', { ...stores_items_doc })
-
-            stores_items_doc.sizes.forEach(_size => {
-
-              if (_size.opening_palnce_list) {
-                delete _size.opening_palnce_list
-              }
-
-            })
+            // stores_items_doc.sizes.forEach(_size => {
+            //   if (_size.opening_palnce_list) {
+            //     delete _size.opening_palnce_list
+            //   }
+            // })
 
             $stores_items.add(stores_items_doc, (err, doc) => {
               if (!err) {
                 response.done = true
-
 
                 let d = new Date().getDate().toString()
                 let h = new Date().getHours().toString()
@@ -888,7 +893,7 @@ module.exports = function init(site) {
         if (!stores_items_doc.add_sizes) {
 
           stores_items_doc.sizes[0].size_ar = stores_items_doc.name_ar
-          stores_items_doc.sizes[0].size_en = stores_items_doc.size_en
+          stores_items_doc.sizes[0].size_en = stores_items_doc.name_en
 
         }
 

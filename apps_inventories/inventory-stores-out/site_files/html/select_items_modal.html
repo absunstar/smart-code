@@ -30,6 +30,11 @@
                             <div class="col2 center">
                                 <label>##word.barcode##</label>
                             </div>
+
+                            <div class="col2 center">
+                                <label>##word.unit##</label>
+                            </div>
+
                             <div class="col1 center">
                                 <div class="control">
                                     <label>##word.balance##</label>
@@ -57,7 +62,6 @@
                                     <label>##word.stores_out_item_total##</label>
                                 </div>
                             </div>
-                            <div class="col1"></div>
                             <div class="col1 center">
                                 <div class="control">
                                     <label>##word.actions##</label>
@@ -70,7 +74,8 @@
                             <div class="row center">
                                 <div class="col2">
                                     <br ng-hide="s.$new">
-                                    <h3 class="bold center" ng-show="s.add_sizes">{{s.name_##session.lang##}} {{s.size_##session.lang##}}</h3>
+                                    <h3 class="bold center" ng-show="s.add_sizes">{{s.name_##session.lang##}}
+                                        {{s.size_##session.lang##}}</h3>
                                     <h3 class="bold center" ng-show="!s.add_sizes">{{s.size_##session.lang##}}</h3>
                                     <!-- <i-control ng-show="s.$new" ng-model="s.size_ar" type="text">
                                     </i-control> -->
@@ -83,6 +88,11 @@
                                     <!-- <i-control ng-show="s.$new" ng-model="s.barcode" type="text">
                                     </i-control> -->
                                 </div>
+
+                                <i-list ng-model="s.unit" display="name_##session.lang##" class="col2"
+                                    ng-search="_search.$category_item.$unit_search"
+                                    ng-change="s.discount = s.unit.discount ; s.cost = s.unit.cost ; s.average_cost = s.unit.average_cost;changeUnitSelect(s)"
+                                    space=" - " display2="barcode" items="s.size_units_list"></i-list>
 
                                 <i-control disabled class="col1" ng-model="s.current_count" type="number">
                                 </i-control>
@@ -99,7 +109,6 @@
 
                                 <i-control disabled class="col1" ng-model="s.total" type="number">
                                 </i-control>
-                                <div class="col1"></div>
 
                                 <div class="col1 center">
                                     <i-button type="delete" label="##word.delete##" ng-click="deleteitem(s)"></i-button>

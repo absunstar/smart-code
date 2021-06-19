@@ -390,7 +390,7 @@ module.exports = function init(site) {
 
                       let customerObj = { id: doc.customer.id };
 
-                      customerObj.balance_creditor = doc.remain_amount
+                      customerObj.balance_creditor =  doc.paid_up * doc.currency.ex_rate
                       customerObj.sum_creditor = true
 
 

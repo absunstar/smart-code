@@ -93,11 +93,12 @@
                     <td class="blue"> <br> {{itm.store_count}}</td>
 
                     <td>
-                        <i-control type="number" ng-change="calc(itm)" ng-model="itm.count"></i-control>
+                        <i-control type="number" ng-change="calc(itm)" v="r" ng-model="itm.count"></i-control>
                     </td>
 
                     <td class="">
-                        <i-control type="number" ng-change="calcTrance(itm)" ng-model="itm.count_trans"></i-control>
+                        <i-control type="number" ng-change="calcTrance(itm)" v="r" ng-model="itm.count_trans">
+                        </i-control>
                     </td>
 
                     <td>

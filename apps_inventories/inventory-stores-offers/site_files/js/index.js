@@ -284,10 +284,10 @@ app.controller("stores_offer", function ($scope, $http, $timeout) {
                                 let foundStore = false;
                                 let indxStore = 0;
                                 _size.branches_list[indxBranch].stores_list.map((_store, i) => {
-                                  if (_store.store.id == $scope.store_offer.store.id) {
+                              /*     if (_store.store.id == $scope.store_offer.store.id) {
                                     foundStore = true;
                                     indxStore = i;
-                                  }
+                                  } */
                                 });
                                 _size.branches_list[indxBranch].stores_list[indxStore].size_units_list.forEach(_unitStore => {
 
@@ -360,10 +360,10 @@ app.controller("stores_offer", function ($scope, $http, $timeout) {
                     let foundStore = false;
                     let indxStore = 0;
                     _item.branches_list[indxBranch].stores_list.map((_store, i) => {
-                      if (_store.store.id == $scope.store_offer.store.id) {
+                     /*  if (_store.store.id == $scope.store_offer.store.id) {
                         foundStore = true;
                         indxStore = i;
-                      }
+                      } */
                     });
                     _item.branches_list[indxBranch].stores_list[indxStore].size_units_list.forEach(_unitStore => {
 
@@ -426,10 +426,10 @@ app.controller("stores_offer", function ($scope, $http, $timeout) {
                               let foundStore = false;
                               let indxStore = 0;
                               _size.branches_list[indxBranch].stores_list.map((_store, i) => {
-                                if (_store.store.id == $scope.store_offer.store.id) {
+                             /*    if (_store.store.id == $scope.store_offer.store.id) {
                                   foundStore = true;
                                   indxStore = i;
-                                }
+                                } */
                               });
                               _size.branches_list[indxBranch].stores_list[indxStore].size_units_list.forEach(_unitStore => {
 
@@ -512,10 +512,10 @@ app.controller("stores_offer", function ($scope, $http, $timeout) {
                               let foundStore = false;
                               let indxStore = 0;
                               _size.branches_list[indxBranch].stores_list.map((_store, i) => {
-                                if (_store.store.id == $scope.store_offer.store.id) {
+                             /*    if (_store.store.id == $scope.store_offer.store.id) {
                                   foundStore = true;
                                   indxStore = i;
-                                }
+                                } */
                               });
                               _size.branches_list[indxBranch].stores_list[indxStore].size_units_list.forEach(_unitStore => {
 

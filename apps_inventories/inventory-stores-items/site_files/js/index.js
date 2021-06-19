@@ -522,17 +522,19 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     let obj = { count: 1 };
     obj.unit = $scope.category_item.units_list[0];
     obj.store = $scope.storesList.find(_store => { return _store.id === $scope.defaultSettings.inventory.store.id });
+    obj.vendor = $scope.defaultSettings.general_Settings.vendor;
+    if (type === 'add') {
 
-    if ($scope.size_balance.opening_palnce_list && $scope.size_balance.opening_palnce_list.length > 0 && type ==='add') {
+      if ($scope.size_balance.opening_palnce_list && $scope.size_balance.opening_palnce_list.length > 0) {
 
-      $scope.size_balance.opening_palnce_list.push(obj)
+        $scope.size_balance.opening_palnce_list.push(obj)
 
-    } else {
-      $scope.size_balance.opening_palnce_list = [obj]
-    }
+      } else {
+        $scope.size_balance.opening_palnce_list = [obj]
+      }
 
 
-    if(type === 'show'){
+    } else if (type === 'show') {
 
       site.showModal('#addOpeningBalanceModal');
     }
@@ -1701,6 +1703,30 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.loadVendors = function (ev) {
+    $scope.error = '';
+    $scope.busy = true;
+    if (ev.which === 13) {
+      $http({
+        method: "POST",
+        url: "/api/vendors/all",
+        data: {
+          search: $scope.search_vendor
+        }
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done) {
+            $scope.vendorsList = response.data.list;
+          }
+        },
+        function (err) {
+          $scope.busy = false;
+          $scope.error = err;
+        }
+      )
+    }
+  };
 
   $scope.getDefaultSetting = function () {
 

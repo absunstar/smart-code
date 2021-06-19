@@ -31,15 +31,25 @@
 
                         </div>
                         <div class="row">
-                            <div class="col4"></div>
-                            <i-control class="col3" ng-model="o_b.count" label="##word.balance##" type="number"></i-control>
+                            <i-control ng-keydown="loadVendors($event)" class="col3" ng-model="search_vendor"
+                                label="##word.search##" type="text"></i-control>
+                            <i-list class="col4" ng-model="o_b.vendor" items="vendorsList"
+                                display="name_##session.lang##" space=" - " display2="code"
+                                ng-search="_search.$search_vendor" label="##word.stores_in_Company_name##"></i-list>
+
+                            <i-control class="col2" ng-model="o_b.count" label="##word.balance##" type="number">
                             </i-control>
-                            <div class="col3"></div>
-                            <i-button type="delete " ng-click="size_balance.opening_palnce_list.splice($index,1)">
+
+                            <div class="col1"></div>
+                            <i-button type="delete" ng-click="size_balance.opening_palnce_list.splice($index,1)">
                             </i-button>
 
                         </div>
-                        <hr>
+
+                        <br>
+                        <hr style="height:5px;color:grey;background-color:rgb(0, 0, 199)"
+                            ng-show="category_item.add_sizes">
+
                     </div>
 
                 </fieldset>

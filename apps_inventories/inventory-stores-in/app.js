@@ -7,6 +7,185 @@ module.exports = function init(site) {
   //   })
   // })
 
+  site.on('[stores_items][stores_in][openingBalance]', openingBalanceObj => {
+    let stores_item_doc = { ...openingBalanceObj };
+
+    site.getOpenShift({ companyId: stores_item_doc.company.id, branchCode: stores_item_doc.branch.code }, shiftCb => {
+      if (shiftCb) {
+        // site.getDefaultSetting(openingBalanceObj.req, settingCb => {
+
+        // site.isAllowedDate(openingBalanceObj.req, allowDate => {
+        //   if (!allowDate) {
+
+        //     response.error = 'Don`t Open Period'
+        //     res.json(response)
+        //   } else {
+
+        let opBalanceList = []
+
+        stores_item_doc.sizes.forEach(_size => {
+          _size.opening_palnce_list = _size.opening_palnce_list || []
+          _size.opening_palnce_list.forEach(_opBalance => {
+            let found = opBalanceList.some(_ar => _ar.store.id === _opBalance.store.id);
+
+            let cb = site.getNumbering({ company: stores_item_doc.company, date: new Date(), screen: 'opening_balances_Store' });
+
+            let unit = _size.size_units_list.find(_unit => { return _unit.id === _opBalance.unit.id });
+
+            let discount = 0;
+
+            if (_opBalance.count) {
+              if (unit.discount.type == 'number')
+                discount = (unit.discount.value || 0) * _opBalance.count;
+              else if (unit.discount.type == 'percent')
+                discount = (unit.discount.value || 0) * (unit.cost * _opBalance.count) / 100;
+
+            }
+
+
+            let item = {
+              name_ar: stores_item_doc.name_ar,
+              name_en: stores_item_doc.name_en,
+              size_ar: _size.size_ar,
+              size_en: _size.size_en,
+              value_added: 0,
+              total_v_a: 0,
+              item_group: stores_item_doc.item_group,
+              validit: 0,
+              size_units_list: _size.size_units_list,
+              unit: unit,
+              cost: unit.cost,
+              price: unit.price,
+              average_cost: unit.average_cost,
+              barcode: _size.barcode,
+              count: _opBalance.count,
+              discount: unit.discount,
+              total: (unit.cost * _opBalance.count) - discount,
+              current_count: 0
+            }
+
+
+            let opBalanceObj = {
+              image_url: "/images/store_in.png",
+              store: _opBalance.store,
+              company: stores_item_doc.company,
+              add_user_info: stores_item_doc.add_user_info,
+              branch: stores_item_doc.branch,
+              shift: shiftCb,
+              invoice: false,
+              type: {
+                id: 3,
+                en: 'Opening Balance Store',
+                ar: 'رصيد إفتتاحي مخزني'
+              },
+              items: [item],
+              vendor: _opBalance.vendor,
+              discountes: [],
+              taxes: [],
+              date: new Date(),
+              supply_date: new Date(),
+              posting: true,
+              total_tax: 0,
+              total_discount: 0,
+              total_value: item.total,
+              net_value: item.total,
+              code: cb.code
+            }
+
+
+            if (!found) {
+              opBalanceList.push(opBalanceObj)
+
+            } else {
+              opBalanceList.forEach(_arr => {
+                if (_arr.store && _arr.store && _arr.store.id == _opBalance.store.id) {
+                  _arr.items.push(item);
+                  _arr.total_value = _arr.total_value + item.total;
+                  _arr.net_value = _arr.net_value + item.total;
+                }
+              });
+            }
+
+          });
+        });
+        opBalanceList.forEach(_opBa => {
+
+          _opBa.items.forEach(_itm => {
+            _itm.current_count = site.toNumber(_itm.current_count)
+            _itm.count = site.toNumber(_itm.count)
+            _itm.cost = site.toNumber(_itm.cost)
+            _itm.price = site.toNumber(_itm.price)
+            _itm.total = site.toNumber(_itm.total)
+            if (_itm.patch_list && _itm.patch_list.length > 0) {
+              let filter_patch = _itm.patch_list.filter(_p => _p.count !== 0)
+              _itm.patch_list = filter_patch
+            }
+          })
+
+
+          _opBa.return_paid = {
+            items: _opBa.items,
+            total_discount: _opBa.total_discount,
+            total_value_added: _opBa.total_value_added,
+            total_tax: _opBa.total_tax,
+            total_value: _opBa.total_value,
+            net_value: _opBa.net_value,
+          }
+
+          $stores_in.add(_opBa, (err, doc) => {
+            console.log(_opBa, "wfegdfhjgkfgfhkjdfgh");
+
+            if (!err) {
+
+
+              if (doc.posting) {
+
+                doc.items.forEach((_itm, i) => {
+
+                  _itm.store = doc.store
+                  _itm.company = doc.company
+                  _itm.branch = doc.branch
+                  _itm.source_type = doc.type
+                  _itm.store_in = true
+                  _itm.code = doc.code
+                  _itm.vendor = doc.vendor
+                  _itm.date = doc.date
+                  _itm.current_status = 'storein'
+                  _itm.shift = {
+                    id: doc.shift.id,
+                    code: doc.shift.code,
+                    name_ar: doc.shift.name_ar, name_en: doc.shift.name_en
+                  }
+
+                  if (doc.type.id == 1) _itm.set_average = 'sum_average'
+
+                  _itm.type = 'sum'
+                  _itm.transaction_type = 'in'
+                  site.quee('item_transaction + items', { ..._itm })
+
+
+                  _itm.count = Math.abs(_itm.count)
+
+                  site.quee('[transfer_branch][stores_items][add_balance]', { ..._itm })
+                })
+
+              }
+
+            }
+          })
+
+        });
+        // })
+      }
+    })
+    // } else {
+    //   response.error = 'Don`t Found Open Shift'
+    //   res.json(response)
+    // }
+
+    // })
+
+  });
 
   site.on('[stores_items][item_name][change]', objectStoreIn => {
 
@@ -173,18 +352,18 @@ module.exports = function init(site) {
                           _itm.count = (-Math.abs(_itm.count))
                           _itm.transaction_type = 'in'
                           site.returnStoresIn(doc, res => { })
-                          site.quee('item_transaction + items', Object.assign({}, _itm))
+                          site.quee('item_transaction + items', { ..._itm })
                         } else {
                           if (doc.type.id == 1) _itm.set_average = 'sum_average'
 
                           _itm.type = 'sum'
                           _itm.transaction_type = 'in'
-                          site.quee('item_transaction + items', Object.assign({}, _itm))
+                          site.quee('item_transaction + items', { ..._itm })
                         }
 
                         _itm.count = Math.abs(_itm.count)
 
-                        site.quee('[transfer_branch][stores_items][add_balance]', _itm)
+                        site.quee('[transfer_branch][stores_items][add_balance]', { ..._itm })
                       })
 
                     }
@@ -382,13 +561,13 @@ module.exports = function init(site) {
                                   _itm.type = 'minus'
                                   _itm.count = (-Math.abs(_itm.count))
                                   _itm.transaction_type = 'in'
-                                  site.quee('item_transaction + items', Object.assign({}, _itm))
+                                  site.quee('item_transaction + items', { ..._itm })
                                 } else {
                                   if (result.doc.type.id == 1)
                                     _itm.set_average = 'sum_average'
                                   _itm.type = 'sum'
                                   _itm.transaction_type = 'in'
-                                  site.quee('item_transaction + items', Object.assign({}, _itm))
+                                  site.quee('item_transaction + items', { ..._itm })
                                 }
 
 
@@ -399,19 +578,19 @@ module.exports = function init(site) {
                                   _itm.set_average = 'sum_average'
                                   _itm.type = 'sum'
                                   _itm.transaction_type = 'in'
-                                  site.quee('item_transaction + items', Object.assign({}, _itm))
+                                  site.quee('item_transaction + items', { ..._itm })
                                 } else {
                                   if (result.doc.type.id == 1)
                                     _itm.set_average = 'minus_average'
                                   _itm.type = 'minus'
                                   _itm.count = (-Math.abs(_itm.count))
                                   _itm.transaction_type = 'in'
-                                  site.quee('item_transaction + items', Object.assign({}, _itm))
+                                  site.quee('item_transaction + items', { ..._itm })
                                 }
                               }
                               _itm.count = Math.abs(_itm.count) // amr
 
-                              site.quee('[transfer_branch][stores_items][add_balance]', _itm)
+                              site.quee('[transfer_branch][stores_items][add_balance]', { ..._itm })
 
                             })
                           }
@@ -514,17 +693,17 @@ module.exports = function init(site) {
                                 _itm.set_average = 'sum_average'
                                 _itm.type = 'sum'
                                 _itm.transaction_type = 'in'
-                                site.quee('item_transaction + items', Object.assign({}, _itm))
+                                site.quee('item_transaction + items', { ..._itm })
                               } else {
                                 if (result.doc.type.id == 1)
                                   _itm.set_average = 'minus_average'
                                 _itm.type = 'minus'
                                 _itm.count = (-Math.abs(_itm.count))
                                 _itm.transaction_type = 'in'
-                                site.quee('item_transaction + items', Object.assign({}, _itm))
+                                site.quee('item_transaction + items', { ..._itm })
                               }
                               _itm.count = Math.abs(_itm.count)
-                              site.quee('[transfer_branch][stores_items][add_balance]', _itm)
+                              site.quee('[transfer_branch][stores_items][add_balance]', { ..._itm })
 
                             });
 
@@ -1055,16 +1234,16 @@ module.exports = function init(site) {
                     _itm.type = 'minus'
                     _itm.transaction_type = 'out'
                     site.returnStoresIn(doc, res => { })
-                    site.quee('item_transaction - items', Object.assign({}, _itm))
+                    site.quee('item_transaction - items', { ..._itm })
                   } else {
                     if (doc.type.id == 1)
                       _itm.set_average = 'sum_average'
 
                     _itm.type = 'sum'
                     _itm.transaction_type = 'in'
-                    site.quee('item_transaction + items', Object.assign({}, _itm))
+                    site.quee('item_transaction + items', { ..._itm })
                   }
-                  site.quee('[transfer_branch][stores_items][add_balance]', _itm)
+                  site.quee('[transfer_branch][stores_items][add_balance]', { ..._itm })
                 })
 
               }
@@ -1135,18 +1314,18 @@ module.exports = function init(site) {
                     _itm.type = 'minus'
                     _itm.count = (-Math.abs(_itm.count))
                     _itm.transaction_type = 'in'
-                    site.quee('item_transaction + items', Object.assign({}, _itm))
+                    site.quee('item_transaction + items', { ..._itm })
                   } else {
                     if (result.doc.type.id == 1)
                       _itm.set_average = 'sum_average'
                     _itm.type = 'sum'
                     _itm.transaction_type = 'in'
-                    site.quee('item_transaction + items', Object.assign({}, _itm))
+                    site.quee('item_transaction + items', { ..._itm })
                   }
 
                   _itm.count = Math.abs(_itm.count) // amr
 
-                  site.quee('[transfer_branch][stores_items][add_balance]', _itm)
+                  site.quee('[transfer_branch][stores_items][add_balance]', { ..._itm })
 
                 })
 

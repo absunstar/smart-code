@@ -12,7 +12,8 @@
                     <i-control ng-keydown="getItemsName($event)" id="item_name" class="col3"
                         ng-model="item.search_item_name" label="##word.search##" type="text"></i-control>
                     <i-list class="col4" label="##word.transfer_branch_item_name##" ng-model="item.itm"
-                        display="name_##session.lang##" items="itemsNameList" ng-change="itemsTransferBranch()" ng-search="item_searching">
+                        display="name_##session.lang##" items="itemsNameList" ng-change="itemsTransferBranch()"
+                        ng-search="item_searching">
                     </i-list>
                 </div>
                 <div class="row">
@@ -27,12 +28,16 @@
                             <div class="col2 center">
                                 <label>##word.barcode##</label>
                             </div>
-                          <!--   <div class="col1 center">
+                            <!--   <div class="col1 center">
                                 <div class="control">
                                     <label>##word.balance##</label>
                                 </div>
                             </div> -->
-                            <div class="col1"></div>
+
+                            <div class="col2 center">
+                                <label>##word.unit##</label>
+                            </div>
+
 
                             <div class="col1 center">
                                 <div class="control">
@@ -60,7 +65,8 @@
                             <div class="row center">
                                 <div class="col2">
                                     <br>
-                                    <h3 ng-show="s.add_sizes" class="bold center">{{s.name_##session.lang##}} {{s.size_##session.lang##}}</h3>
+                                    <h3 ng-show="s.add_sizes" class="bold center">{{s.name_##session.lang##}}
+                                        {{s.size_##session.lang##}}</h3>
                                     <h3 ng-hide="s.add_sizes" class="bold center">{{s.size_##session.lang##}}</h3>
                                 </div>
 
@@ -69,9 +75,12 @@
                                     <h3 class="bold center">{{s.barcode}}</h3>
                                 </div>
 
-                             <!--    <i-control disabled class="col1" ng-model="s.current_count" type="number">
+                                <!--    <i-control disabled class="col1" ng-model="s.current_count" type="number">
                                 </i-control> -->
-                                <div class="col1"></div>
+                                <i-list ng-model="s.unit" display="name_##session.lang##" class="col2"
+                                    ng-search="_search.$category_item.$unit_search"
+                                    ng-change="s.discount = s.unit.discount ; s.cost = s.unit.cost ; s.average_cost = s.unit.average_cost;changeUnitSelect(s)"
+                                    space=" - " display2="barcode" items="s.size_units_list"></i-list>
 
                                 <i-control disabled class="col1" ng-model="s.store_count" type="number">
                                 </i-control>

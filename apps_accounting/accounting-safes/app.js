@@ -36,7 +36,8 @@ module.exports = function init(site) {
         active: true
 
 
-      }, {
+      },
+      {
         name_ar: "خزينة نقدي إفتراضي",
         name_en: "Default Cash Safe",
         code: "1-Test",

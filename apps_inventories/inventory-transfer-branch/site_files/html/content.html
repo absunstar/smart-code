@@ -3,9 +3,11 @@
         <div class="col9">
             <div class="row">
                 <div class="row">
-                    <i-control ng-hide="disabledCode" class="col2" label="##word.code##" ng-model="transfer_branch.code">
+                    <i-control ng-hide="disabledCode" class="col2" label="##word.code##"
+                        ng-model="transfer_branch.code">
                     </i-control>
-                    <i-control class="col3 r_indigo" type="text" disabled label="##word.shift##" ng-model="shift.name_##session.lang##">
+                    <i-control class="col3 r_indigo" type="text" disabled label="##word.shift##"
+                        ng-model="shift.name_##session.lang##">
                     </i-control>
                     <i-date2 class="col4" ng-model="transfer_branch.date" label="##word.transfer_branch_date##">
                     </i-date2>
@@ -17,7 +19,8 @@
                         items="branchesList" v="r" ng-search="_search.$branch_from" label="##word.branch_from##">
                     </i-list>
                     <i-list class="col3" ng-model="transfer_branch.store_from" items="storesFromList" v="r"
-                    display="name_##session.lang##"  ng-search="_search.$store_from" label="##word.store_from##"></i-list>
+                        display="name_##session.lang##" ng-search="_search.$store_from" label="##word.store_from##">
+                    </i-list>
 
                 </div>
 
@@ -27,7 +30,8 @@
                         display="name_##session.lang##" v="r" ng-change="loadStoresTo(transfer_branch.branch_to)"
                         ng-search="_search.$branch_to" label="##word.branch_to##"></i-list>
                     <i-list class="col3" ng-model="transfer_branch.store_to" items="storesToList" v="r"
-                    display="name_##session.lang##"  ng-search="_search.$store_to" label="##word.store_to##"></i-list>
+                        display="name_##session.lang##" ng-search="_search.$store_to" label="##word.store_to##">
+                    </i-list>
 
                 </div>
 
@@ -43,55 +47,55 @@
             <br>
             <br>
             <div class="row margin padding">
-                <div class="col10">
 
-                    <fieldset>
-                        <legend> ##word.permission_detailes## </legend>
+                <fieldset>
+                    <legend> ##word.permission_detailes## </legend>
 
-                        <table class="table center bold hover">
-                            <tr>
-                                <th>##word.serial##</th>
-                                <th>##word.barcode##</th>
-                                <th>##word.transfer_branch_item_name##</th>
-                                <th>##word.unit##</th>
-                                <th>##word.transfer_branch_item_store_balance##</th>
-                                <th>##word.quantity##</th>
-                                <th>##word.actions##</th>
-                            </tr>
+                    <table class="table center bold hover">
+                        <tr>
+                            <th>##word.serial##</th>
+                            <th>##word.barcode##</th>
+                            <th>##word.transfer_branch_item_name##</th>
+                            <th>##word.unit##</th>
+                            <th>##word.transfer_branch_item_store_balance##</th>
+                            <th class="w150">##word.quantity##</th>
+                            <th>##word.actions##</th>
+                        </tr>
 
-                            <tr ng-repeat="itm in transfer_branch.items">
-                                <td> <br ng-hide="itm.work_patch || itm.work_serial"> {{$index + 1}}
-                                    <div class="row">
-                                        <i-button label="##word.patch##" ng-show="itm.work_patch || itm.work_serial"
-                                            type="view" ng-click="patchesList(itm)">
-                                        </i-button>
-                                    </div>
-                                </td>
-                                <td> <br> {{itm.barcode}}</td>
+                        <tr ng-repeat="itm in transfer_branch.items">
+                            <td> <br ng-hide="itm.work_patch || itm.work_serial"> {{$index + 1}}
+                                <div class="row">
+                                    <i-button label="##word.patch##" ng-show="itm.work_patch || itm.work_serial"
+                                        type="view" ng-click="patchesList(itm)">
+                                    </i-button>
+                                </div>
+                            </td>
+                            <td> <br> {{itm.barcode}}</td>
 
-                                <td> 
-                                    <br>
-                                    <p ng-show="itm.add_sizes">{{itm.name_##session.lang##}} {{itm.size_##session.lang##}}</p>
-                                    <p ng-hide="itm.add_sizes">{{itm.size_##session.lang##}}</p>
-                                </td>
+                            <td>
+                                <br>
+                                <p ng-show="itm.add_sizes">{{itm.name_##session.lang##}} {{itm.size_##session.lang##}}
+                                </p>
+                                <p ng-hide="itm.add_sizes">{{itm.size_##session.lang##}}</p>
+                            </td>
 
-                                <td>
-                                    <i-list ng-model="itm.unit" ng-search="_search.$category_item.$unit_search"
-                                    display="name_##session.lang##" ng-change="itm.store_count = itm.unit.current_count ;calcSize(itm)"
-                                        space=" - " display2="barcode" items="itm.size_units_list"></i-list>
-                                </td>
-                                <td class="blue"> <br> {{itm.store_count}}</td>
-                                <td>
-                                    <i-control type="number" ng-model="itm.count"></i-control>
-                                </td>
+                            <td>
+                                <i-list ng-model="itm.unit" ng-search="_search.$category_item.$unit_search"
+                                    display="name_##session.lang##"
+                                    ng-change="itm.store_count = itm.unit.current_count ;calcSize(itm)" space=" - "
+                                    display2="barcode" items="itm.size_units_list"></i-list>
+                            </td>
+                            <td class="blue"> <br> {{itm.store_count}}</td>
+                            <td>
+                                <i-control type="number" ng-model="itm.count"></i-control>
+                            </td>
 
-                                <td>
-                                    <i-button type="delete" ng-click="deleteRow(itm)"></i-button>
-                                </td>
-                            </tr>
-                        </table>
-                    </fieldset>
-                </div>
+                            <td>
+                                <i-button type="delete" ng-click="deleteRow(itm)"></i-button>
+                            </td>
+                        </tr>
+                    </table>
+                </fieldset>
             </div>
 
             <div class="row">
