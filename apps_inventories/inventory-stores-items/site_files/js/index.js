@@ -59,11 +59,11 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
         name_ar: _size_unit.name_ar,
         name_en: _size_unit.name_en,
         convert: _size_unit.convert,
-        price: $scope.item.price,
-        cost: $scope.item.cost,
+        price: $scope.item.price * _size_unit.convert,
+        cost: $scope.item.cost * _size_unit.convert,
         current_count: 0,
         start_count: 0,
-        average_cost: $scope.item.average_cost,
+        average_cost: $scope.item.average_cost * _size_unit.convert,
         discount: Object.assign({}, $scope.item.discount)
       });
     });

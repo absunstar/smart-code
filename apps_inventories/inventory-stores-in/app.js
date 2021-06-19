@@ -133,7 +133,6 @@ module.exports = function init(site) {
           }
 
           $stores_in.add(_opBa, (err, doc) => {
-            console.log(_opBa, "wfegdfhjgkfgfhkjdfgh");
 
             if (!err) {
 

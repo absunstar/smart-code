@@ -671,7 +671,7 @@ module.exports = function init(site) {
               current_count: 0,
               start_count: 0,
               average_cost: _size_unit.average_cost,
-              discount: Object.assign({}, _size_unit.discount)
+              discount: { ..._size_unit.discount }
             });
           });
           stores_items_doc.sizes = [item_doc];

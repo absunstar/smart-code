@@ -284,13 +284,13 @@
                                     <div class="row">
 
                                         <div class="col2" ng-hide="category_item.item_type.id === 2">
+                                            <i-checkbox ng-hide="item.work_serial" label="##word.work_patch##"
+                                                ng-model="item.work_patch">
+                                            </i-checkbox>
                                             <i-control ng-show="item.work_patch" type="number" label="##word.validit##"
                                                 ng-model="item.validit">
                                             </i-control>
 
-                                            <i-checkbox ng-hide="item.work_serial" label="##word.work_patch##"
-                                                ng-model="item.work_patch">
-                                            </i-checkbox>
                                         </div>
 
                                         <div class="col2" ng-hide="category_item.item_type.id === 2">
@@ -322,7 +322,7 @@
                                     ng-click="showComplexItems()"> </i-button>
                                 <br>
 
-                                <i-button ng-hide="category_item.id" label="##word.opening_balance_add##"
+                                <i-button ng-hide="category_item.id || item.work_patch ||item.work_serial" label="##word.opening_balance_add##"
                                     ng-click="addOpeningBalance(item,'show')"> </i-button>
                                 <br>
 
