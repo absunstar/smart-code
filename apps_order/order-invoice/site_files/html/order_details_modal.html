@@ -3,16 +3,12 @@
     <div class="modal-content">
         <div class="modal-header">
             <span class="close">&times;</span>
-            <h2>
-
-                <i class="fa fa-search"></i>
-            </h2>
         </div>
 
         <div class="modal-body">
-            <div class="row" ng-show="order_invoice.$show_customer">
+            <div class="row">
 
-                <div class="row">
+                <div class="row" ng-show="order_invoice.$show_customer || order_invoice.$show_delivery">
 
                     <i-button type="add" label="##word.customers_new##" ng-click="displayAddCustomer()">
                     </i-button>
@@ -26,10 +22,17 @@
                     </i-list>
 
                 </div>
+
+                <div class="row" ng-show="order_invoice.transaction_type.id == 2 && order_invoice.$show_delivery">
+                    <i-list ng-search="_search.$order_invoice_employee" class="col4" display="name_##session.lang##"
+                        ng-model="order_invoice.delivery_employee" label="##word.delivery_employee##"
+                        items="deliveryEmployeesList"></i-list>
+                </div>
+
                 <br>
                 <br>
-                <br>
-                <fieldset ng-show="order_invoice.transaction_type.id == 2">
+
+                <fieldset ng-show="order_invoice.transaction_type.id == 2 && order_invoice.$show_delivery">
                     <legend> ##word.customer_data##</legend>
                     <div class="row">
                         <div class="row">
@@ -88,6 +91,146 @@
 
                 </div>
             </div>
+
+            <div class="row" ng-show="order_invoice.$show_discountes">
+                <!-- 
+                <div class="row ">
+                    <i-list class="col4" ng-model="discount" display="name_##session.lang##"
+                        ng-search="_search.$discount_name" items="discount_types" label="##word.discount_name##">
+                    </i-list>
+                </div> -->
+
+                <div class="row">
+                    <i-list class="col4" ng-model="discount" display="name_##session.lang##"
+                        ng-search="_search.$discount_name" items="discount_types" label="##word.discount_name##">
+                    </i-list>
+
+                    <i-control class="col2" ng-model="discount.value" type="number" label="##word.discount_value##">
+                    </i-control>
+
+                    <div class="col2">
+                        <div class="row">
+
+                            <i-radio ng-model="discount.type" ng-value="number" group="type" label="##word.amount##">
+                            </i-radio>
+                        </div>
+                        <div class="row">
+
+                            <i-radio ng-model="discount.type" group="type" ng-value="percent" label="##word.percent##">
+                            </i-radio>
+                        </div>
+                    </div>
+                    <div class="col1"></div>
+
+                    <div class="col3">
+                        <br>
+                        <i-button ng-click="addDiscount() ;calc(order_invoice)" label="##word.stores_out_add_discount##"
+                            type="add">
+                        </i-button>
+                    </div>
+
+                </div>
+                <br>
+                <br>
+                <div class="row" ng-show="order_invoice.discountes.length > 0">
+
+
+                    <table class="table hover bold center loaded">
+
+                        <tr>
+                            <th>##word.serial##</th>
+                            <th>##word.discount_name##</th>
+                            <th>##word.discount_value##</th>
+                            <th>
+                                ##word.actions##
+                            </th>
+                        </tr>
+
+                        <tr ng-repeat="d1 in order_invoice.discountes track by $index">
+                            <td>
+                                {{$index + 1}}
+                            </td>
+                            <td>
+                                {{d1.name_##session.lang##}}
+                            </td>
+                            <td>
+                                <span class="bold red" ng-show="d1.type === 'percent'">{{d1.value}}
+                                    %</span>
+                                <span class="bold red" ng-show="d1.type === 'number'">{{d1.value}}$</span>
+                            </td>
+
+                            <td>
+                                <i-button type="delete" ng-click="deleteDiscount(d1) ; calc(order_invoice)">
+                                </i-button>
+                            </td>
+
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+
+            <div class="row" ng-show="order_invoice.$show_taxes">
+
+                <div class="row">
+                    <i-list class="col4" ng-model="tax" label="##word.tax_types_name##" display="name_##session.lang##"
+                        ng-search="_search.$taxtypes" items="tax_types">
+                    </i-list>
+
+                    <i-control class="col2" ng-model="tax.value" label="##word.tax_types_value##">
+                    </i-control>
+                    <div class="col1"></div>
+                    <div class="col3">
+                        <br>
+                        <i-button type="add" label="##word.stores_out_add_tax##"
+                            ng-click="addTax() ;calc(order_invoice)">
+                        </i-button>
+
+                    </div>
+                </div>
+
+                <br>
+                <br>
+
+                <div class="row" ng-show="order_invoice.taxes.length > 0">
+
+
+                    <table class="table hover bold center loaded">
+
+                        <tr>
+                            <th>##word.serial##</th>
+                            <th>##word.tax_types_name##</th>
+                            <th>##word.tax_types_value##</th>
+                            <th>
+                                ##word.actions##
+                            </th>
+                        </tr>
+
+                        <tr ng-repeat="tx in order_invoice.taxes track by $index">
+                            <td>
+                                {{$index + 1}}
+                            </td>
+
+                            <td>
+                                {{tx.name_##session.lang##}}
+                            </td>
+
+                            <td>
+                                <span class="bold red">{{tx.value}} %</span>
+                            </td>
+
+                            <td>
+                                <i-button type="delete" ng-click="deleteTax(tx) ;calc(order_invoice)">
+                                </i-button>
+                            </td>
+
+                        </tr>
+
+                    </table>
+                </div>
+
+            </div>
+
         </div>
 
         <h2 class="error"> {{error}} </h2>

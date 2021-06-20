@@ -270,26 +270,48 @@ module.exports = function init(site) {
       order_invoice_doc.total_book_list += book_list.total
     })
 
-    if (order_invoice_doc.transaction_type && order_invoice_doc.transaction_type.id == 2) {
+    if (order_invoice_doc.transaction_type && order_invoice_doc.transaction_type.id === 2) {
 
       order_invoice_doc.status_delivery = {
         id: 1,
         en: "Under Delivery",
         ar: "تحت التوصيل"
       };
-    };
 
-    if (order_invoice_doc.transaction_type && order_invoice_doc.transaction_type.id == 1 && order_invoice_doc.table && order_invoice_doc.table.id) {
-      if (order_invoice_doc.status.id == 2) {
-        let table = order_invoice_doc.table
-        table.busy = false
-        site.call('[order_invoice][tables][busy]', table)
-      } else if (order_invoice_doc.status.id == 1) {
-        let table = order_invoice_doc.table
-        table.busy = true
-        site.call('[order_invoice][tables][busy]', table)
+      if (order_invoice_doc.table) {
+        delete order_invoice_doc.tables_group
+        delete order_invoice_doc.table
       }
-    };
+
+    } else if (order_invoice_doc.transaction_type && order_invoice_doc.transaction_type.id === 1) {
+
+      if (order_invoice_doc.delivery_employee) {
+        delete order_invoice_doc.delivery_employee
+      }
+
+      if (order_invoice_doc.table && order_invoice_doc.table.id) {
+
+        if (order_invoice_doc.status.id == 2) {
+          let table = order_invoice_doc.table
+          table.busy = false
+          site.call('[order_invoice][tables][busy]', table)
+        } else if (order_invoice_doc.status.id == 1) {
+          let table = order_invoice_doc.table
+          table.busy = true
+          site.call('[order_invoice][tables][busy]', table)
+        }
+      }
+    } else if (order_invoice_doc.transaction_type && order_invoice_doc.transaction_type.id === 3) {
+
+      if (order_invoice_doc.delivery_employee) {
+        delete order_invoice_doc.delivery_employee
+      }
+      
+      if (order_invoice_doc.table) {
+        delete order_invoice_doc.tables_group
+        delete order_invoice_doc.table
+      }
+    }
 
     if (order_invoice_doc.id) {
       $order_invoice.edit({

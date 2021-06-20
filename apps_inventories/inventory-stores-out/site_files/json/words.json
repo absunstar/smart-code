@@ -262,12 +262,12 @@
     {
         "name": "stores_out_add_to_sizes",
         "en": "Add To Sizes",
-        "ar": "اضف رقم جديد"
+        "ar": "أضف رقم جديد"
     },
     {
         "name": "stores_out_add_to_items",
         "en": "Add To Items",
-        "ar": "اضف الى الإذن"
+        "ar": "أضف الى الإذن"
     },
     {
         "name": "stores_out_id",
@@ -307,7 +307,7 @@
     {
         "name": "stores_out_add_tax",
         "en": "Discount Value",
-        "ar": "اضف الضريبة"
+        "ar": "أضف الضريبة"
     },
     {
         "name": "stores_out_err_count",

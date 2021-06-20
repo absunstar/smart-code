@@ -188,6 +188,24 @@ module.exports = function init(site) {
             } else if (cb.auto) {
               account_invoices_doc.code = cb.code;
             }
+            if (account_invoices_doc.currency && !account_invoices_doc.payment_type) {
+
+              let amount_currency = site.toNumber(account_invoices_doc.net_value) / site.toNumber(account_invoices_doc.currency.ex_rate);
+
+              if (account_invoices_doc.paid_up < amount_currency) {
+                account_invoices_doc.payment_type = {
+                  id: 2,
+                  en: "Futures",
+                  ar: "آجل"
+                }
+              } else {
+                account_invoices_doc.payment_type = {
+                  id: 1,
+                  en: "Cash",
+                  ar: "كاش"
+                }
+              }
+            }
 
             $account_invoices.add(account_invoices_doc, (err, doc) => {
 
@@ -390,7 +408,7 @@ module.exports = function init(site) {
 
                       let customerObj = { id: doc.customer.id };
 
-                      customerObj.balance_creditor =  doc.paid_up * doc.currency.ex_rate
+                      customerObj.balance_creditor = doc.paid_up * doc.currency.ex_rate
                       customerObj.sum_creditor = true
 
 
@@ -732,7 +750,6 @@ module.exports = function init(site) {
                   }
 
                   paid_value.transition_type = 'in'
-
 
                 } else if (account_invoices_doc.source_type.id == 3) {
                   paid_value.operation = { ar: ' دفعة فاتورة شاشة الطلبات', en: 'Pay Orders Return Screen Invoice' }
@@ -1213,6 +1230,12 @@ module.exports = function init(site) {
               })
 
 
+            account_invoices_doc.remain_amount = site.toNumber(account_invoices_doc.net_value) - site.toNumber(account_invoices_doc.total_paid_up)
+            account_invoices_doc.remain_amount = site.toNumber(account_invoices_doc.remain_amount)
+            if (account_invoices_doc.source_type.id == 10) account_invoices_doc.remain_amount = 0
+
+
+
             if (account_invoices_doc.source_type.id == 1 && account_invoices_doc.vendor && account_invoices_doc.vendor.id) {
 
               if (account_invoices_doc.invoice_type && account_invoices_doc.invoice_type.id == 4) {
@@ -1375,13 +1398,8 @@ module.exports = function init(site) {
                 site.quee('[customer][account_invoice][balance]', customerObj)
 
               }
+
             }
-
-            account_invoices_doc.remain_amount = site.toNumber(account_invoices_doc.net_value) - site.toNumber(account_invoices_doc.total_paid_up)
-            account_invoices_doc.remain_amount = site.toNumber(account_invoices_doc.remain_amount)
-            if (account_invoices_doc.source_type.id == 10) account_invoices_doc.remain_amount = 0
-
-
             if (account_invoices_doc.source_type.id == 3) {
 
               let under_paid = {

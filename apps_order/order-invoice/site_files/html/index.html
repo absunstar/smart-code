@@ -2,227 +2,8 @@
 <html lang="en" x-permissions="order_invoice_ui || order_invoice_manage" data-ng-app="myApp">
 
 <head x-import="head.html">
-    <style>
-        body {
-            margin-bottom: 50px;
-            margin-top: 30px;
-        }
+    <link rel="stylesheet" href="/css/order_invoice.css?v=##site.options.version##">
 
-        .order-invoice {
-            padding: 5px !important;
-            border: 1px solid #ffeb3b;
-        }
-
-
-
-        .item-groups {
-            flex-flow: wrap;
-            /* background-image: linear-gradient(rgb(255 217 0 / 38%), rgb(184 156 0 / 89%)); */
-            overflow-x: auto;
-            white-space: nowrap;
-        }
-
-        .item-groups::-webkit-scrollbar {
-            height: 10px;
-        }
-
-        .item-groups::-webkit-scrollbar-thumb {
-            border-radius: 13px;
-            background-color: #5a47ff;
-        }
-
-        .item-groups::-webkit-scrollbar-thumb:hover {
-            background: #2414ff;
-        }
-
-        .item-list,
-        .item-types {
-            display: inline-flex;
-            flex-flow: wrap;
-            padding: 9px;
-            margin-bottom: 40px;
-
-        }
-
-        .item-groups .item {
-            width: 130px;
-            min-height: 80px;
-            display: inline-flex;
-            border: 1px solid #000000;
-            background-color: #ffffff;
-            text-align: center;
-            /* border-top-right-radius: 25px; */
-            border-top-left-radius: 25px;
-        }
-
-        .item-list .item,
-        .item-types .item {
-            width: 150px;
-            display: inline-block;
-            border: 2px solid #03008d;
-            background-color: #ffffff;
-            box-shadow: 3px 3px 3px 3px #9a96df;
-            border-radius: 10px;
-            text-align: center;
-            margin: 13px !important;
-        }
-
-        .my-hover,
-        .item-groups .item:hover {
-            transform: scale(1.1);
-            /* background-color: #57ff732e; */
-            /* border: 2px solid rgb(58, 255, 124); */
-            /* box-shadow: 3px 3px 3px 3px #36363638; */
-            border-top-right-radius: 25px;
-        }
-
-        /* .item-groups .item :active {
-            transform: scale(1.1);
-            background-color: #ff2802e1;
-            border: 2px solid rgb(74, 0, 248);
-            box-shadow: 3px 3px 3px 3px #fd004ccc;
-        } */
-
-        .item-list .item:hover,
-        .item-types .item:hover {
-            transform: scale(1.1);
-            /*  background-color: #57ff732e;
-            border: 2px solid rgb(58, 255, 124); */
-            box-shadow: 2px 2px 2px 2px #3431ebb0;
-        }
-
-        .item-types img,
-        .item-list img {
-            width: max-content;
-            height: 90px;
-            padding: unset;
-            border-top-right-radius: 10px;
-            border-top-left-radius: 10px;
-            border-bottom-right-radius: unset;
-            border-bottom-left-radius: unset;
-            background-color: #ffffff;
-        }
-
-
-        /* .item-list img,
-        .item-types img {
-            background-color: #ffffff;
-            border-radius: 10px;
-        } */
-
-        .bg_font_group {
-            border-bottom-right-radius: 10px;
-            border-bottom-left-radius: 10px;
-
-        }
-
-
-        .bg_font_item {
-            background-image: linear-gradient(#3f51b5, #001fcec2);
-            height: max-content;
-            border-bottom-left-radius: 7px;
-            border-bottom-right-radius: 7px;
-        }
-
-        .font_name_group {
-            width: 190px;
-            white-space: pre-line;
-            display: inline-block;
-            color: #ffffff;
-            text-align: center;
-            padding: 7px;
-            font-weight: bold;
-            height: 90px;
-            text-shadow:
-                3px 3px 0 #000,
-                -1px -1px 0 #000,
-                1px -1px 0 #000,
-                -1px 1px 0 #000,
-                1px 1px 0 #000;
-        }
-
-        .font_name_items {
-            width: 190px;
-            height: 50px;
-            white-space: pre-line;
-            display: inline-block;
-            color: #ffffff;
-            text-align: center;
-            padding: 5px;
-            font-weight: bold;
-
-        }
-
-        /* .item-list h2,
-        .item-types h2 {
-            width: 190px;
-            display: inline-block;
-            color: #030303;
-            text-align: center;
-            padding: 2px;
-            font-weight: bold;
-        }
-
-        .item-groups h3 {
-            width: 190px;
-            display: inline-block;
-            color: black;
-            text-align: center;
-            padding: 2px;
-            font-weight: bold;
-        }
-
-        .item-list h3,
-        .item-types h3 {
-            width: 190px;
-            display: inline-block;
-            color: #23a30a;
-            text-align: center;
-            padding: 2px;
-            font-weight: bold;
-        } */
-
-
-        .code,
-        .code input {
-            color: blue;
-            font-weight: bold;
-            font-size: 18px;
-        }
-
-        .btn {
-            min-width: 150px;
-        }
-
-        .btn.saving {
-            width: 200px;
-            height: 100px;
-            font-size: 22px;
-            padding-top: 30px;
-            background: #118011;
-            font-weight: bold;
-        }
-
-        .btn.closing {
-            width: 200px;
-            height: 100px;
-            font-size: 22px;
-            padding-top: 30px;
-            background: #e21212;
-            font-weight: bold;
-        }
-
-        .btn.new,
-        .btn.view {
-            width: 150px;
-            height: 50px;
-            padding-top: 13px;
-        }
-
-        .modal-header {
-            min-height: 35px;
-        }
-    </style>
 </head>
 
 <body class="##session.lang##">
@@ -264,8 +45,7 @@
                 <div x-permissions="order_invoice_view || order_invoice_manage"
                     x-import="order-invoice/view_modal.html"></div>
                 <div x-import="order-invoice/items_modal.html"></div>
-                <div x-permissions="order_invoice_search || order_invoice_manage"
-                    x-import="order-invoice/search_all_modal.html"></div>
+                <div x-import="order-invoice/edit_item.html"></div>
                 <div x-import="accounting-invoices/add_payments_modal.html"></div>
 
                 <div x-import="order-invoice/order_details_modal.html"></div>
@@ -349,6 +129,7 @@
                                     <i-button type="close" label="##word.close##"
                                         onclick="site.hideModal('#sizesModal')"> </i-button>
                                 </div>
+
                             </div>
 
                         </div>
@@ -369,7 +150,6 @@
                                     <i-control ng-hide="disabledCode" class="col3" disabled label="##word.code##"
                                         ng-model="order_invoice.code"></i-control>
 
-
                                 </div>
 
                                 <div class="row">
@@ -377,25 +157,41 @@
                                     <i-list ng-search="_search.$transaction_type" class="col4"
                                         display="##session.lang##" ng-model="order_invoice.transaction_type"
                                         label="##word.transaction_type##" items="transactionTypeList"
-                                        ng-change="calc(order_invoice)">
+                                        ng-change="changeTransactionType(order_invoice) ; calc(order_invoice)">
                                     </i-list>
-
-                                    <i-list ng-show="order_invoice.transaction_type.id == 2"
-                                        ng-search="_search.$order_invoice_employee" class="col4"
-                                        display="name_##session.lang##" ng-model="order_invoice.delivery_employee"
-                                        label="##word.delivery_employee##" items="deliveryEmployeesList"></i-list>
-
-                                    <i-button label="##word.customer##"
-                                        ng-click="showOrderDetails(order_invoice,'customer')">
-                                    </i-button>
-
-                                    <i-button ng-show="order_invoice.transaction_type.id == 1" label="##word.table##"
-                                        ng-click="showOrderDetails(order_invoice,'table')">
-                                    </i-button>
 
                                 </div>
 
-                              
+                                <div class="row center">
+                                    <i-button type="bg-purple"
+                                        ng-show="order_invoice.transaction_type.id == 1 && '##user.type##' != 'table'"
+                                        label="##word.table##" ng-click="showOrderDetails(order_invoice,'table')">
+                                    </i-button>
+
+                                    <i-button type="bg-purple" label="##word.customer##"
+                                        ng-hide="order_invoice.transaction_type.id == 2"
+                                        ng-click="showOrderDetails(order_invoice,'customer')">
+                                    </i-button>
+
+                                    <i-button type="bg-purple"
+                                        ng-show="'##user.type##' != 'table' &&  order_invoice.transaction_type.id == 2"
+                                        label="##word.delivery##" ng-click="showOrderDetails(order_invoice,'delivery')">
+                                    </i-button>
+
+                                    <i-button ng-hide="'##user.type##' == 'table'" type="bg-purple"
+                                        label="##word.discountes##"
+                                        ng-click="showOrderDetails(order_invoice,'discountes')">
+                                    </i-button>
+
+                                    <i-button type="bg-purple" ng-hide="'##user.type##' == 'table'"
+                                        label="##word.stores_out_taxes##"
+                                        ng-click="showOrderDetails(order_invoice,'taxes')">
+                                    </i-button>
+
+
+
+                                </div>
+
 
 
                             </div>
@@ -447,7 +243,7 @@
 
                                         <i-button type="delete default"
                                             x-permissions="order_invoice_delete_items || order_invoice_manage"
-                                            ng-click="deleteItemsList(size) ; calcSize(size)">
+                                            ng-click="deleteItemsList(size)">
                                         </i-button>
 
                                     </td>
@@ -456,281 +252,68 @@
                             </table>
                         </div>
 
-                        <div id="editItemModal" class="modal small">
-
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <span class="close">&times;</span>
-                                </div>
-
-                                <div class="modal-body">
-                                    <fieldset>
-
-                                        <div class="row">
-
-                                            <i-list ng-model="size_edit.unit" class="col4" label="##word.unit##"
-                                                display="name_##session.lang##" ng-change="ChangeUnitPatch(size_edit);"
-                                                ng-search="_search.$order_invoice.$unit_search" space=" - "
-                                                display2="barcode" items="size_edit.size_units_list">
-                                            </i-list>
-
-                                            <i-control class="col2" type="number" label="##word.price##"
-                                                x-permissions="order_invoice_edit_price || order_invoice_manage"
-                                                ng-change="calcSize(size_edit)" ng-model="size_edit.price">
-                                            </i-control>
-
-                                            <i-control class="col2" type="number" label="##word.discount##"
-                                                ng-change="calcSize(size_edit)" ng-model="size_edit.discount.value">
-                                            </i-control>
-                                            <div class="col2">
-                                                <div class="row">
-
-                                                    <i-radio ng-model="size_edit.discount.type"
-                                                        ng-click="calcSize(size_edit)" label="##word.amount##"
-                                                        ng-value="number" group="type" type="radio">
-                                                    </i-radio>
-                                                </div>
-                                                <div class="row">
-
-                                                    <i-radio ng-model="size_edit.discount.type"
-                                                        ng-click="calcSize(size_edit)" label="##word.percent##"
-                                                        ng-value="percent" group="type" type="radio">
-                                                    </i-radio>
-                                                </div>
-                                            </div>
-
-
-                                        </div>
-                                        <hr style="height:5px;color:grey;background-color:rgb(0, 0, 199)">
-                                        <div class="row">
-
-                                            <div class="row">
-
-                                                <i-list class="col5" ng-model="extras_items"
-                                                    ng-search="_search.extras_items_search"
-                                                    display="name_##session.lang##" label="##word.extras_items##"
-                                                    items="extrasItemsList">
-                                                </i-list>
-
-                                                <div>
-                                                    <br>
-                                                    <i-button type="add" label="##word.add##"
-                                                        ng-click="addExtrasItems(size_edit , extras_items)">
-                                                    </i-button>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div ng-show="size_edit.extras_items_list.length > 0">
-
-                                                    <table class="table hover bold center loaded">
-
-                                                        <tr>
-                                                            <th>##word.serial##</th>
-                                                            <th>##word.extras_items_name##</th>
-                                                            <th>##word.price##</th>
-                                                            <th>
-                                                                ##word.actions##
-                                                            </th>
-                                                        </tr>
-
-                                                        <tr
-                                                            ng-repeat="e in size_edit.extras_items_list track by $index">
-                                                            <td>
-                                                                {{$index + 1}}
-                                                            </td>
-                                                            <td>
-                                                                {{e.name_##session.lang##}}
-                                                            </td>
-                                                            <td class="green">
-                                                                {{e.price}}
-                                                            </td>
-
-                                                            <td>
-                                                                <i-button type="delete default"
-                                                                    ng-click="size_edit.extras_items_list.splice($index,1) ; calcSize(size_edit)">
-                                                                </i-button>
-                                                            </td>
-
-                                                        </tr>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <hr style="height:5px;color:grey;background-color:rgb(0, 0, 199)">
-
-                                        <div class="row">
-                                            <i-textarea label="##word.notes##" ng-model="size_edit.notes"></i-textarea>
-
-                                        </div>
-
-                                    </fieldset>
-
-                                </div>
-
-                                <div class="modal-footer center">
-                                    <i-button type="close" label="##word.close##"
-                                        onclick="site.hideModal('#editItemModal')"> </i-button>
-                                </div>
-                            </div>
-
-                        </div>
-
                         <div class="row">
                             <h2 class="bold center red">{{error}}</h2>
                         </div>
 
-                        <div class="row" ng-hide="'##user.type##' == 'table'">
-
-                            <div class="col6 padding margin">
-                                <table class="table box-shadow " ng-init="discountEditorAdd = true">
-                                    <tr>
-                                        <th colspan="2" class="pointer"
-                                            ng-click="discountEditorAdd = !discountEditorAdd">
-                                            ##word.discountes##
-                                            <i class="fa fa-edit"></i>
-                                        </th>
-                                    </tr>
-                                    <tr ng-hide="discountEditorAdd">
-                                        <td colspan="2">
-                                            <form>
-
-                                                <div class="row ">
-                                                    <i-list class="col4" ng-model="discount"
-                                                        display="name_##session.lang##"
-                                                        ng-search="_search.$discount_name" items="discount_types"
-                                                        label="##word.discount_name##">
-                                                    </i-list>
-                                                </div>
-
-                                                <div class="row">
-                                                    <i-control class="col4" ng-model="discount.value" type="number"
-                                                        label="##word.discount_value##"></i-control>
-                                                    <div class="col4">
-                                                        <i-radio ng-model="discount.type" ng-value="number" group="type"
-                                                            label="##word.amount##">
-                                                        </i-radio>
-
-                                                        <i-radio ng-model="discount.type" group="type"
-                                                            ng-value="percent" label="##word.percent##">
-                                                        </i-radio>
-                                                    </div>
-                                                    <div class="col4" class="padding">
-                                                        <br>
-                                                        <i-button ng-click="addDiscount() ;calc(order_invoice)"
-                                                            label="##word.stores_out_add_discount##" type="add default">
-                                                        </i-button>
-                                                    </div>
-
-                                                </div>
-
-
-                                            </form>
-                                        </td>
-                                    </tr>
-
-                                    <tr ng-repeat="d1 in order_invoice.discountes">
-
-                                        <td>
-                                            <span class="bold red">{{d1.name_##session.lang##}} -</span>
-                                            <span class="bold red" ng-show="d1.type === 'percent'">{{d1.value}}
-                                                %</span>
-                                            <span class="bold red" ng-show="d1.type === 'number'">{{d1.value}}$</span>
-                                            <i-button type="delete" ng-click="deleteDiscount(d1) ; calc(order_invoice)">
-                                            </i-button>
-                                        </td>
-
-                                    </tr>
-                                </table>
-
-                            </div>
-
-                            <div class="col5 padding margin">
-                                <table class="table box-shadow " ng-init="taxEditorAdd = true">
-
-                                    <tr>
-                                        <th colspan="2" class="pointer" ng-click="taxEditorAdd = !taxEditorAdd">
-                                            ##word.stores_out_taxes##
-                                            <i class="fa fa-edit"></i>
-                                        </th>
-                                    </tr>
-
-                                    <tr ng-hide="taxEditorAdd">
-                                        <td colspan="2">
-                                            <div class="row">
-                                                <i-list class="col6" ng-model="tax" label="##word.discount_name##"
-                                                    display="name_##session.lang##" ng-search="_search.$taxtypes"
-                                                    items="tax_types"></i-list>
-                                            </div>
-                                            <div class="row">
-                                                <i-control class="col4" ng-model="tax.value"
-                                                    label="##word.discount_value##">
-                                                </i-control>
-                                                <div class="col5 padding">
-                                                    <br>
-                                                    <i-button type="add default" label="##word.stores_out_add_tax##"
-                                                        ng-click="addTax() ;calc(order_invoice)">
-                                                    </i-button>
-
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                    <tr ng-repeat="tx in order_invoice.taxes">
-                                        <td>
-                                            <span class="bold red">{{tx.name_##session.lang##}} -</span>
-                                            <span class="bold red">{{tx.value}} %</span>
-                                            <i-button type="delete" ng-click="deleteTax(tx) ;calc(order_invoice)">
-                                            </i-button>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
                         <div class="row">
-                            <div class="col8">
-
-                                <div class="row">
-                                    <i-control class="col4" ng-model="order_invoice.total_discount"
-                                        label="##word.stores_out_total_discount##" type="number" disabled></i-control>
-                                    <i-control class="col4" ng-model="order_invoice.total_tax"
-                                        label="##word.stores_out_total_tax##" type="number" disabled></i-control>
-                                    <i-control class="col4" ng-model="order_invoice.total_value"
-                                        label="##word.total_value##" type="number" disabled></i-control>
-                                </div>
-
+                            <div class="col7">
                                 <div class="row">
 
-                                    <i-control class="col6" ng-model="order_invoice.net_value"
-                                        label="##word.net_value##" type="number" disabled></i-control>
+                                    <table class="table bold center hover">
+
+                                        <tr>
+                                            <td class="white bg_card"> ##word.stores_out_total_discount## </td>
+                                            <td colspan="2" class="center"> {{order_invoice.total_discount}} </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="white bg_card"> ##word.stores_out_total_tax## </td>
+                                            <td colspan="2" class="center"> {{order_invoice.total_tax}}
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="white bg_card"> ##word.total_value## </td>
+                                            <td colspan="2" class="center"> {{order_invoice.total_value}} </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="white bg_card"> ##word.net_value## </td>
+                                            <td colspan="2" class="center"> {{order_invoice.net_value}}
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="row">
+
+                                    <i-button ng-hide="'##user.type##' == 'table' || order_invoice.book_list.length < 1" class="not-print"
+                                        label="##word.print_invoice##" type="print "
+                                        ng-click="printAccountInvoive(order_invoice)">
+                                    </i-button>
+
+                                    <i-button
+                                        ng-show="defaultSettings.accounting.create_invoice_auto && order_invoice.status.id == 2 && !order_invoice.invoice"
+                                        type="save" label="##word.create_an_invoice##"
+                                        ng-click="displayAccountInvoice(order_invoice)">
+                                    </i-button>
 
                                 </div>
-
-                                <i-button
-                                    ng-show="defaultSettings.accounting.create_invoice_auto && order_invoice.status.id == 2 && !order_invoice.invoice"
-                                    type="save" label="##word.create_an_invoice##"
-                                    ng-click="displayAccountInvoice(order_invoice)">
-                                </i-button>
-
-                                <i-button ng-hide="'##user.type##' == 'table'" class="not-print"
-                                    label="##word.print_invoice##" type="print "
-                                    ng-click="printAccountInvoive(order_invoice)">
-                                </i-button>
                             </div>
-
-                            <div class="col4" ng-hide="order_invoice.status.id == 2">
-                                <i-button label="##word.add_to_orders##" type="fa fa-cart-plus saving"
-                                    ng-click="addOrderInvoice(order_invoice,'add')">
+                            <div class="col1"></div>
+                            <div class="col4">
+                                <i-button ng-hide="order_invoice.status.id == 2" label="##word.save_order##"
+                                    type="fa fa-cart-plus saving" ng-click="addOrderInvoice(order_invoice,'add')">
                                 </i-button>
                                 <br>
                                 <i-button type="closing"
-                                    ng-hide="order_invoice.active == false || '##user.type##' == 'table'"
+                                    ng-hide="order_invoice.status.id == 2 || '##user.type##' == 'table'"
                                     label="##word.close_order##" ng-click="closeOrder()">
                                 </i-button>
+
                             </div>
 
                         </div>
+
                     </div>
 
                 </div>

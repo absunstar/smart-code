@@ -423,12 +423,12 @@
     {
         "name": "stores_in_add_to_sizes",
         "en": "Add To Sizes",
-        "ar": "اضف رقم جديد"
+        "ar": "أضف رقم جديد"
     },
     {
         "name": "stores_in_add_to_items",
         "en": "Add To Items",
-        "ar": "اضف الى الإذن"
+        "ar": "أضف الى الإذن"
     },
     {
         "name": "stores_in_id",
@@ -498,12 +498,12 @@
     {
         "name": "stores_in_add_discount",
         "en": "Discount Value",
-        "ar": "اضف الخصم"
+        "ar": "أضف الخصم"
     },
     {
         "name": "stores_in_add_tax",
         "en": "Discount Value",
-        "ar": "اضف الضريبة"
+        "ar": "أضف الضريبة"
     },
     {
         "name": "stores_in_err_count",

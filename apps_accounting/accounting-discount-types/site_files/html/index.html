@@ -50,8 +50,8 @@
                             </td>
                             <td class="userPrint blue">{{c.code}}</td>
                             <td>{{c.name_##session.lang##}}</td>
-                            <td class="red" ng-show="c.type === '%'">{{c.value}} % </td>
-                            <td class="red" ng-show="c.type !== '%'">{{c.value}} $</td>
+                            <td class="red" ng-show="c.type === 'percent'">{{c.value}} % </td>
+                            <td class="red" ng-show="c.type === 'number'">{{c.value}} $</td>
                             <td class="center">
                                 <p ng-show="c.active ==true" class="green"> ##word.active## </p>
                                 <p ng-show="c.active ==false" class="red"> ##word.not_active## </p>

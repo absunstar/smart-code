@@ -1455,9 +1455,13 @@
         "ar": " الخصومات"
     },
     {
-        "name": "stores_out_discount",
+        "name": "discount",
         "en": "Discount",
         "ar": " الخصم"
+    },{
+        "name": "delivery",
+        "en": "Delivery",
+        "ar": " التوصيل"
     },
     {
         "name": "discount_name",

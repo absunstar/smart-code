@@ -7,19 +7,6 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   $scope.tax = {};
   $scope.kitchensList = [];
 
-  $scope.displayAddOrderInvoice = function () {
-    $scope.error = '';
-    $scope.get_open_shift((shift) => {
-      if (shift) {
-        $scope.order_invoice = {
-          shift: shift,
-          image_url: '/images/order_invoice.png',
-          active: true
-        };
-        site.showModal('#OrderInvoiceAddModal');
-      }
-    })
-  };
 
   $scope.cancelOrderInvoice = function () {
     $scope.error = '';
@@ -174,7 +161,11 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
             id: 1,
             en: "Opened",
             ar: "مفتوحة"
-          }
+          },
+          total_discount: 0,
+          total_tax: 0,
+          total_value: 0,
+          net_value: 0
         };
 
         if ($scope.defaultSettings.inventory) {
@@ -186,14 +177,19 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
           if ($scope.defaultSettings.general_Settings.order_type) {
             $scope.order_invoice.transaction_type = $scope.defaultSettings.general_Settings.order_type;
 
-            if ($scope.defaultSettings.general_Settings.order_type.id == 2)
+            if ($scope.defaultSettings.general_Settings.order_type.id == 2) {
 
-              if ($scope.defaultSettings.general_Settings.delivery_employee)
+
+              if ($scope.defaultSettings.general_Settings.delivery_employee) {
+
                 $scope.order_invoice.delivery_employee = $scope.deliveryEmployeesList.find(_deliveryEmployees => { return _deliveryEmployees.id === $scope.defaultSettings.general_Settings.delivery_employee.id });
+              }
 
-            if ($scope.defaultSettings.general_Settings.order_type.id == 1) {
-              if ($scope.defaultSettings.general_Settings.service)
+            } else if ($scope.defaultSettings.general_Settings.order_type.id == 1) {
+              if ($scope.defaultSettings.general_Settings.service) {
+
                 $scope.order_invoice.service = $scope.defaultSettings.general_Settings.service;
+              }
             }
           }
 
@@ -408,10 +404,17 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
               }
 
+              $scope.order_invoice = response.data.doc;
               if (type === 'table') {
 
-                $scope.showOrderDetails(order_invoice, 'table')
-              }
+                $scope.showOrderDetails(order_invoice, 'table');
+              };
+              
+              if($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto && $scope.order_invoice.status.id == 2 && !$scope.order_invoice.invoice){
+
+                $scope.displayAccountInvoice($scope.order_invoice);
+
+              };
 
             },
             function (err) {
@@ -589,20 +592,17 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     }
     $scope.busy = true;
 
-
-
     if ($scope.account_invoices.paid_up > $scope.amount_currency) {
       $scope.error = "##word.err_net_value##";
       return;
     }
-
-
 
     if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.work_posting)
       $scope.account_invoices.posting = false;
     else $scope.account_invoices.posting = true;
 
     $scope.order_invoice.invoice = true;
+
 
     $http({
       method: "POST",
@@ -961,7 +961,6 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
           $scope.amount_currency = site.toNumber($scope.account_invoices.net_value) / site.toNumber($scope.account_invoices.currency.ex_rate);
           $scope.account_invoices.paid_up = $scope.amount_currency;
         };
-        $scope.calc($scope.account_invoices);
 
         site.showModal('#accountInvoiceModal');
       } else $scope.error = '##word.open_shift_not_found##';
@@ -1468,6 +1467,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     };
   };
 
+
   $scope.getCustomersGetList = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -1648,6 +1648,33 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       }
     )
   };
+
+  $scope.getAreaListToDelivery = function () {
+    $scope.busy = true;
+    $scope.areaListDelivery = [];
+    $http({
+      method: "POST",
+      url: "/api/area/all",
+      data: {
+        where: {
+          active: true
+        },
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.areaListDelivery = response.data.list;
+
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
 
   $scope.getDeliveryEmployeesList = function () {
     $scope.error = '';
@@ -2153,14 +2180,16 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   $scope.deleteItemsList = function (item) {
     $scope.error = '';
 
-    if (item.count == 1) {
-      $scope.order_invoice.book_list.splice($scope.order_invoice.book_list.indexOf(item), 1)
+    $scope.order_invoice.book_list.splice($scope.order_invoice.book_list.indexOf(item), 1);
+    /*   if (item.count == 1) {
+  
+      } else if (item.count > 1) {
+        item.count -= 1;
+        item.total -= item.price;
+        return item
+      }; */
 
-    } else if (item.count > 1) {
-      item.count -= 1;
-      item.total -= item.price;
-      return item
-    };
+    $scope.calc($scope.order_invoice);
   };
 
   $scope.addTax = function () {
@@ -2287,11 +2316,9 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         obj.price_delivery_service = 0;
       };
 
-      if (obj.book_list && obj.book_list.length > 0) {
+      obj.net_value = (site.toNumber(obj.total_value) + (obj.service || 0) + (obj.total_tax || 0) + (obj.price_delivery_service || 0)) - (obj.total_discount || 0);
+      obj.net_value = site.toNumber(obj.net_value);
 
-        obj.net_value = (site.toNumber(obj.total_value) + (obj.service || 0) + (obj.total_tax || 0) + (obj.price_delivery_service || 0)) - (obj.total_discount || 0);
-        obj.net_value = site.toNumber(obj.net_value)
-      }
 
       if (obj.currency) {
         $scope.amount_currency = obj.net_value / obj.currency.ex_rate;
@@ -2316,17 +2343,26 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   };
 
   $scope.changeCustomerAddresses = function (customer) {
+    if ($scope.order_invoice.transaction_type.id == 2) {
+      if (customer.gov) {
+        $scope.order_invoice.gov = $scope.govList.find(_gov => { return _gov.id === customer.gov.id });
+      }
 
-    $scope.order_invoice.gov = customer.gov;
-    $scope.order_invoice.city = customer.city;
-    $scope.order_invoice.area = customer.area;
-    $scope.order_invoice.address = customer.address;
-    $scope.order_invoice.customer_phone = customer.phone;
-    $scope.order_invoice.customer_mobile = customer.mobile;
-    $scope.order_invoice.customer_mobile = customer.mobile;
-    if ($scope.order_invoice.transaction_type && $scope.order_invoice.transaction_type.id == 2)
-      $scope.order_invoice.price_delivery_service = customer.area.price_delivery_service;
-    else $scope.order_invoice.price_delivery_service = 0;
+      $scope.order_invoice.city = customer.city;
+      $scope.order_invoice.address = customer.address;
+      $scope.order_invoice.customer_phone = customer.phone;
+      $scope.order_invoice.customer_mobile = customer.mobile;
+
+      if (customer.area && customer.area.id) {
+        let area = $scope.areaListDelivery.find(_area => { return _area.id === customer.area.id });
+        $scope.order_invoice.area = area;
+
+        $scope.order_invoice.price_delivery_service = area.price_delivery_service;
+
+      } else $scope.order_invoice.price_delivery_service = 0;
+
+
+    }
 
   };
 
@@ -2398,6 +2434,39 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     $scope.addOrderInvoice($scope.order_invoice, 'table');
   };
 
+  $scope.changeTransactionType = function (order) {
+    $scope.error = '';
+
+    if (order.transaction_type) {
+
+      if (order.transaction_type.id === 1) {
+
+        if ($scope.defaultSettings.general_Settings.service) {
+          order.service = $scope.defaultSettings.general_Settings.service;
+        } else {
+          order.service = 0;
+        }
+        order.price_delivery_service = 0;
+      } else if (order.transaction_type.id === 2) {
+
+        order.service = 0;
+
+        if ($scope.defaultSettings.general_Settings.delivery_employee) {
+          order.delivery_employee = $scope.deliveryEmployeesList.find(_deliveryEmployees => { return _deliveryEmployees.id === $scope.defaultSettings.general_Settings.delivery_employee.id });
+        }
+        if (order.customer) {
+          $scope.changeCustomerAddresses(order.customer);
+        }
+      } else {
+        order.price_delivery_service = 0;
+        order.service = 0;
+      }
+      order.count_person = 0;
+
+    }
+
+  };
+
   $scope.displaySearchModal = function () {
     $scope.error = '';
     site.showModal('#OrderInvoiceSearchModal');
@@ -2412,15 +2481,65 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     $scope.search = {};
   };
 
+  /*  $scope.selectCustomer = function (customer) {
+     $scope.error = '';
+ 
+     if ($scope.order_invoice.status.id == 2) {
+       if (customer.area && customer.area.id) {
+         let area = $scope.areaListDelivery.find(_area => { return _area.id === customer.area.id });
+         $scope.order_invoice.price_delivery_service = area.price_delivery_service;
+       }
+ 
+ 
+     }
+ 
+   };
+  */
 
   $scope.showOrderDetails = function (obj, type) {
     $scope.error = '';
     if (type === 'customer') {
+
       obj.$show_customer = true;
+      obj.$show_delivery = false;
+      obj.$show_table = false;
+      obj.$show_discountes = false;
+      obj.$show_taxes = false;
 
     } else if (type === 'table') {
+
+      obj.$show_discountes = false;
+      obj.$show_delivery = false;
+      obj.$show_taxes = false;
       obj.$show_table = true;
+      obj.$show_customer = false;
+
+    } else if (type === 'discountes') {
+
+      obj.$show_discountes = true;
+      obj.$show_delivery = false;
+      obj.$show_taxes = false;
+      obj.$show_table = false;
+      obj.$show_customer = false;
+
+    } else if (type === 'taxes') {
+
+      obj.$show_taxes = true;
+      obj.$show_delivery = false;
+      obj.$show_discountes = false;
+      obj.$show_table = false;
+      obj.$show_customer = false;
+
+    } else if (type === 'delivery') {
+
+      obj.$show_delivery = true;
+      obj.$show_taxes = false;
+      obj.$show_discountes = false;
+      obj.$show_table = false;
+      obj.$show_customer = false;
+
     }
+
     site.showModal('#orderDetailsModal');
 
   };
@@ -2533,6 +2652,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   $scope.getCustomerGroupList();
   $scope.loadCurrencies();
   $scope.getNumberingAuto();
+  $scope.getAreaListToDelivery();
   $scope.loadStores();
   $scope.getNumberingAutoInvoice();
   $scope.getNumberingAutoCustomer();

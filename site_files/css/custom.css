@@ -171,6 +171,10 @@ popup item:hover {
   border: 2px solid #fbfbfb;
 }
 
+.bg-purple {
+  background-color: #610081  !important;
+}
+
 .modal {
   background-color: #0000006e;
   z-index: 999999;
