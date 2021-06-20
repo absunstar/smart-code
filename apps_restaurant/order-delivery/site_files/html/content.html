@@ -1,0 +1,46 @@
+<div class="form" id="setting_default">
+    <div class="row">
+        <div class="col5">
+
+            <table x-permissions="login" class="table bold hover center loaded">
+                <tr>
+                    <th>
+                        <h1>##word.under_preparing##</h1>
+                    </th>
+
+                </tr>
+
+                <tr ng-repeat="order in under_preparing ">
+                    <td class="pointer" ng-click="showItemsDelivered(order,'under_preparing')">
+                        <h1 class=" center blue">{{order.code}}</h1>
+                    </td>
+
+                </tr>
+
+            </table>
+        </div>
+
+        <div class="col2"></div>
+
+        <div class="col5">
+
+            <table x-permissions="login" class="table bold hover center loaded">
+                <tr>
+                    <th >
+                        <h1>##word.prepared##</h1>
+                    </th>
+
+                </tr>
+
+                <tr ng-repeat="order in prepared">
+                    <td class="pointer" ng-click="showItemsDelivered(order,'prepared')">
+                        <h1 class=" center blue">{{order.code}}</h1>
+
+                    </td>
+
+                </tr>
+
+            </table>
+        </div>
+    </div>
+</div>

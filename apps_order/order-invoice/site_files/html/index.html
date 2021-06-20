@@ -526,7 +526,7 @@
                                 </div>
 
                                 <div class="modal-body">
-                                    <div class="row">
+                                    <fieldset>
 
                                         <div class="row">
 
@@ -535,6 +535,11 @@
                                                 ng-search="_search.$order_invoice.$unit_search" space=" - "
                                                 display2="barcode" items="size_edit.size_units_list">
                                             </i-list>
+
+                                            <i-control class="col2" type="number" label="##word.price##"
+                                                x-permissions="order_invoice_edit_price || order_invoice_manage"
+                                                ng-change="calcSize(size_edit)" ng-model="size_edit.price">
+                                            </i-control>
 
                                             <i-control class="col2" type="number" label="##word.discount##"
                                                 ng-change="calcSize(size_edit)" ng-model="size_edit.discount.value">
@@ -556,13 +561,9 @@
                                                 </div>
                                             </div>
 
-                                            <i-control class="col2" type="number" label="##word.price##"
-                                                x-permissions="order_invoice_edit_price || order_invoice_manage"
-                                                ng-change="calcSize(size_edit)" ng-model="size_edit.price">
-                                            </i-control>
 
                                         </div>
-
+                                        <hr style="height:5px;color:grey;background-color:rgb(0, 0, 199)">
                                         <div class="row">
 
                                             <div class="row">
@@ -618,14 +619,14 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <hr style="height:5px;color:grey;background-color:rgb(0, 0, 199)">
 
                                         <div class="row">
-                                            <i-textarea label="##word.notes##" class="col10" ng-model="size_edit.notes">
-                                            </i-textarea>
+                                            <i-textarea label="##word.notes##" ng-model="size_edit.notes"></i-textarea>
 
                                         </div>
 
-                                    </div>
+                                    </fieldset>
 
                                 </div>
 

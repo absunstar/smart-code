@@ -1,0 +1,56 @@
+<div id="itemsDeliveredModal" class="modal small">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.items_menu##
+                <i class="fa fa-file"></i>
+            </h2>
+        </div>
+        <div class="modal-body">
+            <span ng-show="busy">
+                <span class="sr-only">Loading...</span>
+            </span>
+
+            <div class="row">
+                <table class="table hover bold center loaded">
+
+                    <tr>
+                        <th>##word.serial##</th>
+                        <th>##word.item_name##</th>
+                        <th ng-show="order.$status_prepar">##word.preparation_status##</th>
+                    </tr>
+
+                    <tr ng-repeat="item in order.book_list track by $index">
+
+                        <td>
+                            {{$index + 1}}
+                        </td>
+
+                        <td>
+                            <p ng-show="item.add_sizes">{{item.name_##session.lang##}}
+                                {{item.size_##session.lang##}}</p>
+                            <p ng-hide="item.add_sizes">{{item.size_##session.lang##}}</p>
+                        </td>
+
+                        <td ng-show="order.$status_prepar">
+                            <p class="green" ng-show="item.done_kitchen">##word.prepared##</p>
+                            <p class="red" ng-show="!item.done_kitchen">##word.under_preparing##</p>
+
+                        </td>
+
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+        <h2 class="error"> {{error}} </h2>
+        <div class="modal-footer center">
+
+
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#itemsDeliveredModal')"></i-button>
+        </div>
+    </div>
+
+</div>

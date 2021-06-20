@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "order_delivery_admin",
+    "en": "Delivery Order Admin",
+    "ar": "إدارة تسليم الطلبات",
+    "permissions": ["order_delivery_manage"]
+}]

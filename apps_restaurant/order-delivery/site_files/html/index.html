@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html lang="en" data-ng-app="myApp" class="bg-white" x-permissions="order_delivery_ui || order_delivery_manage">
+
+<head x-import="head.html">
+   
+</head>
+
+<body class=" ##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+
+    <div id="main-layout" class="container loaded" ng-controller="order_delivery">
+
+        <div x-import="order-delivery/order_items_modal.html"></div>
+        <!--    <div class="top-actions">
+            <i-button type="search" id="searchAllBtn" label="##word.search_all##" ng-click="showSearch()">
+            </i-button>
+        </div> -->
+        <div class="row center">
+
+            <br>
+            <h1 class="center bold black">##word.order_delivery##</h1>
+            <br>
+
+            <h2 class="bold red text-center">{{error}} </h2>
+            <div x-import="order-delivery/content.html" x-permissions="order_delivery_view || order_delivery_manage"></div>
+
+
+        </div>
+    </div>
+
+
+    <div x-import="scripts.html"></div>
+    <script x-import="order-delivery/index.js"></script>
+
+
+</body>
+
+
+</html>
+
+
+
+
+

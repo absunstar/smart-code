@@ -33,11 +33,15 @@
             </td>
             <td class="center ">{{i.count}}</td>
             <td>
+                <p class="red" ng-hide="i.extras_items_list.length > 0">##word.not_found##</p>
                 <i-button type="view" ng-show="i.extras_items_list.length > 0" label="##word.extras##"
                     ng-click="showExtrasItems(i)">
                 </i-button>
             </td>
-            <td class="center">{{i.notes}}</td>
+            <td class="center">{{i.notes}}
+                <p class="red" ng-show="!i.notes">##word.not_found##</p>
+
+            </td>
 
             <td class="center">
                 <i-button type="bg-green" x-permissions="order_kitchen_edit || order_kitchen_manage"

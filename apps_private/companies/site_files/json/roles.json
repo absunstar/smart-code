@@ -40,6 +40,7 @@
             "vendors_manage",
             "vendors_group_manage",
             "accounting_cost_centers_manage",
+            "order_delivery_manage",
             "accounting_guide_accounts_manage",
             "accounting_guide_budget_manage",
             "accounting_guide_income_list_manage",

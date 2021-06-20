@@ -130,6 +130,11 @@
         "ar": "الإسم"
     },
     {
+        "name": "not_found",
+        "en": "Not found",
+        "ar": "غير موجود"
+    },
+    {
         "name": "token_en",
         "en": "En. Token",
         "ar": "الرمز بالإنجليزي"
