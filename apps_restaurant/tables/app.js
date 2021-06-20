@@ -286,7 +286,6 @@ module.exports = function init(site) {
         if (!err) {
           response.done = true
           response.doc = result.doc
-          console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
           if (!result.doc.user_info && user.password && user.username) {
             site.security.addUser(user, (err, doc1) => {
               if (!err) {
