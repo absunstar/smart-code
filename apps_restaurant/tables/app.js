@@ -13,7 +13,6 @@ module.exports = function init(site) {
     compress: true
   })
 
-
   table_busy_list = []
   site.on('[order_invoice][tables][busy]', obj => {
     table_busy_list.push(Object.assign({}, obj))
@@ -54,6 +53,8 @@ module.exports = function init(site) {
       name_ar: "طاولة إفتراضية",
       name_en: "Default Table",
       busy: false,
+      minimum: 1,
+      maxmum: 5,
       image_url: '/images/tables.png',
       company: {
         id: doc.company.id,
@@ -228,7 +229,7 @@ module.exports = function init(site) {
     let tables_doc = req.body
 
 
-    user = {
+  let  user = {
       name: tables_doc.name_ar,
       mobile: tables_doc.mobile,
       username: tables_doc.username,
@@ -285,7 +286,7 @@ module.exports = function init(site) {
         if (!err) {
           response.done = true
           response.doc = result.doc
-
+          console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
           if (!result.doc.user_info && user.password && user.username) {
             site.security.addUser(user, (err, doc1) => {
               if (!err) {

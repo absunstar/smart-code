@@ -261,14 +261,14 @@
 
                 <div x-permissions="order_invoice_update || order_invoice_manage"
                     x-import="order-invoice/update_modal.html"></div>
-                <div x-permissions="order_invoice_delete || order_invoice_manage"
-                    x-import="order-invoice/delete_modal.html"></div>
                 <div x-permissions="order_invoice_view || order_invoice_manage"
                     x-import="order-invoice/view_modal.html"></div>
                 <div x-import="order-invoice/items_modal.html"></div>
                 <div x-permissions="order_invoice_search || order_invoice_manage"
                     x-import="order-invoice/search_all_modal.html"></div>
                 <div x-import="accounting-invoices/add_payments_modal.html"></div>
+
+                <div x-import="order-invoice/order_details_modal.html"></div>
 
                 <div class="row">
 
@@ -379,86 +379,24 @@
                                         label="##word.transaction_type##" items="transactionTypeList"
                                         ng-change="calc(order_invoice)">
                                     </i-list>
-                                    <i-button ng-show="order_invoice.transaction_type.id == 1 && order_invoice.id"
-                                        type="bg-blue" label="##word.merge_table##" ng-click="viewInvoicesTablesList()">
-                                    </i-button>
+
                                     <i-list ng-show="order_invoice.transaction_type.id == 2"
                                         ng-search="_search.$order_invoice_employee" class="col4"
                                         display="name_##session.lang##" ng-model="order_invoice.delivery_employee"
                                         label="##word.delivery_employee##" items="deliveryEmployeesList"></i-list>
-                                </div>
 
-                                <div class="row" ng-show="order_invoice.transaction_type.id == 1">
-                                    <i-button type="bg-blue" label="##word.select_table##" ng-click="showTable()">
+                                    <i-button label="##word.customer##"
+                                        ng-click="showOrderDetails(order_invoice,'customer')">
                                     </i-button>
-                                    <i-control class="col4" ng-model="order_invoice.table.name_##session.lang##"
-                                        label="##word.table##" type="text" disabled></i-control>
-                                    <i-control class="col2" ng-model="order_invoice.count_person"
-                                        label="##word.count_person##" type="number"></i-control>
-                                    <i-control class="col2" ng-model="order_invoice.service" label="##word.service##"
-                                        type="number" ng-change="calc(order_invoice)"></i-control>
+
+                                    <i-button ng-show="order_invoice.transaction_type.id == 1" label="##word.table##"
+                                        ng-click="showOrderDetails(order_invoice,'table')">
+                                    </i-button>
+
                                 </div>
-                                <div class="row">
-                                    <div class="row">
-                                        <i-button type="add" label="##word.customers_new##"
-                                            ng-click="displayAddCustomer()">
-                                        </i-button>
 
-                                        <i-control ng-keydown="getCustomerList($event)" id="service" class="col3"
-                                            ng-model="search_customer" label="##word.search##" type="text"></i-control>
+                              
 
-                                        <i-list ng-search="_search.$order_customers" class="col5"
-                                            display="name_##session.lang##" ng-model="order_invoice.customer"
-                                            label="##word.customer_name##"
-                                            ng-change="changeCustomerAddresses(order_invoice.customer)"
-                                            items="customersList">
-                                        </i-list>
-
-                                    </div>
-                                    <fieldset ng-show="order_invoice.transaction_type.id == 2">
-                                        <legend> ##word.customer_data##</legend>
-                                        <div class="row">
-                                            <div class="row">
-
-                                                <i-list class="col3" label="##word.customers_gov##"
-                                                    ng-model="order_invoice.gov" items="govList"
-                                                    display="name_##session.lang##"
-                                                    ng-change="getCityList(order_invoice.gov)"
-                                                    ng-search="_search.$govNameContact"></i-list>
-
-                                                <i-list class="col3" label="##word.city##" ng-model="order_invoice.city"
-                                                    items="cityList" ng-change="getAreaList(order_invoice.city)"
-                                                    display="name_##session.lang##"
-                                                    ng-search="_search.$order_invoice_city_search">
-                                                </i-list>
-
-                                                <i-list class="col3" label="##word.area##" ng-model="order_invoice.area"
-                                                    items="areaList" display="name_##session.lang##"
-                                                    ng-change=" order_invoice.price_delivery_service = order_invoice.area.price_delivery_service"
-                                                    ng-search="_search.$order_invoice.$area_search"></i-list>
-
-                                                <i-control ng-show="order_invoice.transaction_type.id == 2"
-                                                    ng-model="order_invoice.price_delivery_service"
-                                                    label="##word.price_delivery_service##"
-                                                    ng-change="calc(order_invoice)" class="col3" type="number">
-                                                </i-control>
-
-                                            </div>
-
-                                            <div class="row">
-
-                                                <i-control class="col8" label="##word.customers_address##"
-                                                    ng-model="order_invoice.address"></i-control>
-
-                                                <i-control class="col4" label="##word.customers_mobile##"
-                                                    ng-model="order_invoice.customer_mobile">
-                                                </i-control>
-
-                                            </div>
-
-                                        </div>
-                                    </fieldset>
-                                </div>
 
                             </div>
                         </div>

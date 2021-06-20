@@ -8,6 +8,8 @@ app.controller("tables", function ($scope, $http, $timeout) {
     $scope.tables = {
       image_url: '/images/tables.png',
       active: true,
+      minimum: 0,
+      maxmum: 0,
       busy: false
     };
     site.showModal('#tablesAddModal');

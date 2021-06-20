@@ -22,6 +22,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   };
 
   $scope.cancelOrderInvoice = function () {
+    $scope.error = '';
 
     $scope.busy = true;
 
@@ -232,7 +233,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   $scope.addOrderInvoice = function (order_invoice, type) {
     $scope.error = '';
     if (order_invoice.shift) {
-      if (order_invoice.book_list && order_invoice.book_list.length > 0) {
+      if ((order_invoice.book_list && order_invoice.book_list.length > 0) || type === 'table') {
 
         const v = site.validated('#OrderInvoiceAddModal');
         if (!v.ok) {
@@ -406,6 +407,12 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
                 }
 
               }
+
+              if (type === 'table') {
+
+                $scope.showOrderDetails(order_invoice, 'table')
+              }
+
             },
             function (err) {
               console.log(err);
@@ -1044,6 +1051,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   };
 
   $scope.getDefaultSettingsList = function () {
+    $scope.error = '';
     $scope.busy = true;
     $http({
       method: "POST",
@@ -1065,6 +1073,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   };
 
   $scope.loadItemsGroups = function () {
+    $scope.error = '';
     $scope.busy = true;
     $scope.itemsGroupList = [];
 
@@ -1100,6 +1109,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   };
 
   $scope.loadXtrasItems = function () {
+    $scope.error = '';
     $scope.busy = true;
     $scope.extrasItemsList = [];
 
@@ -1134,6 +1144,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   };
 
   $scope.loadCurrencies = function () {
+    $scope.error = '';
     $scope.busy = true;
     $http({
       method: "POST",
@@ -1224,6 +1235,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   };
 
   $scope.getPrintersPath = function () {
+    $scope.error = '';
     $scope.busy = true;
     $http({
       method: "POST",
@@ -1255,6 +1267,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
   $scope.loadKitchenList = function () {
     $scope.error = '';
+    $scope.error = '';
     $scope.busy = true;
     $http({
       method: "POST",
@@ -1282,6 +1295,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   };
 
   $scope.loadTaxTypes = function () {
+    $scope.error = '';
     $scope.busy = true;
     $http({
       method: "POST",
@@ -1310,6 +1324,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   };
 
   $scope.loadDiscountTypes = function () {
+    $scope.error = '';
     $scope.busy = true;
     $http({
       method: "POST",
@@ -1484,6 +1499,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   };
 
   $scope.getCustomerGroupList = function () {
+    $scope.error = '';
     $http({
       method: "POST",
       url: "/api/customers_group/all",
@@ -1634,6 +1650,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   };
 
   $scope.getDeliveryEmployeesList = function () {
+    $scope.error = '';
     $scope.busy = true;
     $http({
       method: "POST",
@@ -1654,6 +1671,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   };
 
   $scope.getTablesGroupList = function () {
+    $scope.error = '';
     $scope.busy = true;
     $scope.tablesGroupList = [];
     $http({
@@ -1747,6 +1765,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   };
 
   $scope.viewInvoicesTablesList = function () {
+    $scope.error = '';
     $scope.get_open_shift((shift) => {
       if (shift) {
         $scope.getOrderInvoicesActiveList(() => {
@@ -1769,6 +1788,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
 
   $scope.viewInvoicesActiveList = function () {
+    $scope.error = '';
 
     $scope.get_open_shift((shift) => {
       if (shift) {
@@ -1838,6 +1858,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
 
   $scope.closeOrder = function () {
+    $scope.error = '';
 
     $scope.getStockItems($scope.order_invoice.book_list, $scope.order_invoice.store, callback => {
 
@@ -1972,6 +1993,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   };
 
   $scope.deliveryServiceHide = function () {
+    $scope.error = '';
     site.hideModal('#deliveryServiceModal');
   };
 
@@ -2142,6 +2164,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   };
 
   $scope.addTax = function () {
+    $scope.error = '';
     if (!$scope.tax.value) {
       $scope.error = '##word.error_tax##';
       return;
@@ -2331,18 +2354,48 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         method: "POST",
         url: "/api/tables/update",
         data: $scope.order_invoice.table
-      });
+      }).then(
+        function (response) {
+          $scope.order_invoice.table = table;
+          $scope.order_invoice.table.busy = true;
+          $http({
+            method: "POST",
+            url: "/api/tables/update",
+            data: $scope.order_invoice.table
+          }).then(
+            function (response) {
+            },
+            function (err) {
+              $scope.busy = false;
+              $scope.error = err;
+            }
+          )
+        },
+        function (err) {
+          $scope.busy = false;
+          $scope.error = err;
+        }
+      )
+    } else {
+
+      $scope.order_invoice.table = table;
+      $scope.order_invoice.table.busy = true;
+      $http({
+        method: "POST",
+        url: "/api/tables/update",
+        data: $scope.order_invoice.table
+      }).then(
+        function (response) {
+        },
+        function (err) {
+          $scope.busy = false;
+          $scope.error = err;
+        }
+      )
     }
-    $scope.order_invoice.table = table;
-    $scope.order_invoice.table.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/tables/update",
-      data: $scope.order_invoice.table
-    });
     $scope.order_invoice.table_group = group;
     site.hideModal('#showTablesModal');
-    $scope.addOrderInvoice($scope.order_invoice, 'add');
+    $scope.addOrderInvoice($scope.order_invoice, 'table');
   };
 
   $scope.displaySearchModal = function () {
@@ -2352,11 +2405,26 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   };
 
   $scope.searchAll = function () {
+    $scope.error = '';
 
     $scope.getOrderInvoiceList($scope.search);
     site.hideModal('#OrderInvoiceSearchModal');
     $scope.search = {};
   };
+
+
+  $scope.showOrderDetails = function (obj, type) {
+    $scope.error = '';
+    if (type === 'customer') {
+      obj.$show_customer = true;
+
+    } else if (type === 'table') {
+      obj.$show_table = true;
+    }
+    site.showModal('#orderDetailsModal');
+
+  };
+
 
   $scope.getPaymentMethodList = function () {
     $scope.error = '';

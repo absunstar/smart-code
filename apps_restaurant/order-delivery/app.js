@@ -46,10 +46,12 @@ module.exports = function init(site) {
         let prepared = [];
 
         docs.forEach(_order => {
-          let found = _order.book_list.every(_itm => _itm.done_kitchen)
+          if (_order.book_list && _order.book_list.length > 0) {
+            let found = _order.book_list.every(_itm => _itm.done_kitchen)
 
-          if (found) prepared.push(_order);
-          else under_preparing.push(_order);
+            if (found) prepared.push(_order);
+            else under_preparing.push(_order);
+          }
         });
 
         response.under_preparing = under_preparing
