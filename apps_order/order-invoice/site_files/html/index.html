@@ -147,7 +147,7 @@
                                     <i-control class="col3 r_indigo" disabled label="##word.shift##"
                                         ng-model="shift.name_##session.lang##"></i-control>
 
-                                    <i-control ng-hide="disabledCode" class="col3" disabled label="##word.code##"
+                                    <i-control class="col3" disabled label="##word.code##"
                                         ng-model="order_invoice.code"></i-control>
 
                                 </div>
@@ -277,8 +277,9 @@
                                             <td class="white bg_card"> ##word.total_value## </td>
                                             <td colspan="2" class="center"> {{order_invoice.total_value}} </td>
                                         </tr>
+
                                         <tr>
-                                            <td class="white bg_card"> ##word.net_value## </td>
+                                            <td class="white bg_card"> ##word.required## </td>
                                             <td colspan="2" class="center"> {{order_invoice.net_value}}
                                             </td>
                                         </tr>

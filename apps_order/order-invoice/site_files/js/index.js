@@ -2316,7 +2316,11 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         obj.price_delivery_service = 0;
       };
 
-      obj.net_value = (site.toNumber(obj.total_value) + (obj.service || 0) + (obj.total_tax || 0) + (obj.price_delivery_service || 0)) - (obj.total_discount || 0);
+      obj.net_value = (site.toNumber(obj.total_value) + (obj.total_tax || 0) + (obj.price_delivery_service || 0)) - (obj.total_discount || 0);
+      let service =  (obj.service || 0) *  site.toNumber(obj.net_value)/100;
+      obj.net_value = obj.net_value + service;
+
+      obj.total_value = site.toNumber(obj.total_value);
       obj.net_value = site.toNumber(obj.net_value);
 
 
