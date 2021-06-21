@@ -2019,10 +2019,6 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     }
   };
 
-  $scope.deliveryServiceHide = function () {
-    $scope.error = '';
-    site.hideModal('#deliveryServiceModal');
-  };
 
   $scope.bookList = function (item) {
 

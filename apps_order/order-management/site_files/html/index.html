@@ -66,7 +66,8 @@
                         <td ng-click="showDetailes(c)" class="pointer brown"> {{c.date | date : 'dd - MM - yyyy'}} </td>
                         <td ng-click="showDetailes(c)" class="pointer blue"> {{c.code}} </td>
                         <td ng-click="showDetailes(c)" class="pointer"> {{c.transaction_type.##session.lang##}}
-                            <p ng-show="c.transaction_type.id ==2" class="blue"> ({{c.status_delivery.##session.lang##}})</p>
+                            <p ng-show="c.transaction_type.id ==2" class="blue">
+                                ({{c.status_delivery.##session.lang##}})</p>
                         </td>
                         <td ng-click="showDetailes(c)" class="pointer"> {{c.total_tax ||0}} </td>
                         <td ng-click="showDetailes(c)" class="pointer"> {{c.total_discount ||0}} </td>
@@ -76,25 +77,23 @@
                             <p ng-show="c.price_delivery_service"> ##word.price_delivery_service## </p>
                             <p ng-show="c.price_delivery_service">{{c.price_delivery_service}}</p>
                         </td>
-                        
+
                         <td ng-click="showDetailes(c)" class="pointer blue"> {{c.total_book_list ||0}} </td>
                         <td ng-click="showDetailes(c)" class="pointer"> {{c.net_value}} </td>
                         <td ng-click="showDetailes(c)" class="pointer">{{c.status.##session.lang##}}</td>
                         <td>
 
                             <i-button type="add"
-                                ng-show="c.transaction_type.id == 1 && (c.status.id == 1 || c.status_delivery.id == 1)"
+                                ng-show="c.transaction_type.id == 2 && (c.status.id == 1 || c.status_delivery.id == 1)"
                                 x-permissions="order_management_edit || order_management_manage"
                                 label="##word.set_employee_delivery##" ng-click="showDeliveryEmployee(c)"></i-button>
 
-                            <i-button type="save"
-                                ng-show="!c.posting && c.status.id == 2"
+                            <i-button type="save" ng-show="!c.posting && c.status.id == 2"
                                 x-permissions="order_management_edit || order_management_manage"
-                                label="##word.posting##" ng-click="postOrder(c)"></i-button>
+                                label="##word.store_posting##" ng-click="postOrder(c)"></i-button>
 
-                            <i-button
-                                ng-show="c.posting && c.status.id == 2"
-                                type="save" label="##word.create_an_invoice##" ng-click="displayAccountInvoice(c)">
+                            <i-button ng-show="c.posting && c.status.id == 2" type="save"
+                                label="##word.create_an_invoice##" ng-click="displayAccountInvoice(c)">
                             </i-button>
                             <!--  <i-button type="exit" ng-show="!c.reset_items && (c.status.id == 2)"
                                 x-permissions="order_management_edit || order_management_manage"

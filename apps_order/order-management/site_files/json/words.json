@@ -15,6 +15,11 @@
         "ar": "حالة الطلب"
     },
     {
+        "name": "store_posting",
+        "en": "Store posting",
+        "ar": "ترحيل مخزني"
+    },
+    {
         "name": "return_to_kitchen",
         "en": "Return To Kitchen",
         "ar": "إعادة إلى المطبخ"

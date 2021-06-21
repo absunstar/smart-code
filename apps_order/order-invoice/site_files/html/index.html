@@ -3,7 +3,23 @@
 
 <head x-import="head.html">
     <link rel="stylesheet" href="/css/order_invoice.css?v=##site.options.version##">
+    <style>
+        table tbody {
+            display: block;
+            max-height: 150px;
+            overflow-y: scroll;
+        }
 
+        table thead,
+        table tbody tr {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+        }
+        * {
+            min-height: 0px;
+        }
+    </style>
 </head>
 
 <body class="##session.lang##">
@@ -24,9 +40,7 @@
                 </div>
                 <div x-permissions="order_invoice_add || order_invoice_manage" x-import="customers/add_modal.html">
                 </div>
-                <div x-permissions="order_invoice_add || order_invoice_manage"
-                    x-import="order-invoice/delivery_service.html">
-                </div>
+
                 <div x-permissions="order_invoice_add || order_invoice_manage"
                     x-import="order-invoice/select_table.html">
                 </div>
@@ -88,7 +102,7 @@
                             <hr style="height:7px;background-image:linear-gradient(rgb(90 79 255), rgb(227 225 255));">
                         </div>
 
-                        <div class="row">
+                        <div class="row" style="height: 500px; overflow: auto">
                             <div class="item-list" ng-show="itemsList.length > 0">
                                 <a class="item pointer" ng-repeat="i in itemsList" ng-click="showItemsIn(i)"
                                     help-id="menu_monitor">
@@ -162,37 +176,33 @@
 
                                 </div>
 
-                                <div class="row center">
-                                    <i-button type="bg-purple"
+                                <div class="row">
+                                    <i-button type="bg-purple btn_board"
                                         ng-show="order_invoice.transaction_type.id == 1 && '##user.type##' != 'table'"
                                         label="##word.table##" ng-click="showOrderDetails(order_invoice,'table')">
                                     </i-button>
 
-                                    <i-button type="bg-purple" label="##word.customer##"
+                                    <i-button type="bg-purple btn_board" label="##word.customer##"
                                         ng-hide="order_invoice.transaction_type.id == 2"
                                         ng-click="showOrderDetails(order_invoice,'customer')">
                                     </i-button>
 
-                                    <i-button type="bg-purple"
+                                    <i-button type="bg-purple btn_board"
                                         ng-show="'##user.type##' != 'table' &&  order_invoice.transaction_type.id == 2"
                                         label="##word.delivery##" ng-click="showOrderDetails(order_invoice,'delivery')">
                                     </i-button>
 
-                                    <i-button ng-hide="'##user.type##' == 'table'" type="bg-purple"
+                                    <i-button ng-hide="'##user.type##' == 'table'" type="bg-purple btn_board"
                                         label="##word.discountes##"
                                         ng-click="showOrderDetails(order_invoice,'discountes')">
                                     </i-button>
 
-                                    <i-button type="bg-purple" ng-hide="'##user.type##' == 'table'"
+                                    <i-button type="bg-purple btn_board" ng-hide="'##user.type##' == 'table'"
                                         label="##word.stores_out_taxes##"
                                         ng-click="showOrderDetails(order_invoice,'taxes')">
                                     </i-button>
 
-
-
                                 </div>
-
-
 
                             </div>
                         </div>
@@ -200,95 +210,84 @@
                         <div class="row ">
 
                             <table class="table bold hover loaded" id="t1">
-
-                                <tr>
+                                <thead>
                                     <th>##word.stores_items_name##</th>
                                     <th class="w150">##word.items_count##</th>
                                     <th>##word.price##</th>
                                     <th>##word.extras##</th>
                                     <th class="w100">##word.t_o## ##word.price##</th>
                                     <th class="not-print">##word.actions##</th>
-                                </tr>
+                                </thead>
 
-                                <tr ng-repeat="size in order_invoice.book_list">
-                                    <td class="center title">
-                                        <br>
-                                        <p ng-show="size.add_sizes">{{size.name_##session.lang##}}
-                                            {{size.size_##session.lang##}}</p>
-                                        <p ng-hide="size.add_sizes">{{size.size_##session.lang##}}</p>
-                                    </td>
+                                <tbody>
 
-                                    <td class="center">
-                                        <i-control ng-change="calcSize(size)" ng-model="size.count" type="number">
-                                        </i-control>
-                                    </td>
-                                    <td class="center blue">
-                                        <br ng-hide="size.discount.value > 0">
-                                        <p class="center">{{size.price}}</p>
+                                    <tr ng-repeat="size in order_invoice.book_list">
+                                        <td class="center title">
+                                            <br>
+                                            <p ng-show="size.add_sizes">{{size.name_##session.lang##}}
+                                                {{size.size_##session.lang##}}</p>
+                                            <p ng-hide="size.add_sizes">{{size.size_##session.lang##}}</p>
+                                        </td>
 
-                                        <del class="red px14"
-                                            ng-show="size.discount.type =='number' && size.discount.value > 0">{{size.discount.value}}
-                                            $</del>
-                                        <del class="red px14"
-                                            ng-show="size.discount.type =='percent' && size.discount.value > 0">{{size.discount.value}}
-                                            %</del>
-                                    </td>
+                                        <td class="center">
+                                            <i-control ng-change="calcSize(size)" ng-model="size.count" type="number">
+                                            </i-control>
+                                        </td>
+                                        <td class="center blue">
+                                            <br ng-hide="size.discount.value > 0">
+                                            <p class="center">{{size.price}}</p>
 
-                                    <td class="center"><br> {{size.extras_price}}</td>
-                                    <td class="center green"><br> {{size.total}}</td>
+                                            <del class="red px14"
+                                                ng-show="size.discount.type =='number' && size.discount.value > 0">{{size.discount.value}}
+                                                $</del>
+                                            <del class="red px14"
+                                                ng-show="size.discount.type =='percent' && size.discount.value > 0">{{size.discount.value}}
+                                                %</del>
+                                        </td>
 
-                                    <!-- ng-hide="'##user.type##' == 'table'" -->
-                                    <td class="center not-print">
-                                        <i-button type="edit default" ng-click="showEditItem(size)"></i-button>
+                                        <td class="center"><br> {{size.extras_price}}</td>
+                                        <td class="center green"><br> {{size.total}}</td>
 
-                                        <i-button type="delete default"
-                                            x-permissions="order_invoice_delete_items || order_invoice_manage"
-                                            ng-click="deleteItemsList(size)">
-                                        </i-button>
+                                        <!-- ng-hide="'##user.type##' == 'table'" -->
+                                        <td class="center not-print">
+                                            <i-button type="edit default" ng-click="showEditItem(size)"></i-button>
 
-                                    </td>
-                                </tr>
+                                            <i-button type="delete default"
+                                                x-permissions="order_invoice_delete_items || order_invoice_manage"
+                                                ng-click="deleteItemsList(size)">
+                                            </i-button>
 
+                                        </td>
+                                    </tr>
+                                </tbody>
                             </table>
                         </div>
 
                         <div class="row">
-                            <h2 class="bold center red">{{error}}</h2>
-                        </div>
-
-                        <div class="row">
-                            <div class="col7">
+                            <div class="col8">
                                 <div class="row">
 
                                     <table class="table bold center hover">
-
                                         <tr>
-                                            <td class="white bg_card"> ##word.stores_out_total_discount## </td>
-                                            <td colspan="2" class="center"> {{order_invoice.total_discount}} </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td class="white bg_card"> ##word.stores_out_total_tax## </td>
-                                            <td colspan="2" class="center"> {{order_invoice.total_tax}}
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td class="white bg_card"> ##word.total_value## </td>
-                                            <td colspan="2" class="center"> {{order_invoice.total_value}} </td>
-                                        </tr>
-
-                                        <tr>
+                                            <td class="white bg_card"> ##word.t_discount## </td>
+                                            <td class="white bg_card"> ##word.t_tax## </td>
+                                            <td class="white bg_card"> ##word.t_value## </td>
                                             <td class="white bg_card"> ##word.required## </td>
-                                            <td colspan="2" class="center"> {{order_invoice.net_value}}
-                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td> {{order_invoice.total_discount}} </td>
+                                            <td> {{order_invoice.total_tax}} </td>
+                                            <td>{{order_invoice.total_value}}</td>
+                                            <td>{{order_invoice.net_value}}</td>
                                         </tr>
                                     </table>
+
+
                                 </div>
                                 <div class="row">
 
-                                    <i-button ng-hide="'##user.type##' == 'table' || order_invoice.book_list.length < 1" class="not-print"
-                                        label="##word.print_invoice##" type="print "
+                                    <i-button ng-hide="'##user.type##' == 'table' || order_invoice.book_list.length < 1"
+                                        class="not-print" label="##word.print_invoice##" type="print "
                                         ng-click="printAccountInvoive(order_invoice)">
                                     </i-button>
 
@@ -300,7 +299,6 @@
 
                                 </div>
                             </div>
-                            <div class="col1"></div>
                             <div class="col4">
                                 <i-button ng-hide="order_invoice.status.id == 2" label="##word.save_order##"
                                     type="fa fa-cart-plus saving" ng-click="addOrderInvoice(order_invoice,'add')">

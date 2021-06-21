@@ -285,6 +285,22 @@
         "ar": "إسم المصدر"
     },
     {
+        "name": "t_discount",
+        "en": "T.Discount",
+        "ar": "إج.خصم"
+    },
+    {
+        "name": "t_tax",
+        "en": "T.Tax",
+        "ar": "إج.ضريبة"
+    },
+    {
+        "name": "t_value",
+        "en": "T.Value",
+        "ar": "إج.قيمة"
+    },
+    
+    {
         "name": "required",
         "en": "Required",
         "ar": "المطلوب"

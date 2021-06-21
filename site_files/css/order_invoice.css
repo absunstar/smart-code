@@ -187,9 +187,13 @@ body {
     min-width: 150px;
 }
 
+.btn_board {
+    border-radius: 10px;
+}
+
 .btn.saving {
     width: 170px;
-    height: 90px;
+    height: 80px;
     font-size: 22px;
     padding-top: 30px;
     background: #118011;
@@ -198,7 +202,7 @@ body {
 
 .btn.closing {
     width: 170px;
-    height: 90px;
+    height: 80px;
     font-size: 22px;
     padding-top: 30px;
     background: #e21212;

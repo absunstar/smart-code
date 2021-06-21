@@ -5,15 +5,14 @@
     opacity: 0.4;
 }
 </style>
-<div id="showTablesModal" class="modal">
-    <div class="col2"></div>
+<div id="showTablesModal" class="modal small">
 
-    <div class="modal-content col8">
+    <div class="modal-content ">
         <div class="modal-header">
             <span class="close">&times;</span>
             <h2>
                 ##word.select_table##
-                <i class="fa fa-cart-plus"></i>
+                <i class="fa fa-table"></i>
             </h2>
         </div>
 
@@ -22,13 +21,15 @@
                 <div class="row" ng-repeat="g in tablesGroupList">
 
                     <fieldset>
-                        <legend>{{g.name_##session.lang##}}</legend>
+                        <legend>
+                            <i-button label="{{g.name_##session.lang##}}"></i-button>
+                        </legend>
 
-                        <div class="item-groups">
+                        <div class="item-list">
                             <a ng-class="{'table-busy' : t.busy }" class="item pointer " ng-repeat="t in g.tables_list" ng-click="selectTable(t , g)"
                                 help-id="menu_monitor">
                                 <img ng-src="{{t.image_url}}">
-                                <h2>{{t.name_##session.lang##}}</h2>
+                                <p class="center font_name_items">{{t.name_##session.lang##}} </p>
                             </a>
                         </div>
 
