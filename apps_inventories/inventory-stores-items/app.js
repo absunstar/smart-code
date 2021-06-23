@@ -1185,146 +1185,163 @@ module.exports = function init(site) {
     let barcode = where['barcode']
     let limit = where.limit || undefined
     let search = req.body.search
+    let sort = { id: -1 }
 
-    if (search != undefined) {
-      where.$or = []
+    site.getDefaultSetting(req, callback => {
 
-      where.$or.push({
-        'sizes.size_ar': site.get_RegExp(search, 'i')
-      })
+      if (req.body.group) {
 
-      where.$or.push({
-        'sizes.size_en': site.get_RegExp(search, 'i')
-      })
+        if (req.body.group.type === 'all') {
+          if (callback.inventory && callback.inventory.number_best_selling) {
+            limit = callback.inventory.number_best_selling
+          }
+          sort = { 'sizes.total_sell_count': -1 }
 
-      where.$or.push({
-        'sizes.barcode': search
-      })
-
-      where.$or.push({
-        'sizes.active_substance.name_ar': search
-      })
-
-      where.$or.push({
-        'sizes.active_substance.name_en': search
-      })
-
-      where.$or.push({
-        'sizes.size_units_list.barcode': search
-      })
-
-      where.$or.push({
-        'name_ar': site.get_RegExp(search, 'i')
-      })
-
-      where.$or.push({
-        'name_en': site.get_RegExp(search, 'i')
-      })
-
-      where.$or.push({
-        'item_group.name_ar': search
-      })
-
-      where.$or.push({
-        'item_group.name_en': search
-      })
-
-    }
-
-    where['company.id'] = site.get_company(req).id
-
-
-    if (where['name_ar']) {
-      where['name_ar'] = site.get_RegExp(where['name_ar'], 'i')
-    }
-    if (where['name_en']) {
-      where['name_en'] = site.get_RegExp(where['name_en'], 'i')
-    }
-
-    if (where['size_ar']) {
-      where['sizes.size_ar'] = site.get_RegExp(where['size_ar'], 'i')
-      delete where['size_ar']
-    }
-
-    if (where['size_en']) {
-      where['sizes.size_en'] = site.get_RegExp(where['size_en'], 'i')
-      delete where['size_en']
-    }
-
-    if (where['barcode']) {
-
-      where['$or'] = [{ 'sizes.barcode': where['barcode'] }, { 'sizes.size_units_list.barcode': where['barcode'] }]
-
-      delete where['barcode']
-    }
-
-    if (where['store_id']) {
-      delete where['store_id']
-      delete where['unit_id']
-    }
-
-    if (where['item_group']) {
-      where['item_group.id'] = where['item_group'].id;
-      delete where['item_group']
-    }
-
-    if (where['limit']) {
-      delete where['limit']
-    }
-
-    if (where.work_patch) {
-      where['sizes.work_patch'] = true
-      delete where['work_patch']
-    }
-
-    if (where.work_serial) {
-      where['sizes.work_serial'] = true
-      delete where['work_serial']
-    }
-
-    if (where.item_complex) {
-      where['sizes.item_complex'] = true
-      delete where['item_complex']
-    }
-    response.done = false
-    $stores_items.findMany({
-      select: req.body.select,
-      limit: limit || 100,
-      where: where,
-      sort: {
-        id: -1
-      }
-
-    }, (err, docs, count) => {
-      if (!err) {
-        response.done = true
-        let patch_list = []
-        if (store_id && barcode && docs && docs.length === 1) {
-
-          if (docs[0].sizes && docs[0].sizes.length > 0)
-            docs[0].sizes.forEach(_size => {
-              if (_size.branches_list && _size.branches_list.length > 0 && _size.barcode === barcode)
-                _size.branches_list.forEach(_branch => {
-                  if (_branch.stores_list && _branch.stores_list.length > 0)
-                    _branch.stores_list.forEach(_store => {
-                      if (_store.store && _store.store.id === store_id)
-                        _store.size_units_list.forEach(_unit => {
-                          if (_unit.id === unit_id) {
-                            patch_list = _unit.patch_list
-                          }
-                        });
-                    });
-                });
-            });
+        } else {
+          where['item_group.id'] = req.body.group.id;
         }
-
-        response.list = docs
-        response.patch_list = patch_list
-        response.count = docs.length
-      } else {
-        response.error = err.message
       }
-      res.json(response)
+
+      if (search != undefined) {
+        where.$or = []
+
+        where.$or.push({
+          'sizes.size_ar': site.get_RegExp(search, 'i')
+        })
+
+        where.$or.push({
+          'sizes.size_en': site.get_RegExp(search, 'i')
+        })
+
+        where.$or.push({
+          'sizes.barcode': search
+        })
+
+        where.$or.push({
+          'sizes.active_substance.name_ar': search
+        })
+
+        where.$or.push({
+          'sizes.active_substance.name_en': search
+        })
+
+        where.$or.push({
+          'sizes.size_units_list.barcode': search
+        })
+
+        where.$or.push({
+          'name_ar': site.get_RegExp(search, 'i')
+        })
+
+        where.$or.push({
+          'name_en': site.get_RegExp(search, 'i')
+        })
+
+        where.$or.push({
+          'item_group.name_ar': search
+        })
+
+        where.$or.push({
+          'item_group.name_en': search
+        })
+
+      }
+
+      where['company.id'] = site.get_company(req).id
+
+
+      if (where['name_ar']) {
+        where['name_ar'] = site.get_RegExp(where['name_ar'], 'i')
+      }
+      if (where['name_en']) {
+        where['name_en'] = site.get_RegExp(where['name_en'], 'i')
+      }
+
+      if (where['size_ar']) {
+        where['sizes.size_ar'] = site.get_RegExp(where['size_ar'], 'i')
+        delete where['size_ar']
+      }
+
+      if (where['size_en']) {
+        where['sizes.size_en'] = site.get_RegExp(where['size_en'], 'i')
+        delete where['size_en']
+      }
+
+      if (where['barcode']) {
+
+        where['$or'] = [{ 'sizes.barcode': where['barcode'] }, { 'sizes.size_units_list.barcode': where['barcode'] }]
+
+        delete where['barcode']
+      }
+
+      if (where['store_id']) {
+        delete where['store_id']
+        delete where['unit_id']
+      }
+
+
+
+      if (where['item_group']) {
+        where['item_group.id'] = where['item_group'].id;
+        delete where['item_group']
+      }
+
+      if (where['limit']) {
+        delete where['limit']
+      }
+
+      if (where.work_patch) {
+        where['sizes.work_patch'] = true
+        delete where['work_patch']
+      }
+
+      if (where.work_serial) {
+        where['sizes.work_serial'] = true
+        delete where['work_serial']
+      }
+
+      if (where.item_complex) {
+        where['sizes.item_complex'] = true
+        delete where['item_complex']
+      }
+      response.done = false
+      $stores_items.findMany({
+        select: req.body.select,
+        limit: limit || 100,
+        where: where,
+        sort: sort
+
+      }, (err, docs, count) => {
+        if (!err) {
+          response.done = true
+          let patch_list = []
+          if (store_id && barcode && docs && docs.length === 1) {
+
+            if (docs[0].sizes && docs[0].sizes.length > 0)
+              docs[0].sizes.forEach(_size => {
+                if (_size.branches_list && _size.branches_list.length > 0 && _size.barcode === barcode)
+                  _size.branches_list.forEach(_branch => {
+                    if (_branch.stores_list && _branch.stores_list.length > 0)
+                      _branch.stores_list.forEach(_store => {
+                        if (_store.store && _store.store.id === store_id)
+                          _store.size_units_list.forEach(_unit => {
+                            if (_unit.id === unit_id) {
+                              patch_list = _unit.patch_list
+                            }
+                          });
+                      });
+                  });
+              });
+          }
+
+          response.list = docs
+          response.patch_list = patch_list
+          response.count = docs.length
+        } else {
+          response.error = err.message
+        }
+        res.json(response)
+      })
     })
   })
 

@@ -220,7 +220,7 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
         url: "/api/customers/all",
         data: {
           search: $scope.search_customer,
-          where:{
+          where: {
             active: true
           }
         }
@@ -266,28 +266,37 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
 
   $scope.addItineraryList = function () {
     $scope.error = '';
+
+    if (!$scope.itinerary.target_account) {
+      $scope.error = "##word.target_account_must_selected##";
+      return;
+    } else if (!$scope.itinerary.mission_type) {
+      $scope.error = "##word.mission_type_must_selected##";
+      return;
+    }
     $scope.itinerary.itinerary_list = $scope.itinerary.itinerary_list || [];
 
     let obj = {};
+    if ($scope.itinerary.target_account) {
 
-    if ($scope.itinerary.customer && $scope.itinerary.customer.id) {
+      if ($scope.itinerary.target_account.id == 1) {
 
-      obj.target_type = { ar: 'عميل', en: 'Customer' };
-      obj.target = $scope.itinerary.customer;
-      $scope.itinerary.customer = {};
+        obj.target = $scope.itinerary.customer;
+        $scope.itinerary.customer = {};
 
-    } else if ($scope.itinerary.vendor && $scope.itinerary.vendor.id) {
+      } else if ($scope.itinerary.target_account.id == 2) {
 
-      obj.target_type = { ar: 'مورد', en: 'Vendor' };
-      obj.target = $scope.itinerary.vendor;
-      $scope.itinerary.vendor = {};
+        obj.target = $scope.itinerary.vendor;
+        $scope.itinerary.vendor = {};
 
-    };
+      };
+    }
 
     obj.status = 1;
     obj.required = $scope.itinerary.required;
     obj.mission_type = $scope.itinerary.mission_type;
     obj.amount = $scope.itinerary.amount;
+    obj.target_account = $scope.itinerary.target_account;
     obj.collected_paid = 0;
     $scope.itinerary.amount = 0;
     $scope.itinerary.required = '';
@@ -324,6 +333,13 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.cancleMission = function (c) {
+    $scope.error = '';
+    c.status = 3;
+    $scope.mession = c;
+    site.showModal('#reasonCancellationModal');
+  };
+
   $scope.displayAccountInvoice = function (itinerary) {
     $scope.get_open_shift((shift) => {
       if (shift) {
@@ -341,7 +357,7 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
           invoice_type: itinerary.type,
           shift: shift,
           net_value: itinerary.amount,
-          paid_up: itinerary.amount,
+          paid_up: itinerary.collected_paid || itinerary.amount,
           active: true
         };
 
@@ -483,7 +499,7 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
             commission: 1,
             currency: 1,
             type: 1,
-            code : 1
+            code: 1
           },
           where: where
         }
@@ -550,7 +566,7 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
           name_ar: 1, name_en: 1,
           minor_currency_ar: 1, minor_currency_en: 1,
           ex_rate: 1,
-          code : 1
+          code: 1
         },
         where: {
           active: true
@@ -651,6 +667,26 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
 
   };
 
+  $scope.getTargetAccountList = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.targetAccountList = [];
+    $http({
+      method: "POST",
+      url: "/api/target_account/all"
+
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.targetAccountList = response.data;
+
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
 
   $scope.detailsCustomer = function (callback) {
     $scope.error = '';
@@ -746,6 +782,7 @@ app.controller("itineraries", function ($scope, $http, $timeout) {
   $scope.loadItinerariesTypes();
   $scope.getPaymentMethodList();
   $scope.loadCurrencies();
+  $scope.getTargetAccountList();
   $scope.getNumberingAuto();
   $scope.getItineraryList({ date: new Date() });
 });

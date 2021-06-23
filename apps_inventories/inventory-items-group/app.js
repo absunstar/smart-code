@@ -20,6 +20,8 @@ module.exports = function init(site) {
       name_ar: "مجموعة أصناف إفتراضية",
       name_en : "Default Items Group",
       image_url: '/images/items_group.png',
+      color : '#000000',
+      is_pos : true,
       company: {
         id: doc.id,
         name_ar: doc.name_ar,

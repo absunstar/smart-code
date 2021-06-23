@@ -11,7 +11,7 @@
                         <i-date2 class="col4" ng-model="itinerary.date" label="##word.date##"></i-date2>
 
                         <i-list class="col4" ng-model="itinerary.delegate" ng-search="_search.$items_group_search" v="r"
-                        display="name_##session.lang##"  label="##word.delegate##" items="delegatesList">
+                            display="name_##session.lang##" label="##word.delegate##" items="delegatesList">
                         </i-list>
 
                         <i-checkbox help-id="itineraries_active" class="col2" label="##word.active##"
@@ -26,38 +26,41 @@
 
                         <div class="row">
 
-                            <i-control ng-keydown="getCustomerList($event)" class="col2" ng-model="search_customer"
-                                label="##word.search##" type="text"></i-control>
-
-                            <i-list ng-search="_search.$customer" class="col3" display="name_##session.lang##"
-                                space=" - " display2="code" ng-model="itinerary.customer"
-                                ng-change="itinerary.vendor = {}" label="##word.customer##" items="customersList">
+                            <i-list class="col3" ng-model="itinerary.target_account" items="targetAccountList"
+                                display="##session.lang##" ng-search="_search.$search_target_accounts"
+                                label="##word.target_account##">
                             </i-list>
 
-                            <div class="col1"></div>
+                            <i-list class="col3" ng-model="itinerary.mission_type"
+                                ng-search="_search.$mission_type_search" display="##session.lang##"
+                                label="##word.mission_type##" items="itinerariesTypes">
+                            </i-list>
 
-                            <i-control ng-keydown="loadVendors($event)" class="col2" ng-model="search_vendor"
-                                label="##word.search##" type="text"></i-control>
-                            <i-list class="col3" ng-model="itinerary.vendor" items="vendorsList" space=" - "
-                                display2="code" ng-change="itinerary.customer = {}" display="name_##session.lang##"
-                                ng-search="_search.$search_vendor" label="##word.stores_in_Company_name##"></i-list>
+                            <i-control class="col2" ng-model="itinerary.amount" label="##word.the_amount##"
+                                type="number">
+                            </i-control>
+
                         </div>
 
                         <div class="row">
-                            <div class="col5">
 
-                                <div class="row">
+                            <i-control ng-show="itinerary.target_account.id == 1" ng-keydown="getCustomerList($event)"
+                                class="col2" ng-model="search_customer" label="##word.search##" type="text"></i-control>
+                            <i-list ng-show="itinerary.target_account.id == 1" ng-search="_search.$customer"
+                                class="col3" display="name_##session.lang##" space=" - " display2="code"
+                                ng-model="itinerary.customer" ng-change="itinerary.vendor = {}"
+                                label="##word.customer##" items="customersList">
+                            </i-list>
 
-                                    <i-list class="col8" ng-model="itinerary.mission_type"
-                                        ng-search="_search.$mission_type_search" display="##session.lang##"
-                                        label="##word.mission_type##" items="itinerariesTypes">
-                                    </i-list>
 
-                                    <i-control class="col4" ng-model="itinerary.amount" label="##word.the_amount##"
-                                        type="number">
-                                    </i-control>
-                                </div>
-                            </div>
+                            <i-control ng-show="itinerary.target_account.id == 2" ng-keydown="loadVendors($event)"
+                                class="col2" ng-model="search_vendor" label="##word.search##" type="text"></i-control>
+                            <i-list ng-show="itinerary.target_account.id == 2" class="col3" ng-model="itinerary.vendor"
+                                items="vendorsList" space=" - " display2="code" ng-change="itinerary.customer = {}"
+                                display="name_##session.lang##" ng-search="_search.$search_vendor"
+                                label="##word.stores_in_Company_name##"></i-list>
+
+
                             <div class="col1"></div>
                             <i-textarea ng-model="itinerary.required" class="col6" label="##word.required##">
                             </i-textarea>
@@ -78,8 +81,10 @@
                     <i-image help-id="itineraries_logo" ng-model="itinerary.image_url"></i-image>
                 </div>
             </div>
+
             <br>
             <br>
+
             <div class="row" ng-show="itinerary.itinerary_list.length > 0">
 
                 <table class="table hover bold loaded">
@@ -93,8 +98,8 @@
 
                     <tr ng-repeat="c in itinerary.itinerary_list">
                         <td class="center title">
-                            <p class="blue">{{c.target_type.##session.lang##}} :</p>
-                            <p class="blue">{{c.target.name_##session.lang##}}</p>
+                            <p class="blue">{{c.target_account.##session.lang##}} :</p>
+                            <p class="">{{c.target.name_##session.lang##}}</p>
                         </td>
 
                         <td class="center title">
@@ -103,13 +108,15 @@
                         <td class="center green">{{c.amount}}</td>
                         <td class="center title">{{c.required}}</td>
                         <td class="center">
-                            <i-button type="delete" ng-show="c.status === 1"
-                                ng-click="itinerary.itinerary_list.splice($index,1)">
-                            </i-button>
 
                             <i-button type="save" ng-show="c.status === 1 && itinerary.id"
                                 label="##word.mission_transfer##" ng-click="showMissionTransfer(c,$index)">
                             </i-button>
+
+                            <i-button type="delete" ng-show="c.status === 1"
+                                ng-click="itinerary.itinerary_list.splice($index,1)">
+                            </i-button>
+
                         </td>
                     </tr>
                 </table>

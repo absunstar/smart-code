@@ -63,6 +63,7 @@ module.exports = function init(site) {
           accounting: {},
           inventory: {
             value_added: 0,
+            number_best_selling: 0,
             overdraft: true
           },
           general_Settings: {}
@@ -95,10 +96,9 @@ module.exports = function init(site) {
   site.getDefaultSetting = function (req, callback) {
     callback = callback || {};
 
-    let where = req.data.where || {};
+    let where = {};
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
-
     $default_setting.findOne({
       where: where
     }, (err, doc) => {

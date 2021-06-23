@@ -64,6 +64,13 @@ app.controller("report_itineraries", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.showMissions = function (c) {
+    $scope._search = {};
+    $scope.itineraries = c;
+    site.showModal('#reportInvoicesDetailsModal');
+  };
+
+
   $scope.searchAll = function () {
     $scope._search = {};
 

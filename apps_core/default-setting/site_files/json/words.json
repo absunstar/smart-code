@@ -10,6 +10,11 @@
         "ar": "الإعدادات الإفتراضية"
     },
     {
+        "name": "number_best_selling",
+        "en": "The number of best-selling items",
+        "ar": "عدد الأصناف الأكثر مبيعا"
+    },
+    {
         "name": "default_setting_tenant_date_from",
         "en": "Date From",
         "ar": "من تاريخ"

@@ -1,28 +1,118 @@
 <div id="reportInvoicesDetailsModal" class="modal">
-   
 
     <div class="modal-content">
         <div class="modal-header">
             <span class="close">&times;</span>
             <h2>
-                ##word.report_invoices_details##
+                ##word.itineraries_details##
                 <i class="fa fa-file"></i>
             </h2>
         </div>
+
         <div class="modal-body">
-            <span ng-show="busy">
-                <span class="sr-only">Loading...</span>
-            </span>
-            <div x-import="report-employee-delegate/view.html"></div>
+
+            <div class="row">
+
+                <table class="table hover center bold loaded">
+
+                    <tr>
+                        <th>##word.serial##</th>
+                        <th>##word.status##</th>
+                        <th>##word.target##</th>
+                        <th>##word.phone##</th>
+                        <th class="w250">##word.addresses##</th>
+                        <th>##word.required##</th>
+                        <th>##word.mission_type##</th>
+                        <th>##word.the_amount##</th>
+                        <th>##word.collected_paid##</th>
+                        <th>##word.delegate_notes##</th>
+                        <th>##word.actions##</th>
+                    </tr>
+
+                    <tr ng-repeat="c in itineraries.itinerary">
+                        <td class="center blue">
+                            <p>{{$index + 1}}</p>
+                        </td>
+                        <td class="center">
+                            <span ng-show="c.status == 1" class="blueDot">
+                            </span>
+                            <span ng-show="c.status == 2" class="greenDot">
+                            </span>
+                            <span ng-show="c.status == 3" class="redDot">
+                            </span>
+                        </td>
+
+                        <td class="center title">
+                            <p class="blue">{{c.target_account.##session.lang##}} :</p>
+                            <p>{{c.target.name_##session.lang##}}</p>
+                        </td>
+
+                        <td class="center title">
+                            <p>
+                                <a ng-show="c.target.whatsapp" href="tel:{{c.target.whatsapp}}">
+                                    {{c.target.whatsapp}}
+                                    <i class="fa fa-whatsapp" aria-hidden="true"></i>
+                                </a>
+                            </p>
+
+                            <p>
+                                <a ng-show="c.target.mobile" href="tel:{{c.target.mobile}}">
+                                    {{c.target.mobile}}
+                                    <i class="fa fa-mobile" aria-hidden="true"></i>
+                                </a>
+                            </p>
+                        </td>
+
+                        <td class="center w250 title">
+                            <p>{{c.target.gov.name_##session.lang##}} - {{c.target.city.name_##session.lang##}} -
+                                {{c.target.area.name_##session.lang##}}</p>
+                            <p>{{c.target.address}}</p>
+                        </td>
+
+                        <td class="center title">{{c.required}}</td>
+
+                        <td class="center title">
+                            {{c.mission_type.##session.lang##}}
+                        </td>
+
+                        <td class="center green">{{c.amount}}</td>
+
+                        <td class="center blue">
+
+                            <p>{{c.collected_paid}}</p>
+
+                        </td>
+
+                        <td class="center title w200">
+                            <p>{{c.delegate_notes}}</p>
+
+                        </td>
+                        <td class="center">
+
+                            <b class="center">
+                                <p brown>{{c.date | date : 'yyyy - MM - dd'}}</p>
+                                <small class="green">{{c.date | date : 'mm : hh'}}</small>
+                            </b>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
 
         </div>
+
         <h2 class="error"> {{error}} </h2>
+
         <div class="modal-footer center">
 
+            <i-button class="not-print" label="##word.print##" type="print "
+                onclick="site.print('#reportInvoicesDetailsModal ')">
+            </i-button>
 
-            <i-button type="close" label="##word.close##" onclick="site.hideModal('#reportInvoicesDetailsModal')"></i-button>
-            <i-button class="not-print" label="##word.print##" type="print " onclick="site.print('#reportInvoicesDetailsModal ')"></i-button>
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#reportInvoicesDetailsModal')">
+            </i-button>
+
         </div>
     </div>
-   
+
 </div>

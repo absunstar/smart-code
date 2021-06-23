@@ -719,7 +719,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
 
   $scope.confirmTransfer = function (transfer_branch) {
     $scope.error = '';
-    $scope.getStockItems(transfer_branch.items, transfer_branch.store, callback => {
+    $scope.getStockItems(transfer_branch.items, transfer_branch.store_from, callback => {
       $scope.testPatches(transfer_branch, callbackTest => {
 
         if (callbackTest.patchCount) {
@@ -779,7 +779,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
 
         if (!_transfer_branch_all[i].transfer && _transfer_branch_all[i].branch_to.code == '##session.branch.code##') {
 
-          $scope.getStockItems(_transfer_branch_all[i].items, _transfer_branch_all[i].store, callback => {
+          $scope.getStockItems(_transfer_branch_all[i].items, _transfer_branch_all[i].store_from, callback => {
             $scope.testPatches(_transfer_branch_all[i], callbackTest => {
 
               if (callbackTest.patchCount) {

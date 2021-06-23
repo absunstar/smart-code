@@ -37,7 +37,7 @@
             <div class="row grid" ng-show="itinerary.itinerary_list.length > 0">
                 <div class="grid">
 
-                    <table class="table hover bold loaded">
+                    <table class="table hover center bold loaded">
                         <tr>
                             <th>##word.serial##</th>
                             <th>##word.status##</th>
@@ -66,7 +66,7 @@
                             </td>
 
                             <td class="center title">
-                                <p class="blue">{{c.target_type.##session.lang##}} :</p>
+                                <p class="blue">{{c.target_account.##session.lang##}} :</p>
                                 <p>{{c.target.name_##session.lang##}}</p>
                             </td>
 
@@ -134,7 +134,7 @@
                                         ng-click="c.status = 2 ; displayAccountInvoice(c)">
                                     </i-button>
 
-                                    <i-button type="close default" ng-click="c.status = 3">
+                                    <i-button type="close default" ng-click="cancleMission(c)">
                                     </i-button>
 
                                 </div>

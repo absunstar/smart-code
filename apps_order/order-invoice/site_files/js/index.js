@@ -51,11 +51,14 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
+          name_ar: 1,
+          name_en: 1,
           code: 1,
           active: 1,
           busy: 1,
           tables_group: 1,
+          minimum: 1,
+          maxmum: 1,
           image_url: 1
         },
 
@@ -79,10 +82,14 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
               data: {
                 select: {
                   id: 1,
-                  name_ar: 1, name_en: 1,
+                  name_ar: 1,
+                  name_en: 1,
                   code: 1,
                   active: 1,
+                  busy: 1,
                   tables_group: 1,
+                  minimum: 1,
+                  maxmum: 1,
                   image_url: 1
                 },
 
@@ -409,8 +416,8 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
                 $scope.showOrderDetails(order_invoice, 'table');
               };
-              
-              if($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto && $scope.order_invoice.status.id == 2 && !$scope.order_invoice.invoice){
+
+              if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto && $scope.order_invoice.status.id == 2 && !$scope.order_invoice.invoice) {
 
                 $scope.displayAccountInvoice($scope.order_invoice);
 
@@ -1097,7 +1104,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.itemsGroupList = response.data.list;
-
+          $scope.itemsGroupList.unshift({ id: 0, name_ar: 'الأكثر مبيعا', name_en: 'Best seller', color: '#F0F8FF', type: 'all' })
         }
       },
       function (err) {
@@ -1743,14 +1750,16 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
+          name_ar: 1,
+          name_en: 1,
           code: 1,
           active: 1,
           busy: 1,
           tables_group: 1,
+          minimum: 1,
+          maxmum: 1,
           image_url: 1
         },
-
         where: {
           active: true
         },
@@ -1959,7 +1968,6 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
     e.target.parentNode.classList.add('my-hover');
 
-
     $scope.get_open_shift((shift) => {
       if (shift) {
         $scope.busy = true;
@@ -1969,9 +1977,10 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
           url: "/api/stores_items/all",
           data: {
             where: {
-              "item_group.id": group.id,
-              "is_pos": true
-            }
+/*               "item_group.id": group.id,
+ */              "is_pos": true
+            },
+            group: group
           }
         }).then(
           function (response) {
@@ -2313,7 +2322,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       };
 
       obj.net_value = (site.toNumber(obj.total_value) + (obj.total_tax || 0) + (obj.price_delivery_service || 0)) - (obj.total_discount || 0);
-      let service =  (obj.service || 0) *  site.toNumber(obj.net_value)/100;
+      let service = (obj.service || 0) * site.toNumber(obj.net_value) / 100;
       obj.net_value = obj.net_value + service;
 
       obj.total_value = site.toNumber(obj.total_value);
@@ -2361,12 +2370,11 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
       } else $scope.order_invoice.price_delivery_service = 0;
 
-
     }
 
   };
 
-  $scope.showTable = function () {
+  $scope.showTables = function () {
     $scope.error = '';
     $scope.get_open_shift((shift) => {
       if (shift) {
@@ -2400,6 +2408,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
             data: $scope.order_invoice.table
           }).then(
             function (response) {
+              $scope.order_invoice.count_person = $scope.order_invoice.count_person || 1;
             },
             function (err) {
               $scope.busy = false;
@@ -2422,6 +2431,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         data: $scope.order_invoice.table
       }).then(
         function (response) {
+          $scope.order_invoice.count_person = $scope.order_invoice.count_person || 1;
         },
         function (err) {
           $scope.busy = false;
@@ -2431,6 +2441,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     }
     $scope.order_invoice.table_group = group;
     site.hideModal('#showTablesModal');
+
     $scope.addOrderInvoice($scope.order_invoice, 'table');
   };
 

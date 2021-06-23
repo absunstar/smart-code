@@ -24,7 +24,16 @@
         "en": "collected / PaidUp",
         "ar": "المحصل / المدفوع"
     },
-
+    {
+        "name": "mission_type_must_selected",
+        "en": "The Mission Type must be selected",
+        "ar": "يجب إختيار نوع المهمة"
+    },
+    {
+        "name": "reason_cancel",
+        "en": "Reason for cancellation",
+        "ar": "سبب الإلغاء"
+    },
     {
         "name": "addition_mission",
         "en": "Addition Mission",

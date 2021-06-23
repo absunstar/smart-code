@@ -78,76 +78,76 @@ module.exports = function init(site) {
       limit: req.body.limit
     }, (err, docs, count) => {
       if (!err) {
-        let itineraryList = []
 
+        let itineraryList = []
 
         if (delegateId > 0) {
           docs.forEach(_doc => {
-            if(_doc.itinerary_list && _doc.itinerary_list.length > 0)
-            _doc.itinerary_list.forEach(_itinerary => {
-              _itinerary.itinerary_date = _doc.date
-              _itinerary.delegate = _doc.delegate
-              itineraryList.push(_itinerary)
+            if (_doc.itinerary_list && _doc.itinerary_list.length > 0)
+              _doc.itinerary_list.forEach(_itinerary => {
+                _itinerary.itinerary_date = _doc.date
+                _itinerary.delegate = _doc.delegate
+                itineraryList.push(_itinerary)
 
-            });
+              });
           });
 
-        } else if (delegateId == 0) {
+        } else if (delegateId === 0) {
 
           docs.forEach(_doc => {
 
             let exist = false
-            if(_doc.itinerary_list && _doc.itinerary_list.length > 0)
-            _doc.itinerary_list.forEach(_itinerary => {
-              _itinerary.delegate = _doc.delegate
+            if (_doc.itinerary_list && _doc.itinerary_list.length > 0)
+              _doc.itinerary_list.forEach(_itinerary => {
+                _itinerary.delegate = _doc.delegate
 
-              if (itineraryList && itineraryList.length > 0) {
+                if (itineraryList && itineraryList.length > 0) {
 
-                itineraryList.forEach(_it => {
-                  if (_it.delegate.id === _itinerary.delegate.id) {
+                  itineraryList.forEach(_it => {
+                    if (_it.delegate.id === _itinerary.delegate.id) {
 
-                    _it.count = _it.count + 1
-                    if (_itinerary.status === 1) {
-                      _it.missions_existing = _it.missions_existing + 1
-                    } else if (_itinerary.status === 2) {
-                      _it.missions_completed = _it.missions_completed + 1
+                      _it.count = _it.count + 1
+                      _it.itinerary.push(_itinerary)
+                      if (_itinerary.status === 1) {
+                        _it.missions_existing = _it.missions_existing + 1
+                      } else if (_itinerary.status === 2) {
+                        _it.missions_completed = _it.missions_completed + 1
 
-                    } else if (_itinerary.status === 3) {
-                      _it.missions_canceled = _it.missions_canceled + 1
+                      } else if (_itinerary.status === 3) {
+                        _it.missions_canceled = _it.missions_canceled + 1
 
+                      }
+                      exist = true
                     }
-                    exist = true
-                  }
-                });
-
-              }
-
-              if (!exist) {
-
-                let obj_it = {}
-                obj_it.delegate = _itinerary.delegate
-                obj_it.missions_existing = 0
-                obj_it.missions_completed = 0
-                obj_it.missions_canceled = 0
-                obj_it.count = 1
-                if (_itinerary.status === 1) {
-                  obj_it.missions_existing = obj_it.missions_existing + 1
-                } else if (_itinerary.status === 2) {
-                  obj_it.missions_completed = obj_it.missions_completed + 1
-
-                } else if (_itinerary.status === 3) {
-                  obj_it.missions_canceled = obj_it.missions_canceled + 1
+                  });
 
                 }
 
-                itineraryList.push(obj_it)
-              }
-            });
+                if (!exist) {
+
+                  let obj_it = { itinerary: _doc.itinerary_list }
+                  obj_it.delegate = _itinerary.delegate
+                  obj_it.missions_existing = 0
+                  obj_it.missions_completed = 0
+                  obj_it.missions_canceled = 0
+                  obj_it.count = 1
+                  if (_itinerary.status === 1) {
+                    obj_it.missions_existing =  1
+                  } else if (_itinerary.status === 2) {
+                    obj_it.missions_completed =  1
+
+                  } else if (_itinerary.status === 3) {
+                    obj_it.missions_canceled =  1
+
+                  }
+              
+                  itineraryList.push(obj_it)
+                }
+              });
 
           })
 
         }
-
         response.done = true
         response.list = itineraryList
         response.count = count
