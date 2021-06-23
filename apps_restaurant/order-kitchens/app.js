@@ -58,8 +58,8 @@ module.exports = function init(site) {
       where['book_list.kitchen.id'] = where['kitchen'].id;
       delete where['kitchen']
     }
+    where['$or'] = [{ 'book_list.done_kitchen': false }, { 'book_list.done_kitchen': undefined }]
 
-    where['book_list.done_kitchen'] = { $ne: true }
     where['hold'] = { $ne: true }
 
     $order_invoice.findMany({
