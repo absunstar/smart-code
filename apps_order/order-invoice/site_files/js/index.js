@@ -360,7 +360,8 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
               $scope.busy = false;
               if (response.data.done) {
                 if (site.feature('restaurant')) {
-                  $scope.sendToKitchens(Object.assign({}, response.data.doc));
+                  $scope.sendToKitchens({ ...response.data.doc });
+                  $scope.order_invoice.$show_table = true;
                 }
 
                 order_invoice = response.data.doc;
@@ -413,8 +414,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
               $scope.order_invoice = response.data.doc;
               if (type === 'table') {
-
-                $scope.showOrderDetails(order_invoice, 'table');
+                $scope.order_invoice.$show_table = true;
               };
 
               if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto && $scope.order_invoice.status.id == 2 && !$scope.order_invoice.invoice) {
@@ -2400,8 +2400,9 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         data: $scope.order_invoice.table
       }).then(
         function (response) {
-          $scope.order_invoice.table = table;
+          $scope.order_invoice.table = { ...table };
           $scope.order_invoice.table.busy = true;
+          $scope.order_invoice.$show_table = true;
           $http({
             method: "POST",
             url: "/api/tables/update",
@@ -2423,8 +2424,9 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       )
     } else {
 
-      $scope.order_invoice.table = table;
+      $scope.order_invoice.table = { ...table };
       $scope.order_invoice.table.busy = true;
+      $scope.order_invoice.$show_table = true;
       $http({
         method: "POST",
         url: "/api/tables/update",
@@ -2442,7 +2444,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     $scope.order_invoice.table_group = group;
     site.hideModal('#showTablesModal');
 
-    $scope.addOrderInvoice($scope.order_invoice, 'table');
+    /*  $scope.addOrderInvoice($scope.order_invoice, 'table');  */
   };
 
   $scope.changeTransactionType = function (order) {
