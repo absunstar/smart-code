@@ -18,7 +18,7 @@
                                 </i-date2>
 
                                 <i-list class="col3" label="##word.visit_type##" ng-model="doctors_visits.visit_type"
-                                    ng-change="changeDoctorsVisitsPrice() ; calc(doctors_visits)"
+                                    ng-change="changeDoctorsVisitsPrice() ; calc(doctors_visits)" v="r"
                                     items="doctorsVisitsTypeList" display="##session.lang##"
                                     ng-search="_search.$doctors_visits_type_search"></i-list>
 
@@ -71,13 +71,16 @@
 
                                     <tr>
                                         <td class="white bg_card"> ##word.customer_name## </td>
-                                        <td colspan="5" class="center"> {{doctors_visits.customer.name_##session.lang##}}  <b class="red" ng-show="doctors_visits.customer.child">(##word.child##)</b>
+                                        <td colspan="5" class="center">
+                                            {{doctors_visits.customer.name_##session.lang##}} <b class="red"
+                                                ng-show="doctors_visits.customer.child">(##word.child##)</b>
                                         </td>
-                                     
+
                                         <td class="white bg_card"> ##word.gender## </td>
-                                        <td colspan="2" class="center"> {{doctors_visits.customer.gender.##session.lang##}}
+                                        <td colspan="2" class="center">
+                                            {{doctors_visits.customer.gender.##session.lang##}}
                                         </td>
-    
+
                                     </tr>
 
 
@@ -87,7 +90,7 @@
                                         <td class="white bg_card"> ##word.tall## </td>
                                         <td colspan="2" class="center"> {{doctors_visits.customer.tall}} </td>
                                         <td class="white bg_card"> ##word.blood_type## </td>
-                                        <td colspan="2" class="center red"> {{doctors_visits.customer.blood_type.name_##session.lang##}}
+                                        <td colspan="2" class="center red"> {{doctors_visits.customer.blood_type.name}}
                                         </td>
                                     </tr>
                                     <tr>
@@ -96,11 +99,14 @@
                                     </tr>
                                     <tr>
                                         <td class="white bg_card"> ##word.gov## </td>
-                                        <td colspan="2" class="center"> {{doctors_visits.customer.gov.name_##session.lang##}} </td>
+                                        <td colspan="2" class="center">
+                                            {{doctors_visits.customer.gov.name_##session.lang##}} </td>
                                         <td class="white bg_card"> ##word.city## </td>
-                                        <td colspan="2" class="center"> {{doctors_visits.customer.city.name_##session.lang##}} </td>
+                                        <td colspan="2" class="center">
+                                            {{doctors_visits.customer.city.name_##session.lang##}} </td>
                                         <td class="white bg_card"> ##word.area## </td>
-                                        <td colspan="2" class="center"> {{doctors_visits.customer.area.name_##session.lang##}} </td>
+                                        <td colspan="2" class="center">
+                                            {{doctors_visits.customer.area.name_##session.lang##}} </td>
                                     </tr>
 
                                     <tr>
@@ -133,12 +139,14 @@
                                 <div class="row">
 
                                     <i-list class="col4" label="##word.specialty##" ng-model="doctors_visits.specialty"
-                                        items="specialtyList" display="name_##session.lang##" ng-search="_search.$specialty_search">
+                                        items="specialtyList" display="name_##session.lang##"
+                                        ng-search="_search.$specialty_search">
                                     </i-list>
 
 
                                     <i-list class="col4" label="##word.clinic##" ng-model="doctors_visits.clinic"
-                                        items="clinicList" display="name_##session.lang##" ng-search="_search.$clinic_search"></i-list>
+                                        items="clinicList" display="name_##session.lang##"
+                                        ng-search="_search.$clinic_search"></i-list>
 
                                 </div>
 
@@ -149,7 +157,8 @@
                                         ng-keydown="getDoctorList($event)"></i-control>
 
                                     <i-list class="col5" label="##word.doctors##" ng-model="doctors_visits.doctor"
-                                        items="doctorList" display="name_##session.lang##" ng-search="_search.$doctors_searching">
+                                        items="doctorList" display="name_##session.lang##"
+                                        ng-search="_search.$doctors_searching">
                                     </i-list>
 
                                     <div class="col3"></div>
@@ -380,8 +389,8 @@
                                 ng-model="doctors_visits.net_value" type="number" label="##word.paid_require##">
                             </i-control>
 
-                            <i-control class="col4" ng-change="calc(doctors_visits)"
-                                ng-model="doctors_visits.paid" type="number" label="##word.paid##">
+                            <i-control class="col4" ng-change="calc(doctors_visits)" ng-model="doctors_visits.paid"
+                                type="number" label="##word.paid##">
                             </i-control>
 
                             <i-control class="col4" disabled ng-model="doctors_visits.remain" type="number"

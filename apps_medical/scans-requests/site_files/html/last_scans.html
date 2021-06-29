@@ -1,0 +1,69 @@
+<div id="lastScansModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.last_scans##
+                <i class="fa fa-plus"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+            <div class="row">
+                <div class="row" ng-show="scans_requests.last_scans_list.length > 0">
+                    <fieldset>
+                        <legend>##word.Previous_patient_scans##</legend>
+
+                        <br>
+                        <br>
+                        <table class="table loaded center hover bold">
+
+                            <tr>
+                                <td style="background : gray" class="white">##word.scans_name##</td>
+                                <td style="background : gray" class="white">##word.date##</td>
+                                <td style="background : gray" class="white">##word.price##</td>
+                                <td style="background : gray" class="white"> ##word.notes_before_scans##</td>
+                                <td style="background : gray" class="white"> ##word.notes_after_scans## </td>
+                                <td style="background : gray" class="white"> ##word.files## </td>
+                            </tr>
+
+                            <tr ng-repeat="l in scans_requests.last_scans_list">
+
+                                <td class="center">{{l.name_##session.lang##}}</td>
+
+                                <td class="center">
+                                    <p class="brown"> {{l.date |date:"dd - MM - yyyy"}} </p>
+                                    <p class="green"> {{l.date |date:"hh:mm"}} </p>
+                                </td>
+
+                                <td class="center green">{{l.price}}</td>
+
+                                <td class="center lines_text">
+                                    {{l.notes_before_scans}}
+                                </td>
+
+                                <td class="center lines_text">
+                                    {{l.notes_after_scans}}
+                                </td>
+
+                                <td class="not-print">
+                                    <i-files view ng-model="l.files"></i-files>
+                                </td>
+
+                            </tr>
+
+                        </table>
+                    </fieldset>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer center">
+            <h2 class="error"> {{error}} </h2>
+            <h2 class="green center"> {{success}} </h2>
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#lastScansModal')">
+            </i-button>
+        </div>
+    </div>
+</div>

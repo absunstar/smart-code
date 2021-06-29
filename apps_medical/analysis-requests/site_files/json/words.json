@@ -13,6 +13,7 @@
     {"name" : "analysis_requests_add_name" , "en" : "Add Analysis Requests" , "ar" : "إضافة طلب تحاليل"},
     {"name" : "notes_before_analysis" , "en" : "Notes before analysis" , "ar" : "ملاحظات قبل التحليل"},
     {"name" : "Previous_patient_analysis" , "en" : "Previous Patient Analysis" , "ar" : "تحاليل المريض سابقة"},
+    {"name" : "last_analysis" , "en" : "Last Analysis" , "ar" : "تحاليل سابقة"},
     {"name" : "delivery_analyzes" , "en" : "Delivery of analyzes" , "ar" : "تسليم التحاليل"},
     {"name" : "delivery_all" , "en" : "Delivery All" , "ar" : "تسليم الكل"},
     {"name" : "person_delivery" , "en" : "The Person Delivery" , "ar" : "الشخص المستلم"},

@@ -54,6 +54,15 @@
                                     </td>
                                 </tr>
 
+                                <tr ng-show="account_invoices.in_type.id">
+                                    <td class="title"> ##word.in_type## </td>
+                                    <td class="center"> {{account_invoices.in_type.##session.lang##}} </td>
+                                </tr>
+
+                                <tr ng-show="account_invoices.out_type.id">
+                                    <td class="title"> ##word.out_type## </td>
+                                    <td class="center"> {{account_invoices.out_type.##session.lang##}} </td>
+                                </tr>
 
                                 <tr ng-show="account_invoices.tenant.id">
                                     <td class="title"> ##word.tenant## </td>

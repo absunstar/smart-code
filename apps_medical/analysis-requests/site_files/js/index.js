@@ -79,6 +79,12 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
     site.showModal('#analysisRequestsUpdateModal');
   };
 
+  $scope.showLastAnalysis = function (analysis_requests) {
+    $scope._search = {};
+
+    site.showModal('#lastAnalysisModal');
+  };
+
   $scope.updateAnalysisRequests = function (analysis_requests) {
     $scope.error = '';
 
@@ -503,8 +509,8 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
     $scope.analysis_requests.analysis_list.forEach(_analysis => {
 
       if (!_analysis.person_delivery) {
-        _analysis.person_delivery = Object.assign({}, $scope.analysis_requests.$person_delivery);
-        _analysis.delivery_data = Object.assign({}, $scope.analysis_requests.$delivery_data);
+        _analysis.person_delivery = { ...$scope.analysis_requests.$person_delivery };
+        _analysis.delivery_data = { ...$scope.analysis_requests.$delivery_data };
       };
 
     });
@@ -514,7 +520,7 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
 
   $scope.showPersonDelivery = function (analysis, type) {
 
-    $scope.analysis =  analysis;
+    $scope.analysis = analysis;
     if (type === 'view') {
       $scope.analysis.$view = true;
     }

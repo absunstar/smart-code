@@ -186,12 +186,6 @@
 
 
 
-
-
-
-
-
-
                         <div class="row" ng-show="account_invoices.current_book_list.length > 0">
 
                             <table x-permissions="login" class="table bold hover loaded" id="t1">
@@ -232,7 +226,6 @@
                             </table>
                         </div>
 
-                        <br>
                         <br>
 
 
@@ -358,7 +351,6 @@
                         </div>
 
                         <br>
-                        <br>
 
                         <div class="row">
 
@@ -390,81 +382,69 @@
 
                         <div class="row" ng-show="account_invoices.source_type.id ==8">
 
-                            <div class="col4 control">
-                                <i-checkbox ng-model="account_invoices.show_source" label="##word.source##">
-                                </i-checkbox>
+                            <i-list class="col3" ng-search="_search.$source_account_invoices"
+                                ng-model="account_invoices.in_type" display="##session.lang##" items="inTypesList"
+                                label="##word.source_name##">
+                            </i-list>
 
-                                <i-list ng-search="_search.$source_account_invoices" ng-model="account_invoices.source"
-                                    display="name_##session.lang##" ng-show="account_invoices.show_source"
-                                    items="namesInList" label="##word.source_name##">
-                                </i-list>
-                            </div>
+                            <i-list class="col3" ng-search="_search.$source_account_invoices"
+                                ng-model="account_invoices.source" display="name_##session.lang##"
+                                ng-show="account_invoices.in_type.id == 1" items="namesInList"
+                                label="##word.incoming_name##">
+                            </i-list>
 
-                            <div class="col7 control">
-                                <i-checkbox ng-model="account_invoices.show_customer" label="##word.customer##">
-                                </i-checkbox>
-                                <div class="row" ng-show="account_invoices.show_customer">
 
-                                    <i-control ng-keydown="getCustomersList($event)" id="service" class="col3"
-                                        ng-model="search_customer" label="##word.search##" type="text"></i-control>
+                            <i-control ng-show="account_invoices.in_type.id == 3" ng-keydown="getCustomersList($event)"
+                                id="service" class="col2" ng-model="search_customer" label="##word.search##"
+                                type="text"></i-control>
 
-                                    <i-list ng-search="_search.$customer" class="col6" display="name_##session.lang##"
-                                        space=" - " display2="code" ng-model="account_invoices.customer"
-                                        label="##word.customer##" items="customersList">
-                                    </i-list>
-                                </div>
-                            </div>
+                            <i-list ng-show="account_invoices.in_type.id == 3" ng-search="_search.$customer"
+                                class="col4" display="name_##session.lang##" space=" - " display2="code"
+                                ng-model="account_invoices.customer" label="##word.customer##" items="customersList">
+                            </i-list>
 
                         </div>
 
+
                         <div class="row" ng-show="account_invoices.source_type.id ==9">
 
-                            <div class="col4 control">
-                                <i-checkbox ng-model="account_invoices.show_source" label="##word.source##">
-                                </i-checkbox>
+                            <i-list class="col3" ng-search="_search.$source_account_invoices"
+                                ng-model="account_invoices.out_type" display="##session.lang##"
+                                items="outTypesList" label="##word.source_name##">
+                            </i-list>
 
-                                <i-list ng-search="_search.$source_account_invoices" ng-model="account_invoices.source"
-                                    display="name_##session.lang##" ng-show="account_invoices.show_source"
-                                    items="namesOutList" label="##word.source_name##">
-                                </i-list>
-                            </div>
+                            <i-list class="col3" ng-search="_search.$source_account_invoices"
+                                ng-model="account_invoices.source" display="name_##session.lang##"
+                                ng-show="account_invoices.out_type.id == 1" items="namesOutList"
+                                label="##word.expense_name##">
+                            </i-list>
 
-                            <div class="col7 control">
-                                <i-checkbox ng-model="account_invoices.show_vendor" label="##word.vendor##">
-                                </i-checkbox>
-                                <div class="row" ng-show="account_invoices.show_vendor">
 
-                                    <i-control ng-keydown="loadVendors($event)" class="col3" ng-model="search_vendor"
-                                        label="##word.search##" type="text"></i-control>
-                                    <i-list ng-model="account_invoices.vendor" class="col6" items="vendorsList"
-                                        space=" - " display2="code" display="name_##session.lang##"
-                                        ng-search="_search.$search_vendor" label="##word.stores_in_Company_name##">
-                                    </i-list>
-                                </div>
-                            </div>
+                            <i-control ng-show="account_invoices.out_type.id == 3" ng-keydown="loadVendors($event)"
+                                class="col2" ng-model="search_vendor" label="##word.search##" type="text"></i-control>
+
+                            <i-list ng-show="account_invoices.out_type.id == 3" ng-model="account_invoices.vendor"
+                                class="col4" items="vendorsList" space=" - " display2="code"
+                                display="name_##session.lang##" ng-search="_search.$search_vendor"
+                                label="##word.stores_in_Company_name##">
+                            </i-list>
+
 
                         </div>
 
 
                         <div class="row"
                             ng-show="account_invoices.source_type.id ==8 || account_invoices.source_type.id ==9">
-                            <div class="col4 control">
-                                <i-checkbox ng-model="account_invoices.show_employee"
-                                    label="##word.amounts_in_employees##"></i-checkbox>
-                                <i-list ng-show="account_invoices.show_employee" label="##word.amounts_in_employees##"
-                                    ng-search="_search.$eng_account_invoices" ng-model="account_invoices.employee"
-                                    display="name_##session.lang##" items="employeesList">
-                                </i-list>
-                            </div>
 
-                            <div class="col4 control">
-                                <i-checkbox ng-model="account_invoices.show_delegate" label="##word.delegate##">
-                                </i-checkbox>
-                                <i-list ng-show="account_invoices.show_delegate" ng-model="account_invoices.delegate"
-                                    display="name_##session.lang##" ng-search="_search.$items_group_search"
-                                    label="##word.delegate##" items="delegatesList">
-                                </i-list>
-                            </div>
+                            <i-list class="col4" label="##word.amounts_in_employees##"
+                                ng-search="_search.$eng_account_invoices" ng-model="account_invoices.employee"
+                                display="name_##session.lang##" items="employeesList">
+                            </i-list>
+
+
+                            <i-list class="col4" ng-model="account_invoices.delegate" display="name_##session.lang##"
+                                ng-search="_search.$items_group_search" label="##word.delegate##" items="delegatesList">
+                            </i-list>
                         </div>
 
                         <div class="row" ng-show="account_invoices.source_type.id ==13">

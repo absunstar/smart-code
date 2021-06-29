@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "en": "Exchange source",
+        "ar": "مصدر مصروفات"
+    },
+    {
+        "id": 2,
+        "en": "Pay purchase invoice",
+        "ar": "تسديد فاتورة مشتريات"
+    },
+    {
+        "id": 3,
+        "en": "Vendor",
+        "ar": "مورد"
+    }
+]

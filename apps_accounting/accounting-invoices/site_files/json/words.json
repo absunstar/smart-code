@@ -120,6 +120,16 @@
         "ar": "القيمة"
     },
     {
+        "name": "incoming_name",
+        "en": "Incoming name",
+        "ar": "إسم الوارد"
+    },
+    {
+        "name": "expense_name",
+        "en": "Expense name",
+        "ar": "إسم المصروف"
+    },
+    {
         "name": "target_account_must_selected",
         "en": "The target account must be selected",
         "ar": "يجب إختيار الحساب المستهدف"

@@ -84,7 +84,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
         $scope.error = v.messages[0].ar;
         return;
 
-      }  else if (site.toNumber("##query.type##") === 16) {
+      } else if (site.toNumber("##query.type##") === 16) {
         if (!$scope.account_invoices.target_account || ($scope.account_invoices.target_account && !$scope.account_invoices.target_account.id)) {
           $scope.error = "##word.target_account_must_selected##";
           return;
@@ -1069,6 +1069,49 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.getInTypesList = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.inTypesList = [];
+    $http({
+      method: "POST",
+      url: "/api/in_type/all"
+
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.inTypesList = response.data;
+
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.getOutTypesList = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.outTypesList = [];
+    $http({
+      method: "POST",
+      url: "/api/out_type/all"
+
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.outTypesList = response.data;
+
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+
   $scope.getSourceType = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -1768,14 +1811,20 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
   $scope.getAccountInvoicesList({ date: new Date() });
   $scope.getSourceType();
   $scope.loadCurrencies();
-  $scope.loadInNames();
-  $scope.loadOutNames();
   $scope.loadEmployees();
   $scope.loadDelegates();
   $scope.loadPaymentTypes();
   $scope.getSafes();
   if (site.feature('school')) {
     $scope.getSchoolGradesList();
+  }
+  if (site.toNumber("##query.type##") === 8) {
+    $scope.getInTypesList();
+    $scope.loadInNames();
+  }
+  if (site.toNumber("##query.type##") === 9) {
+    $scope.getOutTypesList();
+    $scope.loadOutNames();
   }
   $scope.getTargetAccountList();
   $scope.getPaymentMethodList();

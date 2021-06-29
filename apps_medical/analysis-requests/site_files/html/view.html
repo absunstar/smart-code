@@ -49,24 +49,35 @@
 
                         <div class="row">
                             <br>
-                            <i-button type="details" class="not-print" label="##word.customers_details##"
-                                ng-click="showPatient(analysis_requests.customer.id)"></i-button>
+                            <div class="row">
+
+                                <i-button type="details" class="not-print" label="##word.customers_details##"
+                                    ng-click="showPatient(analysis_requests.customer.id)"></i-button>
+
+                                <i-button ng-show="analysis_requests.last_analysis_list.length > 0"
+                                    label="##word.last_analysis##" ng-click="showLastAnalysis(analysis_requests)">
+                                </i-button>
+                            </div>
+
                             <div class="row">
                                 <fieldset class="col11" ng-show="analysis_requests.customer.id">
 
                                     <table class="table bold center hover">
-                                 
+
                                         <tr>
                                             <td class="white bg_card"> ##word.customer_name## </td>
-                                            <td colspan="5" class="center"> {{analysis_requests.customer.name_##session.lang##}}  <b class="red" ng-show="analysis_requests.customer.child">(##word.child##)</b>
+                                            <td colspan="5" class="center">
+                                                {{analysis_requests.customer.name_##session.lang##}} <b class="red"
+                                                    ng-show="analysis_requests.customer.child">(##word.child##)</b>
                                             </td>
-                                         
+
                                             <td class="white bg_card"> ##word.gender## </td>
-                                            <td colspan="2" class="center"> {{analysis_requests.customer.gender.##session.lang##}}
+                                            <td colspan="2" class="center">
+                                                {{analysis_requests.customer.gender.##session.lang##}}
                                             </td>
-        
+
                                         </tr>
-    
+
 
                                         <tr>
                                             <td class="white bg_card"> ##word.weight## </td>
@@ -77,7 +88,7 @@
                                             </td>
                                             <td class="white bg_card"> ##word.blood_type## </td>
                                             <td colspan="2" class="center red">
-                                                {{analysis_requests.customer.blood_type.name_##session.lang##}}
+                                                {{analysis_requests.customer.blood_type.name}}
                                             </td>
                                         </tr>
                                         <tr>
@@ -88,7 +99,8 @@
                                         </tr>
                                         <tr>
                                             <td class="white bg_card"> ##word.gov## </td>
-                                            <td colspan="2" class="center"> {{analysis_requests.customer.gov.name_##session.lang##}}
+                                            <td colspan="2" class="center">
+                                                {{analysis_requests.customer.gov.name_##session.lang##}}
                                             </td>
                                             <td class="white bg_card"> ##word.city## </td>
                                             <td colspan="2" class="center">
@@ -123,7 +135,6 @@
                         <i-image view ng-model="analysis_requests.image_url"> </i-image>
                         <i-files label="##word.files##" view ng-model="analysis_requests.files"></i-files>
                     </div>
-
 
                 </div>
 
@@ -187,59 +198,6 @@
 
                                 <td class="not-print">
                                     <i-files view ng-model="a.files"></i-files>
-                                </td>
-
-                            </tr>
-                        </table>
-                    </fieldset>
-
-                </div>
-
-                <br>
-                <br>
-                <br>
-
-                <div class="row" ng-show="analysis_requests.last_analysis_list.length > 0">
-                    <fieldset>
-                        <legend>##word.Previous_patient_analysis##</legend>
-
-                        <br>
-                        <br>
-                        <table class="table loaded center hover bold">
-                            <tr>
-                                <td style="background : gray" class="white">##word.analysis_name##</td>
-                                <td style="background : gray" class="white">##word.date##</td>
-                                <td style="background : gray" class="white">##word.price##</td>
-                                <td style="background : gray" class="white"> ##word.normal_range## </td>
-                                <td style="background : gray" class="white"> ##word.notes_before_analysis##
-                                </td>
-                                <td style="background : gray" class="white"> ##word.result## </td>
-                                <td style="background : gray" class="white"> ##word.notes_after_analysis##
-                                </td>
-                            </tr>
-                            <tr ng-repeat="l in analysis_requests.last_analysis_list">
-
-                                <td class="center">{{l.name_##session.lang##}}</td>
-                                <td class="center">
-                                    <p class="brown"> {{l.date |date:"dd - MM - yyyy"}} </p>
-                                    <p class="green"> {{l.date |date:"hh:mm"}} </p>
-                                </td>
-                                <td class="center green">{{l.price}}</td>
-
-                                <td class="center">
-                                    <b class="green">{{l.from}}</b> - <b class="red">{{l.to}}</b>
-                                </td>
-
-                                <td class="center lines_text">
-                                    {{l.notes_before_analysis}}
-                                </td>
-
-                                <td class="center blue">
-                                    {{l.result}}
-                                </td>
-
-                                <td class="center lines_text">
-                                    {{l.notes_after_analysis}}
                                 </td>
 
                             </tr>

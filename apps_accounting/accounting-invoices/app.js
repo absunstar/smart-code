@@ -60,6 +60,18 @@ module.exports = function init(site) {
     path: __dirname + "/site_files/json/payment_method.json"
   })
 
+  site.post({
+    name: "/api/in_type/all",
+    path: __dirname + "/site_files/json/in_type.json"
+  })
+
+  site.post({
+    name: "/api/out_type/all",
+    path: __dirname + "/site_files/json/out_type.json"
+  })
+
+
+
   site.post("/api/account_invoices/add", (req, res) => {
     let response = {}
     response.done = false
@@ -404,7 +416,7 @@ module.exports = function init(site) {
                     paid_value.operation = { ar: 'سند قبض', en: 'Amount In' }
                     paid_value.transition_type = 'in'
 
-                    if (doc.customer && doc.customer.id) {
+                    if (doc.in_type && doc.in_type.id == 3 && doc.customer && doc.customer.id) {
 
                       let customerObj = { id: doc.customer.id };
 
@@ -426,7 +438,7 @@ module.exports = function init(site) {
                     paid_value.operation = { ar: 'سند صرف', en: 'Amount Out' }
                     paid_value.transition_type = 'out'
 
-                    if (doc.vendor && doc.vendor.id) {
+                    if (doc.out_type && doc.out_type.id == 3 && doc.vendor && doc.vendor.id) {
 
                       let vendorObj = { id: doc.vendor.id };
 
@@ -809,6 +821,7 @@ module.exports = function init(site) {
 
 
                 } else if (account_invoices_doc.source_type.id == 8) {
+
                   paid_value.operation = { ar: 'دفعة سند قبض', en: 'Pay Amount In' }
                   paid_value.transition_type = 'in'
 
@@ -1276,7 +1289,7 @@ module.exports = function init(site) {
                 }
 
               }
-            } else if ((account_invoices_doc.source_type.id === 2 && account_invoices_doc.invoice_type.id != 6) || account_invoices_doc.source_type.id === 3 || account_invoices_doc.source_type.id === 4 || account_invoices_doc.source_type.id === 8 || account_invoices_doc.source_type.id === 13 || account_invoices_doc.source_type.id === 15) {
+            } else if ((account_invoices_doc.source_type.id === 2 && account_invoices_doc.invoice_type.id != 6) || account_invoices_doc.source_type.id === 3 || account_invoices_doc.source_type.id === 4 || (account_invoices_doc.source_type.id === 8 && account_invoices_doc.in_type && account_invoices_doc.in_type.id == 3) || account_invoices_doc.source_type.id === 13 || account_invoices_doc.source_type.id === 15) {
 
               if (account_invoices_doc.customer && account_invoices_doc.customer.id) {
 
@@ -1374,7 +1387,7 @@ module.exports = function init(site) {
 
             } else if (account_invoices_doc.source_type.id === 9) {
 
-              if (account_invoices_doc.vendor && account_invoices_doc.vendor.id) {
+              if (account_invoices_doc.out_type && account_invoices_doc.out_type.id == 3 && account_invoices_doc.vendor && account_invoices_doc.vendor.id) {
 
                 let vendorObj = { id: account_invoices_doc.vendor.id };
 
@@ -1387,7 +1400,7 @@ module.exports = function init(site) {
               }
             } else if (account_invoices_doc.source_type.id === 8) {
 
-              if (account_invoices_doc.customer && account_invoices_doc.customer.id) {
+              if (account_invoices_doc.customer && account_invoices_doc.customer.id && account_invoices_doc.in_type && account_invoices_doc.in_type.id == 3) {
 
                 let customerObj = { id: account_invoices_doc.customer.id };
 
@@ -1538,7 +1551,6 @@ module.exports = function init(site) {
 
                         obj.transition_type = 'out'
 
-
                       } else if (result.doc.source_type.id == 2) {
                         if (result.doc.invoice_type && result.doc.invoice_type.id == 6) {
                           obj.operation = { ar: 'حذف مرتجع فاتورة مبيعات', en: 'Delete Return Sales Invoice' }
@@ -1670,7 +1682,7 @@ module.exports = function init(site) {
                       }
 
                     }
-                  } else if ((result.doc.source_type.id === 2 && result.doc.invoice_type.id != 6) || result.doc.source_type.id === 3 || result.doc.source_type.id === 4 || result.doc.source_type.id === 8 || result.doc.source_type.id === 13 || result.doc.source_type.id === 15) {
+                  } else if ((result.doc.source_type.id === 2 && result.doc.invoice_type.id != 6) || result.doc.source_type.id === 3 || result.doc.source_type.id === 4 || (result.doc.source_type.id === 8 && result.doc.in_type && result.doc.in_type.id == 3) || result.doc.source_type.id === 13 || result.doc.source_type.id === 15) {
 
                     if (result.doc.customer) {
 
@@ -1758,7 +1770,7 @@ module.exports = function init(site) {
 
                   } else if (result.doc.source_type.id === 9) {
 
-                    if (result.doc.vendor && result.doc.vendor.id) {
+                    if (result.doc.out_type && result.doc.out_type.id == 3 && result.doc.vendor && result.doc.vendor.id) {
 
                       let vendorObj = { id: result.doc.vendor.id };
 
@@ -1768,7 +1780,7 @@ module.exports = function init(site) {
                       site.quee('[vendor][account_invoice][balance]', vendorObj)
 
                     }
-                  } else if (result.doc.source_type.id === 8) {
+                  } else if (result.doc.source_type.id === 8 && result.doc.in_type && result.doc.in_type.id == 3) {
 
                     if (result.doc.customer && result.doc.customer.id) {
 

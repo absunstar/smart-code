@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "en": "Incoming source",
+        "ar": "مصدر وارد"
+    },
+    {
+        "id": 2,
+        "en": "Pay sales invoice",
+        "ar": "تسديد فاتورة مبيعات"
+    },
+    {
+        "id": 3,
+        "en": "Customer",
+        "ar": "عميل"
+    }
+]

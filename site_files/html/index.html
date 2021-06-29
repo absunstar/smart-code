@@ -39,6 +39,65 @@
       margin: 5px;
     }
 
+    .project {
+      position: relative;
+      display: inline-grid;
+      border: 1px solid #5369e0;
+      background: #fff;
+      color: #000;
+      border-radius: 15px;
+      text-align: center;
+      line-height: 1.8;
+      width: 320px;
+      height: 470px;
+      margin: 15px;
+    }
+
+    .project h2 {
+      height: 50px;
+      font-family: cursive;
+      border-radius: 15px;
+      border-bottom-left-radius: 0px;
+      border-bottom-right-radius: 0px;
+      font-size: 20px;
+      text-align: center;
+      font-weight: bold;
+      color: #fff;
+      padding: 5px;
+      background: #51c7ff;
+      text-shadow: 1px 1px 8px #000000;
+    }
+
+    .project img {
+      margin-top: 20px !important;
+      margin-bottom: 20px !important;
+      border-radius: 20px;
+      width: 120px;
+      min-height: 180px;
+    }
+
+    .project p {
+      padding: 15px;
+      text-align: center !important;
+      border-radius: 15px;
+      color: #000000;
+      background: #51c7ff;
+      border-top-left-radius: 0px;
+      border-top-right-radius: 0px;
+      min-height: 200px;
+      font-size: 20px;
+      text-shadow: 1px 1px 1px #5369e0;
+    }
+
+    /* .project:hover .img__description {
+      visibility: visible;
+      box-shadow: 0 4px 8px 0 rgb(0 0 0 / 77%), 0 6px 20px 0 rgb(0 0 0 / 77%);
+      padding: 18px;
+      border-bottom-right-radius: 12px;
+      border-bottom-left-radius: 12px;
+      opacity: 1;
+    }  */
+
     .post {
       position: relative;
       display: inline-grid;
@@ -78,7 +137,7 @@
 
     .post p {
       padding: 15px;
-      text-align: right !important;
+      text-align: center !important;
       border-radius: 15px;
       color: #ffffff;
       background: #3f51b5;
@@ -88,6 +147,16 @@
       font-size: 16px;
       text-shadow: 1px 1px 1px #5369e0;
     }
+
+    .post:hover .img__description {
+      visibility: visible;
+      box-shadow: 0 4px 8px 0 rgb(0 0 0 / 77%), 0 6px 20px 0 rgb(0 0 0 / 77%);
+      padding: 18px;
+      border-bottom-right-radius: 12px;
+      border-bottom-left-radius: 12px;
+      opacity: 1;
+    }
+
 
     div.create {
       display: inline-block;
@@ -124,14 +193,6 @@
       transition: opacity 0.3s, visibility 0.3s;
     }
 
-    .post:hover .img__description {
-      visibility: visible;
-      box-shadow: 0 4px 8px 0 rgb(0 0 0 / 77%), 0 6px 20px 0 rgb(0 0 0 / 77%);
-      padding: 18px;
-      border-bottom-right-radius: 12px;
-      border-bottom-left-radius: 12px;
-      opacity: 1;
-    }
 
     a.social-browser {
       display: inline-block;
@@ -618,13 +679,26 @@
     </div>
   </div>
 
+
+
   <script id="post-template" type="x-tmpl-mustache">
+
       <div class="post img__wrap" >
         <h2> {{title_##session.lang##}} </h2>
         <img src="{{image_url}}" alt="">
         <p class="description userPrint"> {{description_##session.lang##}} </p>
         <b class="img__description userPrint"> {{description_##session.lang##}} </b>
 
+      </div>
+    </script>
+
+  <script id="pro-template" type="x-tmpl-mustache">
+      <div class="project img__wrap" >
+        <h2> {{title_##session.lang##}} </h2>
+        <img src="{{image_url}}" alt="">
+        <p class="description userPrint"> {{description_##session.lang##}} </p>
+        <b class="img__description"> {{description_##session.lang##}} </b>
+  
       </div>
     </script>
   <script>
@@ -661,6 +735,7 @@
     }
 
     function loadPosts(more) {
+      busy = false
       if (busy) {
         return;
       }
@@ -745,7 +820,57 @@
       );
     }
 
-    loadPosts();
+
+    function loadProjects(more) {
+      if (busy) {
+        return;
+      }
+      if (typeof Mustache == 'undefined') {
+        return;
+      }
+
+      if (busy) return;
+      busy = true;
+
+      $('.posts-loading').remove();
+      $('#posts').append('<p class="posts-loading"> <img src="/images/loading.gif"> </p>');
+
+      busy = true;
+
+      site.getData(
+        {
+          url: '/json/app_projects.json',
+          method: 'POST',
+        },
+        function (res) {
+          busy = false;
+
+          var rendered = '';
+          var post_template = $('#pro-template').html();
+          Mustache.parse(post_template);
+
+          for (var i = 0; i < res.length; i++) {
+            try {
+              var post = {};
+
+              post = res[i];
+              rendered += Mustache.render(post_template, post);
+
+            } catch (error) { }
+          }
+
+          $('#posts').append('<span class="line"></span><span class="line"></span><span class="line"></span>');
+          $('#posts').append(rendered);
+
+          busy = false;
+          $('.posts-loading').remove();
+        },
+      );
+      loadPosts();
+
+    }
+
+    loadProjects();
 
     var app = app || angular.module('myApp', []);
 

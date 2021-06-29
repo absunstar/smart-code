@@ -453,6 +453,13 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
   $scope.getClinicBookList = function (doctors_visits) {
 
     $scope.error = '';
+
+    const v = site.validated('#doctorsVisitsAddModal');
+    if (!v.ok) {
+      $scope.error = v.messages[0].ar;
+      return;
+    }
+
     $scope.busy = true;
 
     $http({
@@ -699,7 +706,7 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
 
           } else if (response.data.error.like('*ername must be typed correctly*')) {
             $scope.error = "##word.err_username_contain##"
-            
+
           } else if (response.data.error.like('*User Is Exist*')) {
             $scope.error = "##word.user_exists##"
           }

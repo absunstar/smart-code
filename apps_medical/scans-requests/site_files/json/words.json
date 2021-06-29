@@ -12,6 +12,7 @@
     {"name" : "scans_requests_add_name" , "en" : "Add Scans Requests" , "ar" : "إضافة طلب أشعة"},
     {"name" : "notes_before_scans" , "en" : "Notes before scans" , "ar" : "ملاحظات قبل الأشعة"},
     {"name" : "Previous_patient_scans" , "en" : "Previous Patient Scans" , "ar" : "أشعة المريض سابقة"},
+    {"name" : "last_scans" , "en" : "Last Scans" , "ar" : "أشعة سابقة"},
     {"name" : "delivery_scans" , "en" : "Delivery of scans" , "ar" : "تسليم الأشعة"},
     {"name" : "delivery_all" , "en" : "Delivery All" , "ar" : "تسليم الكل"},
     {"name" : "person_delivery" , "en" : "The Person Delivery" , "ar" : "الشخص المستلم"},

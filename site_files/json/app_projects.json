@@ -1,0 +1,66 @@
+[
+    {
+        "feature": "pos",
+        "title_ar": "نقاط البيع",
+        "title_en": "POS",
+        "image_url": "/images/pro_pos.png",
+        "description_ar": "إدارة نقاط البيع ( مخازن - حسابات - موظفين - مبيعات - مشتريات )",
+        "description_en": "Point of sale management (stores - accounts - employees - sales - purchases)"
+    },
+    {
+        "feature": "restaurant",
+        "title_ar": "المطاعم و الكافيهات",
+        "title_en": "Restaurants and cafes",
+        "image_url": "/images/pro_restaurant.png",
+        "description_ar": "إدارة المطاعم و الكافيهات ( إدارة الطلبات - توصيل - طاولات - طلبات العملاء)",
+        "description_en": "Management of restaurants and cafes (order management - delivery - tables - customer requests)"
+    },
+    {
+        "feature": "medical",
+        "title_ar": "العيادات الطبية",
+        "title_en": "Medical clinics",
+        "image_url": "/images/pro_medical.png",
+        "description_ar": "إدارة العيادات و المراكز الطبية و معامل التحاليل و مراكز الأشعة ( أطباء - عيادات - كشوفات - أشعة - تحاليل )",
+        "description_en": "Management of clinics, medical centers, laboratories and radiology centers (doctors - clinics - statements - x-rays - analyzes)"
+    },
+    {
+        "feature": "club",
+        "title_ar": "النوادي الصحية و التجميلية",
+        "title_en": "Health and beauty clubs",
+        "image_url": "/images/pro_club.png",
+        "description_ar": "إدارة النوادي الصحية و التجميلية ( مشتركين - حضور و إنصراف - جلسات - إشتراكات )",
+        "description_en": "Management of health and beauty clubs (subscribers - attendance and departure - sessions - subscriptions)"
+    },
+    {
+        "feature": "school",
+        "title_ar": "المدارس",
+        "title_en": "Schools",
+        "image_url": "/images/pro_school.png",
+        "description_ar": "إدارة المدارس و الدروس الخصوصية ( طلاب - مدرسين - جداول حصص - إمتحانات )",
+        "description_en": "Schools management and private lessons (students - teachers - class schedules - exams)"
+    },
+    {
+        "feature": "academy",
+        "title_ar": "الأكاديمي",
+        "title_en": "Academy",
+        "image_url": "/images/pro_academy.png",
+        "description_ar": "إدارة الأكاديميات و السناتر التعليمية ( طلاب - مدربين - قاعات - كورسات )",
+        "description_en": "Management of academies and educational centers (students - trainers - halls - courses)"
+    },
+    {
+        "feature": "lawyer",
+        "title_ar": "مكاتب المحاماه",
+        "title_en": "LAwyers Office",
+        "image_url": "/images/pro_lawyer.png",
+        "description_ar": "إدارة مكاتب المحاماه ( موكلين - خصوم - دعاوى - جلسات - أعمال إدارية )",
+        "description_en": "Management of law offices (clients - litigants - lawsuits - sessions - administrative work)"
+    },
+    {
+        "feature": "employee",
+        "title_ar": "شئون الموظفين",
+        "title_en": "H-R",
+        "image_url": "/images/pro_employee.png",
+        "description_ar": "إدارة شئون الموظفين ( مرتبات - حضورو إنصراف - السلف - المكافئات - الخصومات)",
+        "description_en": "Personnel management (salaries - attendance - advances - bonuses - discounts)"
+    }
+]

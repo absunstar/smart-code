@@ -510,6 +510,11 @@ app.controller("scans_requests", function ($scope, $http, $timeout) {
     });
   };
 
+  $scope.showLastScans = function (analysis_requests) {
+    $scope._search = {};
+
+    site.showModal('#lastScansModal');
+  };
 
 
   $scope.showPersonDelivery = function (scan, type) {
