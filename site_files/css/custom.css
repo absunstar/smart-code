@@ -431,6 +431,7 @@ nav.sitebottom a.link:hover {
 
 a.pro-template{
   text-decoration: none;
+  display: inline-flex;
 }
 a.pro-template .description{
 
