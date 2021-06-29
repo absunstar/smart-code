@@ -1,7 +1,7 @@
 const site = require('isite')({
     port: [80 , 40008],
     lang: 'ar',
-    version : '1.0.7',
+    version : '1.0.8',
     name: 'pmp',
     theme: 'theme_paper',
     mongodb: {
