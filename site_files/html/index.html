@@ -64,7 +64,7 @@
       font-weight: bold;
       color: #fff;
       padding: 5px;
-      background: #51c7ff;
+      background: #8281cb;
       text-shadow: 1px 1px 8px #000000;
     }
 
@@ -81,12 +81,12 @@
       text-align: center !important;
       border-radius: 15px;
       color: #000000;
-      background: #51c7ff;
+      background: #8281cb;
       border-top-left-radius: 0px;
       border-top-right-radius: 0px;
       min-height: 200px;
       font-size: 20px;
-      text-shadow: 1px 1px 1px #5369e0;
+      text-shadow: 1px 1px 1px #000000;
     }
 
     /* .project:hover .img__description {
@@ -693,13 +693,15 @@
     </script>
 
   <script id="pro-template" type="x-tmpl-mustache">
+    <a target="_blank" href="{{link}}">
       <div class="project img__wrap" >
         <h2> {{title_##session.lang##}} </h2>
         <img src="{{image_url}}" alt="">
-        <p class="description userPrint"> {{description_##session.lang##}} </p>
+        <p class="description"> {{description_##session.lang##}} </p>
         <b class="img__description"> {{description_##session.lang##}} </b>
-  
+        
       </div>
+    </a>
     </script>
   <script>
     let busy = false;
@@ -854,7 +856,38 @@
               var post = {};
 
               post = res[i];
-              rendered += Mustache.render(post_template, post);
+              if ('##req.headers.host##'.like('*inout*') ) {
+                post.link = `https://www.inout.${post.feature}.egytag.com`;
+
+              } else if ('##req.headers.host##'.like('*mt*') ) {
+                post.link = `https://www.mt.${post.feature}.egytag.com`;
+
+              } else if ('##req.headers.host##'.like('*ft*') ) {
+                post.link = `https://www.ft.${post.feature}.egytag.com`;
+
+              } else if ('##req.headers.host##'.like('*protouch*') ) {
+                post.link = `https://www.protouch.${post.feature}.egytag.com`;
+
+              } else if ('##req.headers.host##'.like('*qelada*') ) {
+                post.link = `https://www.qelada.${post.feature}.egytag.com`;
+
+              } else if ('##req.headers.host##'.like('*ethraa*') ) {
+                post.link = `https://www.ethraa.${post.feature}.egytag.com`;
+
+              } else if ('##req.headers.host##'.like('*unqcode*') ) {
+                post.link = `https://www.unqcode.${post.feature}.egytag.com`;
+
+              } else if ('##req.headers.host##'.like('*valley*') ) {
+                post.link = `https://www.valley.${post.feature}.egytag.com`;
+
+              } else {
+                post.link = `https://www.${post.feature}.egytag.com`;
+
+              }
+
+              if(!site.features.like(`*${post.feature}*`) ){
+                rendered += Mustache.render(post_template, post);
+              }
 
             } catch (error) { }
           }

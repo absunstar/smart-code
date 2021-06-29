@@ -1,6 +1,16 @@
 [
     {
+        "feature": "erp",
+        "link": "https://www.erp.egytag.com",
+        "title_ar": "تخطيط موارد المؤسسات",
+        "title_en": "ERP System",
+        "image_url": "/images/pro_erp.png",
+        "description_ar": "إدارة تخطيط موارد المؤسسات ( شجرة حسابات - مراكز تكلفة - ميزانية - قيود - سنوات مالية )",
+        "description_en": "ERP Department (Account Tree - Cost Centers - Budget - Constraints - Fiscal Years)"
+    },
+    {
         "feature": "pos",
+        "link": "https://www.pos.egytag.com",
         "title_ar": "نقاط البيع",
         "title_en": "POS",
         "image_url": "/images/pro_pos.png",
@@ -9,6 +19,7 @@
     },
     {
         "feature": "restaurant",
+        "link": "https://www.restaurant.egytag.com",
         "title_ar": "المطاعم و الكافيهات",
         "title_en": "Restaurants and cafes",
         "image_url": "/images/pro_restaurant.png",
@@ -17,6 +28,7 @@
     },
     {
         "feature": "medical",
+        "link": "https://www.medical.egytag.com",
         "title_ar": "العيادات الطبية",
         "title_en": "Medical clinics",
         "image_url": "/images/pro_medical.png",
@@ -25,6 +37,7 @@
     },
     {
         "feature": "club",
+        "link": "https://www.club.egytag.com",
         "title_ar": "النوادي الصحية و التجميلية",
         "title_en": "Health and beauty clubs",
         "image_url": "/images/pro_club.png",
@@ -33,6 +46,7 @@
     },
     {
         "feature": "school",
+        "link": "https://www.school.egytag.com",
         "title_ar": "المدارس",
         "title_en": "Schools",
         "image_url": "/images/pro_school.png",
@@ -41,6 +55,7 @@
     },
     {
         "feature": "academy",
+        "link": "https://www.academy.egytag.com",
         "title_ar": "الأكاديمي",
         "title_en": "Academy",
         "image_url": "/images/pro_academy.png",
@@ -49,6 +64,7 @@
     },
     {
         "feature": "lawyer",
+        "link": "https://www.lawyer.egytag.com",
         "title_ar": "مكاتب المحاماه",
         "title_en": "LAwyers Office",
         "image_url": "/images/pro_lawyer.png",
@@ -56,7 +72,8 @@
         "description_en": "Management of law offices (clients - litigants - lawsuits - sessions - administrative work)"
     },
     {
-        "feature": "employee",
+        "feature": "employees",
+        "link": "https://www.employees.egytag.com",
         "title_ar": "شئون الموظفين",
         "title_en": "H-R",
         "image_url": "/images/pro_employee.png",
