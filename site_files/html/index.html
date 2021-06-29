@@ -830,23 +830,23 @@
 
                 post = res[i];
                 if ('##req.headers.host##'.like('*inout*')) {
-                  post.link = `https://www.inout.${post.feature}.egytag.com`;
+                  post.link = `http://inout.${post.feature}.egytag.com`;
                 } else if ('##req.headers.host##'.like('*mt*')) {
-                  post.link = `https://www.mt.${post.feature}.egytag.com`;
+                  post.link = `http://mt.${post.feature}.egytag.com`;
                 } else if ('##req.headers.host##'.like('*ft*')) {
-                  post.link = `https://www.ft.${post.feature}.egytag.com`;
+                  post.link = `http://ft.${post.feature}.egytag.com`;
                 } else if ('##req.headers.host##'.like('*protouch*')) {
-                  post.link = `https://www.protouch.${post.feature}.egytag.com`;
+                  post.link = `http://protouch.${post.feature}.egytag.com`;
                 } else if ('##req.headers.host##'.like('*qelada*')) {
-                  post.link = `https://www.qelada.${post.feature}.egytag.com`;
+                  post.link = `http://qelada.${post.feature}.egytag.com`;
                 } else if ('##req.headers.host##'.like('*ethraa*')) {
-                  post.link = `https://www.ethraa.${post.feature}.egytag.com`;
+                  post.link = `http://ethraa.${post.feature}.egytag.com`;
                 } else if ('##req.headers.host##'.like('*unqcode*')) {
-                  post.link = `https://www.unqcode.${post.feature}.egytag.com`;
+                  post.link = `http://unqcode.${post.feature}.egytag.com`;
                 } else if ('##req.headers.host##'.like('*valley*')) {
-                  post.link = `https://www.valley.${post.feature}.egytag.com`;
+                  post.link = `http://valley.${post.feature}.egytag.com`;
                 } else {
-                  post.link = `https://www.${post.feature}.egytag.com`;
+                  post.link = `http://${post.feature}.egytag.com`;
                 }
 
                 if (!site.features.like(`*${post.feature}*`)) {
