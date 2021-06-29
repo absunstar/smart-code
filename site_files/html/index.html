@@ -52,16 +52,16 @@
 
       .project h2 {
         height: 50px;
-    border-radius: 15px;
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
-    font-size: 18px;
-    text-align: center;
-    font-weight: bold;
-    color: #fff;
-    padding: 5px;
-    background: #2196f3;
-    text-shadow: 1px 1px 8px #000000;
+        border-radius: 15px;
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+        font-size: 18px;
+        text-align: center;
+        font-weight: bold;
+        color: #fff;
+        padding: 5px;
+        background: #2196f3;
+        text-shadow: 1px 1px 8px #000000;
       }
 
       .project img {
@@ -73,26 +73,16 @@
       }
 
       .project p {
+        min-height: 200px;
+        max-width: 400px;
         padding: 15px;
         text-align: center !important;
-        border-radius: 15px;
-        color: #000000;
-        background: #8281cb;
+        color: #ffffff;
+        background: #e91e63;
         border-top-left-radius: 0px;
         border-top-right-radius: 0px;
-        min-height: 200px;
         font-size: 20px;
-        text-shadow: 1px 1px 1px #000000;
       }
-
-      /* .project:hover .img__description {
-      visibility: visible;
-      box-shadow: 0 4px 8px 0 rgb(0 0 0 / 77%), 0 6px 20px 0 rgb(0 0 0 / 77%);
-      padding: 18px;
-      border-bottom-right-radius: 12px;
-      border-bottom-left-radius: 12px;
-      opacity: 1;
-    }  */
 
       .post {
         position: relative;
@@ -682,7 +672,6 @@
           <h2> {{title_##session.lang##}} </h2>
           <img src="{{image_url}}" alt="">
           <p class="description"> {{description_##session.lang##}} </p>
-          <b class="img__description"> {{description_##session.lang##}} </b>
 
         </div>
       </a>
