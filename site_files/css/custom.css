@@ -432,6 +432,7 @@ nav.sitebottom a.link:hover {
 a.pro-template{
   text-decoration: none;
   display: inline-flex;
+  border: 1px solid #ddd;
 }
 a.pro-template .description{
 
