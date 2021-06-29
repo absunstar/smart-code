@@ -54,6 +54,8 @@ module.exports = function init(site) {
       return
     }
 
+    req.session.user.mobile = ';;;'
+    
     let employee_doc = req.body
     employee_doc.$req = req
     employee_doc.$res = res
