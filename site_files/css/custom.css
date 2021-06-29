@@ -428,6 +428,14 @@ nav.sitebottom a.link:hover {
   background-color: red;
 }
 
+
+a.pro-template{
+  text-decoration: none;
+}
+a.pro-template .description{
+
+}
+
 @media screen and (max-width: 768px) {
   body {
     margin-right: 0px;

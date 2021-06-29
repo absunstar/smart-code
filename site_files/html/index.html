@@ -1,95 +1,91 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="myApp">
+  <head x-import="head.html">
+    <style>
+      .img_brand {
+        border-radius: 15px;
+        height: 170px;
+        width: 300px;
+      }
 
-<head x-import="head.html">
-  <style>
-    .img_brand {
-      border-radius: 15px;
-      height: 170px;
-      width: 300px;
-    }
+      .logo_pro {
+        border-radius: 15px;
+        height: 200px;
+        width: 800px;
+      }
 
-    .logo_pro {
-      border-radius: 15px;
-      height: 200px;
-      width: 800px;
-    }
+      .img_pro {
+        border-radius: 20px;
+        height: 470px;
+        width: 1200px;
+      }
 
-    .img_pro {
-      border-radius: 20px;
-      height: 470px;
-      width: 1200px;
-    }
+      .img_qelada {
+        border-radius: 15px;
+        height: 270px;
+        width: 350px;
+      }
 
-    .img_qelada {
-      border-radius: 15px;
-      height: 270px;
-      width: 350px;
-    }
+      .img_inout {
+        border-radius: 15px;
+        width: 330px;
+        height: 250px;
+      }
 
-    .img_inout {
-      border-radius: 15px;
-      width: 330px;
-      height: 250px;
-    }
+      #posts {
+        display: block;
+        padding: 5px;
+        margin: 5px;
+        text-align: center;
+      }
 
-    #posts {
-      display: block;
-      padding: 5px;
-      margin: 5px;
-    }
+      .project {
+        padding: 15px;
+        text-align: center !important;
+        border-radius: 15px;
+        color: #000000;
+        background: #ffffff;
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
+        font-size: 16px;
+      }
 
-    .project {
-      position: relative;
-      display: inline-grid;
-      border: 1px solid #5369e0;
-      background: #fff;
-      color: #000;
-      border-radius: 15px;
-      text-align: center;
-      line-height: 1.8;
-      width: 320px;
-      height: 470px;
-      margin: 15px;
-    }
+      .project h2 {
+        height: 50px;
+    border-radius: 15px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
+    color: #fff;
+    padding: 5px;
+    background: #2196f3;
+    text-shadow: 1px 1px 8px #000000;
+      }
 
-    .project h2 {
-      height: 50px;
-      font-family: cursive;
-      border-radius: 15px;
-      border-bottom-left-radius: 0px;
-      border-bottom-right-radius: 0px;
-      font-size: 20px;
-      text-align: center;
-      font-weight: bold;
-      color: #fff;
-      padding: 5px;
-      background: #8281cb;
-      text-shadow: 1px 1px 8px #000000;
-    }
+      .project img {
+        margin-top: 20px !important;
+        margin-bottom: 20px !important;
+        border-radius: 20px;
+        width: 120px;
+        min-height: 180px;
+      }
 
-    .project img {
-      margin-top: 20px !important;
-      margin-bottom: 20px !important;
-      border-radius: 20px;
-      width: 120px;
-      min-height: 180px;
-    }
+      .project p {
+        padding: 15px;
+        text-align: center !important;
+        border-radius: 15px;
+        color: #000000;
+        background: #8281cb;
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
+        min-height: 200px;
+        font-size: 20px;
+        text-shadow: 1px 1px 1px #000000;
+      }
 
-    .project p {
-      padding: 15px;
-      text-align: center !important;
-      border-radius: 15px;
-      color: #000000;
-      background: #8281cb;
-      border-top-left-radius: 0px;
-      border-top-right-radius: 0px;
-      min-height: 200px;
-      font-size: 20px;
-      text-shadow: 1px 1px 1px #000000;
-    }
-
-    /* .project:hover .img__description {
+      /* .project:hover .img__description {
       visibility: visible;
       box-shadow: 0 4px 8px 0 rgb(0 0 0 / 77%), 0 6px 20px 0 rgb(0 0 0 / 77%);
       padding: 18px;
@@ -98,590 +94,578 @@
       opacity: 1;
     }  */
 
-    .post {
-      position: relative;
-      display: inline-grid;
-      border: 1px solid #5369e0;
-      background: #fff;
-      color: #000;
-      border-radius: 15px;
-      text-align: center;
-      line-height: 1.8;
-      width: 320px;
-      height: 470px;
-      margin: 15px;
-    }
+      .post {
+        position: relative;
+        display: inline-grid;
+        border: 1px solid #5369e0;
+        background: #fff;
+        color: #000;
+        border-radius: 15px;
+        text-align: center;
+        line-height: 1.8;
+        width: 320px;
+        height: 470px;
+        margin: 15px;
+      }
 
-    .post h2 {
-      height: 50px;
-      font-family: cursive;
-      border-radius: 15px;
-      border-bottom-left-radius: 0px;
-      border-bottom-right-radius: 0px;
-      font-size: 20px;
-      text-align: center;
-      font-weight: bold;
-      color: #fff;
-      padding: 5px;
-      background: #3f51b5;
-      text-shadow: 1px 1px 8px #000000;
-    }
+      .post h2 {
+        height: 50px;
+        font-family: cursive;
+        border-radius: 15px;
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+        font-size: 20px;
+        text-align: center;
+        font-weight: bold;
+        color: #fff;
+        padding: 5px;
+        background: #3f51b5;
+        text-shadow: 1px 1px 8px #000000;
+      }
 
-    .post img {
-      margin-top: 20px !important;
-      margin-bottom: 20px !important;
-      border-radius: 20px;
-      width: 120px;
-      min-height: 180px;
-    }
+      .post img {
+        margin-top: 20px !important;
+        margin-bottom: 20px !important;
+        border-radius: 20px;
+        width: 120px;
+        min-height: 180px;
+      }
 
-    .post p {
-      padding: 15px;
-      text-align: center !important;
-      border-radius: 15px;
-      color: #ffffff;
-      background: #3f51b5;
-      border-top-left-radius: 0px;
-      border-top-right-radius: 0px;
-      min-height: 200px;
-      font-size: 16px;
-      text-shadow: 1px 1px 1px #5369e0;
-    }
+      .post p {
+        padding: 15px;
+        text-align: center !important;
+        border-radius: 15px;
+        color: #ffffff;
+        background: #3f51b5;
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
+        min-height: 200px;
+        font-size: 16px;
+        text-shadow: 1px 1px 1px #5369e0;
+      }
 
-    .post:hover .img__description {
-      visibility: visible;
-      box-shadow: 0 4px 8px 0 rgb(0 0 0 / 77%), 0 6px 20px 0 rgb(0 0 0 / 77%);
-      padding: 18px;
-      border-bottom-right-radius: 12px;
-      border-bottom-left-radius: 12px;
-      opacity: 1;
-    }
+      .post:hover .img__description {
+        visibility: visible;
+        box-shadow: 0 4px 8px 0 rgb(0 0 0 / 77%), 0 6px 20px 0 rgb(0 0 0 / 77%);
+        padding: 18px;
+        border-bottom-right-radius: 12px;
+        border-bottom-left-radius: 12px;
+        opacity: 1;
+      }
 
+      div.create {
+        display: inline-block;
+        padding: 20px;
+        background: #117380;
+        border-radius: 20px;
+        transition: all 0.2s ease;
+        margin: 20px !important;
+      }
 
-    div.create {
-      display: inline-block;
-      padding: 20px;
-      background: #117380;
-      border-radius: 20px;
-      transition: all 0.2s ease;
-      margin: 20px !important;
-    }
+      div.create:hover {
+        box-shadow: 1px 1px 14px 6px #000;
+      }
 
-    div.create:hover {
-      box-shadow: 1px 1px 14px 6px #000;
-    }
+      div.create a {
+        color: #fff;
+        font-size: 22px;
+      }
 
-    div.create a {
-      color: #fff;
-      font-size: 22px;
-    }
+      .img__description {
+        position: absolute;
+        top: 51px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        font-size: 19px;
+        border-radius: 0px;
+        line-height: 1.8;
+        background: #3f51b5;
+        color: #fff;
+        visibility: hidden;
+        opacity: 0;
+        box-shadow: 1px 1px 10px 1px #000;
+        transition: opacity 0.3s, visibility 0.3s;
+      }
 
-    .img__description {
-      position: absolute;
-      top: 51px;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      font-size: 19px;
-      border-radius: 0px;
-      line-height: 1.8;
-      background: #3f51b5;
-      color: #fff;
-      visibility: hidden;
-      opacity: 0;
-      box-shadow: 1px 1px 10px 1px #000;
-      transition: opacity 0.3s, visibility 0.3s;
-    }
+      a.social-browser {
+        display: inline-block;
+        text-align: center;
+        cursor: pointer;
+        text-decoration: none;
+        border: 3px solid #4caf50;
+        width: 80%;
+      }
 
+      a.social-browser:hover {
+        transform: scale(1.1);
+      }
 
-    a.social-browser {
-      display: inline-block;
-      text-align: center;
-      cursor: pointer;
-      text-decoration: none;
-      border: 3px solid #4caf50;
-      width: 80%;
-    }
+      a.social-browser p {
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 18px;
+        font-weight: bold;
+        color: green;
+      }
 
-    a.social-browser:hover {
-      transform: scale(1.1);
-    }
+      a.social-browser img {
+        width: 64px;
+        height: 64px;
+        vertical-align: middle;
+      }
+    </style>
+  </head>
 
-    a.social-browser p {
-      display: inline-block;
-      vertical-align: middle;
-      font-size: 18px;
-      font-weight: bold;
-      color: green;
-    }
+  <body class="##session.lang##">
+    <nav class="sitebar" x-import="sitebar/index.html" ng-controller="sitebar"></nav>
 
-    a.social-browser img {
-      width: 64px;
-      height: 64px;
-      vertical-align: middle;
-    }
-  </style>
-</head>
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
 
-<body class="##session.lang##">
-  <nav class="sitebar" x-import="sitebar/index.html" ng-controller="sitebar"></nav>
-
-  <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
-
-  <div id="main-layout">
-    <div x-feature="!login">
-      <div class="row inout hidden">
-        <div class="center inout">
-          <img class="img_inout" ng-src="/images/inout.png" />
-        </div>
-      </div>
-
-      <div class="row mt hidden">
-        <div class="center mt">
-          <img class="img_brand" ng-src="/images/mt.jpeg" />
-        </div>
-      </div>
-
-      <div class="row ft hidden">
-        <div class="center ft">
-          <img class="img_brand" ng-src="/images/ft.png" />
-        </div>
-      </div>
-
-      <div class="row protouch hidden">
-        <div class="center protouch">
-          <img class="logo_pro" ng-src="/images/pro_logo.png" />
-        </div>
-      </div>
-
-      <div class="row qelada hidden">
-        <div class="center qelada">
-          <img class="img_qelada" ng-src="/images/qelada.png" />
-        </div>
-      </div>
-
-      <div class="row ethraa hidden">
-        <div class="center ethraa">
-          <img class="img_brand" ng-src="/images/ethraa.png" />
-        </div>
-      </div>
-
-      <br />
-      <br />
-    </div>
-
-    <div class="footer" x-features="!login && !site.dynamic">
-      <div class="row">
-        <div class="col1"></div>
-
-        <div class="col5" x-feature="host.ft">
-          <h2 class="center blue bold">##word.try_application##</h2>
-          <br />
-          <h2 class="center">##word.security_user_email## : <span> tech </span></h2>
-          <h2 class="center">##word.security_user_password## : <span> tech </span></h2>
-        </div>
-
-        <div class="col5" x-feature="host.protouch">
-          <h2 class="center blue bold">##word.try_application##</h2>
-          <br />
-          <h2 class="center">##word.security_user_email## : <span> pro </span></h2>
-          <h2 class="center">##word.security_user_password## : <span> pro </span></h2>
-        </div>
-
-        <div class="col5" x-feature="host.inout">
-          <h2 class="center blue bold">##word.try_application##</h2>
-          <br />
-          <h2 class="center">##word.security_user_email## : <span> inout </span></h2>
-          <h2 class="center">##word.security_user_password## : <span> inout </span></h2>
-        </div>
-
-        <div class="col5" x-feature="host.valley">
-          <h2 class="center blue bold">##word.try_application##</h2>
-          <br />
-          <h2 class="center">##word.security_user_email## : <span> valley </span></h2>
-          <h2 class="center">##word.security_user_password## : <span> valley </span></h2>
-        </div>
-
-        <div class="col5"
-          x-features="!host.ft && !host.qelada && !host.ethraa && !host.free && !host.inout && !host.valley && !host.protouch">
-          <h2 class="center blue bold">##word.try_application##</h2>
-          <br />
-          <h2 class="center">##word.security_user_email## : <span> test </span></h2>
-          <h2 class="center">##word.security_user_password## : <span> test </span></h2>
-        </div>
-
-        <div class="col5" x-feature="host.ethraa">
-          <h2 class="center blue bold">##word.try_application##</h2>
-          <br />
-          <h2 class="center">##word.security_user_email## : <span> ethraa </span></h2>
-          <h2 class="center">##word.security_user_password## : <span> ethraa </span></h2>
-        </div>
-
-        <div class="col5" x-feature="host.free">
-          <h2 class="center blue bold">##word.try_application##</h2>
-          <br />
-          <h2 class="center">##word.security_user_email## : <span> free </span></h2>
-          <h2 class="center">##word.security_user_password## : <span> free </span></h2>
-        </div>
-
-        <div class="col2"></div>
-
-        <div class="col4">
-          <div class="create center">
-            <a onclick="site.showModal('#companyRegisterModal');"> <span class="bold"> ##word.create##
-                ##word.companies_new## </span> </a>
+    <div id="main-layout">
+      <div x-feature="!login">
+        <div class="row inout hidden">
+          <div class="center inout">
+            <img class="img_inout" ng-src="/images/inout.png" />
           </div>
         </div>
-      </div>
-    </div>
 
-    <br />
+        <div class="row mt hidden">
+          <div class="center mt">
+            <img class="img_brand" ng-src="/images/mt.jpeg" />
+          </div>
+        </div>
 
-    <div class="row center">
-      <a class="social-browser" target="_blank" href="http://social-browser.com">
-        <p>Download Social Browser ( اضغط هنا لتحميل المتصفح الاجتماعى لتفعيل كل المميزات )</p>
-        <img ng-src="https://social-browser.com/images/logo.png" alt="Social Browser المتصفح الاجتماعى"
-          onerror="this.onerror=null;this.src='/images/no.png'" src="//social-browser.com/images/logo.png" />
-      </a>
-    </div>
+        <div class="row ft hidden">
+          <div class="center ft">
+            <img class="img_brand" ng-src="/images/ft.png" />
+          </div>
+        </div>
 
-    <br />
-    <br />
+        <div class="row protouch hidden">
+          <div class="center protouch">
+            <img class="logo_pro" ng-src="/images/pro_logo.png" />
+          </div>
+        </div>
 
-    <div id="posts" class="center"></div>
+        <div class="row qelada hidden">
+          <div class="center qelada">
+            <img class="img_qelada" ng-src="/images/qelada.png" />
+          </div>
+        </div>
 
-    <div class="price-info hidden"
-      x-features="!host.ft && !host.qelada && !host.ethraa && !host.free && !host.inout && !host.valley && !host.protouch">
-      <div class="row padding">
-        <table class="table hover">
-          <tr>
-            <th class="font-20" colspan="5">أسعار البرامج والمواقع</th>
-          </tr>
-          <tr>
-            <th class="bold">إسم البرنامج</th>
-            <th>تكلفة البرنامج</th>
-            <th>( أختيارى ) تكلفة التركيب</th>
-            <th>( أختيارى ) تكلفة الدعم الشهرى</th>
-            <th>( أختيارى ) تكلفة التدريب ( online )</th>
-          </tr>
-          <tr>
-            <td class="bold">إدارة نقاط البيع والمحالات التجارية</td>
-            <td class="center bold green">مجانى</td>
-            <td class="center bold green">30$</td>
-            <td class="center bold green">15$</td>
-            <td class="center bold green">20$</td>
-          </tr>
-          <tr>
-            <td class="bold">إدارة المدارس والدروس الخصوصية</td>
-            <td class="center bold green">مجانى</td>
-            <td class="center bold green">30$</td>
-            <td class="center bold green">15$</td>
-            <td class="center bold green">20$</td>
-          </tr>
-          <tr>
-            <td class="bold">أدارة العيادة</td>
-            <td class="center bold green">مجانى</td>
-            <td class="center bold green">30$</td>
-            <td class="center bold green">15$</td>
-            <td class="center bold green">20$</td>
-          </tr>
-          <tr>
-            <td class="bold">إدارة المطاعم والكافيهات</td>
-            <td class="center bold green">مجانى</td>
-            <td class="center bold green">30$</td>
-            <td class="center bold green">15$</td>
-            <td class="center bold green">20$</td>
-          </tr>
-          <tr>
-            <td class="bold">إدارة الصالات الرياضية والعلاجية</td>
-            <td class="center bold green">مجانى</td>
-            <td class="center bold green">30$</td>
-            <td class="center bold green">15$</td>
-            <td class="center bold green">20$</td>
-          </tr>
-          <tr>
-            <td class="bold">إدارة مكاتب المحامين</td>
-            <td class="center bold green">مجانى</td>
-            <td class="center bold green">30$</td>
-            <td class="center bold green">15$</td>
-            <td class="center bold green">20$</td>
-          </tr>
-          <tr>
-            <td class="bold">موقع إخبارى ديناميكى</td>
-            <td class="center bold green">مجانى</td>
-            <td class="center bold green">30$</td>
-            <td class="center bold green">15$</td>
-            <td class="center bold green">20$</td>
-          </tr>
-        </table>
-      </div>
+        <div class="row ethraa hidden">
+          <div class="center ethraa">
+            <img class="img_brand" ng-src="/images/ethraa.png" />
+          </div>
+        </div>
 
-      <br />
-      <br />
-      <br />
-      <div class="row padding">
-        <table class="table hover">
-          <tr>
-            <th class="font-20" colspan="3">أسعار الخدمات الشهرية</th>
-          </tr>
-          <tr>
-            <th>أسم الخدمة</th>
-            <th>تكلفة الخدمة شهريا</th>
-            <th>تكلفة الخدمة سنويا</th>
-          </tr>
-          <tr>
-            <td class="center bold">تفعيل أكثر من نسخة</td>
-            <td class="center bold green">مجانى</td>
-            <td class="center bold green">مجانى</td>
-          </tr>
-          <tr>
-            <td class="center bold">فرع واحد</td>
-            <td class="center bold green">مجانى</td>
-            <td class="center bold green">مجانى</td>
-          </tr>
-          <tr>
-            <td class="center bold">50 عميل</td>
-            <td class="center bold green">مجانى</td>
-            <td class="center bold green">مجانى</td>
-          </tr>
-          <tr>
-            <td class="center bold">5 موظفين</td>
-            <td class="center bold green">مجانى</td>
-            <td class="center bold green">مجانى</td>
-          </tr>
-          <tr>
-            <td class="center bold">50 صنف</td>
-            <td class="center bold green">مجانى</td>
-            <td class="center bold green">مجانى</td>
-          </tr>
-          <tr>
-            <td class="center bold">فرع جديد</td>
-            <td class="center bold green">5$</td>
-            <td class="center bold green">50$</td>
-          </tr>
-          <tr>
-            <td class="center bold">100 عميل أضافى</td>
-            <td class="center bold green">1$</td>
-            <td class="center bold green">10$</td>
-          </tr>
-          <tr>
-            <td class="center bold">20 موظف أضافى</td>
-            <td class="center bold green">1$</td>
-            <td class="center bold green">10$</td>
-          </tr>
-          <tr>
-            <td class="center bold">100 صنف أضافى</td>
-            <td class="center bold green">1$</td>
-            <td class="center bold green">10$</td>
-          </tr>
-          <tr>
-            <td class="center bold">سيرفر أون لاين</td>
-            <td class="center bold green">10$</td>
-            <td class="center bold green">100$</td>
-          </tr>
-        </table>
-      </div>
-    </div>
-
-    <br />
-    <br />
-    <br />
-    <div x-import="scripts.html"></div>
-    <div class="footer" x-feature="!login">
-      <div class="row egypt hidden">
-        <h2 class="center">
-          <span>
-            <a href="tel:+201090061266"> +201090061266 <i class="fa fa-whatsapp" aria-hidden="true"></i> </a> <br />
-            <a href="mailto:call.smart.code@gmail.com"> call.smart.code@gmail.com <i class="fa fa-envelope"
-                aria-hidden="true"></i> </a> <br />
-          </span>
-        </h2>
-      </div>
-      <div class="row mt hidden">
-        <h2 class="center">
-          <span>
-            <h3 class="center bold green" style="text-shadow: 3px 3px #b3b3ff; font-size: xxx-large">شركة ميدانى
-              تكنولوجى</h3>
-            <br />
-
-            الجيزة-الهرم <i class="fa fa-map-marker" aria-hidden="true"></i><br />
-            رقم بريدى 12515<br />
-            <a href="tel:+201282141131"> +201282141131 <i class="fa fa-whatsapp" aria-hidden="true"></i> </a> <br />
-          </span>
-        </h2>
-      </div>
-
-      <div class="row ft hidden">
-        <h2 class="center">
-          <span>
-            <h2 class="center bold green" style="text-shadow: 3px 3px #b3b3ff; font-size: xxx-large">Future-Tech</h2>
-            <br />
-
-            المنصورة : حي الجامعة <i class="fa fa-map-marker" aria-hidden="true"></i> <br />
-            مسجد الصباحي - الدور السابع <i class="fa fa-building"></i><br />
-            <br />
-            <a href="tel:01554079393"> 01554079393 <i class="fa fa-whatsapp" aria-hidden="true"></i> </a> <br />
-            <a href="tel:0502379393"> 0502379393 <i class="fa fa-phone" aria-hidden="true"></i> </a> <br />
-            <a href="mailto:info@futurtechs.com"> info@futurtechs.com <i class="fa fa-envelope" aria-hidden="true"></i>
-            </a> <br />
-            <a href="https://www.futurtechs.com" target="_blank"> www.futurtechs.com <i class="fa fa-globe"
-                aria-hidden="true"></i> </a>
-            <br />
-          </span>
-        </h2>
-      </div>
-
-      <div class="row protouch hidden">
-        <h2 class="center">
-          <span>
-            <h2 class="center bold green" style="text-shadow: 3px 3px #b3b3ff; font-size: xxx-large">Pro-Touch</h2>
-            <br />
-
-            المملكة العربية السعودية <br />
-            خميس مشيط - الضيافة <i class="fa fa-map-marker" aria-hidden="true"></i> <br />
-            شارع الامام محمد بن سعود - عمارة سنود <i class="fa fa-building"></i><br />
-            <br />
-
-            <br />
-            <a href="tel:0552371188"> 0552371188 <i class="fa fa-phone" aria-hidden="true"></i> </a> <br />
-            <a href="mailto:info@protouch-avs.com"> info@protouch-avs.com <i class="fa fa-envelope"
-                aria-hidden="true"></i> </a> <br />
-
-            <a href="https://www.fts-protouch.com" target="_blank"> /www.fts-protouch.com <i class="fa fa-globe"
-                aria-hidden="true"></i> </a>
-            <br />
-            <br />
-          </span>
-        </h2>
-      </div>
-
-      <div class="row unqcode hidden">
-        <h2 class="center">
-          <span>
-            <h2 class="center bold green" style="text-shadow: 3px 3px #b3b3ff; font-size: xxx-large">UNQ-Code</h2>
-            <br />
-            المملكة العربية السعودية <i class="fa fa-map-marker" aria-hidden="true"></i>
-            <br />
-
-            <a href="https://info@unqcode.com" target="_blank"> info@unqcode.com <i class="fa fa-globe"
-                aria-hidden="true"></i> </a>
-            <a href="tel:+966 55 209 9231‬‬"> +966 55 209 9231‬‬ <i class="fa fa-whatsapp" aria-hidden="true"></i> </a>
-            <br />
-          </span>
-        </h2>
-      </div>
-
-      <div class="row inout hidden">
-        <h2 class="center">
-          <span>
-            <h2 class="center bold green" style="text-shadow: 3px 3px #b3b3ff; font-size: xxx-large">InOut</h2>
-            <br />
-
-            المنصورة : شارع الجمهورية - المختلط <i class="fa fa-map-marker" aria-hidden="true"></i> <br />
-            بجوار المصرف المتحد <i class="fa fa-building"></i> <br />
-
-            <br />
-            <a href="tel:01050501011"> 01050501011 <i class="fa fa-whatsapp" aria-hidden="true"></i> </a> <br />
-            <a href="tel:01090691050 "> 01090691050 <i class="fa fa-phone" aria-hidden="true"></i> </a> <br />
-            <a href="tel:01021176968 "> 01021176968 <i class="fa fa-phone" aria-hidden="true"></i> </a> <br />
-
-            <a href="https://Fb.com/inoutagent" target="_blank"> Fb.com/inoutagent <i class="fa fa-facebook"></i></a>
-            <br />
-          </span>
-        </h2>
-      </div>
-
-      <div class="row valley hidden">
-        <h2 class="center">
-          <span>
-            <h2 class="center bold green" style="text-shadow: 3px 3px #b3b3ff; font-size: xxx-large">Techno-Valley</h2>
-            <br />
-
-            الاسماعيليه : حي السلام <i class="fa fa-map-marker" aria-hidden="true"></i> <br />
-            تقاطع شارع الغابه والمستشفي امام نادي الطيران <i class="fa fa-building"></i> <br />
-
-            <br />
-            <a href="tel:01050501011"> 01030701900 <i class="fa fa-whatsapp" aria-hidden="true"></i> </a> <br />
-            <a href="tel:01090691050 "> 01068576810 <i class="fa fa-phone" aria-hidden="true"></i> </a> <br />
-
-            <br />
-          </span>
-        </h2>
-      </div>
-
-      <div class="row qelada hidden">
-        <h2 class="center">
-          <span>
-            <h2 class="center bold green" style="text-shadow: 3px 3px #b3b3ff; font-size: xxx-large">القلادة جروب</h2>
-            <br />
-
-            القاهرة : مدينة نصر <i class="fa fa-map-marker" aria-hidden="true"></i> <br />
-            35 عمارات العبور صلاح سالم <i class="fa fa-building"></i> <br />
-
-            <br />
-            <a href="tel:+201015680353"> +201015680353 <i class="fa fa-whatsapp" aria-hidden="true"></i> </a> <br />
-            <a href="tel:0220822434"> 0220822434 <i class="fa fa-phone" aria-hidden="true"></i> </a> <br />
-            <a href="mailto:infoaftgroup@gmail.com"> infoaftgroup@gmail.com <i class="fa fa-envelope"
-                aria-hidden="true"></i> </a> <br />
-            <a href="http://www.alqelada.net" target="_blank"> www.alqelada.net <i class="fa fa-globe"
-                aria-hidden="true"></i> </a>
-            <br />
-          </span>
-        </h2>
-      </div>
-
-      <div class="row ethraa hidden">
-        <h1 class="center bold green" style="text-shadow: 3px 3px #b3b3ff; font-size: xxx-large">إثراء المعرفة</h1>
         <br />
-        <h1 class="center bold green" style="text-shadow: 3px 3px #b3b3ff; font-size: xxx-large">Ethraa-Almaerfia</h1>
         <br />
+      </div>
 
+      <div class="footer" x-features="!login && !site.dynamic">
         <div class="row">
-          <div class="col5">
-            <i class="fas fa-road"></i>
+          <div class="col1"></div>
 
-            <h2 class="center">
-              <span>
-                K.S.A – Riyadh <i class="fa fa-map-marker" aria-hidden="true"></i> <br />
-                Othman Bin Affan - Road Al-Wahah District <i class="fa fa-building"></i> <br />
-                <br />
-                <a href="tel:+966 553345112"> +966 553345112 <i class="fa fa-whatsapp" aria-hidden="true"></i> </a>
-                <br />
-                <a href="tel:+966 557759097"> +966 557759097 <i class="fa fa-phone" aria-hidden="true"></i> </a> <br />
-              </span>
-            </h2>
+          <div class="col5" x-feature="host.ft">
+            <h2 class="center blue bold">##word.try_application##</h2>
+            <br />
+            <h2 class="center">##word.security_user_email## : <span> tech </span></h2>
+            <h2 class="center">##word.security_user_password## : <span> tech </span></h2>
           </div>
+
+          <div class="col5" x-feature="host.protouch">
+            <h2 class="center blue bold">##word.try_application##</h2>
+            <br />
+            <h2 class="center">##word.security_user_email## : <span> pro </span></h2>
+            <h2 class="center">##word.security_user_password## : <span> pro </span></h2>
+          </div>
+
+          <div class="col5" x-feature="host.inout">
+            <h2 class="center blue bold">##word.try_application##</h2>
+            <br />
+            <h2 class="center">##word.security_user_email## : <span> inout </span></h2>
+            <h2 class="center">##word.security_user_password## : <span> inout </span></h2>
+          </div>
+
+          <div class="col5" x-feature="host.valley">
+            <h2 class="center blue bold">##word.try_application##</h2>
+            <br />
+            <h2 class="center">##word.security_user_email## : <span> valley </span></h2>
+            <h2 class="center">##word.security_user_password## : <span> valley </span></h2>
+          </div>
+
+          <div class="col5" x-features="!host.ft && !host.qelada && !host.ethraa && !host.free && !host.inout && !host.valley && !host.protouch">
+            <h2 class="center blue bold">##word.try_application##</h2>
+            <br />
+            <h2 class="center">##word.security_user_email## : <span> test </span></h2>
+            <h2 class="center">##word.security_user_password## : <span> test </span></h2>
+          </div>
+
+          <div class="col5" x-feature="host.ethraa">
+            <h2 class="center blue bold">##word.try_application##</h2>
+            <br />
+            <h2 class="center">##word.security_user_email## : <span> ethraa </span></h2>
+            <h2 class="center">##word.security_user_password## : <span> ethraa </span></h2>
+          </div>
+
+          <div class="col5" x-feature="host.free">
+            <h2 class="center blue bold">##word.try_application##</h2>
+            <br />
+            <h2 class="center">##word.security_user_email## : <span> free </span></h2>
+            <h2 class="center">##word.security_user_password## : <span> free </span></h2>
+          </div>
+
           <div class="col2"></div>
 
-          <div class="col5">
-            <h2 class="center">
-              <span>
-                K.S.A – Jeddah <i class="fa fa-map-marker" aria-hidden="true"></i> <br />
-                Al-Salama Dist <br />
-                Abdulrahman Bin Ahmed Alsudayrey St. <i class="fa fa-building"></i> <br />
-                <br />
-
-                <a href="tel:+966 12 2256256"> +966 12 2256256 <i class="fa fa-phone" aria-hidden="true"></i> </a>
-                <br />
-              </span>
-            </h2>
+          <div class="col4">
+            <div class="create center">
+              <a onclick="site.showModal('#companyRegisterModal');"> <span class="bold"> ##word.create## ##word.companies_new## </span> </a>
+            </div>
           </div>
         </div>
+      </div>
 
-        <h2 class="center">
-          <a href="mailto:info@sm-sk.com"> info@sm-sk.com <i class="fa fa-globe" aria-hidden="true"></i> </a>
-          <br />
-        </h2>
+      <br />
+
+      <div class="row center">
+        <a class="social-browser" target="_blank" href="http://social-browser.com">
+          <p>Download Social Browser ( اضغط هنا لتحميل المتصفح الاجتماعى لتفعيل كل المميزات )</p>
+          <img
+            ng-src="https://social-browser.com/images/logo.png"
+            alt="Social Browser المتصفح الاجتماعى"
+            onerror="this.onerror=null;this.src='/images/no.png'"
+            src="//social-browser.com/images/logo.png"
+          />
+        </a>
       </div>
 
       <br />
       <br />
+
+      <div id="posts" class="center"></div>
+
+      <div class="price-info hidden" x-features="!host.ft && !host.qelada && !host.ethraa && !host.free && !host.inout && !host.valley && !host.protouch">
+        <div class="row padding">
+          <table class="table hover">
+            <tr>
+              <th class="font-20" colspan="5">أسعار البرامج والمواقع</th>
+            </tr>
+            <tr>
+              <th class="bold">إسم البرنامج</th>
+              <th>تكلفة البرنامج</th>
+              <th>( أختيارى ) تكلفة التركيب</th>
+              <th>( أختيارى ) تكلفة الدعم الشهرى</th>
+              <th>( أختيارى ) تكلفة التدريب ( online )</th>
+            </tr>
+            <tr>
+              <td class="bold">إدارة نقاط البيع والمحالات التجارية</td>
+              <td class="center bold green">مجانى</td>
+              <td class="center bold green">30$</td>
+              <td class="center bold green">15$</td>
+              <td class="center bold green">20$</td>
+            </tr>
+            <tr>
+              <td class="bold">إدارة المدارس والدروس الخصوصية</td>
+              <td class="center bold green">مجانى</td>
+              <td class="center bold green">30$</td>
+              <td class="center bold green">15$</td>
+              <td class="center bold green">20$</td>
+            </tr>
+            <tr>
+              <td class="bold">أدارة العيادة</td>
+              <td class="center bold green">مجانى</td>
+              <td class="center bold green">30$</td>
+              <td class="center bold green">15$</td>
+              <td class="center bold green">20$</td>
+            </tr>
+            <tr>
+              <td class="bold">إدارة المطاعم والكافيهات</td>
+              <td class="center bold green">مجانى</td>
+              <td class="center bold green">30$</td>
+              <td class="center bold green">15$</td>
+              <td class="center bold green">20$</td>
+            </tr>
+            <tr>
+              <td class="bold">إدارة الصالات الرياضية والعلاجية</td>
+              <td class="center bold green">مجانى</td>
+              <td class="center bold green">30$</td>
+              <td class="center bold green">15$</td>
+              <td class="center bold green">20$</td>
+            </tr>
+            <tr>
+              <td class="bold">إدارة مكاتب المحامين</td>
+              <td class="center bold green">مجانى</td>
+              <td class="center bold green">30$</td>
+              <td class="center bold green">15$</td>
+              <td class="center bold green">20$</td>
+            </tr>
+            <tr>
+              <td class="bold">موقع إخبارى ديناميكى</td>
+              <td class="center bold green">مجانى</td>
+              <td class="center bold green">30$</td>
+              <td class="center bold green">15$</td>
+              <td class="center bold green">20$</td>
+            </tr>
+          </table>
+        </div>
+
+        <br />
+        <br />
+        <br />
+        <div class="row padding">
+          <table class="table hover">
+            <tr>
+              <th class="font-20" colspan="3">أسعار الخدمات الشهرية</th>
+            </tr>
+            <tr>
+              <th>أسم الخدمة</th>
+              <th>تكلفة الخدمة شهريا</th>
+              <th>تكلفة الخدمة سنويا</th>
+            </tr>
+            <tr>
+              <td class="center bold">تفعيل أكثر من نسخة</td>
+              <td class="center bold green">مجانى</td>
+              <td class="center bold green">مجانى</td>
+            </tr>
+            <tr>
+              <td class="center bold">فرع واحد</td>
+              <td class="center bold green">مجانى</td>
+              <td class="center bold green">مجانى</td>
+            </tr>
+            <tr>
+              <td class="center bold">50 عميل</td>
+              <td class="center bold green">مجانى</td>
+              <td class="center bold green">مجانى</td>
+            </tr>
+            <tr>
+              <td class="center bold">5 موظفين</td>
+              <td class="center bold green">مجانى</td>
+              <td class="center bold green">مجانى</td>
+            </tr>
+            <tr>
+              <td class="center bold">50 صنف</td>
+              <td class="center bold green">مجانى</td>
+              <td class="center bold green">مجانى</td>
+            </tr>
+            <tr>
+              <td class="center bold">فرع جديد</td>
+              <td class="center bold green">5$</td>
+              <td class="center bold green">50$</td>
+            </tr>
+            <tr>
+              <td class="center bold">100 عميل أضافى</td>
+              <td class="center bold green">1$</td>
+              <td class="center bold green">10$</td>
+            </tr>
+            <tr>
+              <td class="center bold">20 موظف أضافى</td>
+              <td class="center bold green">1$</td>
+              <td class="center bold green">10$</td>
+            </tr>
+            <tr>
+              <td class="center bold">100 صنف أضافى</td>
+              <td class="center bold green">1$</td>
+              <td class="center bold green">10$</td>
+            </tr>
+            <tr>
+              <td class="center bold">سيرفر أون لاين</td>
+              <td class="center bold green">10$</td>
+              <td class="center bold green">100$</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <br />
+      <br />
+      <br />
+      <div x-import="scripts.html"></div>
+      <div class="footer" x-feature="!login">
+        <div class="row egypt hidden">
+          <h2 class="center">
+            <span>
+              <a href="tel:+201090061266"> +201090061266 <i class="fa fa-whatsapp" aria-hidden="true"></i> </a> <br />
+              <a href="mailto:call.smart.code@gmail.com"> call.smart.code@gmail.com <i class="fa fa-envelope" aria-hidden="true"></i> </a> <br />
+            </span>
+          </h2>
+        </div>
+        <div class="row mt hidden">
+          <h2 class="center">
+            <span>
+              <h3 class="center bold green" style="text-shadow: 3px 3px #b3b3ff; font-size: xxx-large">شركة ميدانى تكنولوجى</h3>
+              <br />
+
+              الجيزة-الهرم <i class="fa fa-map-marker" aria-hidden="true"></i><br />
+              رقم بريدى 12515<br />
+              <a href="tel:+201282141131"> +201282141131 <i class="fa fa-whatsapp" aria-hidden="true"></i> </a> <br />
+            </span>
+          </h2>
+        </div>
+
+        <div class="row ft hidden">
+          <h2 class="center">
+            <span>
+              <h2 class="center bold green" style="text-shadow: 3px 3px #b3b3ff; font-size: xxx-large">Future-Tech</h2>
+              <br />
+
+              المنصورة : حي الجامعة <i class="fa fa-map-marker" aria-hidden="true"></i> <br />
+              مسجد الصباحي - الدور السابع <i class="fa fa-building"></i><br />
+              <br />
+              <a href="tel:01554079393"> 01554079393 <i class="fa fa-whatsapp" aria-hidden="true"></i> </a> <br />
+              <a href="tel:0502379393"> 0502379393 <i class="fa fa-phone" aria-hidden="true"></i> </a> <br />
+              <a href="mailto:info@futurtechs.com"> info@futurtechs.com <i class="fa fa-envelope" aria-hidden="true"></i> </a> <br />
+              <a href="https://www.futurtechs.com" target="_blank"> www.futurtechs.com <i class="fa fa-globe" aria-hidden="true"></i> </a>
+              <br />
+            </span>
+          </h2>
+        </div>
+
+        <div class="row protouch hidden">
+          <h2 class="center">
+            <span>
+              <h2 class="center bold green" style="text-shadow: 3px 3px #b3b3ff; font-size: xxx-large">Pro-Touch</h2>
+              <br />
+
+              المملكة العربية السعودية <br />
+              خميس مشيط - الضيافة <i class="fa fa-map-marker" aria-hidden="true"></i> <br />
+              شارع الامام محمد بن سعود - عمارة سنود <i class="fa fa-building"></i><br />
+              <br />
+
+              <br />
+              <a href="tel:0552371188"> 0552371188 <i class="fa fa-phone" aria-hidden="true"></i> </a> <br />
+              <a href="mailto:info@protouch-avs.com"> info@protouch-avs.com <i class="fa fa-envelope" aria-hidden="true"></i> </a> <br />
+
+              <a href="https://www.fts-protouch.com" target="_blank"> /www.fts-protouch.com <i class="fa fa-globe" aria-hidden="true"></i> </a>
+              <br />
+              <br />
+            </span>
+          </h2>
+        </div>
+
+        <div class="row unqcode hidden">
+          <h2 class="center">
+            <span>
+              <h2 class="center bold green" style="text-shadow: 3px 3px #b3b3ff; font-size: xxx-large">UNQ-Code</h2>
+              <br />
+              المملكة العربية السعودية <i class="fa fa-map-marker" aria-hidden="true"></i>
+              <br />
+
+              <a href="https://info@unqcode.com" target="_blank"> info@unqcode.com <i class="fa fa-globe" aria-hidden="true"></i> </a>
+              <a href="tel:+966 55 209 9231‬‬"> +966 55 209 9231‬‬ <i class="fa fa-whatsapp" aria-hidden="true"></i> </a>
+              <br />
+            </span>
+          </h2>
+        </div>
+
+        <div class="row inout hidden">
+          <h2 class="center">
+            <span>
+              <h2 class="center bold green" style="text-shadow: 3px 3px #b3b3ff; font-size: xxx-large">InOut</h2>
+              <br />
+
+              المنصورة : شارع الجمهورية - المختلط <i class="fa fa-map-marker" aria-hidden="true"></i> <br />
+              بجوار المصرف المتحد <i class="fa fa-building"></i> <br />
+
+              <br />
+              <a href="tel:01050501011"> 01050501011 <i class="fa fa-whatsapp" aria-hidden="true"></i> </a> <br />
+              <a href="tel:01090691050 "> 01090691050 <i class="fa fa-phone" aria-hidden="true"></i> </a> <br />
+              <a href="tel:01021176968 "> 01021176968 <i class="fa fa-phone" aria-hidden="true"></i> </a> <br />
+
+              <a href="https://Fb.com/inoutagent" target="_blank"> Fb.com/inoutagent <i class="fa fa-facebook"></i></a>
+              <br />
+            </span>
+          </h2>
+        </div>
+
+        <div class="row valley hidden">
+          <h2 class="center">
+            <span>
+              <h2 class="center bold green" style="text-shadow: 3px 3px #b3b3ff; font-size: xxx-large">Techno-Valley</h2>
+              <br />
+
+              الاسماعيليه : حي السلام <i class="fa fa-map-marker" aria-hidden="true"></i> <br />
+              تقاطع شارع الغابه والمستشفي امام نادي الطيران <i class="fa fa-building"></i> <br />
+
+              <br />
+              <a href="tel:01050501011"> 01030701900 <i class="fa fa-whatsapp" aria-hidden="true"></i> </a> <br />
+              <a href="tel:01090691050 "> 01068576810 <i class="fa fa-phone" aria-hidden="true"></i> </a> <br />
+
+              <br />
+            </span>
+          </h2>
+        </div>
+
+        <div class="row qelada hidden">
+          <h2 class="center">
+            <span>
+              <h2 class="center bold green" style="text-shadow: 3px 3px #b3b3ff; font-size: xxx-large">القلادة جروب</h2>
+              <br />
+
+              القاهرة : مدينة نصر <i class="fa fa-map-marker" aria-hidden="true"></i> <br />
+              35 عمارات العبور صلاح سالم <i class="fa fa-building"></i> <br />
+
+              <br />
+              <a href="tel:+201015680353"> +201015680353 <i class="fa fa-whatsapp" aria-hidden="true"></i> </a> <br />
+              <a href="tel:0220822434"> 0220822434 <i class="fa fa-phone" aria-hidden="true"></i> </a> <br />
+              <a href="mailto:infoaftgroup@gmail.com"> infoaftgroup@gmail.com <i class="fa fa-envelope" aria-hidden="true"></i> </a> <br />
+              <a href="http://www.alqelada.net" target="_blank"> www.alqelada.net <i class="fa fa-globe" aria-hidden="true"></i> </a>
+              <br />
+            </span>
+          </h2>
+        </div>
+
+        <div class="row ethraa hidden">
+          <h1 class="center bold green" style="text-shadow: 3px 3px #b3b3ff; font-size: xxx-large">إثراء المعرفة</h1>
+          <br />
+          <h1 class="center bold green" style="text-shadow: 3px 3px #b3b3ff; font-size: xxx-large">Ethraa-Almaerfia</h1>
+          <br />
+
+          <div class="row">
+            <div class="col5">
+              <i class="fas fa-road"></i>
+
+              <h2 class="center">
+                <span>
+                  K.S.A – Riyadh <i class="fa fa-map-marker" aria-hidden="true"></i> <br />
+                  Othman Bin Affan - Road Al-Wahah District <i class="fa fa-building"></i> <br />
+                  <br />
+                  <a href="tel:+966 553345112"> +966 553345112 <i class="fa fa-whatsapp" aria-hidden="true"></i> </a>
+                  <br />
+                  <a href="tel:+966 557759097"> +966 557759097 <i class="fa fa-phone" aria-hidden="true"></i> </a> <br />
+                </span>
+              </h2>
+            </div>
+            <div class="col2"></div>
+
+            <div class="col5">
+              <h2 class="center">
+                <span>
+                  K.S.A – Jeddah <i class="fa fa-map-marker" aria-hidden="true"></i> <br />
+                  Al-Salama Dist <br />
+                  Abdulrahman Bin Ahmed Alsudayrey St. <i class="fa fa-building"></i> <br />
+                  <br />
+
+                  <a href="tel:+966 12 2256256"> +966 12 2256256 <i class="fa fa-phone" aria-hidden="true"></i> </a>
+                  <br />
+                </span>
+              </h2>
+            </div>
+          </div>
+
+          <h2 class="center">
+            <a href="mailto:info@sm-sk.com"> info@sm-sk.com <i class="fa fa-globe" aria-hidden="true"></i> </a>
+            <br />
+          </h2>
+        </div>
+
+        <br />
+        <br />
+      </div>
     </div>
-  </div>
 
-
-
-  <script id="post-template" type="x-tmpl-mustache">
+    <script id="post-template" type="x-tmpl-mustache">
 
       <div class="post img__wrap" >
         <h2> {{title_##session.lang##}} </h2>
@@ -692,225 +676,213 @@
       </div>
     </script>
 
-  <script id="pro-template" type="x-tmpl-mustache">
-    <a target="_blank" href="{{link}}">
-      <div class="project img__wrap" >
-        <h2> {{title_##session.lang##}} </h2>
-        <img src="{{image_url}}" alt="">
-        <p class="description"> {{description_##session.lang##}} </p>
-        <b class="img__description"> {{description_##session.lang##}} </b>
-        
-      </div>
-    </a>
+    <script id="pro-template" type="x-tmpl-mustache">
+      <a class="pro-template" target="_blank" href="{{link}}">
+        <div class="project img__wrap" >
+          <h2> {{title_##session.lang##}} </h2>
+          <img src="{{image_url}}" alt="">
+          <p class="description"> {{description_##session.lang##}} </p>
+          <b class="img__description"> {{description_##session.lang##}} </b>
+
+        </div>
+      </a>
     </script>
-  <script>
-    let busy = false;
+    <script>
+      let busy = false;
 
-    if ('##req.headers.host##'.like('*inout*')) {
-      $('.inout').removeClass('hidden');
-      $('.price-info').removeClass('hidden');
-    } else if ('##req.headers.host##'.like('*mt*')) {
-      $('.mt').removeClass('hidden');
-      $('.price-info').removeClass('hidden');
-    } else if ('##req.headers.host##'.like('*ft*')) {
-      $('.ft').removeClass('hidden');
-      $('.price-info').removeClass('hidden');
-    } else if ('##req.headers.host##'.like('*protouch*')) {
-      $('.protouch').removeClass('hidden');
-      $('.price-info').removeClass('hidden');
-    } else if ('##req.headers.host##'.like('*qelada*')) {
-      $('.qelada').removeClass('hidden');
-      $('.price-info').removeClass('hidden');
-    } else if ('##req.headers.host##'.like('*ethraa*')) {
-      $('.ethraa').removeClass('hidden');
-      $('.price-info').removeClass('hidden');
-    } else if ('##req.headers.host##'.like('*free*')) {
-      $('.free').removeClass('hidden');
-      $('.price-info').removeClass('hidden');
-    } else if ('##req.headers.host##'.like('*unqcode*')) {
-      $('.unqcode').removeClass('hidden');
-    } else if ('##req.headers.host##'.like('*valley*')) {
-      $('.valley').removeClass('hidden');
-    } else {
-      $('.egypt').removeClass('hidden');
-      $('.price-info').removeClass('hidden');
-    }
-
-    function loadPosts(more) {
-      busy = false
-      if (busy) {
-        return;
+      if ('##req.headers.host##'.like('*inout*')) {
+        $('.inout').removeClass('hidden');
+        $('.price-info').removeClass('hidden');
+      } else if ('##req.headers.host##'.like('*mt*')) {
+        $('.mt').removeClass('hidden');
+        $('.price-info').removeClass('hidden');
+      } else if ('##req.headers.host##'.like('*ft*')) {
+        $('.ft').removeClass('hidden');
+        $('.price-info').removeClass('hidden');
+      } else if ('##req.headers.host##'.like('*protouch*')) {
+        $('.protouch').removeClass('hidden');
+        $('.price-info').removeClass('hidden');
+      } else if ('##req.headers.host##'.like('*qelada*')) {
+        $('.qelada').removeClass('hidden');
+        $('.price-info').removeClass('hidden');
+      } else if ('##req.headers.host##'.like('*ethraa*')) {
+        $('.ethraa').removeClass('hidden');
+        $('.price-info').removeClass('hidden');
+      } else if ('##req.headers.host##'.like('*free*')) {
+        $('.free').removeClass('hidden');
+        $('.price-info').removeClass('hidden');
+      } else if ('##req.headers.host##'.like('*unqcode*')) {
+        $('.unqcode').removeClass('hidden');
+      } else if ('##req.headers.host##'.like('*valley*')) {
+        $('.valley').removeClass('hidden');
+      } else {
+        $('.egypt').removeClass('hidden');
+        $('.price-info').removeClass('hidden');
       }
 
-      if (typeof Mustache == 'undefined') {
-        return;
-      }
+      function loadPosts(more) {
+        busy = false;
+        if (busy) {
+          return;
+        }
 
-      if (busy) return;
-      busy = true;
+        if (typeof Mustache == 'undefined') {
+          return;
+        }
 
-      $('.posts-loading').remove();
-      $('#posts').append('<p class="posts-loading"> <img src="/images/loading.gif"> </p>');
+        if (busy) return;
+        busy = true;
 
-      busy = true;
+        $('.posts-loading').remove();
+        $('#posts').append('<p class="posts-loading"> <img src="/images/loading.gif"> </p>');
 
-      site.getData(
-        {
-          url: '/json/app_features.json',
-          method: 'POST',
-        },
-        function (res) {
-          busy = false;
+        busy = true;
 
-          var rendered = '';
-          var post_template = $('#post-template').html();
-          Mustache.parse(post_template);
+        site.getData(
+          {
+            url: '/json/app_features.json',
+            method: 'POST',
+          },
+          function (res) {
+            busy = false;
 
-          for (var i = 0; i < res.length; i++) {
-            try {
-              var post = {};
+            var rendered = '';
+            var post_template = $('#post-template').html();
+            Mustache.parse(post_template);
 
-              if (res[i].feature == 'public') {
-                post = res[i];
+            for (var i = 0; i < res.length; i++) {
+              try {
+                var post = {};
 
-                if (res[i].title_en === 'Work shifts' && site.features.like('*school*')) {
-                } else rendered += Mustache.render(post_template, post);
-              } else if (res[i].feature == 'club' && site.features.like('*club*')) {
-                post = res[i];
-                rendered += Mustache.render(post_template, post);
-              } else if (res[i].feature == 'school' && site.features.like('*school*')) {
-                post = res[i];
-                rendered += Mustache.render(post_template, post);
-              } else if (res[i].feature == 'medical' && site.features.like('*medical*')) {
-                post = res[i];
-                rendered += Mustache.render(post_template, post);
-              } else if (res[i].feature == 'academy' && site.features.like('*academy*')) {
-                post = res[i];
-                rendered += Mustache.render(post_template, post);
-              } else if (res[i].feature == 'restaurant' && site.features.like('*restaurant*')) {
-                post = res[i];
-                rendered += Mustache.render(post_template, post);
-              } else if (res[i].feature == 'lawyer' && site.features.like('*lawyer*')) {
-                post = res[i];
-                rendered += Mustache.render(post_template, post);
-              } else if (res[i].feature == 'pos' && site.features.like('*pos*')) {
-                post = res[i];
-                rendered += Mustache.render(post_template, post);
-              } else if (res[i].feature == 'order') {
-                if (site.features.like('*restaurant*') || site.features.like('*pos*')) {
+                if (res[i].feature == 'public') {
+                  post = res[i];
+
+                  if (res[i].title_en === 'Work shifts' && site.features.like('*school*')) {
+                  } else rendered += Mustache.render(post_template, post);
+                } else if (res[i].feature == 'club' && site.features.like('*club*')) {
+                  post = res[i];
+                  rendered += Mustache.render(post_template, post);
+                } else if (res[i].feature == 'school' && site.features.like('*school*')) {
+                  post = res[i];
+                  rendered += Mustache.render(post_template, post);
+                } else if (res[i].feature == 'medical' && site.features.like('*medical*')) {
+                  post = res[i];
+                  rendered += Mustache.render(post_template, post);
+                } else if (res[i].feature == 'academy' && site.features.like('*academy*')) {
+                  post = res[i];
+                  rendered += Mustache.render(post_template, post);
+                } else if (res[i].feature == 'restaurant' && site.features.like('*restaurant*')) {
+                  post = res[i];
+                  rendered += Mustache.render(post_template, post);
+                } else if (res[i].feature == 'lawyer' && site.features.like('*lawyer*')) {
+                  post = res[i];
+                  rendered += Mustache.render(post_template, post);
+                } else if (res[i].feature == 'pos' && site.features.like('*pos*')) {
+                  post = res[i];
+                  rendered += Mustache.render(post_template, post);
+                } else if (res[i].feature == 'order') {
+                  if (site.features.like('*restaurant*') || site.features.like('*pos*')) {
+                    post = res[i];
+                    rendered += Mustache.render(post_template, post);
+                  }
+                } else if (res[i].feature == 'pos') {
+                  if (site.features.like('*erp*') || site.features.like('*club*') || site.features.like('*restaurant*') || site.features.like('*academy*')) {
+                    post = res[i];
+                    rendered += Mustache.render(post_template, post);
+                  }
+                } else if (res[i].feature == 'hr') {
                   post = res[i];
                   rendered += Mustache.render(post_template, post);
                 }
-              } else if (res[i].feature == 'pos') {
-                if (site.features.like('*erp*') || site.features.like('*club*') || site.features.like('*restaurant*') || site.features.like('*academy*')) {
-                  post = res[i];
+              } catch (error) {}
+            }
+
+            $('#posts').append('<span class="line"></span><span class="line"></span><span class="line"></span>');
+            $('#posts').append(rendered);
+
+            busy = false;
+            $('.posts-loading').remove();
+          },
+        );
+      }
+
+      function loadProjects(more) {
+        if (busy) {
+          return;
+        }
+        if (typeof Mustache == 'undefined') {
+          return;
+        }
+
+        if (busy) return;
+        busy = true;
+
+        $('.posts-loading').remove();
+        $('#posts').append('<p class="posts-loading"> <img src="/images/loading.gif"> </p>');
+
+        busy = true;
+
+        site.getData(
+          {
+            url: '/json/app_projects.json',
+            method: 'POST',
+          },
+          function (res) {
+            busy = false;
+
+            var rendered = '';
+            var post_template = $('#pro-template').html();
+            Mustache.parse(post_template);
+
+            for (var i = 0; i < res.length; i++) {
+              try {
+                var post = {};
+
+                post = res[i];
+                if ('##req.headers.host##'.like('*inout*')) {
+                  post.link = `https://www.inout.${post.feature}.egytag.com`;
+                } else if ('##req.headers.host##'.like('*mt*')) {
+                  post.link = `https://www.mt.${post.feature}.egytag.com`;
+                } else if ('##req.headers.host##'.like('*ft*')) {
+                  post.link = `https://www.ft.${post.feature}.egytag.com`;
+                } else if ('##req.headers.host##'.like('*protouch*')) {
+                  post.link = `https://www.protouch.${post.feature}.egytag.com`;
+                } else if ('##req.headers.host##'.like('*qelada*')) {
+                  post.link = `https://www.qelada.${post.feature}.egytag.com`;
+                } else if ('##req.headers.host##'.like('*ethraa*')) {
+                  post.link = `https://www.ethraa.${post.feature}.egytag.com`;
+                } else if ('##req.headers.host##'.like('*unqcode*')) {
+                  post.link = `https://www.unqcode.${post.feature}.egytag.com`;
+                } else if ('##req.headers.host##'.like('*valley*')) {
+                  post.link = `https://www.valley.${post.feature}.egytag.com`;
+                } else {
+                  post.link = `https://www.${post.feature}.egytag.com`;
+                }
+
+                if (!site.features.like(`*${post.feature}*`)) {
                   rendered += Mustache.render(post_template, post);
                 }
-              } else if (res[i].feature == 'hr') {
-                post = res[i];
-                rendered += Mustache.render(post_template, post);
-              }
-            } catch (error) { }
-          }
+              } catch (error) {}
+            }
 
-          $('#posts').append('<span class="line"></span><span class="line"></span><span class="line"></span>');
-          $('#posts').append(rendered);
+            $('#posts').append('<span class="line"></span><span class="line"></span><span class="line"></span>');
+            $('#posts').append(rendered);
+            $('#posts').append('<hr>');
 
-          busy = false;
-          $('.posts-loading').remove();
-        },
-      );
-    }
-
-
-    function loadProjects(more) {
-      if (busy) {
-        return;
-      }
-      if (typeof Mustache == 'undefined') {
-        return;
+            busy = false;
+            $('.posts-loading').remove();
+          },
+        );
+        loadPosts();
       }
 
-      if (busy) return;
-      busy = true;
+      loadProjects();
 
-      $('.posts-loading').remove();
-      $('#posts').append('<p class="posts-loading"> <img src="/images/loading.gif"> </p>');
+      var app = app || angular.module('myApp', []);
 
-      busy = true;
-
-      site.getData(
-        {
-          url: '/json/app_projects.json',
-          method: 'POST',
-        },
-        function (res) {
-          busy = false;
-
-          var rendered = '';
-          var post_template = $('#pro-template').html();
-          Mustache.parse(post_template);
-
-          for (var i = 0; i < res.length; i++) {
-            try {
-              var post = {};
-
-              post = res[i];
-              if ('##req.headers.host##'.like('*inout*') ) {
-                post.link = `https://www.inout.${post.feature}.egytag.com`;
-
-              } else if ('##req.headers.host##'.like('*mt*') ) {
-                post.link = `https://www.mt.${post.feature}.egytag.com`;
-
-              } else if ('##req.headers.host##'.like('*ft*') ) {
-                post.link = `https://www.ft.${post.feature}.egytag.com`;
-
-              } else if ('##req.headers.host##'.like('*protouch*') ) {
-                post.link = `https://www.protouch.${post.feature}.egytag.com`;
-
-              } else if ('##req.headers.host##'.like('*qelada*') ) {
-                post.link = `https://www.qelada.${post.feature}.egytag.com`;
-
-              } else if ('##req.headers.host##'.like('*ethraa*') ) {
-                post.link = `https://www.ethraa.${post.feature}.egytag.com`;
-
-              } else if ('##req.headers.host##'.like('*unqcode*') ) {
-                post.link = `https://www.unqcode.${post.feature}.egytag.com`;
-
-              } else if ('##req.headers.host##'.like('*valley*') ) {
-                post.link = `https://www.valley.${post.feature}.egytag.com`;
-
-              } else {
-                post.link = `https://www.${post.feature}.egytag.com`;
-
-              }
-
-              if(!site.features.like(`*${post.feature}*`) ){
-                rendered += Mustache.render(post_template, post);
-              }
-
-            } catch (error) { }
-          }
-
-          $('#posts').append('<span class="line"></span><span class="line"></span><span class="line"></span>');
-          $('#posts').append(rendered);
-
-          busy = false;
-          $('.posts-loading').remove();
-        },
-      );
-      loadPosts();
-
-    }
-
-    loadProjects();
-
-    var app = app || angular.module('myApp', []);
-
-    function scope() {
-      return angular.element(document.getElementById('main-layout')).scope();
-    }
-  </script>
-</body>
-
+      function scope() {
+        return angular.element(document.getElementById('main-layout')).scope();
+      }
+    </script>
+  </body>
 </html>
