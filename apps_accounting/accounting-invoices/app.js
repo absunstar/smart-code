@@ -71,7 +71,6 @@ module.exports = function init(site) {
   })
 
 
-
   site.post("/api/account_invoices/add", (req, res) => {
     let response = {}
     response.done = false

@@ -165,7 +165,7 @@ app.controller("report_daily", function ($scope, $http, $timeout) {
     if ($scope.defaultSettings.printer_program) {
 
       if ($scope.defaultSettings.printer_program.printer_path)
-        obj_print.printer = $scope.defaultSettings.printer_program.printer_path.ip.trim();
+        obj_print.printer = $scope.defaultSettings.printer_program.printer_path.ip.name.trim();
 
 
       if ($scope.defaultSettings.printer_program.invoice_top_title) {

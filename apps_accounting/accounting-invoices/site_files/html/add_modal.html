@@ -16,7 +16,7 @@
             <h2 class="error"> {{error}} </h2>
             <h2 class="green center"> {{success}} </h2>
             <i-button type="add" label="##word.create_an_invoice##" ng-click="addAccountInvoice()"></i-button>
-            <i-button class="not-print" label="##word.print##" type="print " ng-click="printAccountInvoive($scope.account_invoices)"></i-button>
+            <i-button class="not-print" label="##word.print##" type="print " ng-click="printAccountInvoive(account_invoices)"></i-button>
             <i-button type="close" label="##word.close##" onclick="site.hideModal('#accountInvoicesAddModal')"></i-button>
         </div>
     </div>

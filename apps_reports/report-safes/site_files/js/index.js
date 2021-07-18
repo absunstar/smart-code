@@ -192,7 +192,7 @@ app.controller("report_safes", function ($scope, $http, $timeout) {
     let obj_print = { data: [] };
 
     if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path)
-      obj_print.printer = $scope.defaultSettings.printer_program.printer_path.ip.trim();
+      obj_print.printer = $scope.defaultSettings.printer_program.printer_path.ip.name.trim();
 
     if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_header)
       obj_print.data.push({
