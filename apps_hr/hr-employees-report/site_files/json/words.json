@@ -23,7 +23,7 @@
     { "name": "salary_approved","en": "Salary Approved ", "ar": " اعتماد المرتب "},
     { "name": "le","en": " le ", "ar": "  جنيه "},
     { "name": "employee_report_description","en": " Description ", "ar": "  التفاصيل "},
-    { "name": "employees_report_total_advances","en": " Total Advances ", "ar": "  إجمالي السلف "},
+    { "name": "employees_report_total_advances","en": " Total Advances ", "ar": "  إج. السلف "},
 
     
     

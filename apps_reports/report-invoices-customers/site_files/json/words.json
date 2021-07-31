@@ -32,12 +32,12 @@
     {
         "name": "net_total_return",
         "en": "Net Total Return",
-        "ar": "صافي إجمالي المرتجعات"
+        "ar": "صافي إج. المرتجعات"
     },
     {
         "name": "total_net_values",
         "en": "Total Net Values",
-        "ar": "إجمالي القيم المطلوبة"
+        "ar": "إج. القيم المطلوبة"
     },
     {
         "name": "total_items_price",

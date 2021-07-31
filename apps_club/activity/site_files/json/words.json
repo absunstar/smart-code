@@ -31,7 +31,7 @@
     {
         "name": "total_attend_count",
         "en": "Total Attend Count",
-        "ar": "إجمالي مرات الحضور"
+        "ar": "إج. مرات الحضور"
     },
     {
         "name": "available_period",
@@ -46,7 +46,7 @@
     {
         "name": "total_session_price",
         "en": "Total Session Price",
-        "ar": "إجمالي سعر الجلسات"
+        "ar": "إج. سعر الجلسات"
     },
     {
         "name": "month_price",
@@ -106,7 +106,7 @@
     {
         "name": "complex_activ_price",
         "en": "Total Assembler Services/Activities Price",
-        "ar": "إجمالي سعر خدمات/أنشطة مجمعة"
+        "ar": "إج. سعر خدمات/أنشطة مجمعة"
     },
     
     {
@@ -117,7 +117,7 @@
     {
         "name": "activity_total",
         "en": "Total Duration",
-        "ar": "إجمالي المدة "
+        "ar": "إج. المدة "
     },
     {
         "name": "activity_capaneighborhood",

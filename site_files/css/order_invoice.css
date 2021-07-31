@@ -15,6 +15,7 @@ body {
     white-space: nowrap;
 }
 
+
 .item-groups::-webkit-scrollbar {
     height: 10px;
 }
@@ -28,8 +29,20 @@ body {
     background: #2414ff;
 }
 
-.item-list,
-.item-types {
+.active-list {
+    position: relative;
+    display: inline-grid;
+    border: 1px solid #8f9dff;
+    background: #8f9dff;
+    border-radius: 15px;
+    text-align: center;
+    line-height: 1.8;
+    width: 250px;
+    height: 300px;
+    margin: 15px;
+  }
+
+.item-list {
     display: inline-flex;
     flex-flow: wrap;
     padding: 9px;
@@ -48,8 +61,8 @@ body {
     border-top-left-radius: 25px;
 }
 
-.item-list .item,
-.item-types .item {
+
+.item-list .item {
     width: 150px;
     display: inline-block;
     border: 2px solid #03008d;
@@ -60,7 +73,6 @@ body {
     margin: 13px !important;
 }
 
-.my-hover,
 .item-groups .item:hover {
     transform: scale(1.1);
     /* background-color: #57ff732e; */
@@ -76,15 +88,20 @@ body {
     box-shadow: 3px 3px 3px 3px #fd004ccc;
 } */
 
-.item-list .item:hover,
-.item-types .item:hover {
+.active-list:hover {
+    transform: scale(1.1);
+    box-shadow: 2px 2px 2px 2px #3431ebb0;
+}
+
+
+
+.item-list .item:hover {
     transform: scale(1.1);
     /*  background-color: #57ff732e;
     border: 2px solid rgb(58, 255, 124); */
     box-shadow: 2px 2px 2px 2px #3431ebb0;
 }
 
-.item-types img,
 .item-list img {
     width: max-content;
     height: 90px;
@@ -95,13 +112,6 @@ body {
     border-bottom-left-radius: unset;
     background-color: #ffffff;
 }
-
-
-/* .item-list img,
-.item-types img {
-    background-color: #ffffff;
-    border-radius: 10px;
-} */
 
 .bg_font_group {
     border-bottom-right-radius: 10px;
@@ -157,36 +167,6 @@ body {
     font-weight: bold;
 
 }
-
-/* .item-list h2,
-.item-types h2 {
-    width: 190px;
-    display: inline-block;
-    color: #030303;
-    text-align: center;
-    padding: 2px;
-    font-weight: bold;
-}
-
-.item-groups h3 {
-    width: 190px;
-    display: inline-block;
-    color: black;
-    text-align: center;
-    padding: 2px;
-    font-weight: bold;
-}
-
-.item-list h3,
-.item-types h3 {
-    width: 190px;
-    display: inline-block;
-    color: #23a30a;
-    text-align: center;
-    padding: 2px;
-    font-weight: bold;
-} */
-
 
 .code,
 .code input {

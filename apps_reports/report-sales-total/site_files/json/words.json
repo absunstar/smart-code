@@ -2,27 +2,27 @@
     {
         "name": "report_sales_total_name",
         "en": "Report Items Sales Total",
-        "ar": "تقرير مبيعات إجمالي الأصناف"
+        "ar": "تقرير مبيعات إج. الأصناف"
     },
     {
         "name": "report_sales_total",
         "en": "Report Items Sales Total",
-        "ar": "تقرير مبيعات إجمالي الأصناف"
+        "ar": "تقرير مبيعات إج. الأصناف"
     },
     {
         "name": "report_total",
         "en": "Report Total",
-        "ar": "تقرير إجمالي"
+        "ar": "تقرير إج."
     },
     {
         "name": "report_detailed",
         "en": "Report Total",
-        "ar": "تقرير إجمالي"
+        "ar": "تقرير إج."
     },
     {
         "name": "report_sales_total_menus",
         "en": "Report Sales Total Menu",
-        "ar": "قائمة تقرير إجمالي للمبيعات"
+        "ar": "قائمة تقرير إج. للمبيعات"
     },
     {
         "name": "invoices_code",
@@ -37,7 +37,7 @@
     {
         "name": "total_net_values",
         "en": "Total Net Values",
-        "ar": "إجمالي القيم المطلوبة"
+        "ar": "إج. القيم المطلوبة"
     },
     {
         "name": "total_items_price",
@@ -47,7 +47,7 @@
     {
         "name": "total_delivery_service_price",
         "en": "Total Delivery Service Price",
-        "ar": "إجمالي سعر خدمة التوصيل"
+        "ar": "إج. سعر خدمة التوصيل"
     },
     {
         "name": "report_invoices_name",
@@ -173,17 +173,17 @@
     {
         "name": "report_invoices_total_required",
         "en": "Total Required",
-        "ar": "إجمالي المطلوب"
+        "ar": "إج. المطلوب"
     },
     {
         "name": "total_paid_up",
         "en": "Total Rest",
-        "ar": "إجمالي المدفوع"
+        "ar": "إج. المدفوع"
     },
     {
         "name": "total_remain",
         "en": "Total Remain",
-        "ar": "إجمالي الباقي"
+        "ar": "إج. الباقي"
     },
     {
         "name": "report_invoices_add_name",

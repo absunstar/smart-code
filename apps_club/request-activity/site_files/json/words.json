@@ -16,7 +16,7 @@
     {
         "name": "total_discount",
         "en": "Total DiscountS",
-        "ar": "إجمالي الخصومات"
+        "ar": "إج. الخصومات"
     },
 
     {
@@ -127,7 +127,7 @@
     {
         "name": "request_activity_total",
         "en": "Total Duration",
-        "ar": "إجمالي المدة "
+        "ar": "إج. المدة "
     },
     {
         "name": "request_activity_capaneighborhood",

@@ -152,32 +152,32 @@
     {
         "name": "report_safes_total_required",
         "en": "Total Required",
-        "ar": "إجمالي المطلوب"
+        "ar": "إج. المطلوب"
     },
     {
         "name": "total_outgoing",
         "en": "Total Paid Outgoing",
-        "ar": "إجمالي الصرف "
+        "ar": "إج. الصرف "
     },
     {
         "name": "total_incoming",
         "en": "Total Paid Incoming",
-        "ar": "إجمالي القبض "
+        "ar": "إج. القبض "
     },
     {
         "name": "total_outgoing_comm",
         "en": "Total commission Outgoing",
-        "ar": "إجمالي عمولة الصرف "
+        "ar": "إج. عمولة الصرف "
     },
     {
         "name": "total_incoming_comm",
         "en": "Total commission Incoming",
-        "ar": "إجمالي عمولة القبض "
+        "ar": "إج. عمولة القبض "
     },
     {
         "name": "total_remain",
         "en": "Total Remain",
-        "ar": "إجمالي الباقي"
+        "ar": "إج. الباقي"
     },
     {
         "name": "report_safes_add_name",

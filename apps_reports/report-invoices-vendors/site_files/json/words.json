@@ -32,12 +32,12 @@
     {
         "name": "net_total_return",
         "en": "Net Total Return",
-        "ar": "صافي إجمالي المرتجعات"
+        "ar": "صافي إج. المرتجعات"
     },
     {
         "name": "total_net_values",
         "en": "Total Net Values",
-        "ar": "إجمالي القيم المطلوبة"
+        "ar": "إج. القيم المطلوبة"
     },
     {
         "name": "total_items_price",
@@ -47,7 +47,7 @@
     {
         "name": "total_vendor_service_price",
         "en": "Total Delegate Service Price",
-        "ar": "إجمالي سعر خدمة التوصيل"
+        "ar": "إج. سعر خدمة التوصيل"
     },
     {
         "name": "report_invoices_name",
@@ -139,18 +139,18 @@
     {
         "name": "report_invoices_total_required",
         "en": "Total Required",
-        "ar": "إجمالي المطلوب"
+        "ar": "إج. المطلوب"
     },
     {
         "name": "total_paid_up",
         "en": "Total Rest",
-        "ar": "إجمالي المدفوع"
+        "ar": "إج. المدفوع"
     },
   
     {
         "name": "total_remain",
         "en": "Total Remain",
-        "ar": "إجمالي الباقي"
+        "ar": "إج. الباقي"
     },
     {
         "name": "report_invoices_add_name",

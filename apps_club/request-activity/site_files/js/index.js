@@ -114,7 +114,7 @@ app.controller("request_activity", function ($scope, $http, $timeout) {
 
           } else if (response.data.error.like('*ername must be typed correctly*')) {
             $scope.error = "##word.err_username_contain##"
-            
+
           } else if (response.data.error.like('*User Is Exist*')) {
             $scope.error = "##word.user_exists##"
           }
@@ -313,6 +313,9 @@ app.controller("request_activity", function ($scope, $http, $timeout) {
     if ($scope.busy) return;
     $scope.busy = true;
 
+    let name_lang = 'name_ar';
+    if ('##session.lang##' === 'en') name_lang = 'name_en';
+
     let ip = '127.0.0.1';
     let port = '60080';
 
@@ -335,11 +338,15 @@ app.controller("request_activity", function ($scope, $http, $timeout) {
     if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path)
       obj_print.printer = $scope.defaultSettings.printer_program.printer_path.ip.name.trim();
 
-    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_header)
-      obj_print.data.push({
-        type: 'header',
-        value: $scope.defaultSettings.printer_program.invoice_header
+    if ($scope.defaultSettings.printer_program.invoice_header && $scope.defaultSettings.printer_program.invoice_header.length > 0) {
+      $scope.defaultSettings.printer_program.invoice_header.forEach(_ih => {
+        obj_print.data.push({
+          type: 'header',
+          value: _ih.name
+        });
       });
+
+    };
 
     obj_print.data.push(
       {
@@ -358,8 +365,8 @@ app.controller("request_activity", function ($scope, $http, $timeout) {
     if ($scope.account_invoices.customer)
       obj_print.data.push({
         type: 'text2',
-        value2: $scope.account_invoices.customer.name_ar,
-        value: 'Cutomer'
+        value2: $scope.account_invoices.customer[name_lang],
+        value: '##word.customer##'
       });
 
     if ($scope.account_invoices.activity_name_ar)
@@ -377,7 +384,7 @@ app.controller("request_activity", function ($scope, $http, $timeout) {
       obj_print.data.push({
         type: 'text2',
         value2: $scope.account_invoices.total_discount,
-        value: 'Total Discount'
+        value: '##word.total_discount##'
       });
 
     obj_print.data.push({ type: 'space' });
@@ -394,7 +401,7 @@ app.controller("request_activity", function ($scope, $http, $timeout) {
         {
           type: 'text2',
           value2: $scope.account_invoices.paid_up,
-          value: "Paid Up"
+          value: "##word.paid_up##"
         });
 
     if ($scope.account_invoices.currency)
@@ -402,7 +409,7 @@ app.controller("request_activity", function ($scope, $http, $timeout) {
         {
           type: 'text2',
           value2: $scope.account_invoices.currency,
-          value: "Currency"
+          value: "##word.currency##"
         });
 
     obj_print.data.push({ type: 'space' });
@@ -411,14 +418,36 @@ app.controller("request_activity", function ($scope, $http, $timeout) {
       obj_print.data.push({
         type: 'text2b',
         value2: $scope.account_invoices.total_remain,
-        value: "Required to pay"
+        value: "##word.paid_require##"
       });
 
-    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_footer)
-      obj_print.data.push({
-        type: 'footer',
-        value: $scope.defaultSettings.printer_program.invoice_footer
+    obj_print.data.push(
+      {
+        type: 'line'
+      },
+      {
+        type: 'invoice-barcode',
+        value: obj.code || 'test'
+      },
+      {
+        type: 'invoice-total',
+        value: $scope.defaultSettings.printer_program.tax_number,
+        name: "##word.tax_number##"
+      },
+      {
+        type: 'line'
+      }
+    );
+
+
+    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_footer && $scope.defaultSettings.printer_program.invoice_footer.length > 0) {
+      $scope.defaultSettings.printer_program.invoice_footer.forEach(_if => {
+        obj_print.data.push({
+          type: 'header',
+          value: _if.name
+        });
       });
+    }
 
     $http({
       method: "POST",
@@ -880,7 +909,7 @@ app.controller("request_activity", function ($scope, $http, $timeout) {
     $scope.attend_activity.attend_activity_list.unshift({
       id: s.activity_id || s.id,
       trainer_attend: s.trainer_attend,
-      name_ar:  s.name_ar || s.activity_name_ar,
+      name_ar: s.name_ar || s.activity_name_ar,
       name_en: s.name_en || s.activity_name_en,
       attend_date: new Date(),
       attend_time: {
@@ -907,26 +936,26 @@ app.controller("request_activity", function ($scope, $http, $timeout) {
         _selected_activity_list.trainer_attend = $scope.attend_activity.trainer;
         _selected_activity_list.total_real_attend_count = _selected_activity_list.total_real_attend_count || (_selected_activity_list.total_attend_count * $scope.attend_activity.activity_count);
         _selected_activity_list.current_attendance = _selected_activity_list.current_attendance || 0;
-        if(_selected_activity_list.remain || _selected_activity_list.remain === 0){
+        if (_selected_activity_list.remain || _selected_activity_list.remain === 0) {
           _selected_activity_list.remain = _selected_activity_list.remain
         } else {
           _selected_activity_list.remain = _selected_activity_list.total_attend_count * $scope.attend_activity.activity_count
 
         }
-    
+
       });
     } else {
       $scope.attend_activity.trainer_attend = $scope.attend_activity.trainer;
       $scope.attend_activity.total_real_attend_count = $scope.attend_activity.total_real_attend_count || ($scope.attend_activity.attend_count * $scope.attend_activity.activity_count);
       $scope.attend_activity.current_attendance = $scope.attend_activity.current_attendance || 0;
 
-      if($scope.attend_activity.remain || $scope.attend_activity.remain === 0){
+      if ($scope.attend_activity.remain || $scope.attend_activity.remain === 0) {
         $scope.attend_activity.remain = $scope.attend_activity.remain
       } else {
         $scope.attend_activity.remain = $scope.attend_activity.total_attend_count * $scope.attend_activity.activity_count
 
       }
-  
+
     }
 
     /*     $scope.busy = true;

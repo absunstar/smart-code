@@ -203,15 +203,6 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
       _kitchen.printer = _kitchen.printer_path.ip;
       _kitchen.has_items = false;
 
-      if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_header) {
-        _kitchen.data.push({
-          type: 'header',
-          value: $scope.defaultSettings.printer_program.invoice_header
-        })
-      }
-
-
-
 
       _kitchen.data.push({
         type: 'text2',
@@ -283,13 +274,6 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
       _kitchen.data.push({
         type: 'line'
       });
-
-      if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_footer) {
-        _kitchen.data.push({
-          type: 'footer',
-          value: $scope.defaultSettings.printer_program.invoice_footer
-        })
-      }
 
       if (_kitchen.has_items) {
         $http({
@@ -440,7 +424,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
       obj_print.data.push({
         type: 'text2',
         value2: $scope.account_invoices.customer.name_ar,
-        value: 'Cutomer'
+        value: '##word.cutomer##'
       });
 
     if ($scope.account_invoices.current_book_list && $scope.account_invoices.current_book_list.length > 0) {
@@ -487,21 +471,21 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
       obj_print.data.push({
         type: 'text2',
         value2: $scope.account_invoices.total_tax,
-        value: 'Total Taxes'
+        value: '##word.total_tax##'
       });
 
     if ($scope.account_invoices.total_discount)
       obj_print.data.push({
         type: 'text2',
         value2: $scope.account_invoices.total_discount,
-        value: 'Total Discount'
+        value: '##word.total_discount##'
       });
 
     if ($scope.account_invoices.price_delivery_service)
       obj_print.data.push({
         type: 'text2',
         value2: $scope.account_invoices.price_delivery_service,
-        value: 'Service Delivery'
+        value: '##word.delivery_service##'
       });
 
     if ($scope.account_invoices.service)
@@ -534,7 +518,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
         {
           type: 'text2',
           value2: $scope.account_invoices.payment_paid_up || $scope.account_invoices.paid_up,
-          value: "Paid Up"
+          value: "##word.paid_up##"
         });
 
     if ($scope.account_invoices.payment_paid_up || $scope.account_invoices.paid_up)
@@ -551,7 +535,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
       obj_print.data.push({
         type: 'total',
         value2: $scope.account_invoices.total_remain,
-        value: "Required to pay"
+        value: "##word.paid_require##"
       });
 
     if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_footer)

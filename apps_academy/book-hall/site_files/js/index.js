@@ -773,11 +773,15 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
     if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path)
       obj_print.printer = $scope.defaultSettings.printer_program.printer_path.ip.name.trim();
 
-    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_header)
-      obj_print.data.push({
-        type: 'header',
-        value: $scope.defaultSettings.printer_program.invoice_header
+    if ($scope.defaultSettings.printer_program.invoice_header && $scope.defaultSettings.printer_program.invoice_header.length > 0) {
+      $scope.defaultSettings.printer_program.invoice_header.forEach(_ih => {
+        obj_print.data.push({
+          type: 'header',
+          value: _ih.name
+        });
       });
+
+    }
 
     obj_print.data.push(
       {
@@ -797,7 +801,7 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
       obj_print.data.push({
         type: 'text2',
         value2: $scope.account_invoices.tenant.name_ar,
-        value: 'Cutomer'
+        value: '##word.customer##'
       });
 
     if ($scope.account_invoices.hall)
@@ -815,7 +819,7 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
       obj_print.data.push({
         type: 'text2',
         value2: $scope.account_invoices.total_discount,
-        value: 'Total Discount'
+        value: '##word.total_discount##'
       });
 
     obj_print.data.push({ type: 'space' });
@@ -842,7 +846,7 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
         {
           type: 'text2',
           value2: $scope.account_invoices.payment_paid_up || $scope.account_invoices.paid_up,
-          value: "Paid Up"
+          value: "##word.paid_up##"
         }, {
         type: 'text2',
         value2: $scope.account_invoices.total_paid_up || $scope.account_invoices.paid_up,
@@ -855,15 +859,17 @@ app.controller("book_hall", function ($scope, $http, $timeout) {
       obj_print.data.push({
         type: 'text2b',
         value2: $scope.account_invoices.total_remain,
-        value: "Required to pay"
+        value: "##word.paid_require##"
       });
 
-    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_footer)
-      obj_print.data.push({
-        type: 'footer',
-        value: $scope.defaultSettings.printer_program.invoice_footer
+    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_footer && $scope.defaultSettings.printer_program.invoice_footer.length > 0) {
+      $scope.defaultSettings.printer_program.invoice_footer.forEach(_if => {
+        obj_print.data.push({
+          type: 'header',
+          value: _if.name
+        });
       });
-
+    }
     $http({
       method: "POST",
       url: `http://${ip}:${port}/print`,

@@ -12,11 +12,11 @@
     { "name": "report_student_course","en": "Course Name", "ar": "إسم الكورس"},
     { "name": "report_student_serial","en": "Serial", "ar": "رقم مسلسل"},
     { "name": "report_student_required","en": "Required", "ar": "المطلوب"},
-    { "name": "report_student_total_required","en": "Total Required", "ar": "إجمالي المطلوب"},
+    { "name": "report_student_total_required","en": "Total Required", "ar": "إج. المطلوب"},
     { "name": "report_student_paid","en": "paid", "ar": "المدفوع"},
-    { "name": "report_student_total","en": "Total Rest", "ar": "إجمالي المدفوع"},
+    { "name": "report_student_total","en": "Total Rest", "ar": "إج. المدفوع"},
     { "name": "report_student_rest","en": "Rest", "ar": "الباقي"},
-    { "name": "report_student_total_rest","en": "Total Rest", "ar": "الباقي إجمالي"},
+    { "name": "report_student_total_rest","en": "Total Rest", "ar": "الباقي إج."},
 
 
     { "name": "report_student_date","en": "Offer Date", "ar": "التاريخ"}

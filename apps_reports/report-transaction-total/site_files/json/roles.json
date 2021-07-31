@@ -2,6 +2,6 @@
     "module_name" : "report" ,
     "name": "report_transaction_total_admin",
     "en": "Report Transaction Total Admin",
-    "ar": "تقرير إجمالي كارتة الصنف",
+    "ar": "تقرير إج. كارتة الصنف",
     "permissions": ["report_transaction_total_manage"]
 }]

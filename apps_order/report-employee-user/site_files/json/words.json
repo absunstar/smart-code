@@ -53,7 +53,7 @@
     {
         "name": "total_net_values",
         "en": "Total Net Values",
-        "ar": "إجمالي القيم المطلوبة"
+        "ar": "إج. القيم المطلوبة"
     },
     {
         "name": "total_items_price",
@@ -63,7 +63,7 @@
     {
         "name": "total_delivery_service_price",
         "en": "Total Delivery Service Price",
-        "ar": "إجمالي سعر خدمة التوصيل"
+        "ar": "إج. سعر خدمة التوصيل"
     },
     {
         "name": "report_invoices_name",

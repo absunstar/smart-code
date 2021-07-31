@@ -403,7 +403,7 @@
     {
         "name": "total_quantity",
         "en": "Total Quantity",
-        "ar": "إجمالي الكمية"
+        "ar": "إج. الكمية"
     },
     {
         "name": "personnel",
@@ -558,7 +558,7 @@
     {
         "name": "system_total_transaction_menus",
         "en": "Total Item Transaction Menu",
-        "ar": "قائمة إجمالي كارتة الصنف"
+        "ar": "قائمة إج. كارتة الصنف"
     },
     {
         "name": "buy_price",
@@ -663,7 +663,7 @@
     {
         "name": "report_sales_total_menus",
         "en": "Report Sales Total Menu",
-        "ar": "قائمة إجمالي لمبيعات الأصناف "
+        "ar": "قائمة إج. لمبيعات الأصناف "
     },
     {
         "name": "branches",
@@ -708,17 +708,17 @@
     {
         "name": "auto_barcode_generation",
         "en": "Automatic Barcode Generation",
-        "ar": "توليد ألي للباركود"
+        "ar": "توليد اّلي للباركود"
     },
     {
         "name": "total_value_added",
         "en": "Total Value Added",
-        "ar": "إجمالي القيمة المضافة"
+        "ar": "إج. القيمة المضافة"
     },
     {
         "name": "total_v_a",
         "en": "Total V . A",
-        "ar": "إجمالي ق . م"
+        "ar": "إج. ق . م"
     },
     {
         "name": "err_exist_count",
@@ -738,7 +738,7 @@
     {
         "name": "auto_item_code_generation",
         "en": "Automatic Item code Generation",
-        "ar": "توليد ألي لكود الصنف"
+        "ar": "توليد اّلي لكود الصنف"
     },
     {
         "name": "posting_all",
@@ -748,7 +748,7 @@
     {
         "name": "auto_unit_barcode_generation",
         "en": "Automatic Unit Barcode Generation",
-        "ar": "توليد ألي لباركود الوحدة"
+        "ar": "توليد اّلي لباركود الوحدة"
     },
     {
         "name": "item_code",
@@ -878,7 +878,7 @@
     {
         "name": "create_invoice_auto",
         "en": "Auto Create Invoice",
-        "ar": "إنشاء ألي للفاتورة"
+        "ar": "إنشاء اّلي للفاتورة"
     },
     {
         "name": "select_items",
@@ -894,6 +894,26 @@
         "name": "select",
         "en": "Select",
         "ar": "تحديد"
+    },
+    {
+        "name": "tax_number",
+        "en": "Tax Number",
+        "ar": "الرقم الضريبي"
+    },
+    {
+        "name": "total_before_taxes_discounts",
+        "en": "Total before taxes & discounts",
+        "ar": "الإجمالي قبل الخصومات و الضرائب"
+    },
+    {
+        "name": "total_payments",
+        "en": "Total Payments",
+        "ar": "إجمالي المدفوع"
+    },
+    {
+        "name": "delivery_service",
+        "en": "Delivery Service",
+        "ar": "خدمة التوصيل"
     },
     {
         "name": "total_value",
@@ -958,17 +978,17 @@
     {
         "name": "total_tax",
         "en": "ًTotal Tax",
-        "ar": "إجمالي الضرائب"
+        "ar": "إج. الضرائب"
     },
     {
         "name": "total_discount",
         "en": "ًTotal Discount",
-        "ar": "إجمالي الخصم"
+        "ar": "إج. الخصم"
     },
     {
         "name": "total_items_discount",
         "en": "ًTotal Items Discount",
-        "ar": "إجمالي خصم الأصناف"
+        "ar": "إج. خصم الأصناف"
     },
     {
         "name": "store_from",
@@ -1517,7 +1537,7 @@
     {
         "name": "items_price_total",
         "en": "Items Price Total",
-        "ar": "إجمالي سعر الأصناف"
+        "ar": "إج. سعر الأصناف"
     },
     {
         "name": "date_from_subscribe",
@@ -1572,7 +1592,7 @@
     {
         "name": "count",
         "en": "Count",
-        "ar": "عدد النتائج"
+        "ar": "عدد"
     },
     {
         "name": "active",

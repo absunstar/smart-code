@@ -1,7 +1,7 @@
 [
     {
         "name": "stores_items_add",
-        "en": "Add صory",
+        "en": "Add Item",
         "ar": "إضافة صنف"
     },
     {
@@ -96,7 +96,7 @@
     },
     {
         "name": "stores_items_new",
-        "en": "New صory",
+        "en": "New Item",
         "ar": "صنف جديد"
     },
     {
@@ -141,7 +141,7 @@
     },
     {
         "name": "stores_items_delete",
-        "en": "Delete صory",
+        "en": "Delete Item",
         "ar": "حذف صنف"
     },
     {
@@ -317,12 +317,12 @@
     {
         "name": "total_purchase_price",
         "en": "Total Purchase Price",
-        "ar": "إجمالي سعر المشتريات"
+        "ar": "إج. سعر المشتريات"
     },
     {
         "name": "total_purchase_count",
         "en": "Total Purchase Count",
-        "ar": "إجمالي عدد المشتريات"
+        "ar": "إج. عدد المشتريات"
     },
     {
         "name": "average_cost",
@@ -332,17 +332,17 @@
     {
         "name": "total_average_cost",
         "en": "Total Average Cost",
-        "ar": "إجمالي متوسط التكلفة"
+        "ar": "إج. متوسط التكلفة"
     },
     {
         "name": "total_selling_price",
         "en": "Total Selling Price",
-        "ar": "إجمالي سعر المبيعات"
+        "ar": "إج. سعر المبيعات"
     },
     {
         "name": "total_selling_count",
         "en": "Total Selling Count",
-        "ar": "إجمالي عدد المبيعات"
+        "ar": "إج. عدد المبيعات"
     },
     {
         "name": "stores_items_start_count",
@@ -358,16 +358,6 @@
         "name": "stores_items_صory",
         "en": "Item Group",
         "ar": "مجموعة الصنف"
-    },
-    {
-        "name": "stores_items_صory_code",
-        "en": "Group Code",
-        "ar": "كود المجموعة"
-    },
-    {
-        "name": "stores_items_صry",
-        "en": "صory",
-        "ar": "الفئة"
     },
     {
         "name": "stores_items_complex",

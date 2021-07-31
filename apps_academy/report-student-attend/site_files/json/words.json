@@ -56,7 +56,7 @@
     {
         "name": "report_student_total_required",
         "en": "Total Required",
-        "ar": "إجمالي المطلوب"
+        "ar": "إج. المطلوب"
     },
     {
         "name": "report_student_paid",
@@ -66,7 +66,7 @@
     {
         "name": "report_student_total",
         "en": "Total Rest",
-        "ar": "إجمالي المدفوع"
+        "ar": "إج. المدفوع"
     },
     {
         "name": "report_student_rest",
@@ -76,7 +76,7 @@
     {
         "name": "report_student_total_rest",
         "en": "Total Rest",
-        "ar": "الباقي إجمالي"
+        "ar": "الباقي إج."
     },
     {
         "name": "report_student_date",

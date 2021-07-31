@@ -568,7 +568,7 @@ app.controller("units_switch", function ($scope, $http, $timeout) {
                     let foundUnit = false;
                     _size.size_units_list.forEach((_unit, i) => {
                       if ($scope.search_barcode === _unit.barcode) {
-                        foundUnit = true
+                        foundUnit = true;
                         indxUnit = i;
                       } else if (_unit.id === response.data.list[0].main_unit.id && !foundUnit) {
                         indxUnit = i;

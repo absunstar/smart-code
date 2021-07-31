@@ -144,18 +144,18 @@
     {
         "name": "report_requests_total_required",
         "en": "Total Required",
-        "ar": "إجمالي المطلوب"
+        "ar": "إج. المطلوب"
     },
     {
         "name": "total_paid_up",
         "en": "Total Rest",
-        "ar": "إجمالي المدفوع"
+        "ar": "إج. المدفوع"
     },
   
     {
         "name": "total_remain",
         "en": "Total Remain",
-        "ar": "إجمالي الباقي"
+        "ar": "إج. الباقي"
     },
     {
         "name": "report_requests_add_name",

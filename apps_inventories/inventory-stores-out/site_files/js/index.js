@@ -187,9 +187,11 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         };
 
         if ($scope.defaultSettings.general_Settings) {
-          if ($scope.defaultSettings.general_Settings.customer)
-            $scope.customersList = [$scope.defaultSettings.general_Settings.customer];
-          $scope.store_out.customer = $scope.defaultSettings.general_Settings.customer;
+          if ($scope.defaultSettings.general_Settings.customer) {
+            $scope.store_out.customer = $scope.customersGetList.find(_customer => { return _customer.id === $scope.defaultSettings.general_Settings.customer.id });
+
+          }
+
           if (!$scope.defaultSettings.general_Settings.work_posting)
             $scope.store_out.posting = true
 
@@ -1173,8 +1175,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           } else _item.store_count = 0;
         } else _item.store_count = 0;
 
-          foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode === _item.barcode && _itemSize.unit.id === _item.unit.id);
-          
+        foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode === _item.barcode && _itemSize.unit.id === _item.unit.id);
+
         if (_item.store_units_list && _item.store_units_list.length > 0) {
           _item.store_units_list.forEach(_ul => {
             if (_ul.id == _item.unit.id) {
@@ -1225,7 +1227,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                     let foundUnit = false;
                     _size.size_units_list.forEach((_unit, i) => {
                       if ($scope.search_barcode === _unit.barcode) {
-                        foundUnit = true
+                        foundUnit = true;
                         indxUnit = i;
                       } else if (_unit.id === response.data.list[0].main_unit.id && !foundUnit) {
                         indxUnit = i;
@@ -1881,6 +1883,9 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     if ($scope.busy) return;
     $scope.busy = true;
 
+    let name_lang = 'name_ar';
+    if ('##session.lang##' === 'en') name_lang = 'name_en';
+
     let ip = '127.0.0.1';
     let port = '60080';
 
@@ -1953,7 +1958,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         value: account_invoices.code
       }, {
         type: 'invoice-date',
-        name: 'Date',
+        name: '##word.date##',
         value: site.toDateXF(account_invoices.date)
       }, {
         type: 'space'
@@ -1962,8 +1967,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       if (account_invoices.customer)
         obj_print.data.push({
           type: 'text2',
-          value2: account_invoices.customer.name_ar,
-          value: 'Cutomer'
+          value2: account_invoices.customer[name_lang],
+          value: '##word.cutomer##'
         });
 
       obj_print.data.push({
@@ -1972,18 +1977,16 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
       if (account_invoices.current_book_list && account_invoices.current_book_list.length > 0) {
 
+        let size_lang = 'size_ar';
+        if ('##session.lang##' === 'en') size_lang = 'size_en';
+
         obj_print.data.push({
           type: 'line'
         }, {
           type: 'invoice-item-title',
-          count: 'العدد',
-          name: 'الإسم',
-          price: 'السعر'
-        }, {
-          type: 'invoice-item-title',
-          count: 'Count',
-          name: 'Name',
-          price: 'Price'
+          count: '##word.count##',
+          name: '##word.name##',
+          price: '##word.price##'
         }, {
           type: 'line2'
         });
@@ -1993,18 +1996,25 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           obj_print.data.push({
             type: 'invoice-item',
             count: _current_book_list.count,
-            name: _current_book_list.size_ar,
+            name: _current_book_list[size_lang],
             price: site.addSubZero(_current_book_list.total, 2)
           });
 
         });
       };
 
+      if (account_invoices.currency)
+        obj_print.data.push({
+          type: 'text2',
+          value2: account_invoices.currency[name_lang],
+          value: "##word.currency##"
+        });
+
       if (account_invoices.total_discount) {
         obj_print.data.push({
           type: 'text2',
           value2: site.addSubZero(account_invoices.total_discount, 2),
-          value: 'Total Discount'
+          value: '##word.total_discount##'
         });
       }
 
@@ -2020,20 +2030,30 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         type: 'space'
       });
 
+
       if (account_invoices.net_value) {
 
-        obj_print.data.push({
-          type: 'invoice-total',
-          value: site.addSubZero(account_invoices.net_value, 2),
-          name: "Total Value"
-        });
+        obj_print.data.push(
+          {
+            type: 'invoice-total',
+            value: site.addSubZero(account_invoices.net_value, 2),
+            name: "##word.total_value##"
+          },
+          {
+            type: 'invoice-total',
+            value: site.stringfiy(account_invoices.net_value) + ($scope.defaultSettings.accounting.end_num_to_str || ''),
+          },
+          {
+            type: 'line'
+          }
+        );
       }
 
       if (account_invoices.paid_up) {
         obj_print.data.push({
           type: 'text2',
           value2: site.addSubZero(account_invoices.paid_up, 2),
-          value: "Paid Up"
+          value: "##word.paid_up##"
         });
       }
 
@@ -2050,15 +2070,6 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       }
 
 
-      if (account_invoices.currency) {
-        obj_print.data.push({
-          type: 'text2',
-          value2: account_invoices.currency.name_ar,
-          value: "Currency"
-        });
-      }
-
-
       if (account_invoices.Paid_from_customer) {
         account_invoices.remain_to_customer = 0;
 
@@ -2068,11 +2079,11 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         obj_print.data.push({
           type: 'text2',
           value2: site.addSubZero(account_invoices.Paid_from_customer, 2),
-          value: "Paid From Customer"
+          value: "##word.Paid_from_customer##"
         }, {
           type: 'text2',
           value2: site.addSubZero(account_invoices.remain_to_customer, 2),
-          value: "Remain To Customer"
+          value: "##word.remain_to_customer##"
         });
       }
 
@@ -2185,6 +2196,35 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     $scope.calcSize(itm);
   };
 
+  $scope.getCustomersGetList = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/customers/all",
+      data: {
+        where: {
+          active: true
+        }
+        /*  select: {
+          id: 1,
+          name_ar: 1,
+          name_en: 1,
+        } */
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.customersGetList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
 
   $scope.displayAddCustomer = function () {
     $scope.error = '';
@@ -3136,6 +3176,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
   $scope.loadDelegates();
   $scope.loadDiscountTypes();
   $scope.loadCurrencies();
+  $scope.getCustomersGetList();
   $scope.loadAll({ date: new Date() });
 
 });

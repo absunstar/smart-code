@@ -377,7 +377,7 @@
     {
         "name": "menu_total_amount",
         "en": "Total Amount",
-        "ar": "إجمالي الوارد و المنصرف"
+        "ar": "إج. الوارد و المنصرف"
     },
     {
         "name": "inventory_reports",
@@ -392,7 +392,7 @@
     {
         "name": "total_amount_tag",
         "en": "Total Amount Data",
-        "ar": "بيان إجمالي الوارد و المنصرف"
+        "ar": "بيان إج. الوارد و المنصرف"
     },
     {
         "name": "menu_attend_leave",
@@ -947,7 +947,7 @@
     {
         "name": "month_general_employees_salary_reports",
         "en": "General Monthly Employees Report",
-        "ar": "   تقرير إجمالي للمستخدمين "
+        "ar": "   تقرير إج. للمستخدمين "
     },
     {
         "name": "system_employees_insurance",

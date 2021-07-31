@@ -55,12 +55,15 @@ app.controller("report_stores_evaluation", function ($scope, $http, $timeout) {
     if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path)
       obj_print.printer = $scope.defaultSettings.printer_program.printer_path.ip.name.trim();
 
-    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_header)
-      obj_print.data.push({
-        type: 'header',
-        value: $scope.defaultSettings.printer_program.invoice_header
+    if ($scope.defaultSettings.printer_program.invoice_header && $scope.defaultSettings.printer_program.invoice_header.length > 0) {
+      $scope.defaultSettings.printer_program.invoice_header.forEach(_ih => {
+        obj_print.data.push({
+          type: 'header',
+          value: _ih.name
+        });
       });
 
+    }
 
     obj_print.data.push(
       {
@@ -92,7 +95,7 @@ app.controller("report_stores_evaluation", function ($scope, $http, $timeout) {
     }, {
       type: 'text3b',
       value: 'الصنف',
-      value2: "إجمالي السعر",
+      value2: "إج. السعر",
       value3: 'العدد'
     }, {
       type: 'space'
@@ -112,13 +115,14 @@ app.controller("report_stores_evaluation", function ($scope, $http, $timeout) {
 
     });
 
-    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_footer)
-      obj_print.data.push({
-        type: 'space'
-      }, {
-        type: 'footer',
-        value: $scope.defaultSettings.printer_program.invoice_footer
+    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_footer && $scope.defaultSettings.printer_program.invoice_footer.length > 0) {
+      $scope.defaultSettings.printer_program.invoice_footer.forEach(_if => {
+        obj_print.data.push({
+          type: 'header',
+          value: _if.name
+        });
       });
+    }
 
     $http({
       method: "POST",
@@ -147,7 +151,7 @@ app.controller("report_stores_evaluation", function ($scope, $http, $timeout) {
         select: {
           id: 1,
           name_ar: 1, name_en: 1,
-          code : 1
+          code: 1
         }
       }
     }).then(
@@ -197,7 +201,7 @@ app.controller("report_stores_evaluation", function ($scope, $http, $timeout) {
         select: {
           id: 1,
           name_ar: 1, name_en: 1,
-          code : 1
+          code: 1
         }
       }
     }).then(
@@ -246,7 +250,7 @@ app.controller("report_stores_evaluation", function ($scope, $http, $timeout) {
         select: {
           id: 1,
           name_ar: 1, name_en: 1,
-          code : 1
+          code: 1
         }
       }
     }).then(

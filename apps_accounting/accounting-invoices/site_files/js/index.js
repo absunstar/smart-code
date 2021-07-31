@@ -49,8 +49,9 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
           if ($scope.defaultSettings.general_Settings.order_type && $scope.account_invoices.source_type && $scope.account_invoices.source_type.id === 3)
             $scope.account_invoices.order_invoices_type = $scope.defaultSettings.general_Settings.order_type;
 
-          if (site.toNumber("##query.type##") == 13 || site.toNumber("##query.type##") == 8 || site.toNumber("##query.type##") == 10) {
-            $scope.account_invoices.customer = $scope.defaultSettings.general_Settings.customer;
+          if (site.toNumber("##query.type##") == 13 || site.toNumber("##query.type##") == 8 || site.toNumber("##query.type##") == 10 && $scope.defaultSettings.general_Settings.customer) {
+
+            $scope.account_invoices.customer = $scope.customersGetList.find(_customer => { return _customer.id === $scope.defaultSettings.general_Settings.customer.id });
           };
 
           if (site.toNumber("##query.type##") == 13) {
@@ -796,7 +797,6 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
   };
 
 
-
   $scope.loadSafes = function (method, currency, type) {
     $scope.error = '';
     $scope.busy = true;
@@ -815,7 +815,8 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
         data: {
           select: {
             id: 1,
-            name_ar: 1, name_en: 1,
+            name_ar: 1,
+            name_en: 1,
             commission: 1,
             currency: 1,
             type: 1,
@@ -831,7 +832,6 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
               $scope.safesListTo = response.data.list;
 
             } else {
-
               $scope.safesList = response.data.list;
             }
           }
@@ -856,7 +856,8 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
+          name_ar: 1,
+          name_en: 1,
           commission: 1,
           currency: 1,
           type: 1,
@@ -884,6 +885,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     $scope.account_invoices.tenant = item.tenant;
     $scope.account_invoices.invoice_type = item.type;
     $scope.account_invoices.vendor = item.vendor;
+    $scope.account_invoices.total_value = item.total_value;
     $scope.account_invoices.total_value_added = item.total_value_added;
     $scope.account_invoices.delivery_employee = item.delivery_employee;
     $scope.account_invoices.table = item.table;
@@ -1152,6 +1154,10 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     if ($scope.busy) return;
     $scope.busy = true;
 
+    let name_lang = 'name_ar';
+    if ('##session.lang##' === 'en') name_lang = 'name_en';
+
+
     let ip = '127.0.0.1';
     let port = '60080';
 
@@ -1228,22 +1234,29 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
 
     if (account_invoices.date)
       obj_print.data.push({
+        type: 'invoice-date',
+        name: '##word.date##',
+        value: site.toDateXF(account_invoices.date)
+      });
+
+    if (account_invoices.order_invoices_type)
+      obj_print.data.push({
         type: 'text2',
-        value2: site.toDateXF(account_invoices.date),
-        value: 'Date'
+        value2: account_invoices.order_invoices_type['##session.lang##'],
+        value: '##word.order_type##'
       });
 
     if (account_invoices.customer)
       obj_print.data.push({
         type: 'text2',
-        value2: account_invoices.customer.name_ar,
-        value: 'Cutomer'
+        value2: account_invoices.customer[name_lang],
+        value: '##word.customer##'
       });
 
     if (account_invoices.vendor)
       obj_print.data.push({
         type: 'text2',
-        value2: account_invoices.vendor.name_ar,
+        value2: account_invoices.vendor[name_lang],
         value: 'Vendor'
       });
 
@@ -1257,35 +1270,37 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     if (account_invoices.table)
       obj_print.data.push({
         type: 'text2',
-        value: account_invoices.table.name_ar,
-        value2: account_invoices.table.tables_group.name_ar
+        value: account_invoices.table[name_lang],
+        value2: account_invoices.table.tables_group[name_lang]
       });
 
     if (account_invoices.current_book_list && account_invoices.current_book_list.length > 0) {
 
-      obj_print.data.push({
-        type: 'line'
-      }, {
-        type: 'invoice-item-title',
-        count: 'العدد',
-        name: 'الإسم',
-        price: 'السعر'
-      }, {
-        type: 'invoice-item-title',
-        count: 'Count',
-        name: 'Name',
-        price: 'Price'
-      }, {
-        type: 'line2'
-      }
+      let size_lang = 'size_ar';
+      if ('##session.lang##' === 'en') size_lang = 'size_en';
+
+      obj_print.data.push(
+        {
+          type: 'line'
+        },
+        {
+          type: 'invoice-item-title',
+          count: '##word.count##',
+          name: '##word.name##',
+          price: '##word.price##'
+        },
+        {
+          type: 'line2'
+        }
       );
+
 
       account_invoices.current_book_list.forEach((_current_book_list, i) => {
         _current_book_list.total = site.toNumber(_current_book_list.total);
         obj_print.data.push({
           type: 'invoice-item',
           count: _current_book_list.count,
-          name: _current_book_list.size_ar,
+          name: _current_book_list[size_lang],
           price: site.addSubZero(_current_book_list.total, 2)
         });
 
@@ -1297,32 +1312,57 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       type: 'line'
     });
 
+    if (account_invoices.currency)
+      obj_print.data.push(
+        {
+          type: 'text2',
+          value2: account_invoices.currency[name_lang],
+          value: "##word.currency##"
+        });
+
+    obj_print.data.push(
+      {
+        type: 'invoice-total',
+        value: site.addSubZero((account_invoices.total_value - (account_invoices.total_value_added || 0)), 2),
+        name: "##word.total_before_taxes_discounts##"
+      }
+    );
+
+    if (account_invoices.total_value_added) {
+
+      obj_print.data.push({
+        type: 'text2',
+        value2: `${site.addSubZero(account_invoices.total_value_added, 2)}  (${($scope.defaultSettings.inventory.value_added || 0)}%)`,
+        value: "##word.total_value_added##"
+      });
+    };
+
     if (account_invoices.total_tax)
       obj_print.data.push({
         type: 'text2',
         value2: account_invoices.total_tax,
-        value: 'Total Taxes'
+        value: '##word.total_tax##'
       });
 
     if (account_invoices.total_discount)
       obj_print.data.push({
         type: 'text2',
         value2: account_invoices.total_discount,
-        value: 'Total Discount'
+        value: '##word.total_discount##'
       });
 
     if (account_invoices.price_delivery_service)
       obj_print.data.push({
         type: 'text2',
         value2: account_invoices.price_delivery_service,
-        value: 'Service Delivery'
+        value: '##word.delivery_service##'
       });
 
     if (account_invoices.service)
       obj_print.data.push({
         type: 'text2',
         value2: account_invoices.service,
-        value: 'Service'
+        value: '##word.service##'
       });
 
     obj_print.data.push({ type: 'space' });
@@ -1336,28 +1376,39 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
 
     }
 
-    if (account_invoices.net_value)
+    if (account_invoices.net_value) {
+
       obj_print.data.push(
         {
           type: 'invoice-total',
-          value2: account_invoices.net_value,
-          value: "Total Value"
-        });
+          value: site.addSubZero(account_invoices.net_value, 2),
+          name: "##word.total_value##"
+        },
+        {
+          type: 'invoice-total',
+          value: site.stringfiy(account_invoices.net_value) + ($scope.defaultSettings.accounting.end_num_to_str || '')
+        },
+        {
+          type: 'line'
+        }
+      );
+    };
 
     if (account_invoices.payment_paid_up || account_invoices.paid_up)
       obj_print.data.push(
         {
           type: 'text2',
           value2: account_invoices.payment_paid_up || account_invoices.paid_up,
-          value: "Paid Up"
-        });
+          value: "##word.paid_up##"
+        }
+      );
 
     if (account_invoices.payment_paid_up || account_invoices.paid_up)
       obj_print.data.push(
         {
           type: 'text2',
           value2: account_invoices.total_paid_up || account_invoices.paid_up,
-          value: "Total Payments"
+          value: "##word.total_payments##"
         });
 
     obj_print.data.push({ type: 'space' });
@@ -1366,7 +1417,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       obj_print.data.push({
         type: 'text2',
         value2: account_invoices.total_remain,
-        value: "Remain Invoice"
+        value: "##word.remain##"
       });
 
 
@@ -1378,21 +1429,41 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       obj_print.data.push({
         type: 'text2',
         value2: site.addSubZero(account_invoices.Paid_from_customer, 2),
-        value: "Paid From Customer"
+        value: "##word.Paid_from_customer##"
       }, {
         type: 'text2',
         value2: site.addSubZero(account_invoices.remain_to_customer, 2),
-        value: "Remain To Customer"
+        value: "##word.remain_to_customer##"
+      });
+    };
+
+    obj_print.data.push(
+      {
+        type: 'line'
+      },
+      {
+        type: 'invoice-barcode',
+        value: obj.code || 'test'
+      },
+      {
+        type: 'invoice-total',
+        value: $scope.defaultSettings.printer_program.tax_number,
+        name: "##word.tax_number##"
+      },
+      {
+        type: 'line'
+      }
+    );
+
+
+    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_footer && $scope.defaultSettings.printer_program.invoice_footer.length > 0) {
+      $scope.defaultSettings.printer_program.invoice_footer.forEach(_if => {
+        obj_print.data.push({
+          type: 'header',
+          value: _if.name
+        });
       });
     }
-
-
-
-    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_footer)
-      obj_print.data.push({
-        type: 'footer',
-        value: $scope.defaultSettings.printer_program.invoice_footer
-      });
 
     $http({
       method: "POST",
@@ -1778,6 +1849,36 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
 
   };
 
+  $scope.getCustomersGetList = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/customers/all",
+      data: {
+        where: {
+          active: true
+        }
+        /*  select: {
+          id: 1,
+          name_ar: 1,
+          name_en: 1,
+        } */
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.customersGetList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
 
   $scope.get_open_shift = function (callback) {
     $scope.busy = true;
@@ -1824,6 +1925,9 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
   if (site.toNumber("##query.type##") === 9) {
     $scope.getOutTypesList();
     $scope.loadOutNames();
+  }
+  if (site.toNumber("##query.type##") == 13 || site.toNumber("##query.type##") == 8 || site.toNumber("##query.type##") == 10) {
+    $scope.getCustomersGetList();
   }
   $scope.getTargetAccountList();
   $scope.getPaymentMethodList();

@@ -194,12 +194,16 @@ app.controller("report_safes", function ($scope, $http, $timeout) {
     if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path)
       obj_print.printer = $scope.defaultSettings.printer_program.printer_path.ip.name.trim();
 
-    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_header)
-      obj_print.data.push({
-        type: 'header',
-        value: $scope.defaultSettings.printer_program.invoice_header
+    if ($scope.defaultSettings.printer_program.invoice_header && $scope.defaultSettings.printer_program.invoice_header.length > 0) {
+      $scope.defaultSettings.printer_program.invoice_header.forEach(_ih => {
+        obj_print.data.push({
+          type: 'header',
+          value: _ih.name
+        });
       });
 
+    }
+    
     obj_print.data.push(
       {
         type: 'title',
@@ -257,13 +261,12 @@ app.controller("report_safes", function ($scope, $http, $timeout) {
     });
 
 
-    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_footer) {
-
-      obj_print.data.push({
-        type: 'space'
-      }, {
-        type: 'footer',
-        value: $scope.defaultSettings.printer_program.invoice_footer
+    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_footer && $scope.defaultSettings.printer_program.invoice_footer.length > 0) {
+      $scope.defaultSettings.printer_program.invoice_footer.forEach(_if => {
+        obj_print.data.push({
+          type: 'header',
+          value: _if.name
+        });
       });
     }
 
