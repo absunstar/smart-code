@@ -2389,6 +2389,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
           obj.total_value += site.toNumber(_itm.total);
           _itm.total_v_a = site.toNumber(_itm.value_added) * (_itm.price * _itm.count) / 100;
           _itm.total_v_a = site.toNumber(_itm.total_v_a);
+          _itm.total = _itm.total + _itm.total_v_a;
           obj.total_value_added += _itm.total_v_a;
         });
       };
