@@ -22,7 +22,6 @@ module.exports = function init(site) {
       }, (err, doc) => { })
   })
 
-
   site.get({
     name: 'images',
     path: __dirname + '/site_files/images/'
