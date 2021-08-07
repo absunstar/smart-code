@@ -558,12 +558,17 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
             }
           });
           $scope.store_out.total_value = $scope.store_out.total_value - $scope.store_out.total_value_added;
-          if ($scope.currencySetting) {
-
-            site.strings['currency'].ar = ' ' + $scope.currencySetting.name_ar + ' ';
-            site.strings['from100'].ar = ' ' + ($scope.currencySetting.minor_currency || '') + ' ';
+          if ($scope.store_out.currency) {
+            site.strings['currency'] = {
+              ar: ' ' + $scope.store_out.currency.name_ar + ' ',
+              en: ' ' + $scope.store_out.currency.name_en + ' ',
+            }
+            site.strings['from100'] = {
+              ar: ' ' + $scope.store_out.currency.minor_currency_ar + ' ',
+              en: ' ' + $scope.store_out.currency.minor_currency_en + ' ',
+            }
+            $scope.store_out.net_value2 = site.stringfiy($scope.store_out.net_value);
           }
-          $scope.store_out.net_value2 = site.stringfiy($scope.store_out.net_value);
 
         } else $scope.error = response.data.error;
       },
@@ -1851,6 +1856,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         account_invoices.posting = false;
       else account_invoices.posting = true;
 
+
+
       $http({
         method: "POST",
         url: "/api/account_invoices/add",
@@ -1859,9 +1866,49 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         function (response) {
           $scope.busy = false;
           if (response.data.done) {
-            site.hideModal('#accountInvoiceModal');
-            $scope.printAccountInvoive(response.data.doc);
             $scope.account_invoices = {};
+            if (account_invoices.source_type.id == 2 && account_invoices.paid_up > 0) {
+              $scope.printAccountInvoive(response.data.doc);
+              account_invoices.ref_invoice_id = response.data.doc.id;
+              if (account_invoices.invoice_type.id == 3 || account_invoices.invoice_type.id == 4) {
+
+                if (account_invoices.invoice_type.id == 3) {
+                  account_invoices.in_type = {
+                    id: 3,
+                    en: "sales invoice",
+                    ar: "فاتورة مبيعات"
+                  };
+                } else if (account_invoices.invoice_type.id == 4) {
+                  account_invoices.in_type = {
+                    id: 2,
+                    en: "Orders Screen",
+                    ar: "شاشة الطلبات"
+                  };
+                }
+
+                account_invoices.source_type = {
+                  id: 8,
+                  en: "Amount In",
+                  ar: "سند قبض"
+                };
+                $scope.addAccountInvoice(account_invoices)
+
+              } else if (account_invoices.invoice_type.id == 6) {
+
+                account_invoices.in_type = {
+                  id: 4,
+                  en: "Return purchase invoice",
+                  ar: "مرتجع فاتورة مشتريات"
+                };
+                account_invoices.source_type = {
+                  id: 9,
+                  en: "Amount Out",
+                  ar: "سند صرف"
+                };
+                $scope.addAccountInvoice(account_invoices)
+              }
+            }
+            site.hideModal('#accountInvoiceModal');
             $scope.loadAll({ date: new Date() });
           } else {
             $scope.error = response.data.error;

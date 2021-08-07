@@ -204,8 +204,23 @@ app.controller("order_management", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.account_invoices = response.data.doc;
+          if ($scope.account_invoices.source_type.id == 3 && $scope.account_invoices.paid_up > 0) {
+            $scope.printAccountInvoive(response.data.doc);
+
+            $scope.account_invoices.in_type = {
+              id: 2,
+              en: "Orders Screen",
+              ar: "شاشة الطلبات"
+            };
+            $scope.account_invoices.source_type = {
+              id: 8,
+              en: "Amount In",
+              ar: "سند قبض"
+            };
+            $scope.addAccountInvoice();
+          }
           site.hideModal('#accountInvoiceModal');
-          $scope.printAccountInvoive(response.data.doc);
+
         } else {
           $scope.error = response.data.error;
           if (response.data.error.like('*duplicate key error*')) {
@@ -460,24 +475,24 @@ app.controller("order_management", function ($scope, $http, $timeout) {
         value: "##word.remain##"
       });
 
-      obj_print.data.push(
-        {
-          type: 'line'
-        },
-        {
-          type: 'invoice-barcode',
-          value: obj.code || 'test'
-        },  
-        {
-          type: 'invoice-total',
-          value:$scope.defaultSettings.printer_program.tax_number,
-          name: "##word.tax_number##"
-        },
-        {
-          type: 'line'
-        }
-      );
-  
+    obj_print.data.push(
+      {
+        type: 'line'
+      },
+      {
+        type: 'invoice-barcode',
+        value: obj.code || 'test'
+      },
+      {
+        type: 'invoice-total',
+        value: $scope.defaultSettings.printer_program.tax_number,
+        name: "##word.tax_number##"
+      },
+      {
+        type: 'line'
+      }
+    );
+
 
     if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_footer && $scope.defaultSettings.printer_program.invoice_footer.length > 0) {
       $scope.defaultSettings.printer_program.invoice_footer.forEach(_if => {

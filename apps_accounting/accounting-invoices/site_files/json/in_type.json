@@ -6,11 +6,21 @@
     },
     {
         "id": 2,
-        "en": "Pay sales invoice",
-        "ar": "تسديد فاتورة مبيعات"
+        "en": "Orders Screen",
+        "ar": "شاشة الطلبات"
     },
     {
         "id": 3,
+        "en": "sales invoice",
+        "ar": "فاتورة مبيعات"
+    },
+    {
+        "id": 4,
+        "en": "Return purchase invoice",
+        "ar": "مرتجع فاتورة مشتريات"
+    },
+    {
+        "id": 5,
         "en": "Customer",
         "ar": "عميل"
     }

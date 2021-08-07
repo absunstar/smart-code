@@ -103,9 +103,44 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
+
+          if (account_invoices.source_type.id == 1 && account_invoices.paid_up > 0) {
+            $scope.printAccountInvoive(response.data.doc);
+            account_invoices.ref_invoice_id = response.data.doc.id;
+            if (account_invoices.invoice_type.id == 1) {
+
+              account_invoices.out_type = {
+                id: 2,
+                en: "purchase invoice",
+                ar: "فاتورة مشتريات"
+              };
+              account_invoices.source_type = {
+                id: 9,
+                en: "Amount Out",
+                ar: "سند صرف"
+              };
+
+              $scope.addAccountInvoice(account_invoices)
+
+            } else if (account_invoices.invoice_type.id == 4) {
+
+              account_invoices.out_type = {
+                id: 3,
+                en: "Return sales invoice",
+                ar: "مرتجع فاتورة مبيعات"
+              };
+              account_invoices.source_type = {
+                id: 8,
+                en: "Amount In",
+                ar: "سند قبض"
+              };
+              $scope.addAccountInvoice(account_invoices)
+            }
+          }
           site.hideModal('#accountInvoiceModal');
-          $scope.printAccountInvoive(response.data.doc);
+
           $scope.account_invoices = {};
+
           $scope.loadAll({ date: new Date() });
         } else {
           $scope.error = response.data.error;
@@ -1011,20 +1046,26 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         if (response.data.done) {
           response.data.doc.date = new Date(response.data.doc.date);
           $scope.store_in = response.data.doc;
-          $scope.store_in.items.forEach(_item => {
-            if (!_item.total_v_a) {
-
-              _item.total_v_a = site.toNumber(_item.value_added) * (_item.price * _item.count) / 100;
-            }
-          });
+          /*   $scope.store_in.items.forEach(_item => {
+              if (!_item.total_v_a) {
+                _item.total_v_a = site.toNumber(_item.value_added) * (_item.price * _item.count) / 100;
+              }
+            }); */
 
           $scope.store_in.total_value = $scope.store_in.total_value - $scope.store_in.total_value_added;
-          if ($scope.currencySetting) {
 
-            site.strings['currency'].ar = ' ' + $scope.currencySetting.name_ar + ' ';
-            site.strings['from100'].ar = ' ' + ($scope.currencySetting.minor_currency || '') + ' ';
+          if ($scope.store_in.currency) {
+            site.strings['currency'] = {
+              ar: ' ' + $scope.store_in.currency.name_ar + ' ',
+              en: ' ' + $scope.store_in.currency.name_en + ' ',
+            }
+            site.strings['from100'] = {
+              ar: ' ' + $scope.store_in.currency.minor_currency_ar + ' ',
+              en: ' ' + $scope.store_in.currency.minor_currency_en + ' ',
+            }
+            $scope.store_in.net_value2 = site.stringfiy($scope.store_in.net_value);
           }
-          $scope.store_in.net_value2 = site.stringfiy($scope.store_in.net_value);
+
         } else $scope.error = response.data.error;
       },
       function (err) {

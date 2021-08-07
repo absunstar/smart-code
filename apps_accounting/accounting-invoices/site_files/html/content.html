@@ -31,12 +31,12 @@
                                 label="##word.target_account##">
                             </i-list>
 
-                            <i-control ng-show="account_invoices.target_account.id ===1 "
+                            <i-control ng-show="account_invoices.target_account.id == 1 "
                                 ng-keydown="getCustomersList($event)" id="service" class="col2"
                                 ng-model="search_customer" label="##word.search##" type="text">
                             </i-control>
 
-                            <i-list ng-show="account_invoices.target_account.id ===1 " ng-search="_search.$customer"
+                            <i-list ng-show="account_invoices.target_account.id == 1 " ng-search="_search.$customer"
                                 class="col4" display="name_##session.lang##" space=" - " display2="code"
                                 ng-model="account_invoices.customer" label="##word.customer##" items="customersList">
                             </i-list>
@@ -97,9 +97,23 @@
                                 display="##session.lang##">
                             </i-list>
 
+                            <i-list class="col3" ng-search="_search.$source_account_invoices"
+                                ng-show="account_invoices.source_type.id ==9" ng-model="account_invoices.out_type"
+                                display="##session.lang##" items="outTypesList" label="##word.source_name##">
+                            </i-list>
+
+                            <i-list class="col3" ng-search="_search.$source_account_invoices"
+                                ng-show="account_invoices.source_type.id ==8" ng-model="account_invoices.in_type"
+                                display="##session.lang##" items="inTypesList" label="##word.source_name##">
+                            </i-list>
+
                             <i-control ng-keydown="loadOrderInvoicesType($event)" id="item_name" class="col3"
-                                ng-hide="account_invoices.source_type.id == 16 || account_invoices.source_type.id == 11 || account_invoices.source_type.id ==10 || account_invoices.source_type.id ==9 || account_invoices.source_type.id ==8 || account_invoices.source_type.id ==13|| account_invoices.source_type.id ==14"
-                                ng-model="search_order" label="##word.search##" type="text"></i-control>
+                                type="text"
+                                ng-hide="account_invoices.source_type.id == 16 || 
+                                account_invoices.source_type.id == 11 || account_invoices.source_type.id ==10 || 
+                                account_invoices.in_type.id ==1 || account_invoices.in_type.id ==5||  account_invoices.out_type.id ==1 || account_invoices.out_type.id ==4|| 
+                                account_invoices.source_type.id ==8 || account_invoices.source_type.id ==13|| account_invoices.source_type.id ==14"
+                                ng-model="search_order" label="##word.search##"></i-control>
                         </div>
 
                         <div class="row" ng-show="orderInvoicesTypeList.length > 0">
@@ -166,9 +180,9 @@
 
                                     <td ng-show="account_invoices.order_invoices_type.id ==2" class="center">
                                         {{item.delivery_employee.name_##session.lang##}}</td>
-                                    <td ng-show="account_invoices.order_invoices_type.id ==1" class="center">
+                                    <td ng-show="account_invoices.order_invoices_type.id == 1" class="center">
                                         {{item.table.tables_group.name_##session.lang##}} </td>
-                                    <td ng-show="account_invoices.order_invoices_type.id ==1" class="center">
+                                    <td ng-show="account_invoices.order_invoices_type.id == 1" class="center">
                                         {{item.table.name_##session.lang##}}</td>
                                     <td class="center">
                                         {{item.transaction_type.##session.lang## ||item.type.##session.lang##}} <b
@@ -181,9 +195,6 @@
                                 </tr>
                             </table>
                         </div>
-
-
-
 
 
                         <div class="row" ng-show="account_invoices.current_book_list.length > 0">
@@ -209,8 +220,8 @@
                                     </td>
                                     <td class="center blue">{{c.count}}</td>
                                     <td class="center">
-                                        <p ng-hide="account_invoices.source_type.id ==1">{{c.price}}</p>
-                                        <p ng-show="account_invoices.source_type.id ==1">{{c.cost}}</p>
+                                        <p ng-hide="account_invoices.source_type.id == 1">{{c.price}}</p>
+                                        <p ng-show="account_invoices.source_type.id == 1">{{c.cost}}</p>
                                     </td>
                                     <td class="center red">{{c.discount.value}}
                                         <b class="red" ng-show="c.discount.type =='number'">$</b>
@@ -382,10 +393,7 @@
 
                         <div class="row" ng-show="account_invoices.source_type.id ==8">
 
-                            <i-list class="col3" ng-search="_search.$source_account_invoices"
-                                ng-model="account_invoices.in_type" display="##session.lang##" items="inTypesList"
-                                label="##word.source_name##">
-                            </i-list>
+
 
                             <i-list class="col3" ng-search="_search.$source_account_invoices"
                                 ng-model="account_invoices.source" display="name_##session.lang##"
@@ -394,11 +402,11 @@
                             </i-list>
 
 
-                            <i-control ng-show="account_invoices.in_type.id == 3" ng-keydown="getCustomersList($event)"
+                            <i-control ng-show="account_invoices.in_type.id == 5" ng-keydown="getCustomersList($event)"
                                 id="service" class="col2" ng-model="search_customer" label="##word.search##"
                                 type="text"></i-control>
 
-                            <i-list ng-show="account_invoices.in_type.id == 3" ng-search="_search.$customer"
+                            <i-list ng-show="account_invoices.in_type.id == 5" ng-search="_search.$customer"
                                 class="col4" display="name_##session.lang##" space=" - " display2="code"
                                 ng-model="account_invoices.customer" label="##word.customer##" items="customersList">
                             </i-list>
@@ -408,10 +416,6 @@
 
                         <div class="row" ng-show="account_invoices.source_type.id ==9">
 
-                            <i-list class="col3" ng-search="_search.$source_account_invoices"
-                                ng-model="account_invoices.out_type" display="##session.lang##"
-                                items="outTypesList" label="##word.source_name##">
-                            </i-list>
 
                             <i-list class="col3" ng-search="_search.$source_account_invoices"
                                 ng-model="account_invoices.source" display="name_##session.lang##"
@@ -420,10 +424,10 @@
                             </i-list>
 
 
-                            <i-control ng-show="account_invoices.out_type.id == 3" ng-keydown="loadVendors($event)"
+                            <i-control ng-show="account_invoices.out_type.id == 4" ng-keydown="loadVendors($event)"
                                 class="col2" ng-model="search_vendor" label="##word.search##" type="text"></i-control>
 
-                            <i-list ng-show="account_invoices.out_type.id == 3" ng-model="account_invoices.vendor"
+                            <i-list ng-show="account_invoices.out_type.id == 4" ng-model="account_invoices.vendor"
                                 class="col4" items="vendorsList" space=" - " display2="code"
                                 display="name_##session.lang##" ng-search="_search.$search_vendor"
                                 label="##word.stores_in_Company_name##">

@@ -715,6 +715,39 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
             return;
           }
         }
+      } else if ($scope.account_invoices.in_type) {
+        url = "/api/account_invoices/all";
+
+        if ($scope.account_invoices.in_type.id === 2) {
+
+          where['invoice_type.id'] = 1;
+          where['source_type.id'] = 1;
+
+        } else if ($scope.account_invoices.in_type.id === 3) {
+          where['invoice_type.id'] = 4;
+          where['source_type.id'] = 2;
+
+        }
+
+      } else if ($scope.account_invoices.out_type) {
+        url = "/api/account_invoices/all";
+
+
+        if ($scope.account_invoices.out_type.id === 2) {
+
+          where['invoice_type.id'] = 4;
+          where['source_type.id'] = 2;
+
+        } else if ($scope.account_invoices.out_type.id === 3) {
+          where['invoice_type.id'] = 3;
+          where['source_type.id'] = 2;
+
+        } else if ($scope.account_invoices.out_type.id === 4) {
+          where['invoice_type.id'] = 4;
+          where['source_type.id'] = 1;
+
+        }
+
       }
 
       where.invoice = { $ne: true };

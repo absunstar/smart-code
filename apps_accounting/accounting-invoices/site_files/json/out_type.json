@@ -6,11 +6,16 @@
     },
     {
         "id": 2,
-        "en": "Pay purchase invoice",
-        "ar": "تسديد فاتورة مشتريات"
+        "en": "purchase invoice",
+        "ar": "فاتورة مشتريات"
     },
     {
         "id": 3,
+        "en": "Return sales invoice",
+        "ar": "مرتجع فاتورة مبيعات"
+    },
+    {
+        "id": 4,
         "en": "Vendor",
         "ar": "مورد"
     }

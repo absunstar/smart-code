@@ -476,6 +476,16 @@
         "ar": "توقيع المستلم"
     },
     {
+        "name": "receiver",
+        "en": "Receiver",
+        "ar": "المستلم"
+    },
+    {
+        "name": "signature",
+        "en": "Signature",
+        "ar": "التوقيع"
+    },
+    {
         "name": "cash",
         "en": "Cash",
         "ar": "كاش"

@@ -611,7 +611,23 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.account_invoices = response.data.doc;
-          $scope.printAccountInvoive(response.data.doc);
+
+          if ($scope.account_invoices.source_type.id == 3 && $scope.account_invoices.paid_up > 0) {
+            $scope.printAccountInvoive(response.data.doc);
+
+            $scope.account_invoices.in_type = {
+              id: 2,
+              en: "Orders Screen",
+              ar: "شاشة الطلبات"
+            };
+            $scope.account_invoices.source_type = {
+              id: 8,
+              en: "Amount In",
+              ar: "سند قبض"
+            };
+            $scope.addAccountInvoice();
+          }
+
           site.hideModal('#accountInvoiceModal');
         } else {
           $scope.error = response.data.error;
@@ -2131,6 +2147,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
     $scope.error = '';
     $scope.order_invoice.book_list = $scope.order_invoice.book_list || [];
+    let exist = false;
     let foundHold = false;
     let kitchenBranch = {};
     if (item.branches_list && item.branches_list.length > 0) {
@@ -2158,20 +2175,21 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       if ($scope.defaultSettings.general_Settings.kitchen)
         kitchenBranch = $scope.kitchensList.find(_kitchen => { return _kitchen.id === $scope.defaultSettings.general_Settings.kitchen.id });
     };
-
-    /*  $scope.order_invoice.book_list.forEach(el => {
-       if (item.size_ar == el.size_ar && item.barcode == el.barcode && !el.printed) {
-         el.total += (item.price - item.discount.value);
-       };
-     }); */
+    if (site.feature('restaurant')) {
+      $scope.order_invoice.book_list.forEach(el => {
+        if (item.size == el.size && item.barcode == el.barcode && !el.printed) {
+          exist = true;
+          el.total += (item.price - item.discount.value);
+          el.count += 1;
+        };
+      });
+    }
 
     let indxUnit = item.size_units_list.findIndex(_unit => _unit.id == item.main_unit.id);
     item.value_added = item.not_value_added ? 0 : $scope.defaultSettings.inventory.value_added || 0;
 
-    item.unit = item.size_units_list[indxUnit];
-    item.discount = item.size_units_list[indxUnit].discount;
-    item.price = item.size_units_list[indxUnit].price;
-    if (!foundHold) {
+
+    if (!exist && !foundHold) {
 
       $scope.order_invoice.book_list.push({
         item_id: item.item_id,
@@ -2185,18 +2203,18 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         size_en: item.size_en,
         item_group: item.item_group,
         size_units_list: item.size_units_list,
-        unit: item.unit,
-        total: (item.price - item.discount.value),
+        unit: item.size_units_list[indxUnit],
+        total: (item.size_units_list[indxUnit].price - item.discount.value),
         vendor: item.vendor,
         store: item.store,
-        price: item.price,
-        discount: item.discount,
+        price: item.size_units_list[indxUnit].price,
+        discount: item.size_units_list[indxUnit].discount,
         extras_price: 0,
         count: 1
       });
     }
 
-    $scope.calc($scope.order_invoice);
+    $scope.calc({ ...$scope.order_invoice });
   };
 
   $scope.ChangeUnitPatch = function (itm) {
@@ -2371,7 +2389,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
       _size.total = ((site.toNumber(_size.price) * site.toNumber(_size.count)) + (_size.extras_price * site.toNumber(_size.count))) - discount;
 
-      $scope.calc($scope.order_invoice);
+      $scope.calc({ ...$scope.order_invoice });
     }, 100);
   };
 

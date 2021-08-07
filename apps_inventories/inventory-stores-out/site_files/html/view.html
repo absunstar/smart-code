@@ -2,22 +2,24 @@
 
 
   <div class="row hide">
-    <div class="col6 right">
+    <div class="col5 right">
       <div class="row right" ng-repeat="i in defaultSettings.printer_program.invoice_header">
-        <p class=" p_header bol right">{{i.name_##session.lang##}}</p>
+        <p class=" p_header bold right">{{i.name}}</p>
       </div>
     </div>
 
-    <div class="col6 left">
+    <div class="col2 center">
+      <img class="logoPrint" ng-src="{{defaultSettings.printer_program.invoice_logo}}" />
+    </div>
+
+    <div class="col5 left">
       <div class="row left" ng-repeat="i in defaultSettings.printer_program.invoice_header2">
-        <p class=" p_header bold left">{{i.name_##session.lang##}}</p>
+        <p class=" p_header bold left">{{i.name}}</p>
       </div>
     </div>
   </div>
 
-  <div class="row hide center">
-    <img class="logoPrint" ng-src="{{defaultSettings.printer_program.invoice_logo}}" />
-  </div>
+
 
   <div class="row">
     <br />
@@ -197,7 +199,7 @@
         label="##word.stores_out_total_value##" type="number" disabled> </i-control>
 
       <i-control ng-show="store_out.total_value_added && defaultSettings.inventory.value_added > 0"
-        class="col3 r_darkRed" ng-model="store_out.total_value_added" label="##word.total_value_added##" type="number"
+        class="col3 r_darkRed" ng-model="store_out.total_value_added" label="##word.value_added##" type="number"
         disabled> </i-control>
     </div>
 
@@ -210,7 +212,7 @@
         <div class="row">
           <br>
           <br>
-          <p class="num_str black">{{store_out.net_value2}} {{defaultSettings.accounting.end_num_to_str}}</p>
+          <p class="num_str black">{{store_out.net_value2}} {{defaultSettings.accounting.end_num_to_str || ''}}</p>
         </div>
       </div>
 
@@ -224,7 +226,7 @@
   <br />
 
   <div class="row hide" ng-repeat="i in defaultSettings.printer_program.invoice_footer">
-    <p class="p_footer center">{{i.name_##session.lang##}}</p>
+    <p class="p_footer bold center">{{i.name}}</p>
   </div>
 
   <br />
@@ -232,7 +234,27 @@
   <br />
 
   <div class="row hide">
-    <p class="p_footer ">##word.recipient_signature## : </p>
+
+    <div class="col5">
+      <p class="p_footer center">##word.receiver## </p>
+      <br>
+      <br>
+      <p>##word.name## : </p>
+      <br>
+      <p>##word.signature## : </p>
+    </div>
+
+    <div class="col2"></div>
+
+    <div class="col5">
+      <p class="p_footer center">##word.delegate## </p>
+      <br>
+      <br>
+      <p>##word.name## : </p>
+      <br>
+      <p>##word.signature## : </p>
+    </div>
+
   </div>
 
 </div>
