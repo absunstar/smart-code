@@ -16,7 +16,7 @@
     {"name" : "stores_offer_supply_number" , "en" : "Offer Code" , "ar" : " كود العرض "},
     {"name" : "stores_offer_supply_number_date" , "en" : "supply number date" , "ar" : " تاريخ عرض "},
     {"name" : "difference_cost" , "en" : "Difference Cost" , "ar" : "فرق التكلفة"},
-    {"name" : "total_difference_cost" , "en" : "Total Difference Cost" , "ar" : "إج. فرق التكلفة"},
+    {"name" : "total_difference_cost" , "en" : "Total Difference Cost" , "ar" : "إجمالي فرق التكلفة"},
     {"name" : "offer_value" , "en" : "Offer Value " , "ar" : "قيمة العرض"},
     {"name" : "stores_offer_err_date" , "en" : "The start date is greater than the deadline date" , "ar" : "تاريخ البداية أكبر من تاريخ الإنتهاء"},
 

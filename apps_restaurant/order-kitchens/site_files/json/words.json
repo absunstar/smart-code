@@ -91,19 +91,19 @@
     {
         "name": "order_kitchen_tenant_total_required",
         "en": "Total Required",
-        "ar": "إج. المطلوب"
+        "ar": "إجمالي المطلوب"
     },
   
     {
         "name": "order_kitchen_tenant_total",
         "en": "Total Rest",
-        "ar": "إج. المدفوع"
+        "ar": "إجمالي المدفوع"
     },
   
     {
         "name": "order_kitchen_tenant_total_rest",
         "en": "Total Rest",
-        "ar": "إج. الباقي"
+        "ar": "إجمالي الباقي"
     },
     {
         "name": "order_kitchen_tenant_rest",

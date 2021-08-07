@@ -61,7 +61,7 @@
     {
         "name": "book_hall_total",
         "en": "Total Duration",
-        "ar": "إج. المدة "
+        "ar": "إجمالي المدة "
     },
     
     {
@@ -72,7 +72,7 @@
     {
         "name": "total_value",
         "en": "Total Value Book",
-        "ar": "إج. قيمة الحجز"
+        "ar": "إجمالي قيمة الحجز"
     },
     {
         "name": "price_hour",
@@ -87,7 +87,7 @@
     {
         "name": "total_period",
         "en": "Total Period",
-        "ar": "إج. المدة"
+        "ar": "إجمالي المدة"
     },
     {
         "name": "trainer_account",

@@ -269,7 +269,7 @@
         "title_ar": "تعريف الكورسات",
         "title_en": "Courses",
         "image_url": "/images/courses.png",
-        "description_ar": "يتم من خلالها تعريف إسم الكورس و السعر و إج. مدة الكورس و عدد المحاضرات",
+        "description_ar": "يتم من خلالها تعريف إسم الكورس و السعر و إجمالي مدة الكورس و عدد المحاضرات",
         "description_en": "Through which the name of the course, price, total duration of the course and number of lectures are defined."
     },
     {

@@ -15,7 +15,7 @@
     {"name" : "transfer_branch_number" , "en" : "Store in Number" , "ar" : "رقم اﻷذن"},
     {"name" : "transfer_branch_supply_number" , "en" : "Store in supply number" , "ar" : " رقم أذن التوريد"},
     {"name" : "transfer_branch_supply_number_date" , "en" : "supply number date" , "ar" : " تاريخ أذن التوريد"},
-    {"name": "total_price","en": "Total Price","ar": "إج. سعر البيع"},
+    {"name": "total_price","en": "Total Price","ar": "إجمالي سعر البيع"},
     {"name" : "err_maximum_discount" , "en" : "The item I discount must be less than or equal to the maximum discount" , "ar" : "يجب أن يكون الخصم على الصنف أقل من أو يساوي أقصى خصم"},
     {"name" : "received_honesty" , "en" : "I, the undersigned, received the goods above after the negative inspection from ignorance, intact, free of defects and as safe." , "ar" : "إستلمت أنا الموقع البضاعه أعلاه بعد  المعاينه  النافيه  من الجهاله سليمه خاليه من العيوب وبصفة أمانه"},
     {"name" : "confirmed" , "en" : "Confirmed" , "ar" : "معتمد"},

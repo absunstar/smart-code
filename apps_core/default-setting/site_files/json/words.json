@@ -147,17 +147,17 @@
     {
         "name": "default_setting_tenant_total_required",
         "en": "Total Required",
-        "ar": "إج. المطلوب"
+        "ar": "إجمالي المطلوب"
     },
     {
         "name": "default_setting_tenant_total",
         "en": "Total Rest",
-        "ar": "إج. المدفوع"
+        "ar": "إجمالي المدفوع"
     },
     {
         "name": "default_setting_tenant_total_rest",
         "en": "Total Rest",
-        "ar": "إج. الباقي"
+        "ar": "إجمالي الباقي"
     },
     {
         "name": "default_setting_tenant_rest",

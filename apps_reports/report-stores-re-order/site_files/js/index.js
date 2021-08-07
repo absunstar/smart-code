@@ -92,7 +92,7 @@ app.controller("report_stores_re_order", function ($scope, $http, $timeout) {
     }, {
       type: 'text3b',
       value: 'الصنف',
-      value2: "إج. السعر",
+      value2: "إجمالي السعر",
       value3: 'العدد'
     }, {
       type: 'space'

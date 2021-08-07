@@ -2,22 +2,22 @@
     {
         "name": "report_transaction_total_name",
         "en": "Report Items Sales Total",
-        "ar": "تقرير إج. كارتة الصنف"
+        "ar": "تقرير إجمالي كارتة الصنف"
     },
     {
         "name": "report_transaction_total",
         "en": "Report Items Sales Total",
-        "ar": "تقرير إج. كارتة الصنف"
+        "ar": "تقرير إجمالي كارتة الصنف"
     },
     {
         "name": "report_total",
         "en": "Report Total",
-        "ar": "تقرير إج."
+        "ar": "تقرير إجمالي"
     },
     {
         "name": "report_detailed",
         "en": "Report Total",
-        "ar": "تقرير إج."
+        "ar": "تقرير إجمالي"
     },
     {
         "name": "report_transaction_total_menus",
@@ -37,7 +37,7 @@
     {
         "name": "total_net_values",
         "en": "Total Net Values",
-        "ar": "إج. القيم المطلوبة"
+        "ar": "إجمالي القيم المطلوبة"
     },
     {
         "name": "total_items_price",
@@ -47,7 +47,7 @@
     {
         "name": "total_delivery_service_price",
         "en": "Total Delivery Service Price",
-        "ar": "إج. سعر خدمة التوصيل"
+        "ar": "إجمالي سعر خدمة التوصيل"
     },
     {
         "name": "report_invoices_name",

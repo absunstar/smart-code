@@ -122,7 +122,7 @@
     {
         "name": "attend_employees_total",
         "en": "Total Duration",
-        "ar": "إج. المدة "
+        "ar": "إجمالي المدة "
     },
     {
         "name": "auto_load_attendance",

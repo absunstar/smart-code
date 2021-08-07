@@ -152,42 +152,42 @@
     {
         "name": "report_value_added_total_required",
         "en": "Total Required",
-        "ar": "إج. المطلوب"
+        "ar": "إجمالي المطلوب"
     },
     {
         "name": "total_outgoing",
         "en": "Total Paid Outgoing",
-        "ar": "إج. الصرف "
+        "ar": "إجمالي الصرف "
     },
     {
         "name": "total_incoming",
         "en": "Total Paid Incoming",
-        "ar": "إج. القبض "
+        "ar": "إجمالي القبض "
     },
     {
         "name": "total_outgoing_comm",
         "en": "Total commission Outgoing",
-        "ar": "إج. عمولة الصرف "
+        "ar": "إجمالي عمولة الصرف "
     },
     {
         "name": "total_incoming_comm",
         "en": "Total commission Incoming",
-        "ar": "إج. عمولة القبض "
+        "ar": "إجمالي عمولة القبض "
     },
     {
         "name": "total_incoming_value",
         "en": "Total Incoming Value",
-        "ar": "إج. القيمة الواردة "
+        "ar": "إجمالي القيمة الواردة "
     },
     {
         "name": "total_outgoing_value",
         "en": "Total Outgoing Value",
-        "ar": "إج. القيمة المنصرفة "
+        "ar": "إجمالي القيمة المنصرفة "
     },
     {
         "name": "total_remain",
         "en": "Total Remain",
-        "ar": "إج. الباقي"
+        "ar": "إجمالي الباقي"
     },
     {
         "name": "report_value_added_add_name",

@@ -240,24 +240,22 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col6">
-                            <div class="row">
+                        <div class="row">
 
-                                <h2 class="black">##word.invoice_footer##</h2>
-                                <i-button type="add default"
-                                    ng-click="default_setting.printer_program.invoice_footer.push({})">
+                            <h2 class="black">##word.invoice_footer##</h2>
+                            <i-button type="add default"
+                                ng-click="default_setting.printer_program.invoice_footer.push({})">
+                            </i-button>
+
+                            <div ng-repeat="f in default_setting.printer_program.invoice_footer track by $index"
+                                class="row">
+
+                                <i-control class="col8" ng-model="f.name"></i-control>
+
+                                <i-button class="col2" type="delete default"
+                                    ng-click="default_setting.printer_program.invoice_footer.length ==1 || default_setting.printer_program.invoice_footer.splice($index,1)">
                                 </i-button>
 
-                                <div ng-repeat="f in default_setting.printer_program.invoice_footer track by $index"
-                                    class="row">
-
-                                    <i-control class="col8" ng-model="f.name"></i-control>
-
-                                    <i-button class="col2" type="delete default"
-                                        ng-click="default_setting.printer_program.invoice_footer.length ==1 || default_setting.printer_program.invoice_footer.splice($index,1)">
-                                    </i-button>
-
-                                </div>
                             </div>
                         </div>
                     </div>

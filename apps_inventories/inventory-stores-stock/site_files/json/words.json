@@ -16,7 +16,7 @@
     {"name" : "stores_stock_supply_number" , "en" : "Store Stock supply number" , "ar" : " رقم جرد المخزني"},
     {"name" : "stores_stock_supply_number_date" , "en" : "supply number date" , "ar" : " تاريخ جرد المخزني"},
     {"name" : "difference_cost" , "en" : "Difference Cost" , "ar" : "فرق التكلفة"},
-    {"name" : "total_difference_cost" , "en" : "Total Difference Cost" , "ar" : "إج. فرق التكلفة"},
+    {"name" : "total_difference_cost" , "en" : "Total Difference Cost" , "ar" : "إجمالي فرق التكلفة"},
 
     {"name" : "stores_stock_store_name" , "en" : "Store Stock" , "ar" : "  إسم المخزن "},
     {"name" : "stores_stock_general" , "en" : "General Stock" , "ar" : "جرد شامل"},

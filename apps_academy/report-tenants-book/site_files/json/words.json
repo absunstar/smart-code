@@ -12,11 +12,11 @@
     { "name": "report_tenants_hall","en": "Hall Name", "ar": "إسم القاعة"},
     { "name": "report_tenants_serial","en": "Serial", "ar": "رقم مسلسل"},
     { "name": "report_tenants_required","en": "Required", "ar": "المطلوب"},
-    { "name": "report_tenants_total_required","en": "Total Required", "ar": "إج. المطلوب"},
+    { "name": "report_tenants_total_required","en": "Total Required", "ar": "إجمالي المطلوب"},
     { "name": "report_tenants_paid","en": "paid", "ar": "المدفوع"},
-    { "name": "report_tenants_total","en": "Total Rest", "ar": "إج. المدفوع"},
+    { "name": "report_tenants_total","en": "Total Rest", "ar": "إجمالي المدفوع"},
     { "name": "report_tenants_rest","en": "Rest", "ar": "الباقي"},
-    { "name": "report_tenants_total_rest","en": "Total Rest", "ar": "الباقي إج."},
+    { "name": "report_tenants_total_rest","en": "Total Rest", "ar": "الباقي إجمالي"},
 
 
     { "name": "report_tenants_date","en": "Offer Date", "ar": "التاريخ"}

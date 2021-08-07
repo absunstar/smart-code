@@ -10,6 +10,7 @@
 
     <div class="col2 center">
       <img class="logoPrint" ng-src="{{defaultSettings.printer_program.invoice_logo}}" />
+
     </div>
 
     <div class="col5 left">
@@ -19,6 +20,9 @@
     </div>
   </div>
 
+  <div class="row hide center">
+    <p class="center p_header"> ##word.tax_number## : {{defaultSettings.printer_program.tax_number}}</p>
+  </div>
 
 
   <div class="row">
@@ -37,7 +41,7 @@
         </td>
       </tr>
 
-      <tr>
+       <tr class="not-print">
         <td class="title">
           <b class="indigoD"> ##word.transaction_type## :</b>
           <b class="center bold"> {{store_out.type.##session.lang##}} </b>
@@ -50,15 +54,22 @@
       </tr>
 
       <tr ng-hide="##query.type## == 5">
-        <td class="title">
+
+        <td class="title bold">
+          <b class="indigoD">##word.payment_method## :</b>
+          <b class="center">{{store_out.payment_method.##session.lang##}} </b>
+        </td>
+
+        <td class="title center bold">
           <b class="indigoD">##word.customer## :</b>
           <b class="center">{{store_out.customer.name_##session.lang##}} </b>
         </td>
 
-        <td class="center">
+
+        <!-- <td class="center">
           <b class="indigoD">##word.delegate## :</b>
           <b class="center">{{store_out.delegate.name_##session.lang##}} </b>
-        </td>
+        </td> -->
       </tr>
 
       <tr class="not-print" ng-show="store_out.taxes.length > 0">
@@ -100,7 +111,7 @@
         </td>
       </tr>
 
-      <tr class="not-print">
+      <tr class="not-print bold">
         <td>
           <b class="indigoD">##word.total_discount## : </b>
           <b>{{store_out.total_discount}} $</b>
@@ -112,7 +123,7 @@
         </td>
       </tr>
 
-      <tr>
+      <tr class="bold">
         <td><b class="indigoD">##word.stores_out_notes## :</b></td>
         <td class="center">{{store_out.notes}}</td>
       </tr>
@@ -219,7 +230,6 @@
     </div>
   </div>
 
-
   <br />
   <br />
   <br />
@@ -250,7 +260,7 @@
       <p class="p_footer center">##word.delegate## </p>
       <br>
       <br>
-      <p>##word.name## : </p>
+      <p>##word.name## : {{store_out.delegate.name_##session.lang##}} </p>
       <br>
       <p>##word.signature## : </p>
     </div>

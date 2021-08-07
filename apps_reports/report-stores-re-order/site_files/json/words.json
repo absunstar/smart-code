@@ -27,7 +27,7 @@
     {
         "name": "report_detailed",
         "en": "Report Total",
-        "ar": "تقرير إج."
+        "ar": "تقرير إجمالي"
     },
     {
         "name": "invoices_code",
@@ -42,7 +42,7 @@
     {
         "name": "total_net_values",
         "en": "Total Net Values",
-        "ar": "إج. القيم المطلوبة"
+        "ar": "إجمالي القيم المطلوبة"
     },
     {
         "name": "total_items_price",
@@ -52,7 +52,7 @@
     {
         "name": "total_delivery_service_price",
         "en": "Total Delivery Service Price",
-        "ar": "إج. سعر خدمة التوصيل"
+        "ar": "إجمالي سعر خدمة التوصيل"
     },
     {
         "name": "report_invoices_name",
@@ -178,17 +178,17 @@
     {
         "name": "report_invoices_total_required",
         "en": "Total Required",
-        "ar": "إج. المطلوب"
+        "ar": "إجمالي المطلوب"
     },
     {
         "name": "total_paid_up",
         "en": "Total Rest",
-        "ar": "إج. المدفوع"
+        "ar": "إجمالي المدفوع"
     },
     {
         "name": "total_remain",
         "en": "Total Remain",
-        "ar": "إج. الباقي"
+        "ar": "إجمالي الباقي"
     },
     {
         "name": "report_invoices_add_name",

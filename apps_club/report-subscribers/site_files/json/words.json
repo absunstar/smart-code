@@ -77,17 +77,17 @@
     {
         "name": "report_subscribers_total_required",
         "en": "Total Required",
-        "ar": "إج. المطلوب"
+        "ar": "إجمالي المطلوب"
     },
     {
         "name": "total_paid_up",
         "en": "Total Rest",
-        "ar": "إج. المدفوع"
+        "ar": "إجمالي المدفوع"
     },
   
     {
         "name": "total_remain",
         "en": "Total Remain",
-        "ar": "إج. الباقي"
+        "ar": "إجمالي الباقي"
     }
 ]

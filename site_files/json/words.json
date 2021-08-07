@@ -162,7 +162,7 @@
     {
         "name": "t_o",
         "en": "To.",
-        "ar": "إج."
+        "ar": "إجمالي"
     },
     {
         "name": "session",
@@ -287,17 +287,17 @@
     {
         "name": "t_discount",
         "en": "T.Discount",
-        "ar": "إج.خصم"
+        "ar": "إجماليخصم"
     },
     {
         "name": "t_tax",
         "en": "T.Tax",
-        "ar": "إج.ضريبة"
+        "ar": "إجماليضريبة"
     },
     {
         "name": "t_value",
         "en": "T.Value",
-        "ar": "إج.قيمة"
+        "ar": "إجماليقيمة"
     },
     
     {
@@ -403,7 +403,7 @@
     {
         "name": "total_quantity",
         "en": "Total Quantity",
-        "ar": "إج. الكمية"
+        "ar": "إجمالي الكمية"
     },
     {
         "name": "personnel",
@@ -568,7 +568,7 @@
     {
         "name": "system_total_transaction_menus",
         "en": "Total Item Transaction Menu",
-        "ar": "قائمة إج. كارتة الصنف"
+        "ar": "قائمة إجمالي كارتة الصنف"
     },
     {
         "name": "buy_price",
@@ -673,7 +673,7 @@
     {
         "name": "report_sales_total_menus",
         "en": "Report Sales Total Menu",
-        "ar": "قائمة إج. لمبيعات الأصناف "
+        "ar": "قائمة إجمالي لمبيعات الأصناف "
     },
     {
         "name": "branches",
@@ -723,12 +723,12 @@
     {
         "name": "total_value_added",
         "en": "Total Value Added",
-        "ar": "إج. القيمة المضافة"
+        "ar": "إجمالي القيمة المضافة"
     },
     {
         "name": "total_v_a",
         "en": "Total V . A",
-        "ar": "إج. ق . م"
+        "ar": "إجمالي ق . م"
     },
     {
         "name": "err_exist_count",
@@ -988,17 +988,17 @@
     {
         "name": "total_tax",
         "en": "ًTotal Tax",
-        "ar": "إج. الضرائب"
+        "ar": "إجمالي الضرائب"
     },
     {
         "name": "total_discount",
         "en": "ًTotal Discount",
-        "ar": "إج. الخصم"
+        "ar": "إجمالي الخصم"
     },
     {
         "name": "total_items_discount",
         "en": "ًTotal Items Discount",
-        "ar": "إج. خصم الأصناف"
+        "ar": "إجمالي خصم الأصناف"
     },
     {
         "name": "store_from",
@@ -1547,7 +1547,7 @@
     {
         "name": "items_price_total",
         "en": "Items Price Total",
-        "ar": "إج. سعر الأصناف"
+        "ar": "إجمالي سعر الأصناف"
     },
     {
         "name": "date_from_subscribe",

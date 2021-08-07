@@ -8,6 +8,7 @@
         </div>
         <div class="col2 center">
             <img class="logoPrint" ng-src="{{defaultSettings.printer_program.invoice_logo}}" />
+
         </div>
 
         <div class="col5 left">
@@ -17,6 +18,9 @@
         </div>
     </div>
 
+    <div class="row hide center">
+        <p class="center p_header"> ##word.tax_number## : {{defaultSettings.printer_program.tax_number}}</p>
+    </div>
 
 
     <div class="row">
@@ -39,7 +43,7 @@
             </tr>
 
 
-            <tr>
+            <tr class="not-print">
                 <td>
                     <b class="indigoD"> ##word.store## : </b>
                     <b>{{store_in.store.name_##session.lang##}}</b>
@@ -105,15 +109,19 @@
             </tr>
 
             <tr>
-                <td class="title">
+                <td class="title bold">
+                    <b class="indigoD">##word.payment_method## :</b>
+                    <b class="center">{{store_in.payment_method.##session.lang##}} </b>
+                </td>
+                <td class="title center">
                     <b class="indigoD">##word.stores_in_notes## : </b>
                     <b>{{store_in.notes}}</b>
 
                 </td>
-                <td class="center">
+                <!--  <td class="center">
                     <b class="indigoD">##word.transaction_type## : </b>
                     <b>{{store_in.type.##session.lang##}}</b>
-                </td>
+                </td> -->
             </tr>
 
         </table>
@@ -210,7 +218,8 @@
                 <div class="row">
                     <br>
                     <br>
-                    <p class="num_str black">{{store_in.net_value2}} {{defaultSettings.accounting.end_num_to_str || ''}}</p>
+                    <p class="num_str black">{{store_in.net_value2}} {{defaultSettings.accounting.end_num_to_str || ''}}
+                    </p>
                 </div>
             </div>
 

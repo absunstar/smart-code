@@ -317,12 +317,12 @@
     {
         "name": "total_purchase_price",
         "en": "Total Purchase Price",
-        "ar": "إج. سعر المشتريات"
+        "ar": "إجمالي سعر المشتريات"
     },
     {
         "name": "total_purchase_count",
         "en": "Total Purchase Count",
-        "ar": "إج. عدد المشتريات"
+        "ar": "إجمالي عدد المشتريات"
     },
     {
         "name": "average_cost",
@@ -332,17 +332,17 @@
     {
         "name": "total_average_cost",
         "en": "Total Average Cost",
-        "ar": "إج. متوسط التكلفة"
+        "ar": "إجمالي متوسط التكلفة"
     },
     {
         "name": "total_selling_price",
         "en": "Total Selling Price",
-        "ar": "إج. سعر المبيعات"
+        "ar": "إجمالي سعر المبيعات"
     },
     {
         "name": "total_selling_count",
         "en": "Total Selling Count",
-        "ar": "إج. عدد المبيعات"
+        "ar": "إجمالي عدد المبيعات"
     },
     {
         "name": "stores_items_start_count",

@@ -42,12 +42,12 @@
     {
         "name": "net_total_return",
         "en": "Net Total Return",
-        "ar": "صافي إج. المرتجعات"
+        "ar": "صافي إجمالي المرتجعات"
     },
     {
         "name": "total_net_values",
         "en": "Total Net Values",
-        "ar": "إج. القيم المطلوبة"
+        "ar": "إجمالي القيم المطلوبة"
     },
     {
         "name": "total_items_price",
@@ -57,7 +57,7 @@
     {
         "name": "total_customer_service_price",
         "en": "Total Delegate Service Price",
-        "ar": "إج. سعر خدمة التوصيل"
+        "ar": "إجمالي سعر خدمة التوصيل"
     },
     {
         "name": "report_payable_name",

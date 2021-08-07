@@ -46,7 +46,7 @@
     {
         "name": "book_course_total",
         "en": "Total Duration",
-        "ar": "إج. المدة "
+        "ar": "إجمالي المدة "
     },
     {
         "name": "date_from",
@@ -106,7 +106,7 @@
     {
         "name": "total_rest",
         "en": "Total Rest",
-        "ar": "إج. الدفعات"
+        "ar": "إجمالي الدفعات"
     },
     {
         "name": "dates",
