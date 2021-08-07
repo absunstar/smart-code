@@ -41,7 +41,7 @@
         </td>
       </tr>
 
-       <tr class="not-print">
+      <tr class="not-print">
         <td class="title">
           <b class="indigoD"> ##word.transaction_type## :</b>
           <b class="center bold"> {{store_out.type.##session.lang##}} </b>
@@ -233,15 +233,6 @@
   <br />
   <br />
   <br />
-  <br />
-
-  <div class="row hide" ng-repeat="i in defaultSettings.printer_program.invoice_footer">
-    <p class="p_footer bold center">{{i.name}}</p>
-  </div>
-
-  <br />
-  <br />
-  <br />
 
   <div class="row hide">
 
@@ -265,6 +256,15 @@
       <p>##word.signature## : </p>
     </div>
 
+  </div>
+
+  <br />
+  <br />
+  <br />
+  <br />
+
+  <div class="row hide" ng-repeat="i in defaultSettings.printer_program.invoice_footer">
+    <p class="p_footer bold center">{{i.name}}</p>
   </div>
 
 </div>
