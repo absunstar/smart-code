@@ -1,9 +1,12 @@
 <div ng-hide="busy" class="row" fixed>
 
     <div class="row hide">
-        <div class="col5 right">
-            <div class="row right" ng-repeat="i in defaultSettings.printer_program.invoice_header">
-                <p class=" p_header bold right">{{i.name}}</p>
+        <div class="col5 center">
+            <div class="row">
+                <h2 class="green center bold">##session.company.name_ar##</h2>
+              </div>
+            <div class="row center" ng-repeat="i in defaultSettings.printer_program.invoice_header">
+                <p class=" p_header bold center">{{i.name}}</p>
             </div>
         </div>
         <div class="col2 center">
@@ -11,15 +14,18 @@
 
         </div>
 
-        <div class="col5 left">
-            <div class="row left" ng-repeat="i in defaultSettings.printer_program.invoice_header2">
-                <p class=" p_header bold left">{{i.name}}</p>
+        <div class="col5 center">
+            <div class="row">
+                <h2 class="green center bold">##session.company.name_en##</h2>
+              </div>
+            <div class="row center" ng-repeat="i in defaultSettings.printer_program.invoice_header2">
+                <p class=" p_header bold center">{{i.name}}</p>
             </div>
         </div>
     </div>
 
     <div class="row hide center">
-        <p class="center p_header"> ##word.tax_number## : {{defaultSettings.printer_program.tax_number}}</p>
+        <p class="center p_header"> Tax No. / الرقم الضريبي : {{defaultSettings.printer_program.tax_number}}</p>
     </div>
 
 
@@ -29,14 +35,14 @@
 
             <tr>
                 <td class="title">
-                    <b class="indigoD">##word.stores_in_date## :</b>
+                    <b class="indigoD">التاريخ / Date :</b>
                     <b class="brown">{{store_in.date |date:"dd - MM - yyyy" }}
                     </b>
 
                 </td>
 
                 <td class="center">
-                    <b class="indigoD">##word.stores_in_id## : </b>
+                    <b class="indigoD">رقم الفاتورة / Invoice No. : </b>
                     <b class=" blue userPrint">{{store_in.code}}</b>
                     <h3 class="red center bold userPrint">{{store_in.retured_number}}</h3>
                 </td>
@@ -110,11 +116,11 @@
 
             <tr>
                 <td class="title bold">
-                    <b class="indigoD">##word.payment_method## :</b>
+                    <b class="indigoD">طريقة الدفع / Pay Method :</b>
                     <b class="center">{{store_in.payment_method.##session.lang##}} </b>
                 </td>
                 <td class="title center">
-                    <b class="indigoD">##word.stores_in_notes## : </b>
+                    <b class="indigoD">ملاحظات / Notes : </b>
                     <b>{{store_in.notes}}</b>
 
                 </td>
@@ -131,16 +137,43 @@
     <br>
 
     <div class="row">
-        <table class="table bold hover details">
+        <table class="table bold center hover details">
             <tr>
                 <th class="w50">##word.serial##</th>
-                <th class="w150">##word.barcode##</th>
-                <th class="w300">##word.stores_in_item_name##</th>
-                <th class="w50">##word.unit##</th>
-                <th class="w50">##word.stores_in_item_count##</th>
-                <th class="w50">##word.price##</th>
-                <th ng-show="defaultSettings.inventory.value_added > 0" class="w50">##word.total_v_a##</th>
-                <th class="w50">##word.stores_in_item_total##</th>
+                <th class="w150">
+                    <p>كود الصنف</p>
+                    <p>Item Code</p>
+                </th>
+
+                <th class="w250">
+                    <p>إسم الصنف</p>
+                    <p>Item Name</p>
+                </th>
+
+                <th class="w50">
+                    <p>الوحدة</p>
+                    <p>Unit</p>
+                </th>
+
+                <th class="w50">
+                    <p>الكمية</p>
+                    <p>Qty.</p>
+                </th>
+
+                <th class="w50">
+                    <p>سعر الوحدة</p>
+                    <p>U.Price</p>
+                </th>
+
+                <th ng-show="defaultSettings.inventory.value_added > 0" class="w50">
+                    <p>إج. الضريبة</p>
+                    <p>VAT</p>
+                </th>
+
+                <th class="w50">
+                    <p>الإجمالي</p>
+                    <p>Total</p>
+                </th>
 
             </tr>
 
@@ -200,29 +233,24 @@
     <div class="row">
         <div class="row">
 
-            <i-control class="col3 r_black" ng-model="store_in.total_value" label="##word.stores_in_total_value##"
-                type="number" disabled>
-            </i-control>
-            <i-control ng-show="store_in.total_value_added && defaultSettings.inventory.value_added > 0"
-                class="col3 r_darkRed" ng-model="store_in.total_value_added" label="##word.value_added##" type="number"
+            <i-control class="col3 r_black" ng-model="store_in.total_value" label="الإجمالي / Total" type="number"
                 disabled>
             </i-control>
+            <i-control ng-show="store_in.total_value_added && defaultSettings.inventory.value_added > 0"
+                class="col3 r_darkRed" ng-model="store_in.total_value_added" label="القيمة الضريبية / VAT" type="number"
+                disabled>
+            </i-control>
+
+            <i-control class="col3 r_green" ng-model="store_in.net_value" label="الصافي / Net." type="number" disabled>
+            </i-control>
+
         </div>
 
         <div class="row">
-
-            <i-control class="col3 r_green" ng-model="store_in.net_value" label="##word.stores_in_net_value##"
-                type="number" disabled>
-            </i-control>
-            <div class="col9">
-                <div class="row">
-                    <br>
-                    <br>
-                    <p class="num_str black">{{store_in.net_value2}} {{defaultSettings.accounting.end_num_to_str || ''}}
-                    </p>
-                </div>
-            </div>
-
+            <br>
+            <br>
+            <p class="num_str center black">{{store_in.net_value2}} {{defaultSettings.accounting.end_num_to_str || ''}}
+            </p>
         </div>
     </div>
 
@@ -231,27 +259,29 @@
     <br>
     <br>
 
- 
+
     <div class="row hide">
 
         <div class="col5">
-            <p class="p_footer center">##word.receiver## </p>
+            <p class="p_footer center">المستلم / Receiver </p>
             <br>
             <br>
-            <p>##word.name## : </p>
+            <p>الإسم / Name : </p>
             <br>
-            <p>##word.signature## : </p>
+            <p>التوقيع / Signature : </p>
+
         </div>
 
         <div class="col2"></div>
 
         <div class="col5">
-            <p class="p_footer center">##word.vendor## </p>
+            <p class="p_footer center">المورد / Vendor </p>
             <br>
             <br>
-            <p>##word.name## : {{store_in.vendor.name_##session.lang##}} </p>
+            <p>الإسم / Name : {{store_in.vendor.name_##session.lang##}} </p>
             <br>
-            <p>##word.signature## : </p>
+            <p>التوقيع / Signature : </p>
+
         </div>
 
     </div>
@@ -259,13 +289,13 @@
     <br>
     <br>
     <br>
-    
+
     <div class="row hide" ng-repeat="i in defaultSettings.printer_program.invoice_footer">
         <p class="p_footer bold center">{{i.name}}</p>
     </div>
 
 
-   
+
 
 
 </div>
