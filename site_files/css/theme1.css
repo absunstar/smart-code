@@ -170,8 +170,12 @@ i-image img:hover {
   }
 }
 
-.p_header {
+.txt16 {
   font-size: 16px !important;
+}
+
+.txt14 {
+  font-size: 14px !important;
 }
 
 .p_footer {
