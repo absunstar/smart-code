@@ -251,14 +251,10 @@
                                         </td>
                                         <td class="center blue">
                                             <br ng-hide="size.discount.value > 0">
-                                            <p class="center">{{size.price}}</p>
+                                            <p class="center">{{size.b_price}}</p>
+                                            <del class="red txt14" ng-show="itm.discount.value > 0"> {{size.discount.current}}
+                                            </del>
 
-                                            <del class="red px14"
-                                                ng-show="size.discount.type =='number' && size.discount.value > 0">{{size.discount.value}}
-                                                $</del>
-                                            <del class="red px14"
-                                                ng-show="size.discount.type =='percent' && size.discount.value > 0">{{size.discount.value}}
-                                                %</del>
                                         </td>
 
                                         <td class="center"><br> {{size.extras_price}}</td>

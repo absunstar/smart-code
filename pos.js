@@ -20,6 +20,7 @@ const site = require('isite')({
 site.get({
   name: '/',
   path: site.dir + '/',
+  public : true
 });
 
 site.get({

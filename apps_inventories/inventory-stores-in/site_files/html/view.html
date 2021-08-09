@@ -10,7 +10,7 @@
             </div>
         </div>
         <div class="col2 center">
-            <img class="logoPrint" ng-src="{{defaultSettings.printer_program.invoice_logo}}" />
+            <img class="logoPrint" ng-src="{{invoice_logo}}" />
 
         </div>
 
@@ -206,11 +206,9 @@
                 </td>
 
                 <td class="txt14 center">
-                    {{itm.cost}}
-                    <del class="red px14"
-                        ng-show="itm.discount.type =='number' && itm.discount.value > 0">{{itm.discount.value}} $</del>
-                    <del class="red px14"
-                        ng-show="itm.discount.type =='percent' && itm.discount.value > 0">{{itm.discount.value}} %</del>
+                    {{itm.b_cost}}
+                    <del class="red txt14" ng-show="itm.discount.value > 0"> {{itm.discount.current}}
+                    </del>
                 </td>
 
 
@@ -237,24 +235,29 @@
         <div class="row">
 
             <div class="col4 bold">
-                <p class="txt14 indigoD"> الإجمالي ق.ض / Total A.Tax </p>
-                <p class="txt14 indigoD"> الخصم / Discount </p>
+                <p class="txt14 indigoD"> الإجمالي قبل.ض / Total B.Tax </p>
                 <p class="txt14 indigoD "> القيمة الضريبية / VAT </p>
+                <p class="txt14 indigoD"> الإجمالي بعد.ض / Total A.Tax </p>
+                <p class="txt14 indigoD"> الخصم النقدي / Discount Cash </p>
                 <p class="txt14 indigoD"> الصافي / Net. </p>
             </div>
 
             <div class="col4 bold">
-                <p class="txt14">{{store_in.total_value}}</p>
+                <p class="txt14 black">{{store_in.before_value_added}}</p>
+                <p class="txt14 black">{{store_in.total_value_added}}</p>
+                <p class="txt14 black">{{store_in.total_value}}</p>
                 <p class="txt14 red">{{store_in.total_discount}}</p>
-                <p class="txt14">{{store_in.total_value_added}}</p>
                 <p class="txt14 green">{{store_in.net_value}}</p>
             </div>
+
         </div>
+
         <div class="row">
-            <p class="num_str bold center black">{{store_in.net_value2}} {{defaultSettings.accounting.end_num_to_str ||
+            <p class="num_str bold center black">{{store_in.net_txt}} {{defaultSettings.accounting.end_num_to_str ||
                 ''}}
             </p>
         </div>
+
     </div>
 
     <br>
@@ -282,7 +285,7 @@
             <p class="p_footer center">المورد / Vendor </p>
             <br>
             <br>
-            <b class="indigoD">الإسم / Name : </b>    <b>{{store_in.vendor.name_##session.lang##}}</b>
+            <b class="indigoD">الإسم / Name : </b> <b>{{store_in.vendor.name_##session.lang##}}</b>
             <br>
             <p class="indigoD">التوقيع / Signature : </p>
 

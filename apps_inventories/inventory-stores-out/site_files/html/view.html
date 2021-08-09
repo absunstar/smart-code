@@ -1,6 +1,5 @@
 <div ng-hide="busy" class="row" fixed>
 
-
   <div class="row hide">
     <div class="col5 center">
       <div class="row">
@@ -12,8 +11,7 @@
     </div>
 
     <div class="col2 center">
-      <img class="logoPrint" ng-src="{{defaultSettings.printer_program.invoice_logo}}" />
-
+      <img class="logoPrint" ng-src="{{invoice_logo}}" />
     </div>
 
     <div class="col5 center">
@@ -64,12 +62,12 @@
       <tr ng-hide="##query.type## == 5">
 
         <td class="title txt14 bold">
-          <b class="indigoD hide">طريقة الدفع / Pay Method :</b>
+          <b class="indigoD">طريقة الدفع / Pay Method :</b>
           <b class="center">{{store_out.payment_method.##session.lang##}} </b>
         </td>
 
         <td class="title txt14 center bold">
-          <b class="indigoD hide">العميل / Customer :</b>
+          <b class="indigoD">العميل / Customer :</b>
           <b class="center">{{store_out.customer.name_##session.lang##}} </b>
         </td>
 
@@ -198,12 +196,15 @@
         </td>
 
         <td class="center txt14">
-          <p ng-show="itm.add_sizes">{{itm.name_##session.lang##}} {{itm.size_##session.lang##}}</p>
-          <p ng-hide="itm.add_sizes">{{itm.size_##session.lang##}}</p>
+          <p ng-show="itm.add_sizes">{{itm.name_ar}} {{itm.size_ar}}</p>
+          <p ng-show="itm.add_sizes">{{itm.name_en}} {{itm.size_en}}</p>
+          <p ng-hide="itm.add_sizes">{{itm.size_ar}}</p>
+          <p ng-hide="itm.add_sizes">{{itm.size_en}}</p>
         </td>
 
         <td class="center txt14">
-          {{itm.unit.name_##session.lang##}}
+          {{itm.unit.name_ar}}
+          {{itm.unit.name_en}}
         </td>
 
         <td class="center txt14">
@@ -212,11 +213,11 @@
 
         <td class="center txt14" x-permissions="stores_out_details_values || stores_out_manage"
           ng-hide="store_out.type.id ==5">
-          {{itm.price}}
-          <del class="red px14" ng-show="itm.discount.type =='number' && itm.discount.value > 0">{{itm.discount.value}}
-            $</del>
-          <del class="red px14" ng-show="itm.discount.type =='percent' && itm.discount.value > 0">{{itm.discount.value}}
-            %</del>
+          {{itm.b_price}}
+
+          <del class="red txt14" ng-show="itm.discount.value > 0"> {{itm.discount.current}}
+          </del>
+
         </td>
 
         <td class="center txt14 red" x-permissions="stores_out_details_values || stores_out_manage"
@@ -224,7 +225,7 @@
           {{itm.total_v_a}}
         </td>
 
-        <td class="txt14" x-permissions="stores_out_details_values || stores_out_manage">
+        <td class="center txt14" x-permissions="stores_out_details_values || stores_out_manage">
           {{itm.total}}
         </td>
 
@@ -239,22 +240,24 @@
     <div class="row">
 
       <div class="col4 bold">
-        <p class="txt14 indigoD"> الإجمالي ق.ض / Total A.Tax </p>
-        <p class="txt14 indigoD"> الخصم / Discount </p>
+        <p class="txt14 indigoD"> الإجمالي قبل.ض / Total B.Tax </p>
         <p class="txt14 indigoD "> القيمة الضريبية / VAT </p>
+        <p class="txt14 indigoD"> الإجمالي بعد.ض / Total A.Tax </p>
+        <p class="txt14 indigoD"> الخصم النقدي / Discount Cash </p>
         <p class="txt14 indigoD"> الصافي / Net. </p>
       </div>
 
       <div class="col4 bold">
+        <p class="txt14 black">{{store_out.before_value_added}}</p>
+        <p class="txt14 black">{{store_out.total_value_added}}</p>
         <p class="txt14 black">{{store_out.total_value}}</p>
         <p class="txt14 red">{{store_out.total_discount}}</p>
-        <p class="txt14 black">{{store_out.total_value_added}}</p>
         <p class="txt14 green">{{store_out.net_value}}</p>
       </div>
     </div>
 
     <div class="row">
-      <p class="num_str bold center black">{{store_out.net_value2}} {{defaultSettings.accounting.end_num_to_str ||
+      <p class="num_str bold center black">{{store_out.net_txt}} {{defaultSettings.accounting.end_num_to_str ||
         ''}}
       </p>
     </div>

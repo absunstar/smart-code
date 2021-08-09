@@ -78,6 +78,36 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     $scope.calc($scope.store_out);
   };
 
+  $scope.calcSize = function (calc_size) {
+    $scope.error = '';
+    $timeout(() => {
+
+      if (calc_size.count) {
+        if (calc_size.discount.type == 'number') {
+          calc_size.discount.current = calc_size.discount.value;
+
+        } else if (calc_size.discount.type == 'percent') {
+          calc_size.discount.current = (calc_size.discount.value * calc_size.price) / 100;
+        }
+
+        calc_size.b_price = calc_size.price - calc_size.discount.current;
+        calc_size.b_price = site.toNumber(calc_size.b_price);
+
+        calc_size.total_v_a = calc_size.value_added * (calc_size.b_price * calc_size.count) / 100;
+        calc_size.total_v_a = site.toNumber(calc_size.total_v_a);
+
+        if ($scope.store_out.type && $scope.store_out.type.id == 5)
+          calc_size.total = site.toNumber(calc_size.average_cost) * site.toNumber(calc_size.count);
+        else calc_size.total = ((site.toNumber(calc_size.b_price) * site.toNumber(calc_size.count)) + calc_size.total_v_a);
+
+        calc_size.total = site.toNumber(calc_size.total);
+
+      }
+      $scope.calc($scope.store_out);
+    }, 150);
+  };
+
+
   $scope.calc = function (obj) {
     $scope.error = '';
 
@@ -90,8 +120,6 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         obj.total_value_added = 0;
         obj.items.forEach(_itm => {
           obj.total_value += site.toNumber(_itm.total);
-          _itm.total_v_a = site.toNumber(_itm.value_added) * (_itm.price * _itm.count) / 100;
-          _itm.total_v_a = site.toNumber(_itm.total_v_a);
 
           obj.total_value_added += _itm.total_v_a;
         });
@@ -117,13 +145,14 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
       obj.total_discount = site.toNumber(obj.total_discount);
       obj.total_tax = site.toNumber(obj.total_tax);
-      obj.total_value = site.toNumber(obj.total_value);
 
       if (obj.items) {
+        obj.before_value_added = obj.total_value - obj.total_value_added;
         obj.net_value = obj.total_value + obj.total_tax - obj.total_discount;
       };
 
       obj.net_value = site.toNumber(obj.net_value);
+      obj.net_txt = site.stringfiy(obj.net_value);
 
       if (obj.currency) {
         $scope.amount_currency = site.toNumber(obj.net_value) / site.toNumber(obj.currency.ex_rate);
@@ -250,7 +279,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.doc) {
           $scope.defaultSettings = response.data.doc;
-
+          $scope.invoice_logo = document.location.origin + $scope.defaultSettings.printer_program.invoice_logo;
         };
       },
       function (err) {
@@ -557,7 +586,6 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
               _item.total_v_a = site.toNumber(_item.value_added) * (_item.price * _item.count) / 100;
             }
           });
-          $scope.store_out.total_value = $scope.store_out.total_value - $scope.store_out.total_value_added;
           if ($scope.store_out.currency) {
             site.strings['currency'] = {
               ar: ' ' + $scope.store_out.currency.name_ar + ' ',
@@ -567,7 +595,6 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
               ar: ' ' + $scope.store_out.currency.minor_currency_ar + ' ',
               en: ' ' + $scope.store_out.currency.minor_currency_en + ' ',
             }
-            $scope.store_out.net_value2 = site.stringfiy($scope.store_out.net_value);
           }
 
         } else $scope.error = response.data.error;
@@ -911,29 +938,6 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     } else $scope.error = "##word.err_transaction_type##";
   };
 
-  $scope.calcSize = function (calc_size) {
-    $scope.error = '';
-    $timeout(() => {
-      let discount = 0;
-      calc_size.total_v_a = site.toNumber(calc_size.value_added) * (calc_size.price * calc_size.count) / 100;
-      calc_size.total_v_a = site.toNumber(calc_size.total_v_a);
-
-      if (calc_size.count) {
-        if (calc_size.discount.type == 'number')
-          discount = calc_size.discount.value * calc_size.count;
-        else if (calc_size.discount.type == 'percent')
-          discount = calc_size.discount.value * (calc_size.price * calc_size.count) / 100;
-
-        if ($scope.store_out.type && $scope.store_out.type.id == 5)
-          calc_size.total = site.toNumber(calc_size.average_cost) * site.toNumber(calc_size.count);
-        else calc_size.total = ((site.toNumber(calc_size.price) * site.toNumber(calc_size.count)) - discount + calc_size.total_v_a);
-
-        calc_size.total = site.toNumber(calc_size.total);
-
-      }
-      $scope.calc($scope.store_out);
-    }, 150);
-  };
 
   $scope.addToSizes = function () {
     $scope.error = '';

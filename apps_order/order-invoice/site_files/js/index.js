@@ -2373,21 +2373,26 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     $timeout(() => {
       if (!_size.count) _size.count = 0;
       if (!_size.price) _size.price = 0;
-      let discount = 0;
-      if (_size.discount.type == 'number')
-        discount = _size.discount.value * _size.count;
-      else if (_size.discount.type == 'percent')
-        discount = _size.discount.value * (_size.price * _size.count) / 100;
+
+      if (_size.discount.type == 'number') {
+        _size.discount.current = _size.discount.value;
+
+      } else if (_size.discount.type == 'percent') {
+        _size.discount.current = (_size.discount.value * _size.price) / 100;
+      }
+
+      _size.b_price = _size.price - _size.discount.current;
+      _size.b_price = site.toNumber(_size.price);
 
       _size.extras_price = 0;
       if (_size.extras_items_list && _size.extras_items_list.length > 0) {
 
         _size.extras_items_list.forEach(_exItm => {
-          _size.extras_price += _exItm.price;
+          _size.extras_price += _exItm.b_price;
         });
       }
 
-      _size.total = ((site.toNumber(_size.price) * site.toNumber(_size.count)) + (_size.extras_price * site.toNumber(_size.count))) - discount;
+      _size.total = ((site.toNumber(_size.b_price) * site.toNumber(_size.count)) + (_size.extras_price * site.toNumber(_size.count)));
 
       $scope.calc({ ...$scope.order_invoice });
     }, 100);

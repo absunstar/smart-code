@@ -80,7 +80,8 @@ module.exports = function init(site) {
         } else if (obj.minus_debtor) {
           doc.balance_debtor -= obj.balance_debtor
         }
-
+        doc.balance_creditor = site.toNumber(doc.balance_creditor)
+        doc.balance_debtor = site.toNumber(doc.balance_debtor)
         $customers.update(doc, () => {
           next()
         });
@@ -117,9 +118,9 @@ module.exports = function init(site) {
           initial_balance: 0
         }
       ],
-      balance_creditor : 0,
-      balance_debtor : 0,
-      credit_limit : 0,
+      balance_creditor: 0,
+      balance_debtor: 0,
+      credit_limit: 0,
       bank_list: [{}],
       dealing_company: [{}],
       employee_delegate: [{}],

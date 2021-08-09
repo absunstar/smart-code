@@ -331,7 +331,7 @@ app.controller("report_daily", function ($scope, $http, $timeout) {
 
   $scope.showStoreView = function (c) {
     $scope.storeView = c;
-    $scope.storeView.net_value2 = site.stringfiy($scope.storeView.net_value);
+    $scope.storeView.net_txt = site.stringfiy($scope.storeView.net_value);
     site.showModal('#storeViewModal');
   };
 

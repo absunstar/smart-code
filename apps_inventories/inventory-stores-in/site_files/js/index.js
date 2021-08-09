@@ -9,7 +9,6 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
   $scope.item = {
     sizes: []
   };
-
   let y = new Date().getFullYear().toString()
   let m = new Date().getMonth().toString()
   let d = new Date().getDate().toString()
@@ -437,71 +436,6 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     $scope.calc($scope.store_in);
   };
 
-  $scope.calc = function (obj) {
-    $scope.error = '';
-    $timeout(() => {
-      obj.total_value = 0;
-      obj.net_value = obj.net_value || 0;
-
-      if (obj.items) {
-
-        obj.total_value_added = 0;
-        obj.items.forEach(_itm => {
-          obj.total_value += site.toNumber(_itm.total);
-          _itm.total_v_a = site.toNumber(_itm.value_added) * (_itm.cost * _itm.count) / 100;
-          _itm.total_v_a = site.toNumber(_itm.total_v_a);
-          obj.total_value_added += _itm.total_v_a;
-
-        });
-        obj.total_value_added = site.toNumber(obj.total_value_added);
-      };
-
-      if (obj.type && obj.type.id !== 4) {
-        obj.total_tax = 0;
-        obj.total_discount = 0;
-      };
-
-      if (obj.taxes)
-        obj.taxes.map(tx => obj.total_tax += (obj.total_value * site.toNumber(tx.value) / 100));
-
-
-      if (obj.discountes)
-        obj.discountes.forEach(ds => {
-          if (ds.type == 'percent')
-            obj.total_discount += (obj.total_value * site.toNumber(ds.value)) / 100;
-          else obj.total_discount += site.toNumber(ds.value);
-        });
-
-      obj.total_discount = site.toNumber(obj.total_discount);
-      obj.total_tax = site.toNumber(obj.total_tax);
-      obj.total_value = site.toNumber(obj.total_value);
-
-      if (obj.items) {
-        obj.net_value = obj.total_value + obj.total_tax - obj.total_discount;
-      };
-
-      obj.net_value = site.toNumber(obj.net_value);
-
-      if (obj.currency) {
-        $scope.amount_currency = obj.net_value / site.toNumber(obj.currency.ex_rate);
-        $scope.amount_currency = site.toNumber($scope.amount_currency);
-        obj.paid_up = $scope.amount_currency;
-      }
-
-      $scope.discount = {
-        type: 'number'
-      };
-
-    }, 250);
-  };
-
-  $scope.calcReturn = function (obj) {
-    $timeout(() => {
-      obj.net_value = ((obj.total_value || 0) - (obj.total_discount || 0)) + (obj.total_tax || 0);
-      obj.net_value = site.toNumber(obj.net_value);
-    }, 250);
-  };
-
   $scope.deleteRow = function (itm) {
     $scope.error = '';
     $scope.store_in.items.splice($scope.store_in.items.indexOf(itm), 1);
@@ -755,7 +689,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.doc) {
           $scope.defaultSettings = response.data.doc;
-
+          $scope.invoice_logo = document.location.origin + $scope.defaultSettings.printer_program.invoice_logo;
         };
       },
       function (err) {
@@ -1052,8 +986,6 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
               }
             }); */
 
-          $scope.store_in.total_value = $scope.store_in.total_value - $scope.store_in.total_value_added;
-
           if ($scope.store_in.currency) {
             site.strings['currency'] = {
               ar: ' ' + $scope.store_in.currency.name_ar + ' ',
@@ -1063,7 +995,6 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
               ar: ' ' + $scope.store_in.currency.minor_currency_ar + ' ',
               en: ' ' + $scope.store_in.currency.minor_currency_en + ' ',
             }
-            $scope.store_in.net_value2 = site.stringfiy($scope.store_in.net_value);
           }
 
         } else $scope.error = response.data.error;
@@ -1147,23 +1078,96 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     $scope.error = '';
 
     setTimeout(() => {
-      let discount = 0;
-      calc_size.value_added = site.toNumber(calc_size.value_added);
-      calc_size.total_v_a = calc_size.value_added * (calc_size.cost * calc_size.count) / 100;
-      calc_size.total_v_a = site.toNumber(calc_size.total_v_a);
 
       if (calc_size.count) {
-        if (calc_size.discount.type == 'number')
-          discount = calc_size.discount.value * calc_size.count;
-        else if (calc_size.discount.type == 'percent')
-          discount = calc_size.discount.value * (calc_size.cost * calc_size.count) / 100;
-        calc_size.total = ((site.toNumber(calc_size.cost) * site.toNumber(calc_size.count)) - discount + calc_size.total_v_a);
+        if (calc_size.discount.type == 'number') {
+          calc_size.discount.current = calc_size.discount.value;
+
+        } else if (calc_size.discount.type == 'percent') {
+          calc_size.discount.current = calc_size.discount.value * calc_size.cost / 100;
+        }
+
+        calc_size.b_cost = calc_size.cost - calc_size.discount.current;
+
+        calc_size.b_cost = site.toNumber(calc_size.b_cost);
+        calc_size.value_added = site.toNumber(calc_size.value_added);
+        calc_size.total_v_a = calc_size.value_added * (calc_size.b_cost * calc_size.count) / 100;
+        calc_size.total_v_a = site.toNumber(calc_size.total_v_a);
+        calc_size.total = (calc_size.b_cost * calc_size.count) + calc_size.total_v_a;
 
         calc_size.total = site.toNumber(calc_size.total);
       }
       $scope.calc($scope.store_in);
     }, 100);
   };
+
+
+  $scope.calc = function (obj) {
+    $scope.error = '';
+    $timeout(() => {
+      obj.total_value = 0;
+      obj.net_value = obj.net_value || 0;
+
+      if (obj.items) {
+
+        obj.total_value_added = 0;
+        obj.items.forEach(_itm => {
+          obj.total_value += site.toNumber(_itm.total);
+          obj.total_value_added += _itm.total_v_a;
+
+        });
+        obj.total_value_added = site.toNumber(obj.total_value_added);
+      };
+
+      if (obj.type && obj.type.id !== 4) {
+        obj.total_tax = 0;
+        obj.total_discount = 0;
+      };
+
+      if (obj.taxes)
+        obj.taxes.map(tx => obj.total_tax += (obj.total_value * site.toNumber(tx.value) / 100));
+
+
+      if (obj.discountes)
+        obj.discountes.forEach(ds => {
+          if (ds.type == 'percent')
+            obj.total_discount += (obj.total_value * site.toNumber(ds.value)) / 100;
+          else obj.total_discount += site.toNumber(ds.value);
+        });
+
+      obj.total_discount = site.toNumber(obj.total_discount);
+      obj.total_tax = site.toNumber(obj.total_tax);
+      obj.total_value = site.toNumber(obj.total_value);
+
+      if (obj.items) {
+        obj.before_value_added = obj.total_value - obj.total_value_added;
+
+        obj.net_value = obj.total_value + obj.total_tax - obj.total_discount;
+      };
+
+      obj.net_value = site.toNumber(obj.net_value);
+      obj.net_txt = site.stringfiy(obj.net_value);
+
+      if (obj.currency) {
+        $scope.amount_currency = obj.net_value / site.toNumber(obj.currency.ex_rate);
+        $scope.amount_currency = site.toNumber($scope.amount_currency);
+        obj.paid_up = $scope.amount_currency;
+      }
+
+      $scope.discount = {
+        type: 'number'
+      };
+
+    }, 250);
+  };
+
+  $scope.calcReturn = function (obj) {
+    $timeout(() => {
+      obj.net_value = ((obj.total_value || 0) - (obj.total_discount || 0)) + (obj.total_tax || 0);
+      obj.net_value = site.toNumber(obj.net_value);
+    }, 250);
+  };
+
 
   $scope.addToSizes = function () {
     $scope.error = '';
