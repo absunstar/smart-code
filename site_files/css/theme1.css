@@ -47,6 +47,11 @@
   font-size: 18px;
 }
 
+.light_gray,
+.light_gray {
+  background-color: rgb(158, 158, 158) !important;
+}
+
 .bg_Gold,
 .bg_Gold {
   background-color: Gold !important;
@@ -174,15 +179,11 @@ i-image img:hover {
   font-size: 16px !important;
 }
 
-.txt14 {
-  font-size: 14px !important;
-}
-
 .p_footer {
   font-size: 19px !important;
 }
 
-.px14 {
+.txt14 {
   font-size: 14px !important;
 }
 
@@ -192,7 +193,7 @@ i-image img:hover {
 }
 
 .table th {
-  border-radius: 30px;
+  /* border-radius: 30px; */
   border-color: #fbfbfb;
 }
 

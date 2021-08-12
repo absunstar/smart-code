@@ -89,6 +89,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         } else if (calc_size.discount.type == 'percent') {
           calc_size.discount.current = (calc_size.discount.value * calc_size.price) / 100;
         }
+        calc_size.discount.current = site.toNumber(calc_size.discount.current);
 
         calc_size.b_price = calc_size.price - calc_size.discount.current;
         calc_size.b_price = site.toNumber(calc_size.b_price);
@@ -148,6 +149,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
       if (obj.items) {
         obj.before_value_added = obj.total_value - obj.total_value_added;
+        obj.before_value_added = site.toNumber(obj.before_value_added);
+
         obj.net_value = obj.total_value + obj.total_tax - obj.total_discount;
       };
 
@@ -1993,8 +1996,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           });
         }
 
-        if ($scope.defaultSettings.printer_program.invoice_header && $scope.defaultSettings.printer_program.invoice_header.length > 0) {
-          $scope.defaultSettings.printer_program.invoice_header.forEach(_ih => {
+        if ($scope.defaultSettings.printer_program.thermal_header && $scope.defaultSettings.printer_program.thermal_header.length > 0) {
+          $scope.defaultSettings.printer_program.thermal_header.forEach(_ih => {
             obj_print.data.push({
               type: 'header',
               value: _ih.name
@@ -2139,8 +2142,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       }
 
 
-      if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_footer && $scope.defaultSettings.printer_program.invoice_footer.length > 0) {
-        $scope.defaultSettings.printer_program.invoice_footer.forEach(_if => {
+      if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.thermal_footer && $scope.defaultSettings.printer_program.thermal_footer.length > 0) {
+        $scope.defaultSettings.printer_program.thermal_footer.forEach(_if => {
           obj_print.data.push({
             type: 'header',
             value: _if.name

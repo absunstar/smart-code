@@ -400,10 +400,10 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
     if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path)
       obj_print.printer = $scope.defaultSettings.printer_program.printer_path.ip.name.trim();
 
-    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_header)
+    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.thermal_header)
       obj_print.data.push({
         type: 'header',
-        value: $scope.defaultSettings.printer_program.invoice_header
+        value: $scope.defaultSettings.printer_program.thermal_header
       });
 
     obj_print.data.push(
@@ -538,10 +538,10 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
         value: "##word.paid_require##"
       });
 
-    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_footer)
+    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.thermal_footer)
       obj_print.data.push({
         type: 'footer',
-        value: $scope.defaultSettings.printer_program.invoice_footer
+        value: $scope.defaultSettings.printer_program.thermal_footer
       });
 
     $http({

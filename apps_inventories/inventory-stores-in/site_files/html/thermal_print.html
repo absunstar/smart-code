@@ -1,0 +1,200 @@
+<div id="thermalPrintModal" class="modal">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.stores_in_edit## <i class="fa fa-file"></i>
+            </h2>
+
+
+        </div>
+        <div class="modal-body">
+
+            <div class="row">
+
+                <div class="center">
+                    <img class="logoPrint" ng-src="{{invoice_logo}}" />
+
+                </div>
+
+                <div class="row">
+                    <div class=" center">
+                        <div class="row">
+                            <h2 ng-show="'##session.lang##' == 'ar'" class="black center bold">
+                                ##session.company.name_ar##</h2>
+                            <h2 ng-show="'##session.lang##' == 'en'" class="black center bold">
+                                ##session.company.name_en##</h2>
+                        </div>
+                        <div class="row center" ng-repeat="i in defaultSettings.printer_program.thermal_header">
+                            <p class=" txt16 bold black center">{{i.name}}</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <hr>
+
+                <div class="row">
+                    <div class="col4"></div>
+                    <div class="col4">
+
+                        <fieldset class="center">
+
+                            <b class="center black">##word.invoice_number## : </b>
+                            <b class="txt16 black center">{{store_in.code}} </b>
+                        </fieldset>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col5">
+                        <b class="black">##word.date## : {{store_in.date |date:"dd - MM - yyyy" }} </b>
+                    </div>
+                    <div class="col2"></div>
+                    <div class="col5">
+                        <b class="black">##word.time## : {{store_in.date |date:"hh : mm" }} </b>
+
+                    </div>
+                </div>
+
+
+
+                <div class="row">
+                    <div class="col4"></div>
+                    <div class="col4">
+
+                        <fieldset class="center">
+                            <b class="center black">##word.vendor## : </b>
+                            <b class="black">{{store_in.vendor.name_##session.lang##}} </b>
+                        </fieldset>
+                    </div>
+
+
+
+
+                    <div class="row">
+                        <table class="table bold center hover details">
+                            <tr>
+
+                                <th class="light_gray w250">
+                                    <p class="">##word.item_name##</p>
+                                </th>
+
+                                <th class="light_gray w50">
+                                    <p class="">##word.quantity##</p>
+                                </th>
+
+                                <th class="light_gray w50">
+                                    <p class="">##word.price##</p>
+                                </th>
+
+
+                                <th class="light_gray w50">
+                                    <p class="">##word.total##</p>
+                                </th>
+
+                            </tr>
+
+                            <tr ng-repeat="itm in store_in.items">
+
+                                <td class="center">
+                                    <p class=" ng-show=" itm.add_sizes">{{itm.name_##session.lang##}}
+                                        {{itm.size_##session.lang##}}
+                                    </p>
+                                    <p class=" ng-hide=" itm.add_sizes">{{itm.size_##session.lang##}}</p>
+                                </td>
+
+                                <td class="center">
+                                    {{itm.count}}
+                                </td>
+
+                                <td class=center">
+                                    {{itm.b_cost}}
+                                </td>
+
+                                <td class="center">
+                                    {{itm.total}}
+                                </td>
+
+                            </tr>
+                        </table>
+                    </div>
+
+
+
+                    <div class="row">
+                        <div class="row">
+
+                            <div class="col4 bold">
+                                <p class=" black"> الإجمالي قبل.ض / Total B.Tax </p>
+                                <p class=" black"> القيمة الضريبية / VAT </p>
+                                <p class=" black"> الإجمالي بعد.ض / Total A.Tax </p>
+                                <p class=" black"> الخصم النقدي / Discount Cash </p>
+                                <p class=" black"> الصافي / Net. </p>
+                            </div>
+
+                            <div class="col4 bold">
+                                <p class=" black">{{store_in.before_value_added}}</p>
+                                <p class=" black">{{store_in.total_value_added}}</p>
+                                <p class=" black">{{store_in.total_value}}</p>
+                                <p class=" black">{{store_in.total_discount}}</p>
+                                <p class=" black">{{store_in.net_value}}</p>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <p class="txt14 bold center black">{{store_in.net_txt}}
+                                {{defaultSettings.accounting.end_num_to_str ||
+                                ''}}
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <br>
+                    <hr>
+                    <br>
+
+
+                    <div class="row center">
+
+                        <b class="txt16 center black blue">{{store_in.code }} </b>
+
+                    </div>
+
+                    <br>
+
+                    <div class="row center">
+                        <p class="center black bold txt14"> ##word.tax_number## :
+                            {{defaultSettings.printer_program.tax_number}}</p>
+                    </div>
+
+                    <br>
+                    <hr>
+                    <br>
+
+                    <div class="row" ng-repeat="i in defaultSettings.printer_program.thermal_footer">
+                        <p class="p_footer black bold center">{{i.name}}</p>
+                    </div>
+
+
+
+
+                    <br>
+                    <br>
+
+
+                </div>
+
+            </div>
+            <h2 class="center">{{error}}</h2>
+            <div class="modal-footer center">
+                <i-button type="print" x-permissions="stores_in_print || stores_in_manage" label="##word.print##"
+                    ng-click="printAccountInvoice()"></i-button>
+                <i-button type="close" label="##word.close##" onclick="site.hideModal('#thermalPrintModal')">
+                </i-button>
+            </div>
+        </div>
+    </div>

@@ -58,7 +58,9 @@ module.exports = function init(site) {
           printer_program: {
             invoice_header: [{ name: '' }],
             invoice_header2: [{ name: '' }],
-            invoice_footer: [{ name: '' }]
+            invoice_footer: [{ name: '' }],
+            thermal_header: [{ name: '' }],
+            thermal_footer: [{ name: '' }]
           },
           accounting: {},
           inventory: {
@@ -142,11 +144,19 @@ module.exports = function init(site) {
       if (!data.printer_program.invoice_footer)
         data.printer_program.invoice_footer = [{ name: '' }]
 
+      if (!data.printer_program.thermal_header)
+        data.printer_program.thermal_header = [{ name: '' }]
+
+      if (!data.printer_program.thermal_footer)
+        data.printer_program.thermal_footer = [{ name: '' }]
+
     } else {
       data.printer_program = {
         invoice_header: [{ name: '' }],
         invoice_header2: [{ name: '' }],
-        invoice_footer: [{ name: '' }]
+        invoice_footer: [{ name: '' }],
+        thermal_header: [{ name: '' }],
+        thermal_footer: [{ name: '' }]
       }
     }
 

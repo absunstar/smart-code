@@ -199,10 +199,10 @@
                             ng-show="storeInvoDetails.source_type.id == 1 || storeInvoDetails.source_type.id == 2">
                             <p ng-show="storeInvoDetails.source_type.id == 1">{{itm.cost}}</p>
                             <p ng-show="storeInvoDetails.source_type.id == 2">{{itm.price}}</p>
-                            <del class="red px14"
+                            <del class="red txt14"
                                 ng-show="itm.discount.type =='number' && itm.discount.value > 0">{{itm.discount.value}}
                                 $</del>
-                            <del class="red px14"
+                            <del class="red txt14"
                                 ng-show="itm.discount.type =='percent' && itm.discount.value > 0">{{itm.discount.value}}
                                 %</del>
                         </td>

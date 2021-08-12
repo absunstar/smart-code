@@ -1,12 +1,12 @@
 <div ng-hide="busy" class="row" fixed>
 
-    <div class="row hide">
+    <div class="row">
         <div class="col5 center">
             <div class="row">
                 <h2 class="green center bold">##session.company.name_ar##</h2>
             </div>
             <div class="row center" ng-repeat="i in defaultSettings.printer_program.invoice_header">
-                <p class=" txt16 bold center">{{i.name}}</p>
+                <p class=" txt16 bold black center">{{i.name}}</p>
             </div>
         </div>
         <div class="col2 center">
@@ -19,13 +19,13 @@
                 <h2 class="green center bold">##session.company.name_en##</h2>
             </div>
             <div class="row center" ng-repeat="i in defaultSettings.printer_program.invoice_header2">
-                <p class=" txt16 bold center">{{i.name}}</p>
+                <p class=" txt16 black bold center">{{i.name}}</p>
             </div>
         </div>
     </div>
 
-    <div class="row hide center">
-        <p class="center bold txt16"> Tax No. / الرقم الضريبي : {{defaultSettings.printer_program.tax_number}}</p>
+    <div class="row center">
+        <p class="center black bold txt16"> Tax No. / الرقم الضريبي : {{defaultSettings.printer_program.tax_number}}</p>
     </div>
     <br>
     <hr>
@@ -37,15 +37,15 @@
 
             <tr>
                 <td class="title">
-                    <b class="txt14 indigoD">التاريخ / Date :</b>
-                    <b class="txt14 brown">{{store_in.date |date:"dd - MM - yyyy" }}
+                    <b class="txt16 indigoD">التاريخ / Date :</b>
+                    <b class="txt16 brown">{{store_in.date |date:"dd - MM - yyyy" }}
                     </b>
 
                 </td>
 
                 <td class="center">
-                    <b class="txt14 indigoD">رقم الفاتورة / Invoice No. : </b>
-                    <b class="txt14 blue userPrint">{{store_in.code}}</b>
+                    <b class="txt16 indigoD">رقم الفاتورة / Invoice No. : </b>
+                    <b class="txt16 blue userPrint">{{store_in.code}}</b>
                     <h3 class="red center bold userPrint">{{store_in.retured_number}}</h3>
                 </td>
             </tr>
@@ -69,8 +69,8 @@
                 <td>
                     <table class="table hover margin">
                         <tr>
-                            <th>##word.stores_in_tax_name##</th>
-                            <th>##word.stores_in_tax_value##</th>
+                            <th style="background : gray">##word.stores_in_tax_name##</th>
+                            <th style="background : gray">##word.stores_in_tax_value##</th>
                         </tr>
                         <tr ng-repeat="tax in store_in.taxes">
                             <td>
@@ -89,8 +89,8 @@
                 <td>
                     <table class="table hover margin">
                         <tr>
-                            <th>##word.stores_in_discount_name##</th>
-                            <th>##word.stores_in_discount_value##</th>
+                            <th style="background : gray">##word.stores_in_discount_name##</th>
+                            <th style="background : gray">##word.stores_in_discount_value##</th>
                         </tr>
                         <tr ng-repeat="discount in store_in.discountes">
                             <td>{{discount.name_##session.lang##}}</td>
@@ -118,12 +118,12 @@
 
             <tr>
                 <td class="title bold">
-                    <b class="txt14 indigoD">طريقة الدفع / Pay Method :</b>
-                    <b class="txt14 center">{{store_in.payment_method.##session.lang##}} </b>
+                    <b class="txt16 indigoD">طريقة الدفع / Pay Method :</b>
+                    <b class="txt16 center">{{store_in.payment_method.##session.lang##}} </b>
                 </td>
                 <td class="title center">
-                    <b class="txt14 indigoD">ملاحظات / Notes : </b>
-                    <b class="txt14">{{store_in.notes}}</b>
+                    <b class="txt16 indigoD">ملاحظات / Notes : </b>
+                    <b class="txt16">{{store_in.notes}}</b>
 
                 </td>
                 <!--  <td class="center">
@@ -141,38 +141,38 @@
     <div class="row">
         <table class="table bold center hover details">
             <tr>
-                <th class="txt14 w50">##word.serial##</th>
-                <th class="txt14 w150 txt14">
+                <th class="light_gray txt16 w50">##word.serial##</th>
+                <th class="light_gray txt16 w150 txt16">
                     <p>كود الصنف</p>
                     <p>Item Code</p>
                 </th>
 
-                <th class="txt14 w250">
+                <th class="light_gray txt16 w250">
                     <p class="">إسم الصنف</p>
                     <p class="">Item Name</p>
                 </th>
 
-                <th class="txt14 w50">
+                <th class="light_gray txt16 w50">
                     <p class="">الوحدة</p>
                     <p class="">Unit</p>
                 </th>
 
-                <th class="txt14 w50">
+                <th class="light_gray txt16 w50">
                     <p class="">الكمية</p>
                     <p class="">Qty.</p>
                 </th>
 
-                <th class="txt14 w50">
+                <th class="light_gray txt16 w50">
                     <p class="">سعر الوحدة</p>
                     <p class="">U.Price</p>
                 </th>
 
-                <th ng-show="defaultSettings.inventory.value_added > 0" class="txt14 w50">
+                <th ng-show="defaultSettings.inventory.value_added > 0" class="light_gray txt16 w50">
                     <p class="">إج. الضريبة</p>
                     <p class="">VAT</p>
                 </th>
 
-                <th class="txt14 w50">
+                <th class="light_gray txt16 w50">
                     <p class="">الإجمالي</p>
                     <p class="">Total</p>
                 </th>
@@ -188,26 +188,26 @@
                 </td>
 
                 <td class="center">
-                    <p class="userPrint txt14 blue">{{itm.barcode}}</p>
+                    <p class="userPrint txt16 blue">{{itm.barcode}}</p>
                 </td>
 
                 <td class="center">
-                    <p class="txt14" ng-show="itm.add_sizes">{{itm.name_##session.lang##}} {{itm.size_##session.lang##}}
+                    <p class="txt16" ng-show="itm.add_sizes">{{itm.name_##session.lang##}} {{itm.size_##session.lang##}}
                     </p>
-                    <p class="txt14" ng-hide="itm.add_sizes">{{itm.size_##session.lang##}}</p>
+                    <p class="txt16" ng-hide="itm.add_sizes">{{itm.size_##session.lang##}}</p>
                 </td>
 
-                <td class="center txt14">
+                <td class="center txt16">
                     {{itm.unit.name_##session.lang##}}
                 </td>
 
-                <td class="center txt14">
+                <td class="center txt16">
                     {{itm.count}}
                 </td>
 
-                <td class="txt14 center">
+                <td class="txt16 center">
                     {{itm.b_cost}}
-                    <del class="red txt14" ng-show="itm.discount.value > 0"> {{itm.discount.current}}
+                    <del class="red txt16" ng-show="itm.discount.value > 0"> {{itm.discount.current}}
                     </del>
                 </td>
 
@@ -217,10 +217,10 @@
                     <b class="red" ng-show="itm.discount.type =='number'">$</b>
                     <b class="red" ng-show="itm.discount.type =='percent'">%</b>
                 </td> -->
-                <td class="center txt14">
+                <td class="center txt16">
                     {{itm.total_v_a}}
                 </td>
-                <td class="center txt14">
+                <td class="center txt16">
                     {{itm.total}}
                 </td>
 
@@ -235,19 +235,19 @@
         <div class="row">
 
             <div class="col4 bold">
-                <p class="txt14 indigoD"> الإجمالي قبل.ض / Total B.Tax </p>
-                <p class="txt14 indigoD "> القيمة الضريبية / VAT </p>
-                <p class="txt14 indigoD"> الإجمالي بعد.ض / Total A.Tax </p>
-                <p class="txt14 indigoD"> الخصم النقدي / Discount Cash </p>
-                <p class="txt14 indigoD"> الصافي / Net. </p>
+                <p class="txt16 indigoD"> الإجمالي قبل.ض / Total B.Tax </p>
+                <p class="txt16 indigoD "> القيمة الضريبية / VAT </p>
+                <p class="txt16 indigoD"> الإجمالي بعد.ض / Total A.Tax </p>
+                <p class="txt16 indigoD"> الخصم النقدي / Discount Cash </p>
+                <p class="txt16 indigoD"> الصافي / Net. </p>
             </div>
 
             <div class="col4 bold">
-                <p class="txt14 black">{{store_in.before_value_added}}</p>
-                <p class="txt14 black">{{store_in.total_value_added}}</p>
-                <p class="txt14 black">{{store_in.total_value}}</p>
-                <p class="txt14 red">{{store_in.total_discount}}</p>
-                <p class="txt14 green">{{store_in.net_value}}</p>
+                <p class="txt16 black">{{store_in.before_value_added}}</p>
+                <p class="txt16 black">{{store_in.total_value_added}}</p>
+                <p class="txt16 black">{{store_in.total_value}}</p>
+                <p class="txt16 red">{{store_in.total_discount}}</p>
+                <p class="txt16 green">{{store_in.net_value}}</p>
             </div>
 
         </div>
@@ -262,15 +262,15 @@
 
     <br>
     <br>
-    <hr class="hide">
+    <hr>
     <br>
     <br>
 
 
-    <div class="row hide">
+    <div class="row">
 
         <div class="col5 bold">
-            <p class="p_footer center">المستلم / Receiver </p>
+            <p class="p_footer black center">المستلم / Receiver </p>
             <br>
             <br>
             <p class="indigoD">الإسم / Name : </p>
@@ -282,7 +282,7 @@
         <div class="col2"></div>
 
         <div class="col5 bold">
-            <p class="p_footer center">المورد / Vendor </p>
+            <p class="p_footer black center">المورد / Vendor </p>
             <br>
             <br>
             <b class="indigoD">الإسم / Name : </b> <b>{{store_in.vendor.name_##session.lang##}}</b>
@@ -295,16 +295,16 @@
 
     <br>
     <br>
-    <hr class="hide">
+    <hr>
 
     <br>
 
-    <div class="row hide" ng-repeat="i in defaultSettings.printer_program.invoice_footer">
-        <p class="p_footer bold center">{{i.name}}</p>
+    <div class="row" ng-repeat="i in defaultSettings.printer_program.invoice_footer">
+        <p class="p_footer black bold center">{{i.name}}</p>
     </div>
 
 </div>
 
 
 
-<div class="not-print" x-import="inventory-stores-in/action_info.html"></div>
+<!-- <div class="not-print" x-import="inventory-stores-in/action_info.html"></div> -->

@@ -105,11 +105,6 @@
         "ar": "تاريخ أذن التوريد"
     },
     {
-        "name": "stores_out_number",
-        "en": "Invoice Number",
-        "ar": "رقم الفاتورة"
-    },
-    {
         "name": "stores_out_supply_number",
         "en": "Store in supply number",
         "ar": " رقم أذن التوريد"
@@ -456,8 +451,8 @@
     },
     {
         "name": "orders_screen_permission",
-        "en": "Orders Screen Permission",
-        "ar": "أذونات شاشة الطلبات"
+        "en": "Orders Screen Invoice",
+        "ar": "فواتير شاشة الطلبات"
     },
     {
         "name": "damage_store",

@@ -108,12 +108,11 @@
                             </i-list>
 
                             <i-control ng-keydown="loadOrderInvoicesType($event)" id="item_name" class="col3"
-                                type="text"
-                                ng-hide="account_invoices.source_type.id == 16 || 
-                                account_invoices.source_type.id == 11 || account_invoices.source_type.id ==10 || 
-                                account_invoices.in_type.id ==1 || account_invoices.in_type.id ==5||  account_invoices.out_type.id ==1 || account_invoices.out_type.id ==4|| 
-                                account_invoices.source_type.id ==8 || account_invoices.source_type.id ==13|| account_invoices.source_type.id ==14"
-                                ng-model="search_order" label="##word.search##"></i-control>
+                                type="text" ng-show="account_invoices.in_type.id == 2 || account_invoices.in_type.id == 3 || account_invoices.in_type.id == 4 
+                                || account_invoices.out_type.id == 2 || account_invoices.out_type.id == 3"
+                                ng-model="search_order" label="##word.search##">
+                            </i-control>
+
                         </div>
 
                         <div class="row" ng-show="orderInvoicesTypeList.length > 0">

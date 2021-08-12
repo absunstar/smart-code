@@ -3,7 +3,7 @@
         "module_name": "public",
         "name": "default_setting",
         "en": "Default Setting",
-        "ar": "الاعدادات الافتراصية",
+        "ar": "الإعدادات الافتراصية",
         "permissions": [
             "default_setting_manage"
         ]

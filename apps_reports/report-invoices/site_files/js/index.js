@@ -179,8 +179,8 @@ app.controller("report_invoices", function ($scope, $http, $timeout) {
         });
       }
 
-      if ($scope.defaultSettings.printer_program.invoice_header && $scope.defaultSettings.printer_program.invoice_header.length > 0) {
-        $scope.defaultSettings.printer_program.invoice_header.forEach(_ih => {
+      if ($scope.defaultSettings.printer_program.thermal_header && $scope.defaultSettings.printer_program.thermal_header.length > 0) {
+        $scope.defaultSettings.printer_program.thermal_header.forEach(_ih => {
           obj_print.data.push({
             type: 'header',
             value: _ih.name
@@ -246,8 +246,8 @@ app.controller("report_invoices", function ($scope, $http, $timeout) {
     });
 
 
-    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_footer && $scope.defaultSettings.printer_program.invoice_footer.length > 0) {
-      $scope.defaultSettings.printer_program.invoice_footer.forEach(_if => {
+    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.thermal_footer && $scope.defaultSettings.printer_program.thermal_footer.length > 0) {
+      $scope.defaultSettings.printer_program.thermal_footer.forEach(_if => {
         obj_print.data.push({
           type: 'header',
           value: _if.name

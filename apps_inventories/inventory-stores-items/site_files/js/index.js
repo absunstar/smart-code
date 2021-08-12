@@ -340,7 +340,6 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
               $scope.error = "##word.err_barcode_exist##" + err;
             }
 
-
           }
         },
         function (err) {

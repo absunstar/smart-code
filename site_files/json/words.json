@@ -396,6 +396,56 @@
         "ar": "الكمية"
     },
     {
+        "name": "unit_price",
+        "en": "Unit Price",
+        "ar": "سعر الوحدة"
+    },
+    {
+        "name": "total_vat",
+        "en": "Total VAT",
+        "ar": "إجمالي الضريبة"
+    },
+    {
+        "name": "invoice",
+        "en": "Invoice",
+        "ar": "فاتورة"
+    },
+    {
+        "name": "right_header",
+        "en": "Right header",
+        "ar": "مقدمة اليمين"
+    },
+    {
+        "name": "left_header",
+        "en": "Left header",
+        "ar": "مقدمة اليمين"
+    },
+    {
+        "name": "invoice_thermal",
+        "en": "Invoice thermal",
+        "ar": "فاتورة حرارية"
+    },
+    {
+        "name": "total_before_tax",
+        "en": "Total B.Tax",
+        "ar": "إجمالي قبل الضريبة"
+    },
+    {
+        "name": "total_after_tax",
+        "en": "Total A.Tax",
+        "ar": "إجمالي بعد الضريبة"
+    },
+    {
+        "name": "discount_cash",
+        "en": "Discount cash",
+        "ar": "الخصم النقدي"
+    },
+    {
+        "name": "net",
+        "en": "Net",
+        "ar": "الصافي"
+    },
+    {
         "name": "absence",
         "en": "Absence",
         "ar": "غياب"
@@ -1359,6 +1409,11 @@
         "name": "time",
         "en": "Time",
         "ar": "الوقت"
+    },
+    {
+        "name": "invoice_number",
+        "en": "Invoice Number",
+        "ar": "رقم الفاتورة"
     },
     {
         "name": "print",

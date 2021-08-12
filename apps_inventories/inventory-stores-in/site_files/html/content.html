@@ -27,20 +27,25 @@
 
                     <i-date2 class="col4" ng-model="store_in.supply_date" label="##word.stores_in_supply_date##">
                     </i-date2>
+
                     <i-list class="col3" ng-model="store_in.store" items="storesList" ng-search="_search.$search_stores"
                         display="name_##session.lang##" label="##word.store##" v="r"></i-list>
 
                 </div>
 
                 <div class="row">
+
                     <i-control ng-keydown="loadVendors($event)" class="col2" ng-model="search_vendor"
                         label="##word.search##" type="text"></i-control>
+
                     <i-list class="col3" ng-model="store_in.vendor" items="vendorsList" display="name_##session.lang##"
                         space=" - " display2="code" ng-search="_search.$search_vendor"
                         label="##word.stores_in_Company_name##"></i-list>
 
                     <div class="col4">
-                        <br><br>
+
+                        <br>
+                        <br>
 
                         <fieldset class="row" ng-show="store_in.vendor.id">
 

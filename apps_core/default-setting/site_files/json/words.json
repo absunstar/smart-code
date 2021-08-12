@@ -35,6 +35,11 @@
         "ar": "نوع الطلب"
     },
     {
+        "name": "auto_thermal_print",
+        "en": "Automatic thermal printing",
+        "ar": "طباعة حرارية أوتوماتيك"
+    },
+    {
         "name": "exam_header",
         "en": "Header Exam",
         "ar": "مقدمة الإمتحان"

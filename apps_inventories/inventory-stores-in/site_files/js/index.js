@@ -104,7 +104,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         if (response.data.done) {
 
           if (account_invoices.source_type.id == 1 && account_invoices.paid_up > 0) {
-            $scope.printAccountInvoive(response.data.doc);
+            $scope.printAccountInvoice(response.data.doc);
             account_invoices.ref_invoice_id = response.data.doc.id;
             if (account_invoices.invoice_type.id == 1) {
 
@@ -154,7 +154,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.printAccountInvoive = function (account_invoices) {
+  $scope.printAccountInvoice = function (account_invoices) {
     $scope.error = '';
     if ($scope.busy) return;
     $scope.busy = true;
@@ -170,7 +170,14 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       ip = $scope.defaultSettings.printer_program.printer_path.ip_device || '127.0.0.1';
       port = $scope.defaultSettings.printer_program.printer_path.Port_device || '60080';
     };
+    site.printAsImage({
+      selector: '#thermalPrintModal',
+      ip: ip,
+      port: port,
+      printer: $scope.defaultSettings.printer_program.printer_path.ip.name.trim()
+    });
 
+    return;
 
     if (account_invoices && account_invoices.currency) {
 
@@ -219,8 +226,8 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
           });
         }
 
-        if ($scope.defaultSettings.printer_program.invoice_header && $scope.defaultSettings.printer_program.invoice_header.length > 0) {
-          $scope.defaultSettings.printer_program.invoice_header.forEach(_ih => {
+        if ($scope.defaultSettings.printer_program.thermal_header && $scope.defaultSettings.printer_program.thermal_header.length > 0) {
+          $scope.defaultSettings.printer_program.thermal_header.forEach(_ih => {
             obj_print.data.push({
               type: 'header',
               value: _ih.name
@@ -353,8 +360,8 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         });
       }
 
-      if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_footer && $scope.defaultSettings.printer_program.invoice_footer.length > 0) {
-        $scope.defaultSettings.printer_program.invoice_footer.forEach(_if => {
+      if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.thermal_footer && $scope.defaultSettings.printer_program.thermal_footer.length > 0) {
+        $scope.defaultSettings.printer_program.thermal_footer.forEach(_if => {
           obj_print.data.push({
             type: 'header',
             value: _if.name
@@ -452,7 +459,6 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     } else site.showModal('#selectItemsModal')
 
   };
-
 
   $scope.selectAll = function (item_patch) {
     item_patch.patch_list.forEach(element => {
@@ -1012,6 +1018,13 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     site.showModal('#viewStoreInModal');
   };
 
+  $scope.thermalPrint = function (store_in) {
+    $scope.error = '';
+    $scope.view(store_in);
+    $scope.store_in = {};
+    site.showModal('#thermalPrintModal');
+  };
+
   $scope.addToItems = function () {
     $scope.error = '';
     if ($scope.store_in.type) {
@@ -1087,6 +1100,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
           calc_size.discount.current = calc_size.discount.value * calc_size.cost / 100;
         }
 
+        calc_size.discount.current = site.toNumber(calc_size.discount.current);
         calc_size.b_cost = calc_size.cost - calc_size.discount.current;
 
         calc_size.b_cost = site.toNumber(calc_size.b_cost);
@@ -1101,6 +1115,20 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     }, 100);
   };
 
+  $scope.print = function (selector) {
+
+    var node = document.querySelector(selector);
+
+    domtoimage.toPng(node)
+      .then(function (dataUrl) {
+        var img = new Image();
+        img.src = dataUrl;
+        document.body.appendChild(img);
+      })
+      .catch(function (error) {
+        console.error('oops, something went wrong!', error);
+      });
+  };
 
   $scope.calc = function (obj) {
     $scope.error = '';
@@ -1111,11 +1139,12 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       if (obj.items) {
 
         obj.total_value_added = 0;
+
         obj.items.forEach(_itm => {
           obj.total_value += site.toNumber(_itm.total);
           obj.total_value_added += _itm.total_v_a;
-
         });
+
         obj.total_value_added = site.toNumber(obj.total_value_added);
       };
 
@@ -1126,7 +1155,6 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
       if (obj.taxes)
         obj.taxes.map(tx => obj.total_tax += (obj.total_value * site.toNumber(tx.value) / 100));
-
 
       if (obj.discountes)
         obj.discountes.forEach(ds => {
@@ -1141,10 +1169,9 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
       if (obj.items) {
         obj.before_value_added = obj.total_value - obj.total_value_added;
-
         obj.net_value = obj.total_value + obj.total_tax - obj.total_discount;
+        obj.before_value_added = site.toNumber(obj.before_value_added);
       };
-
       obj.net_value = site.toNumber(obj.net_value);
       obj.net_txt = site.stringfiy(obj.net_value);
 

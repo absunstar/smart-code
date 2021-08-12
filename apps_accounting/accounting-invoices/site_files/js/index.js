@@ -717,6 +717,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
         }
       } else if ($scope.account_invoices.in_type) {
         url = "/api/account_invoices/all";
+        where['remain_amount'] = { $gt: 0 };
 
         if ($scope.account_invoices.in_type.id === 2) {
 
@@ -731,12 +732,13 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
 
       } else if ($scope.account_invoices.out_type) {
         url = "/api/account_invoices/all";
+        where['remain_amount'] = { $gt: 0 };
 
 
         if ($scope.account_invoices.out_type.id === 2) {
 
-          where['invoice_type.id'] = 4;
-          where['source_type.id'] = 2;
+          where['invoice_type.id'] = 1;
+          where['source_type.id'] = 1;
 
         } else if ($scope.account_invoices.out_type.id === 3) {
           where['invoice_type.id'] = 3;
@@ -751,6 +753,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       }
 
       where.invoice = { $ne: true };
+      where.posting = true;
 
       $http({
         method: "POST",
@@ -765,6 +768,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
           $scope.busy = false;
           if (response.data.done) {
             $scope.orderInvoicesTypeList = response.data.list;
+            console.log($scope.orderInvoicesTypeList);
           }
         },
         function (err) {
@@ -1244,8 +1248,8 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
         });
       }
 
-      if ($scope.defaultSettings.printer_program.invoice_header && $scope.defaultSettings.printer_program.invoice_header.length > 0) {
-        $scope.defaultSettings.printer_program.invoice_header.forEach(_ih => {
+      if ($scope.defaultSettings.printer_program.thermal_header && $scope.defaultSettings.printer_program.thermal_header.length > 0) {
+        $scope.defaultSettings.printer_program.thermal_header.forEach(_ih => {
           obj_print.data.push({
             type: 'header',
             value: _ih.name
@@ -1489,8 +1493,8 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     );
 
 
-    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.invoice_footer && $scope.defaultSettings.printer_program.invoice_footer.length > 0) {
-      $scope.defaultSettings.printer_program.invoice_footer.forEach(_if => {
+    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.thermal_footer && $scope.defaultSettings.printer_program.thermal_footer.length > 0) {
+      $scope.defaultSettings.printer_program.thermal_footer.forEach(_if => {
         obj_print.data.push({
           type: 'header',
           value: _if.name

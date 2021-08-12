@@ -36,21 +36,21 @@
     <table class="table hover bold border-none">
       <tr>
         <td>
-          <b class="indigoD txt14"> التاريخ / Date :</b>
-          <b class="center txt14 brown">{{store_out.date |date:"dd - MM - yyyy" }} </b>
+          <b class="indigoD txt16"> التاريخ / Date :</b>
+          <b class="center txt16 brown">{{store_out.date |date:"dd - MM - yyyy" }} </b>
         </td>
 
         <td class="center">
-          <b class="indigoD txt14">رقم الفاتورة / Invoice No. :</b>
-          <b class="blue txt14 userPrint">{{store_out.code}}</b>
+          <b class="indigoD txt16">رقم الفاتورة / Invoice No. :</b>
+          <b class="blue txt16 userPrint">{{store_out.code}}</b>
           <h3 class="red bold center userPrint">{{store_out.retured_number}}</h3>
         </td>
       </tr>
 
       <tr class="not-print">
         <td class="title">
-          <b class="indigoD txt14"> ##word.transaction_type## :</b>
-          <b class="center txt14 bold"> {{store_out.type.##session.lang##}} </b>
+          <b class="indigoD txt16"> ##word.transaction_type## :</b>
+          <b class="center txt16 bold"> {{store_out.type.##session.lang##}} </b>
         </td>
 
         <td class="center">
@@ -61,12 +61,12 @@
 
       <tr ng-hide="##query.type## == 5">
 
-        <td class="title txt14 bold">
+        <td class="title txt16 bold">
           <b class="indigoD">طريقة الدفع / Pay Method :</b>
           <b class="center">{{store_out.payment_method.##session.lang##}} </b>
         </td>
 
-        <td class="title txt14 center bold">
+        <td class="title txt16 center bold">
           <b class="indigoD">العميل / Customer :</b>
           <b class="center">{{store_out.customer.name_##session.lang##}} </b>
         </td>
@@ -129,7 +129,7 @@
         </td>
       </tr>
 
-      <tr class="bold txt14">
+      <tr class="bold txt16">
         <td><b class="indigoD">ملاحظات / Notes :</b></td>
         <td class="center">{{store_out.notes}}</td>
       </tr>
@@ -142,40 +142,40 @@
   <div class="row">
     <table class="table center bold hover details">
       <tr>
-        <th class="w50 txt14">##word.serial##</th>
+        <th class="w50 txt16">##word.serial##</th>
 
-        <th class="w150 txt14">
+        <th class="w150 txt16">
           <p>كود الصنف</p>
           <p>Item Code</p>
         </th>
 
-        <th class="w250 txt14">
+        <th class="w250 txt16">
           <p>إسم الصنف</p>
           <p>Item Name</p>
         </th>
 
-        <th class="w50 txt14">
+        <th class="w50 txt16">
           <p>الوحدة</p>
           <p>Unit</p>
         </th>
 
-        <th class="w50 txt14">
+        <th class="w50 txt16">
           <p>الكمية</p>
           <p>Qty.</p>
         </th>
 
-        <th class="w50 txt14">
+        <th class="w50 txt16">
           <p>سعر الوحدة</p>
           <p>U.Price</p>
         </th>
 
-        <th class="w50 txt14" x-permissions="stores_out_details_values || stores_out_manage"
+        <th class="w50 txt16" x-permissions="stores_out_details_values || stores_out_manage"
           ng-show="defaultSettings.inventory.value_added > 0">
           <p>إج. الضريبة</p>
           <p>VAT</p>
         </th>
 
-        <th class="w50 txt14" x-permissions="stores_out_details_values || stores_out_manage">
+        <th class="w50 txt16" x-permissions="stores_out_details_values || stores_out_manage">
           <p>الإجمالي</p>
           <p>Total</p>
         </th>
@@ -184,47 +184,47 @@
 
       <tr ng-repeat="itm in store_out.items">
 
-        <td class="center txt14 blue">
+        <td class="center txt16 blue">
           {{$index + 1}}
           <i-button label="##word.patch##" class="not-print" ng-show="itm.work_patch || itm.work_serial" type="view"
             ng-click="viewPatchesList(itm)">
           </i-button>
         </td>
 
-        <td class="center txt14 userPrint blue">
+        <td class="center txt16 userPrint blue">
           {{itm.barcode}}
         </td>
 
-        <td class="center txt14">
+        <td class="center txt16">
           <p ng-show="itm.add_sizes">{{itm.name_ar}} {{itm.size_ar}}</p>
           <p ng-show="itm.add_sizes">{{itm.name_en}} {{itm.size_en}}</p>
           <p ng-hide="itm.add_sizes">{{itm.size_ar}}</p>
           <p ng-hide="itm.add_sizes">{{itm.size_en}}</p>
         </td>
 
-        <td class="center txt14">
+        <td class="center txt16">
           {{itm.unit.name_ar}}
           {{itm.unit.name_en}}
         </td>
 
-        <td class="center txt14">
+        <td class="center txt16">
           {{itm.count}}
         </td>
 
-        <td class="center txt14" x-permissions="stores_out_details_values || stores_out_manage"
+        <td class="center txt16" x-permissions="stores_out_details_values || stores_out_manage"
           ng-hide="store_out.type.id ==5">
           {{itm.b_price}}
 
-          <del class="red txt14" ng-show="itm.discount.value > 0"> {{itm.discount.current}}
+          <del class="red txt16" ng-show="itm.discount.value > 0"> {{itm.discount.current}}
           </del>
 
         </td>
 
-        <td class="center txt14 red" x-permissions="stores_out_details_values || stores_out_manage">
+        <td class="center txt16 red" x-permissions="stores_out_details_values || stores_out_manage">
           {{itm.total_v_a}}
         </td>
 
-        <td class="center txt14" x-permissions="stores_out_details_values || stores_out_manage">
+        <td class="center txt16" x-permissions="stores_out_details_values || stores_out_manage">
           {{itm.total}}
         </td>
 
@@ -239,19 +239,19 @@
     <div class="row">
 
       <div class="col4 bold">
-        <p class="txt14 indigoD"> الإجمالي قبل.ض / Total B.Tax </p>
-        <p class="txt14 indigoD "> القيمة الضريبية / VAT </p>
-        <p class="txt14 indigoD"> الإجمالي بعد.ض / Total A.Tax </p>
-        <p class="txt14 indigoD"> الخصم النقدي / Discount Cash </p>
-        <p class="txt14 indigoD"> الصافي / Net. </p>
+        <p class="txt16 indigoD"> الإجمالي قبل.ض / Total B.Tax </p>
+        <p class="txt16 indigoD "> القيمة الضريبية / VAT </p>
+        <p class="txt16 indigoD"> الإجمالي بعد.ض / Total A.Tax </p>
+        <p class="txt16 indigoD"> الخصم النقدي / Discount Cash </p>
+        <p class="txt16 indigoD"> الصافي / Net. </p>
       </div>
 
       <div class="col4 bold">
-        <p class="txt14 black">{{store_out.before_value_added}}</p>
-        <p class="txt14 black">{{store_out.total_value_added}}</p>
-        <p class="txt14 black">{{store_out.total_value}}</p>
-        <p class="txt14 red">{{store_out.total_discount}}</p>
-        <p class="txt14 green">{{store_out.net_value}}</p>
+        <p class="txt16 black">{{store_out.before_value_added}}</p>
+        <p class="txt16 black">{{store_out.total_value_added}}</p>
+        <p class="txt16 black">{{store_out.total_value}}</p>
+        <p class="txt16 red">{{store_out.total_discount}}</p>
+        <p class="txt16 green">{{store_out.net_value}}</p>
       </div>
     </div>
 

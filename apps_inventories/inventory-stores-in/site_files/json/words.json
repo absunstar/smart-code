@@ -163,42 +163,42 @@
     {
         "name": "dept_new",
         "en": "New Dept",
-        "ar": "هعدة مخزنية جديدة"
+        "ar": "عهدة مخزنية جديدة"
     },
     {
         "name": "dept_add",
         "en": "Add Dept",
-        "ar": "إضافة هعدة مخزنية"
+        "ar": "إضافة عهدة مخزنية"
     },
     {
         "name": "dept_details",
         "en": "Dept Details",
-        "ar": "تفاصيل هعدة مخزنية"
+        "ar": "تفاصيل عهدة مخزنية"
     },
     {
         "name": "dept_edit",
         "en": "Edit Dept",
-        "ar": "تعديل هعدة مخزنية"
+        "ar": "تعديل عهدة مخزنية"
     },
     {
         "name": "dept_delete",
         "en": "Delete Dept",
-        "ar": "حذف هعدة مخزنية"
+        "ar": "حذف عهدة مخزنية"
     },
     {
         "name": "depts_store",
         "en": "Depts Store",
-        "ar": "هعد مخزنية"
+        "ar": "عهد مخزنية"
     },
     {
         "name": "dept",
         "en": "Dept Store",
-        "ar": "هعدة مخزنية مخزني"
+        "ar": "عهدة مخزنية مخزني"
     },
     {
         "name": "inventory_dept",
         "en": "Dept Store",
-        "ar": "هعدة مخزنية مخزني"
+        "ar": "عهدة مخزنية مخزني"
     },
     {
         "name": "return_purchase_invoice_add",
