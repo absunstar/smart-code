@@ -154,6 +154,13 @@ module.exports = function init(site) {
                 } else if (cb.auto) {
                   stores_out_doc.code = cb.code;
                 }
+                if (stores_out_doc.Paid_from_customer) {
+                  stores_out_doc.remain_from_customer = stores_out_doc.Paid_from_customer - stores_out_doc.amount_currency;
+                } else {
+                  stores_out_doc.Paid_from_customer = 0
+                  stores_out_doc.remain_from_customer = 0
+                }
+                stores_out_doc.remain_from_customer = site.toNumber(stores_out_doc.remain_from_customer)
 
                 $stores_out.add(stores_out_doc, (err, doc) => {
                   if (!err) {

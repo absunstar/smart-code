@@ -15,6 +15,16 @@
         "ar": " فواتير الحسابات"
     },
     {
+        "name": "amount_paid",
+        "en": "Amount paid",
+        "ar": "المبلغ المدفوع"
+    },
+    {
+        "name": "remaining_amount",
+        "en": "Remaining amount",
+        "ar": "المبلغ المتبقي"
+    },
+    {
         "name": "opening_balance",
         "en": "Opening Balance",
         "ar": " رصيد إفتتاحي"

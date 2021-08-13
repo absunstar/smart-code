@@ -141,9 +141,6 @@
                             <i-button x-permissions="stores_in_view || stores_in_manage" type="details"
                                 label="##word.details##" ng-click="details(c)"></i-button>
 
-                            <i-button x-permissions="stores_in_view || stores_in_manage" 
-                                label="" ng-click="thermalPrint(c)"></i-button>
-
                             <i-button
                                 ng-show="c.posting && !c.invoice && !defaultSettings.accounting.create_invoice_auto && (c.type.id == 1 || c.type.id == 4)"
                                 type="save" label="##word.create_an_invoice##" ng-click="displayAccountInvoice(c)">

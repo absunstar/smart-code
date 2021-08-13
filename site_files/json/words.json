@@ -426,6 +426,11 @@
         "ar": "فاتورة حرارية"
     },
     {
+        "name": "thermal_print",
+        "en": "Thermal print",
+        "ar": "طباعة حرارية"
+    },
+    {
         "name": "total_before_tax",
         "en": "Total B.Tax",
         "ar": "إجمالي قبل الضريبة"
@@ -1236,14 +1241,14 @@
         "ar": "تفريغ البحث"
     },
     {
-        "name": "invoice_header",
-        "en": "Invoice Header",
-        "ar": "مقدمة الفاتورة"
+        "name": "invoice_header_right",
+        "en": "Invoice Header right",
+        "ar": "مقدمة الفاتورة يمين"
     },
     {
-        "name": "invoice_header2",
-        "en": "Invoice Header 2",
-        "ar": "مقدمة الفاتورة 2"
+        "name": "invoice_header_left",
+        "en": "Invoice Header left",
+        "ar": "مقدمة الفاتورة يسار"
     },
     {
         "name": "invoice_footer",

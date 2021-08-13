@@ -325,7 +325,7 @@
 
                 <i-control class="col3" disabled
                     ng-show="(store_in.type.id== 1 || store_in.type.id== 4)  && defaultSettings.accounting.create_invoice_auto "
-                    ng-model="amount_currency" label="##word.amount_currency##" type="number"></i-control>
+                    ng-model="store_in.amount_currency" label="##word.amount_currency##" type="number"></i-control>
 
                 <i-control class="col2"
                     ng-show="store_in.safe && (store_in.type.id== 1 || store_in.type.id== 4)  && defaultSettings.accounting.create_invoice_auto "

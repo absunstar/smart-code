@@ -1,4 +1,4 @@
-<div ng-hide="busy" class="row" fixed>
+<div class="row" fixed>
 
     <div class="row">
         <div class="col5 center">
@@ -40,7 +40,6 @@
                     <b class="txt16 indigoD">التاريخ / Date :</b>
                     <b class="txt16 brown">{{store_in.date |date:"dd - MM - yyyy" }}
                     </b>
-
                 </td>
 
                 <td class="center">
@@ -51,7 +50,7 @@
             </tr>
 
 
-            <tr class="not-print">
+            <!-- <tr class="not-print">
                 <td>
                     <b class="indigoD"> ##word.store## : </b>
                     <b>{{store_in.store.name_##session.lang##}}</b>
@@ -61,10 +60,10 @@
                     <b class="indigoD">##word.stores_in_Company_name## : </b>
                     <b>{{store_in.vendor.name_##session.lang##}} </b>
                 </td>
-            </tr>
+            </tr> -->
 
 
-            <tr class="not-print" ng-show="store_in.taxes.length > 0">
+            <!-- <tr class="not-print" ng-show="store_in.taxes.length > 0">
                 <td class="title">##word.stores_in_taxes##</td>
                 <td>
                     <table class="table hover margin">
@@ -114,7 +113,7 @@
                     <b class="center indigoD">##word.total_tax## : </b>
                     <b>{{store_in.total_tax}} $</b>
                 </td>
-            </tr>
+            </tr> -->
 
             <tr>
                 <td class="title bold">
@@ -270,7 +269,7 @@
     <div class="row">
 
         <div class="col5 bold">
-            <p class="p_footer black center">المستلم / Receiver </p>
+            <p class="txt19 black center">المستلم / Receiver </p>
             <br>
             <br>
             <p class="indigoD">الإسم / Name : </p>
@@ -282,10 +281,10 @@
         <div class="col2"></div>
 
         <div class="col5 bold">
-            <p class="p_footer black center">المورد / Vendor </p>
+            <p class="txt19 black center">المورد / Vendor </p>
             <br>
             <br>
-            <b class="indigoD">الإسم / Name : </b> <b>{{store_in.vendor.name_##session.lang##}}</b>
+            <b class="indigoD">الإسم / Name : </b> <b class="black">{{store_in.vendor.name_##session.lang##}}</b>
             <br>
             <p class="indigoD">التوقيع / Signature : </p>
 
@@ -300,7 +299,7 @@
     <br>
 
     <div class="row" ng-repeat="i in defaultSettings.printer_program.invoice_footer">
-        <p class="p_footer black bold center">{{i.name}}</p>
+        <p class="txt19 black bold center">{{i.name}}</p>
     </div>
 
 </div>

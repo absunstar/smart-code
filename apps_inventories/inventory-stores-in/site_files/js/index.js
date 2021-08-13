@@ -1,5 +1,6 @@
 app.controller("stores_in", function ($scope, $http, $timeout) {
   $scope._search = {};
+  $scope.thermal = {};
 
   $scope.store_in = {
     discountes: [],
@@ -46,7 +47,6 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
           },
           active: true
         };
-
         if ($scope.defaultSettings.accounting) {
           $scope.account_invoices.currency = $scope.currencySetting;
           if ($scope.defaultSettings.accounting.payment_method) {
@@ -59,9 +59,9 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
           }
         }
         if ($scope.account_invoices.currency) {
-          $scope.amount_currency = site.toNumber($scope.account_invoices.net_value) / site.toNumber($scope.account_invoices.currency.ex_rate);
-          $scope.amount_currency = site.toNumber($scope.amount_currency);
-          $scope.account_invoices.paid_up = $scope.amount_currency;
+          $scope.account_invoices.amount_currency = site.toNumber($scope.account_invoices.net_value) / site.toNumber($scope.account_invoices.currency.ex_rate);
+          $scope.account_invoices.amount_currency = site.toNumber($scope.account_invoices.amount_currency);
+          $scope.account_invoices.paid_up = $scope.account_invoices.amount_currency;
 
         }
 
@@ -76,7 +76,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.busy = true;
 
-    if (account_invoices.paid_up < $scope.amount_currency && account_invoices.payment_type.id == 1) {
+    if (account_invoices.paid_up < account_invoices.amount_currency && account_invoices.payment_type.id == 1) {
       $scope.error = "##word.amount_must_paid_full##";
       return;
     };
@@ -85,7 +85,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       $scope.error = "##word.should_select_safe##";
       return;
 
-    } else if (account_invoices.paid_up > $scope.amount_currency) {
+    } else if (account_invoices.paid_up > account_invoices.amount_currency) {
       $scope.error = "##word.err_net_value##";
       return;
     }
@@ -104,7 +104,6 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         if (response.data.done) {
 
           if (account_invoices.source_type.id == 1 && account_invoices.paid_up > 0) {
-            $scope.printAccountInvoice(response.data.doc);
             account_invoices.ref_invoice_id = response.data.doc.id;
             if (account_invoices.invoice_type.id == 1) {
 
@@ -154,242 +153,53 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.printAccountInvoice = function (account_invoices) {
+  $scope.thermalPrint = function (obj) {
     $scope.error = '';
     if ($scope.busy) return;
     $scope.busy = true;
 
-    let name_lang = 'name_ar';
-    if ('##session.lang##' === 'en') name_lang = 'name_en';
+    $scope.thermal = { ...obj };
 
+    if ($scope.thermal.currency) {
+      site.strings['currency'] = {
+        ar: ' ' + $scope.thermal.currency.name_ar + ' ',
+        en: ' ' + $scope.thermal.currency.name_en + ' ',
+      }
+      site.strings['from100'] = {
+        ar: ' ' + $scope.thermal.currency.minor_currency_ar + ' ',
+        en: ' ' + $scope.thermal.currency.minor_currency_en + ' ',
+      }
+      $scope.thermal.net_txt = site.stringfiy($scope.thermal.net_value);
 
-    let ip = '127.0.0.1';
-    let port = '60080';
+    }
 
-    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path) {
-      ip = $scope.defaultSettings.printer_program.printer_path.ip_device || '127.0.0.1';
-      port = $scope.defaultSettings.printer_program.printer_path.Port_device || '60080';
-    };
+    JsBarcode(".barcode", $scope.thermal.code);
+    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path && $scope.defaultSettings.printer_program.printer_path.ip) {
+
+      site.showModal('#thermalPrintModal');
+      site.printAsImage({
+        selector: '#thermalPrint',
+        ip: '127.0.0.1',
+        port: '60080',
+        printer: $scope.defaultSettings.printer_program.printer_path.ip.name.trim()
+      });
+
+    }
+    $scope.busy = false;
+
+  };
+
+  $scope.print = function () {
+    $scope.error = '';
+    if ($scope.busy) return;
+    $scope.busy = true;
+
     site.printAsImage({
-      selector: '#thermalPrintModal',
-      ip: ip,
-      port: port,
-      printer: $scope.defaultSettings.printer_program.printer_path.ip.name.trim()
+      selector: '#storeInDetails',
+      ip: '127.0.0.1',
+      port: '60080',
+      printer: 'Microsoft Print to PDF'
     });
-
-    return;
-
-    if (account_invoices && account_invoices.currency) {
-
-      account_invoices.total_remain = account_invoices.net_value - (account_invoices.paid_up * account_invoices.currency.ex_rate);
-
-      account_invoices.total_remain = site.toNumber(account_invoices.total_remain)
-      account_invoices.total_paid_up = site.toNumber(account_invoices.total_paid_up)
-      account_invoices.total_tax = site.toNumber(account_invoices.total_tax)
-      account_invoices.total_discount = site.toNumber(account_invoices.total_discount)
-      account_invoices.net_value = site.toNumber(account_invoices.net_value)
-      account_invoices.paid_up = site.toNumber(account_invoices.paid_up)
-      account_invoices.payment_paid_up = site.toNumber(account_invoices.payment_paid_up)
-
-      let obj_print = {
-        data: []
-      };
-
-      if ($scope.defaultSettings.printer_program) {
-
-        if ($scope.defaultSettings.printer_program.printer_path)
-          obj_print.printer = $scope.defaultSettings.printer_program.printer_path.ip.name.trim();
-
-
-        if ($scope.defaultSettings.printer_program.invoice_top_title) {
-          obj_print.data.push({
-            type: 'invoice-top-title',
-            name: $scope.defaultSettings.printer_program.invoice_top_title
-          });
-        } else {
-          obj_print.data.push({
-            type: 'invoice-top-title',
-            name: "Smart Code"
-          });
-        }
-
-        if ($scope.defaultSettings.printer_program.invoice_logo) {
-
-          obj_print.data.push({
-            type: 'invoice-logo',
-            url: document.location.origin + $scope.defaultSettings.printer_program.invoice_logo
-          });
-        } else {
-          obj_print.data.push({
-            type: 'invoice-logo',
-            url: "http://127.0.0.1/images/logo.png"
-          });
-        }
-
-        if ($scope.defaultSettings.printer_program.thermal_header && $scope.defaultSettings.printer_program.thermal_header.length > 0) {
-          $scope.defaultSettings.printer_program.thermal_header.forEach(_ih => {
-            obj_print.data.push({
-              type: 'header',
-              value: _ih.name
-            });
-          });
-        }
-      }
-
-
-      obj_print.data.push({
-        type: 'invoice-code',
-        name: 'Purchase I',
-        value: account_invoices.code
-      }, {
-        type: 'invoice-date',
-        name: '##word.date##',
-        value: site.toDateXF(account_invoices.date)
-      }, {
-        type: 'space'
-      });
-
-
-      if (account_invoices.vendor)
-        obj_print.data.push({
-          type: 'text2',
-          value2: account_invoices.vendor[name_lang],
-          value: '##word.vendor##'
-        });
-
-      obj_print.data.push({
-        type: 'line'
-      });
-
-      if (account_invoices.current_book_list && account_invoices.current_book_list.length > 0) {
-
-
-        let size_lang = 'size_ar';
-        if ('##session.lang##' === 'en') size_lang = 'size_en';
-
-        obj_print.data.push({
-          type: 'line'
-        }, {
-          type: 'invoice-item-title',
-          count: '##word.count##',
-          name: '##word.name##',
-          price: '##word.price##'
-        }, {
-          type: 'line2'
-        });
-
-
-        account_invoices.current_book_list.forEach((_current_book_list, i) => {
-          _current_book_list.total = site.toNumber(_current_book_list.total);
-          obj_print.data.push({
-            type: 'invoice-item',
-            count: _current_book_list.count,
-            name: _current_book_list[size_lang],
-            price: site.addSubZero(_current_book_list.total, 2)
-          });
-          if (i < account_invoices.current_book_list.length - 1) {
-            obj_print.data.push({
-              type: 'line3'
-            });
-          }
-
-        });
-      };
-
-
-      if (account_invoices.currency)
-        obj_print.data.push({
-          type: 'text2',
-          value2: account_invoices.currency[name_lang],
-          value: "##word.currency##"
-        });
-
-      if (account_invoices.total_discount)
-        obj_print.data.push({
-          type: 'text2',
-          value2: account_invoices.total_discount,
-          value: '##word.total_discount##'
-        });
-
-      if (account_invoices.total_tax)
-        obj_print.data.push({
-          type: 'text2',
-          value2: account_invoices.total_tax,
-          value: 'Total Tax'
-        });
-
-      obj_print.data.push({
-        type: 'space'
-      });
-
-
-      if (account_invoices.net_value) {
-
-        obj_print.data.push(
-          {
-            type: 'invoice-total',
-            value: site.addSubZero(account_invoices.net_value, 2),
-            name: "##word.total_value##"
-          },
-          {
-            type: 'invoice-total',
-            value: site.stringfiy(account_invoices.net_value) + ($scope.defaultSettings.accounting.end_num_to_str || ''),
-          },
-          {
-            type: 'line'
-          }
-        );
-      }
-
-      if (account_invoices.paid_up)
-        obj_print.data.push({
-          type: 'text2',
-          value2: site.addSubZero(account_invoices.paid_up, 2),
-          value: "##word.paid_up##"
-        });
-
-      obj_print.data.push({
-        type: 'space'
-      });
-
-      if (account_invoices.total_remain) {
-        obj_print.data.push({
-          type: 'text2b',
-          value2: site.addSubZero(account_invoices.total_remain, 2),
-          value: "##word.remain##"
-        });
-      }
-
-      if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.thermal_footer && $scope.defaultSettings.printer_program.thermal_footer.length > 0) {
-        $scope.defaultSettings.printer_program.thermal_footer.forEach(_if => {
-          obj_print.data.push({
-            type: 'header',
-            value: _if.name
-          });
-        });
-      }
-
-      if (account_invoices.code) {
-        obj_print.data.push({
-          type: 'invoice-barcode',
-          value: (account_invoices.code)
-        });
-      }
-
-      $http({
-        method: "POST",
-        url: `http://${ip}:${port}/print`,
-        data: obj_print
-      }).then(
-        function (response) {
-          if (response.data.done)
-            $scope.busy = false;
-        },
-        function (err) {
-          console.log(err);
-        }
-      );
-    };
   };
 
   $scope.addTax = function () {
@@ -678,6 +488,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
           }
 
         }
+
         site.showModal('#addStoreInModal');
       } else $scope.error = '##word.open_shift_not_found##';
     });
@@ -794,7 +605,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
     if ($scope.store_in.payment_type) {
 
-      if ($scope.store_in.paid_up > $scope.amount_currency) {
+      if ($scope.store_in.paid_up > $scope.store_in.amount_currency) {
         $scope.error = "##word.err_net_value##";
         return;
       }
@@ -806,7 +617,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         }
       }
 
-      if ($scope.store_in.paid_up < $scope.amount_currency && $scope.store_in.payment_type.id == 1) {
+      if ($scope.store_in.paid_up < $scope.store_in.amount_currency && $scope.store_in.payment_type.id == 1) {
         $scope.error = "##word.amount_must_paid_full##";
         return;
       }
@@ -896,7 +707,12 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
               function (response) {
                 $scope.busy = false;
                 if (response.data.done) {
+
                   if (($scope.store_in.type.id == 1 || $scope.store_in.type.id == 4) && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto && !$scope.defaultSettings.general_Settings.work_posting) {
+
+                    if ($scope.defaultSettings.printer_program.auto_thermal_print) {
+                      $scope.thermalPrint(response.data.doc);
+                    };
 
                     let account_invoices = {
                       image_url: '/images/account_invoices.png',
@@ -909,6 +725,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                       total_value_added: response.data.doc.total_value_added,
                       shift: response.data.doc.shift,
                       net_value: response.data.doc.net_value,
+                      amount_currency: response.data.doc.amount_currency,
                       currency: response.data.doc.currency,
                       paid_up: response.data.doc.paid_up || 0,
                       payment_method: response.data.doc.payment_method,
@@ -986,12 +803,6 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         if (response.data.done) {
           response.data.doc.date = new Date(response.data.doc.date);
           $scope.store_in = response.data.doc;
-          /*   $scope.store_in.items.forEach(_item => {
-              if (!_item.total_v_a) {
-                _item.total_v_a = site.toNumber(_item.value_added) * (_item.price * _item.count) / 100;
-              }
-            }); */
-
           if ($scope.store_in.currency) {
             site.strings['currency'] = {
               ar: ' ' + $scope.store_in.currency.name_ar + ' ',
@@ -1001,6 +812,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
               ar: ' ' + $scope.store_in.currency.minor_currency_ar + ' ',
               en: ' ' + $scope.store_in.currency.minor_currency_en + ' ',
             }
+            $scope.store_in.net_txt = site.stringfiy($scope.store_in.net_value);
           }
 
         } else $scope.error = response.data.error;
@@ -1016,13 +828,6 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     $scope.view(store_in);
     $scope.store_in = {};
     site.showModal('#viewStoreInModal');
-  };
-
-  $scope.thermalPrint = function (store_in) {
-    $scope.error = '';
-    $scope.view(store_in);
-    $scope.store_in = {};
-    site.showModal('#thermalPrintModal');
   };
 
   $scope.addToItems = function () {
@@ -1115,21 +920,6 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     }, 100);
   };
 
-  $scope.print = function (selector) {
-
-    var node = document.querySelector(selector);
-
-    domtoimage.toPng(node)
-      .then(function (dataUrl) {
-        var img = new Image();
-        img.src = dataUrl;
-        document.body.appendChild(img);
-      })
-      .catch(function (error) {
-        console.error('oops, something went wrong!', error);
-      });
-  };
-
   $scope.calc = function (obj) {
     $scope.error = '';
     $timeout(() => {
@@ -1172,13 +962,13 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         obj.net_value = obj.total_value + obj.total_tax - obj.total_discount;
         obj.before_value_added = site.toNumber(obj.before_value_added);
       };
+      obj.total_value = site.toNumber(obj.total_value);
       obj.net_value = site.toNumber(obj.net_value);
-      obj.net_txt = site.stringfiy(obj.net_value);
 
       if (obj.currency) {
-        $scope.amount_currency = obj.net_value / site.toNumber(obj.currency.ex_rate);
-        $scope.amount_currency = site.toNumber($scope.amount_currency);
-        obj.paid_up = $scope.amount_currency;
+        obj.amount_currency = obj.net_value / site.toNumber(obj.currency.ex_rate);
+        obj.amount_currency = site.toNumber(obj.amount_currency);
+        obj.paid_up = obj.amount_currency;
       }
 
       $scope.discount = {
@@ -1498,7 +1288,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
     if ($scope.store_in.payment_type) {
 
-      if ($scope.store_in.paid_up > $scope.amount_currency) {
+      if ($scope.store_in.paid_up > $scope.store_in.amount_currency) {
         $scope.error = "##word.err_net_value##";
         return;
       }
@@ -1510,7 +1300,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
         }
       }
 
-      if ($scope.store_in.paid_up < $scope.amount_currency && $scope.store_in.payment_type.id == 1) {
+      if ($scope.store_in.paid_up < $scope.store_in.amount_currency && $scope.store_in.payment_type.id == 1) {
         $scope.error = "##word.amount_must_paid_full##";
         return;
       }
@@ -2473,9 +2263,9 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
           }
         }
         if ($scope.paid_invoice.currency) {
-          $scope.amount_currency = site.toNumber($scope.paid_invoice.remain_amount) / site.toNumber($scope.paid_invoice.currency.ex_rate);
-          $scope.amount_currency = site.toNumber($scope.amount_currency);
-          $scope.paid_invoice.payment_paid_up = $scope.amount_currency;
+          $scope.paid_invoice.amount_currency = site.toNumber($scope.paid_invoice.remain_amount) / site.toNumber($scope.paid_invoice.currency.ex_rate);
+          $scope.paid_invoice.amount_currency = site.toNumber($scope.paid_invoice.amount_currency);
+          $scope.paid_invoice.payment_paid_up = $scope.paid_invoice.amount_currency;
         }
         site.showModal('#invoicesPaymentModal');
       } else $scope.error = '##word.open_shift_not_found##';
@@ -2492,10 +2282,10 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       $scope.error = "##word.err_paid_up##";
       return;
     }
-    else if ($scope.paid_invoice.payment_paid_up > $scope.amount_currency) {
+    else if ($scope.paid_invoice.payment_paid_up > $scope.paid_invoice.amount_currency) {
       $scope.error = "##word.err_paid_up_payment##";
       return;
-    } else if ($scope.paid_invoice.payment_paid_up > $scope.amount_currency && $scope.paid_invoice.source_type.id != 8 && $scope.paid_invoice.source_type.id != 9 && $scope.paid_invoice.source_type.id != 10 && $scope.paid_invoice.source_type.id != 11) {
+    } else if ($scope.paid_invoice.payment_paid_up > $scope.paid_invoice.amount_currency && $scope.paid_invoice.source_type.id != 8 && $scope.paid_invoice.source_type.id != 9 && $scope.paid_invoice.source_type.id != 10 && $scope.paid_invoice.source_type.id != 11) {
       $scope.error = "##word.err_net_value##";
       return;
     }

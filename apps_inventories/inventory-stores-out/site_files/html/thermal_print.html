@@ -61,8 +61,8 @@
                 <br>
 
                 <div class="center">
-                    <b class="black">##word.vendor## : </b>
-                    <b class="black border_black">{{thermal.vendor.name_##session.lang##}} </b>
+                    <b class="black">##word.customer## : </b>
+                    <b class="black border_black">{{thermal.customer.name_##session.lang##}} </b>
                 </div>
                 <br>
                 <hr>
@@ -143,6 +143,15 @@
                         {{defaultSettings.accounting.end_num_to_str ||
                         ''}}
                     </p>
+                </div>
+
+                <br>
+                <hr>
+                <br>
+
+                <div class="row">
+                    <p class=" black"> ##word.amount_paid## : {{thermal.Paid_from_customer}} </p>
+                    <p class=" black"> ##word.remaining_amount## : {{thermal.remain_from_customer}} </p>
                 </div>
 
                 <br>

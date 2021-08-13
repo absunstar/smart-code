@@ -174,12 +174,14 @@ i-image img:hover {
     background-color: #0000b82e !important;
   }
 }
-
+.font_cairo {
+  font-family:cairo !important;
+}
 .txt16 {
   font-size: 16px !important;
 }
 
-.p_footer {
+.txt19 {
   font-size: 19px !important;
 }
 
@@ -187,9 +189,18 @@ i-image img:hover {
   font-size: 14px !important;
 }
 
+.txt7 {
+  font-size: 7px !important;
+}
+
 .num_str {
   font-size: 18px !important;
   font-style: italic;
+}
+
+.border_black {
+  border-style: solid;
+  border-color: black;
 }
 
 .table th {
