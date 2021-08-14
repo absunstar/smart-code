@@ -727,6 +727,8 @@ app.controller("default_setting", function ($scope, $http) {
     )
   };
 
+
+
   $scope.loadItemsType = function () {
     $scope.busy = true;
     $scope.itemsTypesList = [];

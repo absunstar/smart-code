@@ -159,6 +159,10 @@ i-image img:hover {
   border-radius: 25px;
 }
 @media print {
+  .printOnly {
+    display: block !important;
+    page-break-after: always;
+ }
   .table th {
     border-style: outset !important;
   }

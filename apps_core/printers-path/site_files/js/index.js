@@ -2,7 +2,6 @@ app.controller("printers_path", function ($scope, $http, $timeout) {
   $scope._search = {};
 
   $scope.printer_path = {};
-  $scope.printersNamesList = [];
 
   $scope.displayAddPrinterPath = function () {
     $scope.error = '';
@@ -18,6 +17,7 @@ app.controller("printers_path", function ($scope, $http, $timeout) {
   $scope.getPrintersNamesList = function () {
     $scope.error = '';
     let printersList = SOCIALBROWSER.getPrinters();
+    $scope.printersNamesList = [];
     printersList.forEach((_p, i) => {
       $scope.printersNamesList.push({ id: i + 1, name: _p.name });
     });

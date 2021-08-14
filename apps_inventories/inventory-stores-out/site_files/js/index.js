@@ -1,41 +1,46 @@
-window.addEventListener('keydown', (e) => {
-
-  if (e.keyCode == 113 /*f12*/) {
-    scope().add()
-  }
-
-}, true)
+window.addEventListener(
+  "keydown",
+  (e) => {
+    if (e.keyCode == 113 /*f12*/) {
+      scope().add();
+    }
+  },
+  true
+);
 
 function scope() {
-  return angular.element(document.querySelector('[ng-controller="stores_out"]')).scope()
+  return angular
+    .element(document.querySelector('[ng-controller="stores_out"]'))
+    .scope();
 }
-
 
 app.controller("stores_out", function ($scope, $http, $timeout) {
   $scope._search = {};
+  $scope.thermal = {};
+  $scope.invList = [];
   $scope.store_out = {
     discountes: [],
-    taxes: []
+    taxes: [],
   };
   $scope.search = {};
   $scope.item = {
-    sizes: []
+    sizes: [],
   };
 
   $scope.addTax = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.store_out.taxes = $scope.store_out.taxes || [];
     $scope.store_out.taxes.push({
       name_ar: $scope.tax.name_ar,
       name_en: $scope.tax.name_en,
-      value: $scope.tax.value
+      value: $scope.tax.value,
     });
     $scope.tax = {};
     $scope.calc($scope.store_out);
   };
 
   $scope.deleteTax = function (_tx) {
-    $scope.error = '';
+    $scope.error = "";
     for (let i = 0; i < $scope.store_out.taxes.length; i++) {
       let tx = $scope.store_out.taxes[i];
       if (tx.name_ar == _tx.name_ar && tx.value == _tx.value)
@@ -45,102 +50,110 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
   };
 
   $scope.addDiscount = function () {
-    $scope.error = '';
+    $scope.error = "";
 
     if (!$scope.discount.value) {
-      $scope.error = '##word.error_discount##';
+      $scope.error = "##word.error_discount##";
       return;
     } else {
       $scope.store_out.discountes = $scope.store_out.discountes || [];
 
       $scope.store_out.discountes.push({
-        name_ar: $scope.discount.name_ar, name_en: $scope.discount.name_en,
+        name_ar: $scope.discount.name_ar,
+        name_en: $scope.discount.name_en,
         value: $scope.discount.value,
-        type: $scope.discount.type
+        type: $scope.discount.type,
       });
 
       $scope.calc($scope.store_out);
 
       $scope.discount = {
-        type: 'number'
+        type: "number",
       };
-    };
-
+    }
   };
 
   $scope.deleteDiscount = function (_ds) {
-    $scope.error = '';
+    $scope.error = "";
     for (let i = 0; i < $scope.store_out.discountes.length; i++) {
       let ds = $scope.store_out.discountes[i];
-      if (ds.name_ar == _ds.name_ar && ds.value == _ds.value && ds.type == _ds.type)
+      if (
+        ds.name_ar == _ds.name_ar &&
+        ds.value == _ds.value &&
+        ds.type == _ds.type
+      )
         $scope.store_out.discountes.splice(i, 1);
     }
     $scope.calc($scope.store_out);
   };
 
   $scope.calcSize = function (calc_size) {
-    $scope.error = '';
+    $scope.error = "";
     $timeout(() => {
-
       if (calc_size.count) {
-        if (calc_size.discount.type == 'number') {
+        if (calc_size.discount.type == "number") {
           calc_size.discount.current = calc_size.discount.value;
-
-        } else if (calc_size.discount.type == 'percent') {
-          calc_size.discount.current = (calc_size.discount.value * calc_size.price) / 100;
+        } else if (calc_size.discount.type == "percent") {
+          calc_size.discount.current =
+            (calc_size.discount.value * calc_size.price) / 100;
         }
         calc_size.discount.current = site.toNumber(calc_size.discount.current);
 
         calc_size.b_price = calc_size.price - calc_size.discount.current;
         calc_size.b_price = site.toNumber(calc_size.b_price);
 
-        calc_size.total_v_a = calc_size.value_added * (calc_size.b_price * calc_size.count) / 100;
+        calc_size.total_v_a =
+          (calc_size.value_added * (calc_size.b_price * calc_size.count)) / 100;
         calc_size.total_v_a = site.toNumber(calc_size.total_v_a);
 
         if ($scope.store_out.type && $scope.store_out.type.id == 5)
-          calc_size.total = site.toNumber(calc_size.average_cost) * site.toNumber(calc_size.count);
-        else calc_size.total = ((site.toNumber(calc_size.b_price) * site.toNumber(calc_size.count)) + calc_size.total_v_a);
+          calc_size.total =
+            site.toNumber(calc_size.average_cost) *
+            site.toNumber(calc_size.count);
+        else
+          calc_size.total =
+            site.toNumber(calc_size.b_price) * site.toNumber(calc_size.count) +
+            calc_size.total_v_a;
 
         calc_size.total = site.toNumber(calc_size.total);
-
       }
       $scope.calc($scope.store_out);
     }, 150);
   };
 
-
   $scope.calc = function (obj) {
-    $scope.error = '';
+    $scope.error = "";
 
     $timeout(() => {
       obj.total_value = 0;
       obj.net_value = obj.net_value || 0;
 
       if (obj.items) {
-
         obj.total_value_added = 0;
-        obj.items.forEach(_itm => {
+        obj.items.forEach((_itm) => {
           obj.total_value += site.toNumber(_itm.total);
 
           obj.total_value_added += _itm.total_v_a;
         });
         obj.total_value_added = site.toNumber(obj.total_value_added);
-      };
-
+      }
 
       if (obj.type && obj.type.id !== 6) {
         obj.total_tax = 0;
         obj.total_discount = 0;
-      };
+      }
 
       if (obj.taxes)
-        obj.taxes.map(tx => obj.total_tax += obj.total_value * site.toNumber(tx.value) / 100);
+        obj.taxes.map(
+          (tx) =>
+            (obj.total_tax += (obj.total_value * site.toNumber(tx.value)) / 100)
+        );
 
       if (obj.discountes)
-        obj.discountes.forEach(ds => {
-
-          if (ds.type == 'percent')
-            obj.total_discount += obj.total_value * site.toNumber(ds.value) / 100;
+        obj.discountes.forEach((ds) => {
+          if (ds.type == "percent")
+            obj.total_discount +=
+              (obj.total_value * site.toNumber(ds.value)) / 100;
           else obj.total_discount += site.toNumber(ds.value);
         });
 
@@ -152,13 +165,14 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         obj.before_value_added = site.toNumber(obj.before_value_added);
 
         obj.net_value = obj.total_value + obj.total_tax - obj.total_discount;
-      };
+      }
 
       obj.total_value = site.toNumber(obj.total_value);
       obj.net_value = site.toNumber(obj.net_value);
 
       if (obj.currency) {
-        obj.amount_currency = site.toNumber(obj.net_value) / site.toNumber(obj.currency.ex_rate);
+        obj.amount_currency =
+          site.toNumber(obj.net_value) / site.toNumber(obj.currency.ex_rate);
         obj.amount_currency = site.toNumber(obj.amount_currency);
         if (obj.Paid_from_customer <= obj.amount_currency) {
           obj.paid_up = obj.Paid_from_customer;
@@ -166,48 +180,47 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           obj.paid_up = obj.amount_currency;
         }
       }
-
-
     }, 250);
   };
 
   $scope.calcReturn = function (obj) {
     $timeout(() => {
-      obj.net_value = ((obj.total_value || 0) - (obj.total_discount || 0)) + (obj.total_tax || 0);
+      obj.net_value =
+        (obj.total_value || 0) -
+        (obj.total_discount || 0) +
+        (obj.total_tax || 0);
       obj.net_value = site.toNumber(obj.net_value);
     }, 250);
   };
 
   $scope.deleteRow = function (itm) {
-    $scope.error = '';
+    $scope.error = "";
     $scope.store_out.items.splice($scope.store_out.items.indexOf(itm), 1);
     $scope.calcSize(itm);
   };
 
   $scope.deleteitem = function (itm) {
-    $scope.error = '';
+    $scope.error = "";
     $scope.item.sizes.splice($scope.item.sizes.indexOf(itm), 1);
-
   };
 
   $scope.newStoreOut = function () {
-
-    $scope.error = '';
+    $scope.error = "";
     $scope.discount = {
-      name_ar: 'خصم',
-      name_en: 'Discount',
-      type: 'number'
+      name_ar: "خصم",
+      name_en: "Discount",
+      type: "number",
     };
 
     $scope.get_open_shift((shift) => {
       if (shift) {
         $scope.shift = shift;
-        $scope.error = '';
-        $scope.item = {}
+        $scope.error = "";
+        $scope.item = {};
         $scope.edit_price = false;
 
         $scope.store_out = {
-          image_url: '/images/store_out.png',
+          image_url: "/images/store_out.png",
           shift: shift,
           items: [],
           invoice: false,
@@ -215,115 +228,133 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           taxes: [],
           type: $scope.source_type,
           date: new Date(),
-          supply_date: new Date()
+          supply_date: new Date(),
         };
 
         if ($scope.defaultSettings.general_Settings) {
           if ($scope.defaultSettings.general_Settings.customer) {
-            $scope.store_out.customer = $scope.customersGetList.find(_customer => { return _customer.id === $scope.defaultSettings.general_Settings.customer.id });
-
+            $scope.store_out.customer = $scope.customersGetList.find(
+              (_customer) => {
+                return (
+                  _customer.id ===
+                  $scope.defaultSettings.general_Settings.customer.id
+                );
+              }
+            );
           }
 
           if (!$scope.defaultSettings.general_Settings.work_posting)
-            $scope.store_out.posting = true
+            $scope.store_out.posting = true;
 
-          if ($scope.defaultSettings.general_Settings.payment_type && $scope.store_out.type.id != 5)
-            $scope.store_out.payment_type = $scope.defaultSettings.general_Settings.payment_type;
-        };
+          if (
+            $scope.defaultSettings.general_Settings.payment_type &&
+            $scope.store_out.type.id != 5
+          )
+            $scope.store_out.payment_type =
+              $scope.defaultSettings.general_Settings.payment_type;
+        }
 
         if ($scope.defaultSettings.inventory) {
-
-          if ('##user.type##' == 'delegate') {
-            $scope.store_out.store = JSON.parse('##user.store##');
+          if ("##user.type##" == "delegate") {
+            $scope.store_out.store = JSON.parse("##user.store##");
           } else if ($scope.defaultSettings.inventory.store)
-            $scope.store_out.store = $scope.storesList.find(_store => { return _store.id === $scope.defaultSettings.inventory.store.id });
+            $scope.store_out.store = $scope.storesList.find((_store) => {
+              return _store.id === $scope.defaultSettings.inventory.store.id;
+            });
 
-
-          if ('##user.type##' == 'delegate') {
+          if ("##user.type##" == "delegate") {
             $scope.store_out.delegate = $scope.delegatesList[0];
-
           } else if ($scope.defaultSettings.inventory.delegate)
-            $scope.store_out.delegate = $scope.delegatesList.find(_delegate => { return _delegate.id === $scope.defaultSettings.inventory.delegate.id });
+            $scope.store_out.delegate = $scope.delegatesList.find(
+              (_delegate) => {
+                return (
+                  _delegate.id === $scope.defaultSettings.inventory.delegate.id
+                );
+              }
+            );
+        }
 
-        };
-
-        if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
-
+        if (
+          $scope.defaultSettings.accounting &&
+          $scope.defaultSettings.accounting.create_invoice_auto
+        ) {
           if ($scope.store_out.type && $scope.store_out.type.id != 5) {
-
             $scope.store_out.paid_up = 0;
             $scope.store_out.currency = $scope.currencySetting;
             if ($scope.defaultSettings.accounting.payment_method) {
-              $scope.store_out.payment_method = $scope.defaultSettings.accounting.payment_method;
-              $scope.loadSafes($scope.store_out.payment_method, $scope.store_out.currency, () => {
-                if ($scope.store_out.payment_method.id == 1) {
-                  $scope.store_out.safe = $scope.defaultSettings.accounting.safe_box;
-                } else {
-                  $scope.store_out.safe = $scope.defaultSettings.accounting.safe_bank;
+              $scope.store_out.payment_method =
+                $scope.defaultSettings.accounting.payment_method;
+              $scope.loadSafes(
+                $scope.store_out.payment_method,
+                $scope.store_out.currency,
+                () => {
+                  if ($scope.store_out.payment_method.id == 1) {
+                    $scope.store_out.safe =
+                      $scope.defaultSettings.accounting.safe_box;
+                  } else {
+                    $scope.store_out.safe =
+                      $scope.defaultSettings.accounting.safe_bank;
+                  }
                 }
-              });
+              );
             }
           }
         }
-        site.showModal('#addStoreOutModal');
-      } else $scope.error = '##word.open_shift_not_found##';
+        site.showModal("#addStoreOutModal");
+      } else $scope.error = "##word.open_shift_not_found##";
     });
   };
 
   $scope.getDefaultSettings = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/default_setting/get",
-      data: {}
+      data: {},
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.doc) {
           $scope.defaultSettings = response.data.doc;
-          $scope.invoice_logo = document.location.origin + $scope.defaultSettings.printer_program.invoice_logo;
-        };
+          $scope.invoice_logo =
+            document.location.origin +
+            $scope.defaultSettings.printer_program.invoice_logo;
+        }
       },
       function (err) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
-
+    );
   };
 
   $scope.testPatches = function (storeOut, callback) {
-
     let obj = {
       patchCount: false,
-      patch_list: []
+      patch_list: [],
     };
 
-    storeOut.items.forEach(_item => {
+    storeOut.items.forEach((_item) => {
       if (_item.size_units_list && _item.size_units_list.length > 0) {
-
         let count = 0;
         if (_item.patch_list && _item.patch_list.length > 0) {
-          _item.patch_list.forEach(_pl => {
-            if (typeof _pl.count === 'number') {
-
+          _item.patch_list.forEach((_pl) => {
+            if (typeof _pl.count === "number") {
               count += _pl.count;
-
             } else {
               obj.patchCount = true;
-              obj.patch_list.push(_item.barcode)
+              obj.patch_list.push(_item.barcode);
             }
           });
         } else if (_item.work_serial || _item.work_patch) {
           obj.patchCount = true;
-          obj.patch_list.push(_item.barcode)
+          obj.patch_list.push(_item.barcode);
         }
         if (count != _item.count && (_item.work_serial || _item.work_patch)) {
           obj.patchCount = true;
-          obj.patch_list.push(_item.barcode)
+          obj.patch_list.push(_item.barcode);
         }
-
       }
     });
 
@@ -331,20 +362,18 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       return obj.patch_list.indexOf(item) === pos;
     });
 
-    callback(obj)
+    callback(obj);
   };
 
-
   $scope.add = function () {
-    $scope.error = '';
-    const v = site.validated('#addStoreOutModal');
+    $scope.error = "";
+    const v = site.validated("#addStoreOutModal");
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
     }
 
     $scope.detailsCustomer((customer) => {
-
       if (new Date($scope.store_out.date) > new Date()) {
         $scope.error = "##word.date_exceed##";
         return;
@@ -353,54 +382,62 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       if (!$scope.store_out.payment_type && $scope.store_out.type.id != 5) {
         $scope.error = "##word.must_choose_payment_type##";
         return;
-      };
+      }
 
       if ($scope.store_out.payment_type) {
-
-        if ($scope.store_out.type && $scope.store_out.type.id != 5 && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
+        if (
+          $scope.store_out.type &&
+          $scope.store_out.type.id != 5 &&
+          $scope.defaultSettings.accounting &&
+          $scope.defaultSettings.accounting.create_invoice_auto
+        ) {
           if (!$scope.store_out.safe) {
             $scope.error = "##word.nosafe_warning##";
             return;
           }
-        };
+        }
 
         if ($scope.store_out.paid_up > $scope.store_out.amount_currency) {
           $scope.error = "##word.err_net_value##";
           return;
-        };
+        }
 
-        if ($scope.store_out.paid_up < $scope.store_out.amount_currency && $scope.store_out.payment_type.id == 1) {
+        if (
+          $scope.store_out.paid_up < $scope.store_out.amount_currency &&
+          $scope.store_out.payment_type.id == 1
+        ) {
           $scope.error = "##word.amount_must_paid_full##";
           return;
-        };
-
+        }
       } else {
         $scope.store_out.paid_up = undefined;
         $scope.store_out.safe = undefined;
         $scope.store_out.Paid_from_customer = undefined;
         $scope.store_out.payment_method = undefined;
         $scope.store_out.currency = undefined;
-      };
+      }
 
       let max_discount = false;
       let returned_count = false;
       let notExistCount = false;
 
       if ($scope.store_out.items && $scope.store_out.items.length > 0) {
-        notExistCount = $scope.store_out.items.some(_iz => _iz.count < 1);
+        notExistCount = $scope.store_out.items.some((_iz) => _iz.count < 1);
 
-        $scope.store_out.items.forEach(_itemSize => {
-
-          if (_itemSize.discount.value > _itemSize.discount.max) max_discount = true;
+        $scope.store_out.items.forEach((_itemSize) => {
+          if (_itemSize.discount.value > _itemSize.discount.max)
+            max_discount = true;
           if (_itemSize.count > _itemSize.r_count) returned_count = true;
-
         });
       } else {
         $scope.error = "##word.must_enter_quantity##";
         return;
       }
 
-      if ($scope.defaultSettings.inventory && $scope.defaultSettings.inventory.dont_max_discount_items) {
+      if (
+        $scope.defaultSettings.inventory &&
+        $scope.defaultSettings.inventory.dont_max_discount_items
+      ) {
         if (max_discount) {
           $scope.error = "##word.err_maximum_discount##";
           return;
@@ -412,18 +449,29 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           $scope.error = "##word.return_item_err##";
           return;
         }
-      };
+      }
 
       if (notExistCount) {
         $scope.error = "##word.err_exist_count##";
         return;
-      };
+      }
 
-      if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto && $scope.store_out.type && $scope.store_out.type.id != 5) {
+      if (
+        $scope.defaultSettings.accounting &&
+        $scope.defaultSettings.accounting.create_invoice_auto &&
+        $scope.store_out.type &&
+        $scope.store_out.type.id != 5
+      ) {
         let totalCustomerBalance = 0;
-        if ($scope.store_out.customer && $scope.store_out.payment_method && $scope.store_out.payment_method.id == 5) {
-          totalCustomerBalance = customer.balance + (customer.credit_limit || 0);
-          let customerPay = $scope.store_out.paid_up * $scope.store_out.currency.ex_rate;
+        if (
+          $scope.store_out.customer &&
+          $scope.store_out.payment_method &&
+          $scope.store_out.payment_method.id == 5
+        ) {
+          totalCustomerBalance =
+            customer.balance + (customer.credit_limit || 0);
+          let customerPay =
+            $scope.store_out.paid_up * $scope.store_out.currency.ex_rate;
 
           if (customerPay > totalCustomerBalance) {
             $scope.error = "##word.cannot_exceeded_customer##";
@@ -432,28 +480,33 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         }
       }
 
-
       if ($scope.store_out.items.length > 0 && !$scope.busy) {
-
-        $scope.store_out.items.forEach(_itemSize => {
-          if (_itemSize.work_patch && _itemSize.patch_list && _itemSize.patch_list.length > 0) {
+        $scope.store_out.items.forEach((_itemSize) => {
+          if (
+            _itemSize.work_patch &&
+            _itemSize.patch_list &&
+            _itemSize.patch_list.length > 0
+          ) {
             let c = 0;
-            _itemSize.patch_list.map(p => c += p.count);
+            _itemSize.patch_list.map((p) => (c += p.count));
 
             let difference = _itemSize.count - c;
             if (_itemSize.count > c) {
-              _itemSize.patch_list = _itemSize.patch_list.slice().sort((a, b) => new Date(b.expiry_date) - new Date(a.expiry_date)).reverse();
-              _itemSize.patch_list.forEach(_pl => {
+              _itemSize.patch_list = _itemSize.patch_list
+                .slice()
+                .sort(
+                  (a, b) => new Date(b.expiry_date) - new Date(a.expiry_date)
+                )
+                .reverse();
+              _itemSize.patch_list.forEach((_pl) => {
                 if (difference > 0 && _pl.count == 0) {
-
-                  if (_pl.current_count < difference || _pl.current_count == difference) {
-
+                  if (
+                    _pl.current_count < difference ||
+                    _pl.current_count == difference
+                  ) {
                     _pl.count = _pl.current_count;
                     difference = difference - _pl.count;
-
-
                   } else if (_pl.current_count > difference) {
-
                     _pl.count = difference;
                     difference = 0;
                   }
@@ -463,40 +516,52 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           }
         });
 
-        $scope.testPatches($scope.store_out, callback => {
-
+        $scope.testPatches($scope.store_out, (callback) => {
           if (callback.patchCount) {
-            $scope.error = `##word.err_patch_count##   ( ${callback.patch_list.join('-')} )`;
+            $scope.error = `##word.err_patch_count##   ( ${callback.patch_list.join(
+              "-"
+            )} )`;
             return;
-          };
+          }
 
-          $scope.financialYear($scope.store_out.date, is_allowed_date => {
+          $scope.financialYear($scope.store_out.date, (is_allowed_date) => {
             if (!is_allowed_date) {
-              $scope.error = '##word.should_open_period##';
+              $scope.error = "##word.should_open_period##";
             } else {
-
-              if ($scope.account_invoices && $scope.account_invoices.payable_list && $scope.account_invoices.payable_list.length > 0) {
-                $scope.store_out.payable_list = $scope.account_invoices.payable_list;
-              };
-
+              if (
+                $scope.account_invoices &&
+                $scope.account_invoices.payable_list &&
+                $scope.account_invoices.payable_list.length > 0
+              ) {
+                $scope.store_out.payable_list =
+                  $scope.account_invoices.payable_list;
+              }
 
               $scope.busy = true;
               $http({
                 method: "POST",
                 url: "/api/stores_out/add",
-                data: angular.copy($scope.store_out)
+                data: angular.copy($scope.store_out),
               }).then(
                 function (response) {
                   if (response.data.done) {
                     $scope.busy = false;
-                    if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto && $scope.store_out.type && $scope.store_out.type.id != 5 && !$scope.defaultSettings.general_Settings.work_posting) {
-
-                      if ($scope.defaultSettings.printer_program.auto_thermal_print) {
+                    if (
+                      $scope.defaultSettings.accounting &&
+                      $scope.defaultSettings.accounting.create_invoice_auto &&
+                      $scope.store_out.type &&
+                      $scope.store_out.type.id != 5 &&
+                      !$scope.defaultSettings.general_Settings.work_posting
+                    ) {
+                      if (
+                        $scope.defaultSettings.printer_program
+                          .auto_thermal_print
+                      ) {
                         $scope.thermalPrint(response.data.doc);
-                      };
+                      }
 
                       let account_invoices = {
-                        image_url: '/images/account_invoices.png',
+                        image_url: "/images/account_invoices.png",
                         date: response.data.doc.date,
                         payable_list: response.data.doc.payable_list,
                         payment_type: response.data.doc.payment_type,
@@ -508,7 +573,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                         shift: response.data.doc.shift,
                         amount_currency: response.data.doc.amount_currency,
                         net_value: response.data.doc.net_value,
-                        Paid_from_customer: response.data.doc.Paid_from_customer,
+                        Paid_from_customer:
+                          response.data.doc.Paid_from_customer,
                         paid_up: response.data.doc.paid_up || 0,
                         payment_method: response.data.doc.payment_method,
                         safe: response.data.doc.safe,
@@ -519,170 +585,171 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                         source_type: {
                           id: 2,
                           en: "Sales Store",
-                          ar: "إذن صرف / فاتورة مبيعات"
+                          ar: "إذن صرف / فاتورة مبيعات",
                         },
-                        active: true
+                        active: true,
                       };
-                      $scope.addAccountInvoice(account_invoices)
+                      $scope.addAccountInvoice(account_invoices);
                     }
                     $scope.store_out = {};
                     $scope.loadAll({ date: new Date() });
-                    site.hideModal('#addStoreOutModal');
+                    site.hideModal("#addStoreOutModal");
                     $timeout(() => {
-                      document.querySelector('#clickNew').click();
-
+                      document.querySelector("#clickNew").click();
                     }, 250);
                   } else {
                     $scope.error = response.data.error;
-                    if (response.data.error.like('*OverDraft Not*')) {
+                    if (response.data.error.like("*OverDraft Not*")) {
                       $scope.busy = false;
-                      $scope.error = "##word.overdraft_not_active##"
-                    } else if (response.data.error.like('*n`t Found Open Shi*')) {
+                      $scope.error = "##word.overdraft_not_active##";
+                    } else if (
+                      response.data.error.like("*n`t Found Open Shi*")
+                    ) {
                       $scope.busy = false;
-                      $scope.error = "##word.open_shift_not_found##"
-                    } else if (response.data.error.like('*n`t Open Perio*')) {
+                      $scope.error = "##word.open_shift_not_found##";
+                    } else if (response.data.error.like("*n`t Open Perio*")) {
                       $scope.busy = false;
-                      $scope.error = "##word.should_open_period##"
-                    } else if (response.data.error.like('*Must Enter Code*')) {
+                      $scope.error = "##word.should_open_period##";
+                    } else if (response.data.error.like("*Must Enter Code*")) {
                       $scope.busy = false;
-                      $scope.error = "##word.must_enter_code##"
+                      $scope.error = "##word.must_enter_code##";
                     }
                   }
-
                 },
                 function (err) {
                   $scope.error = err.message;
                 }
-              )
+              );
             }
-          })
-        })
+          });
+        });
       } else {
         $scope.error = "##word.must_enter_quantity##";
         return;
       }
     });
-
   };
 
   $scope.remove = function (store_out) {
-    $scope.error = '';
+    $scope.error = "";
     $scope.get_open_shift((shift) => {
       if (shift) {
         $scope.view(store_out);
         $scope.store_out = {};
-        site.showModal('#deleteStoreOutModal');
-      } else $scope.error = '##word.open_shift_not_found##';
+        site.showModal("#deleteStoreOutModal");
+      } else $scope.error = "##word.open_shift_not_found##";
     });
   };
 
   $scope.view = function (store_out) {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/stores_out/view",
       data: {
-        id: store_out.id
-      }
+        id: store_out.id,
+      },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
           response.data.doc.date = new Date(response.data.doc.date);
           $scope.store_out = response.data.doc;
-          /*     $scope.store_out.items.forEach(_item => {
-                if (!_item.total_v_a) {
-                  _item.total_v_a = site.toNumber(_item.value_added) * (_item.price * _item.count) / 100;
-                }
-              }); */
+
           if ($scope.store_out.currency) {
-            site.strings['currency'] = {
-              ar: ' ' + $scope.store_out.currency.name_ar + ' ',
-              en: ' ' + $scope.store_out.currency.name_en + ' ',
-            }
-            site.strings['from100'] = {
-              ar: ' ' + $scope.store_out.currency.minor_currency_ar + ' ',
-              en: ' ' + $scope.store_out.currency.minor_currency_en + ' ',
-            }
-            $scope.store_out.net_txt = site.stringfiy($scope.store_out.net_value);
-
+            site.strings["currency"] = {
+              ar: " " + $scope.store_out.currency.name_ar + " ",
+              en: " " + $scope.store_out.currency.name_en + " ",
+            };
+            site.strings["from100"] = {
+              ar: " " + $scope.store_out.currency.minor_currency_ar + " ",
+              en: " " + $scope.store_out.currency.minor_currency_en + " ",
+            };
+            $scope.store_out.net_txt = site.stringfiy(
+              $scope.store_out.net_value
+            );
           }
-
-        } else $scope.error = response.data.error;
+        } else {
+          $scope.error = response.data.error;
+        }
       },
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.details = function (store_out) {
-    $scope.error = '';
+    $scope.error = "";
     $scope.view(store_out);
     $scope.store_out = {};
-    site.showModal('#viewStoreOutModal');
+    site.showModal("#viewStoreOutModal");
   };
 
   $scope.delete = function (store_out) {
-    $scope.error = '';
+    $scope.error = "";
 
-    if (store_out.return_paid && store_out.net_value != store_out.return_paid.net_value) {
-      $scope.error = '##word.err_delete_return##';
+    if (
+      store_out.return_paid &&
+      store_out.net_value != store_out.return_paid.net_value
+    ) {
+      $scope.error = "##word.err_delete_return##";
       return;
-    };
+    }
 
-    $scope.getStockItems(store_out.items, store_out.store, callback => {
-
+    $scope.getStockItems(store_out.items, store_out.store, (callback) => {
       if (!callback) {
-
-        $scope.financialYear(store_out.date, is_allowed_date => {
+        $scope.financialYear(store_out.date, (is_allowed_date) => {
           if (!is_allowed_date) {
-            $scope.error = '##word.should_open_period##';
+            $scope.error = "##word.should_open_period##";
           } else {
-
             $scope.busy = true;
             $http({
               method: "POST",
               url: "/api/stores_out/delete",
-              data: store_out
+              data: store_out,
             }).then(
               function (response) {
                 $scope.busy = false;
                 if (response.data.done) {
-                  site.hideModal('#deleteStoreOutModal');
-                  if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.link_warehouse_account_invoices) {
+                  site.hideModal("#deleteStoreOutModal");
+                  if (
+                    $scope.defaultSettings.accounting &&
+                    $scope.defaultSettings.accounting
+                      .link_warehouse_account_invoices
+                  ) {
                     $scope.deleteAccountInvoices(store_out);
                   }
                   $scope.loadAll({ date: new Date() });
                 } else {
                   $scope.error = response.data.error;
-                  if (response.data.error.like('*OverDraft Not*')) {
-                    $scope.error = "##word.overdraft_not_active##"
-                  } else if (response.data.error.like('*n`t Found Open Shi*')) {
-                    $scope.error = "##word.open_shift_not_found##"
-                  } else if (response.data.error.like('*n`t Open Perio*')) {
-                    $scope.error = "##word.should_open_period##"
-                  } if (response.data.error.like('*t`s Have Account Invo*')) {
-                    $scope.error = "##word.cant_process_found_invoice##"
+                  if (response.data.error.like("*OverDraft Not*")) {
+                    $scope.error = "##word.overdraft_not_active##";
+                  } else if (response.data.error.like("*n`t Found Open Shi*")) {
+                    $scope.error = "##word.open_shift_not_found##";
+                  } else if (response.data.error.like("*n`t Open Perio*")) {
+                    $scope.error = "##word.should_open_period##";
                   }
-                };
-
+                  if (response.data.error.like("*t`s Have Account Invo*")) {
+                    $scope.error = "##word.cant_process_found_invoice##";
+                  }
+                }
               },
               function (err) {
                 console.log(err);
               }
-            )
+            );
           }
-        })
+        });
       } else {
-        $scope.error = '##word.err_stock_item##';
+        $scope.error = "##word.err_stock_item##";
       }
-    })
+    });
   };
 
   $scope.deleteAccountInvoices = function (item) {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
 
     $http({
@@ -693,14 +760,14 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         branch: item.branch,
         where: {
           source_type_id: 2,
-          invoice_id: item.id
-        }
-      }
+          invoice_id: item.id,
+        },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#accountInvoicesDeleteModal');
+          site.hideModal("#accountInvoicesDeleteModal");
           $scope.list.forEach((b, i) => {
             if (b.id == response.data.doc.id) {
               $scope.list.splice(i, 1);
@@ -709,37 +776,36 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           });
         } else {
           $scope.error = response.data.error;
-          if (response.data.error.like('*n`t Found Open Shi*')) {
-            $scope.error = "##word.open_shift_not_found##"
-          } else if (response.data.error.like('*n`t Open Perio*')) {
-            $scope.error = "##word.should_open_period##"
+          if (response.data.error.like("*n`t Found Open Shi*")) {
+            $scope.error = "##word.open_shift_not_found##";
+          } else if (response.data.error.like("*n`t Open Perio*")) {
+            $scope.error = "##word.should_open_period##";
           }
         }
       },
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
-
   $scope.detailsCustomer = function (callback) {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
 
-    let customer = '';
+    let customer = "";
     if ($scope.account_invoices && $scope.account_invoices.customer) {
-      customer = $scope.account_invoices.customer
+      customer = $scope.account_invoices.customer;
     } else if ($scope.store_out && $scope.store_out.customer) {
-      customer = $scope.store_out.customer
+      customer = $scope.store_out.customer;
     }
 
     $http({
       method: "POST",
       url: "/api/customers/view",
       data: {
-        id: customer.id
-      }
+        id: customer.id,
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -753,7 +819,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.detailsAccountInvoices = function (storeOut) {
@@ -764,9 +830,9 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       data: {
         where: {
           invoice_id: storeOut.id,
-          'source_type.id': 2,
-        }
-      }
+          "source_type.id": 2,
+        },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -775,8 +841,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           $scope.account_invoices = response.data.doc || {};
           $scope.account_invoices.$view = true;
 
-          site.showModal('#accountInvoicesDetailsModal');
-
+          site.showModal("#accountInvoicesDetailsModal");
         } else {
           $scope.error = response.data.error;
         }
@@ -784,11 +849,11 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.displayPaymentInvoices = function (invoices) {
-    $scope.error = '';
+    $scope.error = "";
 
     $scope.get_open_shift((shift) => {
       if (shift) {
@@ -798,49 +863,75 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         if ($scope.defaultSettings.accounting) {
           $scope.paid_invoice.currency = $scope.currencySetting;
           if ($scope.defaultSettings.accounting.payment_method) {
-            $scope.paid_invoice.payment_method = $scope.defaultSettings.accounting.payment_method;
-            $scope.loadSafes($scope.paid_invoice.payment_method, $scope.paid_invoice.currency);
+            $scope.paid_invoice.payment_method =
+              $scope.defaultSettings.accounting.payment_method;
+            $scope.loadSafes(
+              $scope.paid_invoice.payment_method,
+              $scope.paid_invoice.currency
+            );
             if ($scope.paid_invoice.payment_method.id === 1)
-              $scope.paid_invoice.safe = $scope.defaultSettings.accounting.safe_box;
-            else $scope.paid_invoice.safe = $scope.defaultSettings.accounting.safe_bank;
+              $scope.paid_invoice.safe =
+                $scope.defaultSettings.accounting.safe_box;
+            else
+              $scope.paid_invoice.safe =
+                $scope.defaultSettings.accounting.safe_bank;
           }
         }
         if ($scope.paid_invoice.currency) {
-          $scope.paid_invoice.amount_currency = site.toNumber($scope.paid_invoice.remain_amount) / site.toNumber($scope.paid_invoice.currency.ex_rate);
-          $scope.paid_invoice.amount_currency = site.toNumber($scope.paid_invoice.amount_currency);
-          $scope.paid_invoice.payment_paid_up = $scope.paid_invoice.amount_currency;
+          $scope.paid_invoice.amount_currency =
+            site.toNumber($scope.paid_invoice.remain_amount) /
+            site.toNumber($scope.paid_invoice.currency.ex_rate);
+          $scope.paid_invoice.amount_currency = site.toNumber(
+            $scope.paid_invoice.amount_currency
+          );
+          $scope.paid_invoice.payment_paid_up =
+            $scope.paid_invoice.amount_currency;
         }
-        site.showModal('#invoicesPaymentModal');
-      } else $scope.error = '##word.open_shift_not_found##';
+        site.showModal("#invoicesPaymentModal");
+      } else $scope.error = "##word.open_shift_not_found##";
     });
   };
 
   $scope.acceptPaymentInvoice = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.detailsCustomer((customer) => {
-
       if (!$scope.paid_invoice.safe) {
         $scope.error = "##word.should_select_safe##";
         return;
       } else if (!$scope.paid_invoice.payment_paid_up) {
         $scope.error = "##word.err_paid_up##";
         return;
-      }
-      else if ($scope.paid_invoice.payment_paid_up > $scope.paid_invoice.amount_currency) {
+      } else if (
+        $scope.paid_invoice.payment_paid_up >
+        $scope.paid_invoice.amount_currency
+      ) {
         $scope.error = "##word.err_paid_up_payment##";
         return;
-      } else if ($scope.paid_invoice.payment_paid_up > $scope.paid_invoice.amount_currency && $scope.paid_invoice.source_type.id != 8 && $scope.paid_invoice.source_type.id != 9 && $scope.paid_invoice.source_type.id != 10 && $scope.paid_invoice.source_type.id != 11) {
+      } else if (
+        $scope.paid_invoice.payment_paid_up >
+          $scope.paid_invoice.amount_currency &&
+        $scope.paid_invoice.source_type.id != 8 &&
+        $scope.paid_invoice.source_type.id != 9 &&
+        $scope.paid_invoice.source_type.id != 10 &&
+        $scope.paid_invoice.source_type.id != 11
+      ) {
         $scope.error = "##word.err_net_value##";
         return;
       }
 
-      if ($scope.paid_invoice.customer && $scope.paid_invoice.payment_method && $scope.paid_invoice.payment_method.id === 10) {
+      if (
+        $scope.paid_invoice.customer &&
+        $scope.paid_invoice.payment_method &&
+        $scope.paid_invoice.payment_method.id === 10
+      ) {
         if (customer) {
-
           let totalCustomerBalance = 0;
-          let customerPay = $scope.paid_invoice.payment_paid_up * $scope.paid_invoice.currency.ex_rate;
+          let customerPay =
+            $scope.paid_invoice.payment_paid_up *
+            $scope.paid_invoice.currency.ex_rate;
 
-          totalCustomerBalance = (customer.balance || 0) + (customer.credit_limit || 0);
+          totalCustomerBalance =
+            (customer.balance || 0) + (customer.credit_limit || 0);
 
           if (customerPay > totalCustomerBalance) {
             $scope.error = "##word.cannot_exceeded_customer##";
@@ -863,54 +954,62 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       $http({
         method: "POST",
         url: "/api/account_invoices/update_payment",
-        data: $scope.paid_invoice
+        data: $scope.paid_invoice,
       }).then(
         function (response) {
           $scope.busy = false;
 
           if (response.data.done) {
-            $scope.detailsAccountInvoices($scope.store_out)
-            site.hideModal('#invoicesPaymentModal');
+            $scope.detailsAccountInvoices($scope.store_out);
+            site.hideModal("#invoicesPaymentModal");
           } else {
             $scope.error = response.data.error;
-            if (response.data.error.like('*n`t Found Open Shi*')) {
-              $scope.error = "##word.open_shift_not_found##"
-            } else if (response.data.error.like('*n`t Open Perio*')) {
-              $scope.error = "##word.should_open_period##"
+            if (response.data.error.like("*n`t Found Open Shi*")) {
+              $scope.error = "##word.open_shift_not_found##";
+            } else if (response.data.error.like("*n`t Open Perio*")) {
+              $scope.error = "##word.should_open_period##";
             }
           }
         },
         function (err) {
           console.log(err);
         }
-      )
-    })
-
+      );
+    });
   };
 
-
   $scope.addToItems = function () {
-    $scope.error = '';
+    $scope.error = "";
     if ($scope.store_out.type) {
       let foundSize = false;
 
       if ($scope.item.sizes && $scope.item.sizes.length > 0)
-        $scope.item.sizes.forEach(_size => {
-          foundSize = $scope.store_out.items.some(_itemSize => _itemSize.barcode === _size.barcode && _itemSize.unit.id === _size.unit.id);
+        $scope.item.sizes.forEach((_size) => {
+          foundSize = $scope.store_out.items.some(
+            (_itemSize) =>
+              _itemSize.barcode === _size.barcode &&
+              _itemSize.unit.id === _size.unit.id
+          );
           if (_size.count > 0 && !foundSize) {
-
             let discount = 0;
 
             _size.value_added = site.toNumber(_size.value_added);
-            _size.total_v_a = site.toNumber(_size.value_added) * (_size.price * _size.count) / 100;
+            _size.total_v_a =
+              (site.toNumber(_size.value_added) * (_size.price * _size.count)) /
+              100;
             _size.total_v_a = site.toNumber(_size.total_v_a);
             if (_size.count) {
-              if (_size.discount.type == 'number')
+              if (_size.discount.type == "number")
                 discount = (_size.discount.value || 0) * _size.count;
-              else if (_size.discount.type == 'percent')
-                discount = (_size.discount.value || 0) * (_size.price * _size.count) / 100;
+              else if (_size.discount.type == "percent")
+                discount =
+                  ((_size.discount.value || 0) * (_size.price * _size.count)) /
+                  100;
 
-              _size.total = (site.toNumber(_size.total * _size.count) - discount + _size.total_v_a);
+              _size.total =
+                site.toNumber(_size.total * _size.count) -
+                discount +
+                _size.total_v_a;
               _size.total = site.toNumber(_size.total);
             }
             let itmObj = {
@@ -940,8 +1039,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
               count: _size.count,
               total: _size.total,
               store_count: _size.store_count,
-              add_sizes: _size.add_sizes
-            }
+              add_sizes: _size.add_sizes,
+            };
             $scope.store_out.items.push(itmObj);
             $scope.calcSize(itmObj);
           }
@@ -950,9 +1049,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     } else $scope.error = "##word.err_transaction_type##";
   };
 
-
   $scope.addToSizes = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.item.sizes = $scope.item.sizes || [];
     $scope.item.sizes.push({
       $new: true,
@@ -961,21 +1059,21 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       count: 1,
       cost: 0,
       price: 0,
-      size: '',
+      size: "",
       current_count: 0,
       total: 0,
     });
   };
 
   $scope.getItemsName = function (ev) {
-    $scope.error = '';
+    $scope.error = "";
     if (ev.which === 13) {
       $http({
         method: "POST",
         url: "/api/stores_items/all",
         data: {
-          search: $scope.item.search_item_name
-        }
+          search: $scope.item.search_item_name,
+        },
       }).then(
         function (response) {
           $scope.busy = false;
@@ -983,110 +1081,142 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
             if (response.data.list.length > 0) {
               let foundSize = false;
               $scope.item.sizes = $scope.item.sizes || [];
-              response.data.list.forEach(_item => {
-
+              response.data.list.forEach((_item) => {
                 if (_item.sizes && _item.sizes.length > 0)
-                  _item.sizes.forEach(_size => {
+                  _item.sizes.forEach((_size) => {
                     let foundHold = false;
                     let indxUnit = 0;
                     _size.add_sizes = _item.add_sizes;
 
-                    if (_size.size_units_list && _size.size_units_list.length > 0)
+                    if (
+                      _size.size_units_list &&
+                      _size.size_units_list.length > 0
+                    )
                       _size.size_units_list.forEach((_unit, i) => {
-
-                        if (_unit.id == _item.main_unit.id)
-                          indxUnit = i;
+                        if (_unit.id == _item.main_unit.id) indxUnit = i;
                       });
 
-                    if ((_size.barcode === $scope.item.search_item_name) || (_size.size_units_list[indxUnit].barcode === $scope.item.search_item_name)) {
+                    if (
+                      _size.barcode === $scope.item.search_item_name ||
+                      _size.size_units_list[indxUnit].barcode ===
+                        $scope.item.search_item_name
+                    ) {
                       _size.name_ar = _item.name_ar;
                       _size.name_en = _item.name_en;
                       _size.item_group = _item.item_group;
                       _size.store = $scope.store_out.store;
                       _size.unit = _size.size_units_list[indxUnit];
-                      $scope.getOfferActive(_size.barcode, offer_active => {
+                      $scope.getOfferActive(_size.barcode, (offer_active) => {
                         if (offer_active) {
-
-                          offer_active.size_units_list.forEach(_offerUnit => {
+                          offer_active.size_units_list.forEach((_offerUnit) => {
                             if (_offerUnit.id === _size.unit.id) {
-                              _size.discount = _offerUnit.discount
+                              _size.discount = _offerUnit.discount;
                             }
                           });
-
-                        } else _size.discount = _size.size_units_list[indxUnit].discount;
+                        } else
+                          _size.discount =
+                            _size.size_units_list[indxUnit].discount;
                       });
 
-                      _size.average_cost = _size.size_units_list[indxUnit].average_cost;
+                      _size.average_cost =
+                        _size.size_units_list[indxUnit].average_cost;
                       _size.price = _size.size_units_list[indxUnit].price;
                       _size.cost = _size.size_units_list[indxUnit].cost;
                       _size.count = 1;
-                      _size.value_added = _size.not_value_added ? 0 : $scope.defaultSettings.inventory.value_added || 0;
+                      _size.value_added = _size.not_value_added
+                        ? 0
+                        : $scope.defaultSettings.inventory.value_added || 0;
 
-                      if ($scope.store_out.type && $scope.store_out.type.id == 5) _size.total = _size.count * _size.average_cost;
+                      if (
+                        $scope.store_out.type &&
+                        $scope.store_out.type.id == 5
+                      )
+                        _size.total = _size.count * _size.average_cost;
                       else _size.total = _size.count * _size.price;
 
-                      if (_size.branches_list && _size.branches_list.length > 0) {
+                      if (
+                        _size.branches_list &&
+                        _size.branches_list.length > 0
+                      ) {
                         let foundBranch = false;
                         let indxBranch = 0;
                         _size.branches_list.map((_branch, i) => {
-                          if (_branch.code == '##session.branch.code##') {
+                          if (_branch.code == "##session.branch.code##") {
                             foundBranch = true;
                             indxBranch = i;
                           }
                         });
                         if (foundBranch) {
-
-                          if (_size.branches_list[indxBranch].code == '##session.branch.code##') {
-                            if (_size.branches_list[indxBranch].stores_list && _size.branches_list[indxBranch].stores_list.length > 0) {
+                          if (
+                            _size.branches_list[indxBranch].code ==
+                            "##session.branch.code##"
+                          ) {
+                            if (
+                              _size.branches_list[indxBranch].stores_list &&
+                              _size.branches_list[indxBranch].stores_list
+                                .length > 0
+                            ) {
                               let foundStore = false;
                               let indxStore = 0;
-                              _size.branches_list[indxBranch].stores_list.map((_store, i) => {
-                                if (_store.store.id == $scope.store_out.store.id) {
-                                  _size.store_units_list = _store.size_units_list;
-                                  foundStore = true;
-                                  indxStore = i;
-                                  if (_store.hold) foundHold = true;
+                              _size.branches_list[indxBranch].stores_list.map(
+                                (_store, i) => {
+                                  if (
+                                    _store.store.id == $scope.store_out.store.id
+                                  ) {
+                                    _size.store_units_list =
+                                      _store.size_units_list;
+                                    foundStore = true;
+                                    indxStore = i;
+                                    if (_store.hold) foundHold = true;
+                                  }
                                 }
-                              });
+                              );
                               if (foundStore)
-                                _size.store_count = _size.branches_list[indxBranch].stores_list[indxStore].current_count
+                                _size.store_count =
+                                  _size.branches_list[indxBranch].stores_list[
+                                    indxStore
+                                  ].current_count;
                             } else _size.store_count = 0;
                           } else _size.store_count = 0;
                         } else _size.store_count = 0;
                       } else _size.store_count = 0;
 
-                      foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode === _size.barcode);
+                      foundSize = $scope.item.sizes.some(
+                        (_itemSize) => _itemSize.barcode === _size.barcode
+                      );
 
-                      if (_size.store_units_list && _size.store_units_list.length > 0) {
-                        _size.store_units_list.forEach(_ul => {
+                      if (
+                        _size.store_units_list &&
+                        _size.store_units_list.length > 0
+                      ) {
+                        _size.store_units_list.forEach((_ul) => {
                           if (_ul.id == _size.unit.id) {
                             if (_ul.patch_list && _ul.patch_list.length > 0) {
-
-                              _ul.patch_list.forEach(_p => {
-                                _p.current_count = _p.count
-                                _p.count = 0
+                              _ul.patch_list.forEach((_p) => {
+                                _p.current_count = _p.count;
+                                _p.count = 0;
                               });
-                              _size.patch_list = _ul.patch_list
+                              _size.patch_list = _ul.patch_list;
                             }
                           }
                         });
-                      };
+                      }
 
-                      if (!foundSize && !foundHold) $scope.item.sizes.push(_size);
-                    };
+                      if (!foundSize && !foundHold)
+                        $scope.item.sizes.push(_size);
+                    }
                   });
               });
 
               if (!foundSize) $scope.itemsNameList = response.data.list;
-              else if (foundSize) $scope.error = '##word.dublicate_item##';
-
-            };
+              else if (foundSize) $scope.error = "##word.dublicate_item##";
+            }
           } else {
             $scope.error = response.data.error;
             $scope.item = {
-              sizes: []
+              sizes: [],
             };
-          };
+          }
         },
         function (err) {
           console.log(err);
@@ -1133,12 +1263,15 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
  */
 
   $scope.itemsStoresOut = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.item.sizes = $scope.item.sizes || [];
     let foundSize = false;
-    if ($scope.item.itm && $scope.item.itm.sizes && $scope.item.itm.sizes.length > 0) {
-
-      $scope.item.itm.sizes.forEach(_item => {
+    if (
+      $scope.item.itm &&
+      $scope.item.itm.sizes &&
+      $scope.item.itm.sizes.length > 0
+    ) {
+      $scope.item.itm.sizes.forEach((_item) => {
         let foundHold = false;
         _item.add_sizes = $scope.item.itm.add_sizes;
         _item.name_ar = $scope.item.itm.name_ar;
@@ -1146,38 +1279,44 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         _item.item_group = $scope.item.itm.item_group;
         _item.store = $scope.store_out.store;
         _item.count = 1;
-        _item.value_added = _item.not_value_added ? 0 : $scope.defaultSettings.inventory.value_added || 0;
+        _item.value_added = _item.not_value_added
+          ? 0
+          : $scope.defaultSettings.inventory.value_added || 0;
 
         let indxUnit = 0;
 
         if (_item.size_units_list && _item.size_units_list.length > 0) {
-
-          indxUnit = _item.size_units_list.findIndex(_unit => _unit.id == $scope.item.itm.main_unit.id);
+          indxUnit = _item.size_units_list.findIndex(
+            (_unit) => _unit.id == $scope.item.itm.main_unit.id
+          );
           _item.unit = _item.size_units_list[indxUnit];
           _item.discount = _item.size_units_list[indxUnit].discount;
           _item.average_cost = _item.size_units_list[indxUnit].average_cost;
           _item.price = _item.size_units_list[indxUnit].price;
           _item.cost = _item.size_units_list[indxUnit].cost;
 
-          if ($scope.store_out.type && $scope.store_out.type.id == 5) _item.total = _item.count * _item.average_cost
-          else _item.total = _item.count * _item.price
-
+          if ($scope.store_out.type && $scope.store_out.type.id == 5)
+            _item.total = _item.count * _item.average_cost;
+          else _item.total = _item.count * _item.price;
         }
 
         if (_item.branches_list && _item.branches_list.length > 0) {
           let foundBranch = false;
           let indxBranch = 0;
           _item.branches_list.map((_branch, i) => {
-            if (_branch.code == '##session.branch.code##') {
+            if (_branch.code == "##session.branch.code##") {
               foundBranch = true;
               indxBranch = i;
             }
           });
           if (foundBranch) {
-
-            if (_item.branches_list[indxBranch].code == '##session.branch.code##') {
-              if (_item.branches_list[indxBranch].stores_list && _item.branches_list[indxBranch].stores_list.length > 0) {
-
+            if (
+              _item.branches_list[indxBranch].code == "##session.branch.code##"
+            ) {
+              if (
+                _item.branches_list[indxBranch].stores_list &&
+                _item.branches_list[indxBranch].stores_list.length > 0
+              ) {
                 let foundStore = false;
                 let indxStore = 0;
                 _item.branches_list[indxBranch].stores_list.map((_store, i) => {
@@ -1189,48 +1328,52 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                   }
                 });
                 if (foundStore) {
-                  _item.store_count = _item.branches_list[indxBranch].stores_list[indxStore].current_count
+                  _item.store_count =
+                    _item.branches_list[indxBranch].stores_list[
+                      indxStore
+                    ].current_count;
                 } else _item.store_count = 0;
               } else _item.store_count = 0;
             } else _item.store_count = 0;
           } else _item.store_count = 0;
         } else _item.store_count = 0;
 
-        foundSize = $scope.item.sizes.some(_itemSize => _itemSize.barcode === _item.barcode && _itemSize.unit.id === _item.unit.id);
+        foundSize = $scope.item.sizes.some(
+          (_itemSize) =>
+            _itemSize.barcode === _item.barcode &&
+            _itemSize.unit.id === _item.unit.id
+        );
 
         if (_item.store_units_list && _item.store_units_list.length > 0) {
-          _item.store_units_list.forEach(_ul => {
+          _item.store_units_list.forEach((_ul) => {
             if (_ul.id == _item.unit.id) {
               if (_ul.patch_list && _ul.patch_list.length > 0) {
-
-                _ul.patch_list.forEach(_p => {
-                  _p.current_count = _p.count
-                  _p.count = 0
+                _ul.patch_list.forEach((_p) => {
+                  _p.current_count = _p.count;
+                  _p.count = 0;
                 });
-                _item.patch_list = _ul.patch_list
+                _item.patch_list = _ul.patch_list;
               }
             }
           });
-        };
+        }
 
         if (!foundSize && !foundHold) {
           $scope.item.sizes.push(_item);
-
         }
       });
     }
-
   };
 
   $scope.getBarcode = function (ev) {
-    $scope.error = '';
+    $scope.error = "";
     if (ev.which === 13) {
       $http({
         method: "POST",
         url: "/api/stores_items/all",
         data: {
-          where: { barcode: $scope.search_barcode }
-        }
+          where: { barcode: $scope.search_barcode },
+        },
       }).then(
         function (response) {
           $scope.busy = false;
@@ -1238,30 +1381,41 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
             if (response.data.list.length > 0) {
               let foundSize = false;
 
-              if (response.data.list[0].sizes && response.data.list[0].sizes.length > 0)
-                response.data.list[0].sizes.forEach(_size => {
+              if (
+                response.data.list[0].sizes &&
+                response.data.list[0].sizes.length > 0
+              )
+                response.data.list[0].sizes.forEach((_size) => {
                   let foundHold = false;
                   let indxUnit = 0;
                   _size.add_sizes = response.data.list[0].add_sizes;
 
-                  if (_size.size_units_list && _size.size_units_list.length > 0) {
+                  if (
+                    _size.size_units_list &&
+                    _size.size_units_list.length > 0
+                  ) {
                     let foundUnit = false;
                     _size.size_units_list.forEach((_unit, i) => {
                       if ($scope.search_barcode === _unit.barcode) {
                         foundUnit = true;
                         indxUnit = i;
-                      } else if (_unit.id === response.data.list[0].main_unit.id && !foundUnit) {
+                      } else if (
+                        _unit.id === response.data.list[0].main_unit.id &&
+                        !foundUnit
+                      ) {
                         indxUnit = i;
                       }
                     });
                   }
 
                   if (_size.branches_list && _size.branches_list.length > 0)
-                    _size.branches_list.forEach(_branch => {
-                      if (_branch.code == '##session.branch.code##')
-                        _branch.stores_list.forEach(_store => {
-
-                          if (_store.store && _store.store.id == $scope.store_out.store.id) {
+                    _size.branches_list.forEach((_branch) => {
+                      if (_branch.code == "##session.branch.code##")
+                        _branch.stores_list.forEach((_store) => {
+                          if (
+                            _store.store &&
+                            _store.store.id == $scope.store_out.store.id
+                          ) {
                             _size.store_count = _store.current_count;
                             _size.store_units_list = _store.size_units_list;
                             if (_store.hold) foundHold = true;
@@ -1269,72 +1423,83 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                         });
                     });
 
-                  if ((_size.barcode === $scope.search_barcode) || _size.size_units_list[indxUnit].barcode === $scope.search_barcode) {
+                  if (
+                    _size.barcode === $scope.search_barcode ||
+                    _size.size_units_list[indxUnit].barcode ===
+                      $scope.search_barcode
+                  ) {
                     _size.name_ar = response.data.list[0].name_ar;
                     _size.name_en = response.data.list[0].name_en;
                     _size.item_group = response.data.list[0].item_group;
                     _size.store = $scope.store_out.store;
                     _size.unit = _size.size_units_list[indxUnit];
 
-                    $scope.getOfferActive(_size.barcode, offer_active => {
+                    $scope.getOfferActive(_size.barcode, (offer_active) => {
                       if (offer_active) {
-
-                        offer_active.size_units_list.forEach(_offerUnit => {
+                        offer_active.size_units_list.forEach((_offerUnit) => {
                           if (_offerUnit.id === _size.unit.id) {
-                            _size.discount = _offerUnit.discount
+                            _size.discount = _offerUnit.discount;
                           }
                         });
-
-                      } else _size.discount = _size.size_units_list[indxUnit].discount;
+                      } else
+                        _size.discount =
+                          _size.size_units_list[indxUnit].discount;
                     });
 
-                    _size.average_cost = _size.size_units_list[indxUnit].average_cost;
+                    _size.average_cost =
+                      _size.size_units_list[indxUnit].average_cost;
                     _size.price = _size.size_units_list[indxUnit].price;
                     _size.cost = _size.size_units_list[indxUnit].cost;
                     _size.count = 1;
-                    _size.value_added = _size.not_value_added ? 0 : $scope.defaultSettings.inventory.value_added || 0;
+                    _size.value_added = _size.not_value_added
+                      ? 0
+                      : $scope.defaultSettings.inventory.value_added || 0;
 
-                    foundSize = $scope.store_out.items.some(_itemSize => _itemSize.barcode === _size.barcode && _itemSize.unit.id === _size.unit.id);
-                    if (_size.store_units_list && _size.store_units_list.length > 0) {
-                      _size.store_units_list.forEach(_ul => {
+                    foundSize = $scope.store_out.items.some(
+                      (_itemSize) =>
+                        _itemSize.barcode === _size.barcode &&
+                        _itemSize.unit.id === _size.unit.id
+                    );
+                    if (
+                      _size.store_units_list &&
+                      _size.store_units_list.length > 0
+                    ) {
+                      _size.store_units_list.forEach((_ul) => {
                         if (_ul.id == _size.unit.id) {
                           if (_ul.patch_list && _ul.patch_list.length > 0) {
-
-                            _ul.patch_list.forEach(_p => {
-                              _p.current_count = _p.count
-                              _p.count = 0
+                            _ul.patch_list.forEach((_p) => {
+                              _p.current_count = _p.count;
+                              _p.count = 0;
                             });
-                            _size.patch_list = _ul.patch_list
+                            _size.patch_list = _ul.patch_list;
                           }
                         }
                       });
-                    };
+                    }
                     _size.branches_list = [];
-                    if (!foundSize && !foundHold) $scope.store_out.items.unshift(_size)
+                    if (!foundSize && !foundHold)
+                      $scope.store_out.items.unshift(_size);
                     else if (foundSize) {
-                      $scope.store_out.items.forEach(_item => {
+                      $scope.store_out.items.forEach((_item) => {
                         if (_item.barcode === _size.barcode) {
                           _item.count = _item.count + 1;
                           $scope.calcSize(_item);
-
                         }
                       });
                     }
                   }
                   $scope.calcSize(_size);
                 });
-              if (foundSize) $scope.error = '##word.dublicate_item##';
+              if (foundSize) $scope.error = "##word.dublicate_item##";
 
-
-              $scope.search_barcode = '';
+              $scope.search_barcode = "";
             }
             $timeout(() => {
-              document.querySelector('#search_barcode input').focus();
+              document.querySelector("#search_barcode input").focus();
             }, 100);
-
           } else {
             $scope.error = response.data.error;
-          };
+          }
         },
         function (err) {
           console.log(err);
@@ -1344,38 +1509,37 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
   };
 
   $scope.edit = function (store_out) {
-    $scope.error = '';
+    $scope.error = "";
     $scope.get_open_shift((shift) => {
       if (shift) {
         $scope.view(store_out);
         $scope.edit_price = false;
         $scope.store_out = {};
-        site.showModal('#updateStoreOutModal');
-      } else $scope.error = '##word.open_shift_not_found##';
+        site.showModal("#updateStoreOutModal");
+      } else $scope.error = "##word.open_shift_not_found##";
     });
   };
 
   $scope.update = function () {
-    $scope.error = '';
-
+    $scope.error = "";
 
     if (new Date($scope.store_out.date) > new Date()) {
-
       $scope.error = "##word.date_exceed##";
       return;
-
     }
 
     if (!$scope.store_out.payment_type && $scope.store_out.type.id != 5) {
       $scope.error = "##word.must_choose_payment_type##";
       return;
-    };
-
+    }
 
     if ($scope.store_out.payment_type) {
-
-
-      if ($scope.store_out.type && $scope.store_out.type.id != 5 && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
+      if (
+        $scope.store_out.type &&
+        $scope.store_out.type.id != 5 &&
+        $scope.defaultSettings.accounting &&
+        $scope.defaultSettings.accounting.create_invoice_auto
+      ) {
         if (!$scope.store_out.safe) {
           $scope.error = "##word.nosafe_warning##";
           return;
@@ -1387,7 +1551,10 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         return;
       }
 
-      if ($scope.store_out.paid_up < $scope.store_out.amount_currency && $scope.store_out.payment_type.id == 1) {
+      if (
+        $scope.store_out.paid_up < $scope.store_out.amount_currency &&
+        $scope.store_out.payment_type.id == 1
+      ) {
         $scope.error = "##word.amount_must_paid_full##";
         return;
       }
@@ -1404,21 +1571,22 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     let patchCount = false;
 
     if ($scope.store_out.items && $scope.store_out.items.length > 0) {
+      notExistCount = $scope.store_out.items.some((_iz) => _iz.count < 1);
 
-      notExistCount = $scope.store_out.items.some(_iz => _iz.count < 1);
-
-      $scope.store_out.items.forEach(_itemSize => {
-
-        if (_itemSize.discount.value > _itemSize.discount.max) max_discount = true;
+      $scope.store_out.items.forEach((_itemSize) => {
+        if (_itemSize.discount.value > _itemSize.discount.max)
+          max_discount = true;
         if (_itemSize.count > _itemSize.r_count) returned_count = true;
-
       });
     } else {
       $scope.error = "##word.must_enter_quantity##";
       return;
     }
 
-    if ($scope.defaultSettings.inventory && $scope.defaultSettings.inventory.dont_max_discount_items) {
+    if (
+      $scope.defaultSettings.inventory &&
+      $scope.defaultSettings.inventory.dont_max_discount_items
+    ) {
       if (max_discount) {
         $scope.error = "##word.err_maximum_discount##";
         return;
@@ -1430,37 +1598,42 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         $scope.error = "##word.return_item_err##";
         return;
       }
-    };
+    }
 
     if (notExistCount) {
       $scope.error = "##word.err_exist_count##";
       return;
-    };
+    }
 
     if (patchCount) {
-      $scope.error = `##word.err_patch_count##   ( ${patch_list.join('-')} )`;
+      $scope.error = `##word.err_patch_count##   ( ${patch_list.join("-")} )`;
       return;
-    };
+    }
 
-    $scope.store_out.items.forEach(_itemSize => {
-      if (_itemSize.work_patch && _itemSize.patch_list && _itemSize.patch_list.length > 0) {
+    $scope.store_out.items.forEach((_itemSize) => {
+      if (
+        _itemSize.work_patch &&
+        _itemSize.patch_list &&
+        _itemSize.patch_list.length > 0
+      ) {
         let c = 0;
-        _itemSize.patch_list.map(p => c += p.count);
+        _itemSize.patch_list.map((p) => (c += p.count));
 
         let difference = _itemSize.count - c;
         if (_itemSize.count > c) {
-          _itemSize.patch_list = _itemSize.patch_list.slice().sort((a, b) => new Date(b.expiry_date) - new Date(a.expiry_date)).reverse();
-          _itemSize.patch_list.forEach(_pl => {
+          _itemSize.patch_list = _itemSize.patch_list
+            .slice()
+            .sort((a, b) => new Date(b.expiry_date) - new Date(a.expiry_date))
+            .reverse();
+          _itemSize.patch_list.forEach((_pl) => {
             if (difference > 0 && _pl.count == 0) {
-
-              if (_pl.current_count < difference || _pl.current_count == difference) {
-
+              if (
+                _pl.current_count < difference ||
+                _pl.current_count == difference
+              ) {
                 _pl.count = _pl.current_count;
                 difference = difference - _pl.count;
-
-
               } else if (_pl.current_count > difference) {
-
                 _pl.count = difference;
                 difference = 0;
               }
@@ -1470,53 +1643,57 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       }
     });
 
-    $scope.testPatches($scope.store_out, callback => {
-
+    $scope.testPatches($scope.store_out, (callback) => {
       if (callback.patchCount) {
-        $scope.error = `##word.err_patch_count##   ( ${callback.patch_list.join('-')} )`;
+        $scope.error = `##word.err_patch_count##   ( ${callback.patch_list.join(
+          "-"
+        )} )`;
         return;
-      };
+      }
 
-      $scope.financialYear($scope.store_out.date, is_allowed_date => {
+      $scope.financialYear($scope.store_out.date, (is_allowed_date) => {
         if (!is_allowed_date) {
-          $scope.error = '##word.should_open_period##';
+          $scope.error = "##word.should_open_period##";
         } else {
-
-          if ($scope.account_invoices && $scope.account_invoices.payable_list && $scope.account_invoices.payable_list.length > 0) {
-            $scope.store_out.payable_list = $scope.account_invoices.payable_list;
+          if (
+            $scope.account_invoices &&
+            $scope.account_invoices.payable_list &&
+            $scope.account_invoices.payable_list.length > 0
+          ) {
+            $scope.store_out.payable_list =
+              $scope.account_invoices.payable_list;
           }
-
 
           $scope.busy = true;
           $http({
             method: "POST",
             url: "/api/stores_out/update",
-            data: $scope.store_out
+            data: $scope.store_out,
           }).then(
             function (response) {
               $scope.busy = false;
               if (response.data.done) {
-                site.hideModal('#updateStoreOutModal');
+                site.hideModal("#updateStoreOutModal");
               } else {
                 $scope.error = response.data.error;
-                if (response.data.error.like('*n`t Found Open Shi*')) {
-                  $scope.error = "##word.open_shift_not_found##"
-                } else if (response.data.error.like('*n`t Open Perio*')) {
-                  $scope.error = "##word.should_open_period##"
+                if (response.data.error.like("*n`t Found Open Shi*")) {
+                  $scope.error = "##word.open_shift_not_found##";
+                } else if (response.data.error.like("*n`t Open Perio*")) {
+                  $scope.error = "##word.should_open_period##";
                 }
               }
             },
             function (err) {
               console.log(err);
             }
-          )
+          );
         }
-      })
-    })
+      });
+    });
   };
 
   $scope.loadStores = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
     $http({
       method: "POST",
@@ -1524,22 +1701,22 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
+          name_ar: 1,
+          name_en: 1,
           type: 1,
-          code: 1
-        }
-      }
+          code: 1,
+        },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) $scope.storesList = response.data.list;
-
       },
       function (err) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.loadCurrencies = function () {
@@ -1550,23 +1727,30 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
-          minor_currency_ar: 1, minor_currency_en: 1,
+          name_ar: 1,
+          name_en: 1,
+          minor_currency_ar: 1,
+          minor_currency_en: 1,
           ex_rate: 1,
-          code: 1
+          code: 1,
         },
         where: {
-          active: true
-        }
-      }
+          active: true,
+        },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.currenciesList = response.data.list;
-          $scope.currenciesList.forEach(_c => {
-            if ($scope.defaultSettings && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.currency && $scope.defaultSettings.accounting.currency.id == _c.id) {
-              $scope.currencySetting = _c
+          $scope.currenciesList.forEach((_c) => {
+            if (
+              $scope.defaultSettings &&
+              $scope.defaultSettings.accounting &&
+              $scope.defaultSettings.accounting.currency &&
+              $scope.defaultSettings.accounting.currency.id == _c.id
+            ) {
+              $scope.currencySetting = _c;
             }
           });
         }
@@ -1575,36 +1759,34 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.getSafeByType = function (obj) {
-    $scope.error = '';
+    $scope.error = "";
     if ($scope.defaultSettings.accounting && obj.payment_method) {
       $scope.loadSafes(obj.payment_method, obj.currency);
       if (obj.payment_method.id == 1) {
         if ($scope.defaultSettings.accounting.safe_box)
-          obj.safe = $scope.defaultSettings.accounting.safe_box
+          obj.safe = $scope.defaultSettings.accounting.safe_box;
       } else {
         if ($scope.defaultSettings.accounting.safe_bank)
-          obj.safe = $scope.defaultSettings.accounting.safe_bank
+          obj.safe = $scope.defaultSettings.accounting.safe_bank;
       }
     }
   };
 
   $scope.loadSafes = function (method, currency, callback) {
-    callback = callback || function () { };
-    $scope.error = '';
+    callback = callback || function () {};
+    $scope.error = "";
     $scope.busy = true;
     if (currency) {
-
       let where = {
-        'currency.id': currency.id
+        "currency.id": currency.id,
       };
 
-      if (method.id == 1)
-        where['type.id'] = 1;
-      else where['type.id'] = 2;
+      if (method.id == 1) where["type.id"] = 1;
+      else where["type.id"] = 2;
 
       $http({
         method: "POST",
@@ -1612,57 +1794,55 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         data: {
           select: {
             id: 1,
-            name_ar: 1, name_en: 1,
+            name_ar: 1,
+            name_en: 1,
             commission: 1,
             currency: 1,
             type: 1,
-            code: 1
+            code: 1,
           },
-          where: where
-        }
+          where: where,
+        },
       }).then(
         function (response) {
           $scope.busy = false;
           if (response.data.done) {
             $scope.safesList = response.data.list;
           }
-          callback($scope.safesList)
+          callback($scope.safesList);
         },
         function (err) {
           $scope.busy = false;
           $scope.error = err;
         }
-      )
+      );
     }
-
   };
 
-
   $scope.loadStoresOutTypes = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
     $http({
       method: "POST",
-      url: '/api/stores_out/types/all',
-      data: {}
+      url: "/api/stores_out/types/all",
+      data: {},
     }).then(
       function (response) {
         $scope.busy = false;
         $scope.storesOutTypes = response.data;
-        $scope.storesOutTypes.forEach(_t => {
-          if (_t.id == site.toNumber("##query.type##"))
-            $scope.source_type = _t;
-        })
+        $scope.storesOutTypes.forEach((_t) => {
+          if (_t.id == site.toNumber("##query.type##")) $scope.source_type = _t;
+        });
       },
       function (err) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.loadCategories = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
     $scope.categories = [];
     $http({
@@ -1671,25 +1851,25 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
-          code: 1
-        }
-      }
+          name_ar: 1,
+          name_en: 1,
+          code: 1,
+        },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) $scope.categories = response.data.list;
-
       },
       function (err) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.loadTaxTypes = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
     $http({
       method: "POST",
@@ -1698,10 +1878,11 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         select: {
           code: 1,
           id: 1,
-          name_ar: 1, name_en: 1,
-          value: 1
-        }
-      }
+          name_ar: 1,
+          name_en: 1,
+          value: 1,
+        },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -1711,11 +1892,11 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.loadDiscountTypes = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
     $http({
       method: "POST",
@@ -1724,11 +1905,12 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         select: {
           code: 1,
           id: 1,
-          name_ar: 1, name_en: 1,
+          name_ar: 1,
+          name_en: 1,
           value: 1,
-          type: 1
-        }
-      }
+          type: 1,
+        },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -1738,24 +1920,22 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
-
 
   $scope.searchAll = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.loadAll($scope.search);
     $scope.search = {};
-    site.hideModal('#StoresOutSearchModal');
+    site.hideModal("#StoresOutSearchModal");
   };
 
-
   $scope.loadAll = function (where) {
-    $scope.error = '';
+    $scope.error = "";
     $scope.list = [];
 
     if (!where || !Object.keys(where).length) {
-      where = { limit: 100, type: { id: site.toNumber("##query.type##") } }
+      where = { limit: 100, type: { id: site.toNumber("##query.type##") } };
     } else {
       where.type = { id: site.toNumber("##query.type##") };
     }
@@ -1765,8 +1945,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/stores_out/all",
       data: {
-        where: where
-      }
+        where: where,
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -1781,7 +1961,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   /*   $scope.loadStores_Out();
@@ -1791,7 +1971,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     $scope.get_open_shift((shift) => {
       if (shift) {
         $scope.account_invoices = {
-          image_url: '/images/account_invoices.png',
+          image_url: "/images/account_invoices.png",
           date: new Date(),
           invoice_id: store_out.id,
           invoice_type: store_out.type,
@@ -1808,58 +1988,75 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           source_type: {
             id: 2,
             en: "Sales Store",
-            ar: "إذن صرف / فاتورة مبيعات"
+            ar: "إذن صرف / فاتورة مبيعات",
           },
-          active: true
+          active: true,
         };
 
         if ($scope.defaultSettings.accounting) {
           $scope.account_invoices.currency = $scope.currencySetting;
           if ($scope.defaultSettings.accounting.payment_method) {
-            $scope.account_invoices.payment_method = $scope.defaultSettings.accounting.payment_method;
-            $scope.loadSafes($scope.account_invoices.payment_method, $scope.account_invoices.currency);
+            $scope.account_invoices.payment_method =
+              $scope.defaultSettings.accounting.payment_method;
+            $scope.loadSafes(
+              $scope.account_invoices.payment_method,
+              $scope.account_invoices.currency
+            );
             if ($scope.account_invoices.payment_method.id == 1)
-              $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe_box;
-            else $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe_bank;
+              $scope.account_invoices.safe =
+                $scope.defaultSettings.accounting.safe_box;
+            else
+              $scope.account_invoices.safe =
+                $scope.defaultSettings.accounting.safe_bank;
           }
         }
         if ($scope.account_invoices.currency) {
-          $scope.account_invoices.amount_currency = site.toNumber($scope.account_invoices.net_value) / site.toNumber($scope.account_invoices.currency.ex_rate);
-          $scope.account_invoices.amount_currency = site.toNumber($scope.account_invoices.amount_currency);
-          $scope.account_invoices.paid_up = $scope.account_invoices.amount_currency;
-
+          $scope.account_invoices.amount_currency =
+            site.toNumber($scope.account_invoices.net_value) /
+            site.toNumber($scope.account_invoices.currency.ex_rate);
+          $scope.account_invoices.amount_currency = site.toNumber(
+            $scope.account_invoices.amount_currency
+          );
+          $scope.account_invoices.paid_up =
+            $scope.account_invoices.amount_currency;
         }
         $scope.calc($scope.account_invoices);
 
-        site.showModal('#accountInvoiceModal');
-      } else $scope.error = '##word.open_shift_not_found##';
+        site.showModal("#accountInvoiceModal");
+      } else $scope.error = "##word.open_shift_not_found##";
     });
   };
 
   $scope.addAccountInvoice = function (account_invoices) {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
     $scope.detailsCustomer((customer) => {
-
-      if (account_invoices.paid_up < account_invoices.amount_currency && account_invoices.payment_type.id == 1) {
+      if (
+        account_invoices.paid_up < account_invoices.amount_currency &&
+        account_invoices.payment_type.id == 1
+      ) {
         $scope.error = "##word.amount_must_paid_full##";
         return;
-      };
+      }
 
       if (account_invoices.paid_up > 0 && !account_invoices.safe) {
         $scope.error = "##word.should_select_safe##";
         return;
-
       } else if (account_invoices.paid_up > account_invoices.amount_currency) {
         $scope.error = "##word.err_net_value##";
         return;
       }
 
-      if (account_invoices.customer && account_invoices.payment_method && account_invoices.payment_method.id == 5) {
+      if (
+        account_invoices.customer &&
+        account_invoices.payment_method &&
+        account_invoices.payment_method.id == 5
+      ) {
         let totalCustomerBalance = 0;
         totalCustomerBalance = customer.balance + (customer.credit_limit || 0);
 
-        let customerPay = account_invoices.paid_up * account_invoices.currency.ex_rate;
+        let customerPay =
+          account_invoices.paid_up * account_invoices.currency.ex_rate;
 
         if (customerPay > totalCustomerBalance) {
           $scope.error = "##word.cannot_exceeded_customer##";
@@ -1867,122 +2064,172 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         }
       }
 
-      if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.work_posting)
+      if (
+        $scope.defaultSettings.general_Settings &&
+        $scope.defaultSettings.general_Settings.work_posting
+      )
         account_invoices.posting = false;
       else account_invoices.posting = true;
 
       $http({
         method: "POST",
         url: "/api/account_invoices/add",
-        data: account_invoices
+        data: account_invoices,
       }).then(
         function (response) {
           $scope.busy = false;
           if (response.data.done) {
             $scope.account_invoices = {};
-            if (account_invoices.source_type.id == 2 && account_invoices.paid_up > 0) {
+            if (
+              account_invoices.source_type.id == 2 &&
+              account_invoices.paid_up > 0
+            ) {
               account_invoices.ref_invoice_id = response.data.doc.id;
-              if (account_invoices.invoice_type.id == 3 || account_invoices.invoice_type.id == 4) {
-
+              if (
+                account_invoices.invoice_type.id == 3 ||
+                account_invoices.invoice_type.id == 4
+              ) {
                 if (account_invoices.invoice_type.id == 3) {
                   account_invoices.in_type = {
                     id: 3,
                     en: "sales invoice",
-                    ar: "فاتورة مبيعات"
+                    ar: "فاتورة مبيعات",
                   };
                 } else if (account_invoices.invoice_type.id == 4) {
                   account_invoices.in_type = {
                     id: 2,
                     en: "Orders Screen",
-                    ar: "شاشة الطلبات"
+                    ar: "شاشة الطلبات",
                   };
                 }
 
                 account_invoices.source_type = {
                   id: 8,
                   en: "Amount In",
-                  ar: "سند قبض"
+                  ar: "سند قبض",
                 };
-                $scope.addAccountInvoice(account_invoices)
-
+                $scope.addAccountInvoice(account_invoices);
               } else if (account_invoices.invoice_type.id == 6) {
-
                 account_invoices.in_type = {
                   id: 4,
                   en: "Return purchase invoice",
-                  ar: "مرتجع فاتورة مشتريات"
+                  ar: "مرتجع فاتورة مشتريات",
                 };
                 account_invoices.source_type = {
                   id: 9,
                   en: "Amount Out",
-                  ar: "سند صرف"
+                  ar: "سند صرف",
                 };
-                $scope.addAccountInvoice(account_invoices)
+                $scope.addAccountInvoice(account_invoices);
               }
             }
-            site.hideModal('#accountInvoiceModal');
+            site.hideModal("#accountInvoiceModal");
             $scope.loadAll({ date: new Date() });
           } else {
             $scope.error = response.data.error;
-            if (response.data.error.like('*Must Enter Code*')) {
-              $scope.error = "##word.must_enter_code##"
+            if (response.data.error.like("*Must Enter Code*")) {
+              $scope.error = "##word.must_enter_code##";
             }
           }
         },
         function (err) {
           console.log(err);
         }
-      )
-    })
+      );
+    });
   };
 
   $scope.thermalPrint = function (obj) {
-    $scope.error = '';
+    $scope.error = "";
     if ($scope.busy) return;
     $scope.busy = true;
 
     $scope.thermal = { ...obj };
-
+    $("#thermalPrint").removeClass("hidden");
     if ($scope.thermal.currency) {
-      site.strings['currency'] = {
-        ar: ' ' + $scope.thermal.currency.name_ar + ' ',
-        en: ' ' + $scope.thermal.currency.name_en + ' ',
-      }
-      site.strings['from100'] = {
-        ar: ' ' + $scope.thermal.currency.minor_currency_ar + ' ',
-        en: ' ' + $scope.thermal.currency.minor_currency_en + ' ',
-      }
+      site.strings["currency"] = {
+        ar: " " + $scope.thermal.currency.name_ar + " ",
+        en: " " + $scope.thermal.currency.name_en + " ",
+      };
+      site.strings["from100"] = {
+        ar: " " + $scope.thermal.currency.minor_currency_ar + " ",
+        en: " " + $scope.thermal.currency.minor_currency_en + " ",
+      };
       $scope.thermal.net_txt = site.stringfiy($scope.thermal.net_value);
-
     }
 
     JsBarcode(".barcode", $scope.thermal.code);
-    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path && $scope.defaultSettings.printer_program.printer_path.ip) {
-
-      site.showModal('#thermalPrintModal');
+    if (
+      $scope.defaultSettings.printer_program &&
+      $scope.defaultSettings.printer_program.printer_path &&
+      $scope.defaultSettings.printer_program.printer_path.ip
+    ) {
       site.printAsImage({
-        selector: '#thermalPrint',
-        ip: '127.0.0.1',
-        port: '60080',
-        printer: $scope.defaultSettings.printer_program.printer_path.ip.name.trim()
+        selector: "#thermalPrint",
+        ip: "127.0.0.1",
+        port: "60080",
+        printer:
+          $scope.defaultSettings.printer_program.printer_path.ip.name.trim(),
       });
+    } else {
+      $scope.error = "##word.thermal_printer_must_select##";
 
     }
-    $scope.busy = false;
 
+    $scope.busy = false;
+    $timeout(() => {
+      $("#thermalPrint").addClass("hidden");
+    }, 5000);
   };
 
   $scope.print = function () {
-    $scope.error = '';
+    $scope.error = "";
     if ($scope.busy) return;
     $scope.busy = true;
+    if ($scope.defaultSettings.printer_program.a4_printer) {
+      $("#storeOutDetails").removeClass("hidden");
 
-    site.printAsImage({
-      selector: '#storeOutDetails',
-      ip: '127.0.0.1',
-      port: '60080',
-      printer: 'Microsoft Print to PDF'
-    });
+      if ($scope.store_out.items.length > 5) {
+        $scope.invList = [];
+        let inv_length = $scope.store_out.items.length / 5;
+        inv_length = parseInt(inv_length);
+        let ramain_items = $scope.store_out.items.length - inv_length * 5;
+
+        if (ramain_items) {
+          inv_length += 1;
+        }
+
+        for (let i_inv = 0; i_inv < inv_length; i_inv++) {
+          let s_o = { ...$scope.store_out };
+
+          s_o.items = [];
+          $scope.store_out.items.forEach((itm, i) => {
+            if (i < (i_inv + 1) * 5 && !itm.$done_inv) {
+              s_o.items.push(itm);
+              itm.$done_inv = true;
+            }
+          });
+
+          $scope.invList.push(s_o);
+        }
+      } else {
+        $scope.invList = [{ ...$scope.store_out }];
+      }
+
+      site.printAsImage({
+        selector: "#storeOutDetails",
+        ip: "127.0.0.1",
+        port: "60080",
+        printer:
+          $scope.defaultSettings.printer_program.a4_printer.ip.name.trim(),
+      });
+    } else {
+      $scope.error = "##word.a4_printer_must_select##";
+    }
+    $scope.busy = false;
+    $timeout(() => {
+      $("#storeOutDetails").addClass("hidden");
+    }, 5000);
   };
 
   $scope.getCustomerGroupList = function () {
@@ -1992,10 +2239,11 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
-          code: 1
-        }
-      }
+          name_ar: 1,
+          name_en: 1,
+          code: 1,
+        },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -2004,17 +2252,16 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       function (err) {
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.getGender = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
     $scope.genderList = [];
     $http({
       method: "POST",
-      url: "/api/gender/all"
-
+      url: "/api/gender/all",
     }).then(
       function (response) {
         $scope.busy = false;
@@ -2024,38 +2271,34 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.ChangeUnitPatch = function (itm) {
-    $scope.error = '';
+    $scope.error = "";
     itm.price = itm.unit.price;
     itm.average_cost = itm.unit.average_cost;
 
-    $scope.getOfferActive(itm.barcode, offer_active => {
+    $scope.getOfferActive(itm.barcode, (offer_active) => {
       if (offer_active) {
-
-        offer_active.size_units_list.forEach(_offerUnit => {
+        offer_active.size_units_list.forEach((_offerUnit) => {
           if (_offerUnit.id === itm.unit.id) {
-            itm.discount = _offerUnit.discount
+            itm.discount = _offerUnit.discount;
           }
         });
-
       } else itm.discount = itm.unit.discount;
     });
 
-
     if (itm.store_units_list && itm.store_units_list.length > 0) {
-      itm.store_units_list.forEach(_store_unit => {
+      itm.store_units_list.forEach((_store_unit) => {
         if (_store_unit.id == itm.unit.id) {
-
           if (_store_unit.patch_list && _store_unit.patch_list.length > 0)
-            _store_unit.patch_list.forEach(_p => {
-              _p.current_count = _p.count
-              _p.count = 0
+            _store_unit.patch_list.forEach((_p) => {
+              _p.current_count = _p.count;
+              _p.count = 0;
             });
 
-          itm.patch_list = _store_unit.patch_list
+          itm.patch_list = _store_unit.patch_list;
         }
       });
     }
@@ -2064,21 +2307,21 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
   };
 
   $scope.getCustomersGetList = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/customers/all",
       data: {
         where: {
-          active: true
-        }
+          active: true,
+        },
         /*  select: {
           id: 1,
           name_ar: 1,
           name_en: 1,
         } */
-      }
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -2090,50 +2333,50 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.displayAddCustomer = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.customer = {
-      image_url: '/images/customer.png',
+      image_url: "/images/customer.png",
       active: true,
       balance_creditor: 0,
       balance_debtor: 0,
-      branch_list: [{
-        charge: [{}]
-      }],
+      branch_list: [
+        {
+          charge: [{}],
+        },
+      ],
       currency_list: [],
       opening_balance: [{ initial_balance: 0 }],
       bank_list: [{}],
-      dealing_company: [{}]
+      dealing_company: [{}],
     };
 
-    if (site.feature('medical')) {
-      $scope.customer.image_url = '/images/patients.png';
+    if (site.feature("medical")) {
+      $scope.customer.image_url = "/images/patients.png";
       $scope.customer.allergic_food_list = [{}];
       $scope.customer.allergic_drink_list = [{}];
       $scope.customer.medicine_list = [{}];
       $scope.customer.disease_list = [{}];
-
-    } else if (site.feature('school') || site.feature('academy')) {
-      $scope.customer.image_url = '/images/student.png';
+    } else if (site.feature("school") || site.feature("academy")) {
+      $scope.customer.image_url = "/images/student.png";
       $scope.customer.allergic_food_list = [{}];
       $scope.customer.allergic_drink_list = [{}];
       $scope.customer.medicine_list = [{}];
       $scope.customer.disease_list = [{}];
-
     }
-    site.showModal('#customerAddModal');
-    document.querySelector('#customerAddModal .tab-link').click();
+    site.showModal("#customerAddModal");
+    document.querySelector("#customerAddModal .tab-link").click();
   };
 
   $scope.addCustomer = function () {
-    $scope.error = '';
+    $scope.error = "";
     if ($scope.busy) {
       return;
     }
-    const v = site.validated('#customerAddModal');
+    const v = site.validated("#customerAddModal");
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
@@ -2142,36 +2385,37 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     $http({
       method: "POST",
       url: "/api/customers/add",
-      data: $scope.customer
+      data: $scope.customer,
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#customerAddModal');
+          site.hideModal("#customerAddModal");
         } else {
-          $scope.error = 'Please Login First';
-          if (response.data.error.like('*Must Enter Code*')) {
-            $scope.error = "##word.must_enter_code##"
-
-          } else if (response.data.error.like('*maximum number of adds exceeded*')) {
-            $scope.error = "##word.err_maximum_adds##"
-
-          } else if (response.data.error.like('*ername must be typed correctly*')) {
-            $scope.error = "##word.err_username_contain##"
-
-          } else if (response.data.error.like('*User Is Exist*')) {
-            $scope.error = "##word.user_exists##"
+          $scope.error = "Please Login First";
+          if (response.data.error.like("*Must Enter Code*")) {
+            $scope.error = "##word.must_enter_code##";
+          } else if (
+            response.data.error.like("*maximum number of adds exceeded*")
+          ) {
+            $scope.error = "##word.err_maximum_adds##";
+          } else if (
+            response.data.error.like("*ername must be typed correctly*")
+          ) {
+            $scope.error = "##word.err_username_contain##";
+          } else if (response.data.error.like("*User Is Exist*")) {
+            $scope.error = "##word.user_exists##";
           }
         }
       },
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.getCustomerList = function (ev) {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
     if (ev.which === 13) {
       $http({
@@ -2180,14 +2424,14 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         data: {
           search: $scope.search_customer,
           where: {
-            active: true
-          }
+            active: true,
+          },
           /*  select: {
             id: 1,
             name_ar: 1,
             name_en: 1,
           } */
-        }
+        },
       }).then(
         function (response) {
           $scope.busy = false;
@@ -2199,8 +2443,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           $scope.busy = false;
           $scope.error = err;
         }
-      )
-    };
+      );
+    }
   };
 
   $scope.getGovList = function (where) {
@@ -2210,14 +2454,15 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       url: "/api/goves/all",
       data: {
         where: {
-          active: true
+          active: true,
         },
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
-          code: 1
-        }
-      }
+          name_ar: 1,
+          name_en: 1,
+          code: 1,
+        },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -2229,9 +2474,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-
-    )
-
+    );
   };
 
   $scope.getCityList = function (gov) {
@@ -2241,15 +2484,16 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       url: "/api/city/all",
       data: {
         where: {
-          'gov.id': gov.id,
-          active: true
+          "gov.id": gov.id,
+          active: true,
         },
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
-          code: 1
-        }
-      }
+          name_ar: 1,
+          name_en: 1,
+          code: 1,
+        },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -2261,7 +2505,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
   $scope.getAreaList = function (city) {
     $scope.busy = true;
@@ -2270,10 +2514,10 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       url: "/api/area/all",
       data: {
         where: {
-          'city.id': city.id,
-          active: true
+          "city.id": city.id,
+          active: true,
         },
-      }
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -2285,7 +2529,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.loadDelegates = function () {
@@ -2296,9 +2540,9 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       url: "/api/delegates/all",
       data: {
         where: {
-          active: true
-        }
-      }
+          active: true,
+        },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -2310,17 +2554,16 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.getPaymentMethodList = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
     $scope.paymentMethodList = [];
     $http({
       method: "POST",
-      url: "/api/payment_method/all"
-
+      url: "/api/payment_method/all",
     }).then(
       function (response) {
         $scope.busy = false;
@@ -2330,27 +2573,29 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
-
   $scope.posting = function (store_out) {
-    $scope.error = '';
+    $scope.error = "";
 
     if (site.toNumber("##query.type##") == 4 && store_out.posting) {
       store_out.posting = false;
-      $scope.error = '##word.from_order_management_screen##';
+      $scope.error = "##word.from_order_management_screen##";
       return;
-    };
+    }
 
-
-    if (!store_out.posting && store_out.return_paid && store_out.net_value != store_out.return_paid.net_value) {
+    if (
+      !store_out.posting &&
+      store_out.return_paid &&
+      store_out.net_value != store_out.return_paid.net_value
+    ) {
       store_out.posting = true;
-      $scope.error = '##word.err_unpost_return##';
+      $scope.error = "##word.err_unpost_return##";
       return;
-    };
+    }
 
-    let notExistCount = store_out.items.some(_iz => _iz.count < 1);
+    let notExistCount = store_out.items.some((_iz) => _iz.count < 1);
 
     if (notExistCount) {
       if (store_out.posting) store_out.posting = false;
@@ -2358,45 +2603,54 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
 
       $scope.error = "##word.err_exist_count##";
       return;
-    };
+    }
 
-
-    $scope.getStockItems(store_out.items, store_out.store, callback => {
-
-      $scope.testPatches(store_out, callbackTest => {
-
+    $scope.getStockItems(store_out.items, store_out.store, (callback) => {
+      $scope.testPatches(store_out, (callbackTest) => {
         if (callbackTest.patchCount) {
-          $scope.error = `##word.err_patch_count##   ( ${callbackTest.patch_list.join('-')} )`;
+          $scope.error = `##word.err_patch_count##   ( ${callbackTest.patch_list.join(
+            "-"
+          )} )`;
           if (store_out.posting) store_out.posting = false;
           else store_out.posting = true;
 
           return;
-        };
+        }
 
         if (!callback) {
-
-          $scope.financialYear(store_out.date, is_allowed_date => {
+          $scope.financialYear(store_out.date, (is_allowed_date) => {
             if (!is_allowed_date) {
-              $scope.error = '##word.should_open_period##';
+              $scope.error = "##word.should_open_period##";
               if (store_out.posting) store_out.posting = false;
               else store_out.posting = true;
             } else {
-
               $scope.busy = true;
               $http({
                 method: "POST",
                 url: "/api/stores_out/posting",
-                data: store_out
+                data: store_out,
               }).then(
                 function (response) {
                   $scope.busy = false;
                   if (response.data.done) {
-                    if (!store_out.posting && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.link_warehouse_account_invoices) {
+                    if (
+                      !store_out.posting &&
+                      $scope.defaultSettings.accounting &&
+                      $scope.defaultSettings.accounting
+                        .link_warehouse_account_invoices
+                    ) {
                       $scope.deleteAccountInvoices(store_out);
-                    } else if (store_out.posting && store_out.type && !store_out.invoice && store_out.type.id != 5 && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.link_warehouse_account_invoices) {
-
+                    } else if (
+                      store_out.posting &&
+                      store_out.type &&
+                      !store_out.invoice &&
+                      store_out.type.id != 5 &&
+                      $scope.defaultSettings.accounting &&
+                      $scope.defaultSettings.accounting
+                        .link_warehouse_account_invoices
+                    ) {
                       let account_invoices = {
-                        image_url: '/images/account_invoices.png',
+                        image_url: "/images/account_invoices.png",
                         date: response.data.doc.date,
                         invoice_id: response.data.doc.id,
                         payment_type: response.data.doc.payment_type,
@@ -2407,7 +2661,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                         currency: response.data.doc.currency,
                         shift: response.data.doc.shift,
                         net_value: response.data.doc.net_value,
-                        Paid_from_customer: response.data.doc.Paid_from_customer,
+                        Paid_from_customer:
+                          response.data.doc.Paid_from_customer,
                         paid_up: response.data.doc.paid_up || 0,
                         payment_method: response.data.doc.payment_method,
                         safe: response.data.doc.safe,
@@ -2418,23 +2673,25 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                         source_type: {
                           id: 2,
                           en: "Sales Store",
-                          ar: "إذن صرف / فاتورة مبيعات"
+                          ar: "إذن صرف / فاتورة مبيعات",
                         },
-                        active: true
+                        active: true,
                       };
-                      $scope.addAccountInvoice(account_invoices)
+                      $scope.addAccountInvoice(account_invoices);
                     }
-
                   } else {
-                    $scope.error = '##word.error##';
-                    if (response.data.error.like('*OverDraft Not*')) {
-                      $scope.error = "##word.overdraft_not_active##"
-                    } else if (response.data.error.like('*n`t Found Open Shi*')) {
-                      $scope.error = "##word.open_shift_not_found##"
-                    } else if (response.data.error.like('*n`t Open Perio*')) {
-                      $scope.error = "##word.should_open_period##"
-                    } if (response.data.error.like('*t`s Have Account Invo*')) {
-                      $scope.error = "##word.cant_process_found_invoice##"
+                    $scope.error = "##word.error##";
+                    if (response.data.error.like("*OverDraft Not*")) {
+                      $scope.error = "##word.overdraft_not_active##";
+                    } else if (
+                      response.data.error.like("*n`t Found Open Shi*")
+                    ) {
+                      $scope.error = "##word.open_shift_not_found##";
+                    } else if (response.data.error.like("*n`t Open Perio*")) {
+                      $scope.error = "##word.should_open_period##";
+                    }
+                    if (response.data.error.like("*t`s Have Account Invo*")) {
+                      $scope.error = "##word.cant_process_found_invoice##";
                     }
                     if (store_out.posting) store_out.posting = false;
                     else store_out.posting = true;
@@ -2443,180 +2700,194 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
                 function (err) {
                   console.log(err);
                 }
-              )
+              );
             }
-          })
+          });
         } else {
-          if (store_out.posting)
-            store_out.posting = false;
+          if (store_out.posting) store_out.posting = false;
           else store_out.posting = true;
-          $scope.error = '##word.err_stock_item##';
+          $scope.error = "##word.err_stock_item##";
         }
-      })
-    })
+      });
+    });
   };
 
-
   $scope.postingAll = function (store_out_all) {
-    $scope.error = '';
+    $scope.error = "";
 
     let _store_out_all = store_out_all.reverse();
     let notExist = false;
     let notExistCountList = [];
-    _store_out_all.forEach(_stOut => {
-      let notExistCount = _stOut.items.some(_iz => _iz.count < 1);
+    _store_out_all.forEach((_stOut) => {
+      let notExistCount = _stOut.items.some((_iz) => _iz.count < 1);
       if (notExistCount) {
         notExist = true;
-        notExistCountList.push(_stOut.code)
+        notExistCountList.push(_stOut.code);
       }
     });
 
-
     if (notExist) {
-
-      $scope.error = `##word.err_exist_count_invoice##   ( ${notExistCountList.join('-')} )`;
+      $scope.error = `##word.err_exist_count_invoice##   ( ${notExistCountList.join(
+        "-"
+      )} )`;
       return;
-
     } else {
       let stopLoop = false;
       for (let i = 0; i < _store_out_all.length; i++) {
-
         $timeout(() => {
-
           if (!_store_out_all[i].posting) {
+            $scope.getStockItems(
+              _store_out_all[i].items,
+              _store_out_all[i].store,
+              (callback) => {
+                $scope.testPatches(_store_out_all[i], (callbackTest) => {
+                  if (callbackTest.patchCount) {
+                    $scope.error = `##word.err_patch_count##   ( ${callbackTest.patch_list.join(
+                      "-"
+                    )} )`;
+                    _store_out_all[i].posting = false;
+                    return;
+                  }
 
-            $scope.getStockItems(_store_out_all[i].items, _store_out_all[i].store, callback => {
+                  if (!callback && !stopLoop) {
+                    $scope.financialYear(
+                      _store_out_all[i].date,
+                      (is_allowed_date) => {
+                        if (!is_allowed_date) {
+                          $scope.error = "##word.should_open_period##";
+                        } else {
+                          _store_out_all[i].posting = true;
 
-              $scope.testPatches(_store_out_all[i], callbackTest => {
-
-                if (callbackTest.patchCount) {
-                  $scope.error = `##word.err_patch_count##   ( ${callbackTest.patch_list.join('-')} )`;
-                  _store_out_all[i].posting = false;
-                  return;
-                };
-
-                if (!callback && !stopLoop) {
-
-                  $scope.financialYear(_store_out_all[i].date, is_allowed_date => {
-                    if (!is_allowed_date) {
-                      $scope.error = '##word.should_open_period##';
-                    } else {
-
-                      _store_out_all[i].posting = true;
-
-                      $http({
-                        method: "POST",
-                        url: "/api/stores_out/posting",
-                        data: _store_out_all[i]
-                      }).then(
-                        function (response) {
-                          if (response.data.done) {
-                            if (_store_out_all[i].posting && !_store_out_all[i].invoice && _store_out_all[i].type && _store_out_all[i].type.id != 5 && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.link_warehouse_account_invoices) {
-
-                              let account_invoices = {
-                                image_url: '/images/account_invoices.png',
-                                date: response.data.doc.date,
-                                invoice_id: response.data.doc.id,
-                                payable_list: response.data.doc.payable_list,
-                                payment_type: response.data.doc.payment_type,
-                                customer: response.data.doc.customer,
-                                total_value_added: response.data.doc.total_value_added,
-                                invoice_type: response.data.doc.type,
-                                currency: response.data.doc.currency,
-                                shift: response.data.doc.shift,
-                                net_value: response.data.doc.net_value,
-                                Paid_from_customer: response.data.doc.Paid_from_customer,
-                                paid_up: response.data.doc.paid_up || 0,
-                                payment_method: response.data.doc.payment_method,
-                                safe: response.data.doc.safe,
-                                invoice_code: response.data.doc.code,
-                                total_discount: response.data.doc.total_discount,
-                                total_tax: response.data.doc.total_tax,
-                                current_book_list: response.data.doc.items,
-                                source_type: {
-                                  id: 2,
-                                  en: "Sales Store",
-                                  ar: "إذن صرف / فاتورة مبيعات"
-                                },
-                                active: true
-                              };
-                              $scope.addAccountInvoice(account_invoices)
+                          $http({
+                            method: "POST",
+                            url: "/api/stores_out/posting",
+                            data: _store_out_all[i],
+                          }).then(
+                            function (response) {
+                              if (response.data.done) {
+                                if (
+                                  _store_out_all[i].posting &&
+                                  !_store_out_all[i].invoice &&
+                                  _store_out_all[i].type &&
+                                  _store_out_all[i].type.id != 5 &&
+                                  $scope.defaultSettings.accounting &&
+                                  $scope.defaultSettings.accounting
+                                    .link_warehouse_account_invoices
+                                ) {
+                                  let account_invoices = {
+                                    image_url: "/images/account_invoices.png",
+                                    date: response.data.doc.date,
+                                    invoice_id: response.data.doc.id,
+                                    payable_list:
+                                      response.data.doc.payable_list,
+                                    payment_type:
+                                      response.data.doc.payment_type,
+                                    customer: response.data.doc.customer,
+                                    total_value_added:
+                                      response.data.doc.total_value_added,
+                                    invoice_type: response.data.doc.type,
+                                    currency: response.data.doc.currency,
+                                    shift: response.data.doc.shift,
+                                    net_value: response.data.doc.net_value,
+                                    Paid_from_customer:
+                                      response.data.doc.Paid_from_customer,
+                                    paid_up: response.data.doc.paid_up || 0,
+                                    payment_method:
+                                      response.data.doc.payment_method,
+                                    safe: response.data.doc.safe,
+                                    invoice_code: response.data.doc.code,
+                                    total_discount:
+                                      response.data.doc.total_discount,
+                                    total_tax: response.data.doc.total_tax,
+                                    current_book_list: response.data.doc.items,
+                                    source_type: {
+                                      id: 2,
+                                      en: "Sales Store",
+                                      ar: "إذن صرف / فاتورة مبيعات",
+                                    },
+                                    active: true,
+                                  };
+                                  $scope.addAccountInvoice(account_invoices);
+                                }
+                              } else {
+                                $scope.error = "##word.error##";
+                                if (
+                                  response.data.error.like("*OverDraft Not*")
+                                ) {
+                                  $scope.error =
+                                    "##word.overdraft_not_active##";
+                                } else if (
+                                  response.data.error.like(
+                                    "*n`t Found Open Shi*"
+                                  )
+                                ) {
+                                  $scope.error =
+                                    "##word.open_shift_not_found##";
+                                } else if (
+                                  response.data.error.like("*n`t Open Perio*")
+                                ) {
+                                  $scope.error = "##word.should_open_period##";
+                                }
+                                _store_out_all[i].posting = false;
+                              }
+                            },
+                            function (err) {
+                              console.log(err);
                             }
-                          } else {
-                            $scope.error = '##word.error##';
-                            if (response.data.error.like('*OverDraft Not*')) {
-                              $scope.error = "##word.overdraft_not_active##"
-                            } else if (response.data.error.like('*n`t Found Open Shi*')) {
-                              $scope.error = "##word.open_shift_not_found##"
-                            } else if (response.data.error.like('*n`t Open Perio*')) {
-                              $scope.error = "##word.should_open_period##"
-                            }
-                            _store_out_all[i].posting = false;
-                          }
-                        },
-                        function (err) {
-                          console.log(err);
+                          );
                         }
-                      )
-                    }
-
-                  })
-                } else {
-                  stopLoop = true;
-                }
-
-              })
-            })
-          };
+                      }
+                    );
+                  } else {
+                    stopLoop = true;
+                  }
+                });
+              }
+            );
+          }
         }, 1000 * i);
-
-      };
-      if (stopLoop) $scope.error = '##word.err_stock_item##';
+      }
+      if (stopLoop) $scope.error = "##word.err_stock_item##";
     }
-
   };
 
   $scope.getStockItems = function (items, store, callback) {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/stores_stock/item_stock",
-      data: { items: items, store: store }
+      data: { items: items, store: store },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-
           if (response.data.found) {
-            callback(true)
+            callback(true);
           } else {
-            callback(false)
+            callback(false);
           }
         } else {
-          callback(false)
+          callback(false);
         }
       },
       function (err) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
-
   $scope.selectItems = function () {
-
     if (!$scope.store_out.store) {
-      $scope.error = '##word.err_store_select##';
+      $scope.error = "##word.err_store_select##";
     } else if (!$scope.store_out.type) {
-      $scope.error = '##word.err_transaction_type##';
-    } else site.showModal('#selectItemsModal')
-
+      $scope.error = "##word.err_transaction_type##";
+    } else site.showModal("#selectItemsModal");
   };
 
   $scope.patchesList = function (itm) {
-    $scope.error = '';
+    $scope.error = "";
     $scope.item_patch = itm;
 
     $http({
@@ -2626,61 +2897,56 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         where: {
           store_id: $scope.store_out.store.id,
           unit_id: itm.unit.id,
-          barcode: itm.barcode
-        }
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-
-          if ($scope.store_out.type && $scope.store_out.type.id == 6) {
-
-            site.showModal('#patchesListReturnModal');
-
-          } else {
-            if (response.data.patch_list.length > 0 && $scope.item_patch.patch_list && $scope.item_patch.patch_list.length > 0) {
-              response.data.patch_list.forEach(_resPatch => {
-
-                _resPatch.current_count = _resPatch.count;
-                _resPatch.count = 0;
-                if ($scope.item_patch.patch_list && $scope.item_patch.patch_list.length > 0)
-                  $scope.item_patch.patch_list.forEach(_itemPatch => {
-
-                    if (_resPatch.patch == _itemPatch.patch) {
-                      _resPatch.count = _itemPatch.count;
-                      _resPatch.current_count = _itemPatch.current_count;
-                      if (_itemPatch.select) _resPatch.select = _itemPatch.select;
-                    }
-
-                  });
-              });
-              $scope.item_patch.patch_list = response.data.patch_list;
-              site.showModal('#patchesListModal');
-            }
-
+          barcode: itm.barcode,
+        },
+      },
+    }).then(function (response) {
+      $scope.busy = false;
+      if (response.data.done) {
+        if ($scope.store_out.type && $scope.store_out.type.id == 6) {
+          site.showModal("#patchesListReturnModal");
+        } else {
+          if (
+            response.data.patch_list.length > 0 &&
+            $scope.item_patch.patch_list &&
+            $scope.item_patch.patch_list.length > 0
+          ) {
+            response.data.patch_list.forEach((_resPatch) => {
+              _resPatch.current_count = _resPatch.count;
+              _resPatch.count = 0;
+              if (
+                $scope.item_patch.patch_list &&
+                $scope.item_patch.patch_list.length > 0
+              )
+                $scope.item_patch.patch_list.forEach((_itemPatch) => {
+                  if (_resPatch.patch == _itemPatch.patch) {
+                    _resPatch.count = _itemPatch.count;
+                    _resPatch.current_count = _itemPatch.current_count;
+                    if (_itemPatch.select) _resPatch.select = _itemPatch.select;
+                  }
+                });
+            });
+            $scope.item_patch.patch_list = response.data.patch_list;
+            site.showModal("#patchesListModal");
           }
         }
-      })
-
-
+      }
+    });
   };
 
   $scope.viewPatchesList = function (itm) {
-    $scope.error = '';
+    $scope.error = "";
     $scope.item_patch = itm;
 
-    site.showModal('#patchesListViewModal');
-
+    site.showModal("#patchesListViewModal");
   };
 
-
   $scope.selectAll = function (item_patch) {
-    item_patch.patch_list.forEach(element => {
+    item_patch.patch_list.forEach((element) => {
       if (item_patch.$select_all) {
-        element.select = true
+        element.select = true;
       } else if (!item_patch.$select_all) {
-        element.select = false
+        element.select = false;
       }
     });
   };
@@ -2689,64 +2955,63 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     let bigger = false;
     let count = 0;
 
-    itm.patch_list.forEach(_pl => {
+    itm.patch_list.forEach((_pl) => {
       if (itm.work_serial) {
-        if (_pl.select) _pl.count = 1
-        else _pl.count = 0
+        if (_pl.select) _pl.count = 1;
+        else _pl.count = 0;
       }
       if (_pl.count > _pl.current_count) bigger = true;
       count += _pl.count;
     });
 
     if (itm.count != count) {
-      $scope.error = '##word.err_patch_count##';
+      $scope.error = "##word.err_patch_count##";
       return;
-    };
+    }
 
     if (bigger) {
-      $scope.error = '##word.err_patch_current_count##';
+      $scope.error = "##word.err_patch_current_count##";
       return;
-    };
+    }
 
-    site.hideModal('#patchesListReturnModal');
-    $scope.error = '';
+    site.hideModal("#patchesListReturnModal");
+    $scope.error = "";
   };
 
   $scope.exitPatchModal = function (itm) {
     let bigger = false;
     let count = 0;
 
-    itm.patch_list.forEach(_pl => {
+    itm.patch_list.forEach((_pl) => {
       if (_pl.count > _pl.current_count) bigger = true;
       if (itm.work_serial) {
-        if (_pl.select) _pl.count = 1
-        else _pl.count = 0
+        if (_pl.select) _pl.count = 1;
+        else _pl.count = 0;
       }
     });
 
-
-    itm.patch_list.map(p => count += p.count);
+    itm.patch_list.map((p) => (count += p.count));
 
     if (itm.count != count) {
-      $scope.error = '##word.err_patch_count##';
+      $scope.error = "##word.err_patch_count##";
       return;
-    };
+    }
 
     if (bigger) {
-      $scope.error = '##word.err_patch_current_count##';
+      $scope.error = "##word.err_patch_current_count##";
       return;
-    };
+    }
 
-    site.hideModal('#patchesListModal');
-    $scope.error = '';
+    site.hideModal("#patchesListModal");
+    $scope.error = "";
   };
 
   $scope.handeStoreOut = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/stores_out/handel_store_out"
+      url: "/api/stores_out/handel_store_out",
     }).then(
       function (response) {
         $scope.busy = false;
@@ -2758,11 +3023,11 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.showReturnedStoreOut = function (ev) {
-    $scope.error = '';
+    $scope.error = "";
     if (ev.which === 13) {
       $scope.busy = true;
       $http({
@@ -2771,10 +3036,10 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         data: {
           search: $scope.storesOutSearch,
           where: {
-            'posting': true,
-            'return_paid.net_value': { $gt: 0 }
-          }
-        }
+            posting: true,
+            "return_paid.net_value": { $gt: 0 },
+          },
+        },
       }).then(
         function (response) {
           $scope.busy = false;
@@ -2786,12 +3051,11 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           $scope.busy = false;
           $scope.error = err;
         }
-      )
+      );
     }
   };
 
   $scope.selectReturnedStoreOut = function (i) {
-
     if ($scope.store_out && i.return_paid) {
       $scope.store_out.retured_number = i.code;
       $scope.store_out.delegate = i.delegate || {};
@@ -2804,20 +3068,17 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       $scope.store_out.items = [];
 
       if (i.return_paid.items && i.return_paid.items.length > 0) {
-
-        i.return_paid.items.forEach(_item => {
+        i.return_paid.items.forEach((_item) => {
           _item.r_count = _item.count;
           if (_item.patch_list && _item.patch_list.length > 0) {
-
-            _item.patch_list.forEach(_p => {
+            _item.patch_list.forEach((_p) => {
               _p.current_count = _p.count;
               _p.count = 0;
             });
-          };
+          }
           if (_item.count > 0) {
             $scope.store_out.items.push(_item);
             $scope.calcSize(_item);
-
           }
         });
       }
@@ -2828,40 +3089,35 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           $scope.store_out.paid_up = $scope.amount_currency;
   
         } */
-      site.hideModal('#returnedViewModal');
-    };
-
+      site.hideModal("#returnedViewModal");
+    }
   };
 
   $scope.financialYear = function (date, callback) {
-    if (site.feature('erp')) {
-
+    if (site.feature("erp")) {
       $scope.busy = true;
-      $scope.error = '';
+      $scope.error = "";
       $http({
         method: "POST",
         url: "/api/financial_years/is_allowed_date",
         data: {
-          date: new Date(date)
-        }
-      }).then(
-        function (response) {
-          $scope.busy = false;
-          is_allowed_date = response.data.doc;
-          callback(is_allowed_date);
-        }
-      );
+          date: new Date(date),
+        },
+      }).then(function (response) {
+        $scope.busy = false;
+        is_allowed_date = response.data.doc;
+        callback(is_allowed_date);
+      });
     } else callback(true);
-
   };
 
   $scope.loadPaymentTypes = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
     $http({
       method: "POST",
-      url: '/api/payment_type/all',
-      data: {}
+      url: "/api/payment_type/all",
+      data: {},
     }).then(
       function (response) {
         $scope.busy = false;
@@ -2871,29 +3127,30 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.get_open_shift = function (callback) {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/shifts/get_open_shift",
       data: {
         where: {
-          active: true
+          active: true,
         },
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
+          name_ar: 1,
+          name_en: 1,
           code: 1,
           from_date: 1,
           from_time: 1,
           to_date: 1,
-          to_time: 1
-        }
-      }
+          to_time: 1,
+        },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -2909,18 +3166,18 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         $scope.error = err;
         callback(null);
       }
-    )
+    );
   };
 
   $scope.getOfferActive = function (barcode, callback) {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/stores_offer/offer_active",
       data: {
         where: { date: new Date($scope.store_out.date), barcode: barcode },
-      }
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -2935,36 +3192,36 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         $scope.error = err;
         callback(null);
       }
-    )
+    );
   };
 
   $scope.paymentsPayable = function (type) {
-    $scope.error = '';
+    $scope.error = "";
     $scope.account_invoices = $scope.account_invoices || {};
-    $scope.account_invoices.payable_list = $scope.account_invoices.payable_list || [{}];
-    if (type === 'view') {
-      site.showModal('#addPaymentsModal');
-
+    $scope.account_invoices.payable_list = $scope.account_invoices
+      .payable_list || [{}];
+    if (type === "view") {
+      site.showModal("#addPaymentsModal");
     }
   };
 
   $scope.getNumberingAuto = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
 
-    let screen = '';
+    let screen = "";
     if (site.toNumber("##query.type##")) {
-
-      if (site.toNumber("##query.type##") == 3) screen = 'sales_invoices_store';
-      else if (site.toNumber("##query.type##") == 5) screen = 'damage_store';
-      else if (site.toNumber("##query.type##") == 6) screen = 'return_sales_store';
+      if (site.toNumber("##query.type##") == 3) screen = "sales_invoices_store";
+      else if (site.toNumber("##query.type##") == 5) screen = "damage_store";
+      else if (site.toNumber("##query.type##") == 6)
+        screen = "return_sales_store";
 
       $http({
         method: "POST",
         url: "/api/numbering/get_automatic",
         data: {
-          screen: screen
-        }
+          screen: screen,
+        },
       }).then(
         function (response) {
           $scope.busy = false;
@@ -2976,20 +3233,19 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           $scope.busy = false;
           $scope.error = err;
         }
-      )
+      );
     }
-
   };
 
   $scope.getNumberingAutoInvoice = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/numbering/get_automatic",
       data: {
-        screen: "sales_invoices"
-      }
+        screen: "sales_invoices",
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -3001,18 +3257,18 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.getNumberingAutoCustomer = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/numbering/get_automatic",
       data: {
-        screen: "customers"
-      }
+        screen: "customers",
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -3024,7 +3280,7 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.loadStoresOutTypes();
@@ -3045,5 +3301,4 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
   $scope.loadCurrencies();
   $scope.getCustomersGetList();
   $scope.loadAll({ date: new Date() });
-
 });

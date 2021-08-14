@@ -1,7 +1,7 @@
 app.controller("stores_in", function ($scope, $http, $timeout) {
   $scope._search = {};
   $scope.thermal = {};
-
+  $scope.invList = [];
   $scope.store_in = {
     discountes: [],
     taxes: []
@@ -154,53 +154,98 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
   };
 
   $scope.thermalPrint = function (obj) {
-    $scope.error = '';
+    $scope.error = "";
     if ($scope.busy) return;
     $scope.busy = true;
 
     $scope.thermal = { ...obj };
-
+    $("#thermalPrint").removeClass("hidden");
     if ($scope.thermal.currency) {
-      site.strings['currency'] = {
-        ar: ' ' + $scope.thermal.currency.name_ar + ' ',
-        en: ' ' + $scope.thermal.currency.name_en + ' ',
-      }
-      site.strings['from100'] = {
-        ar: ' ' + $scope.thermal.currency.minor_currency_ar + ' ',
-        en: ' ' + $scope.thermal.currency.minor_currency_en + ' ',
-      }
+      site.strings["currency"] = {
+        ar: " " + $scope.thermal.currency.name_ar + " ",
+        en: " " + $scope.thermal.currency.name_en + " ",
+      };
+      site.strings["from100"] = {
+        ar: " " + $scope.thermal.currency.minor_currency_ar + " ",
+        en: " " + $scope.thermal.currency.minor_currency_en + " ",
+      };
       $scope.thermal.net_txt = site.stringfiy($scope.thermal.net_value);
-
     }
 
     JsBarcode(".barcode", $scope.thermal.code);
-    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path && $scope.defaultSettings.printer_program.printer_path.ip) {
-
-      site.showModal('#thermalPrintModal');
+    if (
+      $scope.defaultSettings.printer_program &&
+      $scope.defaultSettings.printer_program.printer_path &&
+      $scope.defaultSettings.printer_program.printer_path.ip
+    ) {
       site.printAsImage({
-        selector: '#thermalPrint',
-        ip: '127.0.0.1',
-        port: '60080',
-        printer: $scope.defaultSettings.printer_program.printer_path.ip.name.trim()
+        selector: "#thermalPrint",
+        ip: "127.0.0.1",
+        port: "60080",
+        printer:
+          $scope.defaultSettings.printer_program.printer_path.ip.name.trim(),
       });
+    } else {
+      $scope.error = "##word.thermal_printer_must_select##";
 
     }
-    $scope.busy = false;
 
+    $scope.busy = false;
+    $timeout(() => {
+      $("#thermalPrint").addClass("hidden");
+    }, 5000);
   };
 
   $scope.print = function () {
-    $scope.error = '';
+    $scope.error = "";
     if ($scope.busy) return;
     $scope.busy = true;
+    if ($scope.defaultSettings.printer_program.a4_printer) {
+      $("#storeInDetails").removeClass("hidden");
 
-    site.printAsImage({
-      selector: '#storeInDetails',
-      ip: '127.0.0.1',
-      port: '60080',
-      printer: 'Microsoft Print to PDF'
-    });
+      if ($scope.store_in.items.length > 5) {
+        $scope.invList = [];
+        let inv_length = $scope.store_in.items.length / 5;
+        inv_length = parseInt(inv_length);
+        let ramain_items = $scope.store_in.items.length - inv_length * 5;
+
+        if (ramain_items) {
+          inv_length += 1;
+        }
+
+        for (let i_inv = 0; i_inv < inv_length; i_inv++) {
+          let s_o = { ...$scope.store_in };
+
+          s_o.items = [];
+          $scope.store_in.items.forEach((itm, i) => {
+            if (i < (i_inv + 1) * 5 && !itm.$done_inv) {
+              s_o.items.push(itm);
+              itm.$done_inv = true;
+            }
+          });
+
+          $scope.invList.push(s_o);
+        }
+      } else {
+        $scope.invList = [{ ...$scope.store_in }];
+      }
+
+      site.printAsImage({
+        selector: "#storeInDetails",
+        ip: "127.0.0.1",
+        port: "60080",
+        printer:
+          $scope.defaultSettings.printer_program.a4_printer.ip.name.trim(),
+      });
+    } else {
+      $scope.error = "##word.a4_printer_must_select##";
+    }
+    $scope.busy = false;
+    $timeout(() => {
+      $("#storeInDetails").addClass("hidden");
+    }, 5000);
   };
+
 
   $scope.addTax = function () {
     $scope.error = '';

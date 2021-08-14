@@ -19,10 +19,10 @@
         </div>
         <div class="modal-body">
 
-            <div id="storeInDetails" x-import="inventory-stores-in/view.html"></div>
+            <div x-import="inventory-stores-in/view.html"></div>
 
         </div>
-        <h2 class="center">{{error}}</h2>
+        <h2 class="bold red text-center"> {{error}}</h2>
         <div class="modal-footer center">
             <i-button type="print" x-permissions="stores_in_print || stores_in_manage" label="##word.print##" ng-click="print()"></i-button>
             <i-button x-permissions="stores_in_print || stores_in_manage" label="##word.thermal_print##" ng-click="thermalPrint(store_in)"></i-button>

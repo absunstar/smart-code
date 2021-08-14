@@ -1285,41 +1285,7 @@
         "en": "Phone Number",
         "ar": "رقم التليفون"
     },
-    {
-        "name": "printer_program",
-        "en": "Printer Program",
-        "ar": "برنامج الطباعة"
-    },
-    {
-        "name": "finger_program",
-        "en": "Finger Print Program",
-        "ar": "برنامج البصمة"
-    },
-    {
-        "name": "finger_code",
-        "en": "Finger Print Code",
-        "ar": "كود البصمة"
-    },
-    {
-        "name": "basic_printer",
-        "en": "Basic Printer",
-        "ar": "الطابعة الرئيسية"
-    },
-    {
-        "name": "place_program",
-        "en": "Place Program",
-        "ar": "مكان البرنامج "
-    },
-    {
-        "name": "program_ip",
-        "en": "Program Ip",
-        "ar": " أي بي البرنامج"
-    },
-    {
-        "name": "program_port",
-        "en": "Program Port",
-        "ar": "بورت البرنامج"
-    },
+  
     {
         "name": "mobile",
         "en": "Mobile",
