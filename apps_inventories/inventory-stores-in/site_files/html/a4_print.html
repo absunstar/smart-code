@@ -188,8 +188,7 @@
 
         <tr ng-repeat="itm in st_i.items">
           <td class="center blue">
-            {{$index + 1}}
-
+            {{itm.$index}}
           </td>
 
           <td class="center">
@@ -302,7 +301,7 @@
     <br />
     <br />
     <br />
-    <p class="txt19 center bold black">({{$index + 1}})</p>
+    <p class="txt19 center bold black">Page {{$index + 1}} / {{invList.length}}</p>
     <br />
     <hr />
     <hr />

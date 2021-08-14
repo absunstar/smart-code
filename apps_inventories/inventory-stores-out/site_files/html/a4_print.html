@@ -196,7 +196,7 @@
 
         <tr ng-repeat="itm in st_o.items">
           <td class="center txt16 blue">
-            {{$index + 1}}
+            {{itm.$index}}
           </td>
 
           <td class="center txt16 userPrint blue">{{itm.barcode}}</td>
@@ -317,7 +317,7 @@
     <br />
     <br />
     <br />
-    <p class="txt19 center bold black">({{$index + 1}})</p>
+    <p class="txt19 center bold black">Page {{$index + 1}} / {{invList.length}}</p>
     <br />
     <hr />
     <hr />

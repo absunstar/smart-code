@@ -2205,8 +2205,9 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
           s_o.items = [];
           $scope.store_out.items.forEach((itm, i) => {
             if (i < (i_inv + 1) * 5 && !itm.$done_inv) {
-              s_o.items.push(itm);
               itm.$done_inv = true;
+              itm.$index = i + 1;
+              s_o.items.push(itm);
             }
           });
 
