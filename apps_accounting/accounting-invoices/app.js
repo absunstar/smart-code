@@ -143,8 +143,8 @@ module.exports = function init(site) {
     account_invoices_doc.remain_amount = 0
 
     if (account_invoices_doc.paid_up) {
-      account_invoices_doc.total_paid_up = site.toNumber(account_invoices_doc.paid_up) * site.toNumber(account_invoices_doc.currency.ex_rate)
-
+      account_invoices_doc.total_paid_up = account_invoices_doc.paid_up * account_invoices_doc.currency.ex_rate
+      account_invoices_doc.total_paid_up = site.toNumber(account_invoices_doc.total_paid_up)
       if (account_invoices_doc.currency)
         account_invoices_doc.remain_amount = site.toNumber(account_invoices_doc.net_value) - account_invoices_doc.total_paid_up
     } else account_invoices_doc.remain_amount = site.toNumber(account_invoices_doc.net_value)
@@ -948,6 +948,7 @@ module.exports = function init(site) {
               }
 
             })
+            account_invoices_doc.total_paid_up = site.toNumber(account_invoices_doc.total_paid_up)
 
             account_invoices_doc.remain_amount = site.toNumber(account_invoices_doc.net_value) - site.toNumber(account_invoices_doc.total_paid_up)
             account_invoices_doc.remain_amount = site.toNumber(account_invoices_doc.remain_amount)
@@ -1452,6 +1453,7 @@ module.exports = function init(site) {
 
               site.call('[account_invoices][order_invoice][+]', { ...under_paid })
             }
+            account_invoices_doc.total_paid_up = site.toNumber(account_invoices_doc.total_paid_up)
 
             if (account_invoices_doc._id) {
 

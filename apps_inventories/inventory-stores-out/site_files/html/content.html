@@ -359,7 +359,7 @@
                         ng-model="store_out.amount_currency" label="##word.amount_currency##" type="number"></i-control>
 
                     <i-control class="col2"
-                        ng-show="store_out.type.id != 5 && defaultSettings.accounting.create_invoice_auto"
+                        ng-show="store_out.type.id != 5 && defaultSettings.accounting.create_invoice_auto && store_out.payment_type.id == 2"
                         ng-model="store_out.paid_up" label="##word.paid_up##" type="number">
                     </i-control>
 

@@ -1241,6 +1241,11 @@
         "ar": "تفريغ البحث"
     },
     {
+        "name": "invoice_header",
+        "en": "Invoice Header",
+        "ar": "مقدمة الفاتورة"
+    },
+    {
         "name": "invoice_header_right",
         "en": "Invoice Header right",
         "ar": "مقدمة الفاتورة يمين"
