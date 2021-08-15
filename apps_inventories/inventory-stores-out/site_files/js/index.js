@@ -2187,8 +2187,8 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
     if ($scope.busy) return;
     $scope.busy = true;
     if ($scope.defaultSettings.printer_program.a4_printer) {
-/*       $("#storeOutDetails").removeClass("hidden");
- */
+      $("#storeOutDetails").removeClass("hidden");
+
       if ($scope.store_out.items.length > 5) {
         $scope.invList = [];
         let inv_length = $scope.store_out.items.length / 5;
@@ -2228,9 +2228,9 @@ app.controller("stores_out", function ($scope, $http, $timeout) {
       $scope.error = "##word.a4_printer_must_select##";
     }
     $scope.busy = false;
-  /*   $timeout(() => {
+    $timeout(() => {
       $("#storeOutDetails").addClass("hidden");
-    }, 5000); */
+    }, 5000);
   };
 
   $scope.getCustomerGroupList = function () {
