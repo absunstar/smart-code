@@ -175,18 +175,17 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
           net_value: 0,
           total_value_added: 0
         };
+        console.log("ddddddddddddddddddddddddddddddddddddd");
 
         if ($scope.defaultSettings.inventory) {
           if ($scope.defaultSettings.inventory.store)
             $scope.order_invoice.store = $scope.storesList.find(_store => { return _store.id === $scope.defaultSettings.inventory.store.id });
         };
-
         if ($scope.defaultSettings.general_Settings) {
           if ($scope.defaultSettings.general_Settings.order_type) {
             $scope.order_invoice.transaction_type = $scope.defaultSettings.general_Settings.order_type;
 
             if ($scope.defaultSettings.general_Settings.order_type.id == 2) {
-
 
               if ($scope.defaultSettings.general_Settings.delivery_employee) {
 
