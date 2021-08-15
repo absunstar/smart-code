@@ -227,10 +227,10 @@
 
                             <table class="table bold hover loaded" id="t1">
                                 <thead>
-                                    <th>##word.stores_items_name##</th>
-                                    <th class="w150">##word.items_count##</th>
-                                    <th>##word.price##</th>
-                                    <th>##word.extras##</th>
+                                    <th class="w150">##word.stores_items_name##</th>
+                                    <th class="">##word.items_count##</th>
+                                    <th class="w100">##word.price##</th>
+                                    <th class="w100">##word.extras##</th>
                                     <th class="w100">##word.t_o## ##word.price##</th>
                                     <th class="not-print">##word.actions##</th>
                                 </thead>
@@ -238,7 +238,7 @@
                                 <tbody>
 
                                     <tr ng-repeat="size in order_invoice.book_list">
-                                        <td class="center title">
+                                        <td class="center title w150">
                                             <br>
                                             <p ng-show="size.add_sizes">{{size.name_##session.lang##}}
                                                 {{size.size_##session.lang##}}</p>
@@ -249,16 +249,16 @@
                                             <i-control ng-change="calcSize(size)" ng-model="size.count" type="number">
                                             </i-control>
                                         </td>
-                                        <td class="center blue">
-                                            <br ng-hide="size.discount.value > 0">
-                                            <p class="center">{{size.b_price}}</p>
+                                        <td class="center blue w100" >
+                                            <br>
+                                            <p class="center ">{{size.b_price}}</p>
                                             <del class="red txt16" ng-show="itm.discount.value > 0"> {{size.discount.current}}
                                             </del>
 
                                         </td>
 
-                                        <td class="center"><br> {{size.extras_price}}</td>
-                                        <td class="center green"><br> {{size.total}}</td>
+                                        <td class="center w100"><br> {{size.extras_price}}</td>
+                                        <td class="center green w100"><br> {{size.total}}</td>
 
                                         <!-- ng-hide="'##user.type##' == 'table'" -->
                                         <td class="center not-print">
