@@ -2215,17 +2215,21 @@ app.controller("stores_out", function ($scope, $http, $timeout, $interval) {
       } else {
         $scope.invList = [{ ...$scope.store_out }];
       }
-      $scope.invList.forEach((el, i) => {
-        $timeout(() => {
-          site.printAsImage({
-            selector: `#page_${i}`,
-            ip: "127.0.0.1",
-            port: "60080",
-            printer:
-              $scope.defaultSettings.printer_program.a4_printer.ip.name.trim(),
-          });
-        }, 1000 * (i + 1));
-      });
+      $timeout(() => {
+        $scope.invList.forEach((el, i) => {
+          $timeout(() => {
+            site.printAsImage({
+              selector: `#page_${i}`,
+              ip: "127.0.0.1",
+              port: "60080",
+              printer:
+                $scope.defaultSettings.printer_program.a4_printer.ip.name.trim(),
+            });
+          }, 5000);
+        });
+      }, 5000);
+
+      site.hideModal("#viewStoreOutModal");
     } else {
       $scope.error = "##word.a4_printer_must_select##";
     }
