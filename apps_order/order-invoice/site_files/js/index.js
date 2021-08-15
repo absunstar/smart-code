@@ -175,7 +175,6 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
           net_value: 0,
           total_value_added: 0
         };
-        console.log("ddddddddddddddddddddddddddddddddddddd");
 
         if ($scope.defaultSettings.inventory) {
           if ($scope.defaultSettings.inventory.store)
@@ -201,8 +200,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
           }
 
           if ($scope.defaultSettings.general_Settings.customer && $scope.defaultSettings.general_Settings.customer.id) {
-            $scope.order_invoice.customer = $scope.customerGet;
-
+            $scope.getCustomersGet($scope.defaultSettings.general_Settings.customer);
             if ($scope.defaultSettings.general_Settings.customer.gov)
               $scope.order_invoice.gov = $scope.govList.find(_gov => { return _gov.id === $scope.defaultSettings.general_Settings.customer.gov.id });
 
@@ -1187,8 +1185,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.doc) {
           $scope.defaultSettings = response.data.doc;
-          if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.customer)
-            $scope.getCustomersGet($scope.defaultSettings.general_Settings.customer);
+          $scope.newOrderInvoice();
         }
       },
       function (err) {
@@ -1608,7 +1605,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.customerGet = response.data.doc;
-          $scope.newOrderInvoice();
+          $scope.order_invoice.customer = response.data.doc;
         }
       },
       function (err) {
