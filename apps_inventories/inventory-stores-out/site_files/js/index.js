@@ -14,7 +14,7 @@ function scope() {
     .scope();
 }
 
-app.controller("stores_out", function ($scope, $http, $timeout  , $interval) {
+app.controller("stores_out", function ($scope, $http, $timeout, $interval) {
   $scope._search = {};
   $scope.thermal = {};
   $scope.invList = [];
@@ -2215,24 +2215,22 @@ app.controller("stores_out", function ($scope, $http, $timeout  , $interval) {
       } else {
         $scope.invList = [{ ...$scope.store_out }];
       }
-      $timeout(() => {
-        $scope.invList.forEach((el, i) => {
-          $timeout(() => {
-            site.printAsImage({
-              selector: `#page_${i}`,
-              ip: "127.0.0.1",
-              port: "60080",
-              printer:
-                $scope.defaultSettings.printer_program.a4_printer.ip.name.trim(),
-            });
-          }, 1000 * i);
-        });
-      }, 1000);
+      $scope.invList.forEach((el, i) => {
+        $timeout(() => {
+          site.printAsImage({
+            selector: `#page_${i}`,
+            ip: "127.0.0.1",
+            port: "60080",
+            printer:
+              $scope.defaultSettings.printer_program.a4_printer.ip.name.trim(),
+          });
+        }, 1000 * (i + 1));
+      });
     } else {
       $scope.error = "##word.a4_printer_must_select##";
     }
     $scope.busy = false;
-     /*  $timeout(() => {
+    /*  $timeout(() => {
       $("#storeOutDetails").addClass("hidden");
     }, 5000); */
   };
