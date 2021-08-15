@@ -169,6 +169,19 @@ i-image img:hover {
 }
 
 @media print {
+
+  .page-a4 {
+    /*  width: 210mm !important; 
+    background: white !important;
+    color: #000 !important;*/
+    height: 297mm !important;
+    padding: 2mm !important;
+    margin: 0mm !important;
+    page-break-before: always !important;
+    page-break-after: always !important;
+    page-break-inside: avoid !important;
+  }
+
   .important_thing {
     width: 100%;
     height: 100%;
