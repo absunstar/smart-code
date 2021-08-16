@@ -63,7 +63,7 @@
                     </div>
 
                     <div class="row">
-                        <div ng-show="size_edit.extras_items_list.length > 0">
+                        <div ng-show="size_edit.extras_item.length > 0">
 
                             <table class="table hover bold center loaded">
 
@@ -77,7 +77,7 @@
                                 </tr>
 
                                 <tr
-                                    ng-repeat="e in size_edit.extras_items_list track by $index">
+                                    ng-repeat="e in size_edit.extras_item track by $index">
                                     <td>
                                         {{$index + 1}}
                                     </td>
@@ -90,7 +90,7 @@
 
                                     <td>
                                         <i-button type="delete default"
-                                            ng-click="size_edit.extras_items_list.splice($index,1) ; calcSize(size_edit)">
+                                            ng-click="size_edit.extras_item.splice($index,1) ; calcSize(size_edit)">
                                         </i-button>
                                     </td>
 

@@ -7,9 +7,9 @@ module.exports = function init(site) {
 
     let barcode = objectOrder.sizes_list.map(_object => _object.barcode)
 
-    $order_customer.findMany({ 'company.id': objectOrder.company.id, 'book_list.barcode': barcode }, (err, doc) => {
+    $order_customer.findMany({ 'company.id': objectOrder.company.id, 'items.barcode': barcode }, (err, doc) => {
       doc.forEach(_doc => {
-        if (_doc.book_list) _doc.book_list.forEach(_items => {
+        if (_doc.items) _doc.items.forEach(_items => {
           if (objectOrder.sizes_list) objectOrder.sizes_list.forEach(_size => {
             if (_items.barcode == _size.barcode) {
               _items.size_ar = _size.size_ar
@@ -73,22 +73,22 @@ module.exports = function init(site) {
 
   //       else doc.status = { id: 4, en: "Closed & Invoiced", ar: "مغلق و تم عمل فواتير" }
 
-  //       doc.under_paid.book_list.forEach(book_list_basic => {
-  //         obj.book_list.forEach(book_list_cb => {
-  //           if (book_list_basic.barcode == book_list_cb.barcode) {
+  //       doc.under_paid.items.forEach(items_basic => {
+  //         obj.items.forEach(items_cb => {
+  //           if (items_basic.barcode == items_cb.barcode) {
 
-  //             if (obj.return) book_list_basic.count = book_list_basic.count + book_list_cb.count;
-  //             else book_list_basic.count = book_list_basic.count - book_list_cb.count;
+  //             if (obj.return) items_basic.count = items_basic.count + items_cb.count;
+  //             else items_basic.count = items_basic.count - items_cb.count;
 
   //             let discount = 0;
-  //             if (book_list_basic.discount) {
-  //               if (book_list_basic.discount.type == 'number')
-  //                 discount = book_list_basic.discount.value * book_list_basic.count;
-  //               else if (book_list_basic.discount.type == 'percent')
-  //                 discount = book_list_basic.discount.value * (book_list_basic.price * book_list_basic.count) / 100;
+  //             if (items_basic.discount) {
+  //               if (items_basic.discount.type == 'number')
+  //                 discount = items_basic.discount.value * items_basic.count;
+  //               else if (items_basic.discount.type == 'percent')
+  //                 discount = items_basic.discount.value * (items_basic.price * items_basic.count) / 100;
   //             }
 
-  //             book_list_basic.total = (book_list_basic.count * book_list_basic.price) - discount;
+  //             items_basic.total = (items_basic.count * items_basic.price) - discount;
   //           };
   //         });
   //       });
@@ -190,9 +190,9 @@ module.exports = function init(site) {
         ar: "تحت التوصيل"
       };
 
-    order_customer_doc.total_book_list = 0
-    order_customer_doc.book_list.forEach(book_list => {
-      order_customer_doc.total_book_list += book_list.total
+    order_customer_doc.total_items = 0
+    order_customer_doc.items.forEach(items => {
+      order_customer_doc.total_items += items.total
     });
 
     let num_obj = {
@@ -246,9 +246,9 @@ module.exports = function init(site) {
       $res: res
     })
 
-    order_customer_doc.total_book_list = 0
-    order_customer_doc.book_list.forEach(book_list => {
-      order_customer_doc.total_book_list += book_list.total
+    order_customer_doc.total_items = 0
+    order_customer_doc.items.forEach(items => {
+      order_customer_doc.total_items += items.total
     })
 
 

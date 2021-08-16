@@ -433,12 +433,12 @@
     {
         "name": "total_before_tax",
         "en": "Total B.Tax",
-        "ar": "إجمالي قبل الضريبة"
+        "ar": "إجمالي قبل .ض"
     },
     {
         "name": "total_after_tax",
         "en": "Total A.Tax",
-        "ar": "إجمالي بعد الضريبة"
+        "ar": "إجمالي بعد .ض"
     },
     {
         "name": "discount_cash",
@@ -449,6 +449,11 @@
         "name": "net",
         "en": "Net",
         "ar": "الصافي"
+    },
+    {
+        "name": "vat",
+        "en": "VAT.",
+        "ar": "القيمة الضريبية"
     },
     {
         "name": "absence",

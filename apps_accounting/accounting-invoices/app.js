@@ -5,13 +5,13 @@ module.exports = function init(site) {
 
     let barcode = objectInvoice.sizes_list.map(_obj => _obj.barcode)
 
-    $account_invoices.findMany({ 'company.id': objectInvoice.company.id, 'current_book_list.barcode': barcode }, (err, doc) => {
+    $account_invoices.findMany({ 'company.id': objectInvoice.company.id, 'current_items.barcode': barcode }, (err, doc) => {
       if (doc) {
 
         doc.forEach(_doc => {
-          if (_doc.current_book_list) {
+          if (_doc.current_items) {
 
-            _doc.current_book_list.forEach(_items => {
+            _doc.current_items.forEach(_items => {
               objectInvoice.sizes_list.forEach(_size => {
                 if (_items.barcode === _size.barcode) {
                   _items.size_ar = _size.size_ar
@@ -103,9 +103,9 @@ module.exports = function init(site) {
 
     if (account_invoices_doc.paid_up === 0) account_invoices_doc.posting = true
 
-    if (account_invoices_doc.current_book_list && account_invoices_doc.current_book_list.length > 0) {
+    if (account_invoices_doc.current_items && account_invoices_doc.current_items.length > 0) {
       account_invoices_doc.total_items_discount = 0
-      account_invoices_doc.current_book_list.forEach(_c_b_list => {
+      account_invoices_doc.current_items.forEach(_c_b_list => {
 
         if (account_invoices_doc.source_type.id == 1) {
 
@@ -225,6 +225,7 @@ module.exports = function init(site) {
 
                 if (doc.source_type.id == 1) site.quee('[store_in][account_invoice][invoice]', doc.invoice_id, 'add')
                 else if (doc.source_type.id == 2) site.quee('[store_out][account_invoice][invoice]', doc.invoice_id, 'add')
+                else if (doc.source_type.id == 3) site.quee('[store_out_order][account_invoice][invoice]', doc.invoice_id, 'add')
 
 
                 if (doc.posting) {
@@ -313,7 +314,7 @@ module.exports = function init(site) {
                   } else if (doc.source_type.id == 3) {
 
                     let under_paid = {
-                      book_list: doc.current_book_list,
+                      items: doc.current_items,
                       net_value: doc.net_value,
                       total_tax: doc.total_tax,
                       total_discount: doc.total_discount,
@@ -1438,7 +1439,7 @@ module.exports = function init(site) {
             if (account_invoices_doc.source_type.id == 3) {
 
               let under_paid = {
-                book_list: account_invoices_doc.current_book_list,
+                items: account_invoices_doc.current_items,
                 net_value: account_invoices_doc.net_value,
                 total_tax: account_invoices_doc.total_tax,
                 total_discount: account_invoices_doc.total_discount,
@@ -1824,7 +1825,7 @@ module.exports = function init(site) {
                   if (result.doc.source_type.id == 3) {
 
                     let under_paid = {
-                      book_list: result.doc.current_book_list,
+                      items: result.doc.current_items,
                       net_value: result.doc.net_value,
                       total_tax: result.doc.total_tax,
                       total_discount: result.doc.total_discount,

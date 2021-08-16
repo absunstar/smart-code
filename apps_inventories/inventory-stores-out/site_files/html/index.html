@@ -151,6 +151,7 @@
                 ##word.stores_out_net_value##
               </th>
               <th ng-show="##query.type## == 6">##word.source_code##</th>
+              <th ng-show="##query.type## == 3">##word.transaction_type##</th>
               <th class="not-print">##word.actions##</th>
             </tr>
             <tr ng-repeat="c in list">
@@ -201,6 +202,10 @@
                 <h3 class="blue bold cente userPrintr">{{c.retured_number}}</h3>
 
                 <!-- <p class="bold text-center blue"> <br> {{c.type.##session.lang##}} </p> -->
+              </td>
+              <td ng-show="##query.type## == 3">
+
+                <p class="bold text-center blue"> <br> {{c.type.##session.lang##}} </p>
               </td>
               <td class="center not-print">
                 <i-button

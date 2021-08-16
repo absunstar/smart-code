@@ -44,7 +44,7 @@ app.controller("report_employee_delivery", function ($scope, $http, $timeout) {
           $scope.paid_up = 0;
           $scope.list.forEach(_invoice => {
             _invoice.net_value = site.toNumber(_invoice.net_value);
-            _invoice.total_book_list = site.toNumber(_invoice.total_book_list);
+            _invoice.total_items = site.toNumber(_invoice.total_items);
             
 
             $scope.total_delivery_service_price += _invoice.price_delivery_service;

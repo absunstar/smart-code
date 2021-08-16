@@ -32,9 +32,9 @@ module.exports = function init(site) {
     }, (err, doc) => {
 
       if (!err && doc) {
-        doc.book_list.forEach(book_list => {
-          if (book_list.size_ar == item.size_ar && book_list.barcode === item.barcode)
-            book_list.done_kitchen = false;
+        doc.items.forEach(items => {
+          if (items.size_ar == item.size_ar && items.barcode === item.barcode)
+            items.done_kitchen = false;
         });
         $order_invoice.update(doc, (err, result) => {
           response.done = true
@@ -69,32 +69,32 @@ module.exports = function init(site) {
       if (!err && docs) {
         docs.forEach(_doc => {
 
-          _doc.book_list.forEach(_book_list => {
+          _doc.items.forEach(_items => {
 
             let discount = 0
 
-            if (_book_list.discount && _book_list.discount.type == 'number')
-              discount = _book_list.discount.value * _book_list.count;
-            else if (_book_list.discount && _book_list.discount.type == 'percent')
-              discount = _book_list.discount.value * (_book_list.price * _book_list.count) / 100;
+            if (_items.discount && _items.discount.type == 'number')
+              discount = _items.discount.value * _items.count;
+            else if (_items.discount && _items.discount.type == 'percent')
+              discount = _items.discount.value * (_items.price * _items.count) / 100;
 
-            _book_list.total = (site.toNumber(_book_list.price) * site.toNumber(_book_list.count)) - discount;
-            delete _book_list.total_price
+            _items.total = (site.toNumber(_items.price) * site.toNumber(_items.count)) - discount;
+            delete _items.total_price
 
           });
 
           if (_doc.under_paid)
-            _doc.under_paid.book_list.forEach(_book_list => {
+            _doc.under_paid.items.forEach(_items => {
               let discount = 0
 
-              if (_book_list.discount && _book_list.discount.type == 'number')
-                discount = _book_list.discount.value * _book_list.count;
-              else if (_book_list.discount && _book_list.discount.type == 'percent')
-                discount = _book_list.discount.value * (_book_list.price * _book_list.count) / 100;
+              if (_items.discount && _items.discount.type == 'number')
+                discount = _items.discount.value * _items.count;
+              else if (_items.discount && _items.discount.type == 'percent')
+                discount = _items.discount.value * (_items.price * _items.count) / 100;
 
-              _book_list.total = (site.toNumber(_book_list.price) * site.toNumber(_book_list.count)) - discount;
+              _items.total = (site.toNumber(_items.price) * site.toNumber(_items.count)) - discount;
 
-              delete _book_list.total_price
+              delete _items.total_price
 
             });
 

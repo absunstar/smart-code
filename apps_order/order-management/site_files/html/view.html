@@ -140,7 +140,7 @@
                             <th>##word.notes##</th>
                             <th>##word.actions##</th>
                         </tr>
-                        <tr ng-repeat="c in order_management.book_list">
+                        <tr ng-repeat="c in order_management.items">
 
                             <td class="center title">
                                 <p ng-show="c.add_sizes">{{c.name_##session.lang##}} {{c.size_##session.lang##}}</p>
@@ -173,7 +173,7 @@
                                     ##word.in_kitchen##</h2>
 
                                 <div class="row center">
-                                    <i-button type="view" ng-show="c.extras_items_list.length > 0"
+                                    <i-button type="view" ng-show="c.extras_item.length > 0"
                                         label="##word.extras_menu##"
                                         ng-click="showExtrasItems(c)">
                                     </i-button>

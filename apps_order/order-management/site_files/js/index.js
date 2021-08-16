@@ -127,7 +127,7 @@ app.controller("order_management", function ($scope, $http, $timeout) {
           invoice_code: order_invoice.number,
           total_discount: order_invoice.total_discount,
           total_tax: order_invoice.total_tax,
-          current_book_list: order_invoice.under_paid.book_list,
+          current_items: order_invoice.under_paid.items,
           source_type: {
             id: 3,
             en: "Orders Screen",
@@ -249,7 +249,7 @@ app.controller("order_management", function ($scope, $http, $timeout) {
       obj.total_remain = ($scope.amount_currency - obj.paid_up);
       obj.total_remain = site.toNumber(obj.total_remain);
       obj.transaction_type = obj.order_invoices_type;
-      obj.book_list = obj.current_book_list;
+      obj.items = obj.current_items;
     } else {
       obj.total_remain = 0
 
@@ -342,7 +342,7 @@ app.controller("order_management", function ($scope, $http, $timeout) {
         value: obj.table[name_lang]
       });
 
-    if (obj.book_list && obj.book_list.length > 0) {
+    if (obj.items && obj.items.length > 0) {
 
       let size_lang = 'size_ar';
       if ('##session.lang##' === 'en') size_lang = 'size_en';
@@ -359,15 +359,15 @@ app.controller("order_management", function ($scope, $http, $timeout) {
         type: 'line2'
       });
 
-      obj.book_list.forEach((_current_book_list, i) => {
-        _current_book_list.total = site.toNumber(_current_book_list.total);
+      obj.items.forEach((_current_items, i) => {
+        _current_items.total = site.toNumber(_current_items.total);
         obj_print.data.push({
           type: 'invoice-item',
-          count: _current_book_list.count,
-          name: _current_book_list[size_lang],
-          price: site.addSubZero(_current_book_list.total, 2)
+          count: _current_items.count,
+          name: _current_items[size_lang],
+          price: site.addSubZero(_current_items.total, 2)
         });
-        if (i < obj.book_list.length - 1) {
+        if (i < obj.items.length - 1) {
           obj_print.data.push({
             type: 'line3'
           });
@@ -858,7 +858,7 @@ app.controller("order_management", function ($scope, $http, $timeout) {
 
   $scope.postOrder = function (order) {
     $scope.error = '';
-    $scope.getStockItems(order.book_list, order.store, callback => {
+    $scope.getStockItems(order.items, order.store, callback => {
       if (!callback) {
 
         $scope.get_open_shift((shift) => {

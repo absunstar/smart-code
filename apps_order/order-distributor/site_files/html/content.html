@@ -60,7 +60,7 @@
                         </div>
 
 
-                        <div class="row" ng-show="report_invoices.current_book_list.length > 0">
+                        <div class="row" ng-show="report_invoices.current_items.length > 0">
 
                             <table x-permissions="login" class="table bold hover loaded" id="t1">
 
@@ -72,7 +72,7 @@
                                     <th class="not-print">##word.actions##</th>
                                 </tr>
 
-                                <tr ng-repeat="c in report_invoices.current_book_list">
+                                <tr ng-repeat="c in report_invoices.current_items">
                                     <td class="center title">{{c.size_##session.lang##}}</td>
                                     <td class="center blue">{{c.count}}</td>
                                     <td class="center blue">{{c.price}}</td>

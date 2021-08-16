@@ -32,8 +32,8 @@ app.controller("order_kitchen", function ($scope, $http, $interval) {
           function (response) {
             $scope.busy = false;
             if (response.data.done) {   
-              $scope.book_list_report.splice($scope.book_list_report.indexOf(i), 1)
-              $scope.book_list_report = $scope.book_list_report
+              $scope.items_report.splice($scope.items_report.indexOf(i), 1)
+              $scope.items_report = $scope.items_report
             } else {
               $scope.error = response.data.error;
             }
@@ -121,7 +121,7 @@ app.controller("order_kitchen", function ($scope, $http, $interval) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.count = response.data.count;
-          $scope.book_list_report = response.data.list
+          $scope.items_report = response.data.list
 
         }
       },

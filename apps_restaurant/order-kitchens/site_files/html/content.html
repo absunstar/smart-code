@@ -21,7 +21,7 @@
             <th>##word.actions##</th>
         </tr>
 
-        <tr ng-hide="busy" ng-repeat="i in book_list_report ">
+        <tr ng-hide="busy" ng-repeat="i in items_report ">
             <td class="">
                 <h2 class=" center blue">{{i.order.code}}</h2>
                 <p ng-show="i.table.id" class="bold"> {{i.table.name_##session.lang##}} /
@@ -33,8 +33,8 @@
             </td>
             <td class="center ">{{i.count}}</td>
             <td>
-                <p class="red" ng-hide="i.extras_items_list.length > 0">##word.not_found##</p>
-                <i-button type="view" ng-show="i.extras_items_list.length > 0" label="##word.extras##"
+                <p class="red" ng-hide="i.extras_item.length > 0">##word.not_found##</p>
+                <i-button type="view" ng-show="i.extras_item.length > 0" label="##word.extras##"
                     ng-click="showExtrasItems(i)">
                 </i-button>
             </td>

@@ -22,7 +22,7 @@
                         <th ng-show="order.$status_prepar">##word.preparation_status##</th>
                     </tr>
 
-                    <tr ng-repeat="item in order.book_list track by $index">
+                    <tr ng-repeat="item in order.items track by $index">
 
                         <td>
                             {{$index + 1}}

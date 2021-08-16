@@ -70,13 +70,13 @@ module.exports = function init(site) {
                       foundAi = true
                       _d_a_i.total_discount = _d_s_out.total_discount
                       _d_a_i.total_tax = _d_s_out.total_tax
-                      _d_a_i.current_book_list = _d_s_out.items
+                      _d_a_i.current_items = _d_s_out.items
                       _d_a_i.net_value = _d_s_out.net_value
                       _d_a_i.total_value_added = _d_s_out.total_value_added
 
-                      if (_d_a_i.current_book_list && _d_a_i.current_book_list.length > 0) {
+                      if (_d_a_i.current_items && _d_a_i.current_items.length > 0) {
                         _d_a_i.total_items_discount = 0
-                        _d_a_i.current_book_list.forEach(_c_b_list => {
+                        _d_a_i.current_items.forEach(_c_b_list => {
 
                           if (_c_b_list.discount.type == 'number')
                             _d_a_i.total_items_discount += ((_c_b_list.discount.value || 0) * _c_b_list.count);
@@ -183,13 +183,13 @@ module.exports = function init(site) {
                       foundAi = true
                       _d_a_i.total_discount = _d_s_in.total_discount
                       _d_a_i.total_tax = _d_s_in.total_tax
-                      _d_a_i.current_book_list = _d_s_in.items
+                      _d_a_i.current_items = _d_s_in.items
                       _d_a_i.net_value = _d_s_in.net_value
                       _d_a_i.total_value_added = _d_s_in.total_value_added
 
-                      if (_d_a_i.current_book_list && _d_a_i.current_book_list.length > 0) {
+                      if (_d_a_i.current_items && _d_a_i.current_items.length > 0) {
                         _d_a_i.total_items_discount = 0
-                        _d_a_i.current_book_list.forEach(_c_b_list => {
+                        _d_a_i.current_items.forEach(_c_b_list => {
 
                           if (_c_b_list.discount.type == 'number')
                             _d_a_i.total_items_discount += ((_c_b_list.discount.value || 0) * _c_b_list.count);

@@ -1,8 +1,7 @@
 app.controller("order_invoice", function ($scope, $http, $timeout) {
   $scope._search = {};
-  $scope.discount = {
-    type: "number",
-  };
+  $scope.thermal = {};
+  $scope.discount = { type: "number" };
   $scope.tax = {};
   $scope.kitchensList = [];
 
@@ -148,7 +147,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       if (shift) {
         $scope.order_invoice = {
           shift: shift,
-          book_list: [],
+          items: [],
           discountes: [],
           taxes: [],
           date: new Date(),
@@ -163,6 +162,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
           total_value: 0,
           net_value: 0,
           total_value_added: 0,
+          before_value_added : 0
         };
 
         if ($scope.defaultSettings.inventory) {
@@ -246,7 +246,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     $scope.error = "";
     if (order_invoice.shift) {
       if (
-        (order_invoice.book_list && order_invoice.book_list.length > 0) ||
+        (order_invoice.items && order_invoice.items.length > 0) ||
         type === "table"
       ) {
         const v = site.validated("#OrderInvoiceAddModal");
@@ -304,7 +304,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         ) {
           let max_discount = false;
 
-          order_invoice.book_list.forEach((_itemSize) => {
+          order_invoice.items.forEach((_itemSize) => {
             if (_itemSize.discount.value > _itemSize.discount.max)
               max_discount = true;
           });
@@ -399,7 +399,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
                     payment_method: order_invoice.payment_method,
                     store: order_invoice.store,
                     order_code: order_invoice.code,
-                    items: order_invoice.book_list,
+                    items: order_invoice.items,
                     total_discount: order_invoice.total_discount,
                     total_tax: order_invoice.total_tax,
                     total_value: order_invoice.total_value,
@@ -447,7 +447,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
             }
           );
         }, 500);
-      } else $scope.error = "##word.err_book_list##";
+      } else $scope.error = "##word.err_items##";
     } else $scope.error = "##word.open_shift_not_found##";
   };
 
@@ -533,7 +533,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
           name: _order_invoice.table.tables_group[name_lang],
           value: _order_invoice.table[name_lang],
         });
-      if (obj.book_list && obj.book_list.length > 0) {
+      if (obj.items && obj.items.length > 0) {
         let size_lang = "size_ar";
         if ("##session.lang##" === "en") size_lang = "size_en";
 
@@ -552,15 +552,12 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
           }
         );
 
-        _order_invoice.book_list.forEach((item_book) => {
+        _order_invoice.items.forEach((item_book) => {
           if (item_book.kitchen && !item_book.printed) {
             if (item_book.kitchen.id == _kitchen.id) {
               let extras = "";
-              if (
-                item_book.extras_items_list &&
-                item_book.extras_items_list.length > 0
-              ) {
-                item_book.extras_items_list.forEach((_extra) => {
+              if (item_book.extras_item && item_book.extras_item.length > 0) {
+                item_book.extras_item.forEach((_extra) => {
                   extras = extra + " - " + _extra[name_lang];
                 });
               }
@@ -630,7 +627,9 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
             $scope.account_invoices.source_type.id == 3 &&
             $scope.account_invoices.paid_up > 0
           ) {
-            $scope.printAccountInvoive(response.data.doc);
+            if ($scope.defaultSettings.printer_program.auto_thermal_print) {
+              $scope.thermalPrint(response.data.doc);
+            }
 
             $scope.account_invoices.in_type = {
               id: 2,
@@ -648,9 +647,10 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
           site.hideModal("#accountInvoiceModal");
         } else {
           $scope.error = response.data.error;
-          if (response.data.error.like("*duplicate key error*")) {
+          /* if (response.data.error.like("*duplicate key error*")) {
             $scope.error = "##word.code_exisit##";
-          } else if (response.data.error.like("*Please write code*")) {
+          } else */
+          if (response.data.error.like("*Please write code*")) {
             $scope.error = "##word.enter_code_inventory##";
           } else if (response.data.error.like("*Must Enter Code*")) {
             $scope.error = "##word.must_enter_code##";
@@ -739,8 +739,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
                     _size.price = _size.size_units_list[indxUnit].price;
                     _size.total = _size.count * _size.cost;
 
-                    if (!foundHold)
-                      $scope.order_invoice.book_list.unshift(_size);
+                    if (!foundHold) $scope.order_invoice.items.unshift(_size);
                   }
                   $scope.calcSize(_size);
                 });
@@ -757,295 +756,6 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         }
       );
     }
-  };
-
-  $scope.printAccountInvoive = function (obj) {
-    $scope.error = "";
-    if ($scope.busy) return;
-    $scope.busy = true;
-
-    let name_lang = "name_ar";
-    if ("##session.lang##" === "en") name_lang = "name_en";
-
-    if (obj.invoice_id) {
-      obj.total_remain = $scope.amount_currency - obj.paid_up;
-      obj.total_remain = site.toNumber(obj.total_remain);
-      obj.transaction_type = obj.order_invoices_type;
-      obj.book_list = obj.current_book_list;
-    } else {
-      obj.total_remain = 0;
-    }
-
-    let ip = "127.0.0.1";
-    let port = "60080";
-
-    if (
-      $scope.defaultSettings.printer_program &&
-      $scope.defaultSettings.printer_program.printer_path
-    ) {
-      ip =
-        $scope.defaultSettings.printer_program.printer_path.ip_device ||
-        "127.0.0.1";
-      port =
-        $scope.defaultSettings.printer_program.printer_path.Port_device ||
-        "60080";
-    }
-
-    let obj_print = {
-      data: [],
-    };
-    if ($scope.defaultSettings.printer_program) {
-      if ($scope.defaultSettings.printer_program.printer_path)
-        obj_print.printer =
-          $scope.defaultSettings.printer_program.printer_path.ip.name.trim();
-
-      if ($scope.defaultSettings.printer_program.invoice_top_title) {
-        obj_print.data.push({
-          type: "invoice-top-title",
-          name: $scope.defaultSettings.printer_program.invoice_top_title,
-        });
-      } else {
-        obj_print.data.push({
-          type: "invoice-top-title",
-          name: "Smart Code",
-        });
-      }
-
-      if ($scope.defaultSettings.printer_program.invoice_logo) {
-        obj_print.data.push({
-          type: "invoice-logo",
-          url:
-            document.location.origin +
-            $scope.defaultSettings.printer_program.invoice_logo,
-        });
-      } else {
-        obj_print.data.push({
-          type: "invoice-logo",
-          url: "http://127.0.0.1/images/logo.png",
-        });
-      }
-
-      if (
-        $scope.defaultSettings.printer_program.thermal_header &&
-        $scope.defaultSettings.printer_program.thermal_header.length > 0
-      ) {
-        $scope.defaultSettings.printer_program.thermal_header.forEach((_ih) => {
-          obj_print.data.push({
-            type: "header",
-            value: _ih.name,
-          });
-        });
-      }
-    }
-
-    obj_print.data.push(
-      {
-        type: "invoice-code",
-        name: "O-Invoice",
-        value: obj.code || "Test",
-      },
-      {
-        type: "invoice-date",
-        name: "##word.date##",
-        value: site.toDateXF(obj.date),
-      },
-      {
-        type: "space",
-      },
-      {
-        type: "text2",
-        value2: obj.transaction_type["##session.lang##"],
-        value: "##word.order_type##",
-      }
-    );
-
-    if (obj.customer)
-      obj_print.data.push({
-        type: "text2",
-        value2: obj.customer[name_lang],
-        value: "##word.customer##",
-      });
-
-    if (obj.table)
-      obj_print.data.push({
-        type: "invoice-table",
-        name: obj.table.tables_group[name_lang],
-        value: obj.table[name_lang],
-      });
-
-    if (obj.book_list && obj.book_list.length > 0) {
-      let size_lang = "size_ar";
-      if ("##session.lang##" === "en") size_lang = "size_en";
-
-      obj_print.data.push(
-        {
-          type: "line",
-        },
-        {
-          type: "invoice-item-title",
-          count: "##word.count##",
-          name: "##word.name##",
-          price: "##word.price##",
-        },
-        {
-          type: "line2",
-        }
-      );
-
-      obj.book_list.forEach((_current_book_list, i) => {
-        _current_book_list.total = site.toNumber(_current_book_list.total);
-        obj_print.data.push({
-          type: "invoice-item",
-          count: _current_book_list.count,
-          name: _current_book_list[size_lang],
-          price: site.addSubZero(_current_book_list.total, 2),
-        });
-        if (i < obj.book_list.length - 1) {
-          obj_print.data.push({
-            type: "line3",
-          });
-        }
-      });
-    }
-
-    obj_print.data.push({
-      type: "line",
-    });
-
-    if (obj.currency)
-      obj_print.data.push({
-        type: "text2",
-        value2: obj.currency[name_lang],
-        value: "##word.currency##",
-      });
-
-    obj_print.data.push({
-      type: "invoice-total",
-      value: site.addSubZero(obj.total_value - obj.total_value_added, 2),
-      name: "##word.total_before_taxes_discounts##",
-    });
-
-    if (obj.total_value_added) {
-      obj_print.data.push({
-        type: "text2",
-        value2: `${site.addSubZero(obj.total_value_added, 2)}  (${
-          $scope.defaultSettings.inventory.value_added || 0
-        }%)`,
-        value: "##word.total_value_added##",
-      });
-    }
-
-    if (obj.total_tax)
-      obj_print.data.push({
-        type: "text2",
-        value2: obj.total_tax,
-        value: "##word.total_tax##",
-      });
-
-    if (obj.total_discount)
-      obj_print.data.push({
-        type: "text2",
-        value2: obj.total_discount,
-        value: "##word.total_discount##",
-      });
-
-    if (obj.price_delivery_service)
-      obj_print.data.push({
-        type: "text2",
-        value2: obj.price_delivery_service,
-        value: "##word.delivery_service##",
-      });
-
-    if (obj.service)
-      obj_print.data.push({
-        type: "text2",
-        value2: obj.service,
-        value: "##word.service##",
-      });
-
-    obj_print.data.push({
-      type: "space",
-    });
-
-    if (obj.net_value) {
-      obj_print.data.push(
-        {
-          type: "invoice-total",
-          value: site.addSubZero(obj.net_value, 2),
-          name: "##word.total_value##",
-        },
-        {
-          type: "invoice-total",
-          value:
-            site.stringfiy(obj.net_value) +
-            ($scope.defaultSettings.accounting.end_num_to_str || 0),
-        },
-        {
-          type: "line",
-        }
-      );
-    }
-
-    if (obj.paid_up)
-      obj_print.data.push({
-        type: "text2",
-        value2: site.addSubZero(obj.paid_up, 2),
-        value: "##word.paid_up##",
-      });
-
-    obj_print.data.push({
-      type: "space",
-    });
-    if (obj.invoice_id)
-      obj_print.data.push({
-        type: "text2",
-        value2: site.addSubZero(obj.total_remain, 2),
-        value: "##word.remain##",
-      });
-
-    obj_print.data.push(
-      {
-        type: "line",
-      },
-      {
-        type: "invoice-barcode",
-        value: obj.code || "test",
-      },
-      {
-        type: "invoice-total",
-        value: $scope.defaultSettings.printer_program.tax_number,
-        name: "##word.tax_number##",
-      },
-      {
-        type: "line",
-      }
-    );
-
-    if (
-      $scope.defaultSettings.printer_program &&
-      $scope.defaultSettings.printer_program.thermal_footer &&
-      $scope.defaultSettings.printer_program.thermal_footer.length > 0
-    ) {
-      $scope.defaultSettings.printer_program.thermal_footer.forEach((_if) => {
-        obj_print.data.push({
-          type: "header",
-          value: _if.name,
-        });
-      });
-    }
-
-    $http({
-      method: "POST",
-      url: `http://${ip}:${port}/print`,
-      data: obj_print,
-    }).then(
-      function (response) {
-        if (response.data.done) $scope.busy = false;
-      },
-      function (err) {
-        console.log(err);
-      }
-    );
   };
 
   $scope.displayUpdateOrderInvoice = function (order_invoice) {
@@ -1105,7 +815,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
           invoice_code: order_invoice.code,
           total_discount: order_invoice.total_discount,
           total_tax: order_invoice.total_tax,
-          current_book_list: order_invoice.under_paid.book_list,
+          current_items: order_invoice.under_paid.items,
           source_type: {
             id: 3,
             en: "Orders Screen",
@@ -1235,6 +945,9 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.doc) {
           $scope.defaultSettings = response.data.doc;
+          $scope.invoice_logo =
+            document.location.origin +
+            $scope.defaultSettings.printer_program.invoice_logo;
           $scope.newOrderInvoice();
         }
       },
@@ -2037,11 +1750,11 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
   $scope.mergeTables = function (order) {
     $scope.error = "";
-    $scope.order_invoice.book_list = $scope.order_invoice.book_list || [];
+    $scope.order_invoice.items = $scope.order_invoice.items || [];
     let exist = false;
 
-    order.book_list.forEach((item) => {
-      $scope.order_invoice.book_list.forEach((el) => {
+    order.items.forEach((item) => {
+      $scope.order_invoice.items.forEach((el) => {
         if (item.size_ar == el.size_ar && item.barcode == el.barcode) {
           exist = true;
 
@@ -2051,7 +1764,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         }
       });
       if (!exist) {
-        $scope.order_invoice.book_list.push(item);
+        $scope.order_invoice.items.push(item);
       }
     });
     $scope.calc($scope.order_invoice);
@@ -2091,7 +1804,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     $scope.error = "";
 
     $scope.getStockItems(
-      $scope.order_invoice.book_list,
+      $scope.order_invoice.items,
       $scope.order_invoice.store,
       (callback) => {
         if (!callback) {
@@ -2114,7 +1827,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
           };
 
           $scope.order_invoice.under_paid = {
-            book_list: $scope.order_invoice.book_list,
+            items: $scope.order_invoice.items,
             total_tax: $scope.order_invoice.total_tax,
             total_discount: $scope.order_invoice.total_discount,
             price_delivery_service: $scope.order_invoice.price_delivery_service,
@@ -2226,7 +1939,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
   $scope.bookList = function (item) {
     $scope.error = "";
-    $scope.order_invoice.book_list = $scope.order_invoice.book_list || [];
+    $scope.order_invoice.items = $scope.order_invoice.items || [];
     let exist = false;
     let foundHold = false;
     let kitchenBranch = {};
@@ -2269,7 +1982,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     }
 
     if (site.feature("restaurant")) {
-      $scope.order_invoice.book_list.forEach((el) => {
+      $scope.order_invoice.items.forEach((el) => {
         if (item.size == el.size && item.barcode == el.barcode && !el.printed) {
           exist = true;
           el.count += 1;
@@ -2311,22 +2024,9 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         count: 1,
       };
 
-      /*   if (obj.discount.type == "number") {
-        obj.discount.current = obj.discount.value;
-      } else if (obj.discount.type == "percent") {
-        obj.discount.current = (obj.discount.value * obj.price) / 100;
-      }
-
-      obj.b_price = obj.price - obj.discount.current;
-      obj.b_price = site.toNumber(obj.b_price);
-
-      obj.total = obj.b_price * 1 + obj.extras_price * 1 + obj.total_v_a; */
-
-      $scope.order_invoice.book_list.push(obj);
+      $scope.order_invoice.items.push(obj);
       $scope.calcSize(
-        $scope.order_invoice.book_list[
-          $scope.order_invoice.book_list.length - 1
-        ]
+        $scope.order_invoice.items[$scope.order_invoice.items.length - 1]
       );
     }
   };
@@ -2398,9 +2098,9 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   $scope.addExtrasItems = function (item) {
     $scope.error = "";
     if ($scope.extras_items && $scope.extras_items.id) {
-      item.extras_items_list = item.extras_items_list || [];
+      item.extras_item = item.extras_item || [];
 
-      item.extras_items_list.push($scope.extras_items);
+      item.extras_item.push($scope.extras_items);
       $scope.extras_items = {};
       $scope.calcSize(item);
     }
@@ -2409,8 +2109,8 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   $scope.deleteItemsList = function (item) {
     $scope.error = "";
 
-    $scope.order_invoice.book_list.splice(
-      $scope.order_invoice.book_list.indexOf(item),
+    $scope.order_invoice.items.splice(
+      $scope.order_invoice.items.indexOf(item),
       1
     );
     /*   if (item.count == 1) {
@@ -2480,7 +2180,6 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   $scope.calcSize = function (_size) {
     $scope.error = "";
     $timeout(() => {
-      console.log("eeeeeeeeeeeeee");
       if (!_size.count) _size.count = 0;
       if (!_size.price) _size.price = 0;
 
@@ -2490,12 +2189,14 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         _size.discount.current = (_size.discount.value * _size.price) / 100;
       }
 
+      _size.discount.current = site.toNumber(_size.discount.current);
+
       _size.b_price = _size.price - _size.discount.current;
       _size.b_price = site.toNumber(_size.b_price);
       _size.extras_price = 0;
-      if (_size.extras_items_list && _size.extras_items_list.length > 0) {
-        _size.extras_items_list.forEach((_exItm) => {
-          _size.extras_price += _exItm.b_price;
+      if (_size.extras_item && _size.extras_item.length > 0) {
+        _size.extras_item.forEach((_exItm) => {
+          _size.extras_price += _exItm.price;
         });
       }
 
@@ -2510,7 +2211,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
       _size.total = site.toNumber(_size.total);
 
-      $scope.calc($scope.order_invoice );
+      $scope.calc($scope.order_invoice);
     }, 150);
   };
 
@@ -2521,14 +2222,17 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       obj.total_discount = 0;
       obj.total_value_added = 0;
 
-      if (obj.book_list && obj.book_list.length > 0) {
-        obj.book_list.forEach((_itm) => {
+      if (obj.items && obj.items.length > 0) {
+        obj.items.forEach((_itm) => {
           obj.total_value += site.toNumber(_itm.total);
 
           obj.total_value_added += _itm.total_v_a;
         });
       }
       obj.total_value_added = site.toNumber(obj.total_value_added);
+
+      obj.before_value_added = obj.total_value - obj.total_value_added;
+      obj.before_value_added = site.toNumber(obj.before_value_added);
 
       if (obj.taxes && obj.taxes.length > 0) {
         obj.taxes.forEach((tx) => {
@@ -2576,12 +2280,53 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         $scope.amount_currency = obj.net_value / obj.currency.ex_rate;
         $scope.amount_currency = site.toNumber($scope.amount_currency);
       }
-      console.log(obj.total_value, obj.net_value, "ddddddddddddddddddd");
 
       $scope.discount = {
         type: "number",
       };
     }, 250);
+  };
+
+  $scope.thermalPrint = function (obj) {
+    $scope.error = "";
+    if ($scope.busy) return;
+    $scope.busy = true;
+
+    $scope.thermal = { ...obj };
+    $("#thermalPrint").removeClass("hidden");
+    if ($scope.thermal.currency) {
+      site.strings["currency"] = {
+        ar: " " + $scope.thermal.currency.name_ar + " ",
+        en: " " + $scope.thermal.currency.name_en + " ",
+      };
+      site.strings["from100"] = {
+        ar: " " + $scope.thermal.currency.minor_currency_ar + " ",
+        en: " " + $scope.thermal.currency.minor_currency_en + " ",
+      };
+      $scope.thermal.net_txt = site.stringfiy($scope.thermal.net_value);
+    }
+
+    JsBarcode(".barcode", $scope.thermal.code);
+    if (
+      $scope.defaultSettings.printer_program &&
+      $scope.defaultSettings.printer_program.printer_path &&
+      $scope.defaultSettings.printer_program.printer_path.ip
+    ) {
+      site.printAsImage({
+        selector: "#thermalPrint",
+        ip: "127.0.0.1",
+        port: "60080",
+        printer:
+          $scope.defaultSettings.printer_program.printer_path.ip.name.trim(),
+      });
+    } else {
+      $scope.error = "##word.thermal_printer_must_select##";
+    }
+
+    $scope.busy = false;
+    $timeout(() => {
+      $("#thermalPrint").addClass("hidden");
+    }, 5000);
   };
 
   $scope.paymentsPayable = function (type) {

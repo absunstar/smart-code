@@ -250,19 +250,19 @@
                             <h2 class="center blue userPrint"> {{account_invoices.invoice_code}}</h2>
                         </div>
 
-                        <div class="row" ng-show="account_invoices.current_book_list.length > 0">
+                        <div class="row" ng-show="account_invoices.current_items.length > 0">
                             <table x-permissions="login" class="table bold hover loaded" id="t1">
                                 <tr>
                                     <th>##word.stores_items_name##</th>
                                     <th>##word.barcode##</th>
                                     <th>##word.items_count##</th>
                                     <th>##word.items_price##</th>
-                                    <th>##word.discount##</th>
+                                    <th>##word.total_v_a##</th>
                                     <th>##word.items_price_total##</th>
                                     </th>
                                 </tr>
 
-                                <tr ng-repeat="c in account_invoices.current_book_list">
+                                <tr ng-repeat="c in account_invoices.current_items">
                                     <td class="center title">
                                         <p ng-show="c.add_sizes">{{c.name_##session.lang##}} {{c.size_##session.lang##}}
                                         </p>
@@ -271,13 +271,13 @@
                                     <td class="center userPrint">{{c.barcode}}</td>
                                     <td class="center blue">{{c.count}}</td>
                                     <td class="center">
-                                        <p ng-hide="account_invoices.source_type.id ==1">{{c.price}}</p>
-                                        <p ng-show="account_invoices.source_type.id ==1">{{c.cost}}</p>
+                                        <p ng-show="account_invoices.source_type.id ==2 || account_invoices.source_type.id ==3">{{c.b_price}}</p>
+                                        <p ng-show="account_invoices.source_type.id ==1">{{c.b_cost}}</p>
+                                        <del class="red txt16" ng-show="c.discount.value > 0">
+                                            {{c.discount.current}}
+                                          </del>
                                     </td>
-                                    <td class="center red">{{c.discount.value}}
-                                        <b class="red" ng-show="c.discount.type =='number'">$</b>
-                                        <b class="red" ng-show="c.discount.type =='percent'">%</b>
-                                    </td>
+                                    <td class="center red">{{c.total_v_a}}</td>
                                     <td class="center green">{{c.total || c.total}}</td>
 
                                 </tr>

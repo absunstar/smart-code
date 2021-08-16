@@ -917,7 +917,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
 
   $scope.selectOrderInvoices = function (item) {
     $scope.error = '';
-    $scope.account_invoices.current_book_list = [];
+    $scope.account_invoices.current_items = [];
     $scope.account_invoices.customer = item.customer;
     $scope.account_invoices.tenant = item.tenant;
     $scope.account_invoices.invoice_type = item.type;
@@ -959,13 +959,13 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
 
     if ($scope.account_invoices.source_type && $scope.account_invoices.source_type.id === 3) {
 
-      item.under_paid.book_list.forEach(_item => {
+      item.under_paid.items.forEach(_item => {
         if (_item.count > 0) {
-          $scope.account_invoices.current_book_list.push(_item);
+          $scope.account_invoices.current_items.push(_item);
         }
       });
 
-    } else $scope.account_invoices.current_book_list = item.items;
+    } else $scope.account_invoices.current_items = item.items;
     $scope.calc($scope.account_invoices);
     $scope.orderInvoicesTypeList = [];
   };
@@ -1003,8 +1003,8 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     $scope.error = '';
     $timeout(() => {
       let total_price_item = 0;
-      if (account_invoices.current_book_list) {
-        account_invoices.current_book_list.map(item => total_price_item += item.total);
+      if (account_invoices.current_items) {
+        account_invoices.current_items.map(item => total_price_item += item.total);
 
         account_invoices.net_value = site.toNumber(total_price_item) + (account_invoices.service || 0) + (account_invoices.price_delivery_service || 0) + (account_invoices.total_tax || 0) - (account_invoices.total_discount || 0);
       }
@@ -1033,7 +1033,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     $scope.error = '';
 
     if (item.count === 1) {
-      $scope.account_invoices.current_book_list.splice($scope.account_invoices.current_book_list.indexOf(item), 1)
+      $scope.account_invoices.current_items.splice($scope.account_invoices.current_items.indexOf(item), 1)
 
     } else if (item.count > 1) {
       item.count -= 1;
@@ -1311,7 +1311,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
         value2: account_invoices.table.tables_group[name_lang]
       });
 
-    if (account_invoices.current_book_list && account_invoices.current_book_list.length > 0) {
+    if (account_invoices.current_items && account_invoices.current_items.length > 0) {
 
       let size_lang = 'size_ar';
       if ('##session.lang##' === 'en') size_lang = 'size_en';
@@ -1332,13 +1332,13 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       );
 
 
-      account_invoices.current_book_list.forEach((_current_book_list, i) => {
-        _current_book_list.total = site.toNumber(_current_book_list.total);
+      account_invoices.current_items.forEach((_current_items, i) => {
+        _current_items.total = site.toNumber(_current_items.total);
         obj_print.data.push({
           type: 'invoice-item',
-          count: _current_book_list.count,
-          name: _current_book_list[size_lang],
-          price: site.addSubZero(_current_book_list.total, 2)
+          count: _current_items.count,
+          name: _current_items[size_lang],
+          price: site.addSubZero(_current_items.total, 2)
         });
 
       });

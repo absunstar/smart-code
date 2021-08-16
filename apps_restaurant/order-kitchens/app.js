@@ -26,9 +26,9 @@ module.exports = function init(site) {
     }, (err, doc) => {
       if (!err && doc) {
         response.done = true
-        doc.book_list.forEach(book_list => {
-          if (book_list.size_ar == item.size_ar && book_list.barcode === item.barcode)
-            book_list.done_kitchen = true;
+        doc.items.forEach(items => {
+          if (items.size_ar == item.size_ar && items.barcode === item.barcode)
+            items.done_kitchen = true;
         });
         $order_invoice.update(doc)
       }
@@ -55,10 +55,10 @@ module.exports = function init(site) {
 
     if (where['kitchen']) {
       kitchen = where['kitchen']
-      where['book_list.kitchen.id'] = where['kitchen'].id;
+      where['items.kitchen.id'] = where['kitchen'].id;
       delete where['kitchen']
     }
-    where['$or'] = [{ 'book_list.done_kitchen': false }, { 'book_list.done_kitchen': undefined }]
+    where['$or'] = [{ 'items.done_kitchen': false }, { 'items.done_kitchen': undefined }]
 
     where['hold'] = { $ne: true }
 
@@ -72,21 +72,21 @@ module.exports = function init(site) {
     }, (err, docs, count) => {
       if (!err) {
         response.done = true
-        let book_list_report = [];
+        let items_report = [];
         docs.forEach(_order => {
-          _order.book_list.forEach(itm => {
+          _order.items.forEach(itm => {
             if (itm.kitchen && itm.kitchen.id === kitchen.id && !itm.done_kitchen) {
               itm.order = {
                 code: _order.code,
                 id: _order.id,
               }
               itm.table = _order.table
-              book_list_report.push(itm);
+              items_report.push(itm);
             }
           });
         });
 
-        response.list = book_list_report
+        response.list = items_report
         response.count = count
       } else {
         response.error = err.message

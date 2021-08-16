@@ -55,7 +55,7 @@
         "ar": "نوع المعاملة"
     },
     {
-        "name": "err_book_list",
+        "name": "err_items",
         "en": "Must Add Items",
         "ar": "يجب إضافة أصناف"
     },

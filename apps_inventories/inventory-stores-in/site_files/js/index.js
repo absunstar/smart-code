@@ -37,7 +37,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
           invoice_code: store_in.code,
           total_discount: store_in.total_discount,
           total_tax: store_in.total_tax,
-          current_book_list: store_in.items,
+          current_items: store_in.items,
           source_type: {
             id: 1,
             en: "Purchases Store",
@@ -817,7 +817,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                       invoice_code: response.data.doc.code,
                       total_discount: response.data.doc.total_discount,
                       total_tax: response.data.doc.total_tax,
-                      current_book_list: response.data.doc.items,
+                      current_items: response.data.doc.items,
                       source_type: {
                         id: 1,
                         en: "Purchases Store",
@@ -1791,7 +1791,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                         invoice_code: response.data.doc.code,
                         total_discount: response.data.doc.total_discount,
                         total_tax: response.data.doc.total_tax,
-                        current_book_list: response.data.doc.items,
+                        current_items: response.data.doc.items,
                         source_type: {
                           id: 1,
                           en: "Purchases Store",
@@ -1928,7 +1928,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                                     total_discount:
                                       response.data.doc.total_discount,
                                     total_tax: response.data.doc.total_tax,
-                                    current_book_list: response.data.doc.items,
+                                    current_items: response.data.doc.items,
                                     source_type: {
                                       id: 1,
                                       en: "Purchases Store",

@@ -48,26 +48,26 @@ module.exports = function init(site) {
     }
 
     if (where['size_ar']) {
-      where['book_list.size_ar'] = where['size_ar']
+      where['items.size_ar'] = where['size_ar']
       delete where['size_ar']
     }
     if (where['size_en']) {
-      where['book_list.size_en'] = where['size_en']
+      where['items.size_en'] = where['size_en']
       delete where['size_en']
     }
     if (where['barcode']) {
-      where['book_list.barcode'] = where['barcode']
+      where['items.barcode'] = where['barcode']
       delete where['barcode']
 
     }
 
     if (where['item_group']) {
-      where['book_list.item_group.id'] = where['item_group'].id;
+      where['items.item_group.id'] = where['item_group'].id;
       delete where['item_group']
     }
 
     if (where['name']) {
-      where['book_list.name'] = where['name']
+      where['items.name'] = where['name']
       delete where['name']
     }
 
@@ -86,7 +86,7 @@ module.exports = function init(site) {
         let sizes_list = []
         docs.forEach(_doc => {
           let exist = false
-          _doc.book_list.forEach(itm => {
+          _doc.items.forEach(itm => {
             sizes_list.forEach(_size => {
               if (_size.barcode == itm.barcode) {
                 _size.count = _size.count + itm.count;

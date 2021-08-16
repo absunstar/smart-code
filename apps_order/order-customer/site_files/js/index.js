@@ -38,7 +38,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
 
         $scope.order_customer = {
           shift: shift,
-          book_list: [],
+          items: [],
           discountes: [],
           taxes: [],
           date: new Date(),
@@ -103,7 +103,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
       if ($scope.defaultSettings.inventory && $scope.defaultSettings.inventory.dont_max_discount_items) {
         let max_discount = false;
 
-        $scope.order_customer.book_list.forEach(_itemSize => {
+        $scope.order_customer.items.forEach(_itemSize => {
           if (_itemSize.discount.value > _itemSize.discount.max)
             max_discount = true;
         });
@@ -256,7 +256,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
       });
 
 
-      _order_customer.book_list.forEach(item_book => {
+      _order_customer.items.forEach(item_book => {
         if (!item_book.kitchen || item_book.printed) return;
         if (item_book.kitchen.id == _kitchen.id) {
           item_book.printed = true;
@@ -366,7 +366,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
       $scope.account_invoices.delivery_employee = $scope.order_customer.delivery_employee;
 
     if ($scope.order_customer) {
-      $scope.account_invoices.current_book_list = $scope.order_customer.book_list;
+      $scope.account_invoices.current_items = $scope.order_customer.items;
       $scope.account_invoices.invoice_id = $scope.order_customer.id;
 
       if ($scope.order_customer.total_tax)
@@ -427,7 +427,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
         value: '##word.cutomer##'
       });
 
-    if ($scope.account_invoices.current_book_list && $scope.account_invoices.current_book_list.length > 0) {
+    if ($scope.account_invoices.current_items && $scope.account_invoices.current_items.length > 0) {
 
       obj_print.data.push(
         {
@@ -452,13 +452,13 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
       }
       );
 
-      $scope.account_invoices.current_book_list.forEach(_current_book_list => {
-        _current_book_list.total = site.toNumber(_current_book_list.total);
+      $scope.account_invoices.current_items.forEach(_current_items => {
+        _current_items.total = site.toNumber(_current_items.total);
         obj_print.data.push({
           type: 'item',
-          value: _current_book_list.count,
-          value2: _current_book_list.size_ar,
-          value3: _current_book_list.total
+          value: _current_items.count,
+          value2: _current_items.size_ar,
+          value3: _current_items.total
         })
       });
     };
@@ -610,7 +610,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
           invoice_code: order_customer.number,
           total_discount: order_customer.total_discount,
           total_tax: order_customer.total_tax,
-          current_book_list: order_customer.under_paid.book_list,
+          current_items: order_customer.under_paid.items,
           source_type: {
             id: 5,
             en: "Orders Customers",
@@ -1183,7 +1183,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
 
   $scope.closeOrder = function () {
 
-    $scope.getStockItems($scope.order_customer.book_list,$scope.order_customer.store, callback => {
+    $scope.getStockItems($scope.order_customer.items,$scope.order_customer.store, callback => {
 
       if (!callback) {
 
@@ -1201,7 +1201,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
         };
 
         $scope.order_customer.under_paid = {
-          book_list: $scope.order_customer.book_list,
+          items: $scope.order_customer.items,
           total_tax: $scope.order_customer.total_tax,
           total_discount: $scope.order_customer.total_discount,
           price_delivery_service: $scope.order_customer.price_delivery_service,
@@ -1305,7 +1305,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
   $scope.bookList = function (item) {
 
     $scope.error = '';
-    $scope.order_customer.book_list = $scope.order_customer.book_list || [];
+    $scope.order_customer.items = $scope.order_customer.items || [];
     let exist = false;
     let foundHold = false;
     let kitchenBranch = {};
@@ -1323,7 +1323,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
       });
     }
 
-    $scope.order_customer.book_list.forEach(el => {
+    $scope.order_customer.items.forEach(el => {
       if (item.size_ar == el.size_ar && item.barcode == el.barcode && !el.printed) {
         exist = true;
         el.total += (item.price - item.discount.value);
@@ -1340,7 +1340,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
       item.price = item.size_units_list[indxUnit].price;
       if (!foundHold) {
 
-        $scope.order_customer.book_list.push({
+        $scope.order_customer.items.push({
           item_id: item.item_id,
           kitchen: kitchenBranch,
           name_ar: item.name_ar,
@@ -1367,7 +1367,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
     $scope.error = '';
 
     if (item.count == 1) {
-      $scope.order_customer.book_list.splice($scope.order_customer.book_list.indexOf(item), 1)
+      $scope.order_customer.items.splice($scope.order_customer.items.indexOf(item), 1)
 
     } else if (item.count > 1) {
       item.count -= 1;
@@ -1451,8 +1451,8 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
       obj.total_tax = 0;
       obj.total_discount = 0;
 
-      if (obj.book_list && obj.book_list.length > 0) {
-        obj.book_list.forEach(itm => {
+      if (obj.items && obj.items.length > 0) {
+        obj.items.forEach(itm => {
           obj.total_value += site.toNumber(itm.total);
         });
       };
@@ -1475,7 +1475,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
 
       obj.price_delivery_service = site.toNumber(obj.price_delivery_service) || 0;
 
-      if (obj.book_list && obj.book_list.length > 0)
+      if (obj.items && obj.items.length > 0)
         obj.net_value = (site.toNumber(obj.total_value) + (obj.total_tax || 0) + obj.price_delivery_service || 0) - (obj.total_discount || 0);
 
       if (obj.currency) {

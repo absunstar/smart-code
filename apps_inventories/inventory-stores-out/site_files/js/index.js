@@ -581,7 +581,7 @@ app.controller("stores_out", function ($scope, $http, $timeout, $interval) {
                         invoice_code: response.data.doc.code,
                         total_discount: response.data.doc.total_discount,
                         total_tax: response.data.doc.total_tax,
-                        current_book_list: response.data.doc.items,
+                        current_items: response.data.doc.items,
                         source_type: {
                           id: 2,
                           en: "Sales Store",
@@ -824,14 +824,19 @@ app.controller("stores_out", function ($scope, $http, $timeout, $interval) {
 
   $scope.detailsAccountInvoices = function (storeOut) {
     $scope.busy = true;
+
+    let where = {};
+    if (storeOut.type.id == 3) {
+      where = { invoice_id: storeOut.id, "source_type.id": 2 };
+    } else if (storeOut.type.id == 4) {
+      where = { invoice_id: storeOut.order_id, "source_type.id": 3 };
+    }
+
     $http({
       method: "POST",
       url: "/api/account_invoices/view",
       data: {
-        where: {
-          invoice_id: storeOut.id,
-          "source_type.id": 2,
-        },
+        where: where,
       },
     }).then(
       function (response) {
@@ -1984,7 +1989,7 @@ app.controller("stores_out", function ($scope, $http, $timeout, $interval) {
           invoice_code: store_out.code,
           total_discount: store_out.total_discount,
           total_tax: store_out.total_tax,
-          current_book_list: store_out.items,
+          current_items: store_out.items,
           source_type: {
             id: 2,
             en: "Sales Store",
@@ -2225,9 +2230,9 @@ app.controller("stores_out", function ($scope, $http, $timeout, $interval) {
               printer:
                 $scope.defaultSettings.printer_program.a4_printer.ip.name.trim(),
             });
-          }, 5000);
+          }, 10000);
         });
-      }, 5000);
+      }, 10000);
 
       site.hideModal("#viewStoreOutModal");
     } else {
@@ -2676,7 +2681,7 @@ app.controller("stores_out", function ($scope, $http, $timeout, $interval) {
                         invoice_code: response.data.doc.code,
                         total_discount: response.data.doc.total_discount,
                         total_tax: response.data.doc.total_tax,
-                        current_book_list: response.data.doc.items,
+                        current_items: response.data.doc.items,
                         source_type: {
                           id: 2,
                           en: "Sales Store",
@@ -2806,7 +2811,7 @@ app.controller("stores_out", function ($scope, $http, $timeout, $interval) {
                                     total_discount:
                                       response.data.doc.total_discount,
                                     total_tax: response.data.doc.total_tax,
-                                    current_book_list: response.data.doc.items,
+                                    current_items: response.data.doc.items,
                                     source_type: {
                                       id: 2,
                                       en: "Sales Store",
