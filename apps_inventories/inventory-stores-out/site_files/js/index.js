@@ -2199,11 +2199,11 @@ app.controller("stores_out", function ($scope, $http, $timeout, $interval) {
     if ($scope.defaultSettings.printer_program.a4_printer) {
       $("#storeOutDetails").removeClass("hidden");
 
-      if ($scope.store_out.items.length > 5) {
+      if ($scope.store_out.items.length > 7) {
         $scope.invList = [];
-        let inv_length = $scope.store_out.items.length / 5;
+        let inv_length = $scope.store_out.items.length / 7;
         inv_length = parseInt(inv_length);
-        let ramain_items = $scope.store_out.items.length - inv_length * 5;
+        let ramain_items = $scope.store_out.items.length - inv_length * 7;
 
         if (ramain_items) {
           inv_length += 1;
@@ -2214,7 +2214,7 @@ app.controller("stores_out", function ($scope, $http, $timeout, $interval) {
 
           s_o.items = [];
           $scope.store_out.items.forEach((itm, i) => {
-            if (i < (i_inv + 1) * 5 && !itm.$done_inv) {
+            if (i < (i_inv + 1) * 7 && !itm.$done_inv) {
               itm.$done_inv = true;
               itm.$index = i + 1;
               s_o.items.push(itm);
@@ -2227,27 +2227,24 @@ app.controller("stores_out", function ($scope, $http, $timeout, $interval) {
         $scope.invList = [{ ...$scope.store_out }];
       }
       $timeout(() => {
-        $scope.invList.forEach((el, i) => {
-          $timeout(() => {
-            site.printAsImage({
-              selector: `#page_${i}`,
-              ip: "127.0.0.1",
-              port: "60080",
-              printer:
-                $scope.defaultSettings.printer_program.a4_printer.ip.name.trim(),
-            });
-          }, 10000);
-        });
-      }, 10000);
+      site.print({
+        selector: '#storeOutDetails',
+        ip: "127.0.0.1",
+        port: "60080",
+        printer:
+          $scope.defaultSettings.printer_program.a4_printer.ip.name.trim(),
+      });
+    }, 2000);
+  
 
       site.hideModal("#viewStoreOutModal");
     } else {
       $scope.error = "##word.a4_printer_must_select##";
     }
     $scope.busy = false;
-    /*  $timeout(() => {
+     $timeout(() => {
       $("#storeOutDetails").addClass("hidden");
-    }, 5000); */
+    }, 5000);
   };
 
   $scope.getCustomerGroupList = function () {
