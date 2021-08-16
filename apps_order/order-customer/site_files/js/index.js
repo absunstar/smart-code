@@ -366,7 +366,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
       $scope.account_invoices.delivery_employee = $scope.order_customer.delivery_employee;
 
     if ($scope.order_customer) {
-      $scope.account_invoices.current_items = $scope.order_customer.items;
+      $scope.account_invoices.items = $scope.order_customer.items;
       $scope.account_invoices.invoice_id = $scope.order_customer.id;
 
       if ($scope.order_customer.total_tax)
@@ -427,7 +427,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
         value: '##word.cutomer##'
       });
 
-    if ($scope.account_invoices.current_items && $scope.account_invoices.current_items.length > 0) {
+    if ($scope.account_invoices.items && $scope.account_invoices.items.length > 0) {
 
       obj_print.data.push(
         {
@@ -452,13 +452,13 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
       }
       );
 
-      $scope.account_invoices.current_items.forEach(_current_items => {
-        _current_items.total = site.toNumber(_current_items.total);
+      $scope.account_invoices.items.forEach(_items => {
+        _items.total = site.toNumber(_items.total);
         obj_print.data.push({
           type: 'item',
-          value: _current_items.count,
-          value2: _current_items.size_ar,
-          value3: _current_items.total
+          value: _items.count,
+          value2: _items.size_ar,
+          value3: _items.total
         })
       });
     };
@@ -610,7 +610,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
           invoice_code: order_customer.number,
           total_discount: order_customer.total_discount,
           total_tax: order_customer.total_tax,
-          current_items: order_customer.under_paid.items,
+          items: order_customer.under_paid.items,
           source_type: {
             id: 5,
             en: "Orders Customers",
@@ -1266,7 +1266,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
           $scope.busy = false;
           if (response.data.done) {
             $scope.itemsList = response.data.list;
-            $scope.current_items = [];
+            $scope.items = [];
             site.showModal('#itemsListModal');
           }
         },
@@ -1279,20 +1279,20 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
   };
 
   $scope.showItemsIn = function (i) {
-    $scope.current_items = i;
-    if ($scope.current_items.sizes) {
+    $scope.items = i;
+    if ($scope.items.sizes) {
 
-      $scope.current_items.sizes.forEach(_size => {
-        _size.main_unit = $scope.current_items.main_unit;
-        _size.item_group = $scope.current_items.item_group;
+      $scope.items.sizes.forEach(_size => {
+        _size.main_unit = $scope.items.main_unit;
+        _size.item_group = $scope.items.item_group;
         _size.size_units_list.forEach(_unit => {
           if (_unit.id === _size.main_unit.id) {
             _size.price = _unit.price
           }
         });
-        _size.item_id = $scope.current_items.id;
-        _size.name_ar = $scope.current_items.name_ar;
-        _size.name_en = $scope.current_items.name_en;
+        _size.item_id = $scope.items.id;
+        _size.name_ar = $scope.items.name_ar;
+        _size.name_en = $scope.items.name_en;
       });
     }
     site.showModal('#sizesModal');

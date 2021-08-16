@@ -5,13 +5,13 @@ module.exports = function init(site) {
 
     let barcode = objectInvoice.sizes_list.map(_obj => _obj.barcode)
 
-    $account_invoices.findMany({ 'company.id': objectInvoice.company.id, 'current_items.barcode': barcode }, (err, doc) => {
+    $account_invoices.findMany({ 'company.id': objectInvoice.company.id, 'items.barcode': barcode }, (err, doc) => {
       if (doc) {
 
         doc.forEach(_doc => {
-          if (_doc.current_items) {
+          if (_doc.items) {
 
-            _doc.current_items.forEach(_items => {
+            _doc.items.forEach(_items => {
               objectInvoice.sizes_list.forEach(_size => {
                 if (_items.barcode === _size.barcode) {
                   _items.size_ar = _size.size_ar
@@ -87,7 +87,10 @@ module.exports = function init(site) {
     account_invoices_doc.company = site.get_company(req);
     account_invoices_doc.branch = site.get_branch(req);
 
-
+    if(account_invoices_doc.id){
+      delete account_invoices_doc.id
+      delete account_invoices_doc._id
+    }
     account_invoices_doc.add_user_info = site.security.getUserFinger({
       $req: req,
       $res: res
@@ -103,9 +106,9 @@ module.exports = function init(site) {
 
     if (account_invoices_doc.paid_up === 0) account_invoices_doc.posting = true
 
-    if (account_invoices_doc.current_items && account_invoices_doc.current_items.length > 0) {
+    if (account_invoices_doc.items && account_invoices_doc.items.length > 0) {
       account_invoices_doc.total_items_discount = 0
-      account_invoices_doc.current_items.forEach(_c_b_list => {
+      account_invoices_doc.items.forEach(_c_b_list => {
 
         if (account_invoices_doc.source_type.id == 1) {
 
@@ -314,7 +317,7 @@ module.exports = function init(site) {
                   } else if (doc.source_type.id == 3) {
 
                     let under_paid = {
-                      items: doc.current_items,
+                      items: doc.items,
                       net_value: doc.net_value,
                       total_tax: doc.total_tax,
                       total_discount: doc.total_discount,
@@ -1439,7 +1442,7 @@ module.exports = function init(site) {
             if (account_invoices_doc.source_type.id == 3) {
 
               let under_paid = {
-                items: account_invoices_doc.current_items,
+                items: account_invoices_doc.items,
                 net_value: account_invoices_doc.net_value,
                 total_tax: account_invoices_doc.total_tax,
                 total_discount: account_invoices_doc.total_discount,
@@ -1825,7 +1828,7 @@ module.exports = function init(site) {
                   if (result.doc.source_type.id == 3) {
 
                     let under_paid = {
-                      items: result.doc.current_items,
+                      items: result.doc.items,
                       net_value: result.doc.net_value,
                       total_tax: result.doc.total_tax,
                       total_discount: result.doc.total_discount,

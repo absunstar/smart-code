@@ -250,7 +250,7 @@
                             <h2 class="center blue userPrint"> {{account_invoices.invoice_code}}</h2>
                         </div>
 
-                        <div class="row" ng-show="account_invoices.current_items.length > 0">
+                        <div class="row" ng-show="account_invoices.items.length > 0">
                             <table x-permissions="login" class="table bold hover loaded" id="t1">
                                 <tr>
                                     <th>##word.stores_items_name##</th>
@@ -262,7 +262,7 @@
                                     </th>
                                 </tr>
 
-                                <tr ng-repeat="c in account_invoices.current_items">
+                                <tr ng-repeat="c in account_invoices.items">
                                     <td class="center title">
                                         <p ng-show="c.add_sizes">{{c.name_##session.lang##}} {{c.size_##session.lang##}}
                                         </p>

@@ -162,7 +162,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
           total_value: 0,
           net_value: 0,
           total_value_added: 0,
-          before_value_added : 0
+          before_value_added: 0,
         };
 
         if ($scope.defaultSettings.inventory) {
@@ -599,7 +599,9 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     }
     $scope.busy = true;
 
-    if ($scope.account_invoices.paid_up > $scope.amount_currency) {
+    if (
+      $scope.account_invoices.paid_up > $scope.account_invoices.amount_currency
+    ) {
       $scope.error = "##word.err_net_value##";
       return;
     }
@@ -811,11 +813,12 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
           total_value: order_invoice.total_value,
           net_value: order_invoice.net_value,
           total_value_added: order_invoice.total_value_added,
+          before_value_added: order_invoice.before_value_added,
           paid_up: 0,
           invoice_code: order_invoice.code,
           total_discount: order_invoice.total_discount,
           total_tax: order_invoice.total_tax,
-          current_items: order_invoice.under_paid.items,
+          items: order_invoice.under_paid.items,
           source_type: {
             id: 3,
             en: "Orders Screen",
@@ -841,12 +844,18 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
                 $scope.defaultSettings.accounting.safe_bank;
           }
         }
+
         if ($scope.account_invoices.currency) {
-          $scope.amount_currency =
-            site.toNumber($scope.account_invoices.net_value) /
-            site.toNumber($scope.account_invoices.currency.ex_rate);
-          $scope.account_invoices.paid_up = $scope.amount_currency;
+          $scope.account_invoices.amount_currency =
+            $scope.account_invoices.net_value /
+            $scope.account_invoices.currency.ex_rate;
+          $scope.account_invoices.amount_currency = site.toNumber(
+            $scope.account_invoices.amount_currency
+          );
+          $scope.account_invoices.paid_up =
+            $scope.account_invoices.amount_currency;
         }
+        $scope.calc($scope.account_invoices);
 
         site.showModal("#accountInvoiceModal");
       } else $scope.error = "##word.open_shift_not_found##";
@@ -1901,7 +1910,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
    
                    console.log(element.add_sizes);
                  });
-                 $scope.current_items = []; */
+                 $scope.items = []; */
             }
           },
           function (err) {
@@ -1914,24 +1923,24 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   };
 
   $scope.showItemsIn = function (i) {
-    $scope.current_items = i;
-    if ($scope.current_items.sizes && $scope.current_items.sizes.length > 0) {
-      $scope.current_items.sizes.forEach((_size) => {
-        _size.main_unit = $scope.current_items.main_unit;
-        _size.item_group = $scope.current_items.item_group;
+    $scope.items = i;
+    if ($scope.items.sizes && $scope.items.sizes.length > 0) {
+      $scope.items.sizes.forEach((_size) => {
+        _size.main_unit = $scope.items.main_unit;
+        _size.item_group = $scope.items.item_group;
         _size.size_units_list.forEach((_unit) => {
           if (_unit.id === _size.main_unit.id) {
             _size.price = _unit.price;
           }
         });
-        _size.item_id = $scope.current_items.id;
-        _size.name_ar = $scope.current_items.name_ar;
-        _size.name_en = $scope.current_items.name_en;
-        _size.add_sizes = $scope.current_items.add_sizes;
+        _size.item_id = $scope.items.id;
+        _size.name_ar = $scope.items.name_ar;
+        _size.name_en = $scope.items.name_en;
+        _size.add_sizes = $scope.items.add_sizes;
       });
     }
-    if ($scope.current_items.sizes.length === 1) {
-      $scope.bookList($scope.current_items.sizes[0]);
+    if ($scope.items.sizes.length === 1) {
+      $scope.bookList($scope.items.sizes[0]);
     } else {
       site.showModal("#sizesModal");
     }
@@ -2277,8 +2286,19 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       obj.net_value = site.toNumber(obj.net_value);
 
       if (obj.currency) {
-        $scope.amount_currency = obj.net_value / obj.currency.ex_rate;
-        $scope.amount_currency = site.toNumber($scope.amount_currency);
+        obj.amount_currency = obj.net_value / obj.currency.ex_rate;
+        obj.amount_currency = site.toNumber(obj.amount_currency);
+        if (obj.Paid_from_customer) {
+          obj.remain_from_customer = site.toNumber(obj.remain_from_customer);
+          if (obj.Paid_from_customer <= obj.amount_currency) {
+            obj.paid_up = obj.Paid_from_customer;
+            obj.remain_from_customer = 0;
+          } else {
+            obj.paid_up = obj.amount_currency;
+            obj.remain_from_customer =
+              obj.Paid_from_customer - obj.amount_currency;
+          }
+        }
       }
 
       $scope.discount = {

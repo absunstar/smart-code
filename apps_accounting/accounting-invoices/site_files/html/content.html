@@ -91,7 +91,7 @@
                         <div class="row">
 
                             <i-list help-id="" ng-show="account_invoices.source_type.id == 3"
-                                ng-change="orderInvoicesTypeList = [] ; account_invoices.current_items = []"
+                                ng-change="orderInvoicesTypeList = [] ; account_invoices.items = []"
                                 ng-search="_search.$order_invoices_type_search" class="col3" label="##word.order_type##"
                                 ng-model="account_invoices.order_invoices_type" items="transactionTypeList"
                                 display="##session.lang##">
@@ -196,7 +196,7 @@
                         </div>
 
 
-                        <div class="row" ng-show="account_invoices.current_items.length > 0">
+                        <div class="row" ng-show="account_invoices.items.length > 0">
 
                             <table x-permissions="login" class="table bold hover loaded" id="t1">
 
@@ -211,7 +211,7 @@
                                     </th>
                                 </tr>
 
-                                <tr ng-repeat="c in account_invoices.current_items">
+                                <tr ng-repeat="c in account_invoices.items">
                                     <td class="center title">
                                         <p ng-show="c.add_sizes">{{c.name_##session.lang##}} {{c.size_##session.lang##}}
                                         </p>

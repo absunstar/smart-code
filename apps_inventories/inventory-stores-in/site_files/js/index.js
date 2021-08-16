@@ -37,7 +37,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
           invoice_code: store_in.code,
           total_discount: store_in.total_discount,
           total_tax: store_in.total_tax,
-          current_items: store_in.items,
+          items: store_in.items,
           source_type: {
             id: 1,
             en: "Purchases Store",
@@ -817,7 +817,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                       invoice_code: response.data.doc.code,
                       total_discount: response.data.doc.total_discount,
                       total_tax: response.data.doc.total_tax,
-                      current_items: response.data.doc.items,
+                      items: response.data.doc.items,
                       source_type: {
                         id: 1,
                         en: "Purchases Store",
@@ -1014,7 +1014,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       obj.total_value = 0;
       obj.net_value = obj.net_value || 0;
 
-      if (obj.items) {
+      if (!obj.invoice_id) {
         obj.total_value_added = 0;
 
         obj.items.forEach((_itm) => {
@@ -1048,7 +1048,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       obj.total_tax = site.toNumber(obj.total_tax);
       obj.total_value = site.toNumber(obj.total_value);
 
-      if (obj.items) {
+      if (!obj.invoice_id) {
         obj.before_value_added = obj.total_value - obj.total_value_added;
         obj.net_value = obj.total_value + obj.total_tax - obj.total_discount;
         obj.before_value_added = site.toNumber(obj.before_value_added);
@@ -1791,7 +1791,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                         invoice_code: response.data.doc.code,
                         total_discount: response.data.doc.total_discount,
                         total_tax: response.data.doc.total_tax,
-                        current_items: response.data.doc.items,
+                        items: response.data.doc.items,
                         source_type: {
                           id: 1,
                           en: "Purchases Store",
@@ -1928,7 +1928,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                                     total_discount:
                                       response.data.doc.total_discount,
                                     total_tax: response.data.doc.total_tax,
-                                    current_items: response.data.doc.items,
+                                    items: response.data.doc.items,
                                     source_type: {
                                       id: 1,
                                       en: "Purchases Store",

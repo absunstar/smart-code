@@ -127,7 +127,7 @@ app.controller("order_management", function ($scope, $http, $timeout) {
           invoice_code: order_invoice.number,
           total_discount: order_invoice.total_discount,
           total_tax: order_invoice.total_tax,
-          current_items: order_invoice.under_paid.items,
+          items: order_invoice.under_paid.items,
           source_type: {
             id: 3,
             en: "Orders Screen",
@@ -249,7 +249,7 @@ app.controller("order_management", function ($scope, $http, $timeout) {
       obj.total_remain = ($scope.amount_currency - obj.paid_up);
       obj.total_remain = site.toNumber(obj.total_remain);
       obj.transaction_type = obj.order_invoices_type;
-      obj.items = obj.current_items;
+      obj.items = obj.items;
     } else {
       obj.total_remain = 0
 
@@ -359,13 +359,13 @@ app.controller("order_management", function ($scope, $http, $timeout) {
         type: 'line2'
       });
 
-      obj.items.forEach((_current_items, i) => {
-        _current_items.total = site.toNumber(_current_items.total);
+      obj.items.forEach((_items, i) => {
+        _items.total = site.toNumber(_items.total);
         obj_print.data.push({
           type: 'invoice-item',
-          count: _current_items.count,
-          name: _current_items[size_lang],
-          price: site.addSubZero(_current_items.total, 2)
+          count: _items.count,
+          name: _items[size_lang],
+          price: site.addSubZero(_items.total, 2)
         });
         if (i < obj.items.length - 1) {
           obj_print.data.push({

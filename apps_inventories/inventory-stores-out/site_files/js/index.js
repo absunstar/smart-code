@@ -128,7 +128,7 @@ app.controller("stores_out", function ($scope, $http, $timeout, $interval) {
       obj.total_value = 0;
       obj.net_value = obj.net_value || 0;
 
-      if (obj.items) {
+      if (!obj.invoice_id) {
         obj.total_value_added = 0;
         obj.items.forEach((_itm) => {
           obj.total_value += site.toNumber(_itm.total);
@@ -160,7 +160,7 @@ app.controller("stores_out", function ($scope, $http, $timeout, $interval) {
       obj.total_discount = site.toNumber(obj.total_discount);
       obj.total_tax = site.toNumber(obj.total_tax);
 
-      if (obj.items) {
+      if (!obj.invoice_id) {
         obj.before_value_added = obj.total_value - obj.total_value_added;
         obj.before_value_added = site.toNumber(obj.before_value_added);
 
@@ -171,13 +171,18 @@ app.controller("stores_out", function ($scope, $http, $timeout, $interval) {
       obj.net_value = site.toNumber(obj.net_value);
 
       if (obj.currency) {
-        obj.amount_currency =
-          site.toNumber(obj.net_value) / site.toNumber(obj.currency.ex_rate);
+        obj.amount_currency = obj.net_value / obj.currency.ex_rate;
         obj.amount_currency = site.toNumber(obj.amount_currency);
-        if (obj.Paid_from_customer <= obj.amount_currency) {
-          obj.paid_up = obj.Paid_from_customer;
-        } else {
-          obj.paid_up = obj.amount_currency;
+        if (obj.Paid_from_customer) {
+          obj.remain_from_customer = site.toNumber(obj.remain_from_customer);
+          if (obj.Paid_from_customer <= obj.amount_currency) {
+            obj.paid_up = obj.Paid_from_customer;
+            obj.remain_from_customer = 0;
+          } else {
+            obj.paid_up = obj.amount_currency;
+            obj.remain_from_customer =
+              obj.Paid_from_customer - obj.amount_currency;
+          }
         }
       }
     }, 250);
@@ -581,7 +586,7 @@ app.controller("stores_out", function ($scope, $http, $timeout, $interval) {
                         invoice_code: response.data.doc.code,
                         total_discount: response.data.doc.total_discount,
                         total_tax: response.data.doc.total_tax,
-                        current_items: response.data.doc.items,
+                        items: response.data.doc.items,
                         source_type: {
                           id: 2,
                           en: "Sales Store",
@@ -1989,7 +1994,7 @@ app.controller("stores_out", function ($scope, $http, $timeout, $interval) {
           invoice_code: store_out.code,
           total_discount: store_out.total_discount,
           total_tax: store_out.total_tax,
-          current_items: store_out.items,
+          items: store_out.items,
           source_type: {
             id: 2,
             en: "Sales Store",
@@ -2017,14 +2022,15 @@ app.controller("stores_out", function ($scope, $http, $timeout, $interval) {
         }
         if ($scope.account_invoices.currency) {
           $scope.account_invoices.amount_currency =
-            site.toNumber($scope.account_invoices.net_value) /
-            site.toNumber($scope.account_invoices.currency.ex_rate);
+            $scope.account_invoices.net_value /
+            $scope.account_invoices.currency.ex_rate;
           $scope.account_invoices.amount_currency = site.toNumber(
             $scope.account_invoices.amount_currency
           );
           $scope.account_invoices.paid_up =
             $scope.account_invoices.amount_currency;
         }
+        console.log($scope.account_invoices.amount_currency);
         $scope.calc($scope.account_invoices);
 
         site.showModal("#accountInvoiceModal");
@@ -2681,7 +2687,7 @@ app.controller("stores_out", function ($scope, $http, $timeout, $interval) {
                         invoice_code: response.data.doc.code,
                         total_discount: response.data.doc.total_discount,
                         total_tax: response.data.doc.total_tax,
-                        current_items: response.data.doc.items,
+                        items: response.data.doc.items,
                         source_type: {
                           id: 2,
                           en: "Sales Store",
@@ -2811,7 +2817,7 @@ app.controller("stores_out", function ($scope, $http, $timeout, $interval) {
                                     total_discount:
                                       response.data.doc.total_discount,
                                     total_tax: response.data.doc.total_tax,
-                                    current_items: response.data.doc.items,
+                                    items: response.data.doc.items,
                                     source_type: {
                                       id: 2,
                                       en: "Sales Store",
