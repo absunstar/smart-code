@@ -215,11 +215,11 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     if ($scope.defaultSettings.printer_program.a4_printer) {
       $("#storeInDetails").removeClass("hidden");
 
-      if ($scope.store_in.items.length > 5) {
+      if ($scope.store_in.items.length > 7) {
         $scope.invList = [];
-        let inv_length = $scope.store_in.items.length / 5;
+        let inv_length = $scope.store_in.items.length / 7;
         inv_length = parseInt(inv_length);
-        let ramain_items = $scope.store_in.items.length - inv_length * 5;
+        let ramain_items = $scope.store_in.items.length - inv_length * 7;
 
         if (ramain_items) {
           inv_length += 1;
@@ -230,7 +230,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
           s_o.items = [];
           $scope.store_in.items.forEach((itm, i) => {
-            if (i < (i_inv + 1) * 5 && !itm.$done_inv) {
+            if (i < (i_inv + 1) * 7 && !itm.$done_inv) {
               itm.$done_inv = true;
               itm.$index = i + 1;
               s_o.items.push(itm);
@@ -242,19 +242,22 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       } else {
         $scope.invList = [{ ...$scope.store_in }];
       }
-
-      site.printAsImage({
-        selector: "#storeInDetails",
+      $timeout(() => {
+      site.print({
+        selector: '#storeInDetails',
         ip: "127.0.0.1",
         port: "60080",
         printer:
           $scope.defaultSettings.printer_program.a4_printer.ip.name.trim(),
       });
+    }, 2000);
+  
+
     } else {
       $scope.error = "##word.a4_printer_must_select##";
     }
     $scope.busy = false;
-    $timeout(() => {
+     $timeout(() => {
       $("#storeInDetails").addClass("hidden");
     }, 5000);
   };

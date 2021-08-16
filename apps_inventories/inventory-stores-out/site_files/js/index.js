@@ -2236,8 +2236,6 @@ app.controller("stores_out", function ($scope, $http, $timeout, $interval) {
       });
     }, 2000);
   
-
-      site.hideModal("#viewStoreOutModal");
     } else {
       $scope.error = "##word.a4_printer_must_select##";
     }

@@ -20,7 +20,6 @@ app.controller("stores_assemble", function ($scope, $http, $timeout) {
   $scope.deleteRow = function (itm) {
     $scope.error = '';
     $scope.store_assemble.items.splice($scope.store_assemble.items.indexOf(itm), 1);
-
   };
 
   $scope.deleteitem = function (itm) {
