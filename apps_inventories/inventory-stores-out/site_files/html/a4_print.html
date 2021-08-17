@@ -74,22 +74,20 @@
             <b class="center">{{st_o.payment_method.##session.lang##}} </b>
           </td>
 
-          <td class="title txt16 center bold">
-            <b class="indigoD">##word.delegate## :</b>
-            <b class="center">{{st_o.delegate.name_##session.lang##}} </b>
+          <td class="center">
+            <b class="indigoD txt16"> ##word.transaction_type## :</b>
+            <b class="center txt16 bold"> {{st_o.type.##session.lang##}} </b>
           </td>
         </tr>
 
         <tr>
           <td class="title">
-            <b class="indigoD txt16"> ##word.transaction_type## :</b>
-            <b class="center txt16 bold"> {{st_o.type.##session.lang##}} </b>
-          </td>
-
-          <td class="center">
             <b class="indigoD">ملاحظات / Notes :</b>
             <b class="center">{{st_o.notes}}</b>
           </td>
+
+      
+
         </tr>
 
         <!-- <td class="center">
@@ -302,12 +300,12 @@
       <div class="col2"></div>
 
       <div class="col5 bold">
-        <p class="txt19 black center">العميل / Customer</p>
+        <p class="txt19 black center">المندوب / Sales man</p>
         <br />
         <br />
         <b class="indigoD">الإسم / Name : </b>
-        <b class="black">{{st_o.customer.name_##session.lang##}}</b>
-        <br />
+<!--         <b class="black">{{st_o.customer.name_##session.lang##}}</b>
+ -->        <br />
         <p class="indigoD">التوقيع / Signature :</p>
       </div>
     </div>
