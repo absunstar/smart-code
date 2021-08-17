@@ -48,15 +48,15 @@
         <tr>
           <td>
             <b class="indigoD txt16"> التاريخ / Date :</b>
-            <b class="center txt16 brown"
+            <b class="center txt16"
               >{{st_o.date |date:"dd - MM - yyyy" }}
             </b>
           </td>
 
           <td class="center">
             <b class="indigoD txt16">رقم الفاتورة / Invoice No. :</b>
-            <b class="blue txt16 userPrint">{{st_o.code}}</b>
-            <h3 class="red bold center userPrint">{{st_o.retured_number}}</h3>
+            <b class="txt16 userPrint">{{st_o.code}}</b>
+            <h3 class="bold center userPrint">{{st_o.retured_number}}</h3>
           </td>
         </tr>
 
@@ -85,8 +85,8 @@
             <b class="center">{{st_o.customer.name_##session.lang##}} </b>
           </td>
           <td class="center txt16">
-            <b class="indigoD"> جوال العميل / Customer Phone:</b>
-            <b class="center blue">{{st_o.customer.mobile}} </b>
+            <b class="indigoD"> جوال العميل / Customer Mobile:</b>
+            <b class="center">{{st_o.customer.mobile}} </b>
           </td>
         </tr>
 
@@ -204,9 +204,9 @@
         </tr>
 
         <tr ng-repeat="itm in st_o.items">
-          <td class="center txt16 blue">{{itm.$index}}</td>
+          <td class="center txt16">{{itm.$index}}</td>
 
-          <td class="center txt16 userPrint blue">{{itm.barcode}}</td>
+          <td class="center txt16 userPrint">{{itm.barcode}}</td>
 
           <td class="center txt16">
             <p ng-show="itm.add_sizes">{{itm.name_ar}} {{itm.size_ar}}</p>
@@ -228,13 +228,13 @@
           >
             {{itm.b_price}}
 
-            <del class="red txt16" ng-show="itm.discount.value > 0">
+            <del class="txt16" ng-show="itm.discount.value > 0">
               {{itm.discount.current}}
             </del>
           </td>
 
           <td
-            class="center txt16 red"
+            class="center txt16"
             x-permissions="stores_out_details_values || stores_out_manage"
           >
             {{itm.total_v_a}}
@@ -271,8 +271,8 @@
           <p class="txt16 black">{{st_o.before_value_added}}</p>
           <p class="txt16 black">{{st_o.total_value_added}}</p>
           <p class="txt16 black">{{st_o.total_value}}</p>
-          <p class="txt16 red">{{st_o.total_discount}}</p>
-          <p class="txt16 green">{{st_o.net_value}}</p>
+          <p class="txt16 black">{{st_o.total_discount}}</p>
+          <p class="txt16 black">{{st_o.net_value}}</p>
         </div>
       </div>
 
