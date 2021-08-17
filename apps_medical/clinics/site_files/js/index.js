@@ -20,7 +20,9 @@ app.controller("clinics", function ($scope, $http, $timeout) {
 
       },
       shift_list: [{
-        name: '##word.basic##',
+        id : 1,
+        name_ar: 'الأساسي',
+        name_en: 'Basic',
         times_list: [{}]
       }],
       doctor_list: [{}],
@@ -328,6 +330,14 @@ app.controller("clinics", function ($scope, $http, $timeout) {
 
     )
 
+  };
+
+  $scope.addShift = function () {
+
+    $scope.clinic.shift_list.push({
+      id : $scope.clinic.shift_list.length + 1,
+      times_list:[{}]
+    })
   };
 
   $scope.displayAddWorkTime = function () {

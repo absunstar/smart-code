@@ -485,7 +485,7 @@ module.exports = function init(site) {
     }
 
     let where = req.body.where || {}
-    where['id'] = req.data['clinic.id']
+    // where['id'] = req.data['clinic.id']
 
     $clinics.findMany({
       select: req.body.select || {},
@@ -500,7 +500,7 @@ module.exports = function init(site) {
         let shift = {}
         docs.forEach(doc => {
           doc.shift_list.forEach(info => {
-            if (info.name == req.data['shift_name'])
+            if (info.id == req.data['shiftId'])
               shift = info
           })
         })

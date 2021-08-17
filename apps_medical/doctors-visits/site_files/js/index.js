@@ -1058,8 +1058,8 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/clinics/shifts/all",
       data: {
-        shift_name: d.shift.name,
-        'clinic.id': c.id
+        shiftId: d.shift.id,
+        'id': c.id
       }
     }).then(
       function (response) {

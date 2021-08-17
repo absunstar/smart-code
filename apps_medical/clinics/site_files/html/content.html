@@ -131,7 +131,7 @@
 
                         <fieldset>
                             <legend>
-                                <i-button type="add default" ng-click="clinic.shift_list.push({times_list:[{}]})">
+                                <i-button type="add default" ng-click="addShift()">
                                 </i-button>
                                 ##word.shift##
                                 <i-button type="delete default"
@@ -141,10 +141,17 @@
                             </legend>
 
                             <div class="row">
-                                <i-control help-id="" class="col3" label="##word.shift_name##" ng-model="shift.name_##session.lang##">
-                                </i-control>
+                                <div class="col3">
 
-                                <fieldset>
+                                    <i-control help-id="" label="##word.shift_name##" ng-model="shift.name_ar">
+                                    </i-control>
+
+                                    <i-control help-id="" label="##word.name_en##" ng-model="shift.name_en">
+                                    </i-control>
+                                </div>
+
+
+                                <fieldset class="col9">
 
                                     <legend>
                                         <i-button type="add default" ng-click="shift.times_list.push({})"></i-button>
