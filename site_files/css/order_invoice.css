@@ -52,7 +52,7 @@ body {
 
 .item-groups .item {
     width: 130px;
-    min-height: 80px;
+    height: 85px;
     display: inline-flex;
     border: 1px solid #000000;
     background-color: #ffffff;
@@ -78,6 +78,11 @@ body {
     /* background-color: #57ff732e; */
     /* border: 2px solid rgb(58, 255, 124); */
     /* box-shadow: 3px 3px 3px 3px #36363638; */
+    border-top-right-radius: 25px;
+}
+
+.item-click:hover {
+    transform: scale(1.1);
     border-top-right-radius: 25px;
 }
 

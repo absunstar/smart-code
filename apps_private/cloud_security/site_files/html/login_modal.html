@@ -19,10 +19,10 @@
                         ng-keydown="loadUserBranches()"></i-control>
 
                     <i-control class="col4" ng-model="user.password" type="password"
-                        label="##word.security_user_password##" ng-keydown="loadUserBranches()"></i-control>
+                        label="##word.security_user_password##" ng-keydown="loadUserBranches($event)"></i-control>
                     <div class="col1"></div>
                     <i-button class="col2" class="view" label="##word.security_load_user_companies##"
-                        ng-click="loadUserBranches()">
+                        ng-click="loadUserBranches($event)">
                     </i-button>
                 </div>
 

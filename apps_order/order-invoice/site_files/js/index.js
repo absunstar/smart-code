@@ -4,7 +4,6 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   $scope.discount = { type: "number" };
   $scope.tax = {};
   $scope.kitchensList = [];
-
   $scope.cancelOrderInvoice = function (order_invoice) {
     $scope.error = "";
 
@@ -1885,10 +1884,10 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   $scope.loadItems = function (group, e) {
     $scope.error = "";
     document.querySelectorAll("a").forEach((a) => {
-      a.classList.remove("my-hover");
+      a.classList.remove("item-click");
     });
 
-    e.target.parentNode.classList.add("my-hover");
+    e.target.parentNode.classList.add("item-click");
 
     $scope.get_open_shift((shift) => {
       if (shift) {

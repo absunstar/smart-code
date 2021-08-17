@@ -13,6 +13,7 @@
 .r_blue input {
   color: blue;
   font-weight: bold;
+  text-align: center;
   font-size: 18px;
 }
 
@@ -20,16 +21,15 @@
 .r_black input {
   color: black;
   font-weight: bold;
+  text-align: center;
   font-size: 18px;
 }
-.indigoD,
-.indigoD {
-  color: #3b0066 !important;
-}
+
 .r_brown,
 .r_brown input {
   color: brown;
   font-weight: bold;
+  text-align: center;
   font-size: 18px;
 }
 
@@ -37,6 +37,7 @@
 .r_orange input {
   color: OrangeRed;
   font-weight: bold;
+  text-align: center;
   font-size: 18px;
 }
 
@@ -44,6 +45,7 @@
 .r_darkRed input {
   color: DarkRed;
   font-weight: bold;
+  text-align: center;
   font-size: 18px;
 }
 
@@ -76,7 +78,10 @@
 .grayDark {
   color: #989898 !important;
 }
-
+.indigoD,
+.indigoD {
+  color: #3b0066 !important;
+}
 .bord {
   background-color: #272727 !important;
   width: auto;
