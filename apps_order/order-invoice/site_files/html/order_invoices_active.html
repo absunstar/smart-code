@@ -1,73 +1,93 @@
-<div id="orderInvoicesActiveAddModal" class="modal" fixed>
+<style>
+  .btn.deleting {
+    width: 250px;
+    background: #e21212;
+    font-weight: bold;
+}
 
-    <div class="modal-content">
+</style>
+<div id="orderInvoicesActiveAddModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>
+        ##word.open_orders##
+        <i class="fa fa-plus"></i>
+      </h2>
+    </div>
+    <div class="modal-body">
+      <br />
+      <br />
 
-        <div class="modal-body">
-            <br>
-            <br>
+      <div class="center">
+        <div class="row" help-id="menu_monitor">
+          <div
+            class="col3 center"
+            ng-repeat="s in invoicesActivelist"
+            ng-click="returnWaitingOrder(s)"
+          >
+         
+            <div class="active-list pointer row">
+                <br>
+              <h4 class="bold center">
+                <b class="indigoD">##word.code## :</b> {{s.code}}
+              </h4>
 
-            <div class="center">
-                <div class="center" help-id="menu_monitor">
-                    <div class="active-list pointer" ng-repeat="s in invoicesActivelist" ng-click="returnWaitingOrder(s)">
+              <h4 class="center bold">
+                <b class="indigoD">##word.date## : </b>
+                <b>{{s.date |date:"dd - MM - yyyy" }}</b>
+              </h4>
 
-                        <h4 class="center bold"> <b class="indigoD">##word.code## :</b> {{s.code}}</h4>
+              <h4 class="center bold">
+                <b class="indigoD">##word.transaction_type## : </b>
+                {{s.transaction_type.##session.lang##}}
+              </h4>
 
-                        <h4 class="center bold"> <b class="indigoD">##word.transaction_type## : </b>
-                            {{s.transaction_type.##session.lang##}}</h4>
-
-                        <h4 class="center bold" ng-show="s.customer.id"> <b class="indigoD">##word.customer## : </b>
-                                    {{s.customer.name_##session.lang##}}</h4>
-                        <h4 class="center bold" ng-show="s.delivery_employee.id">
-                            <b class="indigoD">##word.delivery_employee## : </b>
-                                    {{s.delivery_employee.name_##session.lang##}}
-                        </h4>
-                        <h4 class="center bold" x-features="restaurant" ng-show="s.table.id">
-                            <b class="indigoD">##word.table## :</b>
-                            {{s.table.name_##session.lang##}}</h4>
-                        <h4 class="center bold" x-features="restaurant" ng-show="s.table.id">
-                            <b class="indigoD"> ##word.tables_group## : </b>
-                            {{s.table.tables_group.name_##session.lang##}}</h4>
-                     
-                    </div>
-
-                </div>
-
-                <!-- <table class="table bold center hover">
-                <tr>
-                    <th> ##word.code## </th>
-                    <th> ##word.transaction_type## </th>
-                    <th> ##word.customer## </th>
-                    <th> ##word.delivery_employee## </th>
-                    <th x-features="restaurant"> ##word.tables_group## </th>
-                    <th x-features="restaurant"> ##word.table## </th>
-                    <th class="not-print">##word.actions##</th>
-
-                </tr>
-                <tr class="pointer" ng-repeat="item in invoicesActivelist" ng-click="returnWaitingOrder(item)">
-                    <td class="code"> {{item.code}} </td>
-                    <td> {{item.transaction_type.##session.lang##}} </td>
-                    <td> {{item.customer.name_##session.lang##}} </td>
-                    <td> {{item.delivery_employee.name_##session.lang##}}</td>
-                    <td x-features="restaurant"> {{item.table.tables_group.name_##session.lang##}} </td>
-                    <td x-features="restaurant">{{item.table.name_##session.lang##}}</td>
-                    <td class="center not-print">
-                        <i-button x-permissions="order_invoice_delete || order_invoice_manage" type="delete default"
-                            label="##word.delete##" ng-click="deleteOrderInvoice(item)"></i-button>
-                    </td>
-                </tr>
-            </table> -->
-
-
-
+              <h4 class="center bold" ng-show="s.customer.id">
+                <b class="indigoD">##word.customer## : </b>
+                {{s.customer.name_##session.lang##}}
+              </h4>
+              <h4 class="center bold" ng-show="s.delivery_employee.id">
+                <b class="indigoD">##word.delivery_employee## : </b>
+                {{s.delivery_employee.name_##session.lang##}}
+              </h4>
+              <h4
+                class="center bold"
+                x-features="restaurant"
+                ng-show="s.table.id"
+              >
+                <b class="indigoD">##word.table## :</b>
+                {{s.table.name_##session.lang##}}
+              </h4>
+              <h4
+                class="center bold"
+                x-features="restaurant"
+                ng-show="s.table.id"
+              >
+                <b class="indigoD"> ##word.tables_group## : </b>
+                {{s.table.tables_group.name_##session.lang##}}
+              </h4>
             </div>
-
-
-            <div class="modal-footer center">
-                <h2 class="error"> {{error}} </h2>
-
-                <i-button type="close" label="##word.close##" onclick="site.hideModal( '#orderInvoicesActiveAddModal')">
-                </i-button>
-            </div>
+            <div class="row center">
+                <i-button  ng-click="deleteOrderInvoice(s)" type="delete deleting"></i-button>
+              </div>
+  
+          </div>
         </div>
 
+       
+        </div>
+      </div>
+      <div class="modal-footer center">
+        <h2 class="error">{{error}}</h2>
+
+        <i-button
+          type="close"
+          label="##word.close##"
+          onclick="site.hideModal( '#orderInvoicesActiveAddModal')"
+        >
+        </i-button>
+  </div>
     </div>
+   
+</div>

@@ -5,22 +5,22 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
   $scope.tax = {};
   $scope.kitchensList = [];
 
-  $scope.cancelOrderInvoice = function () {
+  $scope.cancelOrderInvoice = function (order_invoice) {
     $scope.error = "";
 
     $scope.busy = true;
 
     if (
-      $scope.order_invoice &&
-      $scope.order_invoice.status &&
-      $scope.order_invoice.status.id == 1
+      order_invoice &&
+      order_invoice.status &&
+      order_invoice.status.id == 1
     ) {
-      if ($scope.order_invoice.table) {
-        $scope.order_invoice.table.busy = false;
+      if (order_invoice.table) {
+        order_invoice.table.busy = false;
         $http({
           method: "POST",
           url: "/api/tables/update",
-          data: $scope.order_invoice.table,
+          data: order_invoice.table,
         }).then(function (response) {
           if (response.data.done) {
             $scope.busy = false;
@@ -28,7 +28,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         });
       }
 
-      $scope.deleteOrderInvoice($scope.order_invoice);
+      $scope.deleteOrderInvoice(order_invoice);
       $scope.newOrderInvoice();
     }
   };
@@ -400,6 +400,9 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
                     store: order_invoice.store,
                     order_code: order_invoice.code,
                     items: order_invoice.items,
+                    currency: $scope.currencySetting,
+                    before_value_added: order_invoice.before_value_added,
+                    total_value_added: order_invoice.total_value_added,
                     total_discount: order_invoice.total_discount,
                     total_tax: order_invoice.total_tax,
                     total_value: order_invoice.total_value,
@@ -852,8 +855,9 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
           $scope.account_invoices.amount_currency = site.toNumber(
             $scope.account_invoices.amount_currency
           );
-          $scope.account_invoices.paid_up =
+          $scope.account_invoices.paid_up = $scope.account_invoices.Paid_from_customer =
             $scope.account_invoices.amount_currency;
+            
         }
         $scope.calc($scope.account_invoices);
 
@@ -905,7 +909,6 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $scope.viewInvoicesActiveList();
         } else {
           $scope.error = response.data.error;
         }
