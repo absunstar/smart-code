@@ -9,7 +9,7 @@
     {"name" : "companies_delete" , "en" : "Delete company" , "ar" : "حذف شركة"},
     {"name" : "companies_code" , "en" : "company Code" , "ar" : "كود الشركة"},
     {"name" : "companies_phone" , "en" : "Phone" , "ar" : "التليفون"},
-    {"name" : "companies_mobile" , "en" : "Mobile" , "ar" : "المحمول"},
+    {"name" : "companies_mobile" , "en" : "Mobile" , "ar" : "الجوال"},
     {"name" : "companies_activity" , "en" : "Activity" , "ar" : "النشاط"},
     {"name" : "companies_branches_informations" , "en" : "Branches Informations" , "ar" : "بيانات الفروع"},
     {"name" : "companies_branch" , "en" : "Branch" , "ar" : "الفرع"},

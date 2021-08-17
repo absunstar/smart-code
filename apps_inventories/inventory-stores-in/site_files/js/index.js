@@ -974,7 +974,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
               add_sizes: _size.add_sizes,
             };
             $scope.store_in.items.push(itmObj);
-            $scope.calcSize(itmObj);
+            $scope.calcSize($scope.store_in.items[$scope.store_in.items.length - 1]);
           }
         });
       $scope.calc($scope.store_in);

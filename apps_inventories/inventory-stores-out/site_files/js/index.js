@@ -174,7 +174,6 @@ app.controller("stores_out", function ($scope, $http, $timeout, $interval) {
         obj.amount_currency = obj.net_value / obj.currency.ex_rate;
         obj.amount_currency = site.toNumber(obj.amount_currency);
         if (obj.Paid_from_customer) {
-          obj.remain_from_customer = site.toNumber(obj.remain_from_customer);
           if (obj.Paid_from_customer <= obj.amount_currency) {
             obj.paid_up = obj.Paid_from_customer;
             obj.remain_from_customer = 0;
@@ -183,6 +182,11 @@ app.controller("stores_out", function ($scope, $http, $timeout, $interval) {
             obj.remain_from_customer =
               obj.Paid_from_customer - obj.amount_currency;
           }
+          obj.remain_from_customer = site.toNumber(obj.remain_from_customer);
+
+        } else {
+          obj.paid_up = obj.amount_currency;
+
         }
       }
     }, 250);
@@ -1052,7 +1056,9 @@ app.controller("stores_out", function ($scope, $http, $timeout, $interval) {
               add_sizes: _size.add_sizes,
             };
             $scope.store_out.items.push(itmObj);
-            $scope.calcSize(itmObj);
+            $scope.calcSize(
+              $scope.store_out.items[$scope.store_out.items.length - 1]
+            );
           }
         });
       $scope.item.sizes = [];
@@ -2227,20 +2233,19 @@ app.controller("stores_out", function ($scope, $http, $timeout, $interval) {
         $scope.invList = [{ ...$scope.store_out }];
       }
       $timeout(() => {
-      site.print({
-        selector: '#storeOutDetails',
-        ip: "127.0.0.1",
-        port: "60080",
-        printer:
-          $scope.defaultSettings.printer_program.a4_printer.ip.name.trim(),
-      });
-    }, 2000);
-  
+        site.print({
+          selector: "#storeOutDetails",
+          ip: "127.0.0.1",
+          port: "60080",
+          printer:
+            $scope.defaultSettings.printer_program.a4_printer.ip.name.trim(),
+        });
+      }, 2000);
     } else {
       $scope.error = "##word.a4_printer_must_select##";
     }
     $scope.busy = false;
-     $timeout(() => {
+    $timeout(() => {
       $("#storeOutDetails").addClass("hidden");
     }, 5000);
   };

@@ -2291,7 +2291,6 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         obj.amount_currency = obj.net_value / obj.currency.ex_rate;
         obj.amount_currency = site.toNumber(obj.amount_currency);
         if (obj.Paid_from_customer) {
-          obj.remain_from_customer = site.toNumber(obj.remain_from_customer);
           if (obj.Paid_from_customer <= obj.amount_currency) {
             obj.paid_up = obj.Paid_from_customer;
             obj.remain_from_customer = 0;
@@ -2300,6 +2299,11 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
             obj.remain_from_customer =
               obj.Paid_from_customer - obj.amount_currency;
           }
+          obj.remain_from_customer = site.toNumber(obj.remain_from_customer);
+
+        } else {
+          obj.paid_up = obj.amount_currency;
+
         }
       }
 
