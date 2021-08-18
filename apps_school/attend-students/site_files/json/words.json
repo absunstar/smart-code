@@ -25,11 +25,6 @@
         "ar": "بحث الطلاب"
     },
     {
-        "name": "invoice_remain",
-        "en": "Invoice Remain",
-        "ar": "باقي الفاتورة"
-    },
-    {
         "name": "student_name",
         "en": "Student Name",
         "ar": "إسم الطالب"

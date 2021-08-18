@@ -9,11 +9,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
     $scope.busy = true;
 
-    if (
-      order_invoice &&
-      order_invoice.status &&
-      order_invoice.status.id == 1
-    ) {
+    if (order_invoice && order_invoice.status && order_invoice.status.id == 1) {
       if (order_invoice.table) {
         order_invoice.table.busy = false;
         $http({
@@ -165,10 +161,12 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         };
 
         if ($scope.defaultSettings.inventory) {
-          if ($scope.defaultSettings.inventory.store)
-            $scope.order_invoice.store = $scope.storesList.find((_store) => {
+          if ($scope.defaultSettings.inventory.store) {
+            $scope.order_invoice.store = $scope.defaultSettings.inventory.store;
+            /*  $scope.order_invoice.store = $scope.storesList.find((_store) => {
               return _store.id === $scope.defaultSettings.inventory.store.id;
-            });
+            }); */
+          }
         }
         if ($scope.defaultSettings.general_Settings) {
           if ($scope.defaultSettings.general_Settings.order_type) {
@@ -645,6 +643,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
               en: "Amount In",
               ar: "سند قبض",
             };
+            $scope.account_invoices.ref_invoice_id = response.data.doc.id;
             $scope.addAccountInvoice();
           }
 
@@ -826,6 +825,11 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
             en: "Orders Screen",
             ar: "شاشة الطلبات",
           },
+          invoice_type: {
+            id: 4,
+            en: "Orders Screen Store",
+            ar: "شاشة الطلبات",
+          },
           active: true,
         };
 
@@ -854,9 +858,9 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
           $scope.account_invoices.amount_currency = site.toNumber(
             $scope.account_invoices.amount_currency
           );
-          $scope.account_invoices.paid_up = $scope.account_invoices.Paid_from_customer =
-            $scope.account_invoices.amount_currency;
-            
+          $scope.account_invoices.paid_up =
+            $scope.account_invoices.Paid_from_customer =
+              $scope.account_invoices.amount_currency;
         }
         $scope.calc($scope.account_invoices);
 
@@ -1974,6 +1978,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
           _branch.stores_list.forEach((_store) => {
             if (
               _store.store &&
+              $scope.order_invoice.store &&
               _store.store.id == $scope.order_invoice.store.id
             ) {
               item.store_count = _store.current_count;
@@ -2300,10 +2305,8 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
               obj.Paid_from_customer - obj.amount_currency;
           }
           obj.remain_from_customer = site.toNumber(obj.remain_from_customer);
-
         } else {
           obj.paid_up = obj.amount_currency;
-
         }
       }
 

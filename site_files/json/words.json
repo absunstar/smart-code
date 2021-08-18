@@ -431,6 +431,11 @@
         "ar": "طباعة حرارية"
     },
     {
+        "name": "invoice_remain",
+        "en": "Invoice Remain",
+        "ar": "باقي الفاتورة"
+    },
+    {
         "name": "total_before_tax",
         "en": "Total B.Tax",
         "ar": "إجمالي قبل .ض"

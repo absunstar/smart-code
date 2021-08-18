@@ -34,11 +34,7 @@
         "en": "Search Employees",
         "ar": "بحث الموظفين"
     },
-    {
-        "name": "invoice_remain",
-        "en": "Invoice Remain",
-        "ar": "باقي الفاتورة"
-    },
+  
     {
         "name": "employee_name",
         "en": "Employee Name",

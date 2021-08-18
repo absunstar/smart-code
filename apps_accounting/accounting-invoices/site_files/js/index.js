@@ -683,7 +683,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
       let where = {};
       let url = "/api/stores_in/all";
 
-      if ($scope.account_invoices.source_type) {
+      if ($scope.account_invoices.source_type && !$scope.account_invoices.in_type && !$scope.account_invoices.out_type) {
 
         if ($scope.account_invoices.source_type.id === 1) {
           url = "/api/stores_in/all";
@@ -717,23 +717,21 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
         }
       } else if ($scope.account_invoices.in_type) {
         url = "/api/account_invoices/all";
-        where['remain_amount'] = { $gt: 0 };
+        where['remain_amount'] = { $ne: 0 };
 
         if ($scope.account_invoices.in_type.id === 2) {
-
-          where['invoice_type.id'] = 1;
-          where['source_type.id'] = 1;
+          where['invoice_type.id'] = 4;
+          where['source_type.id'] = 3;
 
         } else if ($scope.account_invoices.in_type.id === 3) {
-          where['invoice_type.id'] = 4;
+          where['invoice_type.id'] = 3;
           where['source_type.id'] = 2;
 
         }
 
       } else if ($scope.account_invoices.out_type) {
         url = "/api/account_invoices/all";
-        where['remain_amount'] = { $gt: 0 };
-
+        where['remain_amount'] = { $ne: 0 };
 
         if ($scope.account_invoices.out_type.id === 2) {
 
@@ -768,7 +766,6 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
           $scope.busy = false;
           if (response.data.done) {
             $scope.orderInvoicesTypeList = response.data.list;
-            console.log($scope.orderInvoicesTypeList);
           }
         },
         function (err) {
@@ -950,6 +947,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
     }
 
     $scope.account_invoices.invoice_id = item.id;
+    $scope.account_invoices.remain_source = item.remain_amount;
     $scope.account_invoices.invoice_code = item.code;
     $scope.account_invoices.paid_up = 0;
     $scope.total_tax = $scope.account_invoices.total_tax;

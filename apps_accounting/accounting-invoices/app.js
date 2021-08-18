@@ -117,7 +117,7 @@ module.exports = function init(site) {
           else if (_c_b_list.discount.type == 'percent')
             account_invoices_doc.total_items_discount += ((_c_b_list.discount.value || 0) * (_c_b_list.cost * _c_b_list.count) / 100);
 
-        } else if (account_invoices_doc.source_type.id == 2) {
+        } else if (account_invoices_doc.source_type.id == 2 && account_invoices_doc.source_type.id == 3) {
 
           if (_c_b_list.discount.type == 'number')
             account_invoices_doc.total_items_discount += ((_c_b_list.discount.value || 0) * _c_b_list.count);
@@ -614,7 +614,7 @@ module.exports = function init(site) {
                     doc.net_value = doc.paid_up * doc.currency.ex_rate
                   }
 
-                  if (doc.safe && doc.source_type.id != 16 && doc.source_type.id != 1 && doc.source_type.id != 2) {
+                  if (doc.safe && doc.source_type.id != 16 && doc.source_type.id != 1 && doc.source_type.id != 2 && doc.source_type.id != 3) {
 
                     site.quee('[amounts][safes][+]', { ...paid_value })
                   }

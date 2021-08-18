@@ -184,9 +184,9 @@
                                     <td ng-show="account_invoices.order_invoices_type.id == 1" class="center">
                                         {{item.table.name_##session.lang##}}</td>
                                     <td class="center">
-                                        {{item.transaction_type.##session.lang## ||item.type.##session.lang##}} <b
-                                            ng-show="!item.transaction_type.##session.lang## && !item.type.##session.lang##">
-                                            ##word.not_found##</b></td>
+                                        {{item.transaction_type.##session.lang## }} {{item.invoice_type.##session.lang##}} 
+                                     <!--    <b ng-show="!item.transaction_type.##session.lang## && !item.type.##session.lang##">
+                                            ##word.not_found##</b></td> -->
 
                                     <td class="green center" ng-show="account_invoices.source_type.id ==12">
                                         {{item.total_paid_up}}
@@ -264,6 +264,11 @@
                                     <tr>
                                         <td class="title">##word.value##</td>
                                         <td class="center green">{{account_invoices.net_value}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="title">##word.invoice_remain##</td>
+                                        <td class="center">{{account_invoices.remain_source}}</td>
                                     </tr>
 
                                     <tr ng-show="account_invoices.customer.id">
