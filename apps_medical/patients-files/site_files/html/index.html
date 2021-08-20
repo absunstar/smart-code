@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  x-permissions="patients_files_ui || patients_files_manage"
+  data-ng-app="myApp"
+>
+  <head x-import="head.html"> </head>
+
+  <body class="##session.lang##">
+    <nav
+      x-import="sitebar/index.html"
+      class="sitebar"
+      data-ng-controller="sitebar"
+    ></nav>
+    <nav
+      class="sitebottom"
+      x-import="sitebottom/index.html"
+      ng-controller="sitebottom"
+    ></nav>
+
+    <div id="main-layout" class="container loaded">
+      <div class="row">
+        <div class="row" ng-controller="patients_files" x-permissions="login">
+          <div class="row">
+            <h1 class="bold text-center">##word.patients_files##</h1>
+          </div>
+
+          <div class="top-actions">
+            <div x-import="doctors-visits/view_modal.html"></div>
+            <span ng-show="busy">
+              <span class="sr-only">Loading...</span>
+            </span>
+            <h3 class="bold text-center">##word.count## : {{count}}</h3>
+            <br />
+          </div>
+
+          <div class="row">
+            <div class="col6 margin padding dashed">
+              <div class="row">
+                <i-control
+                  class="col4"
+                  label="##word.patient_search##"
+                  ng-model="patient_search"
+                  ng-keydown="getPatientList($event)"
+                ></i-control>
+
+                <i-list
+                  class="col8"
+                  label="##word.patient##"
+                  ng-model="customer"
+                  display="name_##session.lang##"
+                  items="customersList"
+                  ng-search="_search.$patients_searching"
+                  ng-change="displayDetails(customer)"
+                >
+                </i-list>
+              </div>
+            </div>
+          </div>
+
+          <br />
+          <br />
+          <hr />
+          <br />
+          <br />
+
+          <div
+            x-permissions="patients_files_view || patients_files_manage"
+            x-import="patients-files/content.html"
+          ></div>
+
+          <div class="row">
+            <i-button
+              x-permissions="patients_files_print || patients_files_manage"
+              type="print"
+              label="##word.print##"
+              onclick="site.print('#t1')"
+            ></i-button>
+            <i-button
+              x-permissions="patients_files_export || patients_files_manage"
+              type="export"
+              label="##word.export_to_excel##"
+              onclick="export_to_xlsx('t1' , 'patients_files.xlsx')"
+            >
+            </i-button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div x-import="scripts.html"></div>
+
+    <script x-permissions="login" x-import="patients-files/index.js"></script>
+  </body>
+</html>

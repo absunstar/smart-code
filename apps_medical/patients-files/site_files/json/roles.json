@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "patients_files_admin",
+    "en": "Patients Files Admin",
+    "ar": "إدارة ملفات المرضى",
+    "permissions": ["patients_files_manage"]
+}]

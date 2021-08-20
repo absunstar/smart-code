@@ -25,6 +25,7 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
       image_url: '/images/analysis_requests.png',
       date: new Date(),
       analysis_list: [],
+      paid : 0,
       active: true
     };
     site.showModal('#analysisRequestsAddModal');

@@ -170,6 +170,7 @@
             "operations_requests_manage",
             "prices_codes_manage",
             "patients_tickets_manage",
+            "patients_files_manage",
             "report_analysis_requests_manage",
             "report_scans_requests_manage",
             "report_payable_customers_manage",

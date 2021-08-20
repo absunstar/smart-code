@@ -309,11 +309,17 @@ module.exports = function init(site) {
 
     callback = callback || {};
 
+    if (where['customer']) {
+      where['customer.id'] = where['customer'].id;
+      delete where['customer']
+    }
+    if (where['id']) {
+      where['patient_ticket_id'] = where['id'];
+      delete where['id']
+    }
+    
     $scans_requests.findMany({
-      where: {
-        'customer.id': where.customer.id,
-        patient_ticket_id: where.id
-      },
+      where: where,
 
     }, (err, docs) => {
       if (!err && docs)

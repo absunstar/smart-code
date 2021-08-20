@@ -1,0 +1,151 @@
+<div class="form">
+  <div class="tabs inline-block">
+    <div class="tabs-header">
+      <a
+        class="tab-link"
+        onclick="site.showTabContent(event, '#doctors_visits')"
+      >
+        ##word.doctors_visits##
+      </a>
+
+      <a
+        class="tab-link"
+        onclick="site.showTabContent(event, '#analysis_requests')"
+      >
+        ##word.analysis_requests##
+      </a>
+
+      <a
+        class="tab-link"
+        onclick="site.showTabContent(event, '#scans_requests')"
+      >
+        ##word.scans_requests##
+      </a>
+    </div>
+    <div class="tabs-content">
+      <div id="doctors_visits" class="tab-content">
+        <fieldset>
+          <legend>##word.doctors_visits##</legend>
+          <table class="table loaded center hover bold">
+            <tr>
+              <th>##word.date##</th>
+              <th>##word.clinics##</th>
+              <th>##word.specialty##</th>
+              <th>##word.doctor_name##</th>
+              <th>##word.visit_type##</th>
+              <th class="not-print">##word.files##</th>
+            </tr>
+
+            <tr class="pointer" ng-repeat="v in patients_files.doctors_visits">
+              <td ng-click="displayDetailsDoctorsVisits(v.id)" class="brown">
+                {{v.date | date : 'dd - MM - yyyy'}}
+              </td>
+              <td ng-click="displayDetailsDoctorsVisits(v.id)">
+                {{v.selected_clinic.name_##session.lang##}}
+              </td>
+              <td ng-click="displayDetailsDoctorsVisits(v.id)">
+                {{v.selected_specialty.name_##session.lang##}}
+              </td>
+              <td ng-click="displayDetailsDoctorsVisits(v.id)" class="title">
+                {{v.selected_doctor.name_##session.lang##}}
+              </td>
+              <td ng-click="displayDetailsDoctorsVisits(v.id)" class="center">
+                {{v.visit_type.##session.lang##}}
+                <p ng-show="v.is_urgent_visit" class="red">
+                  (##word.urgent_visit##)
+                </p>
+              </td>
+              <td class="not-print">
+                <i-files view ng-model="v.files"></i-files>
+              </td>
+            </tr>
+          </table>
+        </fieldset>
+        <i-button
+          type="default left"
+          fa="2x fa-angle-double-left"
+          onclick="document.querySelector('.tab-link.active + .tab-link').click();"
+        ></i-button>
+      </div>
+
+      <div id="analysis_requests" class="tab-content">
+        <fieldset>
+          <legend>##word.analysis_requests##</legend>
+          <table class="table loaded center hover bold">
+            <tr>
+              <th>##word.analysis_name##</th>
+              <th>##word.normal_range##</th>
+              <th>##word.notes_before_analysis##</th>
+              <th>##word.notes_after_analysis##</th>
+              <th>##word.delivery_date##</th>
+              <th class="not-print">##word.files##</th>
+            </tr>
+
+            <tr ng-repeat="a in patients_files.analysis_requests">
+              <td class="center">{{a.name_##session.lang##}}</td>
+
+              <td class="center">
+                <b class="green">{{a.from}}</b> - <b class="red">{{a.to}}</b>
+              </td>
+
+              <td class="center lines_text">{{a.notes_before_analysis}}</td>
+
+              <td class="center lines_text">{{a.notes_after_analysis}}</td>
+
+              <td class="center">
+                <p class="brown">{{a.delivery_date |date:"dd - MM - yyyy"}}</p>
+                <p class="green">{{a.delivery_date |date:"hh:mm"}}</p>
+              </td>
+
+              <td class="not-print">
+                <i-files view ng-model="a.files"></i-files>
+              </td>
+            </tr>
+          </table>
+        </fieldset>
+        <i-button
+          type="default left"
+          fa="2x fa-angle-double-left"
+          onclick="document.querySelector('.tab-link.active + .tab-link').click();"
+        ></i-button>
+      </div>
+
+      <div id="scans_requests" class="tab-content">
+        <fieldset>
+          <legend>##word.scans_requests##</legend>
+          <table class="table loaded center hover bold">
+            <tr>
+              <th>##word.scans_name##</th>
+              <th>##word.notes_before_scans##</th>
+              <th>##word.notes_after_scans##</th>
+              <th>##word.delivery_date##</th>
+              <th class="not-print">##word.files##</th>
+            </tr>
+
+            <tr ng-repeat="s in patients_files.scans_requests">
+              <td class="center">{{s.name_##session.lang##}}</td>
+
+              <td class="center lines_text">{{s.notes_before_scans}}</td>
+
+              <td class="center lines_text">{{s.notes_after_scans}}</td>
+
+              <td class="center">
+                <p class="brown">{{s.delivery_date |date:"dd - MM - yyyy"}}</p>
+                <p class="green">{{s.delivery_date |date:"hh:mm"}}</p>
+              </td>
+
+              <td class="not-print">
+                <i-files view ng-model="s.files"></i-files>
+              </td>
+            </tr>
+          </table>
+        </fieldset>
+        <i-button
+          type="default left"
+          fa="2x fa-angle-double-left"
+          onclick="document.querySelector('.tab-link.active + .tab-link').click();"
+        ></i-button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -280,12 +280,16 @@ module.exports = function init(site) {
   site.getOperationsRequests = function (where, callback) {
 
     callback = callback || {};
-
+    if (where['customer']) {
+      where['customer.id'] = where['customer'].id;
+      delete where['customer']
+    }
+    if (where['id']) {
+      where['patient_ticket_id'] = where['id'];
+      delete where['id']
+    }
     $operations_requests.findMany({
-      where: {
-        'customer.id': where.customer.id,
-        patient_ticket_id: where.id
-      },
+      where: where,
 
     }, (err, docs) => {
       if (!err && docs)

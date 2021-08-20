@@ -25,7 +25,8 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
       favorite_food_list: [{}],
       favorite_drink_list: [{}],
       forbidden_food_list: [{}],
-      forbidden_drink_list: [{}]
+      forbidden_drink_list: [{}],
+      paid : 0
     };
 
 
