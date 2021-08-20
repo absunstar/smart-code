@@ -1,411 +1,535 @@
 <div class="form">
-    <div>
-        <fieldset>
-            <legend> ##word.basic_information## </legend>
-            <div class="row">
-                <div class="col9">
-                    <div class="row">
+  <div>
+    <fieldset>
+      <legend>##word.basic_information##</legend>
+      <div class="row">
+        <div class="col9">
+          <div class="row">
+            <div class="col10">
+              <div class="row">
+                <i-control
+                  ng-hide="disabledCode"
+                  class="col2"
+                  label="##word.code##"
+                  ng-model="doctors_visits.code"
+                >
+                </i-control>
 
-                        <div class="col10">
+                <i-date2
+                  class="col4"
+                  ng-model="doctors_visits.date"
+                  label="##word.booking_date##"
+                  v="r"
+                >
+                </i-date2>
 
-                            <div class="row">
-                                <i-control ng-hide="disabledCode" class="col2" label="##word.code##"
-                                    ng-model="doctors_visits.code">
-                                </i-control>
+                <i-list
+                  class="col3"
+                  label="##word.visit_type##"
+                  ng-model="doctors_visits.visit_type"
+                  ng-change="changeDoctorsVisitsPrice() ; calc(doctors_visits)"
+                  v="r"
+                  items="doctorsVisitsTypeList"
+                  display="##session.lang##"
+                  ng-search="_search.$doctors_visits_type_search"
+                ></i-list>
+              </div>
 
-                                <i-date2 class="col4" ng-model="doctors_visits.date" label="##word.booking_date##"
-                                    v="r">
-                                </i-date2>
+              <div class="row">
+                <i-control
+                  class="col2"
+                  label="##word.patient_search##"
+                  ng-model="patient_search"
+                  ng-keydown="getPatientList($event)"
+                ></i-control>
 
-                                <i-list class="col3" label="##word.visit_type##" ng-model="doctors_visits.visit_type"
-                                    ng-change="changeDoctorsVisitsPrice() ; calc(doctors_visits)" v="r"
-                                    items="doctorsVisitsTypeList" display="##session.lang##"
-                                    ng-search="_search.$doctors_visits_type_search"></i-list>
+                <i-list
+                  class="col4"
+                  label="##word.patient##"
+                  v="r"
+                  ng-model="doctors_visits.customer"
+                  display="name_##session.lang##"
+                  items="customersList"
+                  ng-search="_search.$patients_searching"
+                >
+                </i-list>
 
-                            </div>
+                <i-button
+                  ng-show="doctors_visits.customer.id"
+                  type="details"
+                  label="##word.customers_details##"
+                  ng-click="showPatient(doctors_visits.customer.id)"
+                >
+                </i-button>
 
-                            <div class="row">
-                                <i-control class="col2" label="##word.patient_search##" ng-model="patient_search"
-                                    ng-keydown="getPatientList($event)"></i-control>
+                <a
+                  class="btn left bg-black"
+                  ng-show="doctors_visits.customer.id"
+                  target="blank"
+                  href="/patients_files?id={{doctors_visits.customer.id}}"
+                >
+                  ##word.patient_file##</a
+                >
 
-                                <i-list class="col4" label="##word.patient##" v="r" ng-model="doctors_visits.customer"
-                                    display="name_##session.lang##" items="customersList"
-                                    ng-search="_search.$patients_searching">
-                                </i-list>
+                <i-button
+                  type="add"
+                  label="##word.customers_new##"
+                  ng-click="displayAddCustomer()"
+                >
+                </i-button>
+              </div>
+            </div>
+            <div class="col2">
+              <div class="row">
+                <i-checkbox
+                  help-id="cities_active"
+                  label="##word.active##"
+                  ng-model="doctors_visits.active"
+                ></i-checkbox>
+              </div>
 
-                                <i-button class="col3" ng-show="doctors_visits.customer.id" type="details"
-                                    label="##word.customers_details##"
-                                    ng-click="showPatient(doctors_visits.customer.id)">
-                                </i-button>
+              <div class="row">
+                <i-checkbox
+                  label="##word.urgent_visit##"
+                  ng-click="calc(doctors_visits)"
+                  ng-model="doctors_visits.is_urgent_visit"
+                >
+                </i-checkbox>
+              </div>
+            </div>
+          </div>
 
-                                <div class="col1"></div>
+          <div class="col10">
+            <div class="row" ng-show="doctors_visits.customer.id">
+              <fieldset>
+                <table class="table bold center hover">
+                  <tr>
+                    <td class="white bg_card">##word.customer_name##</td>
+                    <td colspan="5" class="center">
+                      {{doctors_visits.customer.name_##session.lang##}}
+                      <b class="red" ng-show="doctors_visits.customer.child"
+                        >(##word.child##)</b
+                      >
+                    </td>
 
-                                <i-button type="add" label="##word.customers_new##" ng-click="displayAddCustomer()">
-                                </i-button>
+                    <td class="white bg_card">##word.gender##</td>
+                    <td colspan="2" class="center">
+                      {{doctors_visits.customer.gender.##session.lang##}}
+                    </td>
+                  </tr>
 
-                            </div>
+                  <tr>
+                    <td class="white bg_card">##word.weight##</td>
+                    <td colspan="2" class="center">
+                      {{doctors_visits.customer.weight}}
+                    </td>
+                    <td class="white bg_card">##word.tall##</td>
+                    <td colspan="2" class="center">
+                      {{doctors_visits.customer.tall}}
+                    </td>
+                    <td class="white bg_card">##word.blood_type##</td>
+                    <td colspan="2" class="center red">
+                      {{doctors_visits.customer.blood_type.name}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="white bg_card">##word.medicine_notes##</td>
+                    <td colspan="7" class="center">
+                      {{doctors_visits.customer.medicine_notes}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="white bg_card">##word.gov##</td>
+                    <td colspan="2" class="center">
+                      {{doctors_visits.customer.gov.name_##session.lang##}}
+                    </td>
+                    <td class="white bg_card">##word.city##</td>
+                    <td colspan="2" class="center">
+                      {{doctors_visits.customer.city.name_##session.lang##}}
+                    </td>
+                    <td class="white bg_card">##word.area##</td>
+                    <td colspan="2" class="center">
+                      {{doctors_visits.customer.area.name_##session.lang##}}
+                    </td>
+                  </tr>
 
-                        </div>
-                        <div class="col2">
-                            <div class="row">
+                  <tr>
+                    <td class="white bg_card">##word.address##</td>
+                    <td colspan="7" class="center">
+                      {{doctors_visits.customer.address}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="white bg_card">##word.mobile##</td>
+                    <td colspan="4" class="center">
+                      {{doctors_visits.customer.mobile}}
+                    </td>
+                    <td class="white bg_card">##word.phone##</td>
+                    <td colspan="3" class="center">
+                      {{doctors_visits.customer.phone}}
+                    </td>
+                  </tr>
+                </table>
+              </fieldset>
+            </div>
+          </div>
 
-                                <i-checkbox help-id="cities_active" label="##word.active##"
-                                    ng-model="doctors_visits.active"></i-checkbox>
-                            </div>
+          <br />
+          <br />
 
-                            <div class="row">
+          <br />
+          <br />
+          <div class="row">
+            <div class="col10">
+              <fieldset>
+                <legend>##word.clinics_search##</legend>
 
-                                <i-checkbox label="##word.urgent_visit##" ng-click="calc(doctors_visits)"
-                                    ng-model="doctors_visits.is_urgent_visit">
-                                </i-checkbox>
-                            </div>
+                <div class="row">
+                  <i-list
+                    class="col4"
+                    label="##word.specialty##"
+                    ng-model="doctors_visits.specialty"
+                    items="specialtyList"
+                    display="name_##session.lang##"
+                    ng-search="_search.$specialty_search"
+                  >
+                  </i-list>
 
-                        </div>
-                    </div>
-
-                    <div class="col10">
-                        <div class="row" ng-show="doctors_visits.customer.id">
-                            <fieldset>
-
-                                <table class="table bold center hover">
-
-                                    <tr>
-                                        <td class="white bg_card"> ##word.customer_name## </td>
-                                        <td colspan="5" class="center">
-                                            {{doctors_visits.customer.name_##session.lang##}} <b class="red"
-                                                ng-show="doctors_visits.customer.child">(##word.child##)</b>
-                                        </td>
-
-                                        <td class="white bg_card"> ##word.gender## </td>
-                                        <td colspan="2" class="center">
-                                            {{doctors_visits.customer.gender.##session.lang##}}
-                                        </td>
-
-                                    </tr>
-
-
-                                    <tr>
-                                        <td class="white bg_card"> ##word.weight## </td>
-                                        <td colspan="2" class="center"> {{doctors_visits.customer.weight}} </td>
-                                        <td class="white bg_card"> ##word.tall## </td>
-                                        <td colspan="2" class="center"> {{doctors_visits.customer.tall}} </td>
-                                        <td class="white bg_card"> ##word.blood_type## </td>
-                                        <td colspan="2" class="center red"> {{doctors_visits.customer.blood_type.name}}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="white bg_card"> ##word.medicine_notes## </td>
-                                        <td colspan="7" class="center"> {{doctors_visits.customer.medicine_notes}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="white bg_card"> ##word.gov## </td>
-                                        <td colspan="2" class="center">
-                                            {{doctors_visits.customer.gov.name_##session.lang##}} </td>
-                                        <td class="white bg_card"> ##word.city## </td>
-                                        <td colspan="2" class="center">
-                                            {{doctors_visits.customer.city.name_##session.lang##}} </td>
-                                        <td class="white bg_card"> ##word.area## </td>
-                                        <td colspan="2" class="center">
-                                            {{doctors_visits.customer.area.name_##session.lang##}} </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="white bg_card"> ##word.address## </td>
-                                        <td colspan="7" class="center"> {{doctors_visits.customer.address}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="white bg_card"> ##word.mobile## </td>
-                                        <td colspan="4" class="center"> {{doctors_visits.customer.mobile}}</td>
-                                        <td class="white bg_card"> ##word.phone## </td>
-                                        <td colspan="3" class="center"> {{doctors_visits.customer.phone}}</td>
-                                    </tr>
-
-                                </table>
-                            </fieldset>
-                        </div>
-                    </div>
-
-                    <br>
-                    <br>
-
-                    <br>
-                    <br>
-                    <div class="row">
-                        <div class="col10">
-
-                            <fieldset>
-                                <legend>##word.clinics_search##</legend>
-
-                                <div class="row">
-
-                                    <i-list class="col4" label="##word.specialty##" ng-model="doctors_visits.specialty"
-                                        items="specialtyList" display="name_##session.lang##"
-                                        ng-search="_search.$specialty_search">
-                                    </i-list>
-
-
-                                    <i-list class="col4" label="##word.clinic##" ng-model="doctors_visits.clinic"
-                                        items="clinicList" display="name_##session.lang##"
-                                        ng-search="_search.$clinic_search"></i-list>
-
-                                </div>
-
-                                <div class="row">
-
-
-                                    <i-control class="col3" label="##word.doctor_search##" ng-model="doctor_search"
-                                        ng-keydown="getDoctorList($event)"></i-control>
-
-                                    <i-list class="col5" label="##word.doctors##" ng-model="doctors_visits.doctor"
-                                        items="doctorList" display="name_##session.lang##"
-                                        ng-search="_search.$doctors_searching">
-                                    </i-list>
-
-                                    <div class="col3"></div>
-
-                                    <i-button type="search" class="col2" label="##word.search##"
-                                        ng-click="getClinicBookList(doctors_visits)">
-                                    </i-button>
-
-                                </div>
-
-                            </fieldset>
-                        </div>
-
-                    </div>
-
-
-
-                    <br>
-                    <br>
-                    <br>
-
-                    <div class="row">
-                        <div class="col11" ng-show="clinicBookList.length > 0">
-                            <table class="table hover center">
-                                <tr>
-                                    <th>##word.clinic##</th>
-                                    <th>##word.specialty##</th>
-                                    <th>##word.doctor_name##</th>
-                                </tr>
-
-                                <tr ng-repeat="c in clinicBookList track by $index">
-
-                                    <td>
-                                        <br>
-                                        <h3 class="black bold ">{{c.name_##session.lang##}}</h3>
-                                    </td>
-
-                                    <td>
-                                        <br>
-                                        <h3 class="black bold ">{{c.specialty.name_##session.lang##}}</h3>
-                                    </td>
-
-                                    <td>
-                                        <div class="row" ng-repeat="d in c.doctor_list">
-                                            <div class="col6">
-                                                <h3 class="black bold ">{{d.doctor.name_##session.lang##}}</h3>
-                                            </div>
-                                            <div class="col6">
-                                                <i-button type="view" label="##word.view_appointments##"
-                                                    ng-click="showTimes(d , c)"></i-button>
-                                            </div>
-                                            <hr>
-
-                                        </div>
-                                    </td>
-
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-
-
-
+                  <i-list
+                    class="col4"
+                    label="##word.clinic##"
+                    ng-model="doctors_visits.clinic"
+                    items="clinicList"
+                    display="name_##session.lang##"
+                    ng-search="_search.$clinic_search"
+                  ></i-list>
                 </div>
 
-                <div class="col3">
-                    <i-image help-id="cities_logo" ng-model="doctors_visits.image_url"></i-image>
-                    <i-files label="##word.files##" categoty="pathients" ng-model="doctors_visits.files"></i-files>
+                <div class="row">
+                  <i-control
+                    class="col3"
+                    label="##word.doctor_search##"
+                    ng-model="doctor_search"
+                    ng-keydown="getDoctorList($event)"
+                  ></i-control>
 
-                    <br>
-                    <br>
-                    <div class="row">
+                  <i-list
+                    class="col5"
+                    label="##word.doctors##"
+                    ng-model="doctors_visits.doctor"
+                    items="doctorList"
+                    display="name_##session.lang##"
+                    ng-search="_search.$doctors_searching"
+                  >
+                  </i-list>
 
-                        <div class=" padding margin">
-                            <table class="table box-shadow " ng-init="discountEditorAdd = true">
-                                <tr>
-                                    <th colspan="2" class="pointer" ng-click="discountEditorAdd = !discountEditorAdd">
-                                        ##word.discountes##
-                                        <i class="fa fa-edit"></i>
-                                    </th>
-                                </tr>
-                                <tr ng-hide="discountEditorAdd">
-                                    <td colspan="2">
-                                        <form>
+                  <div class="col3"></div>
 
-                                            <div class="row ">
-                                                <i-list class="col4" ng-model="discount" display="name_##session.lang##"
-                                                    ng-search="_search.$discount_name" items="discount_types"
-                                                    label="##word.discount_name##">
-                                                </i-list>
-                                            </div>
-
-                                            <div class="row">
-                                                <i-control class="col4" ng-model="discount.value" type="number"
-                                                    label="##word.discount_value##"></i-control>
-                                                <div class="col4">
-                                                    <i-radio ng-model="discount.type" ng-value="number" group="type"
-                                                        label="##word.amount##">
-                                                    </i-radio>
-
-                                                    <i-radio ng-model="discount.type" group="type" ng-value="percent"
-                                                        label="##word.percent##">
-                                                    </i-radio>
-                                                </div>
-                                                <div class="col4" class="padding">
-                                                    <br>
-                                                    <i-button ng-click="addDiscount() ;calc(doctors_visits)"
-                                                        label="##word.stores_out_add_discount##" type="add default">
-                                                    </i-button>
-                                                </div>
-
-                                            </div>
-
-                                        </form>
-                                    </td>
-                                </tr>
-
-                                <tr ng-repeat="d1 in doctors_visits.discountes">
-
-                                    <td>
-                                        <span class="bold red">{{d1.name_##session.lang##}} -</span>
-                                        <span class="bold red" ng-show="d1.type === 'percent'">{{d1.value}}
-                                            %</span>
-                                        <span class="bold red" ng-show="d1.type === 'number'">{{d1.value}}$</span>
-                                        <i-button type="delete" ng-click="deleteDiscount(d1) ; calc(doctors_visits)">
-                                        </i-button>
-                                    </td>
-
-                                </tr>
-                            </table>
-
-                        </div>
-
-                    </div>
-
+                  <i-button
+                    type="search"
+                    class="col2"
+                    label="##word.search##"
+                    ng-click="getClinicBookList(doctors_visits)"
+                  >
+                  </i-button>
                 </div>
+              </fieldset>
+            </div>
+          </div>
+
+          <br />
+          <br />
+          <br />
+
+          <div class="row">
+            <div class="col11" ng-show="clinicBookList.length > 0">
+              <table class="table hover center">
+                <tr>
+                  <th>##word.clinic##</th>
+                  <th>##word.specialty##</th>
+                  <th>##word.doctor_name##</th>
+                </tr>
+
+                <tr ng-repeat="c in clinicBookList track by $index">
+                  <td>
+                    <br />
+                    <h3 class="black bold">{{c.name_##session.lang##}}</h3>
+                  </td>
+
+                  <td>
+                    <br />
+                    <h3 class="black bold">
+                      {{c.specialty.name_##session.lang##}}
+                    </h3>
+                  </td>
+
+                  <td>
+                    <div class="row" ng-repeat="d in c.doctor_list">
+                      <div class="col6">
+                        <h3 class="black bold">
+                          {{d.doctor.name_##session.lang##}}
+                        </h3>
+                      </div>
+                      <div class="col6">
+                        <i-button
+                          type="view"
+                          label="##word.view_appointments##"
+                          ng-click="showTimes(d , c)"
+                        ></i-button>
+                      </div>
+                      <hr />
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="col3">
+          <i-image
+            help-id="cities_logo"
+            ng-model="doctors_visits.image_url"
+          ></i-image>
+          <i-files
+            label="##word.files##"
+            categoty="pathients"
+            ng-model="doctors_visits.files"
+          ></i-files>
+
+          <br />
+          <br />
+          <div class="row">
+            <div class="padding margin">
+              <table
+                class="table box-shadow"
+                ng-init="discountEditorAdd = true"
+              >
+                <tr>
+                  <th
+                    colspan="2"
+                    class="pointer"
+                    ng-click="discountEditorAdd = !discountEditorAdd"
+                  >
+                    ##word.discountes##
+                    <i class="fa fa-edit"></i>
+                  </th>
+                </tr>
+                <tr ng-hide="discountEditorAdd">
+                  <td colspan="2">
+                    <form>
+                      <div class="row">
+                        <i-list
+                          class="col4"
+                          ng-model="discount"
+                          display="name_##session.lang##"
+                          ng-search="_search.$discount_name"
+                          items="discount_types"
+                          label="##word.discount_name##"
+                        >
+                        </i-list>
+                      </div>
+
+                      <div class="row">
+                        <i-control
+                          class="col4"
+                          ng-model="discount.value"
+                          type="number"
+                          label="##word.discount_value##"
+                        ></i-control>
+                        <div class="col4">
+                          <i-radio
+                            ng-model="discount.type"
+                            ng-value="number"
+                            group="type"
+                            label="##word.amount##"
+                          >
+                          </i-radio>
+
+                          <i-radio
+                            ng-model="discount.type"
+                            group="type"
+                            ng-value="percent"
+                            label="##word.percent##"
+                          >
+                          </i-radio>
+                        </div>
+                        <div class="col4" class="padding">
+                          <br />
+                          <i-button
+                            ng-click="addDiscount() ;calc(doctors_visits)"
+                            label="##word.stores_out_add_discount##"
+                            type="add default"
+                          >
+                          </i-button>
+                        </div>
+                      </div>
+                    </form>
+                  </td>
+                </tr>
+
+                <tr ng-repeat="d1 in doctors_visits.discountes">
+                  <td>
+                    <span class="bold red">{{d1.name_##session.lang##}} -</span>
+                    <span class="bold red" ng-show="d1.type === 'percent'"
+                      >{{d1.value}} %</span
+                    >
+                    <span class="bold red" ng-show="d1.type === 'number'"
+                      >{{d1.value}}$</span
+                    >
+                    <i-button
+                      type="delete"
+                      ng-click="deleteDiscount(d1) ; calc(doctors_visits)"
+                    >
+                    </i-button>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col9">
+          <div class="row">
+            <div class="col11">
+              <table
+                class="table center hover bold"
+                ng-show="doctors_visits.selected_time.day"
+              >
+                <tr>
+                  <th>##word.clinic##</th>
+                  <th>##word.doctor##</th>
+                  <th>##word.specialty##</th>
+                  <th>##word.work_day##</th>
+                  <th>##word.work_from##</th>
+                  <th>##word.work_to##</th>
+                  <th>##word.doctor_visit_price##</th>
+                </tr>
+
+                <tr>
+                  <td>
+                    <p class="blue">
+                      {{doctors_visits.selected_clinic.name_##session.lang##}}
+                    </p>
+                  </td>
+
+                  <td>
+                    <p class="blue">
+                      {{doctors_visits.selected_doctor.name_##session.lang##}}
+                    </p>
+                  </td>
+
+                  <td>
+                    <p class="blue">
+                      {{doctors_visits.selected_specialty.name_##session.lang##}}
+                    </p>
+                  </td>
+
+                  <td>
+                    <p class="blue">{{doctors_visits.selected_time.day.ar}}</p>
+                  </td>
+
+                  <td>
+                    <p class="green">
+                      {{doctors_visits.selected_time.from.minute}} :
+                      {{doctors_visits.selected_time.from.hour}}
+                    </p>
+                  </td>
+
+                  <td>
+                    <p class="red">
+                      {{doctors_visits.selected_time.to.minute}} :
+                      {{doctors_visits.selected_time.to.hour}}
+                    </p>
+                  </td>
+
+                  <td>
+                    <p class="green">{{doctors_visits.doctor_visit_price}}</p>
+                  </td>
+                </tr>
+              </table>
             </div>
 
+            <div class="row">
+              <div class="col11">
+                <i-textarea
+                  label="##word.notes##"
+                  ng-model="doctors_visits.notes"
+                ></i-textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col3">
+          <fieldset
+            ng-show="doctors_visits.doctor_visit_price && doctors_visits.selected_time"
+          >
+            <div class="row">
+              <i-control
+                class="col4"
+                ng-show="doctors_visits.total_value"
+                disabled
+                ng-model="doctors_visits.total_value"
+                type="number"
+                label="##word.total_value##"
+              >
+              </i-control>
 
+              <i-control
+                class="col4"
+                ng-show="doctors_visits.is_urgent_visit"
+                ng-model="doctors_visits.urgent_visit.value"
+                type="number"
+                disabled
+                label="##word.urgent_visit##"
+              >
+              </i-control>
 
+              <i-control
+                class="col4"
+                ng-show="doctors_visits.total_discount"
+                disabled
+                ng-model="doctors_visits.total_discount"
+                type="number"
+                label="##word.total_discount##"
+              >
+              </i-control>
+            </div>
 
             <div class="row">
-                <div class="col9">
-                    <div class="row">
-                        <div class="col11">
-                            <table class="table center hover bold" ng-show="doctors_visits.selected_time.day">
+              <i-control
+                class="col4"
+                disabled
+                ng-show="doctors_visits.net_value"
+                ng-model="doctors_visits.net_value"
+                type="number"
+                label="##word.paid_require##"
+              >
+              </i-control>
 
-                                <tr>
-                                    <th>##word.clinic##</th>
-                                    <th>##word.doctor##</th>
-                                    <th>##word.specialty##</th>
-                                    <th>##word.work_day##</th>
-                                    <th>##word.work_from##</th>
-                                    <th>##word.work_to##</th>
-                                    <th>##word.doctor_visit_price##</th>
+              <i-control
+                class="col4"
+                ng-change="calc(doctors_visits)"
+                ng-model="doctors_visits.paid"
+                type="number"
+                label="##word.paid##"
+              >
+              </i-control>
 
-                                </tr>
-
-                                <tr>
-
-                                    <td>
-                                        <p class="blue">{{doctors_visits.selected_clinic.name_##session.lang##}}</p>
-                                    </td>
-
-                                    <td>
-                                        <p class="blue">{{doctors_visits.selected_doctor.name_##session.lang##}}</p>
-                                    </td>
-
-                                    <td>
-                                        <p class="blue">{{doctors_visits.selected_specialty.name_##session.lang##}}</p>
-                                    </td>
-
-                                    <td>
-                                        <p class="blue">{{doctors_visits.selected_time.day.ar}}</p>
-                                    </td>
-
-                                    <td>
-                                        <p class="green">{{doctors_visits.selected_time.from.minute}} :
-                                            {{doctors_visits.selected_time.from.hour}}</p>
-                                    </td>
-
-                                    <td>
-                                        <p class="red">{{doctors_visits.selected_time.to.minute}} :
-                                            {{doctors_visits.selected_time.to.hour}}</p>
-                                    </td>
-
-                                    <td>
-                                        <p class="green">{{doctors_visits.doctor_visit_price}}</p>
-                                    </td>
-
-                                </tr>
-                            </table>
-                        </div>
-
-                        <div class="row">
-                            <div class="col11">
-
-                                <i-textarea label="##word.notes##" ng-model="doctors_visits.notes"></i-textarea>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-                <div class="col3">
-
-                    <fieldset ng-show="doctors_visits.doctor_visit_price && doctors_visits.selected_time">
-                        <div class="row">
-
-                            <i-control class="col4" ng-show="doctors_visits.total_value" disabled
-                                ng-model="doctors_visits.total_value" type="number" label="##word.total_value##">
-                            </i-control>
-
-                            <i-control class="col4" ng-show="doctors_visits.is_urgent_visit"
-                                ng-model="doctors_visits.urgent_visit.value" type="number" disabled
-                                label="##word.urgent_visit##">
-                            </i-control>
-
-                            <i-control class="col4" ng-show="doctors_visits.total_discount" disabled
-                                ng-model="doctors_visits.total_discount" type="number" label="##word.total_discount##">
-                            </i-control>
-
-                        </div>
-
-                        <div class="row">
-
-                            <i-control class="col4" disabled ng-show="doctors_visits.net_value"
-                                ng-model="doctors_visits.net_value" type="number" label="##word.paid_require##">
-                            </i-control>
-
-                            <i-control class="col4" ng-change="calc(doctors_visits)" ng-model="doctors_visits.paid"
-                                type="number" label="##word.paid##">
-                            </i-control>
-
-                            <i-control class="col4" disabled ng-model="doctors_visits.remain" type="number"
-                                label="##word.remain##">
-                            </i-control>
-
-                        </div>
-
-
-                    </fieldset>
-
-                </div>
-
+              <i-control
+                class="col4"
+                disabled
+                ng-model="doctors_visits.remain"
+                type="number"
+                label="##word.remain##"
+              >
+              </i-control>
             </div>
-        </fieldset>
-
-    </div>
+          </fieldset>
+        </div>
+      </div>
+    </fieldset>
+  </div>
 </div>

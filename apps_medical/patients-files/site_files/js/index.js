@@ -1,4 +1,4 @@
-let btn1 = document.querySelector('#doctors_visits .tab-link');
+let btn1 = document.querySelector("#patients_files .tab-link");
 if (btn1) {
   btn1.click();
 }
@@ -35,13 +35,17 @@ app.controller("patients_files", function ($scope, $http, $timeout) {
     if (ev.which !== 13) {
       return;
     }
-
+    let where = {};
+    if (ev.id) {
+      where["id"] = ev.id;
+    }
     $scope.customersList = [];
     $http({
       method: "POST",
       url: "/api/customers/all",
       data: {
         search: $scope.patient_search,
+        where: where,
         select: {},
       },
     }).then(
@@ -49,6 +53,10 @@ app.controller("patients_files", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
           $scope.customersList = response.data.list;
+          if (ev.id){
+            $scope.customer = $scope.customersList.find(_customer => { return _customer.id === ev.id });
+            $scope.displayDetails($scope.customer);
+          }
         }
       },
       function (err) {
@@ -83,4 +91,12 @@ app.controller("patients_files", function ($scope, $http, $timeout) {
       }
     );
   };
+  if ("##query.id##") {
+    let obj = {
+      which: 13,
+      id: site.toNumber("##query.id##"),
+    };
+
+    $scope.getPatientList(obj);
+  }
 });
