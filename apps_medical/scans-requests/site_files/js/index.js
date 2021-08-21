@@ -570,6 +570,7 @@ app.controller("scans_requests", function ($scope, $http, $timeout) {
       $scope.scans_requests.scans_list.unshift(obj);
       $scope.calc($scope.scans_requests);
     }
+    $scope._scan = "";
   };
 
   $scope.calc = function (obj) {

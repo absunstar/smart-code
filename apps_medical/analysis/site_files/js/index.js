@@ -3,23 +3,22 @@ app.controller("analysis", function ($scope, $http, $timeout) {
   $scope.analysis = {};
 
   $scope.displayAddAnalysis = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.analysis = {
-      image_url: '/images/analysis.png',
+      image_url: "/images/analysis.png",
       active: true,
       male: { from: 0, to: 0 },
       female: { from: 0, to: 0 },
       child: { from: 0, to: 0 },
-      immediate: false
-
+      price: 0,
+      immediate: false,
     };
-    site.showModal('#analysisAddModal');
-
+    site.showModal("#analysisAddModal");
   };
 
   $scope.addAnalysis = function () {
-    $scope.error = '';
-    const v = site.validated('#analysisAddModal');
+    $scope.error = "";
+    const v = site.validated("#analysisAddModal");
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
@@ -28,12 +27,12 @@ app.controller("analysis", function ($scope, $http, $timeout) {
     $http({
       method: "POST",
       url: "/api/analysis/add",
-      data: $scope.analysis
+      data: $scope.analysis,
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#analysisAddModal');
+          site.hideModal("#analysisAddModal");
           $scope.getAnalysisList();
         } else {
           $scope.error = response.data.error;
@@ -42,19 +41,19 @@ app.controller("analysis", function ($scope, $http, $timeout) {
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.displayUpdateAnalysis = function (analysis) {
-    $scope.error = '';
+    $scope.error = "";
     $scope.viewAnalysis(analysis);
     $scope.analysis = {};
-    site.showModal('#analysisUpdateModal');
+    site.showModal("#analysisUpdateModal");
   };
 
   $scope.updateAnalysis = function () {
-    $scope.error = '';
-    const v = site.validated('#analysisUpdateModal');
+    $scope.error = "";
+    const v = site.validated("#analysisUpdateModal");
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
@@ -63,45 +62,45 @@ app.controller("analysis", function ($scope, $http, $timeout) {
     $http({
       method: "POST",
       url: "/api/analysis/update",
-      data: $scope.analysis
+      data: $scope.analysis,
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#analysisUpdateModal');
+          site.hideModal("#analysisUpdateModal");
           $scope.getAnalysisList();
         } else {
-          $scope.error = 'Please Login First';
+          $scope.error = "Please Login First";
         }
       },
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.displayDeleteAnalysis = function (analysis) {
-    $scope.error = '';
+    $scope.error = "";
     $scope.viewAnalysis(analysis);
     $scope.analysis = {};
-    site.showModal('#analysisDeleteModal');
+    site.showModal("#analysisDeleteModal");
   };
 
   $scope.deleteAnalysis = function () {
     $scope.busy = true;
-    $scope.error = '';
+    $scope.error = "";
 
     $http({
       method: "POST",
       url: "/api/analysis/delete",
       data: {
-        id: $scope.analysis.id
-      }
+        id: $scope.analysis.id,
+      },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#analysisDeleteModal');
+          site.hideModal("#analysisDeleteModal");
           $scope.getAnalysisList();
         } else {
           $scope.error = response.data.error;
@@ -110,25 +109,25 @@ app.controller("analysis", function ($scope, $http, $timeout) {
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.displayDetailsAnalysis = function (analysis) {
-    $scope.error = '';
+    $scope.error = "";
     $scope.viewAnalysis(analysis);
     $scope.analysis = {};
-    site.showModal('#analysisViewModal');
+    site.showModal("#analysisViewModal");
   };
 
   $scope.viewAnalysis = function (analysis) {
     $scope.busy = true;
-    $scope.error = '';
+    $scope.error = "";
     $http({
       method: "POST",
       url: "/api/analysis/view",
       data: {
-        id: analysis.id
-      }
+        id: analysis.id,
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -141,7 +140,7 @@ app.controller("analysis", function ($scope, $http, $timeout) {
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.getAnalysisList = function (where) {
@@ -151,26 +150,23 @@ app.controller("analysis", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/analysis/all",
       data: {
-        where: where
-      }
+        where: where,
+      },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
           $scope.list = response.data.list;
           $scope.count = response.data.count;
-          site.hideModal('#analysisSearchModal');
+          site.hideModal("#analysisSearchModal");
           $scope.search = {};
-
         }
       },
       function (err) {
         $scope.busy = false;
         $scope.error = err;
       }
-
-    )
-
+    );
   };
 
   $scope.getPeriod = function () {
@@ -178,8 +174,7 @@ app.controller("analysis", function ($scope, $http, $timeout) {
     $scope.periodList = [];
     $http({
       method: "POST",
-      url: "/api/period_analysis/all"
-
+      url: "/api/period_analysis/all",
     }).then(
       function (response) {
         $scope.busy = false;
@@ -189,18 +184,18 @@ app.controller("analysis", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.getNumberingAuto = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/numbering/get_automatic",
       data: {
-        screen: "analysis"
-      }
+        screen: "analysis",
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -212,19 +207,17 @@ app.controller("analysis", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.displaySearchModal = function () {
-    $scope.error = '';
-    site.showModal('#analysisSearchModal');
-
+    $scope.error = "";
+    site.showModal("#analysisSearchModal");
   };
 
   $scope.searchAll = function () {
-
     $scope.getanalysisList($scope.search);
-    site.hideModal('#analysisSearchModal');
+    site.hideModal("#analysisSearchModal");
     $scope.search = {};
   };
 

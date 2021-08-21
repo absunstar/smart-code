@@ -4,35 +4,35 @@ app.controller("scans", function ($scope, $http, $timeout) {
   $scope.scans = {};
 
   $scope.displayAddScans = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.scans = {
-      image_url: '/images/scans.png',
+      image_url: "/images/scans.png",
       active: true,
-      immediate : false
+      price: 0,
+      immediate: false,
     };
-    site.showModal('#scansAddModal');
-    
+    site.showModal("#scansAddModal");
   };
 
   $scope.addScans = function () {
-    $scope.error = '';
-    const v = site.validated('#scansAddModal');
+    $scope.error = "";
+    const v = site.validated("#scansAddModal");
 
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
-    };
+    }
 
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/scans/add",
-      data: $scope.scans
+      data: $scope.scans,
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#scansAddModal');
+          site.hideModal("#scansAddModal");
           $scope.getScansList();
         } else {
           $scope.error = response.data.error;
@@ -41,19 +41,19 @@ app.controller("scans", function ($scope, $http, $timeout) {
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.displayUpdateScans = function (scans) {
-    $scope.error = '';
+    $scope.error = "";
     $scope.viewScans(scans);
     $scope.scans = {};
-    site.showModal('#scansUpdateModal');
+    site.showModal("#scansUpdateModal");
   };
 
   $scope.updateScans = function () {
-    $scope.error = '';
-    const v = site.validated('#scansUpdateModal');
+    $scope.error = "";
+    const v = site.validated("#scansUpdateModal");
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
@@ -62,39 +62,39 @@ app.controller("scans", function ($scope, $http, $timeout) {
     $http({
       method: "POST",
       url: "/api/scans/update",
-      data: $scope.scans
+      data: $scope.scans,
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#scansUpdateModal');
+          site.hideModal("#scansUpdateModal");
           $scope.getScansList();
         } else {
-          $scope.error = 'Please Login First';
+          $scope.error = "Please Login First";
         }
       },
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.displayDetailsScans = function (scans) {
-    $scope.error = '';
+    $scope.error = "";
     $scope.viewScans(scans);
     $scope.scans = {};
-    site.showModal('#scansViewModal');
+    site.showModal("#scansViewModal");
   };
 
   $scope.viewScans = function (scans) {
     $scope.busy = true;
-    $scope.error = '';
+    $scope.error = "";
     $http({
       method: "POST",
       url: "/api/scans/view",
       data: {
-        id: scans.id
-      }
+        id: scans.id,
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -107,32 +107,31 @@ app.controller("scans", function ($scope, $http, $timeout) {
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.displayDeleteScans = function (scans) {
-    $scope.error = '';
+    $scope.error = "";
     $scope.viewScans(scans);
     $scope.scans = {};
-    site.showModal('#scansDeleteModal');
-
+    site.showModal("#scansDeleteModal");
   };
 
   $scope.deleteScans = function () {
     $scope.busy = true;
-    $scope.error = '';
+    $scope.error = "";
 
     $http({
       method: "POST",
       url: "/api/scans/delete",
       data: {
-        id: $scope.scans.id
-      }
+        id: $scope.scans.id,
+      },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#scansDeleteModal');
+          site.hideModal("#scansDeleteModal");
           $scope.getScansList();
         } else {
           $scope.error = response.data.error;
@@ -141,7 +140,7 @@ app.controller("scans", function ($scope, $http, $timeout) {
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.getScansList = function (where) {
@@ -151,15 +150,15 @@ app.controller("scans", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/scans/all",
       data: {
-        where: where
-      }
+        where: where,
+      },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
           $scope.list = response.data.list;
           $scope.count = response.data.count;
-          site.hideModal('#scansSearchModal');
+          site.hideModal("#scansSearchModal");
           $scope.search = {};
         }
       },
@@ -167,7 +166,7 @@ app.controller("scans", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.getPeriod = function () {
@@ -175,8 +174,7 @@ app.controller("scans", function ($scope, $http, $timeout) {
     $scope.periodList = [];
     $http({
       method: "POST",
-      url: "/api/period_scan/all"
-
+      url: "/api/period_scan/all",
     }).then(
       function (response) {
         $scope.busy = false;
@@ -186,18 +184,18 @@ app.controller("scans", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.getNumberingAuto = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/numbering/get_automatic",
       data: {
-        screen: "scans"
-      }
+        screen: "scans",
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -209,24 +207,21 @@ app.controller("scans", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.displaySearchModal = function () {
-    $scope.error = '';
-    site.showModal('#scansSearchModal');
-
+    $scope.error = "";
+    site.showModal("#scansSearchModal");
   };
 
-  $scope.searchAll = function () { 
+  $scope.searchAll = function () {
     $scope.getScansList($scope.search);
-    site.hideModal('#scansSearchModal');
+    site.hideModal("#scansSearchModal");
     $scope.search = {};
-
   };
 
   $scope.getScansList();
   $scope.getNumberingAuto();
   $scope.getPeriod();
-
 });

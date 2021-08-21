@@ -27,6 +27,10 @@ module.exports = function init(site) {
         name_en: "Default Analysis",
         price: 1,
         immediate: true,
+        male: { from: 0, to: 0 },
+        female: { from: 0, to: 0 },
+        child: { from: 0, to: 0 },
+        price: 0,
         image_url: '/images/analysis.png',
         company: {
           id: doc.id,

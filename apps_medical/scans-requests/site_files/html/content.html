@@ -122,11 +122,11 @@
                             <i-button type="add" class="col2" ng-click="getDoctorVisitScans(doctor_visit)">
                             </i-button>
 
-                            <i-list class="col4" label="##word.scans##" ng-model="scans" items="scansList"
+                            <i-list class="col4" label="##word.scans##" ng-model="_scan" items="scansList"
                                 display="name_##session.lang##" ng-search="_search.$patients_searching">
                             </i-list>
 
-                            <i-button type="add" class="col2" ng-click="changeScansList(scans)">
+                            <i-button type="add" class="col2" ng-click="changeScansList(_scan)">
                             </i-button>
                         </div>
 

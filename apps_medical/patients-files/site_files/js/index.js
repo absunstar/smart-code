@@ -91,6 +91,37 @@ app.controller("patients_files", function ($scope, $http, $timeout) {
       }
     );
   };
+
+  $scope.showPatient = function (id) {
+    $scope.busy = true;
+
+    $http({
+      method: "POST",
+      url: "/api/customers/view",
+      data: {
+        id: id,
+        select: {}
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+
+        if (response.data.done) {
+          $scope.customer = response.data.doc;
+          site.showModal('#customerDetailsModal');
+          document.querySelector('#customerDetailsModal .tab-link').click();
+
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+
+    )
+
+  };
+
   if ("##query.id##") {
     let obj = {
       which: 13,

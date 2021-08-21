@@ -6,94 +6,94 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
   $scope.delivery_person_list = [
     {
       id: 1,
-      name: 'patient_himself',
-      ar: 'المريض نفسه',
-      en: 'The patient himself',
+      name: "patient_himself",
+      ar: "المريض نفسه",
+      en: "The patient himself",
     },
     {
       id: 2,
-      name: 'another_person',
-      ar: 'شخص أخر',
-      en: 'Another Person',
-    }
+      name: "another_person",
+      ar: "شخص أخر",
+      en: "Another Person",
+    },
   ];
 
   $scope.displayAddAnalysisRequests = function () {
     $scope._search = {};
-    $scope.error = '';
+    $scope.error = "";
     $scope.analysis_requests = {
-      image_url: '/images/analysis_requests.png',
+      image_url: "/images/analysis_requests.png",
       date: new Date(),
       analysis_list: [],
-      paid : 0,
-      active: true
+      paid: 0,
+      active: true,
     };
-    site.showModal('#analysisRequestsAddModal');
+    site.showModal("#analysisRequestsAddModal");
   };
 
   $scope.addAnalysisRequests = function () {
     if ($scope.busy) {
       return;
     }
-    $scope.error = '';
+    $scope.error = "";
 
-    const v = site.validated('#analysisRequestsAddModal');
+    const v = site.validated("#analysisRequestsAddModal");
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
-    };
+    }
     $scope.busy = true;
 
     $http({
       method: "POST",
       url: "/api/analysis_requests/add",
-      data: $scope.analysis_requests
+      data: $scope.analysis_requests,
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#analysisRequestsAddModal');
+          site.hideModal("#analysisRequestsAddModal");
           $scope.getAnalysisRequestsList();
         } else {
-          $scope.error = 'Please Login First';
-          if (response.data.error.like('*Must Enter Code*')) {
-            $scope.error = "##word.must_enter_code##"
-
-          } else if (response.data.error.like('*holding ticket for this patient*')) {
-            $scope.error = "##word.err_hold_ticket_patient##"
-
+          $scope.error = "Please Login First";
+          if (response.data.error.like("*Must Enter Code*")) {
+            $scope.error = "##word.must_enter_code##";
+          } else if (
+            response.data.error.like("*holding ticket for this patient*")
+          ) {
+            $scope.error = "##word.err_hold_ticket_patient##";
           }
         }
       },
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.displayUpdateAnalysisRequests = function (analysis_requests) {
     $scope._search = {};
 
-    $scope.error = '';
+    $scope.error = "";
     $scope.detailsAnalysisRequests(analysis_requests);
     $scope.analysis_requests = {};
-    site.showModal('#analysisRequestsUpdateModal');
+    site.showModal("#analysisRequestsUpdateModal");
   };
 
   $scope.showLastAnalysis = function (analysis_requests) {
     $scope._search = {};
 
-    site.showModal('#lastAnalysisModal');
+    site.showModal("#lastAnalysisModal");
   };
 
   $scope.updateAnalysisRequests = function (analysis_requests) {
-    $scope.error = '';
+    $scope.error = "";
 
     if ($scope.busy) {
       return;
     }
 
-    const v = site.validated('#analysisRequestsUpdateModal');
+    const v = site.validated("#analysisRequestsUpdateModal");
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
@@ -102,20 +102,19 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
     $http({
       method: "POST",
       url: "/api/analysis_requests/update",
-      data: analysis_requests
+      data: analysis_requests,
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.doc) {
-          site.hideModal('#analysisRequestsUpdateModal');
-          site.hideModal('#deliveryAnalysisModal');
-          site.hideModal('#puttingResultsAnalysisModal');
+          site.hideModal("#analysisRequestsUpdateModal");
+          site.hideModal("#deliveryAnalysisModal");
+          site.hideModal("#puttingResultsAnalysisModal");
           $scope.list.forEach((b, i) => {
             if (b.id == response.data.doc.id) {
               $scope.list[i] = response.data.doc;
             }
           });
-
         } else {
           $scope.error = response.data.error;
         }
@@ -123,14 +122,14 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.displayDetailsAnalysisRequests = function (analysis_requests) {
-    $scope.error = '';
+    $scope.error = "";
     $scope.detailsAnalysisRequests(analysis_requests);
     $scope.analysis_requests = {};
-    site.showModal('#analysisRequestsDetailsModal');
+    site.showModal("#analysisRequestsDetailsModal");
   };
 
   $scope.detailsAnalysisRequests = function (analysis_requests) {
@@ -139,8 +138,8 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/analysis_requests/view",
       data: {
-        id: analysis_requests.id
-      }
+        id: analysis_requests.id,
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -154,31 +153,30 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.displayDeleteAnalysisRequests = function (analysis_requests) {
-    $scope.error = '';
+    $scope.error = "";
     $scope.detailsAnalysisRequests(analysis_requests);
     $scope.analysis_requests = {};
-    site.showModal('#analysisRequestsDeleteModal');
+    site.showModal("#analysisRequestsDeleteModal");
   };
 
   $scope.deleteAnalysisRequests = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/analysis_requests/delete",
       data: {
-        id: $scope.analysis_requests.id
-
-      }
+        id: $scope.analysis_requests.id,
+      },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#analysisRequestsDeleteModal');
+          site.hideModal("#analysisRequestsDeleteModal");
           $scope.list.forEach((b, i) => {
             if (b.id == response.data.doc.id) {
               $scope.list.splice(i, 1);
@@ -192,7 +190,7 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.getAnalysisRequestsList = function (where, type) {
@@ -205,8 +203,8 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/analysis_requests/all",
       data: {
-        where: where
-      }
+        where: where,
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -216,11 +214,13 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
             $scope.count = response.data.count;
           } else {
             $scope.analysis_requests.last_analysis_list = [];
-            response.data.list.forEach(_analysis => {
-              _analysis.analysis_list.forEach(_analysis_list => {
+            response.data.list.forEach((_analysis) => {
+              _analysis.analysis_list.forEach((_analysis_list) => {
                 _analysis_list.date = _analysis.date;
-                $scope.analysis_requests.last_analysis_list.push(_analysis_list);
-              })
+                $scope.analysis_requests.last_analysis_list.push(
+                  _analysis_list
+                );
+              });
             });
           }
         }
@@ -229,15 +229,14 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.searchAll = function () {
     $scope._search = {};
     $scope.getAnalysisRequestsList($scope.search);
-    site.hideModal('#analysisRequestsSearchModal');
-    $scope.search = {}
-
+    site.hideModal("#analysisRequestsSearchModal");
+    $scope.search = {};
   };
 
   $scope.getPatientList = function (ev) {
@@ -253,23 +252,20 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
       url: "/api/customers/all",
       data: {
         search: $scope.doctor_search,
-        select: {
-
-        }
-      }
+        select: {},
+      },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
           $scope.customersList = response.data.list;
-
         }
       },
       function (err) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.showPatient = function (id) {
@@ -280,71 +276,67 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
       url: "/api/customers/view",
       data: {
         id: id,
-        select: {}
-      }
+        select: {},
+      },
     }).then(
       function (response) {
         $scope.busy = false;
 
         if (response.data.done) {
           $scope.customer = response.data.doc;
-          site.showModal('#customerDetailsModal');
-          document.querySelector('#customerDetailsModal .tab-link').click();
-
+          site.showModal("#customerDetailsModal");
+          document.querySelector("#customerDetailsModal .tab-link").click();
         }
       },
       function (err) {
         $scope.busy = false;
         $scope.error = err;
       }
-
-    )
-
+    );
   };
 
   $scope.displayAddCustomer = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.customer = {
-      image_url: '/images/customer.png',
+      image_url: "/images/customer.png",
       active: true,
       balance_creditor: 0,
       balance_debtor: 0,
-      branch_list: [{
-        charge: [{}]
-      }],
+      branch_list: [
+        {
+          charge: [{}],
+        },
+      ],
       currency_list: [],
       opening_balance: [{ initial_balance: 0 }],
       bank_list: [{}],
-      dealing_company: [{}]
+      dealing_company: [{}],
     };
 
-    if (site.feature('medical')) {
-      $scope.customer.image_url = '/images/patients.png';
+    if (site.feature("medical")) {
+      $scope.customer.image_url = "/images/patients.png";
       $scope.customer.allergic_food_list = [{}];
       $scope.customer.allergic_drink_list = [{}];
       $scope.customer.medicine_list = [{}];
       $scope.customer.disease_list = [{}];
-
-    } else if (site.feature('school') || site.feature('academy')) {
-      $scope.customer.image_url = '/images/student.png';
+    } else if (site.feature("school") || site.feature("academy")) {
+      $scope.customer.image_url = "/images/student.png";
       $scope.customer.allergic_food_list = [{}];
       $scope.customer.allergic_drink_list = [{}];
       $scope.customer.medicine_list = [{}];
       $scope.customer.disease_list = [{}];
-
     }
-    site.showModal('#customerAddModal');
-    document.querySelector('#customerAddModal .tab-link').click();
-
+    site.showModal("#customerAddModal");
+    document.querySelector("#customerAddModal .tab-link").click();
   };
 
   $scope.addCustomer = function () {
-    $scope.error = '';
+    $scope.error = "";
     if ($scope.busy) {
       return;
     }
 
-    const v = site.validated('#customerAddModal');
+    const v = site.validated("#customerAddModal");
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
@@ -355,36 +347,37 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
     $http({
       method: "POST",
       url: "/api/customers/add",
-      data: $scope.customer
+      data: $scope.customer,
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#customerAddModal');
+          site.hideModal("#customerAddModal");
         } else {
-          $scope.error = 'Please Login First';
-          if (response.data.error.like('*Must Enter Code*')) {
-            $scope.error = "##word.must_enter_code##"
-
-          } else if (response.data.error.like('*maximum number of adds exceeded*')) {
-            $scope.error = "##word.err_maximum_adds##"
-
-          } else if (response.data.error.like('*ername must be typed correctly*')) {
-            $scope.error = "##word.err_username_contain##"
-
-          } else if (response.data.error.like('*User Is Exist*')) {
-            $scope.error = "##word.user_exists##"
+          $scope.error = "Please Login First";
+          if (response.data.error.like("*Must Enter Code*")) {
+            $scope.error = "##word.must_enter_code##";
+          } else if (
+            response.data.error.like("*maximum number of adds exceeded*")
+          ) {
+            $scope.error = "##word.err_maximum_adds##";
+          } else if (
+            response.data.error.like("*ername must be typed correctly*")
+          ) {
+            $scope.error = "##word.err_username_contain##";
+          } else if (response.data.error.like("*User Is Exist*")) {
+            $scope.error = "##word.user_exists##";
           }
         }
       },
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.loadDiscountTypes = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
     $http({
       method: "POST",
@@ -393,11 +386,12 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
         select: {
           code: 1,
           id: 1,
-          name_ar: 1, name_en: 1,
+          name_ar: 1,
+          name_en: 1,
           value: 1,
-          type: 1
-        }
-      }
+          type: 1,
+        },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -409,21 +403,32 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.loadAnalysis = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/analysis/all",
       data: {
         where: {
-          active: true
+          active: true,
         },
-        select: { id: 1, name_ar: 1, name_en: 1, price: 1, delivery_time: 1, period: 1, immediate: 1, male: 1, female: 1, child: 1 }
-      }
+        select: {
+          id: 1,
+          name_ar: 1,
+          name_en: 1,
+          price: 1,
+          delivery_time: 1,
+          period: 1,
+          immediate: 1,
+          male: 1,
+          female: 1,
+          child: 1,
+        },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -435,15 +440,14 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.loadDoctorsVisits = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
     $scope.doctorsVisitsList = [];
     if ($scope.analysis_requests.customer) {
-
       $http({
         method: "POST",
         url: "/api/doctors_visits/all",
@@ -452,12 +456,12 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
             code: 1,
             id: 1,
             selected_clinic: 1,
-            analysis_list: 1
+            analysis_list: 1,
           },
           where: {
-            'customer.id': $scope.analysis_requests.customer.id
-          }
-        }
+            "customer.id": $scope.analysis_requests.customer.id,
+          },
+        },
       }).then(
         function (response) {
           $scope.busy = false;
@@ -469,153 +473,156 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
           $scope.busy = false;
           $scope.error = err;
         }
-      )
+      );
     }
   };
 
-
   $scope.addDiscount = function () {
-    $scope.error = '';
+    $scope.error = "";
     if (!$scope.discount.value) {
-      $scope.error = '##word.error_discount##';
+      $scope.error = "##word.error_discount##";
       return;
     } else {
-      $scope.analysis_requests.discountes = $scope.analysis_requests.discountes || [];
+      $scope.analysis_requests.discountes =
+        $scope.analysis_requests.discountes || [];
       $scope.analysis_requests.discountes.unshift({
-        name_ar: $scope.discount.name_ar, name_en: $scope.discount.name_en,
+        name_ar: $scope.discount.name_ar,
+        name_en: $scope.discount.name_en,
         value: $scope.discount.value,
-        type: $scope.discount.type
+        type: $scope.discount.type,
       });
-    };
+    }
   };
 
   $scope.deleteDiscount = function (_ds) {
-    $scope.analysis_requests.discountes.splice($scope.analysis_requests.discountes.indexOf(_ds), 1);
+    $scope.analysis_requests.discountes.splice(
+      $scope.analysis_requests.discountes.indexOf(_ds),
+      1
+    );
   };
 
   $scope.showModalList = function (analysis_requests, type) {
     $scope.analysis_requests = analysis_requests;
-    if (type === 'delivery') {
-      site.showModal('#deliveryAnalysisModal');
-
-    } else if (type === 'result') {
-
-      site.showModal('#puttingResultsAnalysisModal');
+    if (type === "delivery") {
+      site.showModal("#deliveryAnalysisModal");
+    } else if (type === "result") {
+      site.showModal("#puttingResultsAnalysisModal");
     }
-
   };
 
   $scope.setPersonDelivery = function () {
-
-    $scope.analysis_requests.analysis_list.forEach(_analysis => {
-
+    $scope.analysis_requests.analysis_list.forEach((_analysis) => {
       if (!_analysis.person_delivery) {
-        _analysis.person_delivery = { ...$scope.analysis_requests.$person_delivery };
-        _analysis.delivery_data = { ...$scope.analysis_requests.$delivery_data };
-      };
-
+        _analysis.person_delivery = {
+          ...$scope.analysis_requests.$person_delivery,
+        };
+        _analysis.delivery_data = {
+          ...$scope.analysis.delivery_data,
+        };
+      }
     });
   };
 
-
-
   $scope.showPersonDelivery = function (analysis, type) {
-
     $scope.analysis = analysis;
-    if (type === 'view') {
+    if (type === "view") {
       $scope.analysis.$view = true;
     }
 
-    site.showModal('#deliveryPersonModal');
-
+    site.showModal("#deliveryPersonModal");
   };
 
-
-
-
-
   $scope.getDoctorVisitAnalysis = function (doctor_visit) {
-
     doctor_visit.analysis_list = doctor_visit.analysis_list || [];
 
     let analysisList = [];
 
-    $scope.analysisList.forEach(_an => {
-      let found = doctor_visit.analysis_list.some(_a => _a.analysis && _a.analysis.id === _an.id);
+    $scope.analysisList.forEach((_an) => {
+      let found = doctor_visit.analysis_list.some(
+        (_a) => _a.analysis && _a.analysis.id === _an.id
+      );
 
       if (found) {
-        analysisList.unshift(_an)
+        analysisList.unshift(_an);
       }
     });
 
-    analysisList.forEach(_a_l => {
+    analysisList.forEach((_a_l) => {
       $timeout(() => {
         $scope.changeAnalysisList(_a_l);
       }, 250);
     });
   };
 
-
-  $scope.changeAnalysisList = function (analysis) {
+  $scope.changeAnalysisList = function (analys) {
     let obj = {
-      id: analysis.id,
-      name_ar: analysis.name_ar,
-      name_en: analysis.name_en,
-      code: analysis.code,
-      immediate: analysis.immediate,
-      delivery_time: analysis.delivery_time,
-      price: analysis.price,
-      period: analysis.period,
+      id: analys.id,
+      name_ar: analys.name_ar,
+      name_en: analys.name_en,
+      code: analys.code,
+      immediate: analys.immediate,
+      delivery_time: analys.delivery_time,
+      price: analys.price,
+      period: analys.period,
       result: 0,
     };
 
-    if ($scope.analysis_requests.customer && $scope.analysis_requests.customer.id) {
-      if ($scope.analysis_requests.customer.child && analysis.child) {
-        obj.from = analysis.child.from;
-        obj.to = analysis.child.to;
+    if (
+      $scope.analysis_requests.customer &&
+      $scope.analysis_requests.customer.id
+    ) {
 
-      } else if ($scope.analysis_requests.customer.gender && $scope.analysis_requests.customer.gender.name == 'male' && analysis.male) {
-        obj.from = analysis.male.from;
-        obj.to = analysis.male.to;
+      if ($scope.analysis_requests.customer.child && analys.child) {
+        obj.from = analys.child.from;
+        obj.to = analys.child.to;
+      } else if (
+        $scope.analysis_requests.customer.gender &&
+        $scope.analysis_requests.customer.gender.name == "female" &&
+        analys.female
+      ) {
+        obj.from = analys.female.from;
+        obj.to = analys.female.to;
+      } else {
+        obj.from = analys.male.from;
+        obj.to = analys.male.to;
+      }
+    }
 
-      } else if ($scope.analysis_requests.customer.gender && $scope.analysis_requests.customer.gender.name == 'female' && analysis.female) {
-        obj.from = analysis.female.from;
-        obj.to = analysis.female.to;
-      };
-    };
-
-    let found_analysis = $scope.analysis_requests.analysis_list.some(_analysis => _analysis.id === analysis.id);
+    let found_analysis = $scope.analysis_requests.analysis_list.some(
+      (_analysis) => _analysis.id === analys.id
+    );
 
     if (!found_analysis) {
       $scope.analysis_requests.analysis_list.unshift(obj);
       $scope.calc($scope.analysis_requests);
-    };
-
+    }
+    $scope.analys = "";
   };
 
   $scope.calc = function (obj) {
-    $scope.error = '';
+    $scope.error = "";
     $timeout(() => {
       obj.total_discount = 0;
       obj.total_value = 0;
 
       if (obj.analysis_list && obj.analysis_list.length > 0) {
-        obj.analysis_list.forEach(_a => {
+        obj.analysis_list.forEach((_a) => {
           obj.total_value += _a.price;
         });
       }
 
       if (obj.discountes && obj.discountes.length > 0)
-        obj.discountes.forEach(ds => {
-          if (ds.type == 'percent')
-            obj.total_discount += obj.total_value * site.toNumber(ds.value) / 100;
+        obj.discountes.forEach((ds) => {
+          if (ds.type == "percent")
+            obj.total_discount +=
+              (obj.total_value * site.toNumber(ds.value)) / 100;
           else obj.total_discount += site.toNumber(ds.value);
         });
 
       obj.net_value = obj.total_value - obj.total_discount;
       obj.remain = obj.net_value - (obj.paid || 0);
       $scope.discount = {
-        type: 'number'
+        type: "number",
       };
     }, 250);
   };
@@ -627,10 +634,10 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
       url: "/api/goves/all",
       data: {
         where: {
-          active: true
+          active: true,
         },
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1 }
-      }
+        select: { id: 1, name_ar: 1, name_en: 1, code: 1 },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -642,7 +649,7 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.getCityList = function (gov) {
@@ -652,11 +659,11 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
       url: "/api/city/all",
       data: {
         where: {
-          'gov.id': gov.id,
-          active: true
+          "gov.id": gov.id,
+          active: true,
         },
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1 }
-      }
+        select: { id: 1, name_ar: 1, name_en: 1, code: 1 },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -668,7 +675,7 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.getAreaList = function (city) {
@@ -678,10 +685,10 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
       url: "/api/area/all",
       data: {
         where: {
-          'city.id': city.id,
-          active: true
+          "city.id": city.id,
+          active: true,
         },
-      }
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -693,18 +700,18 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.getNumberingAuto = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/numbering/get_automatic",
       data: {
-        screen: "analysis_requests"
-      }
+        screen: "analysis_requests",
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -716,9 +723,8 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
-
 
   $scope.getAnalysisRequestsList();
   $scope.loadAnalysis();
