@@ -21,11 +21,11 @@
                 ##word.accounting##
             </a>
 
-            <a class="tab-link" onclick="site.showTabContent(event, '#officialDocuments')">
+            <a class="tab-link" x-features="pos || erp" onclick="site.showTabContent(event, '#officialDocuments')">
                 ##word.customers_official_documents## </a>
             <!-- <a class="tab-link" onclick="site.showTabContent(event, '#openingBalance')">
                 ##word.customers_opening_balance## </a> -->
-            <a class="tab-link" onclick="site.showTabContent(event, '#bankingAndAccounting')">
+            <a class="tab-link" x-features="pos || erp" onclick="site.showTabContent(event, '#bankingAndAccounting')">
                 ##word.customers_banking_and_acounting## </a>
 
             <!-- <a class="tab-link" onclick="site.showTabContent(event, '#customersBranches')">
@@ -307,7 +307,7 @@
 
             </div>
 
-            <div id="officialDocuments" class="tab-content">
+            <div id="officialDocuments" x-features="pos || erp" class="tab-content">
                 <fieldset id="customersTaxInformations">
                     <legend> ##word.customers_tax_informations## </legend>
                     <table class="table hover">
@@ -468,7 +468,7 @@
                 </fieldset>
             </div> -->
 
-            <div id="bankingAndAccounting" class="tab-content">
+            <div id="bankingAndAccounting" x-features="pos || erp" class="tab-content">
 
                 <fieldset id="accounting">
                     <legend> ##word.customers_accounting_informations## </legend>
