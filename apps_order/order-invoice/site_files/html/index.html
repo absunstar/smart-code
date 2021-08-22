@@ -173,7 +173,7 @@
                     <div class="bg_font_item">
                       <p class="center font_name_items">
                         {{i.name_##session.lang##}}
-                        <b ng-show="i.add_sizes"
+                        <b ng-show="!i.add_sizes"
                           >{{i.sizes[0].size_##session.lang##}}</b
                         >
                       </p>
@@ -323,7 +323,7 @@
                     <th class="w150">##word.stores_items_name##</th>
                     <th class="">##word.items_count##</th>
                     <th class="w100">##word.price##</th>
-                    <th class="w100">##word.extras##</th>
+                    <th class="w100" x-features="restaurant">##word.extras##</th>
                     <th class="w100">##word.t_o## ##word.price##</th>
                     <th class="not-print">##word.actions##</th>
                   </thead>
@@ -357,7 +357,7 @@
                         </del>
                       </td>
 
-                      <td class="center w100">
+                      <td class="center w100" x-features="restaurant">
                         <br />
                         {{size.extras_price}}
                       </td>

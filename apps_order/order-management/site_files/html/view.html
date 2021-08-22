@@ -133,12 +133,12 @@
                             <th>##word.stores_items_name##</th>
                             <th>##word.items_count##</th>
                             <th>##word.items_price##</th>
-                            <th>##word.extras##</th>
+                            <th x-features="restaurant">##word.extras##</th>
                             <th>##word.discount##</th>
                             <th>##word.items_price_total##</th>
                             <th x-features="restaurant">##word.kitchen##</th>
                             <th>##word.notes##</th>
-                            <th>##word.actions##</th>
+                            <th x-features="restaurant">##word.actions##</th>
                         </tr>
                         <tr ng-repeat="c in order_management.items">
 
@@ -151,7 +151,7 @@
 
                             <td class="center">{{c.price}}</td>
 
-                            <td class="center">{{c.extras_price}}</td>
+                            <td x-features="restaurant" class="center">{{c.extras_price}}</td>
 
                             <td class="center red">{{c.discount.value}}
                                 <b class="red" ng-show="c.discount.type =='number'">$</b>
@@ -163,13 +163,13 @@
 
                             <td class="center">{{c.notes}}</td>
 
-                            <td class="center" >
-                                <i-button type="add" ng-show="c.done_kitchen" x-features="restaurant"
+                            <td class="center" x-features="restaurant">
+                                <i-button type="add" ng-show="c.done_kitchen"
                                     x-permissions="order_management_edit || order_kitchen_manage"
                                     label="##word.return_to_kitchen##" ng-click="returnToKitchen(order_management , c)">
                                 </i-button>
 
-                                <h2 class="red center" x-features="restaurant" ng-show="!c.done_kitchen">
+                                <h2 class="red center" ng-show="!c.done_kitchen">
                                     ##word.in_kitchen##</h2>
 
                                 <div class="row center">
