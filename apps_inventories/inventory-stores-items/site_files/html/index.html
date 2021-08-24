@@ -18,6 +18,7 @@
         <div class="row">
             <div class="row" ng-controller="stores_items">
                 <div x-import="inventory-stores-items/add_modal.html"></div>
+                <div x-import="inventory-stores-items/kitchen_set.html"></div>
                 <div x-permissions="stores_items_add || stores_items_manage"
                     x-import="inventory-stores-items/complex_view.html"></div>
                 <div x-permissions="stores_items_view || stores_items_manage"
@@ -115,7 +116,6 @@
                                     <tr ng-repeat="_size in c.sizes" ng-hide="_size.$hide">
                                         <td class="center" ng-show="c.add_sizes">
                                             <p>{{_size.size_##session.lang##}}</p>
-                                            <p>{{_size.size_en}}</p>
                                         </td>
                                         <td class="center blue userPrint">{{_size.barcode}}</td>
                                         <td class="center">

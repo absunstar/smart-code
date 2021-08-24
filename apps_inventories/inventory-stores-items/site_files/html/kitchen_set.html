@@ -1,0 +1,45 @@
+<div id="kitchenSetModal" class="modal small">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>##word.kitchen_set## <i class="fa fa-plus"></i></h2>
+    </div>
+
+    <div class="modal-body">
+      <div class="row">
+        <fieldset>
+          <div class="row" ng-repeat="k_b in size_balance.kitchen_branch_list">
+            <div class="row">
+              <div class="col3">
+                <h2 class="black">
+                  {{k_b.name_##session.lang##}} - {{k_b.code}} :
+                </h2>
+              </div>
+              <i-list
+                class="col4"
+                label="##word.kitchen##"
+                ng-model="k_b.kitchen"
+                display="name_##session.lang##"
+                ng-search="_search.$kitchen_search"
+                items="itemsKitchenList"
+              >
+              </i-list>
+            </div>
+            <hr
+              style="height: 5px; color: grey; background-color: rgb(0, 0, 199)"
+            />
+          </div>
+        </fieldset>
+      </div>
+    </div>
+    <h2 class="error">{{error}}</h2>
+    <div class="modal-footer center">
+      <i-button
+        onclick="site.hideModal('#kitchenSetModal');"
+        type="close"
+        label="##word.close##"
+      >
+      </i-button>
+    </div>
+  </div>
+</div>

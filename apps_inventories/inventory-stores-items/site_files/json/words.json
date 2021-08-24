@@ -20,6 +20,11 @@
         "ar": "إضافة مقاسات"
     },
     {
+        "name": "kitchen_set",
+        "en": "kitchen Set",
+        "ar": "تعيين مطبخ"
+    },
+    {
         "name": "items_search",
         "en": "Items search",
         "ar": "بحث الأصناف"

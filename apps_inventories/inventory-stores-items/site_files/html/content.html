@@ -318,19 +318,27 @@
                                 </i-checkbox>
 
                                 <br>
+
                                 <i-button ng-hide="!item.item_complex" type="view" label="##word.complex_items##"
                                     ng-click="showComplexItems()"> </i-button>
                                 <br>
 
                                 <i-button ng-hide="category_item.id || item.work_patch ||item.work_serial" label="##word.opening_balance_add##"
                                     ng-click="addOpeningBalance(item,'show')"> </i-button>
+
+                                <br>
+
+                                <i-button x-features="restaurant" ng-hide="category_item.id" label="##word.kitchen_set##"
+                                    ng-click="KitchenSet(item)"> </i-button>
                                 <br>
 
                             </div>
 
                         </div>
+
                         <div class="row grid"
                             ng-show="category_item.sizes.length > 0 && !category_item.add_sizes && category_item.id">
+
                             <table class="table hover center loaded">
                                 <tr>
                                     <th>##word.logo##</th>
