@@ -878,7 +878,6 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
           $scope.branchesList = response.data.list;
           $scope.branchCode = response.data.branch;
         }
-
       },
       function (err) {
         $scope.busy = false;

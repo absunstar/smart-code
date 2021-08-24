@@ -1,91 +1,85 @@
 module.exports = function init(site) {
-
-  let collection_name = 'libraries'
+  let collection_name = "libraries";
 
   let source = {
-    en: 'Libraries System',
-    ar: 'نظام المواد الدراسية'
-  }
+    en: "Libraries System",
+    ar: "نظام المواد الدراسية",
+  };
 
-  let image_url = '/images/libraries.png'
+  let image_url = "/images/libraries.png";
 
   let add_message = {
-    en: 'New Library Added',
-    ar: 'تم إضافة مادة دراسية جديدة'
-  }
+    en: "New Library Added",
+    ar: "تم إضافة مادة دراسية جديدة",
+  };
 
   let update_message = {
-    en: ' Library Updated',
-    ar: 'تم تعديل مادة دراسية'
-  }
+    en: " Library Updated",
+    ar: "تم تعديل مادة دراسية",
+  };
 
   let delete_message = {
-    en: ' Library Deleted',
-    ar: 'تم حذف مادة دراسية '
-  }
+    en: " Library Deleted",
+    ar: "تم حذف مادة دراسية ",
+  };
 
-  site.on('mongodb after insert', function (result) {
+  site.on("mongodb after insert", function (result) {
     if (result.collection === collection_name) {
-      site.call('please monitor action', {
+      site.call("please monitor action", {
         obj: {
           icon: image_url,
           source: source,
           message: add_message,
           value: {
-            name: result.doc.name,
             code: result.doc.code,
-            en: result.doc.name_en,
-            ar: result.doc.name_ar
+            name_en: result.doc.name_en,
+            name_ar: result.doc.name_ar,
           },
           add: result.doc,
-          action: 'add'
+          action: "add",
         },
-        result: result
-      })
+        result: result,
+      });
     }
-  })
+  });
 
-  site.on('mongodb after update', function (result) {
+  site.on("mongodb after update", function (result) {
     if (result.collection === collection_name) {
-      site.call('please monitor action', {
+      site.call("please monitor action", {
         obj: {
           icon: image_url,
           source: source,
           message: update_message,
           value: {
-            name: result.old_doc.name,
             code: result.old_doc.code,
-            en: result.old_doc.name_en,
-            ar: result.old_doc.name_ar
+            name_en: result.old_doc.name_en,
+            name_ar: result.old_doc.name_ar,
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
-          action: 'update'
+          action: "update",
         },
-        result: result
-      })
+        result: result,
+      });
     }
-  })
+  });
 
-
-  site.on('mongodb after delete', function (result) {
+  site.on("mongodb after delete", function (result) {
     if (result.collection === collection_name) {
-      site.call('please monitor action', {
+      site.call("please monitor action", {
         obj: {
           icon: image_url,
           source: source,
           message: delete_message,
           value: {
-            name: result.doc.name,
             code: result.doc.code,
-            en: result.doc.name_en,
-            ar: result.doc.name_ar
+            name_en: result.doc.name_en,
+            name_ar: result.doc.name_ar,
           },
           delete: result.doc,
-          action: 'delete'
+          action: "delete",
         },
-        result: result
-      })
+        result: result,
+      });
     }
-  })
-
-}
+  });
+};

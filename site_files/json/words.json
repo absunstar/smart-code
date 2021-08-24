@@ -411,6 +411,11 @@
         "ar": "فاتورة"
     },
     {
+        "name": "item",
+        "en": "Item",
+        "ar": "الصنف"
+    },
+    {
         "name": "right_header",
         "en": "Right header",
         "ar": "مقدمة اليمين"

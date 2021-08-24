@@ -173,9 +173,6 @@
                     <div class="bg_font_item">
                       <p class="center font_name_items">
                         {{i.name_##session.lang##}}
-                        <b ng-show="!i.add_sizes"
-                          >{{i.sizes[0].size_##session.lang##}}</b
-                        >
                       </p>
                     </div>
                   </a>
@@ -445,6 +442,7 @@
             </div>
           </div>
           <div x-import="order-invoice/thermal_print.html"></div>
+          <div x-import="order-invoice/kitchen_print.html"></div>
         </div>
       </div>
     </div>

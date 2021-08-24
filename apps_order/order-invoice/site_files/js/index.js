@@ -376,7 +376,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
               $scope.busy = false;
               if (response.data.done) {
                 if (site.feature("restaurant")) {
-                  $scope.sendToKitchens({ ...response.data.doc });
+                  $scope.kitchenPrint({ ...response.data.doc });
                   $scope.order_invoice.$show_table = true;
                 }
 
@@ -474,122 +474,6 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       $scope.error = "##word.must_enter_quantity##";
       return;
     }
-  };
-
-  $scope.sendToKitchens = function (_order_invoice) {
-    let ip = "127.0.0.1";
-    let port = "60080";
-
-    let name_lang = "name_ar";
-    if ("##session.lang##" === "en") name_lang = "name_en";
-
-    if (
-      $scope.defaultSettings.printer_program &&
-      $scope.defaultSettings.printer_program.printer_path
-    ) {
-      ip =
-        $scope.defaultSettings.printer_program.printer_path.ip_device ||
-        "127.0.0.1";
-      port =
-        $scope.defaultSettings.printer_program.printer_path.Port_device ||
-        "60080";
-    }
-
-    $scope.kitchensList.forEach((_kitchen) => {
-      _kitchen.data = [];
-      if (!_kitchen.printer_path) {
-        _kitchen.printer = null;
-        return;
-      }
-
-      _kitchen.printer = _kitchen.printer_path.ip;
-      _kitchen.has_items = false;
-
-      _kitchen.data.push({
-        type: "text2",
-        value2: site.toDateXF(_order_invoice.date),
-        value: "##word.date##",
-      });
-
-      _kitchen.data.push({
-        type: "text2b",
-        value2: _kitchen[name_lang],
-        value: "##word.kitchen##",
-      });
-
-      _kitchen.data.push({
-        type: "space",
-      });
-
-      _kitchen.data.push({
-        type: "text2",
-        value: "Invoice Code",
-        value2: _order_invoice.code,
-      });
-
-      if (_order_invoice.table)
-        _kitchen.data.push({
-          type: "invoice-table",
-          name: _order_invoice.table.tables_group[name_lang],
-          value: _order_invoice.table[name_lang],
-        });
-      if (obj.items && obj.items.length > 0) {
-        let size_lang = "size_ar";
-        if ("##session.lang##" === "en") size_lang = "size_en";
-
-        _kitchen.data.push(
-          {
-            type: "line",
-          },
-          {
-            type: "invoice-item-title",
-            count: "##word.count##",
-            name: "##word.name##",
-            price: "##word.price##",
-          },
-          {
-            type: "line2",
-          }
-        );
-
-        _order_invoice.items.forEach((item_book) => {
-          if (item_book.kitchen && !item_book.printed) {
-            if (item_book.kitchen.id == _kitchen.id) {
-              let extras = "";
-              if (item_book.extras_item && item_book.extras_item.length > 0) {
-                item_book.extras_item.forEach((_extra) => {
-                  extras = extra + " - " + _extra[name_lang];
-                });
-              }
-
-              item_book.printed = true;
-              _kitchen.has_items = true;
-              _kitchen.data.push({
-                type: "text3",
-                value: item_book[size_lang],
-                value2: item_book.count,
-                value3: extras,
-              });
-            }
-          }
-        });
-        _kitchen.data.push({
-          type: "line",
-        });
-      }
-
-      if (_kitchen.has_items) {
-        $http({
-          method: "POST",
-          url: `http://${ip}:${port}/print`,
-          data: _kitchen,
-        }).then(function (err) {
-          console.log(err);
-        });
-      }
-    });
-
-    $scope.updateOrderInvoice(_order_invoice);
   };
 
   $scope.addAccountInvoice = function () {
@@ -778,7 +662,6 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     if (type == "unhold") {
       order_invoice.hold = false;
     }
-
     $scope.busy = true;
     $http({
       method: "POST",
@@ -2029,6 +1912,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         size_ar: item.size_ar,
         size_en: item.size_en,
         item_group: item.item_group,
+        add_sizes: item.add_sizes,
         size_units_list: item.size_units_list,
         unit: item.size_units_list[indxUnit],
         total: item.size_units_list[indxUnit].price - item.discount.value,
@@ -2356,6 +2240,63 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     $timeout(() => {
       $("#thermalPrint").addClass("hidden");
     }, 5000);
+  };
+
+  $scope.kitchenPrint = function (obj) {
+    $scope.error = "";
+
+    let name_lang = "name_ar";
+    if ("##session.lang##" === "en") name_lang = "name_en";
+
+    $("#kitchenPrint").removeClass("hidden");
+
+    $scope.kitchensList.forEach((_kitchen, i) => {
+      $timeout(() => {
+        $scope.kitchen_print = {
+          date: obj.date,
+          code: obj.code,
+          kitchen: _kitchen,
+          items: [],
+        };
+        _kitchen.has_items = false;
+        $scope.kitchen_print.printer = $scope.printersPathList.find(
+          (_printer) => {
+            return _printer.id === _kitchen.printer_path.id;
+          }
+        );
+
+        if (obj.items && obj.items.length > 0) {
+          obj.items.forEach((item_book) => {
+            if (item_book.kitchen && !item_book.printed) {
+              if (item_book.kitchen.id == _kitchen.id) {
+                let extras = "";
+                if (item_book.extras_item && item_book.extras_item.length > 0) {
+                  item_book.extras_item.forEach((_extra) => {
+                    extras = extras + " - " + _extra[name_lang];
+                  });
+                }
+
+                item_book.printed = true;
+                _kitchen.has_items = true;
+                console.log(item_book);
+                $scope.kitchen_print.items.push({ ...item_book, extras });
+              }
+            }
+          });
+        }
+        if (_kitchen.has_items) {
+          site.printAsImage({
+            selector: "#kitchenPrint",
+            ip: "127.0.0.1",
+            port: "60080",
+            printer: $scope.kitchen_print.printer.ip.name.trim(),
+          });
+          if (i + 1 == $scope.kitchensList.length) {
+            $scope.updateOrderInvoice(obj);
+          }
+        }
+      }, 5000);
+    });
   };
 
   $scope.paymentsPayable = function (type) {

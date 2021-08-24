@@ -12,14 +12,13 @@
     </nav>
 
     <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
-
     </nav>
-    
-    <div id="main-layout" class="container" x-permission="admin">
+    <!-- x-permission="admin" -->
+    <div id="main-layout" class="container" >
         <div class="row ">
             <div class="row " ng-controller="notifications">
-                <div x-permission="view" x-import="notifications/display_modal.html"></div>
-                <div x-permission="search" x-import="notifications/search.html"></div>
+                <div x-permission="search" x-import="notifications/search_modal.html"></div>
+                <div x-import="notifications/search.html"></div>
                 <div x-import="companies/view_modal.html"></div>
                 <div x-import="goves/view_modal.html"></div>
                 <div x-import="city/view_modal.html"></div>
@@ -64,7 +63,7 @@
                 <div x-import="request-service/view_modal.html"></div>
 
                 <div class="top-actions">
-                    <i-button type="search" onclick="site.showModal('#SearchModal')" label="##word.search_all##">
+                    <i-button type="search" onclick="site.showModal('#searchModal')" label="##word.search_all##">
                     </i-button>
                 </div>
 
@@ -124,8 +123,7 @@
     </div>
 
     <div x-import="scripts.html"></div>
-    <script x-permission="admin" x-import="notifications/index.js"></script>
-
+    <script  x-import="notifications/index.js"></script>
 </body>
 
 </html>

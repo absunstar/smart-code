@@ -1,89 +1,82 @@
 module.exports = function init(site) {
-
-  let collection_name = 'customers_group'
+  let collection_name = "customers_group";
 
   let source = {
-    en: 'customers Groups System',
-    ar: ' نظام مجموعة العملاء'
-  }
+    en: "customers Groups System",
+    ar: " نظام مجموعة العملاء",
+  };
 
-  let image_url = '/images/customer_groups.png'
+  let image_url = "/images/customer_groups.png";
   let add_message = {
-    en: 'New customers Groups Added',
-    ar: 'تم إضافة مجموعات عملاء جديدة'
-  }
+    en: "New customers Groups Added",
+    ar: "تم إضافة مجموعات عملاء جديدة",
+  };
   let update_message = {
-    en: ' customers Groups Updated',
-    ar: 'تم تعديل مجموعات عملاء'
-  }
+    en: " customers Groups Updated",
+    ar: "تم تعديل مجموعات عملاء",
+  };
   let delete_message = {
-    en: ' customers Groups Deleted',
-    ar: 'تم حذف مجموعات عملاء '
-  }
+    en: " customers Groups Deleted",
+    ar: "تم حذف مجموعات عملاء ",
+  };
 
-
-  site.on('mongodb after insert', function (result) {
+  site.on("mongodb after insert", function (result) {
     if (result.collection === collection_name) {
-      site.call('please monitor action', {
+      site.call("please monitor action", {
         obj: {
           icon: image_url,
           source: source,
           message: add_message,
           value: {
-            name: result.doc.name,
-             code: result.doc.code,
-            en: result.doc.name_en,
-            ar: result.doc.name_ar
+            code: result.doc.code,
+            name_en: result.doc.name_en,
+            name_ar: result.doc.name_ar,
           },
           add: result.doc,
-          action: 'add'
+          action: "add",
         },
-        result: result
-      })
+        result: result,
+      });
     }
-  })
+  });
 
-  site.on('mongodb after update', function (result) {
+  site.on("mongodb after update", function (result) {
     if (result.collection === collection_name) {
-      site.call('please monitor action', {
+      site.call("please monitor action", {
         obj: {
           icon: image_url,
           source: source,
           message: update_message,
           value: {
-            name: result.old_doc.name,
             code: result.old_doc.code,
-            en: result.old_doc.name_en,
-            ar: result.old_doc.name_ar
+            name_en: result.old_doc.name_en,
+            name_ar: result.old_doc.name_ar,
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
-          action: 'update'
+          action: "update",
         },
-        result: result
-      })
+        result: result,
+      });
     }
-  })
+  });
 
-
-  site.on('mongodb after delete', function (result) {
+  site.on("mongodb after delete", function (result) {
     if (result.collection === collection_name) {
-      site.call('please monitor action', {
+      site.call("please monitor action", {
         obj: {
           icon: image_url,
           source: source,
           message: delete_message,
           value: {
-            name: result.doc.name,
-             code: result.doc.code,
-            en: result.doc.name_en,
-            ar: result.doc.name_ar
+            code: result.doc.code,
+            name_en: result.doc.name_en,
+            name_ar: result.doc.name_ar,
           },
           delete: result.doc,
-          action: 'delete'
+          action: "delete",
         },
-        result: result
-      })
+        result: result,
+      });
     }
-  })
-
-}
+  });
+};

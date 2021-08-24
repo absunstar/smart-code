@@ -21,9 +21,11 @@ module.exports = function init(site) {
           icon: image_url,
           source: source,
           message: add_message ,
-          value: { name : result.doc.number , code: result.doc.code,
-            en: result.doc.name_en,
-            ar: result.doc.name_ar},
+          value: { 
+            code: result.doc.code,
+            name_en: result.doc.name_en,
+            name_ar: result.doc.name_ar
+          },
           add: result.doc,
           action: 'add'
         }, result : result })
@@ -38,9 +40,11 @@ module.exports = function init(site) {
           icon: image_url,
           source : source,
           message: update_message ,
-          value: {name : result.old_doc.number ,code: result.old_doc.code,
-            en: result.old_doc.name_en,
-            ar: result.old_doc.name_ar},
+          value: {
+            code: result.old_doc.code,
+            name_en: result.old_doc.name_en,
+            name_ar: result.old_doc.name_ar
+          },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
         }, result : result }
@@ -57,10 +61,11 @@ module.exports = function init(site) {
           icon: image_url,
           source: source ,
           message: delete_message ,
-          value: {name : result.doc.number , 
+          value: {
             code: result.doc.code,
-            en: result.doc.name_en,
-            ar: result.doc.name_ar},
+            name_en: result.doc.name_en,
+            name_ar: result.doc.name_ar
+          },
           delete: result.doc,
           action: 'delete'
         }, result : result })
