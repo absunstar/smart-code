@@ -1306,13 +1306,16 @@ module.exports = function init(site) {
                 if (!err) {
                   response.done = true;
 
-                  let d = new Date().getDate().toString();
-                  let h = new Date().getHours().toString();
-                  let m = new Date().getMinutes().toString();
+                  // let d = new Date().getDate().toString();
+                  // let h = new Date().getHours().toString();
+                  // let y = new Date().getFullYear().toString();
+
+                  let num = Math.floor(Math.random() * 100);
+
                   doc.sizes.forEach((_size, i_size) => {
                     if (!_size.barcode || _size.barcode == null)
                       _size.barcode =
-                        doc.company.id + doc.id + d + h + m + i_size;
+                        doc.company.id + doc.id + num + y + i_size;
 
                     _size.size_units_list.forEach((_size_unit, _i) => {
                       let indx = doc.units_list.findIndex(
@@ -1332,9 +1335,8 @@ module.exports = function init(site) {
                           doc.company.id +
                           doc.id +
                           (_size_unit.id || 0) +
-                          d +
-                          h +
-                          m +
+                          y +
+                          num +
                           i_size +
                           _i;
                     });
@@ -2722,38 +2724,6 @@ module.exports = function init(site) {
                     ];
 
                     _sizes.branches_list = [];
-
-                    // if (_sizes.branches_list && _sizes.branches_list.length > 0) {
-
-                    //   _sizes.branches_list.forEach(_branch => {
-                    //     _branch.size_units_list = [{
-                    //       id: unit.id,
-                    //       name_ar: unit.name_ar, name_en: unit.name_en,
-                    //       current_count: 0,
-                    //       start_count: 0,
-                    //       total_buy_cost: 0,
-                    //       total_buy_count: 0,
-                    //       total_sell_price: 0,
-                    //       total_sell_count: 0,
-                    //       average_cost: 0
-                    //     }]
-
-                    //     if (_branch.stores_list && _branch.stores_list.length > 0)
-                    //       _branch.stores_list.forEach(_store => {
-                    //         _store.size_units_list = [{
-                    //           id: unit.id,
-                    //           name_ar: unit.name_ar, name_en: unit.name_en,
-                    //           current_count: 0,
-                    //           start_count: 0,
-                    //           total_buy_cost: 0,
-                    //           total_buy_count: 0,
-                    //           total_sell_price: 0,
-                    //           total_sell_count: 0,
-                    //           average_cost: 0
-                    //         }]
-                    //       });
-                    //   });
-                    // }
                   }
                 });
               }

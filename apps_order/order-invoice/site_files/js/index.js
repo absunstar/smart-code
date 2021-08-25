@@ -1402,12 +1402,13 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
+        $scope.cityList = response.data.list;
         if (
           response.data.done &&
           response.data.list.length > 0 &&
+          $scope.order_invoice.customer &&
           $scope.order_invoice.customer.city
         ) {
-          $scope.cityList = response.data.list;
           $scope.order_invoice.city = $scope.cityList.find((_city) => {
             return _city.id === $scope.order_invoice.customer.city.id;
           });
@@ -1436,16 +1437,19 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
           $scope.areaList = response.data.list;
-          $scope.order_invoice.area = $scope.areaList.find((_area) => {
-            return (
-              _area.id ===
-              $scope.defaultSettings.general_Settings.customer.area.id
-            );
-          });
+          if ($scope.defaultSettings.general_Settings.customer) {
+            $scope.order_invoice.area = $scope.areaList.find((_area) => {
+              return (
+                _area.id ===
+                $scope.defaultSettings.general_Settings.customer.area.id
+              );
+            });
 
-          if ($scope.order_invoice.area.price_delivery_service)
-            $scope.order_invoice.price_delivery_service =
-              $scope.order_invoice.area.price_delivery_service || 0;
+            if ($scope.order_invoice.area.price_delivery_service) {
+              $scope.order_invoice.price_delivery_service =
+                $scope.order_invoice.area.price_delivery_service || 0;
+            }
+          }
         }
       },
       function (err) {
@@ -1880,15 +1884,12 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         });
     }
 
-    if (site.feature("restaurant")) {
+    if (site.feature("pos")) {
       $scope.order_invoice.items.forEach((el) => {
         if (item.size == el.size && item.barcode == el.barcode && !el.printed) {
           exist = true;
           el.count += 1;
-          $scope.calcSize({ ...el });
-
-          /*           el.total += (item.b_price - item.discount.value);
-           */
+          $scope.calcSize(el);
         }
       });
     }

@@ -52,15 +52,15 @@
         "category": "main",
         "feature": "medical",
         "name": "analysis_requests",
-        "en": "Analysis Requests",
-        "ar": "طلبات التحاليل"
+        "en": "Analysis LAB",
+        "ar": "معمل التحاليل"
     },
     {
         "category": "main",
         "feature": "medical",
         "name": "scans_requests",
-        "en": "Scans Requests",
-        "ar": "طلبات الأشعة"
+        "en": "Scans Center",
+        "ar": "مركز الأشعة"
     },
     {
         "category": "main",

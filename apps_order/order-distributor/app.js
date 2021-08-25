@@ -103,7 +103,7 @@ module.exports = function init(site) {
       delete where['delivery_employee']
     };
 
-    where['status.id'] = 2
+    // where['status.id'] = 2
     where['transaction_type.id'] = 2
     where['status_delivery.id'] = 1
 

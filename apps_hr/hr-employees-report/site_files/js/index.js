@@ -79,22 +79,29 @@ app.controller("employees_report", function ($scope, $http) {
 
   $scope.searchEmployeeReport = function () {
 
-    let where = {};
-
-    $scope.employee_report = {};
-
-    if ($scope.search && $scope.search.date) {
-      where['year'] = $scope.search.date.getFullYear();
-      where['month'] = $scope.search.date.getMonth();
-      $scope.employee_report.date = $scope.search.date;
+    const v = site.validated('#searchModal');
+   
+    if (!v.ok) {
+      $scope.error = v.messages[0].ar;
+      return;
+    } else {
+      let where = {};
+      
+      $scope.employee_report = {};
+      
+      if ($scope.search && $scope.search.date) {
+        where['year'] = $scope.search.date.getFullYear();
+        where['month'] = $scope.search.date.getMonth();
+        $scope.employee_report.date = $scope.search.date;
+      }
+      
+      if ($scope.search && $scope.search.employee) {
+        where['employee.id'] = $scope.search.employee.id;
+        $scope.employee_report.employee = $scope.search.employee;
+      }
+      
+      $scope.loadEmployeeReport(where);
     }
-
-    if ($scope.search && $scope.search.employee) {
-      where['employee.id'] = $scope.search.employee.id;
-      $scope.employee_report.employee = $scope.search.employee;
-    }
-
-    $scope.loadEmployeeReport(where);
 
   };
 

@@ -3,8 +3,8 @@ module.exports = function init(site) {
   let collection_name = 'analysis_requests'
 
   let source = {
-    en: 'Analysis Requests System',
-    ar: ' نظام طلبات التحاليل'
+    en: 'Analysis LAB System',
+    ar: ' نظام معمل التحاليل'
   }
 
   let image_url = '/images/analysis_requests.png'

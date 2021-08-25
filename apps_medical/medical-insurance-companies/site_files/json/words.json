@@ -91,8 +91,8 @@
     },
     {
         "name": "analysis",
-        "en": "Analysis",
-        "ar": "التحاليل"
+        "en": "Types Analysis",
+        "ar": "أنواع التحاليل"
     },
     {
         "name": "medicines",
@@ -101,13 +101,13 @@
     },
     {
         "name": "scans",
-        "en": "Scans",
-        "ar": "الأشعة"
+        "en": "Types Scans",
+        "ar": "أنواع الأشعة"
     },
     {
         "name": "operation",
-        "en": "Operations",
-        "ar": "العمليات"
+        "en": "Types Operations",
+        "ar": "أنواع العمليات"
     },
     {
         "name": "medical_insurance_companies_img",

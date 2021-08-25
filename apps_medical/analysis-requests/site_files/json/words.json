@@ -1,7 +1,7 @@
 [
 
     {"name" : "analysis_requests_informations" , "en" : "Analysis Requests Informations" , "ar" : "بيانات طلب التحاليل"},
-    {"name" : "analysis_requests" , "en" : "Analysis Requests" , "ar" : "طلبات التحاليل"},
+    {"name" : "analysis_requests" , "en" : "Analysis LAB" , "ar" : "معمل التحاليل"},
     {"name" : "analysis_request" , "en" : "Analysis Request" , "ar" : "طلب تحاليل"},
     {"name" : "analysis_requests_menus" , "en" : "Analysis Requests Menu" , "ar" : "قائمة طلب التحاليل"},
     {"name" : "analysis_requests_code" , "en" : "Analysis Requests Code" , "ar" : "كود طلب التحاليل"},
