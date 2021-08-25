@@ -481,10 +481,10 @@
 
       <div x-features="academy || club || school || medical">
 
-        <a class="tab-link" href="/medicine" x-permissions="medicine_ui || medicine_manage">
+        <!-- <a class="tab-link" href="/medicine" x-permissions="medicine_ui || medicine_manage">
           <img src="/images/medicine.png" />
           <span> ##word.medicines##</span>
-        </a>
+        </a> -->
 
         <a class="tab-link" href="/disease" x-permissions="disease_ui || disease_manage">
           <img src="/images/disease.png" />
@@ -801,7 +801,7 @@
         <span>##word.stores_items##</span>
       </a>
 
-      <a class="tab-link" x-features="medical" href="/active_substances"
+      <a class="tab-link" x-features="medical || pos" href="/active_substances"
         x-permissions="active_substances_ui || active_substances_manage">
         <img src="/images/active_substances.png" />
         <span>##word.active_substances##</span>

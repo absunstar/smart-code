@@ -46,7 +46,7 @@
                         <th>##word.code##</th>
                         <th>##word.insurances_slides_name##</th>
                         <th>##word.insurances_slides_value##</th>
-                        <th class="not-print" x-permission="owner">##word.actions##</th>
+                        <th class="not-print">##word.actions##</th>
                     </tr>
                     <tr ng-repeat="c in list">
                         <td class="not-print">
@@ -55,7 +55,7 @@
                         <td class="center userPrint blue">{{c.code}}</td>
                         <td>{{c.name_##session.lang##}}</td>
                         <td class="green">{{c.value}} $</td>
-                        <td class="not-print" x-permission="owner" class="center">
+                        <td class="not-print" class="center">
 
                             <i-button x-permissions="insurance_slide_view || insurance_slide_manage" type="details"
                                 label="##word.details##" ng-click="details(c)"></i-button>

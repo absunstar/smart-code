@@ -185,6 +185,11 @@
         "ar": "الطبيب"
     },
     {
+        "name": "medicine_name",
+        "en": "Medicine name",
+        "ar": "إسم الدواء"
+    },
+    {
         "name": "doctors_visits_name",
         "en": "Visit Name",
         "ar": "إسم الزيارة"

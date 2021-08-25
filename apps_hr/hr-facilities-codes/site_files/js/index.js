@@ -53,6 +53,12 @@ app.controller("facilities_codes", function ($scope, $http) {
   };
 
   $scope.add = function () {
+    $scope.error = '';
+    const v = site.validated('#addFacilityCodeModal');
+    if (!v.ok) {
+      $scope.error = v.messages[0].ar;
+      return;
+    }
     $scope.busy = true;
     $http({
       method: "POST",
@@ -84,6 +90,12 @@ app.controller("facilities_codes", function ($scope, $http) {
     site.showModal('#updateFacilityCodeModal');
   };
   $scope.update = function () {
+    $scope.error = '';
+    const v = site.validated('#updateFacilityCodeModal');
+    if (!v.ok) {
+      $scope.error = v.messages[0].ar;
+      return;
+    }
     $scope.busy = true;
     $http({
       method: "POST",

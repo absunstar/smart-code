@@ -45,7 +45,7 @@
                         <th>##word.facilities_codes_code##</th>
                         <th>##word.facilities_codes_name##</th>
                         <th>##word.facilities_codes_owner##</th>
-                        <th class="not-print" x-permission="owner">##word.actions##</th>
+                        <th class="not-print">##word.actions##</th>
                     </tr>
                     <tr ng-repeat="c in list">
                         <td class="not-print">
@@ -53,7 +53,7 @@
                         <td class="center userPrint blue">{{c.code}}</td>
                         <td>{{c.name_##session.lang##}}</td>
                         <td>{{c.owner}}</td>
-                        <td class="not-print" x-permission="owner" class="center">
+                        <td class="not-print" class="center">
 
                             <i-button x-permissions="facilities_codes_view || facilities_codes_manage" type="details"
                                 label="##word.details##" ng-click="details(c)"></i-button>

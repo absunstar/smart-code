@@ -553,24 +553,199 @@ app.controller("customers", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getMedicineList = function () {
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/medicine/all",
-      data: { where: { active: true } }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.medicineList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
+  $scope.getItemsName = function (ev) {
+    $scope.error = "";
+    if (ev.which === 13) {
+      if (!$scope.item) {
+        $scope.item = {};
       }
+      $http({
+        method: "POST",
+        url: "/api/stores_items/all",
+        data: {
+          where: { "item_type.id": 3 },
+          search: $scope.item.search_item_name,
+        },
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done) {
+            if (response.data.list.length > 0) {
+              let foundSize = false;
+              $scope.customer.medicines_list =
+                $scope.customer.medicines_list || [];
+              response.data.list.forEach((_item) => {
+                if (_item.sizes && _item.sizes.length > 0)
+                  _item.sizes.forEach((_size) => {
+                    _size.information_instructions =
+                      _item.information_instructions;
+
+                    let foundHold = false;
+                    let indxUnit = 0;
+                    _size.add_sizes = _item.add_sizes;
+                    if (
+                      _size.size_units_list &&
+                      _size.size_units_list.length > 0
+                    )
+                      _size.size_units_list.forEach((_unit, i) => {
+                        if (_unit.id == _item.main_unit.id) indxUnit = i;
+                      });
+
+                    if (
+                      _size.barcode === $scope.item.search_item_name ||
+                      _size.size_units_list[indxUnit].barcode ===
+                        $scope.item.search_item_name
+                    ) {
+                      _size.name_ar = _item.name_ar;
+                      _size.name_en = _item.name_en;
+                      _size.item_group = _item.item_group;
+                      _size.count = 1;
+                      _size.value_added = _size.not_value_added
+                        ? 0
+                        : $scope.defaultSettings.inventory.value_added || 0;
+                      _size.unit = _size.size_units_list[indxUnit];
+                      _size.discount = _size.size_units_list[indxUnit].discount;
+                      _size.average_cost =
+                        _size.size_units_list[indxUnit].average_cost;
+                      _size.cost = _size.size_units_list[indxUnit].cost;
+                      _size.price = _size.size_units_list[indxUnit].price;
+                      _size.total = _size.count * _size.cost;
+
+                      if (
+                        _size.branches_list &&
+                        _size.branches_list.length > 0
+                      ) {
+                        let foundBranch = false;
+                        let indxBranch = 0;
+                        _size.branches_list.map((_branch, i) => {
+                          if (_branch.code == "##session.branch.code##") {
+                            foundBranch = true;
+                            indxBranch = i;
+                          }
+                        });
+
+                        if (foundBranch) {
+                          if (
+                            _size.branches_list[indxBranch].code ==
+                            "##session.branch.code##"
+                          ) {
+                            if (
+                              _size.branches_list[indxBranch].stores_list &&
+                              _size.branches_list[indxBranch].stores_list
+                                .length > 0
+                            ) {
+                              let foundStore = false;
+                              let indxStore = 0;
+
+                              if (foundStore)
+                                _size.store_count =
+                                  _size.branches_list[indxBranch].stores_list[
+                                    indxStore
+                                  ].current_count;
+                            } else _size.store_count = 0;
+                          } else _size.store_count = 0;
+                        } else _size.store_count = 0;
+                      } else _size.store_count = 0;
+
+                      foundSize = $scope.customer.medicines_list.some(
+                        (_itemSize) => _itemSize.barcode === _size.barcode
+                      );
+
+                      if (!foundSize && !foundHold)
+                        $scope.customer.medicines_list.unshift(_size);
+                    }
+                  });
+              });
+
+              if (!foundSize) $scope.itemsNameList = response.data.list;
+              else if (foundSize) $scope.error = "##word.dublicate_item##";
+            }
+            $scope.item.search_item_name = "";
+          } else {
+            $scope.error = response.data.error;
+            $scope.item = {
+              sizes: [],
+            };
+          }
+        },
+        function (err) {
+          console.log(err);
+        }
+      );
+    }
+  };
+
+  $scope.itemsStoresIn = function () {
+    $scope.error = "";
+    $scope.customer.medicines_list =
+      $scope.customer.medicines_list || [];
+    let foundSize = false;
+    if (
+      $scope.item.itm &&
+      $scope.item.itm.sizes &&
+      $scope.item.itm.sizes.length > 0
     )
+      $scope.item.itm.sizes.forEach((_item) => {
+        let foundHold = false;
+        _item.add_sizes = $scope.item.itm.add_sizes;
+        _item.name_ar = $scope.item.itm.name_ar;
+        _item.name_en = $scope.item.itm.name_en;
+        _item.item_group = $scope.item.itm.item_group;
+        _item.count = 1;
+        _item.value_added = _item.not_value_added
+          ? 0
+          : $scope.defaultSettings.inventory.value_added;
+
+        let indxUnit = 0;
+        if (_item.size_units_list && _item.size_units_list.length > 0) {
+          indxUnit = _item.size_units_list.findIndex(
+            (_unit) => _unit.id == $scope.item.itm.main_unit.id
+          );
+
+          _item.unit = _item.size_units_list[indxUnit];
+          _item.discount = _item.size_units_list[indxUnit].discount;
+          _item.average_cost = _item.size_units_list[indxUnit].average_cost;
+          _item.cost = _item.size_units_list[indxUnit].cost;
+          _item.price = _item.size_units_list[indxUnit].price;
+        }
+
+        _item.total = _item.count * _item.cost;
+
+        if (_item.branches_list && _item.branches_list.length > 0) {
+          let foundBranch = false;
+          let indxBranch = 0;
+          _item.branches_list.map((_branch, i) => {
+            if (_branch.code == "##session.branch.code##") {
+              foundBranch = true;
+              indxBranch = i;
+            }
+          });
+          if (foundBranch) {
+            if (
+              _item.branches_list[indxBranch].code == "##session.branch.code##"
+            ) {
+              if (
+                _item.branches_list[indxBranch].stores_list &&
+                _item.branches_list[indxBranch].stores_list.length > 0
+              ) {
+                let foundStore = false;
+                let indxStore = 0;
+
+                if (foundStore)
+                  _item.store_count =
+                    _item.branches_list[indxBranch].stores_list[
+                      indxStore
+                    ].current_count;
+              } else _item.store_count = 0;
+            } else _item.store_count = 0;
+          } else _item.store_count = 0;
+        } else _item.store_count = 0;
+        foundSize = $scope.customer.medicines_list.some(
+          (_itemSize) => _itemSize.barcode === _item.barcode
+        );
+        if (!foundSize && !foundHold)
+          $scope.customer.medicines_list.unshift(_item);
+      });
   };
 
   $scope.getFoodsList = function (where) {
@@ -850,7 +1025,6 @@ app.controller("customers", function ($scope, $http, $timeout) {
 
   if (site.feature('club') || site.feature('academy') || site.feature('school') || site.feature('medical')) {
     $scope.getDiseaseList();
-    $scope.getMedicineList();
     $scope.getDrinksList();
     $scope.getFoodsList();
   }

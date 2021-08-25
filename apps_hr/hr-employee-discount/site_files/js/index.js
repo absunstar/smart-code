@@ -66,6 +66,7 @@ app.controller("employee_discount", function ($scope, $http) {
         $scope.employee_discount = {
           image_url: '/images/discount.png',
           date: new Date(),
+          value : 0,
           shift: shift
         };
         site.showModal('#addEmployeeDiscountModal');
@@ -170,6 +171,12 @@ app.controller("employee_discount", function ($scope, $http) {
     })
   };
   $scope.update = function () {
+    $scope.error = '';
+    const v = site.validated('#updateEmployeeDiscountModal');
+    if (!v.ok) {
+      $scope.error = v.messages[0].ar;
+      return;
+    }
     $scope.busy = true;
     $http({
       method: "POST",

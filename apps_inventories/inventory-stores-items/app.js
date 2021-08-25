@@ -1736,7 +1736,6 @@ module.exports = function init(site) {
           where["item_group.id"] = req.body.group.id;
         }
       }
-
       if (search != undefined) {
         where.$or = [];
 
