@@ -1,12 +1,13 @@
 <div ng-hide="busy" class="row">
 
-    <div class="tabs col">
+    <div class="tabs">
         <div class="tabs-header full">
             <a class="tab-link" onclick="site.showTabContent(event, '#personalInformation')">
                 ##word.customers_personal_information## </a>
 
             <a class="tab-link" onclick="site.showTabContent(event, '#contactAndAddress')">
                 ##word.customers_contact_and_addresses## </a>
+
             <a class="tab-link" x-features="club || academy || school || medical"
                 onclick="site.showTabContent(event,'#medicalConditionInformation')">
                 ##word.medical_condition##
@@ -256,54 +257,71 @@
                     </div>
 
                 </fieldset>
-                <div class="row">
-                    <div class="col6">
 
-                        <fieldset>
+
+                <fieldset>
+                        <legend>
+                            ##word.diseases##
+                        </legend>
+
+                        <table class="table hover bold">
+
+                            <tr>
+                                <th class="title">##word.disease_name##</th>
+                            </tr>
+
+                            <tr ng-repeat="d in customer.disease_list">
+                                <td class="center">{{d.disease.name_##session.lang##}}</td>
+                            </tr>
+
+                        </table>
+                </fieldset>
+
+                <fieldset>
                             <legend>
                                 ##word.medicines##
                             </legend>
-                            <table class="table hover bold">
-
+                            <table class="table center bold hover">
                                 <tr>
-                                    <th class="title">##word.medicines##</th>
-                                    <th class="title">##word.count_dosage##</th>
-                                    <!--                             <th class="title">##word.beginning_dosage##</th>
- -->
+                                  <th>##word.medicine_name##</th>
+                                  <th>##word.count_dosage##</th>
+                                  <th>##word.medicine_unit##</th>
+                                  <th>##word.timing_dosage##</th>
+                                  <th>##word.notes##</th>
+                                  <th>##word.actions##</th>
                                 </tr>
 
-                                <tr ng-repeat="m in customer.medicine_list">
-                                    <td class="center">{{m.medicine.name_##session.lang##}}</td>
-                                    <td class="center">{{m.count_dosage}}</td>
-                                    <!--                             <td class="center">{{medicine.time.##session.lang##}}</td>
- -->
+                                <tr ng-repeat="itm in customer.medicines_list">
+                                  <td>
+                                    <p ng-show="itm.add_sizes">
+                                      {{itm.name_##session.lang##}}
+                                      {{itm.size_##session.lang##}}
+                                    </p>
+                                    <p ng-hide="itm.add_sizes">{{itm.size_##session.lang##}}</p>
+                                    <p class="userPrint center">{{itm.barcode}}</p>
+                                  </td>
+                
+                                  <td class="blue">{{itm.count}}</td>
+                
+                                  <td>{{itm.unit.name_##session.lang##}}</td>
+                
+                                  <td>{{itm.timing_dosage}}</td>
+                
+                                  <td class="lines_text center">{{itm.notes}}</td>
+                
+                                  <td>
+                                    <i-button
+                                      ng-hide="doctors_visits.$view"
+                                      label="##word.information_instructions##"
+                                      ng-click="viewInformationInstructions(itm)"
+                                    >
+                                    </i-button>
+                                  </td>
                                 </tr>
+                              </table>
 
-                            </table>
-
-                        </fieldset>
-                    </div>
-                    <div class="col6">
-
-                        <fieldset>
-                            <legend>
-                                ##word.diseases##
-                            </legend>
-
-                            <table class="table hover bold">
-
-                                <tr>
-                                    <th class="title">##word.disease_name##</th>
-                                </tr>
-
-                                <tr ng-repeat="d in customer.disease_list">
-                                    <td class="center">{{d.disease.name_##session.lang##}}</td>
-                                </tr>
-
-                            </table>
-                        </fieldset>
-                    </div>
-                </div>
+                </fieldset>
+                  
 
             </div>
 

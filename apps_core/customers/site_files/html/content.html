@@ -287,10 +287,9 @@
                             <p class="bold black">##word.k_g##</p>
                         </div>
 
-
-
                         <i-control help-id="" class="col2" type="number" label="##word.tall##" ng-model="customer.tall">
                         </i-control>
+
                         <div class="col1">
                             <br>
                             <br>
@@ -351,29 +350,6 @@
 
                 <fieldset>
                     <legend>
-                        <i-button type="add default" ng-click="customer.medicine_list.push({})"></i-button>
-                        ##word.medicines##
-                    </legend>
-
-                    <div ng-repeat="m in customer.medicine_list" class="row">
-                        <i-list class="col4" items="medicineList" label="##word.medicine##"
-                            display="name_##session.lang##" ng-search="medicine.$medicines" ng-model="m.medicine">
-                        </i-list>
-
-                        <i-control class="col2" type="number" label="##word.count_dosage##" ng-model="m.count_dosage">
-                        </i-control>
-
-                        <!--   <i-list class="col2" items="timeList" display="##session.lang##"
-                            label="##word.beginning_dosage##" ng-model="medicine.time"></i-list> -->
-                        <i-button class="col1" type="delete default"
-                            ng-click="customer.medicine_list.length ==1 || customer.medicine_list.splice($index,1)">
-                        </i-button>
-
-                    </div>
-                </fieldset>
-
-                <fieldset>
-                    <legend>
                         <i-button type="add default" ng-click="customer.disease_list.push({})"></i-button>
                         ##word.diseases##
                     </legend>
@@ -388,6 +364,82 @@
 
                     </div>
                 </fieldset>
+
+                <fieldset>
+                    <legend>
+                        <!-- <i-button type="add default" ng-click="customer.medicine_list.push({})"></i-button> -->
+                        ##word.medicines##
+                    </legend>
+                    <div class="row">
+                        <i-control ng-keydown="getItemsName($event)" id="item_name" class="col3"
+                            ng-model="item.search_item_name" label="##word.search##" type="text"></i-control>
+
+                        <i-list class="col4" label="##word.medicine_name##" ng-model="item.itm"
+                            display="name_##session.lang##" items="itemsNameList" ng-change="itemsMedicines()"
+                            ng-search="item_searching"></i-list>
+                    </div>
+
+                    <br>
+
+                    <div class="row">
+
+                        <table class="table bold hover">
+                            <tr>
+                                <th>##word.medicine_name##</th>
+                                <th class="w150">##word.medicine_unit##</th>
+                                <th class="w150">##word.count_dosage##</th>
+                                <th class="w200">##word.timing_dosage##</th>
+                                <th class="w250">##word.notes##</th>
+                                <th class="w150">##word.actions##</th>
+                            </tr>
+
+                            <tr ng-repeat="itm in customer.medicines_list">
+
+                                <td class="center"> 
+                                    <p ng-show="itm.add_sizes">{{itm.name_##session.lang##}} {{itm.size_##session.lang##}}</p>
+                                    <p ng-hide="itm.add_sizes">{{itm.size_##session.lang##}}</p>
+                                    <p class="userPrint center">{{itm.barcode}}</p>
+                                </td>
+
+                                <td>
+                                    <i-list ng-model="itm.unit" ng-search="_search.$category_item.$unit_search"
+                                    display="name_##session.lang##" space=" - " ng-change="ChangeUnitPatch(itm);" display2="barcode"
+                                        items="itm.size_units_list">
+                                    </i-list>
+                                </td>
+                                <td>
+                                    <i-control type="number" ng-model="itm.count"></i-control>
+                                </td>
+
+                                <td>
+                                    <i-control ng-model="itm.timing_dosage"></i-control>
+                                </td>
+
+                                <td>
+                                    <i-textarea ng-model="itm.notes"></i-textarea>
+                                </td>
+
+                                <td>
+                                    <div class="row center">
+                                        <i-button label="##word.information_instructions##"
+                                            ng-click="viewInformationInstructions(itm)">
+                                        </i-button>
+                                    </div>
+
+                                    <div class="row center">
+                                        <i-button type="delete" label="##word.delete##"
+                                            ng-click="doctors_visits.medicines_list.splice($index,1)">
+                                        </i-button>
+                                    </div>
+
+                                </td>
+                            </tr>
+                        </table>
+
+                    </div>
+                  
+                </fieldset>
+
             </div>
 
             <div id="officialDocuments" x-features="pos || erp" class="tab-content">

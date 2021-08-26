@@ -4,49 +4,49 @@ app.controller("customers", function ($scope, $http, $timeout) {
   $scope.customer = {};
 
   $scope.displayAddCustomer = function () {
-    $scope.error = '';
+    $scope.error = "";
 
     $scope.customer = {
-      image_url: '/images/customer.png',
+      image_url: "/images/customer.png",
       active: true,
       balance_creditor: 0,
       balance_debtor: 0,
-      branch_list: [{
-        charge: [{}]
-      }],
+      branch_list: [
+        {
+          charge: [{}],
+        },
+      ],
       currency_list: [],
       opening_balance: [{ initial_balance: 0 }],
       bank_list: [{}],
-      dealing_company: [{}]
+      dealing_company: [{}],
     };
 
-    if (site.feature('medical')) {
-      $scope.customer.image_url = '/images/patients.png';
+    if (site.feature("medical")) {
+      $scope.customer.image_url = "/images/patients.png";
       $scope.customer.allergic_food_list = [{}];
       $scope.customer.allergic_drink_list = [{}];
-      $scope.customer.medicine_list = [{}];
+      $scope.customer.medicines_list = [{}];
       $scope.customer.disease_list = [{}];
-
-    } else if (site.feature('school') || site.feature('academy')) {
-      $scope.customer.image_url = '/images/student.png';
+    } else if (site.feature("school") || site.feature("academy")) {
+      $scope.customer.image_url = "/images/student.png";
       $scope.customer.allergic_food_list = [{}];
       $scope.customer.allergic_drink_list = [{}];
-      $scope.customer.medicine_list = [{}];
+      $scope.customer.medicines_list = [{}];
       $scope.customer.disease_list = [{}];
-
     }
 
-    site.showModal('#customerAddModal');
-    document.querySelector('#customerAddModal .tab-link').click();
+    site.showModal("#customerAddModal");
+    document.querySelector("#customerAddModal .tab-link").click();
   };
 
   $scope.addCustomer = function () {
-    $scope.error = '';
+    $scope.error = "";
     if ($scope.busy) {
       return;
     }
 
-    const v = site.validated('#customerAddModal');
+    const v = site.validated("#customerAddModal");
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
@@ -56,50 +56,49 @@ app.controller("customers", function ($scope, $http, $timeout) {
     $http({
       method: "POST",
       url: "/api/customers/add",
-      data: $scope.customer
+      data: $scope.customer,
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#customerAddModal');
+          site.hideModal("#customerAddModal");
           $scope.list = $scope.list || [];
           $scope.list.push(response.data.doc);
           $scope.getCustomersList();
           $scope.count = $scope.list.length;
         } else {
           $scope.error = response.data.error;
-          if (response.data.error.like('*Must Enter Code*')) {
-            $scope.error = "##word.must_enter_code##"
-
-          } else if (response.data.error.like('*maximum number of adds exceeded*')) {
-            $scope.error = "##word.err_maximum_adds##"
-
-          } else if (response.data.error.like('*ername must be typed correctly*')) {
-            $scope.error = "##word.err_username_contain##"
-
-          } else if (response.data.error.like('*User Is Exist*')) {
-            $scope.error = "##word.user_exists##"
+          if (response.data.error.like("*Must Enter Code*")) {
+            $scope.error = "##word.must_enter_code##";
+          } else if (
+            response.data.error.like("*maximum number of adds exceeded*")
+          ) {
+            $scope.error = "##word.err_maximum_adds##";
+          } else if (
+            response.data.error.like("*ername must be typed correctly*")
+          ) {
+            $scope.error = "##word.err_username_contain##";
+          } else if (response.data.error.like("*User Is Exist*")) {
+            $scope.error = "##word.user_exists##";
           }
-
         }
       },
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.displayUpdateCustomer = function (customer) {
-    $scope.error = '';
+    $scope.error = "";
     $scope.detailsCustomer(customer);
     $scope.customer = {};
-    site.showModal('#customerUpdateModal');
-    document.querySelector('#customerUpdateModal .tab-link').click();
+    site.showModal("#customerUpdateModal");
+    document.querySelector("#customerUpdateModal .tab-link").click();
   };
 
   $scope.displaybankingAndAccounting = function (event) {
-
-    site.showTabContent(event, '#bankingAndAccounting');
+    site.showTabContent(event, "#bankingAndAccounting");
 
     let num = 0;
     let ln = $scope.customer.opening_balance;
@@ -113,16 +112,15 @@ app.controller("customers", function ($scope, $http, $timeout) {
         }
       }
     }
-
   };
 
   $scope.updateCustomer = function () {
-    $scope.error = '';
+    $scope.error = "";
     if ($scope.busy) {
       return;
     }
 
-    const v = site.validated('#customerUpdateModal');
+    const v = site.validated("#customerUpdateModal");
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
@@ -132,12 +130,12 @@ app.controller("customers", function ($scope, $http, $timeout) {
     $http({
       method: "POST",
       url: "/api/customers/update",
-      data: $scope.customer
+      data: $scope.customer,
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#customerUpdateModal');
+          site.hideModal("#customerUpdateModal");
           $scope.list.forEach((b, i) => {
             if (b.id == response.data.doc.id) {
               $scope.list[i] = response.data.doc;
@@ -146,38 +144,39 @@ app.controller("customers", function ($scope, $http, $timeout) {
           $scope.getCustomersList();
         } else {
           $scope.error = response.data.error;
-          if (response.data.error.like('*Must Enter Code*')) {
-            $scope.error = "##word.must_enter_code##"
-
-          } else if (response.data.error.like('*maximum number of adds exceeded*')) {
-            $scope.error = "##word.err_maximum_adds##"
-
-          } else if (response.data.error.like('*ername must be typed correctly*')) {
-            $scope.error = "##word.err_username_contain##"
-
-          } else if (response.data.error.like('*User Is Exist*')) {
-            $scope.error = "##word.user_exists##"
+          if (response.data.error.like("*Must Enter Code*")) {
+            $scope.error = "##word.must_enter_code##";
+          } else if (
+            response.data.error.like("*maximum number of adds exceeded*")
+          ) {
+            $scope.error = "##word.err_maximum_adds##";
+          } else if (
+            response.data.error.like("*ername must be typed correctly*")
+          ) {
+            $scope.error = "##word.err_username_contain##";
+          } else if (response.data.error.like("*User Is Exist*")) {
+            $scope.error = "##word.user_exists##";
           }
         }
       },
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.displayDeleteCustomer = function (customer) {
-    $scope.error = '';
+    $scope.error = "";
     $scope.detailsCustomer(customer);
     $scope.customer = {};
-    site.showModal('#customerDeleteModal');
-    document.querySelector('#customerDeleteModal .tab-link').click();
+    site.showModal("#customerDeleteModal");
+    document.querySelector("#customerDeleteModal .tab-link").click();
   };
 
   $scope.deleteCustomer = function () {
-    $scope.error = '';
+    $scope.error = "";
     if ($scope.busy) {
-      return
+      return;
     }
 
     $scope.busy = true;
@@ -186,13 +185,13 @@ app.controller("customers", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/customers/delete",
       data: {
-        id: $scope.customer.id
-      }
+        id: $scope.customer.id,
+      },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#customerDeleteModal');
+          site.hideModal("#customerDeleteModal");
           $scope.list.forEach((b, i) => {
             if (b.id == response.data.doc.id) {
               $scope.list.splice(i, 1);
@@ -207,34 +206,37 @@ app.controller("customers", function ($scope, $http, $timeout) {
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.displayDetailsCustomer = function (customer) {
-    $scope.error = '';
+    $scope.error = "";
     $scope.detailsCustomer(customer);
     $scope.customer = {};
-    site.showModal('#customerDetailsModal');
-    document.querySelector('#customerDetailsModal .tab-link').click();
+    site.showModal("#customerDetailsModal");
+    document.querySelector("#customerDetailsModal .tab-link").click();
   };
 
   $scope.detailsCustomer = function (customer, view) {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/customers/view",
       data: {
-        id: customer.id
-      }
+        id: customer.id,
+      },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.customer = response.data.doc;
-          if ($scope.customer.opening_balance && $scope.customer.opening_balance.length > 0)
-            $scope.customer.opening_balance.forEach(o_b => {
-              o_b.$view = true
+          if (
+            $scope.customer.opening_balance &&
+            $scope.customer.opening_balance.length > 0
+          )
+            $scope.customer.opening_balance.forEach((o_b) => {
+              o_b.$view = true;
             });
         } else {
           $scope.error = response.data.error;
@@ -243,11 +245,11 @@ app.controller("customers", function ($scope, $http, $timeout) {
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.getCustomersList = function (where) {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
 
     $scope.list = [];
@@ -255,8 +257,8 @@ app.controller("customers", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/customers/all",
       data: {
-        where: where
-      }
+        where: where,
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -264,13 +266,12 @@ app.controller("customers", function ($scope, $http, $timeout) {
           $scope.list = response.data.list;
           $scope.count = response.data.count;
         }
-
       },
       function (err) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.getInsuranceCompaniesList = function () {
@@ -280,10 +281,11 @@ app.controller("customers", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
-          code: 1
-        }
-      }
+          name_ar: 1,
+          name_en: 1,
+          code: 1,
+        },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -292,7 +294,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
       function (err) {
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.getCustomerGroupList = function () {
@@ -302,10 +304,11 @@ app.controller("customers", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
-          code: 1
-        }
-      }
+          name_ar: 1,
+          name_en: 1,
+          code: 1,
+        },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -314,7 +317,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
       function (err) {
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.getNationalitiesList = function () {
@@ -326,9 +329,9 @@ app.controller("customers", function ($scope, $http, $timeout) {
           id: 1,
           name_ar: 1,
           name_en: 1,
-          code: 1
-        }
-      }
+          code: 1,
+        },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -337,17 +340,16 @@ app.controller("customers", function ($scope, $http, $timeout) {
       function (err) {
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.Gender = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
     $scope.genderList = [];
     $http({
       method: "POST",
-      url: "/api/gender/all"
-
+      url: "/api/gender/all",
     }).then(
       function (response) {
         $scope.busy = false;
@@ -357,17 +359,16 @@ app.controller("customers", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.getBloodType = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
     $scope.bloodTypeList = [];
     $http({
       method: "POST",
-      url: "/api/blood_type/all"
-
+      url: "/api/blood_type/all",
     }).then(
       function (response) {
         $scope.busy = false;
@@ -377,7 +378,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.getSchoolGradesList = function () {
@@ -387,10 +388,11 @@ app.controller("customers", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
-          code: 1
-        }
-      }
+          name_ar: 1,
+          name_en: 1,
+          code: 1,
+        },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -399,7 +401,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
       function (err) {
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.getStudentsYearsList = function (school_grade) {
@@ -409,14 +411,15 @@ app.controller("customers", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
-          code: 1
+          name_ar: 1,
+          name_en: 1,
+          code: 1,
         },
         where: {
           active: true,
-          'school_grade.id': school_grade.id
-        }
-      }
+          "school_grade.id": school_grade.id,
+        },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -425,7 +428,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
       function (err) {
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.getHallsList = function () {
@@ -435,13 +438,14 @@ app.controller("customers", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
-          code: 1
+          name_ar: 1,
+          name_en: 1,
+          code: 1,
         },
         where: {
-          active: true
-        }
-      }
+          active: true,
+        },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -450,7 +454,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
       function (err) {
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.getGovList = function (where) {
@@ -460,10 +464,10 @@ app.controller("customers", function ($scope, $http, $timeout) {
       url: "/api/goves/all",
       data: {
         where: {
-          active: true
+          active: true,
         },
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1 }
-      }
+        select: { id: 1, name_ar: 1, name_en: 1, code: 1 },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -475,7 +479,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.getCityList = function (gov) {
@@ -485,11 +489,11 @@ app.controller("customers", function ($scope, $http, $timeout) {
       url: "/api/city/all",
       data: {
         where: {
-          'gov.id': gov.id,
-          active: true
+          "gov.id": gov.id,
+          active: true,
         },
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1 }
-      }
+        select: { id: 1, name_ar: 1, name_en: 1, code: 1 },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -501,7 +505,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.getAreaList = function (city) {
@@ -511,10 +515,10 @@ app.controller("customers", function ($scope, $http, $timeout) {
       url: "/api/area/all",
       data: {
         where: {
-          'city.id': city.id,
-          active: true
+          "city.id": city.id,
+          active: true,
         },
-      }
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -526,7 +530,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.getDiseaseList = function (where) {
@@ -536,9 +540,9 @@ app.controller("customers", function ($scope, $http, $timeout) {
       url: "/api/disease/all",
       data: {
         where: {
-          active: true
+          active: true,
         },
-      }
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -550,7 +554,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.getItemsName = function (ev) {
@@ -580,7 +584,6 @@ app.controller("customers", function ($scope, $http, $timeout) {
                     _size.information_instructions =
                       _item.information_instructions;
 
-                    let foundHold = false;
                     let indxUnit = 0;
                     _size.add_sizes = _item.add_sizes;
                     if (
@@ -600,16 +603,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
                       _size.name_en = _item.name_en;
                       _size.item_group = _item.item_group;
                       _size.count = 1;
-                      _size.value_added = _size.not_value_added
-                        ? 0
-                        : $scope.defaultSettings.inventory.value_added || 0;
                       _size.unit = _size.size_units_list[indxUnit];
-                      _size.discount = _size.size_units_list[indxUnit].discount;
-                      _size.average_cost =
-                        _size.size_units_list[indxUnit].average_cost;
-                      _size.cost = _size.size_units_list[indxUnit].cost;
-                      _size.price = _size.size_units_list[indxUnit].price;
-                      _size.total = _size.count * _size.cost;
 
                       if (
                         _size.branches_list &&
@@ -651,7 +645,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
                         (_itemSize) => _itemSize.barcode === _size.barcode
                       );
 
-                      if (!foundSize && !foundHold)
+                      if (!foundSize)
                         $scope.customer.medicines_list.unshift(_size);
                     }
                   });
@@ -675,10 +669,9 @@ app.controller("customers", function ($scope, $http, $timeout) {
     }
   };
 
-  $scope.itemsStoresIn = function () {
+  $scope.itemsMedicines = function () {
     $scope.error = "";
-    $scope.customer.medicines_list =
-      $scope.customer.medicines_list || [];
+    $scope.customer.medicines_list = $scope.customer.medicines_list || [];
     let foundSize = false;
     if (
       $scope.item.itm &&
@@ -686,16 +679,11 @@ app.controller("customers", function ($scope, $http, $timeout) {
       $scope.item.itm.sizes.length > 0
     )
       $scope.item.itm.sizes.forEach((_item) => {
-        let foundHold = false;
         _item.add_sizes = $scope.item.itm.add_sizes;
         _item.name_ar = $scope.item.itm.name_ar;
         _item.name_en = $scope.item.itm.name_en;
         _item.item_group = $scope.item.itm.item_group;
         _item.count = 1;
-        _item.value_added = _item.not_value_added
-          ? 0
-          : $scope.defaultSettings.inventory.value_added;
-
         let indxUnit = 0;
         if (_item.size_units_list && _item.size_units_list.length > 0) {
           indxUnit = _item.size_units_list.findIndex(
@@ -703,13 +691,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
           );
 
           _item.unit = _item.size_units_list[indxUnit];
-          _item.discount = _item.size_units_list[indxUnit].discount;
-          _item.average_cost = _item.size_units_list[indxUnit].average_cost;
-          _item.cost = _item.size_units_list[indxUnit].cost;
-          _item.price = _item.size_units_list[indxUnit].price;
         }
-
-        _item.total = _item.count * _item.cost;
 
         if (_item.branches_list && _item.branches_list.length > 0) {
           let foundBranch = false;
@@ -743,9 +725,14 @@ app.controller("customers", function ($scope, $http, $timeout) {
         foundSize = $scope.customer.medicines_list.some(
           (_itemSize) => _itemSize.barcode === _item.barcode
         );
-        if (!foundSize && !foundHold)
+        if (!foundSize)
           $scope.customer.medicines_list.unshift(_item);
       });
+  };
+
+  $scope.viewInformationInstructions = function (c) {
+    $scope.view_info_instruc = c;
+    site.showModal("#informationInstructionsModal");
   };
 
   $scope.getFoodsList = function (where) {
@@ -755,9 +742,9 @@ app.controller("customers", function ($scope, $http, $timeout) {
       url: "/api/foods/all",
       data: {
         where: {
-          active: true
+          active: true,
         },
-      }
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -769,7 +756,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.getDrinksList = function (where) {
@@ -779,9 +766,9 @@ app.controller("customers", function ($scope, $http, $timeout) {
       url: "/api/drinks/all",
       data: {
         where: {
-          active: true
+          active: true,
         },
-      }
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -793,7 +780,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.loadMaritalsStatus = function () {
@@ -802,8 +789,8 @@ app.controller("customers", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/maritals_status/all",
       data: {
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1 }
-      }
+        select: { id: 1, name_ar: 1, name_en: 1, code: 1 },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -815,17 +802,16 @@ app.controller("customers", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.getHost = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
     $scope.hostList = [];
     $http({
       method: "POST",
-      url: "/api/host/all"
-
+      url: "/api/host/all",
     }).then(
       function (response) {
         $scope.busy = false;
@@ -835,7 +821,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.loadMilitariesStatus = function () {
@@ -844,8 +830,8 @@ app.controller("customers", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/militaries_status/all",
       data: {
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1 }
-      }
+        select: { id: 1, name_ar: 1, name_en: 1, code: 1 },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -857,7 +843,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.getGuideAccountList = function () {
@@ -867,10 +853,10 @@ app.controller("customers", function ($scope, $http, $timeout) {
       url: "/api/accounting_guide_accounts/all",
       data: {
         where: {
-          status: 'active',
-          type: 'detailed'
-        }
-      }
+          status: "active",
+          type: "detailed",
+        },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -882,7 +868,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.loadCurrencies = function () {
@@ -893,15 +879,17 @@ app.controller("customers", function ($scope, $http, $timeout) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
-          minor_currency_ar: 1, minor_currency_en: 1,
+          name_ar: 1,
+          name_en: 1,
+          minor_currency_ar: 1,
+          minor_currency_en: 1,
           ex_rate: 1,
-          code: 1
+          code: 1,
         },
         where: {
-          active: true
-        }
-      }
+          active: true,
+        },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -913,18 +901,18 @@ app.controller("customers", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.getNumberingAuto = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/numbering/get_automatic",
       data: {
-        screen: "customers"
-      }
+        screen: "customers",
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -936,11 +924,9 @@ app.controller("customers", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
-
-  
   $scope.getFilesTypesList = function (where) {
     $scope.busy = true;
     $http({
@@ -948,9 +934,9 @@ app.controller("customers", function ($scope, $http, $timeout) {
       url: "/api/file_type/all",
       data: {
         where: {
-          active: true
+          active: true,
         },
-      }
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -962,38 +948,34 @@ app.controller("customers", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.addFiles = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.customer.files_list = $scope.customer.files_list || [];
     $scope.customer.files_list.push({
-      file_date : new Date(),
-      file_upload_date : new Date(),
-      upload_by : '##user.name##',
-    })
+      file_date: new Date(),
+      file_upload_date: new Date(),
+      upload_by: "##user.name##",
+    });
   };
 
   $scope.searchAll = function () {
     $scope.getCustomersList($scope.search);
-    site.hideModal('#customerSearchModal');
+    site.hideModal("#customerSearchModal");
     $scope.search = {};
   };
 
-
-  $scope.email_examble = '';
-  $scope.host = '';
-  if (typeof '##session.company.host##' === 'string') {
-    $scope.email_examble = 'examble@##session.company.host##';
-    $scope.host = '@##session.company.host##';
-
+  $scope.email_examble = "";
+  $scope.host = "";
+  if (typeof "##session.company.host##" === "string") {
+    $scope.email_examble = "examble@##session.company.host##";
+    $scope.host = "@##session.company.host##";
   } else {
-    $scope.email_examble = 'you@examble.com';
-    $scope.host = '@examble.com';
-
+    $scope.email_examble = "you@examble.com";
+    $scope.host = "@examble.com";
   }
-
 
   $scope.getCustomersList();
   $scope.getHost();
@@ -1008,22 +990,25 @@ app.controller("customers", function ($scope, $http, $timeout) {
   $scope.loadMaritalsStatus();
   $scope.loadMilitariesStatus();
 
-  if (site.feature('erp')) {
+  if (site.feature("erp")) {
     $scope.getGuideAccountList();
   }
 
-  if (site.feature('medical')) {
+  if (site.feature("medical")) {
     $scope.getInsuranceCompaniesList();
   }
 
-  if (site.feature('school')) {
+  if (site.feature("school")) {
     $scope.getSchoolGradesList();
     $scope.getHallsList();
   }
 
-
-
-  if (site.feature('club') || site.feature('academy') || site.feature('school') || site.feature('medical')) {
+  if (
+    site.feature("club") ||
+    site.feature("academy") ||
+    site.feature("school") ||
+    site.feature("medical")
+  ) {
     $scope.getDiseaseList();
     $scope.getDrinksList();
     $scope.getFoodsList();

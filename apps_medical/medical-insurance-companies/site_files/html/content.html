@@ -189,23 +189,7 @@
 
                     </fieldset>
 
-                    <fieldset>
-                        <legend>
-                            <i-button type="add default"
-                                ng-click="medical_insurance_company.black_medicine_list.push({})"></i-button>
-                            ##word.medicines##
-                        </legend>
-
-                        <div class="row" ng-repeat="black_medicine in medical_insurance_company.black_medicine_list">
-                            <i-list help-id="" class="col4" ng-model="black_medicine.medicine" items="medicinesList"
-                                display="name_##session.lang##" ng-search="_search.$black_medicines"></i-list>
-                            <i-button type="delete default"
-                                ng-click="medical_insurance_company.black_medicine_list.length ==1 || medical_insurance_company.black_medicine_list.splice($index,1)">
-                            </i-button>
-                        </div>
-
-                    </fieldset>
-
+               
                     <fieldset>
                         <legend>
                             <i-button type="add default"
@@ -222,6 +206,77 @@
                         </div>
 
                     </fieldset>
+
+                    <fieldset>
+                        <legend>
+                            ##word.medicines##
+                        </legend>
+
+                        <div class="row">
+                            <i-control ng-keydown="getItemsName($event,'black')" id="item_name" class="col3"
+                                ng-model="item.search_item_name" label="##word.search##" type="text"></i-control>
+    
+                            <i-list class="col4" label="##word.medicine_name##" ng-model="item.itm"
+                                display="name_##session.lang##" items="itemsNameList" ng-change="itemsMedicines('black')"
+                                ng-search="item_searching"></i-list>
+                        </div>
+    
+                        <br>
+    
+                        <div class="row">
+    
+                            <table class="table bold hover">
+                                <tr>
+                                    <th>##word.medicine_name##</th>
+                                    <th class="w150">##word.medicine_unit##</th>
+                                    <th class="w150">##word.count_dosage##</th>
+                                    <th class="w250">##word.notes##</th>
+                                    <th class="w150">##word.actions##</th>
+                                </tr>
+    
+                                <tr ng-repeat="itm in medical_insurance_company.black_medicine_list">
+    
+                                    <td class="center"> 
+                                        <p ng-show="itm.add_sizes">{{itm.name_##session.lang##}} {{itm.size_##session.lang##}}</p>
+                                        <p ng-hide="itm.add_sizes">{{itm.size_##session.lang##}}</p>
+                                        <p class="userPrint center">{{itm.barcode}}</p>
+                                    </td>
+    
+                                    <td>
+                                        <i-list ng-model="itm.unit" ng-search="_search.$category_item.$unit_search"
+                                        display="name_##session.lang##" space=" - " ng-change="ChangeUnitPatch(itm);" display2="barcode"
+                                            items="itm.size_units_list">
+                                        </i-list>
+                                    </td>
+                                    <td>
+                                        <i-control type="number" ng-model="itm.count"></i-control>
+                                    </td>
+    
+                                    <td>
+                                        <i-textarea ng-model="itm.notes"></i-textarea>
+                                    </td>
+    
+                                    <td>
+                                        <div class="row center">
+                                            <i-button label="##word.information_instructions##"
+                                                ng-click="viewInformationInstructions(itm)">
+                                            </i-button>
+                                        </div>
+    
+                                        <div class="row center">
+                                            <i-button type="delete" label="##word.delete##"
+                                                ng-click="medical_insurance_company.black_medicine_list.splice($index,1)">
+                                            </i-button>
+                                        </div>
+    
+                                    </td>
+                                </tr>
+                            </table>
+    
+                        </div>
+
+                    </fieldset>
+
                 </fieldset>
             </div>
 
@@ -260,23 +315,7 @@
                         </div>
 
                     </fieldset>
-                    <fieldset>
-                        <legend>
-                            <i-button type="add default"
-                                ng-click="medical_insurance_company.approve_medicine_list.push({})"></i-button>
-                            ##word.medicines##
-                        </legend>
-
-                        <div class="row"
-                            ng-repeat="approve_medicine in medical_insurance_company.approve_medicine_list">
-                            <i-list help-id="" class="col4" ng-model="approve_medicine.medicine" items="medicinesList"
-                                display="name_##session.lang##" ng-search="_search.$approve_medicines"></i-list>
-                            <i-button type="delete default"
-                                ng-click="medical_insurance_company.approve_medicine_list.length ==1 || medical_insurance_company.approve_medicine_list.splice($index,1)">
-                            </i-button>
-                        </div>
-
-                    </fieldset>
+                
                     <fieldset>
                         <legend>
                             <i-button type="add default"
@@ -291,6 +330,75 @@
                             <i-button type="delete default"
                                 ng-click="medical_insurance_company.approve_operation_list.length ==1 || medical_insurance_company.approve_operation_list.splice($index,1)">
                             </i-button>
+                        </div>
+
+                    </fieldset>
+                    <fieldset>
+                        <legend>
+                            ##word.medicines##
+                        </legend>
+
+                        <div class="row">
+                            <i-control ng-keydown="getItemsName($event,'approve')" id="item_name" class="col3"
+                                ng-model="item.search_item_name" label="##word.search##" type="text"></i-control>
+    
+                            <i-list class="col4" label="##word.medicine_name##" ng-model="item.itm"
+                                display="name_##session.lang##" items="itemsNameList" ng-change="itemsMedicines('approve')"
+                                ng-search="item_searching"></i-list>
+                        </div>
+    
+                        <br>
+    
+                        <div class="row">
+    
+                            <table class="table bold hover">
+                                <tr>
+                                    <th>##word.medicine_name##</th>
+                                    <th class="w150">##word.medicine_unit##</th>
+                                    <th class="w150">##word.count_dosage##</th>
+                                    <th class="w250">##word.notes##</th>
+                                    <th class="w150">##word.actions##</th>
+                                </tr>
+    
+                                <tr ng-repeat="itm in medical_insurance_company.approve_medicine_list">
+    
+                                    <td class="center"> 
+                                        <p ng-show="itm.add_sizes">{{itm.name_##session.lang##}} {{itm.size_##session.lang##}}</p>
+                                        <p ng-hide="itm.add_sizes">{{itm.size_##session.lang##}}</p>
+                                        <p class="userPrint center">{{itm.barcode}}</p>
+                                    </td>
+    
+                                    <td>
+                                        <i-list ng-model="itm.unit" ng-search="_search.$category_item.$unit_search"
+                                        display="name_##session.lang##" space=" - " ng-change="ChangeUnitPatch(itm);" display2="barcode"
+                                            items="itm.size_units_list">
+                                        </i-list>
+                                    </td>
+                                    <td>
+                                        <i-control type="number" ng-model="itm.count"></i-control>
+                                    </td>
+    
+                                    <td>
+                                        <i-textarea ng-model="itm.notes"></i-textarea>
+                                    </td>
+    
+                                    <td>
+                                        <div class="row center">
+                                            <i-button label="##word.information_instructions##"
+                                                ng-click="viewInformationInstructions(itm)">
+                                            </i-button>
+                                        </div>
+    
+                                        <div class="row center">
+                                            <i-button type="delete" label="##word.delete##"
+                                                ng-click="medical_insurance_company.approve_medicine_list.splice($index,1)">
+                                            </i-button>
+                                        </div>
+    
+                                    </td>
+                                </tr>
+                            </table>
+    
                         </div>
 
                     </fieldset>

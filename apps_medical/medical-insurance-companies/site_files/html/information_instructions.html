@@ -1,0 +1,57 @@
+<div id="informationInstructionsModal" class="modal">
+    <div class="modal-content small">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.information_instructions##
+            </h2>
+        </div>
+        <div class="modal-body">
+            <form>
+
+                <div class="row">
+
+                    <fieldset>
+
+                        <table class="table hover bold">
+
+                            <tr>
+                                <td class="title w200">##word.active_substance##</td>
+                                <td class="center">
+                                    <p class="lines_text">{{view_info_instruc.information_instructions.active_substance.name_##session.lang##}}</p>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="title">##word.indications##</td>
+                                <td class="center">
+                                    <p class="lines_text">{{view_info_instruc.information_instructions.indications}}</p>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="title">##word.contraindications##</td>
+                                <td class="center">
+                                    <p class="lines_text">{{view_info_instruc.information_instructions.contraindications}}</p>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="title">##word.how_use##</td>
+                                <td class="center">
+                                    <p class="lines_text">{{view_info_instruc.information_instructions.how_use}}</p>
+                                </td>
+                            </tr>
+                        </table>
+
+
+                    </fieldset>
+                </div>
+            </form>
+        </div>
+        <h2 class="error center bold">{{error}}</h2>
+        <div class="modal-footer center">
+            <i-button type="close" label=" ##word.close##" onclick="site.hideModal('#informationInstructionsModal')"></i-button>
+        </div>
+    </div>
+</div>

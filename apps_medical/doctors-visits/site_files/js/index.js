@@ -1680,7 +1680,6 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
                     _size.information_instructions =
                       _item.information_instructions;
 
-                    let foundHold = false;
                     let indxUnit = 0;
                     _size.add_sizes = _item.add_sizes;
                     if (
@@ -1751,7 +1750,7 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
                         (_itemSize) => _itemSize.barcode === _size.barcode
                       );
 
-                      if (!foundSize && !foundHold)
+                      if (!foundSize)
                         $scope.doctors_visits.medicines_list.unshift(_size);
                     }
                   });
@@ -1775,7 +1774,7 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
     }
   };
 
-  $scope.itemsStoresIn = function () {
+  $scope.itemsMedicines = function () {
     $scope.error = "";
     $scope.doctors_visits.medicines_list =
       $scope.doctors_visits.medicines_list || [];
@@ -1786,7 +1785,6 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
       $scope.item.itm.sizes.length > 0
     )
       $scope.item.itm.sizes.forEach((_item) => {
-        let foundHold = false;
         _item.add_sizes = $scope.item.itm.add_sizes;
         _item.name_ar = $scope.item.itm.name_ar;
         _item.name_en = $scope.item.itm.name_en;
@@ -1843,7 +1841,7 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
         foundSize = $scope.doctors_visits.medicines_list.some(
           (_itemSize) => _itemSize.barcode === _item.barcode
         );
-        if (!foundSize && !foundHold)
+        if (!foundSize)
           $scope.doctors_visits.medicines_list.unshift(_item);
       });
   };
