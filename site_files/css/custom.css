@@ -92,8 +92,8 @@ popup item:hover {
   position: fixed;
   width: auto;
   right: 0px;
-  top: 42px;
-  bottom: 42px;
+  top: 40px;
+  bottom: 40px;
   overflow: auto;
   padding: 0px;
   text-align: center;
@@ -109,7 +109,9 @@ popup item:hover {
 .main-menu:hover {
   opacity: 1;
   min-width: 450px;
+  box-shadow: 1px 1px 1px 1px #000;
 }
+
 .main-menu:hover .tab-link span {
   display: inline-block;
 }
@@ -118,6 +120,7 @@ popup item:hover {
 }
 .main-menu .tabs-header .tab-link {
   color: #000;
+  border-radius: 0px !important;
 }
 
 .user-menu {
@@ -139,7 +142,7 @@ popup item:hover {
   right: 50px;
   left: auto;
 }
-.backColor{
+.backColor {
   background-color: #a6a7b852;
 }
 
@@ -173,7 +176,7 @@ popup item:hover {
 }
 
 .bg-purple {
-  background-color: #610081  !important;
+  background-color: #610081 !important;
 }
 
 .modal {
@@ -429,14 +432,12 @@ nav.sitebottom a.link:hover {
   background-color: red;
 }
 
-
-a.pro-template{
+a.pro-template {
   text-decoration: none;
   display: inline-flex;
   border: 1px solid #ddd;
 }
-a.pro-template .description{
-
+a.pro-template .description {
 }
 
 @media screen and (max-width: 768px) {
