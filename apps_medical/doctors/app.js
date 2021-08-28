@@ -83,10 +83,6 @@ module.exports = function init(site) {
           'name_ar': doctor_doc.name_ar
         },{
           'name_en': doctor_doc.name_en
-        }, {
-          'phone': doctor_doc.phone
-        }, {
-          'mobile': doctor_doc.mobile
         }]
       }
     }, (err, doc) => {

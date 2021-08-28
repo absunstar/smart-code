@@ -1,23 +1,23 @@
 [
     {
         "name": "doctors_visits",
-        "en": "Doctors Visits",
-        "ar": "زيارات الأطباء"
+        "en": "Examination books",
+        "ar": "حجوزات الكشف"
     },
     {
         "name": "doctor_visit",
-        "en": "Doctor Visit",
-        "ar": "زيارة طبيب"
+        "en": "Examination book",
+        "ar": "حجز كشف"
     },
     {
         "name": "doctors_visits_new",
-        "en": "New Doctors Visit",
-        "ar": "زيارة طبيب جديدة"
+        "en": "New Examination book",
+        "ar": "حجز كشف جديدة"
     },
     {
         "name": "doctor_visit_price",
         "en": "Visit Price",
-        "ar": "سعر الزيارة"
+        "ar": "سعر الحجز"
     },
     {
         "name": "doctor_notes",
@@ -27,17 +27,17 @@
     {
         "name": "visit_type",
         "en": "Visit Type",
-        "ar": "نوع الزيارة"
+        "ar": "نوع الحجز"
     },
     {
         "name": "doctor_visit_type",
-        "en": "Doctor Visit Type",
-        "ar": "نوع زيارة الطبيب"
+        "en": "Examination book Type",
+        "ar": "نوع حجز الكشف"
     },
     {
         "name": "cannot_booked_holiday_clinic",
-        "en": "Doctors Visits cannot be booked on holiday for the clinic",
-        "ar": "لا يمكن حجز الزيارة اليوم عطلة للعيادة"
+        "en": "Can`t be booked on holiday for the clinic",
+        "ar": "لا يمكن الحجز اليوم عطلة للعيادة"
     },
     {
         "name": "view_appointments",
@@ -46,8 +46,8 @@
     },
     {
         "name": "doctors_visits_book",
-        "en": "Doctors Visit Booking",
-        "ar": "حجز زيارة طبيب"
+        "en": "Doctors Examination booking",
+        "ar": " حجز كشف طبيب"
     },
     {
         "name": "dont_book",
@@ -91,23 +91,23 @@
     },
     {
         "name": "doctors_visits_add",
-        "en": "Add Doctor Visit",
-        "ar": "إضافة زيارة طبيب"
+        "en": "Add Examination book",
+        "ar": "إضافة حجز كشف"
     },
     {
         "name": "doctors_visits_edit",
-        "en": "Edit Doctor Visit",
-        "ar": "تعديل زيارة طبيب"
+        "en": "Edit Examination book",
+        "ar": "تعديل حجز كشف"
     },
     {
         "name": "doctors_visits_details",
-        "en": "Visit Details",
-        "ar": "تفاصيل الزيارة"
+        "en": "Examination Book Details",
+        "ar": "تفاصيل الحجز"
     },
     {
         "name": "doctors_visits_delete",
-        "en": "Delete Visit",
-        "ar": "حذف زيارة طبيب"
+        "en": "Delete Examination book",
+        "ar": "حذف حجز كشف"
     },
     {
         "name": "doctors_visits_select",
@@ -126,18 +126,18 @@
     },
     {
         "name": "visit_date",
-        "en": "Visti Date",
-        "ar": "تاريخ الزيارة"
+        "en": "Examination Date",
+        "ar": "تاريخ الحجز"
     },
     {
         "name": "visit_number",
         "en": "Visit Number",
-        "ar": "رقم الزيارة"
+        "ar": "رقم الحجز"
     },
     {
         "name": "visit_code",
         "en": "Visit Code",
-        "ar": "كود الزيارة"
+        "ar": "كود الحجز"
     },
     {
         "name": "shift_name",
@@ -191,8 +191,8 @@
     },
     {
         "name": "doctors_visits_name",
-        "en": "Visit Name",
-        "ar": "إسم الزيارة"
+        "en": "Examination Name",
+        "ar": "إسم الحجز"
     },
     {
         "name": "scan",
@@ -231,8 +231,8 @@
     },
     {
         "name": "result_visit",
-        "en": "The result of the visit",
-        "ar": "نتيجة الزيارة"
+        "en": "The result of the Examination",
+        "ar": "نتيجة الحجز"
     },
     {
         "name": "diagnosis",
@@ -246,8 +246,8 @@
     },
     {
         "name": "diagnosis_after_visit",
-        "en": "Diagnosis After Visit",
-        "ar": "التشخيص بعد الزيارة"
+        "en": "Diagnosis After Examination",
+        "ar": "التشخيص بعد الحجز"
     },
     {
         "name": "status",
@@ -266,8 +266,8 @@
     },
     {
         "name": "confirm_delete",
-        "en": "Confirm Doctors Visit Delete !!",
-        "ar": "تأكيد حذف الزيارة !!"
+        "en": "Confirm Book Delete !",
+        "ar": "تأكيد حذف الحجز !"
     },
     {
         "name": "without",

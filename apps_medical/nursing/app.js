@@ -85,10 +85,6 @@ module.exports = function init(site) {
           'name_ar': nursing_doc.name_ar
         }, {
           'name_en': nursing_doc.name_en
-        }, {
-          'phone': nursing_doc.phone
-        }, {
-          'mobile': nursing_doc.mobile
         }]
       }
     }, (err, doc) => {

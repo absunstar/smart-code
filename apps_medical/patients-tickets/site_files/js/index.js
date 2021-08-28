@@ -451,6 +451,8 @@ app.controller("patients_tickets", function ($scope, $http, $timeout) {
 
         if (type === "view") {
           site.showModal("#displayDataModal");
+          document.querySelector("#displayDataModal .tab-link").click();
+
         } else if (type === "close") {
           $scope.patients_tickets = patients_tickets;
           $scope.displayAccountInvoice($scope.ticket_data);

@@ -101,7 +101,7 @@ module.exports = function init(site) {
             },
             {
               name_en: clinics_doc.name_en,
-            },
+            }
           ],
         },
       },

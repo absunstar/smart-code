@@ -1,429 +1,444 @@
 <div id="displayDataModal" class="modal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <span class="close">&times;</span>
-            <h2>##word.display_data## <i class="fa fa-file"></i></h2>
-        </div>
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>##word.display_data## <i class="fa fa-file"></i></h2>
+    </div>
 
-        <div class="modal-body">
-            <form class="form">
+    <div class="modal-body">
+      <form class="form">
+        <div class="tabs inline-block">
+          <div class="tabs-header full">
+            <a
+              ng-show="ticket_data.doctors_visits.list.length > 0"
+              class="tab-link"
+              onclick="site.showTabContent(event, '#doctors_visits')"
+            >
+              ##word.doctors_visits##
+            </a>
 
-                <div class="row" ng-show="ticket_data.analysis_requests.list.length > 0">
-                    <br>
-                    <br>
-                    <fieldset>
-                        <legend>##word.analysis_requests##</legend>
+            <a
+              ng-show="ticket_data.analysis_requests.list.length > 0"
+              class="tab-link"
+              onclick="site.showTabContent(event, '#analysis_requests')"
+            >
+              ##word.analysis_requests##
+            </a>
 
-                        <br>
-                        <div class="row">
+            <a
+              ng-show="ticket_data.scans_requests.list.length > 0"
+              class="tab-link"
+              onclick="site.showTabContent(event, '#scans_requests')"
+            >
+              ##word.scans_requests##
+            </a>
+          </div>
+          <div class="tabs-content full bold">
+            <div  id="doctors_visits" class="tab-content">
+              <br />
+              <br />
 
-                            <table class="table loaded center hover bold">
-                                <tr>
-                                    <th>##word.analysis_name##</th>
-                                    <th>##word.price##</th>
-                                    <th> ##word.normal_range## </th>
-                                    <th> ##word.notes_before_analysis##</th>
-                                    <th> ##word.result## </th>
-                                    <th> ##word.notes_after_analysis## </th>
-                                    <th> ##word.person_delivery## </th>
-                                    <th> ##word.delivery_date## </th>
-                                </tr>
+              <fieldset>
+                <legend>##word.doctors_visits##</legend>
 
-                                <tr ng-repeat="a in ticket_data.analysis_requests.list">
+                <br />
+                <div class="row">
+                  <table class="table loaded center hover bold">
+                    <tr>
+                      <th>##word.clinics##</th>
+                      <th>##word.specialty##</th>
+                      <th>##word.doctor_name##</th>
+                      <th>##word.shift_name##</th>
+                      <th>##word.work_day##</th>
+                      <th>##word.work_from##</th>
+                      <th>##word.work_to##</th>
+                      <th>##word.doctor_visit_price##</th>
+                    </tr>
 
-                                    <td class="center">{{a.name_##session.lang##}}</td>
-                                    <td class="center green">{{a.price}}</td>
-
-                                    <td class="center">
-                                        <b class="green">{{a.from}}</b> - <b class="red">{{a.to}}</b>
-                                    </td>
-
-                                    <td class="center lines_text">
-                                        {{a.notes_before_analysis}}
-                                    </td>
-
-                                    <td class="center blue">
-                                        {{a.result}}
-                                    </td>
-
-                                    <td class="center lines_text">
-                                        {{a.notes_after_analysis}}
-                                    </td>
-
-                                    <td>
-                                        <p ng-show="!a.person_delivery.name">##word.delivery_has_not_been_done##</p>
-                                        <p>{{a.person_delivery.##session.lang##}}</p>
-                                    </td>
-
-                                    <td class="center">
-                                        <p class="brown"> {{a.delivery_date |date:"dd - MM - yyyy"}} </p>
-                                        <p class="green"> {{a.delivery_date |date:"hh:mm"}} </p>
-                                    </td>
-
-                                </tr>
-                            </table>
-                        </div>
-
-                        <br>
-                        <br>
-
-                        <div class="row">
-
-                            <i-control class="col2" ng-show="ticket_data.analysis_requests.total_value" disabled
-                                ng-model="ticket_data.analysis_requests.total_value" type="number"
-                                label="##word.total_value##">
-                            </i-control>
-
-                            <i-control class="col2" ng-show="ticket_data.analysis_requests.total_discount" disabled
-                                ng-model="ticket_data.analysis_requests.total_discount" type="number"
-                                label="##word.total_discount##">
-                            </i-control>
-
-                        </div>
-
-                        <div class="row">
-
-                            <i-control class="col2" disabled ng-show="ticket_data.analysis_requests.net_value"
-                                ng-model="ticket_data.analysis_requests.net_value" type="number"
-                                label="##word.paid_require##">
-                            </i-control>
-
-                            <i-control class="col2" disabled ng-model="ticket_data.analysis_requests.paid" type="number"
-                                label="##word.paid##">
-                            </i-control>
-
-                            <i-control class="col2" disabled ng-model="ticket_data.analysis_requests.remain"
-                                type="number" label="##word.remain##">
-                            </i-control>
-
-
-                        </div>
-
-
-
-                    </fieldset>
+                    <tr ng-repeat="a in ticket_data.doctors_visits.list">
+                      <td>{{a.selected_clinic.name_##session.lang##}}</td>
+                      <td>{{a.selected_specialty.name_##session.lang##}}</td>
+                      <td class="title">
+                        {{a.selected_doctor.name_##session.lang##}}
+                      </td>
+                      <td>{{a.selected_shift.name_##session.lang##}}</td>
+                      <td>{{a.selected_time.day.ar}}</td>
+                      <td class="green">
+                        {{a.selected_time.from.minute}} :
+                        {{a.selected_time.from.hour}}
+                      </td>
+                      <td class="red">
+                        {{a.selected_time.to.minute}} :
+                        {{a.selected_time.to.hour}}
+                      </td>
+                      <td>
+                        <p class="green">{{a.doctor_visit_price}}</p>
+                      </td>
+                    </tr>
+                  </table>
                 </div>
 
-
-                <div class="row" ng-show="ticket_data.scans_requests.list.length > 0">
-
-                    <br>
-                    <br>
-
-                    <fieldset>
-                        <legend>##word.scans_requests##</legend>
-
-                        <br>
-                        <div class="row">
-
-                            <table class="table loaded center hover bold">
-                                <tr>
-                                    <th>##word.scans_name##</th>
-                                    <th>##word.price##</th>
-                                    <th> ##word.notes_before_scans##</th>
-                                    <th> ##word.notes_after_scans## </th>
-                                    <th> ##word.person_delivery## </th>
-                                    <th> ##word.delivery_date## </th>
-                                </tr>
-
-                                <tr ng-repeat="a in ticket_data.scans_requests.list">
-
-                                    <td class="center">{{a.name_##session.lang##}}</td>
-
-                                    <td class="center green">{{a.price}}</td>
-
-                                    <td class="center lines_text">
-                                        {{a.notes_before_scans}}
-                                    </td>
-
-                                    <td class="center lines_text">
-                                        {{a.notes_after_scans}}
-                                    </td>
-
-                                    <td>
-                                        <p ng-show="!a.person_delivery.name">##word.delivery_has_not_been_done##</p>
-                                        <p>{{a.person_delivery.##session.lang##}}</p>
-                                    </td>
-
-                                    <td class="center">
-                                        <p class="brown"> {{a.delivery_date |date:"dd - MM - yyyy"}} </p>
-                                        <p class="green"> {{a.delivery_date |date:"hh:mm"}} </p>
-                                    </td>
-
-                                </tr>
-                            </table>
-                        </div>
-
-                        <br>
-                        <br>
-
-                        <div class="row">
-
-                            <i-control class="col2" ng-show="ticket_data.scans_requests.total_value" disabled
-                                ng-model="ticket_data.scans_requests.total_value" type="number"
-                                label="##word.total_value##">
-                            </i-control>
-
-                            <i-control class="col2" ng-show="ticket_data.scans_requests.total_discount" disabled
-                                ng-model="ticket_data.scans_requests.total_discount" type="number"
-                                label="##word.total_discount##">
-                            </i-control>
-
-                        </div>
-
-                        <div class="row">
-
-                            <i-control class="col2" disabled ng-show="ticket_data.scans_requests.net_value"
-                                ng-model="ticket_data.scans_requests.net_value" type="number"
-                                label="##word.paid_require##">
-                            </i-control>
-
-                            <i-control class="col2" disabled ng-model="ticket_data.scans_requests.paid" type="number"
-                                label="##word.paid##">
-                            </i-control>
-
-                            <i-control class="col2" disabled ng-model="ticket_data.scans_requests.remain" type="number"
-                                label="##word.remain##">
-                            </i-control>
-
-
-                        </div>
-
-
-
-                    </fieldset>
-                </div>
-
-
-                <div class="row" ng-show="ticket_data.operations_requests.list.length > 0">
-
-                    <br>
-                    <br>
-
-                    <fieldset>
-                        <legend>##word.operations_requests##</legend>
-
-                        <br>
-                        <div class="row">
-
-                            <table class="table loaded center hover bold">
-                                <tr>
-                                    <th>##word.scans_name##</th>
-                                    <th>##word.price##</th>
-                                    <th> ##word.notes_before_scans##</th>
-                                    <th> ##word.notes_after_scans## </th>
-                                    <th> ##word.person_delivery## </th>
-                                    <th> ##word.delivery_date## </th>
-                                </tr>
-
-                                <tr ng-repeat="a in ticket_data.operations_requests.list">
-
-                                    <td class="center">{{a.name_##session.lang##}}</td>
-
-                                    <td class="center green">{{a.price}}</td>
-
-                                    <td class="center lines_text">
-                                        {{a.notes_before_scans}}
-                                    </td>
-
-                                    <td class="center lines_text">
-                                        {{a.notes_after_scans}}
-                                    </td>
-
-                                    <td>
-                                        <p ng-show="!a.person_delivery.name">##word.delivery_has_not_been_done##</p>
-                                        <p>{{a.person_delivery.##session.lang##}}</p>
-                                    </td>
-
-                                    <td class="center">
-                                        <p class="brown"> {{a.delivery_date |date:"dd - MM - yyyy"}} </p>
-                                        <p class="green"> {{a.delivery_date |date:"hh:mm"}} </p>
-                                    </td>
-
-                                </tr>
-                            </table>
-                        </div>
-
-                        <br>
-                        <br>
-
-                        <div class="row">
-
-                            <i-control class="col2" ng-show="ticket_data.operations_requests.total_value" disabled
-                                ng-model="ticket_data.operations_requests.total_value" type="number"
-                                label="##word.total_value##">
-                            </i-control>
-
-                            <i-control class="col2" ng-show="ticket_data.operations_requests.total_discount" disabled
-                                ng-model="ticket_data.operations_requests.total_discount" type="number"
-                                label="##word.total_discount##">
-                            </i-control>
-
-                        </div>
-
-                        <div class="row">
-
-                            <i-control class="col2" disabled ng-show="ticket_data.operations_requests.net_value"
-                                ng-model="ticket_data.operations_requests.net_value" type="number"
-                                label="##word.paid_require##">
-                            </i-control>
-
-                            <i-control class="col2" disabled ng-model="ticket_data.operations_requests.paid"
-                                type="number" label="##word.paid##">
-                            </i-control>
-
-                            <i-control class="col2" disabled ng-model="ticket_data.operations_requests.remain"
-                                type="number" label="##word.remain##">
-                            </i-control>
-
-
-                        </div>
-
-
-
-                    </fieldset>
-                </div>
-
-
-                <div class="row" ng-show="ticket_data.doctors_visits.list.length > 0">
-
-                    <br>
-                    <br>
-
-                    <fieldset>
-                        <legend>##word.doctors_visits##</legend>
-
-                        <br>
-                        <div class="row">
-
-                            <table class="table loaded center hover bold">
-                                <tr>
-                                    <th>##word.clinics##</th>
-                                    <th>##word.specialty##</th>
-                                    <th>##word.doctor_name##</th>
-                                    <th>##word.shift_name##</th>
-                                    <th>##word.work_day##</th>
-                                    <th>##word.work_from##</th>
-                                    <th>##word.work_to##</th>
-                                    <th>##word.doctor_visit_price##</th>
-                                </tr>
-
-                                <tr ng-repeat="a in ticket_data.doctors_visits.list">
-
-                                    <td> {{a.selected_clinic.name_##session.lang##}}</td>
-                                    <td> {{a.selected_specialty.name_##session.lang##}}</td>
-                                    <td class="title"> {{a.selected_doctor.name_##session.lang##}}</td>
-                                    <td> {{a.selected_shift.name_##session.lang##}}</td>
-                                    <td> {{a.selected_time.day.ar}}</td>
-                                    <td class="green"> {{a.selected_time.from.minute}} :
-                                        {{a.selected_time.from.hour}}</td>
-                                    <td class="red"> {{a.selected_time.to.minute}} :
-                                        {{a.selected_time.to.hour}}</td>
-                                    <td>
-                                        <p class="green">{{a.doctor_visit_price}}</p>
-                                    </td>
-
-                                </tr>
-                            </table>
-                        </div>
-
-                        <br>
-                        <br>
-
-                        <div class="row">
-
-                            <i-control class="col2" ng-show="ticket_data.doctors_visits.total_value" disabled
-                                ng-model="ticket_data.doctors_visits.total_value" type="number"
-                                label="##word.total_value##">
-                            </i-control>
-
-                            <i-control class="col2" ng-show="ticket_data.doctors_visits.urgent_visit" disabled
-                                ng-model="ticket_data.doctors_visits.urgent_visit" type="number"
-                                label="##word.urgent_visit##">
-                            </i-control>
-
-
-                            <i-control class="col2" ng-show="ticket_data.doctors_visits.total_discount" disabled
-                                ng-model="ticket_data.doctors_visits.total_discount" type="number"
-                                label="##word.total_discount##">
-                            </i-control>
-
-                        </div>
-
-                        <div class="row">
-
-                            <i-control class="col2" disabled ng-show="ticket_data.doctors_visits.net_value"
-                                ng-model="ticket_data.doctors_visits.net_value" type="number"
-                                label="##word.paid_require##">
-                            </i-control>
-
-                            <i-control class="col2" disabled ng-model="ticket_data.doctors_visits.paid" type="number"
-                                label="##word.paid##">
-                            </i-control>
-
-                            <i-control class="col2" disabled ng-model="ticket_data.doctors_visits.remain" type="number"
-                                label="##word.remain##">
-                            </i-control>
-
-
-                        </div>
-
-
-
-                    </fieldset>
-                </div>
-
-                <br>
-                <br>
+                <br />
+                <br />
 
                 <div class="row">
-                    <div class="col3"></div>
-                    <fieldset class="col6">
-                        <legend>##word.total##</legend>
+                  <i-control
+                    class="col2"
+                    ng-show="ticket_data.doctors_visits.total_value"
+                    disabled
+                    ng-model="ticket_data.doctors_visits.total_value"
+                    type="number"
+                    label="##word.total_value##"
+                  >
+                  </i-control>
 
-                        <br>
-                        <br>
+                  <i-control
+                    class="col2"
+                    ng-show="ticket_data.doctors_visits.urgent_visit"
+                    disabled
+                    ng-model="ticket_data.doctors_visits.urgent_visit"
+                    type="number"
+                    label="##word.urgent_visit##"
+                  >
+                  </i-control>
 
-                        <div class="row">
-
-                            <i-control class="col4" ng-show="ticket_data.total_value" disabled
-                                ng-model="ticket_data.total_value" type="number" label="##word.total_value##">
-                            </i-control>
-
-                            <i-control class="col4" ng-show="ticket_data.total_discount" disabled
-                                ng-model="ticket_data.total_discount" type="number" label="##word.total_discount##">
-                            </i-control>
-
-                        </div>
-
-                        <div class="row">
-
-                            <i-control class="col4" disabled ng-show="ticket_data.net_value"
-                                ng-model="ticket_data.net_value" type="number" label="##word.paid_require##">
-                            </i-control>
-
-                            <i-control class="col4" disabled ng-model="ticket_data.paid" type="number"
-                                label="##word.paid##">
-                            </i-control>
-
-                            <i-control class="col4" disabled ng-model="ticket_data.remain" type="number"
-                                label="##word.remain##">
-                            </i-control>
-
-                        </div>
-
-                    </fieldset>
+                  <i-control
+                    class="col2"
+                    ng-show="ticket_data.doctors_visits.total_discount"
+                    disabled
+                    ng-model="ticket_data.doctors_visits.total_discount"
+                    type="number"
+                    label="##word.total_discount##"
+                  >
+                  </i-control>
                 </div>
 
-            </form>
+                <div class="row">
+                  <i-control
+                    class="col2"
+                    disabled
+                    ng-show="ticket_data.doctors_visits.net_value"
+                    ng-model="ticket_data.doctors_visits.net_value"
+                    type="number"
+                    label="##word.paid_require##"
+                  >
+                  </i-control>
+
+                  <i-control
+                    class="col2"
+                    disabled
+                    ng-model="ticket_data.doctors_visits.paid"
+                    type="number"
+                    label="##word.paid##"
+                  >
+                  </i-control>
+
+                  <i-control
+                    class="col2"
+                    disabled
+                    ng-model="ticket_data.doctors_visits.remain"
+                    type="number"
+                    label="##word.remain##"
+                  >
+                  </i-control>
+                </div>
+              </fieldset>
+            </div>
+
+            <div  id="analysis_requests" class="tab-content">
+              <br />
+              <br />
+              <fieldset>
+                <legend>##word.analysis_requests##</legend>
+
+                <br />
+                <div class="row">
+                  <table class="table loaded center hover bold">
+                    <tr>
+                      <th>##word.analysis_name##</th>
+                      <th>##word.price##</th>
+                      <th>##word.normal_range##</th>
+                      <th>##word.notes_before_analysis##</th>
+                      <th>##word.result##</th>
+                      <th>##word.notes_after_analysis##</th>
+                      <th>##word.person_delivery##</th>
+                      <th>##word.delivery_date##</th>
+                    </tr>
+
+                    <tr ng-repeat="a in ticket_data.analysis_requests.list">
+                      <td class="center">{{a.name_##session.lang##}}</td>
+                      <td class="center green">{{a.price}}</td>
+
+                      <td class="center">
+                        <b class="green">{{a.from}}</b> -
+                        <b class="red">{{a.to}}</b>
+                      </td>
+
+                      <td class="center lines_text">
+                        {{a.notes_before_analysis}}
+                      </td>
+
+                      <td class="center blue">{{a.result}}</td>
+
+                      <td class="center lines_text">
+                        {{a.notes_after_analysis}}
+                      </td>
+
+                      <td>
+                        <p ng-show="!a.person_delivery.name">
+                          ##word.delivery_has_not_been_done##
+                        </p>
+                        <p>{{a.person_delivery.##session.lang##}}</p>
+                      </td>
+
+                      <td class="center">
+                        <p class="brown">
+                          {{a.delivery_date |date:"dd - MM - yyyy"}}
+                        </p>
+                        <p class="green">{{a.delivery_date |date:"hh:mm"}}</p>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+
+                <br />
+                <br />
+
+                <div class="row">
+                  <i-control
+                    class="col2"
+                    ng-show="ticket_data.analysis_requests.total_value"
+                    disabled
+                    ng-model="ticket_data.analysis_requests.total_value"
+                    type="number"
+                    label="##word.total_value##"
+                  >
+                  </i-control>
+
+                  <i-control
+                    class="col2"
+                    ng-show="ticket_data.analysis_requests.total_discount"
+                    disabled
+                    ng-model="ticket_data.analysis_requests.total_discount"
+                    type="number"
+                    label="##word.total_discount##"
+                  >
+                  </i-control>
+                </div>
+
+                <div class="row">
+                  <i-control
+                    class="col2"
+                    disabled
+                    ng-show="ticket_data.analysis_requests.net_value"
+                    ng-model="ticket_data.analysis_requests.net_value"
+                    type="number"
+                    label="##word.paid_require##"
+                  >
+                  </i-control>
+
+                  <i-control
+                    class="col2"
+                    disabled
+                    ng-model="ticket_data.analysis_requests.paid"
+                    type="number"
+                    label="##word.paid##"
+                  >
+                  </i-control>
+
+                  <i-control
+                    class="col2"
+                    disabled
+                    ng-model="ticket_data.analysis_requests.remain"
+                    type="number"
+                    label="##word.remain##"
+                  >
+                  </i-control>
+                </div>
+              </fieldset>
+            </div>
+
+            <div  id="scans_requests" class="tab-content">
+              <br />
+              <br />
+
+              <fieldset>
+                <legend>##word.scans_requests##</legend>
+
+                <br />
+                <div class="row">
+                  <table class="table loaded center hover bold">
+                    <tr>
+                      <th>##word.scans_name##</th>
+                      <th>##word.price##</th>
+                      <th>##word.notes_before_scans##</th>
+                      <th>##word.notes_after_scans##</th>
+                      <th>##word.person_delivery##</th>
+                      <th>##word.delivery_date##</th>
+                    </tr>
+
+                    <tr ng-repeat="a in ticket_data.scans_requests.list">
+                      <td class="center">{{a.name_##session.lang##}}</td>
+
+                      <td class="center green">{{a.price}}</td>
+
+                      <td class="center lines_text">
+                        {{a.notes_before_scans}}
+                      </td>
+
+                      <td class="center lines_text">{{a.notes_after_scans}}</td>
+
+                      <td>
+                        <p ng-show="!a.person_delivery.name">
+                          ##word.delivery_has_not_been_done##
+                        </p>
+                        <p>{{a.person_delivery.##session.lang##}}</p>
+                      </td>
+
+                      <td class="center">
+                        <p class="brown">
+                          {{a.delivery_date |date:"dd - MM - yyyy"}}
+                        </p>
+                        <p class="green">{{a.delivery_date |date:"hh:mm"}}</p>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+
+                <br />
+                <br />
+
+                <div class="row">
+                  <i-control
+                    class="col2"
+                    ng-show="ticket_data.scans_requests.total_value"
+                    disabled
+                    ng-model="ticket_data.scans_requests.total_value"
+                    type="number"
+                    label="##word.total_value##"
+                  >
+                  </i-control>
+
+                  <i-control
+                    class="col2"
+                    ng-show="ticket_data.scans_requests.total_discount"
+                    disabled
+                    ng-model="ticket_data.scans_requests.total_discount"
+                    type="number"
+                    label="##word.total_discount##"
+                  >
+                  </i-control>
+                </div>
+
+                <div class="row">
+                  <i-control
+                    class="col2"
+                    disabled
+                    ng-show="ticket_data.scans_requests.net_value"
+                    ng-model="ticket_data.scans_requests.net_value"
+                    type="number"
+                    label="##word.paid_require##"
+                  >
+                  </i-control>
+
+                  <i-control
+                    class="col2"
+                    disabled
+                    ng-model="ticket_data.scans_requests.paid"
+                    type="number"
+                    label="##word.paid##"
+                  >
+                  </i-control>
+
+                  <i-control
+                    class="col2"
+                    disabled
+                    ng-model="ticket_data.scans_requests.remain"
+                    type="number"
+                    label="##word.remain##"
+                  >
+                  </i-control>
+                </div>
+              </fieldset>
+            </div>
+          </div>
         </div>
 
-        <h2 class="error">{{error}}</h2>
+        <br />
+        <br />
 
-        <div class="modal-footer center">
+        <div class="row">
+          <div class="col3"></div>
+          <fieldset class="col6">
+            <legend>##word.total##</legend>
 
-            <i-button type="close" label="##word.close##" onclick="site.hideModal('#displayDataModal')"></i-button>
+            <br />
+            <br />
 
+            <div class="row">
+              <i-control
+                class="col4"
+                ng-show="ticket_data.total_value"
+                disabled
+                ng-model="ticket_data.total_value"
+                type="number"
+                label="##word.total_value##"
+              >
+              </i-control>
+
+              <i-control
+                class="col4"
+                ng-show="ticket_data.total_discount"
+                disabled
+                ng-model="ticket_data.total_discount"
+                type="number"
+                label="##word.total_discount##"
+              >
+              </i-control>
+            </div>
+
+            <div class="row">
+              <i-control
+                class="col4"
+                disabled
+                ng-show="ticket_data.net_value"
+                ng-model="ticket_data.net_value"
+                type="number"
+                label="##word.paid_require##"
+              >
+              </i-control>
+
+              <i-control
+                class="col4"
+                disabled
+                ng-model="ticket_data.paid"
+                type="number"
+                label="##word.paid##"
+              >
+              </i-control>
+
+              <i-control
+                class="col4"
+                disabled
+                ng-model="ticket_data.remain"
+                type="number"
+                label="##word.remain##"
+              >
+              </i-control>
+            </div>
+          </fieldset>
         </div>
+      </form>
     </div>
+
+    <h2 class="error">{{error}}</h2>
+
+    <div class="modal-footer center">
+      <i-button
+        type="close"
+        label="##word.close##"
+        onclick="site.hideModal('#displayDataModal')"
+      ></i-button>
+    </div>
+  </div>
 </div>
