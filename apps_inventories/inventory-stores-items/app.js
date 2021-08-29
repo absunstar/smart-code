@@ -1308,7 +1308,7 @@ module.exports = function init(site) {
 
                   // let d = new Date().getDate().toString();
                   // let h = new Date().getHours().toString();
-                  // let y = new Date().getFullYear().toString();
+                   let y = new Date().getFullYear().toString();
 
                   let num = Math.floor(Math.random() * 100);
 
