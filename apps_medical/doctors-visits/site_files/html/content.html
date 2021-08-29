@@ -188,7 +188,7 @@
                   <i-list
                     class="col4"
                     label="##word.specialty##"
-                    ng-model="doctors_visits.specialty"
+                    ng-model="search_linic.specialty"
                     items="specialtyList"
                     display="name_##session.lang##"
                     ng-search="_search.$specialty_search"
@@ -198,7 +198,7 @@
                   <i-list
                     class="col4"
                     label="##word.clinic##"
-                    ng-model="doctors_visits.clinic"
+                    ng-model="search_linic.clinic"
                     items="clinicList"
                     display="name_##session.lang##"
                     ng-search="_search.$clinic_search"
@@ -216,7 +216,7 @@
                   <i-list
                     class="col5"
                     label="##word.doctors##"
-                    ng-model="doctors_visits.doctor"
+                    ng-model="search_linic.doctor"
                     items="doctorList"
                     display="name_##session.lang##"
                     ng-search="_search.$doctors_searching"
@@ -229,7 +229,7 @@
                     type="search"
                     class="col2"
                     label="##word.search##"
-                    ng-click="getClinicBookList(doctors_visits)"
+                    ng-click="getClinicBookList(search_linic)"
                   >
                   </i-button>
                 </div>

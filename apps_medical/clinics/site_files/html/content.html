@@ -207,7 +207,7 @@
                             <br>
                             <div class="row">
 
-                                <i-list help-id="" class="col3" label="##word.doctors_name##" ng-model="doctor.doctor"
+                                <i-list help-id="" v="r" class="col3" label="##word.doctors_name##" ng-model="doctor.doctor"
                                     items="doctorList" ng-selected="item.specialty.id === clinic.specialty.id"
                                     display="name_##session.lang##" ng-search="_search.$branch_doctors"></i-list>
 
@@ -289,7 +289,7 @@
 
                     <div class="row">
                         <div class="row" ng-repeat="nurse in clinic.nurse_list">
-                            <i-list help-id="" class="col3" label="##word.nurse##" ng-model="nurse.nurse"
+                            <i-list help-id="" v="r" class="col3" label="##word.nurse##" ng-model="nurse.nurse"
                                 items="nurseList" ng-selected="item.specialty.id == clinic.specialty.id" display="name_##session.lang##"
                                 ng-search="_search.$branch_nurse"></i-list>
 

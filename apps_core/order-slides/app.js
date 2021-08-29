@@ -165,6 +165,14 @@ module.exports = function init(site) {
       return
     }
 
+    if (where['name_ar']) {
+      where['name_ar'] = new RegExp(where['name_ar'], "i");
+    }
+
+    if (where['name_en']) {
+      where['name_en'] = new RegExp(where['name_en'], "i");
+    }
+    
     $order_slides.findMany({
       select: req.body.select || {},
       where:where,

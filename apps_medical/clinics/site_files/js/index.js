@@ -4,38 +4,39 @@ app.controller("clinics", function ($scope, $http, $timeout) {
   $scope.clinic = {};
 
   $scope.displayAddClinic = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.clinic = {
-      image_url: '/images/clinic.png',
+      image_url: "/images/clinic.png",
       active: true,
-      detection_price : {
+      detection_price: {
         detection: 0,
         re_detection: 0,
         consultation: 0,
         session: 0,
         urgent_visit: {
           price: 0,
-          type: 'number'
-        }
-
+          type: "number",
+        },
       },
-      shift_list: [{
-        id : 1,
-        name_ar: 'الأساسي',
-        name_en: 'Basic',
-        times_list: [{}]
-      }],
-      doctor_list: [{}],
-      nurse_list: [{}],
-      vacation_list: [{}]
+      shift_list: [
+        {
+          id: 1,
+          name_ar: "الأساسي",
+          name_en: "Basic",
+          times_list: [{}],
+        },
+      ],
+      doctor_list: [],
+      nurse_list: [],
+      vacation_list: [],
     };
-    site.showModal('#clinicAddModal');
-    document.querySelector('#clinicAddModal  .tab-link').click();
+    site.showModal("#clinicAddModal");
+    document.querySelector("#clinicAddModal  .tab-link").click();
   };
 
   $scope.addClinic = function () {
-    $scope.error = '';
-    const v = site.validated('#clinicAddModal');
+    $scope.error = "";
+    const v = site.validated("#clinicAddModal");
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
@@ -44,12 +45,12 @@ app.controller("clinics", function ($scope, $http, $timeout) {
     $http({
       method: "POST",
       url: "/api/clinics/add",
-      data: $scope.clinic
+      data: $scope.clinic,
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#clinicAddModal');
+          site.hideModal("#clinicAddModal");
           $scope.getClinicList();
         } else {
           $scope.error = response.data.error;
@@ -58,23 +59,22 @@ app.controller("clinics", function ($scope, $http, $timeout) {
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.displayUpdateClinic = function (clinic) {
-    $scope.error = '';
+    $scope.error = "";
     $scope.detailsClinic(clinic);
     $scope.getNursesList(clinic);
     $scope.getDoctorList(clinic);
     $scope.clinic = {};
-    site.showModal('#clinicUpdateModal');
-    document.querySelector('#clinicUpdateModal .tab-link').click();
-
+    site.showModal("#clinicUpdateModal");
+    document.querySelector("#clinicUpdateModal .tab-link").click();
   };
 
   $scope.updateClinic = function () {
-    $scope.error = '';
-    const v = site.validated('#clinicUpdateModal');
+    $scope.error = "";
+    const v = site.validated("#clinicUpdateModal");
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
@@ -83,40 +83,40 @@ app.controller("clinics", function ($scope, $http, $timeout) {
     $http({
       method: "POST",
       url: "/api/clinics/update",
-      data: $scope.clinic
+      data: $scope.clinic,
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#clinicUpdateModal');
+          site.hideModal("#clinicUpdateModal");
           $scope.getClinicList();
         } else {
-          $scope.error = 'Please Login First';
+          $scope.error = "Please Login First";
         }
       },
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.displayDetailsClinic = function (clinic) {
-    $scope.error = '';
+    $scope.error = "";
     $scope.detailsClinic(clinic);
     $scope.clinic = {};
-    site.showModal('#clinicDetailsModal');
-    document.querySelector('#clinicDetailsModal .tab-link').click();
+    site.showModal("#clinicDetailsModal");
+    document.querySelector("#clinicDetailsModal .tab-link").click();
   };
 
   $scope.detailsClinic = function (clinic) {
     $scope.busy = true;
-    $scope.error = '';
+    $scope.error = "";
     $http({
       method: "POST",
       url: "/api/clinics/view",
       data: {
-        id: clinic.id
-      }
+        id: clinic.id,
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -130,33 +130,32 @@ app.controller("clinics", function ($scope, $http, $timeout) {
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.displayDeleteClinic = function (clinic) {
-    $scope.error = '';
+    $scope.error = "";
     $scope.detailsClinic(clinic);
     $scope.clinic = {};
-    site.showModal('#clinicDeleteModal');
-    document.querySelector('#clinicDeleteModal .tab-link').click();
-
+    site.showModal("#clinicDeleteModal");
+    document.querySelector("#clinicDeleteModal .tab-link").click();
   };
 
   $scope.deleteClinic = function () {
     $scope.busy = true;
-    $scope.error = '';
+    $scope.error = "";
 
     $http({
       method: "POST",
       url: "/api/clinics/delete",
       data: {
-        id: $scope.clinic.id
-      }
+        id: $scope.clinic.id,
+      },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#clinicDeleteModal');
+          site.hideModal("#clinicDeleteModal");
           $scope.getClinicList();
         } else {
           $scope.error = response.data.error;
@@ -165,7 +164,7 @@ app.controller("clinics", function ($scope, $http, $timeout) {
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.getClinicList = function (where) {
@@ -175,8 +174,8 @@ app.controller("clinics", function ($scope, $http, $timeout) {
       method: "POST",
       url: "/api/clinics/all",
       data: {
-        where: where
-      }
+        where: where,
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -190,9 +189,7 @@ app.controller("clinics", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-
-    )
-
+    );
   };
 
   /*  $scope.getHospitalList = function (where) {
@@ -228,13 +225,14 @@ app.controller("clinics", function ($scope, $http, $timeout) {
       url: "/api/medical_specialties/all",
       data: {
         where: {
-          active: true
+          active: true,
         },
         select: {
           id: 1,
-          name_ar: 1, name_en: 1
-        }
-      }
+          name_ar: 1,
+          name_en: 1,
+        },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -246,16 +244,15 @@ app.controller("clinics", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
-
+    );
   };
 
   $scope.getNursesList = function (clinic) {
-    if ( !clinic.specialty) {
+    if (!clinic.specialty) {
       return;
     }
 
-    $scope.error = '';
+    $scope.error = "";
 
     $scope.busy = true;
     $scope.nurseList = [];
@@ -264,9 +261,9 @@ app.controller("clinics", function ($scope, $http, $timeout) {
       url: "/api/nursing/all",
       data: {
         where: {
-          'specialty.id': clinic.specialty.id
-        }
-      }
+          "specialty.id": clinic.specialty.id,
+        },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -278,16 +275,15 @@ app.controller("clinics", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.getDoctorList = function (clinic) {
-
     if (!clinic.specialty) {
       return;
     }
 
-    $scope.error = '';
+    $scope.error = "";
 
     $scope.busy = true;
     $scope.doctorList = [];
@@ -296,9 +292,9 @@ app.controller("clinics", function ($scope, $http, $timeout) {
       url: "/api/doctors/all",
       data: {
         where: {
-          'specialty.id': clinic.specialty.id
-        }
-      }
+          "specialty.id": clinic.specialty.id,
+        },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -310,14 +306,13 @@ app.controller("clinics", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
-
+    );
   };
 
   $scope.getDayList = function () {
     $http({
       method: "POST",
-      url: "/api/days/all"
+      url: "/api/days/all",
     }).then(
       function (response) {
         $scope.busy = false;
@@ -327,57 +322,60 @@ app.controller("clinics", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-
-    )
-
+    );
   };
 
   $scope.addShift = function () {
-
     $scope.clinic.shift_list.push({
-      id : $scope.clinic.shift_list.length + 1,
-      times_list:[{}]
-    })
+      id: $scope.clinic.shift_list.length + 1,
+      times_list: [{}],
+    });
   };
 
   $scope.displayAddWorkTime = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.clinic = {
       doctor_list: [],
       nurse_list: [],
-      work_times_list: [{
-        vacation: false,
-        day: $scope.dayList[0]
-      }, {
-        day: $scope.dayList[1]
-      }, {
-        day: $scope.dayList[2]
-      }, {
-        day: $scope.dayList[3]
-      }, {
-        day: $scope.dayList[4]
-      }, {
-        day: $scope.dayList[5]
-      }, {
-        vacation: true,
-        day: $scope.dayList[6]
-
-      }]
+      work_times_list: [
+        {
+          vacation: false,
+          day: $scope.dayList[0],
+        },
+        {
+          day: $scope.dayList[1],
+        },
+        {
+          day: $scope.dayList[2],
+        },
+        {
+          day: $scope.dayList[3],
+        },
+        {
+          day: $scope.dayList[4],
+        },
+        {
+          day: $scope.dayList[5],
+        },
+        {
+          vacation: true,
+          day: $scope.dayList[6],
+        },
+      ],
     };
 
-    site.showModal('#workTimeModal');
-
+    site.showModal("#workTimeModal");
   };
 
   $scope.getNumberingAuto = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/numbering/get_automatic",
       data: {
-        screen: "clinics"
-      }
+        screen: "clinics",
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -389,27 +387,24 @@ app.controller("clinics", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.displaySearchModal = function () {
-    $scope.error = '';
-    site.showModal('#clinicSearchModal');
-
+    $scope.error = "";
+    site.showModal("#clinicSearchModal");
   };
 
   $scope.searchAll = function () {
-
     $scope.getClinicList($scope.search);
-    site.hideModal('#clinicSearchModal');
+    site.hideModal("#clinicSearchModal");
     $scope.search = {};
   };
 
   /*   $scope.getHospitalList();
-  */
+   */
   $scope.getClinicList();
   $scope.getSpecialList();
   $scope.getDayList();
   $scope.getNumberingAuto();
-
 });

@@ -2,7 +2,7 @@
     {
         "name": "doctors_visits",
         "en": "Examination books",
-        "ar": "حجوزات الكشف"
+        "ar": "حجز الكشف"
     },
     {
         "name": "doctor_visit",

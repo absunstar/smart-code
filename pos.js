@@ -47,6 +47,7 @@ site.loadLocalApp('client-side');
 site.loadLocalApp('ui-print');
 site.importApp(__dirname + '/apps_private/cloud_security', 'security');
 site.importApp(__dirname + '/apps_private/ui-help');
+site.importApp(__dirname + '/apps_private/notifications')
 site.importApps(__dirname + '/apps_accounting');
 site.importApps(__dirname + '/apps_inventories');
 site.importApps(__dirname + '/apps_reports');

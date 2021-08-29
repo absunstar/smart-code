@@ -358,7 +358,6 @@ module.exports = function init(site) {
       delete where["specialty"];
       delete where.active;
     } else {
-      delete where["specialty.id"];
       delete where["specialty"];
     }
 
@@ -367,7 +366,7 @@ module.exports = function init(site) {
       delete where["doctor"];
       delete where.active;
     } else {
-      delete where["doctor_list.doctor.id"];
+      delete where["doctor_list"];
       delete where["doctor"];
     }
 

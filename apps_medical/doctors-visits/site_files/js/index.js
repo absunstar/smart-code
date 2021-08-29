@@ -2,6 +2,7 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
   $scope._search = {};
 
   $scope.doctors_visits = {};
+  $scope.search_linic = {};
 
   $scope.displayAddDoctorsVisits = function () {
     $scope.error = "";
@@ -12,7 +13,8 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
     $scope.address = false;
     $scope.spicialty = false;
     $scope.doctor = false;
-
+    $scope.clinicBookList = [];
+    
     $scope.doctors_visits = {
       image_url: "/images/doctors_visits.png",
       active: true,
@@ -84,7 +86,7 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal("#doctorsVisitsAddModal");
-          $scope.getDoctorsVisitsList();
+          $scope.getDoctorsVisitsList({date : new Date()});
         } else {
           $scope.error = "Please Login First";
           if (response.data.error.like("*Must Enter Code*")) {
@@ -174,7 +176,7 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal("#dynamicDoctorsVisitsModal");
-          $scope.getDoctorsVisitsList();
+          $scope.getDoctorsVisitsList({date : new Date()});
         } else {
           $scope.error = "Please Login First";
         }
@@ -217,7 +219,7 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
         if (response.data.done) {
           site.hideModal("#doctorsVisitsUpdateModal");
           site.hideModal("#doctorsVisitsViewModal");
-          $scope.getDoctorsVisitsList();
+          $scope.getDoctorsVisitsList({date : new Date()});
         } else {
           $scope.error = "Please Login First";
         }
@@ -242,7 +244,7 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
         if (response.data.done) {
           site.hideModal("#doctorsVisitsViewModal");
           site.hideModal("#doctorsVisitsNotes");
-          $scope.getDoctorsVisitsList();
+          $scope.getDoctorsVisitsList({date : new Date()});
         } else {
           $scope.error = "Please Login First";
         }
@@ -332,7 +334,7 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
         if (response.data.done) {
           site.hideModal("#doctorsVisitsDeleteModal");
           site.hideModal("#doctorsVisitsViewModal");
-          $scope.getDoctorsVisitsList();
+          $scope.getDoctorsVisitsList({date : new Date()});
         } else {
           $scope.error = response.data.error;
         }
@@ -462,7 +464,7 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getClinicBookList = function (doctors_visits) {
+  $scope.getClinicBookList = function (search_linic) {
     $scope.error = "";
 
     const v = site.validated("#doctorsVisitsAddModal");
@@ -478,9 +480,9 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
       url: "/api/clinics/all",
       data: {
         where: {
-          specialty: doctors_visits.specialty,
-          clinic: doctors_visits.clinic,
-          doctor: doctors_visits.doctor,
+          specialty: search_linic.specialty,
+          clinic: search_linic.clinic,
+          doctor: search_linic.doctor,
           active: true,
         },
         /*  select: {
@@ -1900,7 +1902,7 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getDoctorsVisitsList();
+  $scope.getDoctorsVisitsList({date : new Date()});
   $scope.getSpecialtyList();
   /*$scope.getMedicinesList();*/
   $scope.getScansList();
