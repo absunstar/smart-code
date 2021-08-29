@@ -227,10 +227,14 @@ module.exports = function init(site) {
     let where = req.body.where || {}
 
     where['company.id'] = site.get_company(req).id
-    where['branch.code'] = site.get_branch(req).code
+    // where['branch.code'] = site.get_branch(req).code
 
-    if (where['name']) {
-      where['name'] = new RegExp(where['name'], "i");
+    if (where['name_ar']) {
+      where['name_ar'] = new RegExp(where['name_ar'], "i");
+    }
+
+    if (where['name_en']) {
+      where['name_en'] = new RegExp(where['name_en'], "i");
     }
 
     $analysis.findMany({
