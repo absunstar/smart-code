@@ -23,7 +23,7 @@
       </a>
     </div>
     <div class="tabs-content full bold">
-      <div id="doctors_visits" class="tab-content ">
+      <div id="doctors_visits" class="tab-content">
         <fieldset>
           <legend>##word.doctors_visits##</legend>
           <table class="table loaded center hover bold">
@@ -73,6 +73,7 @@
           <legend>##word.analysis_requests##</legend>
           <table class="table loaded center hover bold">
             <tr>
+              <th>##word.date##</th>
               <th>##word.analysis_name##</th>
               <th>##word.normal_range##</th>
               <th>##word.notes_before_analysis##</th>
@@ -82,6 +83,7 @@
             </tr>
 
             <tr ng-repeat="a in patients_files.analysis_requests">
+              <td class="brown">{{a.date | date : 'dd - MM - yyyy'}}</td>
               <td class="center">{{a.name_##session.lang##}}</td>
 
               <td class="center">
@@ -115,6 +117,7 @@
           <legend>##word.scans_requests##</legend>
           <table class="table loaded center hover bold">
             <tr>
+              <th>##word.date##</th>
               <th>##word.scans_name##</th>
               <th>##word.notes_before_scans##</th>
               <th>##word.notes_after_scans##</th>
@@ -123,6 +126,7 @@
             </tr>
 
             <tr ng-repeat="s in patients_files.scans_requests">
+              <td class="brown">{{s.date | date : 'dd - MM - yyyy'}}</td>
               <td class="center">{{s.name_##session.lang##}}</td>
 
               <td class="center lines_text">{{s.notes_before_scans}}</td>

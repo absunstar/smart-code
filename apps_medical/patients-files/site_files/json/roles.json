@@ -4,4 +4,10 @@
     "en": "Patients Files Admin",
     "ar": "إدارة ملفات المرضى",
     "permissions": ["patients_files_manage"]
+},{
+    "module_name" : "public" ,
+    "name": "patient_file_user",
+    "en": "Patient file User",
+    "ar": "ملف المريض للمستخدم",
+    "permissions": ["patients_files_ui","patients_files_view"]
 }]

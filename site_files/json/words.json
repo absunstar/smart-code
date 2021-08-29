@@ -10,6 +10,11 @@
         "ar": "تفاصيل الحسابات"
     },
     {
+        "name": "medical_file",
+        "en": "Medical file",
+        "ar": "الملف الطبي"
+    },
+    {
         "name": "accounting_invoice",
         "en": "Accounting Invoice",
         "ar": "فاتورة الحسابات"

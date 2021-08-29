@@ -27,7 +27,7 @@
                     </i-date>
 
                     <i-list ng-show="viewText === 'gender'" ng-search="_search.$gender_search" label="##word.gender##"
-                        ng-model="manage_user.profile.gender" items="genderList" display="##session.lang##">
+                        ng-model="manage_user.gender" primary="##session.lang##" items="genderList" display="##session.lang##">
                     </i-list>
 
                     <i-control ng-show="viewText === 'email'" label="##word.email##" ng-model="manage_user.email">

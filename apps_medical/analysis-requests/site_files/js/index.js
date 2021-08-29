@@ -516,6 +516,7 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
         _analysis.person_delivery = {
           ...$scope.analysis_requests.$person_delivery,
         };
+
         _analysis.delivery_data = {
           ...$scope.analysis.delivery_data,
         };

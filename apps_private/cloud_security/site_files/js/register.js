@@ -56,23 +56,6 @@ app.controller('register', function ($scope, $http) {
       return;
     };
 
-    if ($scope.Gender) {
-      if ($scope.Gender.type == 'male') {
-        $scope.customer.gender = {
-          name: 'male',
-          ar: 'ذكر',
-          en: 'Male',
-        }
-
-      } else if ($scope.Gender.type == 'female') {
-        $scope.customer.gender = {
-          name: 'female',
-          ar: 'أنثى',
-          en: 'Female',
-        }
-      }
-    }
-
     $http({
       method: "POST",
       url: "/api/customers/add",
@@ -149,9 +132,23 @@ app.controller('register', function ($scope, $http) {
     )
   };
 
+  $scope.Gender = function () {
+    $scope.error = "";
+    $scope.genderList = [];
+    $http({
+      method: "POST",
+      url: "/api/gender/all",
+    }).then(
+      function (response) {
+        $scope.genderList = response.data;
+      },
+      function (err) {
+        $scope.error = err;
+      }
+    );
+  };
 
   $scope.getGovList = function (companyId) {
-    $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/goves/all",
@@ -164,13 +161,11 @@ app.controller('register', function ($scope, $http) {
       }
     }).then(
       function (response) {
-        $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
           $scope.govList = response.data.list;
         }
       },
       function (err) {
-        $scope.busy = false;
         $scope.error = err;
       }
     )
@@ -251,4 +246,5 @@ app.controller('register', function ($scope, $http) {
 
 
   $scope.getCompanyList();
+  $scope.Gender();
 });

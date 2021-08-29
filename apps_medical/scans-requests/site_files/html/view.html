@@ -1,206 +1,226 @@
 <div ng-hide="busy" id="v1">
-    <div class="form">
-        <div id="customersGroupViewModal">
-            <fieldset>
-                <legend> ##word.scans_requests_informations## </legend>
-                <div class="row">
-                    <div class="col9">
-                        <table class="table hover bold">
+  <div class="form">
+    <div id="customersGroupViewModal">
+      <fieldset>
+        <legend>##word.scans_requests_informations##</legend>
+        <div class="row">
+          <div class="col9">
+            <table class="table hover bold">
+              <tr>
+                <td class="title">##word.code##</td>
+                <td class="center blue userPrint">{{scans_requests.code}}</td>
+              </tr>
 
-                            <tr>
-                                <td class="title">##word.code##</td>
-                                <td class="center blue userPrint">{{scans_requests.code}}</td>
-                            </tr>
+              <tr>
+                <td class="title">##word.date##</td>
+                <td class="center brown">
+                  {{scans_requests.date |date:"dd - MM - yyyy" }}
+                </td>
+              </tr>
 
-                            <tr ng-show="scans_requests.total_value">
-                                <td class="title">##word.total_value##</td>
-                                <td class="center">{{scans_requests.total_value}}</td>
-                            </tr>
+              <tr ng-show="scans_requests.total_value">
+                <td class="title">##word.total_value##</td>
+                <td class="center">{{scans_requests.total_value}}</td>
+              </tr>
 
-                            <tr ng-show="scans_requests.total_discount">
-                                <td class="title">##word.total_discount##</td>
-                                <td class="center red">{{scans_requests.total_discount}}</td>
-                            </tr>
+              <tr ng-show="scans_requests.total_discount">
+                <td class="title">##word.total_discount##</td>
+                <td class="center red">{{scans_requests.total_discount}}</td>
+              </tr>
 
-                            <tr ng-show="scans_requests.net_value">
-                                <td class="title">##word.net_value##</td>
-                                <td class="center blue">{{scans_requests.net_value}}</td>
-                            </tr>
+              <tr ng-show="scans_requests.net_value">
+                <td class="title">##word.net_value##</td>
+                <td class="center blue">{{scans_requests.net_value}}</td>
+              </tr>
 
-                            <tr ng-show="scans_requests.paid">
-                                <td class="title">##word.paid##</td>
-                                <td class="center green">{{scans_requests.paid}}</td>
-                            </tr>
+              <tr ng-show="scans_requests.paid">
+                <td class="title">##word.paid##</td>
+                <td class="center green">{{scans_requests.paid}}</td>
+              </tr>
 
-                            <tr>
-                                <td class="title">##word.remain##</td>
-                                <td class="center red">{{scans_requests.remain}}</td>
-                            </tr>
+              <tr>
+                <td class="title">##word.remain##</td>
+                <td class="center red">{{scans_requests.remain}}</td>
+              </tr>
 
-                            <tr>
-                                <td class="title"> ##word.active## </td>
-                                <td ng-show="scans_requests.active == true" class="center green"> ##word.active##
-                                </td>
-                                <td ng-show="scans_requests.active == false" class="center red"> ##word.not_active##
-                                </td>
-                            </tr>
+              <tr>
+                <td class="title">##word.active##</td>
+                <td
+                  ng-show="scans_requests.active == true"
+                  class="center green"
+                >
+                  ##word.active##
+                </td>
+                <td ng-show="scans_requests.active == false" class="center red">
+                  ##word.not_active##
+                </td>
+              </tr>
+            </table>
 
-                        </table>
+            <div class="row">
+              <br />
+              <div class="row">
+                <i-button
+                  type="details"
+                  class="not-print"
+                  label="##word.customers_details##"
+                  ng-click="showPatient(scans_requests.customer.id)"
+                ></i-button>
 
-                        <div class="row">
-                            <br>
-                            <div class="row">
+                <i-button
+                  ng-show="scans_requests.last_scans_list.length > 0"
+                  label="##word.last_scans##"
+                  ng-click="showLastScans(scans_requests)"
+                >
+                </i-button>
+              </div>
 
-                                <i-button type="details" class="not-print" label="##word.customers_details##"
-                                    ng-click="showPatient(scans_requests.customer.id)"></i-button>
+              <div class="row">
+                <fieldset class="col11" ng-show="scans_requests.customer.id">
+                  <table class="table bold center hover">
+                    <tr>
+                      <td class="white bg_card">##word.customer_name##</td>
+                      <td colspan="5" class="center">
+                        {{scans_requests.customer.name_##session.lang##}}
+                        <b class="red" ng-show="scans_requests.customer.child"
+                          >(##word.child##)</b
+                        >
+                      </td>
 
-                                <i-button ng-show="scans_requests.last_scans_list.length > 0"
-                                    label="##word.last_scans##" ng-click="showLastScans(scans_requests)">
-                                </i-button>
+                      <td class="white bg_card">##word.gender##</td>
+                      <td colspan="2" class="center">
+                        {{scans_requests.customer.gender.##session.lang##}}
+                      </td>
+                    </tr>
 
-                            </div>
+                    <tr>
+                      <td class="white bg_card">##word.weight##</td>
+                      <td colspan="2" class="center">
+                        {{scans_requests.customer.weight}}
+                      </td>
+                      <td class="white bg_card">##word.tall##</td>
+                      <td colspan="2" class="center">
+                        {{scans_requests.customer.tall}}
+                      </td>
+                      <td class="white bg_card">##word.blood_type##</td>
+                      <td colspan="2" class="center red">
+                        {{scans_requests.customer.blood_type.name}}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="white bg_card">##word.medicine_notes##</td>
+                      <td colspan="7" class="center">
+                        {{scans_requests.customer.medicine_notes}}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="white bg_card">##word.gov##</td>
+                      <td colspan="2" class="center">
+                        {{scans_requests.customer.gov.name_##session.lang##}}
+                      </td>
+                      <td class="white bg_card">##word.city##</td>
+                      <td colspan="2" class="center">
+                        {{scans_requests.customer.city.name_##session.lang##}}
+                      </td>
+                      <td class="white bg_card">##word.area##</td>
+                      <td colspan="2" class="center">
+                        {{scans_requests.customer.area.name_##session.lang##}}
+                      </td>
+                    </tr>
 
-                            <div class="row">
-                                <fieldset class="col11" ng-show="scans_requests.customer.id">
+                    <tr>
+                      <td class="white bg_card">##word.address##</td>
+                      <td colspan="7" class="center">
+                        {{scans_requests.customer.address}}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="white bg_card">##word.mobile##</td>
+                      <td colspan="4" class="center">
+                        {{scans_requests.customer.mobile}}
+                      </td>
+                      <td class="white bg_card">##word.phone##</td>
+                      <td colspan="3" class="center">
+                        {{scans_requests.customer.phone}}
+                      </td>
+                    </tr>
+                  </table>
+                </fieldset>
+              </div>
+            </div>
+          </div>
 
-                                    <table class="table bold center hover">
-
-                                        <tr>
-                                            <td class="white bg_card"> ##word.customer_name## </td>
-                                            <td colspan="5" class="center">
-                                                {{scans_requests.customer.name_##session.lang##}} <b class="red"
-                                                    ng-show="scans_requests.customer.child">(##word.child##)</b>
-                                            </td>
-
-                                            <td class="white bg_card"> ##word.gender## </td>
-                                            <td colspan="2" class="center">
-                                                {{scans_requests.customer.gender.##session.lang##}}
-                                            </td>
-
-                                        </tr>
-
-
-                                        <tr>
-                                            <td class="white bg_card"> ##word.weight## </td>
-                                            <td colspan="2" class="center"> {{scans_requests.customer.weight}}
-                                            </td>
-                                            <td class="white bg_card"> ##word.tall## </td>
-                                            <td colspan="2" class="center"> {{scans_requests.customer.tall}}
-                                            </td>
-                                            <td class="white bg_card"> ##word.blood_type## </td>
-                                            <td colspan="2" class="center red">
-                                                {{scans_requests.customer.blood_type.name}}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="white bg_card"> ##word.medicine_notes## </td>
-                                            <td colspan="7" class="center">
-                                                {{scans_requests.customer.medicine_notes}}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="white bg_card"> ##word.gov## </td>
-                                            <td colspan="2" class="center">
-                                                {{scans_requests.customer.gov.name_##session.lang##}}
-                                            </td>
-                                            <td class="white bg_card"> ##word.city## </td>
-                                            <td colspan="2" class="center">
-                                                {{scans_requests.customer.city.name_##session.lang##}} </td>
-                                            <td class="white bg_card"> ##word.area## </td>
-                                            <td colspan="2" class="center">
-                                                {{scans_requests.customer.area.name_##session.lang##}} </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td class="white bg_card"> ##word.address## </td>
-                                            <td colspan="7" class="center"> {{scans_requests.customer.address}}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="white bg_card"> ##word.mobile## </td>
-                                            <td colspan="4" class="center"> {{scans_requests.customer.mobile}}
-                                            </td>
-                                            <td class="white bg_card"> ##word.phone## </td>
-                                            <td colspan="3" class="center"> {{scans_requests.customer.phone}}
-                                            </td>
-                                        </tr>
-
-                                    </table>
-                                </fieldset>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="col3 not-print">
-                        <i-image view ng-model="scans_requests.image_url"> </i-image>
-                        <i-files label="##word.files##" view ng-model="scans_requests.files"></i-files>
-                    </div>
-
-
-                </div>
-
-                <br>
-                <br>
-                <br>
-
-                <div class="row" ng-show="scans_requests.scans_list.length > 0">
-                    <fieldset>
-                        <legend> ##word.scans## ##word.requiredy##</legend>
-
-                        <br>
-                        <br>
-                        <table class="table loaded center hover bold">
-                            <tr>
-                                <th>##word.scans_name##</th>
-                                <th>##word.price##</th>
-                                <th> ##word.notes_before_scans##</th>
-                                <th> ##word.notes_after_scans## </th>
-                                <th> ##word.person_delivery## </th>
-                                <th> ##word.delivery_date## </th>
-                                <th class="not-print"> ##word.files## </th>
-                            </tr>
-
-                            <tr ng-repeat="a in scans_requests.scans_list">
-
-                                <td class="center">{{a.name_##session.lang##}}</td>
-
-                                <td class="center green">{{a.price}}</td>
-
-                                <td class="center lines_text">
-                                    {{a.notes_before_scans}}
-                                </td>
-
-                                <td class="center lines_text">
-                                    {{a.notes_after_scans}}
-                                </td>
-
-                                <td>
-                                    <p ng-show="!a.person_delivery.name">##word.delivery_has_not_been_done##</p>
-                                    <p>{{a.person_delivery.##session.lang##}}</p>
-                                    <i-button type="view" class="not-print"
-                                        ng-show="a.person_delivery.name === 'another_person'"
-                                        ng-click="showPersonDelivery(a,'view')" label="##word.delivery_data##">
-                                    </i-button>
-                                </td>
-
-                                <td class="center">
-                                    <p class="brown"> {{a.delivery_date |date:"dd - MM - yyyy"}} </p>
-                                    <p class="green"> {{a.delivery_date |date:"hh:mm"}} </p>
-                                </td>
-
-                                <td class="not-print">
-                                    <i-files view ng-model="a.files"></i-files>
-                                </td>
-
-                            </tr>
-                        </table>
-                    </fieldset>
-
-                </div>
-
-            </fieldset>
+          <div class="col3 not-print">
+            <i-image view ng-model="scans_requests.image_url"> </i-image>
+            <i-files
+              label="##word.files##"
+              view
+              ng-model="scans_requests.files"
+            ></i-files>
+          </div>
         </div>
+
+        <br />
+        <br />
+        <br />
+
+        <div class="row" ng-show="scans_requests.scans_list.length > 0">
+          <fieldset>
+            <legend>##word.scans## ##word.requiredy##</legend>
+
+            <br />
+            <br />
+            <table class="table loaded center hover bold">
+              <tr>
+                <th>##word.scans_name##</th>
+                <th>##word.price##</th>
+                <th>##word.notes_before_scans##</th>
+                <th>##word.notes_after_scans##</th>
+                <th>##word.person_delivery##</th>
+                <th>##word.delivery_date##</th>
+                <th class="not-print">##word.files##</th>
+              </tr>
+
+              <tr ng-repeat="a in scans_requests.scans_list">
+                <td class="center">{{a.name_##session.lang##}}</td>
+
+                <td class="center green">{{a.price}}</td>
+
+                <td class="center lines_text">{{a.notes_before_scans}}</td>
+
+                <td class="center lines_text">{{a.notes_after_scans}}</td>
+
+                <td>
+                  <p ng-show="!a.person_delivery.name">
+                    ##word.delivery_has_not_been_done##
+                  </p>
+                  <p>{{a.person_delivery.##session.lang##}}</p>
+                  <i-button
+                    type="view"
+                    class="not-print"
+                    ng-show="a.person_delivery.name === 'another_person'"
+                    ng-click="showPersonDelivery(a,'view')"
+                    label="##word.delivery_data##"
+                  >
+                  </i-button>
+                </td>
+
+                <td class="center">
+                  <p class="brown">
+                    {{a.delivery_date |date:"dd - MM - yyyy"}}
+                  </p>
+                  <p class="green">{{a.delivery_date |date:"hh:mm"}}</p>
+                </td>
+
+                <td class="not-print">
+                  <i-files view ng-model="a.files"></i-files>
+                </td>
+              </tr>
+            </table>
+          </fieldset>
+        </div>
+      </fieldset>
     </div>
+  </div>
 </div>
 <div x-import="scans-requests/action_info.html"></div>

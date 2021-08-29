@@ -329,6 +329,7 @@ module.exports = function init(site) {
                 response.cb.analysis_requests.remain += _analysisR.remain || 0;
 
                 _analysisR.analysis_list.forEach((_al) => {
+                  _al.date = _analysisR.date;
                   response.cb.analysis_requests.list.push(_al);
                 });
               });
@@ -367,8 +368,9 @@ module.exports = function init(site) {
                 response.cb.scans_requests.paid += _scansR.paid || 0;
                 response.cb.scans_requests.remain += _scansR.remain || 0;
 
-                _scansR.scans_list.forEach((_al) => {
-                  response.cb.scans_requests.list.push(_al);
+                _scansR.scans_list.forEach((_sl) => {
+                  _sl.date = _scansR.date;
+                  response.cb.scans_requests.list.push(_sl);
                 });
               });
             }
