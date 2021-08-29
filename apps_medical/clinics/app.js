@@ -496,7 +496,6 @@ module.exports = function init(site) {
 
     let where = req.body.where || {};
     // where['id'] = req.data['clinic.id']
-
     $clinics.findOne(
       {
         select: req.body.select || {},
@@ -511,7 +510,7 @@ module.exports = function init(site) {
           response.done = true;
           let shift = {};
           doc.shift_list.forEach((info) => {
-            if (info.id == req.data["shiftId"]) {
+            if (info.id == req.body["shiftId"]) {
               shift = info;
             }
           });
