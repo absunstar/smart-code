@@ -1291,6 +1291,11 @@
         "ar": "البريد الإلكترونى"
     },
     {
+        "name": "user_name",
+        "en": "User Name",
+        "ar": "إسم المستخدم"
+    },
+    {
         "name": "useradd_user_info",
         "en": "User Created",
         "ar": "معلومات الإضافة"
