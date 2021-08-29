@@ -34,7 +34,7 @@
             </a>
           </div>
           <div class="tabs-content full bold">
-            <div  id="doctors_visits" class="tab-content">
+            <div id="doctors_visits" class="tab-content">
               <br />
               <br />
 
@@ -82,70 +82,33 @@
                 <br />
 
                 <div class="row">
-                  <i-control
-                    class="col2"
-                    ng-show="ticket_data.doctors_visits.total_value"
-                    disabled
-                    ng-model="ticket_data.doctors_visits.total_value"
-                    type="number"
-                    label="##word.total_value##"
-                  >
-                  </i-control>
-
-                  <i-control
-                    class="col2"
-                    ng-show="ticket_data.doctors_visits.urgent_visit"
-                    disabled
-                    ng-model="ticket_data.doctors_visits.urgent_visit"
-                    type="number"
-                    label="##word.urgent_visit##"
-                  >
-                  </i-control>
-
-                  <i-control
-                    class="col2"
-                    ng-show="ticket_data.doctors_visits.total_discount"
-                    disabled
-                    ng-model="ticket_data.doctors_visits.total_discount"
-                    type="number"
-                    label="##word.total_discount##"
-                  >
-                  </i-control>
-                </div>
-
-                <div class="row">
-                  <i-control
-                    class="col2"
-                    disabled
-                    ng-show="ticket_data.doctors_visits.net_value"
-                    ng-model="ticket_data.doctors_visits.net_value"
-                    type="number"
-                    label="##word.paid_require##"
-                  >
-                  </i-control>
-
-                  <i-control
-                    class="col2"
-                    disabled
-                    ng-model="ticket_data.doctors_visits.paid"
-                    type="number"
-                    label="##word.paid##"
-                  >
-                  </i-control>
-
-                  <i-control
-                    class="col2"
-                    disabled
-                    ng-model="ticket_data.doctors_visits.remain"
-                    type="number"
-                    label="##word.remain##"
-                  >
-                  </i-control>
+                  <table class="table bold center hover">
+                    <tr>
+                      <td class="white bg_card">##word.total_value##</td>
+                      <td class="white bg_card">##word.urgent_visit##</td>
+                      <td class="white bg_card">##word.total_discount##</td>
+                      <td class="white bg_card">##word.paid_require##</td>
+                      <td class="white bg_card">##word.paid##</td>
+                      <td class="white bg_card">##word.remain##</td>
+                    </tr>
+                    <tr>
+                      <td class="blue">
+                        {{ticket_data.doctors_visits.total_value}}
+                      </td>
+                      <td>{{ticket_data.doctors_visits.urgent_visit}}</td>
+                      <td class="red">
+                        {{ticket_data.doctors_visits.total_discount}}
+                      </td>
+                      <td>{{ticket_data.doctors_visits.net_value}}</td>
+                      <td class="green">{{ticket_data.doctors_visits.paid}}</td>
+                      <td class="red">{{ticket_data.doctors_visits.remain}}</td>
+                    </tr>
+                  </table>
                 </div>
               </fieldset>
             </div>
 
-            <div  id="analysis_requests" class="tab-content">
+            <div id="analysis_requests" class="tab-content">
               <br />
               <br />
               <fieldset>
@@ -205,60 +168,35 @@
                 <br />
 
                 <div class="row">
-                  <i-control
-                    class="col2"
-                    ng-show="ticket_data.analysis_requests.total_value"
-                    disabled
-                    ng-model="ticket_data.analysis_requests.total_value"
-                    type="number"
-                    label="##word.total_value##"
-                  >
-                  </i-control>
-
-                  <i-control
-                    class="col2"
-                    ng-show="ticket_data.analysis_requests.total_discount"
-                    disabled
-                    ng-model="ticket_data.analysis_requests.total_discount"
-                    type="number"
-                    label="##word.total_discount##"
-                  >
-                  </i-control>
-                </div>
-
-                <div class="row">
-                  <i-control
-                    class="col2"
-                    disabled
-                    ng-show="ticket_data.analysis_requests.net_value"
-                    ng-model="ticket_data.analysis_requests.net_value"
-                    type="number"
-                    label="##word.paid_require##"
-                  >
-                  </i-control>
-
-                  <i-control
-                    class="col2"
-                    disabled
-                    ng-model="ticket_data.analysis_requests.paid"
-                    type="number"
-                    label="##word.paid##"
-                  >
-                  </i-control>
-
-                  <i-control
-                    class="col2"
-                    disabled
-                    ng-model="ticket_data.analysis_requests.remain"
-                    type="number"
-                    label="##word.remain##"
-                  >
-                  </i-control>
+                  <table class="table bold center hover">
+                    <tr>
+                      <td class="white bg_card">##word.total_value##</td>
+                      <td class="white bg_card">##word.total_discount##</td>
+                      <td class="white bg_card">##word.paid_require##</td>
+                      <td class="white bg_card">##word.paid##</td>
+                      <td class="white bg_card">##word.remain##</td>
+                    </tr>
+                    <tr>
+                      <td class="blue">
+                        {{ticket_data.analysis_requests.total_value}}
+                      </td>
+                      <td class="red">
+                        {{ticket_data.analysis_requests.total_discount}}
+                      </td>
+                      <td>{{ticket_data.analysis_requests.net_value}}</td>
+                      <td class="green">
+                        {{ticket_data.analysis_requests.paid}}
+                      </td>
+                      <td class="red">
+                        {{ticket_data.analysis_requests.remain}}
+                      </td>
+                    </tr>
+                  </table>
                 </div>
               </fieldset>
             </div>
 
-            <div  id="scans_requests" class="tab-content">
+            <div id="scans_requests" class="tab-content">
               <br />
               <br />
 
@@ -309,55 +247,26 @@
                 <br />
 
                 <div class="row">
-                  <i-control
-                    class="col2"
-                    ng-show="ticket_data.scans_requests.total_value"
-                    disabled
-                    ng-model="ticket_data.scans_requests.total_value"
-                    type="number"
-                    label="##word.total_value##"
-                  >
-                  </i-control>
-
-                  <i-control
-                    class="col2"
-                    ng-show="ticket_data.scans_requests.total_discount"
-                    disabled
-                    ng-model="ticket_data.scans_requests.total_discount"
-                    type="number"
-                    label="##word.total_discount##"
-                  >
-                  </i-control>
-                </div>
-
-                <div class="row">
-                  <i-control
-                    class="col2"
-                    disabled
-                    ng-show="ticket_data.scans_requests.net_value"
-                    ng-model="ticket_data.scans_requests.net_value"
-                    type="number"
-                    label="##word.paid_require##"
-                  >
-                  </i-control>
-
-                  <i-control
-                    class="col2"
-                    disabled
-                    ng-model="ticket_data.scans_requests.paid"
-                    type="number"
-                    label="##word.paid##"
-                  >
-                  </i-control>
-
-                  <i-control
-                    class="col2"
-                    disabled
-                    ng-model="ticket_data.scans_requests.remain"
-                    type="number"
-                    label="##word.remain##"
-                  >
-                  </i-control>
+                  <table class="table bold center hover">
+                    <tr>
+                      <td class="white bg_card">##word.total_value##</td>
+                      <td class="white bg_card">##word.total_discount##</td>
+                      <td class="white bg_card">##word.paid_require##</td>
+                      <td class="white bg_card">##word.paid##</td>
+                      <td class="white bg_card">##word.remain##</td>
+                    </tr>
+                    <tr>
+                      <td class="blue">
+                        {{ticket_data.scans_requests.total_value}}
+                      </td>
+                      <td class="red">
+                        {{ticket_data.scans_requests.total_discount}}
+                      </td>
+                      <td>{{ticket_data.scans_requests.net_value}}</td>
+                      <td class="green">{{ticket_data.scans_requests.paid}}</td>
+                      <td class="red">{{ticket_data.scans_requests.remain}}</td>
+                    </tr>
+                  </table>
                 </div>
               </fieldset>
             </div>
@@ -368,64 +277,26 @@
         <br />
 
         <div class="row">
-          <div class="col3"></div>
-          <fieldset class="col6">
-            <legend>##word.total##</legend>
+          <div class="col2"></div>
+          <fieldset class="col8">
+            <legend>##word.total_patient_account##</legend>
 
-            <br />
-            <br />
-
-            <div class="row">
-              <i-control
-                class="col4"
-                ng-show="ticket_data.total_value"
-                disabled
-                ng-model="ticket_data.total_value"
-                type="number"
-                label="##word.total_value##"
-              >
-              </i-control>
-
-              <i-control
-                class="col4"
-                ng-show="ticket_data.total_discount"
-                disabled
-                ng-model="ticket_data.total_discount"
-                type="number"
-                label="##word.total_discount##"
-              >
-              </i-control>
-            </div>
-
-            <div class="row">
-              <i-control
-                class="col4"
-                disabled
-                ng-show="ticket_data.net_value"
-                ng-model="ticket_data.net_value"
-                type="number"
-                label="##word.paid_require##"
-              >
-              </i-control>
-
-              <i-control
-                class="col4"
-                disabled
-                ng-model="ticket_data.paid"
-                type="number"
-                label="##word.paid##"
-              >
-              </i-control>
-
-              <i-control
-                class="col4"
-                disabled
-                ng-model="ticket_data.remain"
-                type="number"
-                label="##word.remain##"
-              >
-              </i-control>
-            </div>
+            <table class="table bold center hover">
+              <tr>
+                <td class="white bg_card">##word.total_value##</td>
+                <td class="white bg_card">##word.total_discount##</td>
+                <td class="white bg_card">##word.paid_require##</td>
+                <td class="white bg_card">##word.paid##</td>
+                <td class="white bg_card">##word.remain##</td>
+              </tr>
+              <tr>
+                <td class="blue">{{ticket_data.total_value}}</td>
+                <td class="red">{{ticket_data.total_discount}}</td>
+                <td>{{ticket_data.net_value}}</td>
+                <td class="green">{{ticket_data.paid}}</td>
+                <td class="red">{{ticket_data.remain}}</td>
+              </tr>
+            </table>
           </fieldset>
         </div>
       </form>

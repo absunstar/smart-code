@@ -5,9 +5,9 @@
         "ar": "عميل جديد"
     },
     {
-        "name": "accounting_details",
-        "en": "Accounting Details",
-        "ar": "تفاصيل الحسابات"
+        "name": "total_patient_account",
+        "en": "Total patient account",
+        "ar": "إجمالي حساب المريض"
     },
     {
         "name": "medical_file",
