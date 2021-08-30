@@ -26,13 +26,13 @@ app.controller("customers", function ($scope, $http, $timeout) {
       $scope.customer.image_url = "/images/patients.png";
       $scope.customer.allergic_food_list = [{}];
       $scope.customer.allergic_drink_list = [{}];
-      $scope.customer.medicines_list = [{}];
+      $scope.customer.medicines_list = [];
       $scope.customer.disease_list = [{}];
     } else if (site.feature("school") || site.feature("academy")) {
       $scope.customer.image_url = "/images/student.png";
       $scope.customer.allergic_food_list = [{}];
       $scope.customer.allergic_drink_list = [{}];
-      $scope.customer.medicines_list = [{}];
+      $scope.customer.medicines_list = [];
       $scope.customer.disease_list = [{}];
     }
 

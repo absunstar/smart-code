@@ -38,7 +38,7 @@
             <a class="tab-link" onclick="site.showTabContent(event, '#customersFiles')">
                 ##word.customers_files## </a>
 
-            <a class="tab-link" onclick="site.showTabContent(event,'#loginInformation')">
+            <a class="tab-link" ng-hide="'##user.type##' == 'customer'" onclick="site.showTabContent(event,'#loginInformation')">
                 ##word.login_information##
             </a>
         </div>
@@ -1041,7 +1041,7 @@
                 </fieldset>
             </div> -->
 
-            <div id="loginInformation" class="tab-content">
+            <div id="loginInformation" ng-hide="'##user.type##' == 'customer'" class="tab-content">
                 <fieldset>
                     <legend> ##word.login_information## </legend>
 

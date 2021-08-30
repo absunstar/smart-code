@@ -2,6 +2,6 @@
     "module_name" : "public" ,
     "name": "scans_requests_admin",
     "en": "Scans Center Admin",
-    "ar": "إدارة معمل الأشعة",
+    "ar": "إدارة مركز الأشعة",
     "permissions": ["scans_requests_manage"]
 }]

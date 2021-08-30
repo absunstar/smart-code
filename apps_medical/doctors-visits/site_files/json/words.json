@@ -2,7 +2,7 @@
     {
         "name": "doctors_visits",
         "en": "Examination books",
-        "ar": "حجز الكشف"
+        "ar": "حجز كشف"
     },
     {
         "name": "doctor_visit",
@@ -232,7 +232,7 @@
     {
         "name": "result_visit",
         "en": "The result of the Examination",
-        "ar": "نتيجة الحجز"
+        "ar": "نتيجة الكشف"
     },
     {
         "name": "diagnosis",
@@ -247,7 +247,7 @@
     {
         "name": "diagnosis_after_visit",
         "en": "Diagnosis After Examination",
-        "ar": "التشخيص بعد الحجز"
+        "ar": "التشخيص بعد الكشف"
     },
     {
         "name": "status",

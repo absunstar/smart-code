@@ -55,10 +55,27 @@
                 </i-list>
 
                 <i-button
+                  type="add"
+                  label="##word.customers_new##"
+                  ng-click="displayAddCustomer()"
+                >
+                </i-button>
+              </div>
+
+              <div class="row">
+                <i-button
                   ng-show="doctors_visits.customer.id"
                   type="details"
                   label="##word.customers_details##"
                   ng-click="showPatient(doctors_visits.customer.id)"
+                >
+                </i-button>
+
+                <i-button
+                  ng-show="doctors_visits.customer.id"
+                  type="bg-purple btn_board"
+                  label="##word.examination_before_detection##"
+                  onclick="site.showModal('#examinationBeforeDetection')"
                 >
                 </i-button>
 
@@ -68,15 +85,8 @@
                   target="blank"
                   href="/patients_files?id={{doctors_visits.customer.id}}"
                 >
-                  ##word.patient_file##</a
-                >
-
-                <i-button
-                  type="add"
-                  label="##word.customers_new##"
-                  ng-click="displayAddCustomer()"
-                >
-                </i-button>
+                  ##word.patient_file##
+                </a>
               </div>
             </div>
             <div class="col2">
@@ -179,6 +189,7 @@
 
           <br />
           <br />
+
           <div class="row">
             <div class="col10">
               <fieldset>

@@ -57,7 +57,7 @@
           <legend>##word.basic_information##</legend>
 
           <div class="row">
-            <div class="col9">
+            <div class="col10">
               <div class="row">
                 <br />
                 <i-button
@@ -143,7 +143,7 @@
 
                 <table class="table hover bold">
                   <tr>
-                    <td class="title">##word.visit_code##</td>
+                    <td class="title indigoD">##word.visit_code##</td>
                     <td class="blue center userPrint">
                       {{doctors_visits.code}}
                       <b class="black"
@@ -153,14 +153,14 @@
                     </td>
                   </tr>
                   <tr>
-                    <td class="title">##word.date##</td>
+                    <td class="title indigoD">##word.date##</td>
                     <td class="brown center">
                       {{doctors_visits.date | date : 'dd - MM - yyyy'}}
                     </td>
                   </tr>
 
                   <tr>
-                    <td class="title">##word.visit_type##</td>
+                    <td class="title indigoD">##word.visit_type##</td>
                     <td class="center">
                       {{doctors_visits.visit_type.##session.lang##}}
                       <b ng-show="doctors_visits.is_urgent_visit" class="red">
@@ -170,17 +170,17 @@
                   </tr>
 
                   <tr>
-                    <td class="title">##word.notes##</td>
+                    <td class="title indigoD">##word.notes##</td>
                     <td class="center">{{doctors_visits.notes}}</td>
                   </tr>
 
                   <tr>
-                    <td class="title">##word.notes_before##</td>
+                    <td class="title indigoD">##word.notes_before##</td>
                     <td class="center">{{doctors_visits.notes_before}}</td>
                   </tr>
 
                   <tr>
-                    <td class="title">##word.status##</td>
+                    <td class="title indigoD">##word.status##</td>
                     <td class="center">
                       <p class="blue">
                         {{doctors_visits.status.##session.lang##}}
@@ -253,6 +253,25 @@
 
             <div class="col3">
               <i-image view ng-model="doctors_visits.image_url"></i-image>
+              <div
+              class="row center"
+              x-permissions="doctors_visits_update || doctors_visits_manage"
+            >
+              <i-button
+                ng-hide="doctors_visits.$view"
+                x-permissions="doctors_visits_update || doctors_visits_manage"
+                type="edit"
+                label="##word.edit##"
+                ng-click="displayUpdateDoctorsVisits(doctors_visits)"
+              ></i-button>
+              <i-button
+                ng-hide="doctors_visits.$view"
+                x-permissions="doctors_visits_delete || doctors_visits_manage"
+                type="delete"
+                label="##word.delete##"
+                ng-click="displayDeleteDoctorsVisits(doctors_visits)"
+              ></i-button>
+            </div>
             </div>
           </div>
 
@@ -351,28 +370,7 @@
           <br />
         </fieldset>
 
-        <div
-          class="row"
-          x-permissions="doctors_visits_update || doctors_visits_manage"
-        >
-          <div class="col5"></div>
-          <i-button
-            ng-hide="doctors_visits.$view"
-            x-permissions="doctors_visits_update || doctors_visits_manage"
-            class="col1"
-            type="edit"
-            label="##word.edit##"
-            ng-click="displayUpdateDoctorsVisits(doctors_visits)"
-          ></i-button>
-          <i-button
-            ng-hide="doctors_visits.$view"
-            x-permissions="doctors_visits_delete || doctors_visits_manage"
-            class="col1"
-            type="delete"
-            label="##word.delete##"
-            ng-click="displayDeleteDoctorsVisits(doctors_visits)"
-          ></i-button>
-        </div>
+       
       </div>
 
       <div id="medicinesInformation" class="tab-content">
@@ -589,52 +587,59 @@
       <div id="examinationBeforeDetectionInformation" class="tab-content">
         <fieldset>
           <div class="row">
-            <div class="col9">
+            <div class="col10">
               <table class="table hover bold">
                 <tr>
-                  <td class="title">##word.blood_pressure##</td>
+                  <td class="title indigoD">##word.blood_pressure##</td>
                   <td class="center">
                     {{doctors_visits.ex_before_detection.blood_pressure}}
                   </td>
                 </tr>
 
                 <tr>
-                  <td class="title">##word.breathing##</td>
+                  <td class="title indigoD">##word.tall##</td>
+                  <td class="center">
+                    {{doctors_visits.ex_before_detection.tall}}
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="title indigoD">##word.breathing##</td>
                   <td class="center">
                     {{doctors_visits.ex_before_detection.breathing}}
                   </td>
                 </tr>
 
                 <tr>
-                  <td class="title">##word.heart_beats##</td>
+                  <td class="title indigoD">##word.heart_beats##</td>
                   <td class="center">
                     {{doctors_visits.ex_before_detection.heart_beats}}
                   </td>
                 </tr>
 
                 <tr>
-                  <td class="title">##word.body_temperature##</td>
+                  <td class="title indigoD">##word.body_temperature##</td>
                   <td class="center">
                     {{doctors_visits.ex_before_detection.body_temperature}}
                   </td>
                 </tr>
 
                 <tr>
-                  <td class="title">##word.Sugar##</td>
+                  <td class="title indigoD">##word.Sugar##</td>
                   <td class="center">
                     {{doctors_visits.ex_before_detection.Sugar}}
                   </td>
                 </tr>
 
                 <tr>
-                  <td class="title">##word.weight##</td>
+                  <td class="title indigoD">##word.weight##</td>
                   <td class="center">
                     {{doctors_visits.ex_before_detection.weight}}
                   </td>
                 </tr>
 
                 <tr>
-                  <td class="title">##word.previous_operations##</td>
+                  <td class="title indigoD">##word.previous_operations##</td>
                   <td class="center">
                     {{doctors_visits.ex_before_detection.previous_operations}}
                   </td>
@@ -648,17 +653,17 @@
       <div id="diagnosisInformation" class="tab-content">
         <fieldset>
           <div class="row">
-            <div class="col9">
+            <div class="col10">
               <table class="table hover bold">
                 <tr>
-                  <td class="title">##word.result_visit##</td>
+                  <td class="title indigoD">##word.result_visit##</td>
                   <td class="center">
                     {{doctors_visits.diagnosis.result_visit.##session.lang##}}
                   </td>
                 </tr>
 
                 <tr ng-show="doctors_visits.diagnosis.result_visit.id === 4">
-                  <td class="title">##word.transferred_department##</td>
+                  <td class="title indigoD">##word.transferred_department##</td>
                   <td class="center">
                     {{doctors_visits.diagnosis.transferred_department.specialty.name_##session.lang##}}
                     -
@@ -667,7 +672,7 @@
                 </tr>
 
                 <tr ng-show="doctors_visits.diagnosis.result_visit.id === 2">
-                  <td class="title">##word.next_counseling_date##</td>
+                  <td class="title indigoD">##word.next_counseling_date##</td>
                   <td class="brown center">
                     {{doctors_visits.diagnosis.counseling_date | date : 'dd - MM
                     - yyyy'}}
@@ -675,7 +680,7 @@
                 </tr>
 
                 <tr ng-show="doctors_visits.diagnosis.result_visit.id === 3">
-                  <td class="title">##word.next_counseling_re_detection##</td>
+                  <td class="title indigoD">##word.next_counseling_re_detection##</td>
                   <td class="brown center">
                     {{doctors_visits.diagnosis.counseling_re_detection | date :
                     'dd - MM - yyyy'}}
@@ -683,14 +688,14 @@
                 </tr>
 
                 <tr>
-                  <td class="title">##word.prescription_treatment##</td>
+                  <td class="title indigoD">##word.prescription_treatment##</td>
                   <td class="center lines_text">
                     {{doctors_visits.diagnosis.prescription_treatment}}
                   </td>
                 </tr>
 
                 <tr>
-                  <td class="title">##word.special_notes##</td>
+                  <td class="title indigoD">##word.special_notes##</td>
                   <td class="center lines_text">
                     {{doctors_visits.diagnosis.special_notes}}
                   </td>

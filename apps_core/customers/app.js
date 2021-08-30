@@ -440,14 +440,23 @@ module.exports = function init(site) {
         ar: "إدارة العملاء للمستخدم",
         permissions: ["customers_update", "customers_view", "customers_ui"],
       },
-      {
+     
+    ];
+
+   
+    if (
+      site.feature("pos") ||
+      site.feature("restaurant") ||
+      site.feature("erp")
+    ) {
+      user.roles.push({
         module_name: "public",
         name: "order_customer_user",
         en: "Order Customers User",
         ar: "طلبات العملاء للمستخدمين",
         permissions: ["order_customer_ui", "order_customer_delete_items"],
-      },
-    ];
+      });
+    }
 
     if (site.feature("club")) {
       user.roles.push({
@@ -458,17 +467,39 @@ module.exports = function init(site) {
         permissions: ["report_info_ui"],
       });
     }
+
+    if (site.feature("medical")) {
+      user.roles.push({
+        module_name: "public",
+        name: "patient_file_user",
+        en: "Patient file User",
+        ar: "ملف المريض للمستخدم",
+        permissions: ["patients_files_ui", "patients_files_view"],
+      });
+    }
+
     if (site.feature("school")) {
+      if (customers_doc.school_grade)
+        user.school_grade_id = customers_doc.school_grade.id;
       if (customers_doc.students_year)
         user.students_year_id = customers_doc.students_year.id;
 
-      user.roles.push({
-        module_name: "public",
-        name: "exams_customer",
-        en: "Exams Students",
-        ar: "إمتحانات الطلاب",
-        permissions: ["exams_ui", "exams_view"],
-      });
+      user.roles.push(
+        {
+          module_name: "public",
+          name: "exams_customer",
+          en: "Exams Students",
+          ar: "إمتحانات الطلاب",
+          permissions: ["exams_ui", "exams_view"],
+        },
+        {
+          module_name: "public",
+          name: "libraries_student",
+          en: "Libraries Student",
+          ar: "مكتبة الطلاب",
+          permissions: ["libraries_ui", "libraries_view"],
+        }
+      );
     }
 
     if (customers_doc.username && customers_doc.password) {

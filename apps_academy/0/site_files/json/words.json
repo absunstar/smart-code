@@ -230,11 +230,7 @@
         "en": "Student indentfy",
         "ar": "نوع الطالب"
     },
-    {
-        "name": "customers_personal_information",
-        "en": "Personal Information",
-        "ar": "البيانات الشخصية"
-    },
+
     {
         "name": "customers_basic_information",
         "en": "Basic Information",

@@ -1286,6 +1286,11 @@
         "ar": "إسم الشركة"
     },
     {
+        "name": "personal_information",
+        "en": "Personal Information",
+        "ar": "البيانات الشخصية"
+    },
+    {
         "name": "email",
         "en": "Email",
         "ar": "البريد الإلكترونى"

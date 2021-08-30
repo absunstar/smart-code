@@ -1,6 +1,6 @@
 [
     {"name" : "scans_requests_informations" , "en" : "Scans Requests Informations" , "ar" : "بيانات طلب الأشعة"},
-    {"name" : "scans_requests" , "en" : "Scans LAB" , "ar" : "معمل الأشعة"},
+    {"name" : "scans_requests" , "en" : "Scans Center" , "ar" : "مركز الأشعة"},
     {"name" : "scans_request" , "en" : "Scans Request" , "ar" : "طلب أشعة"},
     {"name" : "scans_requests_menus" , "en" : "Scans Requests Menu" , "ar" : "قائمة طلب الأشعة"},
     {"name" : "scans_requests_code" , "en" : "Scans Requests Code" , "ar" : "كود طلب الأشعة"},

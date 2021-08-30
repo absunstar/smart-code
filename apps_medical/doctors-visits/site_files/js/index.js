@@ -19,6 +19,7 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
       image_url: "/images/doctors_visits.png",
       active: true,
       date: new Date(),
+      ex_before_detection: {},
       status: $scope.statusList[0],
       scans_list: [{ active: true }],
       analysis_list: [{ active: true }],
@@ -1174,7 +1175,7 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
     }
   };
 
-  $scope.enter = function (doctors_visits) {
+  $scope.notesBefore = function (doctors_visits) {
     if (doctors_visits.status.id == 2) {
       doctors_visits.status = $scope.statusList[2];
       $scope.doctors_visits = doctors_visits;
@@ -1204,8 +1205,9 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
       doctors_visits.status = $scope.statusList[3];
       $scope.doctors_visits = doctors_visits;
       $scope.updateStatus();
-      site.showModal("#doctorsVisitsViewModal");
-      document.querySelector("#doctorsVisitsViewModal .tab-link").click();
+      site.showModal("#doctorsVisitsUpdateModal");
+
+      document.querySelector("#doctorsVisitsUpdateModal .tab-link").click();
     }
   };
 

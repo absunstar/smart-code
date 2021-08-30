@@ -1,0 +1,87 @@
+<div id="examinationBeforeDetection" class="modal">
+  <div class="modal-content small">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>##word.examination_before_detection##</h2>
+    </div>
+    <div class="modal-body">
+      <form>
+        <fieldset>
+          <div class="row">
+            <div class="row">
+              <i-control
+                class="col4"
+                label="##word.blood_pressure##"
+                ng-model="doctors_visits.ex_before_detection.blood_pressure"
+              ></i-control>
+            </div>
+
+            <div class="row">
+              <i-control
+                class="col4"
+                label="##word.breathing##"
+                ng-model="doctors_visits.ex_before_detection.breathing"
+              ></i-control>
+            </div>
+
+            <div class="row">
+              <i-control
+                class="col4"
+                label="##word.tall##"
+                ng-model="doctors_visits.ex_before_detection.tall"
+              ></i-control>
+            </div>
+
+            <div class="row">
+              <i-control
+                class="col4"
+                label="##word.heart_beats##"
+                ng-model="doctors_visits.ex_before_detection.heart_beats"
+              ></i-control>
+            </div>
+
+            <div class="row">
+              <i-control
+                class="col4"
+                label="##word.body_temperature##"
+                ng-model="doctors_visits.ex_before_detection.body_temperature"
+              ></i-control>
+            </div>
+
+            <div class="row">
+              <i-control
+                class="col4"
+                label="##word.Sugar##"
+                ng-model="doctors_visits.ex_before_detection.Sugar"
+              ></i-control>
+            </div>
+
+            <div class="row">
+              <i-control
+                class="col4"
+                label="##word.weight##"
+                ng-model="doctors_visits.ex_before_detection.weight"
+              ></i-control>
+            </div>
+
+            <div class="row">
+              <i-control
+                class="col7"
+                label="##word.previous_operations##"
+                ng-model="doctors_visits.ex_before_detection.previous_operations"
+              ></i-control>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+    <h2 class="error center bold">{{error}}</h2>
+    <div class="modal-footer center">
+      <i-button
+        type="close"
+        label=" ##word.close##"
+        onclick="site.hideModal('#examinationBeforeDetection')"
+      ></i-button>
+    </div>
+  </div>
+</div>
