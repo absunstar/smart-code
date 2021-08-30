@@ -3,24 +3,24 @@ module.exports = function init(site) {
   let collection_name = 'doctors_visits'
 
   let source = {
-    en: 'Doctors Visits System',
-    ar: 'نظام زيارات الأطباء'
+    en: 'Examination book System',
+    ar: 'نظام حجز كشف'
   }
 
   let image_url = '/images/doctors_visits.png'
   let add_message = {
-    en: 'New Doctors Visits Added',
-    ar: 'تم إضافة زيارة طبيب جديدة'
+    en: 'New Examination book Added',
+    ar: 'تم إضافة حجز كشف جديد'
   }
 
   let update_message = {
-    en: ' Doctors Visits Updated',
-    ar: 'تم تعديل زيارة طبيب'
+    en: 'Examination book Updated',
+    ar: 'تم تعديل حجز كشف'
   }
 
   let delete_message = {
-    en: ' Doctors Visits Deleted',
-    ar: 'تم حذف زيارة طبيب '
+    en: 'Examination book Deleted',
+    ar: 'تم حذف حجز كشف '
   }
 
   site.on('mongodb after insert', function (result) {

@@ -1,12 +1,12 @@
 [
     {
         "name": "report_doctors_visits_name",
-        "en": "Report Doctors Visits",
-        "ar": "تقرير زيارات الأطباء"
+        "en": "Report Examination book",
+        "ar": "تقرير حجز كشف"
     },
     {
         "name": "report_doctors_visits",
-        "en": "Report Doctors Visits",
-        "ar": "تقرير زيارات الأطباء"
+        "en": "Report Examination book",
+        "ar": "تقرير حجز كشف"
     }
 ]

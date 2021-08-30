@@ -9,11 +9,11 @@
     },
     {
         "feature": "medical",
-        "title_ar": "زيارات الأطباء",
-        "title_en": "Doctors Visits",
+        "title_ar": "حجز كشف",
+        "title_en": "Examination book",
         "image_url": "/images/doctors_visits.png",
-        "description_ar": "يتم إختيار تاريخ الزيارة المطلوبة و إسم المريض ويتم إختيار العيادة أو الطبيب و يتم تحديد الميعاد المناسب و يتم إدراج ملاحظات الطبيب و الروشتة الخاصة بالمريض و المطلوب عمله بعد الكشف ليتم إستخدامها فيما بعد",
-        "description_en": "The date of the required visit and the name of the patient are chosen, the clinic or the doctor is chosen, the appropriate date is determined, and the doctor’s notes and the patient’s prescription are included, which is required to be done after the examination to be used later."
+        "description_ar": "يتم إختيار تاريخ الحجز المطلوب و إسم المريض ويتم إختيار العيادة أو الطبيب و يتم تحديد الميعاد المناسب و يتم إدراج ملاحظات الطبيب و الروشتة الخاصة بالمريض و المطلوب عمله بعد الكشف ليتم إستخدامها فيما بعد",
+        "description_en": "The date of the required Examination and the name of the patient are chosen, the clinic or the doctor is chosen, the appropriate date is determined, and the doctor’s notes and the patient’s prescription are included, which is required to be done after the examination to be used later."
     },
     {
         "feature": "medical",
@@ -60,8 +60,8 @@
         "title_ar": "العيادات",
         "title_en": "Clinics",
         "image_url": "/images/clinic.png",
-        "description_ar": "يتم من خلالها إضافة العيادات و تحديد إسم العيادة و التخصص و أسعار الزيارات و مواعيد العمل و الأطباء و التمريض و الأجازات الخاصة بالعيادة لإستخدامها فيما بعد",
-        "description_en": "Through which the clinics are added, the names of the clinics is determined, the specialty, the prices of the visits, the work hours, the doctors, the nursing, and the vacations for the clinic for later use."
+        "description_ar": "يتم من خلالها إضافة العيادات و تحديد إسم العيادة و التخصص و أسعار الحجوزات و مواعيد العمل و الأطباء و التمريض و الأجازات الخاصة بالعيادة لإستخدامها فيما بعد",
+        "description_en": "Through which the clinics are added, the names of the clinics is determined, the specialty, the prices of the Examinations, the work hours, the doctors, the nursing, and the vacations for the clinic for later use."
     },
     {
         "feature": "medical",

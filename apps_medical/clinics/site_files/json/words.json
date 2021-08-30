@@ -20,17 +20,17 @@
     },
     {
         "name": "external_visit",
-        "en": "External Visit",
-        "ar": "زيارة خارجية"
+        "en": "External Examination",
+        "ar": "كشف خارجي"
     },
     {
         "name": "urgent_visit",
-        "en": "Urgent visit",
-        "ar": "زيارة مستعجلة"
+        "en": "Urgent Examination",
+        "ar": "كشف مستعجل"
     },
     {
         "name": "increase_urgent_visit",
-        "en": "Urgent Visit",
+        "en": "Urgent increase",
         "ar": "الزيادة المستعجلة"
     },
     {
