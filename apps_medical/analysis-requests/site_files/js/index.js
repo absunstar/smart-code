@@ -516,10 +516,11 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
         _analysis.person_delivery = {
           ...$scope.analysis_requests.$person_delivery,
         };
-
-        _analysis.delivery_data = {
-          ...$scope.analysis.delivery_data,
-        };
+        if ($scope.analysis) {
+          _analysis.delivery_data = {
+            ...$scope.analysis.delivery_data,
+          };
+        }
       }
     });
   };
@@ -572,7 +573,6 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
       $scope.analysis_requests.customer &&
       $scope.analysis_requests.customer.id
     ) {
-
       if ($scope.analysis_requests.customer.child && analys.child) {
         obj.from = analys.child.from;
         obj.to = analys.child.to;

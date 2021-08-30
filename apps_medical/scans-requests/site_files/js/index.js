@@ -500,14 +500,9 @@ app.controller("scans_requests", function ($scope, $http, $timeout) {
   $scope.setPersonDelivery = function () {
     $scope.scans_requests.scans_list.forEach((_scans) => {
       if (!_scans.person_delivery) {
-        _scans.person_delivery = Object.assign(
-          {},
-          $scope.scans_requests.$person_delivery
-        );
-        _scans.delivery_data = Object.assign(
-          {},
-          $scope.scans_requests.$delivery_data
-        );
+        _scans.person_delivery = { ...$scope.scans_requests.$person_delivery };
+
+        _scans.delivery_data = { ...$scope.scans_requests.$delivery_data };
       }
     });
   };
