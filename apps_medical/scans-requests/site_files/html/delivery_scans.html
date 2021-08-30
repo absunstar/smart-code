@@ -1,144 +1,195 @@
 <div id="deliveryScansModal" class="modal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <span class="close">&times;</span>
-            <h2>
-                ##word.delivery_scans## <i class="fa fa-plus"></i>
-            </h2>
-        </div>
-        <div class="modal-body">
-            <div class="row">
-                <fieldset>
-
-                    <br>
-                    <br>
-
-                    <div class="row">
-                        <i-checkbox class="col2" label="##word.delivery_all##"
-                            ng-model="scans_requests.$delivery_all">
-                        </i-checkbox>
-
-                        <i-list ng-show="scans_requests.$delivery_all" class="col3" label="##word.person_delivery##"
-                            ng-model="scans_requests.$person_delivery" display="##session.lang##"
-                            items="delivery_person_list" ng-search="_search.$p_searching">
-                        </i-list>
-
-                        <i-button type="view"
-                            ng-show="scans_requests.$delivery_all && scans_requests.$person_delivery.name === 'another_person'"
-                            onclick="site.showModal('#deliveryDataAllModal')" label="##word.delivery_data##">
-                        </i-button>
-
-                        <i-button type="add" ng-show="scans_requests.$delivery_all" ng-click="setPersonDelivery()"
-                            label="##word.circulate##">
-                        </i-button>
-
-                    </div>
-
-                    <br>
-                    <br>
-
-                    <table class="table loaded center hover bold">
-
-                        <tr>
-                            <th>##word.scans_name##</th>
-                            <th>##word.price##</th>
-                            <th> ##word.notes_before_scans##</th>
-                            <th> ##word.notes_after_scans## </th>
-                            <th> ##word.person_delivery## </th>
-                        </tr>
-
-                        <tr ng-show="l.notes_after_scans" ng-repeat="l in scans_requests.scans_list">
-
-                            <td class="center">{{l.name_##session.lang##}}</td>
-
-                            <td class="center green">{{l.price}}</td>
-
-                            <td class="center lines_text">
-                                {{l.notes_before_scans}}
-                            </td>
-
-                            <td class="center lines_text">
-                                {{l.notes_after_scans}}
-                            </td>
-
-                            <td>
-                                <i-list ng-model="l.person_delivery" display="##session.lang##"
-                                    items="delivery_person_list" ng-search="_search.$p_searching">
-                                </i-list>
-
-                                <i-button type="view" ng-show="l.person_delivery.name === 'another_person'"
-                                    ng-click="showPersonDelivery(l)" label="##word.delivery_data##">
-                                </i-button>
-                            </td>
-
-                        </tr>
-                    </table>
-                </fieldset>
-
-            </div>
-
-            <h2 class="error"> {{error}} </h2>
-            <div class="modal-footer center">
-
-                <i-button type="save" label="##word.save##" ng-click="updateScansRequests(scans_requests)">
-                </i-button>
-                <i-button type="close" onclick="site.hideModal('#deliveryScansModal')" label="##word.close##">
-                </i-button>
-            </div>
-        </div>
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>##word.delivery_scans## <i class="fa fa-plus"></i></h2>
     </div>
+    <div class="modal-body">
+      <div class="row">
+        <fieldset>
+          <br />
+          <br />
+
+          <div class="row">
+            <i-checkbox
+              class="col2"
+              label="##word.delivery_all##"
+              ng-model="scans_requests.$delivery_all"
+            >
+            </i-checkbox>
+
+            <i-list
+              ng-show="scans_requests.$delivery_all"
+              class="col3"
+              label="##word.person_delivery##"
+              ng-model="scans_requests.$person_delivery"
+              display="##session.lang##"
+              items="delivery_person_list"
+              ng-search="_search.$p_searching"
+            >
+            </i-list>
+
+            <i-button
+              type="view"
+              ng-show="scans_requests.$delivery_all && scans_requests.$person_delivery.name === 'another_person'"
+              onclick="site.showModal('#deliveryDataAllModal')"
+              label="##word.delivery_data##"
+            >
+            </i-button>
+
+            <i-button
+              type="add"
+              ng-show="scans_requests.$delivery_all"
+              ng-click="setPersonDelivery()"
+              label="##word.circulate##"
+            >
+            </i-button>
+          </div>
+
+          <br />
+          <br />
+
+          <table class="table loaded center hover bold">
+            <tr>
+              <th>##word.scans_name##</th>
+              <th>##word.price##</th>
+              <th>##word.notes_before_scans##</th>
+              <th>##word.notes_after_scans##</th>
+              <th>##word.person_delivery##</th>
+            </tr>
+
+            <tr
+              ng-show="l.notes_after_scans"
+              ng-repeat="l in scans_requests.scans_list"
+            >
+              <td class="center">{{l.name_##session.lang##}}</td>
+
+              <td class="center green">{{l.price}}</td>
+
+              <td class="center lines_text">{{l.notes_before_scans}}</td>
+
+              <td class="center lines_text">{{l.notes_after_scans}}</td>
+
+              <td>
+                <i-list
+                  ng-model="l.person_delivery"
+                  display="##session.lang##"
+                  items="delivery_person_list"
+                  ng-search="_search.$p_searching"
+                >
+                </i-list>
+
+                <i-button
+                  type="view"
+                  ng-show="l.person_delivery.name === 'another_person'"
+                  ng-click="showPersonDelivery(l)"
+                  label="##word.delivery_data##"
+                >
+                </i-button>
+              </td>
+            </tr>
+          </table>
+        </fieldset>
+      </div>
+
+      <h2 class="error">{{error}}</h2>
+      <div class="modal-footer center">
+        <i-button
+          type="save"
+          label="##word.save##"
+          ng-click="updateScansRequests(scans_requests)"
+        >
+        </i-button>
+        <i-button
+          type="close"
+          onclick="site.hideModal('#deliveryScansModal')"
+          label="##word.close##"
+        >
+        </i-button>
+      </div>
+    </div>
+  </div>
 </div>
 
-
-
-
 <div id="deliveryDataAllModal" class="modal small">
-
-    <div class="modal-content">
-        <div class="modal-header">
-            <span class="close">&times;</span>
-        </div>
-
-        <div class="modal-body">
-            <form>
-
-                <div class="row">
-                    <i-control class="col4" label="##word.name##" ng-model="scans_requests.$delivery_data.name">
-                    </i-control>
-
-                    <i-control class="col3" label="##word.customers_phone##"
-                        ng-model="scans_requests.$delivery_data.phone">
-                    </i-control>
-
-                    <i-control class="col3" label="##word.customers_mobile##"
-                        ng-model="scans_requests.$delivery_data.mobile">
-                    </i-control>
-
-                </div>
-
-                <div class="row">
-                    <i-list class="col3" label="##word.gov##" ng-model="scans_requests.$delivery_data.gov"
-                        items="govList" display="name_##session.lang##" ng-change="getCityList(scans_requests.$delivery_data.gov)"
-                        ng-search="_search.$govNameContact">
-                    </i-list>
-
-                    <i-list class="col4" label="##word.city##" ng-model="scans_requests.$delivery_data.city"
-                        items="cityList" ng-change="getAreaList(scans_requests.$delivery_data.city)" display="name_##session.lang##"
-                        ng-search="_search.$scans_requests.$delivery_data.$city_search"></i-list>
-                    <i-list class="col4" label="##word.area##" ng-model="scans_requests.$delivery_data.area"
-                        items="areaList" display="name_##session.lang##"
-                        ng-search="_search.$scans_requests.$delivery_data.$area_search">
-                    </i-list>
-                    <i-control class="col6" label="##word.address##"
-                        ng-model="scans_requests.$delivery_data.address">
-                    </i-control>
-                </div>
-            </form>
-        </div>
-
-        <div class="modal-footer center">
-            <i-button type="save" label="##word.save##" onclick="site.hideModal('#deliveryDataAllModal')"> </i-button>
-        </div>
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>##word.delivery_data## <i class="fa fa-plus"></i></h2>
     </div>
 
+    <div class="modal-body">
+      <form>
+        <div class="row">
+          <i-control
+            class="col4"
+            label="##word.name##"
+            ng-model="scans_requests.$delivery_data.name"
+          >
+          </i-control>
+
+          <i-control
+            class="col3"
+            label="##word.customers_phone##"
+            ng-model="scans_requests.$delivery_data.phone"
+          >
+          </i-control>
+
+          <i-control
+            class="col3"
+            label="##word.customers_mobile##"
+            ng-model="scans_requests.$delivery_data.mobile"
+          >
+          </i-control>
+        </div>
+
+        <div class="row">
+          <i-list
+            class="col3"
+            label="##word.gov##"
+            ng-model="scans_requests.$delivery_data.gov"
+            items="govList"
+            display="name_##session.lang##"
+            ng-change="getCityList(scans_requests.$delivery_data.gov)"
+            ng-search="_search.$govNameContact"
+          >
+          </i-list>
+
+          <i-list
+            class="col4"
+            label="##word.city##"
+            ng-model="scans_requests.$delivery_data.city"
+            items="cityList"
+            ng-change="getAreaList(scans_requests.$delivery_data.city)"
+            display="name_##session.lang##"
+            ng-search="_search.$scans_requests.$delivery_data.$city_search"
+          ></i-list>
+          <i-list
+            class="col4"
+            label="##word.area##"
+            ng-model="scans_requests.$delivery_data.area"
+            items="areaList"
+            display="name_##session.lang##"
+            ng-search="_search.$scans_requests.$delivery_data.$area_search"
+          >
+          </i-list>
+          <i-control
+            class="col6"
+            label="##word.address##"
+            ng-model="scans_requests.$delivery_data.address"
+          >
+          </i-control>
+        </div>
+      </form>
+    </div>
+
+    <div class="modal-footer center">
+      <i-button
+        type="save"
+        label="##word.save##"
+        onclick="site.hideModal('#deliveryDataAllModal')"
+      >
+      </i-button>
+    </div>
+  </div>
 </div>

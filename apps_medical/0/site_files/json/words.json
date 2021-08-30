@@ -5,6 +5,11 @@
         "ar": "سمـارت كـود"
     },
     {
+        "name": "customer_register",
+        "en": "New Customer",
+        "ar": "عميل جديد"
+    },
+    {
         "name": "brand_tag",
         "en": "Management of hospitals and clinics",
         "ar": "إدارة المستشفيات و العيادات"

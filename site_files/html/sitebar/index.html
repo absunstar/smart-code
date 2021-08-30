@@ -20,7 +20,7 @@
       <a x-features="login" href="#" onclick="event.stopPropagation(); $('.user-menu').toggle()"> <img
           src="##user.profile.image_url##" alt="" /> </a>
 
-      <a x-features="!login" id="btn_register" ng-click="customerRegister()"> ##word.customer_register## </a>
+      <a x-features="!login && pos " id="btn_register" ng-click="customerRegister()"> ##word.customer_register## </a>
 
       <a x-features="!login" id="btn_login" ng-click="login()"> ##word.security_login## </a>
     </div>
