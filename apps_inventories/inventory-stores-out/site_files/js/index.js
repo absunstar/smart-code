@@ -183,10 +183,8 @@ app.controller("stores_out", function ($scope, $http, $timeout, $interval) {
               obj.Paid_from_customer - obj.amount_currency;
           }
           obj.remain_from_customer = site.toNumber(obj.remain_from_customer);
-
         } else {
           obj.paid_up = obj.amount_currency;
-
         }
       }
     }, 250);
@@ -2220,9 +2218,9 @@ app.controller("stores_out", function ($scope, $http, $timeout, $interval) {
 
           s_o.items = [];
           $scope.store_out.items.forEach((itm, i) => {
+            itm.$index = i + 1;
             if (i < (i_inv + 1) * 7 && !itm.$done_inv) {
               itm.$done_inv = true;
-              itm.$index = i + 1;
               s_o.items.push(itm);
             }
           });
@@ -2230,6 +2228,9 @@ app.controller("stores_out", function ($scope, $http, $timeout, $interval) {
           $scope.invList.push(s_o);
         }
       } else {
+        $scope.store_out.items.forEach((_item,i) => {
+          _item.$index = i + 1;
+        });
         $scope.invList = [{ ...$scope.store_out }];
       }
       $timeout(() => {
@@ -2247,7 +2248,7 @@ app.controller("stores_out", function ($scope, $http, $timeout, $interval) {
     $scope.busy = false;
     $timeout(() => {
       $("#storeOutDetails").addClass("hidden");
-    }, 5000);
+    }, 8000);
   };
 
   $scope.getCustomerGroupList = function () {

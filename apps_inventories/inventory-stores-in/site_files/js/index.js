@@ -230,9 +230,9 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
 
           s_o.items = [];
           $scope.store_in.items.forEach((itm, i) => {
+            itm.$index = i + 1;
             if (i < (i_inv + 1) * 7 && !itm.$done_inv) {
               itm.$done_inv = true;
-              itm.$index = i + 1;
               s_o.items.push(itm);
             }
           });
@@ -240,26 +240,27 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
           $scope.invList.push(s_o);
         }
       } else {
+        $scope.store_out.items.forEach((_item, i) => {
+          _item.$index = i + 1;
+        });
         $scope.invList = [{ ...$scope.store_in }];
       }
       $timeout(() => {
-      site.print({
-        selector: '#storeInDetails',
-        ip: "127.0.0.1",
-        port: "60080",
-        printer:
-          $scope.defaultSettings.printer_program.a4_printer.ip.name.trim(),
-      });
-    }, 2000);
-  
-
+        site.print({
+          selector: "#storeInDetails",
+          ip: "127.0.0.1",
+          port: "60080",
+          printer:
+            $scope.defaultSettings.printer_program.a4_printer.ip.name.trim(),
+        });
+      }, 2000);
     } else {
       $scope.error = "##word.a4_printer_must_select##";
     }
     $scope.busy = false;
-     $timeout(() => {
+    $timeout(() => {
       $("#storeInDetails").addClass("hidden");
-    }, 5000);
+    }, 8000);
   };
 
   $scope.addTax = function () {
@@ -974,7 +975,9 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
               add_sizes: _size.add_sizes,
             };
             $scope.store_in.items.push(itmObj);
-            $scope.calcSize($scope.store_in.items[$scope.store_in.items.length - 1]);
+            $scope.calcSize(
+              $scope.store_in.items[$scope.store_in.items.length - 1]
+            );
           }
         });
       $scope.calc($scope.store_in);
