@@ -212,24 +212,25 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
         $scope.category_item.main_unit = $scope.unitsList.find((_unit) => {
           return _unit.id === $scope.defaultSettings.inventory.unit.id;
         });
-
-        $scope.category_item.units_list = [
-          {
-            id: $scope.category_item.main_unit.id,
-            name_ar: $scope.category_item.main_unit.name_ar,
-            name_en: $scope.category_item.main_unit.name_en,
-            convert: 1,
-            start_count: 0,
-            cost: 0,
-            price: 0,
-            average_cost: 0,
-            discount: {
-              value: 0,
-              max: 0,
-              type: "number",
+        if ($scope.category_item.main_unit) {
+          $scope.category_item.units_list = [
+            {
+              id: $scope.category_item.main_unit.id,
+              name_ar: $scope.category_item.main_unit.name_ar,
+              name_en: $scope.category_item.main_unit.name_en,
+              convert: 1,
+              start_count: 0,
+              cost: 0,
+              price: 0,
+              average_cost: 0,
+              discount: {
+                value: 0,
+                max: 0,
+                type: "number",
+              },
             },
-          },
-        ];
+          ];
+        }
       }
     }
     site.showModal("#addCategoryItemModal");
@@ -557,10 +558,10 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     $scope.size_balance.kitchen_branch_list = [];
     $scope.branch_list.forEach((_b) => {
       $scope.size_balance.kitchen_branch_list.push({
-        name_ar:_b.branch.name_ar,
-        name_en:_b.branch.name_en,
-        code:_b.branch.code,
-      })
+        name_ar: _b.branch.name_ar,
+        name_en: _b.branch.name_en,
+        code: _b.branch.code,
+      });
     });
 
     site.showModal("#kitchenSetModal");

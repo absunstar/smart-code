@@ -8,6 +8,32 @@
       <form>
         <fieldset>
           <div class="row">
+
+            <div class="row">
+              <i-control
+                class="col4"
+                label="##word.weight##"
+                ng-model="doctors_visits.ex_before_detection.weight"
+              ></i-control>
+            </div>
+
+            <div class="row">
+              <i-control
+                class="col4"
+                label="##word.tall##"
+                ng-model="doctors_visits.ex_before_detection.tall"
+              ></i-control>
+            </div>
+
+            <div class="row">
+              <i-control
+                class="col4"
+                label="##word.body_temperature##"
+                ng-model="doctors_visits.ex_before_detection.body_temperature"
+              ></i-control>
+            </div>
+
+
             <div class="row">
               <i-control
                 class="col4"
@@ -24,13 +50,7 @@
               ></i-control>
             </div>
 
-            <div class="row">
-              <i-control
-                class="col4"
-                label="##word.tall##"
-                ng-model="doctors_visits.ex_before_detection.tall"
-              ></i-control>
-            </div>
+      
 
             <div class="row">
               <i-control
@@ -40,14 +60,7 @@
               ></i-control>
             </div>
 
-            <div class="row">
-              <i-control
-                class="col4"
-                label="##word.body_temperature##"
-                ng-model="doctors_visits.ex_before_detection.body_temperature"
-              ></i-control>
-            </div>
-
+          
             <div class="row">
               <i-control
                 class="col4"
@@ -58,19 +71,20 @@
 
             <div class="row">
               <i-control
-                class="col4"
-                label="##word.weight##"
-                ng-model="doctors_visits.ex_before_detection.weight"
-              ></i-control>
-            </div>
-
-            <div class="row">
-              <i-control
                 class="col7"
                 label="##word.previous_operations##"
                 ng-model="doctors_visits.ex_before_detection.previous_operations"
               ></i-control>
             </div>
+
+            <div class="row">
+              <i-textarea
+                class="col7"
+                label="##word.notes##"
+                ng-model="doctors_visits.ex_before_detection.notes"
+              ></i-textarea>
+            </div>
+            
           </div>
         </fieldset>
       </form>

@@ -2,7 +2,6 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
   $scope._search = {};
 
   $scope.doctors_visits = {};
-  $scope.search_linic = {};
 
   $scope.displayAddDoctorsVisits = function () {
     $scope.error = "";
@@ -14,6 +13,7 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
     $scope.spicialty = false;
     $scope.doctor = false;
     $scope.clinicBookList = [];
+    $scope.search_linic = {};
 
     $scope.doctors_visits = {
       image_url: "/images/doctors_visits.png",
@@ -467,7 +467,6 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
 
   $scope.getClinicBookList = function (search_linic) {
     $scope.error = "";
-
     const v = site.validated("#doctorsVisitsAddModal");
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
@@ -499,6 +498,7 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
         if (response.data.done && response.data.list.length > 0) {
           $scope.clinicBookList = response.data.list;
         }
+        $scope.search_linic = {};
       },
       function (err) {
         $scope.busy = false;
