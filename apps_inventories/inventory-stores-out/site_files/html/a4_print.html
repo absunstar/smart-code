@@ -48,9 +48,7 @@
         <tr>
           <td>
             <b class="indigoD txt16"> التاريخ / Date :</b>
-            <b class="center txt16"
-              >{{st_o.date |date:"dd - MM - yyyy" }}
-            </b>
+            <b class="center txt16">{{st_o.date |date:"dd - MM - yyyy" }} </b>
           </td>
 
           <td class="center">
@@ -158,31 +156,12 @@
     <div class="row">
       <table class="table center bold hover details">
         <tr>
-          <th class="light_gray w50 txt16">##word.serial##</th>
-
-          <th class="light_gray w150 txt16">
-            <p>كود الصنف</p>
-            <p>Item Code</p>
-          </th>
-
-          <th class="light_gray w250 txt16">
-            <p>إسم الصنف</p>
-            <p>Item Name</p>
-          </th>
-
-          <th class="light_gray w50 txt16">
-            <p>الوحدة</p>
-            <p>Unit</p>
-          </th>
-
-          <th class="light_gray w50 txt16">
-            <p>الكمية</p>
-            <p>Qty.</p>
-          </th>
-
-          <th class="light_gray w50 txt16">
-            <p>سعر الوحدة</p>
-            <p>U.Price</p>
+          <th
+            class="light_gray w50 txt16"
+            x-permissions="stores_out_details_values || stores_out_manage"
+          >
+            <p>الإجمالي</p>
+            <p>Total</p>
           </th>
 
           <th
@@ -194,33 +173,47 @@
             <p>VAT</p>
           </th>
 
-          <th
-            class="light_gray w50 txt16"
-            x-permissions="stores_out_details_values || stores_out_manage"
-          >
-            <p>الإجمالي</p>
-            <p>Total</p>
+          <th class="light_gray w50 txt16">
+            <p>سعر الوحدة</p>
+            <p>U.Price</p>
           </th>
+
+          <th class="light_gray w50 txt16">
+            <p>الكمية</p>
+            <p>Qty.</p>
+          </th>
+
+          <th class="light_gray w50 txt16">
+            <p>الوحدة</p>
+            <p>Unit</p>
+          </th>
+          <th class="light_gray w250 txt16">
+            <p>إسم الصنف</p>
+            <p>Item Name</p>
+          </th>
+
+          <th class="light_gray w150 txt16">
+            <p>كود الصنف</p>
+            <p>Item Code</p>
+          </th>
+
+          <th class="light_gray w50 txt16">##word.serial##</th>
         </tr>
 
         <tr ng-repeat="itm in st_o.items">
-          <td class="center txt16">{{itm.$index}}</td>
-
-          <td class="center txt16 userPrint">{{itm.barcode}}</td>
-
-          <td class="center txt16">
-            <p ng-show="itm.add_sizes">{{itm.name_ar}} {{itm.size_ar}}</p>
-            <p ng-show="itm.add_sizes">{{itm.name_en}} {{itm.size_en}}</p>
-            <p ng-hide="itm.add_sizes">{{itm.size_ar}}</p>
-            <p ng-hide="itm.add_sizes">{{itm.size_en}}</p>
+          <td
+            class="center txt16"
+            x-permissions="stores_out_details_values || stores_out_manage"
+          >
+            {{itm.total}}
           </td>
 
-          <td class="center txt16">
-            {{itm.unit.name_ar}} {{itm.unit.name_en}}
+          <td
+            class="center txt16"
+            x-permissions="stores_out_details_values || stores_out_manage"
+          >
+            {{itm.total_v_a}}
           </td>
-
-          <td class="center txt16">{{itm.count}}</td>
-
           <td
             class="center txt16"
             x-permissions="stores_out_details_values || stores_out_manage"
@@ -232,20 +225,20 @@
               {{itm.discount.current}}
             </del>
           </td>
+          <td class="center txt16">{{itm.count}}</td>
 
-          <td
-            class="center txt16"
-            x-permissions="stores_out_details_values || stores_out_manage"
-          >
-            {{itm.total_v_a}}
+          <td class="center txt16">
+            {{itm.unit.name_ar}} {{itm.unit.name_en}}
           </td>
+          <td class="center txt16">
+            <p ng-show="itm.add_sizes">{{itm.name_ar}} {{itm.size_ar}}</p>
+            <p ng-show="itm.add_sizes">{{itm.name_en}} {{itm.size_en}}</p>
+            <p ng-hide="itm.add_sizes">{{itm.size_ar}}</p>
+            <p ng-hide="itm.add_sizes">{{itm.size_en}}</p>
+          </td>
+          <td class="center txt16 userPrint">{{itm.barcode}}</td>
 
-          <td
-            class="center txt16"
-            x-permissions="stores_out_details_values || stores_out_manage"
-          >
-            {{itm.total}}
-          </td>
+          <td class="center txt16">{{itm.$index}}</td>
         </tr>
       </table>
     </div>
