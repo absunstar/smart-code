@@ -299,6 +299,22 @@ app.controller("doctors", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.getDegreeList = function () {
+    $http({
+      method: "POST",
+      url: "/api/degree/all",
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.degreeList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.addFiles = function () {
     $scope.error = '';
     $scope.doctor.files_list = $scope.doctor.files_list || [];
@@ -347,6 +363,7 @@ app.controller("doctors", function ($scope, $http, $timeout) {
 
   $scope.getDoctorList();
   $scope.getGovList();
+  $scope.getDegreeList();
   $scope.getFilesTypesList();
   $scope.getNumberingAuto();
   $scope.getSpecialtyList();

@@ -43,9 +43,15 @@
                                 <i-control help-id="" class="col4" label="##word.nathional_id##"
                                     ng-model="doctor.nathional_id"></i-control>
 
-                                <i-list class="col5" v="r" label="##word.specialty##" ng-model="doctor.specialty"
+                                <i-list class="col4" v="r" label="##word.specialty##" ng-model="doctor.specialty"
                                     items="specialtyList" display="name_##session.lang##"
                                     ng-search="_search.$specialty_search"></i-list>
+
+                                <i-list class="col4" v="r" label="##word.degree##" ng-model="doctor.degree"
+                                    items="degreeList" display="##session.lang##"
+                                    ng-search="_search.$degree_search">
+                                </i-list>
+
                             </div>
                     </fieldset>
 

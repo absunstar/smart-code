@@ -44,6 +44,10 @@ module.exports = function init(site) {
     compress: true
   })
 
+  site.post({
+    name: "/api/degree/all",
+    path: __dirname + "/site_files/json/degree.json",
+  });
 
 
   site.post("/api/doctors/add", (req, res) => {

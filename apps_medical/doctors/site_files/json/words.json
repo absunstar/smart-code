@@ -19,6 +19,11 @@
         "ar": "تعديل طبيب "
     },
     {
+        "name": "degree",
+        "en": "Degree",
+        "ar": "الدرجة العلمية"
+    },
+    {
         "name": "doctors_details",
         "en": "Doctor Details",
         "ar": "تفاصيل الطبيب "

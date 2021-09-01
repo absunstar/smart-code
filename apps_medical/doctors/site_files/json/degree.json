@@ -1,0 +1,46 @@
+[{
+        "id": 1,
+        "name": "intern_ship",
+        "en": "Internship doctor",
+        "ar": "إمتياز"
+    },
+    {
+        "id": 2,
+        "name": "resident",
+        "en": "Resident doctor",
+        "ar": "طبيب مقيم"
+    },
+    {
+        "id": 3,
+        "name": "specialist",
+        "en": "Specialist",
+        "ar": "أخصائي"
+    }, {
+        "id": 4,
+        "name": "senior_specialist",
+        "en": "Senior specialist",
+        "ar": "أخصائي أول"
+    }, {
+        "id": 5,
+        "name": "consultant",
+        "en": "Consultant",
+        "ar": "إستشاري"
+    }, {
+        "id": 6,
+        "name": "senior_consultant",
+        "en": "Senior Consultant",
+        "ar": "استشاري أول"
+    },{
+        "id": 7,
+        "name": "phd_professor",
+        "en": "PhD/Professor",
+        "ar": "دكتوراه / بروفيسور"
+    }
+]
+
+
+
+
+
+
+
