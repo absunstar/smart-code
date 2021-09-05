@@ -378,7 +378,7 @@ module.exports = function init(site) {
             if (cbDoctorsVisits && cbDoctorsVisits.length > 0) {
               cbDoctorsVisits.forEach((_doctorsVisits) => {
                 response.cb.doctors_visits.total_value +=
-                  _doctorsVisits.total_value || 0;
+                  _doctorsVisits.doctor_visit_price || 0;
                 response.cb.doctors_visits.total_discount +=
                   _doctorsVisits.total_discount || 0;
                 response.cb.doctors_visits.net_value +=

@@ -25,8 +25,8 @@
     },
     {
         "name": "urgent_visit",
-        "en": "Urgent Examination",
-        "ar": "كشف مستعجل"
+        "en": "urgently",
+        "ar": "مستعجل"
     },
     {
         "name": "increase_urgent_visit",

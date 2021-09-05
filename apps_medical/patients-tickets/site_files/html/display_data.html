@@ -48,6 +48,7 @@
                       <th>##word.clinics##</th>
                       <th>##word.specialty##</th>
                       <th>##word.doctor_name##</th>
+                      <th>##word.visit_type##</th>
                       <th>##word.shift_name##</th>
                       <th>##word.work_day##</th>
                       <th>##word.work_from##</th>
@@ -60,6 +61,12 @@
                       <td>{{a.selected_specialty.name_##session.lang##}}</td>
                       <td class="title">
                         {{a.selected_doctor.name_##session.lang##}}
+                      </td>
+                      <td class="title">
+                        {{a.visit_type.##session.lang##}}
+                        <b ng-show="a.is_urgent_visit" class="red">
+                          (##word.urgent_visit##)</b
+                        >
                       </td>
                       <td>{{a.selected_shift.name_##session.lang##}}</td>
                       <td>{{a.selected_time.day.ar}}</td>
@@ -284,6 +291,12 @@
             <table class="table bold center hover">
               <tr>
                 <td class="white bg_card">##word.total_value##</td>
+                <td
+                  ng-show="ticket_data.doctors_visits.urgent_visit"
+                  class="white bg_card"
+                >
+                  ##word.urgent_visit##
+                </td>
                 <td class="white bg_card">##word.total_discount##</td>
                 <td class="white bg_card">##word.paid_require##</td>
                 <td class="white bg_card">##word.paid##</td>
@@ -291,6 +304,9 @@
               </tr>
               <tr>
                 <td class="blue">{{ticket_data.total_value}}</td>
+                <td ng-show="ticket_data.doctors_visits.urgent_visit">
+                  {{ticket_data.doctors_visits.urgent_visit}}
+                </td>
                 <td class="red">{{ticket_data.total_discount}}</td>
                 <td>{{ticket_data.net_value}}</td>
                 <td class="green">{{ticket_data.paid}}</td>
