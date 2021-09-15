@@ -49,16 +49,6 @@
                                 </tr>
 
                                 <tr>
-                                    <td class="title">##word.employee_degree##</td>
-                                    <td class="center">{{employee_list.degree.name_##session.lang##}}</td>
-                                </tr>
-
-                                <tr>
-                                    <td class="title">##word.salary##</td>
-                                    <td class="center green">{{employee_list.degree.salary}}</td>
-                                </tr>
-
-                                <tr>
                                     <td class="title">##word.status##</td>
                                     <td ng-show="employee_list.active == true" class="green center"> ##word.active##
                                     </td>
@@ -91,6 +81,36 @@
                                     </tr>
 
                                     <tr>
+                                        <td class="title">##word.job##</td>
+                                        <td class="center">{{employee_list.job.name_##session.lang##}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="title">##word.employee_degree##</td>
+                                        <td class="center">{{employee_list.degree.name_##session.lang##}}</td>
+                                    </tr>
+    
+                                    <tr>
+                                        <td class="title">##word.salary##</td>
+                                        <td class="center">{{employee_list.degree.salary}} $</td>
+                                    </tr>
+    
+                                    <tr>
+                                        <td class="title">##word.salary_differance##</td>
+                                        <td class="center">{{employee_list.salary_differance}} $</td>
+                                    </tr>
+    
+                                    <tr>
+                                        <td class="title">##word.tax_types_value##</td>
+                                        <td class="center red">{{employee_list.degree.tax}} %</td>
+                                    </tr>
+    
+                                    <tr>
+                                        <td class="title">##word.net_salary##</td>
+                                        <td class="center green">{{employee_list.net_salary}} $</td>
+                                    </tr>
+
+                                    <tr>
                                         <td class="title">##word.marital_status##</td>
                                         <td class="center">{{employee_list.marital_status.name_##session.lang##}}</td>
                                     </tr>
@@ -98,10 +118,7 @@
                                         <td class="title">##word.military_status##</td>
                                         <td class="center">{{employee_list.military_status.name_##session.lang##}}</td>
                                     </tr>
-                                    <tr>
-                                        <td class="title">##word.job##</td>
-                                        <td class="center">{{employee_list.job.name_##session.lang##}}</td>
-                                    </tr>
+                               
                                     <tr>
                                         <td class="title">##word.qualification##</td>
                                         <td class="center">{{employee_list.qualification}}</td>

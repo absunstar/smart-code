@@ -53,14 +53,22 @@
                     <fieldset>
                         <legend>##word.employee_info##</legend>
                         <div class="row">
-                            <i-date ng-model="employee_list.birth_date" class="col4" label="##word.birth_date##">
-                            </i-date>
+                            <i-date2 ng-model="employee_list.birth_date" class="col4" label="##word.birth_date##">
+                            </i-date2>
 
-                            <i-date ng-model="employee_list.employment_date" class="col4"
-                                label="##word.employment_date##"></i-date>
+                            <i-date2 ng-model="employee_list.employment_date" class="col4"
+                                label="##word.employment_date##"></i-date2>
                         </div>
 
                         <div class="row">
+
+                            <i-list help-id="" class="col3" items="jobsList" ng-search="_search.$employee.$jobs"
+                            display="name_##session.lang##"  label="##word.job##" ng-model="employee_list.job">
+                            </i-list>
+
+                            <i-list help-id="" ng-search="_search.$gender_search" class="col2" label="##word.gender##"
+                            ng-model="employee_list.gender" items="genderList" display="##session.lang##"></i-list>
+
                             <i-list ng-search="marital_status" class="col3" items="maritals_status"
                             display="name_##session.lang##" ng-model="employee_list.marital_status" label="##word.marital_status##">
                             </i-list>
@@ -69,25 +77,30 @@
                             display="name_##session.lang##"  ng-model="employee_list.military_status" label="##word.military_status##">
                             </i-list>
 
-                            <i-list help-id="" class="col3" items="jobsList" ng-search="_search.$employee.$jobs"
-                            display="name_##session.lang##"  label="##word.job##" ng-model="employee_list.job">
-                            </i-list>
-
                         </div>
-                        <div class="row">
 
-                            <i-list help-id="" ng-search="_search.$gender_search" class="col2" label="##word.gender##"
-                                ng-model="employee_list.gender" items="genderList" display="##session.lang##"></i-list>
+                        <div class="row">
 
                             <i-list help-id="" class="col3" items="degreeList"
                                 ng-search="_search.$employee.$degree_search" label="##word.employee_degree##"
-                                display="name_##session.lang##"  ng-change="employee_list.salary = employee_list.degree.salary"
+                                display="name_##session.lang##"  ng-change="netSalary()"
                                 ng-model="employee_list.degree"></i-list>
 
-                            <i-control help-id="" class="col2" label="##word.salary##" type="number"
-                                ng-model="employee_list.salary"></i-control>
+                            <i-control help-id="" disabled class="col2" label="##word.salary##" type="number"
+                                ng-model="employee_list.degree.salary"></i-control>
 
+                            <i-control help-id="" class="col2" label="##word.salary_differance##" type="number"
+                            ng-change="netSalary()"  ng-model="employee_list.salary_differance"></i-control>
+
+                            <i-control help-id="" disabled class="col2" label="##word.tax_types_value##" type="number"
+                                ng-model="employee_list.degree.tax"></i-control>
+
+                            <div class="col3" ng-sho="employee_list.degree">
+                                <h2 class="black center"> ##word.net_salary##</h2>
+                                <h2 class="green center"> ({{employee_list.net_salary}})</h2>
+                            </div>
                         </div>
+
                         <div class="row">
                             <i-control help-id="" type="text" class="col4"
                                 label="##word.employees_insurances_insurance_number##"

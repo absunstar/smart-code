@@ -1,75 +1,85 @@
-[{
-        "name": "employees_degrees_add",
-        "en": "Add Degree",
-        "ar": "إضافة درجة وظيفية"
-    },
-    {
-        "name": "employees_degrees_search",
-        "en": "Search Degree",
-        "ar": "بحث درجة وظيفية"
-    },
+[
+  {
+    "name": "employees_degrees_add",
+    "en": "Add Degree",
+    "ar": "إضافة درجة وظيفية"
+  },
+  {
+    "name": "employees_degrees_search",
+    "en": "Search Degree",
+    "ar": "بحث درجة وظيفية"
+  },
+  {
+    "name": "salary_differance",
+    "en": "Salary Differance",
+    "ar": "فرق المرتب"
+  },
+  {
+    "name": "net_salary",
+    "en": "Net salary",
+    "ar": "صافي المرتب"
+  },
+  {
+    "name": "employees_degrees_new",
+    "en": "New Degree",
+    "ar": "درجة وظيفية جديدة"
+  },
+  {
+    "name": "employees_degrees_name",
+    "en": "Degree Name",
+    "ar": "إسم الدرجة"
+  },
+  {
+    "name": "employees_degrees_salary",
+    "en": "Degree Salary",
+    "ar": "راتب الدرجة"
+  },
 
-    {
-        "name": "employees_degrees_new",
-        "en": "New Degree",
-        "ar": "درجة وظيفية جديدة"
-    },
-    {
-        "name": "employees_degrees_name",
-        "en": "Degree Name",
-        "ar": "إسم الدرجة"
-    },
-    {
-        "name": "employees_degrees_salary",
-        "en": "Degree Salary",
-        "ar": "راتب الدرجة"
-    },
+  {
+    "name": "employees_degrees_details",
+    "en": "Degree Details",
+    "ar": "تفاصيل درجة وظيفية"
+  },
+  {
+    "name": "employees_degrees",
+    "en": "Employees Degrees",
+    "ar": "الدرجات الوظيفية"
+  },
+  {
+    "name": "hr_employees_degrees",
+    "en": "Employees Degrees",
+    "ar": "الدرجات الوظيفية"
+  },
+  {
+    "name": "employee_degree",
+    "en": "Employee Degree",
+    "ar": "درجة وظيفية"
+  },
+  {
+    "name": "employees_degrees_edit",
+    "en": "Degree Edit",
+    "ar": "تعديل بيانات درجة وظيفية"
+  },
+  {
+    "name": "employees_degrees_delete",
+    "en": "Delete Degree ",
+    "ar": "حذف درجة وظيفية"
+  },
+  {
+    "name": "employees_degrees_logo",
+    "en": "Degree Logo",
+    "ar": "شعار الدرجة الوظيفية"
+  },
 
-    {
-        "name": "employees_degrees_details",
-        "en": "Degree Details",
-        "ar": "تفاصيل درجة وظيفية"
-    },
-    {
-        "name": "employees_degrees",
-        "en": "Employees Degrees",
-        "ar": "الدرجات الوظيفية"
-    },
-    {
-        "name": "hr_employees_degrees",
-        "en": "Employees Degrees",
-        "ar": "الدرجات الوظيفية"
-    },
-    {
-        "name": "employee_degree",
-        "en": "Employee Degree",
-        "ar": "درجة وظيفية"
-    },
-    {
-        "name": "employees_degrees_edit",
-        "en": "Degree Edit",
-        "ar": "تعديل بيانات درجة وظيفية"
-    },
-    {
-        "name": "employees_degrees_delete",
-        "en": "Delete Degree ",
-        "ar": "حذف درجة وظيفية"
-    },
-    {
-        "name": "employees_degrees_logo",
-        "en": "Degree Logo",
-        "ar": "شعار الدرجة الوظيفية"
-    },
+  {
+    "name": "le",
+    "en": "Pound",
+    "ar": "جنيه"
+  },
 
-    {
-        "name": "le",
-        "en": "Pound",
-        "ar": "جنيه"
-    },
-
-    {
-        "name": "employees_degrees_img",
-        "en": "Employees Degrees Image",
-        "ar": "ملفات الدرجة الوظيفية"
-    }
+  {
+    "name": "employees_degrees_img",
+    "en": "Employees Degrees Image",
+    "ar": "ملفات الدرجة الوظيفية"
+  }
 ]

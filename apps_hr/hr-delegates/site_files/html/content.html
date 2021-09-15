@@ -50,13 +50,16 @@
                     <fieldset>
                         <legend>##word.delegate_info##</legend>
                         <div class="row">
-                            <i-date ng-model="delegate_list.birth_date" class="col4" label="##word.birth_date##">
-                            </i-date>
-                            <i-date ng-model="delegate_list.employment_date" class="col4"
-                                label="##word.employment_date##"></i-date>
+                            <i-date2 ng-model="delegate_list.birth_date" class="col4" label="##word.birth_date##">
+                            </i-date2>
+                            <i-date2 ng-model="delegate_list.employment_date" class="col4"
+                                label="##word.employment_date##"></i-date2>
                         </div>
 
                         <div class="row">
+                            <i-list help-id="" ng-search="_search.$gender_search" class="col2" label="##word.gender##"
+                            ng-model="delegate_list.gender" items="genderList" display="##session.lang##"></i-list>
+
                             <i-list ng-search="marital_status" class="col3" items="maritals_status"
                             display="name_##session.lang##"  ng-model="delegate_list.marital_status" label="##word.marital_status##">
                             </i-list>
@@ -75,22 +78,32 @@
                             </i-list> -->
 
                         </div>
+
                         <div class="row">
 
-
-                            <!--    <i-list help-id="" class="col3" items="degreeList"
-                                ng-search="_search.$delegate.$degree_search" label="##word.delegates_degrees##"
-                                ng-change="delegate_list.salary = delegate_list.degree.salary"
+                            <i-list help-id="" class="col3" items="degreeList"
+                                ng-search="_search.$employee.$degree_search" label="##word.employee_degree##"
+                                display="name_##session.lang##"  ng-change="netSalary()"
                                 ng-model="delegate_list.degree"></i-list>
 
-                            <i-control help-id="" class="col2" label="##word.salary##" type="number"
-                                ng-model="delegate_list.salary"></i-control>
- -->
-                        </div>
-                        <div class="row">
-                            <i-list help-id="" ng-search="_search.$gender_search" class="col2" label="##word.gender##"
-                                ng-model="delegate_list.gender" items="genderList" display="##session.lang##"></i-list>
+                            <i-control help-id="" disabled class="col2" label="##word.salary##" type="number"
+                                ng-model="delegate_list.degree.salary"></i-control>
 
+                            <i-control help-id="" class="col2" label="##word.salary_differance##" type="number"
+                            ng-change="netSalary()"  ng-model="delegate_list.salary_differance"></i-control>
+
+                            <i-control help-id="" disabled class="col2" label="##word.tax_types_value##" type="number"
+                                ng-model="delegate_list.degree.tax"></i-control>
+
+                            <div class="col3" ng-sho="delegate_list.degree">
+                                <h2 class="black center"> ##word.net_salary##</h2>
+                                <h2 class="green center"> ({{delegate_list.net_salary}})</h2>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                       
                             <i-control help-id="" type="text" class="col4"
                                 label="##word.employees_insurances_insurance_number##"
                                 ng-model="delegate_list.insurance_number"></i-control>

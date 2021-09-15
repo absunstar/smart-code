@@ -285,26 +285,6 @@ app.controller("delegate_list", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getDegree = function () {
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/delegates_degrees/all",
-      data: {}
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.degreeList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
-
   $scope.getGender = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -446,6 +426,45 @@ app.controller("delegate_list", function ($scope, $http, $timeout) {
         $scope.error = err;
       }
     )
+  };
+
+  $scope.getDegree = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/employees_degrees/all",
+      data: {},
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.degreeList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.netSalary = function () {
+    $scope.error = "";
+    $timeout(() => {
+      $scope.delegate_list.net_salary = 0;
+      if ($scope.delegate_list.degree) {
+        $scope.delegate_list.salary_differance =
+          $scope.delegate_list.salary_differance || 0;
+        let total =
+          $scope.delegate_list.degree.salary +
+          $scope.delegate_list.salary_differance;
+          let net_salary =
+          (total * site.toNumber($scope.delegate_list.degree.tax)) / 100;
+
+        $scope.delegate_list.net_salary =
+        total - net_salary;
+      }
+    }, 250);
   };
 
   $scope.displaySearchModal = function () {

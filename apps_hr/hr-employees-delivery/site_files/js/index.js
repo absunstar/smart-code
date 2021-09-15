@@ -304,26 +304,6 @@ app.controller("delivery_employee_list", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getDegree = function () {
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/delivery_employees_degrees/all",
-      data: {}
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.degreeList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
-
   $scope.getFilesTypesList = function (where) {
     $scope.busy = true;
     $http({
@@ -358,6 +338,71 @@ app.controller("delivery_employee_list", function ($scope, $http, $timeout) {
     })
   };
 
+  $scope.loadMaritalsStatus = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/maritals_status/all",
+      data: {
+        select: { id: 1, name_ar: 1, name_en: 1, code: 1 },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.maritals_status = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.loadMilitariesStatus = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/militaries_status/all",
+      data: {
+        select: { id: 1, name_ar: 1, name_en: 1, code: 1 },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.militaries_status = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+
+  $scope.getDegree = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/employees_degrees/all",
+      data: {},
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.degreeList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.getNumberingAuto = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -387,6 +432,26 @@ app.controller("delivery_employee_list", function ($scope, $http, $timeout) {
 
   };
 
+  $scope.netSalary = function () {
+    $scope.error = "";
+    $timeout(() => {
+      $scope.delivery_employee_list.net_salary = 0;
+      if ($scope.delivery_employee_list.degree) {
+        $scope.delivery_employee_list.salary_differance =
+          $scope.delivery_employee_list.salary_differance || 0;
+        let total =
+          $scope.delivery_employee_list.degree.salary +
+          $scope.delivery_employee_list.salary_differance;
+          let net_salary =
+          (total * site.toNumber($scope.delivery_employee_list.degree.tax)) / 100;
+
+        $scope.delivery_employee_list.net_salary =
+        total - net_salary;
+      }
+    }, 250);
+  };
+
+
   $scope.searchAll = function () {
 
     $scope.getDeliveryEmployeeList($scope.search);
@@ -409,6 +474,8 @@ app.controller("delivery_employee_list", function ($scope, $http, $timeout) {
   $scope.getFilesTypesList();
   $scope.getJobsList();
   $scope.getNumberingAuto();
+  $scope.loadMaritalsStatus();
+  $scope.loadMilitariesStatus();
   $scope.getDegree();
   $scope.getGender();
 

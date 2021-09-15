@@ -47,6 +47,7 @@
                         <th>##word.code##</th>
                         <th>##word.employees_degrees_name##</th>
                         <th>##word.employees_degrees_salary##</th>
+                        <th>##word.tax_types_value##</th>
                         <th>##word.actions##</th>
                     </tr>
                     <tr ng-repeat="c in list | filter:search.code">
@@ -56,6 +57,7 @@
                         <td class="center userPrint blue">{{c.code}}</td>
                         <td class="center bold ">{{c.name_##session.lang##}}</td>
                         <td class="center bold green">{{c.salary +' '+ '$'}}</td>
+                        <td class="center bold red">{{c.tax +' '+ '%'}}</td>
                         <td class="center">
                             <i-button x-permissions="employees_degrees_view || employees_degrees_manage" type="details"
                                 ng-click="details(c)" label="##word.details##"></i-button>

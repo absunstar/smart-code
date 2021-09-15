@@ -40,21 +40,6 @@
                                 </tr>
 
                                 <tr>
-                                    <td class="title">##word.national_id##</td>
-                                    <td class="center blue">{{delegate_list.national_id}}</td>
-                                </tr>
-
-                                <tr>
-                                    <td class="title">##word.delegates_degrees##</td>
-                                    <td class="center">{{delegate_list.degree.name_##session.lang##}}</td>
-                                </tr>
-
-                                <tr>
-                                    <td class="title">##word.salary##</td>
-                                    <td class="center green">{{delegate_list.degree.salary}}</td>
-                                </tr>
-
-                                <tr>
                                     <td class="title">##word.status##</td>
                                     <td ng-show="delegate_list.active == true" class="green center"> ##word.active##
                                     </td>
@@ -69,7 +54,7 @@
                         <br>
                         <div>
                             <fieldset>
-                                <legend>##word.delegate_info##</legend>
+                                <legend>##word.employee_info##</legend>
                                 <table class="table hover bold">
                                     <tr>
                                         <td class="title">##word.gender##</td>
@@ -87,6 +72,31 @@
                                     </tr>
 
                                     <tr>
+                                        <td class="title">##word.employee_degree##</td>
+                                        <td class="center">{{delegate_list.degree.name_##session.lang##}}</td>
+                                    </tr>
+    
+                                    <tr>
+                                        <td class="title">##word.salary##</td>
+                                        <td class="center">{{delegate_list.degree.salary}} $</td>
+                                    </tr>
+    
+                                    <tr>
+                                        <td class="title">##word.salary_differance##</td>
+                                        <td class="center">{{delegate_list.salary_differance}} $</td>
+                                    </tr>
+    
+                                    <tr>
+                                        <td class="title">##word.tax_types_value##</td>
+                                        <td class="center red">{{delegate_list.degree.tax}} %</td>
+                                    </tr>
+    
+                                    <tr>
+                                        <td class="title">##word.net_salary##</td>
+                                        <td class="center green">{{delegate_list.net_salary}} $</td>
+                                    </tr>
+
+                                    <tr>
                                         <td class="title">##word.marital_status##</td>
                                         <td class="center">{{delegate_list.marital_status.name_##session.lang##}}</td>
                                     </tr>
@@ -94,16 +104,13 @@
                                         <td class="title">##word.military_status##</td>
                                         <td class="center">{{delegate_list.military_status.name_##session.lang##}}</td>
                                     </tr>
-                                    <tr>
-                                        <td class="title">##word.job##</td>
-                                        <td class="center">{{delegate_list.job.name_##session.lang##}}</td>
-                                    </tr>
+                               
                                     <tr>
                                         <td class="title">##word.qualification##</td>
                                         <td class="center">{{delegate_list.qualification}}</td>
                                     </tr>
                                     <tr>
-                                        <td class="title">##word.delegates_insurances_insurance_number##</td>
+                                        <td class="title">##word.employees_insurances_insurance_number##</td>
                                         <td class="center">{{delegate_list.insurance_number}}</td>
                                     </tr>
                                 </table>

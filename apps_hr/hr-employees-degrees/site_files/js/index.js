@@ -25,7 +25,11 @@ app.controller("employees_degrees", function ($scope, $http) {
 
   $scope.newEmployee_Degree = function () {
     $scope.error = '';
-    $scope.employee_degree = { image_url: '/images/employee_degree.png' };
+    $scope.employee_degree = { 
+      salary : 0,
+      tax : 0,
+      image_url: '/images/employee_degree.png'
+     };
     site.showModal('#addEmployeeDegreeModal');
   };
   

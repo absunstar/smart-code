@@ -30,6 +30,11 @@
         "ar": "فواتير المشتريات"
     },
     {
+        "name": "account_settings",
+        "en": "Accounting settings",
+        "ar": "الإعدادات المحاسبية"
+    },
+    {
         "name": "sales_invoice",
         "en": "Sales Invoice",
         "ar": "فواتير المبيعات"
@@ -115,14 +120,19 @@
         "ar": "الحسابات"
     },
     {
-        "name": "financial_transactions",
-        "en": "Financial Transactions",
-        "ar": "المعاملات المالية"
+        "name": "account_transactions",
+        "en": "Accounting Transactions",
+        "ar": "المعاملات الحسابية"
     },
     {
         "name": "inventory_transactions",
         "en": "Inventory Transactions",
         "ar": "المعاملات المخزنية"
+    },
+    {
+        "name": "inventory_setting",
+        "en": "Inventory Setting",
+        "ar": "الإعدادت المخزنية"
     },
     {
         "name": "purchase_store",

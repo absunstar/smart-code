@@ -65,8 +65,6 @@ module.exports = function init(site) {
     delegate_doc.branch = site.get_branch(req)
     delegate_doc.delegate = true;
 
-
-
     let user = {};
 
     user = {
