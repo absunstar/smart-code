@@ -1,115 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="myApp">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="plugins/OwlCarousel2-2.3.4/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css">
-  <link rel="stylesheet" href="plugins/OwlCarousel2-2.3.4/OwlCarousel2-2.3.4/dist/assets/owl.theme.default.min.css"> -->
-  <link rel="stylesheet" href="all.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
-    <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/css/all.css">
+  <link rel="stylesheet" href="/css/owl.carousel.min.css"  />
+  <link rel="stylesheet" href="/css/owl.theme.default.min.css" />
+    <link rel="stylesheet" href="/css/style.css">
     <title>innovalz</title>
-    <link rel="icon" href="img/logo.svg">
+    <link rel="icon" href="/images/logo.svg">
 </head>
-<body>
-    <section class="header-navbar">
-    <nav class="navbar navbar-expand-lg ">
-        <div class="container">
-            <div class="logo">
+<body ng-controller="main">
+  <nav class="sitebar" x-import="innovalz/nav.html"></nav>
 
-                <a class="navbar-brand" href="#"><img src="img/logo.svg"></a>
-            </div>
-            
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-  
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
-              <div class="website-links">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item dropdown dropdown-hover">
-                <a class="nav-link dropdown-toggle" href="services.html" >
-                  Services
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Software Solutions</a></li>
-                  <li><a class="dropdown-item" href="#">Website Development</a></li>
-                  <li><a class="dropdown-item" href="#">Mobile Development</a></li>
-                  <li><a class="dropdown-item" href="#">Website Design</a></li>
-                  <li><a class="dropdown-item" href="#">Digital Marketing</a></li>
-                  <li><a class="dropdown-item" href="#">Media Production</a></li>
-                  <li><a class="dropdown-item" href="#">Branding & Advertising</a></li>
-                  <li><a class="dropdown-item" href="#">Event Management</a></li>
-                </ul>
-              </li>
-              <li class="nav-item dropdown dropdown-hover">
-                <a class="nav-link dropdown-toggle" href="#" >
-                  Products
-                </a>
-                <ul class="dropdown-menu" >
-                  <li><a class="dropdown-item" href="#">Health Care</a></li>
-                  <li><a class="dropdown-item" href="#">E-commerce</a></li>
-                  <li><a class="dropdown-item" href="#">Fitness</a></li>
-                  <li><a class="dropdown-item" href="#">Library Archiving</a></li>
-                  <li><a class="dropdown-item" href="#">E-Learning</a></li>
-                  <li><a class="dropdown-item" href="#">content management system</a></li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Contact</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Career</a>
-              </li>
-               <!-- <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  ع
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-              </li> -->
-              </ul>
-            </div>
-              <div class="side-nav">
-              <ul class="navbar-nav">
-            
-                <li class="nav-item">
-                    <img src="img/Group13847.svg" alt="" width="35px">
-                </li>
-                <li class="nav-item">
-                    <img src="img/user.svg" alt="" width="28px">
-                    
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link outline-btn" href="#">Request Offer</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link fill-btn" href="#">Estimate cost</a>
-                </li>
-            </ul>
-        </div>
-        </div>
-        
-      </nav>
-
-    </section>
 
 
 
@@ -121,7 +30,7 @@
                     <div class="dot-section">
                         <div class="dot-icon">
 
-                            <img src="img/dot-icon.svg">
+                            <img src="/images/dot-icon.svg">
                         </div>
                         <p>We are responsible for planning, organizing, managing and coordinating various types of events, Usually, we execute large-scale events, which might include conferences, conventions, concerts, trade shows, and ceremonies.</p>
 
@@ -130,7 +39,7 @@
                     <div class="dot-section">
                         <div class="dot-icon">
 
-                            <img src="img/dot-icon.svg">
+                            <img src="/images/dot-icon.svg">
                         </div>
                         <div>
                         <p style="margin-bottom: 50px;">   It involves handling the overall logistics of the event, working with staff, and conducting project management of the event as a whole.</p>
@@ -140,7 +49,7 @@
 
                 </div>
                 <div class="col-sm-6">
-                    <img src="img/event.svg" style="margin: auto; display: flex; width: 60%;">
+                    <img src="/images/event.svg" style="margin: auto; display: flex; width: 60%;">
                 </div>
             </div>
         </div>
@@ -151,17 +60,17 @@
         <div class="row">
             <h2>What We Provide</h2>
             <div class="col-sm-4">
-                <img src="img/appweb.svg"><br>
+                <img src="/images/appweb.svg"><br>
                 <h6>Higher Levels of Creativity and Originality</h6>
                 <p>There will be no hidden charges or fees that the client will have to deal with subsequently.</p>
             </div>
             <div class="col-sm-4">
-                <img src="img/appweb.svg"><br>
+                <img src="/images/appweb.svg"><br>
                 <h6>Measurability</h6>
                 <p>In order to measure success, we have to choose the right metrics and a methodology for assessing performance .</p>
             </div>
             <div class="col-sm-4">
-                <img src="img/appweb.svg"><br>
+                <img src="/images/appweb.svg"><br>
                 <h6>Avoidance of Hidden Costs</h6>
                 <p>Event management professionals keep the best interest of their clients in mind. This is why the cost of the service will be announced in advance .</p>
             </div>
@@ -185,7 +94,7 @@
 
                 <div class="services-card">
                     <div class="card-icon">
-                        <img src="img/browser.svg" alt="">
+                        <img src="/images/browser.svg" alt="">
                     </div>
                     <div class="cards-body">
                         <h2>Web Design</h2>
@@ -200,7 +109,7 @@
             <div class="item">
                 <div class="services-card">
                     <div class="card-icon">
-                        <img src="img/Group13994.svg" alt="">
+                        <img src="/images/Group13994.svg" alt="">
                     </div>
                     <div class="cards-body">
                         <h2>Mobile Development</h2>
@@ -217,7 +126,7 @@
             <div class="item">
                 <div class="services-card">
                     <div class="card-icon">
-                        <img src="img/browser.svg" alt="">
+                        <img src="/images/browser.svg" alt="">
                     </div>
                     <div class="cards-body">
                         <h2>Digital Marketing</h2>
@@ -234,7 +143,7 @@
             <div class="item">
                 <div class="services-card">
                     <div class="card-icon">
-                        <img src="img/development.svg" alt="">
+                        <img src="/images/development.svg" alt="">
                     </div>
                     <div class="cards-body">
                         <h2>Web Development</h2>
@@ -270,78 +179,13 @@
       </div>
     </section>
 
-    <footer class="text-center text-white" style="background-color: #000000;">
-      <!-- Grid container -->
-      <div class="container pt-4">
-        <!-- Section: Social media -->
-        <section class="mb-4">
-         
-          <a href="#">
-           <img src="img/facebook.svg">
-            </a>
-    
-          
-          <a href="#">
-            <img src="img/twitter.svg">
-             </a>
-    
-          
-          <a href="#">
-            <img src="img/instagram.svg">
-             </a>
-    
-         
-          <a href="#">
-            <img src="img/linkind.svg">
-             </a>
-    
-          
-          <a href="#">
-            <img src="img/youtube.svg">
-             </a>
-         
-        </section>
-        <section>
-          <nav class="navbar navbar-expand-lg " style="justify-content: center;">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link active " aria-current="page" href="#">Innovalz</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link " aria-current="page" href="#">Services</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link " aria-current="page" href="#">Products</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link " aria-current="page" href="#">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link " aria-current="page" href="#">Contact</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link " aria-current="page" href="#">Careers</a>
-            </li>
-            </ul>
-          </nav>
-        </section>
-      </div>
-      <!-- Grid container -->
-    
-      <!-- Copyright -->
-      <div class="text-center p-3" style="background-color: black">
-        <span>© 2021 Innovalz . All Rights Reserved.</span>&nbsp;&nbsp;&nbsp;<span>Designed with <i class="fas fa-heart"></i> by Innovalz</span><br>
-        
-        <span>Terms & Conditions / Privacy</span>
-      </div>
-      <!-- Copyright -->
-    </footer>
+    <nav class="sitebottom" x-import="innovalz/footer.html"></nav>
 
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.bundle.min.js" ></script>
+    <script src="/js/owl.carousel.min.js" ></script>
     <script type="text/javascript">
     $('.product-list').owlCarousel({
     
