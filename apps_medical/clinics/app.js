@@ -3,12 +3,13 @@ module.exports = function init(site) {
 
   site.on("[hospital][clinic][add]", function (obj) {
     doctor = obj;
-    $clinics.findOne(
-      {
+    $clinics.findOne({
         "hospital.user_info.id": obj.add_user_info.id,
       },
       (err, doc) => {
-        doc.doctor_list.push({ doctor });
+        doc.doctor_list.push({
+          doctor
+        });
         if (!err && doc) {
           $clinics.update(doc);
         }
@@ -17,8 +18,7 @@ module.exports = function init(site) {
   });
 
   site.on("[hospital][clinic][update]", function (obj) {
-    $clinics.findOne(
-      {
+    $clinics.findOne({
         "hospital.user_info.id": obj.add_user_info.id,
         "specialty.id": obj.specialty.id,
       },
@@ -37,13 +37,11 @@ module.exports = function init(site) {
 
   site.on("[register][clinic][add]", (doc, callback) => {
     (doc.active = true),
-      (doc.shift_list = [
-        {
-          times_list: [{}],
-        },
-      ]),
-      (doc.doctor_list = [{}]),
-      (doc.nurse_list = [{}]);
+    (doc.shift_list = [{
+      times_list: [{}],
+    }, ]),
+    (doc.doctor_list = [{}]),
+    (doc.nurse_list = [{}]);
     $clinics.add(doc, (err, doc) => {
       callback(err, doc);
     });
@@ -90,13 +88,11 @@ module.exports = function init(site) {
     if (typeof clinics_doc.active === "undefined") {
       clinics_doc.active = true;
     }
-    $clinics.find(
-      {
+    $clinics.find({
         where: {
           "company.id": site.get_company(req).id,
           "branch.code": site.get_branch(req).code,
-          $or: [
-            {
+          $or: [{
               name_ar: clinics_doc.name_ar,
             },
             {
@@ -135,11 +131,9 @@ module.exports = function init(site) {
             type: "clinic",
           };
 
-          user.roles = [
-            {
-              name: "clinics_admin",
-            },
-          ];
+          user.roles = [{
+            name: "clinics_admin",
+          }, ];
 
           user.profile = {
             name: user.name,
@@ -203,11 +197,9 @@ module.exports = function init(site) {
       type: "clinic",
     };
 
-    user.roles = [
-      {
-        name: "clinics_admin",
-      },
-    ];
+    user.roles = [{
+      name: "clinics_admin",
+    }, ];
 
     user.profile = {
       name: user.name,
@@ -223,8 +215,7 @@ module.exports = function init(site) {
     });
 
     if (clinics_doc.id) {
-      $clinics.edit(
-        {
+      $clinics.edit({
           where: {
             id: clinics_doc.id,
           },
@@ -275,8 +266,7 @@ module.exports = function init(site) {
       return;
     }
 
-    $clinics.findOne(
-      {
+    $clinics.findOne({
         where: {
           id: req.body.id,
         },
@@ -307,8 +297,7 @@ module.exports = function init(site) {
     let id = req.body.id;
 
     if (id) {
-      $clinics.delete(
-        {
+      $clinics.delete({
           id: id,
           $req: req,
           $res: res,
@@ -400,8 +389,7 @@ module.exports = function init(site) {
       where["id"] = req.session.user.ref_info.id;
     }
 
-    $clinics.findMany(
-      {
+    $clinics.findMany({
         select: req.body.select || {},
         where: where,
         sort: req.body.sort || {
@@ -460,8 +448,7 @@ module.exports = function init(site) {
       where["id"] = req.session.user.ref_info.id;
     }
 
-    $clinics.findOne(
-      {
+    $clinics.findOne({
         select: "doctor_list",
         where: where,
         sort: req.body.sort || {
@@ -482,6 +469,146 @@ module.exports = function init(site) {
     );
   });
 
+
+  site.post("/api/clinics/getDoctorsList", (req, res) => {
+    let response = {
+      done: false,
+    };
+
+    if (!req.session.user) {
+      response.error = "Please Login First";
+      res.json(response);
+      return;
+    }
+
+    let where = req.body.where || {};
+    if (where["company"]) {
+      where["company.id"] = where["company"].id;
+      delete where["company"];
+    };
+
+    if (where["specialty"]) {
+      where["specialty.id"] = where["specialty"].id;
+      delete where["specialty"];
+      delete where.active;
+    }
+    let company = where["company.id"];
+    let specialty = where["specialty.id"];
+
+    // $clinics.findOne(
+    //   {
+
+    //     where: where,
+    //     sort: req.body.sort || {
+    //       id: -1,
+    //     },
+    //     limit: req.body.limit,
+    //   },
+    //   (err, docs, count) => {
+    //     if (!err) {
+    //       response.done = true;
+    //       response.list = docs;
+    //       response.count = count;
+    //     } else {
+    //       response.error = err.message;
+    //     }
+    //     res.json(response);
+    //   }
+    // );
+
+    $clinics.aggregate(
+      [{
+          "$match": {
+            "company.id": company,
+            "specialty.id": specialty
+          }
+        },
+        {
+          "$project": {
+            "doctor_list": 1.0
+          }
+        }
+      ],
+      (err, docs) => {
+        if (!err) {
+          response.done = true;
+          response.list = docs;
+          response.count = docs.length;
+        } else {
+          response.error = err.message;
+        }
+        res.json(response);
+      },
+    );
+
+  });
+
+
+  site.post("/api/clinics/getDoctorAppointment", (req, res) => {
+    let response = {
+      done: false,
+    };
+
+    if (!req.session.user) {
+      response.error = "Please Login First";
+      res.json(response);
+      return;
+    }
+
+    let where = req.body.where || {};
+    let doctor = where["doctor"].id;
+    if (doctor != undefined) {
+      $clinics.aggregate(
+        [{
+            "$match": {
+              "doctor_list.doctor.id": doctor
+            }
+          },
+          {
+            "$project": {
+              "doctor_list": 1.0
+            }
+          },
+          {
+            "$unwind": {
+              "path": "$doctor_list",
+              "includeArrayIndex": "arrayIndex",
+              "preserveNullAndEmptyArrays": false
+            }
+          },
+          {
+            "$addFields": {
+              "appointmentsList": "$doctor_list.shift.times_list"
+            }
+          },
+          {
+            "$project": {
+              "appointmentsList": 1.0
+            }
+          }
+        ],
+        (err, docs) => {
+          if (!err && docs) {
+            response.done = true;
+            response.list = docs;
+            response.count = docs.length;
+          } else {
+            response.error = err.message;
+          }
+          res.json(response);
+        },
+      );
+    }
+    else{
+      response.error = "no doctor found";
+      res.json(response);
+      return
+    }
+
+
+  });
+
+
   site.post("/api/clinics/shifts/all", (req, res) => {
     let response = {
       done: false,
@@ -495,8 +622,7 @@ module.exports = function init(site) {
 
     let where = req.body.where || {};
     // where['id'] = req.data['clinic.id']
-    $clinics.findOne(
-      {
+    $clinics.findOne({
         select: req.body.select || {},
         where: where,
         sort: req.body.sort || {
