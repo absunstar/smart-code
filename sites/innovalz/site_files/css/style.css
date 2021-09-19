@@ -613,3 +613,80 @@ footer .p-3 i{
     margin: 80px 0px;
     font-weight: 500;
 }
+.contact-us .container{
+    width: 60%;
+
+}
+.contact-us input{
+    border: 1px solid #E4E5E6;
+    border-left: none;
+    height: 40px;
+}
+.contact-us span{
+    background-color: transparent;
+    font-size: 13px;
+    font-weight: 600;
+    border:1px solid #E4E5E6; ;
+}
+.contact-us input:focus{
+    border-color: #E4E5E6;
+    box-shadow: none;
+}
+.contact-us input::placeholder{
+    font-size: 12px;
+}
+.contact-us .contact-head p{
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+.contact-us .row-header{
+    text-align: center;
+    margin: 100px 0px 80px 0px;
+}
+.contact-us .row-header h2{
+    font-size: 35px;
+    font-weight: 800;
+}
+.contact-us .row-header p{
+    font-size: 12px;
+    font-weight: 500;
+}
+.contact-us textarea::placeholder{
+    font-size: 12px;
+    
+}
+.contact-us textarea:focus{
+    border-color: #E4E5E6;
+    box-shadow: none;
+}
+.contact-info{
+    display: flex;
+}
+.contact-info-icon{
+    margin: 0px 20px;
+}
+.contact-info-icon img{
+    width: 20px;
+}
+.contact-info h3{
+    font-size: 20px;
+    font-weight: 700;
+}
+.contact-info p{
+    font-size: 14px;
+}
+.contact-us .fill-btn{
+   padding: 5px 35px !important;
+}
+.contact-us .social-media img{
+    width: 30px;
+}
+.welcome-contact-map h2{
+    margin: 100px 0px;
+    font-size: 35px;
+    font-weight: 700;
+}
+.welcome-contact-map img{
+    width: 100%;
+}
