@@ -487,3 +487,129 @@ footer .p-3 i{
 .other-services{
     margin-bottom: 200px;
 }
+
+.product-card-body{
+    text-align:center;
+    background-color: white;
+    box-shadow: 0px 8px 22px #3740530F;
+    border-radius: 10px;
+    padding: 40px 60px;
+
+    height: 100%;
+}
+.product-card-body img{
+    width: 30%;
+    margin-bottom: 10px;
+}
+.product-card-body h2 , .product-card-footer h2{
+    font-size: 25px;
+    font-weight: 700;
+}
+.product-card-body p, .product-card-footer p{
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 25px;
+}
+.products-section .col-sm-6{
+    margin-bottom: 25px;
+
+}
+.product-card-footer{
+    background-color: white;
+    box-shadow: 0px 8px 22px #3740530F;
+    border-radius: 10px;
+    padding: 30px 30px 0px 30px;
+    margin-bottom: 25px;
+    height: 100%;
+    display: flex;
+}
+.you-may-like{
+    width: 90%; 
+    background-color: #fbfbfb;
+    border-radius: 10px;
+    padding: 100px 0px;
+    margin: 50px auto;
+}
+.you-may-like h2{
+    text-align: center;
+    margin-bottom: 80px;
+    font-weight: 800;
+    font-size: 40px;
+}
+.you-may-like .card-body h4{
+    font-weight: 700;
+}
+.you-may-like .card-body p{
+    font-size: 15px;
+    font-weight: 400;
+}
+.product h1{
+    text-align: center;
+    margin: 50px 0px;
+    font-weight: 800;
+}
+.product .p-img img{
+    width: 85%;
+    margin: 50px auto;
+    display: flex;
+}
+.product p{
+    font-size: 15px;
+    font-weight: 500;
+}
+.product .p-details{
+    margin-top: 30px;
+}
+
+.product .p-req{
+    text-align: center;
+    margin: 50px 0px;
+}
+.product .container{
+    width: 70%;
+}
+.career-card{
+    background-color: #fbfbfb;
+    text-align: center;
+    box-shadow: 0px 8px 22px #3740530F;
+    padding: 50px 0px;
+    height: 100%;
+}
+.career-job .col-sm-6{
+    margin-bottom: 25px;
+}
+.career .container , .career-job .container{
+    width: 60%;
+}
+.career-job h3{
+    font-size: 20px;
+    font-weight: 700;
+}
+.career-job p{
+    font-size: 14px;
+    font-weight: 400;
+    width: 60%;
+    margin: 20px auto;
+    
+}
+.career-job h2{
+    text-align: center;
+    margin: 100px 0px 70px 0px;
+    font-size: 40px;
+    font-weight: 800;
+}
+.career-card a{
+    padding: 5px 40px !important;
+    margin: 0px;
+}
+.career h2{
+    margin: 100px 0px;
+    font-size: 40px;
+    font-weight: 800;
+
+}
+.career p{
+    font-size: 17px;
+    margin: 80px 0px;
+    font-weight: 500;
+}

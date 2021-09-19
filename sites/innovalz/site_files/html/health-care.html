@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/all.css">
+  <link rel="stylesheet" href="/css/owl.carousel.min.css"  />
+  <link rel="stylesheet" href="/css/owl.theme.default.min.css" />
+    <link rel="stylesheet" href="/css/style.css">
+    <title>innovalz</title>
+    <link rel="icon" href="/images/logo.svg">
+
+   
+</head>
+<body ng-controller="main">
+  <nav class="sitebar" x-import="innovalz/nav.html"></nav>
+    
+
+   <section class="product">
+       <div class="container">
+           <h1>Health Care</h1>
+           <div class="row">
+               <div class="col-sm-12 p-img">
+                   <img src="img/health1.jpg">
+                   <p>Remote Medicine application began to be applied through the therapist or from his home in audio or video and link the therapist to the specialist, , does not need to be present in the clinic or hospital, as it is sufficient for him to make his clinical information. </p>
+                   <p>To complete the medicine platform application, the platform requires the use of modern technology in computer software, the Internet, and telemedicine to create a platform presents :</p>
+               </div>
+           </div>
+           <div class="row p-details">
+           
+            <div class="col-sm-6">
+                
+                <div class="dot-section">
+                    <div class="dot-icon">
+
+                        <img src="img/dot-icon.svg">
+                    </div>
+                    <p>Medical service at any time and any place for both the patient, the doctor and medical insurance service providers</p>
+                </div>
+                <div class="dot-section">
+                    <div class="dot-icon">
+
+                        <img src="img/dot-icon.svg">
+                    </div>
+                    <p>Enable the patient to see the information available on the application platform and use the advanced reservation to book the medical treatments provided.</p>
+
+                </div>
+                <div class="dot-section">
+                    <div class="dot-icon">
+
+                        <img src="img/dot-icon.svg">
+                    </div>
+                    
+                <p>Create a medical file for each patient with the patient’s medical history</p>
+                </div>
+            
+
+            </div>
+            <div class="col-sm-6">
+                
+                <div class="dot-section">
+                    <div class="dot-icon">
+
+                        <img src="img/dot-icon.svg">
+                    </div>
+                    <p>For the medical platform also provided treatment services, whether selling medicines or delivering medicine to the patient’s home, to save effort and time</p>
+                </div>
+                <div class="dot-section">
+                    <div class="dot-icon">
+
+                        <img src="img/dot-icon.svg">
+                    </div>
+<p>It also provides treatment referral services for examinations and x-rays</p>
+                </div>
+                <div class="dot-section">
+                    <div class="dot-icon">
+
+                        <img src="img/dot-icon.svg">
+                    </div>
+                    <p>Providing communication services through modern means of communication, video online between the patient and the doctor, whether a local doctor or outside the borders</p>
+                </div>
+            
+
+            </div>
+           </div>
+           <div class="row">
+               <div class="col-sm-12 p-req">
+          <a class="fill-btn" href="#">Request Offer</a>
+
+               </div>
+           </div>
+       </div>
+   </section>
+
+   <section class="you-may-like">
+       <div class="container">
+           <div class="row">
+               <h2>You May Also Like</h2>
+               <div class="col-sm-12">
+ <div class="owl-carousel product-list owl-theme">
+            <div class="item">
+              <div class="card-body">
+
+                <img src="img/health.png"><br>
+                <h4>Health Care</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</p>
+                <a class="outline-btn" href="#" style="color: black !important; font-weight: 500;">Request Offer</a>
+
+              </div>
+            
+            
+            </div>
+            <div class="item">
+              <div class="card-body">
+
+                <img src="img/ecommerce.png"><br>
+                
+                <h4>Friday Mall</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+                <a class="outline-btn" href="#" style="color: black !important; font-weight: 500;">Request Offer</a>
+
+              </div>
+            
+            
+            </div>
+            <div class="item">
+              <div class="card-body">
+
+                <img src="img/gym.png"><br>
+                
+                <h4>Fitness</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+                <a class="outline-btn" href="#" style="color: black !important; font-weight: 500;">Request Offer</a>
+
+              </div>
+            
+            
+            </div>
+            <div class="item">
+              <div class="card-body">
+
+                <img src="img/health.png"><br>
+                
+                <h4>Health Care</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</p>
+                <a class="outline-btn" href="#" style="color: black !important; font-weight: 500;">Request Offer</a>
+
+              </div>
+            
+            
+            </div>
+            
+        </div>
+               </div>
+           </div>
+       </div>
+   </section>
+
+   <nav class="sitebottom" x-import="innovalz/footer.html"></nav>
+    
+
+
+
+   <script src="/js/jquery.min.js"></script>
+   <script src="/js/bootstrap.bundle.min.js" ></script>
+   <script src="/js/owl.carousel.min.js" ></script>
+    <script type="text/javascript">
+    $('.product-list').owlCarousel({
+      center:true,
+    dots:false,
+    loop:true,
+    margin:10,
+    nav:true,
+    
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:1
+        },
+        1000:{
+            items:3
+        }
+    }
+})
+
+
+
+    
+    </script>
+</body>
+</html>

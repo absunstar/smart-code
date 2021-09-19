@@ -100,7 +100,45 @@ module.exports = function init(site) {
     parser: "html"
   })
 
+  site.get({
+    name: "products",
+    path: __dirname + "/site_files/html/products.html",
+    parser: "html"
+  })
+  site.get({
+    name: "health-care",
+    path: __dirname + "/site_files/html/health-care.html",
+    parser: "html"
+  })
+  site.get({
+    name: "library-archiving",
+    path: __dirname + "/site_files/html/library-archiving.html",
+    parser: "html"
+  })
 
-
-
+  site.get({
+    name: "fitness",
+    path: __dirname + "/site_files/html/aboufitnesst.html",
+    parser: "html"
+  }) 
+  site.get({
+    name: "e-learning",
+    path: __dirname + "/site_files/e-learning.html",
+    parser: "html"
+  })
+  site.get({
+    name: "e-commerce",
+    path: __dirname + "/site_files/html/e-commerce.html",
+    parser: "html"
+  })
+  site.get({
+    name: "cms",
+    path: __dirname + "/site_files/html/content-management.html",
+    parser: "html"
+  })
+  site.get({
+    name: "career",
+    path: __dirname + "/site_files/html/career.html",
+    parser: "html"
+  })
 }

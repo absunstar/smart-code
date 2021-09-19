@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/all.css">
+  <link rel="stylesheet" href="/css/owl.carousel.min.css"  />
+  <link rel="stylesheet" href="/css/owl.theme.default.min.css" />
+    <link rel="stylesheet" href="/css/style.css">
+    <title>innovalz</title>
+    <link rel="icon" href="/images/logo.svg">
+
+</head>
+<body ng-controller="main">
+  <nav class="sitebar" x-import="innovalz/nav.html"></nav>
+    
+
+   <section class="product">
+       <div class="container">
+           <h1>content management system</h1>
+           <div class="row">
+               <div class="col-sm-12 p-img">
+                   <img src="images/cms.jpg  
+                   <p>It is a server-based, multiuser software that interacts with content stored in a repository, allows editors to create new content, edit existing content, perform editorial processes on content, and ultimately make that content available to other people to consume it.</p>
+               </div>
+           </div>
+         
+           <div class="row">
+               <div class="col-sm-12 p-req">
+          <a class="fill-btn" href="#" style="text-align: center;">Request Offer</a>
+
+               </div>
+           </div>
+       </div>
+   </section>
+
+   <section class="you-may-like">
+       <div class="container">
+           <div class="row">
+               <h2>You May Also Like</h2>
+               <div class="col-sm-12">
+ <div class="owl-carousel product-list owl-theme">
+            <div class="item">
+              <div class="card-body">
+
+                <img src="images/health.png"><br>
+                <h4>Health Care</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</p>
+                <a class="outline-btn" href="#" style="color: black !important; font-weight: 500;">Request Offer</a>
+
+              </div>
+            
+          
+            </div>
+            <div class="item">
+              <div class="card-body">
+
+                <img src="images/ecommerce.png"><br>
+                
+                <h4>Friday Mall</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+                <a class="outline-btn" href="#" style="color: black !important; font-weight: 500;">Request Offer</a>
+
+              </div>
+            
+            
+            </div>
+            <div class="item">
+              <div class="card-body">
+
+                <img src="images/gym.png"><br>
+                
+                <h4>Fitness</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+                <a class="outline-btn" href="#" style="color: black !important; font-weight: 500;">Request Offer</a>
+
+              </div>
+            
+            
+            </div>
+            <div class="item">
+              <div class="card-body">
+
+                <img src="images/health.png"><br>
+                
+                <h4>Health Care</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</p>
+                <a class="outline-btn" href="#" style="color: black !important; font-weight: 500;">Request Offer</a>
+
+              </div>
+            
+            
+            </div>
+            
+        </div>
+               </div>
+           </div>
+       </div>
+   </section>
+
+   <nav class="sitebottom" x-import="innovalz/footer.html"></nav>
+    
+
+
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.bundle.min.js" ></script>
+    <script src="/js/owl.carousel.min.js" ></script>
+    <script type="text/javascript">
+    $('.product-list').owlCarousel({
+      center:true,
+    dots:false,
+    loop:true,
+    margin:10,
+    nav:true,
+    
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:1
+        },
+        1000:{
+            items:3
+        }
+    }
+})
+
+
+    
+    </script>
+</body>
+</html>
