@@ -492,8 +492,14 @@ module.exports = function init(site) {
       delete where["specialty"];
       delete where.active;
     }
+    if (where["clinic"]) {
+      where["clinic.id"] = where["clinic"].id;
+      delete where["clinic"];
+      delete where.active;
+    }
     let company = where["company.id"];
     let specialty = where["specialty.id"];
+    let clinic = where["clinic.id"];
 
     // $clinics.findOne(
     //   {
@@ -520,7 +526,8 @@ module.exports = function init(site) {
       [{
           "$match": {
             "company.id": company,
-            "specialty.id": specialty
+            "specialty.id": specialty,
+            id:clinic
           }
         },
         {
