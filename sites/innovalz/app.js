@@ -118,12 +118,12 @@ module.exports = function init(site) {
 
   site.get({
     name: "fitness",
-    path: __dirname + "/site_files/html/aboufitnesst.html",
+    path: __dirname + "/site_files/html/fitness.html",
     parser: "html"
   }) 
   site.get({
     name: "e-learning",
-    path: __dirname + "/site_files/e-learning.html",
+    path: __dirname + "/site_files/html/e-learning.html",
     parser: "html"
   })
   site.get({
