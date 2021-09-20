@@ -1,0 +1,8 @@
+[
+    {
+        "program_name":"in_medic",
+        "base_url":"127.0.0.1:9090/in_medic",
+        "logo":"../images/neighborhood.png",
+        "color":"red"
+    }
+]
