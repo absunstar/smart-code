@@ -36,8 +36,8 @@
     },
     {
         "name": "work_patch",
-        "en": "Works Patch",
-        "ar": "يعمل بالتشغيلة"
+        "en": "Works Patch (Validity)",
+        "ar": "يعمل بالتشغيلة (بالصلاحية)"
     },
     {
         "name": "work_serial",
@@ -365,6 +365,11 @@
         "ar": "مجموعة الصنف"
     },
     {
+        "name": "accounting_details",
+        "en": "Accounting Details",
+        "ar": "تفاصيل الحسابات"
+    },
+    {
         "name": "stores_items_complex",
         "en": "Complex Item",
         "ar": "صنف مجمع"
@@ -386,8 +391,8 @@
     },
     {
         "name": "stores_items_is_pos",
-        "en": "is POS",
-        "ar": "ظهور POS"
+        "en": "Appear on touch screen",
+        "ar": "ظهور في شاشة التاتش"
     },
     {
         "name": "item_group",
