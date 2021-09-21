@@ -564,6 +564,7 @@ module.exports = function init(site) {
 
     let where = req.body.where || {};
     let doctor = where["doctor"].id;
+    
     if (doctor != undefined) {
       $clinics.aggregate(
         [{
