@@ -14,6 +14,7 @@
         "en": "Purchase",
         "ar": "شراء"
     },
+   
     {
         "name": "must_choose_payment_type",
         "en": "Must Choose Payment Type",
