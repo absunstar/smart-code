@@ -1,0 +1,68 @@
+body{
+    font-family: 'Cairo', sans-serif;
+}
+.main-menu{
+    background-color: #00BCC9 !important;
+}
+.main-menu .tabs-header .tab-link span {
+    color: black !important;
+}
+.tabs .tabs-header .tab-link:hover {
+    background-color: white !important;
+    border-radius: 25px !important;
+}
+th{
+    background-color: #00BCC9 !important;
+    padding: 20px !important;
+}
+.table.hover tr:hover{
+    background-color: transparent !important;
+}
+.table{
+    border-collapse: collapse !important;
+}
+.table th,.table td{
+    border: 1px solid #DFDBDB !important;
+}
+.table td, .table td p{
+    color: black !important;
+    vertical-align: middle;
+
+}
+a.btn.view{
+    background-color: #00BCC9;
+    box-shadow: none !important;
+    font-weight: bold;
+    font-size: 12px !important;
+}
+a.btn.fa.fa-pause{
+    background-color: #E2E2E2;
+    box-shadow: none !important;
+    color: black !important;
+    padding: 10px 15px;
+    font-family:  'Cairo', sans-serif;
+    font-weight: bold;
+    font-size: 12px !important;
+
+   
+}
+a.btn.fa.fa-pause::before{
+ font-family: 'FontAwesome';
+}
+a.btn.edit{
+    background-color: white;
+    border: 1px solid #DFD4D4 !important;
+    box-shadow: none !important;
+    color: #00BCC9 !important;
+    font-weight: bold;
+    font-size: 12px !important;
+
+}
+a.btn.delete, a.btn.exit{
+    background-color: #F3F1F1;
+    color: #C90000 !important;
+    box-shadow: none !important;
+    font-weight: bold;
+    font-size: 12px !important;
+
+}
