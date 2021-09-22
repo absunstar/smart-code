@@ -488,13 +488,14 @@ app.controller("scans_requests", function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.showModalList = function (scans_requests, type) {
+  $scope.showDeliveryModal = function (scans_requests) {
     $scope.scans_requests = scans_requests;
-    if (type === "delivery") {
-      site.showModal("#deliveryScansModal");
-    } else if (type === "result") {
-      site.showModal("#puttingResultsScansModal");
-    }
+    site.showModal("#deliveryScansModal");
+  };
+
+  $scope.showResultModal = function (scans_requests) {
+    $scope.scans_requests = scans_requests;
+    site.showModal("#puttingResultsScansModal");
   };
 
   $scope.setPersonDelivery = function () {

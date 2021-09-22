@@ -45,6 +45,11 @@
         "ar": "برنامج البصمة"
     },
     {
+        "name": "settings_saved",
+        "en": "Settings saved",
+        "ar": "تم حفظ الإعدادات"
+    },
+    {
         "name": "finger_code",
         "en": "Finger Print Code",
         "ar": "كود البصمة"

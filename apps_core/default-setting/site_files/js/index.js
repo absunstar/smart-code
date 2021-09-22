@@ -1,10 +1,9 @@
-
-let btn1 = document.querySelector('#setting_default .tab-link');
+let btn1 = document.querySelector("#setting_default .tab-link");
 if (btn1) {
   btn1.click();
 }
 
-app.controller("default_setting", function ($scope, $http) {
+app.controller("default_setting", function ($scope, $http,$timeout) {
   $scope._search = {};
 
   $scope.default_setting = {};
@@ -12,25 +11,24 @@ app.controller("default_setting", function ($scope, $http) {
   $scope.priceMethod = [
     {
       id: 1,
-      ar: 'الفرع',
-      en: 'Branch'
+      ar: "الفرع",
+      en: "Branch",
     },
     {
       id: 2,
-      ar: 'المخزن',
-      en: 'Store'
-    }
+      ar: "المخزن",
+      en: "Store",
+    },
   ];
 
   $scope.showSearch = function () {
-    site.showModal('#searchModal');
+    site.showModal("#searchModal");
   };
 
   $scope.searchAll = function () {
-
     $scope.getMenuList($scope.search);
 
-    site.hideModal('#searchModal');
+    site.hideModal("#searchModal");
     $scope.clearAll();
   };
 
@@ -40,19 +38,18 @@ app.controller("default_setting", function ($scope, $http) {
 
   $scope.linkWarehouseAccountInvoices = function () {
     if ($scope.default_setting.accounting.link_warehouse_account_invoices) {
-      $scope.default_setting.accounting.create_invoice_auto = true
+      $scope.default_setting.accounting.create_invoice_auto = true;
     }
   };
 
   $scope.linkPostUnPost = function () {
     if ($scope.default_setting.general_Settings.work_unposting) {
-      $scope.default_setting.general_Settings.work_posting = true
+      $scope.default_setting.general_Settings.work_posting = true;
     }
   };
 
-
   $scope.getCustomerList = function (ev) {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
     if (ev.which === 13) {
       $http({
@@ -61,15 +58,15 @@ app.controller("default_setting", function ($scope, $http) {
         data: {
           search: $scope.search_customer,
           where: {
-            active: true
-          }
+            active: true,
+          },
 
           /*  select: {
             id: 1,
             name_ar: 1,
             name_en: 1,
           } */
-        }
+        },
       }).then(
         function (response) {
           $scope.busy = false;
@@ -81,20 +78,20 @@ app.controller("default_setting", function ($scope, $http) {
           $scope.busy = false;
           $scope.error = err;
         }
-      )
-    };
+      );
+    }
   };
 
   $scope.loadVendors = function (ev) {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
     if (ev.which === 13) {
       $http({
         method: "POST",
         url: "/api/vendors/all",
         data: {
-          search: $scope.search_vendor
-        }
+          search: $scope.search_vendor,
+        },
       }).then(
         function (response) {
           $scope.busy = false;
@@ -106,38 +103,39 @@ app.controller("default_setting", function ($scope, $http) {
           $scope.busy = false;
           $scope.error = err;
         }
-      )
+      );
     }
   };
 
   $scope.getTransactionTypeList = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
     $scope.transactionTypeList = [];
     $http({
       method: "POST",
-      url: "/api/order_invoice/transaction_type/all"
-
+      url: "/api/order_invoice/transaction_type/all",
     }).then(
       function (response) {
         $scope.busy = false;
-        if (site.feature('restaurant')) $scope.transactionTypeList = response.data;
-        else $scope.transactionTypeList = response.data.filter(i => i.id != 1);
+        if (site.feature("restaurant"))
+          $scope.transactionTypeList = response.data;
+        else
+          $scope.transactionTypeList = response.data.filter((i) => i.id != 1);
       },
       function (err) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.loadStores = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/stores/all",
-      data: { select: { id: 1, name_ar: 1, name_en: 1, type: 1, code: 1 } }
+      data: { select: { id: 1, name_ar: 1, name_en: 1, type: 1, code: 1 } },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -149,7 +147,7 @@ app.controller("default_setting", function ($scope, $http) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.loadCurrencies = function () {
@@ -160,15 +158,17 @@ app.controller("default_setting", function ($scope, $http) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
-          minor_currency_ar: 1, minor_currency_en: 1,
+          name_ar: 1,
+          name_en: 1,
+          minor_currency_ar: 1,
+          minor_currency_en: 1,
           ex_rate: 1,
-          code: 1
+          code: 1,
         },
         where: {
-          active: true
-        }
-      }
+          active: true,
+        },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -180,15 +180,19 @@ app.controller("default_setting", function ($scope, $http) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.loadSafesBox = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
-    let where = { 'type.id': 1 }
-    if ($scope.default_setting && $scope.default_setting.accounting && $scope.default_setting.accounting.currency) {
-      where['currency.id'] = $scope.default_setting.accounting.currency.id
+    let where = { "type.id": 1 };
+    if (
+      $scope.default_setting &&
+      $scope.default_setting.accounting &&
+      $scope.default_setting.accounting.currency
+    ) {
+      where["currency.id"] = $scope.default_setting.accounting.currency.id;
     }
     $http({
       method: "POST",
@@ -196,33 +200,37 @@ app.controller("default_setting", function ($scope, $http) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
+          name_ar: 1,
+          name_en: 1,
           commission: 1,
           currency: 1,
           type: 1,
-          code: 1
+          code: 1,
         },
-        where: where
-      }
+        where: where,
+      },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) $scope.safesBoxList = response.data.list;
-
       },
       function (err) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.loadSafesBank = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
-    let where = { 'type.id': 2 }
-    if ($scope.default_setting && $scope.default_setting.accounting && $scope.default_setting.accounting.currency) {
-      where['currency.id'] = $scope.default_setting.accounting.currency.id
+    let where = { "type.id": 2 };
+    if (
+      $scope.default_setting &&
+      $scope.default_setting.accounting &&
+      $scope.default_setting.accounting.currency
+    ) {
+      where["currency.id"] = $scope.default_setting.accounting.currency.id;
     }
     $http({
       method: "POST",
@@ -230,50 +238,62 @@ app.controller("default_setting", function ($scope, $http) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
+          name_ar: 1,
+          name_en: 1,
           commission: 1,
           currency: 1,
           type: 1,
-          code: 1
+          code: 1,
         },
-        where: where
-      }
+        where: where,
+      },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) $scope.safesBankList = response.data.list;
-
       },
       function (err) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.getSourceType = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
     $scope.sourceTypeList = [];
     $http({
       method: "POST",
-      url: "/api/source_type/all"
+      url: "/api/source_type/all",
     }).then(
       function (response) {
         $scope.busy = false;
 
-        if (site.feature('club')) $scope.sourceTypeList = response.data.filter(i => i.id != 3 && i.id != 5 && i.id != 6 && i.id != 7);
-        else if (site.feature('restaurant') || site.feature('pos') || site.feature('erp')) $scope.sourceTypeList = response.data.filter(i => i.id != 4 && i.id != 5 && i.id != 6 && i.id != 7);
-        else if (site.feature('academy')) $scope.sourceTypeList = response.data.filter(i => i.id != 4 && i.id != 3);
+        if (site.feature("club"))
+          $scope.sourceTypeList = response.data.filter(
+            (i) => i.id != 3 && i.id != 5 && i.id != 6 && i.id != 7
+          );
+        else if (
+          site.feature("restaurant") ||
+          site.feature("pos") ||
+          site.feature("erp")
+        )
+          $scope.sourceTypeList = response.data.filter(
+            (i) => i.id != 4 && i.id != 5 && i.id != 6 && i.id != 7
+          );
+        else if (site.feature("academy"))
+          $scope.sourceTypeList = response.data.filter(
+            (i) => i.id != 4 && i.id != 3
+          );
         else $scope.sourceTypeList = response.data;
       },
       function (err) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
-
 
   /*  $scope.getDiscountMethodList = function () {
      $scope.error = '';
@@ -296,13 +316,12 @@ app.controller("default_setting", function ($scope, $http) {
    };
   */
   $scope.getPlaceProgramList = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
     $scope.placeProgramList = [];
     $http({
       method: "POST",
-      url: "/api/place_program/all"
-
+      url: "/api/place_program/all",
     }).then(
       function (response) {
         $scope.busy = false;
@@ -312,7 +331,7 @@ app.controller("default_setting", function ($scope, $http) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.loadDelegates = function () {
@@ -323,9 +342,9 @@ app.controller("default_setting", function ($scope, $http) {
       url: "/api/delegates/all",
       data: {
         where: {
-          active: true
-        }
-      }
+          active: true,
+        },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -337,7 +356,7 @@ app.controller("default_setting", function ($scope, $http) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.loadItemsGroups = function () {
@@ -349,10 +368,11 @@ app.controller("default_setting", function ($scope, $http) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
-          code: 1
-        }
-      }
+          name_ar: 1,
+          name_en: 1,
+          code: 1,
+        },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -364,18 +384,16 @@ app.controller("default_setting", function ($scope, $http) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
-
   $scope.getPaymentMethodList = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
     $scope.paymentMethodList = [];
     $http({
       method: "POST",
-      url: "/api/payment_method/all"
-
+      url: "/api/payment_method/all",
     }).then(
       function (response) {
         $scope.busy = false;
@@ -385,7 +403,7 @@ app.controller("default_setting", function ($scope, $http) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.loadSetting = function (where) {
@@ -396,13 +414,13 @@ app.controller("default_setting", function ($scope, $http) {
       method: "POST",
       url: "/api/default_setting/get",
       data: {
-        where: where
-      }
+        where: where,
+      },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $scope.default_setting = response.data.doc
+          $scope.default_setting = response.data.doc;
         } else {
           $scope.default_setting = {};
         }
@@ -411,7 +429,7 @@ app.controller("default_setting", function ($scope, $http) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.saveSetting = function (where) {
@@ -419,20 +437,25 @@ app.controller("default_setting", function ($scope, $http) {
     $http({
       method: "POST",
       url: "/api/default_setting/save",
-      data: $scope.default_setting
+      data: $scope.default_setting,
     }).then(
       function (response) {
         $scope.busy = false;
         if (!response.data.done) {
-          $scope.error = response.data.error
-        }
+          $scope.error = response.data.error;
+        } else {
+          site.showModal("#alert");
+          $timeout(() => {
+            site.hideModal("#alert");
 
+          }, 2000);
+        }
       },
       function (err) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.getDeliveryEmployeesList = function () {
@@ -440,7 +463,7 @@ app.controller("default_setting", function ($scope, $http) {
     $http({
       method: "POST",
       url: "/api/delivery_employees/all",
-      data: {}
+      data: {},
     }).then(
       function (response) {
         $scope.busy = false;
@@ -452,7 +475,7 @@ app.controller("default_setting", function ($scope, $http) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.loadUnits = function () {
@@ -464,11 +487,12 @@ app.controller("default_setting", function ($scope, $http) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
+          name_ar: 1,
+          name_en: 1,
           barcode: 1,
-          code: 1
-        }
-      }
+          code: 1,
+        },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -480,12 +504,11 @@ app.controller("default_setting", function ($scope, $http) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
-
   $scope.loadKitchens = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
     $http({
       method: "POST",
@@ -493,11 +516,12 @@ app.controller("default_setting", function ($scope, $http) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
+          name_ar: 1,
+          name_en: 1,
           printer_path: 1,
-          code: 1
-        }
-      }
+          code: 1,
+        },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -509,17 +533,16 @@ app.controller("default_setting", function ($scope, $http) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
-
   $scope.loadPaymentTypes = function () {
-    $scope.error = '';
+    $scope.error = "";
     $scope.busy = true;
     $http({
       method: "POST",
-      url: '/api/payment_type/all',
-      data: {}
+      url: "/api/payment_type/all",
+      data: {},
     }).then(
       function (response) {
         $scope.busy = false;
@@ -529,7 +552,7 @@ app.controller("default_setting", function ($scope, $http) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.getDoctorsVisitsTypeList = function () {
@@ -537,18 +560,17 @@ app.controller("default_setting", function ($scope, $http) {
     $http({
       method: "POST",
       url: "/api/visit_type/all",
-      data: {}
+      data: {},
     }).then(
       function (response) {
         $scope.busy = false;
         $scope.doctorsVisitsTypeList = response.data;
-
       },
       function (err) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.getClinicList = function (where) {
@@ -566,25 +588,23 @@ app.controller("default_setting", function ($scope, $http) {
            doctor_list: 1,
            specialty: 1
          } */
-      }
+      },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
           $scope.clinicList = response.data.list;
-
         }
       },
       function (err) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.getDoctorList = function (ev) {
-
-    $scope.error = '';
+    $scope.error = "";
 
     $scope.busy = true;
     if (ev.which !== 13) {
@@ -597,25 +617,21 @@ app.controller("default_setting", function ($scope, $http) {
       url: "/api/doctors/all",
       data: {
         search: $scope.doctor_search,
-        select: {
-
-        }
-      }
+        select: {},
+      },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
           $scope.doctorList = response.data.list;
-          $scope.doctor_search = '';
-
+          $scope.doctor_search = "";
         }
       },
       function (err) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
-
+    );
   };
 
   $scope.getSpecialtyList = function (where) {
@@ -625,13 +641,14 @@ app.controller("default_setting", function ($scope, $http) {
       url: "/api/medical_specialties/all",
       data: {
         where: {
-          active: true
+          active: true,
         },
         select: {
           id: 1,
-          name_ar: 1, name_en: 1
-        }
-      }
+          name_ar: 1,
+          name_en: 1,
+        },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -643,7 +660,7 @@ app.controller("default_setting", function ($scope, $http) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.getSchoolGradesList = function () {
@@ -653,10 +670,11 @@ app.controller("default_setting", function ($scope, $http) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
-          code: 1
-        }
-      }
+          name_ar: 1,
+          name_en: 1,
+          code: 1,
+        },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -665,9 +683,8 @@ app.controller("default_setting", function ($scope, $http) {
       function (err) {
         $scope.error = err;
       }
-    )
+    );
   };
-
 
   $scope.getPrintersPath = function () {
     $scope.busy = true;
@@ -677,14 +694,15 @@ app.controller("default_setting", function ($scope, $http) {
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
+          name_ar: 1,
+          name_en: 1,
           type: 1,
           ip_device: 1,
           Port_device: 1,
           ip: 1,
-          code: 1
-        }
-      }
+          code: 1,
+        },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -696,7 +714,7 @@ app.controller("default_setting", function ($scope, $http) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
   $scope.getTrainerList = function () {
     $scope.busy = true;
@@ -705,14 +723,15 @@ app.controller("default_setting", function ($scope, $http) {
       url: "/api/trainer/all",
       data: {
         where: {
-          active: true
+          active: true,
         },
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
-          code: 1
-        }
-      }
+          name_ar: 1,
+          name_en: 1,
+          code: 1,
+        },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -724,10 +743,8 @@ app.controller("default_setting", function ($scope, $http) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
-
-
 
   $scope.loadItemsType = function () {
     $scope.busy = true;
@@ -735,25 +752,27 @@ app.controller("default_setting", function ($scope, $http) {
     $http({
       method: "POST",
       url: "/api/items_types/all",
-      data: {}
+      data: {},
     }).then(
       function (response) {
         $scope.busy = false;
         $scope.itemsTypesList = response.data;
-        if (site.feature('restaurant')) $scope.itemsTypesList = $scope.itemsTypesList.filter(i => i.id != 3);
-
+        if (site.feature("restaurant"))
+          $scope.itemsTypesList = $scope.itemsTypesList.filter(
+            (i) => i.id != 3
+          );
       },
       function (err) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.loadStores();
   $scope.getPaymentMethodList();
-/*   $scope.getDiscountMethodList();
- */  $scope.getPlaceProgramList();
+  /*   $scope.getDiscountMethodList();
+   */ $scope.getPlaceProgramList();
   $scope.loadPaymentTypes();
   $scope.loadItemsGroups();
   $scope.loadDelegates();
@@ -766,24 +785,31 @@ app.controller("default_setting", function ($scope, $http) {
   $scope.getPrintersPath();
   $scope.loadItemsType();
   $scope.getTransactionTypeList();
-  if (site.feature('restaurant') || site.feature('pos') || site.feature('erp')) {
+  if (
+    site.feature("restaurant") ||
+    site.feature("pos") ||
+    site.feature("erp")
+  ) {
     $scope.getDeliveryEmployeesList();
   }
-  if (site.feature('restaurant')) {
+  if (site.feature("restaurant")) {
     $scope.loadKitchens();
   }
 
-  if (site.feature('medical')) {
+  if (site.feature("medical")) {
     $scope.getSpecialtyList();
     $scope.getClinicList();
     $scope.getDoctorsVisitsTypeList();
   }
-  if (site.feature('school')) {
+  if (site.feature("school")) {
     $scope.getSchoolGradesList();
   }
 
-  if (site.feature('academy') || site.feature('school') || site.feature('club')) {
+  if (
+    site.feature("academy") ||
+    site.feature("school") ||
+    site.feature("club")
+  ) {
     $scope.getTrainerList();
   }
-
 });

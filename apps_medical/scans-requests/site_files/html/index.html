@@ -78,11 +78,11 @@
                                 label="##word.details##" ng-click="displayDetailsScansRequests(c)"></i-button>
 
                             <i-button type="save" ng-hide="c.delivery" label="##word.delivery_scans##"
-                                ng-click="showModalList(c,'delivery')">
+                                ng-click="showDeliveryModal(c)">
                             </i-button>
 
                             <i-button ng-hide="c.Putting_results" label="##word.putting_results_scans##"
-                            ng-click="showModalList(c,'result')">
+                            ng-click="showResultModal(c)">
                             </i-button>
 
                             <i-button type="update" x-permissions="scans_requests_edit || scans_requests_manage"

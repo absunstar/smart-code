@@ -120,7 +120,7 @@ popup item:hover {
 }
 .main-menu .tabs-header .tab-link {
   color: #000;
-  border-radius: 0px !important;
+  /* border-radius: 0px !important; */
 }
 
 .user-menu {

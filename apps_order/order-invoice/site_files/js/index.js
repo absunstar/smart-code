@@ -1528,7 +1528,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
             tablesGroup.tables_list = [];
             $scope.tablesList.forEach((tables) => {
               if (tablesGroup.id === tables.tables_group.id)
-                tablesGroup.tables_list.push(tables);
+                tablesGroup.tables_list.unshift(tables);
             });
           });
           $scope.tablesGroupList = response.data.list;
@@ -1614,7 +1614,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
               _invoiceActive.transaction_type.id == 1 &&
               _invoiceActive.id != $scope.order_invoice.id
             ) {
-              $scope.invoicesTablelist.push(_invoiceActive);
+              $scope.invoicesTablelist.unshift(_invoiceActive);
             }
           });
 
@@ -1666,7 +1666,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         }
       });
       if (!exist) {
-        $scope.order_invoice.items.push(item);
+        $scope.order_invoice.items.unshift(item);
       }
     });
     $scope.calc($scope.order_invoice);
@@ -1924,10 +1924,9 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         extras_price: 0,
         count: 1,
       };
-
-      $scope.order_invoice.items.push(obj);
+      $scope.order_invoice.items.unshift(obj);
       $scope.calcSize(
-        $scope.order_invoice.items[$scope.order_invoice.items.length - 1]
+        $scope.order_invoice.items[0]
       );
     }
   };
@@ -2001,7 +2000,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     if ($scope.extras_items && $scope.extras_items.id) {
       item.extras_item = item.extras_item || [];
 
-      item.extras_item.push($scope.extras_items);
+      item.extras_item.unshift($scope.extras_items);
       $scope.extras_items = {};
       $scope.calcSize(item);
     }
@@ -2033,7 +2032,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     } else {
       $scope.order_invoice.taxes = $scope.order_invoice.taxes || [];
       if ($scope.tax.value) {
-        $scope.order_invoice.taxes.push({
+        $scope.order_invoice.taxes.unshift({
           name_ar: $scope.tax.name_ar,
           name_en: $scope.tax.name_en,
           value: $scope.tax.value,
@@ -2060,7 +2059,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
       return;
     } else {
       $scope.order_invoice.discountes = $scope.order_invoice.discountes || [];
-      $scope.order_invoice.discountes.push({
+      $scope.order_invoice.discountes.unshift({
         name_ar: $scope.discount.name_ar,
         name_en: $scope.discount.name_en,
         value: $scope.discount.value,
@@ -2279,8 +2278,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
                 item_book.printed = true;
                 _kitchen.has_items = true;
-                console.log(item_book);
-                $scope.kitchen_print.items.push({ ...item_book, extras });
+                $scope.kitchen_print.items.unshift({ ...item_book, extras });
               }
             }
           });

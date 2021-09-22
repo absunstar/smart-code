@@ -501,13 +501,14 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.showModalList = function (analysis_requests, type) {
+  $scope.showDeliveryModal = function (analysis_requests) {
     $scope.analysis_requests = analysis_requests;
-    if (type === "delivery") {
-      site.showModal("#deliveryAnalysisModal");
-    } else if (type === "result") {
-      site.showModal("#puttingResultsAnalysisModal");
-    }
+    site.showModal("#deliveryAnalysisModal");
+  };
+
+  $scope.showResultModal = function (analysis_requests) {
+    $scope.analysis_requests = analysis_requests;
+    site.showModal("#puttingResultsAnalysisModal");
   };
 
   $scope.setPersonDelivery = function () {
