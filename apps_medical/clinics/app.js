@@ -470,6 +470,8 @@ module.exports = function init(site) {
   });
 
 
+  /* ATM APIS */
+
   site.post("/api/clinics/getDoctorsList", (req, res) => {
     let response = {
       done: false,
@@ -500,27 +502,6 @@ module.exports = function init(site) {
     let company = where["company.id"];
     let specialty = where["specialty.id"];
     let clinic = where["clinic.id"];
-
-    // $clinics.findOne(
-    //   {
-
-    //     where: where,
-    //     sort: req.body.sort || {
-    //       id: -1,
-    //     },
-    //     limit: req.body.limit,
-    //   },
-    //   (err, docs, count) => {
-    //     if (!err) {
-    //       response.done = true;
-    //       response.list = docs;
-    //       response.count = count;
-    //     } else {
-    //       response.error = err.message;
-    //     }
-    //     res.json(response);
-    //   }
-    // );
 
     $clinics.aggregate(
       [{
@@ -617,6 +598,72 @@ module.exports = function init(site) {
 
 
   });
+
+
+
+  site.post("/api/clinics/getDoctorClinicPrices", (req, res) => {
+    let response = {
+      done: false,
+    };
+
+    if (!req.session.user) {
+      response.error = "Please Login First";
+      res.json(response);
+      return;
+    }
+
+    let where = req.body.where || {};
+    let doctor = where["doctor"].id;
+    
+
+    
+    if (doctor != undefined) {
+      $clinics.aggregate(
+        [{
+            "$match": {
+              "doctor_list.doctor.id": doctor
+            }
+          },
+          {
+            "$project": {
+              "doctor_list": 1.0
+            }
+          },
+          {
+            "$unwind": {
+              "path": "$doctor_list",
+              "includeArrayIndex": "arrayIndex",
+              "preserveNullAndEmptyArrays": false
+            }
+          },
+          { 
+            "$project" : {
+                "doctor_list.detection_price" : 1.0
+            }
+        }
+        ],
+        (err, docs) => {
+          if (!err && docs) {
+            response.done = true;
+            response.list = docs;
+            response.count = docs.length;
+          } else {
+            response.error = err.message;
+          }
+          res.json(response);
+        },
+      );
+    }
+    else{
+      response.error = "no doctor found";
+      res.json(response);
+      return
+    }
+
+
+  });
+
+
 
 
   site.post("/api/clinics/shifts/all", (req, res) => {
