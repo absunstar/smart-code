@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="city_ui || city_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+
+    <div id="main-layout" class="container loaded">
+        <div class="row">
+            <div class="row" ng-controller="city">
+                <div x-permissions="city_add || city_manage" x-import="city/add_modal.html"></div>
+                <div x-permissions="city_update || city_manage" x-import="city/update_modal.html"></div>
+                <div x-permissions="city_delete || city_manage" x-import="city/delete_modal.html"></div>
+                <div x-permissions="city_view || city_manage" x-import="city/view_modal.html"></div>
+                <div x-permissions="city_search || city_manage" x-import="city/search_all_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center">##word.cities##</h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button x-permissions="city_add || city_manage" type="add" label="##word.city_new##"
+                        ng-click="displayaddCity()"></i-button>
+
+                    <i-button x-permissions="city_search || city_manage" type="search" label="##word.search_all##"
+                        ng-click="displaySearchModal()"></i-button>
+
+                    <a class="btn left bg-green" target="blank" href="/area"> ##word.area_add##</a>
+                    <a class="btn left bg-green" target="blank" href="/goves"> ##word.goves_add##</a>
+
+                    <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
+                </div>
+
+                <table x-permissions="login" class="table hover bold loaded" id="t1">
+
+                    <tr>
+                        <th class="not-print">##word.logo##</th>
+                        <th>##word.code##</th>
+                        <th>##word.goves_name##</th>
+                        <th>##word.city_name##</th>
+                        <th>##word.status##</th>
+                        <th class="not-print">##word.actions##</th>
+                    </tr>
+
+                    <tr ng-repeat="c in list">
+
+                        <td class="center not-print">
+                            <i-image view class="logo" ng-model="c.image_url"></i-image>
+                        </td>
+
+                        <td class="center userPrint blue">{{c.code}}</td>
+
+                        <td class="center">{{c.gov.name_##session.lang##}}</td>
+
+                        <td class="center title">{{c.name_##session.lang##}}</td>
+
+                        <td class="center">
+                            <p ng-show="c.active ==true" class="green"> ##word.active## </p>
+                            <p ng-show="c.active ==false" class="red"> ##word.not_active## </p>
+                        </td>
+
+                        <td class="center not-print">
+                            <i-button x-permissions="city_view || city_manage" type="view" label="##word.details##"
+                                ng-click="displayDetailsCity(c)"></i-button>
+
+                            <i-button x-permissions="city_update || city_manage" type="edit" label="##word.edit##"
+                                ng-click="displayUpdateCity(c)"></i-button>
+
+                            <i-button x-permissions="city_delete || city_manage" type="delete" label="##word.delete##"
+                                ng-click="displaydeleteCity(c)"></i-button>
+                        </td>
+
+                    </tr>
+                </table>
+
+                <i-button x-permissions="city_print || city_manage" type="print" label="##word.print##"
+                    onclick="site.print('#t1')"></i-button>
+
+            </div>
+        </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+    <script x-import="city/index.js"></script>
+</body>
+
+</html>

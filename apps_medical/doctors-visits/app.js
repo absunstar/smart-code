@@ -619,7 +619,6 @@ module.exports = function init(site) {
     if (where['address']) {
       where['address'] = new RegExp(where['address'], "i");
     }
-
     if (where.date) {
       let d1 = site.toDate(where.date)
       let d2 = site.toDate(where.date)
@@ -628,6 +627,7 @@ module.exports = function init(site) {
         '$gte': d1,
         '$lt': d2
       } 
+
     } else if (where && where.date_from) {
       let d1 = site.toDate(where.date_from)
       let d2 = site.toDate(where.date_to)

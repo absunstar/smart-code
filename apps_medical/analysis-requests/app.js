@@ -1,5 +1,6 @@
 module.exports = function init(site) {
   const $analysis_requests = site.connectCollection("analysis_requests");
+  const $customer = site.connectCollection("customers");
 
   //  $analysis_requests.deleteDuplicate({
   //   code: 1,
@@ -34,6 +35,7 @@ module.exports = function init(site) {
     // }
 
     let analysis_requests_doc = req.body;
+
     analysis_requests_doc.$req = req;
     analysis_requests_doc.$res = res;
 
@@ -96,6 +98,8 @@ module.exports = function init(site) {
       }
     });
   });
+
+
 
   site.post("/api/analysis_requests/update", (req, res) => {
     let response = {
@@ -326,4 +330,113 @@ module.exports = function init(site) {
       }
     );
   };
+
+
+
+  /* ATM APIS */
+
+  site.post("/api/analysis_requests/add1", (req, res) => {
+    let response = {
+      done: false,
+    };
+    // if (!req.session.user) {
+    //   response.error = 'Please Login First'
+    //   res.json(response)
+    //   return
+    // }
+
+    let analysis_requests_doc = req.body;
+
+    $customer.findOne(
+      {
+        where: {
+          id: analysis_requests_doc.customer.id,
+        },
+      },
+      (err, customerData) => {
+        if (!err) {
+          if (!customerData) {
+            response.error = err.message;
+            return
+          }
+          else {
+            analysis_requests_doc.customer = customerData;
+            analysis_requests_doc.$req = req;
+            analysis_requests_doc.$res = res;
+        
+            analysis_requests_doc.company = site.get_company(req);
+            analysis_requests_doc.branch = site.get_branch(req);
+        
+            analysis_requests_doc.add_user_info = site.security.getUserFinger({
+              $req: req,
+              $res: res,
+            });
+        
+            let num_obj = {
+              company: site.get_company(req),
+              screen: "analysis_requests",
+              date: analysis_requests_doc.date,
+            };
+            let cb = site.getNumbering(num_obj);
+            if (!analysis_requests_doc.code && !cb.auto) {
+              response.error = "Must Enter Code";
+              res.json(response);
+              return;
+            } else if (cb.auto) {
+              analysis_requests_doc.code = cb.code;
+            }
+            site.getPatientTicket(customerData, (callBackGet) => {
+              if (!callBackGet) {
+                site.addPatientTicket(analysis_requests_doc, (callBackAdd) => {
+                  analysis_requests_doc.patient_ticket_id = callBackAdd.id;
+        
+                  $analysis_requests.add(analysis_requests_doc, (err, doc) => {
+                    if (!err) {
+                      response.done = true;
+                      response.doc = doc;
+                    } else {
+                      response.error = err.message;
+                    }
+                    res.json(response);
+                  });
+                });
+              } else {
+                if (callBackGet.status && callBackGet.status.id === 2) {
+                  response.error = "holding ticket for this patient";
+                  res.json(response);
+                  return;
+                }
+        
+                analysis_requests_doc.patient_ticket_id = callBackGet.id;
+        
+                $analysis_requests.add(analysis_requests_doc, (err, doc) => {
+                  if (!err) {
+                    response.done = true;
+                    response.doc = doc;
+                  } else {
+                    response.error = err.message;
+                  }
+                  res.json(response);
+                });
+              }
+            });
+
+
+
+
+
+          }
+
+
+        }
+      }
+    );
+
+  
+
+   
+
+    
+  });
+
 };
