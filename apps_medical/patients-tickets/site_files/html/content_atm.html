@@ -1,0 +1,120 @@
+<div class="form">
+    <div id="basicInformation" class="tab-content">
+        <fieldset>
+            <legend> ##word.basic_information## </legend>
+            <div class="row">
+               
+
+                    <div class="row">
+                        <i-control ng-hide="disabledCode" class="col2" label="##word.code##"
+                            ng-model="patients_tickets.code">
+                        </i-control>
+
+                        <i-date2 class="col4" ng-model="patients_tickets.opening_date" label="##word.opening_date##"
+                            v="r">
+                        </i-date2>
+
+                        <div class="col4"></div>
+
+                    </div>
+
+                    <br>
+                    <br>
+
+                    <div class="row">
+                        <div class="row">
+                            <i-control class="col2" label="##word.patient_search##" ng-model="doctor_search"
+                                ng-keydown="getPatientList($event)"></i-control>
+
+                            <i-list class="col4" label="##word.patient##" v="r" ng-model="patients_tickets.customer"
+                                display="name_##session.lang##" items="customersList"
+                                ng-search="_search.$patients_searching">
+                            </i-list>
+
+                            <i-button class="col3" ng-show="patients_tickets.customer.id" type="details"
+                                label="##word.customers_details##" ng-click="showPatient(patients_tickets.customer.id)">
+                            </i-button>
+
+                            <div class="col1"></div>
+
+                            <i-button type="add" label="##word.customers_new##" ng-click="displayAddCustomer()">
+                            </i-button>
+
+                        </div>
+
+                        <br>
+                        <br>
+                        <div class="row" ng-show="patients_tickets.customer.id">
+                            <fieldset>
+
+                                <table class="table bold center hover">
+
+                                    <tr>
+                                        <td class="white bg_card"> ##word.customer_name## </td>
+                                        <td colspan="5" class="center">
+                                            {{patients_tickets.customer.name_##session.lang##}} <b class="red"
+                                                ng-show="patients_tickets.customer.child">(##word.child##)</b>
+                                        </td>
+
+                                        <td class="white bg_card"> ##word.gender## </td>
+                                        <td colspan="2" class="center">
+                                            {{patients_tickets.customer.gender.##session.lang##}}
+                                        </td>
+
+                                    </tr>
+
+
+                                    <tr>
+                                        <td class="white bg_card"> ##word.weight## </td>
+                                        <td colspan="2" class="center"> {{patients_tickets.customer.weight}} </td>
+                                        <td class="white bg_card"> ##word.tall## </td>
+                                        <td colspan="2" class="center"> {{patients_tickets.customer.tall}} </td>
+                                        <td class="white bg_card"> ##word.blood_type## </td>
+                                        <td colspan="2" class="center red">
+                                            {{patients_tickets.customer.blood_type.name}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="white bg_card"> ##word.medicine_notes## </td>
+                                        <td colspan="7" class="center"> {{patients_tickets.customer.medicine_notes}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="white bg_card"> ##word.gov## </td>
+                                        <td colspan="2" class="center"> {{patients_tickets.customer.gov.name_##session.lang##}} </td>
+                                        <td class="white bg_card"> ##word.city## </td>
+                                        <td colspan="2" class="center"> {{patients_tickets.customer.city.name_##session.lang##}}
+                                        </td>
+                                        <td class="white bg_card"> ##word.area## </td>
+                                        <td colspan="2" class="center"> {{patients_tickets.customer.area.name_##session.lang##}}
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="white bg_card"> ##word.address## </td>
+                                        <td colspan="7" class="center"> {{patients_tickets.customer.address}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="white bg_card"> ##word.mobile## </td>
+                                        <td colspan="4" class="center"> {{patients_tickets.customer.mobile}}</td>
+                                        <td class="white bg_card"> ##word.phone## </td>
+                                        <td colspan="3" class="center"> {{patients_tickets.customer.phone}}</td>
+                                    </tr>
+
+                                </table>
+                            </fieldset>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <i-textarea label="##word.notes##" class="col10" ng-model="patients_tickets.notes"></i-textarea>
+                    </div>
+
+                </div>
+
+               
+        </fieldset>
+
+    </div>
+</div>

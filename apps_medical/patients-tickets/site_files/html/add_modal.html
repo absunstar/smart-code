@@ -11,7 +11,9 @@
         </div>
 
         <div class="modal-body">
-            <div x-import="patients-tickets/content.html"></div>
+            <div x-import="patients-tickets/content.html" x-features="!atm"></div>
+            <div x-import="patients-tickets/content_atm.html" x-features="atm"></div>
+            
         </div>
 
 
