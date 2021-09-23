@@ -1,0 +1,19 @@
+[{
+        "id": 1,
+        "name": "in_clinic",
+        "en": "In Clinic",
+        "ar": "في العيادة"
+    },
+    {
+        "id": 2,
+        "name": "at_home",
+        "en": "At home",
+        "ar": "في المنزل"
+    },
+    {
+        "id": 3,
+        "name": "online",
+        "name_en": "Online",
+        "ar": "أونلاين"
+    }
+]

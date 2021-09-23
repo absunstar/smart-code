@@ -53,6 +53,10 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
       if ($scope.defaultSettings.general_Settings.visit_type)
         $scope.doctors_visits.visit_type =
           $scope.defaultSettings.general_Settings.visit_type;
+
+      if ($scope.defaultSettings.general_Settings.place_examination)
+        $scope.doctors_visits.place_examination =
+          $scope.defaultSettings.general_Settings.place_examination;
     }
     site.showModal("#doctorsVisitsAddModal");
   };
@@ -1041,6 +1045,54 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
             : c.detection_price.urgent_visit.type,
       };
     }
+
+      if (
+        d.detection_price &&
+        d.detection_price.at_home &&
+        d.detection_price.at_home.price
+      ) {
+        $scope.doctors_visits.at_home = {
+          price: d.detection_price.at_home.price,
+          type: d.detection_price.at_home.type
+            ? d.detection_price.at_home.type
+            : c.detection_price.at_home.type,
+        };
+      } else if (c.detection_price.at_home && c.detection_price.at_home.price) {
+        $scope.doctors_visits.at_home = {
+          price: c.detection_price.at_home.price,
+          type:
+            d.detection_price &&
+            d.detection_price.at_home &&
+            d.detection_price.at_home.type
+              ? d.detection_price.at_home.type
+              : c.detection_price.at_home.type,
+        };
+      }
+      if (
+        d.detection_price &&
+        d.detection_price.online &&
+        d.detection_price.online.price
+      ) {
+        $scope.doctors_visits.online = {
+          price: d.detection_price.online.price,
+          type: d.detection_price.online.type
+            ? d.detection_price.online.type
+            : c.detection_price.online.type,
+        };
+      } else if (c.detection_price.online && c.detection_price.online.price) {
+        $scope.doctors_visits.online = {
+          price: c.detection_price.online.price,
+          type:
+            d.detection_price &&
+            d.detection_price.online &&
+            d.detection_price.online.type
+              ? d.detection_price.online.type
+              : c.detection_price.online.type,
+        };
+      }
+
+    
+
     $scope.clinic = Object.assign({}, c);
     $scope.doctors_visits.selected_clinic = {
       id: c.id,
@@ -1326,6 +1378,24 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         $scope.resultVisitList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.getPlaceExaminationList = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/place_examination/all",
+      data: {},
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.placeExaminationList = response.data;
       },
       function (err) {
         $scope.busy = false;
@@ -1861,16 +1931,34 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
     $scope.error = "";
     $timeout(() => {
       obj.total_discount = 0;
-      obj.total_value = 0;
+      obj.total_value = obj.doctor_visit_price;
+
+     
+      if (obj.at_home && obj.place_examination.id == 2) {
+        if (obj.at_home.type == "percent")
+          obj.at_home.value =
+            (obj.doctor_visit_price * site.toNumber(obj.at_home.price)) /
+            100;
+        else obj.at_home.value = site.toNumber(obj.at_home.price);
+        obj.total_value += obj.at_home.value;
+      } else  if (obj.online && obj.place_examination.id == 3) {
+        if (obj.online.type == "percent")
+          obj.online.value =
+            (obj.doctor_visit_price * site.toNumber(obj.online.price)) /
+            100;
+        else obj.online.value = site.toNumber(obj.online.price);
+        obj.total_value += obj.online.value;
+      }
 
       if (obj.urgent_visit && obj.is_urgent_visit) {
         if (obj.urgent_visit.type == "percent")
           obj.urgent_visit.value =
-            (obj.doctor_visit_price * site.toNumber(obj.urgent_visit.price)) /
+            (obj.total_value * site.toNumber(obj.urgent_visit.price)) /
             100;
         else obj.urgent_visit.value = site.toNumber(obj.urgent_visit.price);
-        obj.total_value = obj.doctor_visit_price + obj.urgent_visit.value;
-      } else obj.total_value = obj.doctor_visit_price;
+        obj.total_value = obj.total_value + obj.urgent_visit.value;
+      } else obj.total_value = obj.total_value;
+
 
       if (obj.discountes && obj.discountes.length > 0)
         obj.discountes.forEach((ds) => {
@@ -1923,6 +2011,7 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
   $scope.getCustomerGroupList();
   $scope.Gender();
   $scope.getBloodType();
+  $scope.getPlaceExaminationList();
   $scope.getFoodsList();
   $scope.getDrinksList();
   $scope.getClinicList();

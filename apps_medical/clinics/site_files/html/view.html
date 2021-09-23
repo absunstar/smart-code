@@ -1,231 +1,319 @@
 <div ng-hide="busy" class="row">
-    <div class="tabs col">
-        <div class="tabs-header full">
+  <div class="tabs col">
+    <div class="tabs-header full">
+      <a
+        class="tab-link"
+        onclick="site.showTabContent(event, '#basicInformation')"
+      >
+        ##word.basic_information##
+      </a>
 
-            <a class="tab-link" onclick="site.showTabContent(event, '#basicInformation')">
-                ##word.basic_information## </a>
+      <a
+        class="tab-link"
+        onclick="site.showTabContent(event, '#shiftsInformation')"
+      >
+        ##word.shifts_information##
+      </a>
 
-            <a class="tab-link" onclick="site.showTabContent(event, '#shiftsInformation')">
-                ##word.shifts_information## </a>
+      <a
+        class="tab-link"
+        onclick="site.showTabContent(event, '#doctorsInformation')"
+      >
+        ##word.doctors##
+      </a>
 
-            <a class="tab-link" onclick="site.showTabContent(event, '#doctorsInformation')">
-                ##word.doctors## </a>
+      <a
+        class="tab-link"
+        onclick="site.showTabContent(event,'#nursingInformation')"
+      >
+        ##word.nursing##</a
+      >
 
-            <a class="tab-link" onclick="site.showTabContent(event,'#nursingInformation')">
-                ##word.nursing##</a>
+      <a
+        class="tab-link"
+        onclick="site.showTabContent(event,'#vacationformation')"
+      >
+        ##word.vacations##</a
+      >
 
-            <a class="tab-link" onclick="site.showTabContent(event,'#vacationformation')">
-                ##word.vacations##</a>
-
-            <a class="tab-link" onclick="site.showTabContent(event,'#loginInformation')">
-                ##word.login_information##</a>
-
-        </div>
-        <div id="clinicsAllInfo" class="tabs-content bold full">
-
-            <div id="basicInformation" class="tab-content">
-                <div class="col9">
-
-                    <fieldset>
-                        <legend> ##word.basic_information##</legend>
-                        <table id="basicInformationTable" class="table hover bold">
-                            <!--     <tr>
+      <a
+        class="tab-link"
+        onclick="site.showTabContent(event,'#loginInformation')"
+      >
+        ##word.login_information##</a
+      >
+    </div>
+    <div id="clinicsAllInfo" class="tabs-content bold full">
+      <div id="basicInformation" class="tab-content">
+        <div class="col9">
+          <fieldset>
+            <legend>##word.basic_information##</legend>
+            <table id="basicInformationTable" class="table hover bold">
+              <!--     <tr>
                                 <td class="title">##word.id##</td>
                                 <td class="center">{{clinic.id}}</td>
                             </tr>
  -->
-                            <tr>
-                                <td class="title">##word.code##</td>
-                                <td class="center userPrint blue">{{clinic.code}}</td>
-                            </tr>
+              <tr>
+                <td class="title">##word.code##</td>
+                <td class="center userPrint blue">{{clinic.code}}</td>
+              </tr>
 
-                            <tr>
-                                <td class="title">##word.name##</td>
-                                <td class="center">{{clinic.name_##session.lang##}}</td>
-                            </tr>
+              <tr>
+                <td class="title">##word.name##</td>
+                <td class="center">{{clinic.name_##session.lang##}}</td>
+              </tr>
 
-                            <tr>
-                                <td class="title">##word.specialty##</td>
-                                <td class="center">{{clinic.specialty.name_##session.lang##}}</td>
-                            </tr>
+              <tr>
+                <td class="title">##word.specialty##</td>
+                <td class="center">
+                  {{clinic.specialty.name_##session.lang##}}
+                </td>
+              </tr>
 
-                            <tr>
-                                <td class="title">##word.detection_price##</td>
-                                <td class="center green">{{clinic.detection_price.detection}}</td>
-                            </tr>
+              <tr>
+                <td class="title">##word.detection_price##</td>
+                <td class="center green">
+                  {{clinic.detection_price.detection}}
+                </td>
+              </tr>
 
-                            <tr>
-                                <td class="title">##word.re_detection##</td>
-                                <td class="center green">{{clinic.detection_price.re_detection}}</td>
-                            </tr>
+              <tr>
+                <td class="title">##word.re_detection##</td>
+                <td class="center green">
+                  {{clinic.detection_price.re_detection}}
+                </td>
+              </tr>
 
-                            <tr>
-                                <td class="title">##word.consultation##</td>
-                                <td class="center green">{{clinic.detection_price.consultation}}</td>
-                            </tr>
+              <tr>
+                <td class="title">##word.consultation##</td>
+                <td class="center green">
+                  {{clinic.detection_price.consultation}}
+                </td>
+              </tr>
 
-                            <tr>
-                                <td class="title">##word.session##</td>
-                                <td class="center green">{{clinic.detection_price.session}}</td>
-                            </tr>
+              <tr>
+                <td class="title">##word.session##</td>
+                <td class="center green">{{clinic.detection_price.session}}</td>
+              </tr>
 
-                            <tr>
-                                <td class="title">##word.increase_urgent_visit##</td>
-                                <td class="center green">{{clinic.detection_price.urgent_visit.price}}
-                                    <b class="red" ng-show="clinic.detection_price.urgent_visit.type =='number'">$</b>
-                                    <b class="red" ng-show="clinic.detection_price.urgent_visit.type =='percent'">%</b>
-                                </td>
-                            </tr>
+              <tr>
+                <td class="title">##word.increase_urgent_visit##</td>
+                <td class="center green">
+                  {{clinic.detection_price.urgent_visit.price}}
+                  <b
+                    class="red"
+                    ng-show="clinic.detection_price.urgent_visit.type =='number'"
+                    >$</b
+                  >
+                  <b
+                    class="red"
+                    ng-show="clinic.detection_price.urgent_visit.type =='percent'"
+                    >%</b
+                  >
+                </td>
+              </tr>
 
+              <tr>
+                <td class="title">##word.online##</td>
+                <td class="center green">
+                  {{clinic.detection_price.online.price}}
+                  <b
+                    class="red"
+                    ng-show="clinic.detection_price.online.type =='number'"
+                    >$</b
+                  >
+                  <b
+                    class="red"
+                    ng-show="clinic.detection_price.online.type =='percent'"
+                    >%</b
+                  >
+                </td>
+              </tr>
 
-                            <!-- <tr>
+              <tr>
+                <td class="title">##word.at_home##</td>
+                <td class="center green">
+                  {{clinic.detection_price.at_home.price}}
+                  <b
+                    class="red"
+                    ng-show="clinic.detection_price.at_home.type =='number'"
+                    >$</b
+                  >
+                  <b
+                    class="red"
+                    ng-show="clinic.detection_price.at_home.type =='percent'"
+                    >%</b
+                  >
+                </td>
+              </tr>
+
+              <!-- <tr>
                                 <td class="title">##word.external_visit##</td>
                                 <td class="center green">{{clinic.external_visit}}</td>
                             </tr> -->
 
-                            <tr ng-show="clinic.detection_Duration">
-                                <td class="title">##word.detection_Duration##</td>
-                                <td class="center">{{clinic.detection_Duration}} ##word.minute##</td>
-                            </tr>
+              <tr ng-show="clinic.detection_Duration">
+                <td class="title">##word.detection_Duration##</td>
+                <td class="center">
+                  {{clinic.detection_Duration}} ##word.minute##
+                </td>
+              </tr>
 
-
-                            <tr>
-                                <td class="title">##word.status##</td>
-                                <td ng-show="clinic.active == true" class="green center bold"> ##word.active## </td>
-                                <td ng-show="clinic.active == false" class="red center bold"> ##word.not_active##
-                                </td>
-                            </tr>
-                        </table>
-                    </fieldset>
-                </div>
-                <div class="col3">
-                    <i-image view ng-model="clinic.image_url"></i-image>
-                </div>
-            </div>
-            <div id="shiftsInformation" class="tab-content">
-
-                <fieldset>
-                    <legend>##word.shifts_information##</legend>
-
-                    <div class="row" ng-repeat="shift in clinic.shift_list">
-                        <i-control disabled help-id="" class="col4" label="##word.shift_name##" ng-model="shift.name_##session.lang##">
-                        </i-control>
-
-                        <table class="table center hover bold">
-                            <tr>
-                                <th>##word.day##</th>
-                                <th>##word.from##</th>
-                                <th>##word.to##</th>
-                                <th>##word.vacation##</th>
-                            </tr>
-
-                            <tr ng-repeat="time in shift.times_list">
-                                <td>{{time.day.ar}}</td>
-                                <td class="green">{{time.from.minute}} : {{time.from.hour}}</td>
-                                <td class="red">{{time.to.minute}} : {{time.to.hour}}</td>
-                                <td ng-show="time.vacation == true" class="red center bold"> ##word.vacation## </td>
-                                <td ng-hide="time.vacation == true" class="green center bold"> ##word.active##</td>
-                            </tr>
-                        </table>
-                    </div>
-                    <hr>
-                </fieldset>
-            </div>
-            <div id="doctorsInformation" class="tab-content">
-
-                <fieldset>
-                    <legend>##word.doctors##</legend>
-                    <table class="table bold hover">
-                        <tr>
-                            <th>##word.doctors_name##</th>
-                            <th>##word.shift_name##</th>
-                            <th>##word.detection_price##</th>
-                            <th>##word.re_detection##</th>
-                            <th>##word.consultation##</th>
-                            <th>##word.session##</th>
-                            <th>##word.increase_urgent_visit##</th>
-                            <th>##word.detection_Duration##</th>
-                        </tr>
-                        <tr ng-repeat="doctor in clinic.doctor_list">
-                            <td class="center">{{doctor.doctor.name_##session.lang##}}</td>
-                            <td class="center blue">{{doctor.shift.name_##session.lang##}}</td>
-                            <td class="center green">{{doctor.detection_price.detection}}</td>
-                            <td class="center green">{{doctor.detection_price.re_detection}}</td>
-                            <td class="center green">{{doctor.detection_price.consultation}}</td>
-                            <td class="center green">{{doctor.detection_price.session}}</td>
-                            <td class="center green">{{doctor.detection_price.urgent_visit.price}}
-                                <b class="red" ng-show="doctor.detection_price.urgent_visit.type =='number'">$</b>
-                                <b class="red" ng-show="doctor.detection_price.urgent_visit.type =='percent'">%</b>
-                            </td>
-                            <td class="center">{{doctor.detection_Duration}} <b
-                                    ng-show="doctor.detection_Duration">##word.minute##</b></td>
-
-                        </tr>
-                    </table>
-
-                </fieldset>
-
-            </div>
-
-            <div id="nursingInformation" class="tab-content">
-
-                <fieldset>
-                    <legend>##word.nursing##</legend>
-                    <table class="table bold hover">
-                        <tr>
-                            <th>##word.nurses##</th>
-                            <th>##word.shift_name##</th>
-                        </tr>
-                        <tr ng-repeat="nurse in clinic.nurse_list">
-                            <td class="center">{{nurse.nurse.name_##session.lang##}}</td>
-                            <td class="center blue">{{nurse.shift.name_##session.lang##}}</td>
-                        </tr>
-                    </table>
-
-                </fieldset>
-
-            </div>
-
-            <div id="vacationformation" class="tab-content">
-
-                <fieldset>
-                    <legend>##word.vacations##</legend>
-                    <table class="table bold hover">
-                        <tr>
-                            <th>##word.vacation_name##</th>
-                            <th>##word.date##</th>
-                        </tr>
-                        <tr ng-repeat="vacation in clinic.vacation_list">
-                            <td class="center">{{vacation.name_##session.lang##}}</td>
-                            <td class="center brown"> {{vacation.date | date : 'dd - MM - yyyy'}} </td>
-                        </tr>
-                    </table>
-
-                </fieldset>
-
-            </div>
-
-
-            <div id="loginInformation" class="tab-content">
-                <fieldset class="col9">
-                    <legend> ##word.login_information## </legend>
-
-                    <table id="loginTable" class="table hover bold">
-
-                        <tr>
-                            <td class="title">##word.user_name##</td>
-                            <td class="center">{{clinic.username}}</td>
-                        </tr>
-                        <tr>
-                            <td class="title">##word.password##</td>
-                            <td class="center">{{clinic.password}}</td>
-                        </tr>
-                    </table>
-
-                </fieldset>
-            </div>
-
+              <tr>
+                <td class="title">##word.status##</td>
+                <td ng-show="clinic.active == true" class="green center bold">
+                  ##word.active##
+                </td>
+                <td ng-show="clinic.active == false" class="red center bold">
+                  ##word.not_active##
+                </td>
+              </tr>
+            </table>
+          </fieldset>
         </div>
+        <div class="col3">
+          <i-image view ng-model="clinic.image_url"></i-image>
+        </div>
+      </div>
+      <div id="shiftsInformation" class="tab-content">
+        <fieldset>
+          <legend>##word.shifts_information##</legend>
+
+          <div class="row" ng-repeat="shift in clinic.shift_list">
+            <i-control
+              disabled
+              help-id=""
+              class="col4"
+              label="##word.shift_name##"
+              ng-model="shift.name_##session.lang##"
+            >
+            </i-control>
+
+            <table class="table center hover bold">
+              <tr>
+                <th>##word.day##</th>
+                <th>##word.from##</th>
+                <th>##word.to##</th>
+                <th>##word.vacation##</th>
+              </tr>
+
+              <tr ng-repeat="time in shift.times_list">
+                <td>{{time.day.ar}}</td>
+                <td class="green">{{time.from.minute}} : {{time.from.hour}}</td>
+                <td class="red">{{time.to.minute}} : {{time.to.hour}}</td>
+                <td ng-show="time.vacation == true" class="red center bold">
+                  ##word.vacation##
+                </td>
+                <td ng-hide="time.vacation == true" class="green center bold">
+                  ##word.active##
+                </td>
+              </tr>
+            </table>
+          </div>
+          <hr />
+        </fieldset>
+      </div>
+      <div id="doctorsInformation" class="tab-content">
+        <fieldset>
+          <legend>##word.doctors##</legend>
+          <table class="table bold hover">
+            <tr>
+              <th>##word.doctors_name##</th>
+              <th>##word.shift_name##</th>
+              <th>##word.detection_price##</th>
+              <th>##word.re_detection##</th>
+              <th>##word.consultation##</th>
+              <th>##word.session##</th>
+              <th>##word.increase_urgent_visit##</th>
+              <th>##word.detection_Duration##</th>
+            </tr>
+            <tr ng-repeat="doctor in clinic.doctor_list">
+              <td class="center">{{doctor.doctor.name_##session.lang##}}</td>
+              <td class="center blue">
+                {{doctor.shift.name_##session.lang##}}
+              </td>
+              <td class="center green">{{doctor.detection_price.detection}}</td>
+              <td class="center green">
+                {{doctor.detection_price.re_detection}}
+              </td>
+              <td class="center green">
+                {{doctor.detection_price.consultation}}
+              </td>
+              <td class="center green">{{doctor.detection_price.session}}</td>
+              <td class="center green">
+                {{doctor.detection_price.urgent_visit.price}}
+                <b
+                  class="red"
+                  ng-show="doctor.detection_price.urgent_visit.type =='number'"
+                  >$</b
+                >
+                <b
+                  class="red"
+                  ng-show="doctor.detection_price.urgent_visit.type =='percent'"
+                  >%</b
+                >
+              </td>
+              <td class="center">
+                {{doctor.detection_Duration}}
+                <b ng-show="doctor.detection_Duration">##word.minute##</b>
+              </td>
+            </tr>
+          </table>
+        </fieldset>
+      </div>
+
+      <div id="nursingInformation" class="tab-content">
+        <fieldset>
+          <legend>##word.nursing##</legend>
+          <table class="table bold hover">
+            <tr>
+              <th>##word.nurses##</th>
+              <th>##word.shift_name##</th>
+            </tr>
+            <tr ng-repeat="nurse in clinic.nurse_list">
+              <td class="center">{{nurse.nurse.name_##session.lang##}}</td>
+              <td class="center blue">{{nurse.shift.name_##session.lang##}}</td>
+            </tr>
+          </table>
+        </fieldset>
+      </div>
+
+      <div id="vacationformation" class="tab-content">
+        <fieldset>
+          <legend>##word.vacations##</legend>
+          <table class="table bold hover">
+            <tr>
+              <th>##word.vacation_name##</th>
+              <th>##word.date##</th>
+            </tr>
+            <tr ng-repeat="vacation in clinic.vacation_list">
+              <td class="center">{{vacation.name_##session.lang##}}</td>
+              <td class="center brown">
+                {{vacation.date | date : 'dd - MM - yyyy'}}
+              </td>
+            </tr>
+          </table>
+        </fieldset>
+      </div>
+
+      <div id="loginInformation" class="tab-content">
+        <fieldset class="col9">
+          <legend>##word.login_information##</legend>
+
+          <table id="loginTable" class="table hover bold">
+            <tr>
+              <td class="title">##word.user_name##</td>
+              <td class="center">{{clinic.username}}</td>
+            </tr>
+            <tr>
+              <td class="title">##word.password##</td>
+              <td class="center">{{clinic.password}}</td>
+            </tr>
+          </table>
+        </fieldset>
+      </div>
     </div>
+  </div>
 </div>
 <div x-import="clinics/action_info.html"></div>

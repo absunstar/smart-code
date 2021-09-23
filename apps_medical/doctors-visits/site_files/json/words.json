@@ -10,6 +10,11 @@
         "ar": "حجز كشف"
     },
     {
+        "name": "place_examination",
+        "en": "Place examination",
+        "ar": "مكان الحجز"
+    },
+    {
         "name": "doctors_visits_new",
         "en": "New Examination book",
         "ar": "حجز كشف جديدة"

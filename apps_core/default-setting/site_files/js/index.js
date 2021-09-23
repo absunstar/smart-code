@@ -431,6 +431,23 @@ app.controller("default_setting", function ($scope, $http,$timeout) {
       }
     );
   };
+  $scope.getPlaceExaminationList = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/place_examination/all",
+      data: {},
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.placeExaminationList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
 
   $scope.saveSetting = function (where) {
     $scope.busy = true;
@@ -800,6 +817,7 @@ app.controller("default_setting", function ($scope, $http,$timeout) {
     $scope.getSpecialtyList();
     $scope.getClinicList();
     $scope.getDoctorsVisitsTypeList();
+    $scope.getPlaceExaminationList();
   }
   if (site.feature("school")) {
     $scope.getSchoolGradesList();

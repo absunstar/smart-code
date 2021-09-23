@@ -19,6 +19,11 @@
         "ar": "إستشارة"
     },
     {
+        "name": "increases",
+        "en": "Increases",
+        "ar": "الزيادات"
+    },
+    {
         "name": "external_visit",
         "en": "External Examination",
         "ar": "كشف خارجي"
@@ -32,6 +37,16 @@
         "name": "increase_urgent_visit",
         "en": "Urgent increase",
         "ar": "الزيادة المستعجلة"
+    },
+    {
+        "name": "at_home",
+        "en": "At home",
+        "ar": "في المنزل"
+    },
+    {
+        "name": "online",
+        "en": "Online",
+        "ar": "أونلاين"
     },
     {
         "name": "detection_price",

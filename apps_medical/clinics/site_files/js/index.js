@@ -17,6 +17,14 @@ app.controller("clinics", function ($scope, $http, $timeout) {
           price: 0,
           type: "number",
         },
+        online: {
+          price: 0,
+          type: "number",
+        },
+        at_home: {
+          price: 0,
+          type: "number",
+        },
       },
       shift_list: [
         {

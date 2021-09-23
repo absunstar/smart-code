@@ -33,6 +33,18 @@
                   display="##session.lang##"
                   ng-search="_search.$doctors_visits_type_search"
                 ></i-list>
+
+                <i-list
+                  class="col3"
+                  label="##word.place_examination##"
+                  ng-model="doctors_visits.place_examination"
+                  ng-change="changeDoctorsVisitsPrice() ; calc(doctors_visits)"
+                  v="r"
+                  items="placeExaminationList"
+                  display="##session.lang##"
+                  ng-search="_search.$doctors_placeExamination_search"
+                ></i-list>
+
               </div>
 
               <div class="row">

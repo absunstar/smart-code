@@ -24,6 +24,12 @@ module.exports = function init(site) {
 
   })
 
+  site.post({
+    name: "/api/place_examination/all",
+    path: __dirname + "/site_files/json/place_examination.json"
+
+  })
+
   site.get({
     name: "doctors_visits",
     path: __dirname + "/site_files/html/index.html",
