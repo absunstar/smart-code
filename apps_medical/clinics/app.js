@@ -638,9 +638,7 @@ module.exports = function init(site) {
             "$project": {
               name_ar: 1.0,
               name_en: 1.0,
-              'doctor.name_ar': 1,
-              'doctor.name_en': 1,
-              'doctor.image_url': 1,
+              
               "doctor_list": 1.0
             }
           },
@@ -655,9 +653,9 @@ module.exports = function init(site) {
             "$project": {
               name_ar: 1.0,
               name_en: 1.0,
-              'doctor.name_ar': 1,
-              'doctor.name_en': 1,
-              'doctor.image_url': 1,
+              'doctor_list.doctor.name_ar': 1,
+              'doctor_list.doctor.name_en': 1,
+              'doctor_list.doctor.image_url': 1,
               "doctor_list.detection_price": 1.0
             }
           }
