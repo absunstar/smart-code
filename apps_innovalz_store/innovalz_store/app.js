@@ -19,9 +19,25 @@ module.exports = function init(site) {
     let response = {
       done: false
     }
-    response.done = true
-    response.list = innovalz_store_sites
-    response.count = innovalz_store_sites.length
+    let where = req.body.where || {}
+    if (where['title']) {
+      let arr = innovalz_store_sites.filter(li => li.title.contains(where['title']))
+      if (arr.length > 0) {
+        response.done = true
+        response.list = arr
+        response.count = arr.length
+      } else {
+        response.done = false
+        response.list = arr
+        response.count = arr.length
+      }
+    }
+    else{
+
+      response.done = true
+      response.list = innovalz_store_sites
+      response.count = innovalz_store_sites.length
+    }
     res.json(response)
   })
 

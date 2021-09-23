@@ -557,6 +557,8 @@ module.exports = function init(site) {
           },
           {
             "$project": {
+              name_ar:1.0,
+              name_en:1.0,
               "doctor_list": 1.0
             }
           },
@@ -574,6 +576,8 @@ module.exports = function init(site) {
           },
           {
             "$project": {
+              name_ar:1.0,
+              name_en:1.0,
               "appointmentsList": 1.0
             }
           }
