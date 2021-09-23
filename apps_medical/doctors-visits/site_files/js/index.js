@@ -1933,7 +1933,6 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
       obj.total_discount = 0;
       obj.total_value = obj.doctor_visit_price;
 
-     
       if (obj.at_home && obj.place_examination.id == 2) {
         if (obj.at_home.type == "percent")
           obj.at_home.value =

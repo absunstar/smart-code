@@ -80,8 +80,18 @@
                     ng-search="_search.$doctors_visits_type_search"
                   >
                   </i-list>
-                  <div class="col2"></div>
-                  <div class="col4">
+                  <i-list
+                    class="col3"
+                    label="##word.place_examination##"
+                    ng-model="doctors_visits.place_examination"
+                    ng-change="changeDoctorsVisitsPrice() ; calc(doctors_visits)"
+                    v="r"
+                    items="placeExaminationList"
+                    display="##session.lang##"
+                    ng-search="_search.$doctors_placeExamination_search"
+                  ></i-list>
+
+                  <div class="col3">
                     <h2 class="black">##word.booking_date## :</h2>
                     <h2 class="brown">
                       {{doctors_visits.date | date : 'dd - MM - yyyy'}}
@@ -878,7 +888,6 @@
 
       <div id="examinationBeforeDetectionInformation" class="tab-content">
         <fieldset>
-          
           <div class="row">
             <i-control
               class="col4"
@@ -919,7 +928,6 @@
             ></i-control>
           </div>
 
-      
           <div class="row">
             <i-control
               class="col4"
@@ -935,7 +943,6 @@
               ng-model="doctors_visits.ex_before_detection.Sugar"
             ></i-control>
           </div>
-
 
           <div class="row">
             <i-control
