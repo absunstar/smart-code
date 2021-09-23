@@ -134,8 +134,7 @@ module.exports = function init(site) {
       analysis_requests_doc.analysis_list.every((_a2) => _a2.result);
 
     if (analysis_requests_doc.id) {
-      $analysis_requests.edit(
-        {
+      $analysis_requests.edit({
           where: {
             id: analysis_requests_doc.id,
           },
@@ -171,8 +170,7 @@ module.exports = function init(site) {
       return;
     }
 
-    $analysis_requests.findOne(
-      {
+    $analysis_requests.findOne({
         where: {
           id: req.body.id,
         },
@@ -203,8 +201,7 @@ module.exports = function init(site) {
     let id = req.body.id;
 
     if (id) {
-      $analysis_requests.delete(
-        {
+      $analysis_requests.delete({
           id: id,
           $req: req,
           $res: res,
@@ -266,11 +263,12 @@ module.exports = function init(site) {
     where["company.id"] = site.get_company(req).id;
     where["branch.code"] = site.get_branch(req).code;
 
-    $analysis_requests.findMany(
-      {
+    $analysis_requests.findMany({
         select: req.body.select || {},
         where: where,
-        sort: req.body.sort || { id: -1 },
+        sort: req.body.sort || {
+          id: -1
+        },
         limit: req.body.limit,
       },
       (err, docs, count) => {
@@ -317,8 +315,7 @@ module.exports = function init(site) {
       delete where["id"];
     }
 
-    $analysis_requests.findMany(
-      {
+    $analysis_requests.findMany({
         where: where,
       },
       (err, docs) => {
@@ -347,8 +344,7 @@ module.exports = function init(site) {
 
     let analysis_requests_doc = req.body;
 
-    $customer.findOne(
-      {
+    $customer.findOne({
         where: {
           id: analysis_requests_doc.customer.id,
         },
@@ -358,20 +354,19 @@ module.exports = function init(site) {
           if (!customerData) {
             response.error = err.message;
             return
-          }
-          else {
+          } else {
             analysis_requests_doc.customer = customerData;
             analysis_requests_doc.$req = req;
             analysis_requests_doc.$res = res;
-        
+
             analysis_requests_doc.company = site.get_company(req);
             analysis_requests_doc.branch = site.get_branch(req);
-        
+
             analysis_requests_doc.add_user_info = site.security.getUserFinger({
               $req: req,
               $res: res,
             });
-        
+
             let num_obj = {
               company: site.get_company(req),
               screen: "analysis_requests",
@@ -389,7 +384,7 @@ module.exports = function init(site) {
               if (!callBackGet) {
                 site.addPatientTicket(analysis_requests_doc, (callBackAdd) => {
                   analysis_requests_doc.patient_ticket_id = callBackAdd.id;
-        
+
                   $analysis_requests.add(analysis_requests_doc, (err, doc) => {
                     if (!err) {
                       response.done = true;
@@ -406,9 +401,9 @@ module.exports = function init(site) {
                   res.json(response);
                   return;
                 }
-        
+
                 analysis_requests_doc.patient_ticket_id = callBackGet.id;
-        
+
                 $analysis_requests.add(analysis_requests_doc, (err, doc) => {
                   if (!err) {
                     response.done = true;
@@ -420,23 +415,55 @@ module.exports = function init(site) {
                 });
               }
             });
-
-
-
-
-
           }
-
-
         }
       }
     );
-
-  
-
-   
-
-    
   });
+
+
+  // my profile
+  site.post('/api/analysis_requests/myProfile', (req, res) => {
+    req.headers.language = req.headers.language || 'en'
+    let response = {}
+    if (!req.session.user.ref_info) {
+      response.message = "please login first";
+      response.done = false;
+      res.json(response);
+      return;
+    }
+    console.log(req.session.user);
+
+    $analysis_requests.aggregate([{
+        "$match": {
+          "customer.id": req.session.user.ref_info.id
+        }
+      },
+      {
+        "$project": {
+          "date": 1.0,
+          "analysis_list": 1.0,
+          "net_value": 1.0,
+          "id": 1.0
+        }
+      }
+    ], (err, docs) => {
+      if (docs && docs.length > 0) {
+        response.done = true;
+        response.doc = docs[0];
+
+        res.json(response)
+      } else {
+        response.done = false
+
+        response.doc = {};
+        res.json(response)
+      }
+
+
+    })
+
+  });
+
 
 };

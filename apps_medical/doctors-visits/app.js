@@ -754,4 +754,48 @@ module.exports = function init(site) {
     })
   }
 
+
+    // my profile
+    site.post('/api/doctors_visits/myProfile', (req, res) => {
+      req.headers.language = req.headers.language || 'en'
+      let response = {}
+      if (!req.session.user.ref_info) {
+        response.message = "please login first";
+        response.done = false;
+        res.json(response);
+        return;
+      }
+      console.log(req.session.user);
+  
+      $doctors_visits.aggregate([{
+          "$match": {
+            "customer.id": req.session.user.ref_info.id
+          }
+        },
+        {
+          "$project": {
+            "visit_type" : 1.0, 
+                "selected_clinic" : 1.0, 
+                "selected_doctor" : 1.0, 
+                "date" : 1.0,
+            "id": 1.0
+          }
+        }
+      ], (err, docs) => {
+        if (docs && docs.length > 0) {
+          response.done = true;
+          response.doc = docs[0];
+  
+          res.json(response)
+        } else {
+          response.done = false
+  
+          response.doc = {};
+          res.json(response)
+        }
+  
+  
+      })
+  
+    });
 }
