@@ -807,14 +807,7 @@ module.exports = function init(site) {
     if (day.code > nD.getDay()) {
       nD.setTime(nD.getTime() + (day.code - nD.getDay()) * 24 * 60 * 60 * 1000);
     } else if (day.code < nD.getDay()) {
-
-
-
-      let remain = 6 -  nD.getDay();
       nD.setTime(nD.getTime() + ((7 -  nD.getDay()) + day.code) * 24 * 60 * 60 * 1000);
-
-
-
     }
 
     let fD = new Date(nD);
