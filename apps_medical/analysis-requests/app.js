@@ -426,8 +426,14 @@ module.exports = function init(site) {
   site.post('/api/analysis_requests/myProfile', (req, res) => {
     req.headers.language = req.headers.language || 'en'
     let response = {}
-    if (!req.session.user.ref_info) {
-      response.message = "please login first";
+    if (!req.session.user) {
+      response.message = site.word('loginFirst')[req.headers.language];
+      response.done = false;
+      res.json(response);
+      return;
+    }
+   else if (!req.session.user.ref_info) {
+      response.message = site.word('loginFirst')[req.headers.language];
       response.done = false;
       res.json(response);
       return;

@@ -265,13 +265,13 @@ module.exports = function init(site) {
     let scans = where["scans"].id;
 
     if (!req.session.user) {
-      response.message = "please login first";
+      response.message = site.word('loginFirst')[req.headers.language];
       response.done = false;
       res.json(response);
       return;
 
     } else if (!req.session.user.ref_info) {
-      response.message = "please login first";
+      response.message = site.word('loginFirst')[req.headers.language];
       response.done = false;
       res.json(response);
       return;

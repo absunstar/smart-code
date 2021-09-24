@@ -794,8 +794,9 @@ module.exports = function init(site) {
 
   site.post("/api/dates/day", (req, res) => {
     let response = {};
+    req.headers.language = req.headers.language || "en";
     if (!req.session.user) {
-      response.message = "please login first";
+      response.message =  site.word('loginFirst')[req.headers.language];
       response.done = false;
       res.json(response);
       return;
@@ -830,13 +831,13 @@ module.exports = function init(site) {
     let response = {};
 
     if (!req.session.user) {
-      response.message = "please login first";
+      response.message = site.word('loginFirst')[req.headers.language];
       response.done = false;
       res.json(response);
       return;
 
     } else if (!req.session.user.ref_info) {
-      response.message = "please login first";
+      response.message = site.word('loginFirst')[req.headers.language];
       response.done = false;
       res.json(response);
       return;
