@@ -875,4 +875,59 @@ module.exports = function init(site) {
       }
     );
   });
+
+  // get visit data
+  site.post("/api/doctors_visits/getVisitData", (req, res) => {
+    req.headers.language = req.headers.language || "en";
+    let response = {};
+
+    if (!req.session.user) {
+      response.message = site.word('loginFirst')[req.headers.language];
+      response.done = false;
+      res.json(response);
+      return;
+
+    } else if (!req.session.user.ref_info) {
+      response.message = site.word('loginFirst')[req.headers.language];
+      response.done = false;
+      res.json(response);
+      return;
+    }
+
+    $doctors_visits.aggregate(
+      [
+        {
+          $match: {
+            "customer.id": req.session.user.ref_info.id,
+            "status.id":1
+          },
+        },
+        {
+          "$project" : {
+            "selected_doctor.name_ar" : 1.0, 
+            "selected_doctor.name_en" : 1.0, 
+            "selected_doctor.image_url" : 1.0, 
+            "date" : 1.0, 
+            "id" : 1.0, 
+            "selected_time" : 1.0,
+            id:1
+        
+          },
+        },
+      ],
+      (err, docs) => {
+        if (docs && docs.length > 0) {
+          response.done = true;
+          response.doc = docs[0];
+
+          res.json(response);
+        } else {
+          response.done = false;
+
+          response.doc = {};
+          res.json(response);
+        }
+      }
+    );
+  });
 };
