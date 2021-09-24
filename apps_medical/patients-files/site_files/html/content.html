@@ -33,6 +33,7 @@
               <th>##word.specialty##</th>
               <th>##word.doctor_name##</th>
               <th>##word.visit_type##</th>
+              <th>##word.place_examination##</th>
               <th class="not-print">##word.files##</th>
             </tr>
 
@@ -54,6 +55,9 @@
                 <p ng-show="v.is_urgent_visit" class="red">
                   (##word.urgent_visit##)
                 </p>
+              </td>
+              <td ng-click="displayDetailsDoctorsVisits(v.id)" class="center">
+                {{v.place_examination.##session.lang##}}
               </td>
               <td class="not-print">
                 <i-files view ng-model="v.files"></i-files>

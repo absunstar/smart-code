@@ -44,7 +44,6 @@
                   display="##session.lang##"
                   ng-search="_search.$doctors_placeExamination_search"
                 ></i-list>
-
               </div>
 
               <div class="row">
@@ -424,10 +423,8 @@
                 <tr>
                   <th>##word.clinic##</th>
                   <th>##word.doctor##</th>
-                  <th>##word.specialty##</th>
-                  <th>##word.work_day##</th>
-                  <th>##word.work_from##</th>
-                  <th>##word.work_to##</th>
+                  <th>##word.date##</th>
+                  <th>##word.work_from## / ##word.work_to##</th>
                   <th>##word.doctor_visit_price##</th>
                 </tr>
 
@@ -436,6 +433,11 @@
                     <p class="blue">
                       {{doctors_visits.selected_clinic.name_##session.lang##}}
                     </p>
+                    <p>
+                      (
+                      {{doctors_visits.selected_specialty.name_##session.lang##}}
+                      )
+                    </p>
                   </td>
 
                   <td>
@@ -443,15 +445,12 @@
                       {{doctors_visits.selected_doctor.name_##session.lang##}}
                     </p>
                   </td>
-
-                  <td>
-                    <p class="blue">
-                      {{doctors_visits.selected_specialty.name_##session.lang##}}
-                    </p>
-                  </td>
-
                   <td>
                     <p class="blue">{{doctors_visits.selected_time.day.ar}}</p>
+                    <p class="brown">
+                      ( {{doctors_visits.selected_time.date | date : 'dd - MM -
+                      yyyy'}} )
+                    </p>
                   </td>
 
                   <td>
@@ -459,14 +458,13 @@
                       {{doctors_visits.selected_time.from.minute}} :
                       {{doctors_visits.selected_time.from.hour}}
                     </p>
-                  </td>
-
-                  <td>
+                    <hr>
                     <p class="red">
                       {{doctors_visits.selected_time.to.minute}} :
                       {{doctors_visits.selected_time.to.hour}}
                     </p>
                   </td>
+
 
                   <td>
                     <p class="green">{{doctors_visits.doctor_visit_price}}</p>

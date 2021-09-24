@@ -46,38 +46,53 @@
                   <table class="table loaded center hover bold">
                     <tr>
                       <th>##word.clinics##</th>
-                      <th>##word.specialty##</th>
                       <th>##word.doctor_name##</th>
                       <th>##word.visit_type##</th>
+                      <th>##word.place_examination##</th>
                       <th>##word.shift_name##</th>
                       <th>##word.work_day##</th>
-                      <th>##word.work_from##</th>
-                      <th>##word.work_to##</th>
+                      <th>##word.work_from## / ##word.work_to##</th>
                       <th>##word.doctor_visit_price##</th>
                     </tr>
 
                     <tr ng-repeat="a in ticket_data.doctors_visits.list">
-                      <td>{{a.selected_clinic.name_##session.lang##}}</td>
-                      <td>{{a.selected_specialty.name_##session.lang##}}</td>
+                      <td>
+                        {{a.selected_clinic.name_##session.lang##}}
+                        <p class="blue">
+                          ( {{a.selected_specialty.name_##session.lang##}} )
+                        </p>
+                      </td>
                       <td class="title">
                         {{a.selected_doctor.name_##session.lang##}}
                       </td>
                       <td class="title">
                         {{a.visit_type.##session.lang##}}
-                        <b ng-show="a.is_urgent_visit" class="red">
-                          (##word.urgent_visit##)</b
+                        <p ng-show="a.is_urgent_visit" class="red">
+                          (##word.urgent_visit##)</p
                         >
                       </td>
+                      <td class="title">
+                        {{a.place_examination.##session.lang##}}
+                      </td>
                       <td>{{a.selected_shift.name_##session.lang##}}</td>
-                      <td>{{a.selected_time.day.ar}}</td>
-                      <td class="green">
-                        {{a.selected_time.from.minute}} :
-                        {{a.selected_time.from.hour}}
+                      <td>{{a.selected_time.day.ar}}
+                        <p class="brown">
+                          ( {{a.selected_time.date | date : 'dd - MM -
+                          yyyy'}} )
+                        </p>
                       </td>
-                      <td class="red">
-                        {{a.selected_time.to.minute}} :
-                        {{a.selected_time.to.hour}}
+                      <td>
+                        <p class="green">
+                          {{a.selected_time.from.minute}} :
+                          {{a.selected_time.from.hour}}
+                        </p>
+                        <hr />
+                        <p class="red">
+                          {{a.selected_time.to.minute}} :
+                          {{a.selected_time.to.hour}}
+                        </p>
                       </td>
+
                       <td>
                         <p class="green">{{a.doctor_visit_price}}</p>
                       </td>

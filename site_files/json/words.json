@@ -1537,6 +1537,11 @@
         "ar": "يوم"
     },
     {
+        "name": "the_day",
+        "en": "TheDay",
+        "ar": "اليوم"
+    },
+    {
         "name": "menu_class",
         "en": "left-fixed-menu",
         "ar": "right-fixed-menu"

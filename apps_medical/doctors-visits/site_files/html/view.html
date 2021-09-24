@@ -286,35 +286,42 @@
             <table class="table center hover bold">
               <tr>
                 <th>##word.clinic##</th>
-                <th>##word.specialty##</th>
                 <th>##word.doctor_name##</th>
                 <th>##word.shift_name##</th>
-                <th>##word.work_day##</th>
-                <th>##word.work_from##</th>
-                <th>##word.work_to##</th>
+                <th>##word.date##</th>
+                <th>##word.work_from## / ##word.work_to##</th>
                 <th>##word.doctor_visit_price##</th>
               </tr>
 
               <tr>
                 <td>
                   {{doctors_visits.selected_clinic.name_##session.lang##}}
+                  <p class="blue">( {{doctors_visits.selected_specialty.name_##session.lang##}} )</p>
                 </td>
-                <td>
-                  {{doctors_visits.selected_specialty.name_##session.lang##}}
-                </td>
+             
                 <td class="title">
                   {{doctors_visits.selected_doctor.name_##session.lang##}}
                 </td>
                 <td>{{doctors_visits.selected_shift.name_##session.lang##}}</td>
-                <td>{{doctors_visits.selected_time.day.ar}}</td>
-                <td class="green">
-                  {{doctors_visits.selected_time.from.minute}} :
-                  {{doctors_visits.selected_time.from.hour}}
+                <td>
+                  {{doctors_visits.selected_time.day.ar}}
+                  <p class="brown">
+                    ( {{doctors_visits.selected_time.date | date : 'dd - MM -
+                    yyyy'}} )
+                  </p>
                 </td>
-                <td class="red">
-                  {{doctors_visits.selected_time.to.minute}} :
-                  {{doctors_visits.selected_time.to.hour}}
+                <td >
+                  <p class="green">
+                    {{doctors_visits.selected_time.from.minute}} :
+                    {{doctors_visits.selected_time.from.hour}}
+                  </p>
+                  <hr>
+                  <p class="red">
+                    {{doctors_visits.selected_time.to.minute}} :
+                    {{doctors_visits.selected_time.to.hour}}
+                  </p>
                 </td>
+              
                 <td>
                   <p class="green">{{doctors_visits.doctor_visit_price}}</p>
                 </td>
