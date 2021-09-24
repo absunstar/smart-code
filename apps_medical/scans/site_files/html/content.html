@@ -1,42 +1,89 @@
 <div class="form">
-    <div id="basicInformation" class="tab-content">
-        <fieldset>
-            <legend> ##word.basic_information## </legend>
-            <div class="row">
-                <div class="col9">
-                    <div class="row">
-                        <i-control ng-hide="disabledCode" class="col2" label="##word.code##" ng-model="scans.code">
-                        </i-control>
+  <div id="basicInformation" class="tab-content">
+    <fieldset>
+      <legend>##word.basic_information##</legend>
+      <div class="row">
+        <div class="col9">
+          <div class="row">
+            <i-control
+              ng-hide="disabledCode"
+              class="col2"
+              label="##word.code##"
+              ng-model="scans.code"
+            >
+            </i-control>
 
-                        <i-control help-id="scans_name" v="r ll2" class="col4" label="##word.scans_name##"
-                            ng-model="scans.name_ar"></i-control>
+            <i-control
+              help-id="scans_name"
+              v="r ll2"
+              class="col4"
+              label="##word.scans_name##"
+              ng-model="scans.name_ar"
+            ></i-control>
 
-                        <i-control help-id="scans_name_en" v="r" class="col4" label="##word.name_en##"
-                            ng-model="scans.name_en"></i-control>
+            <i-control
+              help-id="scans_name_en"
+              v="r"
+              class="col4"
+              label="##word.name_en##"
+              ng-model="scans.name_en"
+            ></i-control>
 
-                        <i-checkbox help-id="scans_active" class="col2" label="##word.active##" ng-model="scans.active">
-                        </i-checkbox>
-                    </div>
+            <i-checkbox
+              help-id="scans_active"
+              class="col2"
+              label="##word.active##"
+              ng-model="scans.active"
+            >
+            </i-checkbox>
+          </div>
 
-                    <div class="row">
-                        <i-control help-id="scans_name" v="r" type="number" class="col2" label="##word.scans_price##"
-                            ng-model="scans.price"></i-control>
-                        <i-control ng-hide="scans.immediate==true" type="number" class="col2"
-                            label="##word.delivery_time##" ng-model="scans.delivery_time"></i-control>
-                        <i-list ng-hide="scans.immediate==true" ng-search="_search.$scan_search" class="col3"
-                            label="##word.period##" ng-model="scans.period" items="periodList"
-                            display="##session.lang##"></i-list>
-                        <i-checkbox help-id="immediate_active" class="col2" label="##word.immediate##"
-                            ng-model="scans.immediate"></i-checkbox>
-                    </div>
+          <div class="row">
+            <i-control
+              help-id="scans_name"
+              v="r"
+              type="number"
+              class="col2"
+              label="##word.scans_price##"
+              ng-model="scans.price"
+            ></i-control>
+            <i-control
+              help-id="scans_name"
+              v="r"
+              type="number"
+              class="col2"
+              label="##word.price_at_home##"
+              ng-model="scans.price_at_home"
+            ></i-control>
+            <i-control
+              ng-hide="scans.immediate==true"
+              type="number"
+              class="col2"
+              label="##word.delivery_time##"
+              ng-model="scans.delivery_time"
+            ></i-control>
+            <i-list
+              ng-hide="scans.immediate==true"
+              ng-search="_search.$scan_search"
+              class="col2"
+              label="##word.period##"
+              ng-model="scans.period"
+              items="periodList"
+              display="##session.lang##"
+            ></i-list>
+            <i-checkbox
+              help-id="immediate_active"
+              class="col2"
+              label="##word.immediate##"
+              ng-model="scans.immediate"
+            ></i-checkbox>
+          </div>
+        </div>
 
-                </div>
-
-                <div class="col3">
-                    <i-image help-id="scans_logo" ng-model="scans.image_url"></i-image>
-                </div>
-            </div>
-        </fieldset>
-
-    </div>
+        <div class="col3">
+          <i-image help-id="scans_logo" ng-model="scans.image_url"></i-image>
+        </div>
+      </div>
+    </fieldset>
+  </div>
 </div>

@@ -1522,6 +1522,11 @@
         "ar": "تفريغ الحقول"
     },
     {
+        "name": "price_at_home",
+        "en": "Price at home",
+        "ar": "السعر في المنزل"
+    },
+    {
         "name": "in_out_name",
         "en": "In and Out Names",
         "ar": "مسميات الوارد والمنصرف"

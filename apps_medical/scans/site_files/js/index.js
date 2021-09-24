@@ -9,6 +9,7 @@ app.controller("scans", function ($scope, $http, $timeout) {
       image_url: "/images/scans.png",
       active: true,
       price: 0,
+      price_at_home: 0,
       immediate: false,
     };
     site.showModal("#scansAddModal");

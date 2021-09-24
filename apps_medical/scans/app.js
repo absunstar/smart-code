@@ -26,6 +26,7 @@ module.exports = function init(site) {
         name_ar: 'أشعة إفتراضي',
         name_en: "Default Scan",
         price: 1,
+        price_at_home: 1,
         immediate: true,
         image_url: '/images/scans.png',
         company: {

@@ -11,6 +11,7 @@ app.controller("analysis", function ($scope, $http, $timeout) {
       female: { from: 0, to: 0 },
       child: { from: 0, to: 0 },
       price: 0,
+      price_at_home: 0,
       immediate: false,
     };
     site.showModal("#analysisAddModal");
