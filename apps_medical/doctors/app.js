@@ -490,4 +490,156 @@ module.exports = function init(site) {
     })
   })
 
+
+  /* ATM APIS */
+
+
+  site.post("/api/doctors/searchAll", (req, res) => {
+    let response = {
+      done: false
+    }
+
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+
+
+    let where = req.body.where || {}
+    let search = req.body.search
+
+    if (search) {
+      where.$or = []
+      where.$or.push({
+        'name_ar': site.get_RegExp(search, "i")
+      })
+
+      where.$or.push({
+        'name_en': site.get_RegExp(search, "i")
+      })
+
+      where.$or.push({
+        'mobile': site.get_RegExp(search, "i")
+      })
+
+      where.$or.push({
+        'phone': site.get_RegExp(search, "i")
+      })
+
+      where.$or.push({
+        'national_id': site.get_RegExp(search, "i")
+      })
+
+      where.$or.push({
+        'email': site.get_RegExp(search, "i")
+      })
+
+    }
+
+    if (where['gov']) {
+      where['gov.id'] = where['gov'].id;
+      delete where['gov']
+      delete where.active
+    }
+
+    if (where['city']) {
+      where['city.id'] = where['city'].id;
+      delete where['city']
+      delete where.active
+    }
+    if (where['area']) {
+      where['area.id'] = where['area'].id;
+      delete where['area']
+      delete where.active
+    }
+
+    if (where['specialty']) {
+      where['specialty.id'] = where['specialty'].id;
+      delete where['specialty']
+      delete where.active
+    }
+
+    if (where["name_ar"]) {
+      where["name_ar"] = new RegExp(where["name_ar"], "i");
+    }
+    if (where["name_ar"] == undefined ||where["name_ar"] == ""  ) {
+    delete where["name_ar"]
+    }
+  
+    if (where["name_en"]) {
+      where["name_en"] = new RegExp(where["name_en"], "i");
+    }
+    if (where["name_en"] == undefined ||where["name_en"] == ""  ) {
+      delete where["name_en"]
+      }
+
+    if (where['address']) {
+      where['address'] = site.get_RegExp(where['address'], "i");
+    }
+    if (where['national_id']) {
+      where['national_id'] = site.get_RegExp(where['national_id'], "i");
+    }
+    if (where['phone']) {
+      where['phone'] = site.get_RegExp(where['phone'], "i");
+    }
+
+    if (where['mobile']) {
+      where['mobile'] = site.get_RegExp(where['mobile'], "i");
+    }
+
+    if (where['email']) {
+      where['email'] = site.get_RegExp(where['email'], "i");
+    }
+
+    if (where['whatsapp']) {
+      where['whatsapp'] = site.get_RegExp(where['whatsapp'], "i");
+    }
+    if (where['twitter']) {
+      where['twitter'] = site.get_RegExp(where['twitter'], "i");
+    }
+    if (where['facebook']) {
+      where['facebook'] = site.get_RegExp(where['facebook'], "i");
+    }
+
+    if (where['notes']) {
+      where['notes'] = site.get_RegExp(where['notes'], "i");
+    }
+
+    //  if (req.session.user.roles[0].name === 'doctors') {
+    //   where['id'] = req.session.user.doctor_id;
+    // } 
+
+    where['doctor'] = true
+    where['company.id'] = site.get_company(req).id
+    where['branch.code'] = site.get_branch(req).code
+    let limit = 10;
+    let skip;
+
+    if (req.body.page || (parseInt(req.body.page) && parseInt(req.body.page) > 1)) {
+      skip = (parseInt(req.body.page) - 1) * 10
+    }
+
+    $doctors.findMany({
+      select: req.body.select || {},
+      where: where,
+      sort: req.body.sort || {
+        id: -1
+      },
+      limit: limit,
+      skip: skip
+    }, (err, docs, count) => {
+      if (!err && docs.length>0) {
+        response.done = true;
+        response.list = docs;
+        response.count = count;
+      } else {
+        response.done = false;
+        response.list = [];
+        response.count = 0;
+      }
+      res.json(response)
+    })
+  })
+
 }
