@@ -1,5 +1,6 @@
 module.exports = function init(site) {
   const $clinics = site.connectCollection("clinics");
+  const $doctors = site.connectCollection("hr_employee_list")
 
   site.on("[hospital][clinic][add]", function (obj) {
     doctor = obj;
@@ -751,6 +752,31 @@ module.exports = function init(site) {
 
             response.list = docs;
             response.count = docs.length;
+
+
+
+            $doctors.findOne(
+              {
+                where: {
+                  id: doctor,
+                },
+              },
+              (err, doc) => {
+                if (doc) {
+                 doc.priceList = docs || []
+                 
+                  $doctors.update(doc, (err, result) => {
+                   
+                  });
+                }
+              },
+            );
+
+
+
+
+
+
           } else {
             response.error = err.message;
           }
