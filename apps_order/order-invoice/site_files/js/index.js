@@ -1918,7 +1918,6 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         unit: item.size_units_list[indxUnit],
         total: item.size_units_list[indxUnit].price - item.discount.value,
         vendor: item.vendor,
-        store: item.store,
         price: item.size_units_list[indxUnit].price,
         discount: item.size_units_list[indxUnit].discount,
         extras_price: 0,

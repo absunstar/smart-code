@@ -1,3 +1,17 @@
 [
-    
+    {
+        "name": "create_order",
+        "en": "Create order",
+        "ar": "إنشاء طلب"
+    },
+    {
+        "name": "main_eco",
+        "en": "Main Ecommerce",
+        "ar": "المتجر الرئيسي"
+    },
+    {
+        "name": "products_must_added",
+        "en": "Products must be added",
+        "ar": "يجب إضافة منتجات"
+    }
 ]

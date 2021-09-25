@@ -30,6 +30,13 @@
     {
         "category": "main",
         "feature": "public",
+        "name": "order_eco",
+        "en": "Ecommerce Orders",
+        "ar": "طلبات المتجر"
+    },
+    {
+        "category": "main",
+        "feature": "public",
         "name": "customers_groups",
         "en": "Customers Groups",
         "ar": "مجموعات العملاء"

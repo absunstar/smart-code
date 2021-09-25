@@ -276,7 +276,6 @@ module.exports = function init(site) {
     if (where["products_group"]) {
       where["products_group.id"] = where["products_group"].id;
       delete where["products_group"];
-      delete where.active;
     }
 
     $product.findMany(

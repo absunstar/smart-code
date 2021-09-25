@@ -16,6 +16,9 @@
             "showNotifications",
             "tenant_manage",
             "discount_types_manage",
+            "ecommerce_setting_manage",
+            "main_eco_manage",
+            "order_eco_manage",
             "in_out_names_manage",
             "account_invoices_manage",
             "safes_manage",
@@ -178,8 +181,7 @@
             "report_doctors_visits_manage",
             "libraries_manage",
             "vehicles_manage",
-            "vehicles_types_manage",
-            "ecommerce_setting_manage"
+            "vehicles_types_manage"
         ]
     }
 ]

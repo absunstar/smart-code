@@ -25,6 +25,11 @@
         "ar": "المنتجات"
     },
     {
+        "name": "products_menu",
+        "en": "Products menu",
+        "ar": "قائمة المنتجات"
+    },
+    {
         "name": "product_name",
         "en": "Product Name",
         "ar": "إسم المنتج"
@@ -54,11 +59,6 @@
         "en": "Delete Product",
         "ar": "حذف منتج "
     },
-
-
-
-
-
     {
         "name": "products_groups",
         "en": "Products Groups",

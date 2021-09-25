@@ -11,7 +11,7 @@
     {"name" : "school_years_details" , "en" : "School Years Details" , "ar" : "تفاصيل العام الدراسي"},
     {"name" : "school_years_update" , "en" : "Edit School Years" , "ar" : "تعديل العام الدراسي"},
     {"name" : "school_years_delete" , "en" : "Delte School Years" , "ar" : "حذف العام الدراسي"},
-    {"name" : "school_years_add_name" , "en" : "Add School Years" , "ar" : "إضافة عام الدراسي"}
+    {"name" : "school_years_add_name" , "en" : "Add School Years" , "ar" : "إضافة عام دراسي"}
 
 
     

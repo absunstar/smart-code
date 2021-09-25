@@ -1,0 +1,12 @@
+[
+    { "module_name" : "public", "screen_name" : "order-eco" , "name":"order_eco_manage" , "en":"Manage" , "ar":"إدارة"},
+    { "module_name" : "public", "screen_name" : "order-eco" , "name":"order_eco_add" , "en":"Add" , "ar":"إضافة"},
+    { "module_name" : "public", "screen_name" : "order-eco" , "name":"order_eco_edit" , "en":"Edit" , "ar":"تعديل"},
+    { "module_name" : "public", "screen_name" : "order-eco" , "name":"order_eco_delete" , "en":"Delete" , "ar":"حذف"},
+    { "module_name" : "public", "screen_name" : "order-eco" , "name":"order_eco_view" , "en":"View" , "ar":"عرض"},
+    { "module_name" : "public", "screen_name" : "order-eco" , "name":"order_eco_search" , "en":"Search" , "ar":"بحث"},
+    { "module_name" : "public", "screen_name" : "order-eco" , "name":"order_eco_export" , "en":"Export" , "ar":"تصدير"},
+    { "module_name" : "public", "screen_name" : "order-eco" , "name":"order_eco_print" , "en":"Print" , "ar":"طباعة"},
+    { "module_name" : "public", "screen_name" : "order-eco" , "name":"order_eco_ui" , "en":"UI" , "ar":"الواجهة الرسومية"}
+
+]

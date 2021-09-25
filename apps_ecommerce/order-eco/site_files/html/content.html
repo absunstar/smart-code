@@ -1,0 +1,28 @@
+<div class="form">
+    <div id="orderEcoAddModal">
+        <fieldset>
+            <legend> ##word.order_eco_informations## </legend>
+            <div class="row">
+                <div class="col9">
+                    <div class="row">
+                        <i-control ng-hide="disabledCode" class="col2" label="##word.code##"
+                            ng-model="order_eco.code"></i-control>
+
+                        <i-control v="r" class="col4" label="##word.order_eco_name##" ng-model="order_eco.name_ar">
+                        </i-control>
+
+                        <i-control class="col4" v="r" label="##word.name_en##" ng-model="order_eco.name_en">
+                        </i-control>
+                        
+                        <i-checkbox class="col2" label="##word.active##" ng-model="order_eco.active"></i-checkbox>
+                    </div>
+
+                </div>
+
+                <div class="col3">
+                    <i-image category="order_eco" ng-model="order_eco.image_url"> </i-image>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>

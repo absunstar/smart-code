@@ -440,6 +440,28 @@ a.pro-template {
 a.pro-template .description {
 }
 
+.notification {
+  text-decoration: none;
+  padding: 2px 5px;
+  font-size: -webkit-xxx-large;
+  border-radius: 50%;
+  position: relative;
+  display: inline-block;
+}
+
+
+.notification .badge {
+  position: absolute;
+  top: -3px;
+  right: -9px;
+  font-size: x-large;
+  padding: 0px 6px;
+  border-radius: 50%;
+  background-color: red;
+  color: white;
+}
+
+
 @media screen and (max-width: 768px) {
   body {
     margin-right: 0px;
