@@ -10,6 +10,16 @@
         "ar": "منتج طبي أو تجميلي"
     },
     {
+        "name": "link_items",
+        "en": "Link to items",
+        "ar": "ربط بالأصناف"
+    },
+    {
+        "name": "link_item_groups",
+        "en": "Link to item groups",
+        "ar": "ربط بمجموعات الأصناف"
+    },
+    {
         "name": "products",
         "en": "Products",
         "ar": "المنتجات"

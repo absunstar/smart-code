@@ -2,6 +2,32 @@ module.exports = function init(site) {
   const $order_invoice = site.connectCollection("order_invoice")
   // const $stores_items = site.connectCollection("stores_items")
 
+  site.get({
+    name: 'css',
+    path: __dirname + '/site_files/css/'
+  })
+
+  site.get({
+    name: 'images',
+    path: __dirname + '/site_files/images/'
+  });
+
+  site.post({
+    name: '/api/order_invoice/transaction_type/all',
+    path: __dirname + '/site_files/json/transaction_type.json'
+  });
+
+  site.post({
+    name: '/api/order_invoice/order_status/all',
+    path: __dirname + '/site_files/json/order_status.json'
+  });
+
+  site.get({
+    name: "order_invoice",
+    path: __dirname + "/site_files/html/index.html",
+    parser: "html",
+    compress: true
+  });
 
   site.on('[stores_items][item_name][change]', objectOrder => {
 
@@ -141,27 +167,6 @@ module.exports = function init(site) {
 
 
 
-  site.get({
-    name: 'images',
-    path: __dirname + '/site_files/images/'
-  });
-
-  site.post({
-    name: '/api/order_invoice/transaction_type/all',
-    path: __dirname + '/site_files/json/transaction_type.json'
-  });
-
-  site.post({
-    name: '/api/order_invoice/order_status/all',
-    path: __dirname + '/site_files/json/order_status.json'
-  });
-
-  site.get({
-    name: "order_invoice",
-    path: __dirname + "/site_files/html/index.html",
-    parser: "html",
-    compress: true
-  });
 
   site.post("/api/order_invoice/add", (req, res) => {
 

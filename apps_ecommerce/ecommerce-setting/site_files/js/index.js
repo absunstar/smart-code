@@ -13,6 +13,7 @@ app.controller("ecommerce_setting", function ($scope, $http) {
     $scope.error = '';
     $scope.product = {
       image_url: '/images/product.png',
+      price: 0,
       active: true
     };
     $scope.product.$add = true;

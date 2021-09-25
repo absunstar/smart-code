@@ -1,252 +1,292 @@
 module.exports = function init(site) {
-  const $items_group = site.connectCollection("items_group")
+  const $items_group = site.connectCollection("items_group");
 
   site.get({
-    name: 'images',
-    path: __dirname + '/site_files/images/'
-  })
+    name: "images",
+    path: __dirname + "/site_files/images/",
+  });
 
   site.get({
     name: "items_group",
     path: __dirname + "/site_files/html/index.html",
     parser: "html",
-    compress: true
-  })
-  
-  site.on('[company][created]', doc => {
+    compress: true,
+  });
 
-    $items_group.add({
-      code: "1-Test",
-      name_ar: "مجموعة أصناف إفتراضية",
-      name_en : "Default Items Group",
-      image_url: '/images/items_group.png',
-      color : '#000000',
-      is_pos : true,
-      company: {
-        id: doc.id,
-        name_ar: doc.name_ar,
-        name_en: doc.name_en
+  site.on("[company][created]", (doc) => {
+    $items_group.add(
+      {
+        code: "1-Test",
+        name_ar: "مجموعة أصناف إفتراضية",
+        name_en: "Default Items Group",
+        image_url: "/images/items_group.png",
+        color: "#000000",
+        is_pos: true,
+        company: {
+          id: doc.id,
+          name_ar: doc.name_ar,
+          name_en: doc.name_en,
+        },
+        branch: {
+          code: doc.branch_list[0].code,
+          name_ar: doc.branch_list[0].name_ar,
+          name_en: doc.branch_list[0].name_en,
+        },
+        active: true,
       },
-      branch: {
-        code: doc.branch_list[0].code,
-        name_ar: doc.branch_list[0].name_ar,
-        name_en: doc.branch_list[0].name_en
-      },
-      active: true
-    }, (err, doc) => {})
-  })
-
+      (err, doc) => {}
+    );
+  });
 
   site.post("/api/items_group/add", (req, res) => {
     let response = {
-      done: false
-    }
+      done: false,
+    };
     if (!req.session.user) {
-      response.error = 'Please Login First'
-      res.json(response)
-      return
+      response.error = "Please Login First";
+      res.json(response);
+      return;
     }
 
-    let items_group_doc = req.body
-    items_group_doc.$req = req
-    items_group_doc.$res = res
+    let items_group_doc = req.body;
+    items_group_doc.$req = req;
+    items_group_doc.$res = res;
 
     items_group_doc.add_user_info = site.security.getUserFinger({
       $req: req,
-      $res: res
-    })
+      $res: res,
+    });
 
-    if (typeof items_group_doc.active === 'undefined') {
-      items_group_doc.active = true
+    if (typeof items_group_doc.active === "undefined") {
+      items_group_doc.active = true;
     }
 
-    items_group_doc.company = site.get_company(req)
-    items_group_doc.branch = site.get_branch(req)
-  
+    items_group_doc.company = site.get_company(req);
+    items_group_doc.branch = site.get_branch(req);
 
-    $items_group.find({
-      where: {
-        'company.id': site.get_company(req).id,
-        $or: [{
-          'name_ar': items_group_doc.name_ar
-        },{
-          'name_en': items_group_doc.name_en
-        }]
-
-      }
-    }, (err, doc) => {
-      if (!err && doc) {
-        response.error = 'Name Exists'
-        res.json(response)
-      } else {
-
-        let num_obj = {
-          company: site.get_company(req),
-          screen: 'items_groups',
-          date: new Date()
-        };
-
-        let cb = site.getNumbering(num_obj);
-        if (!items_group_doc.code && !cb.auto) {
-          response.error = 'Must Enter Code';
+    $items_group.find(
+      {
+        where: {
+          "company.id": site.get_company(req).id,
+          $or: [
+            {
+              name_ar: items_group_doc.name_ar,
+            },
+            {
+              name_en: items_group_doc.name_en,
+            },
+          ],
+        },
+      },
+      (err, doc) => {
+        if (!err && doc) {
+          response.error = "Name Exists";
           res.json(response);
-          return;
+        } else {
+          let num_obj = {
+            company: site.get_company(req),
+            screen: "items_groups",
+            date: new Date(),
+          };
 
-        } else if (cb.auto) {
-          items_group_doc.code = cb.code;
-        }
-
-
-        $items_group.add(items_group_doc, (err, doc) => {
-          if (!err) {
-            response.done = true
-            response.doc = doc
-          } else {
-            response.error = err.message
+          let cb = site.getNumbering(num_obj);
+          if (!items_group_doc.code && !cb.auto) {
+            response.error = "Must Enter Code";
+            res.json(response);
+            return;
+          } else if (cb.auto) {
+            items_group_doc.code = cb.code;
           }
-          res.json(response)
-        })
+
+          $items_group.add(items_group_doc, (err, doc) => {
+            if (!err) {
+              response.done = true;
+              response.doc = doc;
+            } else {
+              response.error = err.message;
+            }
+            res.json(response);
+          });
+        }
       }
-    })
-  })
+    );
+  });
 
   site.post("/api/items_group/update", (req, res) => {
     let response = {
-      done: false
-    }
+      done: false,
+    };
 
     if (!req.session.user) {
-      response.error = 'Please Login First'
-      res.json(response)
-      return
+      response.error = "Please Login First";
+      res.json(response);
+      return;
     }
 
-    let items_group_doc = req.body
+    let items_group_doc = req.body;
 
     items_group_doc.edit_user_info = site.security.getUserFinger({
       $req: req,
-      $res: res
-    })
+      $res: res,
+    });
 
     if (items_group_doc.id) {
-      $items_group.edit({
-        where: {
-          id: items_group_doc.id
+      $items_group.edit(
+        {
+          where: {
+            id: items_group_doc.id,
+          },
+          set: items_group_doc,
+          $req: req,
+          $res: res,
         },
-        set: items_group_doc,
-        $req: req,
-        $res: res
-      }, err => {
-        if (!err) {
-          response.done = true
-        } else {
-          response.error = 'Code Already Exist'
+        (err) => {
+          if (!err) {
+            response.done = true;
+          } else {
+            response.error = "Code Already Exist";
+          }
+          res.json(response);
         }
-        res.json(response)
-      })
+      );
     } else {
-      response.error = 'no id'
-      res.json(response)
+      response.error = "no id";
+      res.json(response);
     }
-  })
+  });
 
   site.post("/api/items_group/view", (req, res) => {
     let response = {
-      done: false
-    }
+      done: false,
+    };
 
     if (!req.session.user) {
-      response.error = 'Please Login First'
-      res.json(response)
-      return
+      response.error = "Please Login First";
+      res.json(response);
+      return;
     }
 
-    $items_group.findOne({
-      where: {
-        id: req.body.id
+    $items_group.findOne(
+      {
+        where: {
+          id: req.body.id,
+        },
+      },
+      (err, doc) => {
+        if (!err) {
+          response.done = true;
+          response.doc = doc;
+        } else {
+          response.error = err.message;
+        }
+        res.json(response);
       }
-    }, (err, doc) => {
-      if (!err) {
-        response.done = true
-        response.doc = doc
-      } else {
-        response.error = err.message
-      }
-      res.json(response)
-    })
-  })
+    );
+  });
 
   site.post("/api/items_group/delete", (req, res) => {
     let response = {
-      done: false
-    }
+      done: false,
+    };
 
     if (!req.session.user) {
-      response.error = 'Please Login First'
-      res.json(response)
-      return
+      response.error = "Please Login First";
+      res.json(response);
+      return;
     }
 
-    let id = req.body.id
+    let id = req.body.id;
 
     if (id) {
-      $items_group.delete({
-        id: id,
-        $req: req,
-        $res: res
-      }, (err, result) => {
-        if (!err) {
-          response.done = true
-        } else {
-          response.error = err.message
+      $items_group.delete(
+        {
+          id: id,
+          $req: req,
+          $res: res,
+        },
+        (err, result) => {
+          if (!err) {
+            response.done = true;
+          } else {
+            response.error = err.message;
+          }
+          res.json(response);
         }
-        res.json(response)
-      })
+      );
     } else {
-      response.error = 'no id'
-      res.json(response)
+      response.error = "no id";
+      res.json(response);
     }
-  })
-
+  });
 
   site.post("/api/items_group/all", (req, res) => {
     let response = {
-      done: false
-    }
+      done: false,
+    };
 
     if (!req.session.user) {
-      response.error = 'Please Login First'
-      res.json(response)
-      return
-    }
-  
-  
-    
-    let where = req.body.where || {}
-
-    if (where['name']) {
-      where['name'] = site.get_RegExp(where['name'], "i");
+      response.error = "Please Login First";
+      res.json(response);
+      return;
     }
 
-    where['company.id'] = site.get_company(req).id
+    let where = req.body.where || {};
 
-    $items_group.findMany({
-      select: req.body.select || {},
-      where: where,
-      sort: req.body.sort || {
-        id: -1
+    if (where["name"]) {
+      where["name"] = site.get_RegExp(where["name"], "i");
+    }
+
+    where["company.id"] = site.get_company(req).id;
+
+    $items_group.findMany(
+      {
+        select: req.body.select || {},
+        where: where,
+        sort: req.body.sort || {
+          id: -1,
+        },
+        limit: req.body.limit,
       },
-      limit: req.body.limit
-    }, (err, docs, count) => {
-      if (!err) {
-        response.done = true
-        response.list = docs
-        response.count = count
-      } else {
-        response.error = err.message
+      (err, docs, count) => {
+        if (!err) {
+          response.done = true;
+          response.list = docs;
+          response.count = count;
+        } else {
+          response.error = err.message;
+        }
+        res.json(response);
       }
-      res.json(response)
-    })
-  })
+    );
+  });
 
-}
+  site.linkItemsGroups = function (group, callback) {
+    callback = callback || {};
+
+    let num_obj = {
+      company: group.company,
+      screen: "items_groups",
+      date: new Date(),
+    };
+
+    let cb = site.getNumbering(num_obj);
+
+    $items_group.add(
+      {
+        code: cb.code,
+        name_ar: group.name_ar,
+        name_en: group.name_en,
+        image_url: group.image_url,
+        color: "#000000",
+        group_id: group.id,
+        company: group.company,
+        branch: group.branch,
+        active: true,
+      },
+      (err, doc) => {
+        if (!err && doc) callback(doc.id);
+        else callback(false);
+      }
+    );
+  };
+};
