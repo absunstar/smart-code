@@ -1,4 +1,4 @@
-<style>
+<style x-features="!atm">
   .tab-link img {
     width: 32px;
     height: 32px;
@@ -15,7 +15,7 @@
   }
 </style>
 
-<div class="main-menu">
+<div class="main-menu" x-features="!atm">
   <!-- <div class="tabs" ng-show="'##user.type##' == 'customer'">
 
         <a class="tab-link" href="/customers" x-permissions="customers_ui || customers_manage">
@@ -2685,4 +2685,389 @@
   </div>
 </div>
 
+
+
+<input type="checkbox" id="btn-sidebar" checked x-features="atm">
+<div class="sidebar-atm" x-features="atm">
+ 
+    
+    <div class="sidebar-atm-logo" style="display: flex; background-color: #f4cd07; margin-bottom: 20px;">
+      <label for="btn-sidebar" >
+        <img src="/images/menu1.png" style="border-radius: 0; width: 50%; margin: auto;">  
+      </label>
+      <img src="/images/inmedic-01.jpg" class="img-logo" style="width: 70%; border-radius: 0; ">
+    </div>
+    <div class="sidebar-atm-menu">
+      <ul>
+        <li>
+          <a
+          class="tab-link"
+          href="/patients_tickets"
+          x-permissions="patients_tickets_ui || patients_tickets_manage"
+        >
+          <img src="/images/patients_tickets.png" />
+          <span> ##word.patients_tickets## </span>
+        </a>
+
+        </li>
+          
+          <li>
+            <a
+            class="tab-link"
+            href="/doctors_visits"
+            x-permissions="doctors_visits_ui || doctors_visits_manage"
+          >
+            <img src="/images/doctors_visits.png" />
+            <span> ##word.doctors_visits## </span>
+          </a>
+          </li>
+          <!-- <div id="myDIV" class="dropdown-content" style="display: none;">
+                      
+                    
+              <a href="#">Link 2</a>
+
+              
+              <a href="#">Link 2</a>
+              <a href="#">Link 3</a>
+            </div> -->
+            <li>
+              <a
+          class="tab-link"
+          href="/analysis_requests"
+          x-permissions="analysis_requests_ui || analysis_requests_manage"
+        >
+          <img src="/images/analysis_requests.png" />
+          <span> ##word.analysis_requests## </span>
+        </a>
+          </li>
+          <!-- <div id="myDIV1" class="dropdown-content" style="display: none;">
+                      
+                    
+              <a href="#">Link 2</a>
+
+              
+              <a href="#">Link 2</a>
+              <a href="#">Link 3</a>
+            </div> -->
+            <li>
+              <a
+          class="tab-link"
+          href="/scans_requests"
+          x-permissions="scans_requests_ui || scans_requests_manage"
+        >
+          <img src="/images/scans_requests.png" />
+          <span> ##word.scans_requests## </span>
+        </a>
+          </li>
+          
+            <li>
+              <a
+              class="tab-link"
+              href="/patients_files"
+              x-permissions="patients_files_ui || patients_files_manage"
+            >
+              <img src="/images/patients_files.png" />
+              <span> ##word.patients_files## </span>
+            </a>
+          </li>
+          <li><a
+            class="tab-link"
+            x-features="!employee"
+            onclick="s1()" class="dropbtn"
+            
+          >
+            <img src="/images/basic_setting.png" />
+            <span>##word.basic_setting##</span>
+          </a></li>
+          <div id="basic_setting" class="dropdown-content" style="display: none;">
+                      
+                    
+            <a
+            class="tab-link"
+            href="/customers"
+            x-permissions="customers_ui || customers_manage"
+          >
+            <img src="/images/customer.png" />
+            <span> ##word.customers## </span>
+          </a>
+          
+            <a
+              class="tab-link"
+              href="/doctors"
+              x-permissions="doctors_ui || doctors_manage"
+            >
+              <img src="/images/doctor.png" />
+              <span> ##word.doctors## </span>
+            </a>
+    
+            <a
+              class="tab-link"
+              href="/nursing"
+              x-permissions="nursing_ui || nursing_manage"
+            >
+              <img src="/images/nurse.png" />
+              <span> ##word.nursing## </span>
+            </a>
+    
+            <a
+              class="tab-link"
+              href="/clinics"
+              x-permissions="clinics_ui || clinics_manage"
+            >
+              <img src="/images/clinic.png" />
+              <span> ##word.clinics## </span>
+            </a>
+    
+            <a
+              class="tab-link"
+              href="/medical_insurance_companies"
+              x-permissions="insurance_companies_ui || insurance_companies_manage"
+            >
+              <img src="/images/medical_insurance_companies.png" />
+              <span> ##word.medical_insurance_companies##</span>
+            </a>
+    
+            <a
+              class="tab-link"
+              href="/medical_specialties"
+              x-permissions="specialties_ui || specialties_manage"
+            >
+              <img src="/images/medical_specialty.png" />
+              <span> ##word.medical_specialties##</span>
+            </a>
+    
+            <a
+              class="tab-link"
+              href="/operation"
+              x-permissions="operation_ui || operation_manage"
+            >
+              <img src="/images/operation.png" />
+              <span> ##word.operations##</span>
+            </a>
+    
+            <a
+              class="tab-link"
+              href="/scans"
+              x-permissions="scans_ui || scans_manage"
+            >
+              <img src="/images/scans.png" />
+              <span> ##word.scans##</span>
+            </a>
+    
+            <a
+              class="tab-link"
+              href="/analysis"
+              x-permissions="analysis_ui || analysis_manage"
+            >
+              <img src="/images/analysis.png" />
+              <span> ##word.analysis##</span>
+            </a>
+            <a
+            class="tab-link"
+            href="/customers_group"
+            x-permissions="customers_group_ui || customers_group_manage"
+          >
+            <img src="/images/vendor_group.png" />
+            <span> ##word.customers_groups## </span>
+          </a>
+          <a
+        class="tab-link"
+        href="/order_slides"
+        x-permissions="order_slides_ui || order_slides_manage"
+      >
+        <img src="/images/slides.png" />
+        <span> ##word.order_slides##</span>
+      </a>
+            </div>
+
+          <li>
+            <a class="tab-link" href="/security/users">
+              <img src="/images/users.png" />
+              <span> ##word.menu_users## </span>
+            </a>
+          </li>
+          <li>
+            <a class="tab-link"  onclick="s2()" class="dropbtn">
+              <img src="/images/general_setting.png" />
+              <span>##word.general_setting##</span>
+            </a>
+          </li>
+          <div id="general_setting" class="dropdown-content" style="display: none;">
+                      
+                    
+            <a
+            class="tab-link"
+            href="/default_setting"
+            x-features="!employee && !lawyer"
+            x-permissions="default_setting_ui || default_setting_manage"
+          >
+            <img src="/images/default_setting.png" />
+            <span>##word.default_setting_menus## </span>
+          </a>
+    
+          <a
+            class="tab-link"
+            href="/numbering"
+            x-permissions="numbering_ui || numbering_manage"
+          >
+            <img src="/images/numbering.png" />
+            <span> ##word.numbering_screen## </span>
+          </a>
+    
+          <a
+            class="tab-link"
+            href="/shifts"
+            x-permissions="shifts_ui || shifts_manage"
+          >
+            <img src="/images/shift.png" />
+            <span> ##word.menu_shift## </span>
+          </a>
+    
+          <a
+            class="tab-link"
+            href="/printers_path"
+            x-permissions="printers_path_ui || printers_path_manage"
+          >
+            <img src="/images/printer_path.png" />
+            <span> ##word.printers_path## </span>
+          </a>
+          <a
+          class="tab-link"
+          href="/nationalities"
+          x-permissions="nationalities_ui || nationalities_manage"
+        >
+          <img src="/images/nationalities.png" />
+          <span> ##word.nationalities## </span>
+        </a>
+  
+        <a
+          class="tab-link"
+          href="/goves"
+          x-permissions="goves_ui || goves_manage"
+        >
+          <img src="/images/gov.png" />
+          <span> ##word.menu_goves## </span>
+        </a>
+  
+        <a class="tab-link" href="/city" x-permissions="city_ui || city_manage">
+          <img src="/images/city.png" />
+          <span> ##word.menu_city## </span>
+        </a>
+  
+        <a class="tab-link" href="/area" x-permissions="area_ui || area_manage">
+          <img src="/images/area.png" />
+          <span> ##word.menu_area## </span>
+        </a>
+        <a
+          class="tab-link"
+          href="/prices_codes"
+          x-permissions="prices_codes_ui || prices_codes_manage"
+        >
+          <img src="/images/prices_codes.png" />
+          <span> ##word.prices_codes##</span>
+        </a>
+        <a
+        class="tab-link"
+        href="/disease"
+        x-permissions="disease_ui || disease_manage"
+      >
+        <img src="/images/disease.png" />
+        <span> ##word.diseases##</span>
+      </a>
+
+      <a
+        class="tab-link"
+        href="/foods"
+        x-permissions="foods_ui || foods_manage"
+      >
+        <img src="/images/foods.png" />
+        <span> ##word.foods##</span>
+      </a>
+
+      <a
+        class="tab-link"
+        href="/drinks"
+        x-permissions="drinks_ui || drinks_manage"
+      >
+        <img src="/images/drinks.png" />
+        <span> ##word.drinks##</span>
+      </a>
+      <a
+        class="tab-link"
+        href="/militaries_status"
+        x-permissions="militaries_status_ui || militaries_status_manage"
+      >
+        <img src="images/military.png" />
+        <span>##word.system_military_menus## </span>
+      </a>
+
+      <a
+        class="tab-link"
+        href="/file_type"
+        x-permissions="file_type_ui || file_type_manage"
+      >
+        <img src="images/file_type.png" />
+        <span>##word.files_types## </span>
+      </a>
+
+      <a
+        class="tab-link"
+        href="/maritals_status"
+        x-permissions="maritals_status_ui || maritals_status_manage"
+      >
+        <img src="images/marital.png" />
+        <span>##word.system_social_status_menus## </span>
+      </a>
+
+      <a
+        class="tab-link"
+        href="/reset"
+        x-permissions="reset_ui || reset_manage"
+      >
+        <img src="/images/reset.png" />
+        <span> ##word.reset## </span>
+      </a>    
+          </div>
+
+          
+      </ul>
+  </div>
+  <script>
+    
+
+
+    var x = document.getElementById("basic_setting");
+    var y = document.getElementById("general_setting");
+    var z = document.getElementById("myDIV2");
+    var a = document.getElementById("myDIV3");
+function s1() {
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  };
+}
+function s2() {
+  if (y.style.display === "none") {
+    y.style.display = "block";
+  } else {
+    y.style.display = "none";
+  };
+}
+function s3() {
+  if (z.style.display === "none") {
+    z.style.display = "block";
+  } else {
+    z.style.display = "none";
+  };
+}
+function s4() {
+  if (a.style.display === "none") {
+    a.style.display = "block";
+  } else {
+    a.style.display = "none";
+  };
+}
+</script>
+</div>
 

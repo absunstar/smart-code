@@ -68,7 +68,7 @@ margin: 20px auto;
 
 .sidebar-atm-menu a{
     display: block;
-    color: #fff;
+    color: #fff !important;
     font-size: 18px;
     
 }
