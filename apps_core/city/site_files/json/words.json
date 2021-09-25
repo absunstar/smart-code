@@ -38,6 +38,11 @@
         "name": "city_name",
         "en": "City Name",
         "ar": "إسم المدينة "
+    },
+    {
+        "name": "loginFirst",
+        "en": "please login first",
+        "ar": "برجاء تسجيل الدخول"
     }
 
 

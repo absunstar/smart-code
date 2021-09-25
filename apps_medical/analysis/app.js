@@ -267,4 +267,62 @@ module.exports = function init(site) {
       }
     );
   });
+
+/* ATM APIS */
+
+  // get analysis price
+  site.post("/api/analysis/getAnalysisPrice", (req, res) => {
+    req.headers.language = req.headers.language || "en";
+    let response = {};
+    let where = req.body.where || {};
+    let analysis = where["analysis"].id;
+
+    if (!req.session.user) {
+      response.message = site.word('loginFirst')[req.headers.language];
+      response.done = false;
+      res.json(response);
+      return;
+
+    } else if (!req.session.user.ref_info) {
+      response.message = site.word('loginFirst')[req.headers.language];
+      response.done = false;
+      res.json(response);
+      return;
+    }
+
+    $analysis.aggregate(
+      [
+        { 
+          "$match" : {
+              "id" : analysis
+          }
+      }, 
+      { 
+          "$addFields" : {
+              "price_at_analysis_center" : "$price"
+          }
+      }, 
+      { 
+          "$project" : {
+              "price_at_analysis_center" : 1.0, 
+              "price_at_home" : 1.0
+          }
+      }
+      ],
+      (err, docs) => {
+        if (docs && docs.length > 0) {
+          response.done = true;
+          response.doc = docs[0];
+
+          res.json(response);
+        } else {
+          response.done = false;
+
+          response.doc = {};
+          res.json(response);
+        }
+      }
+    );
+  });
+
 };

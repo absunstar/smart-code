@@ -476,9 +476,9 @@ module.exports = function init(site) {
     let response = {
       done: false,
     };
-
+    req.headers.language = req.headers.language || 'en'
     if (!req.session.user) {
-      response.error = "Please Login First";
+      response.error = site.word('loginFirst')[req.headers.language];
       res.json(response);
       return;
     }
@@ -536,9 +536,9 @@ module.exports = function init(site) {
     let response = {
       done: false,
     };
-
+    req.headers.language = req.headers.language || 'en'
     if (!req.session.user) {
-      response.error = "Please Login First";
+      response.error = site.word('loginFirst')[req.headers.language];
       res.json(response);
       return;
     }
@@ -615,9 +615,10 @@ module.exports = function init(site) {
     let response = {
       done: false,
     };
+    req.headers.language = req.headers.language || 'en'
 
     if (!req.session.user) {
-      response.error = "Please Login First";
+      response.error = site.word('loginFirst')[req.headers.language];
       res.json(response);
       return;
     }
