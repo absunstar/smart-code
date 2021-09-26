@@ -708,6 +708,7 @@ module.exports = function init(site) {
       return
     }
     let doctorsArr = []
+    let dd = []
     $clinics.findOne({
       where: {
         id: req.body.clinic.id
@@ -718,46 +719,57 @@ module.exports = function init(site) {
           let arrDoctors = []
           let arr = []
           let shiftList = []
-          let arr1 = doc.doctor_list.map(li=>{
-            let xx= {
-              doctor : li.doctor,
-              shift : li.shift
+          
+          let arr1 = doc.doctor_list.map(li => {
+            let xx = {
+              doctor: li.doctor,
+              shift: li.shift
             }
             return xx
           })
-          console.log(arr1);
 
-          
+          const lookup = arr1.reduce((a, e) => {
+            a[e.doctor.id] = ++a[e.doctor.id] || 0;
+            return a;
+          }, {});
+          arr = arr1.filter(e => lookup[e.doctor.id])
+          for (const iterator of arr) {
+            shiftList.push(iterator.shift)
+          }
+          arr[0].doctor.shiftList = shiftList
 
-          // for (const doctor of doc.doctor_list) {
-          //   arrDoctors.push({
-          //     doctor: doctor.doctor,
-          //     shift : doctor.shift
-          //   })
-            
-          //   let cc = arrDoctors.filter(li=>li.doctor.id !=doctor.doctor.id )
-          //   if (cc.length>0) {
-             
-          //     shiftList.push(cc[0].shift)
-              
-          //   }
-          //   for (const iterator of arrDoctors) {
-             
-          //     if (iterator.doctor.id !=doctor.doctor.id ) {
-                
-          //       arr.push(iterator)
-          //     }
-          //   }
-           
-          // }
         
+          for (const doctor of doc.doctor_list) {
+            arrDoctors.push({
+              doctor: doctor.doctor,
+              shift : doctor.shift
+            })
+
+            for (const iterator of arrDoctors) {
+              if (doctor.doctor.id == iterator.doctor.id) {
+                
+                dd.push({
+                  doctor : iterator.doctor,
+                  shift : iterator.shift,
+                })
+                
+               
+              }
+            }
+
+           
+
+          }
+
         }
+        console.log(dd);
         response.done = true
         response.doc = doc
+        res.json(response)
       } else {
         response.error = err.message
       }
-      res.json(response)
+      // res.json(response)
     })
   })
 
