@@ -19,6 +19,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "agora-access-token": "^2.0.4",
     "isite": "^1.14.73",
     "zklib": "^0.2.11"
   }

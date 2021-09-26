@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="attend_students_ui || attend_students_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+
+    <div id="main-layout" class="container loaded">
+        <div class="row">
+            <div class="row" ng-controller="attend_students">
+                <div x-permissions="attend_students_add || attend_students_manage"
+                    x-import="attend-students/add_modal.html"></div>
+                <div x-permissions="attend_students_update || attend_students_manage"
+                    x-import="attend-students/update_modal.html"></div>
+                <div x-permissions="attend_students_delete || attend_students_manage"
+                    x-import="attend-students/delete_modal.html"></div>
+                <div x-permissions="attend_students_view || attend_students_manage"
+                    x-import="attend-students/view_modal.html"></div>
+                <div x-permissions="attend_students_search || attend_students_manage"
+                    x-import="attend-students/search_all_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center">##word.attend_students##</h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button x-permissions="attend_students_add || attend_students_manage" type="add"
+                        label="##word.attend_students_new##" ng-click="displayAddAttendStudents()"></i-button>
+
+                    <i-button x-permissions="attend_students_search || attend_students_manage" type="search"
+                        label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
+
+                    <h2 class="bold red text-center">{{error}}</h2>
+                    <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
+
+                </div>
+
+                <table x-permissions="login" class="table bold loaded hover" id="t1">
+                    <tr>
+                        <th class="not-print">##word.logo##</th>
+                        <th>##word.code##</th>
+                        <th>##word.date##</th>
+                        <th>##word.school_grade##</th>
+                        <th>##word.students_year##</th>
+                        <th>##word.hall##</th>
+                        <th class="not-print">##word.actions##</th>
+                    </tr>
+
+                    <tr ng-repeat="c in list">
+                        <td class="center not-print">
+                            <i-image view class="logo" ng-model="c.image_url"></i-image>
+                        </td>
+
+                        <td class="center userPrint blue">{{c.code}}</td>
+                        <td class="center brown">{{c.date |date:'dd - MM - yyyy'}}</td>
+                        <td class="center">{{c.school_grade.name_##session.lang##}}</td>
+                        <td class="center">{{c.students_year.name_##session.lang##}}</td>
+                        <td class="center">{{c.hall.name_##session.lang##}}</td>
+                        <td class="center not-print">
+
+                            <i-button x-permissions="attend_students_view || attend_students_manage" type="view"
+                                label="##word.details##" ng-click="displayDetailsAttendStudents(c)"></i-button>
+                            <i-button type="update" x-permissions="attend_students_edit || attend_students_manage"
+                                label="##word.update##" ng-click="displayUpdateAttendStudents(c)"></i-button>
+
+                            <i-button x-permissions="attend_students_delete || attend_students_manage" type="delete"
+                                label="##word.delete##" ng-click="displayDeleteAttendStudents(c)">
+                            </i-button>
+
+
+
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+    <script x-import="attend-students/index.js"></script>
+</body>
+
+</html>

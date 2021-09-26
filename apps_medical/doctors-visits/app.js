@@ -1,5 +1,7 @@
 module.exports = function init(site) {
   const $doctors_visits = site.connectCollection("doctors_visits");
+  const $customer = site.connectCollection("customers");
+  const $doctors = site.connectCollection("hr_employee_list")
 
   site.get({
     name: "images",
@@ -392,16 +394,16 @@ module.exports = function init(site) {
 
                         start_date.setMinutes(
                           start_date.getMinutes() +
-                            i *
-                              doctors_visits_doc.selected_doctor
-                                .detection_Duration
+                          i *
+                          doctors_visits_doc.selected_doctor
+                            .detection_Duration
                         );
 
                         let end_date = new Date(start_date);
                         end_date.setMinutes(
                           end_date.getMinutes() +
-                            doctors_visits_doc.selected_doctor
-                              .detection_Duration
+                          doctors_visits_doc.selected_doctor
+                            .detection_Duration
                         );
 
                         $doctors_visits.add(
@@ -576,13 +578,13 @@ module.exports = function init(site) {
 
                 start_date.setMinutes(
                   start_date.getMinutes() +
-                    i * doctors_visits_doc.selected_doctor.detection_Duration
+                  i * doctors_visits_doc.selected_doctor.detection_Duration
                 );
 
                 let end_date = new Date(start_date);
                 end_date.setMinutes(
                   end_date.getMinutes() +
-                    doctors_visits_doc.selected_doctor.detection_Duration
+                  doctors_visits_doc.selected_doctor.detection_Duration
                 );
 
                 $doctors_visits.add(
@@ -792,11 +794,14 @@ module.exports = function init(site) {
     );
   };
 
+
+  /* ATM APIS */
+
   site.post("/api/dates/day", (req, res) => {
     let response = {};
     req.headers.language = req.headers.language || "en";
     if (!req.session.user) {
-      response.message =  site.word('loginFirst')[req.headers.language];
+      response.message = site.word('loginFirst')[req.headers.language];
       response.done = false;
       res.json(response);
       return;
@@ -808,7 +813,7 @@ module.exports = function init(site) {
     if (day.code > nD.getDay()) {
       nD.setTime(nD.getTime() + (day.code - nD.getDay()) * 24 * 60 * 60 * 1000);
     } else if (day.code < nD.getDay()) {
-      nD.setTime(nD.getTime() + ((7 -  nD.getDay()) + day.code) * 24 * 60 * 60 * 1000);
+      nD.setTime(nD.getTime() + ((7 - nD.getDay()) + day.code) * 24 * 60 * 60 * 1000);
     }
 
     let fD = new Date(nD);
@@ -899,19 +904,19 @@ module.exports = function init(site) {
         {
           $match: {
             "customer.id": req.session.user.ref_info.id,
-            "status.id":1
+            "status.id": 1
           },
         },
         {
-          "$project" : {
-            "selected_doctor.name_ar" : 1.0, 
-            "selected_doctor.name_en" : 1.0, 
-            "selected_doctor.image_url" : 1.0, 
-            "date" : 1.0, 
-            "id" : 1.0, 
-            "selected_time" : 1.0,
-            id:1
-        
+          "$project": {
+            "selected_doctor.name_ar": 1.0,
+            "selected_doctor.name_en": 1.0,
+            "selected_doctor.image_url": 1.0,
+            "date": 1.0,
+            "id": 1.0,
+            "selected_time": 1.0,
+            id: 1
+
           },
         },
       ],
@@ -926,6 +931,169 @@ module.exports = function init(site) {
 
           response.doc = {};
           res.json(response);
+        }
+      }
+    );
+  });
+
+  // add doctor visit
+  site.post("/api/doctors_visits/addDoctorVisit", (req, res) => {
+    let response = {
+      done: false,
+    };
+    // if (!req.session.user) {
+    //   response.error = 'Please Login First'
+    //   res.json(response)
+    //   return
+    // }
+
+    let doctors_visits_doc = req.body;
+    doctors_visits_doc.$req = req;
+    doctors_visits_doc.$res = res;
+
+    if (!doctors_visits_doc.selected_time) {
+      response.error = "must selected time";
+      res.json(response);
+      return;
+    }
+
+    doctors_visits_doc.company = site.get_company(req);
+    doctors_visits_doc.branch = site.get_branch(req);
+
+    doctors_visits_doc.add_user_info = site.security.getUserFinger({
+      $req: req,
+      $res: res,
+    });
+
+    if (typeof doctors_visits_doc.active === "undefined") {
+      doctors_visits_doc.active = true;
+    }
+
+    if (doctors_visits_doc.company_code) {
+      doctors_visits_doc.company_codes = [doctors_visits_doc.company_code];
+      delete doctors_visits_doc.company_code;
+    }
+
+    let num_obj = {
+      company: site.get_company(req),
+      screen: "doctors_visits",
+      date: doctors_visits_doc.date,
+    };
+
+    let cb = site.getNumbering(num_obj);
+    if (!doctors_visits_doc.code && !cb.auto) {
+      response.error = "Must Enter Code";
+      res.json(response);
+      return;
+    } else if (cb.auto) {
+      doctors_visits_doc.code = cb.code;
+    }
+console.log(doctors_visits_doc.selected_clinic.id);
+    let whereObj = {
+      date: new Date(doctors_visits_doc.date),
+      "selected_clinic.id": doctors_visits_doc.selected_clinic.id,
+      "selected_doctor.id": doctors_visits_doc.selected_doctor.id,
+      "selected_time.day.id": doctors_visits_doc.selected_time.day.id,
+      "selected_time.from.hour": doctors_visits_doc.selected_time.from.hour,
+      "selected_time.to.hour": doctors_visits_doc.selected_time.to.hour,
+    };
+
+    if (whereObj.date) {
+      let d1 = site.toDate(whereObj.date);
+      let d2 = site.toDate(whereObj.date);
+      d2.setDate(d2.getDate() + 1);
+      whereObj.date = {
+        $gte: d1,
+        $lt: d2,
+      };
+    }
+
+    $doctors_visits.findMany(
+      {
+        where: whereObj,
+      },
+      (err, docs, count) => {
+        if (!err) {
+
+          doctors_visits_doc.visit_number = count + 1;
+
+
+          $doctors.findOne(
+            {
+              where: {
+                doctor: true,
+                id : doctors_visits_doc.selected_doctor.id
+              },
+            },
+            (err, doctorDoc) => {
+              if (!doctorDoc) {
+                response.error = 'no doctor found';
+                res.json(response);
+                return
+              } else {
+                doctors_visits_doc.selected_doctor = doctorDoc
+                $customer.findOne(
+                  {
+                    where: {
+                      id: doctors_visits_doc.customer.id,
+                    },
+                  },
+                  (err, customerDoc) => {
+                    if (!customerDoc) {
+                      response.error = 'no patient found';
+                      res.json(response);
+                      return
+                    }
+                    else{
+                      doctors_visits_doc.customer = customerDoc
+                      site.getPatientTicket(doctors_visits_doc.customer, (callBackGet) => {
+                        if (!callBackGet) {
+                          site.addPatientTicket(doctors_visits_doc, (callBackAdd) => {
+                            doctors_visits_doc.patient_ticket_id = callBackAdd.id;
+            
+                            $doctors_visits.add(doctors_visits_doc, (err, doc) => {
+                              if (!err) {
+                                response.done = true;
+                                response.doc = doc;
+                              } else {
+                                response.error = err.message;
+                              }
+                              res.json(response);
+                            });
+                          });
+                        } else {
+                          if (callBackGet.status && callBackGet.status.id === 2) {
+                            response.error = "holding ticket for this patient";
+                            res.json(response);
+                            return;
+                          }
+            
+                          doctors_visits_doc.patient_ticket_id = callBackGet.id;
+            
+                          $doctors_visits.add(doctors_visits_doc, (err, doc) => {
+                            if (!err) {
+                              response.done = true;
+                              response.doc = doc;
+                            } else {
+                              response.error = err.message;
+                            }
+                            res.json(response);
+                          });
+                        }
+                      });
+                    }
+                  }
+                );
+              }
+             
+            }
+          );
+
+
+
+         
+
+          
         }
       }
     );

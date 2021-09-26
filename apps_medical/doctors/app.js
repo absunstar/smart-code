@@ -1,5 +1,6 @@
 module.exports = function init(site) {
   const $doctors = site.connectCollection("hr_employee_list")
+  const $clinics = site.connectCollection("clinics");
 
   site.on('[register][doctor][add]', doc => {
 
@@ -85,7 +86,7 @@ module.exports = function init(site) {
 
         $or: [{
           'name_ar': doctor_doc.name_ar
-        },{
+        }, {
           'name_en': doctor_doc.name_en
         }]
       }
@@ -494,9 +495,211 @@ module.exports = function init(site) {
   /* ATM APIS */
 
 
+  //   site.post("/api/doctors/searchAll", (req, res) => {
+  //     let response = {
+  //       done: false
+  //     }
+  //     let where = req.body.where || {}
+  //     let limit = 10
+  //     let skip = 0
+  //     if (req.body.page || (parseInt(req.body.page) && parseInt(req.body.page) > 1)) {
+  //       skip = (parseInt(req.body.page) - 1) * 10
+  //     }
+  //     let name_ar 
+  //     let name_en 
+
+  //     if (where['name_ar'] != "" ) {
+
+  //        name_ar =  where['name_ar'] 
+  //     }
+  //     if (where['name_ar'] == "" ) {
+
+  //       name_ar =  ""
+  //    }
+  //     if (where['name_ar'] == undefined) {
+
+  //       name_ar = ""
+  //    }
+
+
+  // // let name_en = req.body.where.name_en || ""
+  //     if (!req.session.user) {
+  //       response.error = 'Please Login First'
+  //       res.json(response)
+  //       return
+  //     }
+  //     $clinics.aggregate(
+  //       [
+  //         {
+  //           "$project": {
+  //             "doctor_list": 1.0
+  //           }
+  //         },
+  //         {
+  //           "$unwind": {
+  //             "path": "$doctor_list",
+  //             "includeArrayIndex": "arrayIndex",
+  //             "preserveNullAndEmptyArrays": false
+  //           }
+  //         },
+  //         {
+  //           "$addFields": {
+  //             "doctor": "$doctor_list.doctor",
+  //             "shift": "$doctor_list.shift",
+  //             "detection_price": "$doctor_list.detection_price"
+  //           }
+  //         },
+  //         {
+  //           "$project": {
+  //             "doctor_list": 0.0,
+  //             "arrayIndex": 0.0
+  //           }
+  //         },
+  //         {
+  //           "$match": {
+  //             "doctor.name_ar":{$regex: name_ar ,$options:"i"}
+
+  //           }
+  //         },
+  //         {
+  //           $skip: skip
+  //         },
+  //         {
+  //           $limit: limit
+  //         }
+  //       ],
+  //       (err, docs) => {
+  //         if (docs && docs.length > 0) {
+  //           response.done = true;
+
+
+  //           if (docs.length > 0) {
+
+  //             docs.forEach(_doc => {
+
+  //               if (_doc.detection_price) {
+  //                 _doc.online_price = {}
+  //                 _doc.at_home_price = {}
+  //                 _doc.at_clinic_price = {
+  //                   detection: _doc.detection_price.detection,
+  //                   re_detection: _doc.detection_price.re_detection,
+  //                   consultation: _doc.detection_price.consultation,
+  //                   session: _doc.detection_price.session,
+  //                 }
+
+  //                 if (_doc.detection_price.online) {
+  //                   if (_doc.detection_price.detection) {
+
+  //                     if (_doc.detection_price.online.type == "percent")
+  //                       _doc.online_price.detection =
+  //                         ((_doc.detection_price.detection * site.toNumber(_doc.detection_price.online.price)) /
+  //                           100) + _doc.detection_price.detection;
+  //                     else _doc.online_price.detection = _doc.detection_price.detection + site.toNumber(_doc.detection_price.online.price);
+  //                   }
+  //                   if (_doc.detection_price.re_detection) {
+
+  //                     if (_doc.detection_price.online.type == "percent")
+  //                       _doc.online_price.re_detection =
+  //                         ((_doc.detection_price.re_detection * site.toNumber(_doc.detection_price.online.price)) /
+  //                           100) + _doc.detection_price.re_detection;
+  //                     else _doc.online_price.re_detection = _doc.detection_price.re_detection + site.toNumber(_doc.detection_price.online.price);
+  //                   }
+  //                   if (_doc.detection_price.consultation) {
+
+  //                     if (_doc.detection_price.online.type == "percent")
+  //                       _doc.online_price.consultation =
+  //                         ((_doc.detection_price.consultation * site.toNumber(_doc.detection_price.online.price)) /
+  //                           100) + _doc.detection_price.consultation;
+  //                     else _doc.online_price.consultation = _doc.detection_price.consultation + site.toNumber(_doc.detection_price.online.price);
+  //                   }
+  //                   if (_doc.detection_price.session) {
+
+  //                     if (_doc.detection_price.online.type == "percent")
+  //                       _doc.online_price.session =
+  //                         ((_doc.detection_price.session * site.toNumber(_doc.detection_price.online.price)) /
+  //                           100) + _doc.detection_price.session;
+  //                     else _doc.online_price.session = _doc.detection_price.session + site.toNumber(_doc.detection_price.online.price);
+  //                   }
+  //                 }
+
+  //                 if (_doc.detection_price.at_home) {
+  //                   if (_doc.detection_price.detection) {
+
+  //                     if (_doc.detection_price.at_home.type == "percent")
+  //                       _doc.at_home_price.detection =
+  //                         ((_doc.detection_price.detection * site.toNumber(_doc.detection_price.at_home.price)) /
+  //                           100) + _doc.detection_price.detection;
+  //                     else _doc.at_home_price.detection = _doc.detection_price.detection + site.toNumber(_doc.detection_price.at_home.price);
+  //                   }
+  //                   if (_doc.detection_price.re_detection) {
+
+  //                     if (_doc.detection_price.at_home.type == "percent")
+  //                       _doc.at_home_price.re_detection =
+  //                         ((_doc.detection_price.re_detection * site.toNumber(_doc.detection_price.at_home.price)) /
+  //                           100) + _doc.detection_price.re_detection;
+  //                     else _doc.at_home_price.re_detection = _doc.detection_price.re_detection + site.toNumber(_doc.detection_price.at_home.price);
+  //                   }
+  //                   if (_doc.detection_price.consultation) {
+
+  //                     if (_doc.detection_price.at_home.type == "percent")
+  //                       _doc.at_home_price.consultation =
+  //                         ((_doc.detection_price.consultation * site.toNumber(_doc.detection_price.at_home.price)) /
+  //                           100) + _doc.detection_price.consultation;
+  //                     else _doc.at_home_price.consultation = _doc.detection_price.consultation + site.toNumber(_doc.detection_price.at_home.price);
+  //                   }
+  //                   if (_doc.detection_price.session) {
+
+  //                     if (_doc.detection_price.at_home.type == "percent")
+  //                       _doc.at_home_price.session =
+  //                         ((_doc.detection_price.session * site.toNumber(_doc.detection_price.at_home.price)) /
+  //                           100) + _doc.detection_price.session;
+  //                     else _doc.at_home_price.session = _doc.detection_price.session + site.toNumber(_doc.detection_price.at_home.price);
+  //                   }
+  //                 }
+  //                 let prices = {
+  //                   at_clinic_price: _doc.at_clinic_price,
+  //                   at_home_price: _doc.at_home_price,
+  //                   online_price: _doc.online_price,
+
+  //                 }
+  //               }
+
+  //             });
+
+
+  //             response.list = docs;
+  //             response.count = docs.length;
+  //             response.totalPages = Math.ceil(docs.length / 10);
+  //             res.json(response);
+
+  //           }
+
+  //         } else {
+  //           response.done = false;
+
+  //           response.list = docs;
+  //           response.count = 0;
+  //           response.totalPages = 0;
+  //           res.json(response);
+  //         }
+  //       }
+  //     );
+
+  //   })
+
+
+
+
+
   site.post("/api/doctors/searchAll", (req, res) => {
     let response = {
       done: false
+    }
+    let where = req.body.where || {}
+    let limit = 10
+    let skip = 0
+    if (req.body.page || (parseInt(req.body.page) && parseInt(req.body.page) > 1)) {
+      skip = (parseInt(req.body.page) - 1) * 10
     }
 
     if (!req.session.user) {
@@ -504,139 +707,55 @@ module.exports = function init(site) {
       res.json(response)
       return
     }
-
-
-    let where = req.body.where || {}
-    let search = req.body.search
-
-    if (search) {
-      where.$or = []
-      where.$or.push({
-        'name_ar': site.get_RegExp(search, "i")
-      })
-
-      where.$or.push({
-        'name_en': site.get_RegExp(search, "i")
-      })
-
-      where.$or.push({
-        'mobile': site.get_RegExp(search, "i")
-      })
-
-      where.$or.push({
-        'phone': site.get_RegExp(search, "i")
-      })
-
-      where.$or.push({
-        'national_id': site.get_RegExp(search, "i")
-      })
-
-      where.$or.push({
-        'email': site.get_RegExp(search, "i")
-      })
-
-    }
-
-    if (where['gov']) {
-      where['gov.id'] = where['gov'].id;
-      delete where['gov']
-      delete where.active
-    }
-
-    if (where['city']) {
-      where['city.id'] = where['city'].id;
-      delete where['city']
-      delete where.active
-    }
-    if (where['area']) {
-      where['area.id'] = where['area'].id;
-      delete where['area']
-      delete where.active
-    }
-
-    if (where['specialty']) {
-      where['specialty.id'] = where['specialty'].id;
-      delete where['specialty']
-      delete where.active
-    }
-
-    if (where["name_ar"]) {
-      where["name_ar"] = new RegExp(where["name_ar"], "i");
-    }
-    if (where["name_ar"] == undefined ||where["name_ar"] == ""  ) {
-    delete where["name_ar"]
-    }
-  
-    if (where["name_en"]) {
-      where["name_en"] = new RegExp(where["name_en"], "i");
-    }
-    if (where["name_en"] == undefined ||where["name_en"] == ""  ) {
-      delete where["name_en"]
+    let doctorsArr = []
+    $clinics.findOne({
+      where: {
+        id: req.body.clinic.id
       }
+    }, (err, doc) => {
+      if (!err) {
+        if (doc.doctor_list) {
+          let arrDoctors = []
+          let arr = []
+          let shiftList = []
+          let arr1 = doc.doctor_list.map(li=>{
+            let xx= {
+              doctor : li.doctor,
+              shift : li.shift
+            }
+            return xx
+          })
+          console.log(arr1);
 
-    if (where['address']) {
-      where['address'] = site.get_RegExp(where['address'], "i");
-    }
-    if (where['national_id']) {
-      where['national_id'] = site.get_RegExp(where['national_id'], "i");
-    }
-    if (where['phone']) {
-      where['phone'] = site.get_RegExp(where['phone'], "i");
-    }
+          
 
-    if (where['mobile']) {
-      where['mobile'] = site.get_RegExp(where['mobile'], "i");
-    }
-
-    if (where['email']) {
-      where['email'] = site.get_RegExp(where['email'], "i");
-    }
-
-    if (where['whatsapp']) {
-      where['whatsapp'] = site.get_RegExp(where['whatsapp'], "i");
-    }
-    if (where['twitter']) {
-      where['twitter'] = site.get_RegExp(where['twitter'], "i");
-    }
-    if (where['facebook']) {
-      where['facebook'] = site.get_RegExp(where['facebook'], "i");
-    }
-
-    if (where['notes']) {
-      where['notes'] = site.get_RegExp(where['notes'], "i");
-    }
-
-    //  if (req.session.user.roles[0].name === 'doctors') {
-    //   where['id'] = req.session.user.doctor_id;
-    // } 
-
-    where['doctor'] = true
-    where['company.id'] = site.get_company(req).id
-    where['branch.code'] = site.get_branch(req).code
-    let limit = 10;
-    let skip;
-
-    if (req.body.page || (parseInt(req.body.page) && parseInt(req.body.page) > 1)) {
-      skip = (parseInt(req.body.page) - 1) * 10
-    }
-
-    $doctors.findMany({
-      select: req.body.select || {},
-      where: where,
-      sort: req.body.sort || {
-        id: -1
-      },
-      limit: limit,
-      skip: skip
-    }, (err, docs, count) => {
-      if (!err && docs.length>0) {
-        response.done = true;
-        response.list = docs;
-        response.count = count;
+          // for (const doctor of doc.doctor_list) {
+          //   arrDoctors.push({
+          //     doctor: doctor.doctor,
+          //     shift : doctor.shift
+          //   })
+            
+          //   let cc = arrDoctors.filter(li=>li.doctor.id !=doctor.doctor.id )
+          //   if (cc.length>0) {
+             
+          //     shiftList.push(cc[0].shift)
+              
+          //   }
+          //   for (const iterator of arrDoctors) {
+             
+          //     if (iterator.doctor.id !=doctor.doctor.id ) {
+                
+          //       arr.push(iterator)
+          //     }
+          //   }
+           
+          // }
+        
+        }
+        response.done = true
+        response.doc = doc
       } else {
-        response.done = false;
-        response.list = [];
-        response.count = 0;
+        response.error = err.message
       }
       res.json(response)
     })

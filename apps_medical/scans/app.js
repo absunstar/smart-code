@@ -301,10 +301,12 @@ module.exports = function init(site) {
         response.done = true;
         response.list = docs;
         response.count = count;
+        response.totalPages = Math.ceil(count / 10)
       } else {
         response.done = false;
         response.list = [];
         response.count = 0;
+        response.totalPages = 0
       }
       res.json(response)
     })
