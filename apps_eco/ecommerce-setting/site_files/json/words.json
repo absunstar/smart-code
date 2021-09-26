@@ -1,0 +1,168 @@
+[
+  {
+    "name": "ecommerce_setting",
+    "en": "Ecommerce Setting",
+    "ar": "إعدادات المتجر"
+  },
+  {
+    "name": "medical_cosmetic_product",
+    "en": "Medical or cosmetic product",
+    "ar": "منتج طبي أو تجميلي"
+  },
+  {
+    "name": "link_items",
+    "en": "Link to items",
+    "ar": "ربط بالأصناف"
+  },
+  {
+    "name": "link_item_groups",
+    "en": "Link to item groups",
+    "ar": "ربط بمجموعات الأصناف"
+  },
+  {
+    "name": "products",
+    "en": "Products",
+    "ar": "المنتجات"
+  },
+  {
+    "name": "products_menu",
+    "en": "Products menu",
+    "ar": "قائمة المنتجات"
+  },
+  {
+    "name": "product_name",
+    "en": "Product Name",
+    "ar": "إسم المنتج"
+  },
+  {
+    "name": "product_new",
+    "en": "New Product",
+    "ar": "منتج جديد"
+  },
+  {
+    "name": "product_add",
+    "en": "Add Product",
+    "ar": "إضافة منتج "
+  },
+  {
+    "name": "product_edit",
+    "en": "Edit Product",
+    "ar": "تعديل منتج "
+  },
+  {
+    "name": "product_details",
+    "en": "Product Details",
+    "ar": "تفاصيل المنتج "
+  },
+  {
+    "name": "product_delete",
+    "en": "Delete Product",
+    "ar": "حذف منتج "
+  },
+  {
+    "name": "products_groups",
+    "en": "Products Groups",
+    "ar": "مجموعات المنتجات"
+  },
+  {
+    "name": "products_group",
+    "en": "Products Group",
+    "ar": "مجموعة المنتجات"
+  },
+  {
+    "name": "products_group_name",
+    "en": "Products Group Name",
+    "ar": "إسم مجموعة المنتجات"
+  },
+  {
+    "name": "products_group_new",
+    "en": "New Products Group",
+    "ar": "مجموعة منتجات جديدة"
+  },
+  {
+    "name": "products_group_add",
+    "en": "Add Products Group",
+    "ar": "إضافة مجموعة منتجات "
+  },
+  {
+    "name": "products_group_edit",
+    "en": "Edit Products Group",
+    "ar": "تعديل مجموعة منتجات "
+  },
+  {
+    "name": "products_group_details",
+    "en": "Products Group Details",
+    "ar": "تفاصيل المجموعة منتجات"
+  },
+  {
+    "name": "products_group_delete",
+    "en": "Delete Products Group",
+    "ar": "حذف مجموعة منتجات "
+  },
+
+  {
+    "name": "shipping_companies",
+    "en": "Shipping companys",
+    "ar": "شركات الشحن"
+  },
+  {
+    "name": "shipping_company",
+    "en": "Shipping company",
+    "ar": "شركة الشحن"
+  },
+  {
+    "name": "shipping_company_name",
+    "en": "Shipping company Name",
+    "ar": "إسم شركة الشحن"
+  },
+  {
+    "name": "shipping_company_new",
+    "en": "New Shipping company",
+    "ar": "شركة شحن جديدة"
+  },
+  {
+    "name": "shipping_company_add",
+    "en": "Add Shipping company",
+    "ar": "إضافة شركة شحن "
+  },
+  {
+    "name": "shipping_company_edit",
+    "en": "Edit Shipping company",
+    "ar": "تعديل شركة شحن "
+  },
+  {
+    "name": "shipping_company_details",
+    "en": "Shipping company Details",
+    "ar": "تفاصيل الشركة شحن"
+  },
+  {
+    "name": "shipping_company_delete",
+    "en": "Delete Shipping company",
+    "ar": "حذف شركة شحن "
+  },
+  {
+    "name": "upon_receipt",
+    "en": "upon receipt",
+    "ar": "عند الإستلام"
+  },
+  {
+    "name": "delivery_type",
+    "en": "Delivery Type",
+    "ar": "نوع التوصيل"
+  },
+  {
+    "name": "fee_upon_receipt",
+    "en": "Fee upon receipt",
+    "ar": "رسوم عند الإستلام"
+  },
+  {
+    "name": "normal_delivery_fee",
+    "en": "Normal delivery fee",
+    "ar": "رسوم توصيل عادي"
+  },
+  {
+    "name": "fast_delivery_fee",
+    "en": "Fast delivery fee",
+    "ar": "رسوم توصيل سريع"
+  }
+]

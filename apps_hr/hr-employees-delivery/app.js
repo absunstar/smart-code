@@ -3,7 +3,7 @@ module.exports = function init(site) {
 
   site.on('[company][created]', doc => {
 
-    if (site.feature('restaurant') || site.feature('pos') || site.feature('erp') || site.feature('school')) {
+    if (site.feature('restaurant') || site.feature('pos') || site.feature('eco') || site.feature('erp') || site.feature('school')) {
 
       $delivery_employee_list.add({
         name_ar: "سائق إفتراضي",

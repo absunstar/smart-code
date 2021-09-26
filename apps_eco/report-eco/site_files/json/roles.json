@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "report_eco_admin",
+    "en": "Report Order Ecommerce Admin",
+    "ar": "إدارة تقرير طلبات المتجر",
+    "permissions": ["report_eco_manage"]
+}]

@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "order_eco_admin",
+    "en": "Create Order Admin",
+    "ar": "إدارة إنشاء الطلب",
+    "permissions": ["order_eco_manage"]
+}]

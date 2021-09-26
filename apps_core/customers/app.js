@@ -196,7 +196,8 @@ module.exports = function init(site) {
     if (
       site.feature("pos") ||
       site.feature("restaurant") ||
-      site.feature("erp")
+      site.feature("erp") ||
+      site.feature("eco")
     ) {
       user.roles.push({
         module_name: "public",
@@ -440,14 +441,13 @@ module.exports = function init(site) {
         ar: "إدارة العملاء للمستخدم",
         permissions: ["customers_update", "customers_view", "customers_ui"],
       },
-     
     ];
 
-   
     if (
       site.feature("pos") ||
       site.feature("restaurant") ||
-      site.feature("erp")
+      site.feature("erp") ||
+      site.feature("eco")
     ) {
       user.roles.push({
         module_name: "public",
@@ -939,60 +939,59 @@ module.exports = function init(site) {
 
   /* ATM APIS */
 
-    // my profile
-    site.post('/api/customers/myProfile', (req, res) => {
-      req.headers.language = req.headers.language || 'en'
-      let response = {}
-      if (!req.session.user) {
-        response.message = site.word('loginFirst')[req.headers.language];
-        response.done = false;
-        res.json(response);
-        return;
-      }
-     else if (!req.session.user.ref_info) {
-        response.message = site.word('loginFirst')[req.headers.language];
-        response.done = false;
-        res.json(response);
-        return;
-      }
-     console.log(req.session.user);
-  
-      $customers.aggregate([
-        { 
-          "$match" : {
-              "id" : req.session.user.ref_info.id
-          }
-      }, 
-        { 
-          "$project" : {
-              "name_ar" : 1.0, 
-              "name_en" : 1.0, 
-              "gender" : 1.0, 
-              "weight" : 1.0, 
-              "tall" : 1.0, 
-              "gov" : 1.0, 
-              "city" : 1.0, 
-              "area" : 1.0, 
-              "address" : 1.0, 
-              "mobile" : 1.0, 
-              "id" : 1.0
-          }
-      }
-      ], (err, docs) => {
+  // my profile
+  site.post("/api/customers/myProfile", (req, res) => {
+    req.headers.language = req.headers.language || "en";
+    let response = {};
+    if (!req.session.user) {
+      response.message = site.word("loginFirst")[req.headers.language];
+      response.done = false;
+      res.json(response);
+      return;
+    } else if (!req.session.user.ref_info) {
+      response.message = site.word("loginFirst")[req.headers.language];
+      response.done = false;
+      res.json(response);
+      return;
+    }
+    console.log(req.session.user);
+
+    $customers.aggregate(
+      [
+        {
+          $match: {
+            id: req.session.user.ref_info.id,
+          },
+        },
+        {
+          $project: {
+            name_ar: 1.0,
+            name_en: 1.0,
+            gender: 1.0,
+            weight: 1.0,
+            tall: 1.0,
+            gov: 1.0,
+            city: 1.0,
+            area: 1.0,
+            address: 1.0,
+            mobile: 1.0,
+            id: 1.0,
+          },
+        },
+      ],
+      (err, docs) => {
         if (docs && docs.length > 0) {
           response.done = true;
           response.doc = docs[0];
-        
-          res.json(response)
+
+          res.json(response);
         } else {
-          response.done = false
-         
+          response.done = false;
+
           response.doc = {};
-          res.json(response)
+          res.json(response);
         }
-  
-  
-      })
-  
-    });
+      }
+    );
+  });
 };

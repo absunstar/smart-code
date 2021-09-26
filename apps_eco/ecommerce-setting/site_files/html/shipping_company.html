@@ -1,0 +1,443 @@
+<div id="shippingCompanyContentModal" class="modal" fixed>
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>
+        ##word.shipping_company_add##
+        <i class="fa fa-plus"></i>
+      </h2>
+    </div>
+
+    <div class="modal-body">
+      <div class="row">
+        <fieldset>
+          <legend>##word.basic_information##</legend>
+          <div class="row">
+            <div class="col9">
+              <div class="row">
+                <i-control
+                  ng-hide="disabledShippingCompanyCode"
+                  class="col2"
+                  label="##word.code##"
+                  ng-model="shipping_company.code"
+                ></i-control>
+                <i-control
+                  help-id="shipping_companys_name"
+                  v="r ll2"
+                  class="col4"
+                  label="##word.shipping_company_name##"
+                  ng-model="shipping_company.name_ar"
+                ></i-control>
+
+                <i-control
+                  help-id="shipping_companys_name_en"
+                  class="col4"
+                  label="##word.name_en##"
+                  ng-model="shipping_company.name_en"
+                ></i-control>
+                <i-checkbox
+                  class="col2"
+                  help-id="shipping_companys_active"
+                  label="##word.active##"
+                  ng-model="shipping_company.active"
+                >
+                </i-checkbox>
+              </div>
+
+              <div class="row">
+                <i-list
+                  class="col3"
+                  label="##word.companies_gov##"
+                  ng-model="shipping_company.gov"
+                  ng-search="_search.$gov"
+                  ng-change="getCityList(shipping_company.gov)"
+                  items="govList"
+                  display="name_##session.lang##"
+                ></i-list>
+
+                <i-list
+                  class="col3"
+                  label="##word.companies_city##"
+                  ng-model="shipping_company.city"
+                  ng-search="_search.$city"
+                  items="cityList"
+                  display="name_##session.lang##"
+                ></i-list>
+
+                <i-control
+                  class="col6"
+                  label="##word.companies_address##"
+                  ng-model="shipping_company.address"
+                >
+                </i-control>
+              </div>
+
+              <div class="row">
+                <i-control
+                  class="col3"
+                  label="##word.companies_phone##"
+                  ng-model="shipping_company.phone"
+                >
+                </i-control>
+                <i-control
+                  class="col3"
+                  label="##word.companies_mobile##"
+                  ng-model="shipping_company.mobile"
+                >
+                </i-control>
+                <i-control
+                  class="col3"
+                  label="##word.companies_fax##"
+                  ng-model="shipping_company.fax"
+                ></i-control>
+                <i-control
+                  class="col3"
+                  label="##word.companies_email##"
+                  ng-model="shipping_company.email"
+                >
+                </i-control>
+              </div>
+              <fieldset>
+                <legend>##word.companies_contact_charge##</legend>
+                <div class="row">
+                  <i-control
+                    class="col3"
+                    label="##word.companies_charge_name##"
+                    ng-model="shipping_company.admin.name"
+                  >
+                  </i-control>
+
+                  <i-control
+                    class="col3"
+                    label="##word.companies_charge_job##"
+                    ng-model="shipping_company.admin.job"
+                  >
+                  </i-control>
+
+                  <i-control
+                    class="col3"
+                    label="##word.companies_phone##"
+                    ng-model="shipping_company.admin.phone"
+                  >
+                  </i-control>
+
+                  <i-control
+                    class="col3"
+                    label="##word.companies_internal_number##"
+                    ng-model="shipping_company.admin.internal_number"
+                  ></i-control>
+                </div>
+
+                <div class="row">
+                  <i-control
+                    class="col3"
+                    label="##word.companies_mobile##"
+                    ng-model="shipping_company.admin.mobile"
+                  >
+                  </i-control>
+
+                  <i-control
+                    class="col3"
+                    label="##word.companies_email##"
+                    ng-model="shipping_company.admin.email"
+                  >
+                  </i-control>
+                </div>
+              </fieldset>
+            </div>
+
+            <div class="col3">
+              <i-image
+                help-id="shipping_companys_logo"
+                ng-model="shipping_company.image_url"
+              ></i-image>
+            </div>
+          </div>
+
+          <div class="row" ng-show="shipping_company.id">
+            <table class="table hover border">
+              <tr>
+                <th>##word.useradd_user_info##</th>
+                <th>##word.useredit_user_info##</th>
+              </tr>
+              <tr>
+                <td class="center">
+                  <p class="blue">{{shipping_company.add_user_info.name}}</p>
+                  <small class="green">
+                    {{shipping_company.add_user_info.date |date:"hh:mm"}}
+                  </small>
+                  <small>
+                    {{shipping_company.add_user_info.date |date:"dd - MM -
+                    yyyy"}}
+                  </small>
+                </td>
+
+                <td class="center">
+                  <p class="blue">{{shipping_company.edit_user_info.name}}</p>
+                  <small class="green">
+                    {{shipping_company.edit_user_info.date |date:"hh:mm"}}
+                  </small>
+                  <small>
+                    {{shipping_company.edit_user_info.date |date:"dd - MM -
+                    yyyy"}}
+                  </small>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+
+    <div class="modal-footer center">
+      <h2 class="error">{{error}}</h2>
+      <i-button
+        type="add"
+        ng-show="shipping_company.$add"
+        label="##word.add##"
+        ng-click="addShippingCompany()"
+      ></i-button>
+      <i-button
+        type="update"
+        ng-show="shipping_company.$update"
+        label="##word.update##"
+        ng-click="updateShippingCompany()"
+      >
+      </i-button>
+
+      <i-button
+        type="close"
+        label="##word.close##"
+        onclick="site.hideModal( '#shippingCompanyContentModal')"
+      ></i-button>
+    </div>
+  </div>
+</div>
+
+<div id="shippingCompanyViewModal" class="modal" fixed>
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>
+        ##word.shipping_company_details##
+        <i class="fa fa-plus"></i>
+      </h2>
+    </div>
+
+    <div class="modal-body">
+      <div class="row">
+        <fieldset>
+          <legend>##word.basic_information##</legend>
+          <div class="col9">
+            <table id="basicInformationTable" class="table hover bold">
+              <tr>
+                <td class="title">##word.code##</td>
+                <td class="center userPrint blue">{{shipping_company.code}}</td>
+              </tr>
+
+              <tr>
+                <td class="title">##word.shipping_company_name##</td>
+                <td class="center">
+                  {{shipping_company.name_##session.lang##}}
+                </td>
+              </tr>
+
+              <tr>
+                <td class="title">##word.companies_gov##</td>
+                <td class="center">
+                  {{shipping_company.gov.name_##session.lang##}}
+                </td>
+              </tr>
+
+              <tr>
+                <td class="title">##word.companies_city##</td>
+                <td class="center">
+                  {{shipping_company.city.name_##session.lang##}}
+                </td>
+              </tr>
+
+              <tr>
+                <td class="title">##word.companies_address##</td>
+                <td class="center">{{shipping_company.address}}</td>
+              </tr>
+
+              <tr>
+                <td class="title">##word.companies_phone##</td>
+                <td class="center">{{shipping_company.phone}}</td>
+              </tr>
+
+              <tr>
+                <td class="title">##word.companies_mobile##</td>
+                <td class="center">{{shipping_company.mobile}}</td>
+              </tr>
+
+              <tr>
+                <td class="title">##word.companies_fax##</td>
+                <td class="center">{{shipping_company.fax}}</td>
+              </tr>
+
+              <tr>
+                <td class="title">##word.companies_email##</td>
+                <td class="center">{{shipping_company.email}}</td>
+              </tr>
+
+              <tr>
+                <td class="title">##word.companies_charge_name##</td>
+                <td class="center">{{shipping_company.admin.name}}</td>
+              </tr>
+
+              <tr>
+                <td class="title">##word.companies_charge_job##</td>
+                <td class="center">{{shipping_company.admin.job}}</td>
+              </tr>
+
+              <tr>
+                <td class="title">##word.companies_phone##</td>
+                <td class="center">{{shipping_company.admin.phone}}</td>
+              </tr>
+
+              <tr>
+                <td class="title">##word.companies_internal_number##</td>
+                <td class="center">{{shipping_company.admin.internal_number}}</td>
+              </tr>
+
+              <tr>
+                <td class="title">##word.companies_mobile##</td>
+                <td class="center">{{shipping_company.admin.mobile}}</td>
+              </tr>
+
+              <tr>
+                <td class="title">##word.companies_email##</td>
+                <td class="center">{{shipping_company.admin.email}}</td>
+              </tr>
+
+              <tr>
+                <td class="title">##word.status##</td>
+                <td
+                  ng-show="shipping_company.active == true"
+                  class="green center"
+                >
+                  ##word.active##
+                </td>
+                <td
+                  ng-show="shipping_company.active == false"
+                  class="red center"
+                >
+                  ##word.not_active##
+                </td>
+              </tr>
+            </table>
+          </div>
+
+          <div class="col3">
+            <i-image view ng-model="shipping_company.image_url"></i-image>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="row">
+        <table class="table hover border">
+          <tr>
+            <th>##word.useradd_user_info##</th>
+            <th>##word.useredit_user_info##</th>
+          </tr>
+          <tr>
+            <td class="center">
+              <p class="blue">{{shipping_company.add_user_info.name}}</p>
+              <small class="green">
+                {{shipping_company.add_user_info.date |date:"hh:mm"}}
+              </small>
+              <small>
+                {{shipping_company.add_user_info.date |date:"dd - MM - yyyy"}}
+              </small>
+            </td>
+
+            <td class="center">
+              <p class="blue">{{shipping_company.edit_user_info.name}}</p>
+              <small class="green">
+                {{shipping_company.edit_user_info.date |date:"hh:mm"}}
+              </small>
+              <small>
+                {{shipping_company.edit_user_info.date |date:"dd - MM - yyyy"}}
+              </small>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="modal-footer center">
+      <h2 class="error">{{error}}</h2>
+      <i-button
+        type="delete"
+        ng-show="shipping_company.$delete"
+        label="##word.delete##"
+        ng-click="deleteShippingCompany()"
+      >
+      </i-button>
+
+      <i-button
+        type="close"
+        label="##word.close##"
+        onclick="site.hideModal( '#shippingCompanyViewModal')"
+      ></i-button>
+    </div>
+  </div>
+</div>
+
+<div id="shippingCompanySearchModal" class="modal small">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>##word.search_all## <i class="fa fa-search"></i></h2>
+    </div>
+
+    <div class="modal-body">
+      <form class="form">
+        <fieldset>
+          <legend>##word.search_all##</legend>
+          <div class="row">
+            <i-control
+              class="col4"
+              label="##word.shipping_company_name##"
+              ng-model="search.name"
+            ></i-control>
+
+            <div class="control col4">
+              <label> ##word.status## </label>
+              <select ng-model="search.active">
+                <option ng-value="true">##word.active##</option>
+                <option ng-value="false">##word.not_active##</option>
+              </select>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+
+    <h2 class="error">{{error}}</h2>
+
+    <div class="modal-footer center">
+      <i-button
+        type="search"
+        label="##word.search##"
+        ng-click="searchAllShippingCompany()"
+      >
+      </i-button>
+
+      <i-button
+        type="clear"
+        label="##word.empty_search##"
+        ng-click="search = {}"
+      >
+      </i-button>
+
+      <i-button
+        type="close"
+        label="##word.close##"
+        onclick="site.hideModal('#shippingCompanySearchModal')"
+      >
+      </i-button>
+    </div>
+  </div>
+</div>

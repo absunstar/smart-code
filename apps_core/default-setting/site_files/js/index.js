@@ -277,6 +277,7 @@ app.controller("default_setting", function ($scope, $http,$timeout) {
         else if (
           site.feature("restaurant") ||
           site.feature("pos") ||
+          site.feature("eco") ||
           site.feature("erp")
         )
           $scope.sourceTypeList = response.data.filter(
@@ -465,7 +466,7 @@ app.controller("default_setting", function ($scope, $http,$timeout) {
           $timeout(() => {
             site.hideModal("#alert");
 
-          }, 2000);
+          }, 1500);
         }
       },
       function (err) {
@@ -805,6 +806,7 @@ app.controller("default_setting", function ($scope, $http,$timeout) {
   if (
     site.feature("restaurant") ||
     site.feature("pos") ||
+    site.feature("eco") ||
     site.feature("erp")
   ) {
     $scope.getDeliveryEmployeesList();

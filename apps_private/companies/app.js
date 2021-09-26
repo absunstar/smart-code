@@ -111,6 +111,7 @@ module.exports = function init(site) {
 
       if (site.feature('erp')) companies_doc.feature = 'erp'
       else if (site.feature('pos')) companies_doc.feature = 'pos'
+      else if (site.feature('eco')) companies_doc.feature = 'eco'
       else if (site.feature('restaurant')) companies_doc.feature = 'restaurant'
       else if (site.feature('school')) companies_doc.feature = 'school'
       else if (site.feature('club')) companies_doc.feature = 'club'

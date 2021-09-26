@@ -28,13 +28,13 @@
             <a class="tab-link" x-features="pos || erp" onclick="site.showTabContent(event, '#customers_dealing')">
                 ##word.customers_dealing## </a> -->
 
-            <a class="tab-link" x-features="pos || erp" onclick="site.showTabContent(event, '#officialDocuments')">
+            <a class="tab-link" x-features="pos || erp || eco" onclick="site.showTabContent(event, '#officialDocuments')">
                 ##word.customers_official_documents## </a>
 
             <!-- <a class="tab-link " onclick="site.showTabContent(event, '#openingBalance')">
                 ##word.customers_opening_balance## </a> -->
 
-            <a class="tab-link" x-features="pos || erp" ng-click="displaybankingAndAccounting(event)">
+            <a class="tab-link" x-features="pos || erp || eco" ng-click="displaybankingAndAccounting(event)">
                 ##word.customers_banking_and_acounting## </a>
 
             <a class="tab-link " onclick="site.showTabContent(event, '#customersFiles')">
@@ -442,7 +442,7 @@
 
             </div>
 
-            <div id="officialDocuments" x-features="pos || erp" class="tab-content">
+            <div id="officialDocuments" x-features="pos || erp || eco" class="tab-content">
                 <fieldset>
                     <legend> ##word.customers_tax_informations## </legend>
                     <div class="row">
@@ -570,7 +570,7 @@
                 <i-button type="default left" fa="2x fa-angle-double-left"
                     onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
             </div> -->
-            <div id="bankingAndAccounting" x-features="pos || erp" class="tab-content">
+            <div id="bankingAndAccounting" x-features="pos || erp || eco" class="tab-content">
                 <fieldset>
                     <legend> ##word.customers_accounting_informations## </legend>
                     <div class="row">

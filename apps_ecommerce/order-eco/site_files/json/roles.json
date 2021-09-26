@@ -1,7 +1,0 @@
-[{
-    "module_name" : "public" ,
-    "name": "order_eco_admin",
-    "en": "Order Ecommerce Admin",
-    "ar": "إدارة طلبات المتجر",
-    "permissions": ["order_eco_manage"]
-}]

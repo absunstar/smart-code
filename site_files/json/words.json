@@ -931,6 +931,11 @@
         "ar": "المطلوب دفعه"
     },
     {
+        "name": "add_to_orders",
+        "en": "Add to orders",
+        "ar": "إضافة إلى الطلبات"
+    },
+    {
         "name": "default_discount",
         "en": "Default Discount",
         "ar": "خصم إفتراضي"
@@ -1520,6 +1525,16 @@
         "name": "clear",
         "en": "Clear",
         "ar": "تفريغ الحقول"
+    },
+    {
+        "name": "setting",
+        "en": "Setting",
+        "ar": "الإعدادات"
+    },
+    {
+        "name": "total_prices",
+        "en": "Total prices",
+        "ar": "إجمالي الأسعار"
     },
     {
         "name": "price_at_home",

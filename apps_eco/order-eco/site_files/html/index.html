@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  x-permissions="order_eco_ui || order_eco_manage"
+  data-ng-app="myApp"
+>
+  <head x-import="head.html">
+    <link
+      rel="stylesheet"
+      href="/css/order_invoice.css?v=##site.options.version##"
+    />
+  </head>
+
+  <body class="##session.lang##">
+    <nav
+      x-import="sitebar/index.html"
+      class="sitebar"
+      data-ng-controller="sitebar"
+    ></nav>
+
+    <nav
+      class="sitebottom"
+      x-import="sitebottom/index.html"
+      ng-controller="sitebottom"
+    ></nav>
+
+    <div id="main-layout" class="container loaded">
+      <div class="row">
+        <div class="row" ng-controller="order_eco" x-permissions="login">
+          <!--  <div class="row">
+            <h1 class="bold text-center">##word.order_eco##</h1>
+          </div> -->
+
+          <div class="top-actions">
+            <span ng-show="busy">
+              <span class="sr-only">Loading...</span>
+            </span>
+          </div>
+
+          <br />
+          <br />
+          <br />
+          <div class="row" ng-hide="user.eco_order.items.length > 0">
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <h1 class="center blue bold">##word.products_must_added_basket##</h1>
+          </div>
+          <div class="row" ng-show="user.eco_order.items.length > 0">
+            <div class="row">
+              <div class="col4"></div>
+              <i-list
+                help-id=""
+                v="r"
+                class="col2"
+                label="##word.payment_method##"
+                ng-change="calc(user)"
+                ng-model="user.eco_order.pay_method_eco"
+                display="##session.lang##"
+                items="ecoPaymentList"
+                ng-search="_search.$pay_method_eco"
+              >
+              </i-list>
+
+              <i-list
+                help-id=""
+                v="r"
+                class="col2"
+                label="##word.delivery_type##"
+                ng-change="calc(user)"
+                ng-model="user.eco_order.delivery_type"
+                display="##session.lang##"
+                items="ecoDeliveryList"
+                ng-search="_search.$delivery_type"
+              >
+              </i-list>
+            </div>
+
+            <br />
+            <br />
+            <br />
+            <div class="row">
+              <div class="col2"></div>
+              <div class="col8">
+                <table x-permissions="login" class="table hover bold">
+                  <tr>
+                    <th class="not-print">##word.logo##</th>
+                    <th>##word.code##</th>
+                    <th>##word.product_name##</th>
+                    <th>##word.count##</th>
+                    <th>##word.price##</th>
+                    <th>##word.total##</th>
+                    <th class="not-print">##word.actions##</th>
+                  </tr>
+                  <tr ng-repeat="p in user.eco_order.items">
+                    <td class="center not-print">
+                      <i-image
+                        view
+                        class="logo"
+                        ng-model="p.image_url"
+                      ></i-image>
+                    </td>
+                    <td class="center userPrint blue">{{p.code}}</td>
+                    <td class="center title">{{p.name_##session.lang##}}</td>
+                    <td class="center">
+                      <i-control
+                        type="number"
+                        ng-change="calc(user)"
+                        ng-model="p.count"
+                      ></i-control>
+                    </td>
+                    <td class="center green">{{p.price}}</td>
+                    <td class="center blue">{{p.total}}</td>
+                    <td class="center not-print">
+                      <i-button
+                        type="delete"
+                        ng-click="user.eco_order.items.splice($index,1) ; calc(user)"
+                      >
+                      </i-button>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col2"></div>
+              <i-control
+                class="col2 r_black center"
+                type="number"
+                label="##word.fee_upon_receipt##"
+                ng-model="user.eco_order.fee_upon_receipt"
+              ></i-control>
+
+              <i-control
+                class="col2 r_black center"
+                ng-show="user.eco_order.delivery_type.id == 1"
+                type="number"
+                label="##word.normal_delivery_fee##"
+                ng-model="user.eco_order.normal_delivery_fee"
+              ></i-control>
+
+              <i-control
+                class="col2 r_black center"
+                type="number"
+                ng-show="user.eco_order.delivery_type.id == 2"
+                label="##word.fast_delivery_fee##"
+                ng-model="user.eco_order.fast_delivery_fee"
+              ></i-control>
+
+              <i-control
+                id="item_name"
+                class="col2 r_green center"
+                label="##word.total_purchase_price##"
+                type="number"
+                ng-model="user.eco_order.net_value"
+                disabled
+              ></i-control>
+              <i-control
+                id="item_name"
+                class="col2 r_green center"
+                label="##word.paid_require##"
+                type="number"
+                ng-model="user.eco_order.paid_require"
+                disabled
+              ></i-control>
+            </div>
+            <br />
+            <br />
+            <div class="row center">
+              <i-button
+                type="fa fa-cart-plus saving"
+                label="##word.add_to_orders##"
+                ng-click="createOrder()"
+              >
+              </i-button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div x-import="scripts.html"></div>
+
+    <script x-permissions="login" x-import="order-eco/index.js"></script>
+  </body>
+</html>

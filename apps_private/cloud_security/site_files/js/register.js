@@ -128,7 +128,7 @@ app.controller("register", function ($scope, $http) {
                 }
                 $scope.busy = false;
               } else if (response.data.done) {
-                if (site.feature("pos") || site.feature("restaurant"))
+                if (site.feature("eco") || site.feature("erp") || site.feature("pos") || site.feature("restaurant"))
                   document.location.href = "/order_customer";
                 else document.location.href = "/";
 

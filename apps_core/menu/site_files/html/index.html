@@ -9,8 +9,8 @@
   }
 
   .tab-link span {
-    padding-right: 50px;
-    padding-left: 50px;
+    padding-right: 20px;
+    padding-left: 20px;
     vertical-align: super;
   }
 </style>
@@ -280,7 +280,7 @@
         </a>
       </div>
 
-      <div x-features="restaurant || pos || erp || club || academy || school">
+      <div x-features="restaurant || pos || eco || erp || club || academy || school">
         <a
           class="tab-link"
           href="/stores_out?type=3"
@@ -317,7 +317,7 @@
           <span>##word.returns_purchase_invoices## </span>
         </a>
 
-        <div class="" x-features="restaurant || pos || erp">
+        <div class="" x-features="restaurant || pos || eco || erp">
           <a
             class="tab-link"
             href="/order_invoice"
@@ -351,7 +351,7 @@
           </a>
 
           <a
-            x-features="pos || erp"
+            x-features="pos || erp || eco"
             class="tab-link"
             href="/itineraries"
             x-permissions="itineraries_ui || itineraries_manage"
@@ -811,7 +811,7 @@
 
       <a
         class="tab-link"
-        x-features="erp || pos || restaurant || school"
+        x-features="erp || pos || eco || restaurant || school"
         href="/vehicles"
         x-permissions="vehicles_ui || vehicles_manage"
       >
@@ -821,7 +821,7 @@
 
       <a
         class="tab-link"
-        x-features="erp || pos || restaurant || school"
+        x-features="erp || pos || eco || restaurant || school"
         href="/vehicles_types"
         x-permissions="vehicles_types_ui || vehicles_types_manage"
       >
@@ -926,7 +926,7 @@
 
       <a
         class="tab-link"
-        x-features="pos || restaurant || erp"
+        x-features="pos || eco || restaurant || erp"
         href="/account_invoices?type=3"
         x-permissions="account_invoices_ui || account_invoices_manage"
       >
@@ -1266,7 +1266,7 @@
 
       <a
         class="tab-link"
-        x-features="medical || pos"
+        x-features="medical || pos || eco"
         href="/active_substances"
         x-permissions="active_substances_ui || active_substances_manage"
       >
@@ -1367,7 +1367,7 @@
         <span> ##word.trainers##</span>
       </a>
 
-      <div class="" x-features="restaurant || pos || erp">
+      <div class="" x-features="restaurant || pos || eco || erp">
         <a
           class="tab-link"
           href="/delegates"
@@ -1608,7 +1608,7 @@
 
       <a
         class="tab-link"
-        x-features="pos || erp || restaurant"
+        x-features="pos || eco || erp || restaurant"
         href="/report_daily"
         x-permissions="report_daily_ui || report_daily_manage"
       >
@@ -1853,7 +1853,7 @@
 
         <a
           class="tab-link"
-          x-features="pos || restaurant || erp"
+          x-features="pos || eco || restaurant || erp"
           href="/report_invoices?type=3"
           x-permissions="report_invoices_ui || report_invoices_manage"
         >
@@ -1878,7 +1878,7 @@
 
         <a
           class="tab-link"
-          x-features="restaurant || pos || erp"
+          x-features="restaurant || pos || eco || erp"
           href="/report_employee_delegate"
           x-permissions="report_employee_delegate_ui || report_employee_delegate_manage"
         >
@@ -1914,7 +1914,7 @@
         </a>
 
         <a
-          x-features="restaurant || pos || erp"
+          x-features="restaurant || pos || eco || erp"
           class="tab-link"
           href="/report_orders"
           x-permissions="report_orders_ui || report_orders_manage"
@@ -1924,7 +1924,7 @@
         </a>
 
         <a
-          x-features="restaurant || pos || erp"
+          x-features="restaurant || pos || eco || erp"
           class="tab-link"
           href="/report_employee_user"
           x-permissions="report_employee_user_ui || report_employee_user_manage"
@@ -1934,7 +1934,7 @@
         </a>
 
         <a
-          x-features="restaurant || pos || erp"
+          x-features="restaurant || pos || eco || erp"
           class="tab-link"
           href="/report_full_employees"
           x-permissions="report_full_employees_ui || report_full_employees_manage"
@@ -1944,7 +1944,7 @@
         </a>
 
         <a
-          x-features="restaurant || pos || erp"
+          x-features="restaurant || pos || eco || erp"
           class="tab-link"
           href="/report_employee_delivery"
           x-permissions="report_employee_delivery_ui || report_employee_delivery_manage"
@@ -1973,7 +1973,7 @@
       </a>
 
       <a
-        x-features="restaurant || pos || erp"
+        x-features="restaurant || pos || eco || erp"
         class="tab-link"
         href="/vendors"
         x-permissions="vendors_ui || vendors_manage"
@@ -1983,7 +1983,7 @@
       </a>
 
       <a
-        x-features="restaurant || pos || academy || club || erp || lawyer"
+        x-features="restaurant || pos || eco || academy || club || erp || lawyer"
         class="tab-link"
         href="/shifts"
         x-permissions="shifts_ui || shifts_manage"
@@ -2320,7 +2320,7 @@
         </a>
       </div>
 
-      <div x-features="restaurant || pos || erp || club || academy || school">
+      <div x-features="restaurant || pos || eco || erp || club || academy || school">
         <a
           class="tab-link"
           x-features="erp"
@@ -2472,7 +2472,7 @@
       </a>
 
       <a
-        x-features="restaurant || pos || academy || club || erp || school"
+        x-features="restaurant || pos || eco || academy || club || erp || school"
         class="tab-link"
         href="/vendors_group"
         x-permissions="vendors_group_ui || vendors_group_manage"
@@ -2510,7 +2510,7 @@
     <div class="tabs-header">
       <a
         class="tab-link"
-        x-features="pos"
+        x-features="eco"
         href="/ecommerce_setting"
         x-permissions=" ecommerce_setting_ui ||
         ecommerce_setting_manage"
@@ -2521,7 +2521,7 @@
 
       <a
         class="tab-link"
-        x-features="pos"
+        x-features="eco"
         href="/main_eco"
         x-permissions=" main_eco_ui ||
       main_eco_manage"
@@ -2532,13 +2532,24 @@
 
       <a
         class="tab-link"
-        x-features="pos"
+        x-features="eco"
         href="/order_eco"
         x-permissions=" order_eco_ui ||
     order_eco_manage"
       >
         <img src="/images/order_eco.png" />
-        <span>##word.orders_eco##</span>
+        <span>##word.create_order##</span>
+      </a>
+
+      <a
+        class="tab-link"
+        x-features="eco"
+        href="/report_eco"
+        x-permissions=" report_eco_ui ||
+  report_eco_manage"
+      >
+        <img src="/images/report_eco.png" />
+        <span>##word.reports_eco##</span>
       </a>
 
       <div
@@ -2568,7 +2579,7 @@
         </a>
 
         <a
-          x-features="restaurant || pos || academy || club || erp || school || medical"
+          x-features="restaurant || pos || eco || academy || club || erp || school || medical"
           class="tab-link"
           onclick="site.showTabs(event, '#inventory_tabs')"
         >
@@ -2577,7 +2588,7 @@
         </a>
 
         <a
-          x-features="restaurant || pos || academy || club || erp || school || medical"
+          x-features="restaurant || pos || eco || academy || club || erp || school || medical"
           class="tab-link"
           onclick="site.showTabs(event, '#inventory_setting')"
         >

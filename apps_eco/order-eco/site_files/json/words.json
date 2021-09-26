@@ -1,0 +1,14 @@
+[
+  {
+    "name": "create_order",
+    "en": "Create order",
+    "ar": "إنشاء طلب"
+  },
+  {
+    "name": "products_must_added_basket",
+    "en": "Products must be added to the basket",
+    "ar": "يجب إضافة منتجات إلى السلة"
+  }
+
+
+]

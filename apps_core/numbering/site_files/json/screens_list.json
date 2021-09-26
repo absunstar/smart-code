@@ -29,10 +29,17 @@
     },
     {
         "category": "main",
-        "feature": "public",
+        "feature": "eco",
         "name": "order_eco",
         "en": "Ecommerce Orders",
         "ar": "طلبات المتجر"
+    },
+    {
+        "category": "main",
+        "feature": "eco",
+        "name": "shipping_company",
+        "en": "Shipping Company",
+        "ar": "شركات الشحن"
     },
     {
         "category": "main",
@@ -218,14 +225,14 @@
     },
     {
         "category": "inventory",
-        "feature": "pos",
+        "feature": "eco",
         "name": "products",
         "en": "Products",
         "ar": "المنتجات"
     },
     {
         "category": "inventory",
-        "feature": "pos",
+        "feature": "eco",
         "name": "products_groups",
         "en": "Products Groups",
         "ar": "مجموعات المنتجات"

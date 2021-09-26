@@ -7,6 +7,20 @@ module.exports = function init(site) {
   //   })
   // })
 
+
+  site.post({
+    name: '/api/stores_in/types/all',
+    path: __dirname + '/site_files/json/types.json'
+  })
+
+  site.get({
+    name: "stores_in",
+    path: __dirname + "/site_files/html/index.html",
+    parser: "html",
+    compress: false
+  })
+  
+
   site.on('[stores_items][stores_in][openingBalance]', openingBalanceObj => {
     let stores_item_doc = { ...openingBalanceObj };
 
@@ -221,17 +235,7 @@ module.exports = function init(site) {
     });
   });
 
-  site.post({
-    name: '/api/stores_in/types/all',
-    path: __dirname + '/site_files/json/types.json'
-  })
-
-  site.get({
-    name: "stores_in",
-    path: __dirname + "/site_files/html/index.html",
-    parser: "html",
-    compress: false
-  })
+  
 
   site.post("/api/stores_in/add", (req, res) => {
     let response = {}

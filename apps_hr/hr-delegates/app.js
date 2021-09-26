@@ -2,7 +2,7 @@ module.exports = function init(site) {
   const $delegate_list = site.connectCollection("hr_employee_list")
 
   site.on('[company][created]', doc => {
-    if (site.feature('pos') || site.feature('erp') || site.feature('restaurant')) {
+    if (site.feature('pos') || site.feature('erp') || site.feature('eco') || site.feature('restaurant')) {
 
       $delegate_list.add({
         name_ar: "مندوب إفتراضي",

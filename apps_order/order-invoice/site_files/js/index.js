@@ -1689,7 +1689,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (site.feature("pos") || site.feature("erp"))
+        if (site.feature("pos") || site.feature("eco") || site.feature("erp"))
           $scope.transactionTypeList = response.data.filter(
             (i) => i.id == 2 || i.id == 3
           );
@@ -1884,7 +1884,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
         });
     }
 
-    if (site.feature("pos")) {
+    if (site.feature("pos") || site.feature("eco") || site.feature("erp")) {
       $scope.order_invoice.items.forEach((el) => {
         if (item.size == el.size && item.barcode == el.barcode && !el.printed) {
           exist = true;

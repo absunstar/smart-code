@@ -55,7 +55,7 @@ app.controller("report_invoices", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (site.feature('club')) $scope.sourceTypeList = response.data.filter(i => i.id != 3 && i.id != 5 && i.id != 6 && i.id != 7);
         else if (site.feature('restaurant')) $scope.sourceTypeList = response.data.filter(i => i.id != 4 && i.id != 5 && i.id != 6 && i.id != 7);
-        else if (site.feature('pos') || site.feature('erp')) $scope.sourceTypeList = response.data.filter(i => i.id != 4 && i.id != 3 && i.id != 5 && i.id != 6 && i.id != 7);
+        else if (site.feature('pos') || site.feature('erp') || site.feature('eco')) $scope.sourceTypeList = response.data.filter(i => i.id != 4 && i.id != 3 && i.id != 5 && i.id != 6 && i.id != 7);
         else if (site.feature('academy')) $scope.sourceTypeList = response.data.filter(i => i.id != 4 && i.id != 3);
         else $scope.sourceTypeList = response.data;
       },
@@ -454,7 +454,7 @@ app.controller("report_invoices", function ($scope, $http, $timeout) {
   };
 
   $scope.getReportInvoicesList({ date: new Date() });
-  if (site.feature('restaurant') || site.feature('pos') || site.feature('erp'))
+  if (site.feature('restaurant') || site.feature('pos') || site.feature('eco') || site.feature('erp'))
     $scope.getTransactionTypeList();
 
   if (site.feature('school')) {
