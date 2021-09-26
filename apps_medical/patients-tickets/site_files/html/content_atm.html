@@ -1,11 +1,11 @@
 <div class="form">
     <div id="basicInformation" class="tab-content">
         <fieldset>
-            <legend> ##word.basic_information## </legend>
+            
             <div class="row">
                
 
-                    <div class="row">
+                    <div class="row justify-between">
                         <i-control ng-hide="disabledCode" class="col2" label="##word.code##"
                             ng-model="patients_tickets.code">
                         </i-control>
@@ -14,16 +14,28 @@
                             v="r">
                         </i-date2>
 
-                        <div class="col4"></div>
+                            <i-list class="col4" label="##word.patient##" v="r" ng-model="patients_tickets.customer"
+                                display="name_##session.lang##" items="customersList"
+                                ng-keydown="getPatientList($event)"
+                                ng-search="_search.$patients_searching">
+                            </i-list>
+
+                            <i-button class="col btn-margin" ng-show="patients_tickets.customer.id" type="details"
+                                label="##word.customers_details##" ng-click="showPatient(patients_tickets.customer.id)">
+                            </i-button>
+
+                            <i-button type="add" class="btn-margin" label="##word.customers_new##" ng-click="displayAddCustomer()">
+                            </i-button>
 
                     </div>
 
                     <br>
                     <br>
 
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="row">
                             <i-control class="col2" label="##word.patient_search##" ng-model="doctor_search"
+                                ng-search="_search.$patients_searching"
                                 ng-keydown="getPatientList($event)"></i-control>
 
                             <i-list class="col4" label="##word.patient##" v="r" ng-model="patients_tickets.customer"
@@ -37,7 +49,7 @@
 
                             <div class="col1"></div>
 
-                            <i-button type="add" label="##word.customers_new##" ng-click="displayAddCustomer()">
+                            <i-button type="add"  label="##word.customers_new##" ng-click="displayAddCustomer()">
                             </i-button>
 
                         </div>
@@ -105,9 +117,9 @@
                             </fieldset>
                         </div>
 
-                    </div>
+                    </div> -->
 
-                    <div class="row">
+                    <div class="row textarea-atm">
                         <i-textarea label="##word.notes##" class="col10" ng-model="patients_tickets.notes"></i-textarea>
                     </div>
 

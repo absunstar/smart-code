@@ -8,8 +8,10 @@
 <body class="##session.lang##">
 
     <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+       
 
     </nav>
+
 
     <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
 
@@ -29,21 +31,44 @@
                 <div x-permissions="patients_tickets_view || patients_tickets_manage"
                     x-import="patients-tickets/view_modal.html"></div>
                 <div x-permissions="patients_tickets_search || patients_tickets_manage"
-                    x-import="patients-tickets/search_all_modal.html"></div>
+                x-features="!atm" x-import="patients-tickets/search_all_modal.html"></div>
+                    <div x-permissions="patients_tickets_search || patients_tickets_manage"
+                   x-features="atm" x-import="patients-tickets/search_atm_all_modal.html"></div>
                 <div x-import="patients-tickets/account_invoice.html"></div>
                 <div x-import="customers/add_modal.html"></div>
                 <div x-import="customers/view_modal.html"></div>
                 <div x-import="accounting-invoices/add_payments_modal.html"></div>
 
-                <div class="row">
+                <div class="row atm-row">
                     <h1 class="bold text-center">##word.patients_tickets##</h1>
+                    <div class="top-actions"x-features="atm" >
+                        <i-button x-permissions="patients_tickets_add || patients_tickets_manage" type="add"
+                        x-features="atm"
+                            label="##word.patients_tickets_new##" ng-click="displayAddPatientsTickets()"></i-button>
+    
+                            <i-button x-permissions="patients_tickets_export || patients_tickets_manage" type="export"
+                            x-features="atm"
+                            label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'patients_tickets.xlsx')">
+                        </i-button>
+                        <i-button x-permissions="patients_tickets_search || patients_tickets_manage"
+                        x-features="atm" type="search"
+                            label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
+    
+                        
+                            
+                        <i-button x-permissions="patients_tickets_print || patients_tickets_manage" type="print"
+                        x-features="atm"
+                            label="##word.print##" onclick="site.print('#t1')"></i-button>
+                    </div>
                 </div>
 
-                <div class="top-actions">
+                <div class="top-actions" x-features="!atm">
                     <i-button x-permissions="patients_tickets_add || patients_tickets_manage" type="add"
+                    x-features="!atm"
                         label="##word.patients_tickets_new##" ng-click="displayAddPatientsTickets()"></i-button>
 
-                    <i-button x-permissions="patients_tickets_search || patients_tickets_manage" type="search"
+                    <i-button x-permissions="patients_tickets_search || patients_tickets_manage"
+                    x-features="!atm" type="search"
                         label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
 
                     <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
@@ -51,7 +76,7 @@
 
                 <table x-permissions="login" class="table bold hover loaded" id="t1">
                     <tr>
-                        <th class="not-print">##word.logo##</th>
+                        <th class="not-print"  x-features="!atm">##word.logo##</th>
                         <th>##word.code##</th>
                         <th>##word.patient##</th>
                         <th>##word.opening_date##</th>
@@ -62,7 +87,7 @@
 
                     <tr ng-repeat="c in list">
 
-                        <td class="center not-print">
+                        <td class="center not-print"  x-features="!atm">
                             <img class="logo" ng-src="{{c.image_url}}">
                         </td>
 
@@ -108,9 +133,11 @@
                 </table>
 
                 <i-button x-permissions="patients_tickets_print || patients_tickets_manage" type="print"
+                x-features="!atm"
                     label="##word.print##" onclick="site.print('#t1')"></i-button>
 
                 <i-button x-permissions="patients_tickets_export || patients_tickets_manage" type="export"
+                x-features="!atm"
                     label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'patients_tickets.xlsx')">
                 </i-button>
             </div>

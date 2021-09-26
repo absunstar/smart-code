@@ -1,5 +1,6 @@
 module.exports = function init(site) {
   const $doctors = site.connectCollection("hr_employee_list")
+  const $clinics = site.connectCollection("clinics");
 
   site.on('[register][doctor][add]', doc => {
 
@@ -85,7 +86,7 @@ module.exports = function init(site) {
 
         $or: [{
           'name_ar': doctor_doc.name_ar
-        },{
+        }, {
           'name_en': doctor_doc.name_en
         }]
       }
@@ -487,6 +488,288 @@ module.exports = function init(site) {
         response.error = err.message
       }
       res.json(response)
+    })
+  })
+
+
+  /* ATM APIS */
+
+
+  //   site.post("/api/doctors/searchAll", (req, res) => {
+  //     let response = {
+  //       done: false
+  //     }
+  //     let where = req.body.where || {}
+  //     let limit = 10
+  //     let skip = 0
+  //     if (req.body.page || (parseInt(req.body.page) && parseInt(req.body.page) > 1)) {
+  //       skip = (parseInt(req.body.page) - 1) * 10
+  //     }
+  //     let name_ar 
+  //     let name_en 
+
+  //     if (where['name_ar'] != "" ) {
+
+  //        name_ar =  where['name_ar'] 
+  //     }
+  //     if (where['name_ar'] == "" ) {
+
+  //       name_ar =  ""
+  //    }
+  //     if (where['name_ar'] == undefined) {
+
+  //       name_ar = ""
+  //    }
+
+
+  // // let name_en = req.body.where.name_en || ""
+  //     if (!req.session.user) {
+  //       response.error = 'Please Login First'
+  //       res.json(response)
+  //       return
+  //     }
+  //     $clinics.aggregate(
+  //       [
+  //         {
+  //           "$project": {
+  //             "doctor_list": 1.0
+  //           }
+  //         },
+  //         {
+  //           "$unwind": {
+  //             "path": "$doctor_list",
+  //             "includeArrayIndex": "arrayIndex",
+  //             "preserveNullAndEmptyArrays": false
+  //           }
+  //         },
+  //         {
+  //           "$addFields": {
+  //             "doctor": "$doctor_list.doctor",
+  //             "shift": "$doctor_list.shift",
+  //             "detection_price": "$doctor_list.detection_price"
+  //           }
+  //         },
+  //         {
+  //           "$project": {
+  //             "doctor_list": 0.0,
+  //             "arrayIndex": 0.0
+  //           }
+  //         },
+  //         {
+  //           "$match": {
+  //             "doctor.name_ar":{$regex: name_ar ,$options:"i"}
+
+  //           }
+  //         },
+  //         {
+  //           $skip: skip
+  //         },
+  //         {
+  //           $limit: limit
+  //         }
+  //       ],
+  //       (err, docs) => {
+  //         if (docs && docs.length > 0) {
+  //           response.done = true;
+
+
+  //           if (docs.length > 0) {
+
+  //             docs.forEach(_doc => {
+
+  //               if (_doc.detection_price) {
+  //                 _doc.online_price = {}
+  //                 _doc.at_home_price = {}
+  //                 _doc.at_clinic_price = {
+  //                   detection: _doc.detection_price.detection,
+  //                   re_detection: _doc.detection_price.re_detection,
+  //                   consultation: _doc.detection_price.consultation,
+  //                   session: _doc.detection_price.session,
+  //                 }
+
+  //                 if (_doc.detection_price.online) {
+  //                   if (_doc.detection_price.detection) {
+
+  //                     if (_doc.detection_price.online.type == "percent")
+  //                       _doc.online_price.detection =
+  //                         ((_doc.detection_price.detection * site.toNumber(_doc.detection_price.online.price)) /
+  //                           100) + _doc.detection_price.detection;
+  //                     else _doc.online_price.detection = _doc.detection_price.detection + site.toNumber(_doc.detection_price.online.price);
+  //                   }
+  //                   if (_doc.detection_price.re_detection) {
+
+  //                     if (_doc.detection_price.online.type == "percent")
+  //                       _doc.online_price.re_detection =
+  //                         ((_doc.detection_price.re_detection * site.toNumber(_doc.detection_price.online.price)) /
+  //                           100) + _doc.detection_price.re_detection;
+  //                     else _doc.online_price.re_detection = _doc.detection_price.re_detection + site.toNumber(_doc.detection_price.online.price);
+  //                   }
+  //                   if (_doc.detection_price.consultation) {
+
+  //                     if (_doc.detection_price.online.type == "percent")
+  //                       _doc.online_price.consultation =
+  //                         ((_doc.detection_price.consultation * site.toNumber(_doc.detection_price.online.price)) /
+  //                           100) + _doc.detection_price.consultation;
+  //                     else _doc.online_price.consultation = _doc.detection_price.consultation + site.toNumber(_doc.detection_price.online.price);
+  //                   }
+  //                   if (_doc.detection_price.session) {
+
+  //                     if (_doc.detection_price.online.type == "percent")
+  //                       _doc.online_price.session =
+  //                         ((_doc.detection_price.session * site.toNumber(_doc.detection_price.online.price)) /
+  //                           100) + _doc.detection_price.session;
+  //                     else _doc.online_price.session = _doc.detection_price.session + site.toNumber(_doc.detection_price.online.price);
+  //                   }
+  //                 }
+
+  //                 if (_doc.detection_price.at_home) {
+  //                   if (_doc.detection_price.detection) {
+
+  //                     if (_doc.detection_price.at_home.type == "percent")
+  //                       _doc.at_home_price.detection =
+  //                         ((_doc.detection_price.detection * site.toNumber(_doc.detection_price.at_home.price)) /
+  //                           100) + _doc.detection_price.detection;
+  //                     else _doc.at_home_price.detection = _doc.detection_price.detection + site.toNumber(_doc.detection_price.at_home.price);
+  //                   }
+  //                   if (_doc.detection_price.re_detection) {
+
+  //                     if (_doc.detection_price.at_home.type == "percent")
+  //                       _doc.at_home_price.re_detection =
+  //                         ((_doc.detection_price.re_detection * site.toNumber(_doc.detection_price.at_home.price)) /
+  //                           100) + _doc.detection_price.re_detection;
+  //                     else _doc.at_home_price.re_detection = _doc.detection_price.re_detection + site.toNumber(_doc.detection_price.at_home.price);
+  //                   }
+  //                   if (_doc.detection_price.consultation) {
+
+  //                     if (_doc.detection_price.at_home.type == "percent")
+  //                       _doc.at_home_price.consultation =
+  //                         ((_doc.detection_price.consultation * site.toNumber(_doc.detection_price.at_home.price)) /
+  //                           100) + _doc.detection_price.consultation;
+  //                     else _doc.at_home_price.consultation = _doc.detection_price.consultation + site.toNumber(_doc.detection_price.at_home.price);
+  //                   }
+  //                   if (_doc.detection_price.session) {
+
+  //                     if (_doc.detection_price.at_home.type == "percent")
+  //                       _doc.at_home_price.session =
+  //                         ((_doc.detection_price.session * site.toNumber(_doc.detection_price.at_home.price)) /
+  //                           100) + _doc.detection_price.session;
+  //                     else _doc.at_home_price.session = _doc.detection_price.session + site.toNumber(_doc.detection_price.at_home.price);
+  //                   }
+  //                 }
+  //                 let prices = {
+  //                   at_clinic_price: _doc.at_clinic_price,
+  //                   at_home_price: _doc.at_home_price,
+  //                   online_price: _doc.online_price,
+
+  //                 }
+  //               }
+
+  //             });
+
+
+  //             response.list = docs;
+  //             response.count = docs.length;
+  //             response.totalPages = Math.ceil(docs.length / 10);
+  //             res.json(response);
+
+  //           }
+
+  //         } else {
+  //           response.done = false;
+
+  //           response.list = docs;
+  //           response.count = 0;
+  //           response.totalPages = 0;
+  //           res.json(response);
+  //         }
+  //       }
+  //     );
+
+  //   })
+
+
+
+
+
+  site.post("/api/doctors/searchAll", (req, res) => {
+    let response = {
+      done: false
+    }
+    let where = req.body.where || {}
+    let limit = 10
+    let skip = 0
+    if (req.body.page || (parseInt(req.body.page) && parseInt(req.body.page) > 1)) {
+      skip = (parseInt(req.body.page) - 1) * 10
+    }
+
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+    let doctorsArr = []
+    let dd = []
+    $clinics.findOne({
+      where: {
+        id: req.body.clinic.id
+      }
+    }, (err, doc) => {
+      if (!err) {
+        if (doc.doctor_list) {
+          let arrDoctors = []
+          let arr = []
+          let shiftList = []
+          
+          let arr1 = doc.doctor_list.map(li => {
+            let xx = {
+              doctor: li.doctor,
+              shift: li.shift
+            }
+            return xx
+          })
+
+          const lookup = arr1.reduce((a, e) => {
+            a[e.doctor.id] = ++a[e.doctor.id] || 0;
+            return a;
+          }, {});
+          arr = arr1.filter(e => lookup[e.doctor.id])
+          for (const iterator of arr) {
+            shiftList.push(iterator.shift)
+          }
+          arr[0].doctor.shiftList = shiftList
+
+        
+          for (const doctor of doc.doctor_list) {
+            arrDoctors.push({
+              doctor: doctor.doctor,
+              shift : doctor.shift
+            })
+
+            for (const iterator of arrDoctors) {
+              if (doctor.doctor.id == iterator.doctor.id) {
+                
+                dd.push({
+                  doctor : iterator.doctor,
+                  shift : iterator.shift,
+                })
+                
+               
+              }
+            }
+
+           
+
+          }
+
+        }
+        console.log(dd);
+        response.done = true
+        response.doc = doc
+        res.json(response)
+      } else {
+        response.error = err.message
+      }
+      // res.json(response)
     })
   })
 

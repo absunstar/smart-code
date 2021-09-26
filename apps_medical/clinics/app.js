@@ -166,6 +166,120 @@ module.exports = function init(site) {
                   res.json(response);
                 });
               }
+              if (clinics_doc.doctor_list.length > 0 && clinics_doc.doctor_list[0].detection_price) {
+
+                clinics_doc.doctor_list.forEach(_doc => {
+
+                  if (_doc.detection_price) {
+                    _doc.online_price = {}
+                    _doc.at_home_price = {}
+                    _doc.at_clinic_price = {
+                      detection: _doc.detection_price.detection,
+                      re_detection: _doc.detection_price.re_detection,
+                      consultation: _doc.detection_price.consultation,
+                      session: _doc.detection_price.session,
+                    }
+    
+                    if (_doc.detection_price.online) {
+                      if (_doc.detection_price.detection) {
+    
+                        if (_doc.detection_price.online.type == "percent")
+                          _doc.online_price.detection =
+                          ((_doc.detection_price.detection * site.toNumber(_doc.detection_price.online.price)) /
+                            100) + _doc.detection_price.detection;
+                        else _doc.online_price.detection = _doc.detection_price.detection + site.toNumber(_doc.detection_price.online.price);
+                      }
+                      if (_doc.detection_price.re_detection) {
+    
+                        if (_doc.detection_price.online.type == "percent")
+                          _doc.online_price.re_detection =
+                          ((_doc.detection_price.re_detection * site.toNumber(_doc.detection_price.online.price)) /
+                            100) + _doc.detection_price.re_detection;
+                        else _doc.online_price.re_detection = _doc.detection_price.re_detection + site.toNumber(_doc.detection_price.online.price);
+                      }
+                      if (_doc.detection_price.consultation) {
+    
+                        if (_doc.detection_price.online.type == "percent")
+                          _doc.online_price.consultation =
+                          ((_doc.detection_price.consultation * site.toNumber(_doc.detection_price.online.price)) /
+                            100) + _doc.detection_price.consultation;
+                        else _doc.online_price.consultation = _doc.detection_price.consultation + site.toNumber(_doc.detection_price.online.price);
+                      }
+                      if (_doc.detection_price.session) {
+    
+                        if (_doc.detection_price.online.type == "percent")
+                          _doc.online_price.session =
+                          ((_doc.detection_price.session * site.toNumber(_doc.detection_price.online.price)) /
+                            100) + _doc.detection_price.session;
+                        else _doc.online_price.session = _doc.detection_price.session + site.toNumber(_doc.detection_price.online.price);
+                      }
+                    }
+    
+                    if (_doc.detection_price.at_home) {
+                      if (_doc.detection_price.detection) {
+    
+                        if (_doc.detection_price.at_home.type == "percent")
+                          _doc.at_home_price.detection =
+                          ((_doc.detection_price.detection * site.toNumber(_doc.detection_price.at_home.price)) /
+                            100) + _doc.detection_price.detection;
+                        else _doc.at_home_price.detection = _doc.detection_price.detection + site.toNumber(_doc.detection_price.at_home.price);
+                      }
+                      if (_doc.detection_price.re_detection) {
+    
+                        if (_doc.detection_price.at_home.type == "percent")
+                          _doc.at_home_price.re_detection =
+                          ((_doc.detection_price.re_detection * site.toNumber(_doc.detection_price.at_home.price)) /
+                            100) + _doc.detection_price.re_detection;
+                        else _doc.at_home_price.re_detection = _doc.detection_price.re_detection + site.toNumber(_doc.detection_price.at_home.price);
+                      }
+                      if (_doc.detection_price.consultation) {
+    
+                        if (_doc.detection_price.at_home.type == "percent")
+                          _doc.at_home_price.consultation =
+                          ((_doc.detection_price.consultation * site.toNumber(_doc.detection_price.at_home.price)) /
+                            100) + _doc.detection_price.consultation;
+                        else _doc.at_home_price.consultation = _doc.detection_price.consultation + site.toNumber(_doc.detection_price.at_home.price);
+                      }
+                      if (_doc.detection_price.session) {
+    
+                        if (_doc.detection_price.at_home.type == "percent")
+                          _doc.at_home_price.session =
+                          ((_doc.detection_price.session * site.toNumber(_doc.detection_price.at_home.price)) /
+                            100) + _doc.detection_price.session;
+                        else _doc.at_home_price.session = _doc.detection_price.session + site.toNumber(_doc.detection_price.at_home.price);
+                      }
+                    }
+                    let prices ={
+                      at_clinic_price : _doc.at_clinic_price,
+                      at_home_price : _doc.at_home_price,
+                      online_price : _doc.online_price,
+
+                    } 
+                    $doctors.findOne(
+                      {
+                        where: {
+                          id: _doc.doctor.id,
+                        },
+                      },
+                      (err, doc) => {
+                        if (doc) {
+                         doc.priceList = prices || {}
+                         
+                          $doctors.update(doc, (err, result) => {
+                           
+                          });
+                        }
+                      },
+                    );
+                  }
+                  
+                });
+
+
+
+
+
+              }
             } else {
               response.error = err.message;
             }
@@ -221,11 +335,11 @@ module.exports = function init(site) {
             id: clinics_doc.id,
           },
           set: clinics_doc,
-          $req: req,
-          $res: res,
+         
         },
         (err, doc) => {
           if (!err) {
+            console.log("2222222222222" , doc.doc);
             response.done = true;
             if (user.password && user.username) {
               site.security.addUser(user, (err, doc1) => {
@@ -248,6 +362,127 @@ module.exports = function init(site) {
             response.error = "Code Already Exist";
           }
           res.json(response);
+
+          if (doc.doc.doctor_list.length > 0 && doc.doc.doctor_list[0].detection_price) {
+
+            doc.doc.doctor_list.forEach(_doc => {
+
+              if (_doc.detection_price) {
+                _doc.online_price = {}
+                _doc.at_home_price = {}
+                _doc.at_clinic_price = {
+                  detection: _doc.detection_price.detection,
+                  re_detection: _doc.detection_price.re_detection,
+                  consultation: _doc.detection_price.consultation,
+                  session: _doc.detection_price.session,
+                }
+
+                if (_doc.detection_price.online) {
+                  if (_doc.detection_price.detection) {
+
+                    if (_doc.detection_price.online.type == "percent")
+                      _doc.online_price.detection =
+                      ((_doc.detection_price.detection * site.toNumber(_doc.detection_price.online.price)) /
+                        100) + _doc.detection_price.detection;
+                    else _doc.online_price.detection = _doc.detection_price.detection + site.toNumber(_doc.detection_price.online.price);
+                  }
+                  if (_doc.detection_price.re_detection) {
+
+                    if (_doc.detection_price.online.type == "percent")
+                      _doc.online_price.re_detection =
+                      ((_doc.detection_price.re_detection * site.toNumber(_doc.detection_price.online.price)) /
+                        100) + _doc.detection_price.re_detection;
+                    else _doc.online_price.re_detection = _doc.detection_price.re_detection + site.toNumber(_doc.detection_price.online.price);
+                  }
+                  if (_doc.detection_price.consultation) {
+
+                    if (_doc.detection_price.online.type == "percent")
+                      _doc.online_price.consultation =
+                      ((_doc.detection_price.consultation * site.toNumber(_doc.detection_price.online.price)) /
+                        100) + _doc.detection_price.consultation;
+                    else _doc.online_price.consultation = _doc.detection_price.consultation + site.toNumber(_doc.detection_price.online.price);
+                  }
+                  if (_doc.detection_price.session) {
+
+                    if (_doc.detection_price.online.type == "percent")
+                      _doc.online_price.session =
+                      ((_doc.detection_price.session * site.toNumber(_doc.detection_price.online.price)) /
+                        100) + _doc.detection_price.session;
+                    else _doc.online_price.session = _doc.detection_price.session + site.toNumber(_doc.detection_price.online.price);
+                  }
+                }
+
+                if (_doc.detection_price.at_home) {
+                  if (_doc.detection_price.detection) {
+
+                    if (_doc.detection_price.at_home.type == "percent")
+                      _doc.at_home_price.detection =
+                      ((_doc.detection_price.detection * site.toNumber(_doc.detection_price.at_home.price)) /
+                        100) + _doc.detection_price.detection;
+                    else _doc.at_home_price.detection = _doc.detection_price.detection + site.toNumber(_doc.detection_price.at_home.price);
+                  }
+                  if (_doc.detection_price.re_detection) {
+
+                    if (_doc.detection_price.at_home.type == "percent")
+                      _doc.at_home_price.re_detection =
+                      ((_doc.detection_price.re_detection * site.toNumber(_doc.detection_price.at_home.price)) /
+                        100) + _doc.detection_price.re_detection;
+                    else _doc.at_home_price.re_detection = _doc.detection_price.re_detection + site.toNumber(_doc.detection_price.at_home.price);
+                  }
+                  if (_doc.detection_price.consultation) {
+
+                    if (_doc.detection_price.at_home.type == "percent")
+                      _doc.at_home_price.consultation =
+                      ((_doc.detection_price.consultation * site.toNumber(_doc.detection_price.at_home.price)) /
+                        100) + _doc.detection_price.consultation;
+                    else _doc.at_home_price.consultation = _doc.detection_price.consultation + site.toNumber(_doc.detection_price.at_home.price);
+                  }
+                  if (_doc.detection_price.session) {
+
+                    if (_doc.detection_price.at_home.type == "percent")
+                      _doc.at_home_price.session =
+                      ((_doc.detection_price.session * site.toNumber(_doc.detection_price.at_home.price)) /
+                        100) + _doc.detection_price.session;
+                    else _doc.at_home_price.session = _doc.detection_price.session + site.toNumber(_doc.detection_price.at_home.price);
+                  }
+                }
+                let prices ={
+                  at_clinic_price : _doc.at_clinic_price,
+                  at_home_price : _doc.at_home_price,
+                  online_price : _doc.online_price,
+
+                } 
+                $doctors.findOne(
+                  {
+                    where: {
+                      id: _doc.doctor.id,
+                    },
+                  },
+                  (err, doc) => {
+                    if (doc) {
+                     doc.priceList = prices || {}
+                     
+                      $doctors.update(doc, (err, result) => {
+                       
+                      });
+                    }
+                  },
+                );
+              }
+              
+            });
+
+
+
+
+
+          }
+
+
+
+
+
+
         }
       );
     } else {

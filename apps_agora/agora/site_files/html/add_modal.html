@@ -1,0 +1,24 @@
+<div id="attendStudentsAddModal" class="modal" fixed>
+    
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.attend_students_add##
+                <i class="fa fa-plus "></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+            <div x-import="attend-students/content.html"></div>
+        </div>
+
+        <div class="modal-footer center">
+            <h2 class="error"> {{error}} </h2>
+            <!-- <i-button type="add" label="##word.add##" ng-click="addAttendStudents()"></i-button> -->
+
+            <i-button type="close" label="##word.close##" onclick="site.hideModal( '#attendStudentsAddModal')"></i-button>
+        </div>
+    </div>
+    
+</div>

@@ -270,6 +270,65 @@ module.exports = function init(site) {
 
 /* ATM APIS */
 
+
+site.post("/api/analysis/searchAll", (req, res) => {
+  let response = {
+    done: false,
+  };
+
+  let where = req.body.where || {};
+
+ 
+
+  if (where["name_ar"]) {
+    where["name_ar"] = new RegExp(where["name_ar"], "i");
+  }
+
+  if (where["name_ar"] == undefined ||where["name_ar"] == ""  ) {
+  delete where["name_ar"]
+  }
+
+  if (where["name_en"]) {
+    where["name_en"] = new RegExp(where["name_en"], "i");
+  }
+  if (where["name_en"] == undefined ||where["name_en"] == ""  ) {
+    delete where["name_en"]
+    }
+    let limit = 10;
+    let skip;
+
+    if (req.body.page || (parseInt(req.body.page) && parseInt(req.body.page) > 1)) {
+      skip = (parseInt(req.body.page) - 1) * 10
+    }
+
+  $analysis.findMany(
+    {
+      select: req.body.select || {},
+      where: where,
+      sort: req.body.sort || {
+        id: -1,
+      },
+      limit: limit,
+      skip: skip
+    },
+    (err, docs, count) => {
+      if (!err && docs.length>0) {
+        response.done = true;
+        response.list = docs;
+        response.count = count;
+        response.totalPages = Math.ceil(count / 10)
+      } else {
+        response.done = false;
+        response.list = [];
+        response.count = 0;
+        response.totalPages = 0
+      }
+      res.json(response);
+    }
+  );
+});
+
+
   // get analysis price
   site.post("/api/analysis/getAnalysisPrice", (req, res) => {
     req.headers.language = req.headers.language || "en";

@@ -52,6 +52,7 @@ site.importApps(__dirname + '/apps_inventories');
 site.importApps(__dirname + '/apps_reports');
 site.importApps(__dirname + '/apps_medical');
 site.importApps(__dirname + '/apps_innovalz_store');
+site.importApps(__dirname + '/apps_agora');
 
 site.importApps(__dirname + '/apps_hr');
 site.importApps(__dirname + '/apps_medic')
