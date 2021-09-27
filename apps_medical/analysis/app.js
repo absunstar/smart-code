@@ -321,7 +321,7 @@ site.post("/api/analysis/searchAll", (req, res) => {
         response.done = false;
         response.list = [];
         response.count = 0;
-        response.totalPages = 0
+        response.totalPages = Math.ceil(count / 10)
       }
       res.json(response);
     }
