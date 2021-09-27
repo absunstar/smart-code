@@ -81,11 +81,11 @@ module.exports = function init(site) {
     trainer_doc.branch = site.get_branch(req)
 
 
-
     let user = {};
 
     user = {
-      name: trainer_doc.name,
+      name_ar: trainer_doc.name_ar,
+      name_en: trainer_doc.name_en,
       mobile: trainer_doc.mobile,
       username: trainer_doc.username,
       email: trainer_doc.username,
@@ -115,7 +115,8 @@ module.exports = function init(site) {
       })
     }
     user.profile = {
-      name: user.name,
+      name_ar: user.name_ar,
+      name_en: user.name_en,
       mobile: user.mobile,
       image_url: user.image_url
     }
@@ -160,7 +161,7 @@ module.exports = function init(site) {
             response.doc = doc
 
 
-            if (user.password && user.username) {
+            if (user.password && user.email) {
 
               site.security.addUser(user, (err, doc1) => {
                 if (!err) {
@@ -206,7 +207,8 @@ module.exports = function init(site) {
     let user = {}
 
     user = {
-      name: trainer_doc.name,
+      name_ar: trainer_doc.name_ar,
+      name_en: trainer_doc.name_en,
       mobile: trainer_doc.mobile,
       username: trainer_doc.username,
       email: trainer_doc.username,
@@ -238,7 +240,8 @@ module.exports = function init(site) {
       })
     }
     user.profile = {
-      name: user.name,
+      name_ar: user.name_ar,
+      name_en: user.name_en,
       mobile: user.mobile,
       image_url: user.image_url
     }
@@ -268,7 +271,7 @@ module.exports = function init(site) {
           response.done = true
           user.trainer_id = trainer_doc.doc.id
 
-          if (!trainer_doc.doc.user_info && user.password && user.username) {
+          if (!trainer_doc.doc.user_info && user.password && user.email) {
             site.security.addUser(user, (err, doc1) => {
               if (!err) {
                 delete user._id

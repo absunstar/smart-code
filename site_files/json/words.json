@@ -756,6 +756,11 @@
         "ar": "الفروع"
     },
     {
+        "name": "order_code",
+        "en": "Order Code",
+        "ar": "كود الطلب"
+    },
+    {
         "name": "request_code",
         "en": "Request Code",
         "ar": "كود الطلب"

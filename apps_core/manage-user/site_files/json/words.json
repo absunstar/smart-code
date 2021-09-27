@@ -15,6 +15,11 @@
         "ar": "كلمة المرور الحالية غير صحيحة"
     },
     {
+        "name": "there_no_products_cart",
+        "en": "There are no products in the cart",
+        "ar": "لا يوجد منتجات في السلة"
+    },
+    {
         "name": "new_password",
         "en": "New Password",
         "ar": "كلمة المرور الجديدة"

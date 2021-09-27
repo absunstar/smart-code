@@ -42,31 +42,27 @@
             <br />
           </div>
 
-          <table class="table loaded hover center bold" id="t1">
+          <table class="table loaded hover pointer center bold">
             <tr>
-              <th class="not-print">##word.logo##</th>
-              <th>##word.report_eco_code##</th>
+              <th>##word.order_code##</th>
+              <th>##word.date##</th>
+              <th>##word.customer##</th>
+              <th>##word.payment_method##</th>
+              <th>##word.delivery_type##</th>
+              <th>##word.paid_require##</th>
               <th>##word.status##</th>
-
               <th class="not-print">##word.actions##</th>
             </tr>
+
             <tr ng-repeat="c in list">
-              <td class="not-print">
-                <i-image view class="logo" ng-model="c.image_url"></i-image>
-              </td>
-
-              <td class="blue userPrint">{{c.code}}</td>
-
-              <td>{{c.status.##session.lang##}}</td>
-
+              <td ng-click="displayDetailsOrderEco(c)"  class="indigoD">{{c.code}}</td>
+              <td ng-click="displayDetailsOrderEco(c)" class="brown">{{c.date | date : 'yyyy - MM - dd'}}</td>
+              <td ng-click="displayDetailsOrderEco(c)"  class="">{{c.add_user_info.name_##session.lang##}}</td>
+              <td ng-click="displayDetailsOrderEco(c)" >{{c.pay_method_eco.##session.lang##}}</td>
+              <td ng-click="displayDetailsOrderEco(c)" >{{c.delivery_type.##session.lang##}}</td>
+              <td ng-click="displayDetailsOrderEco(c)"  class="green">{{c.paid_require}}</td>
+              <td ng-click="displayDetailsOrderEco(c)"  class="blue">{{c.status.##session.lang##}}</td>
               <td class="center not-print">
-                <i-button
-                  type="details"
-                  x-permissions="report_eco_view || report_eco_manage"
-                  label="##word.details##"
-                  ng-click="displayDetailsOrderEco(c)"
-                ></i-button>
-
                 <i-button
                   type="update"
                   x-permissions="report_eco_edit || report_eco_manage"

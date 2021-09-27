@@ -246,7 +246,9 @@ i-image img:hover {
 
 .table th {
   /* border-radius: 30px; */
-  border-color: #fbfbfb;
+  border-width: 2px !important;
+  border-radius: 25px !important;
+  border-color: #5350ff  !important;
 }
 
 .bg_sf {

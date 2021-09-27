@@ -8,7 +8,15 @@
     "name": "products_must_added_basket",
     "en": "Products must be added to the basket",
     "ar": "يجب إضافة منتجات إلى السلة"
+  },
+  {
+    "name": "products_basket",
+    "en": "Products basket",
+    "ar": "سلة المنتجات"
+  },
+  {
+    "name": "my_orders",
+    "en": "My Orders",
+    "ar": "طلباتي"
   }
-
-
 ]

@@ -96,7 +96,8 @@ module.exports = function init(site) {
         let user = {};
 
         user = {
-          name: delivery_employee_doc.name,
+          name_ar: delivery_employee_doc.name_ar,
+          name_en: delivery_employee_doc.name_en,
           mobile: delivery_employee_doc.mobile,
           username: delivery_employee_doc.username,
           email: delivery_employee_doc.username,
@@ -120,7 +121,8 @@ module.exports = function init(site) {
         }]
 
         user.profile = {
-          name: user.name,
+          name_ar: user.name_ar,
+          name_en: user.name_en,
           mobile: user.mobile,
           image_url: user.image_url
         }
@@ -151,7 +153,7 @@ module.exports = function init(site) {
             response.done = true
             response.doc = doc
 
-            if (user.password && user.username) {
+            if (user.password && user.email) {
               user.delivery_employee_id = doc.id
               site.security.addUser(user, (err, doc1) => {
                 if (!err) {
@@ -196,7 +198,8 @@ module.exports = function init(site) {
 
 
     user = {
-      name: delivery_employee_doc.name,
+      name_ar: delivery_employee_doc.name_ar,
+      name_en: delivery_employee_doc.name_en,
       mobile: delivery_employee_doc.mobile,
       username: delivery_employee_doc.username,
       email: delivery_employee_doc.username,
@@ -222,10 +225,9 @@ module.exports = function init(site) {
       }]
     }
 
-
-
     user.profile = {
-      name: user.name,
+      name_ar: user.name_ar,
+      name_en: user.name_en,
       mobile: user.mobile,
       image_url: user.image_url
     }
@@ -251,7 +253,7 @@ module.exports = function init(site) {
         if (!err) {
           response.done = true
           user.delivery_employee_id = delivery_employee_doc.doc.id
-          if (!delivery_employee_doc.doc.user_info && user.password && user.username) {
+          if (!delivery_employee_doc.doc.user_info && user.password && user.email) {
 
             site.security.addUser(user, (err, doc1) => {
               if (!err) {

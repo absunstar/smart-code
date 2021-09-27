@@ -8,6 +8,12 @@ app.controller("order_eco", function ($scope, $http, $timeout) {
     }
     $scope.error = "";
 
+    const v = site.validated("#orderEco");
+    if (!v.ok) {
+      $scope.error = v.messages[0].ar;
+      return;
+    }
+
     if ($scope.user.eco_order.items.length < 1) {
       $scope.error = "##word.products_must_added##";
       return;
@@ -29,6 +35,11 @@ app.controller("order_eco", function ($scope, $http, $timeout) {
             fast_delivery_fee: 0,
             items: [],
           };
+          site.showModal("#alert");
+          $timeout(() => {
+            site.hideModal("#alert");
+          }, 1500);
+
           $scope.updateUser($scope.user);
         } else {
           $scope.error = response.data.error;
@@ -162,6 +173,8 @@ app.controller("order_eco", function ($scope, $http, $timeout) {
   };
 
   $scope.updateUser = function (user) {
+    $scope.error = "";
+
     $scope.busy = true;
     $http({
       method: "POST",

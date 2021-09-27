@@ -1,44 +1,136 @@
 <div ng-hide="busy" id="v1">
-    <div class="form">
-        <div id="customersGroupViewModal">
-            <fieldset>
-                <legend> ##word.report_eco_informations## </legend>
-                <div class="row">
-                    <div class="col9">
-                        <div class="row">
+  <div class="form">
+    <div id="customersGroupViewModal">
+      <fieldset>
+        <legend>##word.companies_basic_information##</legend>
+        <div class="row">
+          <div class="col9">
+            <table class="table hover bold">
+              <tr>
+                <td class="title">##word.order_code##</td>
+                <td class="center userPrint indigoD">{{report_eco.code}}</td>
+              </tr>
 
-                            <table class="table hover bold">
-                                <tr>
-                                    <td class="title"> ##word.report_eco_code## </td>
-                                    <td class="center userPrint blue"> {{report_eco.code}} </td>
-                                </tr>
+              <tr>
+                <td class="title">##word.customer##</td>
+                <td class="center ">{{report_eco.add_user_info.name_##session.lang##}}</td>
+              </tr>
 
-                                <tr>
-                                    <td class="title"> ##word.report_eco_name## </td>
-                                    <td class="center"> {{report_eco.name_##session.lang##}} </td>
-                                </tr>
+              <tr>
+                <td class="title">##word.date##</td>
+                <td class="center brown">
+                  {{report_eco.date | date : 'yyyy - MM - dd'}}
+                </td>
+              </tr>
 
-                                <tr>
-                                    <td class="title"> ##word.active## </td>
-                                    <td ng-show="report_eco.active == true" class="center green"> ##word.active##
-                                    </td>
-                                    <td ng-show="report_eco.active == false" class="center red"> ##word.not_active##
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                 
+              <tr>
+                <td class="title">##word.payment_method##</td>
+                <td class="center">
+                  {{report_eco.pay_method_eco.##session.lang##}}
+                </td>
+              </tr>
 
-                    </div>
+              <tr>
+                <td class="title">##word.delivery_type##</td>
+                <td class="center">
+                  {{report_eco.delivery_type.##session.lang##}}
+                </td>
+              </tr>
 
-                    <div class="col3">
-                        <i-image class="not-print" view ng-model="report_eco.image_url"> </i-image>
-                    </div>
+              <tr>
+                <td class="title">##word.total_purchase_price##</td>
+                <td class="center green">{{report_eco.net_value}}</td>
+              </tr>
 
+              <tr>
+                <td class="title">##word.paid_require##</td>
+                <td class="center">{{report_eco.paid_require}}</td>
+              </tr>
 
-                </div>
-            </fieldset>
+              <tr>
+                <td class="title">##word.status##</td>
+                <td class="center blue">
+                  {{report_eco.status.##session.lang##}}
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="col3">
+            <div class="row">
+              <i-control
+                class="r_black center"
+                type="number"
+                disabled
+                label="##word.fee_upon_receipt##"
+                ng-model="report_eco.fee_upon_receipt"
+              ></i-control>
+
+              <i-control
+                class="r_black center"
+                disabled
+                ng-show="report_eco.delivery_type.id == 1"
+                type="number"
+                label="##word.normal_delivery_fee##"
+                ng-model="report_eco.normal_delivery_fee"
+              ></i-control>
+
+              <i-control
+                class="r_black center"
+                type="number"
+                disabled
+                ng-show="report_eco.delivery_type.id == 2"
+                label="##word.fast_delivery_fee##"
+                ng-model="report_eco.fast_delivery_fee"
+              ></i-control>
+
+              <i-control
+                id="item_name"
+                class="r_green center"
+                label="##word.total_purchase_price##"
+                type="number"
+                ng-model="report_eco.net_value"
+                disabled
+              ></i-control>
+              <i-control
+                id="item_name"
+                class="r_green center"
+                label="##word.paid_require##"
+                type="number"
+                ng-model="report_eco.paid_require"
+                disabled
+              ></i-control>
+            </div>
+          </div>
         </div>
+      </fieldset>
     </div>
+    <hr style="height: 5px; color: grey; background-color: rgb(0, 0, 199)" />
+    <br />
+    <div class="row">
+      <fieldset>
+        <legend>##word.products##</legend>
+        <table x-permissions="login" class="table hover bold">
+          <tr>
+            <th class="not-print">##word.logo##</th>
+            <th>##word.code##</th>
+            <th>##word.product_name##</th>
+            <th>##word.count##</th>
+            <th>##word.price##</th>
+            <th>##word.total##</th>
+          </tr>
+          <tr ng-repeat="o in report_eco.items">
+            <td class="center not-print">
+              <i-image view class="logo" ng-model="o.image_url"></i-image>
+            </td>
+            <td class="center userPrint indigoD">{{o.code}}</td>
+            <td class="center title">{{o.name_##session.lang##}}</td>
+            <td class="center">{{o.count}}</td>
+            <td class="center green">{{o.price}}</td>
+            <td class="center blue">{{o.total}}</td>
+          </tr>
+        </table>
+      </fieldset>
+    </div>
+  </div>
 </div>
 <div x-import="report-eco/action_info.html"></div>

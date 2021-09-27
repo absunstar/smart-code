@@ -123,7 +123,8 @@ module.exports = function init(site) {
           }
 
           let user = {
-            name: clinics_doc.name,
+            name_ar: clinics_doc.name_ar,
+            name_en: clinics_doc.name_en,
             mobile: clinics_doc.mobile,
             username: clinics_doc.username,
             email: clinics_doc.username,
@@ -137,7 +138,8 @@ module.exports = function init(site) {
           }, ];
 
           user.profile = {
-            name: user.name,
+            name_ar: user.name_ar,
+            name_en: user.name_en,
             mobile: user.mobile,
             image_url: user.image_url,
           };
@@ -149,7 +151,7 @@ module.exports = function init(site) {
               user.ref_info = {
                 id: doc.id,
               };
-              if (user.password && user.username) {
+              if (user.password && user.email) {
                 site.security.addUser(user, (err, doc1) => {
                   if (!err) {
                     delete user._id;
@@ -303,7 +305,8 @@ module.exports = function init(site) {
 
     let clinics_doc = req.body;
     user = {
-      name: clinics_doc.name,
+      name_ar: clinics_doc.name_ar,
+      name_en: clinics_doc.name_en,
       mobile: clinics_doc.mobile,
       username: clinics_doc.username,
       email: clinics_doc.username,
@@ -317,7 +320,8 @@ module.exports = function init(site) {
     }, ];
 
     user.profile = {
-      name: user.name,
+      name_ar: user.name_ar,
+      name_en: user.name_en,
       mobile: user.mobile,
       image_url: user.image_url,
     };
@@ -339,9 +343,8 @@ module.exports = function init(site) {
         },
         (err, doc) => {
           if (!err) {
-            console.log("2222222222222" , doc.doc);
             response.done = true;
-            if (user.password && user.username) {
+            if (user.password && user.email) {
               site.security.addUser(user, (err, doc1) => {
                 if (!err) {
                   delete user._id;

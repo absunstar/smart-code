@@ -40,7 +40,10 @@
           </div>
 
           <div class="row">
-            <a class="notification left" onclick="site.showModal('#purchasesModal')">
+            <a
+              class="notification left"
+              onclick="site.showModal('#purchasesModal')"
+            >
               <i class="fa fa-shopping-basket" aria-hidden="true"></i>
               <span ng-show="user.eco_order.items.length > 0" class="badge"
                 >{{user.eco_order.items.length}}</span
@@ -110,6 +113,7 @@
             </div>
           </div>
         </div>
+       
       </div>
     </div>
     <div x-import="scripts.html"></div>

@@ -256,7 +256,8 @@ module.exports = function init(site) {
                     branch: doc.branch_list[0]
                   }],
                   profile: {
-                    name: doc.name_ar,
+                    name_ar: doc.name_ar,
+                    name_en: doc.name_en,
                     mobile: doc.mobile,
                     image_url: companies_doc.image_url
                   }
@@ -413,7 +414,8 @@ module.exports = function init(site) {
                     }],
                     branch_list: branch_list,
                     profile: {
-                      name: companies_doc.name_ar,
+                      name_ar: companies_doc.name_ar,
+                      name_en: companies_doc.name_en,
                       mobile: companies_doc.mobile,
                       image_url: companies_doc.image_url
                     }

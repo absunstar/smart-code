@@ -59,11 +59,7 @@
         "en": "Set Employee Delivery",
         "ar": "تعيين موظف توصيل"
     },
-    {
-        "name": "order_code",
-        "en": "Order Code",
-        "ar": "كود الطلب"
-    },
+  
     {
         "name": "total_items_price",
         "en": "Total Items Price",

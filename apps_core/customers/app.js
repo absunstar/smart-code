@@ -172,14 +172,7 @@ module.exports = function init(site) {
     customers_doc.$req = req;
     customers_doc.$res = res;
 
-    let user = {};
-
-    user = {
-      name: customers_doc.name_ar,
-      mobile: customers_doc.mobile,
-      username: customers_doc.username,
-      image_url: customers_doc.image_url,
-      gender: customers_doc.gender,
+    let user = {
       type: "customer",
     };
 
@@ -254,15 +247,16 @@ module.exports = function init(site) {
 
     user.permissions = [];
 
-    if (user.gender && user.gender.name == "female") {
+    user.profile = {
+      name_ar: customers_doc.name_ar,
+      name_en: customers_doc.name_en,
+      mobile: customers_doc.mobile,
+      image_url: customers_doc.image_url,
+      gender: customers_doc.gender,
+    };
+    if (user.profile.gender && user.profile.gender.name == "female") {
       user.permissions.push({ name: "female" });
     }
-
-    user.profile = {
-      name: user.name,
-      mobile: user.mobile,
-      image_url: user.image_url,
-    };
 
     let company = {};
     let branch = {};
@@ -365,7 +359,7 @@ module.exports = function init(site) {
                 response.done = true;
                 response.doc = doc;
 
-                if (user.password && user.username) {
+                if (user.password && user.email) {
                   user.ref_info = { id: doc.id };
                   site.security.addUser(user, (err, doc1) => {
                     if (!err) {
@@ -423,16 +417,11 @@ module.exports = function init(site) {
     }
 
     let customers_doc = req.body;
-    let user = {};
 
-    user = {
-      name: customers_doc.name_ar,
-      mobile: customers_doc.mobile,
-      username: customers_doc.username,
-      image_url: customers_doc.image_url,
-      gender: customers_doc.gender,
+    let user = {
       type: "customer",
     };
+
     user.roles = [
       {
         module_name: "public",
@@ -532,16 +521,18 @@ module.exports = function init(site) {
     }
 
     user.permissions = [];
+    user.profile = {
+      name_ar: customers_doc.name_ar,
+      name_en: customers_doc.name_ar,
+      mobile: customers_doc.mobile,
+      image_url: customers_doc.image_url,
+      gender: customers_doc.gender,
+    };
 
-    if (user.gender && user.gender.name == "female") {
+    if (user.profile.gender && user.profile.gender.name == "female") {
       user.permissions.push({ name: "female" });
     }
 
-    user.profile = {
-      name: user.name,
-      mobile: user.mobile,
-      image_url: user.image_url,
-    };
     user.ref_info = {
       id: customers_doc.id,
     };
@@ -580,7 +571,7 @@ module.exports = function init(site) {
               response.done = true;
               response.doc = result.doc;
 
-              if (!result.doc.user_info && user.password && user.username) {
+              if (!result.doc.user_info && user.password && user.email) {
                 site.security.addUser(user, (err, doc1) => {
                   if (!err) {
                     delete user._id;

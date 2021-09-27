@@ -4,7 +4,7 @@
     {"name" : "report_eco" , "en" : "Report Ecommerce Order" , "ar" : "تقرير طلب المتجر"},
     {"name" : "reports_eco" , "en" : "Report Ecommerce Orders" , "ar" : "تقرير طلبات المتجر"},
     {"name" : "report_eco_menus" , "en" : "Report Ecommerce Orders Menu" , "ar" : "قائمة الأعوام الدراسية"},
-    {"name" : "report_eco_code" , "en" : "Report Ecommerce Orders Code" , "ar" : "كود تقرير طلب المتجر"},
+    {"name" : "report_eco_code" , "en" : "Order Code" , "ar" : "كود الطلب"},
     {"name" : "report_eco_name" , "en" : "Report Ecommerce Orders Name" , "ar" : "إسم العام الدراس"},
 
     {"name" : "report_eco_new" , "en" : "New Report Ecommerce Order" , "ar" : "تقرير طلب متجر جديد"},

@@ -86,7 +86,7 @@ module.exports = function init(site) {
     tables_doc.$req = req
     tables_doc.$res = res
 
-    user = {
+   let user = {
       name: tables_doc.name,
       mobile: tables_doc.mobile,
       username: tables_doc.username,
@@ -135,6 +135,34 @@ module.exports = function init(site) {
     user.company = tables_doc.company
     user.branch = tables_doc.branch
 
+    if (tables_doc.username && tables_doc.password) {
+      if (
+        !tables_doc.username.contains("@") &&
+        !tables_doc.username.contains(".")
+      ) {
+        tables_doc.username =
+          tables_doc.username + "@" + site.get_company(req).host;
+      } else {
+        if (
+          tables_doc.username.contains("@") &&
+          !tables_doc.username.contains(".")
+        ) {
+          response.error = "Username must be typed correctly";
+          res.json(response);
+          return;
+        } else if (
+          !tables_doc.username.contains("@") &&
+          tables_doc.username.contains(".")
+        ) {
+          response.error = "Username must be typed correctly";
+          res.json(response);
+          return;
+        }
+      }
+
+      user.email = tables_doc.username;
+      user.password = tables_doc.password;
+    }
 
     tables_doc.add_user_info = site.security.getUserFinger({
       $req: req,
@@ -186,7 +214,7 @@ module.exports = function init(site) {
             response.done = true
             response.doc = doc
 
-            if (user.password && user.username) {
+            if (user.password && user.email) {
               user.ref_info = { id: doc.id }
               site.security.addUser(user, (err, doc1) => {
                 if (!err) {
@@ -265,7 +293,34 @@ module.exports = function init(site) {
 
     user.company = tables_doc.company
     user.branch = tables_doc.branch
+    if (tables_doc.username && tables_doc.password) {
+      if (
+        !tables_doc.username.contains("@") &&
+        !tables_doc.username.contains(".")
+      ) {
+        tables_doc.username =
+          tables_doc.username + "@" + site.get_company(req).host;
+      } else {
+        if (
+          tables_doc.username.contains("@") &&
+          !tables_doc.username.contains(".")
+        ) {
+          response.error = "Username must be typed correctly";
+          res.json(response);
+          return;
+        } else if (
+          !tables_doc.username.contains("@") &&
+          tables_doc.username.contains(".")
+        ) {
+          response.error = "Username must be typed correctly";
+          res.json(response);
+          return;
+        }
+      }
 
+      user.email = tables_doc.username;
+      user.password = tables_doc.password;
+    }
 
     tables_doc.edit_user_info = site.security.getUserFinger({
       $req: req,

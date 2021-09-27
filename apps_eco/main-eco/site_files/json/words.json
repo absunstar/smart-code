@@ -13,5 +13,10 @@
         "name": "products_must_added",
         "en": "Products must be added",
         "ar": "يجب إضافة منتجات"
+    },
+    {
+        "name": "added_to_orders",
+        "en": "Added to orders",
+        "ar": "تم الإضافة إلى الطلبات"
     }
 ]

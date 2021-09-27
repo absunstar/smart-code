@@ -210,6 +210,11 @@ module.exports = function init(site) {
       where["name_en"] = site.get_RegExp(where["name_en"], "i");
     }
 
+    if (where["user_id"]) {
+      where["add_user_info.id"] = where["user_id"];
+      delete where["user_id"];
+    }
+
     // if (where['active'] !== 'all') {
     //   where['active'] = true
     // } else {

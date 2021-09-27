@@ -112,7 +112,8 @@ module.exports = function init(site) {
         let user = {};
 
         user = {
-          name: nursing_doc.name_ar,
+          name_ar: nursing_doc.name_ar,
+          name_en: nursing_doc.name_en,
           mobile: nursing_doc.mobile,
           username: nursing_doc.username,
           email: nursing_doc.username,
@@ -132,7 +133,8 @@ module.exports = function init(site) {
 
 
         user.profile = {
-          name: user.name,
+          name_ar: user.name_ar,
+          name_en: user.name_en,
           mobile: user.mobile,
           image_url: user.image_url
         }
@@ -150,7 +152,7 @@ module.exports = function init(site) {
             response.doc = doc
 
 
-            if (user.password && user.username) {
+            if (user.password && user.email) {
 
               site.security.addUser(user, (err, doc1) => {
                 if (!err) {
@@ -192,7 +194,8 @@ module.exports = function init(site) {
     let user = {}
 
     user = {
-      name: nursing_doc.name_ar,
+      name_ar: nursing_doc.name_ar,
+      name_en: nursing_doc.name_en,
       mobile: nursing_doc.mobile,
       username: nursing_doc.username,
       email: nursing_doc.username,
@@ -212,7 +215,8 @@ module.exports = function init(site) {
     }]
 
     user.profile = {
-      name: user.name,
+      name_ar: user.name_ar,
+      name_en: user.name_en,
       mobile: user.mobile,
       image_url: user.image_url
     }
@@ -242,7 +246,7 @@ module.exports = function init(site) {
           response.done = true
           user.nursing_id = nursing_doc.doc.id
 
-          if (!nursing_doc.doc.user_info && user.password && user.username) {
+          if (!nursing_doc.doc.user_info && user.password && user.email) {
             site.security.addUser(user, (err, doc1) => {
               if (!err) {
                 delete user._id
