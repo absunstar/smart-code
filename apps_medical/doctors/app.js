@@ -875,9 +875,9 @@ module.exports = function init(site) {
           }
           if (xx) {
             const uniqueObjects = [
-              ...new Set(xx.map((obj) => obj.doctor.id)),
+              ...new Set(xx.map((obj) => obj.doctor?obj.doctor.id:null)),
             ].map((doct) => {
-              return xx.find((obj) => obj.doctor.id === doct);
+              return xx.find((obj) => obj.doctor?obj.doctor.id:null === doct);
             });
             let duplicateObjects = xx.filter(
               (val) => !uniqueObjects.includes(val)
