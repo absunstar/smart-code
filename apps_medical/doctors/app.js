@@ -891,7 +891,7 @@ module.exports = function init(site) {
               arrrr.push(iterator);
               if (duplicateObjects.length > 0) {
                 for (const iterator1 of duplicateObjects) {
-                  if (iterator.doctor.id == iterator1.doctor.id) {
+                  if (iterator.doctor && iterator.doctor.id == iterator1.doctor && iterator1.doctor.id) {
                     iterator.doctor.shiftList.push({
                       shift: iterator1.shift,
                       clinicId: iterator1.doctor?iterator1.doctor.clinicId:null,
