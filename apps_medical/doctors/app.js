@@ -872,14 +872,14 @@ module.exports = function init(site) {
           }
         }
         response.done = true
-        response.docs = xx,
+        response.list = xx,
         response.count = count,
         response.totalPages = Math.ceil(count / 10),
 
         res.json(response)
       } else {
         response.done = false
-        response.docs = [],
+        response.list = [],
         response.count = count,
         response.totalPages = Math.ceil(count / 10),
         res.json(response)
