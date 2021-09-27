@@ -884,7 +884,7 @@ module.exports = function init(site) {
             for (const iterator of uniqueObjects) {
               iterator.doctor.shiftList = new Array({
                 shift: iterator.shift,
-                clinicId: iterator.doctor.clinicId,
+                clinicId: iterator.doctor?iterator.doctor.clinicId:null,
               });
 
               arrrr.push(iterator);
@@ -893,7 +893,7 @@ module.exports = function init(site) {
                   if (iterator.doctor.id == iterator1.doctor.id) {
                     iterator.doctor.shiftList.push({
                       shift: iterator1.shift,
-                      clinicId: iterator1.doctor.clinicId,
+                      clinicId: iterator1.doctor?iterator1.doctor.clinicId:null,
                     });
                   }
                 }
