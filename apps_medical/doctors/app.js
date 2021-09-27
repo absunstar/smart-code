@@ -3,8 +3,7 @@ module.exports = function init(site) {
   const $clinics = site.connectCollection("clinics");
 
   site.on("[register][doctor][add]", (doc) => {
-    $doctors.add(
-      {
+    $doctors.add({
         code: "1-Test",
         name_ar: "طبيب إفتراضي",
         name_en: "Default Doctor",
@@ -76,14 +75,12 @@ module.exports = function init(site) {
     doctor_doc.company = site.get_company(req);
     doctor_doc.branch = site.get_branch(req);
 
-    $doctors.find(
-      {
+    $doctors.find({
         where: {
           "company.id": site.get_company(req).id,
           "branch.code": site.get_branch(req).code,
 
-          $or: [
-            {
+          $or: [{
               name_ar: doctor_doc.name_ar,
             },
             {
@@ -126,15 +123,13 @@ module.exports = function init(site) {
             type: "doctor",
           };
 
-          user.roles = [
-            {
-              module_name: "public",
-              name: "doctor_admin",
-              en: "Employee Admin",
-              ar: "إدارة الموظفين",
-              permissions: ["doctor_manage"],
-            },
-          ];
+          user.roles = [{
+            module_name: "public",
+            name: "doctor_admin",
+            en: "Employee Admin",
+            ar: "إدارة الموظفين",
+            permissions: ["doctor_manage"],
+          }, ];
 
           user.profile = {
             name_ar: user.name_ar,
@@ -208,15 +203,13 @@ module.exports = function init(site) {
       type: "doctor",
     };
 
-    user.roles = [
-      {
-        module_name: "public",
-        name: "doctor_admin",
-        en: "Employee Admin",
-        ar: "إدارة الموظفين",
-        permissions: ["doctor_manage"],
-      },
-    ];
+    user.roles = [{
+      module_name: "public",
+      name: "doctor_admin",
+      en: "Employee Admin",
+      ar: "إدارة الموظفين",
+      permissions: ["doctor_manage"],
+    }, ];
 
     user.profile = {
       name_ar: user.name_ar,
@@ -238,8 +231,7 @@ module.exports = function init(site) {
     });
 
     if (doctor_doc.id) {
-      $doctors.edit(
-        {
+      $doctors.edit({
           where: {
             id: doctor_doc.id,
           },
@@ -298,8 +290,7 @@ module.exports = function init(site) {
       return;
     }
 
-    $doctors.findOne(
-      {
+    $doctors.findOne({
         where: {
           id: req.body.id,
         },
@@ -330,8 +321,7 @@ module.exports = function init(site) {
     let id = req.body.id;
 
     if (id) {
-      $doctors.delete(
-        {
+      $doctors.delete({
           id: id,
           $req: req,
           $res: res,
@@ -356,8 +346,7 @@ module.exports = function init(site) {
       done: false,
     };
 
-    $doctors.findMany(
-      {
+    $doctors.findMany({
         where: {
           "job.doctors": true,
         },
@@ -487,8 +476,7 @@ module.exports = function init(site) {
     where["company.id"] = site.get_company(req).id;
     where["branch.code"] = site.get_branch(req).code;
 
-    $doctors.findMany(
-      {
+    $doctors.findMany({
         select: req.body.select || {},
         where: where,
         sort: req.body.sort || {
@@ -722,8 +710,7 @@ module.exports = function init(site) {
     let dd = [];
     let arrrr = [];
     let xx = [];
-    $clinics.findMany(
-      {
+    $clinics.findMany({
         sort: req.body.sort || {
           id: -1,
         },
@@ -737,6 +724,7 @@ module.exports = function init(site) {
               if (iterator2.detection_price) {
                 iterator2.online_price = {};
                 iterator2.at_home_price = {};
+                iterator2.urgent_visit_price = {};
                 iterator2.at_clinic_price = {
                   detection: iterator2.detection_price.detection,
                   re_detection: iterator2.detection_price.re_detection,
@@ -748,58 +736,58 @@ module.exports = function init(site) {
                   if (iterator2.detection_price.detection) {
                     if (iterator2.detection_price.online.type == "percent")
                       iterator2.online_price.detection =
-                        (iterator2.detection_price.detection *
-                          site.toNumber(
-                            iterator2.detection_price.online.price
-                          )) /
-                          100 +
-                        iterator2.detection_price.detection;
+                      (iterator2.detection_price.detection *
+                        site.toNumber(
+                          iterator2.detection_price.online.price
+                        )) /
+                      100 +
+                      iterator2.detection_price.detection;
                     else
                       iterator2.online_price.detection =
-                        iterator2.detection_price.detection +
-                        site.toNumber(iterator2.detection_price.online.price);
+                      iterator2.detection_price.detection +
+                      site.toNumber(iterator2.detection_price.online.price);
                   }
                   if (iterator2.detection_price.re_detection) {
                     if (iterator2.detection_price.online.type == "percent")
                       iterator2.online_price.re_detection =
-                        (iterator2.detection_price.re_detection *
-                          site.toNumber(
-                            iterator2.detection_price.online.price
-                          )) /
-                          100 +
-                        iterator2.detection_price.re_detection;
+                      (iterator2.detection_price.re_detection *
+                        site.toNumber(
+                          iterator2.detection_price.online.price
+                        )) /
+                      100 +
+                      iterator2.detection_price.re_detection;
                     else
                       iterator2.online_price.re_detection =
-                        iterator2.detection_price.re_detection +
-                        site.toNumber(iterator2.detection_price.online.price);
+                      iterator2.detection_price.re_detection +
+                      site.toNumber(iterator2.detection_price.online.price);
                   }
                   if (iterator2.detection_price.consultation) {
                     if (iterator2.detection_price.online.type == "percent")
                       iterator2.online_price.consultation =
-                        (iterator2.detection_price.consultation *
-                          site.toNumber(
-                            iterator2.detection_price.online.price
-                          )) /
-                          100 +
-                        iterator2.detection_price.consultation;
+                      (iterator2.detection_price.consultation *
+                        site.toNumber(
+                          iterator2.detection_price.online.price
+                        )) /
+                      100 +
+                      iterator2.detection_price.consultation;
                     else
                       iterator2.online_price.consultation =
-                        iterator2.detection_price.consultation +
-                        site.toNumber(iterator2.detection_price.online.price);
+                      iterator2.detection_price.consultation +
+                      site.toNumber(iterator2.detection_price.online.price);
                   }
                   if (iterator2.detection_price.session) {
                     if (iterator2.detection_price.online.type == "percent")
                       iterator2.online_price.session =
-                        (iterator2.detection_price.session *
-                          site.toNumber(
-                            iterator2.detection_price.online.price
-                          )) /
-                          100 +
-                        iterator2.detection_price.session;
+                      (iterator2.detection_price.session *
+                        site.toNumber(
+                          iterator2.detection_price.online.price
+                        )) /
+                      100 +
+                      iterator2.detection_price.session;
                     else
                       iterator2.online_price.session =
-                        iterator2.detection_price.session +
-                        site.toNumber(iterator2.detection_price.online.price);
+                      iterator2.detection_price.session +
+                      site.toNumber(iterator2.detection_price.online.price);
                   }
                 }
 
@@ -807,64 +795,127 @@ module.exports = function init(site) {
                   if (iterator2.detection_price.detection) {
                     if (iterator2.detection_price.at_home.type == "percent")
                       iterator2.at_home_price.detection =
-                        (iterator2.detection_price.detection *
-                          site.toNumber(
-                            iterator2.detection_price.at_home.price
-                          )) /
-                          100 +
-                        iterator2.detection_price.detection;
+                      (iterator2.detection_price.detection *
+                        site.toNumber(
+                          iterator2.detection_price.at_home.price
+                        )) /
+                      100 +
+                      iterator2.detection_price.detection;
                     else
                       iterator2.at_home_price.detection =
-                        iterator2.detection_price.detection +
-                        site.toNumber(iterator2.detection_price.at_home.price);
+                      iterator2.detection_price.detection +
+                      site.toNumber(iterator2.detection_price.at_home.price);
                   }
                   if (iterator2.detection_price.re_detection) {
                     if (iterator2.detection_price.at_home.type == "percent")
                       iterator2.at_home_price.re_detection =
-                        (iterator2.detection_price.re_detection *
-                          site.toNumber(
-                            iterator2.detection_price.at_home.price
-                          )) /
-                          100 +
-                        iterator2.detection_price.re_detection;
+                      (iterator2.detection_price.re_detection *
+                        site.toNumber(
+                          iterator2.detection_price.at_home.price
+                        )) /
+                      100 +
+                      iterator2.detection_price.re_detection;
                     else
                       iterator2.at_home_price.re_detection =
-                        iterator2.detection_price.re_detection +
-                        site.toNumber(iterator2.detection_price.at_home.price);
+                      iterator2.detection_price.re_detection +
+                      site.toNumber(iterator2.detection_price.at_home.price);
                   }
                   if (iterator2.detection_price.consultation) {
                     if (iterator2.detection_price.at_home.type == "percent")
                       iterator2.at_home_price.consultation =
-                        (iterator2.detection_price.consultation *
-                          site.toNumber(
-                            iterator2.detection_price.at_home.price
-                          )) /
-                          100 +
-                        iterator2.detection_price.consultation;
+                      (iterator2.detection_price.consultation *
+                        site.toNumber(
+                          iterator2.detection_price.at_home.price
+                        )) /
+                      100 +
+                      iterator2.detection_price.consultation;
                     else
                       iterator2.at_home_price.consultation =
-                        iterator2.detection_price.consultation +
-                        site.toNumber(iterator2.detection_price.at_home.price);
+                      iterator2.detection_price.consultation +
+                      site.toNumber(iterator2.detection_price.at_home.price);
                   }
                   if (iterator2.detection_price.session) {
                     if (iterator2.detection_price.at_home.type == "percent")
                       iterator2.at_home_price.session =
-                        (iterator2.detection_price.session *
-                          site.toNumber(
-                            iterator2.detection_price.at_home.price
-                          )) /
-                          100 +
-                        iterator2.detection_price.session;
+                      (iterator2.detection_price.session *
+                        site.toNumber(
+                          iterator2.detection_price.at_home.price
+                        )) /
+                      100 +
+                      iterator2.detection_price.session;
                     else
                       iterator2.at_home_price.session =
-                        iterator2.detection_price.session +
-                        site.toNumber(iterator2.detection_price.at_home.price);
+                      iterator2.detection_price.session +
+                      site.toNumber(iterator2.detection_price.at_home.price);
                   }
                 }
+
+
+                if (iterator2.detection_price.urgent_visit) {
+                  if (iterator2.detection_price.detection) {
+                    if (iterator2.detection_price.urgent_visit.type == "percent")
+                      iterator2.urgent_visit_price.detection =
+                      (iterator2.detection_price.detection *
+                        site.toNumber(
+                          iterator2.detection_price.urgent_visit.price
+                        )) /
+                      100 +
+                      iterator2.detection_price.detection;
+                    else
+                      iterator2.urgent_visit_price.detection =
+                      iterator2.detection_price.detection +
+                      site.toNumber(iterator2.detection_price.urgent_visit.price);
+                  }
+                  if (iterator2.detection_price.re_detection) {
+                    if (iterator2.detection_price.urgent_visit.type == "percent")
+                      iterator2.urgent_visit_price.re_detection =
+                      (iterator2.detection_price.re_detection *
+                        site.toNumber(
+                          iterator2.detection_price.urgent_visit.price
+                        )) /
+                      100 +
+                      iterator2.detection_price.re_detection;
+                    else
+                      iterator2.urgent_visit_price.re_detection =
+                      iterator2.detection_price.re_detection +
+                      site.toNumber(iterator2.detection_price.urgent_visit.price);
+                  }
+                  if (iterator2.detection_price.consultation) {
+                    if (iterator2.detection_price.urgent_visit.type == "percent")
+                      iterator2.urgent_visit_price.consultation =
+                      (iterator2.detection_price.consultation *
+                        site.toNumber(
+                          iterator2.detection_price.urgent_visit.price
+                        )) /
+                      100 +
+                      iterator2.detection_price.consultation;
+                    else
+                      iterator2.urgent_visit_price.consultation =
+                      iterator2.detection_price.consultation +
+                      site.toNumber(iterator2.detection_price.urgent_visit.price);
+                  }
+                  if (iterator2.detection_price.session) {
+                    if (iterator2.detection_price.urgent_visit.type == "percent")
+                      iterator2.urgent_visit_price.session =
+                      (iterator2.detection_price.session *
+                        site.toNumber(
+                          iterator2.detection_price.urgent_visit.price
+                        )) /
+                      100 +
+                      iterator2.detection_price.session;
+                    else
+                      iterator2.urgent_visit_price.session =
+                      iterator2.detection_price.session +
+                      site.toNumber(iterator2.detection_price.urgent_visit.price);
+                  }
+                }
+
+
                 let prices = {
                   at_clinic_price: iterator2.at_clinic_price,
                   at_home_price: iterator2.at_home_price,
                   online_price: iterator2.online_price,
+                  urgent_visit_price: iterator2.urgent_visit_price,
                 };
               }
               if (iterator2.doctor && !iterator2.doctor.clinicId) {
@@ -875,9 +926,9 @@ module.exports = function init(site) {
           }
           if (xx) {
             const uniqueObjects = [
-              ...new Set(xx.map((obj) => obj.doctor?obj.doctor.id:null)),
+              ...new Set(xx.map((obj) => obj.doctor ? obj.doctor.id : null)),
             ].map((doct) => {
-              return xx.find((obj) => obj.doctor?obj.doctor.id:null === doct);
+              return xx.find((obj) => obj.doctor ? obj.doctor.id : null === doct);
             });
             let duplicateObjects = xx.filter(
               (val) => !uniqueObjects.includes(val)
@@ -885,7 +936,7 @@ module.exports = function init(site) {
             for (const iterator of uniqueObjects) {
               iterator.doctor.shiftList = new Array({
                 shift: iterator.shift,
-                clinicId: iterator.doctor?iterator.doctor.clinicId:null,
+                clinicId: iterator.doctor ? iterator.doctor.clinicId : null,
               });
 
               arrrr.push(iterator);
@@ -894,7 +945,7 @@ module.exports = function init(site) {
                   if (iterator.doctor && iterator.doctor.id == iterator1.doctor && iterator1.doctor.id) {
                     iterator.doctor.shiftList.push({
                       shift: iterator1.shift,
-                      clinicId: iterator1.doctor?iterator1.doctor.clinicId:null,
+                      clinicId: iterator1.doctor ? iterator1.doctor.clinicId : null,
                     });
                   }
                 }
@@ -903,15 +954,15 @@ module.exports = function init(site) {
           }
           response.done = true;
           (response.list = xx),
-            (response.count = count),
-            (response.totalPages = Math.ceil(count / 10)),
-            res.json(response);
+          (response.count = count),
+          (response.totalPages = Math.ceil(count / 10)),
+          res.json(response);
         } else {
           response.done = false;
           (response.list = []),
-            (response.count = count),
-            (response.totalPages = Math.ceil(count / 10)),
-            res.json(response);
+          (response.count = count),
+          (response.totalPages = Math.ceil(count / 10)),
+          res.json(response);
         }
         // res.json(response)
       }
