@@ -28,7 +28,7 @@ module.exports = function init(site) {
         name_en: doc.branch.name_en
       },
       active: true
-    }, (err, doc1) => { })
+    }, (err, doc1) => {})
   })
 
 
@@ -255,7 +255,9 @@ module.exports = function init(site) {
                 doctor_doc.doc.user_info = {
                   id: doc1.id
                 }
-                $doctors.edit(doctor_doc.doc, (err2, doc2) => { res.json(response) })
+                $doctors.edit(doctor_doc.doc, (err2, doc2) => {
+                  res.json(response)
+                })
               } else {
                 response.error = err.message
               }
@@ -263,7 +265,7 @@ module.exports = function init(site) {
             })
           } else if (doctor_doc.doc.user_info && doctor_doc.doc.user_info.id) {
             user.id = doctor_doc.doc.user_info.id
-            site.security.updateUser(user, (err, user_doc) => { })
+            site.security.updateUser(user, (err, user_doc) => {})
           }
 
         } else {
@@ -344,7 +346,9 @@ module.exports = function init(site) {
     }
 
     $doctors.findMany({
-      where: { 'job.doctors': true }
+      where: {
+        'job.doctors': true
+      }
     }, (err, docs) => {
 
       response.done = true
@@ -702,72 +706,183 @@ module.exports = function init(site) {
       skip = (parseInt(req.body.page) - 1) * 10
     }
 
-    if (!req.session.user) {
-      response.error = 'Please Login First'
-      res.json(response)
-      return
-    }
-    let doctorsArr = []
+    // if (!req.session.user) {
+    //   response.error = 'Please Login First'
+    //   res.json(response)
+    //   return
+    // }
     let dd = []
-    $clinics.findOne({
-      where: {
-        id: req.body.clinic.id
-      }
-    }, (err, doc) => {
-      if (!err) {
-        if (doc.doctor_list) {
-          let arrDoctors = []
-          let arr = []
-          let shiftList = []
-          
-          let arr1 = doc.doctor_list.map(li => {
-            let xx = {
-              doctor: li.doctor,
-              shift: li.shift
+    let arrrr = []
+    let xx = []
+    $clinics.findMany({
+      sort: req.body.sort || {
+        id: -1,
+      },
+      limit: limit,
+      skip: skip,
+    }, (err, docs , count) => {
+      if (!err && docs.length > 0) {
+        for (const iterator of docs) {
+          for (const iterator2 of iterator.doctor_list) {
+
+
+
+
+
+            if (iterator2.detection_price) {
+              iterator2.online_price = {}
+              iterator2.at_home_price = {}
+              iterator2.at_clinic_price = {
+                detection: iterator2.detection_price.detection,
+                re_detection: iterator2.detection_price.re_detection,
+                consultation: iterator2.detection_price.consultation,
+                session: iterator2.detection_price.session,
+              }
+  
+              if (iterator2.detection_price.online) {
+                if (iterator2.detection_price.detection) {
+  
+                  if (iterator2.detection_price.online.type == "percent")
+                    iterator2.online_price.detection =
+                    ((iterator2.detection_price.detection * site.toNumber(iterator2.detection_price.online.price)) /
+                      100) + iterator2.detection_price.detection;
+                  else iterator2.online_price.detection = iterator2.detection_price.detection + site.toNumber(iterator2.detection_price.online.price);
+                }
+                if (iterator2.detection_price.re_detection) {
+  
+                  if (iterator2.detection_price.online.type == "percent")
+                    iterator2.online_price.re_detection =
+                    ((iterator2.detection_price.re_detection * site.toNumber(iterator2.detection_price.online.price)) /
+                      100) + iterator2.detection_price.re_detection;
+                  else iterator2.online_price.re_detection = iterator2.detection_price.re_detection + site.toNumber(iterator2.detection_price.online.price);
+                }
+                if (iterator2.detection_price.consultation) {
+  
+                  if (iterator2.detection_price.online.type == "percent")
+                    iterator2.online_price.consultation =
+                    ((iterator2.detection_price.consultation * site.toNumber(iterator2.detection_price.online.price)) /
+                      100) + iterator2.detection_price.consultation;
+                  else iterator2.online_price.consultation = iterator2.detection_price.consultation + site.toNumber(iterator2.detection_price.online.price);
+                }
+                if (iterator2.detection_price.session) {
+  
+                  if (iterator2.detection_price.online.type == "percent")
+                    iterator2.online_price.session =
+                    ((iterator2.detection_price.session * site.toNumber(iterator2.detection_price.online.price)) /
+                      100) + iterator2.detection_price.session;
+                  else iterator2.online_price.session = iterator2.detection_price.session + site.toNumber(iterator2.detection_price.online.price);
+                }
+              }
+  
+              if (iterator2.detection_price.at_home) {
+                if (iterator2.detection_price.detection) {
+  
+                  if (iterator2.detection_price.at_home.type == "percent")
+                    iterator2.at_home_price.detection =
+                    ((iterator2.detection_price.detection * site.toNumber(iterator2.detection_price.at_home.price)) /
+                      100) + iterator2.detection_price.detection;
+                  else iterator2.at_home_price.detection = iterator2.detection_price.detection + site.toNumber(iterator2.detection_price.at_home.price);
+                }
+                if (iterator2.detection_price.re_detection) {
+  
+                  if (iterator2.detection_price.at_home.type == "percent")
+                    iterator2.at_home_price.re_detection =
+                    ((iterator2.detection_price.re_detection * site.toNumber(iterator2.detection_price.at_home.price)) /
+                      100) + iterator2.detection_price.re_detection;
+                  else iterator2.at_home_price.re_detection = iterator2.detection_price.re_detection + site.toNumber(iterator2.detection_price.at_home.price);
+                }
+                if (iterator2.detection_price.consultation) {
+  
+                  if (iterator2.detection_price.at_home.type == "percent")
+                    iterator2.at_home_price.consultation =
+                    ((iterator2.detection_price.consultation * site.toNumber(iterator2.detection_price.at_home.price)) /
+                      100) + iterator2.detection_price.consultation;
+                  else iterator2.at_home_price.consultation = iterator2.detection_price.consultation + site.toNumber(iterator2.detection_price.at_home.price);
+                }
+                if (iterator2.detection_price.session) {
+  
+                  if (iterator2.detection_price.at_home.type == "percent")
+                    iterator2.at_home_price.session =
+                    ((iterator2.detection_price.session * site.toNumber(iterator2.detection_price.at_home.price)) /
+                      100) + iterator2.detection_price.session;
+                  else iterator2.at_home_price.session = iterator2.detection_price.session + site.toNumber(iterator2.detection_price.at_home.price);
+                }
+              }
+              let prices ={
+                at_clinic_price : iterator2.at_clinic_price,
+                at_home_price : iterator2.at_home_price,
+                online_price : iterator2.online_price,
+  
+              } 
+              
             }
-            return xx
-          })
 
-          const lookup = arr1.reduce((a, e) => {
-            a[e.doctor.id] = ++a[e.doctor.id] || 0;
-            return a;
-          }, {});
-          arr = arr1.filter(e => lookup[e.doctor.id])
-          for (const iterator of arr) {
-            shiftList.push(iterator.shift)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            iterator2.doctor.clinicId = iterator.id
+            xx.push(iterator2)
           }
-          arr[0].doctor.shiftList = shiftList
-
-        
-          for (const doctor of doc.doctor_list) {
-            arrDoctors.push({
-              doctor: doctor.doctor,
-              shift : doctor.shift
+        }
+        if (xx) {
+          const uniqueObjects = [...new Set(xx.map(obj => obj.doctor.id))]
+            .map(doct => {
+              return xx.find(obj => obj.doctor.id === doct)
             })
+          let duplicateObjects = xx.filter(val => !uniqueObjects.includes(val));
+          for (const iterator of uniqueObjects) {
 
-            for (const iterator of arrDoctors) {
-              if (doctor.doctor.id == iterator.doctor.id) {
-                
-                dd.push({
-                  doctor : iterator.doctor,
-                  shift : iterator.shift,
-                })
-                
-               
+            iterator.doctor.shiftList = new Array({shift:iterator.shift , clinicId:iterator.doctor.clinicId})
+         
+            arrrr.push(iterator)
+            if (duplicateObjects.length > 0) {
+              for (const iterator1 of duplicateObjects) {
+                if (iterator.doctor.id == iterator1.doctor.id) {
+                  iterator.doctor.shiftList.push({shift:iterator1.shift , clinicId:iterator1.doctor.clinicId})
+                  
+                }
               }
             }
-
-           
-
           }
-
         }
-        console.log(dd);
         response.done = true
-        response.doc = doc
+        response.list = xx,
+        response.count = count,
+        response.totalPages = Math.ceil(count / 10),
+
         res.json(response)
       } else {
-        response.error = err.message
+        response.done = false
+        response.list = [],
+        response.count = count,
+        response.totalPages = Math.ceil(count / 10),
+        res.json(response)
       }
       // res.json(response)
     })
