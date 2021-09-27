@@ -867,8 +867,9 @@ module.exports = function init(site) {
                   online_price: iterator2.online_price,
                 };
               }
-
-              iterator2.doctor.clinicId = iterator.id;
+              
+              Object.assign(iterator2.doctor, {clinicId: iterator.id});
+              
               xx.push(iterator2);
             }
           }
