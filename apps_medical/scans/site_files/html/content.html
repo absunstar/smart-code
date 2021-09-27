@@ -47,14 +47,7 @@
               label="##word.scans_price##"
               ng-model="scans.price"
             ></i-control>
-            <i-control
-              help-id="scans_name"
-              v="r"
-              type="number"
-              class="col2"
-              label="##word.price_at_home##"
-              ng-model="scans.price_at_home"
-            ></i-control>
+
             <i-control
               ng-hide="scans.immediate==true"
               type="number"
@@ -77,6 +70,26 @@
               label="##word.immediate##"
               ng-model="scans.immediate"
             ></i-checkbox>
+          </div>
+
+          <div class="row">
+            <i-checkbox
+              help-id="made_home_scan"
+              class="col2"
+              ng-click="scans.price_at_home = 0"
+              label="##word.made_home_scan##"
+              ng-model="scans.made_home_scan"
+            ></i-checkbox>
+
+            <i-control
+              help-id="scans_name"
+              v="r"
+              type="number"
+              class="col2"
+              ng-show="scans.made_home_scan"
+              label="##word.price_at_home##"
+              ng-model="scans.price_at_home"
+            ></i-control>
           </div>
         </div>
 

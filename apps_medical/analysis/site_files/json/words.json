@@ -48,5 +48,10 @@
         "name": "analyse_result",
         "en": "analysis result",
         "ar": "نتيجة التحليل"
+    },
+    {
+        "name": "made_home_analysis",
+        "en": "made the analysis at home",
+        "ar": "إجراء التحليل في المنزل"
     }
 ]

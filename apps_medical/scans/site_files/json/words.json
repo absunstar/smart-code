@@ -42,6 +42,11 @@
         "name": "scan_result",
         "en": "Scans Result",
         "ar": "نتيجة الإشاعة"
+    },
+    {
+        "name": "made_home_scan",
+        "en": "made the scan at home",
+        "ar": "إجراء الإشاعة في المنزل"
     }
     
 ]

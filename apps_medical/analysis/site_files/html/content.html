@@ -46,14 +46,6 @@
               label="##word.analysis_price##"
               ng-model="analysis.price"
             ></i-control>
-            <i-control
-              help-id="analysis_price"
-              v="r"
-              type="number"
-              class="col2"
-              label="##word.price_at_home##"
-              ng-model="analysis.price_at_home"
-            ></i-control>
 
             <i-control
               ng-hide="analysis.immediate==true"
@@ -79,6 +71,26 @@
               label="##word.immediate##"
               ng-model="analysis.immediate"
             ></i-checkbox>
+          </div>
+
+          <div class="row">
+            <i-checkbox
+              help-id="made_home_analysis"
+              class="col2"
+              ng-click="analysis.price_at_home = 0"
+              label="##word.made_home_analysis##"
+              ng-model="analysis.made_home_analysis"
+            ></i-checkbox>
+
+            <i-control
+              help-id="analysis_name"
+              v="r"
+              type="number"
+              class="col2"
+              ng-show="analysis.made_home_analysis"
+              label="##word.price_at_home##"
+              ng-model="analysis.price_at_home"
+            ></i-control>
           </div>
 
           <div class="row">

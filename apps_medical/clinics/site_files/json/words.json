@@ -9,6 +9,11 @@
         "ar": "الشيفت"
     },
     {
+        "name": "fixed",
+        "en": "Fixed",
+        "ar": "ثابت"
+    },
+    {
         "name": "re_detection",
         "en": "Re-detection",
         "ar": "إعادة الكشف"
