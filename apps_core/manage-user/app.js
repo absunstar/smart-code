@@ -26,11 +26,10 @@ module.exports = function init(site) {
     let type = req.body.type;
     site.security.getUser(
       {
-        id: req.body.user.id,
+        email: req.body.user.email,
       },
       (err, user) => {
         if (!err && user) {
-
 
           if (type === "email") {
             if (!req.body.user.email.contains("@") && !req.body.user.email.contains(".")) {
