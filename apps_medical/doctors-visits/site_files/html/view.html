@@ -208,7 +208,7 @@
                         x-permissions="doctors_visits_update || doctors_visits_manage"
                         ng-hide="doctors_visits.status.id!=2 || doctors_visits.$view"
                         ng-show="doctors_visits.status.id==2 && !doctors_visits.$view"
-                        ng-click="without(doctors_visits)"
+                        ng-click="onHold(doctors_visits)"
                       ></i-button>
 
                       <i-button
@@ -223,11 +223,11 @@
                       <i-button
                         type="update"
                         class="col6 center"
-                        label="##word.sellorder##"
+                        label="##word.waiting_in_clinic##"
                         x-permissions="doctors_visits_update || doctors_visits_manage"
                         ng-hide="doctors_visits.status.id!=3 || doctors_visits.$view"
                         ng-show="doctors_visits.status.id==3 && !doctors_visits.$view"
-                        ng-click="sellorder(doctors_visits)"
+                        ng-click="waitingInClinic(doctors_visits)"
                       ></i-button>
 
                       <i-button

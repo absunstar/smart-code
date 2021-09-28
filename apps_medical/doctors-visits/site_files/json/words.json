@@ -56,7 +56,7 @@
     },
     {
         "name": "dont_book",
-        "name_en": "Do Not Booking",
+        "en": "Do Not Booking",
         "ar": "لم يتم الحجز"
     },
     {
@@ -221,12 +221,12 @@
     },
     {
         "name": "next_counseling_date",
-        "name_en": "Next Counseling Date",
+        "en": "Next Counseling Date",
         "ar": "تاريخ الإستشارة القادم"
     },
     {
         "name": "next_counseling_re_detection",
-        "name_en": "Next re-detection Date",
+        "en": "Next re-detection Date",
         "ar": "تاريخ إعادة الكشف القادم"
     },
     {
@@ -275,8 +275,8 @@
         "ar": "تأكيد حذف الحجز !"
     },
     {
-        "name": "without",
-        "en": "WithOut",
+        "name": "on_hold",
+        "en": "On hold",
         "ar": "قيد الإنتظار"
     },
     {
@@ -285,58 +285,58 @@
         "ar": "حجز فقط"
     },
     {
-        "name": "sellorder",
-        "name_en": "Sell Order",
+        "name": "waiting_in_clinic",
+        "en": "Waiting in the clinic",
         "ar": "إنتظار في العيادة"
     },
     {
         "name": "at_the_doctor",
-        "name_en": "At The Doctor",
+        "en": "At The Doctor",
         "ar": "عند الطبيب"
     },
     {
         "name": "done_detection",
-        "name_en": "Done Detection",
+        "en": "Done Detection",
         "ar": "تم الكشف"
     },
     {
         "name": "blood_pressure",
-        "name_en": "Blood Pressure",
+        "en": "Blood Pressure",
         "ar": "ضغط الدم"
     },
     {
         "name": "breathing",
-        "name_en": "Breathing",
+        "en": "Breathing",
         "ar": "التنفس"
     },
     {
         "name": "heart_beats",
-        "name_en": "Heart Beats",
+        "en": "Heart Beats",
         "ar": "نبضات القلب"
     },
     {
         "name": "body_temperature",
-        "name_en": "Body temperature",
+        "en": "Body temperature",
         "ar": "حرارة الجسم"
     },
     {
         "name": "Sugar",
-        "name_en": "Sugar",
+        "en": "Sugar",
         "ar": "السكر"
     },
     {
         "name": "previous_operations",
-        "name_en": "Previous operations",
+        "en": "Previous operations",
         "ar": "عمليات سابقة"
     },
     {
         "name": "patient_advice",
-        "name_en": "Patient Advice",
+        "en": "Patient Advice",
         "ar": "نصائح للمريض"
     },
     {
         "name": "examination_before_detection",
-        "name_en": "Examination before detection",
+        "en": "Examination before detection",
         "ar": "فحص قبل الكشف"
     },
     {

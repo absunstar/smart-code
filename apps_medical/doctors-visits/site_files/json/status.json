@@ -1,31 +1,27 @@
-[{
-        "id": 1,
-        "name": "without",
-        "en": "WithOut",
-        "ar": "قيد الإنتظار"
-    },
-    {
-        "id": 2,
-        "name": "sellorder",
-        "name_en": "Sell Order",
-        "ar": "إنتظار في العيادة"
-    },
-    {
-        "id": 3,
-        "name": "at_doctor",
-        "name_en": "At the doctor",
-        "ar": "عند الطبيب"
-    },
-    {
-        "id": 4,
-        "name": "done_detected",
-        "name_en": "Done Detected",
-        "ar": "تم الكشف"
-    },
-    {
-        "id": 5,
-        "name": "dont_book",
-        "name_en": "Do Not Booking",
-        "ar": "لم يتم الحجز"
-    }
+[
+  {
+    "id": 1,
+    "en": "On hold",
+    "ar": "قيد الإنتظار"
+  },
+  {
+    "id": 2,
+    "en": "Waiting in the clinic",
+    "ar": "إنتظار في العيادة"
+  },
+  {
+    "id": 3,
+    "en": "At the doctor",
+    "ar": "عند الطبيب"
+  },
+  {
+    "id": 4,
+    "en": "Done Detected",
+    "ar": "تم الكشف"
+  },
+  {
+    "id": 5,
+    "en": "Do Not Booking",
+    "ar": "لم يتم الحجز"
+  }
 ]

@@ -48,9 +48,9 @@
                         label="##word.doctors_visits_new##" ng-click="displayAddDoctorsVisits()"></i-button>
                    
                     <i-button x-permissions="doctors_visits_search || doctors_visits_manage" type="search"
-                        label="##word.without##" ng-click="getDoctorsVisitsList({'status.id' : 1})"></i-button>
+                        label="##word.on_hold##" ng-click="getDoctorsVisitsList({'status.id' : 1})"></i-button>
                     <i-button x-permissions="doctors_visits_search || doctors_visits_manage" type="search"
-                        label="##word.sellorder##" ng-click="getDoctorsVisitsList({'status.id' : 2})"></i-button>
+                        label="##word.waiting_in_clinic##" ng-click="getDoctorsVisitsList({'status.id' : 2})"></i-button>
                     <i-button x-permissions="doctors_visits_search || doctors_visits_manage" type="search"
                         label="##word.at_the_doctor##" ng-click="getDoctorsVisitsList({'status.id' : 3})"></i-button>
                     <i-button x-permissions="doctors_visits_search || doctors_visits_manage" type="search"
@@ -117,15 +117,15 @@
 
                                 <i-button x-permissions="doctors_visits_update || doctors_visits_manage" type="update"
                                     class="col6 center" label="##word.just_booking##" ng-hide="c.status.id!=2"
-                                    ng-show="c.status.id==2" ng-click="without(c)"></i-button>
+                                    ng-show="c.status.id==2" ng-click="onHold(c)"></i-button>
 
                                 <i-button x-permissions="doctors_visits_update || doctors_visits_manage" type="update"
                                     class="col6 center" label="##word.done_access_doctor##" ng-show="c.status.id==2"
                                     ng-hide="c.status.id!=2" onclick="site.showModal('#doctorsVisitsNotes')"></i-button>
 
                                 <i-button x-permissions="doctors_visits_update || doctors_visits_manage" type="update"
-                                    class="col6 center" label="##word.sellorder##" ng-hide="c.status.id!=3"
-                                    ng-show="c.status.id==3" ng-click="sellorder(c)"></i-button>
+                                    class="col6 center" label="##word.waiting_in_clinic##" ng-hide="c.status.id!=3"
+                                    ng-show="c.status.id==3" ng-click="waitingInClinic(c)"></i-button>
 
                                 <i-button x-permissions="doctors_visits_update || doctors_visits_manage" type="update"
                                     class="col6 center" label="##word.done_detected##" ng-show="c.status.id==3"
