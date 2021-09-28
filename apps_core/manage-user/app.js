@@ -22,7 +22,6 @@ module.exports = function init(site) {
       return;
     }
 
-    
     let type = req.body.type;
     site.security.getUser(
       {
