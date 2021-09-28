@@ -1,24 +1,33 @@
-
 <div class="row">
-    <table class="table hover border">
-        <tr>
-            <th>##word.useradd_user_info##</th>
-            <th>##word.useredit_user_info## </th>
-        </tr>
-        <tr>
-            <td class="center">
-               
-                <p class="blue bold"> {{report_eco.add_user_info.name}} </p>
-                <small class="green"> {{report_eco.add_user_info.date |date:"hh:mm"}} </small>
-                <small> {{report_eco.add_user_info.date |date:"dd - MM - yyyy"}} </small>
-            </td>
+  <table class="table hover border">
+    <tr>
+      <th>##word.useradd_user_info##</th>
+      <th>##word.useredit_user_info##</th>
+    </tr>
+    <tr>
+      <td class="center">
+        <p class="blue bold">
+          {{report_eco.add_user_info.name_##session.lang##}}
+        </p>
+        <small class="green">
+          {{report_eco.add_user_info.date |date:"hh:mm"}}
+        </small>
+        <small>
+          {{report_eco.add_user_info.date |date:"dd - MM - yyyy"}}
+        </small>
+      </td>
 
-            <td class="center">
-           
-                <p class="blue bold"> {{report_eco.edit_user_info.name}} </p>
-                <small class="green"> {{report_eco.edit_user_info.date |date:"hh:mm"}} </small>
-                <small> {{report_eco.edit_user_info.date |date:"dd - MM - yyyy"}} </small>
-            </td>
-        </tr>
-    </table>
+      <td class="center">
+        <p class="blue bold">
+          {{report_eco.edit_user_info.name_##session.lang##}}
+        </p>
+        <small class="green">
+          {{report_eco.edit_user_info.date |date:"hh:mm"}}
+        </small>
+        <small>
+          {{report_eco.edit_user_info.date |date:"dd - MM - yyyy"}}
+        </small>
+      </td>
+    </tr>
+  </table>
 </div>

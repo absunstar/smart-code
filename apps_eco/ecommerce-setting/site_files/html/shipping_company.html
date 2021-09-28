@@ -162,7 +162,7 @@
               </tr>
               <tr>
                 <td class="center">
-                  <p class="blue">{{shipping_company.add_user_info.name}}</p>
+                  <p class="blue">{{shipping_company.add_user_info.name_##session.lang##}}</p>
                   <small class="green">
                     {{shipping_company.add_user_info.date |date:"hh:mm"}}
                   </small>
@@ -173,7 +173,7 @@
                 </td>
 
                 <td class="center">
-                  <p class="blue">{{shipping_company.edit_user_info.name}}</p>
+                  <p class="blue">{{shipping_company.edit_user_info.name_##session.lang##}}</p>
                   <small class="green">
                     {{shipping_company.edit_user_info.date |date:"hh:mm"}}
                   </small>
@@ -343,7 +343,7 @@
           </tr>
           <tr>
             <td class="center">
-              <p class="blue">{{shipping_company.add_user_info.name}}</p>
+              <p class="blue">{{shipping_company.add_user_info.name_##session.lang##}}</p>
               <small class="green">
                 {{shipping_company.add_user_info.date |date:"hh:mm"}}
               </small>
@@ -353,7 +353,7 @@
             </td>
 
             <td class="center">
-              <p class="blue">{{shipping_company.edit_user_info.name}}</p>
+              <p class="blue">{{shipping_company.edit_user_info.name_##session.lang##}}</p>
               <small class="green">
                 {{shipping_company.edit_user_info.date |date:"hh:mm"}}
               </small>

@@ -1,5 +1,4 @@
 module.exports = function init(site) {
-  const $report_eco = site.connectCollection("report_eco")
 
   // $report_eco.deleteDuplicate({
   //   code: 1,
@@ -11,6 +10,12 @@ module.exports = function init(site) {
   //   }, (err, result) => { })
   // })
 
+  site.post({
+    name: "/api/report_eco/delivery_agency/all",
+    path: __dirname + "/site_files/json/delivery_agency.json",
+  });
+
+  
   site.get({
     name: "report_eco",
     path: __dirname + "/site_files/html/index.html",

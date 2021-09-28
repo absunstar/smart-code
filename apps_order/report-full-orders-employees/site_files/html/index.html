@@ -66,9 +66,9 @@
                         <td class="brown"> {{c.add_user_info.date | date : 'dd - MM - yyyy'}} </td>
                         <td class="brown"> {{c.add_user_info.date | date : 'dd - MM - yyyy'}} </td>
                         <td>
-                            <p>{{c.add_user_info.name}}</p>
+                            <p>{{c.add_user_info.name_##session.lang##}}</p>
                         </td>
-                        <td> {{c.edit_user_info.name || c.add_user_info.name}} </td>
+                        <td> {{c.edit_user_info.name_##session.lang## || c.add_user_info.name_##session.lang##}} </td>
 
                         <td> {{c.transaction_type.##session.lang##}} </td>
                         <td> {{c.status.##session.lang##}} </td>

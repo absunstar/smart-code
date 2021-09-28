@@ -8,12 +8,12 @@
         </tr>
         <tr>
             <td class="center">
-                <p class="blue"> {{book_course.add_user_info.name}} </p>
+                <p class="blue"> {{book_course.add_user_info.name_##session.lang##}} </p>
                 <small class="green"> {{book_course.add_user_info.date |date:"hh:mm"}} </small>
                 <small> {{book_course.add_user_info.date |date:"dd - MM - yyyy"}} </small>
             </td>
             <td class="center">
-                <p class="blue"> {{book_course.edit_user_info.name}} </p>
+                <p class="blue"> {{book_course.edit_user_info.name_##session.lang##}} </p>
                 <small class="green"> {{book_course.edit_user_info.date |date:"hh:mm"}} </small>
                 <small> {{book_course.edit_user_info.date |date:"dd - MM - yyyy"}} </small>
             </td>

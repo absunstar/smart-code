@@ -1,19 +1,16 @@
 [
-    {"name" : "report_eco_informations" , "en" : "Report Ecommerce Orders Informations" , "ar" : "بيانات الأعوام الدراسية"},
-
     {"name" : "report_eco" , "en" : "Report Ecommerce Order" , "ar" : "تقرير طلب المتجر"},
     {"name" : "reports_eco" , "en" : "Report Ecommerce Orders" , "ar" : "تقرير طلبات المتجر"},
-    {"name" : "report_eco_menus" , "en" : "Report Ecommerce Orders Menu" , "ar" : "قائمة الأعوام الدراسية"},
-    {"name" : "report_eco_code" , "en" : "Order Code" , "ar" : "كود الطلب"},
-    {"name" : "report_eco_name" , "en" : "Report Ecommerce Orders Name" , "ar" : "إسم العام الدراس"},
+    {"name" : "order_approved" , "en" : "Order approved" , "ar" : "تم إعتماد الطلب"},
+    {"name" : "order_approval" , "en" : "Approval of the order" , "ar" : "إعتماد الطلب"},
+    {"name" : "under_delivery" , "en" : "Under delivery" , "ar" : "قيد التوصيل"},
+    {"name" : "done_delivery" , "en" : "Done delivery" , "ar" : "تم التوصيل"},
+    {"name" : "delivery_details" , "en" : "Delivery details" , "ar" : "تفاصيل التوصيل"},
+    {"name" : "delivery_agency" , "en" : "Delivery agency" , "ar" : "الجهة الموصلة"},
+    {"name" : "conductor" , "en" : "Conductor" , "ar" : "الموصل"},
+    {"name" : "delivery_agency_set" , "en" : "Delivery agency set" , "ar" : "تعيين الجهة الموصلة"},
+    {"name" : "report_eco_code" , "en" : "Order Code" , "ar" : "كود الطلب"}
 
-    {"name" : "report_eco_new" , "en" : "New Report Ecommerce Order" , "ar" : "تقرير طلب متجر جديد"},
-    {"name" : "report_eco_details" , "en" : "Report Ecommerce Orders Details" , "ar" : "تفاصيل تقرير طلب المتجر"},
-    {"name" : "report_eco_update" , "en" : "Edit Report Ecommerce Orders" , "ar" : "تعديل تقرير طلب المتجر"},
-    {"name" : "report_eco_delete" , "en" : "Delte Report Ecommerce Orders" , "ar" : "حذف تقرير طلب المتجر"},
-    {"name" : "report_eco_add_name" , "en" : "Add Report Ecommerce Orders" , "ar" : "إضافة تقرير طلب متجر"}
 
 
-    
-    
 ]

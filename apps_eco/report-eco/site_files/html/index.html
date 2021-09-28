@@ -17,8 +17,7 @@
     <div id="main-layout" class="container loaded">
       <div class="row">
         <div class="row" ng-controller="report_eco" x-permissions="login">
-          <div x-import="report-eco/add_modal.html"></div>
-          <div x-import="report-eco/update_modal.html"></div>
+          <div x-import="report-eco/delivery_modal.html"></div>
           <div x-import="report-eco/delete_modal.html"></div>
           <div x-import="report-eco/view_modal.html"></div>
           <div x-import="report-eco/search_all_modal.html"></div>
@@ -55,23 +54,62 @@
             </tr>
 
             <tr ng-repeat="c in list">
-              <td ng-click="displayDetailsOrderEco(c)"  class="indigoD">{{c.code}}</td>
-              <td ng-click="displayDetailsOrderEco(c)" class="brown">{{c.date | date : 'yyyy - MM - dd'}}</td>
-              <td ng-click="displayDetailsOrderEco(c)"  class="">{{c.add_user_info.name_##session.lang##}}</td>
-              <td ng-click="displayDetailsOrderEco(c)" >{{c.pay_method_eco.##session.lang##}}</td>
-              <td ng-click="displayDetailsOrderEco(c)" >{{c.delivery_type.##session.lang##}}</td>
-              <td ng-click="displayDetailsOrderEco(c)"  class="green">{{c.paid_require}}</td>
-              <td ng-click="displayDetailsOrderEco(c)"  class="blue">{{c.status.##session.lang##}}</td>
+              <td ng-click="displayDetailsOrderEco(c)" class="indigoD">
+                {{c.code}}
+              </td>
+              <td ng-click="displayDetailsOrderEco(c)" class="brown">
+                {{c.date | date : 'yyyy - MM - dd'}}
+              </td>
+              <td ng-click="displayDetailsOrderEco(c)" class="">
+                {{c.add_user_info.name_##session.lang##}}
+              </td>
+              <td ng-click="displayDetailsOrderEco(c)">
+                {{c.pay_method_eco.##session.lang##}}
+              </td>
+              <td ng-click="displayDetailsOrderEco(c)">
+                {{c.delivery_type.##session.lang##}}
+              </td>
+              <td ng-click="displayDetailsOrderEco(c)" class="green">
+                {{c.paid_require}}
+              </td>
+              <td ng-click="displayDetailsOrderEco(c)" class="blue">
+                {{c.status.##session.lang##}}
+              </td>
               <td class="center not-print">
                 <i-button
-                  type="update"
-                  x-permissions="report_eco_edit || report_eco_manage"
-                  label="##word.update##"
-                  ng-click="displayUpdateOrderEco(c)"
+                  ng-show="c.status.id == 1"
+                  label="##word.order_approval##"
+                  ng-click="updateStatusEco(c,2)"
                 ></i-button>
 
                 <i-button
+                  ng-show="c.status.id == 2 && c.conductor.id"
+                  label="##word.under_delivery##"
+                  ng-click="updateStatusEco(c,3)"
+                ></i-button>
+
+                <i-button
+                  ng-show="c.status.id == 3"
+                  label="##word.done_delivery##"
+                  ng-click="updateStatusEco(c,4)"
+                ></i-button>
+                <i-button
+                ng-show="c.status.id == 2"
+                type="update"
+                label="##word.delivery_agency_set##"
+                ng-click="displayDeleveryOrderEco(c)"
+              ></i-button>
+                <!-- 
+                <i-button
+                type="update"
+                x-permissions="report_eco_edit || report_eco_manage"
+                label="##word.update##"
+                ng-click="displayUpdateOrderEco(c)"
+              ></i-button> -->
+
+                <i-button
                   type="delete"
+                  ng-hide="c.status.id == 4"
                   x-permissions="report_eco_delete || report_eco_manage"
                   label="##word.delete##"
                   ng-click="displayDeleteOrderEco(c)"

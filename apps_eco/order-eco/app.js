@@ -9,6 +9,11 @@ module.exports = function init(site) {
   });
 
   site.post({
+    name: "/api/order_eco/eco_status/all",
+    path: __dirname + "/site_files/json/eco_status.json",
+  });
+
+  site.post({
     name: "/api/order_eco/eco_payment/all",
     path: __dirname + "/site_files/json/eco_payment.json",
   });

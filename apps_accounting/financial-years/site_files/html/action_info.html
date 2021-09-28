@@ -8,14 +8,14 @@
         <tr>
             <td class="center">
                
-                <p class="blue bold"> {{financial_year.add_user_info.name}} </p>
+                <p class="blue bold"> {{financial_year.add_user_info.name_##session.lang##}} </p>
                 <small class="green"> {{financial_year.add_user_info.date |date:"hh:mm"}} </small>
                 <small> {{financial_year.add_user_info.date |date:"dd - MM - yyyy"}} </small>
             </td>
 
             <td class="center">
            
-                <p class="blue bold"> {{financial_year.edit_user_info.name}} </p>
+                <p class="blue bold"> {{financial_year.edit_user_info.name_##session.lang##}} </p>
                 <small class="green"> {{financial_year.edit_user_info.date |date:"hh:mm"}} </small>
                 <small> {{financial_year.edit_user_info.date |date:"dd - MM - yyyy"}} </small>
             </td>

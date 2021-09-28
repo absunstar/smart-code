@@ -96,6 +96,8 @@ app.controller("order_eco", function ($scope, $http, $timeout) {
     );
   };
 
+ 
+
   $scope.calc = function (obj) {
     $scope.error = "";
     $timeout(() => {

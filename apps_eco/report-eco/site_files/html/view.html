@@ -13,7 +13,9 @@
 
               <tr>
                 <td class="title">##word.customer##</td>
-                <td class="center ">{{report_eco.add_user_info.name_##session.lang##}}</td>
+                <td class="center">
+                  {{report_eco.add_user_info.name_##session.lang##}}
+                </td>
               </tr>
 
               <tr>
@@ -34,6 +36,20 @@
                 <td class="title">##word.delivery_type##</td>
                 <td class="center">
                   {{report_eco.delivery_type.##session.lang##}}
+                </td>
+              </tr>
+
+              <tr ng-show="report_eco.delivery_agency.id">
+                <td class="title">##word.delivery_agency##</td>
+                <td class="center">
+                  {{report_eco.delivery_agency.##session.lang##}}
+                </td>
+              </tr>
+
+              <tr ng-show="report_eco.conductor.id">
+                <td class="title">##word.conductor##</td>
+                <td class="center">
+                  {{report_eco.conductor.name_##session.lang##}}
                 </td>
               </tr>
 

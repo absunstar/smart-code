@@ -1,0 +1,60 @@
+<div id="deliveryEcoModal" class="modal small" fixed>
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>
+        ##word.delivery_details##
+        <i class="fa fa-plus"></i>
+      </h2>
+    </div>
+
+    <div class="modal-body">
+      <div class="row">
+          <div class="col3"></div>
+        <i-list
+          help-id=""
+          v="r"
+          class="col3"
+          label="##word.delivery_agency##"
+          ng-change="loadconductor(report_eco.delivery_agency.id)"
+          ng-model="report_eco.delivery_agency"
+          display="##session.lang##"
+          items="deliveryAgencyList"
+          ng-search="_search.$delivery_agency"
+        >
+        </i-list>
+
+        <i-list
+          help-id=""
+          v="r"
+          class="col3"
+          label="##word.conductor##"
+          ng-model="report_eco.conductor"
+          display="name_##session.lang##"
+          items="conductorList"
+          ng-search="_search.$conductor"
+        >
+        </i-list>
+      </div>
+    </div>
+
+    <div class="modal-footer center">
+      <h2 class="error">{{error}}</h2>
+      <h2 class="green center">{{success}}</h2>
+      <i-button
+        label="##word.under_delivery##"
+        ng-click="updateStatusEco(report_eco,3)"
+      ></i-button>
+      <i-button
+        type="save"
+        label="##word.save##"
+        ng-click="updateOrderEco()"
+      ></i-button>
+      <i-button
+        type="close"
+        label="##word.close##"
+        onclick="site.hideModal('#deliveryEcoModal')"
+      ></i-button>
+    </div>
+  </div>
+</div>

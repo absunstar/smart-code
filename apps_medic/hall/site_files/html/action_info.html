@@ -6,13 +6,13 @@
         </tr>
         <tr>
             <td class="center">
-                <p class="blue"> {{hall.add_user_info.name}} </p>
+                <p class="blue"> {{hall.add_user_info.name_##session.lang##}} </p>
                 <small class="green"> {{hall.add_user_info.date |date:"hh:mm"}} </small>
                 <small> {{hall.add_user_info.date |date:"dd - MM - yyyy"}} </small>
             </td>
 
             <td class="center">
-                <p class="blue"> {{hall.edit_user_info.name}} </p>
+                <p class="blue"> {{hall.edit_user_info.name_##session.lang##}} </p>
                 <small class="green"> {{hall.edit_user_info.date |date:"hh:mm"}} </small>
                 <small> {{hall.edit_user_info.date |date:"dd - MM - yyyy"}} </small>
             </td>

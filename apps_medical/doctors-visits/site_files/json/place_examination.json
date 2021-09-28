@@ -1,14 +1,12 @@
 [{
         "id": 1,
-        "name": "in_clinic",
-        "en": "In Clinic",
-        "ar": "في العيادة"
+        "en": "Clinic",
+        "ar": "العيادة"
     },
     {
         "id": 2,
-        "name": "at_home",
-        "en": "At home",
-        "ar": "في المنزل"
+        "en": "Home Visit",
+        "ar": "زيارة منزلية"
     },
     {
         "id": 3,
