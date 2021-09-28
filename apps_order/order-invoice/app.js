@@ -2,10 +2,10 @@ module.exports = function init(site) {
   const $order_invoice = site.connectCollection("order_invoice")
   // const $stores_items = site.connectCollection("stores_items")
 
-  site.get({
-    name: 'css',
-    path: __dirname + '/site_files/css/'
-  })
+  // site.get({
+  //   name: 'css',
+  //   path: __dirname + '/site_files/css/'
+  // })
 
   site.get({
     name: 'images',
