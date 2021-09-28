@@ -6,12 +6,12 @@
     },
     {
         "id": 2,
-        "name_en": "Monthly",
+        "en": "Monthly",
         "ar": "شهري"
     },
     {
         "id": 3,
-        "name_en": "Period",
+        "en": "Period",
         "ar": "مدة"
     }
 ]

@@ -13,13 +13,13 @@
     {
         "id": 3,
         "name": "consultation",
-        "name_en": "Consultation",
+        "en": "Consultation",
         "ar": "إستشارة"
     },
     {
         "id": 4,
         "name": "session",
-        "name_en": "Session",
+        "en": "Session",
         "ar": "جلسة"
     }
 ]

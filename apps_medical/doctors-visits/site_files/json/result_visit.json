@@ -7,19 +7,19 @@
     {
         "id": 2,
         "name": "needs_counseling",
-        "name_en": "Needs Counseling",
+        "en": "Needs Counseling",
         "ar": "يحتاج إلى إستشارة"
     },
     {
         "id": 3,
         "name": "needs_re_detection",
-        "name_en": "Needs to be re-detection",
+        "en": "Needs to be re-detection",
         "ar": "يحتاج إلى إعادة كشف"
     },
     {
         "id": 4,
         "name": "transfer_another_department",
-        "name_en": "Transfer to another department",
+        "en": "Transfer to another department",
         "ar": "تحويل لقسم آخر"
     }
 ]
