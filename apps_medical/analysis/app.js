@@ -278,7 +278,7 @@ site.post("/api/analysis/searchAll", (req, res) => {
 
   let where = req.body.where || {};
 
- 
+ console.log();
 
   if (where["name_ar"]) {
     where["name_ar"] = new RegExp(where["name_ar"], "i");

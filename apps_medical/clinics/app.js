@@ -625,11 +625,11 @@ module.exports = function init(site) {
     };
     req.headers.language = req.headers.language || 'en'
 
-    // if (!req.session.user) {
-    //   response.error = site.word('loginFirst')[req.headers.language];
-    //   res.json(response);
-    //   return;
-    // }
+    if (!req.session.user) {
+      response.error = site.word('loginFirst')[req.headers.language];
+      res.json(response);
+      return;
+    }
 
     let where = req.body.where || {};
     let doctor = where["doctor"].id;
