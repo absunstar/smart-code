@@ -1,5 +1,8 @@
 module.exports = function init(site) {
   const $customers = site.connectCollection("customers");
+  const $city = site.connectCollection("city")
+  const $goves = site.connectCollection('goves');
+  const $area = site.connectCollection("area")
 
   site.get({
     name: "customers",
@@ -42,9 +45,10 @@ module.exports = function init(site) {
       return;
     }
 
-    $customers.findOne(
-      {
-        where: { id: obj.customerId },
+    $customers.findOne({
+        where: {
+          id: obj.customerId
+        },
       },
       (err, doc) => {
         if (obj.busy) doc.busy = true;
@@ -60,7 +64,9 @@ module.exports = function init(site) {
   customer_busy_handle(null);
 
   site.on("[customer][account_invoice][balance]", (obj, callback, next) => {
-    $customers.findOne({ id: obj.id }, (err, doc) => {
+    $customers.findOne({
+      id: obj.id
+    }, (err, doc) => {
       if (doc) {
         if (!doc.balance_creditor) doc.balance_creditor = 0;
         if (!doc.balance_debtor) doc.balance_debtor = 0;
@@ -97,18 +103,14 @@ module.exports = function init(site) {
       code: "1-Test",
       name_ar: "عميل إفتراضي",
       name_en: "Default Customer",
-      branch_list: [
-        {
-          charge: [{}],
-        },
-      ],
+      branch_list: [{
+        charge: [{}],
+      }, ],
       currency_list: [],
-      address_list : [{}],
-      opening_balance: [
-        {
-          initial_balance: 0,
-        },
-      ],
+      address_list: [{}],
+      opening_balance: [{
+        initial_balance: 0,
+      }, ],
       balance_creditor: 0,
       balance_debtor: 0,
       credit_limit: 0,
@@ -177,15 +179,13 @@ module.exports = function init(site) {
       type: "customer",
     };
 
-    user.roles = [
-      {
-        module_name: "public",
-        name: "customers_user",
-        en: "Customers User",
-        ar: "إدارة العملاء للمستخدم",
-        permissions: ["customers_update", "customers_view", "customers_ui"],
-      },
-    ];
+    user.roles = [{
+      module_name: "public",
+      name: "customers_user",
+      en: "Customers User",
+      ar: "إدارة العملاء للمستخدم",
+      permissions: ["customers_update", "customers_view", "customers_ui"],
+    }, ];
 
     if (
       site.feature("pos") ||
@@ -228,22 +228,19 @@ module.exports = function init(site) {
       if (customers_doc.students_year)
         user.students_year_id = customers_doc.students_year.id;
 
-      user.roles.push(
-        {
-          module_name: "public",
-          name: "exams_customer",
-          en: "Exams Students",
-          ar: "إمتحانات الطلاب",
-          permissions: ["exams_ui", "exams_view"],
-        },
-        {
-          module_name: "public",
-          name: "libraries_student",
-          en: "Libraries Student",
-          ar: "مكتبة الطلاب",
-          permissions: ["libraries_ui", "libraries_view"],
-        }
-      );
+      user.roles.push({
+        module_name: "public",
+        name: "exams_customer",
+        en: "Exams Students",
+        ar: "إمتحانات الطلاب",
+        permissions: ["exams_ui", "exams_view"],
+      }, {
+        module_name: "public",
+        name: "libraries_student",
+        en: "Libraries Student",
+        ar: "مكتبة الطلاب",
+        permissions: ["libraries_ui", "libraries_view"],
+      });
     }
 
     user.permissions = [];
@@ -256,7 +253,9 @@ module.exports = function init(site) {
       gender: customers_doc.gender,
     };
     if (user.profile.gender && user.profile.gender.name == "female") {
-      user.permissions.push({ name: "female" });
+      user.permissions.push({
+        name: "female"
+      });
     }
 
     let company = {};
@@ -271,12 +270,10 @@ module.exports = function init(site) {
       branch = customers_doc.branch;
     }
 
-    user.branch_list = [
-      {
-        company: company,
-        branch: branch,
-      },
-    ];
+    user.branch_list = [{
+      company: company,
+      branch: branch,
+    }, ];
 
     customers_doc.company = {
       id: company.id,
@@ -307,8 +304,7 @@ module.exports = function init(site) {
       customers_doc.code = cb.code;
     }
 
-    $customers.findMany(
-      {
+    $customers.findMany({
         where: {
           "company.id": company.id,
         },
@@ -361,7 +357,9 @@ module.exports = function init(site) {
                 response.doc = doc;
 
                 if (user.password && user.email) {
-                  user.ref_info = { id: doc.id };
+                  user.ref_info = {
+                    id: doc.id
+                  };
                   site.security.addUser(user, (err, doc1) => {
                     if (!err) {
                       delete user._id;
@@ -423,15 +421,13 @@ module.exports = function init(site) {
       type: "customer",
     };
 
-    user.roles = [
-      {
-        module_name: "public",
-        name: "customers_user",
-        en: "Customers User",
-        ar: "إدارة العملاء للمستخدم",
-        permissions: ["customers_update", "customers_view", "customers_ui"],
-      },
-    ];
+    user.roles = [{
+      module_name: "public",
+      name: "customers_user",
+      en: "Customers User",
+      ar: "إدارة العملاء للمستخدم",
+      permissions: ["customers_update", "customers_view", "customers_ui"],
+    }, ];
 
     if (
       site.feature("pos") ||
@@ -474,22 +470,19 @@ module.exports = function init(site) {
       if (customers_doc.students_year)
         user.students_year_id = customers_doc.students_year.id;
 
-      user.roles.push(
-        {
-          module_name: "public",
-          name: "exams_customer",
-          en: "Exams Students",
-          ar: "إمتحانات الطلاب",
-          permissions: ["exams_ui", "exams_view"],
-        },
-        {
-          module_name: "public",
-          name: "libraries_student",
-          en: "Libraries Student",
-          ar: "مكتبة الطلاب",
-          permissions: ["libraries_ui", "libraries_view"],
-        }
-      );
+      user.roles.push({
+        module_name: "public",
+        name: "exams_customer",
+        en: "Exams Students",
+        ar: "إمتحانات الطلاب",
+        permissions: ["exams_ui", "exams_view"],
+      }, {
+        module_name: "public",
+        name: "libraries_student",
+        en: "Libraries Student",
+        ar: "مكتبة الطلاب",
+        permissions: ["libraries_ui", "libraries_view"],
+      });
     }
 
     if (customers_doc.username && customers_doc.password) {
@@ -531,7 +524,9 @@ module.exports = function init(site) {
     };
 
     if (user.profile.gender && user.profile.gender.name == "female") {
-      user.permissions.push({ name: "female" });
+      user.permissions.push({
+        name: "female"
+      });
     }
 
     user.ref_info = {
@@ -541,12 +536,10 @@ module.exports = function init(site) {
     user.company = customers_doc.company;
     user.branch = customers_doc.branch;
 
-    user.branch_list = [
-      {
-        company: site.get_company(req),
-        branch: site.get_branch(req),
-      },
-    ];
+    user.branch_list = [{
+      company: site.get_company(req),
+      branch: site.get_branch(req),
+    }, ];
 
     site.security.isUserExists(user, function (err, user_found) {
       // if (user_found) {
@@ -558,8 +551,7 @@ module.exports = function init(site) {
       // }
 
       if (customers_doc.id) {
-        $customers.edit(
-          {
+        $customers.edit({
             where: {
               id: customers_doc.id,
             },
@@ -615,8 +607,7 @@ module.exports = function init(site) {
       return;
     }
 
-    $customers.findOne(
-      {
+    $customers.findOne({
         where: {
           id: req.body.id,
         },
@@ -651,7 +642,10 @@ module.exports = function init(site) {
     }
 
     let id = req.body.id;
-    let data = { name: "customer", id: req.body.id };
+    let data = {
+      name: "customer",
+      id: req.body.id
+    };
 
     site.getDataToDelete(data, (callback) => {
       if (callback == true) {
@@ -659,8 +653,7 @@ module.exports = function init(site) {
         res.json(response);
       } else {
         if (id) {
-          $customers.delete(
-            {
+          $customers.delete({
               id: id,
               $req: req,
               $res: res,
@@ -762,11 +755,12 @@ module.exports = function init(site) {
       where["id"] = req.session.user.ref_info.id;
     }
 
-    $customers.findMany(
-      {
+    $customers.findMany({
         select: req.body.select || {},
         where: where,
-        sort: req.body.sort || { id: -1 },
+        sort: req.body.sort || {
+          id: -1
+        },
       },
       (err, docs, count) => {
         if (!err) {
@@ -804,10 +798,11 @@ module.exports = function init(site) {
       medicine_notes: 1,
     };
 
-    let where = { finger_code: data };
+    let where = {
+      finger_code: data
+    };
 
-    $customers.findOne(
-      {
+    $customers.findOne({
         select: select,
         where: where,
       },
@@ -843,10 +838,11 @@ module.exports = function init(site) {
       medicine_notes: 1,
     };
 
-    $customers.findOne(
-      {
+    $customers.findOne({
         select: select,
-        where: { id: data },
+        where: {
+          id: data
+        },
       },
       (err, doc) => {
         if (!err) {
@@ -916,8 +912,7 @@ module.exports = function init(site) {
       where["hall.id"] = where["hall"].id;
       delete where["hall"];
     }
-    $customers.findMany(
-      {
+    $customers.findMany({
         where: where,
       },
       (err, docs) => {
@@ -931,53 +926,169 @@ module.exports = function init(site) {
 
   /* ATM APIS */
 
-  
-    // my profile
-    site.post("/api/customers/myAddresses", (req, res) => {
-      req.headers.language = req.headers.language || "en";
-      let response = {};
-      if (!req.session.user) {
-        response.message = site.word("loginFirst")[req.headers.language];
-        response.done = false;
-        res.json(response);
-        return;
-      } else if (!req.session.user.ref_info) {
-        response.message = site.word("loginFirst")[req.headers.language];
-        response.done = false;
-        res.json(response);
-        return;
-      }
-      console.log(req.session.user);
-  
-      $customers.aggregate(
-        [
-          {
-            $match: {
-              id: req.session.user.ref_info.id,
-            },
-          },
-          {
-            $project: {
-              "address_list" : 1.0, 
-                "id" : 1.0
-            },
-          },
-        ],
-        (err, docs) => {
-          if (docs && docs.length > 0) {
-            response.done = true;
-            response.doc = docs[0];
-  
-            res.json(response);
-          } else {
-            response.done = false;
-  
-            response.doc = {};
-            res.json(response);
-          }
+
+  // add new address
+  site.post("/api/customers/addNewAddress", (req, res) => {
+    let response = {
+      done: false,
+    };
+
+    if (!req.session.user) {
+      response.error = "Please Login First";
+      res.json(response);
+      return;
+    } else if (!req.session.user.ref_info) {
+      response.error = "Please Login First";
+      res.json(response);
+      return;
+    }
+    let address_doc = req.body
+
+    $goves.findOne({
+        where: {
+          id: address_doc.gov.id,
+        },
+      },
+      (err, govDoc) => {
+        if (!govDoc) {
+          response.error = "gov not found";
+          res.json(response);
+          return;
         }
-      );
-    });
+
+        if (!err && govDoc) {
+
+
+
+          $city.findOne({
+              where: {
+                id: address_doc.city.id,
+              },
+            },
+            (err, cityDoc) => {
+              if (!cityDoc) {
+                response.error = "city not found";
+                res.json(response);
+                return;
+              }
+              if (!err && cityDoc) {
+
+
+                $area.findOne({
+                    where: {
+                      id: address_doc.area.id,
+                    },
+                  },
+                  (err, areaDoc) => {
+                    if (!areaDoc) {
+                      response.error = "area not found";
+                      res.json(response);
+                      return;
+                    }
+                    if (!err && areaDoc) {
+
+                      $customers.findOne({
+                          where: {
+                            id: req.session.user.ref_info.id,
+                          },
+                        },
+                        (err, doc) => {
+                          if (!err && doc) {
+                            response.done = true;
+                            doc.address_list.push({
+                              gov: govDoc,
+                              city: cityDoc,
+                              area: areaDoc,
+                              lat: address_doc.lat,
+                              long: address_doc.long,
+                              address: address_doc.address,
+                            })
+                            response.doc = doc;
+                            $customers.update(doc)
+                            res.json(response);
+
+                          } else {
+                            response.done = false;
+                            response.error = 'no user found';
+                            res.json(response);
+                          }
+
+                        }
+                      );
+
+                    }
+                  }
+                );
+
+
+              }
+            }
+          );
+
+
+
+
+
+
+
+        } else {
+          response.done = false;
+          response.error = 'no user found';
+          res.json(response);
+        }
+        
+      }
+    );
+
+
+
+  });
+
+  // my addresses
+  site.post("/api/customers/myAddresses", (req, res) => {
+    req.headers.language = req.headers.language || "en";
+    let response = {};
+    if (!req.session.user) {
+      response.message = site.word("loginFirst")[req.headers.language];
+      response.done = false;
+      res.json(response);
+      return;
+    } else if (!req.session.user.ref_info) {
+      response.message = site.word("loginFirst")[req.headers.language];
+      response.done = false;
+      res.json(response);
+      return;
+    }
+    console.log(req.session.user);
+
+    $customers.aggregate(
+      [{
+          $match: {
+            id: req.session.user.ref_info.id,
+          },
+        },
+        {
+          $project: {
+            "address_list": 1.0,
+            "id": 1.0
+          },
+        },
+      ],
+      (err, docs) => {
+        if (docs && docs.length > 0) {
+          response.done = true;
+          response.doc = docs[0];
+
+          res.json(response);
+        } else {
+          response.done = false;
+
+          response.doc = {};
+          res.json(response);
+        }
+      }
+    );
+  });
 
 
 
@@ -999,8 +1110,7 @@ module.exports = function init(site) {
     console.log(req.session.user);
 
     $customers.aggregate(
-      [
-        {
+      [{
           $match: {
             id: req.session.user.ref_info.id,
           },
