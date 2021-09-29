@@ -1,329 +1,423 @@
 <div class="form">
-    <div id="analysisRequestsAddModal">
-        <fieldset>
-            <legend> ##word.analysis_requests_informations## </legend>
+  <div id="analysisRequestsAddModal">
+    <fieldset>
+      <legend>##word.analysis_requests_informations##</legend>
+      <div class="row">
+        <div class="col9">
+          <div class="row">
+            <i-control
+              ng-hide="disabledCode"
+              class="col2"
+              label="##word.code##"
+              ng-model="analysis_requests.code"
+            >
+            </i-control>
+
+            <i-date2
+              class="col4"
+              ng-model="analysis_requests.date"
+              label="##word.date##"
+              v="r"
+            >
+            </i-date2>
+            <i-checkbox
+              class="col2"
+              label="##word.at_home##"
+              ng-model="analysis_requests.at_home"
+            >
+            </i-checkbox>
+
+            <i-button
+              type="view"
+              class="col2"
+              ng-show="analysis_requests.at_home"
+              label="##word.home_visit_date##"
+              onclick="site.showModal('#analysisRequestDays')"
+            >
+            </i-button>
+
+            <i-checkbox
+              class="col2"
+              label="##word.active##"
+              ng-model="analysis_requests.active"
+            >
+            </i-checkbox>
+          </div>
+
+          <div class="row">
             <div class="row">
-                <div class="col9">
- 
-
-                    <div class="row">
-                        <i-control ng-hide="disabledCode" class="col2" label="##word.code##"
-                            ng-model="analysis_requests.code">
-                        </i-control>
-
-                        <i-date2 class="col4" ng-model="analysis_requests.date" label="##word.date##" v="r">
-                        </i-date2>
-
-                        <div class="col3"></div>
-
-                        <i-checkbox class="col2" label="##word.active##" ng-model="analysis_requests.active">
-                        </i-checkbox>
-                    </div>
-
-                    <div class="row">
-                        <div class="row">
-                            <i-control class="col2" label="##word.patient_search##" ng-model="doctor_search"
-                                ng-keydown="getPatientList($event)"></i-control>
-
-                            <i-list class="col4" label="##word.patient##" v="r" ng-model="analysis_requests.customer"
-                                display="name_##session.lang##" items="customersList"
-                                ng-search="_search.$patients_searching"
-                                ng-change="loadDoctorsVisits();getAnalysisRequestsList({'customer.id' :analysis_requests.customer.id},'get_last')">
-                            </i-list>
-
-                            <i-button ng-show="analysis_requests.customer.id" type="details"
-                                label="##word.customers_details##"
-                                ng-click="showPatient(analysis_requests.customer.id)">
-                            </i-button>
-
-                            <i-button ng-show="analysis_requests.last_analysis_list.length > 0"
-                                label="##word.last_analysis##" ng-click="showLastAnalysis(analysis_requests)">
-                            </i-button>
-
-                            <i-button type="add" label="##word.customers_new##" ng-click="displayAddCustomer()">
-                            </i-button>
-
-                        </div>
-
-                        <br>
-                        <br>
-                        <div class="row" ng-show="analysis_requests.customer.id">
-                            <fieldset class="col11">
-
-                                <table class="table bold center hover">
-
-                                    <tr>
-                                        <td class="white bg_card"> ##word.customer_name## </td>
-                                        <td colspan="5" class="center">
-                                            {{analysis_requests.customer.name_##session.lang##}} <b class="red"
-                                                ng-show="analysis_requests.customer.child">(##word.child##)</b>
-                                        </td>
-
-                                        <td class="white bg_card"> ##word.gender## </td>
-                                        <td colspan="2" class="center">
-                                            {{analysis_requests.customer.gender.##session.lang##}}
-                                        </td>
-
-                                    </tr>
-
-                                    <tr>
-                                        <td class="white bg_card"> ##word.weight## </td>
-                                        <td colspan="2" class="center"> {{analysis_requests.customer.weight}} </td>
-                                        <td class="white bg_card"> ##word.tall## </td>
-                                        <td colspan="2" class="center"> {{analysis_requests.customer.tall}} </td>
-                                        <td class="white bg_card"> ##word.blood_type## </td>
-                                        <td colspan="2" class="center red">
-                                            {{analysis_requests.customer.blood_type.name_##session.lang##}}
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="white bg_card"> ##word.medicine_notes## </td>
-                                        <td colspan="7" class="center"> {{analysis_requests.customer.medicine_notes}}
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="white bg_card"> ##word.gov## </td>
-                                        <td colspan="2" class="center">
-                                            {{analysis_requests.customer.gov.name_##session.lang##}} </td>
-                                        <td class="white bg_card"> ##word.city## </td>
-                                        <td colspan="2" class="center">
-                                            {{analysis_requests.customer.city.name_##session.lang##}}
-                                        </td>
-                                        <td class="white bg_card"> ##word.area## </td>
-                                        <td colspan="2" class="center">
-                                            {{analysis_requests.customer.area.name_##session.lang##}}
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="white bg_card"> ##word.address## </td>
-                                        <td colspan="7" class="center"> {{analysis_requests.customer.address}}</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="white bg_card"> ##word.mobile## </td>
-                                        <td colspan="4" class="center"> {{analysis_requests.customer.mobile}}</td>
-                                        <td class="white bg_card"> ##word.phone## </td>
-                                        <td colspan="3" class="center"> {{analysis_requests.customer.phone}}</td>
-                                    </tr>
-
-                                </table>
-                            </fieldset>
-                        </div>
-
-                        <br>
-                        <br>
-
-                        <div class="row">
-
-                            <i-list class="col4" label="##word.doctor_visit##" ng-model="doctor_visit" display="code"
-                                space=" - " display2="selected_clinic.name_##session.lang##" items="doctorsVisitsList"
-                                ng-search="_search.$patients_searching">
-                            </i-list>
-
-                            <i-button type="add" class="col2" ng-click="getDoctorVisitAnalysis(doctor_visit)">
-                            </i-button>
-
-                            <i-list class="col4" label="##word.analysis##" ng-model="analys" items="analysisList"
-                                display="name_##session.lang##" ng-search="_search.$patients_searching">
-                            </i-list>
-
-                            <i-button type="add" class="col2" ng-click="changeAnalysisList(analys)">
-                            </i-button>
-                        </div>
-
-
-                    </div>
-
-
-                </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                <div class="col3">
-                    <i-image category="analysis_requests" ng-model="analysis_requests.image_url"> </i-image>
-                    <i-files label="##word.files##" categoty="pathients" ng-model="analysis_requests.files"></i-files>
-                    <br>
-                    <br>
-                    <div class=" padding margin">
-                        <table class="table box-shadow " ng-init="discountEditorAdd = true">
-                            <tr>
-                                <th colspan="2" class="pointer" ng-click="discountEditorAdd = !discountEditorAdd">
-                                    ##word.discountes##
-                                    <i class="fa fa-edit"></i>
-                                </th>
-                            </tr>
-                            <tr ng-hide="discountEditorAdd">
-                                <td colspan="2">
-                                    <form>
-
-                                        <div class="row ">
-                                            <i-list class="col4" ng-model="discount" display="name_##session.lang##"
-                                                ng-search="_search.$discount_name" items="discount_types"
-                                                label="##word.discount_name##">
-                                            </i-list>
-                                        </div>
-
-                                        <div class="row">
-                                            <i-control class="col4" ng-model="discount.value" type="number"
-                                                label="##word.discount_value##"></i-control>
-                                            <div class="col4">
-                                                <i-radio ng-model="discount.type" ng-value="number" group="type"
-                                                    label="##word.amount##">
-                                                </i-radio>
-
-                                                <i-radio ng-model="discount.type" group="type" ng-value="percent"
-                                                    label="##word.percent##">
-                                                </i-radio>
-                                            </div>
-                                            <div class="col4" class="padding">
-                                                <br>
-                                                <i-button ng-click="addDiscount() ;calc(analysis_requests)"
-                                                    label="##word.stores_out_add_discount##" type="add default">
-                                                </i-button>
-                                            </div>
-
-                                        </div>
-
-                                    </form>
-                                </td>
-                            </tr>
-
-                            <tr ng-repeat="d1 in analysis_requests.discountes">
-
-                                <td>
-                                    <span class="bold red">{{d1.name_##session.lang##}} -</span>
-                                    <span class="bold red" ng-show="d1.type === 'percent'">{{d1.value}}
-                                        %</span>
-                                    <span class="bold red" ng-show="d1.type === 'number'">{{d1.value}}$</span>
-                                    <i-button type="delete" ng-click="deleteDiscount(d1) ; calc(analysis_requests)">
-                                    </i-button>
-                                </td>
-
-                            </tr>
-                        </table>
-
-                    </div>
-                </div>
-
-                <br>
-                <br>
-                <br>
-                <br>
-
-                <div class="row" ng-show="analysis_requests.analysis_list.length > 0">
-                    <fieldset>
-                        <legend> ##word.analysis## ##word.requiredy##</legend>
-                        <table class="table loaded center hover bold">
-                            <tr>
-                                <th>##word.analysis_name##</th>
-                                <th>##word.price##</th>
-                                <th> ##word.normal_range## </th>
-                                <th> ##word.notes_before_analysis## </th>
-                                <th> ##word.actions## </th>
-                            </tr>
-
-                            <tr ng-repeat="c in analysis_requests.analysis_list">
-
-                                <td class="center"><br> {{c.name_##session.lang##}}</td>
-
-                                <td class="center green"><br> {{c.price}}</td>
-
-                                <td class="center">
-                                    <br>
-                                    <b class="green">{{c.from}}</b> - <b class="red">{{c.to}}</b>
-                                </td>
-
-                                <td>
-                                    <i-textarea ng-model="c.notes_before_analysis">
-                                    </i-textarea>
-
-                                </td>
-
-                                <td>
-                                    <i-button type="delete"
-                                        ng-click="analysis_requests.analysis_list.splice($index,1);calc(analysis_requests)">
-                                    </i-button>
-
-                                </td>
-
-                            </tr>
-                        </table>
-                    </fieldset>
-
-                </div>
-
-                <br>
-                <br>
-
-                <div class="row">
-
-                    <fieldset class="col6" ng-show="analysis_requests.analysis_list.length > 0">
-                        <div class="row">
-
-                            <i-control class="col3" ng-show="analysis_requests.total_value" disabled
-                                ng-model="analysis_requests.total_value" type="number" label="##word.total_value##">
-                            </i-control>
-
-                            <i-control class="col3" ng-show="analysis_requests.total_discount" disabled
-                                ng-model="analysis_requests.total_discount" type="number"
-                                label="##word.total_discount##">
-                            </i-control>
-
-                        </div>
-
-                        <div class="row">
-
-                            <i-control class="col3" disabled ng-show="analysis_requests.net_value"
-                                ng-model="analysis_requests.net_value" type="number" label="##word.paid_require##">
-                            </i-control>
-
-                            <i-control class="col3" ng-change="calc(analysis_requests)"
-                                ng-model="analysis_requests.paid" type="number" label="##word.paid##">
-                            </i-control>
-
-                            <i-control class="col3" disabled ng-model="analysis_requests.remain" type="number"
-                                label="##word.remain##">
-                            </i-control>
-
-
-                        </div>
-
-
-                    </fieldset>
-
-                </div>
-
+              <i-control
+                class="col2"
+                label="##word.patient_search##"
+                ng-model="doctor_search"
+                ng-keydown="getPatientList($event)"
+              ></i-control>
+
+              <i-list
+                class="col4"
+                label="##word.patient##"
+                v="r"
+                ng-model="analysis_requests.customer"
+                display="name_##session.lang##"
+                items="customersList"
+                ng-search="_search.$patients_searching"
+                ng-change="loadDoctorsVisits();getAnalysisRequestsList({'customer.id' :analysis_requests.customer.id},'get_last')"
+              >
+              </i-list>
+
+              <i-button
+                ng-show="analysis_requests.customer.id"
+                type="details"
+                label="##word.customers_details##"
+                ng-click="showPatient(analysis_requests.customer.id)"
+              >
+              </i-button>
+
+              <i-button
+                ng-show="analysis_requests.last_analysis_list.length > 0"
+                label="##word.last_analysis##"
+                ng-click="showLastAnalysis(analysis_requests)"
+              >
+              </i-button>
+
+              <i-button
+                type="add"
+                label="##word.customers_new##"
+                ng-click="displayAddCustomer()"
+              >
+              </i-button>
             </div>
-        </fieldset>
-    </div>
+
+            <br />
+            <br />
+            <div class="row" ng-show="analysis_requests.customer.id">
+              <fieldset class="col11">
+                <table class="table bold center hover">
+                  <tr>
+                    <td class="white bg_card">##word.customer_name##</td>
+                    <td colspan="5" class="center">
+                      {{analysis_requests.customer.name_##session.lang##}}
+                      <b class="red" ng-show="analysis_requests.customer.child"
+                        >(##word.child##)</b
+                      >
+                    </td>
+
+                    <td class="white bg_card">##word.gender##</td>
+                    <td colspan="2" class="center">
+                      {{analysis_requests.customer.gender.##session.lang##}}
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="white bg_card">##word.weight##</td>
+                    <td colspan="2" class="center">
+                      {{analysis_requests.customer.weight}}
+                    </td>
+                    <td class="white bg_card">##word.tall##</td>
+                    <td colspan="2" class="center">
+                      {{analysis_requests.customer.tall}}
+                    </td>
+                    <td class="white bg_card">##word.blood_type##</td>
+                    <td colspan="2" class="center red">
+                      {{analysis_requests.customer.blood_type.name_##session.lang##}}
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="white bg_card">##word.medicine_notes##</td>
+                    <td colspan="7" class="center">
+                      {{analysis_requests.customer.medicine_notes}}
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="white bg_card">##word.gov##</td>
+                    <td colspan="2" class="center">
+                      {{analysis_requests.customer.gov.name_##session.lang##}}
+                    </td>
+                    <td class="white bg_card">##word.city##</td>
+                    <td colspan="2" class="center">
+                      {{analysis_requests.customer.city.name_##session.lang##}}
+                    </td>
+                    <td class="white bg_card">##word.area##</td>
+                    <td colspan="2" class="center">
+                      {{analysis_requests.customer.area.name_##session.lang##}}
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="white bg_card">##word.address##</td>
+                    <td colspan="7" class="center">
+                      {{analysis_requests.customer.address}}
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="white bg_card">##word.mobile##</td>
+                    <td colspan="4" class="center">
+                      {{analysis_requests.customer.mobile}}
+                    </td>
+                    <td class="white bg_card">##word.phone##</td>
+                    <td colspan="3" class="center">
+                      {{analysis_requests.customer.phone}}
+                    </td>
+                  </tr>
+                </table>
+              </fieldset>
+            </div>
+
+            <br />
+            <br />
+
+            <div class="row">
+              <i-list
+                class="col4"
+                label="##word.doctor_visit##"
+                ng-model="doctor_visit"
+                display="code"
+                space=" - "
+                display2="selected_clinic.name_##session.lang##"
+                items="doctorsVisitsList"
+                ng-search="_search.$patients_searching"
+              >
+              </i-list>
+
+              <i-button
+                type="add"
+                class="col2"
+                ng-click="getDoctorVisitAnalysis(doctor_visit)"
+              >
+              </i-button>
+
+              <i-list
+                class="col4"
+                label="##word.analysis##"
+                ng-model="analys"
+                items="analysisList"
+                display="name_##session.lang##"
+                ng-search="_search.$patients_searching"
+              >
+              </i-list>
+
+              <i-button
+                type="add"
+                class="col2"
+                ng-click="changeAnalysisList(analys)"
+              >
+              </i-button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col3">
+          <i-image
+            category="analysis_requests"
+            ng-model="analysis_requests.image_url"
+          >
+          </i-image>
+          <i-files
+            label="##word.files##"
+            categoty="pathients"
+            ng-model="analysis_requests.files"
+          ></i-files>
+          <br />
+          <br />
+          <div class="padding margin">
+            <table class="table box-shadow" ng-init="discountEditorAdd = true">
+              <tr>
+                <th
+                  colspan="2"
+                  class="pointer"
+                  ng-click="discountEditorAdd = !discountEditorAdd"
+                >
+                  ##word.discountes##
+                  <i class="fa fa-edit"></i>
+                </th>
+              </tr>
+              <tr ng-hide="discountEditorAdd">
+                <td colspan="2">
+                  <form>
+                    <div class="row">
+                      <i-list
+                        class="col4"
+                        ng-model="discount"
+                        display="name_##session.lang##"
+                        ng-search="_search.$discount_name"
+                        items="discount_types"
+                        label="##word.discount_name##"
+                      >
+                      </i-list>
+                    </div>
+
+                    <div class="row">
+                      <i-control
+                        class="col4"
+                        ng-model="discount.value"
+                        type="number"
+                        label="##word.discount_value##"
+                      ></i-control>
+                      <div class="col4">
+                        <i-radio
+                          ng-model="discount.type"
+                          ng-value="number"
+                          group="type"
+                          label="##word.amount##"
+                        >
+                        </i-radio>
+
+                        <i-radio
+                          ng-model="discount.type"
+                          group="type"
+                          ng-value="percent"
+                          label="##word.percent##"
+                        >
+                        </i-radio>
+                      </div>
+                      <div class="col4" class="padding">
+                        <br />
+                        <i-button
+                          ng-click="addDiscount() ;calc(analysis_requests)"
+                          label="##word.stores_out_add_discount##"
+                          type="add default"
+                        >
+                        </i-button>
+                      </div>
+                    </div>
+                  </form>
+                </td>
+              </tr>
+
+              <tr ng-repeat="d1 in analysis_requests.discountes">
+                <td>
+                  <span class="bold red">{{d1.name_##session.lang##}} -</span>
+                  <span class="bold red" ng-show="d1.type === 'percent'"
+                    >{{d1.value}} %</span
+                  >
+                  <span class="bold red" ng-show="d1.type === 'number'"
+                    >{{d1.value}}$</span
+                  >
+                  <i-button
+                    type="delete"
+                    ng-click="deleteDiscount(d1) ; calc(analysis_requests)"
+                  >
+                  </i-button>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <br />
+        <br />
+        <br />
+        <br />
+
+        <div class="row" ng-show="analysis_requests.analysis_list.length > 0">
+          <fieldset>
+            <legend>##word.analysis## ##word.requiredy##</legend>
+            <table class="table loaded center hover bold">
+              <tr>
+                <th>##word.analysis_name##</th>
+                <th>##word.price##</th>
+                <th>##word.normal_range##</th>
+                <th>##word.notes_before_analysis##</th>
+                <th>##word.actions##</th>
+              </tr>
+
+              <tr ng-repeat="c in analysis_requests.analysis_list">
+                <td class="center">
+                  <br />
+                  {{c.name_##session.lang##}}
+                </td>
+
+                <td class="center green">
+                  <br />
+                  {{c.price}}
+                </td>
+
+                <td class="center">
+                  <br />
+                  <b class="green">{{c.from}}</b> - <b class="red">{{c.to}}</b>
+                </td>
+
+                <td>
+                  <i-textarea ng-model="c.notes_before_analysis"> </i-textarea>
+                </td>
+
+                <td>
+                  <i-button
+                    type="delete"
+                    ng-click="analysis_requests.analysis_list.splice($index,1);calc(analysis_requests)"
+                  >
+                  </i-button>
+                </td>
+              </tr>
+            </table>
+          </fieldset>
+        </div>
+
+        <br />
+        <br />
+
+        <div class="row">
+          <fieldset
+            class="col6"
+            ng-show="analysis_requests.analysis_list.length > 0"
+          >
+            <div class="row">
+              <i-control
+                class="col3"
+                ng-show="analysis_requests.total_value"
+                disabled
+                ng-model="analysis_requests.total_value"
+                type="number"
+                label="##word.total_value##"
+              >
+              </i-control>
+
+              <i-control
+                class="col3"
+                ng-show="analysis_requests.total_discount"
+                disabled
+                ng-model="analysis_requests.total_discount"
+                type="number"
+                label="##word.total_discount##"
+              >
+              </i-control>
+            </div>
+
+            <div class="row">
+              <i-control
+                class="col3"
+                disabled
+                ng-show="analysis_requests.net_value"
+                ng-model="analysis_requests.net_value"
+                type="number"
+                label="##word.paid_require##"
+              >
+              </i-control>
+
+              <i-control
+                class="col3"
+                ng-change="calc(analysis_requests)"
+                ng-model="analysis_requests.paid"
+                type="number"
+                label="##word.paid##"
+              >
+              </i-control>
+
+              <i-control
+                class="col3"
+                disabled
+                ng-model="analysis_requests.remain"
+                type="number"
+                label="##word.remain##"
+              >
+              </i-control>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+    </fieldset>
+  </div>
 </div>

@@ -705,6 +705,52 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.getDatesDays = function (day) {
+    $scope.busy = true;
+    $scope.datesDaysList = [];
+    if (day) {
+      $http({
+        method: "POST",
+        url: "/api/dates/day",
+        data: {
+          day: day,
+        },
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done && response.data.list.length > 0) {
+            $scope.datesDaysList = response.data.list;
+          }
+        },
+        function (err) {
+          $scope.busy = false;
+          $scope.error = err;
+        }
+      );
+    }
+  };
+
+  $scope.getDaysList = function () {
+    $http({
+      method: "POST",
+      url: "/api/days/all",
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.daysList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.bookVisitDay = function (date) {
+    $scope.analysis_requests.visit_date = date;
+    site.hideModal("#analysisRequestDays");
+  };
+
   $scope.getNumberingAuto = function () {
     $scope.error = "";
     $scope.busy = true;
@@ -731,6 +777,7 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
   $scope.getAnalysisRequestsList();
   $scope.loadAnalysis();
   $scope.getGovList();
+  $scope.getDaysList();
   $scope.loadDiscountTypes();
   $scope.getNumberingAuto();
 });
