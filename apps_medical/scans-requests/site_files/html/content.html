@@ -1,295 +1,415 @@
 <div class="form">
-    <div id="scansRequestsAddModal">
-        <fieldset>
-            <legend> ##word.scans_requests_informations## </legend>
+  <div id="scansRequestsAddModal">
+    <fieldset>
+      <legend>##word.scans_requests_informations##</legend>
+      <div class="row">
+        <div class="col9">
+          <div class="row">
+            <i-control
+              ng-hide="disabledCode"
+              class="col2"
+              label="##word.code##"
+              ng-model="scans_requests.code"
+            >
+            </i-control>
+
+            <i-date2
+              class="col4"
+              ng-model="scans_requests.date"
+              label="##word.date##"
+              v="r"
+            >
+            </i-date2>
+
+            <i-checkbox
+              class="col2"
+              label="##word.at_home##"
+              ng-model="scans_requests.at_home"
+            >
+            </i-checkbox>
+
+            <i-button
+              type="view"
+              class="col2"
+              ng-show="scans_requests.at_home"
+              label="##word.home_visit_date##"
+              onclick="site.showModal('#scansRequestDays')"
+            >
+            </i-button>
+
+            <i-checkbox
+              class="col2"
+              label="##word.active##"
+              ng-model="scans_requests.active"
+            >
+            </i-checkbox>
+          </div>
+
+          <div class="row">
             <div class="row">
-                <div class="col9">
-
-                    <div class="row">
-                        <i-control ng-hide="disabledCode" class="col2" label="##word.code##"
-                            ng-model="scans_requests.code">
-                        </i-control>
-
-                        <i-date2 class="col4" ng-model="scans_requests.date" label="##word.date##" v="r">
-                        </i-date2>
-
-                        <div class="col3"></div>
-
-                        <i-checkbox class="col2" label="##word.active##" ng-model="scans_requests.active">
-                        </i-checkbox>
-                    </div>
-
-                    <div class="row">
-                        <div class="row">
-                            <i-control class="col2" label="##word.patient_search##" ng-model="doctor_search"
-                                ng-keydown="getPatientList($event)"></i-control>
-
-                            <i-list class="col4" label="##word.patient##" v="r" ng-model="scans_requests.customer"
-                                display="name_##session.lang##" items="customersList"
-                                ng-search="_search.$patients_searching"
-                                ng-change="loadDoctorsVisits();getScansRequestsList({'customer.id' :scans_requests.customer.id},'get_last')">
-                            </i-list>
-
-                            <i-button ng-show="scans_requests.customer.id" type="details"
-                                label="##word.customers_details##" ng-click="showPatient(scans_requests.customer.id)">
-                            </i-button>
-
-                            <i-button ng-show="scans_requests.last_scans_list.length > 0" label="##word.last_scans##" ng-click="showLastScans(scans_requests)">
-                            </i-button>
-
-                            <i-button type="add" label="##word.customers_new##" ng-click="displayAddCustomer()">
-                            </i-button>
-
-                        </div>
-
-                        <br>
-                        <br>
-                        <div class="row" ng-show="scans_requests.customer.id">
-                            <fieldset class="col11">
-
-                                <table class="table bold center hover">
-
-                                    <tr>
-                                        <td class="white bg_card"> ##word.customer_name## </td>
-                                        <td colspan="5" class="center">
-                                            {{scans_requests.customer.name_##session.lang##}} <b class="red"
-                                                ng-show="scans_requests.customer.child">(##word.child##)</b>
-                                        </td>
-
-                                        <td class="white bg_card"> ##word.gender## </td>
-                                        <td colspan="2" class="center">
-                                            {{scans_requests.customer.gender.##session.lang##}}
-                                        </td>
-
-                                    </tr>
-
-
-
-                                    <tr>
-                                        <td class="white bg_card"> ##word.weight## </td>
-                                        <td colspan="2" class="center"> {{scans_requests.customer.weight}} </td>
-                                        <td class="white bg_card"> ##word.tall## </td>
-                                        <td colspan="2" class="center"> {{scans_requests.customer.tall}} </td>
-                                        <td class="white bg_card"> ##word.blood_type## </td>
-                                        <td colspan="2" class="center red">
-                                            {{scans_requests.customer.blood_type.name}}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="white bg_card"> ##word.medicine_notes## </td>
-                                        <td colspan="7" class="center"> {{scans_requests.customer.medicine_notes}}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="white bg_card"> ##word.gov## </td>
-                                        <td colspan="2" class="center">
-                                            {{scans_requests.customer.gov.name_##session.lang##}} </td>
-                                        <td class="white bg_card"> ##word.city## </td>
-                                        <td colspan="2" class="center">
-                                            {{scans_requests.customer.city.name_##session.lang##}}
-                                        </td>
-                                        <td class="white bg_card"> ##word.area## </td>
-                                        <td colspan="2" class="center">
-                                            {{scans_requests.customer.area.name_##session.lang##}}
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="white bg_card"> ##word.address## </td>
-                                        <td colspan="7" class="center"> {{scans_requests.customer.address}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="white bg_card"> ##word.mobile## </td>
-                                        <td colspan="4" class="center"> {{scans_requests.customer.mobile}}</td>
-                                        <td class="white bg_card"> ##word.phone## </td>
-                                        <td colspan="3" class="center"> {{scans_requests.customer.phone}}</td>
-                                    </tr>
-
-                                </table>
-                            </fieldset>
-                        </div>
-
-                        <br>
-                        <br>
-
-                        <div class="row">
-
-                            <i-list class="col4" label="##word.doctor_visit##" ng-model="doctor_visit" display="code"
-                                space=" - " display2="selected_clinic.name_##session.lang##" items="doctorsVisitsList"
-                                ng-search="_search.$patients_searching">
-                            </i-list>
-
-                            <i-button type="add" class="col2" ng-click="getDoctorVisitScans(doctor_visit)">
-                            </i-button>
-
-                            <i-list class="col4" label="##word.scans##" ng-model="_scan" items="scansList"
-                                display="name_##session.lang##" ng-search="_search.$patients_searching">
-                            </i-list>
-
-                            <i-button type="add" class="col2" ng-click="changeScansList(_scan)">
-                            </i-button>
-                        </div>
-
-
-                    </div>
-
-
-                </div>
-
-
-
-
-
-
-                <div class="col3">
-                    <i-image category="scans_requests" ng-model="scans_requests.image_url"> </i-image>
-                    <i-files label="##word.files##" categoty="scans_requestssa" ng-model="scans_requests.files">
-                    </i-files>
-
-                    <br>
-                    <br>
-
-                    <div class=" padding margin">
-                        <table class="table box-shadow " ng-init="discountEditorAdd = true">
-                            <tr>
-                                <th colspan="2" class="pointer" ng-click="discountEditorAdd = !discountEditorAdd">
-                                    ##word.discountes##
-                                    <i class="fa fa-edit"></i>
-                                </th>
-                            </tr>
-                            <tr ng-hide="discountEditorAdd">
-                                <td colspan="2">
-                                    <form>
-
-                                        <div class="row ">
-                                            <i-list class="col4" ng-model="discount" display="name_##session.lang##"
-                                                ng-search="_search.$discount_name" items="discount_types"
-                                                label="##word.discount_name##">
-                                            </i-list>
-                                        </div>
-
-                                        <div class="row">
-                                            <i-control class="col4" ng-model="discount.value" type="number"
-                                                label="##word.discount_value##"></i-control>
-                                            <div class="col4">
-                                                <i-radio ng-model="discount.type" ng-value="number" group="type"
-                                                    label="##word.amount##">
-                                                </i-radio>
-
-                                                <i-radio ng-model="discount.type" group="type" ng-value="percent"
-                                                    label="##word.percent##">
-                                                </i-radio>
-                                            </div>
-                                            <div class="col4" class="padding">
-                                                <br>
-                                                <i-button ng-click="addDiscount() ;calc(scans_requests)"
-                                                    label="##word.stores_out_add_discount##" type="add default">
-                                                </i-button>
-                                            </div>
-
-                                        </div>
-
-                                    </form>
-                                </td>
-                            </tr>
-
-                            <tr ng-repeat="d1 in scans_requests.discountes">
-
-                                <td>
-                                    <span class="bold red">{{d1.name_##session.lang##}} -</span>
-                                    <span class="bold red" ng-show="d1.type === 'percent'">{{d1.value}}
-                                        %</span>
-                                    <span class="bold red" ng-show="d1.type === 'number'">{{d1.value}}$</span>
-                                    <i-button type="delete" ng-click="deleteDiscount(d1) ; calc(scans_requests)">
-                                    </i-button>
-                                </td>
-
-                            </tr>
-                        </table>
-
-                    </div>
-                </div>
-
-                <br>
-                <br>
-                <br>
-                <br>
-
-                <div class="row" ng-show="scans_requests.scans_list.length > 0">
-                    <fieldset>
-                        <legend> ##word.scans## ##word.requiredy##</legend>
-                        <table class="table loaded center hover bold">
-                            <tr>
-                                <th>##word.scans_name##</th>
-                                <th>##word.price##</th>
-                                <th> ##word.notes_before_scans## </th>
-                                <th> ##word.actions## </th>
-                            </tr>
-
-                            <tr ng-repeat="c in scans_requests.scans_list">
-
-                                <td class="center"><br> {{c.name_##session.lang##}}</td>
-
-                                <td class="center green"><br> {{c.price}}</td>
-
-                                <td>
-                                    <i-textarea ng-model="c.notes_before_scans">
-                                    </i-textarea>
-                                </td>
-
-                                <td>
-                                    <i-button type="delete"
-                                        ng-click="scans_requests.scans_list.splice($index,1);calc(scans_requests)">
-                                    </i-button>
-                                </td>
-
-                            </tr>
-                        </table>
-                    </fieldset>
-
-                </div>
-
-                <br>
-                <br>
-
-                <div class="row">
-
-                    <fieldset class="col6" ng-show="scans_requests.scans_list.length > 0">
-                        <div class="row">
-
-                            <i-control class="col3" ng-show="scans_requests.total_value" disabled
-                                ng-model="scans_requests.total_value" type="number" label="##word.total_value##">
-                            </i-control>
-
-                            <i-control class="col3" ng-show="scans_requests.total_discount" disabled
-                                ng-model="scans_requests.total_discount" type="number" label="##word.total_discount##">
-                            </i-control>
-
-                        </div>
-
-                        <div class="row">
-
-                            <i-control class="col3" disabled ng-show="scans_requests.net_value"
-                                ng-model="scans_requests.net_value" type="number" label="##word.paid_require##">
-                            </i-control>
-
-                            <i-control class="col3" ng-change="calc(scans_requests)" ng-model="scans_requests.paid"
-                                type="number" label="##word.paid##">
-                            </i-control>
-
-                            <i-control class="col3" disabled ng-model="scans_requests.remain" type="number"
-                                label="##word.remain##">
-                            </i-control>
-
-
-                        </div>
-
-
-                    </fieldset>
-
-                </div>
-
+              <i-control
+                class="col2"
+                label="##word.patient_search##"
+                ng-model="doctor_search"
+                ng-keydown="getPatientList($event)"
+              ></i-control>
+
+              <i-list
+                class="col4"
+                label="##word.patient##"
+                v="r"
+                ng-model="scans_requests.customer"
+                display="name_##session.lang##"
+                items="customersList"
+                ng-search="_search.$patients_searching"
+                ng-change="loadDoctorsVisits();getScansRequestsList({'customer.id' :scans_requests.customer.id},'get_last')"
+              >
+              </i-list>
+
+              <i-button
+                ng-show="scans_requests.customer.id"
+                type="details"
+                label="##word.customers_details##"
+                ng-click="showPatient(scans_requests.customer.id)"
+              >
+              </i-button>
+
+              <i-button
+                ng-show="scans_requests.last_scans_list.length > 0"
+                label="##word.last_scans##"
+                ng-click="showLastScans(scans_requests)"
+              >
+              </i-button>
+
+              <i-button
+                type="add"
+                label="##word.customers_new##"
+                ng-click="displayAddCustomer()"
+              >
+              </i-button>
             </div>
-        </fieldset>
-    </div>
+
+            <br />
+            <br />
+            <div class="row" ng-show="scans_requests.customer.id">
+              <fieldset class="col11">
+                <table class="table bold center hover">
+                  <tr>
+                    <td class="white bg_card">##word.customer_name##</td>
+                    <td colspan="5" class="center">
+                      {{scans_requests.customer.name_##session.lang##}}
+                      <b class="red" ng-show="scans_requests.customer.child"
+                        >(##word.child##)</b
+                      >
+                    </td>
+
+                    <td class="white bg_card">##word.gender##</td>
+                    <td colspan="2" class="center">
+                      {{scans_requests.customer.gender.##session.lang##}}
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="white bg_card">##word.weight##</td>
+                    <td colspan="2" class="center">
+                      {{scans_requests.customer.weight}}
+                    </td>
+                    <td class="white bg_card">##word.tall##</td>
+                    <td colspan="2" class="center">
+                      {{scans_requests.customer.tall}}
+                    </td>
+                    <td class="white bg_card">##word.blood_type##</td>
+                    <td colspan="2" class="center red">
+                      {{scans_requests.customer.blood_type.name}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="white bg_card">##word.medicine_notes##</td>
+                    <td colspan="7" class="center">
+                      {{scans_requests.customer.medicine_notes}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="white bg_card">##word.gov##</td>
+                    <td colspan="2" class="center">
+                      {{scans_requests.customer.gov.name_##session.lang##}}
+                    </td>
+                    <td class="white bg_card">##word.city##</td>
+                    <td colspan="2" class="center">
+                      {{scans_requests.customer.city.name_##session.lang##}}
+                    </td>
+                    <td class="white bg_card">##word.area##</td>
+                    <td colspan="2" class="center">
+                      {{scans_requests.customer.area.name_##session.lang##}}
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="white bg_card">##word.address##</td>
+                    <td colspan="7" class="center">
+                      {{scans_requests.customer.address}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="white bg_card">##word.mobile##</td>
+                    <td colspan="4" class="center">
+                      {{scans_requests.customer.mobile}}
+                    </td>
+                    <td class="white bg_card">##word.phone##</td>
+                    <td colspan="3" class="center">
+                      {{scans_requests.customer.phone}}
+                    </td>
+                  </tr>
+                </table>
+              </fieldset>
+            </div>
+
+            <br />
+            <br />
+
+            <div class="row">
+              <i-list
+                class="col4"
+                label="##word.doctor_visit##"
+                ng-model="doctor_visit"
+                display="code"
+                space=" - "
+                display2="selected_clinic.name_##session.lang##"
+                items="doctorsVisitsList"
+                ng-search="_search.$patients_searching"
+              >
+              </i-list>
+
+              <i-button
+                type="add"
+                class="col2"
+                ng-click="getDoctorVisitScans(doctor_visit)"
+              >
+              </i-button>
+
+              <i-list
+                class="col4"
+                label="##word.scans##"
+                ng-model="_scan"
+                items="scansList"
+                display="name_##session.lang##"
+                ng-search="_search.$patients_searching"
+              >
+              </i-list>
+
+              <i-button
+                type="add"
+                class="col2"
+                ng-click="changeScansList(_scan)"
+              >
+              </i-button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col3">
+          <i-image
+            category="scans_requests"
+            ng-model="scans_requests.image_url"
+          >
+          </i-image>
+          <i-files
+            label="##word.files##"
+            categoty="scans_requestssa"
+            ng-model="scans_requests.files"
+          >
+          </i-files>
+
+          <br />
+          <br />
+
+          <div class="padding margin">
+            <table class="table box-shadow" ng-init="discountEditorAdd = true">
+              <tr>
+                <th
+                  colspan="2"
+                  class="pointer"
+                  ng-click="discountEditorAdd = !discountEditorAdd"
+                >
+                  ##word.discountes##
+                  <i class="fa fa-edit"></i>
+                </th>
+              </tr>
+              <tr ng-hide="discountEditorAdd">
+                <td colspan="2">
+                  <form>
+                    <div class="row">
+                      <i-list
+                        class="col4"
+                        ng-model="discount"
+                        display="name_##session.lang##"
+                        ng-search="_search.$discount_name"
+                        items="discount_types"
+                        label="##word.discount_name##"
+                      >
+                      </i-list>
+                    </div>
+
+                    <div class="row">
+                      <i-control
+                        class="col4"
+                        ng-model="discount.value"
+                        type="number"
+                        label="##word.discount_value##"
+                      ></i-control>
+                      <div class="col4">
+                        <i-radio
+                          ng-model="discount.type"
+                          ng-value="number"
+                          group="type"
+                          label="##word.amount##"
+                        >
+                        </i-radio>
+
+                        <i-radio
+                          ng-model="discount.type"
+                          group="type"
+                          ng-value="percent"
+                          label="##word.percent##"
+                        >
+                        </i-radio>
+                      </div>
+                      <div class="col4" class="padding">
+                        <br />
+                        <i-button
+                          ng-click="addDiscount() ;calc(scans_requests)"
+                          label="##word.stores_out_add_discount##"
+                          type="add default"
+                        >
+                        </i-button>
+                      </div>
+                    </div>
+                  </form>
+                </td>
+              </tr>
+
+              <tr ng-repeat="d1 in scans_requests.discountes">
+                <td>
+                  <span class="bold red">{{d1.name_##session.lang##}} -</span>
+                  <span class="bold red" ng-show="d1.type === 'percent'"
+                    >{{d1.value}} %</span
+                  >
+                  <span class="bold red" ng-show="d1.type === 'number'"
+                    >{{d1.value}}$</span
+                  >
+                  <i-button
+                    type="delete"
+                    ng-click="deleteDiscount(d1) ; calc(scans_requests)"
+                  >
+                  </i-button>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <br />
+        <br />
+        <br />
+        <br />
+
+        <div class="row" ng-show="scans_requests.scans_list.length > 0">
+          <fieldset>
+            <legend>##word.scans## ##word.requiredy##</legend>
+            <table class="table loaded center hover bold">
+              <tr>
+                <th>##word.scans_name##</th>
+                <th>##word.price##</th>
+                <th>##word.notes_before_scans##</th>
+                <th>##word.actions##</th>
+              </tr>
+
+              <tr ng-repeat="c in scans_requests.scans_list">
+                <td class="center">
+                  <br />
+                  {{c.name_##session.lang##}}
+                </td>
+
+                <td class="center green">
+                  <br />
+                  {{c.price}}
+                </td>
+
+                <td>
+                  <i-textarea ng-model="c.notes_before_scans"> </i-textarea>
+                </td>
+
+                <td>
+                  <i-button
+                    type="delete"
+                    ng-click="scans_requests.scans_list.splice($index,1);calc(scans_requests)"
+                  >
+                  </i-button>
+                </td>
+              </tr>
+            </table>
+          </fieldset>
+        </div>
+
+        <br />
+        <br />
+
+        <div class="row">
+          <fieldset class="col6" ng-show="scans_requests.scans_list.length > 0">
+            <div class="row">
+              <i-control
+                class="col3"
+                ng-show="scans_requests.total_value"
+                disabled
+                ng-model="scans_requests.total_value"
+                type="number"
+                label="##word.total_value##"
+              >
+              </i-control>
+
+              <i-control
+                class="col3"
+                ng-show="scans_requests.total_discount"
+                disabled
+                ng-model="scans_requests.total_discount"
+                type="number"
+                label="##word.total_discount##"
+              >
+              </i-control>
+            </div>
+
+            <div class="row">
+              <i-control
+                class="col3"
+                disabled
+                ng-show="scans_requests.net_value"
+                ng-model="scans_requests.net_value"
+                type="number"
+                label="##word.paid_require##"
+              >
+              </i-control>
+
+              <i-control
+                class="col3"
+                ng-change="calc(scans_requests)"
+                ng-model="scans_requests.paid"
+                type="number"
+                label="##word.paid##"
+              >
+              </i-control>
+
+              <i-control
+                class="col3"
+                disabled
+                ng-model="scans_requests.remain"
+                type="number"
+                label="##word.remain##"
+              >
+              </i-control>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+    </fieldset>
+  </div>
 </div>

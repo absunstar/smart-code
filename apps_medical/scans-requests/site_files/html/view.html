@@ -18,6 +18,17 @@
                 </td>
               </tr>
 
+              <tr ng-show="scans_requests.at_home">
+                <td class="title">##word.home_visit_date##</td>
+                <td class="center green">
+                  <b>{{scans_requests.visit_day.##session.lang##}}</b>
+                  <b class="brown">
+                    ( {{scans_requests.visit_date |date:"dd - MM - yyyy" }} )
+                  </b>
+                </td>
+              </tr>
+
+
               <tr ng-show="scans_requests.total_value">
                 <td class="title">##word.total_value##</td>
                 <td class="center">{{scans_requests.total_value}}</td>

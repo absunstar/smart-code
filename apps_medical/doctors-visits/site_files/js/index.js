@@ -1968,9 +1968,7 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
         } else if (obj.at_home.type == "number") {
           obj.at_home.value =
             site.toNumber(obj.at_home.price) + obj.doctor_visit_price;
-        } else if (obj.at_home.type == "fixed") {
-          obj.at_home.value = site.toNumber(obj.at_home.price);
-        }
+        } 
         obj.total_value += obj.at_home.value;
       } else if (obj.online && obj.place_examination.id == 3) {
         if (obj.online.type == "percent") {
@@ -1980,8 +1978,6 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
         } else if (obj.online.type == "number") {
           obj.online.value =
             site.toNumber(obj.online.price) + obj.doctor_visit_price;
-        } else if (obj.online.type == "fixed") {
-          obj.online.value = site.toNumber(obj.online.price);
         }
         obj.total_value += obj.online.value;
       } else if (obj.at_home && obj.place_examination.id == 1) {
@@ -1993,8 +1989,6 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
           obj.urgent_visit.value =
             (obj.total_value * site.toNumber(obj.urgent_visit.price)) / 100;
         } else if (obj.urgent_visit.type == "number") {
-          obj.urgent_visit.value = site.toNumber(obj.urgent_visit.price);
-        } else if (obj.urgent_visit.type == "fixed") {
           obj.urgent_visit.value = site.toNumber(obj.urgent_visit.price);
         }
         obj.total_value = obj.total_value + obj.urgent_visit.value;
