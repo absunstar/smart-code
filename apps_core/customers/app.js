@@ -1,8 +1,8 @@
 module.exports = function init(site) {
   const $customers = site.connectCollection("customers");
-  const $city = site.connectCollection("city")
-  const $goves = site.connectCollection('goves');
-  const $area = site.connectCollection("area")
+  const $city = site.connectCollection("city");
+  const $goves = site.connectCollection("goves");
+  const $area = site.connectCollection("area");
 
   site.get({
     name: "customers",
@@ -45,9 +45,10 @@ module.exports = function init(site) {
       return;
     }
 
-    $customers.findOne({
+    $customers.findOne(
+      {
         where: {
-          id: obj.customerId
+          id: obj.customerId,
         },
       },
       (err, doc) => {
@@ -64,33 +65,36 @@ module.exports = function init(site) {
   customer_busy_handle(null);
 
   site.on("[customer][account_invoice][balance]", (obj, callback, next) => {
-    $customers.findOne({
-      id: obj.id
-    }, (err, doc) => {
-      if (doc) {
-        if (!doc.balance_creditor) doc.balance_creditor = 0;
-        if (!doc.balance_debtor) doc.balance_debtor = 0;
+    $customers.findOne(
+      {
+        id: obj.id,
+      },
+      (err, doc) => {
+        if (doc) {
+          if (!doc.balance_creditor) doc.balance_creditor = 0;
+          if (!doc.balance_debtor) doc.balance_debtor = 0;
 
-        if (obj.sum_creditor) {
-          doc.balance_creditor += obj.balance_creditor;
-        } else if (obj.minus_creditor) {
-          doc.balance_creditor -= obj.balance_creditor;
-        }
+          if (obj.sum_creditor) {
+            doc.balance_creditor += obj.balance_creditor;
+          } else if (obj.minus_creditor) {
+            doc.balance_creditor -= obj.balance_creditor;
+          }
 
-        if (obj.sum_debtor) {
-          doc.balance_debtor += obj.balance_debtor;
-        } else if (obj.minus_debtor) {
-          doc.balance_debtor -= obj.balance_debtor;
-        }
-        doc.balance_creditor = site.toNumber(doc.balance_creditor);
-        doc.balance_debtor = site.toNumber(doc.balance_debtor);
-        $customers.update(doc, () => {
+          if (obj.sum_debtor) {
+            doc.balance_debtor += obj.balance_debtor;
+          } else if (obj.minus_debtor) {
+            doc.balance_debtor -= obj.balance_debtor;
+          }
+          doc.balance_creditor = site.toNumber(doc.balance_creditor);
+          doc.balance_debtor = site.toNumber(doc.balance_debtor);
+          $customers.update(doc, () => {
+            next();
+          });
+        } else {
           next();
-        });
-      } else {
-        next();
+        }
       }
-    });
+    );
   });
 
   site.on("[register][customer][add]", (doc) => {
@@ -103,14 +107,18 @@ module.exports = function init(site) {
       code: "1-Test",
       name_ar: "عميل إفتراضي",
       name_en: "Default Customer",
-      branch_list: [{
-        charge: [{}],
-      }, ],
+      branch_list: [
+        {
+          charge: [{}],
+        },
+      ],
       currency_list: [],
       address_list: [{}],
-      opening_balance: [{
-        initial_balance: 0,
-      }, ],
+      opening_balance: [
+        {
+          initial_balance: 0,
+        },
+      ],
       balance_creditor: 0,
       balance_debtor: 0,
       credit_limit: 0,
@@ -179,13 +187,15 @@ module.exports = function init(site) {
       type: "customer",
     };
 
-    user.roles = [{
-      module_name: "public",
-      name: "customers_user",
-      en: "Customers User",
-      ar: "إدارة العملاء للمستخدم",
-      permissions: ["customers_update", "customers_view", "customers_ui"],
-    }, ];
+    user.roles = [
+      {
+        module_name: "public",
+        name: "customers_user",
+        en: "Customers User",
+        ar: "إدارة العملاء للمستخدم",
+        permissions: ["customers_update", "customers_view", "customers_ui"],
+      },
+    ];
 
     if (
       site.feature("pos") ||
@@ -228,19 +238,22 @@ module.exports = function init(site) {
       if (customers_doc.students_year)
         user.students_year_id = customers_doc.students_year.id;
 
-      user.roles.push({
-        module_name: "public",
-        name: "exams_customer",
-        en: "Exams Students",
-        ar: "إمتحانات الطلاب",
-        permissions: ["exams_ui", "exams_view"],
-      }, {
-        module_name: "public",
-        name: "libraries_student",
-        en: "Libraries Student",
-        ar: "مكتبة الطلاب",
-        permissions: ["libraries_ui", "libraries_view"],
-      });
+      user.roles.push(
+        {
+          module_name: "public",
+          name: "exams_customer",
+          en: "Exams Students",
+          ar: "إمتحانات الطلاب",
+          permissions: ["exams_ui", "exams_view"],
+        },
+        {
+          module_name: "public",
+          name: "libraries_student",
+          en: "Libraries Student",
+          ar: "مكتبة الطلاب",
+          permissions: ["libraries_ui", "libraries_view"],
+        }
+      );
     }
 
     user.permissions = [];
@@ -254,7 +267,7 @@ module.exports = function init(site) {
     };
     if (user.profile.gender && user.profile.gender.name == "female") {
       user.permissions.push({
-        name: "female"
+        name: "female",
       });
     }
 
@@ -270,10 +283,12 @@ module.exports = function init(site) {
       branch = customers_doc.branch;
     }
 
-    user.branch_list = [{
-      company: company,
-      branch: branch,
-    }, ];
+    user.branch_list = [
+      {
+        company: company,
+        branch: branch,
+      },
+    ];
 
     customers_doc.company = {
       id: company.id,
@@ -304,7 +319,8 @@ module.exports = function init(site) {
       customers_doc.code = cb.code;
     }
 
-    $customers.findMany({
+    $customers.findMany(
+      {
         where: {
           "company.id": company.id,
         },
@@ -358,7 +374,7 @@ module.exports = function init(site) {
 
                 if (user.password && user.email) {
                   user.ref_info = {
-                    id: doc.id
+                    id: doc.id,
                   };
                   site.security.addUser(user, (err, doc1) => {
                     if (!err) {
@@ -421,13 +437,15 @@ module.exports = function init(site) {
       type: "customer",
     };
 
-    user.roles = [{
-      module_name: "public",
-      name: "customers_user",
-      en: "Customers User",
-      ar: "إدارة العملاء للمستخدم",
-      permissions: ["customers_update", "customers_view", "customers_ui"],
-    }, ];
+    user.roles = [
+      {
+        module_name: "public",
+        name: "customers_user",
+        en: "Customers User",
+        ar: "إدارة العملاء للمستخدم",
+        permissions: ["customers_update", "customers_view", "customers_ui"],
+      },
+    ];
 
     if (
       site.feature("pos") ||
@@ -470,19 +488,22 @@ module.exports = function init(site) {
       if (customers_doc.students_year)
         user.students_year_id = customers_doc.students_year.id;
 
-      user.roles.push({
-        module_name: "public",
-        name: "exams_customer",
-        en: "Exams Students",
-        ar: "إمتحانات الطلاب",
-        permissions: ["exams_ui", "exams_view"],
-      }, {
-        module_name: "public",
-        name: "libraries_student",
-        en: "Libraries Student",
-        ar: "مكتبة الطلاب",
-        permissions: ["libraries_ui", "libraries_view"],
-      });
+      user.roles.push(
+        {
+          module_name: "public",
+          name: "exams_customer",
+          en: "Exams Students",
+          ar: "إمتحانات الطلاب",
+          permissions: ["exams_ui", "exams_view"],
+        },
+        {
+          module_name: "public",
+          name: "libraries_student",
+          en: "Libraries Student",
+          ar: "مكتبة الطلاب",
+          permissions: ["libraries_ui", "libraries_view"],
+        }
+      );
     }
 
     if (customers_doc.username && customers_doc.password) {
@@ -525,7 +546,7 @@ module.exports = function init(site) {
 
     if (user.profile.gender && user.profile.gender.name == "female") {
       user.permissions.push({
-        name: "female"
+        name: "female",
       });
     }
 
@@ -536,10 +557,12 @@ module.exports = function init(site) {
     user.company = customers_doc.company;
     user.branch = customers_doc.branch;
 
-    user.branch_list = [{
-      company: site.get_company(req),
-      branch: site.get_branch(req),
-    }, ];
+    user.branch_list = [
+      {
+        company: site.get_company(req),
+        branch: site.get_branch(req),
+      },
+    ];
 
     site.security.isUserExists(user, function (err, user_found) {
       // if (user_found) {
@@ -551,7 +574,8 @@ module.exports = function init(site) {
       // }
 
       if (customers_doc.id) {
-        $customers.edit({
+        $customers.edit(
+          {
             where: {
               id: customers_doc.id,
             },
@@ -607,7 +631,8 @@ module.exports = function init(site) {
       return;
     }
 
-    $customers.findOne({
+    $customers.findOne(
+      {
         where: {
           id: req.body.id,
         },
@@ -644,7 +669,7 @@ module.exports = function init(site) {
     let id = req.body.id;
     let data = {
       name: "customer",
-      id: req.body.id
+      id: req.body.id,
     };
 
     site.getDataToDelete(data, (callback) => {
@@ -653,7 +678,8 @@ module.exports = function init(site) {
         res.json(response);
       } else {
         if (id) {
-          $customers.delete({
+          $customers.delete(
+            {
               id: id,
               $req: req,
               $res: res,
@@ -755,11 +781,12 @@ module.exports = function init(site) {
       where["id"] = req.session.user.ref_info.id;
     }
 
-    $customers.findMany({
+    $customers.findMany(
+      {
         select: req.body.select || {},
         where: where,
         sort: req.body.sort || {
-          id: -1
+          id: -1,
         },
       },
       (err, docs, count) => {
@@ -799,10 +826,11 @@ module.exports = function init(site) {
     };
 
     let where = {
-      finger_code: data
+      finger_code: data,
     };
 
-    $customers.findOne({
+    $customers.findOne(
+      {
         select: select,
         where: where,
       },
@@ -815,28 +843,29 @@ module.exports = function init(site) {
     );
   };
 
-  site.getCustomer = function (where, callback) {
-     let select = {
-    //   id: 1,
-    //   name_ar: 1,
-    //   active: 1,
-    //   finger_code: 1,
-    //   busy: 1,
-    //   child: 1,
-    //   gender: 1,
-    //   address: 1,
-    //   mobile: 1,
-    //   phone: 1,
-    //   gov: 1,
-    //   city: 1,
-    //   area: 1,
-    //   company: 1,
-    //   branch: 1,
-    //   weight: 1,
-    //   tall: 1,
-    //   blood_type: 1,
-    //   medicine_notes: 1,
-     };
+  site.getCustomer = function (_where, callback) {
+    let select = {
+      //   id: 1,
+      //   name_ar: 1,
+      //   active: 1,
+      //   finger_code: 1,
+      //   busy: 1,
+      //   child: 1,
+      //   gender: 1,
+      //   address: 1,
+      //   mobile: 1,
+      //   phone: 1,
+      //   gov: 1,
+      //   city: 1,
+      //   area: 1,
+      //   company: 1,
+      //   branch: 1,
+      //   weight: 1,
+      //   tall: 1,
+      //   blood_type: 1,
+      //   medicine_notes: 1,
+    };
+    let where = { ..._where };
 
     if (where["customer"]) {
       where["id"] = where["customer"].id;
@@ -856,7 +885,8 @@ module.exports = function init(site) {
       delete where.search;
     }
 
-    $customers.findOne({
+    $customers.findOne(
+      {
         where: where,
       },
       (err, doc) => {
@@ -927,7 +957,8 @@ module.exports = function init(site) {
       where["hall.id"] = where["hall"].id;
       delete where["hall"];
     }
-    $customers.findMany({
+    $customers.findMany(
+      {
         where: where,
       },
       (err, docs) => {
@@ -940,7 +971,6 @@ module.exports = function init(site) {
   };
 
   /* ATM APIS */
-
 
   // add new address
   site.post("/api/customers/addNewAddress", (req, res) => {
@@ -957,9 +987,10 @@ module.exports = function init(site) {
       res.json(response);
       return;
     }
-    let address_doc = req.body
+    let address_doc = req.body;
 
-    $goves.findOne({
+    $goves.findOne(
+      {
         where: {
           id: address_doc.gov.id,
         },
@@ -972,10 +1003,8 @@ module.exports = function init(site) {
         }
 
         if (!err && govDoc) {
-
-
-
-          $city.findOne({
+          $city.findOne(
+            {
               where: {
                 id: address_doc.city.id,
               },
@@ -987,9 +1016,8 @@ module.exports = function init(site) {
                 return;
               }
               if (!err && cityDoc) {
-
-
-                $area.findOne({
+                $area.findOne(
+                  {
                     where: {
                       id: address_doc.area.id,
                     },
@@ -1001,8 +1029,8 @@ module.exports = function init(site) {
                       return;
                     }
                     if (!err && areaDoc) {
-
-                      $customers.findOne({
+                      $customers.findOne(
+                        {
                           where: {
                             id: req.session.user.ref_info.id,
                           },
@@ -1017,46 +1045,30 @@ module.exports = function init(site) {
                               lat: address_doc.lat,
                               long: address_doc.long,
                               address: address_doc.address,
-                            })
+                            });
                             response.doc = doc;
-                            $customers.update(doc)
+                            $customers.update(doc);
                             res.json(response);
-
                           } else {
                             response.done = false;
-                            response.error = 'no user found';
+                            response.error = "no user found";
                             res.json(response);
                           }
-
                         }
                       );
-
                     }
                   }
                 );
-
-
               }
             }
           );
-
-
-
-
-
-
-
         } else {
           response.done = false;
-          response.error = 'no user found';
+          response.error = "no user found";
           res.json(response);
         }
-
       }
     );
-
-
-
   });
 
   // my addresses
@@ -1076,15 +1088,16 @@ module.exports = function init(site) {
     }
 
     $customers.aggregate(
-      [{
+      [
+        {
           $match: {
             id: req.session.user.ref_info.id,
           },
         },
         {
           $project: {
-            "address_list": 1.0,
-            "id": 1.0
+            address_list: 1.0,
+            id: 1.0,
           },
         },
       ],
@@ -1104,8 +1117,6 @@ module.exports = function init(site) {
     );
   });
 
-
-
   // my profile
   site.post("/api/customers/myProfile", (req, res) => {
     req.headers.language = req.headers.language || "en";
@@ -1123,7 +1134,8 @@ module.exports = function init(site) {
     }
 
     $customers.aggregate(
-      [{
+      [
+        {
           $match: {
             id: req.session.user.ref_info.id,
           },

@@ -277,8 +277,9 @@ module.exports = function init(site) {
     );
   });
 
-  site.getOperationsRequests = function (where, callback) {
+  site.getOperationsRequests = function (_where, callback) {
     callback = callback || {};
+    let where = { ..._where };
 
     if (where.search) {
       where.$or = [];

@@ -305,9 +305,10 @@ module.exports = function init(site) {
     })
   })
 
-  site.getScansRequests = function (where, callback) {
+  site.getScansRequests = function (_where, callback) {
 
     callback = callback || {};
+    let where = { ..._where };
 
     if (where.search) {
       where.$or = [];

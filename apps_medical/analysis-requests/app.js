@@ -99,8 +99,6 @@ module.exports = function init(site) {
     });
   });
 
-
-
   site.post("/api/analysis_requests/update", (req, res) => {
     let response = {
       done: false,
@@ -134,7 +132,8 @@ module.exports = function init(site) {
       analysis_requests_doc.analysis_list.every((_a2) => _a2.result);
 
     if (analysis_requests_doc.id) {
-      $analysis_requests.edit({
+      $analysis_requests.edit(
+        {
           where: {
             id: analysis_requests_doc.id,
           },
@@ -170,7 +169,8 @@ module.exports = function init(site) {
       return;
     }
 
-    $analysis_requests.findOne({
+    $analysis_requests.findOne(
+      {
         where: {
           id: req.body.id,
         },
@@ -201,7 +201,8 @@ module.exports = function init(site) {
     let id = req.body.id;
 
     if (id) {
-      $analysis_requests.delete({
+      $analysis_requests.delete(
+        {
           id: id,
           $req: req,
           $res: res,
@@ -263,11 +264,12 @@ module.exports = function init(site) {
     where["company.id"] = site.get_company(req).id;
     where["branch.code"] = site.get_branch(req).code;
 
-    $analysis_requests.findMany({
+    $analysis_requests.findMany(
+      {
         select: req.body.select || {},
         where: where,
         sort: req.body.sort || {
-          id: -1
+          id: -1,
         },
         limit: req.body.limit,
       },
@@ -303,17 +305,17 @@ module.exports = function init(site) {
     );
   });
 
-  site.getAnalysisRequests = function (where, callback) {
+  site.getAnalysisRequests = function (_where, callback) {
     callback = callback || {};
-
+    let where = { ..._where };
     if (where.search) {
       where.$or = [];
       where.$or.push(
         {
-          'customer.name_ar': site.get_RegExp(where.search, "i"),
+          "customer.name_ar": site.get_RegExp(where.search, "i"),
         },
         {
-          'customer.name_en': site.get_RegExp(where.search, "i"),
+          "customer.name_en": site.get_RegExp(where.search, "i"),
         }
       );
       delete where.search;
@@ -328,7 +330,8 @@ module.exports = function init(site) {
       delete where["id"];
     }
 
-    $analysis_requests.findMany({
+    $analysis_requests.findMany(
+      {
         where: where,
       },
       (err, docs) => {
@@ -340,8 +343,6 @@ module.exports = function init(site) {
       }
     );
   };
-
-
 
   /* ATM APIS */
 
@@ -357,7 +358,8 @@ module.exports = function init(site) {
 
     let analysis_requests_doc = req.body;
 
-    $customer.findOne({
+    $customer.findOne(
+      {
         where: {
           id: analysis_requests_doc.customer.id,
         },
@@ -365,8 +367,8 @@ module.exports = function init(site) {
       (err, customerData) => {
         if (!err) {
           if (!customerData) {
-            response.error = 'no patient found';
-            return
+            response.error = "no patient found";
+            return;
           } else {
             analysis_requests_doc.customer = customerData;
             analysis_requests_doc.$req = req;
@@ -422,7 +424,7 @@ module.exports = function init(site) {
                     response.done = true;
                     response.doc = doc;
                   } else {
-                    response.error ="error happened";
+                    response.error = "error happened";
                   }
                   res.json(response);
                 });
@@ -434,59 +436,56 @@ module.exports = function init(site) {
     );
   });
 
-
   // my profile
-  site.post('/api/analysis_requests/myProfile', (req, res) => {
-    req.headers.language = req.headers.language || 'en'
-    let response = {}
+  site.post("/api/analysis_requests/myProfile", (req, res) => {
+    req.headers.language = req.headers.language || "en";
+    let response = {};
     if (!req.session.user) {
-      response.message = site.word('loginFirst')[req.headers.language];
+      response.message = site.word("loginFirst")[req.headers.language];
       response.done = false;
       res.json(response);
       return;
-    }
-   else if (!req.session.user.ref_info) {
-      response.message = site.word('loginFirst')[req.headers.language];
+    } else if (!req.session.user.ref_info) {
+      response.message = site.word("loginFirst")[req.headers.language];
       response.done = false;
       res.json(response);
       return;
     }
     console.log(req.session.user);
 
-    $analysis_requests.aggregate([{
-        "$match": {
-          "customer.id": req.session.user.ref_info.id
-        }
-      },
-      {
-        "$project": {
-          "date": 1.0,
-          
-          visit_day:1,
+    $analysis_requests.aggregate(
+      [
+        {
+          $match: {
+            "customer.id": req.session.user.ref_info.id,
+          },
+        },
+        {
+          $project: {
+            date: 1.0,
 
-          "visit_date": 1,
-          "analysis_list": 1.0,
-          "net_value": 1.0,
-          "id": 1.0
+            visit_day: 1,
+
+            visit_date: 1,
+            analysis_list: 1.0,
+            net_value: 1.0,
+            id: 1.0,
+          },
+        },
+      ],
+      (err, docs) => {
+        if (docs && docs.length > 0) {
+          response.done = true;
+          response.doc = docs[0];
+
+          res.json(response);
+        } else {
+          response.done = false;
+
+          response.doc = {};
+          res.json(response);
         }
       }
-    ], (err, docs) => {
-      if (docs && docs.length > 0) {
-        response.done = true;
-        response.doc = docs[0];
-
-        res.json(response)
-      } else {
-        response.done = false
-
-        response.doc = {};
-        res.json(response)
-      }
-
-
-    })
-
+    );
   });
-
-
 };
