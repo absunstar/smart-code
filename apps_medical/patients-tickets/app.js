@@ -432,6 +432,7 @@ module.exports = function init(site) {
                   scans_requests: response.cb.scans_requests.list,
                   operations_requests: response.cb.operations_requests.list,
                   doctors_visits: response.cb.doctors_visits.list,
+                  customer: response.cb.customer,
                 };
               }
               res.json(response);
