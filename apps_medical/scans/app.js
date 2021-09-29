@@ -263,24 +263,25 @@ module.exports = function init(site) {
       done: false
     }
 
-    let where = req.body.where || {}
-
-
    
 
-    if (where["name_ar"]) {
-      where["name_ar"] = new RegExp(where["name_ar"], "i");
+    let where = req.body.where || {}
+
+    if (where["name"] == undefined ||where["name"] == "" ) {
+     
+      delete where['name']
     }
-    if (where["name_ar"] == undefined ||where["name_ar"] == ""  ) {
-    delete where["name_ar"]
-    }
-  
-    if (where["name_en"]) {
-      where["name_en"] = new RegExp(where["name_en"], "i");
-    }
-    if (where["name_en"] == undefined ||where["name_en"] == ""  ) {
-      delete where["name_en"]
+
+    if (where['name']) {
+      where.$or = []
+      where.$or.push({
+        'doctor.name_ar': site.get_RegExp(where['name'], 'i')
+      },{
+        'doctor.name_en': site.get_RegExp(where['name'], 'i')
       }
+      )
+      delete where['name']
+    }
       let limit = 10;
       let skip;
   

@@ -294,6 +294,7 @@ module.exports = function init(site) {
       )
       delete where['name']
     }
+    
 
     // if (where["name_ar"]) {
     //   where["name_ar"] = new RegExp(where["name_ar"], "i");
