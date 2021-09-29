@@ -11,6 +11,34 @@ module.exports = function init(site) {
     path: __dirname + "/site_files/images",
   });
 
+  site.post("/api/manage_user/view", (req, res) => {
+    let response = {
+      done: false,
+    };
+
+    if (!req.session.user) {
+      response.error = "You Are Not Login";
+      res.json(response);
+      return;
+    }
+
+    site.security.getUser(
+      {
+        id: req.body.id,
+      },
+      (err, doc) => {
+        if (!err) {
+          response.done = true;
+          delete doc.password;
+          response.doc = doc;
+        } else {
+          response.error = err.message;
+        }
+        res.json(response);
+      }
+    );
+  });
+
   site.post("/api/manage_user/update", (req, res) => {
     let response = {
       done: false,
@@ -29,12 +57,18 @@ module.exports = function init(site) {
       },
       (err, user) => {
         if (!err && user) {
-
           if (type === "email") {
-            if (!req.body.user.email.contains("@") && !req.body.user.email.contains(".")) {
-              user.email = req.body.user.email + "@" + site.get_company(req).host;
+            if (
+              !req.body.user.email.contains("@") &&
+              !req.body.user.email.contains(".")
+            ) {
+              user.email =
+                req.body.user.email + "@" + site.get_company(req).host;
             } else {
-              if (req.body.user.email.contains("@") && !req.body.user.email.contains(".")) {
+              if (
+                req.body.user.email.contains("@") &&
+                !req.body.user.email.contains(".")
+              ) {
                 response.error = "Email must be typed correctly";
                 res.json(response);
                 return;
@@ -52,7 +86,9 @@ module.exports = function init(site) {
               response.error = "Current Password Error";
               res.json(response);
               return;
-            } else if (req.body.user.re_password !== req.body.user.new_password) {
+            } else if (
+              req.body.user.re_password !== req.body.user.new_password
+            ) {
               response.error = "Password does not match";
               res.json(response);
               return;

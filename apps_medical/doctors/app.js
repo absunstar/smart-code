@@ -115,8 +115,6 @@ module.exports = function init(site) {
           let user = {};
 
           user = {
-            email: doctor_doc.username,
-            password: doctor_doc.password,
             type: "doctor",
           };
 

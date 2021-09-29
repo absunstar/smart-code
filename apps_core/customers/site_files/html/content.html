@@ -687,7 +687,7 @@
 
                 <fieldset>
                     <legend> ##word.customers_address_informations## 
-                        <i-button type="add default" ng-click="customer.address_list.push({})"></i-button>
+                        <i-button type="add default" ng-click="customer.address_list.push({longitudes:0 ,latitudes:0})"></i-button>
                     </legend>
                     <div class="row"  ng-repeat="adrs in customer.address_list">
                         
@@ -709,6 +709,10 @@
                     </div>
 
                     <div class="row">
+                        <i-control class="col2" type="number" label="##word.longitudes##" ng-model="adrs.longitudes">
+                        </i-control>
+                        <i-control class="col2" type="number" label="##word.latitudes##" ng-model="adrs.latitudes">
+                        </i-control>
                         <i-control class="col6" label="##word.customers_address##" ng-model="adrs.address">
                         </i-control>
                         

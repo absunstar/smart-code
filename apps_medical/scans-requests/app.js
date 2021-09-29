@@ -309,6 +309,19 @@ module.exports = function init(site) {
 
     callback = callback || {};
 
+    if (where.search) {
+      where.$or = [];
+      where.$or.push(
+        {
+          "customer.name_ar": site.get_RegExp(where.search, "i"),
+        },
+        {
+          "customer.name_en": site.get_RegExp(where.search, "i"),
+        }
+      );
+      delete where.search;
+    }
+    
     if (where['customer']) {
       where['customer.id'] = where['customer'].id;
       delete where['customer']

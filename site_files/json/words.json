@@ -921,6 +921,16 @@
     "ar": "باركود الوحدة"
   },
   {
+    "name": "longitudes",
+    "en": "Longitudes",
+    "ar": "خطوط الطول"
+  },
+  {
+    "name": "latitudes",
+    "en": "Latitudes",
+    "ar": "دوائر العرض"
+  },
+  {
     "name": "results_files",
     "en": "Results files",
     "ar": "ملفات النتائج"

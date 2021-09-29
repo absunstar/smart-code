@@ -15,7 +15,7 @@ app.controller("manage_user", function ($scope, $http) {
     let id = site.toNumber("##user.id##");
     $http({
       method: "POST",
-      url: "/api/user/view",
+      url: "/api/manage_user/view",
       data: { id: id },
     }).then(
       function (response) {

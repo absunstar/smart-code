@@ -103,7 +103,12 @@ module.exports = function init(site) {
         },
       ],
       currency_list: [],
-      address_list : [{}],
+      address_list: [
+        {
+          longitudes: 0,
+          latitudes: 0,
+        },
+      ],
       opening_balance: [
         {
           initial_balance: 0,
@@ -820,33 +825,51 @@ module.exports = function init(site) {
     );
   };
 
-  site.getCustomerUser = function (data, callback) {
-    let select = {
-      id: 1,
-      name_ar: 1,
-      active: 1,
-      finger_code: 1,
-      busy: 1,
-      child: 1,
-      gender: 1,
-      address: 1,
-      mobile: 1,
-      phone: 1,
-      gov: 1,
-      city: 1,
-      area: 1,
-      company: 1,
-      branch: 1,
-      weight: 1,
-      tall: 1,
-      blood_type: 1,
-      medicine_notes: 1,
-    };
+  site.getCustomer = function (where, callback) {
+     let select = {
+    //   id: 1,
+    //   name_ar: 1,
+    //   active: 1,
+    //   finger_code: 1,
+    //   busy: 1,
+    //   child: 1,
+    //   gender: 1,
+    //   address: 1,
+    //   mobile: 1,
+    //   phone: 1,
+    //   gov: 1,
+    //   city: 1,
+    //   area: 1,
+    //   company: 1,
+    //   branch: 1,
+    //   weight: 1,
+    //   tall: 1,
+    //   blood_type: 1,
+    //   medicine_notes: 1,
+     };
+
+    if (where["customer"]) {
+      where["customer.id"] = where["customer"].id;
+      delete where["customer"];
+    }
+
+    if (where.search) {
+      where.$or = [];
+      where.$or.push(
+        {
+          name_ar: site.get_RegExp(where.search, "i"),
+        },
+        {
+          name_en: site.get_RegExp(where.search, "i"),
+        }
+      );
+      delete where.search;
+    }
 
     $customers.findOne(
       {
         select: select,
-        where: { id: data },
+        where: where,
       },
       (err, doc) => {
         if (!err) {
@@ -931,8 +954,6 @@ module.exports = function init(site) {
 
   /* ATM APIS */
 
-    
-
   // my profile
   site.post("/api/customers/myProfile", (req, res) => {
     req.headers.language = req.headers.language || "en";
@@ -948,7 +969,6 @@ module.exports = function init(site) {
       res.json(response);
       return;
     }
-    console.log(req.session.user);
 
     $customers.aggregate(
       [
