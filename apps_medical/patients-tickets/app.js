@@ -312,6 +312,8 @@ module.exports = function init(site) {
       paid: 0,
       remain: 0,
     };
+    req.body.where["customer.id"] = req.body.where["customer"].id;
+    delete req.body.where["customer"];
     site.getCustomer(req.body.where, (cbCustomer) => {
       site.getAnalysisRequests(req.body.where, (cbAnalysisRequests) => {
         site.getOperationsRequests(req.body.where, (cbOperationsRequests) => {
