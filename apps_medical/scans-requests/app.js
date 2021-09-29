@@ -497,13 +497,13 @@ module.exports = function init(site) {
       ], (err, docs) => {
         if (docs && docs.length > 0) {
           response.done = true;
-          response.doc = docs[0];
+          response.list = docs;
         
           res.json(response)
         } else {
           response.done = false
          
-          response.doc = {};
+          response.list = [];
           res.json(response)
         }
   
