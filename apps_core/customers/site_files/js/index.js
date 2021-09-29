@@ -9,6 +9,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
     $scope.customer = {
       image_url: "/images/customer.png",
       active: true,
+      address_list: [{}],
       balance_creditor: 0,
       balance_debtor: 0,
       branch_list: [
@@ -482,55 +483,63 @@ app.controller("customers", function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getCityList = function (gov) {
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/city/all",
-      data: {
-        where: {
-          "gov.id": gov.id,
-          active: true,
+  $scope.getCityList = function (adrs) {
+    if (adrs.gov) {
+      $scope.busy = true;
+      $scope.address = adrs;
+
+      $http({
+        method: "POST",
+        url: "/api/city/all",
+        data: {
+          where: {
+            "gov.id": adrs.gov.id,
+            active: true,
+          },
+          select: { id: 1, name_ar: 1, name_en: 1, code: 1 },
         },
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1 },
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.cityList = response.data.list;
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done && response.data.list.length > 0) {
+            $scope.address.$cityList = response.data.list;
+          }
+        },
+        function (err) {
+          $scope.busy = false;
+          $scope.error = err;
         }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
+      );
+    }
   };
 
-  $scope.getAreaList = function (city) {
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/area/all",
-      data: {
-        where: {
-          "city.id": city.id,
-          active: true,
+  $scope.getAreaList = function (adrs) {
+    if (adrs.city) {
+      $scope.busy = true;
+      $scope.address = adrs;
+      $http({
+        method: "POST",
+        url: "/api/area/all",
+        data: {
+          where: {
+            "city.id": adrs.city.id,
+            active: true,
+          },
+          select: { id: 1, name_ar: 1, name_en: 1, code: 1 },
         },
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.areaList = response.data.list;
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done && response.data.list.length > 0) {
+            $scope.address.$areaList = response.data.list;
+          }
+        },
+        function (err) {
+          $scope.busy = false;
+          $scope.error = err;
         }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
+      );
+    }
   };
 
   $scope.getDiseaseList = function (where) {
@@ -725,8 +734,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
         foundSize = $scope.customer.medicines_list.some(
           (_itemSize) => _itemSize.barcode === _item.barcode
         );
-        if (!foundSize)
-          $scope.customer.medicines_list.unshift(_item);
+        if (!foundSize) $scope.customer.medicines_list.unshift(_item);
       });
   };
 

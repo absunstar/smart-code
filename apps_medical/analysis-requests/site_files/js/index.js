@@ -746,9 +746,32 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.bookVisitDay = function (date) {
+  $scope.bookVisitDay = function (date, index) {
+    /*   $scope.datesDaysList.forEach((_d, i) => {
+      if (i == index) {
+        _d.$select = true;
+      } else {
+        _d.$select = false;
+      }
+    }); */
+    $scope.selectDate = index;
     $scope.analysis_requests.visit_date = date;
-    site.hideModal("#analysisRequestDays");
+  };
+
+  $scope.bookVisitAddress = function (address, index) {
+    if (
+      $scope.analysis_requests.customer &&
+      $scope.analysis_requests.customer.address_list
+    ) {
+      $scope.analysis_requests.customer.address_list.forEach((_d, i) => {
+        if (i == index) {
+          _d.$select = true;
+        } else {
+          _d.$select = false;
+        }
+      });
+    }
+    $scope.analysis_requests.visit_address = address;
   };
 
   $scope.getNumberingAuto = function () {

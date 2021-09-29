@@ -508,7 +508,7 @@ app.controller("scans_requests", function ($scope, $http, $timeout) {
     });
   };
 
-  $scope.showLastScans = function (analysis_requests) {
+  $scope.showLastScans = function (scans_requests) {
     $scope._search = {};
 
     site.showModal("#lastScansModal");
@@ -712,9 +712,32 @@ app.controller("scans_requests", function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.bookVisitDay = function (date) {
+  $scope.bookVisitDay = function (date, index) {
+    /*   $scope.datesDaysList.forEach((_d, i) => {
+      if (i == index) {
+        _d.$select = true;
+      } else {
+        _d.$select = false;
+      }
+    }); */
+    $scope.selectDate = index;
     $scope.scans_requests.visit_date = date;
-    site.hideModal("#scansRequestDays");
+  };
+
+  $scope.bookVisitAddress = function (address, index) {
+    if (
+      $scope.scans_requests.customer &&
+      $scope.scans_requests.customer.address_list
+    ) {
+      $scope.scans_requests.customer.address_list.forEach((_d, i) => {
+        if (i == index) {
+          _d.$select = true;
+        } else {
+          _d.$select = false;
+        }
+      });
+    }
+    $scope.scans_requests.visit_address = address;
   };
 
   $scope.getNumberingAuto = function () {

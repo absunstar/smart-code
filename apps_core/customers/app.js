@@ -103,6 +103,7 @@ module.exports = function init(site) {
         },
       ],
       currency_list: [],
+      address_list : [{}],
       opening_balance: [
         {
           initial_balance: 0,

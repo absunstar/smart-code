@@ -19,13 +19,27 @@
                 </td>
               </tr>
 
-              <tr ng-show="analysis_requests.at_home">
+              <tr ng-show="analysis_requests.visit_date">
                 <td class="title">##word.home_visit_date##</td>
                 <td class="center green">
                   <b>{{analysis_requests.visit_day.##session.lang##}}</b>
                   <b class="brown">
                     ( {{analysis_requests.visit_date |date:"dd - MM - yyyy" }} )
                   </b>
+                </td>
+              </tr>
+
+              <tr ng-show="analysis_requests.visit_address">
+                <td class="title">##word.home_visit_address##</td>
+                <td class="center">
+                  <p>
+                    {{analysis_requests.visit_address.gov.name_##session.lang##}}
+                    -
+                    {{analysis_requests.visit_address.city.name_##session.lang##}}
+                    -
+                    {{analysis_requests.visit_address.area.name_##session.lang##}}
+                  </p>
+                  <p>{{analysis_requests.visit_address.address}}</p>
                 </td>
               </tr>
 
@@ -132,22 +146,22 @@
                     <tr>
                       <td class="white bg_card">##word.gov##</td>
                       <td colspan="2" class="center">
-                        {{analysis_requests.customer.gov.name_##session.lang##}}
+                        {{analysis_requests.customer.address_list[0].gov.name_##session.lang##}}
                       </td>
                       <td class="white bg_card">##word.city##</td>
                       <td colspan="2" class="center">
-                        {{analysis_requests.customer.city.name_##session.lang##}}
+                        {{analysis_requests.customer.address_list[0].city.name_##session.lang##}}
                       </td>
                       <td class="white bg_card">##word.area##</td>
                       <td colspan="2" class="center">
-                        {{analysis_requests.customer.area.name_##session.lang##}}
+                        {{analysis_requests.customer.address_list[0].area.name_##session.lang##}}
                       </td>
                     </tr>
 
                     <tr>
                       <td class="white bg_card">##word.address##</td>
                       <td colspan="7" class="center">
-                        {{analysis_requests.customer.address}}
+                        {{analysis_requests.customer.address_list[0].address}}
                       </td>
                     </tr>
                     <tr>

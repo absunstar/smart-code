@@ -1,0 +1,94 @@
+<div id="scansRequestVisit" class="modal fade">
+  <div class="modal-content small">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>##word.home_visit_details##</h2>
+    </div>
+
+    <div class="modal-body">
+      <fieldset>
+        <legend>##word.booking_date##</legend>
+        <div class="row padding">
+          <table class="table loaded hover center bold">
+            <tr>
+              <th>##word.customers_gov##</th>
+              <th>##word.customers_city##</th>
+              <th>##word.area##</th>
+              <th>##word.customers_address##</th>
+              <th>##word.actions##</th>
+            </tr>
+            <tr ng-repeat="address in scans_requests.customer.address_list">
+                <td class="center"> {{address.gov.name_##session.lang##}} </td>
+                <td class="center"> {{address.city.name_##session.lang##}} </td>
+                <td class="center"> {{address.area.name_##session.lang##}} </td>
+                <td class="center"> {{address.address}} </td>
+                <td>
+                  <i-button
+                    type="add"
+                    ng-hide="address.$select"
+                    label="##word.booking##"
+                    ng-click="bookVisitAddress(address,$index)"
+                  ></i-button>
+                </td>
+            </tr>
+          </table>
+
+        </div>
+      </fieldset>
+      <br />
+
+      <hr style="height: 5px; color: grey; background-color: rgb(0, 0, 199)" />
+      <br />
+
+      <fieldset>
+        <legend>##word.booking_date##</legend>
+        <div class="row">
+          <i-list
+            help-id="clinic_days"
+            class="col3"
+            label="##word.day##"
+            ng-model="scans_requests.visit_day"
+            items="daysList"
+            ng-change="getDatesDays(scans_requests.visit_day)"
+            display="##session.lang##"
+            ng-search="_search.$clinic_days"
+          ></i-list>
+        </div>
+        <div class="row padding">
+          <table class="table center hover bold">
+            <tr>
+              <th>##word.the_day##</th>
+              <th>##word.actions##</th>
+            </tr>
+
+            <tr ng-repeat="d in datesDaysList track by $index">
+              <td>
+                <br />
+                <p class="brown">{{d | date : 'dd - MM - yyyy'}}</p>
+              </td>
+
+              <td>
+                <i-button
+                  type="add"
+                  ng-hide="selectDate == $index"
+                  label="##word.booking##"
+                  ng-click="bookVisitDay(d,$index)"
+                ></i-button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </fieldset>
+    </div>
+
+    <div class="modal-footer center">
+      <h2 class="error">{{error}}</h2>
+
+      <i-button
+        type="save"
+        label="##word.save##"
+        onclick="site.hideModal('#scansRequestVisit')"
+      ></i-button>
+    </div>
+  </div>
+</div>

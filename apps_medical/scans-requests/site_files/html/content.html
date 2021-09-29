@@ -21,21 +21,7 @@
             >
             </i-date2>
 
-            <i-checkbox
-              class="col2"
-              label="##word.at_home##"
-              ng-model="scans_requests.at_home"
-            >
-            </i-checkbox>
-
-            <i-button
-              type="view"
-              class="col2"
-              ng-show="scans_requests.at_home"
-              label="##word.home_visit_date##"
-              onclick="site.showModal('#scansRequestDays')"
-            >
-            </i-button>
+            <div class="col3"></div>
 
             <i-checkbox
               class="col2"
@@ -89,6 +75,24 @@
               </i-button>
             </div>
 
+            <div class="row">
+              <i-checkbox
+                class="col2"
+                label="##word.at_home##"
+                ng-model="scans_requests.at_home"
+              >
+              </i-checkbox>
+
+              <i-button
+                type="view"
+                class="col2"
+                ng-show="scans_requests.at_home"
+                label="##word.home_visit_details##"
+                onclick="site.showModal('#scansRequestVisit')"
+              >
+              </i-button>
+            </div>
+
             <br />
             <br />
             <div class="row" ng-show="scans_requests.customer.id">
@@ -132,22 +136,22 @@
                   <tr>
                     <td class="white bg_card">##word.gov##</td>
                     <td colspan="2" class="center">
-                      {{scans_requests.customer.gov.name_##session.lang##}}
+                      {{scans_requests.customer.address_list[0].gov.name_##session.lang##}}
                     </td>
                     <td class="white bg_card">##word.city##</td>
                     <td colspan="2" class="center">
-                      {{scans_requests.customer.city.name_##session.lang##}}
+                      {{scans_requests.customer.address_list[0].city.name_##session.lang##}}
                     </td>
                     <td class="white bg_card">##word.area##</td>
                     <td colspan="2" class="center">
-                      {{scans_requests.customer.area.name_##session.lang##}}
+                      {{scans_requests.customer.address_list[0].area.name_##session.lang##}}
                     </td>
                   </tr>
 
                   <tr>
                     <td class="white bg_card">##word.address##</td>
                     <td colspan="7" class="center">
-                      {{scans_requests.customer.address}}
+                      {{scans_requests.customer.address_list[0].address}}
                     </td>
                   </tr>
                   <tr>

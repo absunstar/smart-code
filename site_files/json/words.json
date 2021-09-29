@@ -1,1753 +1,1771 @@
 [
-    {
-        "name": "customer_register",
-        "en": "New Customer",
-        "ar": "عميل جديد"
-    },
-    {
-        "name": "total_patient_account",
-        "en": "Total patient account",
-        "ar": "إجمالي حساب المريض"
-    },
-    {
-        "name": "medical_file",
-        "en": "Medical file",
-        "ar": "الملف الطبي"
-    },
-    {
-        "name": "accounting_invoice",
-        "en": "Accounting Invoice",
-        "ar": "فاتورة الحسابات"
-    },
-    {
-        "name": "token",
-        "en": "Token",
-        "ar": "الرمز"
-    },
-    {
-        "name": "image",
-        "en": "Image",
-        "ar": "صورة"
-    },
-    {
-        "name": "the_image",
-        "en": "The Image",
-        "ar": "الصورة"
-    },
-    {
-        "name": "student_details",
-        "en": "Student Details",
-        "ar": "تفاصيل الطالب"
-    },
-    {
-        "name": "file",
-        "en": "File",
-        "ar": "ملف"
-    },
-    {
-        "name": "debtor",
-        "en": "Debtor",
-        "ar": "مدين"
-    },
-    {
-        "name": "creditor",
-        "en": "Creditor",
-        "ar": "دائن"
-    },
-    {
-        "name": "the_file",
-        "en": "The File",
-        "ar": "الملف"
-    },
-    {
-        "name": "the_file",
-        "en": "The File",
-        "ar": "الملف"
-    },
-    {
-        "name": "attach_images",
-        "en": "Attach Images",
-        "ar": "إرفاق صور"
-    },
-    {
-        "name": "attach_files",
-        "en": "Attach Files",
-        "ar": "إرفاق ملفات"
-    },
-    {
-        "name": "attach_links",
-        "en": "Attach Links",
-        "ar": "إرفاق روابط"
-    },
-    {
-        "name": "attached_files",
-        "en": "Attached files",
-        "ar": "ملفات مرفقة"
-    },
-    {
-        "name": "attached_links",
-        "en": "Attached Links",
-        "ar": "روابط مرفقة"
-    },
-    {
-        "name": "attached_images",
-        "en": "Attached Images",
-        "ar": "صور مرفقة"
-    },
-    {
-        "name": "hr",
-        "en": "Hr",
-        "ar": "الموارد البشرية"
-    },
-    {
-        "name": "hr_management",
-        "en": "Hr Management",
-        "ar": "إدارة الموارد البشرية"
-    },
-    {
-        "name": "invoice_not_generated",
-        "en": "An invoice has not been generated",
-        "ar": "لم يتم عمل فاتورة"
-    },
-    {
-        "name": "user_exists",
-        "en": "Username already exists. Try another name",
-        "ar": "إسم المستخدم موجود بالفعل جرب إسم آخر"
-    },
-    {
-        "name": "manage_your_personal_account",
-        "en": "Manage your personal account",
-        "ar": "إدارة حسابك الشخصي"
-    },
-    {
-        "name": "change_profile_picture",
-        "en": "Change profile picture",
-        "ar": "تغيير الصورة الشخصية"
-    },
-    {
-        "name": "profile_photo",
-        "en": "Profile Photo",
-        "ar": "الصورة الشخصية"
-    },
-    {
-        "name": "the_name",
-        "en": "The Name",
-        "ar": "الإسم"
-    },
-    {
-        "name": "not_found",
-        "en": "Not found",
-        "ar": "غير موجود"
-    },
-    {
-        "name": "token_en",
-        "en": "En. Token",
-        "ar": "الرمز بالإنجليزي"
-    },
-    {
-        "name": "display_data",
-        "en": "Display Data",
-        "ar": "عرض البيانات"
-    },
-    {
-        "name": "post",
-        "en": "Post",
-        "ar": "مرحل"
-    },
-    {
-        "name": "c_m",
-        "en": "C.M",
-        "ar": "ســـم"
-    },
-    {
-        "name": "k_g",
-        "en": "K.G",
-        "ar": "ك.ج"
-    },
-    {
-        "name": "t_o",
-        "en": "To.",
-        "ar": "إجمالي"
-    },
-    {
-        "name": "session",
-        "en": "Session",
-        "ar": "جلسة"
-    },
-    {
-        "name": "report",
-        "en": "Report",
-        "ar": "تقرير"
-    },
-    {
-        "name": "create",
-        "en": "Create",
-        "ar": "إنشاء"
-    },
-    {
-        "name": "vacations",
-        "en": "Vacations",
-        "ar": "الأجازات"
-    },
-    {
-        "name": "vacation",
-        "en": "Vacation",
-        "ar": "أجازة"
-    },
-    {
-        "name": "hotline",
-        "en": "Hotline",
-        "ar": "الرقم الساخن"
-    },
-    {
-        "name": "fax",
-        "en": "Fax",
-        "ar": "الفاكس"
-    },
-    {
-        "name": "child",
-        "en": "Child",
-        "ar": "طفل"
-    },
-    {
-        "name": "contact_information",
-        "en": "Contact Information",
-        "ar": "بيانات الاتصال"
-    },
-    {
-        "name": "social_information",
-        "en": "Social Information",
-        "ar": "بيانات التواصل الاجتماعي"
-    },
-    {
-        "name": "delivery_time",
-        "en": "Delivery Time",
-        "ar": "مدة التسليم "
-    },
-    {
-        "name": "slide_information",
-        "en": "Slide Information",
-        "ar": "بيانات الشريحة"
-    },
-    {
-        "name": "vacation_name",
-        "en": "Vacation Name",
-        "ar": "إسم الأجازة"
-    },
-    {
-        "name": "address_connect",
-        "en": "Addresses & Connections",
-        "ar": "العناوين و الإتصالات"
-    },
-    {
-        "name": "times_of_work",
-        "en": "TImes Of Work",
-        "ar": "مواعيد العمل"
-    },
-    {
-        "name": "nathional_id",
-        "en": "Nathional Id",
-        "ar": "الرقم القومي"
-    },
-    {
-        "name": "minutes",
-        "en": "Minutes",
-        "ar": "دقائق"
-    },
-    {
-        "name": "minute",
-        "en": "Minute",
-        "ar": "دقيقة"
-    },
-    {
-        "name": "un_post",
-        "en": "Un Post",
-        "ar": "غير مرحل"
-    },
-    {
-        "name": "customer_data",
-        "en": "Customer Data",
-        "ar": "بيانات العميل"
-    },
-    {
-        "name": "name",
-        "en": "Name",
-        "ar": "الإسم"
-    },
-    {
-        "name": "must_enter_code",
-        "en": "Must Enter Code",
-        "ar": "يجب إدخال الكود"
-    },
-    {
-        "name": "length_level",
-        "en": "Length level",
-        "ar": "طول المستوى"
-    },
-    {
-        "name": "source_name",
-        "en": "Source Name",
-        "ar": "إسم المصدر"
-    },
-    {
-        "name": "t_discount",
-        "en": "T.Discount",
-        "ar": "إجمالي خصم"
-    },
-    {
-        "name": "t_tax",
-        "en": "T.Tax",
-        "ar": "إجمالي ضريبة"
-    },
-    {
-        "name": "t_value",
-        "en": "T.Value",
-        "ar": "إجمالي قيمة"
-    },
-    
-    {
-        "name": "required",
-        "en": "Required",
-        "ar": "المطلوب"
-    },
-    {
-        "name": "requiredy",
-        "en": "Required",
-        "ar": "المطلوبة"
-    },
-    {
-        "name": "Save_edit",
-        "en": "Save Edit",
-        "ar": "حفظ التعديل"
-    },
-    {
-        "name": "the_amount",
-        "en": "The Amount",
-        "ar": "المبلغ"
-    }, 
-    {
-        "name": "amount",
-        "en": "Amount",
-        "ar": "مبلغ"
-    },
-    {
-        "name": "percent",
-        "en": "Percent",
-        "ar": "نسبة"
-    },
-    {
-        "name": "due_date",
-        "en": "Due Date",
-        "ar": "تاريخ الإستحقاق"
-    },
-    {
-        "name": "ledger_account",
-        "en": "Ledger Account",
-        "ar": "حساب الأستاذ"
-    },
-    {
-        "name": "source_code",
-        "en": "Source Code",
-        "ar": "كود المصدر"
-    },
-    {
-        "name": "attend_now",
-        "en": "Attend Now",
-        "ar": "حضور الأن"
-    },
-    {
-        "name": "gender",
-        "en": "Gender",
-        "ar": "الجنس"
-    },
-    {
-        "name": "delegate",
-        "en": "Delegate",
-        "ar": "المندوب"
-    },
-    {
-        "name": "employee",
-        "en": "Employee",
-        "ar": "الموظف"
-    },
-    {
-        "name": "just",
-        "en": "Just",
-        "ar": "فقط"
-    },
-    {
-        "name": "Just_no_other",
-        "en": "Just No Other",
-        "ar": "فقط لا غير"
-    },
-    {
-        "name": "date_exceed",
-        "en": "The transaction date cannot exceed today's date",
-        "ar": "تاريخ المعاملة لا يمكن أن يتجاوز تاريخ اليوم"
-    },
-    {
-        "name": "overdraft_not_active",
-        "en": "The transaction cannot be completed because the overdraft feature has not been activated",
-        "ar": "لا يمكن إتمام المعاملة لعدم تفعيل خاصية السحب على المكشوف"
-    },
-    {
-        "name": "try_application",
-        "en": "Try Application With All Features Free",
-        "ar": "جرب البرنامج الأن مع جميع الميزات مجاناّ"
-    },
-    {
-        "name": "quantity",
-        "en": "Quantity",
-        "ar": "الكمية"
-    },
-    {
-        "name": "unit_price",
-        "en": "Unit Price",
-        "ar": "سعر الوحدة"
-    },
-    {
-        "name": "total_vat",
-        "en": "Total VAT",
-        "ar": "إجمالي الضريبة"
-    },
-    {
-        "name": "invoice",
-        "en": "Invoice",
-        "ar": "فاتورة"
-    },
-    {
-        "name": "item",
-        "en": "Item",
-        "ar": "الصنف"
-    },
-    {
-        "name": "right_header",
-        "en": "Right header",
-        "ar": "مقدمة اليمين"
-    },
-    {
-        "name": "left_header",
-        "en": "Left header",
-        "ar": "مقدمة اليمين"
-    },
-    {
-        "name": "invoice_thermal",
-        "en": "Invoice thermal",
-        "ar": "فاتورة حرارية"
-    },
-    {
-        "name": "thermal_print",
-        "en": "Thermal print",
-        "ar": "طباعة حرارية"
-    },
-    {
-        "name": "invoice_remain",
-        "en": "Invoice Remain",
-        "ar": "باقي الفاتورة"
-    },
-    {
-        "name": "total_before_tax",
-        "en": "Total B.Tax",
-        "ar": "إجمالي قبل .ض"
-    },
-    {
-        "name": "total_after_tax",
-        "en": "Total A.Tax",
-        "ar": "إجمالي بعد .ض"
-    },
-    {
-        "name": "discount_cash",
-        "en": "Discount cash",
-        "ar": "الخصم النقدي"
-    },
-    {
-        "name": "net",
-        "en": "Net",
-        "ar": "الصافي"
-    },
-    {
-        "name": "vat",
-        "en": "VAT.",
-        "ar": "القيمة الضريبية"
-    },
-    {
-        "name": "absence",
-        "en": "Absence",
-        "ar": "غياب"
-    },
-    {
-        "name": "total_quantity",
-        "en": "Total Quantity",
-        "ar": "إجمالي الكمية"
-    },
-    {
-        "name": "personnel",
-        "en": "Personnel",
-        "ar": "شئون الموظفين"
-    },
-    {
-        "name": "overdraft",
-        "en": "Overdraft",
-        "ar": "السحب على المكشوف"
-    },
-    {
-        "name": "indentfy",
-        "en": "Indentfy",
-        "ar": "النوع"
-    },
-    {
-        "name": "period",
-        "en": "Period",
-        "ar": "المدة"
-    },
-    {
-        "name": "from",
-        "en": "From",
-        "ar": "من"
-    },
-    {
-        "name": "to",
-        "en": "To",
-        "ar": "إلى"
-    },
-    {
-        "name": "employee_salary_screen",
-        "en": "Employee Salary Screen",
-        "ar": "شاشة مرتبات الموظفين"
-    },
-    {
-        "name": "vendor",
-        "en": "Vendor",
-        "ar": "المورد"
-    },
-    {
-        "name": "name_ar",
-        "en": "Name In Ar",
-        "ar": "اللإسم بالعربية"
-    },
-    {
-        "name": "name_en",
-        "en": "Name In En",
-        "ar": "اللإسم بالإنجليزية"
-    },
-    {
-        "name": "size_en",
-        "en": "Size In En",
-        "ar": "المقاس بالإنجليزية"
-    },
-    {
-        "name": "Signature",
-        "en": "Signature",
-        "ar": "التوقيع"
-    },
-    {
-        "name": "name_size",
-        "en": "Name / Size",
-        "ar": "إسم / مقاس"
-    },
-    {
-        "name": "recipient_signature",
-        "en": "The recipient's signature",
-        "ar": "توقيع المستلم"
-    },
-    {
-        "name": "receiver",
-        "en": "Receiver",
-        "ar": "المستلم"
-    },
-    {
-        "name": "signature",
-        "en": "Signature",
-        "ar": "التوقيع"
-    },
-    {
-        "name": "cash",
-        "en": "Cash",
-        "ar": "كاش"
-    },
-    {
-        "name": "bank",
-        "en": "Bank",
-        "ar": "بنك"
-    },
-    {
-        "name": "payment_type",
-        "en": "Payment Type",
-        "ar": "نوع الدفع"
-    },
-    {
-        "name": "post_all",
-        "en": "Post All",
-        "ar": "ترحيل الكل"
-    },
-    {
-        "name": "add_currencies",
-        "en": "Add Currencies",
-        "ar": "إضافة عملات"
-    },
-    {
-        "name": "register",
-        "en": "Register",
-        "ar": "تسجيل"
-    },
-    {
-        "name": "register_customer",
-        "en": "Register Customer",
-        "ar": "تسجيل عميل"
-    },
-    {
-        "name": "report_employee_delegate_menus",
-        "en": "Report Commissions Delegate Menu",
-        "ar": "قائمة تقارير عمولات المناديب "
-    },
-    {
-        "name": "report_employee_delegate_name",
-        "en": "Report Commissions Delegate",
-        "ar": "تقرير عمولات المناديب "
-    },
-    {
-        "name": "report_invoices_vendors_menus",
-        "en": "Report Invoices Vendors  Menu",
-        "ar": "قائمة تقارير فواتير الموردين "
-    },
-    {
-        "name": "report_invoices_vendors_name",
-        "en": "Account Statement Vendors",
-        "ar": "كشف حساب الموردين "
-    },
-    {
-        "name": "order_customer_menus",
-        "en": "Orders Customer Screen",
-        "ar": "شاشة طلبات العملاء"
-    },
-    {
-        "name": "order_customer_management",
-        "en": "Orders Customer Management",
-        "ar": "إدارة طلبات العملاء"
-    },
-    {
-        "name": "work_posting",
-        "en": "Work Posting",
-        "ar": "العمل بالترحيل"
-    },
-    {
-        "name": "work_unposting",
-        "en": "Work Un Posting",
-        "ar": "العمل بفك الترحيل"
-    },
-    {
-        "name": "basic_information",
-        "en": "Basic Information",
-        "ar": "البيانات الأساسية"
-    },
-    {
-        "name": "system_total_transaction_menus",
-        "en": "Total Item Transaction Menu",
-        "ar": "قائمة إجمالي كارتة الصنف"
-    },
-    {
-        "name": "buy_price",
-        "en": "Buy At Price",
-        "ar": "الشراء بسعر"
-    },
-    {
-        "name": "selling_price",
-        "en": "Selling At Price",
-        "ar": "البيع بسعر"
-    },
-    {
-        "name": "amount_currency",
-        "en": "The Amount In Currency",
-        "ar": "المبلغ بالعملة"
-    },
-    {
-        "name": "qty",
-        "en": "Qty",
-        "ar": "كمية"
-    },
-    {
-        "name": "handle",
-        "en": "Handler",
-        "ar": "تهيئة"
-    },
-    {
-        "name": "err_paid_up_payment",
-        "en": "Paid Up Greater Than Required Value",
-        "ar": "المبلغ المسدد أكبر من الباقي"
-    },
-    {
-        "name": "paid_up_payment",
-        "en": "Paid Up",
-        "ar": "المبلغ المسدد"
-    },
-    {
-        "name": "system_amounts_in_menus",
-        "en": "Amount in Invoice",
-        "ar": "فاتورة الوارد"
-    },
-    {
-        "name": "system_amounts_out_menus",
-        "en": "Amount out Invoice",
-        "ar": "فاتورة المنصرف"
-    },
-    {
-        "name": "currency_value",
-        "en": "Currency Amount",
-        "ar": "مبلغ العملة"
-    },
-    {
-        "name": "main_currency",
-        "en": "Main Currency",
-        "ar": "العملة الأساسية"
-    },
-    {
-        "name": "exchange_rate",
-        "en": "Exchange Rate",
-        "ar": "سعر الصرف"
-    },
-    {
-        "name": "pay_another_currency",
-        "en": "Pay Another Currency",
-        "ar": "الدفع بعملة أخرى"
-    },
-    {
-        "name": "cvt",
-        "en": "Cvt",
-        "ar": "تحويل"
-    },
-    {
-        "name": "posting",
-        "en": "Posting",
-        "ar": "ترحيل"
-    },
-    {
-        "name": "unposting",
-        "en": "Un Posting",
-        "ar": "فك ترحيل"
-    },
-    {
-        "name": "system_units_menus",
-        "en": "Units Menu",
-        "ar": "قائمة الوحدات"
-    },
-    {
-        "name": "system_register_stores_assemble",
-        "en": "Add Assimbling Items",
-        "ar": "إضافة تجميعات الأصناف"
-    },
-    {
-        "name": "system_register_stores_dismantle",
-        "en": "Add Dismantle Items",
-        "ar": "إضافة تفكيك الأصناف"
-    },
-    {
-        "name": "report_sales_detailed_menus",
-        "en": "Report Sales Detailed Menu",
-        "ar": "قائمة تفصيلية لمبيعات الأصناف "
-    },
-    {
-        "name": "report_sales_total_menus",
-        "en": "Report Sales Total Menu",
-        "ar": "قائمة إجمالي لمبيعات الأصناف "
-    },
-    {
-        "name": "branches",
-        "en": "Branches",
-        "ar": "الفروع"
-    },
-    {
-        "name": "order_code",
-        "en": "Order Code",
-        "ar": "كود الطلب"
-    },
-    {
-        "name": "request_code",
-        "en": "Request Code",
-        "ar": "كود الطلب"
-    },
-    {
-        "name": "requests_count",
-        "en": "Requests Count",
-        "ar": "عدد الطلبات"
-    },
-    {
-        "name": "invoices_code",
-        "en": "Authorization / Invoices Code",
-        "ar": "كود الإذن / الفاتورة"
-    },
-    {
-        "name": "price",
-        "en": "Price",
-        "ar": "السعر"
-    },
-    {
-        "name": "sessions",
-        "en": "Sessions",
-        "ar": "الجلسات"
-    },
-    {
-        "name": "safe",
-        "en": "Safe",
-        "ar": "الخزينة"
-    },
-    {
-        "name": "commission",
-        "en": "Commission",
-        "ar": "العمولة"
-    },
-    {
-        "name": "auto_barcode_generation",
-        "en": "Automatic Barcode Generation",
-        "ar": "توليد اّلي للباركود"
-    },
-    {
-        "name": "total_value_added",
-        "en": "Total Value Added",
-        "ar": "إجمالي القيمة المضافة"
-    },
-    {
-        "name": "total_v_a",
-        "en": "Total V . A",
-        "ar": "إجمالي ق . م"
-    },
-    {
-        "name": "err_exist_count",
-        "en": "Must Be Item Count",
-        "ar": "يجب وجود عدد للصنف"
-    },
-    {
-        "name": "err_exist_count_invoice",
-        "en": "Must Be Item Count In Invoice",
-        "ar": "يجب وجود عدد للصنف في فاتورة"
-    },
-    {
-        "name": "done",
-        "en": "Done",
-        "ar": "تم"
-    },
-    {
-        "name": "auto_item_code_generation",
-        "en": "Automatic Item code Generation",
-        "ar": "توليد اّلي لكود الصنف"
-    },
-    {
-        "name": "posting_all",
-        "en": "Posting All",
-        "ar": "ترحيل الكل"
-    },
-    {
-        "name": "auto_unit_barcode_generation",
-        "en": "Automatic Unit Barcode Generation",
-        "ar": "توليد اّلي لباركود الوحدة"
-    },
-    {
-        "name": "item_code",
-        "en": "Item Code",
-        "ar": "كود الصنف"
-    },
-    {
-        "name": "has_been_delivered",
-        "en": "Has been delivered",
-        "ar": "تم التسليم"
-    },
-    {
-        "name": "delivery_has_not_been_done",
-        "en": "Delivery has not been done",
-        "ar": "لم يتم التسليم"
-    },
-    {
-        "name": "delivery_date",
-        "en": "Delivery Date",
-        "ar": "تاريخ التسليم"
-    },
-    {
-        "name": "paid",
-        "en": "Paid",
-        "ar": "المدفوع"
-    },
-    {
-        "name": "remain",
-        "en": "Remain",
-        "ar": "الباقي"
-    },
-    {
-        "name": "invoice_top_title",
-        "en": "invoice top title",
-        "ar": "عنوان الفاتورة العلوي"
-    },
-    {
-        "name": "normal_range",
-        "en": "Normal Range",
-        "ar": "المعدل الطبيعي"
-    },
-    {
-        "name": "result",
-        "en": "Result",
-        "ar": "النتيجة"
-    },
-    {
-        "name": "males",
-        "en": "Males",
-        "ar": "ذكور"
-    },
-    {
-        "name": "females",
-        "en": "Females",
-        "ar": "إناث"
-    },
-    {
-        "name": "children",
-        "en": "Children",
-        "ar": "أطفال"
-    },
-    {
-        "name": "medicine",
-        "en": "Medicine",
-        "ar": "الدواء"
-    },
-    {
-        "name": "holding",
-        "en": "Holding",
-        "ar": "تعليق"
-    },
-    {
-        "name": "medicines",
-        "en": "Medicines",
-        "ar": "الأدوية"
-    },
-    {
-        "name": "unit_barcode",
-        "en": "Unit Barcode",
-        "ar": "باركود الوحدة"
-    },
-    {
-        "name": "results_files",
-        "en": "Results files",
-        "ar": "ملفات النتائج"
-    },
-    {
-        "name": "foods_drinks",
-        "en": "Foods & Drinks",
-        "ar": "الأطعمة و المشروبات"
-    },
-    {
-        "name": "paid_require",
-        "en": "Paid Require",
-        "ar": "المطلوب دفعه"
-    },
-    {
-        "name": "add_to_orders",
-        "en": "Add to orders",
-        "ar": "إضافة إلى الطلبات"
-    },
-    {
-        "name": "default_discount",
-        "en": "Default Discount",
-        "ar": "خصم إفتراضي"
-    },
-    {
-        "name": "system_transfer_items_menus",
-        "en": "Transfer Items",
-        "ar": "تحويل أصناف"
-    },
-    {
-        "name": "system_register_transfer_items",
-        "en": "Add Transfer Items Branches",
-        "ar": " إضافة تحويل أصناف"
-    },
-    {
-        "name": "transaction_type",
-        "en": "Transaction Type",
-        "ar": "نوع المعاملة"
-    },
-    {
-        "name": "balance",
-        "en": "Balance",
-        "ar": "الرصيد"
-    },
-    {
-        "name": "dont_exceed_maximum_discount_item",
-        "en": "Do not exceed the maximum discount for this items",
-        "ar": "عدم تجاوز الحد الأقصى من الخصم على الصنف"
-    },
-    {
-        "name": "create_invoice_auto",
-        "en": "Auto Create Invoice",
-        "ar": "إنشاء اّلي للفاتورة"
-    },
-    {
-        "name": "select_items",
-        "en": "Select Items",
-        "ar": "إختيار الأصناف"
-    },
-    {
-        "name": "select_all",
-        "en": "Select All",
-        "ar": "تحديد الكل"
-    },
-    {
-        "name": "select",
-        "en": "Select",
-        "ar": "تحديد"
-    },
-    {
-        "name": "tax_number",
-        "en": "Tax Number",
-        "ar": "الرقم الضريبي"
-    },
-    {
-        "name": "total_before_taxes_discounts",
-        "en": "Total before taxes & discounts",
-        "ar": "الإجمالي قبل الخصومات و الضرائب"
-    },
-    {
-        "name": "total_payments",
-        "en": "Total Payments",
-        "ar": "إجمالي المدفوع"
-    },
-    {
-        "name": "delivery_service",
-        "en": "Delivery Service",
-        "ar": "خدمة التوصيل"
-    },
-    {
-        "name": "total_value",
-        "en": "Total Value",
-        "ar": "القيمة الإجمالية"
-    },
-    {
-        "name": "the_total",
-        "en": "The Total",
-        "ar": "الإجمالي"
-    },
-    {
-        "name": "invoices",
-        "en": "Invoices",
-        "ar": "فواتير"
-    },
-    {
-        "name": "safe_box",
-        "en": "Safe Box",
-        "ar": "خزينة الصندوق"
-    },
-    {
-        "name": "safe_bank",
-        "en": "Safe Bank",
-        "ar": "خزينة البنك"
-    },
-    {
-        "name": "net_value",
-        "en": "Net Value",
-        "ar": "صافي القيمة"
-    },
-    {
-        "name": "stores_balances",
-        "en": "Stores Balances",
-        "ar": "أرصدة المخازن"
-    },
-    {
-        "name": "branches_balances",
-        "en": "Branches Balances",
-        "ar": "أرصدة الفروع"
-    },
-    {
-        "name": "default_store",
-        "en": "Default Store",
-        "ar": "مخزن إفتراضي"
-    },
-    {
-        "name": "marital_status",
-        "en": "Marital Status",
-        "ar": "الحالة الاجتماعية"
-    },
-    {
-        "name": "military_status",
-        "en": "Military Status",
-        "ar": "موقف التجنيد"
-    },
-    {
-        "name": "store",
-        "en": "ًStore",
-        "ar": "مخزن"
-    },
-    {
-        "name": "total_tax",
-        "en": "ًTotal Tax",
-        "ar": "إجمالي الضرائب"
-    },
-    {
-        "name": "total_discount",
-        "en": "ًTotal Discount",
-        "ar": "إجمالي الخصم"
-    },
-    {
-        "name": "total_items_discount",
-        "en": "ًTotal Items Discount",
-        "ar": "إجمالي خصم الأصناف"
-    },
-    {
-        "name": "store_from",
-        "en": "ًStore From",
-        "ar": "من مخزن"
-    },
-    {
-        "name": "store_to",
-        "en": "ًStore To",
-        "ar": "إلى مخزن"
-    },
-    {
-        "name": "branch_from",
-        "en": "ًBranch From",
-        "ar": "من فرع"
-    },
-    {
-        "name": "branch_to",
-        "en": "ًBranch To",
-        "ar": "إلى فرع"
-    },
-    {
-        "name": "description",
-        "en": "Description",
-        "ar": "الوصف"
-    },
-    {
-        "name": "payment_method",
-        "en": "Payment Method",
-        "ar": "طريقة الدفع"
-    },
-    {
-        "name": "purchases_invoice_type",
-        "en": "Purchases Invoice Type",
-        "ar": "نوع فاتورة المشتريات"
-    },
-    {
-        "name": "sales_invoice_type",
-        "en": "Sales Invoice Type",
-        "ar": "نوع فاتورة المبيعات"
-    },
-    {
-        "name": "discount",
-        "en": "Discount",
-        "ar": "الخصم"
-    },
-    {
-        "name": "err_stock_item",
-        "en": "The Transaction Cannot Be Performed Because Items Are Under Stocking",
-        "ar": "لا يمكن إجراء المعاملة لوجود أصناف تحت الجرد "
-    },
-    {
-        "name": "approve",
-        "en": "Approve",
-        "ar": "إعتماد"
-    },
-    {
-        "name": "settings_not_found",
-        "en": "Settings Not Found",
-        "ar": "لا يوجد إعدادات"
-    },
-    {
-        "name": "account_invoices_menu",
-        "en": "Account Invoices Menu",
-        "ar": "قائمة فواتير الحسابات"
-    },
-    {
-        "name": "account_invoices_management",
-        "en": "Account Invoices Management",
-        "ar": "إدارة فواتير الحسابات"
-    },
-    {
-        "name": "store_stock_menu",
-        "en": "Stores Stocktaking Menu",
-        "ar": "الجرد المخزني"
-    },
-    {
-        "name": "store_offer_menu",
-        "en": "Items Offers",
-        "ar": "عروض الأصناف"
-    },
-    {
-        "name": "store_stock_management",
-        "en": "Stores Stocktaking Management",
-        "ar": "إدارة الجرد المخزني"
-    },
-    {
-        "name": "create_invoice_from_order",
-        "en": "Create Invoice From Order",
-        "ar": "إنشاء فاتورة من الطلبات"
-    },
-    {
-        "name": "attend",
-        "en": "Attend",
-        "ar": "حضور"
-    },
-    {
-        "name": "leave",
-        "en": "Leave",
-        "ar": "مغادرة"
-    },
-    {
-        "name": "menu_delegates_tag",
-        "en": "Delegates Add",
-        "ar": "إضافة المناديب"
-    },
-    {
-        "name": "invoice_source",
-        "en": "Invoice Source",
-        "ar": "مصدر الفاتورة"
-    },
-    {
-        "name": "print_invoice",
-        "en": "Print Invoice",
-        "ar": "طباعة فاتورة"
-    },
-    {
-        "name": "source",
-        "en": "Source",
-        "ar": "مصدر"
-    },
-    {
-        "name": "create_an_invoice",
-        "en": "Create An Invoice",
-        "ar": "إنشاء فاتورة"
-    },
-    {
-        "name": "startup_date",
-        "en": "StartuP Date",
-        "ar": "تاريخ البداية "
-    },
-    {
-        "name": "deadline_date",
-        "en": "Deadline Date",
-        "ar": "تاريخ النهاية "
-    },
-    {
-        "name": "not_found",
-        "en": "Not Found",
-        "ar": "غير موجود"
-    },
-    {
-        "name": "deadline_date",
-        "en": "Deadline Date",
-        "ar": "تاريخ النهاية "
-    },
-    {
-        "name": "hour_min",
-        "en": "Hour / Min",
-        "ar": "دقيقة / ساعة"
-    },
-    {
-        "name": "minute",
-        "en": "Minute",
-        "ar": "دقيقة"
-    },
-    {
-        "name": "reason",
-        "en": "Reason",
-        "ar": "السبب"
-    },
-    {
-        "name": "true",
-        "en": "True",
-        "ar": "صح"
-    },
-    {
-        "name": "false",
-        "en": "False",
-        "ar": "خطأ"
-    },
-    {
-        "name": "requests",
-        "en": "Requests",
-        "ar": "الطلبات"
-    },
-    {
-        "name": "circle",
-        "en": "Circle",
-        "ar": "الدائرة"
-    },
-    {
-        "name": "empty_search",
-        "en": "Empty Search",
-        "ar": "تفريغ البحث"
-    },
-    {
-        "name": "invoice_header",
-        "en": "Invoice Header",
-        "ar": "مقدمة الفاتورة"
-    },
-    {
-        "name": "invoice_header_right",
-        "en": "Invoice Header right",
-        "ar": "مقدمة الفاتورة يمين"
-    },
-    {
-        "name": "invoice_header_left",
-        "en": "Invoice Header left",
-        "ar": "مقدمة الفاتورة يسار"
-    },
-    {
-        "name": "invoice_footer",
-        "en": "Invoice Footer",
-        "ar": "هامش الفاتورة"
-    },
-    {
-        "name": "company_name",
-        "en": "Company Name",
-        "ar": "إسم الشركة"
-    },
-    {
-        "name": "personal_information",
-        "en": "Personal Information",
-        "ar": "البيانات الشخصية"
-    },
-    {
-        "name": "email",
-        "en": "Email",
-        "ar": "البريد الإلكترونى"
-    },
-    {
-        "name": "user_name",
-        "en": "User Name",
-        "ar": "إسم المستخدم"
-    },
-    {
-        "name": "useradd_user_info",
-        "en": "User Created",
-        "ar": "معلومات الإضافة"
-    },
-    {
-        "name": "useredit_user_info",
-        "en": "User Updated",
-        "ar": "معلومات التعديل"
-    },
-    {
-        "name": "phone",
-        "en": "Phone Number",
-        "ar": "رقم التليفون"
-    },
-  
-    {
-        "name": "mobile",
-        "en": "Mobile",
-        "ar": "رقم الموبيل"
-    },
-    {
-        "name": "website",
-        "en": "WebSite",
-        "ar": "الموقع الإلكترونى"
-    },
-    {
-        "name": "password",
-        "en": "password",
-        "ar": "كلمة المرور"
-    },
-    {
-        "name": "close",
-        "en": "Close",
-        "ar": "إغلاق"
-    },
-    {
-        "name": "add",
-        "en": "Add",
-        "ar": "أضف"
-    },
-    {
-        "name": "new",
-        "en": "New",
-        "ar": "جديد"
-    },
-    {
-        "name": "save",
-        "en": "Save",
-        "ar": "حفظ"
-    },
-    {
-        "name": "edit",
-        "en": "Edit",
-        "ar": "تعديل"
-    },
-    {
-        "name": "update",
-        "en": "Update",
-        "ar": "تعديل"
-    },
-    {
-        "name": "delete",
-        "en": "Delete",
-        "ar": "حذف"
-    },
-    {
-        "name": "remove",
-        "en": "Remove",
-        "ar": "حذف"
-    },
-    {
-        "name": "details",
-        "en": "Details",
-        "ar": "تفاصيل"
-    },
-    {
-        "name": "logo",
-        "en": "Logo",
-        "ar": "الشعار"
-    },
-    {
-        "name": "actions",
-        "en": "Actions",
-        "ar": "الإجراءات"
-    },
-    {
-        "name": "files",
-        "en": "Files",
-        "ar": "الملفات"
-    },
-    {
-        "name": "export_to_excel",
-        "en": "Export To Excel",
-        "ar": "تصدير الى أكسل"
-    },
-    {
-        "name": "notes",
-        "en": "Notes",
-        "ar": "ملاحظات"
-    },
-    {
-        "name": "add_to_notes",
-        "en": "Add To Notes",
-        "ar": "أضف الى الملاحظات"
-    },
-    {
-        "name": "date",
-        "en": "Date",
-        "ar": "التاريخ"
-    },
-    {
-        "name": "time",
-        "en": "Time",
-        "ar": "الوقت"
-    },
-    {
-        "name": "invoice_number",
-        "en": "Invoice Number",
-        "ar": "رقم الفاتورة"
-    },
-    {
-        "name": "print",
-        "en": "Print",
-        "ar": "طباعة"
-    },
-    {
-        "name": "menus",
-        "en": "System Menus",
-        "ar": "قوائم النظام"
-    },
-    {
-        "name": "user_logo",
-        "en": "User Logo",
-        "ar": "صورة المستخدم "
-    },
-    {
-        "name": "new_user",
-        "en": "New User",
-        "ar": "مستخدم جديد"
-    },
-    {
-        "name": "add_new_user",
-        "en": "Add New User",
-        "ar": "إضافة مستخدم جديد"
-    },
-    {
-        "name": "user_details",
-        "en": "User Details",
-        "ar": "بيانات المستخدم"
-    },
-    {
-        "name": "permissions",
-        "en": "Permissions",
-        "ar": "الصلاحيات"
-    },
-    {
-        "name": "permission",
-        "en": "Permission",
-        "ar": "تصريح"
-    },
-    {
-        "name": "add_permission",
-        "en": "Add Permission",
-        "ar": "أضف الى الصلاحيات"
-    },
-    {
-        "name": "stores",
-        "en": "Stores",
-        "ar": "المخازن"
-    },
-    {
-        "name": "accounts",
-        "en": "Accounts",
-        "ar": "الحسابات"
-    },
-    {
-        "name": "account",
-        "en": "Account",
-        "ar": "الحساب"
-    },
-    {
-        "name": "insurances",
-        "en": "Insurances",
-        "ar": "التامينات"
-    },
-    {
-        "name": "address",
-        "en": "Address",
-        "ar": "العنوان"
-    },
-    {
-        "name": "addresses",
-        "en": "Addresses",
-        "ar": "العناوين"
-    },
-    {
-        "name": "img",
-        "en": "Image",
-        "ar": "صورة"
-    },
-    {
-        "name": "error",
-        "en": "Error While Working",
-        "ar": "حدثت مشكلة اثناء التنفيذ"
-    },
-    {
-        "name": "search",
-        "en": "Search",
-        "ar": "بحـث"
-    },
-    {
-        "name": "search_all",
-        "en": "Search All",
-        "ar": "بحث شامل"
-    },
-    {
-        "name": "clear",
-        "en": "Clear",
-        "ar": "تفريغ الحقول"
-    },
-    {
-        "name": "setting",
-        "en": "Setting",
-        "ar": "الإعدادات"
-    },
-    {
-        "name": "total_prices",
-        "en": "Total prices",
-        "ar": "إجمالي الأسعار"
-    },
-    {
-        "name": "price_at_home",
-        "en": "Price at home",
-        "ar": "السعر في المنزل"
-    },
-    {
-        "name": "in_out_name",
-        "en": "In and Out Names",
-        "ar": "مسميات الوارد والمنصرف"
-    },
-    {
-        "name": "loading",
-        "en": "Loading",
-        "ar": "جارى التحميل"
-    },
-    {
-        "name": "day",
-        "en": "Day",
-        "ar": "يوم"
-    },
-    {
-        "name": "the_day",
-        "en": "TheDay",
-        "ar": "اليوم"
-    },
-    {
-        "name": "menu_class",
-        "en": "left-fixed-menu",
-        "ar": "right-fixed-menu"
-    },
-    {
-        "name": "load_more",
-        "en": "Load More",
-        "ar": "عرض المزيـد"
-    },
-    {
-        "name": "user",
-        "en": "User",
-        "ar": "مستخدم"
-    },
-    {
-        "name": "the_user",
-        "en": "The User",
-        "ar": "المستخدم"
-    },
-    {
-        "name": "discountes",
-        "en": "Discountes",
-        "ar": " الخصومات"
-    },
-    {
-        "name": "discount",
-        "en": "Discount",
-        "ar": " الخصم"
-    },{
-        "name": "delivery",
-        "en": "Delivery",
-        "ar": " التوصيل"
-    },
-    {
-        "name": "discount_name",
-        "en": "Discount Name",
-        "ar": "إسم الخصم"
-    },
-    {
-        "name": "discount_value",
-        "en": "Discount Value",
-        "ar": "قيمة الخصم"
-    },
-    {
-        "name": "discount_types_number",
-        "en": "Discount Value",
-        "ar": "مبلغ الخصم"
-    },
-    {
-        "name": "discount_types_percent",
-        "en": "Discount Value",
-        "ar": "نسبة الخصم"
-    },
-    {
-        "name": "stores_out_add_discount",
-        "en": "Add Discount",
-        "ar": "أضف الخصم"
-    },
-    {
-        "name": "items_count",
-        "en": "Items Count",
-        "ar": "عدد الأصناف"
-    },
-    {
-        "name": "items_price",
-        "en": "Items Price",
-        "ar": "سعر الأصناف"
-    },
-    {
-        "name": "items_price_total",
-        "en": "Items Price Total",
-        "ar": "إجمالي سعر الأصناف"
-    },
-    {
-        "name": "date_from_subscribe",
-        "en": "Start Date",
-        "ar": "تاريخ بداية الإشتراك"
-    },
-    {
-        "name": "date_from",
-        "en": "From Date",
-        "ar": "من تاريخ"
-    },
-    {
-        "name": "date_to",
-        "en": "To Date",
-        "ar": "إلى تاريخ"
-    },
-    {
-        "name": "err_maximum_adds",
-        "en": "The maximum number of adds exceeded",
-        "ar": "تم تجاوز الحد الأقصى لعدد الإضافات"
-    },
-    {
-        "name": "work_time",
-        "en": "Work Time",
-        "ar": "وقت العمل"
-    },
-    {
-        "name": "total",
-        "en": "Total",
-        "ar": "إجمالي"
-    },
-    {
-        "name": "err_username_contain",
-        "en": "Username must contain the characters ( @ ’ . )",
-        "ar": "يجب أن يحتوي إسم المستخدم على الرموز ( @ ’ . ) "
-    },
-    {
-        "name": "le",
-        "en": "LE",
-        "ar": "جنيه"
-    },
-    {
-        "name": "select_all",
-        "en": "Select All",
-        "ar": "إختيار الكل"
-    },
-    {
-        "name": "status",
-        "en": "Status",
-        "ar": "الحالة"
-    },
-    {
-        "name": "count",
-        "en": "Count",
-        "ar": "عدد"
-    },
-    {
-        "name": "active",
-        "en": "Active",
-        "ar": "نشط"
-    },
-    {
-        "name": "not_active",
-        "en": "Not Active",
-        "ar": "غير نشط"
-    },
-    {
-        "name": "code",
-        "en": "code",
-        "ar": "الكود"
-    },
-    {
-        "name": "yes",
-        "en": "Yes",
-        "ar": "نعم"
-    },
-    {
-        "name": "no",
-        "en": "No",
-        "ar": "ﻻ"
-    },
-    {
-        "name": "code_exisit",
-        "en": "Code Exisit",
-        "ar": "الكود مسجل من قبل"
-    },
-    {
-        "name": "user_created",
-        "en": "Created Details",
-        "ar": "تفاصيل الإضافة"
-    },
-    {
-        "name": "user_updated",
-        "en": "Update Details",
-        "ar": "تفاصيل التعديل"
-    },
-    {
-        "name": "add_done",
-        "en": "Successfully Added",
-        "ar": "تم الإضافة بنجاح"
-    },
-    {
-        "name": "select",
-        "en": " Select",
-        "ar": "إضافة"
-    },
-    {
-        "name": "login_information",
-        "en": " Login Information",
-        "ar": "بيانات الدخول"
-    }
+  {
+    "name": "customer_register",
+    "en": "New Customer",
+    "ar": "عميل جديد"
+  },
+  {
+    "name": "total_patient_account",
+    "en": "Total patient account",
+    "ar": "إجمالي حساب المريض"
+  },
+  {
+    "name": "medical_file",
+    "en": "Medical file",
+    "ar": "الملف الطبي"
+  },
+  {
+    "name": "accounting_invoice",
+    "en": "Accounting Invoice",
+    "ar": "فاتورة الحسابات"
+  },
+  {
+    "name": "token",
+    "en": "Token",
+    "ar": "الرمز"
+  },
+  {
+    "name": "image",
+    "en": "Image",
+    "ar": "صورة"
+  },
+  {
+    "name": "the_image",
+    "en": "The Image",
+    "ar": "الصورة"
+  },
+  {
+    "name": "student_details",
+    "en": "Student Details",
+    "ar": "تفاصيل الطالب"
+  },
+  {
+    "name": "file",
+    "en": "File",
+    "ar": "ملف"
+  },
+  {
+    "name": "debtor",
+    "en": "Debtor",
+    "ar": "مدين"
+  },
+  {
+    "name": "creditor",
+    "en": "Creditor",
+    "ar": "دائن"
+  },
+  {
+    "name": "the_file",
+    "en": "The File",
+    "ar": "الملف"
+  },
+  {
+    "name": "the_file",
+    "en": "The File",
+    "ar": "الملف"
+  },
+  {
+    "name": "attach_images",
+    "en": "Attach Images",
+    "ar": "إرفاق صور"
+  },
+  {
+    "name": "attach_files",
+    "en": "Attach Files",
+    "ar": "إرفاق ملفات"
+  },
+  {
+    "name": "attach_links",
+    "en": "Attach Links",
+    "ar": "إرفاق روابط"
+  },
+  {
+    "name": "attached_files",
+    "en": "Attached files",
+    "ar": "ملفات مرفقة"
+  },
+  {
+    "name": "attached_links",
+    "en": "Attached Links",
+    "ar": "روابط مرفقة"
+  },
+  {
+    "name": "attached_images",
+    "en": "Attached Images",
+    "ar": "صور مرفقة"
+  },
+  {
+    "name": "hr",
+    "en": "Hr",
+    "ar": "الموارد البشرية"
+  },
+  {
+    "name": "hr_management",
+    "en": "Hr Management",
+    "ar": "إدارة الموارد البشرية"
+  },
+  {
+    "name": "invoice_not_generated",
+    "en": "An invoice has not been generated",
+    "ar": "لم يتم عمل فاتورة"
+  },
+  {
+    "name": "user_exists",
+    "en": "Username already exists. Try another name",
+    "ar": "إسم المستخدم موجود بالفعل جرب إسم آخر"
+  },
+  {
+    "name": "manage_your_personal_account",
+    "en": "Manage your personal account",
+    "ar": "إدارة حسابك الشخصي"
+  },
+  {
+    "name": "change_profile_picture",
+    "en": "Change profile picture",
+    "ar": "تغيير الصورة الشخصية"
+  },
+  {
+    "name": "profile_photo",
+    "en": "Profile Photo",
+    "ar": "الصورة الشخصية"
+  },
+  {
+    "name": "the_name",
+    "en": "The Name",
+    "ar": "الإسم"
+  },
+  {
+    "name": "not_found",
+    "en": "Not found",
+    "ar": "غير موجود"
+  },
+  {
+    "name": "token_en",
+    "en": "En. Token",
+    "ar": "الرمز بالإنجليزي"
+  },
+  {
+    "name": "display_data",
+    "en": "Display Data",
+    "ar": "عرض البيانات"
+  },
+  {
+    "name": "post",
+    "en": "Post",
+    "ar": "مرحل"
+  },
+  {
+    "name": "c_m",
+    "en": "C.M",
+    "ar": "ســـم"
+  },
+  {
+    "name": "k_g",
+    "en": "K.G",
+    "ar": "ك.ج"
+  },
+  {
+    "name": "t_o",
+    "en": "To.",
+    "ar": "إجمالي"
+  },
+  {
+    "name": "session",
+    "en": "Session",
+    "ar": "جلسة"
+  },
+  {
+    "name": "report",
+    "en": "Report",
+    "ar": "تقرير"
+  },
+  {
+    "name": "create",
+    "en": "Create",
+    "ar": "إنشاء"
+  },
+  {
+    "name": "vacations",
+    "en": "Vacations",
+    "ar": "الأجازات"
+  },
+  {
+    "name": "vacation",
+    "en": "Vacation",
+    "ar": "أجازة"
+  },
+  {
+    "name": "hotline",
+    "en": "Hotline",
+    "ar": "الرقم الساخن"
+  },
+  {
+    "name": "fax",
+    "en": "Fax",
+    "ar": "الفاكس"
+  },
+  {
+    "name": "child",
+    "en": "Child",
+    "ar": "طفل"
+  },
+  {
+    "name": "contact_information",
+    "en": "Contact Information",
+    "ar": "بيانات الاتصال"
+  },
+  {
+    "name": "social_information",
+    "en": "Social Information",
+    "ar": "بيانات التواصل الاجتماعي"
+  },
+  {
+    "name": "delivery_time",
+    "en": "Delivery Time",
+    "ar": "مدة التسليم "
+  },
+  {
+    "name": "slide_information",
+    "en": "Slide Information",
+    "ar": "بيانات الشريحة"
+  },
+  {
+    "name": "vacation_name",
+    "en": "Vacation Name",
+    "ar": "إسم الأجازة"
+  },
+  {
+    "name": "address_connect",
+    "en": "Addresses & Connections",
+    "ar": "العناوين و الإتصالات"
+  },
+  {
+    "name": "times_of_work",
+    "en": "TImes Of Work",
+    "ar": "مواعيد العمل"
+  },
+  {
+    "name": "nathional_id",
+    "en": "Nathional Id",
+    "ar": "الرقم القومي"
+  },
+  {
+    "name": "minutes",
+    "en": "Minutes",
+    "ar": "دقائق"
+  },
+  {
+    "name": "minute",
+    "en": "Minute",
+    "ar": "دقيقة"
+  },
+  {
+    "name": "un_post",
+    "en": "Un Post",
+    "ar": "غير مرحل"
+  },
+  {
+    "name": "customer_data",
+    "en": "Customer Data",
+    "ar": "بيانات العميل"
+  },
+  {
+    "name": "name",
+    "en": "Name",
+    "ar": "الإسم"
+  },
+  {
+    "name": "must_enter_code",
+    "en": "Must Enter Code",
+    "ar": "يجب إدخال الكود"
+  },
+  {
+    "name": "length_level",
+    "en": "Length level",
+    "ar": "طول المستوى"
+  },
+  {
+    "name": "source_name",
+    "en": "Source Name",
+    "ar": "إسم المصدر"
+  },
+  {
+    "name": "t_discount",
+    "en": "T.Discount",
+    "ar": "إجمالي خصم"
+  },
+  {
+    "name": "t_tax",
+    "en": "T.Tax",
+    "ar": "إجمالي ضريبة"
+  },
+  {
+    "name": "t_value",
+    "en": "T.Value",
+    "ar": "إجمالي قيمة"
+  },
+
+  {
+    "name": "required",
+    "en": "Required",
+    "ar": "المطلوب"
+  },
+  {
+    "name": "requiredy",
+    "en": "Required",
+    "ar": "المطلوبة"
+  },
+  {
+    "name": "Save_edit",
+    "en": "Save Edit",
+    "ar": "حفظ التعديل"
+  },
+  {
+    "name": "the_amount",
+    "en": "The Amount",
+    "ar": "المبلغ"
+  },
+  {
+    "name": "amount",
+    "en": "Amount",
+    "ar": "مبلغ"
+  },
+  {
+    "name": "percent",
+    "en": "Percent",
+    "ar": "نسبة"
+  },
+  {
+    "name": "due_date",
+    "en": "Due Date",
+    "ar": "تاريخ الإستحقاق"
+  },
+  {
+    "name": "ledger_account",
+    "en": "Ledger Account",
+    "ar": "حساب الأستاذ"
+  },
+  {
+    "name": "source_code",
+    "en": "Source Code",
+    "ar": "كود المصدر"
+  },
+  {
+    "name": "attend_now",
+    "en": "Attend Now",
+    "ar": "حضور الأن"
+  },
+  {
+    "name": "gender",
+    "en": "Gender",
+    "ar": "الجنس"
+  },
+  {
+    "name": "delegate",
+    "en": "Delegate",
+    "ar": "المندوب"
+  },
+  {
+    "name": "employee",
+    "en": "Employee",
+    "ar": "الموظف"
+  },
+  {
+    "name": "just",
+    "en": "Just",
+    "ar": "فقط"
+  },
+  {
+    "name": "Just_no_other",
+    "en": "Just No Other",
+    "ar": "فقط لا غير"
+  },
+  {
+    "name": "date_exceed",
+    "en": "The transaction date cannot exceed today's date",
+    "ar": "تاريخ المعاملة لا يمكن أن يتجاوز تاريخ اليوم"
+  },
+  {
+    "name": "overdraft_not_active",
+    "en": "The transaction cannot be completed because the overdraft feature has not been activated",
+    "ar": "لا يمكن إتمام المعاملة لعدم تفعيل خاصية السحب على المكشوف"
+  },
+  {
+    "name": "try_application",
+    "en": "Try Application With All Features Free",
+    "ar": "جرب البرنامج الأن مع جميع الميزات مجاناّ"
+  },
+  {
+    "name": "quantity",
+    "en": "Quantity",
+    "ar": "الكمية"
+  },
+  {
+    "name": "unit_price",
+    "en": "Unit Price",
+    "ar": "سعر الوحدة"
+  },
+  {
+    "name": "total_vat",
+    "en": "Total VAT",
+    "ar": "إجمالي الضريبة"
+  },
+  {
+    "name": "invoice",
+    "en": "Invoice",
+    "ar": "فاتورة"
+  },
+  {
+    "name": "item",
+    "en": "Item",
+    "ar": "الصنف"
+  },
+  {
+    "name": "right_header",
+    "en": "Right header",
+    "ar": "مقدمة اليمين"
+  },
+  {
+    "name": "left_header",
+    "en": "Left header",
+    "ar": "مقدمة اليمين"
+  },
+  {
+    "name": "invoice_thermal",
+    "en": "Invoice thermal",
+    "ar": "فاتورة حرارية"
+  },
+  {
+    "name": "thermal_print",
+    "en": "Thermal print",
+    "ar": "طباعة حرارية"
+  },
+  {
+    "name": "invoice_remain",
+    "en": "Invoice Remain",
+    "ar": "باقي الفاتورة"
+  },
+  {
+    "name": "total_before_tax",
+    "en": "Total B.Tax",
+    "ar": "إجمالي قبل .ض"
+  },
+  {
+    "name": "total_after_tax",
+    "en": "Total A.Tax",
+    "ar": "إجمالي بعد .ض"
+  },
+  {
+    "name": "discount_cash",
+    "en": "Discount cash",
+    "ar": "الخصم النقدي"
+  },
+  {
+    "name": "net",
+    "en": "Net",
+    "ar": "الصافي"
+  },
+  {
+    "name": "vat",
+    "en": "VAT.",
+    "ar": "القيمة الضريبية"
+  },
+  {
+    "name": "absence",
+    "en": "Absence",
+    "ar": "غياب"
+  },
+  {
+    "name": "total_quantity",
+    "en": "Total Quantity",
+    "ar": "إجمالي الكمية"
+  },
+  {
+    "name": "personnel",
+    "en": "Personnel",
+    "ar": "شئون الموظفين"
+  },
+  {
+    "name": "overdraft",
+    "en": "Overdraft",
+    "ar": "السحب على المكشوف"
+  },
+  {
+    "name": "indentfy",
+    "en": "Indentfy",
+    "ar": "النوع"
+  },
+  {
+    "name": "period",
+    "en": "Period",
+    "ar": "المدة"
+  },
+  {
+    "name": "from",
+    "en": "From",
+    "ar": "من"
+  },
+  {
+    "name": "to",
+    "en": "To",
+    "ar": "إلى"
+  },
+  {
+    "name": "employee_salary_screen",
+    "en": "Employee Salary Screen",
+    "ar": "شاشة مرتبات الموظفين"
+  },
+  {
+    "name": "vendor",
+    "en": "Vendor",
+    "ar": "المورد"
+  },
+  {
+    "name": "name_ar",
+    "en": "Name In Ar",
+    "ar": "اللإسم بالعربية"
+  },
+  {
+    "name": "name_en",
+    "en": "Name In En",
+    "ar": "اللإسم بالإنجليزية"
+  },
+  {
+    "name": "size_en",
+    "en": "Size In En",
+    "ar": "المقاس بالإنجليزية"
+  },
+  {
+    "name": "Signature",
+    "en": "Signature",
+    "ar": "التوقيع"
+  },
+  {
+    "name": "name_size",
+    "en": "Name / Size",
+    "ar": "إسم / مقاس"
+  },
+  {
+    "name": "recipient_signature",
+    "en": "The recipient's signature",
+    "ar": "توقيع المستلم"
+  },
+  {
+    "name": "receiver",
+    "en": "Receiver",
+    "ar": "المستلم"
+  },
+  {
+    "name": "signature",
+    "en": "Signature",
+    "ar": "التوقيع"
+  },
+  {
+    "name": "cash",
+    "en": "Cash",
+    "ar": "كاش"
+  },
+  {
+    "name": "bank",
+    "en": "Bank",
+    "ar": "بنك"
+  },
+  {
+    "name": "payment_type",
+    "en": "Payment Type",
+    "ar": "نوع الدفع"
+  },
+  {
+    "name": "post_all",
+    "en": "Post All",
+    "ar": "ترحيل الكل"
+  },
+  {
+    "name": "add_currencies",
+    "en": "Add Currencies",
+    "ar": "إضافة عملات"
+  },
+  {
+    "name": "register",
+    "en": "Register",
+    "ar": "تسجيل"
+  },
+  {
+    "name": "register_customer",
+    "en": "Register Customer",
+    "ar": "تسجيل عميل"
+  },
+  {
+    "name": "report_employee_delegate_menus",
+    "en": "Report Commissions Delegate Menu",
+    "ar": "قائمة تقارير عمولات المناديب "
+  },
+  {
+    "name": "report_employee_delegate_name",
+    "en": "Report Commissions Delegate",
+    "ar": "تقرير عمولات المناديب "
+  },
+  {
+    "name": "report_invoices_vendors_menus",
+    "en": "Report Invoices Vendors  Menu",
+    "ar": "قائمة تقارير فواتير الموردين "
+  },
+  {
+    "name": "report_invoices_vendors_name",
+    "en": "Account Statement Vendors",
+    "ar": "كشف حساب الموردين "
+  },
+  {
+    "name": "order_customer_menus",
+    "en": "Orders Customer Screen",
+    "ar": "شاشة طلبات العملاء"
+  },
+  {
+    "name": "order_customer_management",
+    "en": "Orders Customer Management",
+    "ar": "إدارة طلبات العملاء"
+  },
+  {
+    "name": "work_posting",
+    "en": "Work Posting",
+    "ar": "العمل بالترحيل"
+  },
+  {
+    "name": "work_unposting",
+    "en": "Work Un Posting",
+    "ar": "العمل بفك الترحيل"
+  },
+  {
+    "name": "basic_information",
+    "en": "Basic Information",
+    "ar": "البيانات الأساسية"
+  },
+  {
+    "name": "system_total_transaction_menus",
+    "en": "Total Item Transaction Menu",
+    "ar": "قائمة إجمالي كارتة الصنف"
+  },
+  {
+    "name": "buy_price",
+    "en": "Buy At Price",
+    "ar": "الشراء بسعر"
+  },
+  {
+    "name": "selling_price",
+    "en": "Selling At Price",
+    "ar": "البيع بسعر"
+  },
+  {
+    "name": "amount_currency",
+    "en": "The Amount In Currency",
+    "ar": "المبلغ بالعملة"
+  },
+  {
+    "name": "qty",
+    "en": "Qty",
+    "ar": "كمية"
+  },
+  {
+    "name": "handle",
+    "en": "Handler",
+    "ar": "تهيئة"
+  },
+  {
+    "name": "err_paid_up_payment",
+    "en": "Paid Up Greater Than Required Value",
+    "ar": "المبلغ المسدد أكبر من الباقي"
+  },
+  {
+    "name": "paid_up_payment",
+    "en": "Paid Up",
+    "ar": "المبلغ المسدد"
+  },
+  {
+    "name": "system_amounts_in_menus",
+    "en": "Amount in Invoice",
+    "ar": "فاتورة الوارد"
+  },
+  {
+    "name": "system_amounts_out_menus",
+    "en": "Amount out Invoice",
+    "ar": "فاتورة المنصرف"
+  },
+  {
+    "name": "currency_value",
+    "en": "Currency Amount",
+    "ar": "مبلغ العملة"
+  },
+  {
+    "name": "main_currency",
+    "en": "Main Currency",
+    "ar": "العملة الأساسية"
+  },
+  {
+    "name": "exchange_rate",
+    "en": "Exchange Rate",
+    "ar": "سعر الصرف"
+  },
+  {
+    "name": "pay_another_currency",
+    "en": "Pay Another Currency",
+    "ar": "الدفع بعملة أخرى"
+  },
+  {
+    "name": "cvt",
+    "en": "Cvt",
+    "ar": "تحويل"
+  },
+  {
+    "name": "posting",
+    "en": "Posting",
+    "ar": "ترحيل"
+  },
+  {
+    "name": "unposting",
+    "en": "Un Posting",
+    "ar": "فك ترحيل"
+  },
+  {
+    "name": "system_units_menus",
+    "en": "Units Menu",
+    "ar": "قائمة الوحدات"
+  },
+  {
+    "name": "system_register_stores_assemble",
+    "en": "Add Assimbling Items",
+    "ar": "إضافة تجميعات الأصناف"
+  },
+  {
+    "name": "system_register_stores_dismantle",
+    "en": "Add Dismantle Items",
+    "ar": "إضافة تفكيك الأصناف"
+  },
+  {
+    "name": "report_sales_detailed_menus",
+    "en": "Report Sales Detailed Menu",
+    "ar": "قائمة تفصيلية لمبيعات الأصناف "
+  },
+  {
+    "name": "report_sales_total_menus",
+    "en": "Report Sales Total Menu",
+    "ar": "قائمة إجمالي لمبيعات الأصناف "
+  },
+  {
+    "name": "branches",
+    "en": "Branches",
+    "ar": "الفروع"
+  },
+  {
+    "name": "order_code",
+    "en": "Order Code",
+    "ar": "كود الطلب"
+  },
+  {
+    "name": "request_code",
+    "en": "Request Code",
+    "ar": "كود الطلب"
+  },
+  {
+    "name": "requests_count",
+    "en": "Requests Count",
+    "ar": "عدد الطلبات"
+  },
+  {
+    "name": "invoices_code",
+    "en": "Authorization / Invoices Code",
+    "ar": "كود الإذن / الفاتورة"
+  },
+  {
+    "name": "price",
+    "en": "Price",
+    "ar": "السعر"
+  },
+  {
+    "name": "sessions",
+    "en": "Sessions",
+    "ar": "الجلسات"
+  },
+  {
+    "name": "safe",
+    "en": "Safe",
+    "ar": "الخزينة"
+  },
+  {
+    "name": "commission",
+    "en": "Commission",
+    "ar": "العمولة"
+  },
+  {
+    "name": "auto_barcode_generation",
+    "en": "Automatic Barcode Generation",
+    "ar": "توليد اّلي للباركود"
+  },
+  {
+    "name": "total_value_added",
+    "en": "Total Value Added",
+    "ar": "إجمالي القيمة المضافة"
+  },
+  {
+    "name": "total_v_a",
+    "en": "Total V . A",
+    "ar": "إجمالي ق . م"
+  },
+  {
+    "name": "err_exist_count",
+    "en": "Must Be Item Count",
+    "ar": "يجب وجود عدد للصنف"
+  },
+  {
+    "name": "err_exist_count_invoice",
+    "en": "Must Be Item Count In Invoice",
+    "ar": "يجب وجود عدد للصنف في فاتورة"
+  },
+  {
+    "name": "done",
+    "en": "Done",
+    "ar": "تم"
+  },
+  {
+    "name": "auto_item_code_generation",
+    "en": "Automatic Item code Generation",
+    "ar": "توليد اّلي لكود الصنف"
+  },
+  {
+    "name": "posting_all",
+    "en": "Posting All",
+    "ar": "ترحيل الكل"
+  },
+  {
+    "name": "auto_unit_barcode_generation",
+    "en": "Automatic Unit Barcode Generation",
+    "ar": "توليد اّلي لباركود الوحدة"
+  },
+  {
+    "name": "item_code",
+    "en": "Item Code",
+    "ar": "كود الصنف"
+  },
+  {
+    "name": "has_been_delivered",
+    "en": "Has been delivered",
+    "ar": "تم التسليم"
+  },
+  {
+    "name": "delivery_has_not_been_done",
+    "en": "Delivery has not been done",
+    "ar": "لم يتم التسليم"
+  },
+  {
+    "name": "delivery_date",
+    "en": "Delivery Date",
+    "ar": "تاريخ التسليم"
+  },
+  {
+    "name": "paid",
+    "en": "Paid",
+    "ar": "المدفوع"
+  },
+  {
+    "name": "remain",
+    "en": "Remain",
+    "ar": "الباقي"
+  },
+  {
+    "name": "invoice_top_title",
+    "en": "invoice top title",
+    "ar": "عنوان الفاتورة العلوي"
+  },
+  {
+    "name": "normal_range",
+    "en": "Normal Range",
+    "ar": "المعدل الطبيعي"
+  },
+  {
+    "name": "result",
+    "en": "Result",
+    "ar": "النتيجة"
+  },
+  {
+    "name": "males",
+    "en": "Males",
+    "ar": "ذكور"
+  },
+  {
+    "name": "females",
+    "en": "Females",
+    "ar": "إناث"
+  },
+  {
+    "name": "children",
+    "en": "Children",
+    "ar": "أطفال"
+  },
+  {
+    "name": "medicine",
+    "en": "Medicine",
+    "ar": "الدواء"
+  },
+  {
+    "name": "holding",
+    "en": "Holding",
+    "ar": "تعليق"
+  },
+  {
+    "name": "medicines",
+    "en": "Medicines",
+    "ar": "الأدوية"
+  },
+  {
+    "name": "unit_barcode",
+    "en": "Unit Barcode",
+    "ar": "باركود الوحدة"
+  },
+  {
+    "name": "results_files",
+    "en": "Results files",
+    "ar": "ملفات النتائج"
+  },
+  { "name": "visit_date", "en": "Visit date", "ar": "تاريخ الزيارة" },
+  { "name": "visit_address", "en": "Visit address", "ar": "عنوان الزيارة" },
+  {
+    "name": "home_visit_date",
+    "en": "home visit date",
+    "ar": "تاريخ الزيارة المنزلية"
+  },
+  {
+    "name": "home_visit_address",
+    "en": "home visit address",
+    "ar": "عنوان الزيارة المنزلية"
+  },
+  {
+    "name": "home_visit_details",
+    "en": "home visit date",
+    "ar": "تفاصيل الزيارة المنزلية"
+  },
+  {
+    "name": "foods_drinks",
+    "en": "Foods & Drinks",
+    "ar": "الأطعمة و المشروبات"
+  },
+  {
+    "name": "paid_require",
+    "en": "Paid Require",
+    "ar": "المطلوب دفعه"
+  },
+  {
+    "name": "add_to_orders",
+    "en": "Add to orders",
+    "ar": "إضافة إلى الطلبات"
+  },
+  {
+    "name": "default_discount",
+    "en": "Default Discount",
+    "ar": "خصم إفتراضي"
+  },
+  {
+    "name": "system_transfer_items_menus",
+    "en": "Transfer Items",
+    "ar": "تحويل أصناف"
+  },
+  {
+    "name": "system_register_transfer_items",
+    "en": "Add Transfer Items Branches",
+    "ar": " إضافة تحويل أصناف"
+  },
+  {
+    "name": "transaction_type",
+    "en": "Transaction Type",
+    "ar": "نوع المعاملة"
+  },
+  {
+    "name": "balance",
+    "en": "Balance",
+    "ar": "الرصيد"
+  },
+  {
+    "name": "dont_exceed_maximum_discount_item",
+    "en": "Do not exceed the maximum discount for this items",
+    "ar": "عدم تجاوز الحد الأقصى من الخصم على الصنف"
+  },
+  {
+    "name": "create_invoice_auto",
+    "en": "Auto Create Invoice",
+    "ar": "إنشاء اّلي للفاتورة"
+  },
+  {
+    "name": "select_items",
+    "en": "Select Items",
+    "ar": "إختيار الأصناف"
+  },
+  {
+    "name": "select_all",
+    "en": "Select All",
+    "ar": "تحديد الكل"
+  },
+  {
+    "name": "select",
+    "en": "Select",
+    "ar": "تحديد"
+  },
+  {
+    "name": "tax_number",
+    "en": "Tax Number",
+    "ar": "الرقم الضريبي"
+  },
+  {
+    "name": "total_before_taxes_discounts",
+    "en": "Total before taxes & discounts",
+    "ar": "الإجمالي قبل الخصومات و الضرائب"
+  },
+  {
+    "name": "total_payments",
+    "en": "Total Payments",
+    "ar": "إجمالي المدفوع"
+  },
+  {
+    "name": "delivery_service",
+    "en": "Delivery Service",
+    "ar": "خدمة التوصيل"
+  },
+  {
+    "name": "total_value",
+    "en": "Total Value",
+    "ar": "القيمة الإجمالية"
+  },
+  {
+    "name": "the_total",
+    "en": "The Total",
+    "ar": "الإجمالي"
+  },
+  {
+    "name": "invoices",
+    "en": "Invoices",
+    "ar": "فواتير"
+  },
+  {
+    "name": "safe_box",
+    "en": "Safe Box",
+    "ar": "خزينة الصندوق"
+  },
+  {
+    "name": "safe_bank",
+    "en": "Safe Bank",
+    "ar": "خزينة البنك"
+  },
+  {
+    "name": "net_value",
+    "en": "Net Value",
+    "ar": "صافي القيمة"
+  },
+  {
+    "name": "stores_balances",
+    "en": "Stores Balances",
+    "ar": "أرصدة المخازن"
+  },
+  {
+    "name": "branches_balances",
+    "en": "Branches Balances",
+    "ar": "أرصدة الفروع"
+  },
+  {
+    "name": "default_store",
+    "en": "Default Store",
+    "ar": "مخزن إفتراضي"
+  },
+  {
+    "name": "marital_status",
+    "en": "Marital Status",
+    "ar": "الحالة الاجتماعية"
+  },
+  {
+    "name": "military_status",
+    "en": "Military Status",
+    "ar": "موقف التجنيد"
+  },
+  {
+    "name": "store",
+    "en": "ًStore",
+    "ar": "مخزن"
+  },
+  {
+    "name": "total_tax",
+    "en": "ًTotal Tax",
+    "ar": "إجمالي الضرائب"
+  },
+  {
+    "name": "total_discount",
+    "en": "ًTotal Discount",
+    "ar": "إجمالي الخصم"
+  },
+  {
+    "name": "total_items_discount",
+    "en": "ًTotal Items Discount",
+    "ar": "إجمالي خصم الأصناف"
+  },
+  {
+    "name": "store_from",
+    "en": "ًStore From",
+    "ar": "من مخزن"
+  },
+  {
+    "name": "store_to",
+    "en": "ًStore To",
+    "ar": "إلى مخزن"
+  },
+  {
+    "name": "branch_from",
+    "en": "ًBranch From",
+    "ar": "من فرع"
+  },
+  {
+    "name": "branch_to",
+    "en": "ًBranch To",
+    "ar": "إلى فرع"
+  },
+  {
+    "name": "description",
+    "en": "Description",
+    "ar": "الوصف"
+  },
+  {
+    "name": "payment_method",
+    "en": "Payment Method",
+    "ar": "طريقة الدفع"
+  },
+  {
+    "name": "purchases_invoice_type",
+    "en": "Purchases Invoice Type",
+    "ar": "نوع فاتورة المشتريات"
+  },
+  {
+    "name": "sales_invoice_type",
+    "en": "Sales Invoice Type",
+    "ar": "نوع فاتورة المبيعات"
+  },
+  {
+    "name": "discount",
+    "en": "Discount",
+    "ar": "الخصم"
+  },
+  {
+    "name": "err_stock_item",
+    "en": "The Transaction Cannot Be Performed Because Items Are Under Stocking",
+    "ar": "لا يمكن إجراء المعاملة لوجود أصناف تحت الجرد "
+  },
+  {
+    "name": "approve",
+    "en": "Approve",
+    "ar": "إعتماد"
+  },
+  {
+    "name": "settings_not_found",
+    "en": "Settings Not Found",
+    "ar": "لا يوجد إعدادات"
+  },
+  {
+    "name": "account_invoices_menu",
+    "en": "Account Invoices Menu",
+    "ar": "قائمة فواتير الحسابات"
+  },
+  {
+    "name": "account_invoices_management",
+    "en": "Account Invoices Management",
+    "ar": "إدارة فواتير الحسابات"
+  },
+  {
+    "name": "store_stock_menu",
+    "en": "Stores Stocktaking Menu",
+    "ar": "الجرد المخزني"
+  },
+  {
+    "name": "store_offer_menu",
+    "en": "Items Offers",
+    "ar": "عروض الأصناف"
+  },
+  {
+    "name": "store_stock_management",
+    "en": "Stores Stocktaking Management",
+    "ar": "إدارة الجرد المخزني"
+  },
+  {
+    "name": "create_invoice_from_order",
+    "en": "Create Invoice From Order",
+    "ar": "إنشاء فاتورة من الطلبات"
+  },
+  {
+    "name": "attend",
+    "en": "Attend",
+    "ar": "حضور"
+  },
+  {
+    "name": "leave",
+    "en": "Leave",
+    "ar": "مغادرة"
+  },
+  {
+    "name": "menu_delegates_tag",
+    "en": "Delegates Add",
+    "ar": "إضافة المناديب"
+  },
+  {
+    "name": "invoice_source",
+    "en": "Invoice Source",
+    "ar": "مصدر الفاتورة"
+  },
+  {
+    "name": "print_invoice",
+    "en": "Print Invoice",
+    "ar": "طباعة فاتورة"
+  },
+  {
+    "name": "source",
+    "en": "Source",
+    "ar": "مصدر"
+  },
+  {
+    "name": "create_an_invoice",
+    "en": "Create An Invoice",
+    "ar": "إنشاء فاتورة"
+  },
+  {
+    "name": "startup_date",
+    "en": "StartuP Date",
+    "ar": "تاريخ البداية "
+  },
+  {
+    "name": "deadline_date",
+    "en": "Deadline Date",
+    "ar": "تاريخ النهاية "
+  },
+  {
+    "name": "not_found",
+    "en": "Not Found",
+    "ar": "غير موجود"
+  },
+  {
+    "name": "deadline_date",
+    "en": "Deadline Date",
+    "ar": "تاريخ النهاية "
+  },
+  {
+    "name": "hour_min",
+    "en": "Hour / Min",
+    "ar": "دقيقة / ساعة"
+  },
+  {
+    "name": "minute",
+    "en": "Minute",
+    "ar": "دقيقة"
+  },
+  {
+    "name": "reason",
+    "en": "Reason",
+    "ar": "السبب"
+  },
+  {
+    "name": "true",
+    "en": "True",
+    "ar": "صح"
+  },
+  {
+    "name": "false",
+    "en": "False",
+    "ar": "خطأ"
+  },
+  {
+    "name": "requests",
+    "en": "Requests",
+    "ar": "الطلبات"
+  },
+  {
+    "name": "circle",
+    "en": "Circle",
+    "ar": "الدائرة"
+  },
+  {
+    "name": "empty_search",
+    "en": "Empty Search",
+    "ar": "تفريغ البحث"
+  },
+  {
+    "name": "invoice_header",
+    "en": "Invoice Header",
+    "ar": "مقدمة الفاتورة"
+  },
+  {
+    "name": "invoice_header_right",
+    "en": "Invoice Header right",
+    "ar": "مقدمة الفاتورة يمين"
+  },
+  {
+    "name": "invoice_header_left",
+    "en": "Invoice Header left",
+    "ar": "مقدمة الفاتورة يسار"
+  },
+  {
+    "name": "invoice_footer",
+    "en": "Invoice Footer",
+    "ar": "هامش الفاتورة"
+  },
+  {
+    "name": "company_name",
+    "en": "Company Name",
+    "ar": "إسم الشركة"
+  },
+  {
+    "name": "personal_information",
+    "en": "Personal Information",
+    "ar": "البيانات الشخصية"
+  },
+  {
+    "name": "email",
+    "en": "Email",
+    "ar": "البريد الإلكترونى"
+  },
+  {
+    "name": "user_name",
+    "en": "User Name",
+    "ar": "إسم المستخدم"
+  },
+  {
+    "name": "useradd_user_info",
+    "en": "User Created",
+    "ar": "معلومات الإضافة"
+  },
+  {
+    "name": "useredit_user_info",
+    "en": "User Updated",
+    "ar": "معلومات التعديل"
+  },
+  {
+    "name": "phone",
+    "en": "Phone Number",
+    "ar": "رقم التليفون"
+  },
+
+  {
+    "name": "mobile",
+    "en": "Mobile",
+    "ar": "رقم الموبيل"
+  },
+  {
+    "name": "website",
+    "en": "WebSite",
+    "ar": "الموقع الإلكترونى"
+  },
+  {
+    "name": "password",
+    "en": "password",
+    "ar": "كلمة المرور"
+  },
+  {
+    "name": "close",
+    "en": "Close",
+    "ar": "إغلاق"
+  },
+  {
+    "name": "add",
+    "en": "Add",
+    "ar": "أضف"
+  },
+  {
+    "name": "new",
+    "en": "New",
+    "ar": "جديد"
+  },
+  {
+    "name": "save",
+    "en": "Save",
+    "ar": "حفظ"
+  },
+  {
+    "name": "edit",
+    "en": "Edit",
+    "ar": "تعديل"
+  },
+  {
+    "name": "update",
+    "en": "Update",
+    "ar": "تعديل"
+  },
+  {
+    "name": "delete",
+    "en": "Delete",
+    "ar": "حذف"
+  },
+  {
+    "name": "remove",
+    "en": "Remove",
+    "ar": "حذف"
+  },
+  {
+    "name": "details",
+    "en": "Details",
+    "ar": "تفاصيل"
+  },
+  {
+    "name": "logo",
+    "en": "Logo",
+    "ar": "الشعار"
+  },
+  {
+    "name": "actions",
+    "en": "Actions",
+    "ar": "الإجراءات"
+  },
+  {
+    "name": "files",
+    "en": "Files",
+    "ar": "الملفات"
+  },
+  {
+    "name": "export_to_excel",
+    "en": "Export To Excel",
+    "ar": "تصدير الى أكسل"
+  },
+  {
+    "name": "notes",
+    "en": "Notes",
+    "ar": "ملاحظات"
+  },
+  {
+    "name": "add_to_notes",
+    "en": "Add To Notes",
+    "ar": "أضف الى الملاحظات"
+  },
+  {
+    "name": "date",
+    "en": "Date",
+    "ar": "التاريخ"
+  },
+  {
+    "name": "time",
+    "en": "Time",
+    "ar": "الوقت"
+  },
+  {
+    "name": "invoice_number",
+    "en": "Invoice Number",
+    "ar": "رقم الفاتورة"
+  },
+  {
+    "name": "print",
+    "en": "Print",
+    "ar": "طباعة"
+  },
+  {
+    "name": "menus",
+    "en": "System Menus",
+    "ar": "قوائم النظام"
+  },
+  {
+    "name": "user_logo",
+    "en": "User Logo",
+    "ar": "صورة المستخدم "
+  },
+  {
+    "name": "new_user",
+    "en": "New User",
+    "ar": "مستخدم جديد"
+  },
+  {
+    "name": "add_new_user",
+    "en": "Add New User",
+    "ar": "إضافة مستخدم جديد"
+  },
+  {
+    "name": "user_details",
+    "en": "User Details",
+    "ar": "بيانات المستخدم"
+  },
+  {
+    "name": "permissions",
+    "en": "Permissions",
+    "ar": "الصلاحيات"
+  },
+  {
+    "name": "permission",
+    "en": "Permission",
+    "ar": "تصريح"
+  },
+  {
+    "name": "add_permission",
+    "en": "Add Permission",
+    "ar": "أضف الى الصلاحيات"
+  },
+  {
+    "name": "stores",
+    "en": "Stores",
+    "ar": "المخازن"
+  },
+  {
+    "name": "accounts",
+    "en": "Accounts",
+    "ar": "الحسابات"
+  },
+  {
+    "name": "account",
+    "en": "Account",
+    "ar": "الحساب"
+  },
+  {
+    "name": "insurances",
+    "en": "Insurances",
+    "ar": "التامينات"
+  },
+  {
+    "name": "address",
+    "en": "Address",
+    "ar": "العنوان"
+  },
+  {
+    "name": "addresses",
+    "en": "Addresses",
+    "ar": "العناوين"
+  },
+  {
+    "name": "img",
+    "en": "Image",
+    "ar": "صورة"
+  },
+  {
+    "name": "error",
+    "en": "Error While Working",
+    "ar": "حدثت مشكلة اثناء التنفيذ"
+  },
+  {
+    "name": "search",
+    "en": "Search",
+    "ar": "بحـث"
+  },
+  {
+    "name": "search_all",
+    "en": "Search All",
+    "ar": "بحث شامل"
+  },
+  {
+    "name": "clear",
+    "en": "Clear",
+    "ar": "تفريغ الحقول"
+  },
+  {
+    "name": "setting",
+    "en": "Setting",
+    "ar": "الإعدادات"
+  },
+  {
+    "name": "total_prices",
+    "en": "Total prices",
+    "ar": "إجمالي الأسعار"
+  },
+  {
+    "name": "price_at_home",
+    "en": "Price at home",
+    "ar": "السعر في المنزل"
+  },
+  {
+    "name": "in_out_name",
+    "en": "In and Out Names",
+    "ar": "مسميات الوارد والمنصرف"
+  },
+  {
+    "name": "loading",
+    "en": "Loading",
+    "ar": "جارى التحميل"
+  },
+  {
+    "name": "day",
+    "en": "Day",
+    "ar": "يوم"
+  },
+  {
+    "name": "the_day",
+    "en": "TheDay",
+    "ar": "اليوم"
+  },
+  {
+    "name": "menu_class",
+    "en": "left-fixed-menu",
+    "ar": "right-fixed-menu"
+  },
+  {
+    "name": "load_more",
+    "en": "Load More",
+    "ar": "عرض المزيـد"
+  },
+  {
+    "name": "user",
+    "en": "User",
+    "ar": "مستخدم"
+  },
+  {
+    "name": "the_user",
+    "en": "The User",
+    "ar": "المستخدم"
+  },
+  {
+    "name": "discountes",
+    "en": "Discountes",
+    "ar": " الخصومات"
+  },
+  {
+    "name": "discount",
+    "en": "Discount",
+    "ar": " الخصم"
+  },
+  {
+    "name": "delivery",
+    "en": "Delivery",
+    "ar": " التوصيل"
+  },
+  {
+    "name": "discount_name",
+    "en": "Discount Name",
+    "ar": "إسم الخصم"
+  },
+  {
+    "name": "discount_value",
+    "en": "Discount Value",
+    "ar": "قيمة الخصم"
+  },
+  {
+    "name": "discount_types_number",
+    "en": "Discount Value",
+    "ar": "مبلغ الخصم"
+  },
+  {
+    "name": "discount_types_percent",
+    "en": "Discount Value",
+    "ar": "نسبة الخصم"
+  },
+  {
+    "name": "stores_out_add_discount",
+    "en": "Add Discount",
+    "ar": "أضف الخصم"
+  },
+  {
+    "name": "items_count",
+    "en": "Items Count",
+    "ar": "عدد الأصناف"
+  },
+  {
+    "name": "items_price",
+    "en": "Items Price",
+    "ar": "سعر الأصناف"
+  },
+  {
+    "name": "items_price_total",
+    "en": "Items Price Total",
+    "ar": "إجمالي سعر الأصناف"
+  },
+  {
+    "name": "date_from_subscribe",
+    "en": "Start Date",
+    "ar": "تاريخ بداية الإشتراك"
+  },
+  {
+    "name": "date_from",
+    "en": "From Date",
+    "ar": "من تاريخ"
+  },
+  {
+    "name": "date_to",
+    "en": "To Date",
+    "ar": "إلى تاريخ"
+  },
+  {
+    "name": "err_maximum_adds",
+    "en": "The maximum number of adds exceeded",
+    "ar": "تم تجاوز الحد الأقصى لعدد الإضافات"
+  },
+  {
+    "name": "work_time",
+    "en": "Work Time",
+    "ar": "وقت العمل"
+  },
+  {
+    "name": "total",
+    "en": "Total",
+    "ar": "إجمالي"
+  },
+  {
+    "name": "err_username_contain",
+    "en": "Username must contain the characters ( @ ’ . )",
+    "ar": "يجب أن يحتوي إسم المستخدم على الرموز ( @ ’ . ) "
+  },
+  {
+    "name": "le",
+    "en": "LE",
+    "ar": "جنيه"
+  },
+  {
+    "name": "select_all",
+    "en": "Select All",
+    "ar": "إختيار الكل"
+  },
+  {
+    "name": "status",
+    "en": "Status",
+    "ar": "الحالة"
+  },
+  {
+    "name": "count",
+    "en": "Count",
+    "ar": "عدد"
+  },
+  {
+    "name": "active",
+    "en": "Active",
+    "ar": "نشط"
+  },
+  {
+    "name": "not_active",
+    "en": "Not Active",
+    "ar": "غير نشط"
+  },
+  {
+    "name": "code",
+    "en": "code",
+    "ar": "الكود"
+  },
+  {
+    "name": "yes",
+    "en": "Yes",
+    "ar": "نعم"
+  },
+  {
+    "name": "no",
+    "en": "No",
+    "ar": "ﻻ"
+  },
+  {
+    "name": "code_exisit",
+    "en": "Code Exisit",
+    "ar": "الكود مسجل من قبل"
+  },
+  {
+    "name": "user_created",
+    "en": "Created Details",
+    "ar": "تفاصيل الإضافة"
+  },
+  {
+    "name": "user_updated",
+    "en": "Update Details",
+    "ar": "تفاصيل التعديل"
+  },
+  {
+    "name": "add_done",
+    "en": "Successfully Added",
+    "ar": "تم الإضافة بنجاح"
+  },
+  {
+    "name": "select",
+    "en": " Select",
+    "ar": "إضافة"
+  },
+  {
+    "name": "login_information",
+    "en": " Login Information",
+    "ar": "بيانات الدخول"
+  }
 ]

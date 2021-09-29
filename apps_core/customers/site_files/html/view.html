@@ -564,27 +564,24 @@
 
                 <fieldset id="addressInformations">
                     <legend> ##word.customers_address_informations## </legend>
-                    <table class="table hover">
-                        <tr>
-                            <td class="title"> ##word.customers_gov## </td>
-                            <td class="center"> {{customer.gov.name_##session.lang##}} </td>
-                        </tr>
 
+                    <table class="table loaded hover center bold">
                         <tr>
-                            <td class="title"> ##word.customers_city## </td>
-                            <td class="center"> {{customer.city.name_##session.lang##}} </td>
+                          <th>##word.customers_gov##</th>
+                          <th>##word.customers_city##</th>
+                          <th>##word.area##</th>
+                          <th>##word.customers_address##</th>
                         </tr>
+                        <tr ng-repeat="address in customer.address_list">
+                        
+                            <td class="center"> {{address.gov.name_##session.lang##}} </td>
+                            <td class="center"> {{address.city.name_##session.lang##}} </td>
+                            <td class="center"> {{address.area.name_##session.lang##}} </td>
+                            <td class="center"> {{address.address}} </td>
+            
+                        </tr>
+                      </table>
 
-                        <tr>
-                            <td class="title"> ##word.area## </td>
-                            <td class="center"> {{customer.##session.lang##ea.name_##session.lang##}} </td>
-                        </tr>
-
-                        <tr>
-                            <td class="title"> ##word.customers_address## </td>
-                            <td class="center"> {{customer.address}} </td>
-                        </tr>
-                    </table>
                     <i-button class="not-print" x-permissions="customers_print || customers_manage" type="print left "
                         onclick="site.print('#customerDetailsModal #addressInformations')"></i-button>
 
