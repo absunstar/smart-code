@@ -931,7 +931,55 @@ module.exports = function init(site) {
 
   /* ATM APIS */
 
-    
+  
+    // my profile
+    site.post("/api/customers/myAddresses", (req, res) => {
+      req.headers.language = req.headers.language || "en";
+      let response = {};
+      if (!req.session.user) {
+        response.message = site.word("loginFirst")[req.headers.language];
+        response.done = false;
+        res.json(response);
+        return;
+      } else if (!req.session.user.ref_info) {
+        response.message = site.word("loginFirst")[req.headers.language];
+        response.done = false;
+        res.json(response);
+        return;
+      }
+      console.log(req.session.user);
+  
+      $customers.aggregate(
+        [
+          {
+            $match: {
+              id: req.session.user.ref_info.id,
+            },
+          },
+          {
+            $project: {
+              "address_list" : 1.0, 
+                "id" : 1.0
+            },
+          },
+        ],
+        (err, docs) => {
+          if (docs && docs.length > 0) {
+            response.done = true;
+            response.doc = docs[0];
+  
+            res.json(response);
+          } else {
+            response.done = false;
+  
+            response.doc = {};
+            res.json(response);
+          }
+        }
+      );
+    });
+
+
 
   // my profile
   site.post("/api/customers/myProfile", (req, res) => {

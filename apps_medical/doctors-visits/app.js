@@ -111,8 +111,7 @@ module.exports = function init(site) {
       };
     }
 
-    $doctors_visits.findMany(
-      {
+    $doctors_visits.findMany({
         where: whereObj,
       },
       (err, docs, count) => {
@@ -178,8 +177,7 @@ module.exports = function init(site) {
     });
 
     if (doctors_visits_doc.id) {
-      $doctors_visits.edit(
-        {
+      $doctors_visits.edit({
           where: {
             id: doctors_visits_doc.id,
           },
@@ -213,8 +211,7 @@ module.exports = function init(site) {
       return;
     }
 
-    $doctors_visits.findOne(
-      {
+    $doctors_visits.findOne({
         where: {
           id: req.body.id,
         },
@@ -245,8 +242,7 @@ module.exports = function init(site) {
     let id = req.body.id;
 
     if (id) {
-      $doctors_visits.delete(
-        {
+      $doctors_visits.delete({
           id: id,
           $req: req,
           $res: res,
@@ -320,12 +316,15 @@ module.exports = function init(site) {
           find_search["selected_hospital.id"] = doctors_visits_doc.hospital.id;
           find_search["selected_clinic.id"] = doctors_visits_doc.clinic.id;
           find_search["selected_doctor.id"] = doctors_visits_doc.doctor.id;
-          find_search["status.id"] = { $ne: 5 };
+          find_search["status.id"] = {
+            $ne: 5
+          };
 
-          $doctors_visits.findMany(
-            {
+          $doctors_visits.findMany({
               where: find_search,
-              sort: { date: -1 },
+              sort: {
+                date: -1
+              },
               limit: 1,
             },
             (err, doc_last_doctors_visits) => {
@@ -344,9 +343,7 @@ module.exports = function init(site) {
                 }
 
                 for (
-                  let i = 0;
-                  i < doctors_visits_doc.period_doctors_visits;
-                  i++
+                  let i = 0; i < doctors_visits_doc.period_doctors_visits; i++
                 ) {
                   let new_doctors_visits = {
                     date: doctors_visits_doc.date,
@@ -401,18 +398,17 @@ module.exports = function init(site) {
                           start_date.getMinutes() +
                           i *
                           doctors_visits_doc.selected_doctor
-                            .detection_Duration
+                          .detection_Duration
                         );
 
                         let end_date = new Date(start_date);
                         end_date.setMinutes(
                           end_date.getMinutes() +
                           doctors_visits_doc.selected_doctor
-                            .detection_Duration
+                          .detection_Duration
                         );
 
-                        $doctors_visits.add(
-                          {
+                        $doctors_visits.add({
                             date: start_date,
                             code: $doctors_visits.newCode(
                               new_doctors_visits.selected_hospital.id
@@ -433,10 +429,8 @@ module.exports = function init(site) {
                             selected_shift: new_doctors_visits.selected_shift,
                             selected_doctor: new_doctors_visits.selected_doctor,
                             selected_clinic: new_doctors_visits.selected_clinic,
-                            selected_specialty:
-                              new_doctors_visits.selected_specialty,
-                            selected_hospital:
-                              new_doctors_visits.selected_hospital,
+                            selected_specialty: new_doctors_visits.selected_specialty,
+                            selected_hospital: new_doctors_visits.selected_hospital,
                             active: new_doctors_visits.active,
                             status: {
                               id: 5,
@@ -513,10 +507,11 @@ module.exports = function init(site) {
     search["selected_clinic.id"] = doctors_visits_doc.clinic.id;
     search["selected_doctor.id"] = doctors_visits_doc.doctor.id;
 
-    $doctors_visits.findMany(
-      {
+    $doctors_visits.findMany({
         where: search,
-        sort: { date: -1 },
+        sort: {
+          date: -1
+        },
         limit: 1,
       },
       (err, doc_last_doctors_visits) => {
@@ -592,8 +587,7 @@ module.exports = function init(site) {
                   doctors_visits_doc.selected_doctor.detection_Duration
                 );
 
-                $doctors_visits.add(
-                  {
+                $doctors_visits.add({
                     date: start_date,
                     code: $doctors_visits.newCode(
                       new_doctors_visits.selected_hospital.id
@@ -716,8 +710,7 @@ module.exports = function init(site) {
     where["company.id"] = site.get_company(req).id;
     where["branch.code"] = site.get_branch(req).code;
 
-    $doctors_visits.findMany(
-      {
+    $doctors_visits.findMany({
         select: req.body.select || {},
         where: where,
         sort: req.body.sort || {
@@ -761,10 +754,11 @@ module.exports = function init(site) {
       delete where["selected_doctor"];
     }
 
-    $doctors_visits.findMany(
-      {
+    $doctors_visits.findMany({
         where: where,
-        sort: { id: -1 },
+        sort: {
+          id: -1
+        },
       },
       (err, docs, count) => {
         if (!err) {
@@ -788,8 +782,7 @@ module.exports = function init(site) {
       delete where["id"];
     }
 
-    $doctors_visits.findMany(
-      {
+    $doctors_visits.findMany({
         where: where,
       },
       (err, docs) => {
@@ -836,58 +829,58 @@ module.exports = function init(site) {
   });
 
 
-    // RTC Token
+  // RTC Token
 
-    site.post("/api/doctors_visits/rtctoken", (req, res) => {
-      let response = {}
-      let agora_doc = req.body
-  
-      const APP_ID = agora_doc.APP_ID;
-      const APP_CERTIFICATE = agora_doc.APP_CERTIFICATE;
-      
-      const channelName = String(new Date().getTime());
-      if (!channelName) {
-        return res.status(500).json({
-          'error': 'channel is required'
-        });
-      }
-      // get uid 
-      let uid = req.query.uid;
-      if (!uid || uid == '') {
-        uid = 0;
-      }
-      // get role
-      let role = RtcRole.SUBSCRIBER;
-      if (req.query.role == 'publisher') {
-        role = RtcRole.PUBLISHER;
-      }
-      // get the expire time
-      let expireTime = req.query.expireTime;
-      if (!expireTime || expireTime == '') {
-        expireTime = 3600;
-      } else {
-        expireTime = parseInt(expireTime, 10);
-      }
-      // calculate privilege expire time
-      const currentTime = Math.floor(Date.now() / 1000);
-      const privilegeExpireTime = currentTime + expireTime;
-      // build the token
-       
-      const token = RtcTokenBuilder.buildTokenWithUid(APP_ID, APP_CERTIFICATE, channelName, uid, role, privilegeExpireTime);
-      let obj = {
-        done: true,
-        
-        data: {
-          APP_ID :APP_ID,
-          APP_CERTIFICATE : APP_CERTIFICATE,
-          token: token,
-          uid: uid,
-          role : role,
-          privilegeExpireTime : privilegeExpireTime,
-          channel: channelName
-        },
-      }
-      $doctors_visits.edit({
+  site.post("/api/doctors_visits/rtctoken", (req, res) => {
+    let response = {}
+    let agora_doc = req.body
+
+    const APP_ID = agora_doc.APP_ID;
+    const APP_CERTIFICATE = agora_doc.APP_CERTIFICATE;
+
+    const channelName = String(new Date().getTime());
+    if (!channelName) {
+      return res.status(500).json({
+        'error': 'channel is required'
+      });
+    }
+    // get uid 
+    let uid = req.query.uid;
+    if (!uid || uid == '') {
+      uid = 0;
+    }
+    // get role
+    let role = RtcRole.SUBSCRIBER;
+    if (req.query.role == 'publisher') {
+      role = RtcRole.PUBLISHER;
+    }
+    // get the expire time
+    let expireTime = req.query.expireTime;
+    if (!expireTime || expireTime == '') {
+      expireTime = 3600;
+    } else {
+      expireTime = parseInt(expireTime, 10);
+    }
+    // calculate privilege expire time
+    const currentTime = Math.floor(Date.now() / 1000);
+    const privilegeExpireTime = currentTime + expireTime;
+    // build the token
+
+    const token = RtcTokenBuilder.buildTokenWithUid(APP_ID, APP_CERTIFICATE, channelName, uid, role, privilegeExpireTime);
+    let obj = {
+      done: true,
+
+      data: {
+        APP_ID: APP_ID,
+        APP_CERTIFICATE: APP_CERTIFICATE,
+        token: token,
+        uid: uid,
+        role: role,
+        privilegeExpireTime: privilegeExpireTime,
+        channel: channelName
+      },
+    }
+    $doctors_visits.edit({
       where: {
 
         id: req.body.doctors_visits.id
@@ -899,9 +892,9 @@ module.exports = function init(site) {
       },
     })
     res.json(obj)
-    
-  
-    })
+
+
+  })
 
 
 
@@ -924,8 +917,7 @@ module.exports = function init(site) {
     }
 
     $doctors_visits.aggregate(
-      [
-        {
+      [{
           $match: {
             "customer.id": req.session.user.ref_info.id,
           },
@@ -975,8 +967,7 @@ module.exports = function init(site) {
     }
 
     $doctors_visits.aggregate(
-      [
-        {
+      [{
           $match: {
             "customer.id": req.session.user.ref_info.id,
             "status.id": 1
@@ -1013,101 +1004,99 @@ module.exports = function init(site) {
 
 
 
-// my complete visits
-site.post("/api/doctors_visits/getCompletedVisits", (req, res) => {
-  req.headers.language = req.headers.language || "en";
-  let response = {};
-  if (!req.session.user) {
-    response.message = site.word("loginFirst")[req.headers.language];
-    response.done = false;
-    res.json(response);
-    return;
-  } else if (!req.session.user.ref_info) {
-    response.message = site.word("loginFirst")[req.headers.language];
-    response.done = false;
-    res.json(response);
-    return;
-  }
+  // my complete visits
+  site.post("/api/doctors_visits/getCompletedVisits", (req, res) => {
+    req.headers.language = req.headers.language || "en";
+    let response = {};
+    if (!req.session.user) {
+      response.message = site.word("loginFirst")[req.headers.language];
+      response.done = false;
+      res.json(response);
+      return;
+    } else if (!req.session.user.ref_info) {
+      response.message = site.word("loginFirst")[req.headers.language];
+      response.done = false;
+      res.json(response);
+      return;
+    }
 
-  $doctors_visits.aggregate(
-    [
-      {
-        $match: {
-          'customer.id': req.session.user.ref_info.id,
+    $doctors_visits.aggregate(
+      [{
+          $match: {
+            'customer.id': req.session.user.ref_info.id,
+          },
         },
-      },
-      { 
-        "$match" : {
-            "status.id" : 4.0
+        {
+          "$match": {
+            "status.id": 4.0
+          }
         }
-    }
-    ],
-    (err, docs) => {
-      if (docs && docs.length > 0) {
-        response.done = true;
-        response.docs = docs;
+      ],
+      (err, docs) => {
+        if (docs && docs.length > 0) {
+          response.done = true;
+          response.docs = docs;
 
-        res.json(response);
-      } else {
-        response.done = false;
+          res.json(response);
+        } else {
+          response.done = false;
 
-        response.docs = [];
-        res.json(response);
+          response.docs = [];
+          res.json(response);
+        }
       }
+    );
+  });
+
+
+
+  //my not complete visits
+  site.post("/api/doctors_visits/getNotCompletedVisits", (req, res) => {
+    req.headers.language = req.headers.language || "en";
+    let response = {};
+    if (!req.session.user) {
+      response.message = site.word("loginFirst")[req.headers.language];
+      response.done = false;
+      res.json(response);
+      return;
+    } else if (!req.session.user.ref_info) {
+      response.message = site.word("loginFirst")[req.headers.language];
+      response.done = false;
+      res.json(response);
+      return;
     }
-  );
-});
 
-
-
-//my not complete visits
-site.post("/api/doctors_visits/getNotCompletedVisits", (req, res) => {
-  req.headers.language = req.headers.language || "en";
-  let response = {};
-  if (!req.session.user) {
-    response.message = site.word("loginFirst")[req.headers.language];
-    response.done = false;
-    res.json(response);
-    return;
-  } else if (!req.session.user.ref_info) {
-    response.message = site.word("loginFirst")[req.headers.language];
-    response.done = false;
-    res.json(response);
-    return;
-  }
-
-  $doctors_visits.aggregate(
-    [
-      {
-        $match: {
-          "customer.id": req.session.user.ref_info.id,
+    $doctors_visits.aggregate(
+      [{
+          $match: {
+            "customer.id": req.session.user.ref_info.id,
+          },
         },
-      },
-      { 
-        "$match" : {
-            "status.id" : {
-                "$nin" : [
-                    4.0
-                ]
+        {
+          "$match": {
+            "status.id": {
+              "$nin": [
+                4.0
+              ]
             }
+          }
         }
-    }
-    ],
-    (err, docs) => {
-      if (docs && docs.length > 0) {
-        response.done = true;
-        response.docs = docs;
+      ],
+      (err, docs) => {
+        if (docs && docs.length > 0) {
+          response.done = true;
+          response.docs = docs;
 
-        res.json(response);
-      } else {
-        response.done = false;
+          res.json(response);
+        } else {
+          response.done = false;
 
-        response.docs = [];
-        res.json(response);
+          response.docs = [];
+          res.json(response);
+        }
       }
-    }
-  );
-});
+    );
+  });
 
 
 
@@ -1115,7 +1104,7 @@ site.post("/api/doctors_visits/getNotCompletedVisits", (req, res) => {
 
 
 
-  // add doctor visit
+  // get today doctor visits
   site.post("/api/doctors_visits/getTodayVisitsCount", (req, res) => {
     let response = {
       done: false,
@@ -1125,7 +1114,6 @@ site.post("/api/doctors_visits/getNotCompletedVisits", (req, res) => {
       res.json(response)
       return
     }
-    console.log(req.session.user.ref_info.id);
 
     let start = new Date();
     start.setHours(0, 0, 0, 0);
@@ -1133,37 +1121,79 @@ site.post("/api/doctors_visits/getNotCompletedVisits", (req, res) => {
     end.setHours(23, 59, 59, 999);
 
     let doctors_visits_doc = req.body;
-    
-    $doctors_visits.findMany(
-      {
+
+    $doctors_visits.findMany({
         where: {
           "selected_doctor.id": req.session.user.ref_info.id,
-          // date: {
-          //   $gte: start,
-          //   $lt:end
-          // }
+          date: {
+            $gte: start,
+            $lt: end
+          }
         }
       },
       (err, docs, count) => {
 
-        if (!err && docs.length>0) {
-console.log(docs);
-response.done = true
-response.docs = docs
-response.count = count
-        
+        if (!err && docs.length > 0) {
+          response.done = true
+          response.list = docs
 
-        
-        }
-        else { 
-          console.log(22222222222222);
+          response.count = count
+        } else {
           response.done = false
+          response.list = docs
+          response.count = count
         }
         res.json(response)
 
       }
     );
   });
+
+
+
+    // get Next doctor visits
+    site.post("/api/doctors_visits/getNextVisitsCount", (req, res) => {
+      let response = {
+        done: false,
+      };
+      if (!req.session.user) {
+        response.error = 'Please Login First'
+        res.json(response)
+        return
+      }
+  
+      let start = new Date();
+      start.setHours(0, 0, 0, 0);
+      let end = new Date();
+      end.setHours(23, 59, 59, 999);
+  
+      let doctors_visits_doc = req.body;
+  
+      $doctors_visits.findMany({
+          where: {
+            "selected_doctor.id": req.session.user.ref_info.id,
+            date: {
+              $gte: start
+            }
+          }
+        },
+        (err, docs, count) => {
+  
+          if (!err && docs.length > 0) {
+            response.done = true
+            response.list = docs
+  
+            response.count = count
+          } else {
+            response.done = false
+            response.list = docs
+            response.count = count
+          }
+          res.json(response)
+  
+        }
+      );
+    });
 
 
 
@@ -1249,8 +1279,7 @@ response.count = count
       };
     }
 
-    $doctors_visits.findMany(
-      {
+    $doctors_visits.findMany({
         where: whereObj,
       },
       (err, docs, count) => {
@@ -1259,11 +1288,10 @@ response.count = count
           doctors_visits_doc.visit_number = count + 1;
 
 
-          $doctors.findOne(
-            {
+          $doctors.findOne({
               where: {
                 doctor: true,
-                id : doctors_visits_doc.selected_doctor.id
+                id: doctors_visits_doc.selected_doctor.id
               },
             },
             (err, doctorDoc) => {
@@ -1273,8 +1301,7 @@ response.count = count
                 return
               } else {
                 doctors_visits_doc.selected_doctor = doctorDoc
-                $customer.findOne(
-                  {
+                $customer.findOne({
                     where: {
                       id: doctors_visits_doc.customer.id,
                     },
@@ -1284,14 +1311,13 @@ response.count = count
                       response.error = 'no patient found';
                       res.json(response);
                       return
-                    }
-                    else{
+                    } else {
                       doctors_visits_doc.customer = customerDoc
                       site.getPatientTicket(doctors_visits_doc.customer, (callBackGet) => {
                         if (!callBackGet) {
                           site.addPatientTicket(doctors_visits_doc, (callBackAdd) => {
                             doctors_visits_doc.patient_ticket_id = callBackAdd.id;
-            
+
                             $doctors_visits.add(doctors_visits_doc, (err, doc) => {
                               if (!err) {
                                 response.done = true;
@@ -1308,9 +1334,9 @@ response.count = count
                             res.json(response);
                             return;
                           }
-            
+
                           doctors_visits_doc.patient_ticket_id = callBackGet.id;
-            
+
                           $doctors_visits.add(doctors_visits_doc, (err, doc) => {
                             if (!err) {
                               response.done = true;
@@ -1326,15 +1352,15 @@ response.count = count
                   }
                 );
               }
-             
+
             }
           );
 
 
 
-         
 
-          
+
+
         }
       }
     );
