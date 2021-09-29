@@ -1030,7 +1030,14 @@ module.exports = function init(site) {
           "$match": {
             "status.id": 4.0
           }
-        }
+        },
+        { 
+          "$project" : {
+              "scans_list" : 0.0, 
+              "analysis_list" : 0.0, 
+              "operation_list" : 0.0
+          }
+      }
       ],
       (err, docs) => {
         if (docs && docs.length > 0) {
@@ -1080,7 +1087,14 @@ module.exports = function init(site) {
               ]
             }
           }
-        }
+        },
+        { 
+          "$project" : {
+              "scans_list" : 0.0, 
+              "analysis_list" : 0.0, 
+              "operation_list" : 0.0
+          }
+      }
       ],
       (err, docs) => {
         if (docs && docs.length > 0) {
