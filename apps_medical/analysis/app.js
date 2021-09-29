@@ -19,17 +19,25 @@ module.exports = function init(site) {
   });
 
   site.on("[company][created]", (doc) => {
-    $analysis.add(
-      {
+    $analysis.add({
         code: "1-Test",
         name_ar: "تحليل إفتراضي",
         name_en: "Default Analysis",
         price: 1,
         price_at_home: 1,
         immediate: true,
-        male: { from: 0, to: 0 },
-        female: { from: 0, to: 0 },
-        child: { from: 0, to: 0 },
+        male: {
+          from: 0,
+          to: 0
+        },
+        female: {
+          from: 0,
+          to: 0
+        },
+        child: {
+          from: 0,
+          to: 0
+        },
         image_url: "/images/analysis.png",
         company: {
           id: doc.id,
@@ -73,12 +81,10 @@ module.exports = function init(site) {
       analysis_doc.active = true;
     }
 
-    $analysis.find(
-      {
+    $analysis.find({
         where: {
           "company.id": site.get_company(req).id,
-          $or: [
-            {
+          $or: [{
               name_ar: analysis_doc.name_ar,
             },
             {
@@ -140,8 +146,7 @@ module.exports = function init(site) {
     });
 
     if (analysis_doc.id) {
-      $analysis.edit(
-        {
+      $analysis.edit({
           where: {
             id: analysis_doc.id,
           },
@@ -175,8 +180,7 @@ module.exports = function init(site) {
       return;
     }
 
-    $analysis.findOne(
-      {
+    $analysis.findOne({
         where: {
           id: req.body.id,
         },
@@ -207,8 +211,7 @@ module.exports = function init(site) {
     let id = req.body.id;
 
     if (id) {
-      $analysis.delete(
-        {
+      $analysis.delete({
           id: id,
           $req: req,
           $res: res,
@@ -246,8 +249,7 @@ module.exports = function init(site) {
       where["name_en"] = new RegExp(where["name_en"], "i");
     }
 
-    $analysis.findMany(
-      {
+    $analysis.findMany({
         select: req.body.select || {},
         where: where,
         sort: req.body.sort || {
@@ -268,65 +270,78 @@ module.exports = function init(site) {
     );
   });
 
-/* ATM APIS */
+  /* ATM APIS */
 
 
-site.post("/api/analysis/searchAll", (req, res) => {
-  let response = {
-    done: false,
-  };
+  site.post("/api/analysis/searchAll", (req, res) => {
+    let response = {
+      done: false,
+    };
 
-  let where = req.body.where || {};
-
-
-
-  if (where["name_ar"]) {
-    where["name_ar"] = new RegExp(where["name_ar"], "i");
-  }
-
-  if (where["name_ar"] == undefined ||where["name_ar"] == ""  ) {
-  delete where["name_ar"]
-  }
-
-  if (where["name_en"]) {
-    where["name_en"] = new RegExp(where["name_en"], "i");
-  }
-  if (where["name_en"] == undefined ||where["name_en"] == ""  ) {
-    delete where["name_en"]
+    let where = req.body.where || {};
+    if (where["name"] == undefined ||where["name"] == "" ) {
+     
+      delete where['name']
     }
+
+    if (where['name']) {
+      where.$or = []
+      where.$or.push({
+        'name_ar': site.get_RegExp(where['name'], 'i')
+      },{
+        'name_en': site.get_RegExp(where['name'], 'i')
+      }
+      )
+      delete where['name']
+    }
+
+    // if (where["name_ar"]) {
+    //   where["name_ar"] = new RegExp(where["name_ar"], "i");
+    // }
+
+    // if (where["name_ar"] == undefined ||where["name_ar"] == ""  ) {
+    // delete where["name_ar"]
+    // }
+
+    // if (where["name_en"]) {
+    //   where["name_en"] = new RegExp(where["name_en"], "i");
+    // }
+    // if (where["name_en"] == undefined ||where["name_en"] == ""  ) {
+    //   delete where["name_en"]
+    //   }
     let limit = 10;
     let skip;
 
     if (req.body.page || (parseInt(req.body.page) && parseInt(req.body.page) > 1)) {
       skip = (parseInt(req.body.page) - 1) * 10
     }
-
-  $analysis.findMany(
-    {
-      select: req.body.select || {},
-      where: where,
-      sort: req.body.sort || {
-        id: -1,
+    console.log(where);
+    $analysis.findMany({
+        select: req.body.select || {},
+        where: where,
+        sort: req.body.sort || {
+          id: -1,
+        },
+        limit: limit,
+        skip: skip
       },
-      limit: limit,
-      skip: skip
-    },
-    (err, docs, count) => {
-      if (!err && docs.length>0) {
-        response.done = true;
-        response.list = docs;
-        response.count = count;
-        response.totalPages = Math.ceil(count / 10)
-      } else {
-        response.done = false;
-        response.list = [];
-        response.count = 0;
-        response.totalPages = Math.ceil(count / 10)
+      (err, docs, count) => {
+
+        if (!err && docs.length > 0) {
+          response.done = true;
+          response.list = docs;
+          response.count = count;
+          response.totalPages = Math.ceil(count / 10)
+        } else {
+          response.done = false;
+          response.list = [];
+          response.count = 0;
+          response.totalPages = Math.ceil(count / 10)
+        }
+        res.json(response);
       }
-      res.json(response);
-    }
-  );
-});
+    );
+  });
 
 
   // get analysis price
@@ -350,23 +365,22 @@ site.post("/api/analysis/searchAll", (req, res) => {
     }
 
     $analysis.aggregate(
-      [
-        { 
-          "$match" : {
-              "id" : analysis
+      [{
+          "$match": {
+            "id": analysis
           }
-      }, 
-      { 
-          "$addFields" : {
-              "price_at_analysis_center" : "$price"
+        },
+        {
+          "$addFields": {
+            "price_at_analysis_center": "$price"
           }
-      }, 
-      { 
-          "$project" : {
-              "price_at_analysis_center" : 1.0, 
-              "price_at_home" : 1.0
+        },
+        {
+          "$project": {
+            "price_at_analysis_center": 1.0,
+            "price_at_home": 1.0
           }
-      }
+        }
       ],
       (err, docs) => {
         if (docs && docs.length > 0) {
