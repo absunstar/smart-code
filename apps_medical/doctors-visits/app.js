@@ -1011,6 +1011,173 @@ module.exports = function init(site) {
     );
   });
 
+
+
+// my complete visits
+site.post("/api/doctors_visits/getCompletedVisits", (req, res) => {
+  req.headers.language = req.headers.language || "en";
+  let response = {};
+  if (!req.session.user) {
+    response.message = site.word("loginFirst")[req.headers.language];
+    response.done = false;
+    res.json(response);
+    return;
+  } else if (!req.session.user.ref_info) {
+    response.message = site.word("loginFirst")[req.headers.language];
+    response.done = false;
+    res.json(response);
+    return;
+  }
+
+  $doctors_visits.aggregate(
+    [
+      {
+        $match: {
+          'customer.id': req.session.user.ref_info.id,
+        },
+      },
+      { 
+        "$match" : {
+            "status.id" : 4.0
+        }
+    }
+    ],
+    (err, docs) => {
+      if (docs && docs.length > 0) {
+        response.done = true;
+        response.docs = docs;
+
+        res.json(response);
+      } else {
+        response.done = false;
+
+        response.docs = [];
+        res.json(response);
+      }
+    }
+  );
+});
+
+
+
+//my not complete visits
+site.post("/api/doctors_visits/getNotCompletedVisits", (req, res) => {
+  req.headers.language = req.headers.language || "en";
+  let response = {};
+  if (!req.session.user) {
+    response.message = site.word("loginFirst")[req.headers.language];
+    response.done = false;
+    res.json(response);
+    return;
+  } else if (!req.session.user.ref_info) {
+    response.message = site.word("loginFirst")[req.headers.language];
+    response.done = false;
+    res.json(response);
+    return;
+  }
+
+  $doctors_visits.aggregate(
+    [
+      {
+        $match: {
+          "customer.id": req.session.user.ref_info.id,
+        },
+      },
+      { 
+        "$match" : {
+            "status.id" : {
+                "$nin" : [
+                    4.0
+                ]
+            }
+        }
+    }
+    ],
+    (err, docs) => {
+      if (docs && docs.length > 0) {
+        response.done = true;
+        response.docs = docs;
+
+        res.json(response);
+      } else {
+        response.done = false;
+
+        response.docs = [];
+        res.json(response);
+      }
+    }
+  );
+});
+
+
+
+
+
+
+
+  // add doctor visit
+  site.post("/api/doctors_visits/getTodayVisitsCount", (req, res) => {
+    let response = {
+      done: false,
+    };
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+    console.log(req.session.user.ref_info.id);
+
+    let start = new Date();
+    start.setHours(0, 0, 0, 0);
+    let end = new Date();
+    end.setHours(23, 59, 59, 999);
+
+    let doctors_visits_doc = req.body;
+    
+    $doctors_visits.findMany(
+      {
+        where: {
+          "selected_doctor.id": req.session.user.ref_info.id,
+          // date: {
+          //   $gte: start,
+          //   $lt:end
+          // }
+        }
+      },
+      (err, docs, count) => {
+
+        if (!err && docs.length>0) {
+console.log(docs);
+response.done = true
+response.docs = docs
+response.count = count
+        
+
+        
+        }
+        else { 
+          console.log(22222222222222);
+          response.done = false
+        }
+        res.json(response)
+
+      }
+    );
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   // add doctor visit
   site.post("/api/doctors_visits/addDoctorVisit", (req, res) => {
     let response = {
@@ -1063,7 +1230,6 @@ module.exports = function init(site) {
     } else if (cb.auto) {
       doctors_visits_doc.code = cb.code;
     }
-console.log(doctors_visits_doc.selected_clinic.id);
     let whereObj = {
       date: new Date(doctors_visits_doc.date),
       "selected_clinic.id": doctors_visits_doc.selected_clinic.id,

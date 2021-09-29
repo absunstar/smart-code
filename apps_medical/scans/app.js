@@ -347,7 +347,7 @@ module.exports = function init(site) {
       }, 
       { 
           "$project" : {
-              "price_at_analysis_center" : 1.0, 
+              "price_at_scan_center" : 1.0, 
               "price_at_home" : 1.0
           }
       }
