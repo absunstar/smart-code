@@ -839,7 +839,7 @@ module.exports = function init(site) {
      };
 
     if (where["customer"]) {
-      where["customer.id"] = where["customer"].id;
+      where["id"] = where["customer"].id;
       delete where["customer"];
     }
 
@@ -857,7 +857,6 @@ module.exports = function init(site) {
     }
 
     $customers.findOne({
-        select: select,
         where: where,
       },
       (err, doc) => {
@@ -1075,7 +1074,6 @@ module.exports = function init(site) {
       res.json(response);
       return;
     }
-    console.log(req.session.user);
 
     $customers.aggregate(
       [{

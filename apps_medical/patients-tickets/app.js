@@ -272,6 +272,7 @@ module.exports = function init(site) {
     }
 
     response.cb = {
+      customer: {},
       analysis_requests: {
         list: [],
         total_value: 0,
@@ -311,14 +312,12 @@ module.exports = function init(site) {
       paid: 0,
       remain: 0,
     };
-
     site.getCustomer(req.body.where, (cbCustomer) => {
       site.getAnalysisRequests(req.body.where, (cbAnalysisRequests) => {
         site.getOperationsRequests(req.body.where, (cbOperationsRequests) => {
           site.getScansRequests(req.body.where, (cbScansRequests) => {
             site.getDoctorsVisits(req.body.where, (cbDoctorsVisits) => {
-              response.cb.customer = cbCustomer;
-
+              response.cb.customer = { ...cbCustomer };
               if (cbAnalysisRequests && cbAnalysisRequests.length > 0) {
                 cbAnalysisRequests.forEach((_analysisR) => {
                   _analysisR.analysis_list = _analysisR.analysis_list || [];
@@ -435,7 +434,6 @@ module.exports = function init(site) {
                   doctors_visits: response.cb.doctors_visits.list,
                 };
               }
-
               res.json(response);
             });
           });
