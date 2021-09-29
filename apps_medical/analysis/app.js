@@ -279,6 +279,11 @@ module.exports = function init(site) {
     };
 
     let where = req.body.where || {};
+    if (where["name"] == undefined ||where["name"] == "" ) {
+     
+      delete where['name']
+    }
+
     if (where['name']) {
       where.$or = []
       where.$or.push({

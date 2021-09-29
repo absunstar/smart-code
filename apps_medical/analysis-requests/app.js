@@ -448,6 +448,10 @@ module.exports = function init(site) {
       {
         "$project": {
           "date": 1.0,
+          
+          visit_day:1,
+
+          "visit_date": 1,
           "analysis_list": 1.0,
           "net_value": 1.0,
           "id": 1.0

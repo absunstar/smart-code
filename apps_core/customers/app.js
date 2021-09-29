@@ -1036,7 +1036,7 @@ module.exports = function init(site) {
           response.error = 'no user found';
           res.json(response);
         }
-        
+
       }
     );
 
