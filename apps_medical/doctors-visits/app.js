@@ -1100,6 +1100,125 @@ module.exports = function init(site) {
 
 
 
+   //get doctor complete visits
+   site.post("/api/doctors_visits/getDoctorCompleteVisits", (req, res) => {
+    req.headers.language = req.headers.language || "en";
+    let response = {};
+    if (!req.session.user) {
+      response.message = site.word("loginFirst")[req.headers.language];
+      response.done = false;
+      res.json(response);
+      return;
+    } else if (!req.session.user.ref_info) {
+      response.message = site.word("loginFirst")[req.headers.language];
+      response.done = false;
+      res.json(response);
+      return;
+    }
+    const startDateObj = new Date(req.body.date);
+    const endDateObj = new Date(req.body.date);
+   
+    startDateObj.setHours(0, 0, 0, 0);
+    endDateObj.setHours(0, 0, 0, 0);
+    endDateObj.setDate(startDateObj.getDate() + 1);
+    
+    $doctors_visits.aggregate(
+      [{
+          $match: {
+            "selected_doctor.id": req.session.user.ref_info.id,
+          },
+        },
+        {
+          "$match": {
+            "status.id": 4,
+            date: {
+              $gte: startDateObj,
+              $lt: endDateObj,
+            },
+          }
+        },
+        
+      ],
+      (err, docs) => {
+        if (docs && docs.length > 0) {
+          response.done = true;
+          response.docs = docs;
+
+          res.json(response);
+        } else {
+          response.done = false;
+
+          response.docs = [];
+          res.json(response);
+        }
+      }
+    );
+  });
+
+
+     //get doctor complete visits
+     site.post("/api/doctors_visits/getDoctorNotCompleteVisits", (req, res) => {
+      req.headers.language = req.headers.language || "en";
+      let response = {};
+      if (!req.session.user) {
+        response.message = site.word("loginFirst")[req.headers.language];
+        response.done = false;
+        res.json(response);
+        return;
+      } else if (!req.session.user.ref_info) {
+        response.message = site.word("loginFirst")[req.headers.language];
+        response.done = false;
+        res.json(response);
+        return;
+      }
+      const startDateObj = new Date(req.body.date);
+      const endDateObj = new Date(req.body.date);
+     
+      startDateObj.setHours(0, 0, 0, 0);
+      endDateObj.setHours(0, 0, 0, 0);
+      endDateObj.setDate(startDateObj.getDate() + 1);
+      
+      $doctors_visits.aggregate(
+        [{
+            $match: {
+              "selected_doctor.id": req.session.user.ref_info.id,
+            },
+          },
+          {
+            "$match": {
+              "status.id": {
+                "$nin": [
+                  4.0
+                ]
+              },
+              date: {
+                $gte: startDateObj,
+                $lt: endDateObj,
+              },
+            }
+          },
+          
+        ],
+        (err, docs) => {
+          if (docs && docs.length > 0) {
+            response.done = true;
+            response.docs = docs;
+  
+            res.json(response);
+          } else {
+            response.done = false;
+  
+            response.docs = [];
+            res.json(response);
+          }
+        }
+      );
+    });
+
+
+
+
+
 
 
 
