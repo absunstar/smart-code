@@ -332,7 +332,7 @@ module.exports = function init(site) {
 
   /* ATM APIS */
 
-  site.post("/api/analysis_requests/add1", (req, res) => {
+  site.post("/api/analysis_requests/addAnalysisRequest", (req, res) => {
     let response = {
       done: false,
     };
@@ -352,7 +352,7 @@ module.exports = function init(site) {
       (err, customerData) => {
         if (!err) {
           if (!customerData) {
-            response.error = err.message;
+            response.error = 'no patient found';
             return
           } else {
             analysis_requests_doc.customer = customerData;
@@ -390,7 +390,7 @@ module.exports = function init(site) {
                       response.done = true;
                       response.doc = doc;
                     } else {
-                      response.error = err.message;
+                      response.error = "error happened";
                     }
                     res.json(response);
                   });
@@ -409,7 +409,7 @@ module.exports = function init(site) {
                     response.done = true;
                     response.doc = doc;
                   } else {
-                    response.error = err.message;
+                    response.error ="error happened";
                   }
                   res.json(response);
                 });

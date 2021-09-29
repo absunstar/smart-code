@@ -1058,6 +1058,8 @@ site.post("/api/doctors_visits/getCompletedVisits", (req, res) => {
   );
 });
 
+
+
 //my not complete visits
 site.post("/api/doctors_visits/getNotCompletedVisits", (req, res) => {
   req.headers.language = req.headers.language || "en";
@@ -1106,6 +1108,73 @@ site.post("/api/doctors_visits/getNotCompletedVisits", (req, res) => {
     }
   );
 });
+
+
+
+
+
+
+
+  // add doctor visit
+  site.post("/api/doctors_visits/getTodayVisitsCount", (req, res) => {
+    let response = {
+      done: false,
+    };
+    if (!req.session.user) {
+      response.error = 'Please Login First'
+      res.json(response)
+      return
+    }
+    console.log(req.session.user.ref_info.id);
+
+    let start = new Date();
+    start.setHours(0, 0, 0, 0);
+    let end = new Date();
+    end.setHours(23, 59, 59, 999);
+
+    let doctors_visits_doc = req.body;
+    
+    $doctors_visits.findMany(
+      {
+        where: {
+          "selected_doctor.id": req.session.user.ref_info.id,
+          // date: {
+          //   $gte: start,
+          //   $lt:end
+          // }
+        }
+      },
+      (err, docs, count) => {
+
+        if (!err && docs.length>0) {
+console.log(docs);
+response.done = true
+response.docs = docs
+response.count = count
+        
+
+        
+        }
+        else { 
+          console.log(22222222222222);
+          response.done = false
+        }
+        res.json(response)
+
+      }
+    );
+  });
+
+
+
+
+
+
+
+
+
+
+
 
 
 

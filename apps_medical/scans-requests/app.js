@@ -1,6 +1,6 @@
 module.exports = function init(site) {
   const $scans_requests = site.connectCollection("scans_requests")
-
+  const $customer = site.connectCollection("customers");
   //  $scans_requests.deleteDuplicate({
   //   code: 1,
   //   'company.id': 1
@@ -331,6 +331,119 @@ module.exports = function init(site) {
 
 
    /* ATM APIS */
+
+
+   site.post("/api/scans_requests/addScanRequest", (req, res) => {
+    let response = {
+      done: false
+    }
+    // if (!req.session.user) {
+    //   response.error = 'Please Login First'
+    //   res.json(response)
+    //   return
+    // }
+    let scans_requests_doc = req.body
+
+    $customer.findOne({
+      where: {
+        id: scans_requests_doc.customer.id,
+      },
+    },
+    (err, customerData) => {
+      if (!customerData) {
+        response.error = 'no patient found';
+        res.json(response);
+        return
+      } else {
+        scans_requests_doc.customer = customerData;
+        scans_requests_doc.$req = req
+        scans_requests_doc.$res = res
+    
+    
+        scans_requests_doc.company = site.get_company(req);
+        scans_requests_doc.branch = site.get_branch(req);
+    
+        scans_requests_doc.add_user_info = site.security.getUserFinger({
+          $req: req,
+          $res: res
+        })
+    
+        let num_obj = {
+          company: site.get_company(req),
+          screen: 'scans_requests',
+          date: scans_requests_doc.date
+        };
+    
+        let cb = site.getNumbering(num_obj);
+        if (!scans_requests_doc.code && !cb.auto) {
+          response.error = 'Must Enter Code';
+          res.json(response);
+          return;
+    
+        } else if (cb.auto) {
+          scans_requests_doc.code = cb.code;
+        }
+
+        site.getPatientTicket(customerData, callBackGet => {
+
+          if (!callBackGet) {
+    
+            site.addPatientTicket(scans_requests_doc, callBackAdd => {
+              scans_requests_doc.patient_ticket_id = callBackAdd.id
+    
+              $scans_requests.add(scans_requests_doc, (err, doc) => {
+    
+                if (!err) {
+                  response.done = true
+                  response.doc = doc
+    
+                } else {
+                  response.error = "error happened";
+                }
+                res.json(response)
+              })
+    
+            })
+    
+    
+    
+          } else {
+    
+            if (callBackGet.status && callBackGet.status.id === 2) {
+              response.error = 'holding ticket for this patient';
+              res.json(response);
+              return;
+    
+            }
+    
+            scans_requests_doc.patient_ticket_id = callBackGet.id
+    
+            $scans_requests.add(scans_requests_doc, (err, doc) => {
+    
+              if (!err) {
+                response.done = true
+                response.doc = doc
+    
+              } else {
+               response.error = "error happened";
+              }
+              res.json(response)
+            })
+          }
+    
+        })
+
+      }
+    }
+  );
+
+   
+  
+
+
+
+  })
+
 
     // my profile
     site.post('/api/scans_requests/myProfile', (req, res) => {
