@@ -1387,7 +1387,7 @@ module.exports = function init(site) {
     }
     let whereObj = {
       date: new Date(doctors_visits_doc.date),
-      "selected_clinic.id": doctors_visits_doc.selected_clinic.id,
+      "selected_clinic.id": doctors_visits_doc.selected_clinic?doctors_visits_doc.selected_clinic.id:null,
       "selected_doctor.id": doctors_visits_doc.selected_doctor.id,
       "selected_time.day.id": doctors_visits_doc.selected_time.day.id,
       "selected_time.from.hour": doctors_visits_doc.selected_time.from.hour,
