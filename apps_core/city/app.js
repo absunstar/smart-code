@@ -237,6 +237,44 @@ module.exports = function init(site) {
     })
   })
 
+/* ATM APIS */
 
+site.post("/api/city/findCityByGov", (req, res) => {
+
+  let response = {
+    done: false
+  }
+
+  let where = req.body.where || {}
+
+  if (where['gov'] == "" || where['gov'] == undefined) {
+   
+    delete where['gov']
+    delete where.active
+  }
+
+  if (where['gov']) {
+    where['gov.id'] = where['gov'].id;
+    delete where['gov']
+    delete where.active
+  }
+
+ 
+  $city.findMany({
+    select: req.body.select || {},
+    where: where,
+    sort: req.body.sort || { id: -1 },
+    limit: req.body.limit
+  }, (err, docs, count) => {
+    if (!err) {
+      response.done = true
+      response.list = docs
+      response.count = count
+    } else {
+      response.error = err.message
+    }
+    res.json(response)
+  })
+})
 
 }
