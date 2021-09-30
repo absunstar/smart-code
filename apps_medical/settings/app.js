@@ -48,10 +48,12 @@ module.exports = function init(site) {
       (err, docs, count) => {
         if (!err) {
           response.done = true;
-          response.list = docs;
+          response.doc = docs[0];
           response.count = count;
         } else {
-          response.error = err.message;
+          response.done = false;
+          response.doc = {};
+          response.count = 0;
         }
         res.json(response);
       },
