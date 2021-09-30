@@ -1,0 +1,898 @@
+body{
+    font-family: 'Cairo', sans-serif !important;
+}
+a{
+    
+    text-decoration: none !important;
+}
+
+
+.navbar1{
+    background-color: #00BCC9;
+}
+.navbar-item{
+    color: white;
+    font-size: 16px;
+    
+}
+.main-welcome{
+    margin: 100px 0px;
+}
+.navbar-item:hover{
+    color: white;
+    text-decoration: none;
+}
+.main-welcome img{
+display: flex;
+margin: auto;
+transition: all 0.4s ease;
+}
+.main-welcome img:hover{
+   transform: rotate(20deg);
+   
+}
+.main-welcome h2{
+    font-size: 40px;
+    color: #5dbdc9;
+    font-weight: 700;
+}
+.main-welcome p{
+    font-size: 23px;
+    width: 85%;
+    color: #374053;
+    margin: 30px 0px;
+}
+.main-welcome a{
+    padding: 3px 39px;
+    background-color: #00BCC929;
+    border-radius: 20px;
+    color: #00BCC9;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+
+
+
+
+/* ------------------ */
+
+
+
+
+.services .serv{
+    text-align: center;
+    width: 80%;
+    margin: auto;
+    border: 1px solid #EDEEEF;
+    border-radius: 10px 10px 0px 0px;
+    padding-bottom: 30px;
+}
+.serv div{
+    background-color: #F4F6F8;
+    border-radius: 10px 10px 0px 0px;
+    height: 250px;
+}
+.serv div img{
+    padding: 70px;
+}
+.serv h4{
+    color: #374053;
+    margin: 20px 0px 10px 0px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.serv p{
+    color: #374053;
+
+    margin-bottom: 30px;
+}
+.serv a{
+    padding: 4px 35px;
+    background-color: #00BCC929;
+    border-radius: 20px;
+    color: #3B3B3B;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 14px;
+}
+.medical-profile{
+    background: linear-gradient(#00BCC9,#A18DCE);
+    text-align: center;
+    padding: 50px 0px 100px 0px;
+    margin: 200px 0px;
+}
+.medical-profile h1{
+    color: #FFFFFF;
+    font-weight: 700;
+    position: relative;
+
+}
+
+.medical-profile h1::before{
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 28%;
+    height: 2px;
+    background-color: #94d9e2;
+    display: block;
+    left: 40px;
+}
+.medical-profile h1::after{
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 28%;
+    height: 2px;
+    background-color: #94d9e2;
+    display: block;
+    right: 40px;
+}
+.medical-profile p{
+    font-size: 25px;
+    width: 50%;
+    margin: 50px auto 100px auto;
+    color: #FFFFFF;
+    font-weight: 300;
+
+}
+.medical-profile a{
+    padding: 20px 70px;
+    background-color: white;
+    border-radius: 50px;
+    color: #3B3B3B;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 18px;
+}
+.app{
+    background-color: #F2F2F2;
+    padding: 25px 0px;
+}
+.app-img{
+    width: 50%;
+    display: flex;
+    margin: auto;
+}
+.app h1{
+    color: #2C2C2C;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+.app p{
+    color: #2C2C2C;
+    font-size: 22px;
+    margin-bottom: 25px;
+}
+footer{
+    background-color: #00BCC9;
+    padding: 80px 0px 20px 0px;
+}
+.footer-links a{
+text-decoration: none;
+color: white;
+font-weight: 200;
+}
+footer .social-link{
+    display: flex;
+    margin: 0px 0px 20px 0px;
+}
+footer .social-link a{
+    margin: 0px 2px;
+}
+footer .social-link img{
+    width: 90%;
+}
+.copyright{
+    color: white;
+    font-size: 13px;
+    margin: auto;
+    display: flex;
+}
+.clinic-img img{
+width: 100%;
+}
+.clinic-img .col-sm-3 img{
+    height: 70%;
+}
+.clinic-img h1{
+    text-align: center;
+    color: #2C2C2C;
+    font-weight: 700;
+    margin-bottom: 80px;
+}
+.clinic-img{
+    margin: 100px 0px;
+}
+.clinic-img a{
+    text-align: center;
+    padding: 8px 20px;
+    background-color: #00BCC929;
+    border-radius: 20px;
+    color: #3B3B3B;
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+    width: 13%;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}
+.booking-dr{
+    background-color: #F8F7F7;
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 50px;
+    margin-bottom: 20px;
+}
+.doctor{
+    display: flex;
+}
+.doctor h3{
+    font-size: 20px;
+    font-weight: 700;
+}
+.dr-details{
+    margin: 0px 10px;
+
+}
+.doctor p{
+    font-size: 19px;
+    margin-bottom: 5px;
+}
+.doctor span{
+    color: #00BCC9;
+    font-weight: 600;
+}
+.book-btn{
+    margin: auto 0px;
+}
+.book-btn a{
+    padding: 9px 60px;
+    background-color: #00BCC929;
+    border-radius: 20px;
+    text-decoration: none;
+    color: #3B3B3B;
+    font-size: 15px;
+    margin: 0px 25px;
+}
+.main-span h1{
+    color: #374053;
+    font-weight: 700;
+    margin: 80px 0px;
+    text-align: center;
+}
+
+
+
+/* ------------------ */
+
+
+.dr-book-popup h3{
+font-size: 14px;
+font-weight: 700;
+color: #2C2C2C;
+margin-bottom: 4px;
+margin-top: 5px;
+}
+.dr-book-popup p{
+    font-size: 13px;
+    margin-bottom: 3px;
+}
+.dr-book-popup span{
+    color: #00BCC9;
+    font-weight: 600;
+    font-size: 13px;
+}
+.step-num{
+    display: flex;
+    justify-content: space-around;
+    margin: 40px auto;
+    width: 400px;
+    
+    margin: 30px auto;
+}
+.step-num span{
+    padding: 5px 10px;
+    border: 1px solid #E5E5E5;
+    border-radius: 100%;
+    color: #707070;
+    font-size: 12px;
+}
+.center-step{
+    position: relative;
+}
+.center-step::before{
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 100px;
+    height: 1px;
+    background-color: #E5E5E5;
+    display: block;
+    left: 29px;
+}
+.center-step::after{
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 100px;
+    height: 1px;
+    background-color: #E5E5E5;
+    display: block;
+    right: 29px;
+}
+.step1 label{
+    color: #374053;
+    font-weight: 700;
+    font-size: 14px;
+    margin-top: 25px;
+}
+.step1 span{
+    margin: 8px;
+    font-size: 14px;
+}
+select{
+    width: 100%;
+    border-radius: 20px;
+    background-color: #FCFCFC;
+    border: none;
+    padding: 2px 0px;
+    font-size: 14px;
+    color: #374053;
+    outline: none;
+    margin: 10px 0px;
+    
+}
+select option{
+    
+    
+    background-color: #FCFCFC;
+    border-radius: 5px;
+}
+.next-step{
+    text-align: center;
+    margin: 50px 0px 10px 0px;
+}
+.next-step a{
+    padding: 7px 60px;
+    border-radius: 20px;
+    background-color: #00BCC9;
+    color: white;
+    font-size: 13px;
+    text-decoration: none;
+
+}
+.step2 .date-day{
+    text-decoration: none;
+    padding: 1px 40px;
+    background-color: #F4F4F4;
+    border-radius: 20px;
+    font-size: 13px;
+    color: #374053;
+    margin-left: 10px;
+}
+.step2 .date{
+    text-decoration: none;
+    padding: 1px 20px;
+    background-color: #F4F4F4;
+    border-radius: 20px;
+    font-size: 13px;
+    color: #374053;
+    margin-left: 10px;
+}
+.step3 .book-price{
+    text-align: center;
+
+}
+.book-price p{
+    margin: 0px;
+    font-size: 14px;
+    font-weight: 700;
+}
+.book-price span{
+    margin: 0;
+    color: #00BCC9
+}
+
+.step3 input{
+    margin-right: 30px;
+}
+.step3 label{
+    margin-bottom: 20px;
+}
+.final-step{
+    text-align: center;
+}
+.final-step img{
+    margin: 30px 0px;
+    width: 20%;
+}
+.final-step h2{
+    color: #00BCC9;
+    font-weight: 600;
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+.final-step span{
+    color: #374053;
+}
+ .step-num .border-color{
+    border-color: #1EBCC9 !important;
+}
+ .step-num .active{
+    background-color: #1EBBC7 !important;
+    color: white;
+}
+#step-tab a, #step2-tab a{
+    background-color: #5dbdc9;
+    font-size: 13px;
+    padding: 2px 22px;
+    border-radius: 20px;
+    color: white;
+    text-decoration: none;
+}
+.l-side{
+    background: linear-gradient(#00BCC9 ,#A18DCE);
+    height: 100%;
+    padding: 40px;
+}
+.login-logo{
+    margin: auto;
+    width: 90%;
+}
+.login-logo p{
+    color: white;
+    margin: 15px 0px 50px 0px;
+}
+.login-form, .register, .forget-password, .code-send-repassword, .verify-send-repassword, .enter-new-password{
+    width: 80%;
+    margin: auto;
+}
+.login-form input, .register input, .forget-password input, .enter-new-password input{
+    width: 100%;
+    margin: 20px 0px;
+    height: 40px;
+    border: none;
+    background-color: #F8F8F8;
+    border-radius: 20px;
+    padding: 20px;
+}
+.login-form input:placeholder-shown, .register input:placeholder-shown, .forget-password input:placeholder-shown, .enter-new-password input:placeholder-shown{
+    font-size: 12px;
+    color: #DDDDDD;
+    font-weight: 100;
+}
+.login-form img, .register img, .forget-password img, .enter-new-password img{
+    margin-left: 10px;
+}
+.login-form label, .register label, .forget-password label, .enter-new-password label{
+    color: #747070;
+    font-weight: 700;
+    font-size: 15px;
+}
+.login-form h2, .register h2, .forget-password h2, .code-send-repassword h2, .verify-send-repassword h2, .enter-new-password h2{
+    color: #0D0D0D;
+    font-weight: 700;
+    margin-top: 80px;
+}
+.login-form p, .register p, .forget-password p, .code-send-repassword p, .verify-send-repassword p, .enter-new-password p{
+    color: #747070;
+    font-weight: 600;
+    margin-bottom: 50px;
+}
+.login-btn{
+    text-align: center;
+    margin-top: 80px;
+}
+.login-now, .next{
+    padding: 12px 100px;
+    background-color: #00BCC9;
+    border-radius: 30px;
+    color: white;
+    text-decoration: none;
+}
+.login-btn span{
+    margin: 40px 0px 10px 0px;
+    display: flex;
+    justify-content: center;
+color: #747070;
+}
+.login-btn span a{
+    text-decoration: none;
+    color: #747070;
+    font-weight: 600;
+    margin: 0px 4px;
+}
+.lost-pass{
+    text-decoration: none;
+    color: #747070;
+    font-size: 15px;
+    font-weight: 600;
+}
+.lost-pass:hover{
+    color: #747070;
+}
+.next-back{
+    margin:50px 0px;
+    text-align: center;
+
+}
+.back{
+    padding: 12px 100px;
+    background-color: white;
+    border-radius: 30px;
+    color: #00BCC9;
+    border: 2px solid #00BCC9;
+    text-decoration: none;
+    margin: 0px 10px;
+}
+.code input{
+    height: 70px;
+    width: 10%;
+    border: none;
+    background-color: #F8F8F8;
+    border-radius: 10px;
+    margin: 0px 20px;
+    font-size: 45px;
+    text-align: center;
+    color: #747070;
+    
+
+}
+.code input:focus{
+    outline:1px solid #00BCC9;
+}
+.code{
+    text-align: center;
+    margin: 30px 0px;
+}
+.code label{
+    color: #747070;
+    font-weight: 700;
+    font-size: 15px;
+    margin: 40px 0px;
+}
+
+
+
+
+
+/* ---------------------------- */
+
+
+
+
+.account-profile{
+    margin: 100px 0px;
+}
+.account-profile .nav{
+    padding: 0;
+}
+
+.account-profile .col{
+    border: 2px solid #DFE3EF;
+    height: 100%;
+    border-radius: 10px;
+    padding: 5px 0px 20px 0px!important;
+}
+.account-profile .col #v-pills-tab a{
+color: #3B4358;
+font-weight: 700;
+margin: 12px 10px;
+}
+.account-profile .col #v-pills-tab .active{
+    background-color: #F4F5F8;
+    border-radius: 5px;
+    width: 90%;
+    margin: 12px 10px;
+}
+.account-profile .main-profile-user{
+    border-bottom:2px solid #DFE3EF;
+    padding: 15px 0px;
+    
+    margin-bottom: 10px;
+    
+}
+.main-profile-user img{
+    margin: 0px 20px;
+}
+.main-profile-user span{
+    color: #00BCC9;
+    font-weight: 700;
+}
+.account-profile .edit-header-profile, .account-profile .location-main-header{
+    padding: 8px 20px 3px 20px;
+    background-color: #F4F5F8;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+.account-profile .edit-header-profile h2, .account-profile .location-main-header h4{
+    font-size: 18px;
+    color: #00BCC9;
+    font-weight: 700;
+
+}
+.account-profile .profile-information , .account-profile .personal-information{
+    background-color:#F4F5F8 ;
+    display: flex;
+    justify-content: space-between;
+    padding: 40px 50px;
+    border-bottom: 1px solid #E4E5E6;
+}
+.account-profile .profile-information h2, .account-profile .personal-information h2, .account-profile .profile-insurance h2{
+    font-size: 18px;
+    color: #3B4358;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+.account-profile .profile-insurance{
+    background-color:#F4F5F8 ;
+    
+    padding: 40px 50px;
+}
+.account-profile .profile-information span, .account-profile .personal-information span, .account-profile .profile-insurance span{
+    color: #616E8D;
+    font-size: 14px;
+
+}
+.account-profile .insurance-body{
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+}
+.account-profile .profile-information a, .account-profile .personal-information a{
+    padding: 5px 35px;
+    text-decoration: none;
+    background-color: white;
+    color: #00BCC9;
+    font-weight: 700;
+    font-size: 12px;
+    border-radius: 5px;
+
+
+}
+.account-profile .profile-insurance a{
+    padding: 5px 35px;
+    text-decoration: none;
+    background-color: #F4F5F8;
+    color: #00BCC9;
+    font-weight: 700;
+    font-size: 12px;
+    border-radius: 5px;
+
+
+}
+.account-profile .profile-insurance .edit-btn{
+    margin-top: 10px;
+}
+.account-profile .profile-insurance .insurance-details{
+    width: 60%;
+    margin-top: 5px;
+}
+.account-profile .orders-header li{
+    width: 50%;
+    text-align: center;
+    background-color: #F4F5F8;
+    font-weight: 700;
+    font-size: 15px;
+
+}
+.account-profile .orders-header li a{
+    color: #00BCC9;
+}
+.account-profile .orders-header li .active{
+    background-color: #00BCC9;
+    
+}
+.account-profile .order-card-body{
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0px 0px 0px;
+    background-color: #F4F5F8;
+    padding: 30px 20px;
+    border-radius: 5px;
+}
+.account-profile .order-card-body h4{
+    color: #3B4358;
+    font-size: 18px;
+    font-weight: 700;
+}
+.account-profile .order-card-body span{
+    color: #616E8D;
+    font-size: 12px;
+}
+.account-profile .order-card-body .orders-details{
+    width: 45%;
+}
+.account-profile .order-card-body .orders-action a{
+    padding: 4px 30px;
+    background-color: white;
+    font-size: 13px !important;
+    color: #00BCC9;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+.account-profile .orders-action div{
+    text-align: end;
+    margin-bottom: 20px;
+}
+.account-profile .order-card-body .orders-action a:last-of-type{
+    background-color: transparent;
+    border: 1px solid #00BCC9;
+
+}
+.account-profile .order-card .collapse .card-body, .account-profile .order-card .collapsing .card-body{
+    border: none;
+}
+.account-profile .order-card .collapse .card-body .collapse-more-section, .account-profile .order-card .collapsing .card-body .collapse-more-section{
+    display: flex;
+    justify-content: center;
+}
+.account-profile .order-card .collapse .card-body h2, .account-profile .order-card .collapsing .card-body h2{
+    font-size: 20px;
+    color: #3B4358;
+    font-weight: 700;
+    margin-top: 20px ;
+
+}
+.account-profile .order-card .collapse .card-body .collapse-more-section div:last-of-type, .account-profile .order-card .collapsing .card-body .collapse-more-section div:last-of-type{
+    width: 60%;
+    margin: 20px;
+}
+.account-profile .order-card .collapse .card-body .collapse-more-section .img-with-details, .account-profile .order-card .collapsing .card-body .collapse-more-section .img-with-details{
+    width: 100% !important;
+    margin: 15px 0px !important;
+    display: flex;
+
+} 
+
+.account-profile .order-card .collapse .card-body .collapse-more-section span, .account-profile .order-card .collapsing .card-body .collapse-more-section span{
+    color: #616E8D;
+    font-size: 14px;
+} 
+
+.account-profile .order-card .collapse .card-body .collapse-more-section p, .account-profile .order-card .collapsing .card-body .collapse-more-section p{
+    color: #616E8D;
+    margin: 0px 20px;
+    font-size: 14px;
+} 
+
+.account-profile .order-card .collapse .card-body a, .account-profile .order-card .collapsing .card-body a{
+    color: white;
+    font-size: 14px;
+    padding: 7px 30px;
+    background-color: #00BCC9;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    width:20%;
+    margin: auto;
+} 
+
+.account-profile .order-card .collapse .card-body , .account-profile .order-card .collapsing .card-body {
+    background-color: #F4F5F8;
+}
+
+.account-profile .bookig-header li{
+    width: 50%;
+    text-align: center;
+    background-color: #F4F5F8;
+    font-weight: 700;
+    font-size: 15px;
+    
+
+}
+.account-profile .bookig-header li a{
+    color: #00BCC9;
+}
+.account-profile .bookig-header li .active{
+    background-color: #00BCC9;
+    
+}
+.account-profile p{
+    font-size: 14px;
+    color: #00BCC9;
+    font-weight: 700;
+}
+.account-profile .my-current-booking .order-card .order-card-body .orders-details p, .account-profile .my-previous-booking .order-card .order-card-body .orders-details p{
+    font-size: 14px;
+    color: #00BCC9;
+    font-weight: 700;
+}
+.account-profile .my-current-booking .order-card .order-card-body .orders-action a{
+    background: white;
+    border: none;
+}
+.account-profile .my-current-booking .order-card .order-card-body .orders-action a:hover{
+    text-decoration: none;
+}
+
+.account-profile .my-previous-booking .order-card .order-card-body .orders-action a:last-of-type{
+    padding: 3px 28px;
+}
+.account-profile .location-main-body .orders-details{
+    width: 60%;
+}
+.account-profile .location-main-body .order-card .pharmacy-img{
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+}
+.account-profile .location-main-body .orders-details a{
+    padding: 3px 30px;
+    border: 1px solid #00BCC9;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 5px;
+    
+}
+.account-profile .location-main-body .orders-details span{
+    display: flex;
+}
+.account-profile .location-main-footer{
+    background-color: #F4F5F8;
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px 0px;
+    border-radius: 8px;
+    
+}
+.account-profile .location-main-footer a{
+    text-decoration: none;
+    font-weight: 700;
+    color: #00BCC9;
+}
+
+/* wallet section */
+
+.account-profile .my-wallet{
+    background-color: #F4F5F8;
+    text-align: center;
+    padding: 106px 0px;
+    border-radius: 8px;
+}
+.account-profile .my-wallet span{
+    color: #00BCC9;
+    font-weight: 700;
+
+}
+.account-profile .my-wallet img{
+    margin-bottom: 20px;
+}
+.account-profile .my-wallet a{
+    padding: 3px 30px;
+    background-color: #00BCC9;
+    color: white;
+    font-weight: 700;
+    font-size: 14px;
+    border-radius: 5px;
+    
+}
+.account-profile .my-wallet a:hover{
+    text-decoration: none;
+}
+.account-profile .my-wallet a:last-of-type{
+    background-color: transparent;
+    border: 1px solid #00BCC9;
+    padding: 2px 26px ;
+    color: #00BCC9;
+}
+.modal .modal-dialog{
+    max-width: 650px;
+}
+.modal .modal-header, .modal .modal-footer{
+    border: none;
+}
+
+.modal .modal-footer{
+    justify-content: center;
+}
+.modal .modal-footer button{
+    padding: 3px 30px;
+    background-color: #00BCC9;
+}

@@ -41,6 +41,9 @@ site.words.add(
   },
 );
 
+site.addFeature('inmedic');
+site.addFeature('atm');
+
 site.ready = false;
 site.loadLocalApp('client-side');
 site.loadLocalApp('ui-print');
