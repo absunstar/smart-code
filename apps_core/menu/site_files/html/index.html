@@ -2698,16 +2698,11 @@
 
 
 
-<input type="checkbox" id="btn-sidebar" checked x-features="atm">
-<div class="sidebar-atm" x-features="atm">
+<!-- <input type="checkbox" id="btn-sidebar" checked x-features="atm"> -->
+<div class="sidebar-atm" x-features="atm" onmouseleave="divcollapse()">
  
     
-    <div class="sidebar-atm-logo" style="display: flex; background-color: #f4cd07; margin-bottom: 20px;">
-      <label for="btn-sidebar" >
-        <img src="/images/menu1.png" style="border-radius: 0; width: 50%; margin: auto;">  
-      </label>
-      <img src="/images/inmedic-01.jpg" class="img-logo" style="width: 70%; border-radius: 0; ">
-    </div>
+   
     <div class="sidebar-atm-menu">
       <ul>
         <li>
@@ -2716,7 +2711,7 @@
           href="/patients_tickets"
           x-permissions="patients_tickets_ui || patients_tickets_manage"
         >
-          <img src="/images/patients_tickets.png" />
+          <img src="/images/warehouse-white.svg" />
           <span> ##word.patients_tickets## </span>
         </a>
 
@@ -2728,7 +2723,7 @@
             href="/doctors_visits"
             x-permissions="doctors_visits_ui || doctors_visits_manage"
           >
-            <img src="/images/doctors_visits.png" />
+            <img src="/images/transaction-white.svg" />
             <span> ##word.doctors_visits## </span>
           </a>
           </li>
@@ -2747,7 +2742,7 @@
           href="/analysis_requests"
           x-permissions="analysis_requests_ui || analysis_requests_manage"
         >
-          <img src="/images/analysis_requests.png" />
+          <img src="/images/report-white.svg" />
           <span> ##word.analysis_requests## </span>
         </a>
           </li>
@@ -2766,7 +2761,7 @@
           href="/scans_requests"
           x-permissions="scans_requests_ui || scans_requests_manage"
         >
-          <img src="/images/scans_requests.png" />
+          <img src="/images/hr-white.svg" />
           <span> ##word.scans_requests## </span>
         </a>
           </li>
@@ -2777,7 +2772,7 @@
               href="/patients_files"
               x-permissions="patients_files_ui || patients_files_manage"
             >
-              <img src="/images/patients_files.png" />
+              <img src="/images/report-white.svg" />
               <span> ##word.patients_files## </span>
             </a>
           </li>
@@ -2787,7 +2782,7 @@
             onclick="s1()" class="dropbtn"
             
           >
-            <img src="/images/basic_setting.png" />
+            <img src="/images/setting-white.svg" />
             <span>##word.basic_setting##</span>
           </a></li>
           <div id="basic_setting" class="dropdown-content" style="display: none;">
@@ -2798,7 +2793,7 @@
             href="/customers"
             x-permissions="customers_ui || customers_manage"
           >
-            <img src="/images/customer.png" />
+            <img src="/images/warehouse-white.svg" />
             <span> ##word.customers## </span>
           </a>
           
@@ -2807,7 +2802,7 @@
               href="/doctors"
               x-permissions="doctors_ui || doctors_manage"
             >
-              <img src="/images/doctor.png" />
+              <img src="/images/report-white.svg" />
               <span> ##word.doctors## </span>
             </a>
     
@@ -2816,7 +2811,7 @@
               href="/nursing"
               x-permissions="nursing_ui || nursing_manage"
             >
-              <img src="/images/nurse.png" />
+              <img src="/images/hr-white.svg" />
               <span> ##word.nursing## </span>
             </a>
     
@@ -2825,7 +2820,7 @@
               href="/clinics"
               x-permissions="clinics_ui || clinics_manage"
             >
-              <img src="/images/clinic.png" />
+              <img src="/images/security-white.svg" />
               <span> ##word.clinics## </span>
             </a>
     
@@ -2834,7 +2829,7 @@
               href="/medical_insurance_companies"
               x-permissions="insurance_companies_ui || insurance_companies_manage"
             >
-              <img src="/images/medical_insurance_companies.png" />
+              <img src="/images/warehouse-white.svg" />
               <span> ##word.medical_insurance_companies##</span>
             </a>
     
@@ -2843,7 +2838,7 @@
               href="/medical_specialties"
               x-permissions="specialties_ui || specialties_manage"
             >
-              <img src="/images/medical_specialty.png" />
+              <img src="/images/transaction-white.svg" />
               <span> ##word.medical_specialties##</span>
             </a>
     
@@ -2852,7 +2847,7 @@
               href="/operation"
               x-permissions="operation_ui || operation_manage"
             >
-              <img src="/images/operation.png" />
+              <img src="/images/setting-white.svg" />
               <span> ##word.operations##</span>
             </a>
     
@@ -2861,7 +2856,7 @@
               href="/scans"
               x-permissions="scans_ui || scans_manage"
             >
-              <img src="/images/scans.png" />
+              <img src="/images/report-white.svg" />
               <span> ##word.scans##</span>
             </a>
     
@@ -2870,7 +2865,7 @@
               href="/analysis"
               x-permissions="analysis_ui || analysis_manage"
             >
-              <img src="/images/analysis.png" />
+              <img src="/images/security-white.svg" />
               <span> ##word.analysis##</span>
             </a>
             <a
@@ -2878,7 +2873,7 @@
             href="/customers_group"
             x-permissions="customers_group_ui || customers_group_manage"
           >
-            <img src="/images/vendor_group.png" />
+            <img src="/images/home-white.svg" />
             <span> ##word.customers_groups## </span>
           </a>
           <a
@@ -2886,20 +2881,20 @@
         href="/order_slides"
         x-permissions="order_slides_ui || order_slides_manage"
       >
-        <img src="/images/slides.png" />
+        <img src="/images/config-white.svg" />
         <span> ##word.order_slides##</span>
       </a>
             </div>
 
           <li>
             <a class="tab-link" href="/security/users">
-              <img src="/images/users.png" />
+              <img src="/images/security-white.svg" />
               <span> ##word.menu_users## </span>
             </a>
           </li>
           <li>
             <a class="tab-link"  onclick="s2()" class="dropbtn">
-              <img src="/images/general_setting.png" />
+              <img src="/images/config-white.svg" />
               <span>##word.general_setting##</span>
             </a>
           </li>
@@ -2912,7 +2907,7 @@
             x-features="!employee && !lawyer"
             x-permissions="default_setting_ui || default_setting_manage"
           >
-            <img src="/images/default_setting.png" />
+            <img src="/images/setting-white.svg" />
             <span>##word.default_setting_menus## </span>
           </a>
     
@@ -2921,7 +2916,7 @@
             href="/numbering"
             x-permissions="numbering_ui || numbering_manage"
           >
-            <img src="/images/numbering.png" />
+            <img src="/images/home-white.svg" />
             <span> ##word.numbering_screen## </span>
           </a>
     
@@ -2930,7 +2925,7 @@
             href="/shifts"
             x-permissions="shifts_ui || shifts_manage"
           >
-            <img src="/images/shift.png" />
+            <img src="/images/transaction-white.svg">
             <span> ##word.menu_shift## </span>
           </a>
     
@@ -2939,7 +2934,7 @@
             href="/printers_path"
             x-permissions="printers_path_ui || printers_path_manage"
           >
-            <img src="/images/printer_path.png" />
+            <img src="/images/hr-white.svg" />
             <span> ##word.printers_path## </span>
           </a>
           <a
@@ -2947,7 +2942,7 @@
           href="/nationalities"
           x-permissions="nationalities_ui || nationalities_manage"
         >
-          <img src="/images/nationalities.png" />
+          <img src="/images/setting-white.svg" />
           <span> ##word.nationalities## </span>
         </a>
   
@@ -2956,17 +2951,17 @@
           href="/goves"
           x-permissions="goves_ui || goves_manage"
         >
-          <img src="/images/gov.png" />
+          <img src="/images/report-white.svg" />
           <span> ##word.menu_goves## </span>
         </a>
   
         <a class="tab-link" href="/city" x-permissions="city_ui || city_manage">
-          <img src="/images/city.png" />
+          <img src="/images/warehouse-white.svg" />
           <span> ##word.menu_city## </span>
         </a>
   
         <a class="tab-link" href="/area" x-permissions="area_ui || area_manage">
-          <img src="/images/area.png" />
+          <img src="/images/home-white.svg" />
           <span> ##word.menu_area## </span>
         </a>
         <a
@@ -2974,7 +2969,7 @@
           href="/prices_codes"
           x-permissions="prices_codes_ui || prices_codes_manage"
         >
-          <img src="/images/prices_codes.png" />
+          <img src="/images/security-white.svg" />
           <span> ##word.prices_codes##</span>
         </a>
         <a
@@ -2982,7 +2977,7 @@
         href="/disease"
         x-permissions="disease_ui || disease_manage"
       >
-        <img src="/images/disease.png" />
+        <img src="/images/config-white.svg" />
         <span> ##word.diseases##</span>
       </a>
 
@@ -2991,7 +2986,7 @@
         href="/foods"
         x-permissions="foods_ui || foods_manage"
       >
-        <img src="/images/foods.png" />
+        <img src="/images/setting-white.svg" />
         <span> ##word.foods##</span>
       </a>
 
@@ -3000,7 +2995,7 @@
         href="/drinks"
         x-permissions="drinks_ui || drinks_manage"
       >
-        <img src="/images/drinks.png" />
+        <img src="/images/home-white.svg" />
         <span> ##word.drinks##</span>
       </a>
       <a
@@ -3008,7 +3003,7 @@
         href="/militaries_status"
         x-permissions="militaries_status_ui || militaries_status_manage"
       >
-        <img src="images/military.png" />
+        <img src="images/warehouse-white.svg" />
         <span>##word.system_military_menus## </span>
       </a>
 
@@ -3017,7 +3012,7 @@
         href="/file_type"
         x-permissions="file_type_ui || file_type_manage"
       >
-        <img src="images/file_type.png" />
+        <img src="images/report-white.svg" />
         <span>##word.files_types## </span>
       </a>
 
@@ -3026,7 +3021,7 @@
         href="/maritals_status"
         x-permissions="maritals_status_ui || maritals_status_manage"
       >
-        <img src="images/marital.png" />
+        <img src="images/hr-white.svg" />
         <span>##word.system_social_status_menus## </span>
       </a>
 
@@ -3035,7 +3030,7 @@
         href="/reset"
         x-permissions="reset_ui || reset_manage"
       >
-        <img src="/images/reset.png" />
+        <img src="/images/setting-white.svg" />
         <span> ##word.reset## </span>
       </a>    
           </div>
@@ -3079,6 +3074,11 @@ function s4() {
     a.style.display = "none";
   };
 }
+function divcollapse(){
+    document.getElementById("basic_setting").style.display="none";
+    document.getElementById("general_setting").style.display="none";
+}
+
 </script>
 </div>
 
