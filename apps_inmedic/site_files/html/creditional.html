@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en" dir="rtl">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/all.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap" rel="stylesheet">
+  <title>Inmedic</title>
+</head>
+
+<body>
+
+ <section class="user-creditional" style="overflow-x: hidden;">
+     
+     
+     <div class="fluid-container">
+         <div class="row">
+             <div class="col-sm-6 l-side">
+               
+                <div class="login-logo">
+                    <img src="/images/inmedic.svg" width="20%"><br>
+                    <p>برنامج وتطبيق موبايل يخدم اداره المستشفيات والمستخدم</p><br>
+
+
+                </div>
+                <div class="app-user-img" style="text-align: center;">
+                    <img src="/images/login-img.png" style="margin-bottom: 80px;" width="50%"><br>
+                    <a href="#"><img src="/images/google.png" width="13%"></a>
+          <a href="#"><img src="/images/app.png" width="13%"></a>
+
+                </div>
+
+            </div>
+        
+        <div class="col-sm-6">
+            <div class="login-form">
+
+                <h2>تسجيل دخول</h2>
+                <p>برنامج وتطبيق موبايل يخدم اداره المستشفيات والمستخدم</p>
+            <label><img src="/images/mail.svg" width="17%">البريد الالكتروني</label><br>
+            <input type="text" placeholder="Example@GMAIL.COM" style="margin-bottom: 50px;"><br>
+            <label><img src="/images/password.svg" width="17%">الرقم السري </label><br>
+            <input type="password" placeholder="********"><br>
+            <div class="login-btn">
+                <a href="#" class="login-now">دخول</a><br>
+                <span>ليس لديك حساب؟ <a href="#" id="register">سجل الان</a></span>
+                <a href="#" id="forget-pass" class="lost-pass">نسيت كلمه السر؟</a>
+                
+            </div>
+        </div>
+
+        <div class="register" style="display: none;">
+            <h2> تسجيل جديد</h2>
+            <p>برنامج وتطبيق موبايل يخدم اداره المستشفيات والمستخدم</p>
+
+        <label><img src="/images/phone.svg" width="17%"> رقم الهاتف</label><br>
+        <input type="text" placeholder="Example@GMAIL.COM"><br>
+        <label><img src="/images/mail.svg" width="17%">البريد الالكتروني</label><br>
+        <input type="text" placeholder="Example@GMAIL.COM"><br>
+        <label><img src="/images/password.svg" width="17%">الرقم السري </label><br>
+        <input type="password" placeholder="********"><br>
+        <label><img src="/images/password.svg" width="13%"> اعاده الرقم السري </label><br>
+        <input type="password" placeholder="********"><br>
+
+        <div class="next-back">
+            <a href="#" class="next" id="verify-code">تسجيل</a>
+            <a href="#" class="back" id="return-login">رجوع</a>
+        </div>
+        </div>
+
+        <div class="verify-send-repassword" style="display: none;">
+            <h2> ادخل الكود</h2>
+                <p>برنامج وتطبيق موبايل يخدم اداره المستشفيات والمستخدم</p>
+                <div class="code">
+                <label >اكتب الم ارقام التي تم ارسالهم علي البريد الالكتروني الخاص بك</label><br>
+                <input type="text" maxlength="1">
+                <input type="text" maxlength="1">
+                <input type="text" maxlength="1">
+                <input type="text" maxlength="1">
+                
+            </div>
+            <div class="next-back">
+                <a href="index.html" class="next" >التالي</a>
+                <a href="#" class="back" id="back-register">رجوع</a>
+            </div>
+        </div>
+
+        <div class="forget-password" style="display: none;">
+            <h2> اعاده كلمه السر</h2>
+                <p>برنامج وتطبيق موبايل يخدم اداره المستشفيات والمستخدم</p>
+            <label><img src="/images/mail.svg" width="17%">البريد الالكتروني</label><br>
+            <input type="text" placeholder="Example@GMAIL.COM" style="margin-bottom: 50px;"><br>
+            <div class="next-back">
+                <a href="#" class="next" id="forget-code">التالي</a>
+                <a href="#" class="back" id="backto-login">رجوع</a>
+            </div>
+        </div>
+        
+
+        <div class="code-send-repassword" style="display: none;">
+            <h2> اعاده كلمه السر</h2>
+                <p>برنامج وتطبيق موبايل يخدم اداره المستشفيات والمستخدم</p>
+                <div class="code">
+                <label >اكتب الم ارقام التي تم ارسالهم علي البريد الالكتروني الخاص بك</label><br>
+                <input type="text" maxlength="1">
+                <input type="text" maxlength="1">
+                <input type="text" maxlength="1">
+                <input type="text" maxlength="1">
+                
+            </div>
+            <div class="next-back">
+                <a href="#" class="next" id="reset-pass">التالي</a>
+                <a href="#" class="back" id="change-email">رجوع</a>
+            </div>
+        </div>
+
+
+        <div class="enter-new-password" style="display: none;">
+            <h2>اعاده كلمه السر</h2>
+                <p>برنامج وتطبيق موبايل يخدم اداره المستشفيات والمستخدم</p>
+           
+            <label><img src="/images/password.svg" width="17%">الرقم السري </label><br>
+            <input type="password" placeholder="********"><br>
+            <label><img src="/images/password.svg" width="13%">اعاده الرقم السري </label><br>
+            <input type="password" placeholder="********"><br>
+            <div class="login-btn" style="margin-bottom: 40px;">
+                <a href="#" class="login-now" id="login-again">تأكيد</a><br>
+                
+                
+            </div>
+        </div>
+
+        </div>
+           
+        </div>
+
+    </div>
+
+ </section>
+ 
+ 
+
+<script>
+    const forgetPass = document.querySelector("#forget-pass");
+    const register = document.querySelector("#register");
+    const verifyCode = document.querySelector("#verify-code");
+    const returnCode = document.querySelector("#return-login");
+    const backRegister = document.querySelector("#back-register");
+    const forgetCode = document.querySelector("#forget-code");
+    const backLogin = document.querySelector("#backto-login");
+    const resetPass = document.querySelector("#reset-pass");
+    const changeEmail = document.querySelector("#change-email");
+    const loginAgain = document.querySelector("#login-again");
+
+    forgetPass.addEventListener("click", () => {
+      document.querySelector(".login-form").style.display = "none";
+      document.querySelector(".register").style.display = "none";
+      document.querySelector(".verify-send-repassword").style.display = "none";
+      document.querySelector(".forget-password").style.display = "block";
+      document.querySelector(".code-send-repassword").style.display = "none";
+      document.querySelector(".enter-new-password").style.display = "none";
+    });
+    forgetCode.addEventListener("click", () => {
+      document.querySelector(".login-form").style.display = "none";
+      document.querySelector(".register").style.display = "none";
+      document.querySelector(".verify-send-repassword").style.display = "none";
+      document.querySelector(".forget-password").style.display = "none";
+      document.querySelector(".code-send-repassword").style.display = "block";
+      document.querySelector(".enter-new-password").style.display = "none";
+    });
+    backLogin.addEventListener("click", () => {
+      document.querySelector(".login-form").style.display = "block";
+      document.querySelector(".register").style.display = "none";
+      document.querySelector(".verify-send-repassword").style.display = "none";
+      document.querySelector(".forget-password").style.display = "none";
+      document.querySelector(".code-send-repassword").style.display = "none";
+      document.querySelector(".enter-new-password").style.display = "none";
+    });
+    resetPass.addEventListener("click", () => {
+      document.querySelector(".login-form").style.display = "none";
+      document.querySelector(".register").style.display = "none";
+      document.querySelector(".verify-send-repassword").style.display = "none";
+      document.querySelector(".forget-password").style.display = "none";
+      document.querySelector(".code-send-repassword").style.display = "none";
+      document.querySelector(".enter-new-password").style.display = "block";
+    });
+    changeEmail.addEventListener("click", () => {
+      document.querySelector(".login-form").style.display = "none";
+      document.querySelector(".register").style.display = "none";
+      document.querySelector(".verify-send-repassword").style.display = "none";
+      document.querySelector(".forget-password").style.display = "block";
+      document.querySelector(".code-send-repassword").style.display = "none";
+      document.querySelector(".enter-new-password").style.display = "none";
+    });
+    loginAgain.addEventListener("click", () => {
+      document.querySelector(".login-form").style.display = "block";
+      document.querySelector(".register").style.display = "none";
+      document.querySelector(".verify-send-repassword").style.display = "none";
+      document.querySelector(".forget-password").style.display = "none";
+      document.querySelector(".code-send-repassword").style.display = "none";
+      document.querySelector(".enter-new-password").style.display = "none";
+    });
+    register.addEventListener("click", () => {
+      document.querySelector(".login-form").style.display = "none";
+      document.querySelector(".register").style.display = "block";
+      document.querySelector(".verify-send-repassword").style.display = "none";
+      document.querySelector(".forget-password").style.display = "none";
+      document.querySelector(".code-send-repassword").style.display = "none";
+      document.querySelector(".enter-new-password").style.display = "none";
+    });
+    verifyCode.addEventListener("click", () => {
+      document.querySelector(".login-form").style.display = "none";
+      document.querySelector(".register").style.display = "none";
+      document.querySelector(".verify-send-repassword").style.display = "block";
+      document.querySelector(".forget-password").style.display = "none";
+      document.querySelector(".code-send-repassword").style.display = "none";
+      document.querySelector(".enter-new-password").style.display = "none";
+    });
+    returnCode.addEventListener("click", () => {
+      document.querySelector(".login-form").style.display = "block";
+      document.querySelector(".register").style.display = "none";
+      document.querySelector(".verify-send-repassword").style.display = "none";
+      document.querySelector(".forget-password").style.display = "none";
+      document.querySelector(".code-send-repassword").style.display = "none";
+      document.querySelector(".enter-new-password").style.display = "none";
+    });
+    backRegister.addEventListener("click", () => {
+      document.querySelector(".login-form").style.display = "none";
+      document.querySelector(".register").style.display = "block";
+      document.querySelector(".verify-send-repassword").style.display = "none";
+      document.querySelector(".forget-password").style.display = "none";
+      document.querySelector(".code-send-repassword").style.display = "none";
+      document.querySelector(".enter-new-password").style.display = "none";
+    });
+    
+   
+    
+  </script>
+  <!-- Optional JavaScript; choose one of the two! -->
+
+  <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/popper.min.js"></script>
+
+  <script src="js/main.js"></script>
+  <!-- Option 2: jQuery, Popper.js, and Bootstrap JS
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.rtlcss.com/bootstrap/v4.5.3/js/bootstrap.min.js" integrity="sha384-VmD+lKnI0Y4FPvr6hvZRw6xvdt/QZoNHQ4h5k0RL30aGkR9ylHU56BzrE2UoohWK" crossorigin="anonymous"></script>
+    -->
+</body>
+
+</html>

@@ -1,0 +1,1450 @@
+<!doctype html>
+<html lang="en" dir="rtl">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/all.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap" rel="stylesheet">
+  <title>Inmedic</title>
+</head>
+
+<body>
+
+  <section class="header">
+    <nav class="navbar navbar-expand-lg  navbar1">
+      <div class="container">
+        <a class="navbar-brand" href="#"><img src="/images/inmedic.svg" width="80%"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown" style="justify-content: flex-end;">
+
+          <ul class="navbar-nav ml-auto" style="margin-top: 7px;">
+           
+            <li class="nav-item dropdown">
+              <a class="nav-link" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <img src="/images/acount.svg" width="30px">
+              </a>
+              <ul class="dropdown-menu text-center account" aria-labelledby="navbarScrollingDropdown">
+                
+                <li><a class="dropdown-item sign-in" href="#">ملفك الطبي </a></li>
+                <li><a class="dropdown-item sign-in" href="#">تسجيل الخروج</a></li>
+                
+              </ul>
+            </li>
+
+            <li class="nav-item">
+
+              <a class="nav-link navbar-item" href="#">  دخول او تسجيل جديد</a>
+            </li>
+            <li class="nav-item" >
+              <a class="nav-link navbar-item" href="#">EN</a>
+            </li>
+           
+
+
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </section>
+
+
+
+  
+  <section class="account-profile">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div>
+                  <div class="main-profile-user">
+                    <img src="/images/dr1.png" width="40px"><span>أهلا أحمد</span>
+
+                  </div>
+                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                      <a class="nav-link active" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="true"> الحساب الشخصي</a>
+                      <a class="nav-link" id="v-pills-orders-tab" data-toggle="pill" href="#v-pills-orders" role="tab" aria-controls="v-pills-orders" aria-selected="false">حجوزات العيادة </a>
+                      <a class="nav-link" id="v-pills-book-tab" data-toggle="pill" href="#v-pills-booking" role="tab" aria-controls="v-pills-booking" aria-selected="false">حجوزات الاشعه</a>
+                      <a class="nav-link" id="v-pills-wallet-tab" data-toggle="pill" href="#v-pills-wallet" role="tab" aria-controls="v-pills-wallet" aria-selected="false">حجوزات التحاليل</a>
+                      <a class="nav-link" id="v-pills-location-tab" data-toggle="pill" href="#v-pills-location" role="tab" aria-controls="v-pills-location" aria-selected="false">عناويني</a>
+
+                    </div>
+                  </div>
+            </div>
+            <div class="col-sm-9">
+                <div class="tab-content" id="v-pills-tabContent">
+
+
+
+                  <!-- edit profile -->
+
+
+
+
+                    <div class="tab-pane fade show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+
+
+
+                      <div class="edit-header-profile">
+                        <h2> الحساب الشخصي</h2>
+                      </div>
+
+
+                      <div class="edit-profile">
+
+                        <div class="profile-information"  style="border-radius: 8px 8px 0px 0px;">
+                          <div>
+                          <h2>معلومات الحساب</h2>
+                          <span>البريد الإلكتروني : </span>
+                          <span>hagarelhadidy1@gmail.com</span><br>
+                          <span> كلمة المرور : </span>
+                          <span>********</span><br>
+                          <span>  رقم الهاتف : </span>
+                          <span>01157784574</span>
+
+                        </div>
+                          <div class="edit-btn">
+                            <a href="#edit-user-information"  data-toggle="modal">تعديل</a>
+                            <div class="modal fade" id="edit-user-information" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+                                      <label>البريد الإلكتروني</label><br>
+                                       <input type="email"><br>
+                                       <label>رقم الهاتف</label><br>
+                                       <input type="text"><br>
+                                       <label>كلمة المرور</label><br>
+                                       <input type="password"><br>
+                                       <label> كلمة المرور الجديدة</label><br>
+                                       <input type="password"><br>
+                                      </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary">حفظ</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+
+                        <div class="personal-information">
+
+                          <div>
+                            <h2>ملف المريض</h2>
+                            <span> الاسم : </span>
+                            <span>هاجر الحديدي توفيق</span><br>
+                            <span> الجنس: </span>
+                            <span>أنثي</span><br>
+                            <span>  الوزن : </span>
+                            <span>  70 كج</span><br>
+                           
+                            <span> الطول : </span>
+                            <span>170 سم</span><br>
+
+                            <span> الدم : </span>
+                            <span>A+</span><br>
+
+                            <span> المحافظة : </span>
+                            <span>الغربية</span><br>
+                            <span> المدينه : </span>
+                            <span>المحله الكبري</span><br>
+                            <span> المنطقة : </span>
+                            <span>الشعبية</span><br>
+                            <span> العنوان : </span>
+                            <span>مزلقان الشعبيه بجوار جامع السيده رقيه</span><br>
+                            <span> ملاحظات : </span>
+                            <span>ملاحظات طبيه ملاحظات طبيه ملاحظات طبيه ملاحظات طبيه </span><br>
+                            
+
+                          </div>
+                            <div class="edit-btn">
+                              <a href="#edit-profile-information" data-toggle="modal">تعديل</a>
+                              <div class="modal fade" id="edit-profile-information" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <label>الاسم</label><br>
+                                         <input type="text"><br>
+                                         <div class="row">
+                                         <div class="col-sm-6">
+                                             
+                                             <label>الجنس</label><br>
+                                             <input type="radio" name="gender">ذكر
+                                             <input type="radio" name="gender">أنثي
+                            
+                                         </div>
+                                         <div class="col-sm-6">
+                            
+                                             <label> تاريخ الميلاد</label><br>
+                                             <input type="date"><br>
+                                         </div>
+                                        </div>
+                            
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                
+                                                <label>رقم الهاتف</label><br>
+                                                <input type="number">
+                                                
+                               
+                                            </div>
+                                            <div class="col-sm-6">
+                               
+                                                <label>الرقم القومي</label><br>
+                                                <input type="number"><br>
+                                            </div>
+                                           </div>
+                                        </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-primary">حفظ</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+
+                        </div>
+
+                       
+                      </div>
+
+                    </div>
+
+
+                    <!-- booking tab -->
+
+
+                    <div class="tab-pane fade" id="v-pills-orders" role="tabpanel" aria-labelledby="v-pills-orders-tab">
+                      
+                      <div class="orders-header">
+                      <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                          <a class="nav-link active" id="pills-current-orders-tab" data-toggle="pill" href="#pills-c-orders" role="tab" aria-controls="pills-c-orders" aria-selected="true">حجوزاتي الحالية</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                          <a class="nav-link" id="pills-previous-orders-tab" data-toggle="pill" href="#pills-p-orders" role="tab" aria-controls="pills-p-orders" aria-selected="false">حجوزاتي السابقة</a>
+                        </li>
+                       
+                      </ul>
+                    </div>
+                      <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-c-orders" role="tabpanel" aria-labelledby="pills-current-orders-tab">
+
+                          <div class="my-current-orders">
+                            <div class="order-card">
+                              <div class="order-card-body">
+                            <div class="pharmacy-img">
+                              <img src="/images/dr1.png">
+                            </div>
+
+                            <div class="orders-details">
+                                <h4>د. أحمد علي</h4>
+                                <p>إستشاري أمراض القلب والأوعية الدموية</p>
+                                <span>تاريخ الحجز : السبت ٢٠-٢-٢٠١٢</span><br>
+                                <span>الوقت المتوقع : ٢ مساء</span><br>
+                               <span>سعر الكشف : 200 جنيه</span>
+                            </div>
+
+                            <div class="orders-action">
+                              <div>
+                                <span> 20-3-2021 </span><span> , 06:40 ص</span><br>
+
+                              </div>
+                              <a href="#cancel-order" class="btn" data-toggle="modal">الغاء حجز</a>
+                              <div class="modal fade" id="cancel-order" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div style="text-align: center;">
+                                            <img src="/images/Group 15143.svg" alt=""><br>
+                                            <p>هل انت متأكد من الغاء حجز بالفعل؟</p>
+                                            <a href="#">نعم</a>
+                                            <a href="#">إلغاء</a>
+        
+                                            
+                                        </div>
+                                        
+                                        
+                            
+                                        
+                                       
+                                        </div>
+                                    <div class="modal-footer">
+                                     
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <a class="btn" data-toggle="collapse" href="#more" role="button" aria-expanded="false" aria-controls="more">
+                                المزيد
+                              </a><br>
+                              
+                              
+                            </div>
+
+                            <div class="delete-orders">
+                              <a href="#">&times;</a>
+                            </div>
+                          </div>
+
+                            <div class="collapse" id="more">
+                              <div class="card card-body">
+                                
+
+
+                                <div class="collapse-more-section">
+                                  <div>
+                                    <h2>بيانات شخصية</h2>
+                                  </div>
+                                  <div>
+                                    <span>الاسم بالكامل : أحمد محمد محمود</span><br>
+                                    <span>رقم التليفون : 01065874456</span><br>
+                                    <span>العنوان : الحصري - الحي الثاني-مجاورة ثانية-فرسان جيم</span><br>
+                                   
+                                  </div>
+                                </div>
+
+                                <div class="collapse-more-section">
+                                  <div>
+                                    <h2>ملاحظات قبل الكشف</h2>
+                                  </div>
+                                  <div>
+                                    <span>ملاحظات قبل الكشف ملاحظات قبل الكشف ملاحظات قبل الكشف ملاحظات قبل الكشف ملاحظات قبل الكشف</span><br>
+                                   
+
+                                  </div>
+                                </div>
+                                <div class="collapse-more-section">
+                                    <div>
+                                      <h2>ملاحظات بعد الكشف</h2>
+                                    </div>
+                                    <div>
+                                      <span>ملاحظات بعد الكشف ملاحظات بعد الكشف ملاحظات بعد الكشف ملاحظات بعد الكشف ملاحظات بعد الكشف</span><br>
+                                     
+  
+                                    </div>
+                                  </div>
+
+                                <div class="collapse-more-section">
+                                  <div>
+                                    <h2> ملفات المرفقة</h2>
+                                  </div>
+                                  <div>
+                                    <div class="img-with-details">
+                                      <img src="/images/analysis-blood.png">
+                                      <!-- <p>تفاصيل مع الطلب : علبتين دواء مع شريط كيتوفان وشريط اسبرين مع العلم ان لدي حساسية جيوب أنفية</p>
+                                      </div>
+                                      <div class="img-with-details">
+                                        <img src="/images/medicine.svg">
+                                        <p>تفاصيل مع الطلب : علبتين دواء مع شريط كيتوفان وشريط اسبرين مع العلم ان لدي حساسية جيوب أنفية</p>
+                                        </div>
+                                        <div class="img-with-details">
+                                          <img src="/images/medicine.svg">
+                                          <p>تفاصيل مع الطلب : علبتين دواء مع شريط كيتوفان وشريط اسبرين مع العلم ان لدي حساسية جيوب أنفية</p> -->
+                                          </div>
+                                    
+                                  </div>
+                                </div>
+
+
+
+
+                                 
+
+
+
+                              </div>
+                            </div>
+
+                          </div>
+                       
+                        </div>
+
+                        </div>
+                        <div class="tab-pane fade" id="pills-p-orders" role="tabpanel" aria-labelledby="pills-previous-orders-tab">
+
+                        <div class="my-previous-orders">
+                            <div class="order-card">
+                                <div class="order-card-body">
+                              <div class="pharmacy-img">
+                                <img src="/images/dr1.png">
+                              </div>
+  
+                              <div class="orders-details">
+                                  <h4>د. أحمد علي</h4>
+                                  <p>إستشاري أمراض القلب والأوعية الدموية</p>
+                                  <span>تاريخ الحجز : السبت ٢٠-٢-٢٠١٢</span><br>
+                                  
+                                 <span>سعر الكشف : 200 جنيه</span>
+                              </div>
+  
+                              <div class="orders-action">
+                                <div>
+                                  <span> 20-3-2021 </span><span> , 06:40 ص</span><br>
+  
+                                </div>
+                                
+                                <a class="btn" data-toggle="collapse" href="#more" role="button" aria-expanded="false" aria-controls="more">
+                                  المزيد
+                                </a><br>
+                                
+                                
+                              </div>
+  
+                              <div class="delete-orders">
+                                <a href="#">&times;</a>
+                              </div>
+                            </div>
+  
+                              <div class="collapse" id="more">
+                                <div class="card card-body">
+                                  
+  
+  
+                                  <div class="collapse-more-section">
+                                    <div>
+                                      <h2>بيانات شخصية</h2>
+                                    </div>
+                                    <div>
+                                      <span>الاسم بالكامل : أحمد محمد محمود</span><br>
+                                      <span>رقم التليفون : 01065874456</span><br>
+                                      <span>العنوان : الحصري - الحي الثاني-مجاورة ثانية-فرسان جيم</span><br>
+                                     
+                                    </div>
+                                  </div>
+  
+                                  <div class="collapse-more-section">
+                                    <div>
+                                      <h2>ملاحظات قبل الكشف</h2>
+                                    </div>
+                                    <div>
+                                      <span>ملاحظات قبل الكشف ملاحظات قبل الكشف ملاحظات قبل الكشف ملاحظات قبل الكشف ملاحظات قبل الكشف</span><br>
+                                     
+  
+                                    </div>
+                                  </div>
+                                  <div class="collapse-more-section">
+                                      <div>
+                                        <h2>ملاحظات بعد الكشف</h2>
+                                      </div>
+                                      <div>
+                                        <span>ملاحظات بعد الكشف ملاحظات بعد الكشف ملاحظات بعد الكشف ملاحظات بعد الكشف ملاحظات بعد الكشف</span><br>
+                                       
+    
+                                      </div>
+                                    </div>
+  
+                                  <div class="collapse-more-section">
+                                    <div>
+                                      <h2> ملفات المرفقة</h2>
+                                    </div>
+                                    <div>
+                                      <div class="img-with-details">
+                                        <img src="/images/analysis-blood.png">
+                                        <!-- <p>تفاصيل مع الطلب : علبتين دواء مع شريط كيتوفان وشريط اسبرين مع العلم ان لدي حساسية جيوب أنفية</p>
+                                        </div>
+                                        <div class="img-with-details">
+                                          <img src="/images/medicine.svg">
+                                          <p>تفاصيل مع الطلب : علبتين دواء مع شريط كيتوفان وشريط اسبرين مع العلم ان لدي حساسية جيوب أنفية</p>
+                                          </div>
+                                          <div class="img-with-details">
+                                            <img src="/images/medicine.svg">
+                                            <p>تفاصيل مع الطلب : علبتين دواء مع شريط كيتوفان وشريط اسبرين مع العلم ان لدي حساسية جيوب أنفية</p> -->
+                                            </div>
+                                      
+                                    </div>
+                                  </div>
+  
+  
+  
+  
+                                   
+  
+  
+  
+                                </div>
+                              </div>
+  
+                            </div>
+                          
+
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+                        </div>
+                        
+                      </div>
+
+                    </div>
+                    
+                    
+                    
+                    <!-- scans tab -->
+
+
+
+                    <div class="tab-pane fade" id="v-pills-booking" role="tabpanel" aria-labelledby="v-pills-booking-tab">
+
+                      <div class="bookig-header">
+                      <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                          <a class="nav-link active" id="pills-current-booking-tab" data-toggle="pill" href="#pills-current-booking" role="tab" aria-controls="pills-current-booking" aria-selected="true">اشاعاتي الحالية</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                          <a class="nav-link" id="pills-previous-booking-tab" data-toggle="pill" href="#pills-previous-booking" role="tab" aria-controls="pills-previous-booking" aria-selected="false">اشاعاتي السابقة</a>
+                        </li>
+                        
+                      </ul>
+                      </div>
+
+                      <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-current-booking" role="tabpanel" aria-labelledby="pills-current-booking-tab">
+
+                          <div class="my-current-booking">
+                            
+
+                            <div class="order-card">
+                                <div class="order-card-body">
+                              <div class="pharmacy-img">
+                                <img src="/images/dr1.png">
+                              </div>
+  
+                              <div class="orders-details">
+                                <h4>اشعه عظام</h4>
+                                <span>ميعاد الاشاعة : السبت ٢٠-٢-٢٠١٢  </span><br>
+                                <span>ميعاد استلام الاشاعة : الاتنين ٢٢-٢-٢٠١٢</span><br>
+                                <span> الحالة : لم تستلم </span><br>
+                                <span>سعر الاشاعة : 200 جنيه</span>
+                              </div>
+  
+                              <div class="orders-action">
+                                <div>
+                                  <span> 20-3-2021 </span><span> , 06:40 ص</span><br>
+  
+                                </div>
+                                <a href="#cancel-order" class="btn" data-toggle="modal">الغاء الاشاعة</a>
+                                <div class="modal fade" id="cancel-order" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                      </div>
+                                      <div class="modal-body">
+                                          <div style="text-align: center;">
+                                              <img src="/images/Group 15143.svg" alt=""><br>
+                                              <p>هل انت متأكد من الغاء الاشاعة بالفعل؟</p>
+                                              <a href="#">نعم</a>
+                                              <a href="#">إلغاء</a>
+          
+                                              
+                                          </div>
+                                          
+                                          
+                              
+                                          
+                                         
+                                          </div>
+                                      <div class="modal-footer">
+                                       
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <a class="btn" data-toggle="collapse" href="#more" role="button" aria-expanded="false" aria-controls="more" style="border:1px solid #00BCC9; background-color: transparent !important;">
+                                  المزيد
+                                </a><br>
+                                
+                                
+                              </div>
+  
+                              <div class="delete-orders">
+                                <a href="#">&times;</a>
+                              </div>
+                            </div>
+  
+                              <div class="collapse" id="more">
+                                <div class="card card-body">
+                                  
+  
+  
+                                  <div class="collapse-more-section">
+                                    <div>
+                                      <h2>بيانات شخصية</h2>
+                                    </div>
+                                    <div>
+                                      <span>الاسم بالكامل : أحمد محمد محمود</span><br>
+                                      <span>رقم التليفون : 01065874456</span><br>
+                                      <span>العنوان : الحصري - الحي الثاني-مجاورة ثانية-فرسان جيم</span><br>
+                                     
+                                    </div>
+                                  </div>
+  
+                                  <div class="collapse-more-section">
+                                    <div>
+                                      <h2>ملاحظات قبل الاشاعة</h2>
+                                    </div>
+                                    <div>
+                                      <span>ملاحظات قبل الاشاعة ملاحظات قبل الاشاعة ملاحظات قبل الاشاعة ملاحظات قبل الاشاعة ملاحظات قبل الاشاعة/span><br>
+                                     
+  
+                                    </div>
+                                  </div>
+                                  <div class="collapse-more-section">
+                                      <div>
+                                        <h2>ملاحظات بعد الاشاعة</h2>
+                                      </div>
+                                      <div>
+                                        <span>ملاحظات بعد الاشاعة ملاحظات بعد الاشاعة ملاحظات بعد الاشاعة ملاحظات بعد الاشاعة ملاحظات بعد الاشاعة/span><br>
+                                       
+    
+                                      </div>
+                                    </div>
+  
+                                  <div class="collapse-more-section">
+                                    <div>
+                                      <h2> ملفات المرفقة</h2>
+                                    </div>
+                                    <div>
+                                      <div class="img-with-details">
+                                        <img src="/images/analysis-blood.png">
+                                        <!-- <p>تفاصيل مع الطلب : علبتين دواء مع شريط كيتوفان وشريط اسبرين مع العلم ان لدي حساسية جيوب أنفية</p>
+                                        </div>
+                                        <div class="img-with-details">
+                                          <img src="/images/medicine.svg">
+                                          <p>تفاصيل مع الطلب : علبتين دواء مع شريط كيتوفان وشريط اسبرين مع العلم ان لدي حساسية جيوب أنفية</p>
+                                          </div>
+                                          <div class="img-with-details">
+                                            <img src="/images/medicine.svg">
+                                            <p>تفاصيل مع الطلب : علبتين دواء مع شريط كيتوفان وشريط اسبرين مع العلم ان لدي حساسية جيوب أنفية</p> -->
+                                            </div>
+                                      
+                                    </div>
+                                  </div>
+  
+  
+  
+  
+                                   
+  
+  
+  
+                                </div>
+                              </div>
+  
+                            </div>
+
+                          </div>
+
+
+
+                        </div>
+                        <div class="tab-pane fade" id="pills-previous-booking" role="tabpanel" aria-labelledby="pills-previous-booking-tab">
+
+                          <div class="my-previous-booking">
+
+                            <div class="order-card">
+                                <div class="order-card-body">
+                              <div class="pharmacy-img">
+                                <img src="/images/dr1.png">
+                              </div>
+  
+                              <div class="orders-details">
+                                <h4>اشعه عظام</h4>
+                                <span>ميعاد الاشاعة : السبت ٢٠-٢-٢٠١٢  </span><br>
+                                <span>ميعاد استلام الاشاعة : الاتنين ٢٢-٢-٢٠١٢</span><br>
+                                <span> الحالة : تم تسليم </span><br>
+                                <span>سعر الاشاعة : 200 جنيه</span>
+                              </div>
+  
+                              <div class="orders-action">
+                                <div>
+                                  <span> 20-3-2021 </span><span> , 06:40 ص</span><br>
+  
+                                </div>
+                                
+                                <a class="btn" data-toggle="collapse" href="#more" role="button" aria-expanded="false" aria-controls="more" style="border:1px solid #00BCC9; background-color: transparent !important;">
+                                  المزيد
+                                </a><br>
+                                
+                                
+                              </div>
+  
+                              <div class="delete-orders">
+                                <a href="#">&times;</a>
+                              </div>
+                            </div>
+  
+                              <div class="collapse" id="more">
+                                <div class="card card-body">
+                                  
+  
+  
+                                  <div class="collapse-more-section">
+                                    <div>
+                                      <h2>بيانات شخصية</h2>
+                                    </div>
+                                    <div>
+                                      <span>الاسم بالكامل : أحمد محمد محمود</span><br>
+                                      <span>رقم التليفون : 01065874456</span><br>
+                                      <span>العنوان : الحصري - الحي الثاني-مجاورة ثانية-فرسان جيم</span><br>
+                                     
+                                    </div>
+                                  </div>
+  
+                                  <div class="collapse-more-section">
+                                    <div>
+                                      <h2>ملاحظات قبل الاشاعة</h2>
+                                    </div>
+                                    <div>
+                                      <span>ملاحظات قبل الاشاعة ملاحظات قبل الاشاعة ملاحظات قبل الاشاعة ملاحظات قبل الاشاعة ملاحظات قبل الاشاعة/span><br>
+                                     
+  
+                                    </div>
+                                  </div>
+                                  <div class="collapse-more-section">
+                                      <div>
+                                        <h2>ملاحظات بعد الاشاعة</h2>
+                                      </div>
+                                      <div>
+                                        <span>ملاحظات بعد الاشاعة ملاحظات بعد الاشاعة ملاحظات بعد الاشاعة ملاحظات بعد الاشاعة ملاحظات بعد الاشاعة/span><br>
+                                       
+    
+                                      </div>
+                                    </div>
+  
+                                  <div class="collapse-more-section">
+                                    <div>
+                                      <h2> ملفات المرفقة</h2>
+                                    </div>
+                                    <div>
+                                      <div class="img-with-details">
+                                        <img src="/images/analysis-blood.png">
+                                        <!-- <p>تفاصيل مع الطلب : علبتين دواء مع شريط كيتوفان وشريط اسبرين مع العلم ان لدي حساسية جيوب أنفية</p>
+                                        </div>
+                                        <div class="img-with-details">
+                                          <img src="/images/medicine.svg">
+                                          <p>تفاصيل مع الطلب : علبتين دواء مع شريط كيتوفان وشريط اسبرين مع العلم ان لدي حساسية جيوب أنفية</p>
+                                          </div>
+                                          <div class="img-with-details">
+                                            <img src="/images/medicine.svg">
+                                            <p>تفاصيل مع الطلب : علبتين دواء مع شريط كيتوفان وشريط اسبرين مع العلم ان لدي حساسية جيوب أنفية</p> -->
+                                            </div>
+                                      
+                                    </div>
+                                  </div>
+  
+  
+  
+  
+                                   
+  
+  
+  
+                                </div>
+                              </div>
+  
+                            </div>
+
+
+
+                          </div>
+
+
+
+
+
+
+
+
+                        </div>
+                        
+                      </div>
+
+                    </div>
+
+
+
+                    <!-- location tab -->
+
+
+                    
+                    <div class="tab-pane fade" id="v-pills-location" role="tabpanel" aria-labelledby="v-pills-location-tab">
+                      
+                      <div class="location-main-header">
+                        <h4>عناويني الشخصية</h4>
+                      </div>
+
+                      <div class="location-main-body">
+
+                        <div class="order-card">
+                          <div class="order-card-body">
+                        <div class="pharmacy-img">
+                          <img src="/images/Icon material-location-on.svg">
+                        </div>
+
+                        <div class="orders-details">
+                         
+                         <span>السادس من أكتوبر - الحي الثاني - التوحيد والنور - فرسان جيم المبني الثالث - عمارة 74 - الدور الأول - شقة 4</span><br>
+                         
+                         <a href="#">تعديل</a>
+                        </div>
+
+                        
+
+                        <div class="delete-orders">
+                          <a href="#">&times;</a>
+                        </div>
+                      </div>
+
+                        </div>
+
+                        <div class="order-card">
+                          <div class="order-card-body">
+                        <div class="pharmacy-img">
+                          <img src="/images/Icon material-location-on.svg">
+                        </div>
+
+                        <div class="orders-details">
+                         
+                         <span>السادس من أكتوبر - الحي الثاني - التوحيد والنور - فرسان جيم المبني الثالث - عمارة 74 - الدور الأول - شقة 4</span><br>
+                         
+                         <a href="#">تعديل</a>
+                        </div>
+
+                        
+
+                        <div class="delete-orders">
+                          <a href="#">&times;</a>
+                        </div>
+                      </div>
+
+                        </div>
+
+                        <div class="order-card">
+                          <div class="order-card-body">
+                        <div class="pharmacy-img">
+                          <img src="/images/Icon material-location-on.svg">
+                        </div>
+
+                        <div class="orders-details">
+                         
+                         <span>السادس من أكتوبر - الحي الثاني - التوحيد والنور - فرسان جيم المبني الثالث - عمارة 74 - الدور الأول - شقة 4</span><br>
+                         
+                         <a href="#">تعديل</a>
+                        </div>
+
+                        
+
+                        <div class="delete-orders">
+                          <a href="#">&times;</a>
+                        </div>
+                      </div>
+
+                        </div>
+
+                        <div class="order-card">
+                          <div class="order-card-body">
+                        <div class="pharmacy-img">
+                          <img src="/images/Icon material-location-on.svg">
+                        </div>
+
+                        <div class="orders-details">
+                         
+                         <span>السادس من أكتوبر - الحي الثاني - التوحيد والنور - فرسان جيم المبني الثالث - عمارة 74 - الدور الأول - شقة 4</span><br>
+                         
+                         <a href="#">تعديل</a>
+                        </div>
+
+                        
+
+                        <div class="delete-orders">
+                          <a href="#">&times;</a>
+                        </div>
+                      </div>
+
+                        </div>
+
+                      </div>
+
+                      <div class="location-main-footer">
+                        <a href="#">إضافة عنوان جديد</a>
+                      </div>
+
+
+
+                    </div>
+                    
+                    
+                    <!-- analysis tab -->
+
+
+
+                    <div class="tab-pane fade" id="v-pills-wallet" role="tabpanel" aria-labelledby="v-pills-wallet-tab">
+                      
+
+
+                        <div class="bookig-header">
+                            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                              <li class="nav-item" role="presentation">
+                                <a class="nav-link active" id="pills-current-analysis-tab" data-toggle="pill" href="#pills-current-analysis" role="tab" aria-controls="pills-current-analysis" aria-selected="true">تحاليلي الحالية</a>
+                              </li>
+                              <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="pills-previous-analysis-tab" data-toggle="pill" href="#pills-previous-analysis" role="tab" aria-controls="pills-previous-analysis" aria-selected="false">تحاليلي السابقة</a>
+                              </li>
+                              
+                            </ul>
+                            </div>
+      
+                            <div class="tab-content" id="pills-tabContent">
+                              <div class="tab-pane fade show active" id="pills-current-analysis" role="tabpanel" aria-labelledby="pills-current-analysis-tab">
+      
+                                <div class="my-current-booking">
+                                    <div class="order-card">
+                                        <div class="order-card-body">
+                                      <div class="pharmacy-img">
+                                        <img src="/images/dr1.png">
+                                      </div>
+          
+                                      <div class="orders-details">
+                                        <h4>تحليل دم</h4>
+                                        <span>ميعاد تحليل : السبت ٢٠-٢-٢٠١٢  </span><br>
+                                        <span>ميعاد استلام تحليل : الاتنين ٢٢-٢-٢٠١٢</span><br>
+                                        <span> الحالة : لم تستلم </span><br>
+                                        <span>سعر تحليل : 200 جنيه</span>
+                                      </div>
+          
+                                      <div class="orders-action">
+                                        <div>
+                                          <span> 20-3-2021 </span><span> , 06:40 ص</span><br>
+          
+                                        </div>
+                                        <a href="#cancel-order" class="btn" data-toggle="modal">الغاء تحليل</a>
+                                        <div class="modal fade" id="cancel-order" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                          <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                              <div class="modal-header">
+                                                <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                  <span aria-hidden="true">&times;</span>
+                                                </button>
+                                              </div>
+                                              <div class="modal-body">
+                                                  <div style="text-align: center;">
+                                                      <img src="/images/Group 15143.svg" alt=""><br>
+                                                      <p>هل انت متأكد من الغاء تحليل بالفعل؟</p>
+                                                      <a href="#">نعم</a>
+                                                      <a href="#">إلغاء</a>
+                  
+                                                      
+                                                  </div>
+                                                  
+                                                  
+                                      
+                                                  
+                                                 
+                                                  </div>
+                                              <div class="modal-footer">
+                                               
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <a class="btn" data-toggle="collapse" href="#more" role="button" aria-expanded="false" aria-controls="more" style="border:1px solid #00BCC9; background-color: transparent !important;">
+                                          المزيد
+                                        </a><br>
+                                        
+                                        
+                                      </div>
+          
+                                      <div class="delete-orders">
+                                        <a href="#">&times;</a>
+                                      </div>
+                                    </div>
+          
+                                      <div class="collapse" id="more">
+                                        <div class="card card-body">
+                                          
+          
+          
+                                          <div class="collapse-more-section">
+                                            <div>
+                                              <h2>بيانات شخصية</h2>
+                                            </div>
+                                            <div>
+                                              <span>الاسم بالكامل : أحمد محمد محمود</span><br>
+                                              <span>رقم التليفون : 01065874456</span><br>
+                                              <span>العنوان : الحصري - الحي الثاني-مجاورة ثانية-فرسان جيم</span><br>
+                                             
+                                            </div>
+                                          </div>
+          
+                                          <div class="collapse-more-section">
+                                            <div>
+                                              <h2>ملاحظات قبل تحليل</h2>
+                                            </div>
+                                            <div>
+                                              <span>ملاحظات قبل تحليل ملاحظات قبل تحليل ملاحظات قبل تحليل ملاحظات قبل تحليل ملاحظات قبل تحليل/span><br>
+                                             
+          
+                                            </div>
+                                          </div>
+                                          <div class="collapse-more-section">
+                                              <div>
+                                                <h2>ملاحظات بعد تحليل</h2>
+                                              </div>
+                                              <div>
+                                                <span>ملاحظات بعد تحليل ملاحظات بعد تحليل ملاحظات بعد تحليل ملاحظات بعد تحليل ملاحظات بعد تحليل/span><br>
+                                               
+            
+                                              </div>
+                                            </div>
+          
+                                          <div class="collapse-more-section">
+                                            <div>
+                                              <h2> ملفات المرفقة</h2>
+                                            </div>
+                                            <div>
+                                              <div class="img-with-details">
+                                                <img src="/images/analysis-blood.png">
+                                                <!-- <p>تفاصيل مع الطلب : علبتين دواء مع شريط كيتوفان وشريط اسبرين مع العلم ان لدي حساسية جيوب أنفية</p>
+                                                </div>
+                                                <div class="img-with-details">
+                                                  <img src="/images/medicine.svg">
+                                                  <p>تفاصيل مع الطلب : علبتين دواء مع شريط كيتوفان وشريط اسبرين مع العلم ان لدي حساسية جيوب أنفية</p>
+                                                  </div>
+                                                  <div class="img-with-details">
+                                                    <img src="/images/medicine.svg">
+                                                    <p>تفاصيل مع الطلب : علبتين دواء مع شريط كيتوفان وشريط اسبرين مع العلم ان لدي حساسية جيوب أنفية</p> -->
+                                                    </div>
+                                              
+                                            </div>
+                                          </div>
+          
+          
+          
+          
+                                           
+          
+          
+          
+                                        </div>
+                                      </div>
+          
+                                    </div>
+      
+                                </div>
+      
+      
+      
+                              </div>
+                              <div class="tab-pane fade" id="pills-previous-analysis" role="tabpanel" aria-labelledby="pills-previous-analysis-tab">
+      
+                                <div class="my-previous-booking">
+      
+                                    <div class="order-card">
+                                        <div class="order-card-body">
+                                      <div class="pharmacy-img">
+                                        <img src="/images/dr1.png">
+                                      </div>
+          
+                                      <div class="orders-details">
+                                        <h4>تحليل دم</h4>
+                                        <span>ميعاد تحليل : السبت ٢٠-٢-٢٠١٢  </span><br>
+                                        <span>ميعاد استلام تحليل : الاتنين ٢٢-٢-٢٠١٢</span><br>
+                                        <span> الحالة : تم تسليم </span><br>
+                                        <span>سعر تحليل : 200 جنيه</span>
+                                      </div>
+          
+                                      <div class="orders-action">
+                                        <div>
+                                          <span> 20-3-2021 </span><span> , 06:40 ص</span><br>
+          
+                                        </div>
+                                        <a href="#cancel-order" class="btn" data-toggle="modal">الغاء تحليل</a>
+                                        <div class="modal fade" id="cancel-order" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                          <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                              <div class="modal-header">
+                                                <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                  <span aria-hidden="true">&times;</span>
+                                                </button>
+                                              </div>
+                                              <div class="modal-body">
+                                                  <div style="text-align: center;">
+                                                      <img src="/images/Group 15143.svg" alt=""><br>
+                                                      <p>هل انت متأكد من الغاء تحليل بالفعل؟</p>
+                                                      <a href="#">نعم</a>
+                                                      <a href="#">إلغاء</a>
+                  
+                                                      
+                                                  </div>
+                                                  
+                                                  
+                                      
+                                                  
+                                                 
+                                                  </div>
+                                              <div class="modal-footer">
+                                               
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <a class="btn" data-toggle="collapse" href="#more" role="button" aria-expanded="false" aria-controls="more" style="border:1px solid #00BCC9; background-color: transparent !important;">
+                                          المزيد
+                                        </a><br>
+                                        
+                                        
+                                      </div>
+          
+                                      <div class="delete-orders">
+                                        <a href="#">&times;</a>
+                                      </div>
+                                    </div>
+          
+                                      <div class="collapse" id="more">
+                                        <div class="card card-body">
+                                          
+          
+          
+                                          <div class="collapse-more-section">
+                                            <div>
+                                              <h2>بيانات شخصية</h2>
+                                            </div>
+                                            <div>
+                                              <span>الاسم بالكامل : أحمد محمد محمود</span><br>
+                                              <span>رقم التليفون : 01065874456</span><br>
+                                              <span>العنوان : الحصري - الحي الثاني-مجاورة ثانية-فرسان جيم</span><br>
+                                             
+                                            </div>
+                                          </div>
+          
+                                          <div class="collapse-more-section">
+                                            <div>
+                                              <h2>ملاحظات قبل تحليل</h2>
+                                            </div>
+                                            <div>
+                                              <span>ملاحظات قبل تحليل ملاحظات قبل تحليل ملاحظات قبل تحليل ملاحظات قبل تحليل ملاحظات قبل تحليل/span><br>
+                                             
+          
+                                            </div>
+                                          </div>
+                                          <div class="collapse-more-section">
+                                              <div>
+                                                <h2>ملاحظات بعد تحليل</h2>
+                                              </div>
+                                              <div>
+                                                <span>ملاحظات بعد تحليل ملاحظات بعد تحليل ملاحظات بعد تحليل ملاحظات بعد تحليل ملاحظات بعد تحليل/span><br>
+                                               
+            
+                                              </div>
+                                            </div>
+          
+                                          <div class="collapse-more-section">
+                                            <div>
+                                              <h2> ملفات المرفقة</h2>
+                                            </div>
+                                            <div>
+                                              <div class="img-with-details">
+                                                <img src="/images/analysis-blood.png">
+                                                <!-- <p>تفاصيل مع الطلب : علبتين دواء مع شريط كيتوفان وشريط اسبرين مع العلم ان لدي حساسية جيوب أنفية</p>
+                                                </div>
+                                                <div class="img-with-details">
+                                                  <img src="/images/medicine.svg">
+                                                  <p>تفاصيل مع الطلب : علبتين دواء مع شريط كيتوفان وشريط اسبرين مع العلم ان لدي حساسية جيوب أنفية</p>
+                                                  </div>
+                                                  <div class="img-with-details">
+                                                    <img src="/images/medicine.svg">
+                                                    <p>تفاصيل مع الطلب : علبتين دواء مع شريط كيتوفان وشريط اسبرين مع العلم ان لدي حساسية جيوب أنفية</p> -->
+                                                    </div>
+                                              
+                                            </div>
+                                          </div>
+          
+          
+          
+          
+                                           
+          
+          
+          
+                                        </div>
+                                      </div>
+          
+                                    </div>
+      
+      
+      
+                                </div>
+      
+      
+      
+      
+      
+      
+      
+      
+                              </div>
+                              
+                            </div>
+
+
+
+
+
+
+
+
+
+                      <!-- <div class="my-wallet">
+                        <img src="/images/dollar.svg"><br>
+                        <span> رصيدك الحالي :</span>
+                        <span>1000</span>
+                        <span>جنيه</span><br><br>
+
+                        <a href="#add-credit" data-toggle="modal">إضافة رصيد</a>
+                        <div class="modal fade" id="add-credit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                               
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                  <div style="text-align: center;">
+                                      <img src="/images/Group 15305@2x.png" alt=""><br>
+                                      
+                                  </div>
+                                  
+                                   <div class="row">
+                                   <div class="col-sm-6">
+                                       
+                                       <label>الاسم</label><br>
+                                       <input type="text">
+                                      
+                                   </div>
+                                   <div class="col-sm-6">
+                      
+                                       <label> رقم البطاقة</label><br>
+                                      <input type="number">
+                                   </div>
+                                  </div>
+                      
+                                  
+                                  <div class="row">
+                                      <div class="col-sm-3">
+                                          
+                                          <label>شهر</label><br>
+                                          <input type="number">
+                                         
+                                      </div>
+                                      <div class="col-sm-3">
+                                          
+                                          <label>سنة</label><br>
+                                          <input type="number">
+                                         
+                                      </div>
+                                      <div class="col-sm-6">
+                         
+                                          <label> CVV</label><br>
+                                         <input type="number">
+                                      </div>
+                                     </div>
+                                     <div class="row">
+                                         <div class="col-sm-12">
+                                             <label>قيمة المراد اضافتها</label><br>
+                                             <input type="number">
+                                         </div>
+                                     </div>
+                                  </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-primary">حفظ</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <a href="#">احجز الان</a>
+                      </div> -->
+
+
+
+                    </div>
+
+                  </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+  <section class="app">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6" style="margin: auto;">
+          <h1>حمل تطبيق المستخدم الان</h1>
+          <p>من خلال تطبيق الجوال يمكنك الاستفاده بالحجز مع دكتور وحجز تحاليل وحجز اشعه وايضا طلب سياره اسعاف او زياره منزليه ومراجعه ملفك الطبي بكل سهوله</p>
+          <a href="#"><img src="/images/google.png" width="35%"></a>
+          <a href="#"><img src="/images/app.png" width="35%"></a>
+          
+        </div>
+        <div class="col-sm-6">
+          <img src="/images/phone.png" class="app-img">
+
+        </div>
+      </div>
+    </div>
+
+
+  </section>
+
+ 
+ 
+  <footer class=" text-lg-start text-muted">
+
+    <section class="footer">
+      <div class="container">
+        <!-- Grid row -->
+        <div class="row">
+          <!-- Grid column -->
+          <div class="col-sm-4">
+            <!-- Content -->
+            <div style="text-align: start;">
+
+              <img src="/images/inmedic.svg">
+            </div>
+            <p style="text-align: start;color: white;margin-top: 25px;width: 90%;font-weight: 200;">
+              نظام يلبي جميع إحتياجات المستشفيات والعيادات والمراكز الطبية نظام يلبي جميع إحتياجات المستشفيات نظام يلبي جميع إحتياجات المستشفيات والعيادات والمراكز الطبية            </p>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-sm-4" style="margin: auto;display: flex;justify-content: center;text-align: start;">
+            <div class="footer-links">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4" style="font-size: 20px; color: white;">
+              القائمة الرئيسية 
+            </h6>
+            <p>
+              <a href="#!" >مركز طبي تجريبي </a>
+            </p>
+            <p>
+              <a href="#!" > المدونة </a>
+            </p>
+            <p>
+              <a href="#!" >اتصل بنا</a>
+            </p>
+            <p>
+              <a href="#!" > عن صحة</a>
+            </p>
+          </div>
+          </div>
+          <!-- Grid column -->
+
+         
+         
+          <!-- Grid column -->
+          <div class="col-sm-4">
+            <!-- Links -->
+            <div class="social-link">
+              <a href="" class=" text-reset">
+                <img src="/images/linkind.svg" alt="">
+              </a>
+              <a href="" class=" text-reset">
+                <img src="/images/youtube.svg" alt="">
+              </a>
+              <a href="" class=" text-reset">
+                <img src="/images/vimeo.svg" alt="">
+              </a>
+              <a href="" class=" text-reset">
+                <img src="/images/insta.svg" alt="">
+              </a>
+              <a href="" class=" text-reset">
+                <img src="/images/twitter.svg" alt="">
+              </a>
+              <a href="" class=" text-reset">
+                <img src="/images/facebook.svg" alt="">
+              </a>
+
+            </div>
+            <div class="copyright">
+              © 2021 جميع الحقوق محفوظة في
+              <strong>صمم بـــ<i class="fas fa-heart"></i>
+                <a class="text-reset fw-bold" href="https://innovalz.com/">Innovalz</a>
+              </strong>
+            </div>
+          </div>
+          <!-- Grid column -->
+        </div>
+        <!-- Grid row -->
+      </div>
+    </section>
+
+
+  </footer>
+  
+
+
+  <!-- Optional JavaScript; choose one of the two! -->
+
+  <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/popper.min.js"></script>
+
+  <script src="js/main.js"></script>
+  <!-- Option 2: jQuery, Popper.js, and Bootstrap JS
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.rtlcss.com/bootstrap/v4.5.3/js/bootstrap.min.js" integrity="sha384-VmD+lKnI0Y4FPvr6hvZRw6xvdt/QZoNHQ4h5k0RL30aGkR9ylHU56BzrE2UoohWK" crossorigin="anonymous"></script>
+    -->
+</body>
+
+</html>
