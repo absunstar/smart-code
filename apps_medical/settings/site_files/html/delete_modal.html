@@ -1,0 +1,27 @@
+<div id="cityDeleteModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.city_delete##
+                <i class="fa fa-trash"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+            <div x-import="city/view.html"></div>
+
+        </div>
+
+        <h2 class="error"> {{error}} </h2>
+
+        <div class="modal-footer center">
+            <i-button type="print" label="##word.print##" onclick="site.print('#v1')"></i-button>
+
+            <i-button type="delete" label="##word.delete##" ng-click="deleteCity(city)"> </i-button>
+
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#cityDeleteModal')"> </i-button>
+
+        </div>
+    </div>
+</div>

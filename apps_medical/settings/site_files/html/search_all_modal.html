@@ -1,0 +1,48 @@
+<div id="citySearchModal" class="modal">
+    <div class="col2"></div>
+    <div class="modal-content col8">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.search_all## <i class="fa fa-search"></i>
+
+            </h2>
+        </div>
+
+        <div class="modal-body">
+            <form class="form">
+                <fieldset>
+                    <legend>##word.search_all##</legend>
+                    <div class="row">
+
+                        <i-list help-id="" class="col3" label="##word.goves_name##" ng-model="search.gov" display="name_##session.lang##"
+                            items="govesList" ng-search="_search.$city_gov"></i-list>
+
+                        <i-control class="col3" label="##word.city_name##" ng-model="search.name"></i-control>
+
+                        <div class="control col3">
+                            <label> ##word.status## </label>
+                            <select ng-model="search.active">
+                                <option ng-value="true"> ##word.active## </option>
+                                <option ng-value="false"> ##word.not_active## </option>
+                            </select>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+
+        <h2 class="error">{{error}}</h2>
+
+        <div class="modal-footer center">
+
+            <i-button type="search" label="##word.search##" ng-click="searchAll()"> </i-button>
+
+            <i-button type="clear" label="##word.empty_search##" ng-click="search = {}"> </i-button>
+
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#citySearchModal')"> </i-button>
+
+        </div>
+    </div>
+    <div class="col2"></div>
+</div>

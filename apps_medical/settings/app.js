@@ -1,7 +1,6 @@
 module.exports = function init(site) {
 
-  const $innovalz_store_setting = site.connectCollection('innovalz_store_setting');
-  const innovalz_store_sites = require('./site_files/json/innovalz_store')
+  const $medicalSetting = site.connectCollection('medicalSetting');
 
   site.get({
     name: 'images',
@@ -14,14 +13,14 @@ module.exports = function init(site) {
     parser: 'html',
     compress: true,
   });
-  site.post('/api/innovalz_store_setting/add', (req, res) => {
+  site.post('/api/medicalSetting/add', (req, res) => {
     let response = {
       done: false,
     };
-    let innovalzSetting = req.body;
-    innovalzSetting.$req = req;
-    innovalzSetting.$res = res;
-    $innovalz_store_setting.add(innovalzSetting, (err, doc) => {
+    let medicalSettingDoc = req.body;
+    medicalSettingDoc.$req = req;
+    medicalSettingDoc.$res = res;
+    $medicalSetting.add(medicalSettingDoc, (err, doc) => {
       if (!err) {
         response.done = true;
         response.doc = doc;
@@ -35,10 +34,10 @@ module.exports = function init(site) {
 
   
 
-  site.get("/api/innovalz_store_setting", (req, res) => {
+  site.get("/api/medicalSetting", (req, res) => {
   
     let response = {}
-    $innovalz_store_setting.findMany(
+    $medicalSetting.findMany(
       {
         select: req.body.select || {},
         sort: req.body.sort || {
