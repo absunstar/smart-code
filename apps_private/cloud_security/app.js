@@ -338,13 +338,13 @@ module.exports = function init(site) {
             branch: req.body.branch,
           });
 
-          console.log("1111111111111111111" , user.ref_info);
 
           response.user = {
             id: user.id,
             _id: user._id,
             email: user.email,
             targetId : user.ref_info.id,
+            type:user.type,
             permissions: user.permissions,
             company: req.body.company,
             branch: req.body.branch,
