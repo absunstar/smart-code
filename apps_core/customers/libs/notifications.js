@@ -50,9 +50,9 @@ module.exports = function init(site) {
           source: source,
           message: update_message,
           value: {
-            code: result.old_doc.code,
-            name_en: result.old_doc.name_en,
-            name_ar: result.old_doc.name_ar
+            code: result?.old_doc?.code,
+            name_en: result?.old_doc?.name_en,
+            name_ar: result?.old_doc?.name_ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
