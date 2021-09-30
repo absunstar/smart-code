@@ -1038,14 +1038,28 @@ module.exports = function init(site) {
                         (err, doc) => {
                           if (!err && doc) {
                             response.done = true;
-                            doc.address_list.push({
-                              gov: govDoc,
-                              city: cityDoc,
-                              area: areaDoc,
-                              lat: address_doc.lat,
-                              long: address_doc.long,
-                              address: address_doc.address,
-                            });
+                            if (doc.address_list) {
+                              doc.address_list.push({
+                                gov: govDoc,
+                                city: cityDoc,
+                                area: areaDoc,
+                                lat: address_doc.lat,
+                                long: address_doc.long,
+                                address: address_doc.address,
+                              });
+                            }
+                            else{
+                              doc.address_list = []
+                              doc.address_list.push({
+                                gov: govDoc,
+                                city: cityDoc,
+                                area: areaDoc,
+                                lat: address_doc.lat,
+                                long: address_doc.long,
+                                address: address_doc.address,
+                              });
+                            }
+                            
                             response.doc = doc;
                             $customers.update(doc);
                             res.json(response);
@@ -1104,13 +1118,13 @@ module.exports = function init(site) {
       (err, docs) => {
         if (docs && docs.length > 0) {
           response.done = true;
-          response.doc = docs[0];
+          response.doc = docs;
 
           res.json(response);
         } else {
           response.done = false;
 
-          response.doc = {};
+          response.doc = [];
           res.json(response);
         }
       }
