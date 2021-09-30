@@ -584,7 +584,7 @@ module.exports = function init(site) {
             $res: res,
           },
           (err, result) => {
-            if (!err) {
+            if (!err && result.doc) {
               response.done = true;
               response.doc = result.doc;
 
@@ -608,7 +608,7 @@ module.exports = function init(site) {
                 site.security.updateUser(user, (err, user_doc) => {});
               }
             } else {
-              response.error = err.message;
+              response.error = "customer id is error";
             }
             res.json(response);
           }
