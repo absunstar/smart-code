@@ -1,184 +1,41 @@
-<!DOCTYPE html>
-<html lang="en" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<style>
-    body{
-        margin: 0;
-        padding: 0;
-        list-style: none;
+<section class="header">
+    <nav class="navbar navbar-expand-lg  navbar1">
+      <div class="container">
+        <a class="navbar-brand" href="/"><img src="/images/inmedic.svg" width="80%"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown" style="justify-content: flex-end;">
 
-    }
-    .col-sm-4-atm{
-        width: 30%;
-    }
-.container-atm{
-    display: flex;
-    justify-content: space-between;
-    width: 80%;
-    margin: auto;
-}
-.header-atm, .footer-atm{
-    background-color: #00BCC9;
-}
-.navbar-nav-atm{
-    display: flex;
-}
-.nav-item-atm{
-    list-style: none;
-}
-.nav-item-atm{
-    display: flex;
-    margin: auto 10px;
-    
-
-}
-.nav-link-atm{
-    text-decoration: none;
-    color: white;
-    font-weight: 600;
-}
-.navbar-brand-atm{
-    
-    margin: auto 0px;
-}
-.row-atm{
-    display: flex;
-}
-.footer-atm{
-    padding: 60px 0px;
-    margin-top: 30px;
-}
-.footer-atm a{
-    text-decoration: none;
-    color: white;
-}
-.copyright{
-    color: white;
-}
-</style>
-<body>
-    <section class="header-atm">
-        <nav class="navbar-atm">
-          <div class="container-atm">
-            <a class="navbar-brand-atm" href="#"><img src="/images/inmedic.svg" width="80%"></a>
-            
-            
-    
-              <ul class="navbar-nav-atm" style="margin-top: 7px;">
-               
-                <li class="nav-item-atm">
-                  <a class="nav-link-atm" href="#">
-                    <img src="/images/acount.svg" width="30px">
-                  </a>
-                 
-                </li>
-    
-                <li class="nav-item-atm">
-    
-                  <a class="nav-link-atm" href="#">  دخول او تسجيل جديد</a>
-                </li>
-                <li class="nav-item-atm" >
-                  <a class="nav-link-atm" href="#">EN</a>
-                </li>
-               
-    
-    
-    
+          <ul class="navbar-nav ml-auto" style="margin-top: 7px;">
+           
+            <li class="nav-item dropdown" x-permission="login">
+              <a class="nav-link" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <img src="/images/acount.svg" width="30px">
+              </a>
+              <ul class="dropdown-menu text-center account" aria-labelledby="navbarScrollingDropdown">
+                
+                <li><a class="dropdown-item sign-in" href="profile">ملفك الطبي </a></li>
+                <li><a class="dropdown-item sign-in" href="/">تسجيل الخروج</a></li>
+                
               </ul>
-            
-          </div>
-        </nav>
-      </section>
+            </li>
+
+            <li class="nav-item">
+
+              <a class="nav-link navbar-item" href="/authentication">  دخول او تسجيل جديد</a>
+            </li>
+            <li class="nav-item" >
+              <a class="nav-link navbar-item" href="#">EN</a>
+            </li>
+           
 
 
-      <footer class=" footer-atm">
 
-        <section class="footer">
-          <div class="container-atm">
-            <!-- Grid row -->
-            <div class="row-atm">
-              <!-- Grid column -->
-              <div class="col-sm-4-atm">
-                <!-- Content -->
-                <div style="text-align: start;">
-    
-                  <img src="/images/inmedic.svg">
-                </div>
-                <p style="text-align: start;color: white;margin-top: 25px;width: 90%;font-weight: 200;">
-                  نظام يلبي جميع إحتياجات المستشفيات والعيادات والمراكز الطبية نظام يلبي جميع إحتياجات المستشفيات نظام يلبي جميع إحتياجات المستشفيات والعيادات والمراكز الطبية            </p>
-              </div>
-              <!-- Grid column -->
-    
-              <!-- Grid column -->
-              <div class="col-sm-4-atm" style="margin: auto;display: flex;justify-content: center;text-align: start;">
-                <div class="footer-links">
-                <!-- Links -->
-                <h6 class="" style="font-size: 20px; color: white; margin: 0px;">
-                  القائمة الرئيسية 
-                </h6>
-                <p>
-                  <a href="#!" >مركز طبي تجريبي </a>
-                </p>
-                <p>
-                  <a href="#!" > المدونة </a>
-                </p>
-                <p>
-                  <a href="#!" >اتصل بنا</a>
-                </p>
-                <p>
-                  <a href="#!" > عن صحة</a>
-                </p>
-              </div>
-              </div>
-              <!-- Grid column -->
-    
-             
-             
-              <!-- Grid column -->
-              <div class="col-sm-4-atm">
-                <!-- Links -->
-                <div class="social-atm">
-                <div class="social-link">
-                  <a href="" class=" text-reset">
-                    <img src="/images/linkind.svg" alt="">
-                  </a>
-                  <a href="" class=" text-reset">
-                    <img src="/images/youtube.svg" alt="">
-                  </a>
-                  <a href="" class=" text-reset">
-                    <img src="/images/vimeo.svg" alt="">
-                  </a>
-                  <a href="" class=" text-reset">
-                    <img src="/images/insta.svg" alt="">
-                  </a>
-                  <a href="" class=" text-reset">
-                    <img src="/images/twitter.svg" alt="">
-                  </a>
-                  <a href="" class=" text-reset">
-                    <img src="/images/facebook.svg" alt="">
-                  </a>
-    
-                </div>
-                <div class="copyright">
-                  © 2021 جميع الحقوق محفوظة في
-                  <strong>صمم بـــ<i class="fas fa-heart"></i>
-                    <a class="" href="https://innovalz.com/">Innovalz</a>
-                  </strong>
-                </div>
-            </div>
-              </div>
-              <!-- Grid column -->
-            </div>
-            <!-- Grid row -->
-          </div>
-        </section>
-    
-    
-      </footer>
-</body>
-</html>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </section>

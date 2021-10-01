@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" dir="rtl">
+<html lang="en" dir="rtl" ng-app="myApp">
 
 <head>
   <!-- Required meta tags -->
@@ -16,49 +16,9 @@
   <title>Inmedic</title>
 </head>
 
-<body>
+<body ng-controller="main">
 
-  <section class="header">
-    <nav class="navbar navbar-expand-lg  navbar1">
-      <div class="container">
-        <a class="navbar-brand" href="#"><img src="/images/inmedic.svg" width="80%"></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-          aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown" style="justify-content: flex-end;">
-
-          <ul class="navbar-nav ml-auto" style="margin-top: 7px;">
-           
-            <li class="nav-item dropdown">
-              <a class="nav-link" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                <img src="/images/acount.svg" width="30px">
-              </a>
-              <ul class="dropdown-menu text-center account" aria-labelledby="navbarScrollingDropdown">
-                
-                <li><a class="dropdown-item sign-in" href="#">ملفك الطبي </a></li>
-                <li><a class="dropdown-item sign-in" href="#">تسجيل الخروج</a></li>
-                
-              </ul>
-            </li>
-
-            <li class="nav-item">
-
-              <a class="nav-link navbar-item" href="#">  دخول او تسجيل جديد</a>
-            </li>
-            <li class="nav-item" >
-              <a class="nav-link navbar-item" href="#">EN</a>
-            </li>
-           
-
-
-
-          </ul>
-        </div>
-      </div>
-    </nav>
-  </section>
+  <nav class="sitebar" x-import="in-medic/nav.html"></nav>
 
 
 
@@ -1346,94 +1306,15 @@
 
  
  
-  <footer class=" text-lg-start text-muted">
+  <nav class="sitebottom" x-import="in-medic/footer.html"></nav>
 
-    <section class="footer">
-      <div class="container">
-        <!-- Grid row -->
-        <div class="row">
-          <!-- Grid column -->
-          <div class="col-sm-4">
-            <!-- Content -->
-            <div style="text-align: start;">
-
-              <img src="/images/inmedic.svg">
-            </div>
-            <p style="text-align: start;color: white;margin-top: 25px;width: 90%;font-weight: 200;">
-              نظام يلبي جميع إحتياجات المستشفيات والعيادات والمراكز الطبية نظام يلبي جميع إحتياجات المستشفيات نظام يلبي جميع إحتياجات المستشفيات والعيادات والمراكز الطبية            </p>
-          </div>
-          <!-- Grid column -->
-
-          <!-- Grid column -->
-          <div class="col-sm-4" style="margin: auto;display: flex;justify-content: center;text-align: start;">
-            <div class="footer-links">
-            <!-- Links -->
-            <h6 class="text-uppercase fw-bold mb-4" style="font-size: 20px; color: white;">
-              القائمة الرئيسية 
-            </h6>
-            <p>
-              <a href="#!" >مركز طبي تجريبي </a>
-            </p>
-            <p>
-              <a href="#!" > المدونة </a>
-            </p>
-            <p>
-              <a href="#!" >اتصل بنا</a>
-            </p>
-            <p>
-              <a href="#!" > عن صحة</a>
-            </p>
-          </div>
-          </div>
-          <!-- Grid column -->
-
-         
-         
-          <!-- Grid column -->
-          <div class="col-sm-4">
-            <!-- Links -->
-            <div class="social-link">
-              <a href="" class=" text-reset">
-                <img src="/images/linkind.svg" alt="">
-              </a>
-              <a href="" class=" text-reset">
-                <img src="/images/youtube.svg" alt="">
-              </a>
-              <a href="" class=" text-reset">
-                <img src="/images/vimeo.svg" alt="">
-              </a>
-              <a href="" class=" text-reset">
-                <img src="/images/insta.svg" alt="">
-              </a>
-              <a href="" class=" text-reset">
-                <img src="/images/twitter.svg" alt="">
-              </a>
-              <a href="" class=" text-reset">
-                <img src="/images/facebook.svg" alt="">
-              </a>
-
-            </div>
-            <div class="copyright">
-              © 2021 جميع الحقوق محفوظة في
-              <strong>صمم بـــ<i class="fas fa-heart"></i>
-                <a class="text-reset fw-bold" href="https://innovalz.com/">Innovalz</a>
-              </strong>
-            </div>
-          </div>
-          <!-- Grid column -->
-        </div>
-        <!-- Grid row -->
-      </div>
-    </section>
-
-
-  </footer>
   
 
 
   <!-- Optional JavaScript; choose one of the two! -->
 
   <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+  <script src="/x-js/all.js"></script>
   <script src="/js/jquery.min.js"></script>
   <script src="/js/bootstrap.bundle.min.js"></script>
   <script src="/js/bootstrap.min.js"></script>

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" dir="rtl">
+<html lang="en" dir="rtl" ng-app="myApp">
 
 <head>
   <!-- Required meta tags -->
@@ -16,7 +16,7 @@
   <title>Inmedic</title>
 </head>
 
-<body>
+<body ng-controller="main">
 
  <section class="user-creditional" style="overflow-x: hidden;">
      
@@ -26,7 +26,10 @@
              <div class="col-sm-6 l-side">
                
                 <div class="login-logo">
-                    <img src="/images/inmedic.svg" width="20%"><br>
+                  <a href="/">
+                  
+                    <img src="/images/inmedic.svg" width="20%">
+                  </a><br>
                     <p>برنامج وتطبيق موبايل يخدم اداره المستشفيات والمستخدم</p><br>
 
 
@@ -247,6 +250,7 @@
   <!-- Optional JavaScript; choose one of the two! -->
 
   <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+  <script src="/x-js/all.js"></script>
   <script src="/js/jquery.min.js"></script>
   <script src="/js/bootstrap.bundle.min.js"></script>
   <script src="/js/bootstrap.min.js"></script>
