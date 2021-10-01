@@ -13,7 +13,7 @@ const site = require('isite')({
     port: 5050,
   },
   mongodb: {
-    db: 'inmedic_db',
+    db: 'smart_code_medical',
     limit: 100000,
   },
   security: {
@@ -43,5 +43,36 @@ site.importApps(__dirname + '/apps_agora');
 site.importApps(__dirname + '/apps_hr');
 site.importApps(__dirname + '/apps_medic')
 site.importApps(__dirname + '/apps_core');
+const $companies = site.connectCollection("companies")
+let obj = {
+  "name_ar": "test",
+  "name_en": "test",
+  "host": "admin.admin.com",
+  "username": "admin@admin.com",
+  "password": "123",
+  "id": 1,
+  "branch_list": [{
+    "code": 1,
+    "name_ar": "الفرع الرئيسى",
+    "name_en": "Main Branch",
+    "charge": [{
+
+    }]
+  }],
+}
+
+  $companies.findOne(
+    {
+
+    },
+    (err, doc) => {
+      if (!err && doc) {
+        return false
+      } else {
+        $companies.add(obj);
+      }
+    }
+  );
+
 
 site.run();

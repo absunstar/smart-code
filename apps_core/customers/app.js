@@ -3,6 +3,7 @@ module.exports = function init(site) {
   const $city = site.connectCollection("city");
   const $goves = site.connectCollection("goves");
   const $area = site.connectCollection("area");
+  const $companies = site.connectCollection("companies");
 
   site.get({
     name: "customers",
@@ -273,9 +274,9 @@ module.exports = function init(site) {
 
     let company = {};
     let branch = {};
-
+    company = site.get_company(req);
+console.log("xxxxxxxxxxxxxxxxxxxxxxx" , company);
     if (req.session.user) {
-      company = site.get_company(req);
       branch = site.get_branch(req);
     } else {
       customers_doc.active = true;
@@ -971,6 +972,297 @@ module.exports = function init(site) {
   };
 
   /* ATM APIS */
+
+
+
+
+
+
+
+
+  site.post("/api/customers/signUp", (req, res) => {
+    let response = {
+      done: false,
+    };
+
+    // if (!req.session.user) {
+    //   response.error = 'Please Login First'
+    //   res.json(response)
+    //   return
+    // }
+
+    let customers_doc = req.body;
+    customers_doc.$req = req;
+    customers_doc.$res = res;
+
+    let user = {
+      type: "customer",
+    };
+
+    user.roles = [
+      {
+        module_name: "public",
+        name: "customers_user",
+        en: "Customers User",
+        ar: "إدارة العملاء للمستخدم",
+        permissions: ["customers_update", "customers_view", "customers_ui"],
+      },
+    ];
+
+    if (
+      site.feature("pos") ||
+      site.feature("restaurant") ||
+      site.feature("erp") ||
+      site.feature("eco")
+    ) {
+      user.roles.push({
+        module_name: "public",
+        name: "order_customer_user",
+        en: "Order Customers User",
+        ar: "طلبات العملاء للمستخدمين",
+        permissions: ["order_customer_ui", "order_customer_delete_items"],
+      });
+    }
+
+    if (site.feature("club")) {
+      user.roles.push({
+        module_name: "report",
+        name: "report_info_user",
+        en: "Subscribe Info USer",
+        ar: "معلومات المشتركين للمستخدم",
+        permissions: ["report_info_ui"],
+      });
+    }
+
+    if (site.feature("medical")) {
+      user.roles.push({
+        module_name: "public",
+        name: "patient_file_user",
+        en: "Patient file User",
+        ar: "ملف المريض للمستخدم",
+        permissions: ["patients_files_ui", "patients_files_view"],
+      });
+    }
+
+    if (site.feature("school")) {
+      if (customers_doc.school_grade)
+        user.school_grade_id = customers_doc.school_grade.id;
+      if (customers_doc.students_year)
+        user.students_year_id = customers_doc.students_year.id;
+
+      user.roles.push(
+        {
+          module_name: "public",
+          name: "exams_customer",
+          en: "Exams Students",
+          ar: "إمتحانات الطلاب",
+          permissions: ["exams_ui", "exams_view"],
+        },
+        {
+          module_name: "public",
+          name: "libraries_student",
+          en: "Libraries Student",
+          ar: "مكتبة الطلاب",
+          permissions: ["libraries_ui", "libraries_view"],
+        }
+      );
+    }
+
+    user.permissions = [];
+
+    user.profile = {
+      name_ar: customers_doc.name_ar,
+      name_en: customers_doc.name_en,
+      mobile: customers_doc.mobile,
+      image_url: customers_doc.image_url,
+      gender: customers_doc.gender,
+    };
+    if (user.profile.gender && user.profile.gender.name == "female") {
+      user.permissions.push({
+        name: "female",
+      });
+    }
+
+    let company = {};
+    let branch = {};
+    
+    
+    const randomNumber = (length) => {
+      let text = "";
+      let possible = "123456789";
+      for (let i = 0; i < length; i++) {
+        let sup = Math.floor(Math.random() * possible.length);
+        text += i > 0 && sup == i ? "0" : possible.charAt(sup);
+      }
+      return (text);
+    }
+
+
+    customers_doc.code =   String (randomNumber(4))
+    $companies.findMany({
+      select: req.body.select || {},
+      where: {
+        "id" : 1.0
+    },
+      sort: req.body.sort || { id: -1 },
+      limit: req.body.limit
+    }, (err, docs, count) => {
+      if (!err) {
+        company = docs[0]
+        branch = docs[0].branch_list[0]
+        user.company = company;
+        user.branch= branch
+        console.log(company , branch);
+        let num_obj = {
+          company: company,
+          screen: "customers",
+          date: new Date(),
+        };
+       
+        $customers.findMany(
+          {
+            where: {
+              "company.id": company.id,
+            },
+          },
+          (err, docs, count) => {
+            if (!err && count >= company.customers_count) {
+              response.error = "The maximum number of adds exceeded";
+              res.json(response);
+              return;
+            } else {
+              if (customers_doc.username && customers_doc.password) {
+                if (
+                  !customers_doc.username.contains("@") &&
+                  !customers_doc.username.contains(".")
+                ) {
+                  customers_doc.username =
+                    customers_doc.username + "@" + company.host;
+                } else {
+                  if (
+                    customers_doc.username.contains("@") &&
+                    !customers_doc.username.contains(".")
+                  ) {
+                    response.error = "Username must be typed correctly";
+                    res.json(response);
+                    return;
+                  } else if (
+                    !customers_doc.username.contains("@") &&
+                    customers_doc.username.contains(".")
+                  ) {
+                    response.error = "Username must be typed correctly";
+                    res.json(response);
+                    return;
+                  }
+                }
+    
+                user.email = customers_doc.username;
+                user.password = customers_doc.password;
+              }
+    
+              site.security.isUserExists(user, function (err, user_found) {
+                if (user_found) {
+                  response.error = "User Is Exist";
+                  res.json(response);
+                  return;
+                }
+    
+                $customers.add(customers_doc, (err, doc) => {
+                  if (!err) {
+                    response.done = true;
+                    response.doc = doc;
+    
+                    if (user.password && user.email) {
+                      user.ref_info = {
+                        id: doc.id,
+                      };
+                      site.security.addUser(user, (err, doc1) => {
+                        if (!err) {
+                          delete user._id;
+                          delete user.id;
+                          doc.user_info = {
+                            id: doc1.id,
+                          };
+                          $customers.edit(doc, (err2, doc2) => {
+                            // if (!req.session.user) {
+                            //   site.security.login({
+                            //     email: doc1.email,
+                            //     password: doc1.password,
+                            //     $req: req,
+                            //     $res: res
+                            //   },
+                            //     function (err, user_login) {
+                            //       if (!err) {
+                            //         response.user = user_login
+                            //         response.done = true
+                            //       } else {
+                            //         console.log(err)
+                            //         response.error = err.message
+                            //       }
+                            //       res.json(response)
+                            //     }
+                            //   )
+                            // }
+                          });
+                        } else {
+                          response.error = err.message;
+                        }
+                      });
+                    }
+                  } else {
+                    response.error = err.message;
+                  }
+                  res.json(response);
+                });
+              });
+            }
+          }
+        );
+      } 
+
+    })
+
+    // if (req.session.user) {
+    //   company = site.get_company(req);
+    //   branch = site.get_branch(req);
+    // } else {
+    //   customers_doc.active = true;
+    //   company = customers_doc.company;
+    //   branch = customers_doc.branch;
+    // }
+
+    // user.branch_list = [
+    //   {
+    //     company: company,
+    //     branch: branch,
+    //   },
+    // ];
+
+    // customers_doc.company = {
+    //   id: company.id,
+    //   name_ar: company.name_ar,
+    //   name_en: company.name_en,
+    // };
+
+    // customers_doc.branch = {
+    //   code: branch.code,
+    //   name_ar: branch.name_ar,
+    //   name_en: branch.name_en,
+    // };
+
+    // user.company = customers_doc.company;
+    // user.branch = customers_doc.branch;
+
+  
+
+    
+  });
+
+
+
+
+
+
 
   // add new address
   site.post("/api/customers/addNewAddress", (req, res) => {

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" dir="rtl" ng-app="myApp">
+<html lang="en" dir="rtl" data-ng-app="myApp">
 
 <head>
   <!-- Required meta tags -->
@@ -16,7 +16,7 @@
   <title>Inmedic</title>
 </head>
 
-<body ng-controller="main">
+<body ng-controller="booking">
 
   <nav class="sitebar" x-import="in-medic/nav.html"></nav>
 
@@ -25,12 +25,12 @@
 <div class="main-span">
     <h1>احجز دكتورك</h1>
 </div>
-  <section class="booking-doctor">
+  <section  class="booking-doctor">
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
                 <div class="booking-dr">
-
+<button ng-click="getDoctors()">uyuiu</button>
                     <div class="doctor">
                         <div class="dr-img">
                             <img src="/images/dr1.png" width="75%">
@@ -44,7 +44,7 @@
 
                     </div>
                     <div class="book-btn">
-                        <a href="#book-now" data-toggle="modal">احجز الان</a>
+                        <a href="#book-now"  data-toggle="modal">احجز الان</a>
                     </div>
                 </div>
             </div>
@@ -320,12 +320,41 @@
     
   </script>
   <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
-    <script src="/x-js/all.js"></script>
-    <script src="/js/jquery.min.js"></script>
+  
+  <script src="/x-js/all.js"></script>
+  <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.bundle.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/popper.min.js"></script>
-  <script src="js/main.js"></script>
+    <script>
+      app.controller('booking', function ($scope, $http, $timeout) {
+    $scope.getDoctors = function (b) {
+      $scope.error = '';
+
+      $scope.busy = true;
+console.log(11111111111111111);
+      $http({
+        method: 'POST',
+        url: '/api/doctors/searchAll',
+       
+      }).then(
+        function (response) {
+          console.log(response.data);
+          if (response.data) {
+            $scope.error = response.data.error;
+            $scope.busy = false;
+          };
+        
+        },
+        function (err) {
+          $scope.busy = false;
+          $scope.error = err;
+        },
+      );
+    };
+  });
+    </script>
+  
   <!-- Option 2: jQuery, Popper.js, and Bootstrap JS
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
