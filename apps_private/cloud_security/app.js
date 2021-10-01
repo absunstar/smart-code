@@ -343,7 +343,7 @@ module.exports = function init(site) {
             id: user.id,
             _id: user._id,
             email: user.email,
-            targetId : user.ref_info.id,
+            targetId : user.ref_info?user.ref_info.id:null,
             type:user.type,
             permissions: user.permissions,
             company: req.body.company,

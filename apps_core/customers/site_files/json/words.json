@@ -354,7 +354,12 @@
     {"name" : "customers_mail_send" , "en" : "Send" , "ar" : "ارسال"},
     {"name" : "customers_mail_text" , "en" : "Email Text" , "ar" : "نص الرسالة"},
    
-    {"name" : "customers_send" , "en" : "Send" , "ar" : "ارسال"}
+    {"name" : "customers_send" , "en" : "Send" , "ar" : "ارسال"},
+    {"name" : "streetName" , "en" : "street Name" , "ar" : "اسم الشارع"},
+    {"name" : "buildingNumber" , "en" : "building Number" , "ar" : "رقم البناء"},
+    {"name" : "role" , "en" : "role" , "ar" : "الدور"},
+    {"name" : "apartmentNumber" , "en" : "apartment Number" , "ar" : "رقم الشقة"},
+    {"name" : "specialMark" , "en" : "special Mark" , "ar" : "علامة مميزة"}
 
     
     
