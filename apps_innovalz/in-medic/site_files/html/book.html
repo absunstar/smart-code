@@ -7,12 +7,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="/css/bootstrap.min.css">  
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/all.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap"
+    rel="stylesheet">
   <title>Inmedic</title>
 </head>
 
@@ -22,150 +23,66 @@
 
 
 
-<div class="main-span">
+  <div class="main-span">
     <h1>احجز دكتورك</h1>
-</div>
-  <section  class="booking-doctor">
-    <div class="container">
+  </div>
+  <div ng-repeat="c in list">
+    <section class="booking-doctor">
+      <div class="container">
         <div class="row">
-            <div class="col-sm-12">
-                <div class="booking-dr">
-<button ng-click="getDoctors()">uyuiu</button>
-                    <div class="doctor">
-                        <div class="dr-img">
-                            <img src="/images/dr1.png" width="75%">
-                        </div>
-                        <div class="dr-details">
-
-                            <h3>د/ احمد البسطويسي</h3>
-                            <p>جراحه العظام</p>
-                            <span>500 جنيه</span>
-                        </div>
-
-                    </div>
-                    <div class="book-btn">
-                        <a href="#book-now"  data-toggle="modal">احجز الان</a>
-                    </div>
+          <div class="col-sm-12">
+            <div class="booking-dr">
+              <div class="doctor">
+                <div class="dr-img">
+                  <!-- <i-image id="add-img" ng-model="c.doctor.imagr_url"></i-image> -->
+                  <img ng-src="{{c.doctor.image_url}}" width="35%">
                 </div>
-            </div>
-        </div>
-    </div>
+                <div class="dr-details">
 
-  </section>
-  <section class="booking-doctor">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="booking-dr">
-
-                    <div class="doctor">
-                        <div class="dr-img">
-                            <img src="/images/dr1.png" width="75%">
-                        </div>
-                        <div class="dr-details">
-
-                            <h3>د/ احمد البسطويسي</h3>
-                            <p>جراحه العظام</p>
-                            <span>500 جنيه</span>
-                        </div>
-
-                    </div>
-                    <div class="book-btn">
-                        <a href="#book-now" data-toggle="modal">احجز الان</a>
-                    </div>
+                  <h3>dr : {{c.doctor.name_##session.lang##}}</h3>
+                  <p> {{c.doctor.specialty.name_##session.lang##}}</p>
+                  <span>جنيه {{c.at_clinic_price.detection}}</span>
                 </div>
+
+              </div>
+              <div class="book-btn">
+                <a href="#book-now" ng-click="getDoctorData(c.doctor)" data-toggle="modal">احجز الان</a>
+              </div>
             </div>
+          </div>
         </div>
-    </div>
+      </div>
 
-  </section>
-  <section class="booking-doctor">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="booking-dr">
+    </section>
+  </div>
 
-                    <div class="doctor">
-                        <div class="dr-img">
-                            <img src="/images/dr1.png" width="75%">
-                        </div>
-                        <div class="dr-details">
 
-                            <h3>د/ احمد البسطويسي</h3>
-                            <p>جراحه العظام</p>
-                            <span>500 جنيه</span>
-                        </div>
-
-                    </div>
-                    <div class="book-btn">
-                        <a href="#">احجز الان</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-  </section>
-  <section class="booking-doctor">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="booking-dr">
-
-                    <div class="doctor">
-                        <div class="dr-img">
-                            <img src="/images/dr1.png" width="75%">
-                        </div>
-                        <div class="dr-details">
-
-                            <h3>د/ احمد البسطويسي</h3>
-                            <p>جراحه العظام</p>
-                            <span>500 جنيه</span>
-                        </div>
-
-                    </div>
-                    <div class="book-btn">
-                        <a href="#">احجز الان</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-  </section>
- 
   <section class="pop-up">
-    <div
-      class="modal fade"
-      id="book-now"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
+    <div class="modal fade" id="book-now" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" style="max-width: 650px;">
         <div class="modal-content" style="padding: 20px;border-radius: 40px;">
-         
-          <div class="modal-body">
-            
-            <div class="dr-book-popup" style="text-align: center;">
-              
-                  <img src="/images/dr1.png" width="10%">
-              
-              
 
-                  <h3>د/ احمد البسطويسي</h3>
-                  <p>جراحه العظام</p>
-                  <span>500 جنيه</span>
-              
+          <div class="modal-body">
+
+            <div class="dr-book-popup" style="text-align: center;">
+
+              <img src="/images/dr1.png" width="10%">
+
+
+
+              <h3>د/ احمد البسطويسي</h3>
+              <p>جراحه العظام</p>
+              <span>500 جنيه</span>
+
 
             </div>
 
             <div class="step-num">
-              <span  id="num3">3</span>
-              <span  id="num2" class="center-step">2</span>
+              <span id="num3">3</span>
+              <span id="num2" class="center-step">2</span>
               <span id="num1" style="border-color: #1EBCC9;">1</span>
             </div>
-            
+
 
             <div class="step1">
               <label>ماهي الخدمه؟</label><br>
@@ -178,67 +95,69 @@
               </select>
               <label style="margin-left: 20px ;">نوع الكشف</label>
               <input type="radio" value="regular" name="typeof" checked><span>كشف عادي</span>&nbsp;&nbsp;&nbsp;
-              <input type="radio" value="fast"name="typeof"><span>كشف مستعجل</span><br>
+              <input type="radio" value="fast" name="typeof"><span>كشف مستعجل</span><br>
               <div class="next-step">
 
                 <a href="#" id="step1">التالي</a>
               </div>
+            </div>
+
+            <div class="step2" style="display: none;">
+              <label style="margin-bottom: 20px;">اختر اليوم</label><br>
+              <a href="#" class="date-day"> السبت </a><a href="#" class="date-day">الاحد</a><a href="#"
+                class="date-day">الاتنين</a><br>
+              <label style="margin-bottom: 20px;">اختر التاريخ</label><br>
+              <a href="#" class="date">السبت ٢٠-٢-٢٠١٢</a><a href="#" class="date">السبت ٢٠-٢-٢٠١٢</a><a href="#"
+                class="date">السبت ٢٠-٢-٢٠١٢</a><a href="#" class="date">السبت ٢٠-٢-٢٠١٢</a><br>
+              <div class="next-step">
+
+                <a href="#" id="step2">التالي</a>
               </div>
 
-              <div class="step2" style="display: none;">
-                <label style="margin-bottom: 20px;">اختر اليوم</label><br>
-                <a href="#" class="date-day"> السبت </a><a href="#" class="date-day">الاحد</a><a href="#" class="date-day">الاتنين</a><br>
-                <label style="margin-bottom: 20px;">اختر التاريخ</label><br>
-                <a href="#" class="date">السبت ٢٠-٢-٢٠١٢</a><a href="#" class="date">السبت ٢٠-٢-٢٠١٢</a><a href="#" class="date">السبت ٢٠-٢-٢٠١٢</a><a href="#" class="date">السبت ٢٠-٢-٢٠١٢</a><br>
-                <div class="next-step">
+            </div>
 
-                  <a href="#" id="step2">التالي</a>
-                </div>
-              
+            <div class="step3" style="display: none;">
+              <div class="book-price">
+                <p>المطلوب دفعه هو</p>
+                <span style="font-size: 33px; font-weight: 600;">500</span><span>جنيه</span>
               </div>
-
-              <div class="step3" style="display: none;">
-                <div class="book-price">
-                  <p>المطلوب دفعه هو</p>
-                  <span style="font-size: 33px; font-weight: 600;">500</span><span>جنيه</span>
-                </div>
-                <label>اختر طريقه الدفع</label><br>
-              <input type="radio" value="clinic"name="pay" checked><span>عند الكشف</span><br>
-              <input type="radio" value="credit"name="pay"><span>الدفع بالكريات كارد او فيزا</span><br>
+              <label>اختر طريقه الدفع</label><br>
+              <input type="radio" value="clinic" name="pay" checked><span>عند الكشف</span><br>
+              <input type="radio" value="credit" name="pay"><span>الدفع بالكريات كارد او فيزا</span><br>
               <div class="next-step">
 
                 <a href="#" id="step3">اتمام الحجز</a>
               </div>
-                
-              </div>
 
-              <div class="final-step" style="display: none;">
-                <img src="/images/check.svg"><br>
-                <h2>تم تأكيد حجزك بنجاح</h2>
-                <span>رقم الكشف : ٣٠</span><br>
-                <span>تاريخ الحجز : السبت ٢٠-٢-٢٠١٢</span><br>
-                <span>الوقت المتوقع : ٢ مساء</span><br>
-                <span>سعر الكشف : ٥٠٠ جنيها</span><br><br>
-              </div>
+            </div>
 
-
-
+            <div class="final-step" style="display: none;">
+              <img src="/images/check.svg"><br>
+              <h2>تم تأكيد حجزك بنجاح</h2>
+              <span>رقم الكشف : ٣٠</span><br>
+              <span>تاريخ الحجز : السبت ٢٠-٢-٢٠١٢</span><br>
+              <span>الوقت المتوقع : ٢ مساء</span><br>
+              <span>سعر الكشف : ٥٠٠ جنيها</span><br><br>
             </div>
 
 
 
-
-
-
-
-
-
-
-
-            
           </div>
+
+
+
+
+
+
+
+
+
+
+
+
         </div>
       </div>
+    </div>
     </div>
   </section>
   <section class="app" style="margin-top: 100px;">
@@ -246,10 +165,11 @@
       <div class="row">
         <div class="col-sm-6" style="margin: auto;">
           <h1>حمل تطبيق المستخدم الان</h1>
-          <p>من خلال تطبيق الجوال يمكنك الاستفاده بالحجز مع دكتور وحجز تحاليل وحجز اشعه وايضا طلب سياره اسعاف او زياره منزليه ومراجعه ملفك الطبي بكل سهوله</p>
+          <p>من خلال تطبيق الجوال يمكنك الاستفاده بالحجز مع دكتور وحجز تحاليل وحجز اشعه وايضا طلب سياره اسعاف او زياره
+            منزليه ومراجعه ملفك الطبي بكل سهوله</p>
           <a href="#"><img src="/images/google.png" width="35%"></a>
           <a href="#"><img src="/images/app.png" width="35%"></a>
-          
+
         </div>
         <div class="col-sm-6">
           <img src="/images/phone.png" class="app-img">
@@ -261,8 +181,8 @@
 
   </section>
 
- 
- 
+
+
   <nav class="sitebottom" x-import="in-medic/footer.html"></nav>
 
 
@@ -290,8 +210,8 @@
       two.classList.remove("active");
       three.classList.remove("active");
     });
-    
-     step2.addEventListener("click", () => {
+
+    step2.addEventListener("click", () => {
       document.querySelector(".step1").style.display = "none";
       document.querySelector(".step2").style.display = "none";
       document.querySelector(".step3").style.display = "block";
@@ -304,7 +224,7 @@
       three.classList.remove("active");
       three.classList.add("border-color");
     });
-     
+
     step3.addEventListener("click", () => {
       document.querySelector(".step1").style.display = "none";
       document.querySelector(".step2").style.display = "none";
@@ -317,44 +237,61 @@
       two.classList.add("active");
       three.classList.add("border-color");
     })
-    
   </script>
   <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
-  
+
   <script src="/x-js/all.js"></script>
   <script src="/js/jquery.min.js"></script>
-    <script src="/js/bootstrap.bundle.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/popper.min.js"></script>
-    <script>
-      app.controller('booking', function ($scope, $http, $timeout) {
-    $scope.getDoctors = function (b) {
-      $scope.error = '';
+  <script src="/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/popper.min.js"></script>
+  <script>
+    app.controller('booking', function ($scope, $http, $timeout) {
+      $scope.doctorData={};
+      $scope.getDoctors = function (b) {
+        $scope.error = '';
 
-      $scope.busy = true;
-console.log(11111111111111111);
-      $http({
-        method: 'POST',
-        url: '/api/doctors/searchAll',
-       
-      }).then(
-        function (response) {
-          console.log(response.data);
-          if (response.data) {
-            $scope.error = response.data.error;
+        $scope.busy = true;
+        $http({
+          method: 'POST',
+          url: '/api/doctors/searchAll',
+
+        }).then(
+          function (response) {
+            console.log(response.data);
+            if (response.data) {
+              $scope.list = response.data.list;
+              $scope.busy = false;
+            };
+
+          },
+          function (err) {
             $scope.busy = false;
-          };
-        
-        },
-        function (err) {
-          $scope.busy = false;
-          $scope.error = err;
-        },
-      );
-    };
-  });
-    </script>
-  
+            $scope.error = err;
+          },
+        );
+      };
+
+      $scope.getDoctorData = function (b) {
+        $scope.error = '';
+$scope.doctorData = b
+      
+      };
+
+
+
+
+
+
+
+
+
+
+      
+      $scope.getDoctors()
+    });
+  </script>
+
   <!-- Option 2: jQuery, Popper.js, and Bootstrap JS
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
