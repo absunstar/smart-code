@@ -30,6 +30,7 @@ site.importApp(__dirname + '/apps_innovalz/in-medic', 'inmedic');
 
 
 site.importApp(__dirname + '/apps_private/cloud_security', 'security');
+site.loadLocalApp('client-side');
 site.importApp(__dirname + '/apps_private/ui-help');
 site.importApp(__dirname + '/apps_private/notifications')
 site.importApps(__dirname + '/apps_accounting');

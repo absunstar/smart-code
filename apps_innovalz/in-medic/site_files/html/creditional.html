@@ -44,16 +44,17 @@
             </div>
         
         <div class="col-sm-6">
+          <p>{{error}}</p>
             <div class="login-form">
 
                 <h2>تسجيل دخول</h2>
                 <p>برنامج وتطبيق موبايل يخدم اداره المستشفيات والمستخدم</p>
             <label><img src="/images/mail.svg" width="17%">البريد الالكتروني</label><br>
-            <input type="text" placeholder="Example@GMAIL.COM" style="margin-bottom: 50px;"><br>
+            <input type="text" placeholder="Example@GMAIL.COM" style="margin-bottom: 50px;" ng-model="user.email"><br>
             <label><img src="/images/password.svg" width="17%">الرقم السري </label><br>
-            <input type="password" placeholder="********"><br>
+            <input type="password" placeholder="********" ng-model="user.password"><br>
             <div class="login-btn">
-                <a href="#" class="login-now">دخول</a><br>
+                <a href="#" class="login-now" ng-click="login()">دخول</a><br>
                 <span>ليس لديك حساب؟ <a href="#" id="register">سجل الان</a></span>
                 <a href="#" id="forget-pass" class="lost-pass">نسيت كلمه السر؟</a>
                 
@@ -65,16 +66,16 @@
             <p>برنامج وتطبيق موبايل يخدم اداره المستشفيات والمستخدم</p>
 
         <label><img src="/images/phone.svg" width="17%"> رقم الهاتف</label><br>
-        <input type="text" placeholder="Example@GMAIL.COM"><br>
+        <input type="text" placeholder="Example@GMAIL.COM" ng-model="customer.mobile"><br>
         <label><img src="/images/mail.svg" width="17%">البريد الالكتروني</label><br>
-        <input type="text" placeholder="Example@GMAIL.COM"><br>
+        <input type="text" placeholder="Example@GMAIL.COM" ng-model="customer.username"><br>
         <label><img src="/images/password.svg" width="17%">الرقم السري </label><br>
-        <input type="password" placeholder="********"><br>
+        <input type="password" placeholder="********" ng-model="customer.password"><br>
         <label><img src="/images/password.svg" width="13%"> اعاده الرقم السري </label><br>
-        <input type="password" placeholder="********"><br>
+        <!-- <input type="password" placeholder="********" ng-model="user.password"><br> -->
 
         <div class="next-back">
-            <a href="#" class="next" id="verify-code">تسجيل</a>
+            <a href="#" class="next" id="verify-code" ng-click="register()">تسجيل</a>
             <a href="#" class="back" id="return-login">رجوع</a>
         </div>
         </div>
@@ -91,7 +92,7 @@
                 
             </div>
             <div class="next-back">
-                <a href="index.html" class="next" >التالي</a>
+                <a href="/" class="next" >التالي</a>
                 <a href="#" class="back" id="back-register">رجوع</a>
             </div>
         </div>
@@ -100,7 +101,7 @@
             <h2> اعاده كلمه السر</h2>
                 <p>برنامج وتطبيق موبايل يخدم اداره المستشفيات والمستخدم</p>
             <label><img src="/images/mail.svg" width="17%">البريد الالكتروني</label><br>
-            <input type="text" placeholder="Example@GMAIL.COM" style="margin-bottom: 50px;"><br>
+            <input type="text" placeholder="Example@GMAIL.COM" style="margin-bottom: 50px;" ng-model="user.email"><br>
             <div class="next-back">
                 <a href="#" class="next" id="forget-code">التالي</a>
                 <a href="#" class="back" id="backto-login">رجوع</a>
@@ -131,11 +132,11 @@
                 <p>برنامج وتطبيق موبايل يخدم اداره المستشفيات والمستخدم</p>
            
             <label><img src="/images/password.svg" width="17%">الرقم السري </label><br>
-            <input type="password" placeholder="********"><br>
+            <input type="password" placeholder="********" ng-model="user.password"><br>
             <label><img src="/images/password.svg" width="13%">اعاده الرقم السري </label><br>
-            <input type="password" placeholder="********"><br>
+            <input type="password" placeholder="********" ng-model="user.password"><br>
             <div class="login-btn" style="margin-bottom: 40px;">
-                <a href="#" class="login-now" id="login-again">تأكيد</a><br>
+                <a href="#" class="login-now" id="login-again" ng-click="newPassword()">تأكيد</a><br>
                 
                 
             </div>
@@ -151,7 +152,7 @@
  
  
 
-<script>
+  <script>
     const forgetPass = document.querySelector("#forget-pass");
     const register = document.querySelector("#register");
     const verifyCode = document.querySelector("#verify-code");
@@ -247,21 +248,91 @@
    
     
   </script>
-  <!-- Optional JavaScript; choose one of the two! -->
-
-  <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
-  <script src="/x-js/all.js"></script>
+  
   <script src="/js/jquery.min.js"></script>
   <script src="/js/bootstrap.bundle.min.js"></script>
   <script src="/js/bootstrap.min.js"></script>
   <script src="/js/popper.min.js"></script>
-
+  <script src="/x-js/all.js"></script>
   <script src="js/main.js"></script>
-  <!-- Option 2: jQuery, Popper.js, and Bootstrap JS
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://cdn.rtlcss.com/bootstrap/v4.5.3/js/bootstrap.min.js" integrity="sha384-VmD+lKnI0Y4FPvr6hvZRw6xvdt/QZoNHQ4h5k0RL30aGkR9ylHU56BzrE2UoohWK" crossorigin="anonymous"></script>
-    -->
+  
+  <script>
+    app.controller('main', function ($scope, $http, $timeout) {
+
+      $scope.user = {};
+      $scope.customer ={};
+      $scope.tryLogin = function (ev) {
+        if (ev.which == 13) {
+          $scope.login();
+        }
+      };
+
+      $scope.login = function (b) {
+        $scope.error = '';
+
+        $scope.busy = true;
+
+        $http({
+          method: 'POST',
+          url: '/api/user/login',
+          data: {
+            $encript: '123',
+            email: site.to123($scope.user.email),
+            password: site.to123($scope.user.password),
+          },
+        }).then(
+          function (response) {
+            if (response.data.error) {
+              $scope.error = response.data.error;
+              $scope.busy = false;
+            }
+            if (response.data.done) {
+              window.location.href = '/';
+            }
+          },
+          function (err) {
+            $scope.busy = false;
+            $scope.error = err;
+          },
+        );
+      };
+
+      $scope.register = function () {
+          $scope.error = "";
+
+          const v = site.validated("body");
+          if (!v.ok) {
+            $scope.error = v.messages[0].ar;
+            return;
+          }
+
+          console.log($scope.customer);
+          $scope.busy = true;
+          $http({
+            method: "POST",
+            url: "/api/customers/add",
+            data: $scope.customer,
+          }).then(
+            function (response) {
+              if (response.data.message) {
+                $scope.error = response.data.message;
+                $scope.busy = false;
+              }
+              if (response.data.done) {
+                window.location.href = "/";
+              }
+            },
+            function (err) {
+              $scope.busy = false;
+              $scope.error = err;
+            }
+          );
+        };
+
+
+     
+    });
+  </script>
 </body>
 
 </html>
