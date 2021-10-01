@@ -29,7 +29,9 @@
         <div class="col-sm-6" style="margin: auto;">
           <h2>أفضل نظام لإدارة المستشفيات والعيادات الطبية</h2>
           <p>نظام يلبي جميع إحتياجات المستشفيات والعيادات والمراكز الطبية نظام يلبي جميع إحتياجات المستشفيات نظام يلبي جميع إحتياجات المستشفيات والعيادات والمراكز الطبية نظام يلبي جميع إحتياجات المستشفيات</p>
-          <a href="/booking">احجز الان</a>
+          <a href="/booking" x-permission="login">احجز الان</a>
+          <a href="/authentication" x-permission="!login">احجز الان</a>
+
         </div>
         <div class="col-sm-6">
           <img src="/images/blog7@2x.png" width="85%">
@@ -56,7 +58,8 @@
             <h4>حجز دكتور</h4>
 
             <p>يمكنك حجز دكتور من خلال الموقع الالكتروني ومتابعه ملفك الطبي</p>
-            <a href="/booking">احجز الان</a>
+            <a href="/booking" x-permission="login">احجز الان</a>
+            <a href="/authentication" x-permission="!login">احجز الان</a>
           </div>
 
         </div>
@@ -69,7 +72,9 @@
             <h4>حجز اشعه</h4>
 
             <p>يمكنك حجز اشعه من خلال الموقع الالكتروني في العياده او في المنزل</p>
-            <a href="/scan">احجز الان</a>
+            <a href="/scan" x-permission="login">احجز الان</a>
+            <a href="/authentication" x-permission="!login">احجز الان</a>
+
           </div>
 
         </div>
@@ -82,7 +87,9 @@
             <h4>حجز تحليل</h4>
 
             <p>يمكنك حجز تحليل من خلال الموقع الالكتروني في العياده او في البيت</p>
-            <a href="/analysis">احجز الان</a>
+            <a href="/analysis" x-permission="login">احجز الان</a>
+            <a href="/authentication" x-permission="!login">احجز الان</a>
+
           </div>
 
         </div>
@@ -148,7 +155,9 @@
           <h1>راجع ملفك الطبي</h1>
           <p>يمكنك مراجعه ملفك الطبي من خلال الموقع الالكتروني بكل سهوله ومعرفه حجوزاتك السابقه مثل حجز الدكتور والاشعه والتحاليل السابقه لديك</p>
           
-          <a href="#">ملفي الطبي</a>
+          <a href="#" x-permission="login">ملفي الطبي</a>
+          <a href="/authentication" x-permission="!login">احجز الان</a>
+
         </div>
       </div>
     </section>
