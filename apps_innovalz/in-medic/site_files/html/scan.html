@@ -171,7 +171,7 @@
               <div id="step-tab" style="display: none; transition: all 0.1s ease; text-align: center;">
 
                 <select ng-model="scanRequest.address"
-                  ng-options="s.gov.name_##session.lang## as (s.gov.name_##session.lang##+' - '+s.city.name_##session.lang##+' - '+s.area.name_##session.lang##+' - '+s.address+' - '+s.streetName)   for s in myAddressesList">
+                  ng-options="s as (s.gov.name_##session.lang##+' - '+s.city.name_##session.lang##+' - '+s.area.name_##session.lang##+' - '+s.address+' - '+s.streetName)   for s in myAddressesList">
                   <option value="" disabled selected>اختر عنوانك</option>
                 </select>
                 <a href="#">اضافة عنوان جديد</a>
@@ -193,17 +193,21 @@
 
               <div class="next-step">
 
-                <a href="#" id="step1">التالي</a>
+                <a href="#" ng-click="daysOfWeekList()" id="step1">التالي</a>
               </div>
             </div>
 
             <div class="step2" style="display: none;">
               <label style="margin-bottom: 20px;">اختر اليوم</label><br>
-              <a href="#" class="date-day"> السبت </a><a href="#" class="date-day">الاحد</a><a href="#"
-                class="date-day">الاتنين</a><br>
+              <div ng-repeat="day in visitDaysList">
+                <a href="#" ng-click="getDateDay(day)" class="date-day"> {{day.day.##session.lang##}} </a><br>
+              </div>
+
               <label style="margin-bottom: 20px;">اختر التاريخ</label><br>
-              <a href="#" class="date">السبت ٢٠-٢-٢٠١٢</a><a href="#" class="date">السبت ٢٠-٢-٢٠١٢</a><a href="#"
-                class="date">السبت ٢٠-٢-٢٠١٢</a><a href="#" class="date">السبت ٢٠-٢-٢٠١٢</a><br>
+              <div ng-repeat="a in appointmentDates">
+                <a href="#" ng-click="getDate(a)" class="date">{{a|date:'dd - MM - yyyy'}}</a><br>
+              </div>
+
               <div class="next-step">
 
                 <a href="#" id="step2">التالي</a>
@@ -382,6 +386,49 @@
     app.controller('scan', function ($scope, $http, $timeout) {
       $scope.scanData = {};
       $scope.scanRequest = {};
+      $scope.visitDaysList = [];
+      $scope.addScanRequest = function (b) {
+        $scope.error = '';
+        console.log($scope.scanRequest);
+        /*  let status = {
+           "id": 1,
+           "en": "On hold",
+           "ar": "قيد الإنتظار"
+         };
+         let active = true;
+
+         let obj = {
+           date:new Date(),
+           status: status,
+           place_examination: $scope.doctors_visits.place_examination,
+           selected_doctor: $scope.doctors_visits.selected_doctor,
+           selected_time: $scope.doctors_visits.selected_time,
+           visit_type: $scope.doctors_visits.visit_type,
+           active: true,
+           customer: $scope.doctors_visits.customer,
+           company:$scope.company,
+           branch:$scope.branch
+         }; 
+         $scope.busy = true;
+         $http({
+           method: 'POST',
+           url: '/api/doctors_visits/addDoctorVisit',
+           data: obj
+         }).then(
+           function (response) {
+             if (response.data) {
+               $scope.visitData = response.data.doc;
+               $scope.busy = false;
+
+             };
+
+           },
+           function (err) {
+             $scope.busy = false;
+             $scope.error = err;
+           },
+         );*/
+      };
       $scope.getScan = function (b) {
         $scope.error = '';
 
@@ -409,15 +456,144 @@
       $scope.getScanData = function (b) {
         $scope.error = '';
         $scope.scanData = b;
+        $scope.scanRequest = {
+
+          scans_list: new Array(b)
+        };
         $scope.getMyAddresses();
-        console.log("1111111111111111111", b);
       };
 
+      $scope.daysOfWeekList = function (b) {
+        $scope.error = '';
+
+        $scope.visitDaysList = [{
+            day: {
+              "id": 1,
+              "code": 6,
+              "name": "saturday",
+              "en": "Saturday",
+              "ar": "السبت"
+            }
+          },
+          {
+            day: {
+              "id": 2,
+              "code": 0,
+              "name": "sunday",
+              "en": "Sunday",
+              "ar": "الاحد"
+            }
+          },
+          {
+            day: {
+              "id": 3,
+              "code": 1,
+              "name": "monday",
+              "en": "Monday",
+              "ar": "الاثنين"
+            }
+          },
+          {
+            day: {
+              "id": 4,
+              "code": 2,
+              "name": "tuesday",
+              "en": "Tuesday",
+              "ar": "الثلاثاء"
+            }
+          },
+          {
+            day: {
+              "id": 5,
+              "code": 3,
+              "name": "wednesday",
+              "en": "Wednesday",
+              "ar": "الاربعاء"
+            }
+          },
+          {
+            day: {
+              "id": 6,
+              "code": 4,
+              "name": "thursday",
+              "en": "Thursday",
+              "ar": "الخميس"
+            }
+          },
+          {
+            day: {
+              "id": 7,
+              "code": 5,
+              "name": "friday",
+              "en": "Friday",
+              "ar": "الجمعة"
+            }
+          }
+
+        ]
+      };
+
+      $scope.getDateDay = function (b) {
+        $scope.error = '';
+        console.log(b);
+        $scope.appointmentDates = [];
+        $scope.scanRequest.visit_day = b;
+        $scope.busy = true;
+        $http({
+          method: 'POST',
+          url: '/api/dates/day',
+          data: b
+        }).then(
+          function (response) {
+            if (response.data) {
+              $scope.appointmentDates = response.data.list;
+              console.log("111111111111111111", $scope.appointmentDates);
+
+            };
+
+          },
+          function (err) {
+            $scope.busy = false;
+            $scope.error = err;
+          },
+        );
+      };
+      $scope.getDate = function (b) {
+        $scope.error = '';
+        $scope.scanRequest.visit_date = b;
+        $scope.busy = true;
+
+      };
+      $scope.getPatient = function (b) {
+        $scope.error = '';
+        $scope.busy = true;
+        $http({
+          method: 'POST',
+          url: '/api/customers/view',
+          data: {
+            id: '##user.ref_info.id##'
+          }
+        }).then(
+          function (response) {
+            if (response.data) {
+              $scope.scanRequest = {
+                customer: response.data.doc
+              };
+              $scope.busy = false;
+
+            };
+
+          },
+          function (err) {
+            $scope.busy = false;
+            $scope.error = err;
+          },
+        );
+      };
 
       $scope.getMyAddresses = function (b) {
         $scope.error = '';
         $scope.busy = true;
-        console.log("5555555555555", '##user.ref_info.id##');
         $http({
           method: 'POST',
           url: '/api/customers/myAddresses',
@@ -429,7 +605,6 @@
             console.log(response.data);
             if (response.data) {
               $scope.myAddressesList = response.data.doc[0].address_list;
-              console.log("555555555555555", response.data.doc[0]);
               $scope.busy = false;
             };
 
