@@ -1430,7 +1430,6 @@ module.exports = function init(site) {
       res.json(response);
       return;
     }
-console.log(req.session.user.ref_info.id);
     $customers.aggregate(
       [
         {

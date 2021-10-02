@@ -7,12 +7,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="/css/bootstrap.min.css">  
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/all.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap"
+    rel="stylesheet">
   <title>Inmedic</title>
 </head>
 
@@ -21,38 +22,38 @@
   <nav class="sitebar" x-import="in-medic/nav.html"></nav>
 
 
-<div class="main-span">
+  <div class="main-span">
     <h1> حجز اشعه</h1>
-</div>
-<div ng-repeat="s in list">
-  <section class="booking-doctor">
-    <div class="container">
+  </div>
+  <div ng-repeat="s in list">
+    <section class="booking-doctor">
+      <div class="container">
         <div class="row">
-            <div class="col-sm-12">
-                <div class="booking-dr">
+          <div class="col-sm-12">
+            <div class="booking-dr">
 
-                    <div class="doctor">
-                        <div class="dr-img">
-                            <img ng-src="{{s.image_url}}" width="50%">
-                        </div>
-                        <div class="dr-details">
-
-                            <h3>{{s.name_##session.lang##}}</h3>
-                            
-                            <span>{{s.price}} جنيه</span>
-                        </div>
-
-                    </div>
-                    <div class="book-btn">
-                        <a href="#book-now" ng-click="getScanData(s)" data-toggle="modal">احجز الان</a>
-                    </div>
+              <div class="doctor">
+                <div class="dr-img">
+                  <img ng-src="{{s.image_url}}" width="50%">
                 </div>
-            </div>
-        </div>
-    </div>
+                <div class="dr-details">
 
-  </section>
-</div>
+                  <h3>{{s.name_##session.lang##}}</h3>
+
+                  <span>{{s.price}} جنيه</span>
+                </div>
+
+              </div>
+              <div class="book-btn">
+                <a href="#book-now" ng-click="getScanData(s)" data-toggle="modal">احجز الان</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </div>
   <!-- <section class="booking-doctor">
     <div class="container">
         <div class="row">
@@ -135,135 +136,136 @@
 
   </section> -->
   <section class="pop-up">
-    <div
-      class="modal fade"
-      id="book-now"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
+    <div class="modal fade" id="book-now" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" style="max-width: 650px;">
         <div class="modal-content" style="padding: 20px;border-radius: 40px;">
-         
-          <div class="modal-body">
-            
-            <div class="dr-book-popup" style="text-align: center;">
-              
-                  <img ng-src="{{scanData.image_url}}" width="10%">
-              
-              
 
-                  <h3>{{scanData.name_##session.lang##}}</h3>
-                  
-                  <span>{{scanData.price}}جنيه</span>
-              
+          <div class="modal-body">
+
+            <div class="dr-book-popup" style="text-align: center;">
+
+              <img ng-src="{{scanData.image_url}}" width="10%">
+
+
+
+              <h3>{{scanData.name_##session.lang##}}</h3>
+
+              <span>{{scanData.price}}جنيه</span>
+
 
             </div>
 
             <div class="step-num">
-              <span  id="num3">3</span>
-              <span  id="num2" class="center-step">2</span>
+              <span id="num3">3</span>
+              <span id="num2" class="center-step">2</span>
               <span id="num1" style="border-color: #1EBCC9;">1</span>
             </div>
-            
+
             <div class="step1">
               <label style="margin-bottom:10px;">أين تريد القيام بالاشعة ؟</label><br>
               <input type="radio" value="clinic" name="scan" onclick="homeA()" checked><span>في العيادة</span><br>
-              <input type="radio" value="home" name="scan" onclick="home()" ><span>في المنزل</span><span style="color: #5dbdc9; font-weight: 600;">(جنيه +150 )</span> <br>
-              
+              <input type="radio" ng-model="scanRequest.at_home" value="home" name="scan" onclick="home()"><span>في
+                المنزل</span><span style="color: #5dbdc9; font-weight: 600;">{{scanData.price_at_home}} - جنيه</span>
+              <br>
+
               <div id="step-tab" style="display: none; transition: all 0.1s ease; text-align: center;">
-                
-                <select>
+
+                <select ng-model="scanRequest.address"
+                  ng-options="s.gov.name_##session.lang## as (s.gov.name_##session.lang##+' - '+s.city.name_##session.lang##+' - '+s.area.name_##session.lang##+' - '+s.address+' - '+s.streetName)   for s in myAddressesList">
                   <option value="" disabled selected>اختر عنوانك</option>
                 </select>
                 <a href="#">اضافة عنوان جديد</a>
               </div>
               <br>
-              
-              
+
+
               <label style="margin-bottom: 10px ;">اختر اين تريد استلام الاشعة</label><br>
               <input type="radio" value="regular" name="typeof" onclick="homeB()" checked><span>في العيادة</span><br>
-              <input type="radio" value="fast" name="typeof" onclick="home2()"><span>في المنزل </span><span style="color: #5dbdc9; font-weight: 600;">(جنيه +20 )</span><br>
+              <input type="radio" value="fast" name="typeof" onclick="home2()"><span>في المنزل </span><span
+                style="color: #5dbdc9; font-weight: 600;">(جنيه +20 )</span><br>
               <div id="step2-tab" style="display: none; transition: all 0.1s ease; text-align: center;">
-                
+
                 <select>
                   <option value="" disabled selected>اختر عنوانك</option>
                 </select>
                 <a href="#">اضافة عنوان جديد</a>
               </div>
-              
+
               <div class="next-step">
 
                 <a href="#" id="step1">التالي</a>
               </div>
+            </div>
+
+            <div class="step2" style="display: none;">
+              <label style="margin-bottom: 20px;">اختر اليوم</label><br>
+              <a href="#" class="date-day"> السبت </a><a href="#" class="date-day">الاحد</a><a href="#"
+                class="date-day">الاتنين</a><br>
+              <label style="margin-bottom: 20px;">اختر التاريخ</label><br>
+              <a href="#" class="date">السبت ٢٠-٢-٢٠١٢</a><a href="#" class="date">السبت ٢٠-٢-٢٠١٢</a><a href="#"
+                class="date">السبت ٢٠-٢-٢٠١٢</a><a href="#" class="date">السبت ٢٠-٢-٢٠١٢</a><br>
+              <div class="next-step">
+
+                <a href="#" id="step2">التالي</a>
               </div>
 
-              <div class="step2" style="display: none;">
-                <label style="margin-bottom: 20px;">اختر اليوم</label><br>
-                <a href="#" class="date-day"> السبت </a><a href="#" class="date-day">الاحد</a><a href="#" class="date-day">الاتنين</a><br>
-                <label style="margin-bottom: 20px;">اختر التاريخ</label><br>
-                <a href="#" class="date">السبت ٢٠-٢-٢٠١٢</a><a href="#" class="date">السبت ٢٠-٢-٢٠١٢</a><a href="#" class="date">السبت ٢٠-٢-٢٠١٢</a><a href="#" class="date">السبت ٢٠-٢-٢٠١٢</a><br>
-                <div class="next-step">
+            </div>
 
-                  <a href="#" id="step2">التالي</a>
-                </div>
-              
+            <div class="step3" style="display: none;">
+              <div class="book-price">
+                <p>المطلوب دفعه هو</p>
+                <span style="font-size: 33px; font-weight: 600;">500</span><span>جنيه</span>
               </div>
-
-              <div class="step3" style="display: none;">
-                <div class="book-price">
-                  <p>المطلوب دفعه هو</p>
-                  <span style="font-size: 33px; font-weight: 600;">500</span><span>جنيه</span>
-                </div>
-                <label>اختر طريقه الدفع</label><br>
-              <input type="radio" value="clinic"name="pay" checked><span>عند الكشف</span><br>
-              <input type="radio" value="credit"name="pay"><span>الدفع بالكريات كارد او فيزا</span><br>
+              <label>اختر طريقه الدفع</label><br>
+              <input type="radio" value="clinic" name="pay" checked><span>عند الكشف</span><br>
+              <input type="radio" value="credit" name="pay"><span>الدفع بالكريات كارد او فيزا</span><br>
               <div class="next-step">
 
                 <a href="#" id="step3">اتمام الحجز</a>
               </div>
-                
-              </div>
 
-              <div class="final-step" style="display: none;">
-                <img src="/images/check.svg"><br>
-                <h2>تم تأكيد حجزك بنجاح</h2>
-                <span>رقم الكشف : ٣٠</span><br>
-                <span>تاريخ الحجز : السبت ٢٠-٢-٢٠١٢</span><br>
-                <span>الوقت المتوقع : ٢ مساء</span><br>
-                <span>سعر الكشف : ٥٠٠ جنيها</span><br><br>
-              </div>
+            </div>
 
-
-
+            <div class="final-step" style="display: none;">
+              <img src="/images/check.svg"><br>
+              <h2>تم تأكيد حجزك بنجاح</h2>
+              <span>رقم الكشف : ٣٠</span><br>
+              <span>تاريخ الحجز : السبت ٢٠-٢-٢٠١٢</span><br>
+              <span>الوقت المتوقع : ٢ مساء</span><br>
+              <span>سعر الكشف : ٥٠٠ جنيها</span><br><br>
             </div>
 
 
 
-
-
-
-
-
-
-
-
-            
           </div>
+
+
+
+
+
+
+
+
+
+
+
+
         </div>
       </div>
     </div>
+    </div>
   </section>
- 
+
   <section class="app" style="margin-top: 100px;">
     <div class="container">
       <div class="row">
         <div class="col-sm-6" style="margin: auto;">
           <h1>حمل تطبيق المستخدم الان</h1>
-          <p>من خلال تطبيق الجوال يمكنك الاستفاده بالحجز مع دكتور وحجز تحاليل وحجز اشعه وايضا طلب سياره اسعاف او زياره منزليه ومراجعه ملفك الطبي بكل سهوله</p>
+          <p>من خلال تطبيق الجوال يمكنك الاستفاده بالحجز مع دكتور وحجز تحاليل وحجز اشعه وايضا طلب سياره اسعاف او زياره
+            منزليه ومراجعه ملفك الطبي بكل سهوله</p>
           <a href="#"><img src="/images/google.png" width="35%"></a>
           <a href="#"><img src="/images/app.png" width="35%"></a>
-          
+
         </div>
         <div class="col-sm-6">
           <img src="/images/phone.png" class="app-img">
@@ -275,8 +277,8 @@
 
   </section>
 
- 
- 
+
+
   <nav class="sitebottom" x-import="in-medic/footer.html"></nav>
 
 
@@ -302,8 +304,8 @@
       two.classList.remove("active");
       three.classList.remove("active");
     });
-    
-     step2.addEventListener("click", () => {
+
+    step2.addEventListener("click", () => {
       document.querySelector(".step1").style.display = "none";
       document.querySelector(".step2").style.display = "none";
       document.querySelector(".step3").style.display = "block";
@@ -316,7 +318,7 @@
       three.classList.remove("active");
       three.classList.add("border-color");
     });
-     
+
     step3.addEventListener("click", () => {
       document.querySelector(".step1").style.display = "none";
       document.querySelector(".step2").style.display = "none";
@@ -329,97 +331,127 @@
       two.classList.add("active");
       three.classList.add("border-color");
     })
-    
   </script>
   <script>
-  var a = document.getElementById("step-tab");
-  var b = document.getElementById("step2-tab");
-function home() {
-  if (a.style.display === "none") {
-    a.style.display = "block";
-  } else {
-    a.style.display = "none";
-  };
-}
-function homeA() {
-  if (a.style.display === "block") {
-    a.style.display = "none";
-  }
-}
-function home2() {
-  if (b.style.display === "none") {
-    b.style.display = "block";
-  } else {
-    b.style.display = "none";
-  };
-}
-function homeB() {
-  if (b.style.display === "block") {
-    b.style.display = "none";
-  }
-}
+    var a = document.getElementById("step-tab");
+    var b = document.getElementById("step2-tab");
+
+    function home() {
+      if (a.style.display === "none") {
+        a.style.display = "block";
+      } else {
+        a.style.display = "none";
+      };
+    }
+
+    function homeA() {
+      if (a.style.display === "block") {
+        a.style.display = "none";
+      }
+    }
+
+    function home2() {
+      if (b.style.display === "none") {
+        b.style.display = "block";
+      } else {
+        b.style.display = "none";
+      };
+    }
+
+    function homeB() {
+      if (b.style.display === "block") {
+        b.style.display = "none";
+      }
+    }
   </script>
   <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
-    <script src="/x-js/all.js"></script>
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/bootstrap.bundle.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/popper.min.js"></script>
+  <script src="/x-js/all.js"></script>
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/popper.min.js"></script>
 
-  
+
   <script src="js/main.js"></script>
   <!-- Option 2: jQuery, Popper.js, and Bootstrap JS
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.rtlcss.com/bootstrap/v4.5.3/js/bootstrap.min.js" integrity="sha384-VmD+lKnI0Y4FPvr6hvZRw6xvdt/QZoNHQ4h5k0RL30aGkR9ylHU56BzrE2UoohWK" crossorigin="anonymous"></script>
     -->
-    <script>
-      app.controller('scan', function ($scope, $http, $timeout) {
-        $scope.scanData={};
-        $scope.getScan = function (b) {
-          $scope.error = '';
-  
-          $scope.busy = true;
-          $http({
-            method: 'POST',
-            url: '/api/scans/searchAll',
-  
-          }).then(
-            function (response) {
-              console.log(response.data);
-              if (response.data) {
-                $scope.list = response.data.list;
-                $scope.busy = false;
-              };
-  
-            },
-            function (err) {
+  <script>
+    app.controller('scan', function ($scope, $http, $timeout) {
+      $scope.scanData = {};
+      $scope.scanRequest = {};
+      $scope.getScan = function (b) {
+        $scope.error = '';
+
+        $scope.busy = true;
+        $http({
+          method: 'POST',
+          url: '/api/scans/searchAll',
+
+        }).then(
+          function (response) {
+            console.log(response.data);
+            if (response.data) {
+              $scope.list = response.data.list;
               $scope.busy = false;
-              $scope.error = err;
-            },
-          );
-        };
-  
-        $scope.getScanData = function (b) {
-          $scope.error = '';
-          $scope.scanData = b
-        
-        };
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-        
-        $scope.getScan();
-        $scope.getScanData();
-      });
-    </script>
+            };
+
+          },
+          function (err) {
+            $scope.busy = false;
+            $scope.error = err;
+          },
+        );
+      };
+
+      $scope.getScanData = function (b) {
+        $scope.error = '';
+        $scope.scanData = b;
+        $scope.getMyAddresses();
+        console.log("1111111111111111111", b);
+      };
+
+
+      $scope.getMyAddresses = function (b) {
+        $scope.error = '';
+        $scope.busy = true;
+        console.log("5555555555555", '##user.ref_info.id##');
+        $http({
+          method: 'POST',
+          url: '/api/customers/myAddresses',
+          data: {
+            id: '##user.ref_info.id##'
+          }
+        }).then(
+          function (response) {
+            console.log(response.data);
+            if (response.data) {
+              $scope.myAddressesList = response.data.doc[0].address_list;
+              console.log("555555555555555", response.data.doc[0]);
+              $scope.busy = false;
+            };
+
+          },
+          function (err) {
+            $scope.busy = false;
+            $scope.error = err;
+          },
+        );
+      };
+
+
+
+
+
+
+
+
+      $scope.getScan();
+      $scope.getScanData();
+    });
+  </script>
 </body>
 
 </html>
