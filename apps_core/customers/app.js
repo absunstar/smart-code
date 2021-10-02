@@ -275,7 +275,6 @@ module.exports = function init(site) {
     let company = {};
     let branch = {};
     company = site.get_company(req);
-console.log("xxxxxxxxxxxxxxxxxxxxxxx" , company);
     if (req.session.user) {
       branch = site.get_branch(req);
     } else {
@@ -974,7 +973,34 @@ console.log("xxxxxxxxxxxxxxxxxxxxxxx" , company);
   /* ATM APIS */
 
 
+  site.post("/api/customers/getFirstCompany", (req, res) => {
+    let response = {
+      done: false,
+    };
 
+    if (!req.session.user) {
+      response.error = "Please Login First";
+      res.json(response);
+      return;
+    }
+
+    $companies.findOne(
+      {
+        where: {
+          id: 1,
+        },
+      },
+      (err, doc) => {
+        if (!err) {
+          response.done = true;
+          response.doc = doc;
+        } else {
+          response.error = err.message;
+        }
+        res.json(response);
+      }
+    );
+  });
 
 
 

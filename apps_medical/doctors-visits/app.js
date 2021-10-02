@@ -1344,6 +1344,8 @@ module.exports = function init(site) {
     //   return
     // }
 
+
+
     let doctors_visits_doc = req.body;
     doctors_visits_doc.$req = req;
     doctors_visits_doc.$res = res;
@@ -1354,13 +1356,7 @@ module.exports = function init(site) {
       return;
     }
 
-    doctors_visits_doc.company = site.get_company(req);
-    doctors_visits_doc.branch = site.get_branch(req);
-
-    doctors_visits_doc.add_user_info = site.security.getUserFinger({
-      $req: req,
-      $res: res,
-    });
+   
 
     if (typeof doctors_visits_doc.active === "undefined") {
       doctors_visits_doc.active = true;
@@ -1371,29 +1367,28 @@ module.exports = function init(site) {
       delete doctors_visits_doc.company_code;
     }
 
-    let num_obj = {
-      company: site.get_company(req),
-      screen: "doctors_visits",
-      date: doctors_visits_doc.date,
-    };
-
-    let cb = site.getNumbering(num_obj);
-    if (!doctors_visits_doc.code && !cb.auto) {
-      response.error = "Must Enter Code";
-      res.json(response);
-      return;
-    } else if (cb.auto) {
-      doctors_visits_doc.code = cb.code;
+  
+    const randomNumber = (length) => {
+      let text = "";
+      let possible = "123456789";
+      for (let i = 0; i < length; i++) {
+        let sup = Math.floor(Math.random() * possible.length);
+        text += i > 0 && sup == i ? "0" : possible.charAt(sup);
+      }
+      return (text);
     }
+
+
+    doctors_visits_doc.code =   String (randomNumber(4))
+  
     let whereObj = {
       date: new Date(doctors_visits_doc.date),
       "selected_clinic.id": doctors_visits_doc.selected_clinic?doctors_visits_doc.selected_clinic.id:null,
       "selected_doctor.id": doctors_visits_doc.selected_doctor.id,
       "selected_time.day.id": doctors_visits_doc.selected_time.day.id,
-      "selected_time.from.hour": doctors_visits_doc.selected_time.from.hour,
-      "selected_time.to.hour": doctors_visits_doc.selected_time.to.hour,
+      "selected_time.from.hour": doctors_visits_doc.selected_time?.from?.hour,
+      "selected_time.to.hour": doctors_visits_doc.selected_time?.to?.hour,
     };
-
     if (whereObj.date) {
       let d1 = site.toDate(whereObj.date);
       let d2 = site.toDate(whereObj.date);
@@ -1403,7 +1398,6 @@ module.exports = function init(site) {
         $lt: d2,
       };
     }
-
     $doctors_visits.findMany(
       {
         where: whereObj,
@@ -1439,6 +1433,7 @@ module.exports = function init(site) {
                       return;
                     } else {
                       doctors_visits_doc.customer = customerDoc;
+                      console.log("iiiiiiiiiiiiiiiiiiiiiii" , doctors_visits_doc);
                       site.getPatientTicket(
                         doctors_visits_doc.customer,
                         (callBackGet) => {

@@ -107,40 +107,41 @@
               <label style="margin-bottom: 20px;">اختر اليوم</label><br>
 
               <div>
-              <div ng-repeat="a in appointmentsList" style=" display:inline-block; margin: 10px 0px;"" >
-                <a href="#" ng-click="getDateDay(a)"  class="date-day">{{a.day.##session.lang##}} </a><br>
-              </div>
+                <div ng-repeat="a in appointmentsList" style=" display:inline-block; margin: 10px 0px;" >
+                <a href=" #" ng-click="getDateDay(a)" class="date-day">{{a.day.##session.lang##}} </a><br>
+                </div>
               </div><br><br>
 
 
               <p style="margin-bottom: 20px;">اختر التاريخ</p>
 
               <div>
-              <div ng-repeat="a in appointmentDates" style=" display: inline-block; margin: 10px 0px;" >
-                
-                <a href="#" ng-click="getDate(a)" class="date" id="date" onclick="date()"> {{a|date:'dd - MM - yyyy'}} <a>
-              </div>
-            </div>
-              
-              
-              <div class="next-step" >
+                <div ng-repeat="a in appointmentDates" style=" display: inline-block; margin: 10px 0px;">
 
-                <a href="#" id="step2">التالي</a>
+                  <a href="#" ng-click="getDate(a)" class="date" id="date" onclick="date()"> {{a|date:'dd - MM - yyyy'}}
+                    <a>
+                </div>
               </div>
 
+
+              <div class="next-step">
+
+                <a href="#"  id="step2">التالي</a>
+              </div>
+
             </div>
 
-            <div class="step3" style="display: none;">
+            <div   class="step3" style="display: none;">
               <div class="book-price">
                 <p>المطلوب دفعه هو</p>
-                <span style="font-size: 33px; font-weight: 600;">500</span><span>جنيه</span>
+                <span style="font-size: 33px; font-weight: 600;">{{doctorData.at_clinic_price.detection}}</span><span>جنيه</span>
               </div>
               <label>اختر طريقه الدفع</label><br>
               <input type="radio" value="clinic" name="pay" checked><span>عند الكشف</span><br>
               <input type="radio" value="credit" name="pay"><span>الدفع بالكريات كارد او فيزا</span><br>
               <div class="next-step">
 
-                <a href="#" id="step3">اتمام الحجز</a>
+                <a href="#" ng-click="addDoctorVisits()" id="step3">اتمام الحجز</a>
               </div>
 
             </div>
@@ -148,10 +149,10 @@
             <div class="final-step" style="display: none;">
               <img src="/images/check.svg"><br>
               <h2>تم تأكيد حجزك بنجاح</h2>
-              <span>رقم الكشف : ٣٠</span><br>
-              <span>تاريخ الحجز : السبت ٢٠-٢-٢٠١٢</span><br>
+              <span>رقم الكشف : {{visitData.id}}</span><br>
+              <span >تاريخ الحجز : {{visitData.selected_time.date|date:'dd - MM - yyyy'}}-{{visitData.selected_time.day.##session.lang##}}</span><br>
               <span>الوقت المتوقع : ٢ مساء</span><br>
-              <span>سعر الكشف : ٥٠٠ جنيها</span><br><br>
+              <span>سعر الكشف : جنيه {{doctorData.at_clinic_price.detection}} </span><br><br>
             </div>
 
 
@@ -253,8 +254,8 @@
     })
   </script>
   <script>
-    
-  
+
+
 
   </script>
   <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
@@ -271,6 +272,73 @@
       $scope.serviceTypesList = [];
       $scope.servicePlacesList = [];
       $scope.doctors_visits = {};
+      $scope.addDoctorVisits = function (b) {
+        $scope.error = '';
+        let status = {
+          "id": 1,
+          "en": "On hold",
+          "ar": "قيد الإنتظار"
+        };
+        let active = true;
+
+        let obj = {
+          date:new Date(),
+          status: status,
+          place_examination: $scope.doctors_visits.place_examination,
+          selected_doctor: $scope.doctors_visits.selected_doctor,
+          selected_time: $scope.doctors_visits.selected_time,
+          visit_type: $scope.doctors_visits.visit_type,
+          active: true,
+          customer: $scope.doctors_visits.customer,
+          company:$scope.company,
+          branch:$scope.branch
+        };
+        $scope.busy = true;
+        $http({
+          method: 'POST',
+          url: '/api/doctors_visits/addDoctorVisit',
+          data: obj
+        }).then(
+          function (response) {
+            if (response.data) {
+              $scope.visitData = response.data.doc;
+              $scope.busy = false;
+
+            };
+
+          },
+          function (err) {
+            $scope.busy = false;
+            $scope.error = err;
+          },
+        );
+      };
+      $scope.getPatient = function (b) {
+        $scope.error = '';
+        $scope.busy = true;
+        $http({
+          method: 'POST',
+          url: '/api/customers/view',
+          data: {
+            id: '##user.ref_info.id##'
+          }
+        }).then(
+          function (response) {
+            if (response.data) {
+              $scope.doctors_visits = {
+                customer: response.data.doc
+              };
+              $scope.busy = false;
+
+            };
+
+          },
+          function (err) {
+            $scope.busy = false;
+            $scope.error = err;
+          },
+        );
+      };
       $scope.getDoctors = function (b) {
         $scope.error = '';
 
@@ -284,7 +352,33 @@
             if (response.data) {
               $scope.list = response.data.list;
               $scope.busy = false;
+              $scope.getPatient();
+              $scope.getCompany();
+            };
 
+          },
+          function (err) {
+            $scope.busy = false;
+            $scope.error = err;
+          },
+        );
+      };
+
+      $scope.getCompany = function (b) {
+        $scope.error = '';
+
+        $scope.busy = true;
+        $http({
+          method: 'POST',
+          url: '/api/customers/getFirstCompany',
+
+        }).then(
+          function (response) {
+            if (response.data) {
+              $scope.company = response.data.doc;
+              $scope.branch = response.data.doc.branch_list[0];
+              $scope.busy = false;
+            
             };
 
           },
@@ -298,7 +392,8 @@
       $scope.getDoctorData = function (b) {
         $scope.error = '';
         $scope.doctorData = b;
-        $scope.doctors_visits.customer = b.doctor;
+
+        $scope.doctors_visits.selected_doctor = b.doctor;
       };
 
       $scope.serviceTypes = function (b) {
@@ -360,7 +455,7 @@
 
       $scope.getDoctorAppointment = function (b) {
         $scope.error = '';
-        $scope.appointmentsList=[];
+        $scope.appointmentsList = [];
         let doctor = $scope.doctorData.doctor;
         $scope.busy = true;
         $http({
@@ -377,13 +472,13 @@
           function (response) {
             if (response.data) {
               $scope.arr = response.data.list;
-              
+
               for (const iterator of $scope.arr) {
                 for (const iterator1 of iterator.appointmentsList) {
                   $scope.appointmentsList.push(iterator1)
                 }
               };
-             
+
               $scope.busy = false;
             };
 
@@ -397,12 +492,12 @@
 
       $scope.getDateDay = function (b) {
         $scope.error = '';
-       $scope.doctors_visits.selected_time=b;
+        $scope.doctors_visits.selected_time = b;
         $scope.busy = true;
         $http({
           method: 'POST',
           url: '/api/dates/day',
-          data:b
+          data: b
         }).then(
           function (response) {
             if (response.data) {
@@ -422,10 +517,10 @@
         $scope.error = '';
         $scope.doctors_visits.selected_time.date = b;
         $scope.busy = true;
-       
+
       };
 
-      
+
 
 
       $scope.serviceTypes();
