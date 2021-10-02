@@ -16,7 +16,7 @@
   <title>Inmedic</title>
 </head>
 
-<body ng-controller="main">
+<body ng-controller="scan">
 
   <nav class="sitebar" x-import="in-medic/nav.html"></nav>
 
@@ -24,6 +24,7 @@
 <div class="main-span">
     <h1> حجز اشعه</h1>
 </div>
+<div ng-repeat="s in list">
   <section class="booking-doctor">
     <div class="container">
         <div class="row">
@@ -32,13 +33,13 @@
 
                     <div class="doctor">
                         <div class="dr-img">
-                            <img src="/images/ray.png" width="50%">
+                            <img ng-src="{{s.image_url}}" width="50%">
                         </div>
                         <div class="dr-details">
 
-                            <h3>اشعه عظام</h3>
+                            <h3>{{s.name_##session.lang##}}</h3>
                             
-                            <span>500 جنيه</span>
+                            <span>{{s.price}} جنيه</span>
                         </div>
 
                     </div>
@@ -51,7 +52,8 @@
     </div>
 
   </section>
-  <section class="booking-doctor">
+</div>
+  <!-- <section class="booking-doctor">
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
@@ -131,7 +133,7 @@
         </div>
     </div>
 
-  </section>
+  </section> -->
   <section class="pop-up">
     <div
       class="modal fade"
@@ -147,13 +149,13 @@
             
             <div class="dr-book-popup" style="text-align: center;">
               
-                  <img src="/images/ray.png" width="10%">
+                  <img ng-src="{{s.image_url}}" width="10%">
               
               
 
-                  <h3>اشعه عظام  </h3>
+                  <h3>{{s.name_##session.lang##}}</h3>
                   
-                  <span>500 جنيه</span>
+                  <span>{{s.price}}جنيه</span>
               
 
             </div>
@@ -166,7 +168,7 @@
             
             <div class="step1">
               <label style="margin-bottom:10px;">أين تريد القيام بالاشعة ؟</label><br>
-              <input type="radio" value="clinic" name="scan" checked><span>في العيادة</span><br>
+              <input type="radio" value="clinic" name="scan" onclick="homeA()" checked><span>في العيادة</span><br>
               <input type="radio" value="home" name="scan" onclick="home()" ><span>في المنزل</span><span style="color: #5dbdc9; font-weight: 600;">(جنيه +150 )</span> <br>
               
               <div id="step-tab" style="display: none; transition: all 0.1s ease; text-align: center;">
@@ -180,7 +182,7 @@
               
               
               <label style="margin-bottom: 10px ;">اختر اين تريد استلام الاشعة</label><br>
-              <input type="radio" value="regular" name="typeof" checked><span>في العيادة</span><br>
+              <input type="radio" value="regular" name="typeof" onclick="homeB()" checked><span>في العيادة</span><br>
               <input type="radio" value="fast" name="typeof" onclick="home2()"><span>في المنزل </span><span style="color: #5dbdc9; font-weight: 600;">(جنيه +20 )</span><br>
               <div id="step2-tab" style="display: none; transition: all 0.1s ease; text-align: center;">
                 
@@ -339,12 +341,22 @@ function home() {
     a.style.display = "none";
   };
 }
+function homeA() {
+  if (a.style.display === "block") {
+    a.style.display = "none";
+  }
+}
 function home2() {
   if (b.style.display === "none") {
     b.style.display = "block";
   } else {
     b.style.display = "none";
   };
+}
+function homeB() {
+  if (b.style.display === "block") {
+    b.style.display = "none";
+  }
 }
   </script>
   <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
@@ -361,6 +373,53 @@ function home2() {
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.rtlcss.com/bootstrap/v4.5.3/js/bootstrap.min.js" integrity="sha384-VmD+lKnI0Y4FPvr6hvZRw6xvdt/QZoNHQ4h5k0RL30aGkR9ylHU56BzrE2UoohWK" crossorigin="anonymous"></script>
     -->
+    <script>
+      app.controller('scan', function ($scope, $http, $timeout) {
+        $scope.scanData={};
+        $scope.getScan = function (b) {
+          $scope.error = '';
+  
+          $scope.busy = true;
+          $http({
+            method: 'POST',
+            url: '/api/scans/searchAll',
+  
+          }).then(
+            function (response) {
+              console.log(response.data);
+              if (response.data) {
+                $scope.list = response.data.list;
+                $scope.busy = false;
+              };
+  
+            },
+            function (err) {
+              $scope.busy = false;
+              $scope.error = err;
+            },
+          );
+        };
+  
+        $scope.getScanData = function (b) {
+          $scope.error = '';
+          $scope.scanData = b
+        
+        };
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+        
+        $scope.getScan();
+        $scope.getScanData();
+      });
+    </script>
 </body>
 
 </html>

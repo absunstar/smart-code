@@ -16,7 +16,7 @@
   <title>Inmedic</title>
 </head>
 
-<body ng-controller="main">
+<body ng-controller="analysis">
  
   <nav class="sitebar" x-import="in-medic/nav.html"></nav>
 
@@ -24,22 +24,25 @@
 
 <div class="main-span">
     <h1>احجز تحليل</h1>
+
+
 </div>
+<div ng-repeat="a in list">
   <section class="booking-doctor">
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <div class="booking-dr">
+                <div class="booking-dr" >
 
                     <div class="doctor">
                         <div class="dr-img">
-                            <img src="/images/analysis-blood.png" width="75%">
+                            <img ng-src="{{a.image_url}}" width="75%">
                         </div>
                         <div class="dr-details">
 
-                            <h3>تحليل دم</h3>
+                            <h3>{{a.name_##session.lang##}}</h3>
                             
-                            <span>500 جنيه</span>
+                            <span>{{a.price}} جنيه</span>
                         </div>
 
                     </div>
@@ -52,7 +55,8 @@
     </div>
 
   </section>
-  <section class="booking-doctor">
+</div>
+  <!-- <section class="booking-doctor">
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
@@ -132,7 +136,7 @@
         </div>
     </div>
 
-  </section>
+  </section> -->
   <section class="pop-up">
     <div
       class="modal fade"
@@ -148,13 +152,13 @@
             
             <div class="dr-book-popup" style="text-align: center;">
               
-                  <img src="/images/analysis-blood.png" width="10%">
+                  <img ng-src="{{a.image_url}}" width="10%">
               
               
 
-                  <h3>تحليل دم</h3>
+                  <h3>{{a.name_##session.lang##}}</h3>
                   
-                  <span>500 جنيه</span>
+                  <span>{{a.price}} جنيه</span>
               
 
             </div>
@@ -168,7 +172,7 @@
 
             <div class="step1">
               <label style="margin-bottom:10px;">أين تريد القيام بالتحليل ؟</label><br>
-              <input type="radio" value="clinic" name="scan" checked><span>في العيادة</span><br>
+              <input type="radio" value="clinic" name="scan" onclick="homeA()" checked><span>في العيادة</span><br>
               <input type="radio" value="home" name="scan" onclick="home()" ><span>في المنزل</span><span style="color: #5dbdc9; font-weight: 600;">(جنيه +150 )</span> <br>
               
               <div id="step-tab" style="display: none; transition: all 0.1s ease; text-align: center;">
@@ -182,7 +186,7 @@
               
               
               <label style="margin-bottom: 10px ;">اختر اين تريد استلام التحليل</label><br>
-              <input type="radio" value="regular" name="typeof" checked><span>في العيادة</span><br>
+              <input type="radio" value="regular" name="typeof" onclick="homeB()" checked><span>في العيادة</span><br>
               <input type="radio" value="fast" name="typeof" onclick="home2()"><span>في المنزل </span><span style="color: #5dbdc9; font-weight: 600;">(جنيه +20 )</span><br>
               <div id="step2-tab" style="display: none; transition: all 0.1s ease; text-align: center;">
                 
@@ -284,7 +288,7 @@
   <!-- Optional JavaScript; choose one of the two! -->
 
   <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
-  <script>
+    <script>
     const one = document.querySelector("#num1");
     const two = document.querySelector("#num2");
     const three = document.querySelector("#num3");
@@ -332,8 +336,8 @@
       three.classList.add("border-color");
     })
     
-  </script>
-  <script>
+    </script>
+    <script>
     var a = document.getElementById("step-tab");
     var b = document.getElementById("step2-tab");
   function home() {
@@ -343,13 +347,23 @@
       a.style.display = "none";
     };
   }
-  function home2() {
-    if (b.style.display === "none") {
-      b.style.display = "block";
-    } else {
-      b.style.display = "none";
-    };
+  function homeA() {
+  if (a.style.display === "block") {
+    a.style.display = "none";
   }
+}
+function home2() {
+  if (b.style.display === "none") {
+    b.style.display = "block";
+  } else {
+    b.style.display = "none";
+  };
+}
+function homeB() {
+  if (b.style.display === "block") {
+    b.style.display = "none";
+  }
+}
     </script>
   <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
     <script src="/x-js/all.js"></script>
@@ -357,12 +371,58 @@
     <script src="/js/bootstrap.bundle.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/popper.min.js"></script>
-  <script src="js/main.js"></script>
+    <script src="js/main.js"></script>
   <!-- Option 2: jQuery, Popper.js, and Bootstrap JS
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.rtlcss.com/bootstrap/v4.5.3/js/bootstrap.min.js" integrity="sha384-VmD+lKnI0Y4FPvr6hvZRw6xvdt/QZoNHQ4h5k0RL30aGkR9ylHU56BzrE2UoohWK" crossorigin="anonymous"></script>
     -->
+    <script>
+      app.controller('analysis', function ($scope, $http, $timeout) {
+        $scope.analysisData={};
+        $scope.getAnalysis = function (b) {
+          $scope.error = '';
+  
+          $scope.busy = true;
+          $http({
+            method: 'POST',
+            url: '/api/analysis/searchAll',
+  
+          }).then(
+            function (response) {
+              console.log(response.data);
+              if (response.data) {
+                $scope.list = response.data.list;
+                $scope.busy = false;
+              };
+  
+            },
+            function (err) {
+              $scope.busy = false;
+              $scope.error = err;
+            },
+          );
+        };
+  
+        $scope.getAnalysisData = function (b) {
+          $scope.error = '';
+          $scope.analysisData = b
+        
+        };
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+        
+        $scope.getAnalysis()
+      });
+    </script>
 </body>
 
 </html>
