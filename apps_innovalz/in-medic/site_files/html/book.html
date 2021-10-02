@@ -34,7 +34,6 @@
             <div class="booking-dr">
               <div class="doctor">
                 <div class="dr-img">
-                  <!-- <i-image id="add-img" ng-model="c.doctor.imagr_url"></i-image> -->
                   <img ng-src="{{c.doctor.image_url}}" width="35%">
                 </div>
                 <div class="dr-details">
@@ -46,7 +45,7 @@
 
               </div>
               <div class="book-btn">
-                <a href="#book-now" ng-click="getDoctorData(c.doctor)" data-toggle="modal">احجز الان</a>
+                <a href="#book-now" ng-click="getDoctorData(c)" data-toggle="modal">احجز الان</a>
               </div>
             </div>
           </div>
@@ -66,13 +65,13 @@
 
             <div class="dr-book-popup" style="text-align: center;">
 
-              <img src="/images/dr1.png" width="10%">
+              <img ng-src="{{doctorData.doctor.image_url}}" width="10%">
 
 
 
-              <h3>د/ احمد البسطويسي</h3>
-              <p>جراحه العظام</p>
-              <span>500 جنيه</span>
+              <h3>{{doctorData.doctor.name_##session.lang##}}</h3>
+              <p>{{doctorData.doctor.specialty.name_##session.lang##}}</p>
+              <span>جنيه {{doctorData.at_clinic_price.detection}}</span>
 
 
             </div>
@@ -86,29 +85,38 @@
 
             <div class="step1">
               <label>ماهي الخدمه؟</label><br>
-              <select>
-                <option value="" selected disabled>اختر الخدمه</option>
+              <select ng-model="doctors_visits.visit_type" ng-options="s.##session.lang## for s in serviceTypesList">
+                <option selected disabled>اختر الخدمه</option>
               </select>
               <label>اين تريد الخدمه؟</label><br>
-              <select>
-                <option value="" disabled selected>اختر اين تريد الخدمه</option>
+              <select ng-model="doctors_visits.place_examination"
+                ng-options="s.##session.lang## for s in servicePlacesList">
+                <option disabled selected>اختر اين تريد الخدمه</option>
               </select>
               <label style="margin-left: 20px ;">نوع الكشف</label>
               <input type="radio" value="regular" name="typeof" checked><span>كشف عادي</span>&nbsp;&nbsp;&nbsp;
-              <input type="radio" value="fast" name="typeof"><span>كشف مستعجل</span><br>
+              <input type="radio" ng-model="doctors_visits.is_urgent_visit" value="fast" name="typeof"><span>كشف
+                مستعجل</span><br>
               <div class="next-step">
 
-                <a href="#" id="step1">التالي</a>
+                <a href="#" ng-click="first_step()" id="step1">التالي</a>
               </div>
             </div>
 
             <div class="step2" style="display: none;">
               <label style="margin-bottom: 20px;">اختر اليوم</label><br>
-              <a href="#" class="date-day"> السبت </a><a href="#" class="date-day">الاحد</a><a href="#"
-                class="date-day">الاتنين</a><br>
+              <div ng-repeat="a in appointmentsList">
+                
+                <a href="#" ng-click="getDateDay(a)" class="date-day">{{a.day.##session.lang##}} </a>
+               
+              </div>
+
+
               <label style="margin-bottom: 20px;">اختر التاريخ</label><br>
-              <a href="#" class="date">السبت ٢٠-٢-٢٠١٢</a><a href="#" class="date">السبت ٢٠-٢-٢٠١٢</a><a href="#"
-                class="date">السبت ٢٠-٢-٢٠١٢</a><a href="#" class="date">السبت ٢٠-٢-٢٠١٢</a><br>
+              <div ng-repeat="a in appointmentDates" >
+                <a href="#" ng-click="getDate(a)" class="date"> {{a|date:'dd - MM - yyyy'}} <a><br>
+              </div>
+              
               <div class="next-step">
 
                 <a href="#" id="step2">التالي</a>
@@ -247,7 +255,11 @@
   <script src="/js/popper.min.js"></script>
   <script>
     app.controller('booking', function ($scope, $http, $timeout) {
-      $scope.doctorData={};
+      $scope.doctorData = {};
+      $scope.appointmentsList = [];
+      $scope.serviceTypesList = [];
+      $scope.servicePlacesList = [];
+      $scope.doctors_visits = {};
       $scope.getDoctors = function (b) {
         $scope.error = '';
 
@@ -258,10 +270,10 @@
 
         }).then(
           function (response) {
-            console.log(response.data);
             if (response.data) {
               $scope.list = response.data.list;
               $scope.busy = false;
+
             };
 
           },
@@ -274,21 +286,140 @@
 
       $scope.getDoctorData = function (b) {
         $scope.error = '';
-$scope.doctorData = b
-      
+        $scope.doctorData = b;
+        $scope.doctors_visits.customer = b.doctor;
+      };
+
+      $scope.serviceTypes = function (b) {
+        $scope.error = '';
+        $scope.serviceTypesList = [{
+            "id": 1,
+            "name": "detection",
+            "en": "Detection",
+            "ar": "كشف"
+          },
+          {
+            "id": 2,
+            "name": "re_detection",
+            "en": "Re-Detection",
+            "ar": "إعادة كشف"
+          },
+          {
+            "id": 3,
+            "name": "consultation",
+            "en": "Consultation",
+            "ar": "إستشارة"
+          },
+          {
+            "id": 4,
+            "name": "session",
+            "en": "Session",
+            "ar": "جلسة"
+          }
+        ]
+      };
+
+      $scope.servicePlaces = function (b) {
+        $scope.error = '';
+        $scope.servicePlacesList = [{
+            "id": 1,
+            "en": "Clinic",
+            "ar": "العيادة"
+          },
+          {
+            "id": 2,
+            "en": "Home Visit",
+            "ar": "زيارة منزلية"
+          },
+          {
+            "id": 3,
+            "name": "online",
+            "en": "Online",
+            "ar": "أونلاين"
+          }
+        ]
+
+      };
+
+      $scope.first_step = function (b) {
+        console.log($scope.doctors_visits);
+        $scope.getDoctorAppointment();
       };
 
 
+      $scope.getDoctorAppointment = function (b) {
+        $scope.error = '';
+        $scope.appointmentsList=[];
+        let doctor = $scope.doctorData.doctor;
+        $scope.busy = true;
+        $http({
+          method: 'POST',
+          url: '/api/clinics/getDoctorAppointment',
+          data: {
+            where: {
+              "doctor": {
+                "id": doctor.id
+              }
+            }
+          }
+        }).then(
+          function (response) {
+            if (response.data) {
+              $scope.arr = response.data.list;
+              
+              for (const iterator of $scope.arr) {
+                for (const iterator1 of iterator.appointmentsList) {
+                  $scope.appointmentsList.push(iterator1)
+                }
+              };
+             
+              $scope.busy = false;
+            };
 
+          },
+          function (err) {
+            $scope.busy = false;
+            $scope.error = err;
+          },
+        );
+      };
 
+      $scope.getDateDay = function (b) {
+        $scope.error = '';
+       $scope.doctors_visits.selected_time=b;
+        $scope.busy = true;
+        $http({
+          method: 'POST',
+          url: '/api/dates/day',
+          data:b
+        }).then(
+          function (response) {
+            if (response.data) {
+              $scope.appointmentDates = response.data.list;
 
+              $scope.busy = false;
+            };
 
-
-
-
+          },
+          function (err) {
+            $scope.busy = false;
+            $scope.error = err;
+          },
+        );
+      };
+      $scope.getDate = function (b) {
+        $scope.error = '';
+        $scope.doctors_visits.selected_time.date = b;
+        $scope.busy = true;
+       
+      };
 
       
-      $scope.getDoctors()
+
+
+      $scope.serviceTypes();
+      $scope.servicePlaces();
+      $scope.getDoctors();
     });
   </script>
 
