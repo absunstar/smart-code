@@ -44,7 +44,7 @@
 
                     </div>
                     <div class="book-btn">
-                        <a href="#book-now" data-toggle="modal">احجز الان</a>
+                        <a href="#book-now" ng-click="getScanData(s)" data-toggle="modal">احجز الان</a>
                     </div>
                 </div>
             </div>
@@ -149,13 +149,13 @@
             
             <div class="dr-book-popup" style="text-align: center;">
               
-                  <img ng-src="{{s.image_url}}" width="10%">
+                  <img ng-src="{{scanData.image_url}}" width="10%">
               
               
 
-                  <h3>{{s.name_##session.lang##}}</h3>
+                  <h3>{{scanData.name_##session.lang##}}</h3>
                   
-                  <span>{{s.price}}جنيه</span>
+                  <span>{{scanData.price}}جنيه</span>
               
 
             </div>

@@ -47,7 +47,7 @@
 
                     </div>
                     <div class="book-btn">
-                        <a href="#book-now" data-toggle="modal">احجز الان</a>
+                        <a href="#book-now" ng-click="getAnalysisData(a)" data-toggle="modal">احجز الان</a>
                     </div>
                 </div>
             </div>
@@ -152,13 +152,13 @@
             
             <div class="dr-book-popup" style="text-align: center;">
               
-                  <img ng-src="{{a.image_url}}" width="10%">
+                  <img ng-src="{{analysisData.image_url}}" width="10%">
               
               
 
-                  <h3>{{a.name_##session.lang##}}</h3>
+                  <h3>{{analysisData.name_##session.lang##}}</h3>
                   
-                  <span>{{a.price}} جنيه</span>
+                  <span>{{analysisData.price}} جنيه</span>
               
 
             </div>
@@ -406,6 +406,7 @@ function homeB() {
   
         $scope.getAnalysisData = function (b) {
           $scope.error = '';
+          console.log("222222222222222" , b);
           $scope.analysisData = b
         
         };
@@ -419,8 +420,8 @@ function homeB() {
   
   
   
-        
-        $scope.getAnalysis()
+       
+        $scope.getAnalysis();
       });
     </script>
 </body>
