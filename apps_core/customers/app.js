@@ -1338,6 +1338,12 @@ console.log("xxxxxxxxxxxxxxxxxxxxxxx" , company);
                                 lat: address_doc.lat,
                                 long: address_doc.long,
                                 address: address_doc.address,
+                                address: address_doc.address,
+                                streetName: address_doc.streetName,
+                                buildingNumber: address_doc.buildingNumber,
+                                role: address_doc.role,
+                                apartmentNumber: address_doc.apartmentNumber,
+                                specialMark: address_doc.specialMark,
                               });
                             }
                             else{
@@ -1349,6 +1355,12 @@ console.log("xxxxxxxxxxxxxxxxxxxxxxx" , company);
                                 lat: address_doc.lat,
                                 long: address_doc.long,
                                 address: address_doc.address,
+                                streetName: address_doc.streetName,
+                                buildingNumber: address_doc.buildingNumber,
+                                role: address_doc.role,
+                                apartmentNumber: address_doc.apartmentNumber,
+                                specialMark: address_doc.specialMark,
+                              
                               });
                             }
                             
@@ -1392,7 +1404,7 @@ console.log("xxxxxxxxxxxxxxxxxxxxxxx" , company);
       res.json(response);
       return;
     }
-
+console.log(req.session.user.ref_info.id);
     $customers.aggregate(
       [
         {
