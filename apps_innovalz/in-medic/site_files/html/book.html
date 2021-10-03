@@ -34,7 +34,7 @@
             <div class="booking-dr">
               <div class="doctor">
                 <div class="dr-img">
-                  <img ng-src="{{c.doctor.image_url}}" width="35%">
+                  <img ng-src="{{c.doctor.image_url}}" width="100%">
                 </div>
                 <div class="dr-details">
 
@@ -393,7 +393,7 @@
       $scope.getDoctorData = function (b) {
         $scope.error = '';
         $scope.doctorData = b;
-        $scope.doctors_visits.total_value= doctorData.at_clinic_price.detection
+        $scope.doctors_visits.total_value= doctorData.at_clinic_price.detection;
         $scope.doctors_visits.selected_doctor = b.doctor;
       };
 

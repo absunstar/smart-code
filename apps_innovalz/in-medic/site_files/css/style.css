@@ -235,7 +235,7 @@ width: 100%;
     font-weight: 700;
 }
 .dr-details{
-    margin: 0px 10px;
+    margin: auto 10px;
 
 }
 .doctor p{
@@ -269,7 +269,10 @@ width: 100%;
 
 /* ------------------ */
 
-
+.booking-dr .dr-img{
+    width: 25%;
+    margin: 0px 20px;
+}
 .dr-book-popup h3{
 font-size: 14px;
 font-weight: 700;

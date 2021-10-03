@@ -36,7 +36,7 @@
 
                     <div class="doctor">
                         <div class="dr-img">
-                            <img ng-src="{{a.image_url}}" width="75%">
+                            <img ng-src="{{a.image_url}}" width="100%">
                         </div>
                         <div class="dr-details">
 
@@ -56,87 +56,7 @@
 
   </section>
 </div>
-  <!-- <section class="booking-doctor">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="booking-dr">
-
-                    <div class="doctor">
-                        <div class="dr-img">
-                            <img src="/images/analysis-blood.png" width="75%">
-                        </div>
-                        <div class="dr-details">
-
-                            <h3>تحليل دم</h3>
-                            
-                            <span>500 جنيه</span>
-                        </div>
-
-                    </div>
-                    <div class="book-btn">
-                        <a href="#">احجز الان</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-  </section>
-  <section class="booking-doctor">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="booking-dr">
-
-                    <div class="doctor">
-                        <div class="dr-img">
-                            <img src="/images/analysis-blood.png" width="75%">
-                        </div>
-                        <div class="dr-details">
-
-                            <h3>تحليل دم</h3>
-                            
-                            <span>500 جنيه</span>
-                        </div>
-
-                    </div>
-                    <div class="book-btn">
-                        <a href="#">احجز الان</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-  </section>
-  <section class="booking-doctor">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="booking-dr">
-
-                    <div class="doctor">
-                        <div class="dr-img">
-                            <img src="/images/analysis-blood.png" width="75%">
-                        </div>
-                        <div class="dr-details">
-
-                            <h3>تحليل دم</h3>
-                            
-                            <span>500 جنيه</span>
-                        </div>
-
-                    </div>
-                    <div class="book-btn">
-                        <a href="#">احجز الان</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-  </section> -->
+  
   <section class="pop-up">
     <div
       class="modal fade"
@@ -173,14 +93,15 @@
             <div class="step1">
               <label style="margin-bottom:10px;">أين تريد القيام بالتحليل ؟</label><br>
               <input type="radio" value="clinic" name="scan" onclick="homeA()" checked><span>في العيادة</span><br>
-              <input type="radio" value="home" name="scan" onclick="home()" ><span>في المنزل</span><span style="color: #5dbdc9; font-weight: 600;">(جنيه +150 )</span> <br>
+              <input type="radio" value="home" name="scan" onclick="home()" ng-model="analysisRequest.at_home" ><span>في المنزل</span><span style="color: #5dbdc9; font-weight: 600;">(جنيه +{{analysisData.price_at_home}} )</span> <br>
               
               <div id="step-tab" style="display: none; transition: all 0.1s ease; text-align: center;">
                 
-                <select>
+                <select ng-model="analysisRequest.address"
+                ng-options="a.gov.name_##session.lang## as (a.gov.name_##session.lang##+' - '+a.city.name_##session.lang##+' - '+a.area.name_##session.lang##+' - '+a.address+' - '+a.streetName)   for a in myAddressesList">
                   <option value="" disabled selected>اختر عنوانك</option>
                 </select>
-                <a href="#">اضافة عنوان جديد</a>
+                
               </div>
               <br>
               
@@ -190,23 +111,32 @@
               <input type="radio" value="fast" name="typeof" onclick="home2()"><span>في المنزل </span><span style="color: #5dbdc9; font-weight: 600;">(جنيه +20 )</span><br>
               <div id="step2-tab" style="display: none; transition: all 0.1s ease; text-align: center;">
                 
-                <select>
+                <select >
                   <option value="" disabled selected>اختر عنوانك</option>
                 </select>
-                <a href="#">اضافة عنوان جديد</a>
+                
               </div>
               
               <div class="next-step">
 
-                <a href="#" id="step1">التالي</a>
+                <a href="#" id="step1" ng-click="daysOfWeekList()">التالي</a>
               </div>
               </div>
 
               <div class="step2" style="display: none;">
                 <label style="margin-bottom: 20px;">اختر اليوم</label><br>
-                <a href="#" class="date-day"> السبت </a><a href="#" class="date-day">الاحد</a><a href="#" class="date-day">الاتنين</a><br>
+                <div>
+                <div ng-repeat="day in visitDaysList" style=" display: inline-block; margin: 10px 0px;">
+                  <a href="#" ng-click="getDateDay(day)" class="date-day"> {{day.day.##session.lang##}} </a><br>
+                </div>
+              </div><br>
+  
                 <label style="margin-bottom: 20px;">اختر التاريخ</label><br>
-                <a href="#" class="date">السبت ٢٠-٢-٢٠١٢</a><a href="#" class="date">السبت ٢٠-٢-٢٠١٢</a><a href="#" class="date">السبت ٢٠-٢-٢٠١٢</a><a href="#" class="date">السبت ٢٠-٢-٢٠١٢</a><br>
+                <div>
+                <div ng-repeat="a in appointmentDates" style=" display: inline-block; margin: 10px 0px;">
+                  <a href="#" ng-click="getDate(a)" class="date">{{a|date:'dd - MM - yyyy'}}</a><br>
+                </div>
+              </div>
                 <div class="next-step">
 
                   <a href="#" id="step2">التالي</a>
@@ -217,14 +147,14 @@
               <div class="step3" style="display: none;">
                 <div class="book-price">
                   <p>المطلوب دفعه هو</p>
-                  <span style="font-size: 33px; font-weight: 600;">500</span><span>جنيه</span>
+                  <span style="font-size: 33px; font-weight: 600;">{{analysisData.price}}</span><span>جنيه</span>
                 </div>
                 <label>اختر طريقه الدفع</label><br>
               <input type="radio" value="clinic"name="pay" checked><span>عند الكشف</span><br>
               <input type="radio" value="credit"name="pay"><span>الدفع بالكريات كارد او فيزا</span><br>
               <div class="next-step">
 
-                <a href="#" id="step3">اتمام الحجز</a>
+                <a href="#" id="step3" ng-click="addAnalysisRequest()">اتمام الحجز</a>
               </div>
                 
               </div>
@@ -232,10 +162,10 @@
               <div class="final-step" style="display: none;">
                 <img src="/images/check.svg"><br>
                 <h2>تم تأكيد حجزك بنجاح</h2>
-                <span>رقم الكشف : ٣٠</span><br>
-                <span>تاريخ الحجز : السبت ٢٠-٢-٢٠١٢</span><br>
+                <span>رقم الكشف : {{returnAnalysisData.id}}</span><br>
+                <span>تاريخ الحجز : {{returnAnalysisData.visit_date|date:'dd - MM - yyyy'}} - {{returnAnalysisData.visit_day.##session.lang##}}</span><br>
                 <span>الوقت المتوقع : ٢ مساء</span><br>
-                <span>سعر الكشف : ٥٠٠ جنيها</span><br><br>
+                <span>سعر الكشف : {{returnAnalysisData.total_value}} جنيها</span><br><br>
               </div>
 
 
@@ -380,6 +310,62 @@ function homeB() {
     <script>
       app.controller('analysis', function ($scope, $http, $timeout) {
         $scope.analysisData={};
+        $scope.analysisRequest = {};
+        $scope.visitDaysList = [];
+
+
+
+        $scope.addAnalysisRequest = function (b) {
+        $scope.error = '';
+        
+         if ( $scope.analysisRequest.at_home == 'home') {
+          $scope.analysisRequest.at_home = true
+         }
+         let x = [];
+          x = new Array($scope.analysisData);
+         console.log(x);
+         let obj = {
+           date:new Date(),
+           total_value:$scope.analysisData.price,
+           active: true,
+           scans_list: x,
+           address:$scope.analysisRequest.address,
+           at_home : $scope.analysisRequest.at_home,
+           customer: $scope.analysisRequest.customer,
+           visit_date :$scope.analysisRequest.visit_date,
+           visit_day : $scope.analysisRequest.visit_day,
+           company:$scope.company,
+           branch:$scope.branch
+         };
+         console.log(obj); 
+         $scope.busy = true;
+        $http({
+           method: 'POST',
+           url: '/api/analysis_requests/addAnalysisRequest',
+           data: obj
+         }).then(
+           function (response) {
+             if (response.data) {
+               $scope.returnAnalysisData = response.data.doc;
+               
+               $scope.busy = false;
+
+             };
+
+           },
+           function (err) {
+             $scope.busy = false;
+             $scope.error = err;
+           },
+         ); 
+      };
+
+
+
+
+
+
+
         $scope.getAnalysis = function (b) {
           $scope.error = '';
   
@@ -407,9 +393,237 @@ function homeB() {
         $scope.getAnalysisData = function (b) {
           $scope.error = '';
           console.log("222222222222222" , b);
-          $scope.analysisData = b
+          $scope.analysisData = b;
+
+          $scope.analysisRequest = {
+          total_value : $scope.analysisData.price,
+          analysis_list: new Array(b),
+        };
+        $scope.getMyAddresses();
+        $scope.getPatient();
+        $scope.getCompany();
         
         };
+
+
+        $scope.getCompany = function (b) {
+        $scope.error = '';
+
+        $scope.busy = true;
+        $http({
+          method: 'POST',
+          url: '/api/customers/getFirstCompany',
+
+        }).then(
+          function (response) {
+            if (response.data) {
+              $scope.company = response.data.doc;
+              $scope.branch = response.data.doc.branch_list[0];
+              $scope.busy = false;
+            
+            };
+
+          },
+          function (err) {
+            $scope.busy = false;
+            $scope.error = err;
+          },
+        );
+      };
+
+
+
+
+
+
+
+
+        $scope.getAnalysisData = function (b) {
+        $scope.error = '';
+        $scope.analysisData = b;
+        $scope.getMyAddresses();
+        console.log("1111111111111111111", b);
+      };
+        $scope.getMyAddresses = function (b) {
+        $scope.error = '';
+        $scope.busy = true;
+        console.log("5555555555555", '##user.ref_info.id##');
+        $http({
+          method: 'POST',
+          url: '/api/customers/myAddresses',
+          data: {
+            id: '##user.ref_info.id##'
+          }
+        }).then(
+          function (response) {
+            console.log(response.data);
+            if (response.data) {
+              $scope.myAddressesList = response.data.doc[0].address_list;
+              console.log("555555555555555", response.data.doc[0]);
+              $scope.busy = false;
+            };
+
+          },
+          function (err) {
+            $scope.busy = false;
+            $scope.error = err;
+          },
+        );
+      };
+
+      $scope.daysOfWeekList = function (b) {
+        $scope.error = '';
+
+        $scope.visitDaysList = [{
+            day: {
+              "id": 1,
+              "code": 6,
+              "name": "saturday",
+              "en": "Saturday",
+              "ar": "السبت"
+            }
+          },
+          {
+            day: {
+              "id": 2,
+              "code": 0,
+              "name": "sunday",
+              "en": "Sunday",
+              "ar": "الاحد"
+            }
+          },
+          {
+            day: {
+              "id": 3,
+              "code": 1,
+              "name": "monday",
+              "en": "Monday",
+              "ar": "الاثنين"
+            }
+          },
+          {
+            day: {
+              "id": 4,
+              "code": 2,
+              "name": "tuesday",
+              "en": "Tuesday",
+              "ar": "الثلاثاء"
+            }
+          },
+          {
+            day: {
+              "id": 5,
+              "code": 3,
+              "name": "wednesday",
+              "en": "Wednesday",
+              "ar": "الاربعاء"
+            }
+          },
+          {
+            day: {
+              "id": 6,
+              "code": 4,
+              "name": "thursday",
+              "en": "Thursday",
+              "ar": "الخميس"
+            }
+          },
+          {
+            day: {
+              "id": 7,
+              "code": 5,
+              "name": "friday",
+              "en": "Friday",
+              "ar": "الجمعة"
+            }
+          }
+
+        ]
+      };
+
+      $scope.getDateDay = function (b) {
+        $scope.error = '';
+        console.log(b);
+        $scope.appointmentDates = [];
+        $scope.analysisRequest.visit_day = b.day;
+        $scope.busy = true;
+        $http({
+          method: 'POST',
+          url: '/api/dates/day',
+          data: b
+        }).then(
+          function (response) {
+            if (response.data) {
+              $scope.appointmentDates = response.data.list;
+              console.log("111111111111111111", $scope.appointmentDates);
+
+            };
+
+          },
+          function (err) {
+            $scope.busy = false;
+            $scope.error = err;
+          },
+        );
+      };
+      $scope.getDate = function (b) {
+        $scope.error = '';
+        $scope.analysisRequest.visit_date = b;
+        $scope.busy = true;
+
+      };
+      $scope.getPatient = function (b) {
+        $scope.error = '';
+        $scope.busy = true;
+        $http({
+          method: 'POST',
+          url: '/api/customers/view',
+          data: {
+            id: '##user.ref_info.id##'
+          }
+        }).then(
+          function (response) {
+            if (response.data) {
+              $scope.analysisRequest = {
+                customer: response.data.doc
+              };
+              $scope.busy = false;
+
+            };
+
+          },
+          function (err) {
+            $scope.busy = false;
+            $scope.error = err;
+          },
+        );
+      };
+
+      $scope.getMyAddresses = function (b) {
+        $scope.error = '';
+        $scope.busy = true;
+        $http({
+          method: 'POST',
+          url: '/api/customers/myAddresses',
+          data: {
+            id: '##user.ref_info.id##'
+          }
+        }).then(
+          function (response) {
+            console.log(response.data);
+            if (response.data) {
+              $scope.myAddressesList = response.data.doc[0].address_list;
+              $scope.busy = false;
+            };
+
+          },
+          function (err) {
+            $scope.busy = false;
+            $scope.error = err;
+          },
+        );
+      };
+
   
   
   
@@ -420,8 +634,9 @@ function homeB() {
   
   
   
-       
-        $scope.getAnalysis();
+      $scope.getAnalysis();
+      
+      
       });
     </script>
 </body>

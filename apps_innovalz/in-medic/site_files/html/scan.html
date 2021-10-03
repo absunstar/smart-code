@@ -34,7 +34,7 @@
 
               <div class="doctor">
                 <div class="dr-img">
-                  <img ng-src="{{s.image_url}}" width="50%">
+                  <img ng-src="{{s.image_url}}" width="100%">
                 </div>
                 <div class="dr-details">
 
@@ -54,87 +54,7 @@
 
     </section>
   </div>
-  <!-- <section class="booking-doctor">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="booking-dr">
-
-                    <div class="doctor">
-                        <div class="dr-img">
-                            <img src="/images/ray.png" width="50%">
-                        </div>
-                        <div class="dr-details">
-
-                            <h3>اشعه عظام</h3>
-                            
-                            <span>500 جنيه</span>
-                        </div>
-
-                    </div>
-                    <div class="book-btn">
-                        <a href="#">احجز الان</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-  </section>
-  <section class="booking-doctor">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="booking-dr">
-
-                    <div class="doctor">
-                        <div class="dr-img">
-                            <img src="/images/ray.png" width="50%">
-                        </div>
-                        <div class="dr-details">
-
-                            <h3>اشعه عظام</h3>
-                            
-                            <span>500 جنيه</span>
-                        </div>
-
-                    </div>
-                    <div class="book-btn">
-                        <a href="#">احجز الان</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-  </section>
-  <section class="booking-doctor">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="booking-dr">
-
-                    <div class="doctor">
-                        <div class="dr-img">
-                            <img src="/images/ray.png" width="50%">
-                        </div>
-                        <div class="dr-details">
-
-                            <h3>اشعه عظام</h3>
-                            
-                            <span>500 جنيه</span>
-                        </div>
-
-                    </div>
-                    <div class="book-btn">
-                        <a href="#">احجز الان</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-  </section> -->
+ 
   <section class="pop-up">
     <div class="modal fade" id="book-now" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" style="max-width: 650px;">
@@ -199,14 +119,18 @@
 
             <div class="step2" style="display: none;">
               <label style="margin-bottom: 20px;">اختر اليوم</label><br>
-              <div ng-repeat="day in visitDaysList">
+              <div>
+              <div ng-repeat="day in visitDaysList" style=" display: inline-block; margin: 10px 0px;">
                 <a href="#" ng-click="getDateDay(day)" class="date-day"> {{day.day.##session.lang##}} </a><br>
               </div>
+            </div><br>
 
               <label style="margin-bottom: 20px;">اختر التاريخ</label><br>
-              <div ng-repeat="a in appointmentDates">
+              <div>
+              <div ng-repeat="a in appointmentDates" style=" display: inline-block; margin: 10px 0px;">
                 <a href="#" ng-click="getDate(a)" class="date">{{a|date:'dd - MM - yyyy'}}</a><br>
               </div>
+            </div>
 
               <div class="next-step">
 
