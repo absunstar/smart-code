@@ -118,4 +118,49 @@ module.exports = function init(site) {
       }
     );
   });
+
+  site.post("/api/manage_user/forget_password", (req, res) => {
+    let response = {
+      done: false,
+    };
+
+    if (!req.session.user) {
+      response.error = "Please Login First";
+      res.json(response);
+      return;
+    }
+
+    site.security.getUser(
+      {
+        email: req.body.email,
+      },
+      (err, user) => {
+        if (!err && user) {
+          let where = {
+            email : req.body.email,
+            code : req.body.code,
+            type : req.body.type,
+          };
+          site.getCheckMailer(where, (callBack) => {
+            if(callBack){
+
+              user.password = req.body.new_password;
+              response.error = "Code Is Not Correct";
+              res.json(response);
+              return;
+            }
+            site.security.updateUser(user, (err, user_doc) => {
+              response.done = true;
+              response.doc = user_doc.doc;
+              response.doc.company = site.get_company(req);
+              response.doc.branch = site.get_branch(req);
+              res.json(response);
+            });
+          });
+        } else {
+          response.error = err ? err.message : "no doc";
+        }
+      }
+    );
+  });
 };

@@ -148,10 +148,7 @@ module.exports = function init(site) {
             branch: branch,
           }, ];
 
-          user.ref_info = {
-            id: doctor_doc.id,
-          };
-
+      
           user.company = doctor_doc.company;
           user.branch = doctor_doc.branch;
 
@@ -195,7 +192,10 @@ module.exports = function init(site) {
               if (!err) {
                 response.done = true;
                 response.doc = doc;
-
+                user.ref_info = {
+                  id: doc.id,
+                };
+      
                 if (user.password && user.email) {
                   site.security.addUser(user, (err, doc1) => {
                     if (!err) {
