@@ -374,27 +374,25 @@ module.exports = function init(site) {
             analysis_requests_doc.$req = req;
             analysis_requests_doc.$res = res;
 
-            analysis_requests_doc.company = site.get_company(req);
-            analysis_requests_doc.branch = site.get_branch(req);
+            
 
             analysis_requests_doc.add_user_info = site.security.getUserFinger({
               $req: req,
               $res: res,
             });
 
-            let num_obj = {
-              company: site.get_company(req),
-              screen: "analysis_requests",
-              date: analysis_requests_doc.date,
-            };
-            let cb = site.getNumbering(num_obj);
-            if (!analysis_requests_doc.code && !cb.auto) {
-              response.error = "Must Enter Code";
-              res.json(response);
-              return;
-            } else if (cb.auto) {
-              analysis_requests_doc.code = cb.code;
+            const randomNumber = (length) => {
+              let text = "";
+              let possible = "123456789";
+              for (let i = 0; i < length; i++) {
+                let sup = Math.floor(Math.random() * possible.length);
+                text += i > 0 && sup == i ? "0" : possible.charAt(sup);
+              }
+              return (text);
             }
+        
+        
+            analysis_requests_doc.code =   String (randomNumber(4))
             site.getPatientTicket(customerData, (callBackGet) => {
               if (!callBackGet) {
                 site.addPatientTicket(analysis_requests_doc, (callBackAdd) => {

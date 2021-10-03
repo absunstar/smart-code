@@ -288,6 +288,7 @@
           selected_doctor: $scope.doctors_visits.selected_doctor,
           selected_time: $scope.doctors_visits.selected_time,
           visit_type: $scope.doctors_visits.visit_type,
+          total_value:$scope.doctors_visits.total_value,
           active: true,
           customer: $scope.doctors_visits.customer,
           company:$scope.company,
@@ -392,7 +393,7 @@
       $scope.getDoctorData = function (b) {
         $scope.error = '';
         $scope.doctorData = b;
-
+        $scope.doctors_visits.total_value= doctorData.at_clinic_price.detection
         $scope.doctors_visits.selected_doctor = b.doctor;
       };
 

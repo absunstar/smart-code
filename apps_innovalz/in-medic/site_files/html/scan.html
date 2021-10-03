@@ -218,14 +218,14 @@
             <div class="step3" style="display: none;">
               <div class="book-price">
                 <p>المطلوب دفعه هو</p>
-                <span style="font-size: 33px; font-weight: 600;">500</span><span>جنيه</span>
+                <span style="font-size: 33px; font-weight: 600;">{{scanData.price}}</span><span>جنيه</span>
               </div>
               <label>اختر طريقه الدفع</label><br>
               <input type="radio" value="clinic" name="pay" checked><span>عند الكشف</span><br>
               <input type="radio" value="credit" name="pay"><span>الدفع بالكريات كارد او فيزا</span><br>
               <div class="next-step">
 
-                <a href="#" id="step3">اتمام الحجز</a>
+                <a href="#" ng-click="addScanRequest()" id="step3">اتمام الحجز</a>
               </div>
 
             </div>
@@ -233,10 +233,10 @@
             <div class="final-step" style="display: none;">
               <img src="/images/check.svg"><br>
               <h2>تم تأكيد حجزك بنجاح</h2>
-              <span>رقم الكشف : ٣٠</span><br>
-              <span>تاريخ الحجز : السبت ٢٠-٢-٢٠١٢</span><br>
+              <span>رقم الكشف : {{returnScanData.id}}</span><br>
+              <span>تاريخ الحجز : {{returnScanData.visit_date|date:'dd - MM - yyyy'}} - {{returnScanData.visit_day.##session.lang##}}</span><br>
               <span>الوقت المتوقع : ٢ مساء</span><br>
-              <span>سعر الكشف : ٥٠٠ جنيها</span><br><br>
+              <span>سعر الكشف : {{returnScanData.total_value}} جنيها</span><br><br>
             </div>
 
 
@@ -389,35 +389,37 @@
       $scope.visitDaysList = [];
       $scope.addScanRequest = function (b) {
         $scope.error = '';
-        console.log($scope.scanRequest);
-        /*  let status = {
-           "id": 1,
-           "en": "On hold",
-           "ar": "قيد الإنتظار"
-         };
-         let active = true;
-
+        
+         if ( $scope.scanRequest.at_home == 'home') {
+          $scope.scanRequest.at_home = true
+         }
+         let x = [];
+          x = new Array($scope.scanData);
+         console.log(x);
          let obj = {
            date:new Date(),
-           status: status,
-           place_examination: $scope.doctors_visits.place_examination,
-           selected_doctor: $scope.doctors_visits.selected_doctor,
-           selected_time: $scope.doctors_visits.selected_time,
-           visit_type: $scope.doctors_visits.visit_type,
+           total_value:$scope.scanData.price,
            active: true,
-           customer: $scope.doctors_visits.customer,
+           scans_list: x,
+           address:$scope.scanRequest.address,
+           at_home : $scope.scanRequest.at_home,
+           customer: $scope.scanRequest.customer,
+           visit_date :$scope.scanRequest.visit_date,
+           visit_day : $scope.scanRequest.visit_day,
            company:$scope.company,
            branch:$scope.branch
-         }; 
+         };
+         console.log(obj); 
          $scope.busy = true;
-         $http({
+        $http({
            method: 'POST',
-           url: '/api/doctors_visits/addDoctorVisit',
+           url: '/api/scans_requests/addScanRequest',
            data: obj
          }).then(
            function (response) {
              if (response.data) {
-               $scope.visitData = response.data.doc;
+               $scope.returnScanData = response.data.doc;
+               
                $scope.busy = false;
 
              };
@@ -427,7 +429,7 @@
              $scope.busy = false;
              $scope.error = err;
            },
-         );*/
+         ); 
       };
       $scope.getScan = function (b) {
         $scope.error = '';
@@ -456,11 +458,39 @@
       $scope.getScanData = function (b) {
         $scope.error = '';
         $scope.scanData = b;
-        $scope.scanRequest = {
 
-          scans_list: new Array(b)
+        $scope.scanRequest = {
+          total_value : $scope.scanData.price,
+          scans_list: new Array(b),
         };
         $scope.getMyAddresses();
+        $scope.getPatient();
+        $scope.getCompany();
+      };
+
+      $scope.getCompany = function (b) {
+        $scope.error = '';
+
+        $scope.busy = true;
+        $http({
+          method: 'POST',
+          url: '/api/customers/getFirstCompany',
+
+        }).then(
+          function (response) {
+            if (response.data) {
+              $scope.company = response.data.doc;
+              $scope.branch = response.data.doc.branch_list[0];
+              $scope.busy = false;
+            
+            };
+
+          },
+          function (err) {
+            $scope.busy = false;
+            $scope.error = err;
+          },
+        );
       };
 
       $scope.daysOfWeekList = function (b) {
@@ -537,7 +567,7 @@
         $scope.error = '';
         console.log(b);
         $scope.appointmentDates = [];
-        $scope.scanRequest.visit_day = b;
+        $scope.scanRequest.visit_day = b.day;
         $scope.busy = true;
         $http({
           method: 'POST',
@@ -624,7 +654,7 @@
 
 
       $scope.getScan();
-      $scope.getScanData();
+     
     });
   </script>
 </body>
