@@ -280,20 +280,20 @@
           "ar": "قيد الإنتظار"
         };
         let active = true;
-
         let obj = {
           date:new Date(),
           status: status,
           place_examination: $scope.doctors_visits.place_examination,
-          selected_doctor: $scope.doctors_visits.selected_doctor,
+          selected_doctor: $scope.doctorData.doctor,
           selected_time: $scope.doctors_visits.selected_time,
           visit_type: $scope.doctors_visits.visit_type,
-          total_value:$scope.doctors_visits.total_value,
+          total_value:  $scope.doctorData.at_clinic_price.detection,
           active: true,
           customer: $scope.doctors_visits.customer,
           company:$scope.company,
           branch:$scope.branch
         };
+        console.log("obj" , obj);
         $scope.busy = true;
         $http({
           method: 'POST',
@@ -302,6 +302,7 @@
         }).then(
           function (response) {
             if (response.data) {
+              console.log("response.data",response.data);
               $scope.visitData = response.data.doc;
               $scope.busy = false;
 
@@ -393,7 +394,8 @@
       $scope.getDoctorData = function (b) {
         $scope.error = '';
         $scope.doctorData = b;
-        $scope.doctors_visits.total_value= doctorData.at_clinic_price.detection;
+   
+        $scope.doctors_visits.total_value= b.at_clinic_price.detection;
         $scope.doctors_visits.selected_doctor = b.doctor;
       };
 
