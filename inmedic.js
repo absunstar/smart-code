@@ -28,7 +28,6 @@ site.addFeature('atm');
 
 site.importApp(__dirname + '/apps_innovalz/in-medic', 'inmedic');
 
-
 site.importApp(__dirname + '/apps_private/cloud_security', 'security');
 site.loadLocalApp('client-side');
 site.importApp(__dirname + '/apps_private/ui-help');
@@ -43,6 +42,11 @@ site.importApps(__dirname + '/apps_agora');
 site.importApps(__dirname + '/apps_hr');
 site.importApps(__dirname + '/apps_medic')
 site.importApps(__dirname + '/apps_core');
+
+site.loadLocalApp('ui-print');
+
+site.addFeature('medical');
+
 const $companies = site.connectCollection("companies")
 let obj = {
   "name_ar": "test",
@@ -73,6 +77,20 @@ let obj = {
       }
     }
   );
+
+
+
+  setTimeout(() => {
+    site.importApp(__dirname + '/apps_private/companies');
+    site.importApp(__dirname + '/apps_private/zk-reader');
+  
+  },1000)  
+
+  
+setTimeout(() => {
+  site.ready = true;
+}, 1000 * 2);
+
 
 
 site.run();
