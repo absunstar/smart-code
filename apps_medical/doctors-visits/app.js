@@ -1098,6 +1098,7 @@ module.exports = function init(site) {
 
     $doctors_visits.aggregate(
       [
+        
         {
           $match: {
             "customer.id": req.session.user.ref_info.id,
