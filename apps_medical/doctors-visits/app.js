@@ -1176,13 +1176,13 @@ module.exports = function init(site) {
       (err, docs) => {
         if (docs && docs.length > 0) {
           response.done = true;
-          response.docs = docs;
+          response.list = docs;
 
           res.json(response);
         } else {
           response.done = false;
 
-          response.docs = [];
+          response.list = [];
           res.json(response);
         }
       }
@@ -1233,13 +1233,13 @@ module.exports = function init(site) {
       (err, docs) => {
         if (docs && docs.length > 0) {
           response.done = true;
-          response.docs = docs;
+          response.list = docs;
 
           res.json(response);
         } else {
           response.done = false;
 
-          response.docs = [];
+          response.list = [];
           res.json(response);
         }
       }

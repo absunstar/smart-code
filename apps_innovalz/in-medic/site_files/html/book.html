@@ -90,9 +90,20 @@
               </select>
               <label>اين تريد الخدمه؟</label><br>
               <select ng-model="doctors_visits.place_examination"
-                ng-options="s.##session.lang## for s in servicePlacesList">
-                <option disabled selected>اختر اين تريد الخدمه</option>
+               >
+                <option value="1" >العيادة</option>
+                <option value="2" >زيارة منزلية</option>
+                <option value="3" >أونلاين</option>
               </select>
+              <br>
+              <div ng-show="doctors_visits.place_examination=='2'">
+
+                <select ng-model="scanRequest.address"
+                ng-options="s as (s.gov.name_##session.lang##+' - '+s.city.name_##session.lang##+' - '+s.area.name_##session.lang##+' - '+s.address+' - '+s.streetName)   for s in myAddressesList">
+                  <option value="" disabled selected>اختر عنوانك</option>
+                </select>
+                
+              </div>
               <label style="margin-left: 20px ;">نوع الكشف</label>
               <input type="radio" value="regular" name="typeof" checked><span>كشف عادي</span>&nbsp;&nbsp;&nbsp;
               <input type="radio" ng-model="doctors_visits.is_urgent_visit" value="fast" name="typeof"><span>كشف
@@ -254,9 +265,7 @@
     })
   </script>
   <script>
-
-
-
+ 
   </script>
   <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
 
@@ -328,7 +337,10 @@
             if (response.data) {
               $scope.doctors_visits = {
                 customer: response.data.doc
+
               };
+              $scope.myAddressesList = $scope.doctors_visits.customer.address_list;
+
               $scope.busy = false;
 
             };
@@ -393,7 +405,8 @@
       $scope.getDoctorData = function (b) {
         $scope.error = '';
         $scope.doctorData = b;
-   
+   console.log("111111111111111" , typeof('##user.ref_info.id##'));
+   console.log("111111111111111" , '##user.ref_info.id##');
         $scope.doctors_visits.total_value= b.at_clinic_price.detection;
         $scope.doctors_visits.selected_doctor = b.doctor;
       };
@@ -450,8 +463,36 @@
       };
 
       $scope.first_step = function (b) {
-        console.log($scope.doctors_visits);
+      
+
         $scope.getDoctorAppointment();
+        if ($scope.doctors_visits.place_examination == "1") {
+          $scope.doctors_visits.place_examination = {
+            "id": 1,
+            "en": "Clinic",
+            "ar": "العيادة"
+          }
+        };
+        if ($scope.doctors_visits.place_examination == "2") {
+          $scope.doctors_visits.place_examination =  {
+            "id": 2,
+            "en": "Home Visit",
+            "ar": "زيارة منزلية"
+          }
+        };
+        if ($scope.doctors_visits.place_examination == "3") {
+          $scope.doctors_visits.place_examination = {
+            "id": 3,
+            "name": "online",
+            "en": "Online",
+            "ar": "أونلاين"
+          }
+        };
+        console.log($scope.doctors_visits.place_examination);
+
+        
+        
+        
       };
 
 

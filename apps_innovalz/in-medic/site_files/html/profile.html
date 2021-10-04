@@ -82,7 +82,7 @@
 
                   </div>
                   <div class="edit-btn">
-                    <a href="#edit-user-information"  data-toggle="modal">تعديل</a>
+                    <a href="#edit-user-information" data-toggle="modal">تعديل</a>
                     <div class="modal fade" id="edit-user-information" tabindex="-1" aria-labelledby="exampleModalLabel"
                       aria-hidden="true">
                       <div class="modal-dialog modal-dialog-centered">
@@ -99,12 +99,13 @@
                             <label>رقم الهاتف</label><br>
                             <input ng-model="updateData.mobile" type="text"><br>
                             <label>كلمة المرور</label><br>
-                            <input  ng-model="updateData.current_password" type="password"><br>
+                            <input ng-model="updateData.current_password" type="password"><br>
                             <label> كلمة المرور الجديدة</label><br>
                             <input ng-model="updateData.new_password" type="password"><br>
                           </div>
                           <div class="modal-footer">
-                            <button type="button" ng-click="updatePersonalData(updateData)" class="btn btn-primary">حفظ</button>
+                            <button type="button" ng-click="updatePersonalData(updateData)"
+                              class="btn btn-primary">حفظ</button>
                           </div>
                         </div>
                       </div>
@@ -118,33 +119,33 @@
                   <div>
                     <h2>ملف المريض</h2>
                     <span> الاسم : </span>
-                    <span>هاجر الحديدي توفيق</span><br>
+                    <span>{{patientData.name_##session.lang##}}</span><br>
                     <span> الجنس: </span>
-                    <span>أنثي</span><br>
+                    <span>{{patientData.gender.##session.lang##}}</span><br>
                     <span> الوزن : </span>
-                    <span> 70 كج</span><br>
+                    <span> {{patientData.weight}} كج</span><br>
 
                     <span> الطول : </span>
-                    <span>170 سم</span><br>
+                    <span>{{patientData.tall}} سم</span><br>
 
                     <span> الدم : </span>
-                    <span>A+</span><br>
+                    <span>{{patientData.blood_type.name}}</span><br>
 
                     <span> المحافظة : </span>
-                    <span>الغربية</span><br>
+                    <span>{{patientData.address_list[0].gov.name_##session.lang##}}</span><br>
                     <span> المدينه : </span>
-                    <span>المحله الكبري</span><br>
+                    <span>{{patientData.address_list[0].city.name_##session.lang##}}</span><br>
                     <span> المنطقة : </span>
-                    <span>الشعبية</span><br>
+                    <span>{{patientData.address_list[0].area.name_##session.lang##}}</span><br>
                     <span> العنوان : </span>
-                    <span>مزلقان الشعبيه بجوار جامع السيده رقيه</span><br>
+                    <span>{{patientData.address_list[0].address}}</span><br>
                     <span> ملاحظات : </span>
-                    <span>ملاحظات طبيه ملاحظات طبيه ملاحظات طبيه ملاحظات طبيه </span><br>
+                    <span>{{patientData.medicine_notes}} </span><br>
 
 
                   </div>
                   <div class="edit-btn">
-                    <a href="#edit-profile-information" data-toggle="modal">تعديل</a>
+                    <a href="#edit-profile-information"  data-toggle="modal">تعديل</a>
                     <div class="modal fade" id="edit-profile-information" tabindex="-1"
                       aria-labelledby="exampleModalLabel" aria-hidden="true">
                       <div class="modal-dialog modal-dialog-centered">
@@ -156,20 +157,19 @@
                             </button>
                           </div>
                           <div class="modal-body">
-                            <label>الاسم</label><br>
-                            <input type="text"><br>
+                            
                             <div class="row">
                               <div class="col-sm-6">
 
-                                <label>الجنس</label><br>
-                                <input type="radio" name="gender">ذكر
-                                <input type="radio" name="gender">أنثي
-
+                                <label>الاسم</label><br>
+                            <input ng-model="patientData.name_##session.lang##" type="text"><br>
                               </div>
                               <div class="col-sm-6">
 
-                                <label> تاريخ الميلاد</label><br>
-                                <input type="date"><br>
+                                <label>الجنس</label><br>
+                                <input ng-model="patientData.gender.name" value="male" type="radio" name="gender">ذكر
+                                <input ng-model="patientData.gender.name" value="female" type="radio" name="gender">أنثي
+
                               </div>
                             </div>
 
@@ -177,19 +177,19 @@
                               <div class="col-sm-6">
 
                                 <label>رقم الهاتف</label><br>
-                                <input type="number">
+                                <input ng-model="patientData.mobile" type="text">
 
 
                               </div>
                               <div class="col-sm-6">
 
                                 <label>الرقم القومي</label><br>
-                                <input type="number"><br>
+                                <input ng-model="patientData.id_number" type="text"><br>
                               </div>
                             </div>
                           </div>
                           <div class="modal-footer">
-                            <button type="button" class="btn btn-primary">حفظ</button>
+                            <button type="button" ng-click="updatePatientData(patientData)" class="btn btn-primary">حفظ</button>
                           </div>
                         </div>
                       </div>
@@ -223,11 +223,11 @@
 
                 </ul>
               </div>
-              <div class="tab-content" id="pills-tabContent">
+              <div  class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-c-orders" role="tabpanel"
                   aria-labelledby="pills-current-orders-tab">
 
-                  <div class="my-current-orders">
+                  <div class="my-current-orders" ng-repeat="current in notCompletedVisitsList">
                     <div class="order-card">
                       <div class="order-card-body">
                         <div class="pharmacy-img">
@@ -235,11 +235,11 @@
                         </div>
 
                         <div class="orders-details">
-                          <h4>د. أحمد علي</h4>
-                          <p>إستشاري أمراض القلب والأوعية الدموية</p>
-                          <span>تاريخ الحجز : السبت ٢٠-٢-٢٠١٢</span><br>
-                          <span>الوقت المتوقع : ٢ مساء</span><br>
-                          <span>سعر الكشف : 200 جنيه</span>
+                          <h4>د. {{current.selected_doctor.name_##session.lang##}}</h4>
+                          <p>{{current.specialty.name_##session.lang##}}</p>
+                          <span>تاريخ الحجز : {{current.selected_time.date|date:'dd - MM - yyyy'}} - {{current.selected_time.day.##session.lang##}} </span><br>
+
+                          <span>سعر الكشف : {{current.total_value}} جنيه</span>
                         </div>
 
                         <div class="orders-action">
@@ -279,7 +279,7 @@
                               </div>
                             </div>
                           </div>
-                          <a class="btn" data-toggle="collapse" href="#more" role="button" aria-expanded="false"
+                          <a class="btn" data-toggle="collapse" href="#more_{{current.id}}" role="button" aria-expanded="false"
                             aria-controls="more">
                             المزيد
                           </a><br>
@@ -292,7 +292,7 @@
                         </div>
                       </div>
 
-                      <div class="collapse" id="more">
+                      <div class="collapse" id="more_{{current.id}}">
                         <div class="card card-body">
 
 
@@ -371,7 +371,7 @@
                 <div class="tab-pane fade" id="pills-p-orders" role="tabpanel"
                   aria-labelledby="pills-previous-orders-tab">
 
-                  <div class="my-previous-orders">
+                  <div ng-repeat="previous in completedVisitsList"  class="my-previous-orders">
                     <div class="order-card">
                       <div class="order-card-body">
                         <div class="pharmacy-img">
@@ -379,11 +379,11 @@
                         </div>
 
                         <div class="orders-details">
-                          <h4>د. أحمد علي</h4>
-                          <p>إستشاري أمراض القلب والأوعية الدموية</p>
-                          <span>تاريخ الحجز : السبت ٢٠-٢-٢٠١٢</span><br>
+                          <h4>د. {{previous.selected_doctor.name_##session.lang##}}</h4>
+                          <p>{{previous.specialty.name_##session.lang##}}</p>
+                          <span>تاريخ الحجز : {{previous.selected_time.date|date:'dd - MM - yyyy'}} - {{previous.selected_time.day.##session.lang##}} </span><br>
 
-                          <span>سعر الكشف : 200 جنيه</span>
+                          <span>سعر الكشف : {{previous.total_value}} جنيه</span>
                         </div>
 
                         <div class="orders-action">
@@ -392,7 +392,7 @@
 
                           </div>
 
-                          <a class="btn" data-toggle="collapse" href="#more" role="button" aria-expanded="false"
+                          <a class="btn" data-toggle="collapse" href="#more_{{previous.id}}" role="button" aria-expanded="false"
                             aria-controls="more">
                             المزيد
                           </a><br>
@@ -405,7 +405,7 @@
                         </div>
                       </div>
 
-                      <div class="collapse" id="more">
+                      <div class="collapse" id="more_{{previous.id}}">
                         <div class="card card-body">
 
 
@@ -1383,26 +1383,25 @@
 
       $scope.updatePersonalData = function (b) {
         $scope.error = '';
-       
-        console.log("xxxxxxxxxxxxxx" , b);
+
         let obj = {
-          user:{
-            "email":b.email,
-      "current_password":b.current_password,
-      "new_password":b.new_password,
-      "re_password":b.new_password
+          user: {
+            "email": b.email,
+            "current_password": b.current_password,
+            "new_password": b.new_password,
+            "re_password": b.new_password
           },
-          "type" : "password"
+          "type": "password"
         };
-       
+
+
         $http({
           method: 'POST',
-          url: '/api/manage_user/updatePatientUser',
+          url: '/api/manage_user/update',
           data: obj
         }).then(
           function (response) {
-            console.log("55555555555" , response);
-            if (response.data) {
+            if (response.data.done == true) {
               location.reload();
             };
             if (response.error) {
@@ -1417,31 +1416,85 @@
         );
       };
 
-      $scope.getCompany = function (b) {
+
+    
+      $scope.updatePatientData = function (data) {
         $scope.error = '';
-
-        $scope.busy = true;
-        $http({
+          $http({
           method: 'POST',
-          url: '/api/customers/getFirstCompany',
-
+          url: '/api/customers/update',
+          data: data
         }).then(
           function (response) {
-            if (response.data) {
-              $scope.company = response.data.doc;
-              $scope.branch = response.data.doc.branch_list[0];
-              $scope.busy = false;
-            
-            };
+           if (response.data.done) {
+            location.reload();
+           }
 
           },
           function (err) {
             $scope.busy = false;
             $scope.error = err;
           },
-        );
+        );  
       };
 
+     
+
+      $scope.getCompletedVisits = function (data) {
+        $scope.error = '';
+        console.log("COMPLETED VISITS");
+          $http({
+          method: 'POST',
+          url: '/api/doctors_visits/getCompletedVisits',
+          data: {
+            "customer" : {
+              id : '##user.ref_info.id##'
+            },
+          }
+        }).then(
+          function (response) {
+           if (response.data.done) {
+            $scope.completedVisitsList = response.data.docs
+           }
+
+          },
+          function (err) {
+            $scope.busy = false;
+            $scope.error = err;
+          },
+        );  
+      };
+
+
+      $scope.getNotCompletedVisits = function (data) {
+        $scope.error = '';
+        console.log("NOT COMPLETED VISITS");
+          $http({
+          method: 'POST',
+          url: '/api/doctors_visits/getNotCompletedVisits',
+          data: {
+            "customer" : {
+              id : '##user.ref_info.id##'
+            },
+          }
+        }).then(
+          function (response) {
+           if (response.data.done) {
+            $scope.notCompletedVisitsList = response.data.docs
+           }
+
+          },
+          function (err) {
+            $scope.busy = false;
+            $scope.error = err;
+          },
+        );  
+      };
+
+
+     
+
+    
       $scope.getPatient = function (b) {
         $scope.error = '';
         $scope.busy = true;
@@ -1450,7 +1503,7 @@
           url: '/api/customers/view',
           data: {
             "id": '##user.ref_info.id##'
-          
+
 
           }
         }).then(
@@ -1469,7 +1522,10 @@
           },
         );
       };
-      $scope.getCompany();
+     
+
+      $scope.getCompletedVisits();
+      $scope.getNotCompletedVisits();
       $scope.getPatient();
     });
   </script>

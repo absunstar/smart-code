@@ -94,7 +94,7 @@
                   ng-options="s as (s.gov.name_##session.lang##+' - '+s.city.name_##session.lang##+' - '+s.area.name_##session.lang##+' - '+s.address+' - '+s.streetName)   for s in myAddressesList">
                   <option value="" disabled selected>اختر عنوانك</option>
                 </select>
-                <a href="#">اضافة عنوان جديد</a>
+                
               </div>
               <br>
 
@@ -501,7 +501,6 @@
           function (response) {
             if (response.data) {
               $scope.appointmentDates = response.data.list;
-              console.log("111111111111111111", $scope.appointmentDates);
 
             };
 

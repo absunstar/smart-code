@@ -24,8 +24,9 @@
             </li>
 
             <li class="nav-item">
-
-              <a class="nav-link navbar-item" href="/authentication">  دخول او تسجيل جديد</a>
+              <a class="nav-link navbar-item" href="/authentication" ng-hide="'##user.ref_info.id##' != 'undefined'">  دخول او تسجيل جديد</a>
+              <a class="nav-link navbar-item" href="" ng-hide="'##user.ref_info.id##' == 'undefined'">  اهلا </a>
+              
             </li>
             <li class="nav-item" >
               <a class="nav-link navbar-item" href="#">EN</a>
@@ -38,4 +39,4 @@
         </div>
       </div>
     </nav>
-  </section>
+  </section> 
