@@ -372,7 +372,8 @@ module.exports = function init(site) {
         scans_requests_doc.customer = customerData;
         scans_requests_doc.$req = req
         scans_requests_doc.$res = res
-    
+        scans_requests_doc.company = site.get_company(req);
+        scans_requests_doc.branch = site.get_branch(req);
     
         scans_requests_doc.add_user_info = site.security.getUserFinger({
           $req: req,
@@ -389,8 +390,8 @@ module.exports = function init(site) {
           }
           return (text);
         }
-    
-    
+
+
         scans_requests_doc.code =   String (randomNumber(4))
        
 

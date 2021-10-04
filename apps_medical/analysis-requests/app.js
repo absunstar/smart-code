@@ -132,8 +132,7 @@ module.exports = function init(site) {
       analysis_requests_doc.analysis_list.every((_a2) => _a2.result);
 
     if (analysis_requests_doc.id) {
-      $analysis_requests.edit(
-        {
+      $analysis_requests.edit({
           where: {
             id: analysis_requests_doc.id,
           },
@@ -169,8 +168,7 @@ module.exports = function init(site) {
       return;
     }
 
-    $analysis_requests.findOne(
-      {
+    $analysis_requests.findOne({
         where: {
           id: req.body.id,
         },
@@ -201,8 +199,7 @@ module.exports = function init(site) {
     let id = req.body.id;
 
     if (id) {
-      $analysis_requests.delete(
-        {
+      $analysis_requests.delete({
           id: id,
           $req: req,
           $res: res,
@@ -264,8 +261,7 @@ module.exports = function init(site) {
     where["company.id"] = site.get_company(req).id;
     where["branch.code"] = site.get_branch(req).code;
 
-    $analysis_requests.findMany(
-      {
+    $analysis_requests.findMany({
         select: req.body.select || {},
         where: where,
         sort: req.body.sort || {
@@ -307,17 +303,16 @@ module.exports = function init(site) {
 
   site.getAnalysisRequests = function (_where, callback) {
     callback = callback || {};
-    let where = { ..._where };
+    let where = {
+      ..._where
+    };
     if (where.search) {
       where.$or = [];
-      where.$or.push(
-        {
-          "customer.name_ar": site.get_RegExp(where.search, "i"),
-        },
-        {
-          "customer.name_en": site.get_RegExp(where.search, "i"),
-        }
-      );
+      where.$or.push({
+        "customer.name_ar": site.get_RegExp(where.search, "i"),
+      }, {
+        "customer.name_en": site.get_RegExp(where.search, "i"),
+      });
       delete where.search;
     }
 
@@ -330,8 +325,7 @@ module.exports = function init(site) {
       delete where["id"];
     }
 
-    $analysis_requests.findMany(
-      {
+    $analysis_requests.findMany({
         where: where,
       },
       (err, docs) => {
@@ -356,47 +350,69 @@ module.exports = function init(site) {
     //   return
     // }
 
+    
     let analysis_requests_doc = req.body;
-
-    $customer.findOne(
-      {
-        where: {
-          id: analysis_requests_doc.customer.id,
+    console.log(analysis_requests_doc);
+    if (analysis_requests_doc.customer)
+      $customer.findOne({
+          where: {
+            id: analysis_requests_doc.customer.id,
+          },
         },
-      },
-      (err, customerData) => {
-        if (!err) {
-          if (!customerData) {
-            response.error = "no patient found";
-            return;
-          } else {
-            analysis_requests_doc.customer = customerData;
-            analysis_requests_doc.$req = req;
-            analysis_requests_doc.$res = res;
+        (err, customerData) => {
+          if (!err) {
+            if (!customerData) {
+              response.error = "no patient found";
+              return;
+            } else {
+              analysis_requests_doc.customer = customerData;
+              analysis_requests_doc.$req = req;
+              analysis_requests_doc.$res = res;
 
-            
 
-            analysis_requests_doc.add_user_info = site.security.getUserFinger({
-              $req: req,
-              $res: res,
-            });
 
-            const randomNumber = (length) => {
-              let text = "";
-              let possible = "123456789";
-              for (let i = 0; i < length; i++) {
-                let sup = Math.floor(Math.random() * possible.length);
-                text += i > 0 && sup == i ? "0" : possible.charAt(sup);
+              analysis_requests_doc.add_user_info = site.security.getUserFinger({
+                $req: req,
+                $res: res,
+              });
+
+              const randomNumber = (length) => {
+                let text = "";
+                let possible = "123456789";
+                for (let i = 0; i < length; i++) {
+                  let sup = Math.floor(Math.random() * possible.length);
+                  text += i > 0 && sup == i ? "0" : possible.charAt(sup);
+                }
+                return (text);
               }
-              return (text);
-            }
-        
-        
-            analysis_requests_doc.code =   String (randomNumber(4))
-            site.getPatientTicket(customerData, (callBackGet) => {
-              if (!callBackGet) {
-                site.addPatientTicket(analysis_requests_doc, (callBackAdd) => {
-                  analysis_requests_doc.patient_ticket_id = callBackAdd.id;
+              analysis_requests_doc.company = site.get_company(req);
+              analysis_requests_doc.branch = site.get_branch(req);
+
+
+              analysis_requests_doc.code = String(randomNumber(4))
+              site.getPatientTicket(customerData, (callBackGet) => {
+                if (!callBackGet) {
+                  site.addPatientTicket(analysis_requests_doc, (callBackAdd) => {
+                    analysis_requests_doc.patient_ticket_id = callBackAdd.id;
+
+                    $analysis_requests.add(analysis_requests_doc, (err, doc) => {
+                      if (!err) {
+                        response.done = true;
+                        response.doc = doc;
+                      } else {
+                        response.error = "error happened";
+                      }
+                      res.json(response);
+                    });
+                  });
+                } else {
+                  if (callBackGet.status && callBackGet.status.id === 2) {
+                    response.error = "holding ticket for this patient";
+                    res.json(response);
+                    return;
+                  }
+
+                  analysis_requests_doc.patient_ticket_id = callBackGet.id;
 
                   $analysis_requests.add(analysis_requests_doc, (err, doc) => {
                     if (!err) {
@@ -407,31 +423,12 @@ module.exports = function init(site) {
                     }
                     res.json(response);
                   });
-                });
-              } else {
-                if (callBackGet.status && callBackGet.status.id === 2) {
-                  response.error = "holding ticket for this patient";
-                  res.json(response);
-                  return;
                 }
-
-                analysis_requests_doc.patient_ticket_id = callBackGet.id;
-
-                $analysis_requests.add(analysis_requests_doc, (err, doc) => {
-                  if (!err) {
-                    response.done = true;
-                    response.doc = doc;
-                  } else {
-                    response.error = "error happened";
-                  }
-                  res.json(response);
-                });
-              }
-            });
+              });
+            }
           }
         }
-      }
-    );
+      );
   });
 
   // my profile
@@ -452,8 +449,7 @@ module.exports = function init(site) {
     console.log(req.session.user);
 
     $analysis_requests.aggregate(
-      [
-        {
+      [{
           $match: {
             "customer.id": req.session.user.ref_info.id,
           },

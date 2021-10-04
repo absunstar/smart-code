@@ -118,7 +118,7 @@
               <div>
                 <div ng-repeat="a in appointmentDates" style=" display: inline-block; margin: 10px 0px;">
 
-                  <a href="#" ng-click="getDate(a)" class="date" id="date" onclick="date()"> {{a|date:'dd - MM - yyyy'}}
+                  <a href="#" ng-click="getDate(a)" class="date" id="date" > {{a|date:'dd - MM - yyyy'}}
                     <a>
                 </div>
               </div>
@@ -290,8 +290,7 @@
           total_value:  $scope.doctorData.at_clinic_price.detection,
           active: true,
           customer: $scope.doctors_visits.customer,
-          company:$scope.company,
-          branch:$scope.branch
+         company:{}
         };
         console.log("obj" , obj);
         $scope.busy = true;
@@ -505,7 +504,6 @@
           function (response) {
             if (response.data) {
               $scope.appointmentDates = response.data.list;
-
               $scope.busy = false;
             };
 

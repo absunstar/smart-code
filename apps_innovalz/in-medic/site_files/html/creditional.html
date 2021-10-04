@@ -7,150 +7,151 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="/css/bootstrap.min.css">  
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/all.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap"
+    rel="stylesheet">
   <title>Inmedic</title>
 </head>
 
 <body ng-controller="main">
 
- <section class="user-creditional" style="overflow-x: hidden;">
-     
-     
-     <div class="fluid-container">
-         <div class="row">
-             <div class="col-sm-6 l-side">
-               
-                <div class="login-logo">
-                  <a href="/">
-                  
-                    <img src="/images/inmedic.svg" width="20%">
-                  </a><br>
-                    <p>برنامج وتطبيق موبايل يخدم اداره المستشفيات والمستخدم</p><br>
+  <section class="user-creditional" style="overflow-x: hidden;">
 
 
-                </div>
-                <div class="app-user-img" style="text-align: center;">
-                    <img src="/images/login-img.png" style="margin-bottom: 80px;" width="50%"><br>
-                    <a href="#"><img src="/images/google.png" width="13%"></a>
-          <a href="#"><img src="/images/app.png" width="13%"></a>
+    <div class="fluid-container">
+      <div class="row">
+        <div class="col-sm-6 l-side">
 
-                </div>
+          <div class="login-logo">
+            <a href="/">
 
-            </div>
-        
+              <img src="/images/inmedic.svg" width="20%">
+            </a><br>
+            <p>برنامج وتطبيق موبايل يخدم اداره المستشفيات والمستخدم</p><br>
+
+
+          </div>
+          <div class="app-user-img" style="text-align: center;">
+            <img src="/images/login-img.png" style="margin-bottom: 80px;" width="50%"><br>
+            <a href="#"><img src="/images/google.png" width="13%"></a>
+            <a href="#"><img src="/images/app.png" width="13%"></a>
+
+          </div>
+
+        </div>
+
         <div class="col-sm-6">
           <p>{{error}}</p>
-            <div class="login-form">
+          <div class="login-form">
 
-                <h2>تسجيل دخول</h2>
-                <p>برنامج وتطبيق موبايل يخدم اداره المستشفيات والمستخدم</p>
+            <h2>تسجيل دخول</h2>
+            <p>برنامج وتطبيق موبايل يخدم اداره المستشفيات والمستخدم</p>
             <label><img src="/images/mail.svg" width="17%">البريد الالكتروني</label><br>
             <input type="text" placeholder="Example@GMAIL.COM" style="margin-bottom: 50px;" ng-model="user.email"><br>
             <label><img src="/images/password.svg" width="17%">الرقم السري </label><br>
             <input type="password" placeholder="********" ng-model="user.password"><br>
             <div class="login-btn">
-                <a href="#" class="login-now" ng-click="login()">دخول</a><br>
-                <span>ليس لديك حساب؟ <a href="#" id="register">سجل الان</a></span>
-                <a href="#" id="forget-pass" class="lost-pass">نسيت كلمه السر؟</a>
-                
-            </div>
-        </div>
+              <a href="#" class="login-now" ng-click="login()">دخول</a><br>
+              <span>ليس لديك حساب؟ <a href="#" id="register">سجل الان</a></span>
+              <a href="#" id="forget-pass" class="lost-pass">نسيت كلمه السر؟</a>
 
-        <div class="register" style="display: none;">
+            </div>
+          </div>
+
+          <div class="register" style="display: none;">
             <h2> تسجيل جديد</h2>
             <p>برنامج وتطبيق موبايل يخدم اداره المستشفيات والمستخدم</p>
 
-        <label><img src="/images/phone.svg" width="17%"> رقم الهاتف</label><br>
-        <input type="text" placeholder="Example@GMAIL.COM" ng-model="customer.mobile"><br>
-        <label><img src="/images/mail.svg" width="17%">البريد الالكتروني</label><br>
-        <input type="text" placeholder="Example@GMAIL.COM" ng-model="customer.username"><br>
-        <label><img src="/images/password.svg" width="17%">الرقم السري </label><br>
-        <input type="password" placeholder="********" ng-model="customer.password"><br>
-        <label><img src="/images/password.svg" width="13%"> اعاده الرقم السري </label><br>
-        <!-- <input type="password" placeholder="********" ng-model="user.password"><br> -->
+            <label><img src="/images/phone.svg" width="17%"> رقم الهاتف</label><br>
+            <input type="text" placeholder="Example@GMAIL.COM" ng-model="customer.mobile"><br>
+            <label><img src="/images/mail.svg" width="17%">البريد الالكتروني</label><br>
+            <input type="text" placeholder="Example@GMAIL.COM" ng-model="customer.username"><br>
+            <label><img src="/images/password.svg" width="17%">الرقم السري </label><br>
+            <input type="password" placeholder="********" ng-model="customer.password"><br>
+            <label><img src="/images/password.svg" width="13%"> اعاده الرقم السري </label><br>
+            <!-- <input type="password" placeholder="********" ng-model="user.password"><br> -->
 
-        <div class="next-back">
-            <a href="#" class="next" id="verify-code" ng-click="register()">تسجيل</a>
-            <a href="#" class="back" id="return-login">رجوع</a>
-        </div>
-        </div>
+            <div class="next-back">
+              <a href="#" class="next" id="verify-code" ng-click="register()">تسجيل</a>
+              <a href="#" class="back" id="return-login">رجوع</a>
+            </div>
+          </div>
 
-        <div class="verify-send-repassword" style="display: none;">
+          <div class="verify-send-repassword" style="display: none;">
             <h2> ادخل الكود</h2>
-                <p>برنامج وتطبيق موبايل يخدم اداره المستشفيات والمستخدم</p>
-                <div class="code">
-                <label >اكتب الم ارقام التي تم ارسالهم علي البريد الالكتروني الخاص بك</label><br>
-                <input type="text" maxlength="1">
-                <input type="text" maxlength="1">
-                <input type="text" maxlength="1">
-                <input type="text" maxlength="1">
-                
+            <p>برنامج وتطبيق موبايل يخدم اداره المستشفيات والمستخدم</p>
+            <div class="code">
+              <label>اكتب الم ارقام التي تم ارسالهم علي البريد الالكتروني الخاص بك</label><br>
+              <input type="text" maxlength="1">
+              <input type="text" maxlength="1">
+              <input type="text" maxlength="1">
+              <input type="text" maxlength="1">
+
             </div>
             <div class="next-back">
-                <a href="/" class="next" >التالي</a>
-                <a href="#" class="back" id="back-register">رجوع</a>
+              <a href="/" class="next">التالي</a>
+              <a href="#" class="back" id="back-register">رجوع</a>
             </div>
-        </div>
+          </div>
 
-        <div class="forget-password" style="display: none;">
+          <div class="forget-password" style="display: none;">
             <h2> اعاده كلمه السر</h2>
-                <p>برنامج وتطبيق موبايل يخدم اداره المستشفيات والمستخدم</p>
+            <p>برنامج وتطبيق موبايل يخدم اداره المستشفيات والمستخدم</p>
             <label><img src="/images/mail.svg" width="17%">البريد الالكتروني</label><br>
             <input type="text" placeholder="Example@GMAIL.COM" style="margin-bottom: 50px;" ng-model="user.email"><br>
             <div class="next-back">
-                <a href="#" class="next" id="forget-code">التالي</a>
-                <a href="#" class="back" id="backto-login">رجوع</a>
+              <a href="#" class="next" id="forget-code">التالي</a>
+              <a href="#" class="back" id="backto-login">رجوع</a>
             </div>
-        </div>
-        
+          </div>
 
-        <div class="code-send-repassword" style="display: none;">
+
+          <div class="code-send-repassword" style="display: none;">
             <h2> اعاده كلمه السر</h2>
-                <p>برنامج وتطبيق موبايل يخدم اداره المستشفيات والمستخدم</p>
-                <div class="code">
-                <label >اكتب الم ارقام التي تم ارسالهم علي البريد الالكتروني الخاص بك</label><br>
-                <input type="text" maxlength="1">
-                <input type="text" maxlength="1">
-                <input type="text" maxlength="1">
-                <input type="text" maxlength="1">
-                
+            <p>برنامج وتطبيق موبايل يخدم اداره المستشفيات والمستخدم</p>
+            <div class="code">
+              <label>اكتب الم ارقام التي تم ارسالهم علي البريد الالكتروني الخاص بك</label><br>
+              <input type="text" maxlength="1">
+              <input type="text" maxlength="1">
+              <input type="text" maxlength="1">
+              <input type="text" maxlength="1">
+
             </div>
             <div class="next-back">
-                <a href="#" class="next" id="reset-pass">التالي</a>
-                <a href="#" class="back" id="change-email">رجوع</a>
+              <a href="#" class="next" id="reset-pass">التالي</a>
+              <a href="#" class="back" id="change-email">رجوع</a>
             </div>
-        </div>
+          </div>
 
 
-        <div class="enter-new-password" style="display: none;">
+          <div class="enter-new-password" style="display: none;">
             <h2>اعاده كلمه السر</h2>
-                <p>برنامج وتطبيق موبايل يخدم اداره المستشفيات والمستخدم</p>
-           
+            <p>برنامج وتطبيق موبايل يخدم اداره المستشفيات والمستخدم</p>
+
             <label><img src="/images/password.svg" width="17%">الرقم السري </label><br>
             <input type="password" placeholder="********" ng-model="user.password"><br>
             <label><img src="/images/password.svg" width="13%">اعاده الرقم السري </label><br>
             <input type="password" placeholder="********" ng-model="user.password"><br>
             <div class="login-btn" style="margin-bottom: 40px;">
-                <a href="#" class="login-now" id="login-again" ng-click="newPassword()">تأكيد</a><br>
-                
-                
+              <a href="#" class="login-now" id="login-again" ng-click="newPassword()">تأكيد</a><br>
+
+
             </div>
-        </div>
+          </div>
 
         </div>
-           
-        </div>
+
+      </div>
 
     </div>
 
- </section>
- 
- 
+  </section>
+
+
 
   <script>
     const forgetPass = document.querySelector("#forget-pass");
@@ -244,19 +245,206 @@
       document.querySelector(".code-send-repassword").style.display = "none";
       document.querySelector(".enter-new-password").style.display = "none";
     });
-    
-   
-    
   </script>
-  
+
   <script src="/js/jquery.min.js"></script>
   <script src="/js/bootstrap.bundle.min.js"></script>
   <script src="/js/bootstrap.min.js"></script>
   <script src="/js/popper.min.js"></script>
   <script src="/x-js/all.js"></script>
-  
-  <script src="js/creditional.js">
-  
+
+  <script>
+    app.controller('main', function ($scope, $http, $timeout) {
+
+      $scope.user = {};
+      $scope.customer = {};
+      $scope.tryLogin = function (ev) {
+        if (ev.which == 13) {
+          $scope.login();
+        }
+      };
+
+    
+      $scope.register = function () {
+        $scope.error = "";
+
+        const v = site.validated("body");
+        if (!v.ok) {
+          $scope.error = v.messages[0].ar;
+          return;
+        };
+
+        $scope.busy = true;
+        $http({
+          method: "POST",
+          url: "/api/customers/signUp",
+          data: $scope.customer,
+        }).then(
+          function (response) {
+
+            if (response.data) {
+
+              $scope.error = response.data.message;
+              $scope.busy = false;
+            }
+            if (response.data.done) {
+              window.location.href = "/";
+            }
+          },
+          function (err) {
+            $scope.busy = false;
+            $scope.error = err;
+          }
+        );
+      };
+
+      $scope.login = function () {
+
+        $scope.company_list = [];
+        $http({
+          method: "POST",
+          url: "/api/user/branches/all",
+          data: {
+            where: {
+              email: $scope.user.email
+            }
+          }
+        }).then(
+          function (response) {
+            $scope.busy = false;
+            if (response.data.done && response.data.list.length > 0) {
+              $scope.branch_list = response.data.list;
+              $scope.company_list = [];
+              $scope.branch_list.forEach(b => {
+                let exist = false;
+                $scope.company_list.forEach(company => {
+                  if (company.id === b.company.id) {
+                    exist = true;
+                    company.branch_list.push(b.branch);
+                  }
+                });
+
+                if (!exist) {
+                  b.company.branch_list = [b.branch];
+                  $scope.company_list.push(b.company);
+                }
+
+              });
+
+              $scope.user.company = $scope.branch_list[0].company;
+              $scope.user.branch = $scope.branch_list[0].branch;
+              $http({
+                method: 'POST',
+                url: '/api/user/login',
+                data: {
+                  $encript: '123',
+                  email: site.to123($scope.user.email),
+                  password: site.to123($scope.user.password),
+                  company: site.to123({
+                    id: $scope.user.company.id,
+                    name_ar: $scope.user.company.name_ar,
+                    name_en: $scope.user.company.name_en,
+                    item: $scope.user.company.item,
+                    store: $scope.user.company.store,
+                    unit: $scope.user.company.unit,
+                    currency: $scope.user.company.currency,
+                    users_count: $scope.user.company.users_count,
+                    customers_count: $scope.user.company.customers_count,
+                    employees_count: $scope.user.company.employees_count,
+                    host: $scope.user.company.host,
+                  }),
+                  branch: site.to123({
+                    code: $scope.user.branch.code,
+                    name_ar: $scope.user.branch.name_ar,
+                    name_en: $scope.user.branch.name_en,
+                  }),
+                },
+              }).then(
+                function (response) {
+                  if (response.data.error) {
+                    $scope.error = response.data.error;
+                    $scope.busy = false;
+                  }
+                  if (response.data.done) {
+                    window.location.href = '/';
+                  }
+                },
+                function (err) {
+                  $scope.busy = false;
+                  $scope.error = err;
+                },
+              );
+
+
+            }
+          },
+          function (err) {
+            $scope.error = err;
+          }
+        )
+      };
+
+
+
+      /* $scope.login = function () {
+        $scope.error = "";
+
+
+
+        $scope.busy = true;
+        $http({
+          method: "POST",
+          url: "/api/user/branches/all",
+          data: {
+            "where": {
+              "email": $scope.user.email
+            }
+          },
+        }).then(
+          function (response) {
+
+            if (response.data.done) {
+              $scope.companyList = response.data.list[0];
+              let obj = {
+                $encript: '123',
+                email: site.to123($scope.user.email),
+                password: site.to123($scope.user.password),
+                company: $scope.companyList.company,
+                branch: $scope.companyList.branch
+              };
+              $http({
+                method: 'POST',
+                url: '/api/user/login',
+                data: obj,
+              }).then(
+                function (response) {
+                  if (response.data.error) {
+                    $scope.error = response.data.error;
+                  };
+                  if (response.data.done) {
+                    window.location.href = '/';
+                  };
+                },
+                function (err) {
+                  $scope.busy = false;
+                  $scope.error = err;
+                },
+              );
+            } else {
+              $scope.error = 'email not correct';
+              return
+            }
+          },
+          function (err) {
+            $scope.busy = false;
+            $scope.error = err;
+          }
+        );
+      };
+
+ */
+
+    });
   </script>
 </body>
 

@@ -1359,7 +1359,7 @@ module.exports = function init(site) {
     doctors_visits_doc.company = site.get_company(req);
     doctors_visits_doc.branch = site.get_branch(req);
 
-    console.log( doctors_visits_doc.company );
+    console.log("11111111111111111111111111111111" ,  doctors_visits_doc.company );
 
     if (typeof doctors_visits_doc.active === "undefined") {
       doctors_visits_doc.active = true;
