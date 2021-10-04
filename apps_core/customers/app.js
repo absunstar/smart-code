@@ -166,7 +166,7 @@ module.exports = function init(site) {
       customer.image_url = "/images/patients.png";
     }
 
-    $customers.add(customer, (err, doc1) => {});
+    $customers.add(customer, (err, doc1) => { });
   });
 
   site.post("/api/customers/add", (req, res) => {
@@ -605,7 +605,7 @@ module.exports = function init(site) {
                   res.json(response);
                 });
               } else if (result.doc.user_info && result.doc.user_info.id) {
-                site.security.updateUser(user, (err, user_doc) => {});
+                site.security.updateUser(user, (err, user_doc) => { });
               }
             } else {
               response.error = "customer id is error";
@@ -1095,13 +1095,17 @@ module.exports = function init(site) {
     }
 
     user.permissions = [];
-
+    let defaultDender = {
+      "name": "male",
+      "en": "Male",
+      "ar": "ذكر"
+    };
     user.profile = {
-      name_ar: customers_doc.name_ar,
-      name_en: customers_doc.name_en,
+      name_ar: customers_doc.username,
+      name_en: customers_doc.username,
       mobile: customers_doc.mobile,
       image_url: customers_doc.image_url,
-      gender: customers_doc.gender,
+      gender: customers_doc.gender || defaultDender,
     };
     if (user.profile.gender && user.profile.gender.name == "female") {
       user.permissions.push({
@@ -1111,8 +1115,39 @@ module.exports = function init(site) {
 
     let company = {};
     let branch = {};
-    
-    
+    company = site.get_company(req);
+    if (req.session.user) {
+      branch = site.get_branch(req);
+    } else {
+      customers_doc.active = true;
+      company = customers_doc.company;
+      branch = customers_doc.branch;
+    }
+
+    user.branch_list = [
+      {
+        company: company,
+        branch: branch,
+      },
+    ];
+
+    customers_doc.company = {
+      id: company.id,
+      name_ar: company.name_ar,
+      name_en: company.name_en,
+    };
+
+    customers_doc.branch = {
+      code: branch.code,
+      name_ar: branch.name_ar,
+      name_en: branch.name_en,
+    };
+
+    user.company = customers_doc.company;
+    user.branch = customers_doc.branch;
+
+
+
     const randomNumber = (length) => {
       let text = "";
       let possible = "123456789";
@@ -1124,129 +1159,107 @@ module.exports = function init(site) {
     }
 
 
-    customers_doc.code =   String (randomNumber(4))
-    $companies.findMany({
-      select: req.body.select || {},
-      where: {
-        "id" : 1.0
-    },
-      sort: req.body.sort || { id: -1 },
-      limit: req.body.limit
-    }, (err, docs, count) => {
-      if (!err) {
-        company = docs[0]
-        branch = docs[0].branch_list[0]
-        user.company = company;
-        user.branch= branch
-        console.log(company , branch);
-        let num_obj = {
-          company: company,
-          screen: "customers",
-          date: new Date(),
-        };
-       
-        $customers.findMany(
-          {
-            where: {
-              "company.id": company.id,
-            },
-          },
-          (err, docs, count) => {
-            if (!err && count >= company.customers_count) {
-              response.error = "The maximum number of adds exceeded";
+    customers_doc.code = String(randomNumber(4))
+    $customers.findMany(
+      {
+        where: {
+          "company.id": company.id,
+        },
+      },
+      (err, docs, count) => {
+        if (!err && count >= company.customers_count) {
+          response.error = "The maximum number of adds exceeded";
+          res.json(response);
+          return;
+        } else {
+          if (customers_doc.username && customers_doc.password) {
+            if (
+              !customers_doc.username.contains("@") &&
+              !customers_doc.username.contains(".")
+            ) {
+              customers_doc.username =
+                customers_doc.username + "@" + company.host;
+            } else {
+              if (
+                customers_doc.username.contains("@") &&
+                !customers_doc.username.contains(".")
+              ) {
+                response.error = "Username must be typed correctly";
+                res.json(response);
+                return;
+              } else if (
+                !customers_doc.username.contains("@") &&
+                customers_doc.username.contains(".")
+              ) {
+                response.error = "Username must be typed correctly";
+                res.json(response);
+                return;
+              }
+            }
+
+            user.email = customers_doc.username;
+            user.password = customers_doc.password;
+          }
+
+          site.security.isUserExists(user, function (err, user_found) {
+            if (user_found) {
+              response.error = "User Is Exist";
               res.json(response);
               return;
-            } else {
-              if (customers_doc.username && customers_doc.password) {
-                if (
-                  !customers_doc.username.contains("@") &&
-                  !customers_doc.username.contains(".")
-                ) {
-                  customers_doc.username =
-                    customers_doc.username + "@" + company.host;
-                } else {
-                  if (
-                    customers_doc.username.contains("@") &&
-                    !customers_doc.username.contains(".")
-                  ) {
-                    response.error = "Username must be typed correctly";
-                    res.json(response);
-                    return;
-                  } else if (
-                    !customers_doc.username.contains("@") &&
-                    customers_doc.username.contains(".")
-                  ) {
-                    response.error = "Username must be typed correctly";
-                    res.json(response);
-                    return;
-                  }
-                }
-    
-                user.email = customers_doc.username;
-                user.password = customers_doc.password;
-              }
-    
-              site.security.isUserExists(user, function (err, user_found) {
-                if (user_found) {
-                  response.error = "User Is Exist";
-                  res.json(response);
-                  return;
-                }
-    
-                $customers.add(customers_doc, (err, doc) => {
-                  if (!err) {
-                    response.done = true;
-                    response.doc = doc;
-    
-                    if (user.password && user.email) {
-                      user.ref_info = {
-                        id: doc.id,
-                      };
-                      site.security.addUser(user, (err, doc1) => {
-                        if (!err) {
-                          delete user._id;
-                          delete user.id;
-                          doc.user_info = {
-                            id: doc1.id,
-                          };
-                          $customers.edit(doc, (err2, doc2) => {
-                            // if (!req.session.user) {
-                            //   site.security.login({
-                            //     email: doc1.email,
-                            //     password: doc1.password,
-                            //     $req: req,
-                            //     $res: res
-                            //   },
-                            //     function (err, user_login) {
-                            //       if (!err) {
-                            //         response.user = user_login
-                            //         response.done = true
-                            //       } else {
-                            //         console.log(err)
-                            //         response.error = err.message
-                            //       }
-                            //       res.json(response)
-                            //     }
-                            //   )
-                            // }
-                          });
-                        } else {
-                          response.error = err.message;
-                        }
-                      });
-                    }
-                  } else {
-                    response.error = err.message;
-                  }
-                  res.json(response);
-                });
-              });
             }
-          }
-        );
-      } 
 
-    })
+            $customers.add(customers_doc, (err, doc) => {
+              if (!err) {
+                response.done = true;
+                response.doc = doc;
+
+                if (user.password && user.email) {
+                  user.ref_info = {
+                    id: doc.id,
+                  };
+                  site.security.addUser(user, (err, doc1) => {
+                    if (!err) {
+                      delete user._id;
+                      delete user.id;
+                      doc.user_info = {
+                        id: doc1.id,
+                      };
+                      $customers.edit(doc, (err2, doc2) => {
+                        // if (!req.session.user) {
+                        //   site.security.login({
+                        //     email: doc1.email,
+                        //     password: doc1.password,
+                        //     $req: req,
+                        //     $res: res
+                        //   },
+                        //     function (err, user_login) {
+                        //       if (!err) {
+                        //         response.user = user_login
+                        //         response.done = true
+                        //       } else {
+                        //         console.log(err)
+                        //         response.error = err.message
+                        //       }
+                        //       res.json(response)
+                        //     }
+                        //   )
+                        // }
+                      });
+                    } else {
+                      response.error = err.message;
+                    }
+                  });
+                }
+              } else {
+                response.error = err.message;
+              }
+              res.json(response);
+            });
+          });
+        }
+      }
+    );
+
 
     // if (req.session.user) {
     //   company = site.get_company(req);
@@ -1279,9 +1292,9 @@ module.exports = function init(site) {
     // user.company = customers_doc.company;
     // user.branch = customers_doc.branch;
 
-  
 
-    
+
+
   });
 
 
@@ -1372,7 +1385,7 @@ module.exports = function init(site) {
                                 specialMark: address_doc.specialMark,
                               });
                             }
-                            else{
+                            else {
                               doc.address_list = []
                               doc.address_list.push({
                                 gov: govDoc,
@@ -1386,10 +1399,10 @@ module.exports = function init(site) {
                                 role: address_doc.role,
                                 apartmentNumber: address_doc.apartmentNumber,
                                 specialMark: address_doc.specialMark,
-                              
+
                               });
                             }
-                            
+
                             response.doc = doc;
                             $customers.update(doc);
                             res.json(response);

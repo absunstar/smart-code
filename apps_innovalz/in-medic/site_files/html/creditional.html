@@ -264,8 +264,10 @@
         }
       };
 
-    
-      $scope.register = function () {
+   
+
+
+     $scope.register = function () {
         $scope.error = "";
 
         const v = site.validated("body");
@@ -296,7 +298,7 @@
             $scope.error = err;
           }
         );
-      };
+      }; 
 
       $scope.login = function () {
 
