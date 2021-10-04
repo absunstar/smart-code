@@ -275,6 +275,31 @@
   <script src="/js/bootstrap.min.js"></script>
   <script src="/js/popper.min.js"></script>
   <script>
+    app.controller('nav', function ($scope, $http) {
+      $scope.busy = false;
+
+      $scope.logout = function () {
+        $scope.error = '';
+        $scope.busy = true;
+
+        $http.post('/api/user/logout').then(
+          function (response) {
+            if (response.data.done) {
+              window.location.href = '/';
+            } else {
+              $scope.error = response.data.error;
+              $scope.busy = false;
+            }
+          },
+          function (error) {
+            $scope.busy = false;
+            $scope.error = error;
+          },
+        );
+      };
+    });
+  </script>
+  <script>
     app.controller('booking', function ($scope, $http, $timeout) {
       $scope.doctorData = {};
       $scope.appointmentsList = [];
@@ -340,11 +365,8 @@
 
               };
               $scope.myAddressesList = $scope.doctors_visits.customer.address_list;
-
               $scope.busy = false;
-
             };
-
           },
           function (err) {
             $scope.busy = false;
@@ -393,7 +415,6 @@
               $scope.busy = false;
             
             };
-
           },
           function (err) {
             $scope.busy = false;

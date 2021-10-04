@@ -305,6 +305,31 @@
   <script src="/js/bootstrap.min.js"></script>
   <script src="/js/popper.min.js"></script>
   <script src="js/main.js"></script>
+  <script>
+    app.controller('nav', function ($scope, $http) {
+      $scope.busy = false;
+
+      $scope.logout = function () {
+        $scope.error = '';
+        $scope.busy = true;
+
+        $http.post('/api/user/logout').then(
+          function (response) {
+            if (response.data.done) {
+              window.location.href = '/';
+            } else {
+              $scope.error = response.data.error;
+              $scope.busy = false;
+            }
+          },
+          function (error) {
+            $scope.busy = false;
+            $scope.error = error;
+          },
+        );
+      };
+    });
+  </script>
   <!-- Option 2: jQuery, Popper.js, and Bootstrap JS
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>

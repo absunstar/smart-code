@@ -1,4 +1,4 @@
-<section class="header">
+<section class="header" ng-controller="nav">
     <nav class="navbar navbar-expand-lg  navbar1">
       <div class="container">
         <a class="navbar-brand" href="/"><img src="/images/inmedic.svg" width="80%"></a>
@@ -18,15 +18,15 @@
               <ul class="dropdown-menu text-center account" aria-labelledby="navbarScrollingDropdown">
                 
                 <li><a class="dropdown-item sign-in" href="profile">ملفك الطبي </a></li>
-                <li><a class="dropdown-item sign-in"  href="/">تسجيل الخروج</a></li>
+                <li><a class="dropdown-item sign-in"  href="/" ng-click="logout()">تسجيل الخروج</a></li>
                 
               </ul>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link navbar-item"  href="/authentication" ng-hide="'##user.ref_info.id##' != 'undefined'">  دخول او تسجيل جديد</a>
-              <a class="nav-link navbar-item" href="" ng-hide="'##user.ref_info.id##' == 'undefined'">  اهلا </a>
-              
+              <!-- <a class="nav-link navbar-item"  href="/authentication" ng-hide="'##user.ref_info.id##' != 'undefined'">  دخول او تسجيل جديد</a>
+              <a class="nav-link navbar-item" href="" ng-hide="'##user.ref_info.id##' == 'undefined'">  اهلا </a> -->
+              <a class="nav-link navbar-item"  href="/authentication" x-permission="!login">  دخول او تسجيل جديد</a>
             </li>
             <li class="nav-item" >
               <a class="nav-link navbar-item" href="#">EN</a>
