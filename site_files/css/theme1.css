@@ -106,6 +106,7 @@
 
 :root {
   --tabs-header-link-border-bottom: none;
+
 }
 
 .tabs .tabs-header .tab-link.active {

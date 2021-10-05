@@ -49,7 +49,7 @@ app.controller("account_invoices", function ($scope, $http, $timeout) {
           if ($scope.defaultSettings.general_Settings.order_type && $scope.account_invoices.source_type && $scope.account_invoices.source_type.id === 3)
             $scope.account_invoices.order_invoices_type = $scope.defaultSettings.general_Settings.order_type;
 
-          if (site.toNumber("##query.type##") == 13 || site.toNumber("##query.type##") == 8 || site.toNumber("##query.type##") == 10 && $scope.defaultSettings.general_Settings.customer) {
+          if (site.toNumber("##query.type##") == 13 || site.toNumber("##query.type##") == 10 && $scope.defaultSettings.general_Settings.customer && $scope.defaultSettings.general_Settings.customer.id) {
 
             $scope.account_invoices.customer = $scope.customersGetList.find(_customer => { return _customer.id === $scope.defaultSettings.general_Settings.customer.id });
           };
