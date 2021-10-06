@@ -10,7 +10,7 @@ module.exports = function init(site) {
   let image_url = '/images/financial_years.png'
   let add_message = {
     en: 'New Financial Year Added',
-    ar: 'تم أضافة سنة مالية جديدة'
+    ar: 'تم إضافة سنة مالية جديدة'
   }
   let update_message = {
     en: ' Financial Year Updated',

@@ -21,6 +21,13 @@
       >
         ##word.scans_requests##
       </a>
+
+      <a
+      class="tab-link"
+      onclick="site.showTabContent(event, '#vaccinations_requests')"
+    >
+      ##word.vaccinations_requests##
+    </a>
     </div>
     <div class="tabs-content full bold">
       <div id="doctors_visits" class="tab-content">
@@ -144,6 +151,45 @@
 
               <td class="not-print">
                 <i-files view ng-model="s.files"></i-files>
+              </td>
+            </tr>
+          </table>
+        </fieldset>
+        <i-button
+          type="default left"
+          fa="2x fa-angle-double-left"
+          onclick="document.querySelector('.tab-link.active + .tab-link').click();"
+        ></i-button>
+      </div>
+
+      <div id="vaccinations_requests" class="tab-content">
+        <fieldset>
+          <legend>##word.vaccinations_requests##</legend>
+          <table class="table loaded center hover bold">
+            <tr>
+              <th>##word.date##</th>
+              <th>##word.vaccinations_name##</th>
+              <th>##word.notes_before_vaccinations##</th>
+              <th>##word.notes_after_vaccinations##</th>
+              <th>##word.delivery_date##</th>
+              <th class="not-print">##word.files##</th>
+            </tr>
+
+            <tr ng-repeat="v in patients_files.vaccinations_requests">
+              <td class="brown">{{v.date | date : 'dd - MM - yyyy'}}</td>
+              <td class="center">{{v.name_##session.lang##}}</td>
+
+              <td class="center lines_text">{{v.notes_before_vaccinations}}</td>
+
+              <td class="center lines_text">{{v.notes_after_vaccinations}}</td>
+
+              <td class="center">
+                <p class="brown">{{v.delivery_date |date:"dd - MM - yyyy"}}</p>
+                <p class="green">{{v.delivery_date |date:"hh:mm"}}</p>
+              </td>
+
+              <td class="not-print">
+                <i-files view ng-model="v.files"></i-files>
               </td>
             </tr>
           </table>

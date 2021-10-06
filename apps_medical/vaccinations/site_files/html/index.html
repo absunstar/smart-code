@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="vaccinations_ui || vaccinations_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar"></nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
+
+    <div id="main-layout" class="container">
+        <div class="row">
+            <div class="row" ng-controller="vaccinations">
+                <div x-permissions="vaccinations_add || vaccinations_manage" x-import="vaccinations/add_modal.html"></div>
+                <div x-permissions="vaccinations_update || vaccinations_manage" x-import="vaccinations/update_modal.html"></div>
+                <div x-permissions="vaccinations_delete || vaccinations_manage" x-import="vaccinations/delete_modal.html"></div>
+                <div x-permissions="vaccinations_view || vaccinations_manage" x-import="vaccinations/view_modal.html"></div>
+                <div x-permissions="vaccinations_search || vaccinations_manage" x-import="vaccinations/search_all_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center">##word.vaccinations##</h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button x-permissions="vaccinations_add || vaccinations_manage" type="add" label="##word.vaccinations_new##"
+                        ng-click="displayAddScans()"></i-button>
+
+                    <i-button x-permissions="vaccinations_search || vaccinations_manage" type="search" label="##word.search_all##"
+                        ng-click="displaySearchModal()"></i-button>
+
+                    <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
+                </div>
+
+                <table x-permissions="login" class="table bold hover loaded" id="t1">
+                    <tr>
+                        <th class="not-print">##word.logo##</th>
+                        <th>##word.name##</th>
+                        <th>##word.vaccinations_name##</th>
+                        <th>##word.vaccinations_price##</th>
+                        <th>##word.delivery_time##</th>
+                        <th>##word.immediate##</th>
+                        <th>##word.status##</th>
+                        <th class="not-print">##word.actions##</th>
+                    </tr>
+                    <tr ng-repeat="c in list">
+                        <td class="center not-print">
+                            <img class="logo" ng-src="{{c.image_url}}">
+                        </td>
+                        <td class="center userPrint blue">{{c.code}}</td>
+                        <td class="center title">{{c.name_##session.lang##}}</td>
+                        <td class="center green">{{c.price}}</td>
+                        <td>
+                            <h3 class="blue center">{{c.delivery_time}}</h3>
+                            <h3 class="blue center">{{c.period.ar}}</h3>
+                        </td>
+
+                        <td class="center">
+                            <p ng-show="c.immediate ==true" class="green"> ##word.yes## </p>
+                            <p ng-show="c.immediate ==false" class="red"> ##word.no## </p>
+                        </td>
+
+                        <td class="center">
+                            <p ng-show="c.active ==true" class="green"> ##word.active## </p>
+                            <p ng-show="c.active ==false" class="red"> ##word.not_active## </p>
+                        </td>
+
+                        <td class="center not-print">
+                            <i-button x-permissions="vaccinations_view || vaccinations_manage" type="view" label="##word.details##"
+                                ng-click="displayDetailsScans(c)"></i-button>
+
+                            <i-button x-permissions="vaccinations_update || vaccinations_manage" type="edit" label="##word.edit##"
+                                ng-click="displayUpdateScans(c)"></i-button>
+
+                            <i-button x-permissions="vaccinations_delete || vaccinations_manage" type="delete" label="##word.delete##"
+                                ng-click="displayDeleteScans(c)"></i-button>
+                        </td>
+                    </tr>
+                </table>
+                <i-button x-permissions="vaccinations_print || vaccinations_manage" type="print" label="##word.print##"
+                    onclick="site.print('#t1')"></i-button>
+
+                <i-button x-permissions="vaccinations_export || vaccinations_manage" type="export" label="##word.export_to_excel##"
+                    onclick="export_to_xlsx('t1' , 'vaccinations.xlsx')"></i-button>
+            </div>
+        </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+    <script x-import="vaccinations/index.js"></script>
+</body>
+
+</html>

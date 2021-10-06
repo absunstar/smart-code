@@ -10,7 +10,7 @@ module.exports = function init(site) {
   let image_url = '/images/patients_tickets.png'
   let add_message = {
     en: 'New Patient Ticket Center Added',
-    ar: 'تم أضافة تذكرة مريض جديد'
+    ar: 'تم إضافة تذكرة مريض جديد'
   }
 
   let update_message = {

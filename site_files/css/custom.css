@@ -69,9 +69,9 @@ a {
 fieldset {
   margin: 20px;
   padding: 0 10px 10px;
-  border: 1px solid #0500ff;
+  border: 1px solid #0400bc;
   border-radius: 8px;
-  box-shadow: 0 0 10px #5234ff;
+  box-shadow: 0 0 10px #b8abff;
   padding-top: 10px;
 }
 legend {

@@ -9,16 +9,16 @@ module.exports = function init(site) {
 
   let image_url = '/images/scans.png'
   let add_message = {
-    en: 'New scan Added',
-    ar: 'تم أضافة أشعة جديدة'
+    en: 'New Scan Added',
+    ar: 'تم إضافة إشاعة جديدة'
   }
   let update_message = {
-    en: ' scan Updated',
-    ar: 'تم تعديل أشعة'
+    en: ' Scan Updated',
+    ar: 'تم تعديل إشاعة'
   }
   let delete_message = {
-    en: ' scan Deleted',
-    ar: 'تم حذف أشعة '
+    en: ' Scan Deleted',
+    ar: 'تم حذف إشاعة '
   }
 
 

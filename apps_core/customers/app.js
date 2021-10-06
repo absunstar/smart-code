@@ -866,6 +866,7 @@ module.exports = function init(site) {
       //   medicine_notes: 1,
     };
     let where = { ..._where };
+    delete where["id"]
 
     if (where["customer"]) {
       where["id"] = where["customer"].id;

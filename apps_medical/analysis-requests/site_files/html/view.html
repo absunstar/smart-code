@@ -215,7 +215,10 @@
 
               <tr ng-repeat="a in analysis_requests.analysis_list">
                 <td class="center">{{a.name_##session.lang##}}</td>
-                <td class="center green">{{a.price}}</td>
+                <td class="center green">
+                  <p ng-show="!analysis_requests.at_home">{{a.price}}</p>
+                  <p ng-show="analysis_requests.at_home">{{a.price_at_home}}</p>
+                </td>
 
                 <td class="center">
                   <b class="green">{{a.from}}</b> - <b class="red">{{a.to}}</b>

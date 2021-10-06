@@ -1,0 +1,113 @@
+<div id="deliveryPersonModal" class="modal small">
+
+    <div class="modal-content small">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.delivery_data## <i class="fa fa-plus"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+
+            <form>
+
+                <div class="row" ng-hide="vaccination.$view">
+                    <i-control class="col4" label="##word.name##" ng-model="vaccination.delivery_data.name">
+                    </i-control>
+
+                    <i-control class="col3" label="##word.customers_phone##"
+                        ng-model="vaccination.delivery_data.phone">
+                    </i-control>
+
+                    <i-control class="col3" label="##word.customers_mobile##"
+                        ng-model="vaccination.delivery_data.mobile">
+                    </i-control>
+
+                </div>
+
+                <div class="row" ng-hide="vaccination.$view">
+                    <i-list class="col3" label="##word.gov##" ng-model="vaccination.delivery_data.gov"
+                        items="govList" display="name_##session.lang##" ng-change="getCityList(vaccination.delivery_data.gov)"
+                        ng-search="_search.$$govNameContact">
+                    </i-list>
+
+                    <i-list class="col4" label="##word.city##" ng-model="vaccination.delivery_data.city"
+                        items="cityList" ng-change="getAreaList(vaccination.delivery_data.city)" display="name_##session.lang##"
+                        ng-search="_search.$vaccination.delivery_data.$city_search"></i-list>
+
+                    <i-list class="col4" label="##word.area##" ng-model="vaccination.delivery_data.area"
+                        items="areaList" display="name_##session.lang##" ng-search="_search.$vaccination.delivery_data.$area_search">
+                    </i-list>
+
+                    <i-control class="col6" label="##word.address##" ng-model="vaccination.delivery_data.address">
+                    </i-control>
+
+                </div>
+
+
+                <div class="row" ng-show="vaccination.$view">
+
+
+                    <table class="table hover bold">
+
+                        <tr>
+                            <td class="title">##word.name##</td>
+                            <td class="center">{{vaccination.delivery_data.name}}</td>
+                        </tr>
+                        <tr>
+                            <td class="title">##word.customers_phone##</td>
+
+                            <td class="center">
+                                <a ng-show="vaccination.delivery_data.phone"
+                                    href="tel:{{vaccination.delivery_data.phone}}">
+                                    {{vaccination.delivery_data.phone}}
+                                    <i class="fa fa-phone" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="title">##word.customers_mobile##</td>
+
+                            <td class="center">
+                                <a ng-show="vaccination.delivery_data.mobile"
+                                    href="tel:{{vaccination.delivery_data.mobile}}">
+                                    {{vaccination.delivery_data.mobile}}
+                                    <i class="fa fa-mobile" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="title">##word.gov##</td>
+                            <td class="center">{{vaccination.delivery_data.gov.name_##session.lang##}}</td>
+                        </tr>
+                        <tr>
+                            <td class="title">##word.city##</td>
+                            <td class="center">{{vaccination.delivery_data.city.name_##session.lang##}}</td>
+                        </tr>
+                        <tr>
+                            <td class="title">##word.area##</td>
+                            <td class="center">{{vaccination.delivery_data.area.name_##session.lang##}}</td>
+                        </tr>
+                        <tr>
+                            <td class="title">##word.address##</td>
+                            <td class="center lines_text">{{vaccination.delivery_data.address}}</td>
+                        </tr>
+
+
+                    </table>
+
+
+                </div>
+
+            </form>
+        </div>
+
+        <div class="modal-footer center">
+
+
+            <i-button type="save" label="##word.save##" onclick="site.hideModal('#deliveryPersonModal')"> </i-button>
+        </div>
+    </div>
+
+</div>

@@ -29,13 +29,19 @@
         class="tab-link"
         onclick="site.showTabContent(event, '#scanInformation')"
       >
-        ##word.scan##
+        ##word.scans##
       </a>
       <a
         class="tab-link"
         onclick="site.showTabContent(event, '#analysisInformation')"
       >
         ##word.analysis##
+      </a>
+      <a
+        class="tab-link"
+        onclick="site.showTabContent(event, '#vaccinationInformation')"
+      >
+        ##word.vaccinations##
       </a>
       <a
         class="tab-link"
@@ -261,24 +267,24 @@
             <div class="col3">
               <i-image view ng-model="doctors_visits.image_url"></i-image>
               <div
-              class="row center"
-              x-permissions="doctors_visits_update || doctors_visits_manage"
-            >
-              <i-button
-                ng-hide="doctors_visits.$view"
+                class="row center"
                 x-permissions="doctors_visits_update || doctors_visits_manage"
-                type="edit"
-                label="##word.edit##"
-                ng-click="displayUpdateDoctorsVisits(doctors_visits)"
-              ></i-button>
-              <i-button
-                ng-hide="doctors_visits.$view"
-                x-permissions="doctors_visits_delete || doctors_visits_manage"
-                type="delete"
-                label="##word.delete##"
-                ng-click="displayDeleteDoctorsVisits(doctors_visits)"
-              ></i-button>
-            </div>
+              >
+                <i-button
+                  ng-hide="doctors_visits.$view"
+                  x-permissions="doctors_visits_update || doctors_visits_manage"
+                  type="edit"
+                  label="##word.edit##"
+                  ng-click="displayUpdateDoctorsVisits(doctors_visits)"
+                ></i-button>
+                <i-button
+                  ng-hide="doctors_visits.$view"
+                  x-permissions="doctors_visits_delete || doctors_visits_manage"
+                  type="delete"
+                  label="##word.delete##"
+                  ng-click="displayDeleteDoctorsVisits(doctors_visits)"
+                ></i-button>
+              </div>
             </div>
           </div>
 
@@ -296,9 +302,13 @@
               <tr>
                 <td>
                   {{doctors_visits.selected_clinic.name_##session.lang##}}
-                  <p class="blue">( {{doctors_visits.selected_specialty.name_##session.lang##}} )</p>
+                  <p class="blue">
+                    (
+                    {{doctors_visits.selected_specialty.name_##session.lang##}}
+                    )
+                  </p>
                 </td>
-             
+
                 <td class="title">
                   {{doctors_visits.selected_doctor.name_##session.lang##}}
                 </td>
@@ -310,18 +320,18 @@
                     yyyy'}} )
                   </p>
                 </td>
-                <td >
+                <td>
                   <p class="green">
                     {{doctors_visits.selected_time.from.minute}} :
                     {{doctors_visits.selected_time.from.hour}}
                   </p>
-                  <hr>
+                  <hr />
                   <p class="red">
                     {{doctors_visits.selected_time.to.minute}} :
                     {{doctors_visits.selected_time.to.hour}}
                   </p>
                 </td>
-              
+
                 <td>
                   <p class="green">{{doctors_visits.doctor_visit_price}}</p>
                 </td>
@@ -383,8 +393,6 @@
           <br />
           <br />
         </fieldset>
-
-       
       </div>
 
       <div id="medicinesInformation" class="tab-content">
@@ -501,6 +509,37 @@
         </fieldset>
       </div>
 
+      <div id="vaccinationInformation" class="tab-content">
+        <fieldset>
+          <legend>##word.vaccinations##</legend>
+
+          <div class="row">
+            <table class="table hover center">
+              <tr>
+                <th>##word.vaccinations##</th>
+                <th>##word.vaccination_result##</th>
+                <th>##word.notes##</th>
+                <th>##word.results_files##</th>
+              </tr>
+
+              <tr ng-repeat="info in doctors_visits.vaccinations_list">
+                <td>
+                  <h3 class="black bold">
+                    {{info.vaccination.name_##session.lang##}}
+                  </h3>
+                </td>
+
+                <td>{{info.result}}</td>
+                <td>{{info.notes}}</td>
+                <td>
+                  <i-files view ng-model="info.files"> </i-files>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </fieldset>
+      </div>
+
       <div id="operationInformation" class="tab-content">
         <fieldset>
           <legend>##word.operations##</legend>
@@ -603,7 +642,6 @@
           <div class="row">
             <div class="col10">
               <table class="table hover bold">
-
                 <tr>
                   <td class="title indigoD">##word.weight##</td>
                   <td class="center">
@@ -618,7 +656,6 @@
                   </td>
                 </tr>
 
-                
                 <tr>
                   <td class="title indigoD">##word.body_temperature##</td>
                   <td class="center">
@@ -632,8 +669,6 @@
                     {{doctors_visits.ex_before_detection.blood_pressure}}
                   </td>
                 </tr>
-
-            
 
                 <tr>
                   <td class="title indigoD">##word.breathing##</td>
@@ -649,15 +684,12 @@
                   </td>
                 </tr>
 
-
                 <tr>
                   <td class="title indigoD">##word.Sugar##</td>
                   <td class="center">
                     {{doctors_visits.ex_before_detection.Sugar}}
                   </td>
                 </tr>
-
-           
 
                 <tr>
                   <td class="title indigoD">##word.previous_operations##</td>
@@ -708,7 +740,9 @@
                 </tr>
 
                 <tr ng-show="doctors_visits.diagnosis.result_visit.id === 3">
-                  <td class="title indigoD">##word.next_counseling_re_detection##</td>
+                  <td class="title indigoD">
+                    ##word.next_counseling_re_detection##
+                  </td>
                   <td class="brown center">
                     {{doctors_visits.diagnosis.counseling_re_detection | date :
                     'dd - MM - yyyy'}}

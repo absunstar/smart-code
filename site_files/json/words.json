@@ -916,6 +916,11 @@
     "ar": "الأدوية"
   },
   {
+    "name": "can_done_home",
+    "en": "Can be done at home",
+    "ar": "إمكانية إجراءه في المنزل"
+  },
+  {
     "name": "unit_barcode",
     "en": "Unit Barcode",
     "ar": "باركود الوحدة"

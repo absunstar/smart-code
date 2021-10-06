@@ -1,31 +1,31 @@
 [{
         "name": "scans",
-        "en": "scans",
+        "en": "Scans",
         "ar": "الأشعة"
     },
     {
         "name": "scans_new",
-        "en": "New scans",
-        "ar": "أشعة  جديد"
+        "en": "New Scans",
+        "ar": "أشعة جديد"
     },
     {
         "name": "scans_add",
-        "en": "Add scans",
+        "en": "Add Scans",
         "ar": "إضافة أشعة"
     },
     {
         "name": "scans_edit",
-        "en": "Edit scans",
+        "en": "Edit Scans",
         "ar": "تعديل أشعة "
     },
     {
         "name": "scans_details",
-        "en": "scans Details",
+        "en": "Scans Details",
         "ar": "تفاصيل الأشعة"
     },
     {
         "name": "scans_delete",
-        "en": "Delete scans",
+        "en": "Delete Scans",
         "ar": "حذف أشعة"
     },
     {
@@ -45,7 +45,7 @@
     },
     {
         "name": "made_home_scan",
-        "en": "made the scan at home",
+        "en": "Made the Scan at home",
         "ar": "إجراء الإشاعة في المنزل"
     }
     

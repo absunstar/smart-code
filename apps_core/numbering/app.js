@@ -198,7 +198,7 @@ module.exports = function init(site) {
             }
           });
 
-          screens_list = moduleListCore.filter((i) => i.feature !== 'order' && i.feature !== 'erp' && i.feature !== 'restaurant' && i.feature !== 'eco' && i.feature !== 'club' && i.feature !== 'academy' && i.feature !== 'school' && i.feature !== 'medic' && i.feature !== 'lawyer');
+          screens_list = moduleListCore.filter((i) => i.feature !== 'order' && i.feature !== 'erp' && i.feature !== 'restaurant' && i.feature !== 'eco' && i.feature !== 'club' && i.feature !== 'academy' && i.feature !== 'school' && i.feature !== 'lawyer');
 
           moduleListCore.forEach(_m => {
             if (_m.feature == 'medic' && _m.name != 'hall' && _m.name != 'trainer') {

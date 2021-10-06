@@ -10,7 +10,7 @@ module.exports = function init(site) {
   let image_url = '/images/analysis.png'
   let add_message = {
     en: 'New Analysis Added',
-    ar: 'تم أضافة تحاليل جديدة'
+    ar: 'تم إضافة تحاليل جديدة'
   }
   let update_message = {
     en: ' Analysis Updated',
