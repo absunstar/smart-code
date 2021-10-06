@@ -11,7 +11,7 @@ module.exports = function init(site) {
 
   let add_message = {
     en: 'New Operation Added',
-    ar: 'تم أضافة عملية جديدة'
+    ar: 'تم إضافة عملية جديدة'
   }
 
   let update_message = {

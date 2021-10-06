@@ -77,6 +77,7 @@
             <div class="row">
               <i-checkbox
                 class="col2"
+                ng-click="calc(analysis_requests)"
                 label="##word.at_home##"
                 ng-model="analysis_requests.at_home"
               >
@@ -336,7 +337,9 @@
 
                 <td class="center green">
                   <br />
-                  {{c.price}}
+                  <p ng-show="!analysis_requests.at_home">{{c.price}}</p>
+                  <p ng-show="analysis_requests.at_home">{{c.price_at_home}}</p>
+                  
                 </td>
 
                 <td class="center">

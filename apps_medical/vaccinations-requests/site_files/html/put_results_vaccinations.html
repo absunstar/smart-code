@@ -1,0 +1,58 @@
+<div id="puttingResultsVaccinationsModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.putting_results_vaccinations## <i class="fa fa-plus"></i>
+
+            </h2>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <form class="form">
+                    <fieldset>
+
+                        <table class="table loaded center hover bold">
+                            <tr>
+                                <th>##word.vaccinations_name##</th>
+                                <th>##word.price##</th>
+                                <th> ##word.notes_before_vaccinations##</th>
+                                <th> ##word.notes_after_vaccinations## </th>
+                                <th> ##word.files## </th>
+                            </tr>
+
+                            <tr ng-repeat="a in vaccinations_requests.vaccinations_list">
+
+                                <td class="center">{{a.name_##session.lang##}}</td>
+
+                                <td class="center green">{{a.price}}</td>
+
+                                <td class="center lines_text">
+                                    {{a.notes_before_vaccinations}}
+                                </td>
+                            
+                                <td>
+                                    <i-textarea ng-model="a.notes_after_vaccinations"></i-textarea>
+                                </td>
+
+                                <td>
+                                    <i-files ng-model="a.files"></i-files>
+                                </td>
+
+                            </tr>
+                        </table>
+
+                    </fieldset>
+                </form>
+            </div>
+
+            <h2 class="error"> {{error}} </h2>
+            <div class="modal-footer center">
+                <i-button type="save" label="##word.save##" ng-click="updateVaccinationsRequests(vaccinations_requests)">
+                </i-button>
+                <i-button type="close" onclick="site.hideModal('#puttingResultsVaccinationsModal')" label="##word.close##">
+                </i-button>
+            </div>
+        </div>
+    </div>
+</div>
