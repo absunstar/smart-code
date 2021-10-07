@@ -155,12 +155,187 @@
           <h1>راجع ملفك الطبي</h1>
           <p>يمكنك مراجعه ملفك الطبي من خلال الموقع الالكتروني بكل سهوله ومعرفه حجوزاتك السابقه مثل حجز الدكتور والاشعه والتحاليل السابقه لديك</p>
           
-          <a href="#" x-permission="login">ملفي الطبي</a>
+          <a href="#Medic-profile" x-permission="login" data-toggle="modal">ملفي الطبي</a>
           <a href="/authentication" x-permission="!login">احجز الان</a>
 
         </div>
       </div>
     </section>
+
+
+
+    <section class="pop-up">
+      <div class="modal fade" id="Medic-profile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" style="max-width: 1050px;">
+          <div class="modal-content" style="border-radius:20px;">
+            <div class="modal-header" style="background-color: #00BCC9; border-radius: 20px; justify-content: center; padding: 12px;">
+             <h4 style="font-size: 16px; margin: auto; color: white;">تفاصيل المريض</h4>
+            </div>
+           <div class="modal-body patient-file" >
+
+
+
+
+
+
+
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist" style="margin-top: 25px; padding:0px ;">
+              <li class="nav-item">
+                <a class="nav-link active" id="pills-personal-tab" data-toggle="pill" href="#pills-personal" role="tab" aria-controls="pills-personal" aria-selected="true">البيانات الشخصيه</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-call" role="tab" aria-controls="pills-call" aria-selected="false">الاتصال والعنواين</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="pills-medical-status-tab" data-toggle="pill" href="#pills-medical-status" role="tab" aria-controls="pills-medical-status" aria-selected="false">الحاله الطبيه</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="pills-file-tab" data-toggle="pill" href="#pills-file" role="tab" aria-controls="pills-file" aria-selected="false">الملفات</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="pills-user-tab" data-toggle="pill" href="#pills-user" role="tab" aria-controls="pills-user" aria-selected="false">بيانات الدخول</a>
+              </li>
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+
+
+
+              <!-- ------البيانات الشخصيه--------- -->
+
+              <div class="tab-pane fade show active" id="pills-personal" role="tabpanel" aria-labelledby="pills-personal-tab">
+                
+                <div class="container" style="margin: 50px 0px 30px 0px;">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <h2>بيانات الاساسية</h2>
+                    </div>
+                  </div>
+
+                  <div class="row data-info-row">
+                    <div class="col-sm-9">
+                      <div class="personal-div"><div class="personal-title"><h5>كود المريض</h5></div><div class="personal-data"><p>test</p></div></div>
+                      <div class="personal-div"><div class="personal-title"><h5>اسم المريض بالعربي</h5></div><div class="personal-data"><p>test</p></div></div>
+                      <div class="personal-div"><div class="personal-title"><h5>اسم المريض بالانجليزية</h5></div><div class="personal-data"><p>test</p></div></div>
+                      <div class="personal-div"><div class="personal-title"><h5>شركة التامين الطبي</h5></div><div class="personal-data"><p>test</p></div></div>
+                      <div class="personal-div"><div class="personal-title"><h5>الجنس</h5></div><div class="personal-data"><p>test</p></div></div>
+                      <div class="personal-div"><div class="personal-title"><h5>طفل</h5></div><div class="personal-data"><p>test</p></div></div>
+                      <div class="personal-div"><div class="personal-title"><h5>تاريخ الميلاد</h5></div><div class="personal-data"><p>test</p></div></div>
+                      <div class="personal-div"><div class="personal-title"><h5>مجموعة المرضى</h5></div><div class="personal-data"><p>test</p></div></div>
+                      <div class="personal-div"><div class="personal-title"><h5>الحالة</h5></div><div class="personal-data"><p>test</p></div></div>
+                    </div>
+                    <div class="col-sm-3" style="margin: auto; text-align: center;">
+                      <img src="/images/dr.png"><br>
+                      <a href="#" class="print-btn">طباعة</a>
+                    </div>
+                  </div>
+                </div>
+
+
+
+                <div class="container">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <h2>بيانات الهوية</h2>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="personal-div"><div class="personal-title"><h5>الجنسيه</h5></div><div class="personal-data"><p>test</p></div></div>
+                      <div class="personal-div"><div class="personal-title"><h5>رقم الهوية</h5></div><div class="personal-data"><p>test</p></div></div>
+                      <div class="personal-div"><div class="personal-title"><h5>مصدر الهويه</h5></div><div class="personal-data"><p>test</p></div></div>
+                      <div class="personal-div"><div class="personal-title"><h5>تاريخ اصدار الهوية</h5></div><div class="personal-data"><p>test</p></div></div>
+
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12" style="text-align: center;">
+                      <a href="#" class="print-btn">طباعة</a>
+
+                    </div>
+                  </div>
+                </div>
+
+
+
+                <div class="container">
+                  <div class="row">
+                    <div class="col-sm-12" style="text-align: center;">
+                      <a href="#" class="print-btn">طباعة</a>
+                      <a href="#" class="close-btn">اغلاق</a>
+
+
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+
+              </div>
+
+
+              <!-- ------الاتصال والعنواين --------- -->
+
+              <div class="tab-pane fade" id="pills-call" role="tabpanel" aria-labelledby="pills-call-tab">2</div>
+
+
+              <!-- ------الحاله الطبيه--------- -->
+
+              <div class="tab-pane fade" id="pills-medical-status" role="tabpanel" aria-labelledby="pills-medical-status-tab">3</div>
+
+
+
+              <!-- ------الملفات --------- -->
+
+              <div class="tab-pane fade" id="pills-file" role="tabpanel" aria-labelledby="pills-file-tab">4</div>
+
+
+              <!-- ------بيانات الدخول --------- -->
+
+              <div class="tab-pane fade" id="pills-user" role="tabpanel" aria-labelledby="pills-user-tab">5</div>
+
+
+
+
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+           </div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+
+
+
+
    
   <section class="clinic-img">
 
