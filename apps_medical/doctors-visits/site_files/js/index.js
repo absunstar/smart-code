@@ -636,11 +636,22 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
     }
   };
 
+  $scope.addCustomerFiles = function () {
+    $scope.error = "";
+    $scope.customer.files_list = $scope.customer.files_list || [];
+    $scope.customer.files_list.push({
+      file_date: new Date(),
+      file_upload_date: new Date(),
+      upload_by: "##user.name##",
+    });
+  };
+
   $scope.displayAddCustomer = function () {
     $scope.error = "";
     $scope.customer = {
       image_url: "/images/customer.png",
       active: true,
+      address_list: [{}],
       balance_creditor: 0,
       balance_debtor: 0,
       branch_list: [
@@ -762,9 +773,6 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
           name_ar: 1,
           name_en: 1,
           price: 1,
-          delivery_time: 1,
-          period: 1,
-          immediate: 1,
           made_home_vaccination: 1,
           price_at_home: 1,
           from_age: 1,
