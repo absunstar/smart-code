@@ -89,14 +89,17 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
       account_invoices.paid_up < account_invoices.amount_currency &&
       account_invoices.payment_type.id == 1
     ) {
+      $scope.busy = false;
       $scope.error = "##word.amount_must_paid_full##";
       return;
     }
 
     if (account_invoices.paid_up > 0 && !account_invoices.safe) {
+      $scope.busy = false;
       $scope.error = "##word.should_select_safe##";
       return;
     } else if (account_invoices.paid_up > account_invoices.amount_currency) {
+      $scope.busy = false;
       $scope.error = "##word.err_net_value##";
       return;
     }

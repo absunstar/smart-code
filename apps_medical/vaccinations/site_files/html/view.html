@@ -24,26 +24,6 @@
             <td class="center green">{{vaccinations.price_at_home}}</td>
           </tr>
 
-          <tr ng-hide="vaccinations.immediate==true">
-            <td class="title">##word.delivery_time##</td>
-            <td class="center blue">{{vaccinations.delivery_time}}</td>
-          </tr>
-
-          <tr ng-hide="vaccinations.immediate==true">
-            <td class="title">##word.period##</td>
-            <td class="center blue">{{vaccinations.period.ar}}</td>
-          </tr>
-
-          <tr>
-            <td class="title">##word.immediate##</td>
-            <td ng-show="vaccinations.immediate == true" class="green center">
-              ##word.yes##
-            </td>
-            <td ng-show="vaccinations.immediate == false" class="red center">
-              ##word.no##
-            </td>
-          </tr>
-
           <tr>
             <td class="title">##word.permissible_age_vaccinated##</td>
             <td class="center blue">

@@ -9,7 +9,8 @@ app.controller("vaccinations", function ($scope, $http, $timeout) {
       image_url: "/images/vaccinations.png",
       active: true,
       price: 0,
-      immediate: false,
+      from_age : 0,
+      to_age : 0,
       made_home_vaccination: false,
     };
     site.showModal("#vaccinationsAddModal");

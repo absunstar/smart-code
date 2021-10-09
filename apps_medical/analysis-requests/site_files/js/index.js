@@ -297,12 +297,21 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
       }
     );
   };
-
+  $scope.addCustomerFiles = function () {
+    $scope.error = "";
+    $scope.customer.files_list = $scope.customer.files_list || [];
+    $scope.customer.files_list.push({
+      file_date: new Date(),
+      file_upload_date: new Date(),
+      upload_by: "##user.name##",
+    });
+  };
   $scope.displayAddCustomer = function () {
     $scope.error = "";
     $scope.customer = {
       image_url: "/images/customer.png",
       active: true,
+      address_list: [{}],
       balance_creditor: 0,
       balance_debtor: 0,
       branch_list: [
