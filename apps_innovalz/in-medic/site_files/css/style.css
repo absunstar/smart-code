@@ -909,6 +909,10 @@ margin: 12px 10px;
     color: white;
 
 }
+.patient-file{
+    height: 800px;
+    overflow-y: auto;
+}
 .patient-file li a{
     color: #646464;
     font-size: 14px;
@@ -950,4 +954,59 @@ margin: 12px 10px;
     font-weight: 600;
     color: #000000;
     margin: auto;
+}
+::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #00BCC9;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+  .row-heading h2{
+    font-size: 22px;
+    margin: 20px 0px;
+    font-weight: 600;
+    color: #00BCC9;
+  }
+  .print-btn{
+    padding: 0px 30px;
+    background-color: transparent;
+    border: 1px solid #00BCC9;
+    border-radius: 22px;
+    font-size: 13px;
+    color: #00BCC9;
+    font-weight: 600;
+  }
+  .close-btn{
+    padding: 0px 30px;
+    background-color: transparent;
+    border: 1px solid red;
+    border-radius: 22px;
+    font-size: 13px;
+    color: red;
+    font-weight: 600;
+  }
+  .data-info-row table{
+    width: 100%;
+    text-align: center;
+    border: 1px solid #00BCC9;
+    border-collapse: separate;
+}
+.data-info-row table tr{
+    background-color: white;
+    height: 30px;
+}
+.data-info-row table th{
+    color: white;
 }
