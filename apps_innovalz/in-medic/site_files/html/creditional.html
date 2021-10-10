@@ -265,9 +265,36 @@
       };
 
    
+    /*   $scope.register = function () {
+    $scope.error = "";
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/user/register",
+      data: {
+        
+        $encript: "123",
+        email: site.to123($scope.customer.username),
+        password: site.to123($scope.customer.password),
+      },
+    }).then(
+      function (response) {
+        if (response.data.error) {
+          $scope.error = response.data.error;
+          $scope.busy = false;
+        }
+        if (response.data.user) {
+          window.location.href = "/";
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  }; */
 
-
-     $scope.register = function () {
+      $scope.register = function () {
         $scope.error = "";
 
         const v = site.validated("body");
@@ -300,6 +327,9 @@
         );
       }; 
 
+    
+     
+    
       $scope.login = function () {
 
         $scope.company_list = [];
