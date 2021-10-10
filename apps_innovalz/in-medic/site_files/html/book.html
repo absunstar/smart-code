@@ -160,9 +160,9 @@
             <div class="final-step" style="display: none;">
               <img src="/images/check.svg"><br>
               <h2>تم تأكيد حجزك بنجاح</h2>
-              <span>رقم الكشف : {{visitData.id}}</span><br>
+              <span>رقم الكشف : {{visitData.visit_number}}</span><br>
               <span >تاريخ الحجز : {{visitData.selected_time.date|date:'dd - MM - yyyy'}}-{{visitData.selected_time.day.##session.lang##}}</span><br>
-              <span>الوقت المتوقع : ٢ مساء</span><br>
+              <span>الوقت المتوقع : من :  [{{visitData.selected_time.from.hour}} : {{visitData.selected_time.from.minute}}] - الى :[{{visitData.selected_time.to.hour}} : {{visitData.selected_time.to.minute}}] </span><br>
               <span>سعر الكشف : جنيه {{doctorData.at_clinic_price.detection}} </span><br><br>
             </div>
 

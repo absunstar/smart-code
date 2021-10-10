@@ -1360,7 +1360,6 @@ module.exports = function init(site) {
     doctors_visits_doc.company = site.get_company(req);
     doctors_visits_doc.branch = site.get_branch(req);
 
-    console.log("11111111111111111111111111111111" ,  doctors_visits_doc.company );
 
     if (typeof doctors_visits_doc.active === "undefined") {
       doctors_visits_doc.active = true;
@@ -1417,6 +1416,7 @@ module.exports = function init(site) {
                 id: doctors_visits_doc.selected_doctor.id,
               },
             },
+
             (err, doctorDoc) => {
               if (!doctorDoc) {
                 response.error = "no doctor found";
@@ -1437,7 +1437,6 @@ module.exports = function init(site) {
                       return;
                     } else {
                       doctors_visits_doc.customer = customerDoc;
-                      console.log("iiiiiiiiiiiiiiiiiiiiiii" , doctors_visits_doc);
                       site.getPatientTicket(
                         doctors_visits_doc.customer,
                         (callBackGet) => {
