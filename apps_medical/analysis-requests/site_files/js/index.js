@@ -55,7 +55,7 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
           site.hideModal("#analysisRequestsAddModal");
           $scope.getAnalysisRequestsList();
         } else {
-          $scope.error = "Please Login First";
+          $scope.error = response.data.error;
           if (response.data.error.like("*Must Enter Code*")) {
             $scope.error = "##word.must_enter_code##";
           } else if (
@@ -117,6 +117,9 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
           });
         } else {
           $scope.error = response.data.error;
+          if (response.data.error.like("*holding ticket for this patient*")) {
+            $scope.error = "##word.err_hold_ticket_patient##";
+          }
         }
       },
       function (err) {
@@ -294,12 +297,21 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
       }
     );
   };
-
+  $scope.addCustomerFiles = function () {
+    $scope.error = "";
+    $scope.customer.files_list = $scope.customer.files_list || [];
+    $scope.customer.files_list.push({
+      file_date: new Date(),
+      file_upload_date: new Date(),
+      upload_by: "##user.name##",
+    });
+  };
   $scope.displayAddCustomer = function () {
     $scope.error = "";
     $scope.customer = {
       image_url: "/images/customer.png",
       active: true,
+      address_list: [{}],
       balance_creditor: 0,
       balance_debtor: 0,
       branch_list: [
@@ -427,6 +439,8 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
           male: 1,
           female: 1,
           child: 1,
+          made_home_analysis: 1,
+          price_at_home: 1,
         },
       },
     }).then(
@@ -567,6 +581,8 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
       delivery_time: analys.delivery_time,
       price: analys.price,
       period: analys.period,
+      made_home_analysis: analys.made_home_analysis,
+      price_at_home: analys.price_at_home,
       result: 0,
     };
 
@@ -609,7 +625,13 @@ app.controller("analysis_requests", function ($scope, $http, $timeout) {
 
       if (obj.analysis_list && obj.analysis_list.length > 0) {
         obj.analysis_list.forEach((_a) => {
-          obj.total_value += _a.price;
+          if (obj.at_home) {
+            if (_a.made_home_analysis) {
+              obj.total_value += _a.price_at_home || 0;
+            }
+          } else {
+            obj.total_value += _a.price;
+          }
         });
       }
 

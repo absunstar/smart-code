@@ -758,7 +758,10 @@ module.exports = function init(site) {
       [{
           "$project": {
             "doctor_list": 1.0,
-            "id": 1.0
+            "id": 1.0,
+            "name_ar": 1.0,
+            "name_en": 1.0,
+
           }
         },
         {
@@ -774,7 +777,7 @@ module.exports = function init(site) {
             "shifts": {
               "$push": {
                 "shift": "$doctor_list.shift",
-                "clinicId": "$id",
+                "clinicId": {id:"$id" , name_ar:"$name_ar" ,   name_en:"$name_en" },
                 "detection_price": "$doctor_list.detection_price"
               }
             },

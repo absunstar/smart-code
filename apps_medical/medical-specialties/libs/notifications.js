@@ -10,7 +10,7 @@ module.exports = function init(site) {
   let image_url = '/images/medical_specialty.png'
   let add_message = {
     en: 'New Specialties Added',
-    ar: 'تم أضافة تخصص طبي جديد'
+    ar: 'تم إضافة تخصص طبي جديد'
   }
   let update_message = {
     en: ' Specialties Updated',

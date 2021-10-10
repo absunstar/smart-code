@@ -9,7 +9,7 @@ module.exports = function init(site) {
   let image_url = "/images/accounting_guide_accounts.png";
   let add_message = {
     en: "New Guide Accounts Added",
-    ar: "تم أضافة دليل حسابات جديدة",
+    ar: "تم إضافة دليل حسابات جديدة",
   };
   let update_message = {
     en: " Guide Accounts Updated",

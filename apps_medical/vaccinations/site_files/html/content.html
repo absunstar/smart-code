@@ -1,0 +1,95 @@
+<div class="form">
+  <div id="basicInformation" class="tab-content">
+    <fieldset>
+      <legend>##word.basic_information##</legend>
+      <div class="row">
+        <div class="col9">
+          <div class="row">
+            <i-control
+              ng-hide="disabledCode"
+              class="col2"
+              label="##word.code##"
+              ng-model="vaccinations.code"
+            >
+            </i-control>
+
+            <i-control
+              help-id="vaccinations_name"
+              v="r ll2"
+              class="col4"
+              label="##word.vaccinations_name##"
+              ng-model="vaccinations.name_ar"
+            ></i-control>
+
+            <i-control
+              help-id="vaccinations_name_en"
+              v="r"
+              class="col4"
+              label="##word.name_en##"
+              ng-model="vaccinations.name_en"
+            ></i-control>
+
+            <i-checkbox
+              help-id="vaccinations_active"
+              class="col2"
+              label="##word.active##"
+              ng-model="vaccinations.active"
+            >
+            </i-checkbox>
+          </div>
+
+          <div class="row">
+            <h2 class="col3 r_indigo">##word.permissible_age_vaccinated##</h2>
+            <i-control
+              type="number"
+              class="col2"
+              label="##word.from##"
+              ng-model="vaccinations.from_age"
+            ></i-control>
+            <i-control
+              type="number"
+              class="col2"
+              label="##word.to##"
+              ng-model="vaccinations.to_age"
+            ></i-control>
+          </div>
+
+          <div class="row">
+            <i-control
+              help-id="vaccinations_name"
+              v="r"
+              type="number"
+              class="col2"
+              label="##word.vaccinations_price##"
+              ng-model="vaccinations.price"
+            ></i-control>
+
+            <i-checkbox
+              help-id="made_home_vaccination"
+              class="col2"
+              ng-click="vaccinations.price_at_home = 0"
+              label="##word.can_done_home##"
+              ng-model="vaccinations.made_home_vaccination"
+            ></i-checkbox>
+
+            <i-control
+              help-id="vaccinations_name"
+              type="number"
+              class="col2"
+              ng-show="vaccinations.made_home_vaccination"
+              label="##word.price_at_home##"
+              ng-model="vaccinations.price_at_home"
+            ></i-control>
+          </div>
+        </div>
+
+        <div class="col3">
+          <i-image
+            help-id="vaccinations_logo"
+            ng-model="vaccinations.image_url"
+          ></i-image>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+</div>

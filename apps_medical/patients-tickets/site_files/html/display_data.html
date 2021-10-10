@@ -32,6 +32,14 @@
             >
               ##word.scans_requests##
             </a>
+
+            <a
+            ng-show="ticket_data.vaccinations_requests.list.length > 0"
+            class="tab-link"
+            onclick="site.showTabContent(event, '#vaccinations_requests')"
+          >
+            ##word.vaccinations_requests##
+          </a>
           </div>
           <div class="tabs-content full bold">
             <div id="doctors_visits" class="tab-content">
@@ -152,7 +160,12 @@
 
                     <tr ng-repeat="a in ticket_data.analysis_requests.list">
                       <td class="center">{{a.name_##session.lang##}}</td>
-                      <td class="center green">{{a.price}}</td>
+                      <td class="center green">
+                        <p ng-show="!a.at_home">{{a.price}}</p>
+                        <p ng-show="a.at_home">{{a.price_at_home}}</p>
+
+
+                      </td>
 
                       <td class="center">
                         <b class="green">{{a.from}}</b> -
@@ -240,7 +253,12 @@
                     <tr ng-repeat="a in ticket_data.scans_requests.list">
                       <td class="center">{{a.name_##session.lang##}}</td>
 
-                      <td class="center green">{{a.price}}</td>
+                      <td class="center green">
+                        <p ng-show="!a.at_home">{{a.price}}</p>
+                        <p ng-show="a.at_home">{{a.price_at_home}}</p>
+
+
+                      </td>
 
                       <td class="center lines_text">
                         {{a.notes_before_scans}}
@@ -292,6 +310,87 @@
                 </div>
               </fieldset>
             </div>
+
+            <div id="vaccinations_requests" class="tab-content">
+              <br />
+              <br />
+
+              <fieldset>
+                <legend>##word.vaccinations_requests##</legend>
+
+                <br />
+                <div class="row">
+                  <table class="table loaded center hover bold">
+                    <tr>
+                      <th>##word.vaccinations_name##</th>
+                      <th>##word.price##</th>
+                      <th>##word.notes_before_vaccinations##</th>
+                      <th>##word.notes_after_vaccinations##</th>
+                      <th>##word.person_delivery##</th>
+                      <th>##word.delivery_date##</th>
+                    </tr>
+
+                    <tr ng-repeat="a in ticket_data.vaccinations_requests.list">
+                      <td class="center">{{a.name_##session.lang##}}</td>
+
+                      <td class="center green">
+                        <p ng-show="!a.at_home">{{a.price}}</p>
+                        <p ng-show="a.at_home">{{a.price_at_home}}</p>
+
+                      </td>
+
+                      <td class="center lines_text">
+                        {{a.notes_before_vaccinations}}
+                      </td>
+
+                      <td class="center lines_text">{{a.notes_after_vaccinations}}</td>
+
+                      <td>
+                        <p ng-show="!a.person_delivery.name">
+                          ##word.delivery_has_not_been_done##
+                        </p>
+                        <p>{{a.person_delivery.##session.lang##}}</p>
+                      </td>
+
+                      <td class="center">
+                        <p class="brown">
+                          {{a.delivery_date |date:"dd - MM - yyyy"}}
+                        </p>
+                        <p class="green">{{a.delivery_date |date:"hh:mm"}}</p>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+
+                <br />
+                <br />
+
+                <div class="row">
+                  <table class="table bold center hover">
+                    <tr>
+                      <td class="white bg_card">##word.total_value##</td>
+                      <td class="white bg_card">##word.total_discount##</td>
+                      <td class="white bg_card">##word.paid_require##</td>
+                      <td class="white bg_card">##word.paid##</td>
+                      <td class="white bg_card">##word.remain##</td>
+                    </tr>
+                    <tr>
+                      <td class="blue">
+                        {{ticket_data.vaccinations_requests.total_value}}
+                      </td>
+                      <td class="red">
+                        {{ticket_data.vaccinations_requests.total_discount}}
+                      </td>
+                      <td>{{ticket_data.vaccinations_requests.net_value}}</td>
+                      <td class="green">{{ticket_data.vaccinations_requests.paid}}</td>
+                      <td class="red">{{ticket_data.vaccinations_requests.remain}}</td>
+                    </tr>
+                  </table>
+                </div>
+              </fieldset>
+            </div>
+
+
           </div>
         </div>
 

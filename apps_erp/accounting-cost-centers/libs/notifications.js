@@ -9,7 +9,7 @@ module.exports = function init(site) {
   let image_url = "/images/accounting_cost_centers.png";
   let add_message = {
     en: "New Cost Centers Added",
-    ar: "تم أضافة مراكز التكلفة جديدة",
+    ar: "تم إضافة مراكز التكلفة جديدة",
   };
   let update_message = {
     en: " Cost Centers Updated",

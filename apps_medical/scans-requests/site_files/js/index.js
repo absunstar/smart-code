@@ -55,7 +55,7 @@ app.controller("scans_requests", function ($scope, $http, $timeout) {
           site.hideModal("#scansRequestsAddModal");
           $scope.getScansRequestsList();
         } else {
-          $scope.error = "Please Login First";
+          $scope.error = response.data.error;
           if (response.data.error.like("*Must Enter Code*")) {
             $scope.error = "##word.must_enter_code##";
           } else if (
@@ -286,11 +286,22 @@ app.controller("scans_requests", function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.addCustomerFiles = function () {
+    $scope.error = "";
+    $scope.customer.files_list = $scope.customer.files_list || [];
+    $scope.customer.files_list.push({
+      file_date: new Date(),
+      file_upload_date: new Date(),
+      upload_by: "##user.name##",
+    });
+  };
+
   $scope.displayAddCustomer = function () {
     $scope.error = "";
     $scope.customer = {
       image_url: "/images/customer.png",
       active: true,
+      address_list: [{}],
       balance_creditor: 0,
       balance_debtor: 0,
       branch_list: [
@@ -415,6 +426,8 @@ app.controller("scans_requests", function ($scope, $http, $timeout) {
           delivery_time: 1,
           period: 1,
           immediate: 1,
+          made_home_scan: 1,
+          price_at_home: 1,
         },
       },
     }).then(
@@ -555,6 +568,8 @@ app.controller("scans_requests", function ($scope, $http, $timeout) {
       delivery_time: scans.delivery_time,
       price: scans.price,
       period: scans.period,
+      made_home_scan: scans.made_home_scan,
+      price_at_home: scans.price_at_home,
       result: 0,
     };
 
@@ -577,7 +592,13 @@ app.controller("scans_requests", function ($scope, $http, $timeout) {
 
       if (obj.scans_list && obj.scans_list.length > 0) {
         obj.scans_list.forEach((_a) => {
-          obj.total_value += _a.price;
+          if (obj.at_home) {
+            if (_a.made_home_scan) {
+              obj.total_value += _a.price_at_home || 0;
+            }
+          } else {
+            obj.total_value += _a.price;
+          }
         });
       }
 

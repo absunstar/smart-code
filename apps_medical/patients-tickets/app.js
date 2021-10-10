@@ -271,9 +271,17 @@ module.exports = function init(site) {
       return;
     }
 
-    let cb = {
+    response.cb = {
       customer: {},
       analysis_requests: {
+        list: [],
+        total_value: 0,
+        total_discount: 0,
+        net_value: 0,
+        paid: 0,
+        remain: 0,
+      },
+      vaccinations_requests: {
         list: [],
         total_value: 0,
         total_discount: 0,
@@ -312,123 +320,170 @@ module.exports = function init(site) {
       paid: 0,
       remain: 0,
     };
-
     site.getCustomer(req.body.where, (cbCustomer) => {
-      site.getAnalysisRequests(req.body.where, (cbAnalysisRequests) => {
+      site.getVaccinationsRequests(req.body.where, (cbVaccinationsRequests) => {
         site.getOperationsRequests(req.body.where, (cbOperationsRequests) => {
-          site.getScansRequests(req.body.where, (cbScansRequests) => {
-            site.getDoctorsVisits(req.body.where, (cbDoctorsVisits) => {
-              cb.customer = { ...cbCustomer };
-              if (cbAnalysisRequests && cbAnalysisRequests.length > 0) {
-                cbAnalysisRequests.forEach((_analysisR) => {
-                  _analysisR.analysis_list = _analysisR.analysis_list || [];
-                  cb.analysis_requests.total_value +=
-                    _analysisR.total_value || 0;
-                  cb.analysis_requests.total_discount +=
-                    _analysisR.total_discount || 0;
-                  cb.analysis_requests.net_value += _analysisR.net_value || 0;
-                  cb.analysis_requests.paid += _analysisR.paid || 0;
-                  cb.analysis_requests.remain += _analysisR.remain || 0;
+          site.getAnalysisRequests(req.body.where, (cbAnalysisRequests) => {
+            site.getScansRequests(req.body.where, (cbScansRequests) => {
+              site.getDoctorsVisits(req.body.where, (cbDoctorsVisits) => {
+                response.cb.customer = { ...cbCustomer };
 
-                  _analysisR.analysis_list.forEach((_al) => {
-                    _al.date = _analysisR.date;
-                    cb.analysis_requests.list.push(_al);
+                if (
+                  cbVaccinationsRequests &&
+                  cbVaccinationsRequests.length > 0
+                ) {
+                  cbVaccinationsRequests.forEach((_vaccinationR) => {
+                    _vaccinationR.vaccination_list =
+                      _vaccinationR.vaccination_list || [];
+
+                    response.cb.vaccinations_requests.total_value +=
+                      _vaccinationR.total_value || 0;
+                    response.cb.vaccinations_requests.total_discount +=
+                      _vaccinationR.total_discount || 0;
+                    response.cb.vaccinations_requests.net_value +=
+                      _vaccinationR.net_value || 0;
+                    response.cb.vaccinations_requests.paid +=
+                      _vaccinationR.paid || 0;
+                    response.cb.vaccinations_requests.remain +=
+                      _vaccinationR.remain || 0;
+
+                    _vaccinationR.vaccinations_list.forEach((_va) => {
+                      if (_vaccinationR.at_home) _va.at_home = true;
+                      _va.date = _vaccinationR.date;
+                      response.cb.vaccinations_requests.list.push(_va);
+                    });
                   });
-                });
-              }
+                }
 
-              if (cbOperationsRequests && cbOperationsRequests.length > 0) {
-                cbOperationsRequests.forEach((_operationsR) => {
-                  _operationsR.operations_list =
-                    _operationsR.operations_list || [];
+                if (cbAnalysisRequests && cbAnalysisRequests.length > 0) {
+                  cbAnalysisRequests.forEach((_analysisR) => {
+                    _analysisR.analysis_list = _analysisR.analysis_list || [];
 
-                  cb.operations_requests.total_value +=
-                    _operationsR.total_value || 0;
-                  cb.operations_requests.total_discount +=
-                    _operationsR.total_discount || 0;
-                  cb.operations_requests.net_value +=
-                    _operationsR.net_value || 0;
-                  cb.operations_requests.paid += _operationsR.paid || 0;
-                  cb.operations_requests.remain += _operationsR.remain || 0;
+                    response.cb.analysis_requests.total_value +=
+                      _analysisR.total_value || 0;
+                    response.cb.analysis_requests.total_discount +=
+                      _analysisR.total_discount || 0;
+                    response.cb.analysis_requests.net_value +=
+                      _analysisR.net_value || 0;
+                    response.cb.analysis_requests.paid += _analysisR.paid || 0;
+                    response.cb.analysis_requests.remain +=
+                      _analysisR.remain || 0;
 
-                  _operationsR.operations_list.forEach((_al) => {
-                    cb.operations_requests.list.push(_al);
+                    _analysisR.analysis_list.forEach((_an) => {
+                      if (_analysisR.at_home) _an.at_home = true;
+                      _an.date = _analysisR.date;
+                      response.cb.analysis_requests.list.push(_an);
+                    });
                   });
-                });
-              }
+                }
 
-              if (cbScansRequests && cbScansRequests.length > 0) {
-                cbScansRequests.forEach((_scansR) => {
-                  _scansR.scans_list = _scansR.scans_list || [];
+                if (cbOperationsRequests && cbOperationsRequests.length > 0) {
+                  cbOperationsRequests.forEach((_operationsR) => {
+                    _operationsR.operations_list =
+                      _operationsR.operations_list || [];
 
-                  cb.scans_requests.total_value += _scansR.total_value || 0;
-                  cb.scans_requests.total_discount +=
-                    _scansR.total_discount || 0;
-                  cb.scans_requests.net_value += _scansR.net_value || 0;
-                  cb.scans_requests.paid += _scansR.paid || 0;
-                  cb.scans_requests.remain += _scansR.remain || 0;
+                    response.cb.operations_requests.total_value +=
+                      _operationsR.total_value || 0;
+                    response.cb.operations_requests.total_discount +=
+                      _operationsR.total_discount || 0;
+                    response.cb.operations_requests.net_value +=
+                      _operationsR.net_value || 0;
+                    response.cb.operations_requests.paid +=
+                      _operationsR.paid || 0;
+                    response.cb.operations_requests.remain +=
+                      _operationsR.remain || 0;
 
-                  _scansR.scans_list.forEach((_sl) => {
-                    _sl.date = _scansR.date;
-                    cb.scans_requests.list.push(_sl);
+                    _operationsR.operations_list.forEach((_op) => {
+                      if (_operationsR.at_home) _op.at_home = true;
+                      response.cb.operations_requests.list.push(_op);
+                    });
                   });
-                });
-              }
+                }
 
-              if (cbDoctorsVisits && cbDoctorsVisits.length > 0) {
-                cbDoctorsVisits.forEach((_doctorsVisits) => {
-                  cb.doctors_visits.total_value +=
-                    _doctorsVisits.doctor_visit_price || 0;
-                  cb.doctors_visits.total_discount +=
-                    _doctorsVisits.total_discount || 0;
-                  cb.doctors_visits.net_value += _doctorsVisits.net_value || 0;
-                  cb.doctors_visits.paid += _doctorsVisits.paid || 0;
-                  cb.doctors_visits.remain += _doctorsVisits.remain || 0;
-                  if (_doctorsVisits.urgent_visit)
-                    cb.doctors_visits.urgent_visit +=
-                      _doctorsVisits.urgent_visit.value || 0;
-                  cb.doctors_visits.list.push(_doctorsVisits);
-                });
-              }
-              if (!req.body.type) {
-                cb.total_value =
-                  cb.analysis_requests.total_value +
-                  cb.scans_requests.total_value +
-                  cb.operations_requests.total_value +
-                  cb.doctors_visits.total_value;
-                cb.total_discount =
-                  cb.analysis_requests.total_discount +
-                  cb.scans_requests.total_discount +
-                  cb.operations_requests.total_discount +
-                  cb.doctors_visits.total_discount;
-                cb.net_value =
-                  cb.analysis_requests.net_value +
-                  cb.scans_requests.net_value +
-                  cb.operations_requests.net_value +
-                  cb.doctors_visits.net_value;
-                cb.paid =
-                  cb.analysis_requests.paid +
-                  cb.scans_requests.paid +
-                  cb.operations_requests.paid +
-                  cb.doctors_visits.paid;
-                cb.remain = cb.net_value - cb.paid;
-              }
+                if (cbScansRequests && cbScansRequests.length > 0) {
+                  cbScansRequests.forEach((_scansR) => {
+                    _scansR.scans_list = _scansR.scans_list || [];
 
-              cb.analysis_requests.list.reverse();
-              cb.scans_requests.list.reverse();
-              cb.operations_requests.list.reverse();
-              cb.doctors_visits.list.reverse();
+                    response.cb.scans_requests.total_value +=
+                      _scansR.total_value || 0;
+                    response.cb.scans_requests.total_discount +=
+                      _scansR.total_discount || 0;
+                    response.cb.scans_requests.net_value +=
+                      _scansR.net_value || 0;
+                    response.cb.scans_requests.paid += _scansR.paid || 0;
+                    response.cb.scans_requests.remain += _scansR.remain || 0;
 
-              if (req.body.type == "patient_file") {
-                response.cb = {
-                  analysis_requests: cb.analysis_requests.list,
-                  scans_requests: cb.scans_requests.list,
-                  operations_requests: cb.operations_requests.list,
-                  doctors_visits: cb.doctors_visits.list,
-                  customer: cb.customer,
-                };
-              }
-              res.json(response);
+                    _scansR.scans_list.forEach((_sc) => {
+                      if (_scansR.at_home) _sc.at_home = true;
+                      _sc.date = _scansR.date;
+                      response.cb.scans_requests.list.push(_sc);
+                    });
+                  });
+                }
+
+                if (cbDoctorsVisits && cbDoctorsVisits.length > 0) {
+                  cbDoctorsVisits.forEach((_doctorsVisits) => {
+                    response.cb.doctors_visits.total_value +=
+                      _doctorsVisits.doctor_visit_price || 0;
+                    response.cb.doctors_visits.total_discount +=
+                      _doctorsVisits.total_discount || 0;
+                    response.cb.doctors_visits.net_value +=
+                      _doctorsVisits.net_value || 0;
+                    response.cb.doctors_visits.paid += _doctorsVisits.paid || 0;
+                    response.cb.doctors_visits.remain +=
+                      _doctorsVisits.remain || 0;
+                    if (_doctorsVisits.urgent_visit)
+                      response.cb.doctors_visits.urgent_visit +=
+                        _doctorsVisits.urgent_visit.value || 0;
+                    response.cb.doctors_visits.list.push(_doctorsVisits);
+                  });
+                }
+                if (!req.body.type) {
+                  response.cb.total_value =
+                    response.cb.analysis_requests.total_value +
+                    response.cb.scans_requests.total_value +
+                    response.cb.vaccinations_requests.total_value +
+                    response.cb.operations_requests.total_value +
+                    response.cb.doctors_visits.total_value;
+                  response.cb.total_discount =
+                    response.cb.analysis_requests.total_discount +
+                    response.cb.scans_requests.total_discount +
+                    response.cb.vaccinations_requests.total_discount +
+                    response.cb.operations_requests.total_discount +
+                    response.cb.doctors_visits.total_discount;
+                  response.cb.net_value =
+                    response.cb.analysis_requests.net_value +
+                    response.cb.scans_requests.net_value +
+                    response.cb.vaccinations_requests.net_value +
+                    response.cb.operations_requests.net_value +
+                    response.cb.doctors_visits.net_value;
+                  response.cb.paid =
+                    response.cb.analysis_requests.paid +
+                    response.cb.scans_requests.paid +
+                    response.cb.vaccinations_requests.paid +
+                    response.cb.operations_requests.paid +
+                    response.cb.doctors_visits.paid;
+                  response.cb.remain = response.cb.net_value - response.cb.paid;
+                }
+
+                response.cb.analysis_requests.list.reverse();
+                response.cb.scans_requests.list.reverse();
+                response.cb.vaccinations_requests.list.reverse();
+                response.cb.operations_requests.list.reverse();
+                response.cb.doctors_visits.list.reverse();
+                if (req.body.type == "patient_file") {
+                  response.cb = {
+                    analysis_requests: response.cb.analysis_requests.list,
+                    scans_requests: response.cb.scans_requests.list,
+                    vaccinations_requests:
+                      response.cb.vaccinations_requests.list,
+                    operations_requests: response.cb.operations_requests.list,
+                    doctors_visits: response.cb.doctors_visits.list,
+                    customer: response.cb.customer,
+                  };
+                }
+                res.json(response);
+              });
             });
           });
         });

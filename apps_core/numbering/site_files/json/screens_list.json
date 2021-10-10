@@ -799,6 +799,13 @@
     },
     {
         "category": "general_setting",
+        "feature": "medical",
+        "name": "vaccinations",
+        "en": "Vaccinations",
+        "ar": "التطعيمات"
+    },
+    {
+        "category": "general_setting",
         "feature": "public",
         "name": "nationalities",
         "en": "Nationalities",

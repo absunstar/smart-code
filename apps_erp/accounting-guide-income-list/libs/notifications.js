@@ -9,7 +9,7 @@ module.exports = function init(site) {
   let image_url = "/images/accounting_guide_income_list.png";
   let add_message = {
     en: "New Guide Income List Added",
-    ar: "تم أضافة دليل تصنيفات قائمة الدخل جديدة",
+    ar: "تم إضافة دليل تصنيفات قائمة الدخل جديدة",
   };
   let update_message = {
     en: " Guide Income List Updated",

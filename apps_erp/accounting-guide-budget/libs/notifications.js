@@ -9,7 +9,7 @@ module.exports = function init(site) {
   let image_url = "/images/accounting_guide_budget.png";
   let add_message = {
     en: "New Guide Budget Added",
-    ar: "تم أضافة دليل تصنيفات الميزانية جديدة",
+    ar: "تم إضافة دليل تصنيفات الميزانية جديدة",
   };
   let update_message = {
     en: " Guide Budget Updated",

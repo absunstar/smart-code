@@ -22,6 +22,7 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
       ex_before_detection: {},
       status: $scope.statusList[0],
       scans_list: [{ active: true }],
+      vaccinations_list: [{ active: true }],
       analysis_list: [{ active: true }],
       operation_list: [{ active: true }],
       favorite_food_list: [{}],
@@ -125,6 +126,11 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
       active: true,
       status: $scope.statusList[4],
       medicines_list: [
+        {
+          active: true,
+        },
+      ],
+      vaccinations_list: [
         {
           active: true,
         },
@@ -630,11 +636,22 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
     }
   };
 
+  $scope.addCustomerFiles = function () {
+    $scope.error = "";
+    $scope.customer.files_list = $scope.customer.files_list || [];
+    $scope.customer.files_list.push({
+      file_date: new Date(),
+      file_upload_date: new Date(),
+      upload_by: "##user.name##",
+    });
+  };
+
   $scope.displayAddCustomer = function () {
     $scope.error = "";
     $scope.customer = {
       image_url: "/images/customer.png",
       active: true,
+      address_list: [{}],
       balance_creditor: 0,
       balance_debtor: 0,
       branch_list: [
@@ -732,6 +749,41 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
           $scope.customersList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.getVaccinations = function () {
+    $scope.error = "";
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/vaccinations/all",
+      data: {
+        where: {
+          active: true,
+        },
+        select: {
+          id: 1,
+          name_ar: 1,
+          name_en: 1,
+          price: 1,
+          made_home_vaccination: 1,
+          price_at_home: 1,
+          from_age: 1,
+          to_age: 1,
+        },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.vaccinationsList = response.data.list;
         }
       },
       function (err) {
@@ -1968,7 +2020,7 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
         } else if (obj.at_home.type == "number") {
           obj.at_home.value =
             site.toNumber(obj.at_home.price) + obj.doctor_visit_price;
-        } 
+        }
         obj.total_value += obj.at_home.value;
       } else if (obj.online && obj.place_examination.id == 3) {
         if (obj.online.type == "percent") {
@@ -2041,6 +2093,7 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
   /*$scope.getMedicinesList();*/
   $scope.getScansList();
   $scope.getAnalysisList();
+  $scope.getVaccinations();
   $scope.getOperationList();
   $scope.getStatus();
   $scope.getDiseaseList();

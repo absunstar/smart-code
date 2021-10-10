@@ -3,6 +3,16 @@ app.controller("customers", function ($scope, $http, $timeout) {
 
   $scope.customer = {};
 
+  $scope.addCustomerFiles = function () {
+    $scope.error = "";
+    $scope.customer.files_list = $scope.customer.files_list || [];
+    $scope.customer.files_list.push({
+      file_date: new Date(),
+      file_upload_date: new Date(),
+      upload_by: "##user.name##",
+    });
+  };
+
   $scope.displayAddCustomer = function () {
     $scope.error = "";
 
@@ -959,15 +969,7 @@ app.controller("customers", function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.addFiles = function () {
-    $scope.error = "";
-    $scope.customer.files_list = $scope.customer.files_list || [];
-    $scope.customer.files_list.push({
-      file_date: new Date(),
-      file_upload_date: new Date(),
-      upload_by: "##user.name##",
-    });
-  };
+
 
   $scope.searchAll = function () {
     $scope.getCustomersList($scope.search);

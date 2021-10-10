@@ -10,7 +10,7 @@ module.exports = function init(site) {
   let image_url = '/images/medical_insurance_companies.png'
   let add_message = {
     en: 'New Insurance Companies Added',
-    ar: 'تم أضافة شركة تأمين جديدة'
+    ar: 'تم إضافة شركة تأمين جديدة'
   }
   let update_message = {
     en: ' Insurance Companies Updated',

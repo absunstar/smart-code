@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "vaccinations_admin",
+    "en": "Vaccinations Admin",
+    "ar": "إدارة التطعيمات",
+    "permissions": ["vaccinations_manage"]
+}]

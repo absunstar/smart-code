@@ -179,14 +179,16 @@ module.exports = function init(site) {
       res.json(response);
       return;
     }
-
     $analysis.findOne({
-        where: {
-          id: req.body.id,
-        },
+      where: {
+        id: req.body.id,
       },
-      (err, doc) => {
-        if (!err) {
+    },
+    (err, doc) => {
+      if (!err) {
+
+          let orderCode =  doc._id.toString().slice(10, 5)
+          console.log(orderCode);
           response.done = true;
           response.doc = doc;
         } else {

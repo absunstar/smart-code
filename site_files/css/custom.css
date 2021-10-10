@@ -8,8 +8,10 @@
   --input-focus-border-color: var(--theme-color);
   --input-color: #000000;
   --color: #444;
+  --input-border-radius: 30px;
   --background-color: var(--x-background);
-  --body-background: var(--x-background);
+  --input-background-color: #f8f8ff;
+  --body-background: #f8f8ff;
   --modal-header-background-color: var(--theme-color);
   --modal-box-shadow-color: #555;
   --modal-animation-name: animateopacity;
@@ -29,6 +31,30 @@
   --help-background-color: var(--x-background);
   --help-border: 1px solid #000;
 }
+.row .col4 {
+  border-radius: 30px;
+}
+.popup item {
+  border-radius: 30px;
+}
+.popup {
+  border-radius: 30px;
+}
+.popup .search-box {
+  border-radius: 30px;
+}
+.modal-content {
+  border-radius: 30px;
+}
+
+.modal-header {
+  border-top-right-radius: 30px;
+  border-top-left-radius: 30px;
+}
+
+.no-border-radius {
+  border-radius: 30px !important;
+}
 
 body {
   margin: 100px;
@@ -40,10 +66,31 @@ a {
   cursor: pointer;
 }
 
-fieldset legend {
-  background: none;
+fieldset {
+  margin: 20px;
+  padding: 0 10px 10px;
+  border: 1px solid #0400bc;
+  border-radius: 8px;
+  box-shadow: 0 0 10px #b8abff;
+  padding-top: 10px;
+}
+legend {
+  padding: 2px 4px;
+  background: rgb(255, 255, 255);
+  /* For better legibility against the box-shadow */
+}
+fieldset > legend {
+  margin-top: -20px;
+  background-color: white;
+}
+fieldset > legend + * {
+  clear: both;
 }
 
+/* fieldset legend {
+  background: none;
+}
+ */
 .help-container {
   bottom: 50px;
 }
@@ -427,7 +474,18 @@ nav.sitebottom a.link:hover {
   background-color: #55acee;
 }
 .social-menu ul li:nth-child(2) a:hover {
-  background-image: linear-gradient(to right top, #405de6, #5851db, #833ab4, #c13584, #fd1d1d, #f56040, #f77737, #fcaf45, #ffdc80);
+  background-image: linear-gradient(
+    to right top,
+    #405de6,
+    #5851db,
+    #833ab4,
+    #c13584,
+    #fd1d1d,
+    #f56040,
+    #f77737,
+    #fcaf45,
+    #ffdc80
+  );
 }
 .social-menu ul li:nth-child(1) a:hover {
   background-color: red;
@@ -450,7 +508,6 @@ a.pro-template .description {
   display: inline-block;
 }
 
-
 .notification .badge {
   position: absolute;
   top: -3px;
@@ -461,7 +518,6 @@ a.pro-template .description {
   background-color: red;
   color: white;
 }
-
 
 @media screen and (max-width: 768px) {
   body {

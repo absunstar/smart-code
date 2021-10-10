@@ -47,6 +47,37 @@ module.exports = function init(site) {
       $res: res
     })
 
+
+    if (scans_requests_doc.at_home) {
+      let found = false;
+      let foundList = [];
+      scans_requests_doc.scans_list.forEach((_a) => {
+        if (!_a.made_home_scan) {
+          found = true;
+          if (req.session.lang == "ar") {
+            foundList.push(_a.name_ar);
+          } else if (req.session.lang == "en") {
+            foundList.push(_a.name_en);
+          }
+        }
+      });
+
+      if (found) {
+        if (req.session.lang == "ar") {
+          response.error = `يوجد أشعة لا يمكن إجراءها في المنزل ( ${foundList.join(
+            "-"
+          )} )`;
+        } else if (req.session.lang == "en") {
+          response.error = `There are Scans that cannot be done at home ( ${foundList.join(
+            "-"
+          )} )`;
+        }
+        res.json(response);
+        return;
+      }
+    }
+
+
     let num_obj = {
       company: site.get_company(req),
       screen: 'scans_requests',
@@ -131,6 +162,35 @@ module.exports = function init(site) {
       $req: req,
       $res: res
     })
+
+    if (scans_requests_doc.at_home) {
+      let found = false;
+      let foundList = [];
+      scans_requests_doc.scans_list.forEach((_a) => {
+        if (!_a.made_home_scan) {
+          found = true;
+          if (req.session.lang == "ar") {
+            foundList.push(_a.name_ar);
+          } else if (req.session.lang == "en") {
+            foundList.push(_a.name_en);
+          }
+        }
+      });
+
+      if (found) {
+        if (req.session.lang == "ar") {
+          response.error = `يوجد أشعة لا يمكن إجراءها في المنزل ( ${foundList.join(
+            "-"
+          )} )`;
+        } else if (req.session.lang == "en") {
+          response.error = `There are Scans that cannot be done at home ( ${foundList.join(
+            "-"
+          )} )`;
+        }
+        res.json(response);
+        return;
+      }
+    }
 
     scans_requests_doc.scans_list.forEach(_scans => {
       if (_scans.person_delivery && _scans.person_delivery.name && !_scans.delivery_date)
@@ -331,7 +391,7 @@ module.exports = function init(site) {
       where['patient_ticket_id'] = where['id'];
       delete where['id']
     }
-    
+
     $scans_requests.findMany({
       where: where,
 

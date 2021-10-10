@@ -1,0 +1,53 @@
+<div ng-hide="busy" class="row">
+  <div id="basicInformation" class="tab-content">
+    <fieldset>
+      <legend>##word.basic_information##</legend>
+      <div class="col9">
+        <table id="basicInformationTable" class="table hover bold">
+          <tr>
+            <td class="title">##word.code##</td>
+            <td class="center userPrint blue">{{vaccinations.code}}</td>
+          </tr>
+
+          <tr>
+            <td class="title">##word.vaccinations_name##</td>
+            <td class="center">{{vaccinations.name_##session.lang##}}</td>
+          </tr>
+
+          <tr>
+            <td class="title">##word.vaccinations_price##</td>
+            <td class="center green">{{vaccinations.price}}</td>
+          </tr>
+
+          <tr ng-show="vaccinations.made_home_vaccination">
+            <td class="title">##word.price_at_home##</td>
+            <td class="center green">{{vaccinations.price_at_home}}</td>
+          </tr>
+
+          <tr>
+            <td class="title">##word.permissible_age_vaccinated##</td>
+            <td class="center blue">
+              ##word.from_age## <b class="green">{{vaccinations.from_age}}</b> -
+              ##word.to_age## <b class="red">{{vaccinations.to_age}}</b>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="title">##word.status##</td>
+            <td ng-show="vaccinations.active == true" class="green center">
+              ##word.active##
+            </td>
+            <td ng-show="vaccinations.active == false" class="red center">
+              ##word.not_active##
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="col3">
+        <i-image view ng-model="vaccinations.image_url"></i-image>
+      </div>
+    </fieldset>
+  </div>
+</div>
+<div x-import="vaccinations/action_info.html"></div>
