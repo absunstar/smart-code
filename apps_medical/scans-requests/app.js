@@ -416,110 +416,132 @@ module.exports = function init(site) {
     //   res.json(response)
     //   return
     // }
-    let scans_requests_doc = req.body
-
-    $customer.findOne({
-      where: {
-        id: scans_requests_doc.customer.id,
-      },
-    },
-      (err, customerData) => {
-        if (!customerData) {
-          response.error = 'no patient found';
-          res.json(response);
-          return
-        } else {
-          scans_requests_doc.customer = customerData;
-          scans_requests_doc.$req = req
-          scans_requests_doc.$res = res
-          scans_requests_doc.company = site.get_company(req);
-          scans_requests_doc.branch = site.get_branch(req);
-
-          scans_requests_doc.add_user_info = site.security.getUserFinger({
-            $req: req,
-            $res: res
-          })
-
-
-          const randomNumber = (length) => {
-            let text = "";
-            let possible = "123456789";
-            for (let i = 0; i < length; i++) {
-              let sup = Math.floor(Math.random() * possible.length);
-              text += i > 0 && sup == i ? "0" : possible.charAt(sup);
-            }
-            return (text);
-          }
-
-
-          scans_requests_doc.code = String(randomNumber(4))
-
-          if (scans_requests_doc.scans_list[0].period.id == 2) {
-            var result = new Date(scans_requests_doc.visit_date);
-           
-            result.setHours(result.getHours() + scans_requests_doc.scans_list[0].delivery_time);
-            scans_requests_doc.delivaryDate = result
-          }
-
-          if (scans_requests_doc.scans_list[0].period.id == 1) {
-            var result = new Date(scans_requests_doc.visit_date);
-            
-            result.setDate(result.getDate() + scans_requests_doc.scans_list[0].delivery_time);
-            scans_requests_doc.delivaryDate = result
-          }
-
-          site.getPatientTicket(customerData, callBackGet => {
-
-            if (!callBackGet) {
-
-              site.addPatientTicket(scans_requests_doc, callBackAdd => {
-                scans_requests_doc.patient_ticket_id = callBackAdd.id
-
-                $scans_requests.add(scans_requests_doc, (err, doc) => {
-
-                  if (!err) {
-                    response.done = true
-                    response.doc = doc
-
-                  } else {
-                    response.error = "error happened";
-                  }
-                  res.json(response)
-                })
-
-              })
-
-
-
+    let scans_requests_doc = req.body;
+    let whereObj = {
+      date: new Date(scans_requests_doc.date),
+     
+    };
+    if (whereObj.date) {
+      let d1 = site.toDate(whereObj.date);
+      let d2 = site.toDate(whereObj.date);
+      d2.setDate(d2.getDate() + 1);
+      whereObj.date = {
+        $gte: d1,
+        $lt: d2,
+      };
+    }
+    $scans_requests.findMany({
+      where: whereObj,
+    } , (err, docs, count)=>{
+      if (!err) {
+        scans_requests_doc.visit_number = count + 1;
+        $customer.findOne({
+          where: {
+            id: scans_requests_doc.customer.id,
+          },
+        },
+          (err, customerData) => {
+            if (!customerData) {
+              response.error = 'no patient found';
+              res.json(response);
+              return
             } else {
-
-              if (callBackGet.status && callBackGet.status.id === 2) {
-                response.error = 'holding ticket for this patient';
-                res.json(response);
-                return;
-
-              }
-
-              scans_requests_doc.patient_ticket_id = callBackGet.id
-
-              $scans_requests.add(scans_requests_doc, (err, doc) => {
-
-                if (!err) {
-                  response.done = true
-                  response.doc = doc
-
-                } else {
-                  response.error = "error happened";
-                }
-                res.json(response)
+              scans_requests_doc.customer = customerData;
+              scans_requests_doc.$req = req
+              scans_requests_doc.$res = res
+              scans_requests_doc.company = site.get_company(req);
+              scans_requests_doc.branch = site.get_branch(req);
+    
+              scans_requests_doc.add_user_info = site.security.getUserFinger({
+                $req: req,
+                $res: res
               })
+    
+    
+              const randomNumber = (length) => {
+                let text = "";
+                let possible = "123456789";
+                for (let i = 0; i < length; i++) {
+                  let sup = Math.floor(Math.random() * possible.length);
+                  text += i > 0 && sup == i ? "0" : possible.charAt(sup);
+                }
+                return (text);
+              }
+    
+    
+              scans_requests_doc.code = String(randomNumber(4))
+    
+              if (scans_requests_doc.scans_list[0].period.id == 2) {
+                var result = new Date(scans_requests_doc.visit_date);
+               
+                result.setHours(result.getHours() + scans_requests_doc.scans_list[0].delivery_time);
+                scans_requests_doc.delivaryDate = result
+              }
+    
+              if (scans_requests_doc.scans_list[0].period.id == 1) {
+                var result = new Date(scans_requests_doc.visit_date);
+                
+                result.setDate(result.getDate() + scans_requests_doc.scans_list[0].delivery_time);
+                scans_requests_doc.delivaryDate = result
+              }
+    
+              site.getPatientTicket(customerData, callBackGet => {
+    
+                if (!callBackGet) {
+    
+                  site.addPatientTicket(scans_requests_doc, callBackAdd => {
+                    scans_requests_doc.patient_ticket_id = callBackAdd.id
+    
+                    $scans_requests.add(scans_requests_doc, (err, doc) => {
+    
+                      if (!err) {
+                        response.done = true
+                        response.doc = doc
+    
+                      } else {
+                        response.error = "error happened";
+                      }
+                      res.json(response)
+                    })
+    
+                  })
+    
+    
+    
+                } else {
+    
+                  if (callBackGet.status && callBackGet.status.id === 2) {
+                    response.error = 'holding ticket for this patient';
+                    res.json(response);
+                    return;
+    
+                  }
+    
+                  scans_requests_doc.patient_ticket_id = callBackGet.id
+    
+                  $scans_requests.add(scans_requests_doc, (err, doc) => {
+    
+                    if (!err) {
+                      response.done = true
+                      response.doc = doc
+    
+                    } else {
+                      response.error = "error happened";
+                    }
+                    res.json(response)
+                  })
+                }
+    
+              })
+    
             }
-
-          })
-
-        }
+          }
+        );
       }
-    );
+    
+    })
+
+   
 
 
 
@@ -612,6 +634,7 @@ module.exports = function init(site) {
         "$project": {
           "date": 1.0,
           visit_day: 1,
+          customer : 1,
           delivaryDate:1,
           "visit_date": 1,
           "scans_list": 1.0,
@@ -671,6 +694,7 @@ module.exports = function init(site) {
           "date": 1.0,
           visit_day: 1,
           delivaryDate:1,
+          customer : 1,
           "visit_date": 1,
           "scans_list": 1.0,
           "net_value": 1.0,
