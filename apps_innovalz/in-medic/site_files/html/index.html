@@ -16,7 +16,7 @@
   <title>Inmedic</title>
 </head>
 
-<body>
+<body ng-controller="main">
    
   <nav class="sitebar" x-import="in-medic/nav.html"></nav>
   
@@ -213,18 +213,18 @@
 
                   <div class="row data-info-row">
                     <div class="col-sm-9">
-                      <div class="personal-div"><div class="personal-title"><h5>كود المريض</h5></div><div class="personal-data"><p>test</p></div></div>
-                      <div class="personal-div"><div class="personal-title"><h5>اسم المريض بالعربي</h5></div><div class="personal-data"><p>test</p></div></div>
-                      <div class="personal-div"><div class="personal-title"><h5>اسم المريض بالانجليزية</h5></div><div class="personal-data"><p>test</p></div></div>
-                      <div class="personal-div"><div class="personal-title"><h5>شركة التامين الطبي</h5></div><div class="personal-data"><p>test</p></div></div>
-                      <div class="personal-div"><div class="personal-title"><h5>الجنس</h5></div><div class="personal-data"><p>test</p></div></div>
-                      <div class="personal-div"><div class="personal-title"><h5>طفل</h5></div><div class="personal-data"><p>test</p></div></div>
-                      <div class="personal-div"><div class="personal-title"><h5>تاريخ الميلاد</h5></div><div class="personal-data"><p>test</p></div></div>
-                      <div class="personal-div"><div class="personal-title"><h5>مجموعة المرضى</h5></div><div class="personal-data"><p>test</p></div></div>
-                      <div class="personal-div"><div class="personal-title"><h5>الحالة</h5></div><div class="personal-data"><p>test</p></div></div>
+                      <div class="personal-div"><div class="personal-title"><h5>كود المريض</h5></div><div class="personal-data"><p>{{customer.code}}</p></div></div>
+                      <div class="personal-div"><div class="personal-title"><h5>اسم المريض بالعربي</h5></div><div class="personal-data"><p>{{customer.name_ar}}</p></div></div>
+                      <div class="personal-div"><div class="personal-title"><h5>اسم المريض بالانجليزية</h5></div><div class="personal-data"><p>{{customer.name_en}}</p></div></div>
+                      <div class="personal-div"><div class="personal-title"><h5>شركة التامين الطبي</h5></div><div class="personal-data"><p>{{customer.insurance_company.name_##session.lang##}}</p></div></div>
+                      <div class="personal-div"><div class="personal-title"><h5>الجنس</h5></div><div class="personal-data"><p>{{customer.gender.##session.lang##}}</p></div></div>
+                      <!-- <div class="personal-div"><div class="personal-title"><h5>طفل</h5></div><div class="personal-data"><p>test</p></div></div> -->
+                      <div class="personal-div"><div class="personal-title"><h5>تاريخ الميلاد</h5></div><div class="personal-data"><p>{{customer.birth_date|date:'dd - MM - yyyy'}}</p></div></div>
+                      <div class="personal-div"><div class="personal-title"><h5>مجموعة المرضى</h5></div><div class="personal-data"><p>{{customer.group.name_##session.lang##}}</p></div></div>
+                      <div class="personal-div"><div class="personal-title"><h5>الحالة</h5></div><div class="personal-data"><p>{{customer.active==true?'نشط':"غير نشط"}}</p></div></div>
                     </div>
                     <div class="col-sm-3" style="margin: auto; text-align: center;">
-                      <img src="/images/dr.png"><br><br>
+                      <img ng-src="{{customer.image_url}}" width="80%"><br><br>
                       <a href="#" class="print-btn">طباعة</a>
                     </div>
                   </div>
@@ -240,10 +240,10 @@
                   </div>
                   <div class="row data-info-row">
                     <div class="col-sm-12">
-                      <div class="personal-div"><div class="personal-title"><h5>الجنسيه</h5></div><div class="personal-data"><p>test</p></div></div>
-                      <div class="personal-div"><div class="personal-title"><h5>رقم الهوية</h5></div><div class="personal-data"><p>test</p></div></div>
-                      <div class="personal-div"><div class="personal-title"><h5>مصدر الهويه</h5></div><div class="personal-data"><p>test</p></div></div>
-                      <div class="personal-div"><div class="personal-title"><h5>تاريخ اصدار الهوية</h5></div><div class="personal-data"><p>test</p></div></div>
+                      <div class="personal-div"><div class="personal-title"><h5>الجنسيه</h5></div><div class="personal-data"><p>{{customer.nationality.name_##session.lang##}}</p></div></div>
+                      <div class="personal-div"><div class="personal-title"><h5>رقم الهوية</h5></div><div class="personal-data"><p>{{customer.id_number}}</p></div></div>
+                      <div class="personal-div"><div class="personal-title"><h5>مصدر الهويه</h5></div><div class="personal-data"><p>{{customer.id_source}}</p></div></div>
+                      <div class="personal-div"><div class="personal-title"><h5>تاريخ اصدار الهوية</h5></div><div class="personal-data"><p>{{customer.id_release_date.date|date:'dd - MM - YYYY'}}</p></div></div>
                       <div class="" style="text-align: center; margin-top: 50px;">
                         <a href="#" class="print-btn">طباعة</a>
   
@@ -791,6 +791,38 @@
           },
         );
       };
+    });
+
+
+
+
+    app.controller('main', function ($scope, $http) {
+      
+      $scope.getPatient = function () {
+        $scope.error = '';
+        $scope.busy = true;
+        $scope.customer={};
+        $http({
+          method: 'POST',
+          url: '/api/customers/view',
+          data: {
+            id: '##user.ref_info.id##'
+          }
+        }).then(
+          function (response) {
+            if (response.data) {
+              $scope.customer= response.data.doc;
+              $scope.busy = false;
+            };
+            console.log("1111111111111111111111111" , $scope.customer['code']);
+          },
+          function (err) {
+            $scope.busy = false;
+            $scope.error = err;
+          },
+        );
+      };
+      $scope.getPatient();
     });
   </script>
   <!-- Option 2: jQuery, Popper.js, and Bootstrap JS

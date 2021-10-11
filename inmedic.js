@@ -23,15 +23,19 @@ const site = require('isite')({
 
 site.ready = false;
 
+site.get({ name: '/', path: __dirname + '/site_files' });
+
 site.addFeature('inmedic');
 site.addFeature('atm');
+site.addFeature('medical');
 
 site.importApp(__dirname + '/apps_innovalz/in-medic', 'inmedic');
 
-site.importApp(__dirname + '/apps_private/cloud_security', 'security');
 site.loadLocalApp('client-side');
+site.loadLocalApp('ui-print');
+site.importApp(__dirname + '/apps_private/cloud_security', 'security');
 site.importApp(__dirname + '/apps_private/ui-help');
-site.importApp(__dirname + '/apps_private/notifications')
+site.importApp(__dirname + '/apps_private/notifications');
 site.importApps(__dirname + '/apps_accounting');
 site.importApps(__dirname + '/apps_inventories');
 site.importApps(__dirname + '/apps_reports');
@@ -40,57 +44,42 @@ site.importApps(__dirname + '/apps_innovalz_store');
 site.importApps(__dirname + '/apps_agora');
 
 site.importApps(__dirname + '/apps_hr');
-site.importApps(__dirname + '/apps_medic')
+site.importApps(__dirname + '/apps_medic');
 site.importApps(__dirname + '/apps_core');
 
-site.loadLocalApp('ui-print');
-
-site.addFeature('medical');
-
-const $companies = site.connectCollection("companies")
+const $companies = site.connectCollection('companies');
 let obj = {
-  "name_ar": "test",
-  "name_en": "test",
-  "host": "admin.admin.com",
-  "username": "admin@admin.com",
-  "password": "123",
-  "id": 1,
-  "branch_list": [{
-    "code": 1,
-    "name_ar": "الفرع الرئيسى",
-    "name_en": "Main Branch",
-    "charge": [{
-
-    }]
-  }],
-}
-
-  $companies.findOne(
+  name_ar: 'test',
+  name_en: 'test',
+  host: 'admin.admin.com',
+  username: 'admin@admin.com',
+  password: '123',
+  id: 1,
+  branch_list: [
     {
-
+      code: 1,
+      name_ar: 'الفرع الرئيسى',
+      name_en: 'Main Branch',
+      charge: [{}],
     },
-    (err, doc) => {
-      if (!err && doc) {
-        return false
-      } else {
-        $companies.add(obj);
-      }
-    }
-  );
+  ],
+};
 
+$companies.findOne({}, (err, doc) => {
+  if (!err && doc) {
+    return false;
+  } else {
+    $companies.add(obj);
+  }
+});
 
+setTimeout(() => {
+  site.importApp(__dirname + '/apps_private/companies');
+  site.importApp(__dirname + '/apps_private/zk-reader');
+}, 1000);
 
-  setTimeout(() => {
-    site.importApp(__dirname + '/apps_private/companies');
-    site.importApp(__dirname + '/apps_private/zk-reader');
-  
-  },1000)  
-
-  
 setTimeout(() => {
   site.ready = true;
 }, 1000 * 2);
-
-
 
 site.run();
