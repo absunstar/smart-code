@@ -1,0 +1,14 @@
+<table class="table table-bordered" >
+    <tr>
+        <th>User Token</th>
+        <th>IP</th>
+        <th>Requestes Count</th>
+
+    </tr>
+    <tr ng-repeat="s in sessions">
+        <td>{{s.accessToken}}</td>
+        <td>{{s.ip}}</td>
+        <td>{{s.requestesCount}}</td>
+
+    </tr>
+</table>

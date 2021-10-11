@@ -1,0 +1,29 @@
+.ui.selection.dropdown>.dropdown.icon{
+    display: none;
+}
+.ui.selection.active.dropdown .menu , .ui.selection.active.dropdown:hover .menu , .ui.selection.dropdown:focus .menu {
+    border: var(--border);
+}
+
+.ui.dropdown .menu .selected.item, .ui.dropdown.selected , .ui.dropdown .menu .item:hover {
+    background: var(--modal-header-background-color);
+    color: var(--modal-header-color);
+}
+.ui.selection.dropdown {
+    text-align: var(--text-align);
+    font-family: var(--font-family);
+    min-height: var(--input-height);
+    line-height: var(--line-height);
+    padding: var(--input-padding);
+    font-size: var(--input-font-size);
+    color: var(--input-color);
+    background-color: var(--input-background-color);
+    background-image: none;
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    border-radius: var(--input-border-radius);
+    border-width: var(--input-border-width);
+    border-color: var(--input-border-color);
+    outline: none;
+}

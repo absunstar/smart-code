@@ -1,0 +1,37 @@
+<div ng-hide="busy" class="row">
+
+
+    <div class="col8">
+
+        <form class="form">
+
+            <div class="row">
+                <i-control v="r" class="col6" label="##word.security_user_email##" ng-model="user.email"></i-control>
+                <i-control v="r" class="col6" label="##word.security_user_password##" ng-model="user.password" type="password"></i-control>
+            </div>
+
+
+            <div class="row">
+                <i-control v="r" class="col6" label="##word.security_user_name##" ng-model="user.profile.name"></i-control>
+                <i-control v="r" class="col6" label="##word.security_user_mobile##" ng-model="user.profile.mobile"></i-control>
+            </div>
+
+            <i-textarea ng-model="user.profile.notes" label="##word.notes##"></i-textarea>
+
+        </form>
+
+
+    </div>
+
+    <div class="col4">
+
+        <i-image category="users" ng-model="user.profile.image_url"></i-image>
+        <br>
+        <br>
+        <i-files category="users"  label="##word.files##"ng-model="user.user.profile.files"></i-files>
+        <br>
+        <br>
+        <i-checklist primary="name" label="##word.security_roles##" items="roles" display="ar" ng-model="user.roles"></i-checklist>
+
+    </div>
+</div>

@@ -1,0 +1,16 @@
+.tableexport-caption{
+    margin: 10px;
+    padding: 10px;
+}
+
+.tableexport-caption button{
+    color : #fff;
+    background-color: #282828;
+    padding: 7px 9px;
+}
+
+
+.tableexport-caption button:hover{
+    background-color: green;
+    transform: scale(1.1);
+}

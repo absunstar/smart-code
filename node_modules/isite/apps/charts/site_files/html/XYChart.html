@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+        Object In Array (PieSeries)
+    </title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    
+    
+    
+
+    <div id="chartdiv" ></div>
+
+
+
+<script src="./js/chart-core.js"></script>
+<script src="./js/charts.js"></script>
+<script src="./js/chart-animated.js"></script>
+
+
+
+
+
+<!-- Chart code -->
+<script>
+  
+   am4core.useTheme(am4themes_animated);
+  
+  
+    fetch('./json/XYChart.json').then(res => res.json()).then(obj=>{
+      // console.log(obj);
+    var chart = am4core.createFromConfig(obj, "chartdiv", am4charts.XYChart);
+    })
+  
+  </script>
+  
+</body>
+</html>

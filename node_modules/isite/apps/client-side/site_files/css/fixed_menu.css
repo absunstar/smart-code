@@ -1,0 +1,103 @@
+@media (max-width: 768px /*mobile*/) {
+	.left-fixed-menu , .right-fixed-menu {
+		top:auto !important;
+		width: auto !important;
+		height: 80%;
+		bottom:-75% !important;
+		padding: 3px !important;
+		padding-top: 10% !important;
+		right: 30px !important;
+		left: 30px !important;
+	}
+
+	.left-fixed-menu:hover , .right-fixed-menu:hover{
+		bottom: 0px !important;
+	}
+}
+
+.left-fixed-menu , .right-fixed-menu , .bottom-fixed-menu{
+    display: block;
+    padding: 3px;
+    margin: 0px;
+	position: fixed;
+	color: var(--navbar-color);
+	background-color: var(--navbar-background-color);
+	font-size: 16px;
+	box-shadow: 5px 5px 10px #000000;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	z-index: 500;
+}
+.left-fixed-menu {
+	top:200px;
+	width: 250px;
+	left: -230px;
+	padding-right: 25px;
+}
+.right-fixed-menu{
+	top:200px;
+	width: 250px;
+	text-align: right;
+	padding-left: 25px;
+    right: -230px;
+}
+.bottom-fixed-menu{
+	bottom:-230px;
+	height: 250px;
+	padding-top: 25px;
+	right: 30px;
+	left: 30px;
+}
+.left-fixed-menu:hover{
+	left: 0px;
+}
+.right-fixed-menu:hover{
+    right: 0px;
+}
+.bottom-fixed-menu:hover{
+	bottom: 0px;
+}
+.left-fixed-menu li  , .right-fixed-menu li{
+	list-style: none;
+    margin: 4px;
+    padding: 0px;
+}
+.left-fixed-menu li a , .right-fixed-menu li a{
+	color: var(--navbar-color);
+	display: block;
+	padding: 0px;
+	border-bottom: 1px #fff;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+}
+.right-fixed-menu li a{
+    padding-right: 10px;
+}
+.left-fixed-menu li:first-child a , .right-fixed-menu li:first-child a{
+	border-top: none;
+}
+.left-fixed-menu li:last-child a , .right-fixed-menu li:last-child a{
+	border-bottom: none;
+}
+
+.left-fixed-menu li a:hover , .right-fixed-menu li a:hover{
+background-color: #030303;
+color: #fff;
+
+}
+.left-fixed-menu li a:hover {
+    padding-left: 10px;
+}
+.right-fixed-menu li a:hover{
+    padding-right: 20px;
+}
+
+.left-fixed-menu li a.selected{
+background-color: #030303;
+color: #fff;
+}
+

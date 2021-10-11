@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="/x-css/site.css">
+  <link rel="stylesheet" href="/x-css/theme_paper.css">
+  <title>
+    Object In Array (PieSeries)
+  </title>
+  <style>
+    #chart1 {
+      width: 100%;
+      height: 500px;
+    }
+    #chart2 {
+      width: 100%;
+      height: 500px;
+    }
+   
+    
+    g[aria-labelledby="id-47-title"]{
+      display: none;
+    }
+    g[aria-labelledby="id-176-title"]{
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+
+<div class="row">
+  <div class="col6"><div id="chart1"></div></div>
+  <div class="col6"> <div id="chart2"></div></div>
+</div>
+
+  
+ 
+
+
+
+
+  <script src="/js/charts.js"></script>
+
+  <script>
+    
+
+    var data =[{
+        "item": "item 1",
+        "count": 500
+      }, {
+       "item": "item 2",
+        "count": 200
+      }, {
+       "item": "item 3",
+        "count": 700
+      }, {
+       "item": "item 4",
+        "count": 300
+      }, {
+       "item": "item 5",
+        "count": 800
+      }, {
+        "item": "item 6",
+        "count": 60
+      }]
+
+    site.create_chart({
+      type : 'xy',
+      x : 'item',
+      y : 'count',
+      data : data,
+      selector : '#chart1'
+    })
+
+    site.create_chart({
+      type : 'yx',
+      y : 'item',
+      x : 'count',
+      data : data,
+      selector : '#chart2'
+    })
+    
+   
+  </script>
+
+</body>
+
+</html>

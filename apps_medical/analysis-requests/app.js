@@ -416,89 +416,122 @@ module.exports = function init(site) {
     // }
 
     let analysis_requests_doc = req.body;
-    console.log(analysis_requests_doc);
-    if (analysis_requests_doc.customer)
-      $customer.findOne(
-        {
-          where: {
-            id: analysis_requests_doc.customer.id,
-          },
-        },
-        (err, customerData) => {
-          if (!err) {
-            if (!customerData) {
-              response.error = "no patient found";
-              return;
-            } else {
-              analysis_requests_doc.customer = customerData;
-              analysis_requests_doc.$req = req;
-              analysis_requests_doc.$res = res;
+    let whereObj = {
+      date: new Date(analysis_requests_doc.date),
 
-              analysis_requests_doc.add_user_info = site.security.getUserFinger(
-                {
-                  $req: req,
-                  $res: res,
-                }
-              );
+    };
+    if (whereObj.date) {
+      let d1 = site.toDate(whereObj.date);
+      let d2 = site.toDate(whereObj.date);
+      d2.setDate(d2.getDate() + 1);
+      whereObj.date = {
+        $gte: d1,
+        $lt: d2,
+      };
+    }
+    $analysis_requests.findMany({ where: whereObj, }, (err, docs, count) => {
 
-              const randomNumber = (length) => {
-                let text = "";
-                let possible = "123456789";
-                for (let i = 0; i < length; i++) {
-                  let sup = Math.floor(Math.random() * possible.length);
-                  text += i > 0 && sup == i ? "0" : possible.charAt(sup);
-                }
-                return text;
-              };
-              analysis_requests_doc.company = site.get_company(req);
-              analysis_requests_doc.branch = site.get_branch(req);
+      if (!err) {
+        analysis_requests_doc.visit_number = count + 1;
+        if (analysis_requests_doc.customer)
+          $customer.findOne(
+            {
+              where: {
+                id: analysis_requests_doc.customer.id,
+              },
+            },
+            (err, customerData) => {
+              if (!err) {
+                if (!customerData) {
+                  response.error = "no patient found";
+                  return;
+                } else {
+                  analysis_requests_doc.customer = customerData;
+                  analysis_requests_doc.$req = req;
+                  analysis_requests_doc.$res = res;
 
-              analysis_requests_doc.code = String(randomNumber(4));
-              site.getPatientTicket(customerData, (callBackGet) => {
-                if (!callBackGet) {
-                  site.addPatientTicket(
-                    analysis_requests_doc,
-                    (callBackAdd) => {
-                      analysis_requests_doc.patient_ticket_id = callBackAdd.id;
-
-                      $analysis_requests.add(
-                        analysis_requests_doc,
-                        (err, doc) => {
-                          if (!err) {
-                            response.done = true;
-                            response.doc = doc;
-                          } else {
-                            response.error = "error happened";
-                          }
-                          res.json(response);
-                        }
-                      );
+                  analysis_requests_doc.add_user_info = site.security.getUserFinger(
+                    {
+                      $req: req,
+                      $res: res,
                     }
                   );
-                } else {
-                  if (callBackGet.status && callBackGet.status.id === 2) {
-                    response.error = "holding ticket for this patient";
-                    res.json(response);
-                    return;
+
+                  const randomNumber = (length) => {
+                    let text = "";
+                    let possible = "123456789";
+                    for (let i = 0; i < length; i++) {
+                      let sup = Math.floor(Math.random() * possible.length);
+                      text += i > 0 && sup == i ? "0" : possible.charAt(sup);
+                    }
+                    return text;
+                  };
+                  if (analysis_requests_doc.analysis_list[0].period.id == 2) {
+                    var result = new Date(analysis_requests_doc.visit_date);
+
+                    result.setHours(result.getHours() + analysis_requests_doc.analysis_list[0].delivery_time);
+                    analysis_requests_doc.delivaryDate = result
                   }
 
-                  analysis_requests_doc.patient_ticket_id = callBackGet.id;
+                  if (analysis_requests_doc.analysis_list[0].period.id == 1) {
+                    var result = new Date(analysis_requests_doc.visit_date);
 
-                  $analysis_requests.add(analysis_requests_doc, (err, doc) => {
-                    if (!err) {
-                      response.done = true;
-                      response.doc = doc;
+                    result.setDate(result.getDate() + analysis_requests_doc.analysis_list[0].delivery_time);
+                    analysis_requests_doc.delivaryDate = result
+                  }
+                  analysis_requests_doc.company = site.get_company(req);
+                  analysis_requests_doc.branch = site.get_branch(req);
+
+                  analysis_requests_doc.code = String(randomNumber(4));
+                  site.getPatientTicket(customerData, (callBackGet) => {
+                    if (!callBackGet) {
+                      site.addPatientTicket(
+                        analysis_requests_doc,
+                        (callBackAdd) => {
+                          analysis_requests_doc.patient_ticket_id = callBackAdd.id;
+
+                          $analysis_requests.add(
+                            analysis_requests_doc,
+                            (err, doc) => {
+                              if (!err) {
+                                response.done = true;
+                                response.doc = doc;
+                              } else {
+                                response.error = "error happened";
+                              }
+                              res.json(response);
+                            }
+                          );
+                        }
+                      );
                     } else {
-                      response.error = "error happened";
+                      if (callBackGet.status && callBackGet.status.id === 2) {
+                        response.error = "holding ticket for this patient";
+                        res.json(response);
+                        return;
+                      }
+
+                      analysis_requests_doc.patient_ticket_id = callBackGet.id;
+
+                      $analysis_requests.add(analysis_requests_doc, (err, doc) => {
+                        if (!err) {
+                          response.done = true;
+                          response.doc = doc;
+                        } else {
+                          response.error = "error happened";
+                        }
+                        res.json(response);
+                      });
                     }
-                    res.json(response);
                   });
                 }
-              });
+              }
             }
-          }
-        }
-      );
+          );
+      }
+
+    })
+
   });
 
   // my profile
@@ -548,6 +581,117 @@ module.exports = function init(site) {
           response.done = false;
 
           response.list = [];
+          res.json(response);
+        }
+      }
+    );
+  });
+
+  // my Completed Analysis
+  site.post("/api/analysis_requests/myCompletedAnalysis", (req, res) => {
+    req.headers.language = req.headers.language || "en";
+    let response = {};
+    if (!req.session.user) {
+      response.message = site.word("loginFirst")[req.headers.language];
+      response.done = false;
+      res.json(response);
+      return;
+    } else if (!req.session.user.ref_info) {
+      response.message = site.word("loginFirst")[req.headers.language];
+      response.done = false;
+      res.json(response);
+      return;
+    }
+
+    $analysis_requests.aggregate(
+      [
+        {
+          $match: {
+            "customer.id": req.session.user.ref_info.id,
+            delivery: true
+          },
+        },
+        {
+          $project: {
+            date: 1.0,
+            customer : 1,
+            visit_day: 1,
+            visit_date: 1,
+            delivaryDate:1,
+            analysis_list: 1.0,
+            net_value: 1.0,
+            id: 1.0,
+          },
+        },
+      ],
+      (err, docs) => {
+        if (docs && docs.length > 0) {
+          response.done = true;
+          response.list = docs;
+          response.count = docs.length;
+
+          res.json(response);
+        } else {
+          response.done = false;
+
+          response.list = [];
+          response.count = 0;
+          res.json(response);
+        }
+      }
+    );
+  });
+
+  // my current Analysis
+  site.post("/api/analysis_requests/myNotCompletedAnalysis", (req, res) => {
+    req.headers.language = req.headers.language || "en";
+    let response = {};
+    if (!req.session.user) {
+      response.message = site.word("loginFirst")[req.headers.language];
+      response.done = false;
+      res.json(response);
+      return;
+    } else if (!req.session.user.ref_info) {
+      response.message = site.word("loginFirst")[req.headers.language];
+      response.done = false;
+      res.json(response);
+      return;
+    }
+    console.log(req.session.user);
+
+    $analysis_requests.aggregate(
+      [
+        {
+          $match: {
+            "customer.id": req.session.user.ref_info.id,
+            delivery: {
+              $ne: true
+            }
+          },
+        },
+        {
+          $project: {
+            date: 1.0,
+            customer : 1,
+            visit_day: 1,
+            delivaryDate:1,
+            visit_date: 1,
+            analysis_list: 1.0,
+            net_value: 1.0,
+            id: 1.0,
+          },
+        },
+      ],
+      (err, docs) => {
+        if (docs && docs.length > 0) {
+          response.done = true;
+          response.list = docs;
+          response.count = docs.length;
+          res.json(response);
+        } else {
+          response.done = false;
+          response.list = [];
+          response.count = 0;
           res.json(response);
         }
       }

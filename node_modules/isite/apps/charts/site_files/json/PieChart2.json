@@ -1,0 +1,24 @@
+{
+    "series": [{
+      "type": "PieSeries",
+      "dataFields": {
+        "value": "litres",
+        "category": "country"
+      }
+    }],
+  
+    "data": [{
+      "country": "Lithuania",
+      "litres": 501.9
+    }, {
+      "country": "Czech Republic",
+      "litres": 301.9
+    }, {
+      "country": "Ireland",
+      "litres": 201.1
+    }, {
+      "country": "Germany",
+      "litres": 165.8
+    }]
+  
+  }

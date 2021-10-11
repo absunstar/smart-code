@@ -1,0 +1,75 @@
+{
+    "data": [{
+            "year": "2009",
+            "income": 23.5,
+            "expenses": 21.1
+        }, {
+            "year": "2010",
+            "income": 26.2,
+            "expenses": 30.5
+        }, {
+            "year": "2011",
+            "income": 30.1,
+            "expenses": 34.9
+        }, {
+            "year": "2012",
+            "income": 29.5,
+            "expenses": 31.1
+        }, {
+            "year": "2013",
+            "income": 30.6,
+            "expenses": 28.2
+        }, {
+            "year": "2014",
+            "income": 34.1,
+            "expenses": 32.9
+        }],
+    "xAxes": [{
+        "type": "CategoryAxis",
+        "dataFields": {
+        "category": "year"
+        }
+    }],
+    "yAxes": [{
+        "type": "ValueAxis"
+    }],
+    "series": [{
+        "type": "ColumnSeries",
+        "dataFields": {
+            "valueY": "income",
+            "categoryX": "year"
+        },
+        "name": "Income",
+        "fill":"red",
+        "columns": {
+            "tooltipText": "[#fff font-size: 15px]{name} in {categoryX}:\n[/][#fff font-size: 20px]{valueY}[/] [#fff]{additional}[/]",
+
+            "strokeWidth": "strokeWidth",
+            "strokeDasharray": "columnDash"
+        },
+        "tooltip":{"label":{"textAlign":"middle"}}
+    }, {
+        "type": "LineSeries",
+        "name": "Expenses",
+        "stroke": "#fdd400",
+        "strokeDasharray":"lineDash",
+        "strokeWidth": 3,
+        "dataFields": {
+        "valueY": "expenses",
+        "categoryX": "year"
+        },
+        
+        "bullets": [{
+        "type": "CircleBullet",
+        "fill":"#fdd400",
+        "tooltipText":"[#fff font-size: 15px]{name} in {categoryX}:\n[/][#fff font-size: 20px]{valueY}[/] [#fff]{additional}[/]"
+        
+        }, {
+        "type": "LabelBullet",
+        "label": {
+            "text": "{value}"
+        }
+        }]
+        
+    }]
+}

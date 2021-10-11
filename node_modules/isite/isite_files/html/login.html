@@ -1,0 +1,33 @@
+<div  id="loginModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"> <i class="fa fa-sign-in" aria-hidden="true"></i> Login Form</h4>
+            </div>
+            <div class="modal-body">
+
+                <form>
+                    <div class="form-group">
+                        <label for="emailInput">User Name OR Email</label>
+                        <input ng-model="userEmail" type="text" class="form-control" id="emailInput" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <label for="passwordInput">Password</label>
+                        <input ng-model="userPassword" type="password" class="form-control" id="passwordInput" placeholder="Password">
+                    </div>
+
+                </form>
+                <p class="text-danger" ng-bind="error"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" id="loginBtn" ng-click="login()" class="btn btn-primary"> <i class="fa fa-sign-in" aria-hidden="true"></i> Login</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+
+</div>
+<!-- /.modal -->

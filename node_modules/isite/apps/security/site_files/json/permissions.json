@@ -1,0 +1,8 @@
+[
+    {"name" : "developer" , "en" : "Developer" , "ar" : " ديفولوبر" },
+    {"name" : "admin" , "en" : "Admin" , "ar" : " ادمن" },
+    {"name" : "owner" , "en" : "Owner" , "ar" : " صاحب البرنامج" },
+    {"name" : "security" , "en" : "Users Management" , "ar" : "ادارة المستخدمين" },
+    {"name" : "print" , "en" : "Print" , "ar" : "طباعة" },
+    {"name" : "menus" , "en" : "Menus View" , "ar" : "ظهور القوائم العامة" }
+]

@@ -1,0 +1,43 @@
+{
+    "innerRadius": "40%",
+    "data": [
+        {
+            "country": "Lithuania",
+            "value": 401
+        },
+        {
+            "country": "Czech Republic",
+            "value": 300
+        },
+        {
+            "country": "Ireland",
+            "value": 200
+        },
+        {
+            "country": "Germany",
+            "value": 165
+        },
+        {
+            "country": "Australia",
+            "value": 139
+        },
+        {
+            "country": "Austria",
+            "value": 128
+        }
+    ],
+    "series": [
+        {
+            "type": "PieSeries",
+            "dataFields": {
+                "value": "value",
+                "category": "country"
+            },
+            "slices": {
+                "cornerRadius": 10,
+                "innerCornerRadius": 7
+            }
+        }
+    ],
+    "legend": {}
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>
+    Object In Array (PieSeries)
+  </title>
+  <style>
+    #chartdiv {
+      width: 100%;
+      height: 800px;
+      margin: auto;
+
+    }
+
+    g[transform="translate(0,779)"] {
+      display: none;
+    }
+    g[aria-labelledby="id-47-title"]{
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+
+
+
+  <div id="chartdiv"></div>
+
+
+
+
+  <script src="/js/chart.js"></script>
+
+  <script>
+   
+    fetch('./json/column-chart.json').then(res => res.json()).then(obj=>{
+    var chart = am4core.createFromConfig(obj, "chartdiv", am4charts.XYChart);
+    })
+
+
+    site.create_chart({
+      type : 'xy',
+      x : 'count',
+      y : 'application',
+      data : data,
+      selector_id : 'chartdiv'
+    })
+    
+    
+  </script>
+ 
+ 
+</body>
+
+</html>

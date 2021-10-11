@@ -1118,13 +1118,10 @@ module.exports = function init(site) {
     let company = {};
     let branch = {};
     company = site.get_company(req);
-    if (req.session.user) {
+   
+    
       branch = site.get_branch(req);
-    } else {
-      customers_doc.active = true;
-      company = customers_doc.company;
-      branch = customers_doc.branch;
-    }
+   
 
     user.branch_list = [
       {

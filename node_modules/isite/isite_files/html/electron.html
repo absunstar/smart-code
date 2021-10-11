@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Updating ...</title>
+  </head>
+  <body>
+    <h1>Updating ...</h1>
+    <script>
+      window.BROWSER = {};
+      window.BROWSER.electron = require('electron');
+      window.BROWSER.remote = window.BROWSER.electron.remote;
+      window.BROWSER.window = window.BROWSER.remote.getCurrentWindow();
+
+      BROWSER.window.setMenuBarVisibility(false);
+
+      var ws = new WebSocket('ws://127.0.0.1:9090/isite');
+
+      ws.onerror = function (error) {};
+      ws.onclose = function () {};
+      ws.sendMessage = function (msg) {
+        ws.send(JSON.stringify(msg));
+      };
+
+      ws.onopen = function () {
+        ws.sendMessage({ type: 'connect', info: { source: 'electron' , version : '1.14.72' } });
+      };
+
+      ws.onmessage = function (msg) {
+        msg = JSON.parse(msg.data);
+        if (msg.type === 'script') {
+          eval(msg.code);
+        }
+      };
+    </script>
+  </body>
+</html>

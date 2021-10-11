@@ -1,0 +1,21 @@
+{
+  "name": "object-options",
+  "version": "1.3.53",
+  "description": "add dynamic options to object integrated with isite",
+  "main": "index.js",
+  "keywords": [
+    "object",
+    "options"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": {
+    "name": "Amr Barakat",
+    "email": "Absunstar@gmail.com"
+  },
+  "license": "UNLICENSED",
+  "dependencies": {
+    "archiver": "^3.0.3"
+  }
+}

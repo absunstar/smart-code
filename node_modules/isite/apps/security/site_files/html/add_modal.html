@@ -1,0 +1,45 @@
+<style>
+    #addUserModal .img {
+        width: 200px;
+        height: 200px;
+        margin: 5px;
+        padding: 5px;
+        border: 1px solid var(--background-color);
+    }
+  
+</style>
+<style x-lang="ar">
+    label{
+        text-align: right;
+    }
+</style>
+
+
+<div id="addUserModal" class="modal">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                <i class="fa fa-plus"></i> ##word.security_new_user## </h2>
+        </div>
+        <div class="modal-body">
+            <span ng-show="busy">
+                <i class="fa fa-spinner white fa-pulse fa-3x fa-fw"></i>
+                <span class="sr-only">Loading...</span>
+            </span>
+          
+            <div x-import="security/content.html"></div>
+
+        </div>
+        <h2>{{error}}</h2>
+        <div class="modal-footer center">
+
+            <i-button type="add" label="##word.security_add_user##" ng-click="add()"></i-button>
+            <i-button type="exit" label="##word.close##" onclick="site.hideModal('#addUserModal')"></i-button>
+
+        </div>
+    </div>
+
+
+</div>

@@ -1,0 +1,21 @@
+{
+  "name": "isite-client",
+  "version": "1.0.2",
+  "description": "Client Site Files Integrated With Isite Framework",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "css",
+    "js",
+    "client",
+    "theme",
+    "isite"
+  ],
+  "dependencies": {
+    "isite": "*"
+  },
+  "author": "Amr Barakat",
+  "license": "ISC"
+}

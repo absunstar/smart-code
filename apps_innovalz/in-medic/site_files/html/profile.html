@@ -302,9 +302,11 @@
                               <h2>بيانات شخصية</h2>
                             </div>
                             <div>
-                              <span>الاسم بالكامل : أحمد محمد محمود</span><br>
-                              <span>رقم التليفون : 01065874456</span><br>
-                              <span>العنوان : الحصري - الحي الثاني-مجاورة ثانية-فرسان جيم</span><br>
+                              <span>الاسم بالكامل : {{current.customer.name_##session.lang##}}</span><br>
+                              <span>رقم التليفون : {{current.customer.mobile}}</span><br>
+                              <span>العنوان : {{current.customer.address_list[0].gov.name_##session.lang##}} - {{current.customer.address_list[0].city.name_##session.lang##}}
+                                - {{current.customer.address_list[0].area.name_##session.lang##}}
+                              </span><br>
 
                             </div>
                           </div>
@@ -314,8 +316,7 @@
                               <h2>ملاحظات قبل الكشف</h2>
                             </div>
                             <div>
-                              <span>ملاحظات قبل الكشف ملاحظات قبل الكشف ملاحظات قبل الكشف ملاحظات قبل الكشف ملاحظات قبل
-                                الكشف</span><br>
+                              <span>{{current.notes_before}}</span><br>
 
 
                             </div>
@@ -325,8 +326,7 @@
                               <h2>ملاحظات بعد الكشف</h2>
                             </div>
                             <div>
-                              <span>ملاحظات بعد الكشف ملاحظات بعد الكشف ملاحظات بعد الكشف ملاحظات بعد الكشف ملاحظات بعد
-                                الكشف</span><br>
+                              <span> {{current.diagnosis.special_notes}} </span><br>
 
 
                             </div>
@@ -338,7 +338,7 @@
                             </div>
                             <div>
                               <div class="img-with-details">
-                                <img src="/images/analysis-blood.png">
+                                <img ng-src="{{current.image_url}}" width="10%">
                                 <!-- <p>تفاصيل مع الطلب : علبتين دواء مع شريط كيتوفان وشريط اسبرين مع العلم ان لدي حساسية جيوب أنفية</p>
                                       </div>
                                       <div class="img-with-details">
@@ -415,9 +415,10 @@
                               <h2>بيانات شخصية</h2>
                             </div>
                             <div>
-                              <span>الاسم بالكامل : أحمد محمد محمود</span><br>
-                              <span>رقم التليفون : 01065874456</span><br>
-                              <span>العنوان : الحصري - الحي الثاني-مجاورة ثانية-فرسان جيم</span><br>
+                              <span>الاسم بالكامل : {{previous.customer.name_##session.lang##}}  </span><br>
+                              <span>رقم التليفون : {{previous.customer.mobile}}</span><br>
+                              <span>العنوان : {{previous.customer.address_list[0].gov.name_##session.lang##}} - {{previous.customer.address_list[0].city.name_##session.lang##}}
+                                - {{previous.customer.address_list[0].area.name_##session.lang##}}</span><br>
 
                             </div>
                           </div>
@@ -427,8 +428,7 @@
                               <h2>ملاحظات قبل الكشف</h2>
                             </div>
                             <div>
-                              <span>ملاحظات قبل الكشف ملاحظات قبل الكشف ملاحظات قبل الكشف ملاحظات قبل الكشف ملاحظات قبل
-                                الكشف</span><br>
+                              <span>{{previous.notes_before}}</span><br>
 
 
                             </div>
@@ -438,8 +438,7 @@
                               <h2>ملاحظات بعد الكشف</h2>
                             </div>
                             <div>
-                              <span>ملاحظات بعد الكشف ملاحظات بعد الكشف ملاحظات بعد الكشف ملاحظات بعد الكشف ملاحظات بعد
-                                الكشف</span><br>
+                              <span>{{previous.diagnosis.special_notes}}</span><br>
 
 
                             </div>
@@ -451,7 +450,7 @@
                             </div>
                             <div>
                               <div class="img-with-details">
-                                <img src="/images/analysis-blood.png">
+                                <img ng-src="{{previous.image_url}}" width="10%">
                                 <!-- <p>تفاصيل مع الطلب : علبتين دواء مع شريط كيتوفان وشريط اسبرين مع العلم ان لدي حساسية جيوب أنفية</p>
                                         </div>
                                         <div class="img-with-details">
@@ -522,24 +521,24 @@
               </div>
 
               <div class="tab-content" id="pills-tabContent">
-                <div class="tab-pane fade show active" id="pills-current-booking" role="tabpanel"
+                <div  class="tab-pane fade show active" id="pills-current-booking" role="tabpanel"
                   aria-labelledby="pills-current-booking-tab">
 
-                  <div class="my-current-booking">
+                  <div ng-repeat="current in notCompletedScansList" class="my-current-booking">
 
 
-                    <div class="order-card">
+                    <div   class="order-card">
                       <div class="order-card-body">
                         <div class="pharmacy-img">
                           <img src="/images/dr1.png">
                         </div>
 
                         <div class="orders-details">
-                          <h4>اشعه عظام</h4>
-                          <span>ميعاد الاشاعة : السبت ٢٠-٢-٢٠١٢ </span><br>
-                          <span>ميعاد استلام الاشاعة : الاتنين ٢٢-٢-٢٠١٢</span><br>
+                          <h4>{{current.scans_list[0].name_##session.lang##}}</h4>
+                          <span>ميعاد الاشاعة :  {{current.visit_date|date:'dd - MM - yyyy'}} - {{current.visit_day.##session.lang##}} </span><br>
+                          <span>ميعاد استلام الاشاعة : {{current.delivaryDate|date:'dd - MM - yyyy'}} - {{current.delivaryDate|date:'EEEE'}}</span><br>
                           <span> الحالة : لم تستلم </span><br>
-                          <span>سعر الاشاعة : 200 جنيه</span>
+                          <span>سعر الاشاعة : {{current.scans_list[0].price}} جنيه</span>
                         </div>
 
                         <div class="orders-action">
@@ -579,7 +578,7 @@
                               </div>
                             </div>
                           </div>
-                          <a class="btn" data-toggle="collapse" href="#more" role="button" aria-expanded="false"
+                          <a class="btn" data-toggle="collapse" href="#more_{{current.id}}" role="button" aria-expanded="false"
                             aria-controls="more"
                             style="border:1px solid #00BCC9; background-color: transparent !important;">
                             المزيد
@@ -593,7 +592,7 @@
                         </div>
                       </div>
 
-                      <div class="collapse" id="more">
+                      <div class="collapse" id="more_{{current.id}}">
                         <div class="card card-body">
 
 
@@ -603,9 +602,10 @@
                               <h2>بيانات شخصية</h2>
                             </div>
                             <div>
-                              <span>الاسم بالكامل : أحمد محمد محمود</span><br>
-                              <span>رقم التليفون : 01065874456</span><br>
-                              <span>العنوان : الحصري - الحي الثاني-مجاورة ثانية-فرسان جيم</span><br>
+                              <span>الاسم بالكامل : {{current.customer.name_##session.lang##}}  </span><br>
+                              <span>رقم التليفون : {{current.customer.mobile}}</span><br>
+                              <span>العنوان : {{current.customer.address_list[0].gov.name_##session.lang##}} - {{current.customer.address_list[0].city.name_##session.lang##}}
+                                - {{current.customer.address_list[0].area.name_##session.lang##}}</span><br>
 
                             </div>
                           </div>
@@ -615,8 +615,9 @@
                               <h2>ملاحظات قبل الاشاعة</h2>
                             </div>
                             <div>
-                              <span>ملاحظات قبل الاشاعة ملاحظات قبل الاشاعة ملاحظات قبل الاشاعة ملاحظات قبل الاشاعة
-                                ملاحظات قبل الاشاعة/span><br>
+                              <span>
+                                {{current.scans_list[0].notes_before_scans}}
+                              </span><br>
 
 
                             </div>
@@ -671,10 +672,10 @@
 
 
                 </div>
-                <div class="tab-pane fade" id="pills-previous-booking" role="tabpanel"
+                <div  class="tab-pane fade" id="pills-previous-booking" role="tabpanel"
                   aria-labelledby="pills-previous-booking-tab">
 
-                  <div class="my-previous-booking">
+                  <div ng-repeat="previous in completedScansList" class="my-previous-booking">
 
                     <div class="order-card">
                       <div class="order-card-body">
@@ -683,11 +684,11 @@
                         </div>
 
                         <div class="orders-details">
-                          <h4>اشعه عظام</h4>
-                          <span>ميعاد الاشاعة : السبت ٢٠-٢-٢٠١٢ </span><br>
-                          <span>ميعاد استلام الاشاعة : الاتنين ٢٢-٢-٢٠١٢</span><br>
+                          <h4>{{previous.scans_list[0].name_##session.lang##}}</h4>
+                          <span>ميعاد الاشاعة : {{previous.visit_date|date:'dd - MM - yyyy'}} - {{previous.visit_day.##session.lang##}} </span><br>
+                          <span>ميعاد استلام الاشاعة : {{previous.scans_list[0].delivery_date|date:'dd - MM - yyyy'}} - {{previous.scans_list[0].delivery_date|date:'EEEE'}}</span><br>
                           <span> الحالة : تم تسليم </span><br>
-                          <span>سعر الاشاعة : 200 جنيه</span>
+                          <span>سعر الاشاعة : {{previous.scans_list[0].price}} جنيه</span>
                         </div>
 
                         <div class="orders-action">
@@ -696,7 +697,7 @@
 
                           </div>
 
-                          <a class="btn" data-toggle="collapse" href="#more" role="button" aria-expanded="false"
+                          <a class="btn" data-toggle="collapse" href="#more_{{previous.id}}" role="button" aria-expanded="false"
                             aria-controls="more"
                             style="border:1px solid #00BCC9; background-color: transparent !important;">
                             المزيد
@@ -710,7 +711,7 @@
                         </div>
                       </div>
 
-                      <div class="collapse" id="more">
+                      <div class="collapse" id="more_{{previous.id}}">
                         <div class="card card-body">
 
 
@@ -945,7 +946,7 @@
                 <div class="tab-pane fade show active" id="pills-current-analysis" role="tabpanel"
                   aria-labelledby="pills-current-analysis-tab">
 
-                  <div class="my-current-booking">
+                  <div ng-repeat="current in notCompletedAnalysisList" class="my-current-booking">
                     <div class="order-card">
                       <div class="order-card-body">
                         <div class="pharmacy-img">
@@ -953,11 +954,11 @@
                         </div>
 
                         <div class="orders-details">
-                          <h4>تحليل دم</h4>
-                          <span>ميعاد تحليل : السبت ٢٠-٢-٢٠١٢ </span><br>
-                          <span>ميعاد استلام تحليل : الاتنين ٢٢-٢-٢٠١٢</span><br>
+                          <h4>{{current.analysis_list[0].name_##session.lang##}}</h4>
+                          <span>ميعاد تحليل : {{current.visit_date|date:'dd - MM - yyyy'}} - {{current.visit_day.##session.lang##}} </span><br>
+                          <span>ميعاد استلام تحليل : {{current.delivaryDate|date:'dd - MM - yyyy'}} - {{current.delivaryDate|date:'EEEE'}}</span><br>
                           <span> الحالة : لم تستلم </span><br>
-                          <span>سعر تحليل : 200 جنيه</span>
+                          <span>سعر تحليل : {{current.analysis_list[0].price}} جنيه</span>
                         </div>
 
                         <div class="orders-action">
@@ -1094,18 +1095,18 @@
 
                   <div class="my-previous-booking">
 
-                    <div class="order-card">
+                    <div ng-repeat="previous in completedAnalysisList" class="order-card">
                       <div class="order-card-body">
                         <div class="pharmacy-img">
                           <img src="/images/dr1.png">
                         </div>
 
                         <div class="orders-details">
-                          <h4>تحليل دم</h4>
-                          <span>ميعاد تحليل : السبت ٢٠-٢-٢٠١٢ </span><br>
-                          <span>ميعاد استلام تحليل : الاتنين ٢٢-٢-٢٠١٢</span><br>
+                          <h4>{{previous.analysis_list[0].name_##session.lang##}}</h4>
+                          <span>ميعاد الاشاعة : {{previous.visit_date|date:'dd - MM - yyyy'}} - {{previous.visit_day.##session.lang##}} </span><br>
+                          <span>ميعاد استلام الاشاعة : {{previous.analysis_list[0].delivery_date|date:'dd - MM - yyyy'}} - {{previous.analysis_list[0].delivery_date|date:'EEEE'}}</span><br>
                           <span> الحالة : تم تسليم </span><br>
-                          <span>سعر تحليل : 200 جنيه</span>
+                          <span>سعر الاشاعة : {{previous.analysis_list[0].price}} جنيه</span>
                         </div>
 
                         <div class="orders-action">
@@ -1490,10 +1491,14 @@
         );  
       };
 
+      $scope.getScanDelivaryTime = function (data) {
+         console.log("44444444444444" , data);
+      };
+
 
       $scope.getNotCompletedVisits = function (data) {
         $scope.error = '';
-        console.log("NOT COMPLETED VISITS");
+       
           $http({
           method: 'POST',
           url: '/api/doctors_visits/getNotCompletedVisits',
@@ -1516,6 +1521,111 @@
         );  
       };
 
+
+
+
+      $scope.getNotCompletedScans = function (data) {
+        $scope.error = '';
+       
+          $http({
+          method: 'POST',
+          url: '/api/scans_requests/myNotCompletedScans',
+          data: {
+            "customer" : {
+              id : '##user.ref_info.id##'
+            },
+          }
+        }).then(
+          function (response) {
+           if (response.data.done) {
+            $scope.notCompletedScansList = response.data.list;
+            
+           }
+
+          },
+          function (err) {
+            $scope.busy = false;
+            $scope.error = err;
+          },
+        );  
+      };
+
+
+      $scope.getCompletedScans = function (data) {
+        $scope.error = '';
+       
+          $http({
+          method: 'POST',
+          url: '/api/scans_requests/myCompletedScans',
+          data: {
+            "customer" : {
+              id : '##user.ref_info.id##'
+            },
+          }
+        }).then(
+          function (response) {
+           if (response.data.done) {
+            $scope.completedScansList = response.data.list;
+           }
+
+          },
+          function (err) {
+            $scope.busy = false;
+            $scope.error = err;
+          },
+        );  
+      };
+
+      $scope.getCompletedAnalysis = function (data) {
+        $scope.error = '';
+       
+          $http({
+          method: 'POST',
+          url: '/api/analysis_requests/myCompletedAnalysis',
+          data: {
+            "customer" : {
+              id : '##user.ref_info.id##'
+            },
+          }
+        }).then(
+          function (response) {
+           if (response.data.done) {
+            $scope.completedAnalysisList = response.data.list;
+           }
+
+          },
+          function (err) {
+            $scope.busy = false;
+            $scope.error = err;
+          },
+        );  
+      };
+
+
+      $scope.getNotCompletedAnalysis = function (data) {
+        $scope.error = '';
+       
+          $http({
+          method: 'POST',
+          url: '/api/analysis_requests/myNotCompletedAnalysis',
+          data: {
+            "customer" : {
+              id : '##user.ref_info.id##'
+            },
+          }
+        }).then(
+          function (response) {
+           if (response.data.done) {
+            $scope.notCompletedAnalysisList = response.data.list;
+           }
+
+          },
+          function (err) {
+            $scope.busy = false;
+            $scope.error = err;
+          },
+        );  
+      };
 
      
 
@@ -1551,6 +1661,10 @@
 
       $scope.getCompletedVisits();
       $scope.getNotCompletedVisits();
+      $scope.getNotCompletedScans();
+      $scope.getCompletedScans();
+      $scope.getCompletedAnalysis();
+      $scope.getNotCompletedAnalysis();
       $scope.getPatient();
     });
   </script>

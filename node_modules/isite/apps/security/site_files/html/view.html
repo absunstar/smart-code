@@ -1,0 +1,75 @@
+<div ng-hide="busy" class="row">
+
+
+
+    <div class="col6 padding">
+        <br>
+        <table class="table">
+            <tr>
+                <td class="title">##word.security_user_email##</td>
+                <td>{{user.email}}</td>
+            </tr>
+            <tr>
+                <td class="title">##word.security_user_password##</td>
+                <td>{{user.password}}</td>
+            </tr>
+            <tr>
+                <td class="title">##word.security_user_name##</td>
+                <td>{{user.profile.name}}</td>
+            </tr>
+            <tr>
+                <td class="title">##word.security_user_mobile##</td>
+                <td>
+                    <a ng-show="user.profile.mobile" target="_blank" href="tel:{{user.profile.mobile}}">
+                        {{user.profile.mobile}}
+                        <i class="fa fa-phone" aria-hidden="true"></i>
+                    </a>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="title">##word.notes##</td>
+                <td>{{user.profile.notes}}</td>
+            </tr>
+
+        </table>
+        <br>
+        <table class="table margin">
+            <tr>
+                <th>##word.security_roles##</th>
+
+            </tr>
+            <tr ng-repeat="role in user.roles">
+                <td x-lang="ar">{{role.ar}}</td>
+                <td x-lang="en">{{role.en}}</td>
+            </tr>
+        </table>
+
+        <br>
+        <table class="table margin">
+            <tr>
+                <th>##word.security_permissions##</th>
+
+            </tr>
+            <tr ng-repeat="permission in user.$permissions_info">
+                <td>{{permission.##session.lang##}}</td>
+            </tr>
+        </table>
+        <br>
+
+    </div>
+
+    <div class="col6 padding">
+
+        <i-image view category="users" ng-model="user.profile.image_url"></i-image>
+
+        <br>
+        <i-files view category="users" label="##word.files##" ng-model="user.user.profile.files"></i-files>
+
+
+    </div>
+
+
+
+
+</div>
