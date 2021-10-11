@@ -243,7 +243,7 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
           $scope.invList.push(s_o);
         }
       } else {
-        $scope.store_out.items.forEach((_item, i) => {
+        $scope.store_in.items.forEach((_item, i) => {
           _item.$index = i + 1;
         });
         $scope.invList = [{ ...$scope.store_in }];
