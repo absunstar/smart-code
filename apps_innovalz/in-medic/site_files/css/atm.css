@@ -280,6 +280,7 @@ a.btn.delete, a.btn.exit{
 }
 fieldset{
     border: none !important;
+    box-shadow: none !important;
 }
 div.col3.day select{
     
@@ -290,6 +291,7 @@ div.col3.day select{
 div.col5.month select{
     
     background-color: #f5eeee;
+    border-radius: 0px !important;
     
 
 }

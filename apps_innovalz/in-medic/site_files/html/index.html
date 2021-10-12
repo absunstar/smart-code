@@ -294,11 +294,11 @@
                           <th>المنطقة</th>
                           <th>العنوان</th>
                         </tr>
-                        <tr>
-                          <td>test</td>
-                          <td>test</td>
-                          <td>test</td>
-                          <td>test</td>
+                        <tr ng-repeat="a in customer.address_list">
+                          <td>{{a.gov.name_##session.lang##}}</td>
+                          <td>{{a.city.name_##session.lang##}}</td>
+                          <td>{{a.area.name_##session.lang##}}</td>
+                          <td>{{a.address}}</td>
                         </tr>
                       </table>
 
@@ -325,11 +325,11 @@
                   </div>
                   <div class="row data-info-row">
                     <div class="col-sm-12">
-                      <div class="personal-div"><div class="personal-title"><h5>التليفون</h5></div><div class="personal-data"><p>test</p></div></div>
-                      <div class="personal-div"><div class="personal-title"><h5>رقم الداخلي</h5></div><div class="personal-data"><p>test</p></div></div>
-                      <div class="personal-div"><div class="personal-title"><h5> الجوال</h5></div><div class="personal-data"><p>test</p></div></div>
-                      <div class="personal-div"><div class="personal-title"><h5> الفاكس</h5></div><div class="personal-data"><p>test</p></div></div>
-                      <div class="personal-div"><div class="personal-title"><h5> الواتس اب</h5></div><div class="personal-data"><p>test</p></div></div>
+                      <div class="personal-div"><div class="personal-title"><h5>التليفون</h5></div><div class="personal-data"><p>{{customer.phone}}</p></div></div>
+                      <!-- <div class="personal-div"><div class="personal-title"><h5>رقم الداخلي</h5></div><div class="personal-data"><p>{{}}</p></div></div> -->
+                      <div class="personal-div"><div class="personal-title"><h5> الجوال</h5></div><div class="personal-data"><p>{{customer.mobile}}</p></div></div>
+                      <div class="personal-div"><div class="personal-title"><h5> الفاكس</h5></div><div class="personal-data"><p>{{customer.fax}}</p></div></div>
+                      <div class="personal-div"><div class="personal-title"><h5> الواتس اب</h5></div><div class="personal-data"><p>{{customer.whatsapp}}</p></div></div>
                       <div class="" style="text-align: center; margin-top: 50px;">
                         <a href="#" class="print-btn">طباعة</a>
   
@@ -347,8 +347,8 @@
                   </div>
                   <div class="row data-info-row">
                     <div class="col-sm-12">
-                      <div class="personal-div"><div class="personal-title"><h5>صندوق البريد</h5></div><div class="personal-data"><p>test</p></div></div>
-                      <div class="personal-div"><div class="personal-title"><h5>رقم البريدي</h5></div><div class="personal-data"><p>test</p></div></div>
+                      <div class="personal-div"><div class="personal-title"><h5>صندوق البريد</h5></div><div class="personal-data"><p>{{customer.mailbox}}</p></div></div>
+                      <div class="personal-div"><div class="personal-title"><h5>رقم البريدي</h5></div><div class="personal-data"><p>{{customer.post_number}}</p></div></div>
                       <div class="" style="text-align: center; margin-top: 50px;">
                         <a href="#" class="print-btn">طباعة</a>
   
@@ -367,10 +367,10 @@
                   </div>
                   <div class="row data-info-row">
                     <div class="col-sm-12">
-                      <div class="personal-div"><div class="personal-title"><h5>الموقع الالكتروني</h5></div><div class="personal-data"><p>test</p></div></div>
-                      <div class="personal-div"><div class="personal-title"><h5>حساب الفيس بوك </h5></div><div class="personal-data"><p>test</p></div></div>
-                      <div class="personal-div"><div class="personal-title"><h5>حساب  تويتر </h5></div><div class="personal-data"><p>test</p></div></div>
-                      <div class="personal-div"><div class="personal-title"><h5>حساب  جوجل </h5></div><div class="personal-data"><p>test</p></div></div>
+                      <div class="personal-div"><div class="personal-title"><h5>الموقع الالكتروني</h5></div><div class="personal-data"><p>{{customer.website}}</p></div></div>
+                      <div class="personal-div"><div class="personal-title"><h5>حساب الفيس بوك </h5></div><div class="personal-data"><p>{{customer.social_facebook}}</p></div></div>
+                      <div class="personal-div"><div class="personal-title"><h5>حساب  تويتر </h5></div><div class="personal-data"><p>{{customer.social_twitter}}</p></div></div>
+                      <div class="personal-div"><div class="personal-title"><h5>حساب  جوجل </h5></div><div class="personal-data"><p>{{customer.social_google}}</p></div></div>
                       <div class="" style="text-align: center; margin-top: 50px;">
                         <a href="#" class="print-btn">طباعة</a>
   
@@ -417,10 +417,10 @@
                   </div>
                   <div class="row data-info-row">
                     <div class="col-sm-12">
-                      <div class="personal-div"><div class="personal-title"><h5>الوزن</h5></div><div class="personal-data"><p>test</p></div></div>
-                      <div class="personal-div"><div class="personal-title"><h5>الطول</h5></div><div class="personal-data"><p>test</p></div></div>
-                      <div class="personal-div"><div class="personal-title"><h5>فصيلة الدم</h5></div><div class="personal-data"><p>test</p></div></div>
-                      <div class="personal-div"><div class="personal-title"><h5> ملاحظات طبية</h5></div><div class="personal-data"><p>test</p></div></div>
+                      <div class="personal-div"><div class="personal-title"><h5>الوزن</h5></div><div class="personal-data"><p>{{customer.weight}}</p></div></div>
+                      <div class="personal-div"><div class="personal-title"><h5>الطول</h5></div><div class="personal-data"><p>{{customer.tall}}</p></div></div>
+                      <div class="personal-div"><div class="personal-title"><h5>فصيلة الدم</h5></div><div class="personal-data"><p>{{customer.blood_type.name}}</p></div></div>
+                      <div class="personal-div"><div class="personal-title"><h5> ملاحظات طبية</h5></div><div class="personal-data"><p>{{customer.medicine_notes}}</p></div></div>
                      
                      
                     </div>
@@ -442,9 +442,9 @@
                         <tr style="background-color: #00BCC9; height: 40px;">
                           <th>حساسية الاطعمة</th>
                         </tr>
-                        <tr>
+                        <tr ng-repeat="a in customer.allergic_food_list">
                           <td>
-                            test
+                            {{a.food.name_##session.lang##}}
                           </td>
                         </tr>
                       </table>
@@ -455,9 +455,9 @@
                         <tr style="background-color: #00BCC9; height: 40px;">
                           <th>حساسية المشروبات</th>
                         </tr>
-                        <tr>
+                        <tr ng-repeat="a in customer.allergic_drink_list">
                           <td>
-                            test
+                            {{a.drink.name_##session.lang##}}
                           </td>
                         </tr>
                       </table>
@@ -481,9 +481,9 @@
                             اسم المرض
                           </th>
                         </tr>
-                        <tr>
+                        <tr ng-repeat="d in customer.disease_list">
                           <td>
-                            test
+                            {{d.disease.name_##session.lang##}}
                           </td>
                         </tr>
                       </table>
@@ -513,6 +513,7 @@
                           <th>الاجراءات</th>
                         </tr>
                         <tr>
+                        <!-- <tr ng-repeat="m in medicines_list"> -->
                           <td>test</td>
                           <td>test</td>
                           <td>test</td>
@@ -563,7 +564,7 @@
                 <div class="container" style="margin: 50px 0px 30px 0px;">
                   <div class="row row-heading">
                     <div class="col-sm-12">
-                      <h2> الادوية </h2>
+                      <h2> الملفات </h2>
                     </div>
                   </div>
                   <div class="row data-info-row">
@@ -577,13 +578,14 @@
                           <th> رفع بواسطة</th>
                           <th> الملف </th>
                         </tr>
-                        <tr>
-                          <td>test</td>
-                          <td>test</td>
-                          <td>test</td>
-                          <td>test</td>
-                          <td>test</td>
-                          <td>test</td>
+                        <tr ng-repeat="f in customer.files_list">
+                          <td>{{f.file_type.name_##session.lang##}}</td>
+                          <td>{{f.file_name}}</td>
+                          <td>{{f.file_date|date:'dd - MM - yyyy'}}</td>
+                          <td>{{f.file_upload_date|date:'dd - MM - yyyy'}}</td>
+                          <td>{{f.upload_by}}</td>
+                          <!-- <td ng-repeat="a in f.file">{{a.name}} &nbsp;<a href="{{a.url}}">تحميل</a></td> -->
+                          <td ng-repeat="a in f.file">{{a.name}} &nbsp;<a href="{{a.url}}"><i class="fas fa-download" style="font-size:15px; color:#00BCC9">&nbsp; تحميل &nbsp;</i></a></td>
                         </tr>
                       </table>
                      
@@ -626,8 +628,8 @@
                   </div>
                   <div class="row data-info-row">
                     <div class="col-sm-12">
-                      <div class="personal-div"><div class="personal-title"><h5>اسم المستخدم</h5></div><div class="personal-data"><p>test</p></div></div>
-                      <div class="personal-div"><div class="personal-title"><h5>كلمه المرور</h5></div><div class="personal-data"><p>test</p></div></div>
+                      <div class="personal-div"><div class="personal-title"><h5>اسم المستخدم</h5></div><div class="personal-data"><p>{{customer.username}}</p></div></div>
+                      <div class="personal-div"><div class="personal-title"><h5>كلمه المرور</h5></div><div class="personal-data"><p>{{customer.password}}</p></div></div>
                      
                      
                      
@@ -814,7 +816,7 @@
               $scope.customer= response.data.doc;
               $scope.busy = false;
             };
-            console.log("1111111111111111111111111" , $scope.customer['code']);
+           
           },
           function (err) {
             $scope.busy = false;

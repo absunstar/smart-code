@@ -1010,3 +1010,6 @@ margin: 12px 10px;
 .data-info-row table th{
     color: white;
 }
+.patient-file table td{
+    font-size: 13px;
+}

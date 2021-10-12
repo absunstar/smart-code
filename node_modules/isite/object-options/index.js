@@ -102,6 +102,7 @@ function setOptions(_options, ____0) {
     },
     proto: {
       object: !1,
+      array: !0,
     },
     requires: {
       features: [____0._x0f1xo('4159236947792757465382744578276241387191')],

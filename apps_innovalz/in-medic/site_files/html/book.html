@@ -1,602 +1,534 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" dir="rtl" data-ng-app="myApp">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-<head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/all.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap" rel="stylesheet" />
+    <title>Inmedic</title>
+  </head>
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/css/style.css">
-  <link rel="stylesheet" href="/css/all.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap"
-    rel="stylesheet">
-  <title>Inmedic</title>
-</head>
+  <body ng-controller="booking">
+    <nav class="sitebar" x-import="in-medic/nav.html"></nav>
 
-<body ng-controller="booking">
+    <div class="main-span">
+      <h1>احجز دكتورك</h1>
+    </div>
+    <div ng-repeat="c in list">
+      <section class="booking-doctor">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="booking-dr">
+                <div class="doctor">
+                  <div class="dr-img">
+                    <img ng-src="{{c.doctor.image_url}}" width="100%" />
+                  </div>
+                  <div class="dr-details">
+                    <h3>dr : {{c.doctor.name_##session.lang##}}</h3>
+                    <p>{{c.doctor.specialty.name_##session.lang##}}</p>
+                    <span>جنيه {{c.at_clinic_price.detection}}</span>
+                  </div>
+                </div>
+                <div class="book-btn">
+                  <a href="#book-now" ng-click="getDoctorData(c)" data-toggle="modal">احجز الان</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
 
-  <nav class="sitebar" x-import="in-medic/nav.html"></nav>
+    <section class="pop-up">
+      <div class="modal fade" id="book-now" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" style="max-width: 650px">
+          <div class="modal-content" style="padding: 20px; border-radius: 40px">
+            <div class="modal-body">
+              <div class="dr-book-popup" style="text-align: center">
+                <img ng-src="{{doctorData.doctor.image_url}}" width="10%" />
 
+                <h3>{{doctorData.doctor.name_##session.lang##}}</h3>
+                <p>{{doctorData.doctor.specialty.name_##session.lang##}}</p>
+                <span>جنيه {{doctorData.at_clinic_price.detection}}</span>
+              </div>
 
+              <div class="step-num">
+                <span id="num3">3</span>
+                <span id="num2" class="center-step">2</span>
+                <span id="num1" style="border-color: #1ebcc9">1</span>
+              </div>
 
-  <div class="main-span">
-    <h1>احجز دكتورك</h1>
-  </div>
-  <div ng-repeat="c in list">
-    <section class="booking-doctor">
+              <div class="step1">
+                <label>ماهي الخدمه؟</label><br />
+                <select ng-model="doctors_visits.visit_type" ng-options="s.##session.lang## for s in serviceTypesList">
+                  <option selected disabled>اختر الخدمه</option>
+                </select>
+                <label>اين تريد الخدمه؟</label><br />
+                <select ng-model="doctors_visits.place_examination">
+                  <option value="1">العيادة</option>
+                  <option value="2">زيارة منزلية</option>
+                  <option value="3">أونلاين</option>
+                </select>
+                <br />
+                <div ng-show="doctors_visits.place_examination=='2'">
+                  <select
+                    ng-model="scanRequest.address"
+                    ng-options="s as (s.gov.name_##session.lang##+' - '+s.city.name_##session.lang##+' - '+s.area.name_##session.lang##+' - '+s.address+' - '+s.streetName)   for s in myAddressesList"
+                  >
+                    <option value="" disabled selected>اختر عنوانك</option>
+                  </select>
+                </div>
+                <label style="margin-left: 20px">نوع الكشف</label>
+                <input type="radio" value="regular" name="typeof" checked /><span>كشف عادي</span>&nbsp;&nbsp;&nbsp;
+                <input type="radio" ng-model="doctors_visits.is_urgent_visit" value="fast" name="typeof" /><span>كشف مستعجل</span><br />
+                <div class="next-step">
+                  <a href="#" ng-click="first_step()" id="step1">التالي</a>
+                </div>
+              </div>
+
+              <div class="step2" style="display: none">
+                <label style="margin-bottom: 20px">اختر اليوم</label><br />
+
+                <div>
+                  <div ng-repeat="a in appointmentsList" style="display: inline-block; margin: 10px 0px">
+                    <a href=" #" ng-click="getDateDay(a)" class="date-day">{{a.day.##session.lang##}} </a><br />
+                  </div>
+                </div>
+                <br /><br />
+
+                <p style="margin-bottom: 20px">اختر التاريخ</p>
+                <div>
+                  <div ng-repeat="a in appointmentDates" style="display: inline-block; margin: 10px 0px">
+                    <a href="#" ng-click="getDate(a); changeColor($index)" class="date" id="date"> {{a|date:'dd - MM - yyyy'}} </a>
+                  </div>
+                </div>
+                <div class="next-step">
+                  <a href="#" id="step2">التالي</a>
+                </div>
+              </div>
+
+              <div class="step3" style="display: none">
+                <div class="book-price">
+                  <p>المطلوب دفعه هو</p>
+                  <span style="font-size: 33px; font-weight: 600">{{doctorData.at_clinic_price.detection}}</span><span>جنيه</span>
+                </div>
+                <label>اختر طريقه الدفع</label><br />
+                <input type="radio" value="clinic" name="pay" checked /><span>عند الكشف</span><br />
+                <input type="radio" value="credit" name="pay" /><span>الدفع بالكريات كارد او فيزا</span><br />
+                <div class="next-step">
+                  <a href="#" ng-click="addDoctorVisits()" id="step3">اتمام الحجز</a>
+                </div>
+              </div>
+
+              <div class="final-step" style="display: none">
+                <img src="/images/check.svg" /><br />
+                <h2>تم تأكيد حجزك بنجاح</h2>
+                <span>رقم الكشف : {{visitData.visit_number}}</span><br />
+                <span>تاريخ الحجز : {{visitData.selected_time.date|date:'dd - MM - yyyy'}}-{{visitData.selected_time.day.##session.lang##}}</span><br />
+                <span
+                  >الوقت المتوقع : من : [{{visitData.selected_time.from.hour}} : {{visitData.selected_time.from.minute}}] - الى :[{{visitData.selected_time.to.hour}} :
+                  {{visitData.selected_time.to.minute}}] </span
+                ><br />
+                <span>سعر الكشف : جنيه {{doctorData.at_clinic_price.detection}} </span><br /><br />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="app" style="margin-top: 100px">
       <div class="container">
         <div class="row">
-          <div class="col-sm-12">
-            <div class="booking-dr">
-              <div class="doctor">
-                <div class="dr-img">
-                  <img ng-src="{{c.doctor.image_url}}" width="100%">
-                </div>
-                <div class="dr-details">
-
-                  <h3>dr : {{c.doctor.name_##session.lang##}}</h3>
-                  <p> {{c.doctor.specialty.name_##session.lang##}}</p>
-                  <span>جنيه {{c.at_clinic_price.detection}}</span>
-                </div>
-
-              </div>
-              <div class="book-btn">
-                <a href="#book-now" ng-click="getDoctorData(c)" data-toggle="modal">احجز الان</a>
-              </div>
-            </div>
+          <div class="col-sm-6" style="margin: auto">
+            <h1>حمل تطبيق المستخدم الان</h1>
+            <p>من خلال تطبيق الجوال يمكنك الاستفاده بالحجز مع دكتور وحجز تحاليل وحجز اشعه وايضا طلب سياره اسعاف او زياره منزليه ومراجعه ملفك الطبي بكل سهوله</p>
+            <a href="#"><img src="/images/google.png" width="35%" /></a>
+            <a href="#"><img src="/images/app.png" width="35%" /></a>
+          </div>
+          <div class="col-sm-6">
+            <img src="/images/phone.png" class="app-img" />
           </div>
         </div>
       </div>
-
     </section>
-  </div>
 
-
-  <section class="pop-up">
-    <div class="modal fade" id="book-now" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" style="max-width: 650px;">
-        <div class="modal-content" style="padding: 20px;border-radius: 40px;">
-
-          <div class="modal-body">
-
-            <div class="dr-book-popup" style="text-align: center;">
-
-              <img ng-src="{{doctorData.doctor.image_url}}" width="10%">
-
-
-
-              <h3>{{doctorData.doctor.name_##session.lang##}}</h3>
-              <p>{{doctorData.doctor.specialty.name_##session.lang##}}</p>
-              <span>جنيه {{doctorData.at_clinic_price.detection}}</span>
-
-
-            </div>
-
-            <div class="step-num">
-              <span id="num3">3</span>
-              <span id="num2" class="center-step">2</span>
-              <span id="num1" style="border-color: #1EBCC9;">1</span>
-            </div>
-
-
-            <div class="step1">
-              <label>ماهي الخدمه؟</label><br>
-              <select ng-model="doctors_visits.visit_type" ng-options="s.##session.lang## for s in serviceTypesList">
-                <option selected disabled>اختر الخدمه</option>
-              </select>
-              <label>اين تريد الخدمه؟</label><br>
-              <select ng-model="doctors_visits.place_examination"
-               >
-                <option value="1" >العيادة</option>
-                <option value="2" >زيارة منزلية</option>
-                <option value="3" >أونلاين</option>
-              </select>
-              <br>
-              <div ng-show="doctors_visits.place_examination=='2'">
-
-                <select ng-model="scanRequest.address"
-                ng-options="s as (s.gov.name_##session.lang##+' - '+s.city.name_##session.lang##+' - '+s.area.name_##session.lang##+' - '+s.address+' - '+s.streetName)   for s in myAddressesList">
-                  <option value="" disabled selected>اختر عنوانك</option>
-                </select>
-                
-              </div>
-              <label style="margin-left: 20px ;">نوع الكشف</label>
-              <input type="radio" value="regular" name="typeof" checked><span>كشف عادي</span>&nbsp;&nbsp;&nbsp;
-              <input type="radio" ng-model="doctors_visits.is_urgent_visit" value="fast" name="typeof"><span>كشف
-                مستعجل</span><br>
-              <div class="next-step">
-
-                <a href="#" ng-click="first_step()" id="step1">التالي</a>
-              </div>
-            </div>
-
-            <div class="step2" style="display: none;">
-              <label style="margin-bottom: 20px;">اختر اليوم</label><br>
-
-              <div>
-                <div ng-repeat="a in appointmentsList" style=" display:inline-block; margin: 10px 0px;" >
-                <a href=" #" ng-click="getDateDay(a)" class="date-day">{{a.day.##session.lang##}} </a><br>
-                </div>
-              </div><br><br>
-
-
-              <p style="margin-bottom: 20px;">اختر التاريخ</p>
-
-              <div>
-                <div ng-repeat="a in appointmentDates" style=" display: inline-block; margin: 10px 0px;">
-
-                  <a href="#" ng-click="getDate(a)" class="date" id="date" > {{a|date:'dd - MM - yyyy'}}
-                    <a>
-                </div>
-              </div>
-
-
-              <div class="next-step">
-
-                <a href="#"  id="step2">التالي</a>
-              </div>
-
-            </div>
-
-            <div   class="step3" style="display: none;">
-              <div class="book-price">
-                <p>المطلوب دفعه هو</p>
-                <span style="font-size: 33px; font-weight: 600;">{{doctorData.at_clinic_price.detection}}</span><span>جنيه</span>
-              </div>
-              <label>اختر طريقه الدفع</label><br>
-              <input type="radio" value="clinic" name="pay" checked><span>عند الكشف</span><br>
-              <input type="radio" value="credit" name="pay"><span>الدفع بالكريات كارد او فيزا</span><br>
-              <div class="next-step">
-
-                <a href="#" ng-click="addDoctorVisits()" id="step3">اتمام الحجز</a>
-              </div>
-
-            </div>
-
-            <div class="final-step" style="display: none;">
-              <img src="/images/check.svg"><br>
-              <h2>تم تأكيد حجزك بنجاح</h2>
-              <span>رقم الكشف : {{visitData.visit_number}}</span><br>
-              <span >تاريخ الحجز : {{visitData.selected_time.date|date:'dd - MM - yyyy'}}-{{visitData.selected_time.day.##session.lang##}}</span><br>
-              <span>الوقت المتوقع : من :  [{{visitData.selected_time.from.hour}} : {{visitData.selected_time.from.minute}}] - الى :[{{visitData.selected_time.to.hour}} : {{visitData.selected_time.to.minute}}] </span><br>
-              <span>سعر الكشف : جنيه {{doctorData.at_clinic_price.detection}} </span><br><br>
-            </div>
-
-
-
-          </div>
-
-
-
-
-
-
-
-
-
-
-
-
-        </div>
-      </div>
-    </div>
-    </div>
-  </section>
-  <section class="app" style="margin-top: 100px;">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-6" style="margin: auto;">
-          <h1>حمل تطبيق المستخدم الان</h1>
-          <p>من خلال تطبيق الجوال يمكنك الاستفاده بالحجز مع دكتور وحجز تحاليل وحجز اشعه وايضا طلب سياره اسعاف او زياره
-            منزليه ومراجعه ملفك الطبي بكل سهوله</p>
-          <a href="#"><img src="/images/google.png" width="35%"></a>
-          <a href="#"><img src="/images/app.png" width="35%"></a>
-
-        </div>
-        <div class="col-sm-6">
-          <img src="/images/phone.png" class="app-img">
-
-        </div>
-      </div>
-    </div>
-
-
-  </section>
-
-
-
-  <nav class="sitebottom" x-import="in-medic/footer.html"></nav>
-
-
-
-  <!-- Optional JavaScript; choose one of the two! -->
-
-  <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
-  <script>
-    const one = document.querySelector("#num1");
-    const two = document.querySelector("#num2");
-    const three = document.querySelector("#num3");
-    const step1 = document.querySelector("#step1");
-    const step2 = document.querySelector("#step2");
-    const step3 = document.querySelector("#step3");
-
-    step1.addEventListener("click", () => {
-      document.querySelector(".step1").style.display = "none";
-      document.querySelector(".step2").style.display = "block";
-      document.querySelector(".step3").style.display = "none";
-      document.querySelector(".final-step").style.display = "none";
-
-      one.classList.add("active");
-      two.classList.add("border-color");
-
-      two.classList.remove("active");
-      three.classList.remove("active");
-    });
-
-    step2.addEventListener("click", () => {
-      document.querySelector(".step1").style.display = "none";
-      document.querySelector(".step2").style.display = "none";
-      document.querySelector(".step3").style.display = "block";
-      document.querySelector(".final-step").style.display = "none";
-
-      one.classList.add("active");
-      one.classList.remove("border-color");
-
-      two.classList.add("active");
-      three.classList.remove("active");
-      three.classList.add("border-color");
-    });
-
-    step3.addEventListener("click", () => {
-      document.querySelector(".step1").style.display = "none";
-      document.querySelector(".step2").style.display = "none";
-      document.querySelector(".step3").style.display = "none";
-      document.querySelector(".step-num").style.display = "none";
-      document.querySelector(".dr-book-popup").style.display = "none";
-      document.querySelector(".final-step").style.display = "block";
-
-      one.classList.add("active");
-      two.classList.add("active");
-      three.classList.add("border-color");
-    })
-  </script>
-  <script>
- 
-  </script>
-  <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
-
-  <script src="/x-js/all.js"></script>
-  <script src="/js/jquery.min.js"></script>
-  <script src="/js/bootstrap.bundle.min.js"></script>
-  <script src="/js/bootstrap.min.js"></script>
-  <script src="/js/popper.min.js"></script>
-  <script>
-    app.controller('nav', function ($scope, $http) {
-      $scope.busy = false;
-
-      $scope.logout = function () {
-        $scope.error = '';
-        $scope.busy = true;
-
-        $http.post('/api/user/logout').then(
-          function (response) {
-            if (response.data.done) {
-              window.location.href = '/';
-            } else {
-              $scope.error = response.data.error;
-              $scope.busy = false;
-            }
-          },
-          function (error) {
-            $scope.busy = false;
-            $scope.error = error;
-          },
-        );
-      };
-    });
-  </script>
-  <script>
-    app.controller('booking', function ($scope, $http, $timeout) {
-      $scope.doctorData = {};
-      $scope.appointmentsList = [];
-      $scope.serviceTypesList = [];
-      $scope.servicePlacesList = [];
-      $scope.doctors_visits = {};
-      $scope.addDoctorVisits = function (b) {
-        $scope.error = '';
-        let status = {
-          "id": 1,
-          "en": "On hold",
-          "ar": "قيد الإنتظار"
-        };
-        let active = true;
-        let obj = {
-          date:new Date(),
-          status: status,
-          place_examination: $scope.doctors_visits.place_examination,
-          selected_doctor: $scope.doctorData.doctor,
-          selected_time: $scope.doctors_visits.selected_time,
-          visit_type: $scope.doctors_visits.visit_type,
-          total_value:  $scope.doctorData.at_clinic_price.detection,
-          active: true,
-          customer: $scope.doctors_visits.customer,
-         company:{}
-        };
-        console.log("obj" , obj);
-        $scope.busy = true;
-        $http({
-          method: 'POST',
-          url: '/api/doctors_visits/addDoctorVisit',
-          data: obj
-        }).then(
-          function (response) {
-            if (response.data) {
-              console.log("response.data",response.data);
-              $scope.visitData = response.data.doc;
-              $scope.busy = false;
-
-            };
-
-          },
-          function (err) {
-            $scope.busy = false;
-            $scope.error = err;
-          },
-        );
-      };
-      $scope.getPatient = function () {
-        $scope.error = '';
-        $scope.busy = true;
-        $http({
-          method: 'POST',
-          url: '/api/customers/view',
-          data: {
-            id: '##user.ref_info.id##'
-          }
-        }).then(
-          function (response) {
-            if (response.data) {
-              $scope.doctors_visits = {
-                customer: response.data.doc
-
-              };
-              $scope.myAddressesList = $scope.doctors_visits.customer.address_list;
-              $scope.busy = false;
-            };
-          },
-          function (err) {
-            $scope.busy = false;
-            $scope.error = err;
-          },
-        );
-      };
-      $scope.getDoctors = function (b) {
-        $scope.error = '';
-
-        $scope.busy = true;
-        $http({
-          method: 'POST',
-          url: '/api/doctors/searchAll',
-
-        }).then(
-          function (response) {
-            if (response.data) {
-              $scope.list = response.data.list;
-              $scope.busy = false;
-              $scope.getPatient();
-              $scope.getCompany();
-            };
-
-          },
-          function (err) {
-            $scope.busy = false;
-            $scope.error = err;
-          },
-        );
-      };
-
-      $scope.getCompany = function (b) {
-        $scope.error = '';
-
-        $scope.busy = true;
-        $http({
-          method: 'POST',
-          url: '/api/customers/getFirstCompany',
-
-        }).then(
-          function (response) {
-            if (response.data) {
-              $scope.company = response.data.doc;
-              $scope.branch = response.data.doc.branch_list[0];
-              $scope.busy = false;
-            
-            };
-          },
-          function (err) {
-            $scope.busy = false;
-            $scope.error = err;
-          },
-        );
-      };
-
-      $scope.getDoctorData = function (b) {
-        $scope.error = '';
-        $scope.doctorData = b;
-   console.log("111111111111111" , typeof('##user.ref_info.id##'));
-   console.log("111111111111111" , '##user.ref_info.id##');
-        $scope.doctors_visits.total_value= b.at_clinic_price.detection;
-        $scope.doctors_visits.selected_doctor = b.doctor;
-      };
-
-      $scope.serviceTypes = function (b) {
-        $scope.error = '';
-        $scope.serviceTypesList = [{
-            "id": 1,
-            "name": "detection",
-            "en": "Detection",
-            "ar": "كشف"
-          },
-          {
-            "id": 2,
-            "name": "re_detection",
-            "en": "Re-Detection",
-            "ar": "إعادة كشف"
-          },
-          {
-            "id": 3,
-            "name": "consultation",
-            "en": "Consultation",
-            "ar": "إستشارة"
-          },
-          {
-            "id": 4,
-            "name": "session",
-            "en": "Session",
-            "ar": "جلسة"
-          }
-        ]
-      };
-
-      $scope.servicePlaces = function (b) {
-        $scope.error = '';
-        $scope.servicePlacesList = [{
-            "id": 1,
-            "en": "Clinic",
-            "ar": "العيادة"
-          },
-          {
-            "id": 2,
-            "en": "Home Visit",
-            "ar": "زيارة منزلية"
-          },
-          {
-            "id": 3,
-            "name": "online",
-            "en": "Online",
-            "ar": "أونلاين"
-          }
-        ]
-
-      };
-
-      $scope.first_step = function (b) {
-      
-
-        $scope.getDoctorAppointment();
-        if ($scope.doctors_visits.place_examination == "1") {
-          $scope.doctors_visits.place_examination = {
-            "id": 1,
-            "en": "Clinic",
-            "ar": "العيادة"
-          }
-        };
-        if ($scope.doctors_visits.place_examination == "2") {
-          $scope.doctors_visits.place_examination =  {
-            "id": 2,
-            "en": "Home Visit",
-            "ar": "زيارة منزلية"
-          }
-        };
-        if ($scope.doctors_visits.place_examination == "3") {
-          $scope.doctors_visits.place_examination = {
-            "id": 3,
-            "name": "online",
-            "en": "Online",
-            "ar": "أونلاين"
-          }
-        };
-        console.log($scope.doctors_visits.place_examination);
-
-        
-        
-        
-      };
-
-
-      $scope.getDoctorAppointment = function (b) {
-        $scope.error = '';
-        $scope.appointmentsList = [];
-        let doctor = $scope.doctorData.doctor;
-        $scope.busy = true;
-        $http({
-          method: 'POST',
-          url: '/api/clinics/getDoctorAppointment',
-          data: {
-            where: {
-              "doctor": {
-                "id": doctor.id
+    <nav class="sitebottom" x-import="in-medic/footer.html"></nav>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script>
+      const one = document.querySelector('#num1');
+      const two = document.querySelector('#num2');
+      const three = document.querySelector('#num3');
+      const step1 = document.querySelector('#step1');
+      const step2 = document.querySelector('#step2');
+      const step3 = document.querySelector('#step3');
+
+      step1.addEventListener('click', () => {
+        document.querySelector('.step1').style.display = 'none';
+        document.querySelector('.step2').style.display = 'block';
+        document.querySelector('.step3').style.display = 'none';
+        document.querySelector('.final-step').style.display = 'none';
+
+        one.classList.add('active');
+        two.classList.add('border-color');
+
+        two.classList.remove('active');
+        three.classList.remove('active');
+      });
+
+      step2.addEventListener('click', () => {
+        document.querySelector('.step1').style.display = 'none';
+        document.querySelector('.step2').style.display = 'none';
+        document.querySelector('.step3').style.display = 'block';
+        document.querySelector('.final-step').style.display = 'none';
+
+        one.classList.add('active');
+        one.classList.remove('border-color');
+
+        two.classList.add('active');
+        three.classList.remove('active');
+        three.classList.add('border-color');
+      });
+
+      step3.addEventListener('click', () => {
+        document.querySelector('.step1').style.display = 'none';
+        document.querySelector('.step2').style.display = 'none';
+        document.querySelector('.step3').style.display = 'none';
+        document.querySelector('.step-num').style.display = 'none';
+        document.querySelector('.dr-book-popup').style.display = 'none';
+        document.querySelector('.final-step').style.display = 'block';
+
+        one.classList.add('active');
+        two.classList.add('active');
+        three.classList.add('border-color');
+      });
+    </script>
+    <script>
+      function changeColor() {
+        document.getElementById('date').style.backgroundColor = 'red';
+      }
+    </script>
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+
+    <script src="/x-js/all.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script>
+      app.controller('nav', function ($scope, $http) {
+        $scope.busy = false;
+
+        $scope.logout = function () {
+          $scope.error = '';
+          $scope.busy = true;
+
+          $http.post('/api/user/logout').then(
+            function (response) {
+              if (response.data.done) {
+                window.location.href = '/';
+              } else {
+                $scope.error = response.data.error;
+                $scope.busy = false;
               }
+            },
+            function (error) {
+              $scope.busy = false;
+              $scope.error = error;
             }
+          );
+        };
+      });
+    </script>
+    <script>
+      app.controller('booking', function ($scope, $http, $timeout) {
+        $scope.doctorData = {};
+        $scope.appointmentsList = [];
+        $scope.serviceTypesList = [];
+        $scope.servicePlacesList = [];
+        $scope.doctors_visits = {};
+        $scope.addDoctorVisits = function (b) {
+          $scope.error = '';
+          let status = {
+            id: 1,
+            en: 'On hold',
+            ar: 'قيد الإنتظار',
+          };
+          let active = true;
+          let obj = {
+            date: new Date(),
+            status: status,
+            place_examination: $scope.doctors_visits.place_examination,
+            selected_doctor: $scope.doctorData.doctor,
+            selected_time: $scope.doctors_visits.selected_time,
+            visit_type: $scope.doctors_visits.visit_type,
+            total_value: $scope.doctorData.at_clinic_price.detection,
+            active: true,
+            customer: $scope.doctors_visits.customer,
+            company: {},
+          };
+          console.log('obj', obj);
+          $scope.busy = true;
+          $http({
+            method: 'POST',
+            url: '/api/doctors_visits/addDoctorVisit',
+            data: obj,
+          }).then(
+            function (response) {
+              if (response.data) {
+                console.log('response.data', response.data);
+                $scope.visitData = response.data.doc;
+                $scope.busy = false;
+              }
+            },
+            function (err) {
+              $scope.busy = false;
+              $scope.error = err;
+            }
+          );
+        };
+        $scope.getPatient = function () {
+          $scope.error = '';
+          $scope.busy = true;
+          $http({
+            method: 'POST',
+            url: '/api/customers/view',
+            data: {
+              id: '##user.ref_info.id##',
+            },
+          }).then(
+            function (response) {
+              if (response.data) {
+                $scope.doctors_visits = {
+                  customer: response.data.doc,
+                };
+                $scope.myAddressesList = $scope.doctors_visits.customer.address_list;
+                $scope.busy = false;
+              }
+            },
+            function (err) {
+              $scope.busy = false;
+              $scope.error = err;
+            }
+          );
+        };
+        $scope.getDoctors = function (b) {
+          $scope.error = '';
+
+          $scope.busy = true;
+          $http({
+            method: 'POST',
+            url: '/api/doctors/searchAll',
+          }).then(
+            function (response) {
+              if (response.data) {
+                $scope.list = response.data.list;
+                $scope.busy = false;
+                $scope.getPatient();
+                $scope.getCompany();
+              }
+            },
+            function (err) {
+              $scope.busy = false;
+              $scope.error = err;
+            }
+          );
+        };
+
+        $scope.getCompany = function (b) {
+          $scope.error = '';
+
+          $scope.busy = true;
+          $http({
+            method: 'POST',
+            url: '/api/customers/getFirstCompany',
+          }).then(
+            function (response) {
+              if (response.data) {
+                $scope.company = response.data.doc;
+                $scope.branch = response.data.doc.branch_list[0];
+                $scope.busy = false;
+              }
+            },
+            function (err) {
+              $scope.busy = false;
+              $scope.error = err;
+            }
+          );
+        };
+
+        $scope.getDoctorData = function (b) {
+          $scope.error = '';
+          $scope.doctorData = b;
+          console.log('111111111111111', typeof '##user.ref_info.id##');
+          console.log('111111111111111', '##user.ref_info.id##');
+          $scope.doctors_visits.total_value = b.at_clinic_price.detection;
+          $scope.doctors_visits.selected_doctor = b.doctor;
+        };
+
+        $scope.serviceTypes = function (b) {
+          $scope.error = '';
+          $scope.serviceTypesList = [
+            {
+              id: 1,
+              name: 'detection',
+              en: 'Detection',
+              ar: 'كشف',
+            },
+            {
+              id: 2,
+              name: 're_detection',
+              en: 'Re-Detection',
+              ar: 'إعادة كشف',
+            },
+            {
+              id: 3,
+              name: 'consultation',
+              en: 'Consultation',
+              ar: 'إستشارة',
+            },
+            {
+              id: 4,
+              name: 'session',
+              en: 'Session',
+              ar: 'جلسة',
+            },
+          ];
+        };
+
+        $scope.servicePlaces = function (b) {
+          $scope.error = '';
+          $scope.servicePlacesList = [
+            {
+              id: 1,
+              en: 'Clinic',
+              ar: 'العيادة',
+            },
+            {
+              id: 2,
+              en: 'Home Visit',
+              ar: 'زيارة منزلية',
+            },
+            {
+              id: 3,
+              name: 'online',
+              en: 'Online',
+              ar: 'أونلاين',
+            },
+          ];
+        };
+
+        $scope.first_step = function (b) {
+          $scope.getDoctorAppointment();
+          if ($scope.doctors_visits.place_examination == '1') {
+            $scope.doctors_visits.place_examination = {
+              id: 1,
+              en: 'Clinic',
+              ar: 'العيادة',
+            };
           }
-        }).then(
-          function (response) {
-            if (response.data) {
-              $scope.arr = response.data.list;
+          if ($scope.doctors_visits.place_examination == '2') {
+            $scope.doctors_visits.place_examination = {
+              id: 2,
+              en: 'Home Visit',
+              ar: 'زيارة منزلية',
+            };
+          }
+          if ($scope.doctors_visits.place_examination == '3') {
+            $scope.doctors_visits.place_examination = {
+              id: 3,
+              name: 'online',
+              en: 'Online',
+              ar: 'أونلاين',
+            };
+          }
+          console.log($scope.doctors_visits.place_examination);
+        };
 
-              for (const iterator of $scope.arr) {
-                for (const iterator1 of iterator.appointmentsList) {
-                  $scope.appointmentsList.push(iterator1)
+        $scope.getDoctorAppointment = function (b) {
+          $scope.error = '';
+          $scope.appointmentsList = [];
+          let doctor = $scope.doctorData.doctor;
+          $scope.busy = true;
+          $http({
+            method: 'POST',
+            url: '/api/clinics/getDoctorAppointment',
+            data: {
+              where: {
+                doctor: {
+                  id: doctor.id,
+                },
+              },
+            },
+          }).then(
+            function (response) {
+              if (response.data) {
+                $scope.arr = response.data.list;
+
+                for (const iterator of $scope.arr) {
+                  for (const iterator1 of iterator.appointmentsList) {
+                    $scope.appointmentsList.push(iterator1);
+                  }
                 }
-              };
 
+                $scope.busy = false;
+              }
+            },
+            function (err) {
               $scope.busy = false;
-            };
+              $scope.error = err;
+            }
+          );
+        };
 
-          },
-          function (err) {
-            $scope.busy = false;
-            $scope.error = err;
-          },
-        );
-      };
-
-      $scope.getDateDay = function (b) {
-        $scope.error = '';
-        $scope.doctors_visits.selected_time = b;
-        $scope.busy = true;
-        $http({
-          method: 'POST',
-          url: '/api/dates/day',
-          data: b
-        }).then(
-          function (response) {
-            if (response.data) {
-              $scope.appointmentDates = response.data.list;
+        $scope.getDateDay = function (b) {
+          $scope.error = '';
+          $scope.doctors_visits.selected_time = b;
+          $scope.busy = true;
+          $http({
+            method: 'POST',
+            url: '/api/dates/day',
+            data: b,
+          }).then(
+            function (response) {
+              if (response.data) {
+                $scope.appointmentDates = response.data.list;
+                $scope.busy = false;
+              }
+            },
+            function (err) {
               $scope.busy = false;
-            };
+              $scope.error = err;
+            }
+          );
+        };
+        $scope.getDate = function (b) {
+          $scope.error = '';
+          $scope.doctors_visits.selected_time.date = b;
+          $scope.busy = true;
+        };
 
-          },
-          function (err) {
-            $scope.busy = false;
-            $scope.error = err;
-          },
-        );
-      };
-      $scope.getDate = function (b) {
-        $scope.error = '';
-        $scope.doctors_visits.selected_time.date = b;
-        $scope.busy = true;
+        $scope.serviceTypes();
+        $scope.servicePlaces();
+        $scope.getDoctors();
+      });
+    </script>
 
-      };
-
-
-
-
-      $scope.serviceTypes();
-      $scope.servicePlaces();
-      $scope.getDoctors();
-    });
-  </script>
-
-  <!-- Option 2: jQuery, Popper.js, and Bootstrap JS
+    <!-- Option 2: jQuery, Popper.js, and Bootstrap JS
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.rtlcss.com/bootstrap/v4.5.3/js/bootstrap.min.js" integrity="sha384-VmD+lKnI0Y4FPvr6hvZRw6xvdt/QZoNHQ4h5k0RL30aGkR9ylHU56BzrE2UoohWK" crossorigin="anonymous"></script>
     -->
-</body>
-
+  </body>
 </html>
