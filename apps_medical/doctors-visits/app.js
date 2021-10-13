@@ -1167,6 +1167,10 @@ module.exports = function init(site) {
         {
           $match: {
             "status.id": 4,
+            date: {
+              $gte: startDateObj,
+              $lt: endDateObj,
+            },
           },
         },
       ],
@@ -1568,6 +1572,10 @@ console.log(req.session.user.ref_info.id);
         $match: {
           "status.id": 4,
           "place_examination.id":1,
+          date: {
+            $gte: startDateObj,
+            $lt: endDateObj,
+          },
         },
       },
     ],
@@ -1621,6 +1629,10 @@ console.log(req.session.user.ref_info.id);
         $match: {
           "status.id": 4,
           "place_examination.id":2,
+          date: {
+            $gte: startDateObj,
+            $lt: endDateObj,
+          },
         },
       },
     ],
@@ -1676,6 +1688,10 @@ console.log(req.session.user.ref_info.id);
         $match: {
           "status.id": 4,
           "place_examination.id":3,
+          date: {
+            $gte: startDateObj,
+            $lt: endDateObj,
+          },
         },
       },
     ],
@@ -1734,7 +1750,10 @@ console.log(req.session.user.ref_info.id);
             $nin: [4.0],
           },
           "place_examination.id":1,
-         
+          date: {
+            $gte: startDateObj,
+            $lt: endDateObj,
+          },
         },
       },
     ],
@@ -1790,7 +1809,10 @@ console.log(req.session.user.ref_info.id);
             $nin: [4.0],
           },
           "place_examination.id":2,
-         
+          date: {
+            $gte: startDateObj,
+            $lt: endDateObj,
+          },
         },
       },
     ],
@@ -1846,7 +1868,10 @@ console.log(req.session.user.ref_info.id);
             $nin: [4.0],
           },
           "place_examination.id":3,
-         
+          date: {
+            $gte: startDateObj,
+            $lt: endDateObj,
+          },
         },
       },
     ],
@@ -1917,7 +1942,10 @@ console.log(req.session.user.ref_info.id);
             "status.id": {
               $nin: [4.0],
             },
-           
+            date: {
+              $gte: startDateObj,
+              $lt: endDateObj,
+            },
           },
         },
       ],
