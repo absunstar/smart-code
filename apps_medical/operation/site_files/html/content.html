@@ -1,37 +1,26 @@
 <div class="form">
-    <div id="basicInformation" class="tab-content">
-        <fieldset>
-            <legend> ##word.basic_information## </legend>
-            <div class="row">
-                <div class="col9">
-                    <div class="row">
+  <div id="basicInformation" class="tab-content">
+    <fieldset>
+      <legend>##word.basic_information##</legend>
+      <div class="row">
+        <div class="col9">
+          <div class="row">
+            <i-control ng-hide="disabledCode" class="col2" label="##word.code##" ng-model="operation.code"> </i-control>
 
-                        <i-control ng-hide="disabledCode" class="col2" label="##word.code##" ng-model="operation.code">
-                        </i-control>
+            <i-control help-id="operation_name" v="r ll2" class="col4" label="##word.operation_name##" ng-model="operation.name_ar"></i-control>
 
-                        <i-control help-id="operation_name" v="r ll2" class="col4" label="##word.operation_name##"
-                            ng-model="operation.name_ar"></i-control>
+            <i-control help-id="operation_name_en" v="r" class="col4" label="##word.name_en##" ng-model="operation.name_en"></i-control>
 
-                        <i-control help-id="operation_name_en" v="r" class="col4" label="##word.name_en##"
-                            ng-model="operation.name_en"></i-control>
+            <i-control help-id="operation_name" v="r" type="number" class="col2" label="##word.operation_price##" ng-model="operation.price"></i-control>
 
+            <i-checkbox help-id="operation_active" class="col2" label="##word.active##" ng-model="operation.active"></i-checkbox>
+          </div>
+        </div>
 
-                        <!-- <i-control help-id="operation_name" v="r" type="number" class="col2"
-                            label="##word.operation_price##" ng-model="operation.price"></i-control> -->
-
-                        <div class="col2"></div>
-
-                        <i-checkbox help-id="operation_active" class="col2" label="##word.active##"
-                            ng-model="operation.active"></i-checkbox>
-                    </div>
-
-                </div>
-
-                <div class="col3">
-                    <i-image help-id="operation_logo" ng-model="operation.image_url"></i-image>
-                </div>
-            </div>
-        </fieldset>
-
-    </div>
+        <div class="col3">
+          <i-image help-id="operation_logo" ng-model="operation.image_url"></i-image>
+        </div>
+      </div>
+    </fieldset>
+  </div>
 </div>

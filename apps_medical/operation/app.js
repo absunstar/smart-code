@@ -19,6 +19,7 @@ module.exports = function init(site) {
         code: "1-Test",
         name_ar: 'عملية إفتراضية',
         name_en: "Default Operation",
+        price: 1,
         image_url: '/images/medical_specialty.png',
         company: {
           id: doc.id,

@@ -875,6 +875,7 @@ app.controller("doctors_visits", function ($scope, $http, $timeout) {
           id: 1,
           name_ar: 1,
           name_en: 1,
+          price : 1
         },
       },
     }).then(

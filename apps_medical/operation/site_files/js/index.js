@@ -7,6 +7,7 @@ app.controller("operation", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.operation = {
       image_url: '/images/operation.png',
+      price : 0,
       active: true
 
     };

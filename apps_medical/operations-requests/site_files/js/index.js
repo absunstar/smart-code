@@ -1,4 +1,4 @@
-app.controller("operations_requests", function ($scope, $http, $timeout) {
+app.controller('operations_requests', function ($scope, $http, $timeout) {
   $scope._search = {};
 
   $scope.operations_requests = {};
@@ -15,7 +15,7 @@ app.controller("operations_requests", function ($scope, $http, $timeout) {
       name: 'another_person',
       ar: 'شخص أخر',
       en: 'Another Person',
-    }
+    },
   ];
 
   $scope.displayAddOperationsRequests = function () {
@@ -25,7 +25,7 @@ app.controller("operations_requests", function ($scope, $http, $timeout) {
       image_url: '/images/operations_requests.png',
       date: new Date(),
       operations_list: [],
-      active: true
+      active: true,
     };
     site.showModal('#operationsRequestsAddModal');
   };
@@ -40,13 +40,13 @@ app.controller("operations_requests", function ($scope, $http, $timeout) {
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
-    };
+    }
     $scope.busy = true;
 
     $http({
-      method: "POST",
-      url: "/api/operations_requests/add",
-      data: $scope.operations_requests
+      method: 'POST',
+      url: '/api/operations_requests/add',
+      data: $scope.operations_requests,
     }).then(
       function (response) {
         $scope.busy = false;
@@ -56,18 +56,16 @@ app.controller("operations_requests", function ($scope, $http, $timeout) {
         } else {
           $scope.error = 'Please Login First';
           if (response.data.error.like('*Must Enter Code*')) {
-            $scope.error = "##word.must_enter_code##"
-
+            $scope.error = '##word.must_enter_code##';
           } else if (response.data.error.like('*holding ticket for this patient*')) {
-            $scope.error = "##word.err_hold_ticket_patient##"
-
+            $scope.error = '##word.err_hold_ticket_patient##';
           }
         }
       },
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.displayUpdateOperationsRequests = function (operations_requests) {
@@ -92,9 +90,9 @@ app.controller("operations_requests", function ($scope, $http, $timeout) {
     }
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/operations_requests/update",
-      data: operations_requests
+      method: 'POST',
+      url: '/api/operations_requests/update',
+      data: operations_requests,
     }).then(
       function (response) {
         $scope.busy = false;
@@ -107,7 +105,6 @@ app.controller("operations_requests", function ($scope, $http, $timeout) {
               $scope.list[i] = response.data.doc;
             }
           });
-
         } else {
           $scope.error = response.data.error;
         }
@@ -115,7 +112,7 @@ app.controller("operations_requests", function ($scope, $http, $timeout) {
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.displayDetailsOperationsRequests = function (operations_requests) {
@@ -128,11 +125,11 @@ app.controller("operations_requests", function ($scope, $http, $timeout) {
   $scope.detailsOperationsRequests = function (operations_requests) {
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/operations_requests/view",
+      method: 'POST',
+      url: '/api/operations_requests/view',
       data: {
-        id: operations_requests.id
-      }
+        id: operations_requests.id,
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -146,7 +143,7 @@ app.controller("operations_requests", function ($scope, $http, $timeout) {
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.displayDeleteOperationsRequests = function (operations_requests) {
@@ -160,12 +157,11 @@ app.controller("operations_requests", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/operations_requests/delete",
+      method: 'POST',
+      url: '/api/operations_requests/delete',
       data: {
-        id: $scope.operations_requests.id
-
-      }
+        id: $scope.operations_requests.id,
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -184,7 +180,7 @@ app.controller("operations_requests", function ($scope, $http, $timeout) {
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.getOperationsRequestsList = function (where, type) {
@@ -194,11 +190,11 @@ app.controller("operations_requests", function ($scope, $http, $timeout) {
     }
     $scope.count = 0;
     $http({
-      method: "POST",
-      url: "/api/operations_requests/all",
+      method: 'POST',
+      url: '/api/operations_requests/all',
       data: {
-        where: where
-      }
+        where: where,
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -208,11 +204,11 @@ app.controller("operations_requests", function ($scope, $http, $timeout) {
             $scope.count = response.data.count;
           } else {
             $scope.operations_requests.last_operations_list = [];
-            response.data.list.forEach(_operations => {
-              _operations.operations_list.forEach(_operations_list => {
+            response.data.list.forEach((_operations) => {
+              _operations.operations_list.forEach((_operations_list) => {
                 _operations_list.date = _operations.date;
                 $scope.operations_requests.last_operations_list.push(_operations_list);
-              })
+              });
             });
           }
         }
@@ -221,15 +217,14 @@ app.controller("operations_requests", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.searchAll = function () {
     $scope._search = {};
     $scope.getOperationsRequestsList($scope.search);
     site.hideModal('#operationsRequestsSearchModal');
-    $scope.search = {}
-
+    $scope.search = {};
   };
 
   $scope.getPatientList = function (ev) {
@@ -241,39 +236,36 @@ app.controller("operations_requests", function ($scope, $http, $timeout) {
 
     $scope.customersList = [];
     $http({
-      method: "POST",
-      url: "/api/customers/all",
+      method: 'POST',
+      url: '/api/customers/all',
       data: {
         search: $scope.doctor_search,
-        select: {
-
-        }
-      }
+        select: {},
+      },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
           $scope.customersList = response.data.list;
-
         }
       },
       function (err) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.showPatient = function (id) {
     $scope.busy = true;
 
     $http({
-      method: "POST",
-      url: "/api/customers/view",
+      method: 'POST',
+      url: '/api/customers/view',
       data: {
         id: id,
-        select: {}
-      }
+        select: {},
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -282,16 +274,13 @@ app.controller("operations_requests", function ($scope, $http, $timeout) {
           $scope.customer = response.data.doc;
           site.showModal('#customerDetailsModal');
           document.querySelector('#customerDetailsModal .tab-link').click();
-
         }
       },
       function (err) {
         $scope.busy = false;
         $scope.error = err;
       }
-
-    )
-
+    );
   };
 
   $scope.displayAddCustomer = function () {
@@ -301,13 +290,15 @@ app.controller("operations_requests", function ($scope, $http, $timeout) {
       active: true,
       balance_creditor: 0,
       balance_debtor: 0,
-      branch_list: [{
-        charge: [{}]
-      }],
+      branch_list: [
+        {
+          charge: [{}],
+        },
+      ],
       currency_list: [],
       opening_balance: [{ initial_balance: 0 }],
       bank_list: [{}],
-      dealing_company: [{}]
+      dealing_company: [{}],
     };
 
     if (site.feature('medical')) {
@@ -316,18 +307,15 @@ app.controller("operations_requests", function ($scope, $http, $timeout) {
       $scope.customer.allergic_drink_list = [{}];
       $scope.customer.medicine_list = [{}];
       $scope.customer.disease_list = [{}];
-
     } else if (site.feature('school') || site.feature('academy')) {
       $scope.customer.image_url = '/images/student.png';
       $scope.customer.allergic_food_list = [{}];
       $scope.customer.allergic_drink_list = [{}];
       $scope.customer.medicine_list = [{}];
       $scope.customer.disease_list = [{}];
-
     }
     site.showModal('#customerAddModal');
     document.querySelector('#customerAddModal .tab-link').click();
-
   };
 
   $scope.addCustomer = function () {
@@ -345,9 +333,9 @@ app.controller("operations_requests", function ($scope, $http, $timeout) {
     $scope.busy = true;
 
     $http({
-      method: "POST",
-      url: "/api/customers/add",
-      data: $scope.customer
+      method: 'POST',
+      url: '/api/customers/add',
+      data: $scope.customer,
     }).then(
       function (response) {
         $scope.busy = false;
@@ -356,40 +344,38 @@ app.controller("operations_requests", function ($scope, $http, $timeout) {
         } else {
           $scope.error = 'Please Login First';
           if (response.data.error.like('*Must Enter Code*')) {
-            $scope.error = "##word.must_enter_code##"
-
+            $scope.error = '##word.must_enter_code##';
           } else if (response.data.error.like('*maximum number of adds exceeded*')) {
-            $scope.error = "##word.err_maximum_adds##"
-
+            $scope.error = '##word.err_maximum_adds##';
           } else if (response.data.error.like('*ername must be typed correctly*')) {
-            $scope.error = "##word.err_username_contain##"
-            
+            $scope.error = '##word.err_username_contain##';
           } else if (response.data.error.like('*User Is Exist*')) {
-            $scope.error = "##word.user_exists##"
+            $scope.error = '##word.user_exists##';
           }
         }
       },
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.loadDiscountTypes = function () {
     $scope.error = '';
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/discount_types/all",
+      method: 'POST',
+      url: '/api/discount_types/all',
       data: {
         select: {
           code: 1,
           id: 1,
-          name_ar: 1, name_en: 1,
+          name_ar: 1,
+          name_en: 1,
           value: 1,
-          type: 1
-        }
-      }
+          type: 1,
+        },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -401,19 +387,21 @@ app.controller("operations_requests", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.loadOperations = function () {
     $scope.error = '';
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/operation/all",
+      method: 'POST',
+      url: '/api/operation/all',
       data: {
         id: 1,
-        name_ar: 1, name_en: 1,
-      }
+        name_ar: 1,
+        name_en: 1,
+        price: 1,
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -425,20 +413,21 @@ app.controller("operations_requests", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.loadPricesCodes = function () {
     $scope.error = '';
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/prices_codes/all",
+      method: 'POST',
+      url: '/api/prices_codes/all',
       data: {
         id: 1,
-        name_ar: 1, name_en: 1,
+        name_ar: 1,
+        name_en: 1,
         price: 1,
-      }
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -450,7 +439,7 @@ app.controller("operations_requests", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.loadDoctorsVisits = function () {
@@ -458,21 +447,20 @@ app.controller("operations_requests", function ($scope, $http, $timeout) {
     $scope.busy = true;
     $scope.doctorsVisitsList = [];
     if ($scope.operations_requests.customer) {
-
       $http({
-        method: "POST",
-        url: "/api/doctors_visits/all",
+        method: 'POST',
+        url: '/api/doctors_visits/all',
         data: {
           select: {
             code: 1,
             id: 1,
             selected_clinic: 1,
-            operations_list: 1
+            operations_list: 1,
           },
           where: {
-            'customer.id': $scope.operations_requests.customer.id
-          }
-        }
+            'customer.id': $scope.operations_requests.customer.id,
+          },
+        },
       }).then(
         function (response) {
           $scope.busy = false;
@@ -484,7 +472,7 @@ app.controller("operations_requests", function ($scope, $http, $timeout) {
           $scope.busy = false;
           $scope.error = err;
         }
-      )
+      );
     }
   };
 
@@ -499,9 +487,9 @@ app.controller("operations_requests", function ($scope, $http, $timeout) {
         name_ar: $scope.discount.name_ar,
         name_en: $scope.discount.name_en,
         value: $scope.discount.value,
-        type: $scope.discount.type
+        type: $scope.discount.type,
       });
-    };
+    }
   };
 
   $scope.deleteDiscount = function (_ds) {
@@ -512,67 +500,50 @@ app.controller("operations_requests", function ($scope, $http, $timeout) {
     $scope.operations_requests = operations_requests;
     if (type === 'delivery') {
       site.showModal('#deliveryOperationsModal');
-
     } else if (type === 'result') {
-
       site.showModal('#puttingResultsOperationsModal');
     }
-
   };
 
   $scope.setPersonDelivery = function () {
-
-    $scope.operations_requests.operations_list.forEach(_operations => {
-
+    $scope.operations_requests.operations_list.forEach((_operations) => {
       if (!_operations.person_delivery) {
         _operations.person_delivery = Object.assign({}, $scope.operations_requests.$person_delivery);
         _operations.delivery_data = Object.assign({}, $scope.operations_requests.$delivery_data);
-      };
-
+      }
     });
   };
 
-
-
   $scope.showPersonDelivery = function (operations_requests, type) {
-
     $scope.delivery_person = Object.assign({}, operations_requests);
     if (type === 'view') {
       $scope.delivery_person.$view = true;
     }
 
     site.showModal('#deliveryPersonModal');
-
   };
 
-
-
-
-
   $scope.getDoctorVisitOperations = function (doctor_visit) {
-
     doctor_visit.operations_list = doctor_visit.operations_list || [];
 
     let operationsList = [];
 
-    $scope.operationsList.forEach(_an => {
-      let found = doctor_visit.operations_list.some(_a => _a.operations && _a.operations.id === _an.id);
+    $scope.operationsList.forEach((_an) => {
+      let found = doctor_visit.operations_list.some((_a) => _a.operations && _a.operations.id === _an.id);
 
       if (found) {
-        operationsList.unshift(_an)
+        operationsList.unshift(_an);
       }
     });
 
-    operationsList.forEach(_a_l => {
+    operationsList.forEach((_a_l) => {
       $timeout(() => {
         $scope.changeOperationsList(_a_l);
       }, 250);
     });
   };
 
-
   $scope.changeOperationsList = function (operations) {
-
     let obj = {
       id: operations.id,
       name: operations.name,
@@ -584,13 +555,12 @@ app.controller("operations_requests", function ($scope, $http, $timeout) {
       result: 0,
     };
 
-    let found_operations = $scope.operations_requests.operations_list.some(_operations => _operations.id === operations.id);
+    let found_operations = $scope.operations_requests.operations_list.some((_operations) => _operations.id === operations.id);
 
     if (!found_operations) {
       $scope.operations_requests.operations_list.unshift(obj);
       $scope.calc($scope.operations_requests);
-    };
-
+    }
   };
 
   $scope.calc = function (obj) {
@@ -600,22 +570,21 @@ app.controller("operations_requests", function ($scope, $http, $timeout) {
       obj.total_value = 0;
 
       if (obj.operations_list && obj.operations_list.length > 0) {
-        obj.operations_list.forEach(_a => {
+        obj.operations_list.forEach((_a) => {
           obj.total_value += _a.price_code.price;
         });
       }
 
       if (obj.discountes && obj.discountes.length > 0)
-        obj.discountes.forEach(ds => {
-          if (ds.type == 'percent')
-            obj.total_discount += obj.total_value * site.toNumber(ds.value) / 100;
+        obj.discountes.forEach((ds) => {
+          if (ds.type == 'percent') obj.total_discount += (obj.total_value * site.toNumber(ds.value)) / 100;
           else obj.total_discount += site.toNumber(ds.value);
         });
 
       obj.net_value = obj.total_value - obj.total_discount;
       obj.remain = obj.net_value - (obj.paid || 0);
       $scope.discount = {
-        type: 'number'
+        type: 'number',
       };
     }, 250);
   };
@@ -623,14 +592,14 @@ app.controller("operations_requests", function ($scope, $http, $timeout) {
   $scope.getGovList = function (where) {
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/goves/all",
+      method: 'POST',
+      url: '/api/goves/all',
       data: {
         where: {
-          active: true
+          active: true,
         },
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1 }
-      }
+        select: { id: 1, name_ar: 1, name_en: 1, code: 1 },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -642,21 +611,21 @@ app.controller("operations_requests", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.getCityList = function (gov) {
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/city/all",
+      method: 'POST',
+      url: '/api/city/all',
       data: {
         where: {
           'gov.id': gov.id,
-          active: true
+          active: true,
         },
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1 }
-      }
+        select: { id: 1, name_ar: 1, name_en: 1, code: 1 },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -668,20 +637,20 @@ app.controller("operations_requests", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.getAreaList = function (city) {
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/area/all",
+      method: 'POST',
+      url: '/api/area/all',
       data: {
         where: {
           'city.id': city.id,
-          active: true
+          active: true,
         },
-      }
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -693,18 +662,18 @@ app.controller("operations_requests", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.getNumberingAuto = function () {
     $scope.error = '';
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/numbering/get_automatic",
+      method: 'POST',
+      url: '/api/numbering/get_automatic',
       data: {
-        screen: "operations_requests"
-      }
+        screen: 'operations_requests',
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -716,9 +685,8 @@ app.controller("operations_requests", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
-
 
   $scope.getOperationsRequestsList();
   $scope.loadOperations();
