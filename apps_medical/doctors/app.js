@@ -1268,4 +1268,107 @@ module.exports = function init(site) {
     //   }
     // );
   });
+
+/* update doctor data */
+  site.post("/api/doctors/updateDoctors", (req, res) => {
+    let response = {
+      done: false,
+    };
+
+    if (!req.session.user) {
+      response.error = "Please Login First";
+      res.json(response);
+      return;
+    }
+
+    let doctor_doc = req.body;
+    let user = {};
+
+    user = {
+      name_ar: doctor_doc.name_ar,
+      name_en: doctor_doc.name_en,
+      mobile: doctor_doc.mobile,
+      username: doctor_doc.username,
+      email: doctor_doc.username,
+      password: doctor_doc.password,
+      image_url: doctor_doc.image_url,
+      gender: doctor_doc.gender,
+      type: "doctor",
+    };
+
+    user.roles = [{
+      module_name: "public",
+      name: "doctor_admin",
+      en: "Employee Admin",
+      ar: "إدارة الموظفين",
+      permissions: ["doctor_manage"],
+    }, ];
+
+    user.profile = {
+      name_ar: user.name_ar,
+      name_en: user.name_en,
+      mobile: user.mobile,
+      image_url: user.image_url,
+    };
+
+    user.ref_info = {
+      id: doctor_doc.id,
+    };
+
+    user.company = doctor_doc.company;
+    user.branch = doctor_doc.branch;
+
+    doctor_doc.edit_user_info = site.security.getUserFinger({
+      $req: req,
+      $res: res,
+    });
+
+    if (doctor_doc.id) {
+      $doctors.edit({
+          where: {
+            id: doctor_doc.id,
+          },
+          set: doctor_doc,
+          $req: req,
+          $res: res,
+        },
+        (err, doctor_doc) => {
+          if (!err) {
+            response.done = true;
+            response.doc = doctor_doc.doc;
+            user.doctor_id = doctor_doc.doc.id;
+            if (!doctor_doc.doc.user_info && user.password && user.email) {
+              site.security.addUser(user, (err, doc1) => {
+                if (!err) {
+                  delete user._id;
+                  delete user.id;
+                  doctor_doc.doc.user_info = {
+                    id: doc1.id,
+                  };
+                  $doctors.edit(doctor_doc.doc, (err2, doc2) => {
+                    res.json(response);
+                  });
+                } else {
+                  response.error = err.message;
+                }
+                res.json(response);
+              });
+            } else if (
+              doctor_doc.doc.user_info &&
+              doctor_doc.doc.user_info.id
+            ) {
+              user.id = doctor_doc.doc.user_info.id;
+              site.security.updateUser(user, (err, user_doc) => {});
+            }
+          } else {
+            response.error = "doctor id is error";
+          }
+          res.json(response);
+        }
+      );
+    } else {
+      response.error = "no id";
+      res.json(response);
+    }
+  });
 };

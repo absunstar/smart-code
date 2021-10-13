@@ -1190,7 +1190,372 @@ module.exports = function init(site) {
     );
   });
 
-  //get doctor complete visits
+
+
+
+  //get patient complete clinic visits
+  site.post("/api/doctors_visits/getPatientCompleteClinicVisits", (req, res) => {
+    req.headers.language = req.headers.language || "en";
+    let response = {};
+    if (!req.session.user) {
+      response.message = site.word("loginFirst")[req.headers.language];
+      response.done = false;
+      res.json(response);
+      return;
+    } else if (!req.session.user.ref_info) {
+      response.message = site.word("loginFirst")[req.headers.language];
+      response.done = false;
+      res.json(response);
+      return;
+    }
+    const startDateObj = new Date(req.body.date);
+    const endDateObj = new Date(req.body.date);
+
+    startDateObj.setHours(0, 0, 0, 0);
+    endDateObj.setHours(0, 0, 0, 0);
+    endDateObj.setDate(startDateObj.getDate() + 1);
+
+    $doctors_visits.aggregate(
+      [
+        {
+          $match: {
+            "customer.id": req.session.user.ref_info.id,
+          },
+        },
+        {
+          $match: {
+            "status.id": 4,
+            "place_examination.id":1,
+           
+          },
+        },
+      ],
+      (err, docs) => {
+        if (docs && docs.length > 0) {
+          response.done = true;
+          response.list = docs;
+
+          res.json(response);
+        } else {
+          response.done = false;
+
+          response.list = [];
+          res.json(response);
+        }
+      }
+    );
+  });
+
+
+  //get patient complete Home visits
+  site.post("/api/doctors_visits/getPatientCompleteHomeVisits", (req, res) => {
+    req.headers.language = req.headers.language || "en";
+    let response = {};
+    if (!req.session.user) {
+      response.message = site.word("loginFirst")[req.headers.language];
+      response.done = false;
+      res.json(response);
+      return;
+    } else if (!req.session.user.ref_info) {
+      response.message = site.word("loginFirst")[req.headers.language];
+      response.done = false;
+      res.json(response);
+      return;
+    }
+    const startDateObj = new Date(req.body.date);
+    const endDateObj = new Date(req.body.date);
+
+    startDateObj.setHours(0, 0, 0, 0);
+    endDateObj.setHours(0, 0, 0, 0);
+    endDateObj.setDate(startDateObj.getDate() + 1);
+
+    $doctors_visits.aggregate(
+      [
+        {
+          $match: {
+            "customer.id": req.session.user.ref_info.id,
+          },
+        },
+        {
+          $match: {
+            "status.id": 4,
+            "place_examination.id":2,
+           
+          },
+        },
+      ],
+      (err, docs) => {
+        if (docs && docs.length > 0) {
+          response.done = true;
+          response.list = docs;
+
+          res.json(response);
+        } else {
+          response.done = false;
+
+          response.list = [];
+          res.json(response);
+        }
+      }
+    );
+  });
+
+
+
+  //get patient complete Online visits
+  site.post("/api/doctors_visits/getPatientCompleteOnlineVisits", (req, res) => {
+    req.headers.language = req.headers.language || "en";
+    let response = {};
+    if (!req.session.user) {
+      response.message = site.word("loginFirst")[req.headers.language];
+      response.done = false;
+      res.json(response);
+      return;
+    } else if (!req.session.user.ref_info) {
+      response.message = site.word("loginFirst")[req.headers.language];
+      response.done = false;
+      res.json(response);
+      return;
+    }
+    const startDateObj = new Date(req.body.date);
+    const endDateObj = new Date(req.body.date);
+
+    startDateObj.setHours(0, 0, 0, 0);
+    endDateObj.setHours(0, 0, 0, 0);
+    endDateObj.setDate(startDateObj.getDate() + 1);
+
+    $doctors_visits.aggregate(
+      [
+        {
+          $match: {
+            "customer.id": req.session.user.ref_info.id,
+          },
+        },
+        {
+          $match: {
+            "status.id": 4,
+            "place_examination.id":3,
+            
+          },
+        },
+      ],
+      (err, docs) => {
+        if (docs && docs.length > 0) {
+          response.done = true;
+          response.list = docs;
+
+          res.json(response);
+        } else {
+          response.done = false;
+
+          response.list = [];
+          res.json(response);
+        }
+      }
+    );
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  //get patient not complete clinic visits
+  site.post("/api/doctors_visits/getPatientNotCompleteClinicVisits", (req, res) => {
+    req.headers.language = req.headers.language || "en";
+    let response = {};
+    console.log(1111111111111111);
+    if (!req.session.user) {
+      response.message = site.word("loginFirst")[req.headers.language];
+      response.done = false;
+      res.json(response);
+      return;
+    } else if (!req.session.user.ref_info) {
+      response.message = site.word("loginFirst")[req.headers.language];
+      response.done = false;
+      res.json(response);
+      return;
+    }
+    const startDateObj = new Date(req.body.date);
+    const endDateObj = new Date(req.body.date);
+
+    startDateObj.setHours(0, 0, 0, 0);
+    endDateObj.setHours(0, 0, 0, 0);
+    endDateObj.setDate(startDateObj.getDate() + 1);
+console.log(req.session.user.ref_info.id);
+    $doctors_visits.aggregate(
+      [
+        {
+          $match: {
+            "customer.id": req.session.user.ref_info.id,
+          },
+        },
+        {
+          $match: {
+            "status.id": {
+              $nin: [4.0],
+            },
+            "place_examination.id":1,
+           
+          },
+        },
+      ],
+      (err, docs) => {
+        if (docs && docs.length > 0) {
+          response.done = true;
+          response.list = docs;
+
+          res.json(response);
+        } else {
+          response.done = false;
+
+          response.list = [];
+          res.json(response);
+        }
+      }
+    );
+  });
+
+
+  //get patient not complete Home visits
+  site.post("/api/doctors_visits/getPatientNotCompleteHomeVisits", (req, res) => {
+    req.headers.language = req.headers.language || "en";
+    let response = {};
+    if (!req.session.user) {
+      response.message = site.word("loginFirst")[req.headers.language];
+      response.done = false;
+      res.json(response);
+      return;
+    } else if (!req.session.user.ref_info) {
+      response.message = site.word("loginFirst")[req.headers.language];
+      response.done = false;
+      res.json(response);
+      return;
+    }
+    const startDateObj = new Date(req.body.date);
+    const endDateObj = new Date(req.body.date);
+
+    startDateObj.setHours(0, 0, 0, 0);
+    endDateObj.setHours(0, 0, 0, 0);
+    endDateObj.setDate(startDateObj.getDate() + 1);
+
+    $doctors_visits.aggregate(
+      [
+        {
+          $match: {
+            "customer.id": req.session.user.ref_info.id,
+          },
+        },
+        {
+          $match: {
+            "status.id": {
+              $nin: [4.0],
+            },
+            "place_examination.id":2,
+           
+          },
+        },
+      ],
+      (err, docs) => {
+        if (docs && docs.length > 0) {
+          response.done = true;
+          response.list = docs;
+
+          res.json(response);
+        } else {
+          response.done = false;
+
+          response.list = [];
+          res.json(response);
+        }
+      }
+    );
+  });
+
+
+
+  //get patient not complete Online visits
+  site.post("/api/doctors_visits/getPatientNotCompleteOnlineVisits", (req, res) => {
+    req.headers.language = req.headers.language || "en";
+    let response = {};
+    if (!req.session.user) {
+      response.message = site.word("loginFirst")[req.headers.language];
+      response.done = false;
+      res.json(response);
+      return;
+    } else if (!req.session.user.ref_info) {
+      response.message = site.word("loginFirst")[req.headers.language];
+      response.done = false;
+      res.json(response);
+      return;
+    }
+    const startDateObj = new Date(req.body.date);
+    const endDateObj = new Date(req.body.date);
+
+    startDateObj.setHours(0, 0, 0, 0);
+    endDateObj.setHours(0, 0, 0, 0);
+    endDateObj.setDate(startDateObj.getDate() + 1);
+
+    $doctors_visits.aggregate(
+      [
+        {
+          $match: {
+            "customer.id": req.session.user.ref_info.id,
+          },
+        },
+        {
+          $match: {
+            "status.id": {
+              $nin: [4.0],
+            },
+            "place_examination.id":3,
+            
+          },
+        },
+      ],
+      (err, docs) => {
+        if (docs && docs.length > 0) {
+          response.done = true;
+          response.list = docs;
+
+          res.json(response);
+        } else {
+          response.done = false;
+
+          response.list = [];
+          res.json(response);
+        }
+      }
+    );
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  //get doctor not complete visits
   site.post("/api/doctors_visits/getDoctorNotCompleteVisits", (req, res) => {
     req.headers.language = req.headers.language || "en";
     let response = {};
