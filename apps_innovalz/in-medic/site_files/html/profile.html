@@ -2072,7 +2072,7 @@
         }).then(
           function (response) {
            if (response.data.done) {
-            $scope.completedVisitsList = response.data.docs
+            $scope.completedVisitsList = response.data.list
            }
 
           },
@@ -2099,7 +2099,7 @@
         }).then(
           function (response) {
            if (response.data.done) {
-            $scope.completedHomeVisitsList = response.data.docs
+            $scope.completedHomeVisitsList = response.data.list
            }
 
           },
@@ -2125,7 +2125,7 @@
         }).then(
           function (response) {
            if (response.data.done) {
-            $scope.completedOnlineVisitsList = response.data.docs
+            $scope.completedOnlineVisitsList = response.data.list
            }
 
           },
@@ -2150,10 +2150,10 @@
           }
         }).then(
           function (response) {
-           if (response.data.done) {
-            $scope.notCompletedVisitsList = response.data.docs
+            if (response.data.done) {
+              $scope.notCompletedVisitsList = response.data.list;
+              console.log($scope.notCompletedVisitsList);
            }
-
           },
           function (err) {
             $scope.busy = false;
@@ -2177,7 +2177,7 @@
         }).then(
           function (response) {
            if (response.data.done) {
-            $scope.notCompletedHomeVisitsList = response.data.docs
+            $scope.notCompletedHomeVisitsList = response.data.list
            }
 
           },
@@ -2204,7 +2204,7 @@
         }).then(
           function (response) {
            if (response.data.done) {
-            $scope.notCompletedOnlineVisitsList = response.data.docs
+            $scope.notCompletedOnlineVisitsList = response.data.list
            }
 
           },
@@ -2374,7 +2374,6 @@
       $scope.getNotCompletedVisits();
       $scope.getNotCompletedHomeVisits();
       $scope.getNotCompletedOnlineVisits();
-      $scope.getNotCompletedVisits();
       $scope.getNotCompletedScans();
       $scope.getCompletedScans();
       $scope.getCompletedAnalysis();
