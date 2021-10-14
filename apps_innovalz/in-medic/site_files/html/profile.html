@@ -38,6 +38,10 @@
                 aria-controls="v-pills-profile" aria-selected="true"> الحساب الشخصي</a>
               <a class="nav-link" id="v-pills-orders-tab" data-toggle="pill" href="#v-pills-orders" role="tab"
                 aria-controls="v-pills-orders" aria-selected="false">حجوزات العيادة </a>
+                <a class="nav-link" id="v-pills-orders-home-tab" data-toggle="pill" href="#v-pills-orders-home" role="tab"
+                aria-controls="v-pills-orders-home" aria-selected="false">حجوزات المنزل </a>
+                <a class="nav-link" id="v-pills-orders-online-tab" data-toggle="pill" href="#v-pills-orders-online" role="tab"
+                aria-controls="v-pills-orders-online" aria-selected="false">حجوزات اونلاين </a>
               <a class="nav-link" id="v-pills-book-tab" data-toggle="pill" href="#v-pills-booking" role="tab"
                 aria-controls="v-pills-booking" aria-selected="false">حجوزات الاشعه</a>
               <a class="nav-link" id="v-pills-wallet-tab" data-toggle="pill" href="#v-pills-wallet" role="tab"
@@ -267,11 +271,6 @@
 
 
                                   </div>
-
-
-
-
-
                                 </div>
                                 <div class="modal-footer">
 
@@ -495,6 +494,595 @@
               </div>
 
             </div>
+
+
+
+
+            <!-- booking in home tab -->
+
+
+            <div class="tab-pane fade" id="v-pills-orders-home" role="tabpanel" aria-labelledby="v-pills-orders-home-tab">
+
+              <div class="orders-header">
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                  <li class="nav-item" role="presentation">
+                    <a class="nav-link active" id="pills-current-orders-home-tab" data-toggle="pill" href="#pills-c-home-orders"
+                      role="tab" aria-controls="pills-c-home-orders" aria-selected="true">حجوزاتي الحالية</a>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="pills-previous-orders-home-tab" data-toggle="pill" href="#pills-p-home-orders"
+                      role="tab" aria-controls="pills-p-home-orders" aria-selected="false">حجوزاتي السابقة</a>
+                  </li>
+
+                </ul>
+              </div>
+              <div  class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-c-home-orders" role="tabpanel"
+                  aria-labelledby="pills-current-orders-home-tab">
+
+                  <div class="my-current-orders" ng-repeat="current in notCompletedHomeVisitsList">
+                    <div class="order-card">
+                      <div class="order-card-body">
+                        <div class="pharmacy-img">
+                          <img src="/images/dr1.png">
+                        </div>
+
+                        <div class="orders-details">
+                          <h4>د. {{current.selected_doctor.name_##session.lang##}}</h4>
+                          <p>{{current.specialty.name_##session.lang##}}</p>
+                          <span>تاريخ الحجز : {{current.selected_time.date|date:'dd - MM - yyyy'}} - {{current.selected_time.day.##session.lang##}} </span><br>
+
+                          <span>سعر الكشف : {{current.total_value}} جنيه</span>
+                        </div>
+
+                        <div class="orders-action">
+                          <div>
+                            <span> 20-3-2021 </span><span> , 06:40 ص</span><br>
+
+                          </div>
+                          <a href="#cancel-order" class="btn" data-toggle="modal">الغاء حجز</a>
+                          <div class="modal fade" id="cancel-order" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                  <div style="text-align: center;">
+                                    <img src="/images/Group 15143.svg" alt=""><br>
+                                    <p>هل انت متأكد من الغاء حجز بالفعل؟</p>
+                                    <a href="#">نعم</a>
+                                    <a href="#">إلغاء</a>
+
+
+                                  </div>
+                                </div>
+                                <div class="modal-footer">
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <a class="btn" data-toggle="collapse" href="#more_{{current.id}}" role="button" aria-expanded="false"
+                            aria-controls="more">
+                            المزيد
+                          </a><br>
+
+
+                        </div>
+
+                        <div class="delete-orders">
+                          <a href="#">&times;</a>
+                        </div>
+                      </div>
+
+                      <div class="collapse" id="more_{{current.id}}">
+                        <div class="card card-body">
+
+
+
+                          <div class="collapse-more-section">
+                            <div>
+                              <h2>بيانات شخصية</h2>
+                            </div>
+                            <div>
+                              <span>الاسم بالكامل : {{current.customer.name_##session.lang##}}</span><br>
+                              <span>رقم التليفون : {{current.customer.mobile}}</span><br>
+                              <span>العنوان : {{current.customer.address_list[0].gov.name_##session.lang##}} - {{current.customer.address_list[0].city.name_##session.lang##}}
+                                - {{current.customer.address_list[0].area.name_##session.lang##}}
+                              </span><br>
+
+                            </div>
+                          </div>
+
+                          <div class="collapse-more-section">
+                            <div>
+                              <h2>ملاحظات قبل الكشف</h2>
+                            </div>
+                            <div>
+                              <span>{{current.notes_before}}</span><br>
+
+
+                            </div>
+                          </div>
+                          <div class="collapse-more-section">
+                            <div>
+                              <h2>ملاحظات بعد الكشف</h2>
+                            </div>
+                            <div>
+                              <span> {{current.diagnosis.special_notes}} </span><br>
+
+
+                            </div>
+                          </div>
+
+                          <div class="collapse-more-section">
+                            <div>
+                              <h2> ملفات المرفقة</h2>
+                            </div>
+                            <div>
+                              <div class="img-with-details">
+                                <img ng-src="{{current.image_url}}" width="10%">
+                                <!-- <p>تفاصيل مع الطلب : علبتين دواء مع شريط كيتوفان وشريط اسبرين مع العلم ان لدي حساسية جيوب أنفية</p>
+                                      </div>
+                                      <div class="img-with-details">
+                                        <img src="/images/medicine.svg">
+                                        <p>تفاصيل مع الطلب : علبتين دواء مع شريط كيتوفان وشريط اسبرين مع العلم ان لدي حساسية جيوب أنفية</p>
+                                        </div>
+                                        <div class="img-with-details">
+                                          <img src="/images/medicine.svg">
+                                          <p>تفاصيل مع الطلب : علبتين دواء مع شريط كيتوفان وشريط اسبرين مع العلم ان لدي حساسية جيوب أنفية</p> -->
+                              </div>
+
+                            </div>
+                          </div>
+
+
+
+
+
+
+
+
+                        </div>
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                </div>
+                <div class="tab-pane fade" id="pills-p-home-orders" role="tabpanel"
+                  aria-labelledby="pills-previous-orders-home-tab">
+
+                  <div ng-repeat="previous in completedHomeVisitsList"  class="my-previous-orders">
+                    <div class="order-card">
+                      <div class="order-card-body">
+                        <div class="pharmacy-img">
+                          <img src="/images/dr1.png">
+                        </div>
+
+                        <div class="orders-details">
+                          <h4>د. {{previous.selected_doctor.name_##session.lang##}}</h4>
+                          <p>{{previous.specialty.name_##session.lang##}}</p>
+                          <span>تاريخ الحجز : {{previous.selected_time.date|date:'dd - MM - yyyy'}} - {{previous.selected_time.day.##session.lang##}} </span><br>
+
+                          <span>سعر الكشف : {{previous.total_value}} جنيه</span>
+                        </div>
+
+                        <div class="orders-action">
+                          <div>
+                            <span> 20-3-2021 </span><span> , 06:40 ص</span><br>
+
+                          </div>
+
+                          <a class="btn" data-toggle="collapse" href="#more_{{previous.id}}" role="button" aria-expanded="false"
+                            aria-controls="more">
+                            المزيد
+                          </a><br>
+
+
+                        </div>
+
+                        <div class="delete-orders">
+                          <a href="#">&times;</a>
+                        </div>
+                      </div>
+
+                      <div class="collapse" id="more_{{previous.id}}">
+                        <div class="card card-body">
+
+
+
+                          <div class="collapse-more-section">
+                            <div>
+                              <h2>بيانات شخصية</h2>
+                            </div>
+                            <div>
+                              <span>الاسم بالكامل : {{previous.customer.name_##session.lang##}}  </span><br>
+                              <span>رقم التليفون : {{previous.customer.mobile}}</span><br>
+                              <span>العنوان : {{previous.customer.address_list[0].gov.name_##session.lang##}} - {{previous.customer.address_list[0].city.name_##session.lang##}}
+                                - {{previous.customer.address_list[0].area.name_##session.lang##}}</span><br>
+
+                            </div>
+                          </div>
+
+                          <div class="collapse-more-section">
+                            <div>
+                              <h2>ملاحظات قبل الكشف</h2>
+                            </div>
+                            <div>
+                              <span>{{previous.notes_before}}</span><br>
+
+
+                            </div>
+                          </div>
+                          <div class="collapse-more-section">
+                            <div>
+                              <h2>ملاحظات بعد الكشف</h2>
+                            </div>
+                            <div>
+                              <span>{{previous.diagnosis.special_notes}}</span><br>
+
+
+                            </div>
+                          </div>
+
+                          <div class="collapse-more-section">
+                            <div>
+                              <h2> ملفات المرفقة</h2>
+                            </div>
+                            <div>
+                              <div class="img-with-details">
+                                <img ng-src="{{previous.image_url}}" width="10%">
+                                <!-- <p>تفاصيل مع الطلب : علبتين دواء مع شريط كيتوفان وشريط اسبرين مع العلم ان لدي حساسية جيوب أنفية</p>
+                                        </div>
+                                        <div class="img-with-details">
+                                          <img src="/images/medicine.svg">
+                                          <p>تفاصيل مع الطلب : علبتين دواء مع شريط كيتوفان وشريط اسبرين مع العلم ان لدي حساسية جيوب أنفية</p>
+                                          </div>
+                                          <div class="img-with-details">
+                                            <img src="/images/medicine.svg">
+                                            <p>تفاصيل مع الطلب : علبتين دواء مع شريط كيتوفان وشريط اسبرين مع العلم ان لدي حساسية جيوب أنفية</p> -->
+                              </div>
+
+                            </div>
+                          </div>
+
+
+
+
+
+
+
+
+                        </div>
+                      </div>
+
+                    </div>
+
+
+                  </div>
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+
+
+
+
+             <!-- booking online tab -->
+
+
+             <div class="tab-pane fade" id="v-pills-orders-online" role="tabpanel" aria-labelledby="v-pills-orders-online-tab">
+
+              <div class="orders-header">
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                  <li class="nav-item" role="presentation">
+                    <a class="nav-link active" id="pills-current-orders-online-tab" data-toggle="pill" href="#pills-c-online-orders"
+                      role="tab" aria-controls="pills-c-online-orders" aria-selected="true">حجوزاتي الحالية</a>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="pills-previous-orders-online-tab" data-toggle="pill" href="#pills-p-online-orders"
+                      role="tab" aria-controls="pills-p-online-orders" aria-selected="false">حجوزاتي السابقة</a>
+                  </li>
+
+                </ul>
+              </div>
+              <div  class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-c-online-orders" role="tabpanel"
+                  aria-labelledby="pills-current-orders-online-tab">
+
+                  <div class="my-current-orders" ng-repeat="current in notCompletedOnlineVisitsList">
+                    <div class="order-card">
+                      <div class="order-card-body">
+                        <div class="pharmacy-img">
+                          <img src="/images/dr1.png">
+                        </div>
+
+                        <div class="orders-details">
+                          <h4>د. {{current.selected_doctor.name_##session.lang##}}</h4>
+                          <p>{{current.specialty.name_##session.lang##}}</p>
+                          <span>تاريخ الحجز : {{current.selected_time.date|date:'dd - MM - yyyy'}} - {{current.selected_time.day.##session.lang##}} </span><br>
+
+                          <span>سعر الكشف : {{current.total_value}} جنيه</span>
+                        </div>
+
+                        <div class="orders-action">
+                          <div>
+                            <span> 20-3-2021 </span><span> , 06:40 ص</span><br>
+
+                          </div>
+                          <a href="#cancel-order" class="btn" data-toggle="modal">الغاء حجز</a>
+                          <div class="modal fade" id="cancel-order" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                  <div style="text-align: center;">
+                                    <img src="/images/Group 15143.svg" alt=""><br>
+                                    <p>هل انت متأكد من الغاء حجز بالفعل؟</p>
+                                    <a href="#">نعم</a>
+                                    <a href="#">إلغاء</a>
+
+
+                                  </div>
+                                </div>
+                                <div class="modal-footer">
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <a class="btn" data-toggle="collapse" href="#more_{{current.id}}" role="button" aria-expanded="false"
+                            aria-controls="more">
+                            المزيد
+                          </a><br>
+
+
+                        </div>
+
+                        <div class="delete-orders">
+                          <a href="#">&times;</a>
+                        </div>
+                      </div>
+
+                      <div class="collapse" id="more_{{current.id}}">
+                        <div class="card card-body">
+
+
+
+                          <div class="collapse-more-section">
+                            <div>
+                              <h2>بيانات شخصية</h2>
+                            </div>
+                            <div>
+                              <span>الاسم بالكامل : {{current.customer.name_##session.lang##}}</span><br>
+                              <span>رقم التليفون : {{current.customer.mobile}}</span><br>
+                              <span>العنوان : {{current.customer.address_list[0].gov.name_##session.lang##}} - {{current.customer.address_list[0].city.name_##session.lang##}}
+                                - {{current.customer.address_list[0].area.name_##session.lang##}}
+                              </span><br>
+
+                            </div>
+                          </div>
+
+                          <div class="collapse-more-section">
+                            <div>
+                              <h2>ملاحظات قبل الكشف</h2>
+                            </div>
+                            <div>
+                              <span>{{current.notes_before}}</span><br>
+
+
+                            </div>
+                          </div>
+                          <div class="collapse-more-section">
+                            <div>
+                              <h2>ملاحظات بعد الكشف</h2>
+                            </div>
+                            <div>
+                              <span> {{current.diagnosis.special_notes}} </span><br>
+
+
+                            </div>
+                          </div>
+
+                          <div class="collapse-more-section">
+                            <div>
+                              <h2> ملفات المرفقة</h2>
+                            </div>
+                            <div>
+                              <div class="img-with-details">
+                                <img ng-src="{{current.image_url}}" width="10%">
+                                <!-- <p>تفاصيل مع الطلب : علبتين دواء مع شريط كيتوفان وشريط اسبرين مع العلم ان لدي حساسية جيوب أنفية</p>
+                                      </div>
+                                      <div class="img-with-details">
+                                        <img src="/images/medicine.svg">
+                                        <p>تفاصيل مع الطلب : علبتين دواء مع شريط كيتوفان وشريط اسبرين مع العلم ان لدي حساسية جيوب أنفية</p>
+                                        </div>
+                                        <div class="img-with-details">
+                                          <img src="/images/medicine.svg">
+                                          <p>تفاصيل مع الطلب : علبتين دواء مع شريط كيتوفان وشريط اسبرين مع العلم ان لدي حساسية جيوب أنفية</p> -->
+                              </div>
+
+                            </div>
+                          </div>
+
+
+
+
+
+
+
+
+                        </div>
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                </div>
+                <div class="tab-pane fade" id="pills-p-online-orders" role="tabpanel"
+                  aria-labelledby="pills-previous-orders-online-tab">
+
+                  <div ng-repeat="previous in completedOnlineVisitsList"  class="my-previous-orders">
+                    <div class="order-card">
+                      <div class="order-card-body">
+                        <div class="pharmacy-img">
+                          <img src="/images/dr1.png">
+                        </div>
+
+                        <div class="orders-details">
+                          <h4>د. {{previous.selected_doctor.name_##session.lang##}}</h4>
+                          <p>{{previous.specialty.name_##session.lang##}}</p>
+                          <span>تاريخ الحجز : {{previous.selected_time.date|date:'dd - MM - yyyy'}} - {{previous.selected_time.day.##session.lang##}} </span><br>
+
+                          <span>سعر الكشف : {{previous.total_value}} جنيه</span>
+                        </div>
+
+                        <div class="orders-action">
+                          <div>
+                            <span> 20-3-2021 </span><span> , 06:40 ص</span><br>
+
+                          </div>
+
+                          <a class="btn" data-toggle="collapse" href="#more_{{previous.id}}" role="button" aria-expanded="false"
+                            aria-controls="more">
+                            المزيد
+                          </a><br>
+
+
+                        </div>
+
+                        <div class="delete-orders">
+                          <a href="#">&times;</a>
+                        </div>
+                      </div>
+
+                      <div class="collapse" id="more_{{previous.id}}">
+                        <div class="card card-body">
+
+
+
+                          <div class="collapse-more-section">
+                            <div>
+                              <h2>بيانات شخصية</h2>
+                            </div>
+                            <div>
+                              <span>الاسم بالكامل : {{previous.customer.name_##session.lang##}}  </span><br>
+                              <span>رقم التليفون : {{previous.customer.mobile}}</span><br>
+                              <span>العنوان : {{previous.customer.address_list[0].gov.name_##session.lang##}} - {{previous.customer.address_list[0].city.name_##session.lang##}}
+                                - {{previous.customer.address_list[0].area.name_##session.lang##}}</span><br>
+
+                            </div>
+                          </div>
+
+                          <div class="collapse-more-section">
+                            <div>
+                              <h2>ملاحظات قبل الكشف</h2>
+                            </div>
+                            <div>
+                              <span>{{previous.notes_before}}</span><br>
+
+
+                            </div>
+                          </div>
+                          <div class="collapse-more-section">
+                            <div>
+                              <h2>ملاحظات بعد الكشف</h2>
+                            </div>
+                            <div>
+                              <span>{{previous.diagnosis.special_notes}}</span><br>
+
+
+                            </div>
+                          </div>
+
+                          <div class="collapse-more-section">
+                            <div>
+                              <h2> ملفات المرفقة</h2>
+                            </div>
+                            <div>
+                              <div class="img-with-details">
+                                <img ng-src="{{previous.image_url}}" width="10%">
+                                <!-- <p>تفاصيل مع الطلب : علبتين دواء مع شريط كيتوفان وشريط اسبرين مع العلم ان لدي حساسية جيوب أنفية</p>
+                                        </div>
+                                        <div class="img-with-details">
+                                          <img src="/images/medicine.svg">
+                                          <p>تفاصيل مع الطلب : علبتين دواء مع شريط كيتوفان وشريط اسبرين مع العلم ان لدي حساسية جيوب أنفية</p>
+                                          </div>
+                                          <div class="img-with-details">
+                                            <img src="/images/medicine.svg">
+                                            <p>تفاصيل مع الطلب : علبتين دواء مع شريط كيتوفان وشريط اسبرين مع العلم ان لدي حساسية جيوب أنفية</p> -->
+                              </div>
+
+                            </div>
+                          </div>
+
+
+
+
+
+
+
+
+                        </div>
+                      </div>
+
+                    </div>
+
+
+                  </div>
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1466,12 +2054,16 @@
 
      
 
+
+
+
+
       $scope.getCompletedVisits = function (data) {
         $scope.error = '';
         console.log("COMPLETED VISITS");
           $http({
           method: 'POST',
-          url: '/api/doctors_visits/getCompletedVisits',
+          url: '/api/doctors_visits/getPatientCompleteClinicVisits',
           data: {
             "customer" : {
               id : '##user.ref_info.id##'
@@ -1491,8 +2083,57 @@
         );  
       };
 
-      $scope.getScanDelivaryTime = function (data) {
-         console.log("44444444444444" , data);
+
+
+      $scope.getCompletedHomeVisits = function (data) {
+        $scope.error = '';
+        console.log("COMPLETED VISITS");
+          $http({
+          method: 'POST',
+          url: '/api/doctors_visits/getPatientCompleteHomeVisits',
+          data: {
+            "customer" : {
+              id : '##user.ref_info.id##'
+            },
+          }
+        }).then(
+          function (response) {
+           if (response.data.done) {
+            $scope.completedHomeVisitsList = response.data.docs
+           }
+
+          },
+          function (err) {
+            $scope.busy = false;
+            $scope.error = err;
+          },
+        );  
+      };
+
+
+      $scope.getCompletedOnlineVisits = function (data) {
+        $scope.error = '';
+        console.log("COMPLETED VISITS");
+          $http({
+          method: 'POST',
+          url: '/api/doctors_visits/getPatientCompleteOnlineVisits',
+          data: {
+            "customer" : {
+              id : '##user.ref_info.id##'
+            },
+          }
+        }).then(
+          function (response) {
+           if (response.data.done) {
+            $scope.completedOnlineVisitsList = response.data.docs
+           }
+
+          },
+          function (err) {
+            $scope.busy = false;
+            $scope.error = err;
+          },
+        );  
       };
 
 
@@ -1501,7 +2142,7 @@
        
           $http({
           method: 'POST',
-          url: '/api/doctors_visits/getNotCompletedVisits',
+          url: '/api/doctors_visits/getPatientNotCompleteClinicVisits',
           data: {
             "customer" : {
               id : '##user.ref_info.id##'
@@ -1521,6 +2162,74 @@
         );  
       };
 
+
+      $scope.getNotCompletedHomeVisits = function (data) {
+        $scope.error = '';
+       
+          $http({
+          method: 'POST',
+          url: '/api/doctors_visits/getPatientNotCompleteHomeVisits',
+          data: {
+            "customer" : {
+              id : '##user.ref_info.id##'
+            },
+          }
+        }).then(
+          function (response) {
+           if (response.data.done) {
+            $scope.notCompletedHomeVisitsList = response.data.docs
+           }
+
+          },
+          function (err) {
+            $scope.busy = false;
+            $scope.error = err;
+          },
+        );  
+      };
+
+
+
+      $scope.getNotCompletedOnlineVisits = function (data) {
+        $scope.error = '';
+       
+          $http({
+          method: 'POST',
+          url: '/api/doctors_visits/getPatientNotCompleteOnlineVisits',
+          data: {
+            "customer" : {
+              id : '##user.ref_info.id##'
+            },
+          }
+        }).then(
+          function (response) {
+           if (response.data.done) {
+            $scope.notCompletedOnlineVisitsList = response.data.docs
+           }
+
+          },
+          function (err) {
+            $scope.busy = false;
+            $scope.error = err;
+          },
+        );  
+      };
+
+
+
+
+
+
+
+
+
+
+      $scope.getScanDelivaryTime = function (data) {
+         console.log("44444444444444" , data);
+      };
+
+
+      
 
 
 
@@ -1660,6 +2369,11 @@
      
 
       $scope.getCompletedVisits();
+      $scope.getCompletedHomeVisits();
+      $scope.getCompletedOnlineVisits();
+      $scope.getNotCompletedVisits();
+      $scope.getNotCompletedHomeVisits();
+      $scope.getNotCompletedOnlineVisits();
       $scope.getNotCompletedVisits();
       $scope.getNotCompletedScans();
       $scope.getCompletedScans();
