@@ -1298,7 +1298,100 @@ module.exports = function init(site) {
 
 
 
+  // update location
+  site.post("/api/customers/updateLocations", (req, res) => {
+    req.headers.language = req.headers.language || "en";
+    let response = {};
+    if (!req.session.user) {
+      response.message = site.word("loginFirst")[req.headers.language];
+      response.done = false;
+      res.json(response);
+      return;
+    } else if (!req.session.user.ref_info) {
+      response.message = site.word("loginFirst")[req.headers.language];
+      response.done = false;
+      res.json(response);
+      return;
+    }
+    $customers.findOne({
+        where: {
+          id: req.session.user.ref_info.id,
+        },
+      },
+      (err, doc) => {
+        let arr = [];
+        if (doc.address_list.length > 0) {
+          for (const [index, value] of doc.address_list.entries()) {
 
+            let xx = value;
+            xx.id = index + 1;
+
+            arr.push(xx)
+          }
+        }
+        arr.forEach(element => {
+          if (element.id == req.body.id) {
+
+            if (req.body.gov) {
+              element.gov = req.body.gov
+            }
+            if (req.body.city) {
+              element.city = req.body.city
+            }
+            if (req.body.area) {
+              element.area = req.body.area
+            }
+
+            if (req.body.address) {
+              element.address = req.body.address
+            }
+            if (req.body.lat) {
+              element.lat = req.body.lat
+            }
+            if (req.body.long) {
+              element.long = req.body.long
+            }
+            if (req.body.streetName) {
+              element.streetName = req.body.streetName
+            }
+            if (req.body.buildingNumber) {
+              element.buildingNumber = req.body.buildingNumber
+            }
+            if (req.body.role) {
+              element.role = req.body.role
+            }
+            if (req.body.apartmentNumber) {
+              element.apartmentNumber = req.body.apartmentNumber
+            }
+            if (req.body.specialMark) {
+              element.specialMark = req.body.specialMark
+            }
+
+          }
+        });
+        doc.address_list = arr
+        $customers.update(doc, (err, result) => {
+          if (!err && result.count > 0) {
+            response.done = true;
+            response.message = 'updated successfully';
+            res.json(response);
+            return;
+          } else {
+            response.done = false;
+            response.message = 'updated not happened';
+            res.json(response);
+            return;
+          }
+        })
+
+
+      }
+    );
+
+
+
+
+  });
 
 
 
