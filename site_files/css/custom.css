@@ -8,9 +8,9 @@
   --input-focus-border-color: var(--theme-color);
   --input-color: #000000;
   --color: #444;
-  --input-border-radius: 30px;
   --background-color: var(--x-background);
-  --input-background-color: #f8f8ff;
+ /* --input-border-radius: 30px;
+   --input-background-color: #f8f8ff; */
   --body-background: #f8f8ff;
   --modal-header-background-color: var(--theme-color);
   --modal-box-shadow-color: #555;
@@ -52,9 +52,9 @@
   border-top-left-radius: 30px;
 }
 
-.no-border-radius {
+/* .no-border-radius {
   border-radius: 30px !important;
-}
+} */
 
 body {
   margin: 100px;

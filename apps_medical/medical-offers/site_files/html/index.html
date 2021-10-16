@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="medical_offers_ui || medical_offers_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+    <div id="main-layout" class="container loaded">
+        <div class="row">
+            <div class="row" ng-controller="medical_offers" x-permissions="login">
+                <div x-import="medical-offers/add_modal.html"></div>
+                <div x-import="medical-offers/update_modal.html"></div>
+                <div x-import="medical-offers/delete_modal.html"></div>
+                <div x-import="medical-offers/view_modal.html"></div>
+                <div x-import="medical-offers/search_all_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center"> ##word.medical_offers## </h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button type="add" x-permissions="medical_offers_add || medical_offers_manage" label="##word.medical_offers_new##" ng-click="displayAddMedicalOffers()"></i-button>
+                    <i-button type="search" x-permissions="medical_offers_search || medical_offers_manage" label="##word.search_all##" onclick="site.showModal('#medicalOffersSearchModal')"></i-button>
+
+                    <span ng-show="busy">
+                        <span class="sr-only">Loading...</span>
+                    </span>
+                    <h3 class="bold text-center"> ##word.count## : {{count}} </h3>
+                    <br>
+                </div>
+
+                <table class="table loaded hover center bold" id="t1">
+                    <tr>
+                        <th class="not-print"> ##word.logo## </th>
+                        <th> ##word.medical_offers_code## </th>
+                        <th> ##word.medical_offers_name## </th>
+                        <th> ##word.status## </th>
+
+                        <th class="not-print"> ##word.actions## </th>
+                    </tr>
+                    <tr ng-repeat="c in list | orderBy : '-id'">
+                        <td class="not-print">
+                            <i-image view class="logo" ng-model="c.image_url"></i-image>
+                        </td>
+
+                        <td class="blue userPrint"> {{c.code}} </td>
+                        <td> {{c.name_##session.lang##}} </td>
+
+                        <td>
+                            <p ng-show="c.active == true" class="green"> ##word.active## </p>
+                            <p ng-show="c.active == false" class="red"> ##word.not_active## </p>
+                        </td>
+
+                        <td class="center not-print">
+                            <i-button type="details" x-permissions="medical_offers_view || medical_offers_manage" label="##word.details##" ng-click="displayDetailsMedicalOffers(c)"></i-button>
+
+                            <i-button type="update" x-permissions="medical_offers_edit || medical_offers_manage" label="##word.update##" ng-click="displayUpdateMedicalOffers(c)"></i-button>
+
+                            <i-button type="delete" x-permissions="medical_offers_delete || medical_offers_manage" label="##word.delete##" ng-click="displayDeleteMedicalOffers(c)"></i-button>
+                        </td>
+                    </tr>
+                </table>
+
+                <div class="row">
+                    <i-button x-permissions="medical_offers_print || medical_offers_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div x-import="scripts.html"></div>
+
+    <script x-permissions="login" x-import="medical-offers/index.js"></script>
+</body>
+
+</html>

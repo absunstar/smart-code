@@ -86,6 +86,13 @@
     {
         "category": "main",
         "feature": "medical",
+        "name": "medical_offers",
+        "en": "Medical Offers",
+        "ar": "العروض الطبية"
+    },
+    {
+        "category": "main",
+        "feature": "medical",
         "name": "doctors",
         "en": "Doctors",
         "ar": "الأطباء"
@@ -803,6 +810,27 @@
         "name": "vaccinations",
         "en": "Vaccinations",
         "ar": "التطعيمات"
+    },
+    {
+        "category": "general_setting",
+        "feature": "medical",
+        "name": "building",
+        "en": "buildings",
+        "ar": "المباني"
+    },
+    {
+        "category": "general_setting",
+        "feature": "medical",
+        "name": "floor",
+        "en": "Floors",
+        "ar": "الطوابق"
+    },
+    {
+        "category": "general_setting",
+        "feature": "medical",
+        "name": "room",
+        "en": "Rooms",
+        "ar": "الغرف"
     },
     {
         "category": "general_setting",

@@ -1,0 +1,24 @@
+<div id="medicalOffersUpdateModal" class="modal" fixed>
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.medical_offers_update##
+                <i class="fa fa-pencil"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+            <div x-import="medical-offers/content.html"></div>
+            <div x-import="medical-offers/action_info.html"></div>
+        </div>
+
+        <div class="modal-footer center">
+            <h2 class="error"> {{error}} </h2>
+            <i-button type="save" label="##word.save##" ng-click="updateMedicalOffers(medical_offers)" ></i-button>
+            
+            <i-button type="close" label="##word.close##"onclick="site.hideModal( '#medicalOffersUpdateModal')" ></i-button>
+        </div>
+    </div>
+</div>

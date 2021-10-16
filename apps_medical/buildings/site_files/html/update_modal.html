@@ -1,0 +1,25 @@
+<div id="buildingUpdateModal" class="modal" fixed>
+        
+    <div class="modal-content ">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.buildings_edit##
+                <i class="fa fa-pencil"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+
+            <div x-import="buildings/content.html"></div>
+            <div x-import="buildings/action_info.html"></div>
+        </div>
+
+        <div class="modal-footer center">
+            <h2 class="error"> {{error}} </h2>
+            <i-button type="edit" label="##word.edit##" ng-click="updateGov(building)"></i-button>
+            <i-button type="close" label="##word.close##" onclick="site.hideModal( '#buildingUpdateModal')"></i-button>
+        </div>
+    </div>
+    
+</div>

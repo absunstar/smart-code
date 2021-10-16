@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "room_admin",
+    "en": "Room Admin",
+    "ar": "إدارة الغرف",
+    "permissions": ["room_manage"]
+}]

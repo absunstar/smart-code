@@ -1,0 +1,36 @@
+<div class="form">
+  <div id="medicalOffersAddModal">
+    <fieldset>
+      <legend>##word.medical_offers_informations##</legend>
+      <div class="row">
+        <div class="col9">
+          <div class="row">
+            <i-control ng-hide="disabledCode" class="col2" label="##word.code##" ng-model="medical_offers.code"></i-control>
+
+            <i-control v="r" class="col4" label="##word.medical_offers_name##" ng-model="medical_offers.name_ar"> </i-control>
+
+            <i-control class="col4" v="r" label="##word.name_en##" ng-model="medical_offers.name_en"> </i-control>
+
+            <i-checkbox class="col2" label="##word.active##" ng-model="medical_offers.active"></i-checkbox>
+          </div>
+
+          <div class="row">
+            <i-date2 class="col4" ng-model="medical_offers.startup_date" label="##word.startup_date##" v="r"> </i-date2>
+
+            <i-time help-id="clinic_from" class="col2" label="##word.time##" ng-model="medical_offers.time_start" display="##session.lang##"></i-time>
+          </div>
+
+          <div class="row">
+            <i-date2 class="col4" ng-model="medical_offers.deadline_date" label="##word.deadline_date##" v="r"> </i-date2>
+
+            <i-time help-id="clinic_from" class="col2" label="##word.time##" ng-model="medical_offers.time_end" display="##session.lang##"></i-time>
+          </div>
+        </div>
+
+        <div class="col3">
+          <i-image category="medical_offers" ng-model="medical_offers.image_url"> </i-image>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+</div>

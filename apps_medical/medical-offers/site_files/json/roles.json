@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "medical_offers_admin",
+    "en": "Medical Offers Admin",
+    "ar": "إدارة العروض الطبية",
+    "permissions": ["medical_offers_manage"]
+}]

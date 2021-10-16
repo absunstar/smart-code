@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="room_ui || room_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+    <div id="main-layout" class="container loaded">
+        <div class="row">
+            <div class="row" ng-controller="room">
+                <div x-permissions="room_add || room_manage" x-import="room/add_modal.html"></div>
+                <div x-permissions="room_update || room_manage" x-import="room/update_modal.html"></div>
+                <div x-permissions="room_delete || room_manage" x-import="room/delete_modal.html"></div>
+                <div x-permissions="room_view || room_manage" x-import="room/view_modal.html"></div>
+                <div x-permissions="room_search || room_manage" x-import="room/search_all_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center">##word.rooms##</h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button x-permissions="room_add || room_manage" type="add" label="##word.room_new##"
+                        ng-click="displayAddRoom()"></i-button>
+
+                    <i-button x-permissions="room_search || room_manage" type="search" label="##word.search_all##"
+                        ng-click="displaySearchModal()"></i-button>
+
+                    <a class="btn left bg-green" target="blank" href="/floor"> ##word.floor_add##</a>
+                    <a class="btn left bg-green" target="blank" href="/buildings"> ##word.buildings_add##</a>
+
+                    <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
+                </div>
+
+                <table x-permissions="login" class="table hover bold loaded" id="t1">
+                    <tr>
+                        <th class="not-print">##word.logo##</th>
+                        <th>##word.code##</th>
+                        <th>##word.building##</th>
+                        <th>##word.floor_name##</th>
+                        <th>##word.room_name##</th>
+                        <th>##word.status##</th>
+                        <th class="not-print">##word.actions##</th>
+                    </tr>
+                    <tr ng-repeat="c in list">
+                        <td class="center not-print">
+                            <i-image view class="logo" ng-model="c.image_url"></i-image>
+                        </td>
+                        <td class="center userPrint blue">{{c.code}}</td>
+                        <td class="center">{{c.building.name_##session.lang##}}</td>
+                        <td class="center">{{c.floor.name_##session.lang##}}</td>
+                        <td class="center title">{{c.name_##session.lang##}}</td>
+                        <td class="center">
+                            <p ng-show="c.active ==true" class="green"> ##word.active## </p>
+                            <p ng-show="c.active ==false" class="red"> ##word.not_active## </p>
+                        </td>
+
+                        <td class="center not-print">
+                            <i-button x-permissions="room_view || room_manage" type="view" label="##word.details##"
+                                ng-click="displayDetailsRoom(c)"></i-button>
+
+                            <i-button x-permissions="room_update || room_manage" type="edit" label="##word.edit##"
+                                ng-click="displayUpdateRoom(c)"></i-button>
+
+                            <i-button x-permissions="room_delete || room_manage" type="delete" label="##word.delete##"
+                                ng-click="displayDeleteRoom(c)"></i-button>
+                        </td>
+                    </tr>
+                </table>
+
+                <i-button x-permissions="room_print || room_manage" type="print" label="##word.print##"
+                    onclick="site.print('#t1')"></i-button>
+
+            </div>
+        </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+    <script x-import="room/index.js"></script>
+</body>
+
+</html>

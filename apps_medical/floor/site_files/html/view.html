@@ -1,0 +1,39 @@
+<div ng-hide="busy" class="row">
+    <div id="basicInformation">
+        <fieldset>
+            <legend> ##word.basic_information##</legend>
+            <div class="col9">
+                <table id="basicInformationTable" class="table hover bold">
+
+                    <tr>
+                        <td class="title">##word.code##</td>
+                        <td class="center userPrint blue">{{floor.code}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.buildings_name##</td>
+                        <td class="center">{{floor.building.name_##session.lang##}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.floor_name##</td>
+                        <td class="center">{{floor.name_##session.lang##}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.status##</td>
+                        <td ng-show="floor.active == true" class="center green"> ##word.active## </td>
+                        <td ng-show="floor.active == false" class="center red"> ##word.not_active## </td>
+                    </tr>
+
+                </table>
+            </div>
+
+            <div class="col3">
+                <i-image view  ng-model="floor.image_url"></i-image>
+            </div>
+
+        </fieldset>
+    </div>
+</div>
+<div x-import="floor/action_info.html"></div>

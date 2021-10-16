@@ -1,24 +1,24 @@
 module.exports = function init(site) {
 
-  let collection_name = 'goves'
+  let collection_name = 'buildings'
 
   let source = {
     en: 'Addresses System',
     ar: 'نظام العناوين'
   }
 
-  let image_url = '/images/gov.png'
+  let image_url = '/images/building.png'
   let add_message = {
-    en: 'New Gov Added',
-    ar: 'تم إضافة محافظة جديدة'
+    en: 'New Building Added',
+    ar: 'تم إضافة مبنى جديد'
   }
   let update_message = {
-    en: ' Gov Updated',
-    ar: 'تم تعديل محافظة'
+    en: ' Building Updated',
+    ar: 'تم تعديل مبنى'
   }
   let delete_message = {
-    en: ' Gov Deleted',
-    ar: 'تم حذف محافظة '
+    en: ' Building Deleted',
+    ar: 'تم حذف مبنى '
   }
 
 

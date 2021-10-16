@@ -9,16 +9,16 @@ module.exports = function init(site) {
 
   let image_url = '/images/city.png'
   let add_message = {
-    en: 'New city Added',
-    ar: 'تم إضافة مدينة جيدية'
+    en: 'New City Added',
+    ar: 'تم إضافة مدينة جديدة'
   }
   let update_message = {
-    en: ' city Updated',
-    ar: 'تم تعديل المدينة'
+    en: ' City Updated',
+    ar: 'تم تعديل مدينة'
   }
   let delete_message = {
-    en: ' city Deleted',
-    ar: 'تم حذف المدينة '
+    en: ' City Deleted',
+    ar: 'تم حذف مدينة '
   }
 
 

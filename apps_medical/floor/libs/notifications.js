@@ -1,24 +1,24 @@
 module.exports = function init(site) {
 
-  let collection_name = 'goves'
+  let collection_name = 'floor'
 
   let source = {
-    en: 'Addresses System',
-    ar: 'نظام العناوين'
+    en: 'Floors System',
+    ar: 'نظام الطوابق'
   }
 
-  let image_url = '/images/gov.png'
+  let image_url = '/images/floor.png'
   let add_message = {
-    en: 'New Gov Added',
-    ar: 'تم إضافة محافظة جديدة'
+    en: 'New Floor Added',
+    ar: 'تم إضافة طابق جديدة'
   }
   let update_message = {
-    en: ' Gov Updated',
-    ar: 'تم تعديل محافظة'
+    en: 'Floor Updated',
+    ar: 'تم تعديل طابق'
   }
   let delete_message = {
-    en: ' Gov Deleted',
-    ar: 'تم حذف محافظة '
+    en: 'Floor Deleted',
+    ar: 'تم حذف طابق '
   }
 
 
@@ -30,9 +30,10 @@ module.exports = function init(site) {
           source: source,
           message: add_message,
           value: {
+            name: result.doc.name,
             code: result.doc.code,
-            name_en: result.doc.name_en,
-            name_ar: result.doc.name_ar
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
           },
           add: result.doc,
           action: 'add'
@@ -50,9 +51,10 @@ module.exports = function init(site) {
           source: source,
           message: update_message,
           value: {
+            name: result.old_doc.name,
             code: result.old_doc.code,
-            name_en: result.old_doc.name_en,
-            name_ar: result.old_doc.name_ar
+            en: result.old_doc.name_en,
+            ar: result.old_doc.name_ar
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
@@ -71,9 +73,10 @@ module.exports = function init(site) {
           source: source,
           message: delete_message,
           value: {
+            name: result.doc.name,
             code: result.doc.code,
-            name_en: result.doc.name_en,
-            name_ar: result.doc.name_ar
+            en: result.doc.name_en,
+            ar: result.doc.name_ar
           },
           delete: result.doc,
           action: 'delete'

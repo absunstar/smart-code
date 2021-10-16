@@ -1,0 +1,41 @@
+[{
+        "name": "rooms",
+        "en": "Rooms",
+        "ar": "الفرف"
+    },
+    {
+        "name": "room_new",
+        "en": "New Room",
+        "ar": "غرفة  جديد"
+    },
+    {
+        "name": "room",
+        "en": "Room",
+        "ar": "الغرفة"
+    },
+    {
+        "name": "room_add",
+        "en": "Add Room",
+        "ar": "إضافة غرفة "
+    },
+    {
+        "name": "room_edit",
+        "en": "Edit Room",
+        "ar": "تعديل غرفة "
+    },
+    {
+        "name": "room_details",
+        "en": "Room Details",
+        "ar": "تفاصيل الغرفة "
+    },
+    {
+        "name": "room_delete",
+        "en": "Delete Room",
+        "ar": "حذف غرفة "
+    },
+    {
+        "name": "room_name",
+        "en": "Room Name",
+        "ar": "إسم الغرفة "
+    }
+]

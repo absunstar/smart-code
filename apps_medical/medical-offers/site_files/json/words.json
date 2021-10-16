@@ -1,0 +1,18 @@
+[
+    {"name" : "medical_offers_informations" , "en" : "Medical Offers Informations" , "ar" : "بيانات العروض الطبية"},
+
+    {"name" : "medical_offer" , "en" : "Medical Offer" , "ar" : "العرض الطبي"},
+    {"name" : "medical_offers" , "en" : "Medical Offers" , "ar" : "العروض الطبية"},
+    {"name" : "medical_offers_code" , "en" : "Medical Offers Code" , "ar" : "كود العرض الطبي"},
+    {"name" : "medical_offers_name" , "en" : "Medical Offers Name" , "ar" : "إسم العرض الطبي"},
+
+    {"name" : "medical_offers_new" , "en" : "New Medical Offer" , "ar" : "عرض طبي جديد"},
+    {"name" : "medical_offers_details" , "en" : "Medical Offers Details" , "ar" : "تفاصيل العرض الطبي"},
+    {"name" : "medical_offers_update" , "en" : "Edit Medical Offers" , "ar" : "تعديل عرض الطبي"},
+    {"name" : "medical_offers_delete" , "en" : "Delte Medical Offers" , "ar" : "حذف العرض الطبي"},
+    {"name" : "medical_offers_add_name" , "en" : "Add Medical Offers" , "ar" : "إضافة عرض طبي"}
+
+
+    
+    
+]

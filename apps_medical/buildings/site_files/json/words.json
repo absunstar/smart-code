@@ -1,0 +1,46 @@
+[{
+        "name": "buildings",
+        "en": "Buildings",
+        "ar": "المباني"
+    },
+    {
+        "name": "building",
+        "en": "Building",
+        "ar": "المبنى"
+    },
+    {
+        "name": "buildings_new",
+        "en": "New Building",
+        "ar": "مبنى جديد"
+    },
+
+    {
+        "name": "buildings_add",
+        "en": "Add Building",
+        "ar": "إضافة مبنى "
+    },
+    {
+        "name": "buildings_edit",
+        "en": "Edit Building",
+        "ar": "تعديل مبنى "
+    },
+    {
+        "name": "buildings_details",
+        "en": "Building Details",
+        "ar": "تفاصيل المبنى "
+    },
+    {
+        "name": "buildings_delete",
+        "en": "Delete Building",
+        "ar": "حذف مبنى "
+    },
+    {
+        "name": "buildings_name",
+        "en": "Building Name",
+        "ar": "إسم المبنى "
+    }
+
+
+
+
+]

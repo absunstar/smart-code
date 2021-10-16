@@ -1,0 +1,12 @@
+[
+    { "module_name" : "public", "screen_name" : "medical-offers" , "name":"medical_offers_manage" , "en":"Manage" , "ar":"إدارة"},
+    { "module_name" : "public", "screen_name" : "medical-offers" , "name":"medical_offers_add" , "en":"Add" , "ar":"إضافة"},
+    { "module_name" : "public", "screen_name" : "medical-offers" , "name":"medical_offers_edit" , "en":"Edit" , "ar":"تعديل"},
+    { "module_name" : "public", "screen_name" : "medical-offers" , "name":"medical_offers_delete" , "en":"Delete" , "ar":"حذف"},
+    { "module_name" : "public", "screen_name" : "medical-offers" , "name":"medical_offers_view" , "en":"View" , "ar":"عرض"},
+    { "module_name" : "public", "screen_name" : "medical-offers" , "name":"medical_offers_search" , "en":"Search" , "ar":"بحث"},
+    { "module_name" : "public", "screen_name" : "medical-offers" , "name":"medical_offers_export" , "en":"Export" , "ar":"تصدير"},
+    { "module_name" : "public", "screen_name" : "medical-offers" , "name":"medical_offers_print" , "en":"Print" , "ar":"طباعة"},
+    { "module_name" : "public", "screen_name" : "medical-offers" , "name":"medical_offers_ui" , "en":"UI" , "ar":"الواجهة الرسومية"}
+
+]

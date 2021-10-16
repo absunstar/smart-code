@@ -1,0 +1,51 @@
+[{
+        "name": "floor",
+        "en": "Floors",
+        "ar": "الطابق"
+    },
+    {
+        "name": "floors",
+        "en": "Floors",
+        "ar": "الطوابق"
+    },
+    {
+        "name": "floor_new",
+        "en": "New Floors",
+        "ar": "طابق  جديدة"
+    },
+
+    {
+        "name": "floor_add",
+        "en": "Add Floors",
+        "ar": "إضافة طابق "
+    },
+    {
+        "name": "floor_edit",
+        "en": "Edit Floors",
+        "ar": "تعديل طابق "
+    },
+    {
+        "name": "floor_details",
+        "en": "Floors Details",
+        "ar": "تفاصيل الطابق "
+    },
+    {
+        "name": "floor_delete",
+        "en": "Delete Floors",
+        "ar": "حذف طابق "
+    },
+    {
+        "name": "floor_name",
+        "en": "Floors Name",
+        "ar": "إسم الطابق "
+    },
+    {
+        "name": "loginFirst",
+        "en": "please login first",
+        "ar": "برجاء تسجيل الدخول"
+    }
+
+
+
+
+]
