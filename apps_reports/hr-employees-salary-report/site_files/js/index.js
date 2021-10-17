@@ -89,7 +89,7 @@ app.controller("employees_salary_report", function ($scope, $http) {
 
       $scope.userList.forEach(user => {
         if (user.employee_id == $scope.search.employee.id) {
-          $scope.employee_salary_report.user_id = user.id;
+          $scope.employee_salary_report.user_info.id = user.id;
         }
       });
 

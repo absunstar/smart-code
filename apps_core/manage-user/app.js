@@ -1,23 +1,23 @@
 module.exports = function init(site) {
   site.get({
-    name: "manage_user",
-    path: __dirname + "/site_files/html/index.html",
-    parser: "html",
+    name: 'manage_user',
+    path: __dirname + '/site_files/html/index.html',
+    parser: 'html',
     compress: false,
   });
 
   site.get({
-    name: "/images",
-    path: __dirname + "/site_files/images",
+    name: '/images',
+    path: __dirname + '/site_files/images',
   });
 
-  site.post("/api/manage_user/view", (req, res) => {
+  site.post('/api/manage_user/view', (req, res) => {
     let response = {
       done: false,
     };
 
     if (!req.session.user) {
-      response.error = "You Are Not Login";
+      response.error = 'You Are Not Login';
       res.json(response);
       return;
     }
@@ -39,13 +39,13 @@ module.exports = function init(site) {
     );
   });
 
-  site.post("/api/manage_user/update", (req, res) => {
+  site.post('/api/manage_user/update', (req, res) => {
     let response = {
       done: false,
     };
 
     if (!req.session.user) {
-      response.error = "Please Login First";
+      response.error = 'Please Login First';
       res.json(response);
       return;
     }
@@ -57,49 +57,39 @@ module.exports = function init(site) {
       },
       (err, user) => {
         if (!err && user) {
-          if (type === "email") {
-            if (
-              !req.body.user.email.contains("@") &&
-              !req.body.user.email.contains(".")
-            ) {
-              user.email =
-                req.body.user.email + "@" + site.get_company(req).host;
+          if (type === 'email') {
+            if (!req.body.user.email.contains('@') && !req.body.user.email.contains('.')) {
+              user.email = req.body.user.email + '@' + site.get_company(req).host;
             } else {
-              if (
-                req.body.user.email.contains("@") &&
-                !req.body.user.email.contains(".")
-              ) {
-                response.error = "Email must be typed correctly";
+              if (req.body.user.email.contains('@') && !req.body.user.email.contains('.')) {
+                response.error = 'Email must be typed correctly';
                 res.json(response);
                 return;
-              } else if (
-                !req.body.user.email.contains("@") &&
-                req.body.user.email.contains(".")
-              ) {
-                response.error = "Email must be typed correctly";
+              } else if (!req.body.user.email.contains('@') && req.body.user.email.contains('.')) {
+                response.error = 'Email must be typed correctly';
                 res.json(response);
                 return;
               }
             }
-          } else if (type === "password") {
+          } else if (type === 'password') {
             if (req.body.user.current_password !== user.password) {
-              response.error = "Current Password Error";
+              response.error = 'Current Password Error';
               res.json(response);
               return;
-            } else if (
-              req.body.user.re_password !== req.body.user.new_password
-            ) {
-              response.error = "Password does not match";
+            } else if (req.body.user.re_password !== req.body.user.new_password) {
+              response.error = 'Password does not match';
               res.json(response);
               return;
             } else {
               user.password = req.body.user.new_password;
             }
+          } else if (type === 'name' || type === 'logo' || type === 'birth_date' || type === 'gender' || type === 'name' || type === 'phone' || type === 'mobile') {
+            user.profile = req.body.user.profile;
           }
 
           site.security.isUserExists(req.body.user, function (err, user_found) {
-            if (user_found && type === "email") {
-              response.error = "User Is Exist";
+            if (user_found && type === 'email') {
+              response.error = 'User Is Exist';
               res.json(response);
               return;
             }
@@ -113,19 +103,19 @@ module.exports = function init(site) {
             });
           });
         } else {
-          response.error = err ? err.message : "no doc";
+          response.error = err ? err.message : 'no doc';
         }
       }
     );
   });
 
-  site.post("/api/manage_user/forget_password", (req, res) => {
+  site.post('/api/manage_user/forget_password', (req, res) => {
     let response = {
       done: false,
     };
 
     if (!req.session.user) {
-      response.error = "Please Login First";
+      response.error = 'Please Login First';
       res.json(response);
       return;
     }
@@ -137,15 +127,14 @@ module.exports = function init(site) {
       (err, user) => {
         if (!err && user) {
           let where = {
-            email : req.body.email,
-            code : req.body.code,
-            type : req.body.type,
+            email: req.body.email,
+            code: req.body.code,
+            type: req.body.type,
           };
           site.getCheckMailer(where, (callBack) => {
-            if(callBack){
-
+            if (callBack) {
               user.password = req.body.new_password;
-              response.error = "Code Is Not Correct";
+              response.error = 'Code Is Not Correct';
               res.json(response);
               return;
             }
@@ -158,7 +147,7 @@ module.exports = function init(site) {
             });
           });
         } else {
-          response.error = err ? err.message : "no doc";
+          response.error = err ? err.message : 'no doc';
         }
       }
     );

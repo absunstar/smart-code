@@ -19,8 +19,12 @@
                     </i-image>
 
                     <i-control ng-show="viewText === 'name'" label="##word.the_name##"
-                        ng-model="manage_user.profile.name">
+                        ng-model="manage_user.profile.name_ar">
                     </i-control>
+
+                    <i-control ng-show="viewText === 'name'" label="##word.name_en##"
+                    ng-model="manage_user.profile.name_en">
+                </i-control>
 
                     <i-date ng-show="viewText === 'birth_date'" ng-model="manage_user.profile.birth_date"
                         label="##word.birth_date##">
