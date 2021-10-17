@@ -1013,3 +1013,23 @@ margin: 12px 10px;
 .patient-file table td{
     font-size: 13px;
 }
+
+
+
+.account-profile input{
+    width: 100%;
+    margin: 10px 0px;
+   height: 20px;
+    border: none;
+    background-color: #FCFCFC;
+    border-radius: 20px;
+    padding: 15px;
+}
+.account-profile .modal-body .col{
+    border: none !important;
+    padding: 0px 5px !important;
+}
+.account-profile .modal-header .close{
+    border: none;
+    background-color: transparent !important;
+}
