@@ -239,6 +239,31 @@ module.exports = function init(site) {
 
 /* ATM APIS */
 
+site.post("/api/city/getCityByGov/:govId", (req, res) => {
+  let response = {
+    done: false
+  }
+  $city.findMany({
+    where: {
+      'gov._id': String(req.params.govId),
+    },
+
+  },
+    (err, doc) => {
+
+      if (!err && doc.length > 0) {
+        response.doc = doc
+        response.done = true;
+      }
+      if (!doc || doc.length == 0) {
+          response.done = false;
+      }
+      res.json(response);
+    },
+  );
+
+})
+
 site.post("/api/city/findCityByGov", (req, res) => {
 
   let response = {

@@ -38,10 +38,10 @@
                 aria-controls="v-pills-profile" aria-selected="true"> الحساب الشخصي</a>
               <a class="nav-link" id="v-pills-orders-tab" data-toggle="pill" href="#v-pills-orders" role="tab"
                 aria-controls="v-pills-orders" aria-selected="false">حجوزات العيادة </a>
-                <a class="nav-link" id="v-pills-orders-home-tab" data-toggle="pill" href="#v-pills-orders-home" role="tab"
+              <a class="nav-link" id="v-pills-orders-home-tab" data-toggle="pill" href="#v-pills-orders-home" role="tab"
                 aria-controls="v-pills-orders-home" aria-selected="false">حجوزات المنزل </a>
-                <a class="nav-link" id="v-pills-orders-online-tab" data-toggle="pill" href="#v-pills-orders-online" role="tab"
-                aria-controls="v-pills-orders-online" aria-selected="false">حجوزات اونلاين </a>
+              <a class="nav-link" id="v-pills-orders-online-tab" data-toggle="pill" href="#v-pills-orders-online"
+                role="tab" aria-controls="v-pills-orders-online" aria-selected="false">حجوزات اونلاين </a>
               <a class="nav-link" id="v-pills-book-tab" data-toggle="pill" href="#v-pills-booking" role="tab"
                 aria-controls="v-pills-booking" aria-selected="false">حجوزات الاشعه</a>
               <a class="nav-link" id="v-pills-wallet-tab" data-toggle="pill" href="#v-pills-wallet" role="tab"
@@ -149,7 +149,7 @@
 
                   </div>
                   <div class="edit-btn">
-                    <a href="#edit-profile-information"  data-toggle="modal">تعديل</a>
+                    <a href="#edit-profile-information" data-toggle="modal">تعديل</a>
                     <div class="modal fade" id="edit-profile-information" tabindex="-1"
                       aria-labelledby="exampleModalLabel" aria-hidden="true">
                       <div class="modal-dialog modal-dialog-centered">
@@ -161,12 +161,12 @@
                             </button>
                           </div>
                           <div class="modal-body">
-                            
+
                             <div class="row">
                               <div class="col-sm-6">
 
                                 <label>الاسم</label><br>
-                            <input ng-model="patientData.name_##session.lang##" type="text"><br>
+                                <input ng-model="patientData.name_##session.lang##" type="text"><br>
                               </div>
                               <div class="col-sm-6">
 
@@ -193,7 +193,8 @@
                             </div>
                           </div>
                           <div class="modal-footer">
-                            <button type="button" ng-click="updatePatientData(patientData)" class="btn btn-primary">حفظ</button>
+                            <button type="button" ng-click="updatePatientData(patientData)"
+                              class="btn btn-primary">حفظ</button>
                           </div>
                         </div>
                       </div>
@@ -227,7 +228,7 @@
 
                 </ul>
               </div>
-              <div  class="tab-content" id="pills-tabContent">
+              <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-c-orders" role="tabpanel"
                   aria-labelledby="pills-current-orders-tab">
 
@@ -241,7 +242,8 @@
                         <div class="orders-details">
                           <h4>د. {{current.selected_doctor.name_##session.lang##}}</h4>
                           <p>{{current.specialty.name_##session.lang##}}</p>
-                          <span>تاريخ الحجز : {{current.selected_time.date|date:'dd - MM - yyyy'}} - {{current.selected_time.day.##session.lang##}} </span><br>
+                          <span>تاريخ الحجز : {{current.selected_time.date|date:'dd - MM - yyyy'}} -
+                            {{current.selected_time.day.##session.lang##}} </span><br>
 
                           <span>سعر الكشف : {{current.total_value}} جنيه</span>
                         </div>
@@ -278,8 +280,8 @@
                               </div>
                             </div>
                           </div>
-                          <a class="btn" data-toggle="collapse" href="#more_{{current.id}}" role="button" aria-expanded="false"
-                            aria-controls="more">
+                          <a class="btn" data-toggle="collapse" href="#more_{{current.id}}" role="button"
+                            aria-expanded="false" aria-controls="more">
                             المزيد
                           </a><br>
 
@@ -303,7 +305,8 @@
                             <div>
                               <span>الاسم بالكامل : {{current.customer.name_##session.lang##}}</span><br>
                               <span>رقم التليفون : {{current.customer.mobile}}</span><br>
-                              <span>العنوان : {{current.customer.address_list[0].gov.name_##session.lang##}} - {{current.customer.address_list[0].city.name_##session.lang##}}
+                              <span>العنوان : {{current.customer.address_list[0].gov.name_##session.lang##}} -
+                                {{current.customer.address_list[0].city.name_##session.lang##}}
                                 - {{current.customer.address_list[0].area.name_##session.lang##}}
                               </span><br>
 
@@ -370,7 +373,7 @@
                 <div class="tab-pane fade" id="pills-p-orders" role="tabpanel"
                   aria-labelledby="pills-previous-orders-tab">
 
-                  <div ng-repeat="previous in completedVisitsList"  class="my-previous-orders">
+                  <div ng-repeat="previous in completedVisitsList" class="my-previous-orders">
                     <div class="order-card">
                       <div class="order-card-body">
                         <div class="pharmacy-img">
@@ -380,7 +383,8 @@
                         <div class="orders-details">
                           <h4>د. {{previous.selected_doctor.name_##session.lang##}}</h4>
                           <p>{{previous.specialty.name_##session.lang##}}</p>
-                          <span>تاريخ الحجز : {{previous.selected_time.date|date:'dd - MM - yyyy'}} - {{previous.selected_time.day.##session.lang##}} </span><br>
+                          <span>تاريخ الحجز : {{previous.selected_time.date|date:'dd - MM - yyyy'}} -
+                            {{previous.selected_time.day.##session.lang##}} </span><br>
 
                           <span>سعر الكشف : {{previous.total_value}} جنيه</span>
                         </div>
@@ -391,8 +395,8 @@
 
                           </div>
 
-                          <a class="btn" data-toggle="collapse" href="#more_{{previous.id}}" role="button" aria-expanded="false"
-                            aria-controls="more">
+                          <a class="btn" data-toggle="collapse" href="#more_{{previous.id}}" role="button"
+                            aria-expanded="false" aria-controls="more">
                             المزيد
                           </a><br>
 
@@ -414,9 +418,10 @@
                               <h2>بيانات شخصية</h2>
                             </div>
                             <div>
-                              <span>الاسم بالكامل : {{previous.customer.name_##session.lang##}}  </span><br>
+                              <span>الاسم بالكامل : {{previous.customer.name_##session.lang##}} </span><br>
                               <span>رقم التليفون : {{previous.customer.mobile}}</span><br>
-                              <span>العنوان : {{previous.customer.address_list[0].gov.name_##session.lang##}} - {{previous.customer.address_list[0].city.name_##session.lang##}}
+                              <span>العنوان : {{previous.customer.address_list[0].gov.name_##session.lang##}} -
+                                {{previous.customer.address_list[0].city.name_##session.lang##}}
                                 - {{previous.customer.address_list[0].area.name_##session.lang##}}</span><br>
 
                             </div>
@@ -501,22 +506,25 @@
             <!-- booking in home tab -->
 
 
-            <div class="tab-pane fade" id="v-pills-orders-home" role="tabpanel" aria-labelledby="v-pills-orders-home-tab">
+            <div class="tab-pane fade" id="v-pills-orders-home" role="tabpanel"
+              aria-labelledby="v-pills-orders-home-tab">
 
               <div class="orders-header">
                 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                   <li class="nav-item" role="presentation">
-                    <a class="nav-link active" id="pills-current-orders-home-tab" data-toggle="pill" href="#pills-c-home-orders"
-                      role="tab" aria-controls="pills-c-home-orders" aria-selected="true">حجوزاتي الحالية</a>
+                    <a class="nav-link active" id="pills-current-orders-home-tab" data-toggle="pill"
+                      href="#pills-c-home-orders" role="tab" aria-controls="pills-c-home-orders"
+                      aria-selected="true">حجوزاتي الحالية</a>
                   </li>
                   <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="pills-previous-orders-home-tab" data-toggle="pill" href="#pills-p-home-orders"
-                      role="tab" aria-controls="pills-p-home-orders" aria-selected="false">حجوزاتي السابقة</a>
+                    <a class="nav-link" id="pills-previous-orders-home-tab" data-toggle="pill"
+                      href="#pills-p-home-orders" role="tab" aria-controls="pills-p-home-orders"
+                      aria-selected="false">حجوزاتي السابقة</a>
                   </li>
 
                 </ul>
               </div>
-              <div  class="tab-content" id="pills-tabContent">
+              <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-c-home-orders" role="tabpanel"
                   aria-labelledby="pills-current-orders-home-tab">
 
@@ -530,7 +538,8 @@
                         <div class="orders-details">
                           <h4>د. {{current.selected_doctor.name_##session.lang##}}</h4>
                           <p>{{current.specialty.name_##session.lang##}}</p>
-                          <span>تاريخ الحجز : {{current.selected_time.date|date:'dd - MM - yyyy'}} - {{current.selected_time.day.##session.lang##}} </span><br>
+                          <span>تاريخ الحجز : {{current.selected_time.date|date:'dd - MM - yyyy'}} -
+                            {{current.selected_time.day.##session.lang##}} </span><br>
 
                           <span>سعر الكشف : {{current.total_value}} جنيه</span>
                         </div>
@@ -567,8 +576,8 @@
                               </div>
                             </div>
                           </div>
-                          <a class="btn" data-toggle="collapse" href="#more_{{current.id}}" role="button" aria-expanded="false"
-                            aria-controls="more">
+                          <a class="btn" data-toggle="collapse" href="#more_{{current.id}}" role="button"
+                            aria-expanded="false" aria-controls="more">
                             المزيد
                           </a><br>
 
@@ -592,7 +601,8 @@
                             <div>
                               <span>الاسم بالكامل : {{current.customer.name_##session.lang##}}</span><br>
                               <span>رقم التليفون : {{current.customer.mobile}}</span><br>
-                              <span>العنوان : {{current.customer.address_list[0].gov.name_##session.lang##}} - {{current.customer.address_list[0].city.name_##session.lang##}}
+                              <span>العنوان : {{current.customer.address_list[0].gov.name_##session.lang##}} -
+                                {{current.customer.address_list[0].city.name_##session.lang##}}
                                 - {{current.customer.address_list[0].area.name_##session.lang##}}
                               </span><br>
 
@@ -659,7 +669,7 @@
                 <div class="tab-pane fade" id="pills-p-home-orders" role="tabpanel"
                   aria-labelledby="pills-previous-orders-home-tab">
 
-                  <div ng-repeat="previous in completedHomeVisitsList"  class="my-previous-orders">
+                  <div ng-repeat="previous in completedHomeVisitsList" class="my-previous-orders">
                     <div class="order-card">
                       <div class="order-card-body">
                         <div class="pharmacy-img">
@@ -669,7 +679,8 @@
                         <div class="orders-details">
                           <h4>د. {{previous.selected_doctor.name_##session.lang##}}</h4>
                           <p>{{previous.specialty.name_##session.lang##}}</p>
-                          <span>تاريخ الحجز : {{previous.selected_time.date|date:'dd - MM - yyyy'}} - {{previous.selected_time.day.##session.lang##}} </span><br>
+                          <span>تاريخ الحجز : {{previous.selected_time.date|date:'dd - MM - yyyy'}} -
+                            {{previous.selected_time.day.##session.lang##}} </span><br>
 
                           <span>سعر الكشف : {{previous.total_value}} جنيه</span>
                         </div>
@@ -680,8 +691,8 @@
 
                           </div>
 
-                          <a class="btn" data-toggle="collapse" href="#more_{{previous.id}}" role="button" aria-expanded="false"
-                            aria-controls="more">
+                          <a class="btn" data-toggle="collapse" href="#more_{{previous.id}}" role="button"
+                            aria-expanded="false" aria-controls="more">
                             المزيد
                           </a><br>
 
@@ -703,9 +714,10 @@
                               <h2>بيانات شخصية</h2>
                             </div>
                             <div>
-                              <span>الاسم بالكامل : {{previous.customer.name_##session.lang##}}  </span><br>
+                              <span>الاسم بالكامل : {{previous.customer.name_##session.lang##}} </span><br>
                               <span>رقم التليفون : {{previous.customer.mobile}}</span><br>
-                              <span>العنوان : {{previous.customer.address_list[0].gov.name_##session.lang##}} - {{previous.customer.address_list[0].city.name_##session.lang##}}
+                              <span>العنوان : {{previous.customer.address_list[0].gov.name_##session.lang##}} -
+                                {{previous.customer.address_list[0].city.name_##session.lang##}}
                                 - {{previous.customer.address_list[0].area.name_##session.lang##}}</span><br>
 
                             </div>
@@ -789,25 +801,28 @@
 
 
 
-             <!-- booking online tab -->
+            <!-- booking online tab -->
 
 
-             <div class="tab-pane fade" id="v-pills-orders-online" role="tabpanel" aria-labelledby="v-pills-orders-online-tab">
+            <div class="tab-pane fade" id="v-pills-orders-online" role="tabpanel"
+              aria-labelledby="v-pills-orders-online-tab">
 
               <div class="orders-header">
                 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                   <li class="nav-item" role="presentation">
-                    <a class="nav-link active" id="pills-current-orders-online-tab" data-toggle="pill" href="#pills-c-online-orders"
-                      role="tab" aria-controls="pills-c-online-orders" aria-selected="true">حجوزاتي الحالية</a>
+                    <a class="nav-link active" id="pills-current-orders-online-tab" data-toggle="pill"
+                      href="#pills-c-online-orders" role="tab" aria-controls="pills-c-online-orders"
+                      aria-selected="true">حجوزاتي الحالية</a>
                   </li>
                   <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="pills-previous-orders-online-tab" data-toggle="pill" href="#pills-p-online-orders"
-                      role="tab" aria-controls="pills-p-online-orders" aria-selected="false">حجوزاتي السابقة</a>
+                    <a class="nav-link" id="pills-previous-orders-online-tab" data-toggle="pill"
+                      href="#pills-p-online-orders" role="tab" aria-controls="pills-p-online-orders"
+                      aria-selected="false">حجوزاتي السابقة</a>
                   </li>
 
                 </ul>
               </div>
-              <div  class="tab-content" id="pills-tabContent">
+              <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-c-online-orders" role="tabpanel"
                   aria-labelledby="pills-current-orders-online-tab">
 
@@ -821,7 +836,8 @@
                         <div class="orders-details">
                           <h4>د. {{current.selected_doctor.name_##session.lang##}}</h4>
                           <p>{{current.specialty.name_##session.lang##}}</p>
-                          <span>تاريخ الحجز : {{current.selected_time.date|date:'dd - MM - yyyy'}} - {{current.selected_time.day.##session.lang##}} </span><br>
+                          <span>تاريخ الحجز : {{current.selected_time.date|date:'dd - MM - yyyy'}} -
+                            {{current.selected_time.day.##session.lang##}} </span><br>
 
                           <span>سعر الكشف : {{current.total_value}} جنيه</span>
                         </div>
@@ -858,8 +874,8 @@
                               </div>
                             </div>
                           </div>
-                          <a class="btn" data-toggle="collapse" href="#more_{{current.id}}" role="button" aria-expanded="false"
-                            aria-controls="more">
+                          <a class="btn" data-toggle="collapse" href="#more_{{current.id}}" role="button"
+                            aria-expanded="false" aria-controls="more">
                             المزيد
                           </a><br>
 
@@ -883,7 +899,8 @@
                             <div>
                               <span>الاسم بالكامل : {{current.customer.name_##session.lang##}}</span><br>
                               <span>رقم التليفون : {{current.customer.mobile}}</span><br>
-                              <span>العنوان : {{current.customer.address_list[0].gov.name_##session.lang##}} - {{current.customer.address_list[0].city.name_##session.lang##}}
+                              <span>العنوان : {{current.customer.address_list[0].gov.name_##session.lang##}} -
+                                {{current.customer.address_list[0].city.name_##session.lang##}}
                                 - {{current.customer.address_list[0].area.name_##session.lang##}}
                               </span><br>
 
@@ -950,7 +967,7 @@
                 <div class="tab-pane fade" id="pills-p-online-orders" role="tabpanel"
                   aria-labelledby="pills-previous-orders-online-tab">
 
-                  <div ng-repeat="previous in completedOnlineVisitsList"  class="my-previous-orders">
+                  <div ng-repeat="previous in completedOnlineVisitsList" class="my-previous-orders">
                     <div class="order-card">
                       <div class="order-card-body">
                         <div class="pharmacy-img">
@@ -960,7 +977,8 @@
                         <div class="orders-details">
                           <h4>د. {{previous.selected_doctor.name_##session.lang##}}</h4>
                           <p>{{previous.specialty.name_##session.lang##}}</p>
-                          <span>تاريخ الحجز : {{previous.selected_time.date|date:'dd - MM - yyyy'}} - {{previous.selected_time.day.##session.lang##}} </span><br>
+                          <span>تاريخ الحجز : {{previous.selected_time.date|date:'dd - MM - yyyy'}} -
+                            {{previous.selected_time.day.##session.lang##}} </span><br>
 
                           <span>سعر الكشف : {{previous.total_value}} جنيه</span>
                         </div>
@@ -971,8 +989,8 @@
 
                           </div>
 
-                          <a class="btn" data-toggle="collapse" href="#more_{{previous.id}}" role="button" aria-expanded="false"
-                            aria-controls="more">
+                          <a class="btn" data-toggle="collapse" href="#more_{{previous.id}}" role="button"
+                            aria-expanded="false" aria-controls="more">
                             المزيد
                           </a><br>
 
@@ -994,9 +1012,10 @@
                               <h2>بيانات شخصية</h2>
                             </div>
                             <div>
-                              <span>الاسم بالكامل : {{previous.customer.name_##session.lang##}}  </span><br>
+                              <span>الاسم بالكامل : {{previous.customer.name_##session.lang##}} </span><br>
                               <span>رقم التليفون : {{previous.customer.mobile}}</span><br>
-                              <span>العنوان : {{previous.customer.address_list[0].gov.name_##session.lang##}} - {{previous.customer.address_list[0].city.name_##session.lang##}}
+                              <span>العنوان : {{previous.customer.address_list[0].gov.name_##session.lang##}} -
+                                {{previous.customer.address_list[0].city.name_##session.lang##}}
                                 - {{previous.customer.address_list[0].area.name_##session.lang##}}</span><br>
 
                             </div>
@@ -1109,13 +1128,13 @@
               </div>
 
               <div class="tab-content" id="pills-tabContent">
-                <div  class="tab-pane fade show active" id="pills-current-booking" role="tabpanel"
+                <div class="tab-pane fade show active" id="pills-current-booking" role="tabpanel"
                   aria-labelledby="pills-current-booking-tab">
 
                   <div ng-repeat="current in notCompletedScansList" class="my-current-booking">
 
 
-                    <div   class="order-card">
+                    <div class="order-card">
                       <div class="order-card-body">
                         <div class="pharmacy-img">
                           <img src="/images/dr1.png">
@@ -1123,8 +1142,10 @@
 
                         <div class="orders-details">
                           <h4>{{current.scans_list[0].name_##session.lang##}}</h4>
-                          <span>ميعاد الاشاعة :  {{current.visit_date|date:'dd - MM - yyyy'}} - {{current.visit_day.##session.lang##}} </span><br>
-                          <span>ميعاد استلام الاشاعة : {{current.delivaryDate|date:'dd - MM - yyyy'}} - {{current.delivaryDate|date:'EEEE'}}</span><br>
+                          <span>ميعاد الاشاعة : {{current.visit_date|date:'dd - MM - yyyy'}} -
+                            {{current.visit_day.##session.lang##}} </span><br>
+                          <span>ميعاد استلام الاشاعة : {{current.delivaryDate|date:'dd - MM - yyyy'}} -
+                            {{current.delivaryDate|date:'EEEE'}}</span><br>
                           <span> الحالة : لم تستلم </span><br>
                           <span>سعر الاشاعة : {{current.scans_list[0].price}} جنيه</span>
                         </div>
@@ -1166,8 +1187,8 @@
                               </div>
                             </div>
                           </div>
-                          <a class="btn" data-toggle="collapse" href="#more_{{current.id}}" role="button" aria-expanded="false"
-                            aria-controls="more"
+                          <a class="btn" data-toggle="collapse" href="#more_{{current.id}}" role="button"
+                            aria-expanded="false" aria-controls="more"
                             style="border:1px solid #00BCC9; background-color: transparent !important;">
                             المزيد
                           </a><br>
@@ -1190,9 +1211,10 @@
                               <h2>بيانات شخصية</h2>
                             </div>
                             <div>
-                              <span>الاسم بالكامل : {{current.customer.name_##session.lang##}}  </span><br>
+                              <span>الاسم بالكامل : {{current.customer.name_##session.lang##}} </span><br>
                               <span>رقم التليفون : {{current.customer.mobile}}</span><br>
-                              <span>العنوان : {{current.customer.address_list[0].gov.name_##session.lang##}} - {{current.customer.address_list[0].city.name_##session.lang##}}
+                              <span>العنوان : {{current.customer.address_list[0].gov.name_##session.lang##}} -
+                                {{current.customer.address_list[0].city.name_##session.lang##}}
                                 - {{current.customer.address_list[0].area.name_##session.lang##}}</span><br>
 
                             </div>
@@ -1259,7 +1281,7 @@
 
 
                 </div>
-                <div  class="tab-pane fade" id="pills-previous-booking" role="tabpanel"
+                <div class="tab-pane fade" id="pills-previous-booking" role="tabpanel"
                   aria-labelledby="pills-previous-booking-tab">
 
                   <div ng-repeat="previous in completedScansList" class="my-previous-booking">
@@ -1272,8 +1294,10 @@
 
                         <div class="orders-details">
                           <h4>{{previous.scans_list[0].name_##session.lang##}}</h4>
-                          <span>ميعاد الاشاعة : {{previous.visit_date|date:'dd - MM - yyyy'}} - {{previous.visit_day.##session.lang##}} </span><br>
-                          <span>ميعاد استلام الاشاعة : {{previous.scans_list[0].delivery_date|date:'dd - MM - yyyy'}} - {{previous.scans_list[0].delivery_date|date:'EEEE'}}</span><br>
+                          <span>ميعاد الاشاعة : {{previous.visit_date|date:'dd - MM - yyyy'}} -
+                            {{previous.visit_day.##session.lang##}} </span><br>
+                          <span>ميعاد استلام الاشاعة : {{previous.scans_list[0].delivery_date|date:'dd - MM - yyyy'}} -
+                            {{previous.scans_list[0].delivery_date|date:'EEEE'}}</span><br>
                           <span> الحالة : تم تسليم </span><br>
                           <span>سعر الاشاعة : {{previous.scans_list[0].price}} جنيه</span>
                         </div>
@@ -1284,8 +1308,8 @@
 
                           </div>
 
-                          <a class="btn" data-toggle="collapse" href="#more_{{previous.id}}" role="button" aria-expanded="false"
-                            aria-controls="more"
+                          <a class="btn" data-toggle="collapse" href="#more_{{previous.id}}" role="button"
+                            aria-expanded="false" aria-controls="more"
                             style="border:1px solid #00BCC9; background-color: transparent !important;">
                             المزيد
                           </a><br>
@@ -1310,7 +1334,8 @@
                             <div>
                               <span>الاسم بالكامل : {{previous.customer.name_##session.lang##}}</span><br>
                               <span>رقم التليفون : {{previous.customer.mobile}}</span><br>
-                              <span>العنوان : {{previous.customer.address_list[0].gov.name_##session.lang##}} - {{previous.customer.address_list[0].city.name_##session.lang##}}
+                              <span>العنوان : {{previous.customer.address_list[0].gov.name_##session.lang##}} -
+                                {{previous.customer.address_list[0].city.name_##session.lang##}}
                                 - {{previous.customer.address_list[0].area.name_##session.lang##}}</span><br>
 
                             </div>
@@ -1321,7 +1346,7 @@
                               <h2>ملاحظات قبل الاشاعة</h2>
                             </div>
                             <div>
-                             <span>{{previous.scans_list[0].notes_before_scans}}</span>
+                              <span>{{previous.scans_list[0].notes_before_scans}}</span>
 
 
                             </div>
@@ -1407,9 +1432,11 @@
                       <img src="/images/pin.png">
                     </div>
 
-                    <div class="orders-details" >
+                    <div class="orders-details">
 
-                      <span>{{l.gov.name_##session.lang##}} - {{l.city.name_##session.lang##}} - {{l.area.name_##session.lang##}} - {{l.streetName}} - {{l.address}} - {{l.specialMark}} - {{l.buildingNumber}} - {{l.role}} - {{l.apartmentNumber}}</span><br>
+                      <span>{{l.gov.name_##session.lang##}} - {{l.city.name_##session.lang##}} -
+                        {{l.area.name_##session.lang##}} - {{l.streetName}} - {{l.address}} - {{l.specialMark}} -
+                        {{l.buildingNumber}} - {{l.role}} - {{l.apartmentNumber}}</span><br>
 
                       <a href="#edit-location" data-toggle="modal" ng-click="getLocation(l)">تعديل</a>
                     </div>
@@ -1423,12 +1450,13 @@
 
                 </div>
 
-                
+
 
               </div>
-              
 
-              <div class="modal fade" id="edit-location" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+              <div class="modal fade" id="edit-location" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -1441,7 +1469,7 @@
                       <div class="row">
                         <div class="col-sm-12">
                           <label>العنوان</label><br />
-                          <input ng-model="location.address" type="text" />
+                          <input ng-model="editLocation.address" type="text" />
                         </div>
                       </div>
 
@@ -1449,14 +1477,16 @@
                         <div class="col-sm-6">
                           <label>المحافظة</label>
                           <br />
-                          <select ng-change="getCity(location)" ng-model="location.gov" ng-options="g.name_##session.lang## for g in govList">
+                          <select ng-change="getCity(editLocation)" ng-model="editLocation.gov"
+                            ng-options="g.name_##session.lang## for g in govList">
                             <option selected disabled>اختر اسم المحافظة</option>
                           </select>
                         </div>
                         <div class="col-sm-6">
                           <label> المدينة</label>
                           <br />
-                          <select ng-model="location.city" ng-change="getArea(location)" ng-options="c.name_##session.lang## for c in cityList">
+                          <select ng-model="editLocation.city" ng-change="getArea(editLocation)"
+                            ng-options="c.name_##session.lang## for c in cityList">
                             <option selected disabled>اختر اسم المدينة</option>
                           </select>
                         </div>
@@ -1465,38 +1495,39 @@
                       <div class="row">
                         <div class="col-sm-6">
                           <label>المنطقة </label><br />
-                          <select ng-model="location.area" ng-options="a.name_##session.lang## for a in areaList">
+                          <select ng-model="editLocation.area" ng-options="a.name_##session.lang## for a in areaList">
                             <option selected disabled>اختر اسم المدينة</option>
                           </select>
-                          
+
                         </div>
                         <div class="col-sm-6">
                           <label>الشارع</label><br />
-                          <input ng-model="location.streetName" type="text" />
+                          <input ng-model="editLocation.streetName" type="text" />
                         </div>
                       </div>
                       <div class="row">
                         <div class="col">
                           <label> المبني</label><br />
-                          <input ng-model="location.buildingNumber" type="text" />
+                          <input ng-model="editLocation.buildingNumber" type="text" />
                         </div>
                         <div class="col">
                           <label>الدور</label><br />
-                          <input ng-model="location.role" type="text" />
+                          <input ng-model="editLocation.role" type="text" />
                         </div>
                         <div class="col">
                           <label>الشقة</label><br />
-                          <input ng-model="location.apartmentNumber" type="text" />
+                          <input ng-model="editLocation.apartmentNumber" type="text" />
                         </div>
                         <div class="col-sm-6">
                           <label> أقرب مكان مميز</label><br />
-                          <input ng-model="location.specialMark" type="text" />
+                          <input ng-model="editLocation.specialMark" type="text" />
                         </div>
                       </div>
                     </div>
 
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-primary" aria-label="Close" data-dismiss="modal" ng-click="editLocation(location)">حفظ</button>
+                      <button type="button" class="btn btn-primary" aria-label="Close" data-dismiss="modal"
+                        ng-click="editLocation(editLocation)">حفظ</button>
                     </div>
                   </div>
                 </div>
@@ -1505,7 +1536,8 @@
               <div class="location-main-footer">
                 <a href="#add-location" data-toggle="modal">إضافة عنوان جديد</a>
               </div>
-              <div class="modal fade" id="add-location" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal fade" id="add-location" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -1526,14 +1558,16 @@
                         <div class="col-sm-6">
                           <label>المحافظة</label>
                           <br />
-                          <select ng-change="getCity(location)" ng-model="location.gov" ng-options="g.name_##session.lang## for g in govList">
+                          <select ng-change="getCity(location)" ng-model="location.gov"
+                            ng-options="g.name_##session.lang## for g in govList">
                             <option selected disabled>اختر اسم المحافظة</option>
                           </select>
                         </div>
                         <div class="col-sm-6">
                           <label> المدينة</label>
                           <br />
-                          <select ng-model="location.city" ng-change="getArea(location)" ng-options="c.name_##session.lang## for c in cityList">
+                          <select ng-model="location.city" ng-change="getArea(location)"
+                            ng-options="c.name_##session.lang## for c in cityList">
                             <option selected disabled>اختر اسم المدينة</option>
                           </select>
                         </div>
@@ -1545,7 +1579,7 @@
                           <select ng-model="location.area" ng-options="a.name_##session.lang## for a in areaList">
                             <option selected disabled>اختر اسم المدينة</option>
                           </select>
-                          
+
                         </div>
                         <div class="col-sm-6">
                           <label>الشارع</label><br />
@@ -1573,7 +1607,8 @@
                     </div>
 
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-primary" aria-label="Close" data-dismiss="modal" ng-click="addLocation(location)">حفظ</button>
+                      <button type="button" class="btn btn-primary" aria-label="Close" data-dismiss="modal"
+                        ng-click="addLocation(location)">حفظ</button>
                     </div>
                   </div>
                 </div>
@@ -1620,8 +1655,10 @@
 
                         <div class="orders-details">
                           <h4>{{current.analysis_list[0].name_##session.lang##}}</h4>
-                          <span>ميعاد تحليل : {{current.visit_date|date:'dd - MM - yyyy'}} - {{current.visit_day.##session.lang##}} </span><br>
-                          <span>ميعاد استلام تحليل : {{current.delivaryDate|date:'dd - MM - yyyy'}} - {{current.delivaryDate|date:'EEEE'}}</span><br>
+                          <span>ميعاد تحليل : {{current.visit_date|date:'dd - MM - yyyy'}} -
+                            {{current.visit_day.##session.lang##}} </span><br>
+                          <span>ميعاد استلام تحليل : {{current.delivaryDate|date:'dd - MM - yyyy'}} -
+                            {{current.delivaryDate|date:'EEEE'}}</span><br>
                           <span> الحالة : لم تستلم </span><br>
                           <span>سعر تحليل : {{current.analysis_list[0].price}} جنيه</span>
                         </div>
@@ -1689,7 +1726,8 @@
                             <div>
                               <span>الاسم بالكامل : {{current.customer.name_##session.lang##}}</span><br>
                               <span>رقم التليفون : {{current.customer.mobile}}</span><br>
-                              <span>العنوان : {{current.customer.address_list[0].gov.name_##session.lang##}} - {{current.customer.address_list[0].city.name_##session.lang##}}
+                              <span>العنوان : {{current.customer.address_list[0].gov.name_##session.lang##}} -
+                                {{current.customer.address_list[0].city.name_##session.lang##}}
                                 - {{current.customer.address_list[0].area.name_##session.lang##}}</span><br>
 
                             </div>
@@ -1767,8 +1805,10 @@
 
                         <div class="orders-details">
                           <h4>{{previous.analysis_list[0].name_##session.lang##}}</h4>
-                          <span>ميعاد الاشاعة : {{previous.visit_date|date:'dd - MM - yyyy'}} - {{previous.visit_day.##session.lang##}} </span><br>
-                          <span>ميعاد استلام الاشاعة : {{previous.analysis_list[0].delivery_date|date:'dd - MM - yyyy'}} - {{previous.analysis_list[0].delivery_date|date:'EEEE'}}</span><br>
+                          <span>ميعاد الاشاعة : {{previous.visit_date|date:'dd - MM - yyyy'}} -
+                            {{previous.visit_day.##session.lang##}} </span><br>
+                          <span>ميعاد استلام الاشاعة : {{previous.analysis_list[0].delivery_date|date:'dd - MM - yyyy'}}
+                            - {{previous.analysis_list[0].delivery_date|date:'EEEE'}}</span><br>
                           <span> الحالة : تم تسليم </span><br>
                           <span>سعر الاشاعة : {{previous.analysis_list[0].price}} جنيه</span>
                         </div>
@@ -1836,7 +1876,8 @@
                             <div>
                               <span>الاسم بالكامل : {{previous.customer.name_##session.lang##}}</span><br>
                               <span>رقم التليفون : {{previous.customer.mobile}}</span><br>
-                              <span>العنوان : {{previous.customer.address_list[0].gov.name_##session.lang##}} - {{previous.customer.address_list[0].city.name_##session.lang##}}
+                              <span>العنوان : {{previous.customer.address_list[0].gov.name_##session.lang##}} -
+                                {{previous.customer.address_list[0].city.name_##session.lang##}}
                                 - {{previous.customer.address_list[0].area.name_##session.lang##}}</span><br>
 
                             </div>
@@ -2069,7 +2110,7 @@
   <script>
     app.controller('profile', function ($scope, $http, $timeout) {
 
-
+      $scope.editLocation = {};
       $scope.updatePersonalData = function (b) {
         $scope.error = '';
 
@@ -2106,28 +2147,28 @@
       };
 
 
-    
+
       $scope.updatePatientData = function (data) {
         $scope.error = '';
-          $http({
+        $http({
           method: 'POST',
           url: '/api/customers/update',
           data: data
         }).then(
           function (response) {
-           if (response.data.done) {
-            location.reload();
-           }
+            if (response.data.done) {
+              location.reload();
+            }
 
           },
           function (err) {
             $scope.busy = false;
             $scope.error = err;
           },
-        );  
+        );
       };
 
-     
+
 
 
 
@@ -2136,26 +2177,26 @@
       $scope.getCompletedVisits = function (data) {
         $scope.error = '';
         console.log("COMPLETED VISITS");
-          $http({
+        $http({
           method: 'POST',
           url: '/api/doctors_visits/getPatientCompleteClinicVisits',
           data: {
-            "customer" : {
-              id : '##user.ref_info.id##'
+            "customer": {
+              id: '##user.ref_info.id##'
             },
           }
         }).then(
           function (response) {
-           if (response.data.done) {
-            $scope.completedVisitsList = response.data.list
-           }
+            if (response.data.done) {
+              $scope.completedVisitsList = response.data.list
+            }
 
           },
           function (err) {
             $scope.busy = false;
             $scope.error = err;
           },
-        );  
+        );
       };
 
 
@@ -2163,64 +2204,64 @@
       $scope.getCompletedHomeVisits = function (data) {
         $scope.error = '';
         console.log("COMPLETED VISITS");
-          $http({
+        $http({
           method: 'POST',
           url: '/api/doctors_visits/getPatientCompleteHomeVisits',
           data: {
-            "customer" : {
-              id : '##user.ref_info.id##'
+            "customer": {
+              id: '##user.ref_info.id##'
             },
           }
         }).then(
           function (response) {
-           if (response.data.done) {
-            $scope.completedHomeVisitsList = response.data.list
-           }
+            if (response.data.done) {
+              $scope.completedHomeVisitsList = response.data.list
+            }
 
           },
           function (err) {
             $scope.busy = false;
             $scope.error = err;
           },
-        );  
+        );
       };
 
 
       $scope.getCompletedOnlineVisits = function (data) {
         $scope.error = '';
         console.log("COMPLETED VISITS");
-          $http({
+        $http({
           method: 'POST',
           url: '/api/doctors_visits/getPatientCompleteOnlineVisits',
           data: {
-            "customer" : {
-              id : '##user.ref_info.id##'
+            "customer": {
+              id: '##user.ref_info.id##'
             },
           }
         }).then(
           function (response) {
-           if (response.data.done) {
-            $scope.completedOnlineVisitsList = response.data.list
-           }
+            if (response.data.done) {
+              $scope.completedOnlineVisitsList = response.data.list
+            }
 
           },
           function (err) {
             $scope.busy = false;
             $scope.error = err;
           },
-        );  
+        );
       };
 
 
       $scope.getNotCompletedVisits = function (data) {
         $scope.error = '';
-       
-          $http({
+
+        $http({
           method: 'POST',
           url: '/api/doctors_visits/getPatientNotCompleteClinicVisits',
           data: {
-            "customer" : {
-              id : '##user.ref_info.id##'
+            "customer": {
+              id: '##user.ref_info.id##'
             },
           }
         }).then(
@@ -2228,182 +2269,182 @@
             if (response.data.done) {
               $scope.notCompletedVisitsList = response.data.list;
               console.log($scope.notCompletedVisitsList);
-           }
+            }
           },
           function (err) {
             $scope.busy = false;
             $scope.error = err;
           },
-        );  
+        );
       };
 
 
       $scope.getNotCompletedHomeVisits = function (data) {
         $scope.error = '';
-       
-          $http({
+
+        $http({
           method: 'POST',
           url: '/api/doctors_visits/getPatientNotCompleteHomeVisits',
           data: {
-            "customer" : {
-              id : '##user.ref_info.id##'
+            "customer": {
+              id: '##user.ref_info.id##'
             },
           }
         }).then(
           function (response) {
-           if (response.data.done) {
-            $scope.notCompletedHomeVisitsList = response.data.list
-           }
+            if (response.data.done) {
+              $scope.notCompletedHomeVisitsList = response.data.list
+            }
 
           },
           function (err) {
             $scope.busy = false;
             $scope.error = err;
           },
-        );  
+        );
       };
 
 
 
       $scope.getNotCompletedOnlineVisits = function (data) {
         $scope.error = '';
-       
-          $http({
+
+        $http({
           method: 'POST',
           url: '/api/doctors_visits/getPatientNotCompleteOnlineVisits',
           data: {
-            "customer" : {
-              id : '##user.ref_info.id##'
+            "customer": {
+              id: '##user.ref_info.id##'
             },
           }
         }).then(
           function (response) {
-           if (response.data.done) {
-            $scope.notCompletedOnlineVisitsList = response.data.list
-           }
+            if (response.data.done) {
+              $scope.notCompletedOnlineVisitsList = response.data.list
+            }
 
           },
           function (err) {
             $scope.busy = false;
             $scope.error = err;
           },
-        );  
+        );
       };
 
 
       $scope.getScanDelivaryTime = function (data) {
-         console.log("44444444444444" , data);
+        console.log("44444444444444", data);
       };
 
 
-      
+
 
       $scope.getNotCompletedScans = function (data) {
         $scope.error = '';
-       
-          $http({
+
+        $http({
           method: 'POST',
           url: '/api/scans_requests/myNotCompletedScans',
           data: {
-            "customer" : {
-              id : '##user.ref_info.id##'
+            "customer": {
+              id: '##user.ref_info.id##'
             },
           }
         }).then(
           function (response) {
-           if (response.data.done) {
-            $scope.notCompletedScansList = response.data.list;
-            
-           }
+            if (response.data.done) {
+              $scope.notCompletedScansList = response.data.list;
+
+            }
 
           },
           function (err) {
             $scope.busy = false;
             $scope.error = err;
           },
-        );  
+        );
       };
 
 
       $scope.getCompletedScans = function (data) {
         $scope.error = '';
-       
-          $http({
+
+        $http({
           method: 'POST',
           url: '/api/scans_requests/myCompletedScans',
           data: {
-            "customer" : {
-              id : '##user.ref_info.id##'
+            "customer": {
+              id: '##user.ref_info.id##'
             },
           }
         }).then(
           function (response) {
-           if (response.data.done) {
-            $scope.completedScansList = response.data.list;
-           }
+            if (response.data.done) {
+              $scope.completedScansList = response.data.list;
+            }
 
           },
           function (err) {
             $scope.busy = false;
             $scope.error = err;
           },
-        );  
+        );
       };
 
       $scope.getCompletedAnalysis = function (data) {
         $scope.error = '';
-       
-          $http({
+
+        $http({
           method: 'POST',
           url: '/api/analysis_requests/myCompletedAnalysis',
           data: {
-            "customer" : {
-              id : '##user.ref_info.id##'
+            "customer": {
+              id: '##user.ref_info.id##'
             },
           }
         }).then(
           function (response) {
-           if (response.data.done) {
-            $scope.completedAnalysisList = response.data.list;
-           }
+            if (response.data.done) {
+              $scope.completedAnalysisList = response.data.list;
+            }
 
           },
           function (err) {
             $scope.busy = false;
             $scope.error = err;
           },
-        );  
+        );
       };
 
 
       $scope.getNotCompletedAnalysis = function (data) {
         $scope.error = '';
-       
-          $http({
+
+        $http({
           method: 'POST',
           url: '/api/analysis_requests/myNotCompletedAnalysis',
           data: {
-            "customer" : {
-              id : '##user.ref_info.id##'
+            "customer": {
+              id: '##user.ref_info.id##'
             },
           }
         }).then(
           function (response) {
-           if (response.data.done) {
-            $scope.notCompletedAnalysisList = response.data.list;
-           }
+            if (response.data.done) {
+              $scope.notCompletedAnalysisList = response.data.list;
+            }
 
           },
           function (err) {
             $scope.busy = false;
             $scope.error = err;
           },
-        );  
+        );
       };
 
-     
 
-    
+
+
       $scope.getPatient = function (b) {
         $scope.error = '';
         $scope.busy = true;
@@ -2431,142 +2472,220 @@
           },
         );
       };
-     
+
 
 
 
 
       $scope.addLocation = function (location) {
         $scope.error = ' ';
-        
+
         let obj = {
-          gov:{
-            id : location.gov.id
+          gov: {
+            id: location.gov.id
           },
-          city:{
-            id : location.city.id
+          city: {
+            id: location.city.id
           },
-          area:{
-            id : location.area.id
+          area: {
+            id: location.area.id
           },
-             
-           
-              "address":location.address,
-              "streetName":location.streetName,
-              "buildingNumber":location.buildingNumber,
-              "role":location.role,
-              "apartmentNumber":location.apartmentNumber,
-              "specialMark":location.specialMark,
+
+
+          "address": location.address,
+          "streetName": location.streetName,
+          "buildingNumber": location.buildingNumber,
+          "role": location.role,
+          "apartmentNumber": location.apartmentNumber,
+          "specialMark": location.specialMark,
         };
         console.log(obj);
-          
-        
+
+
         $http({
-           method: 'POST',
-           url: '/api/customers/addNewAddress',
-           data:obj,
-         }).then(
-        function (response) {
-          $scope.busy = false;
-          if (response.data) {
-            $scope.location = response.data.doc;
+          method: 'POST',
+          url: '/api/customers/addNewAddress',
+          data: obj,
+        }).then(
+          function (response) {
+            $scope.busy = false;
+            if (response.data) {
+              $scope.location = response.data.doc;
+            }
+          },
+          function (err) {
+            $scope.busy = false;
+            $scope.error = err;
           }
-        },
-        function (err) {
-          $scope.busy = false;
-          $scope.error = err;
-        }
-      );
+        );
 
       };
 
 
-    $scope.getGov = function () {
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/goves/all",
-     
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.govList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
+      $scope.getGov = function () {
+        $scope.busy = true;
+        $http({
+          method: "POST",
+          url: "/api/goves/all",
 
-  $scope.getCity = function (location) {
-   
-      $scope.busy = true;
-     
+        }).then(
+          function (response) {
+            $scope.busy = false;
+            if (response.data.done && response.data.list.length > 0) {
+              $scope.govList = response.data.list;
+              $scope.govList.forEach(g => {
 
-      $http({
-        method: "POST",
-        url: "/api/city/all",
-        data: {
-          where: {
-            "gov.id": location.gov.id,
-            
+                if ($scope.editLocation.gov && g.id == $scope.editLocation.gov.id) {
+                  $scope.editLocation.gov = g;
+                  $scope.getCitiesListEdit();
+                  $scope.getAreasListEdit();
+                };
+              });
+            }
           },
-         
-        },
-      }).then(
-        function (response) {
-          $scope.busy = false;
-          if (response.data.done && response.data.list.length > 0) {
-            $scope.cityList = response.data.list;
+          function (err) {
+            $scope.busy = false;
+            $scope.error = err;
           }
-        },
-        function (err) {
-          $scope.busy = false;
-          $scope.error = err;
+        );
+      };
+
+      $scope.getCitiesListEdit = function (where) {
+
+        if (!$scope.editLocation.gov) {
+          return false;
         }
-      );
-   
-  };
-
-
-  $scope.getArea = function () {
-   
-   $scope.busy = true;
-  
-
-   $http({
-     method: "POST",
-     url: "/api/area/all",
-     data: {
-      where: {
-        "city.id": $scope.location.city.id
-            
+        $scope.busy = true;
+        $http({
+          method: "POST",
+          url: "/api/city/getCityByGov/" + $scope.editLocation.gov._id,
+          data: {},
+        }).then(
+          function (response) {
+            $scope.busy = false;
+            if (response.data.done) {
+              $scope.cityList = response.data.doc;
+              $scope.cityList.forEach((g) => {
+                if (g.id == $scope.editLocation.city.id) {
+                  $scope.editLocation.city = g;
+                };
+              });
+            }
           },
-      
-      
-     },
-   }).then(
-     function (response) {
-       $scope.busy = false;
-       if (response.data.done && response.data.list.length > 0) {
-         $scope.areaList = response.data.list;
-       }
-     },
-     function (err) {
-       $scope.busy = false;
-       $scope.error = err;
-     }
-   );
+          function (err) {
+            $scope.busy = false;
+            $scope.error = err;
+          }
+        );
+      };
 
-};
 
-$scope.myLocation = function () {
+      $scope.getAreasListEdit = function (where) {
+
+        if (!$scope.editLocation.gov) {
+          return false;
+        }
+        $scope.busy = true;
+        $http({
+          method: "POST",
+          url: "/api/area/getAreaByCity/" + $scope.editLocation.city._id,
+          data: {},
+        }).then(
+          function (response) {
+            $scope.busy = false;
+            if (response.data.done) {
+              $scope.areaList = response.data.doc;
+              $scope.areaList.forEach((g) => {
+                if (g.id == $scope.editLocation.area.id) {
+                  $scope.editLocation.area = g;
+                };
+              });
+            }
+          },
+          function (err) {
+            $scope.busy = false;
+            $scope.error = err;
+          }
+        );
+      };
+
+
+      $scope.getCity = function (location) {
+
+        $scope.busy = true;
+
+
+        $http({
+          method: "POST",
+          url: "/api/city/all",
+          data: {
+            where: {
+              "gov.id": location.gov.id,
+
+            },
+
+          },
+        }).then(
+          function (response) {
+            $scope.busy = false;
+            if (response.data.done && response.data.list.length > 0) {
+              $scope.cityList = response.data.list;
+              $scope.cityList.forEach((g) => {
+                if (g.id == $scope.editLocation.city.id) {
+                  $scope.editLocation.city = g;
+                };
+              });
+            }
+          },
+          function (err) {
+            $scope.busy = false;
+            $scope.error = err;
+          }
+        );
+
+      };
+
+
+      $scope.getArea = function () {
+
+        $scope.busy = true;
+
+
+        $http({
+          method: "POST",
+          url: "/api/area/all",
+          data: {
+            where: {
+              "city.id": $scope.location.city.id
+
+            },
+
+
+          },
+        }).then(
+          function (response) {
+            $scope.busy = false;
+            if (response.data.done && response.data.list.length > 0) {
+              $scope.areaList = response.data.list;
+              $scope.areaList.forEach((g) => {
+                if (g.id == $scope.editLocation.area.id) {
+                  $scope.editLocation.area = g;
+                };
+              });
+            }
+          },
+          function (err) {
+            $scope.busy = false;
+            $scope.error = err;
+          }
+        );
+
+      };
+
+      $scope.myLocation = function () {
         $scope.error = '';
-        
-          $http({
+
+        $http({
           method: 'POST',
           url: '/api/customers/myAddresses',
           data: {
@@ -2584,37 +2703,38 @@ $scope.myLocation = function () {
             $scope.busy = false;
             $scope.error = err;
           },
-        );  
+        );
       };
 
 
 
-$scope.getLocation = function (location) {
-  $scope.location= location;
-  console.log($scope.location);
-};
+      $scope.getLocation = function (location) {
+        $scope.editLocation = location;
+        $scope.getGov();
+        console.log($scope.location);
+      };
 
 
 
-$scope.editLocation = function (l) {
-  $scope.error = " ";
+      $scope.editLocation = function (l) {
+        $scope.error = " ";
 
-  $http({
-           method: 'POST',
-           url: '/api/customers/updateLocations',
-           data:l
-         }).then(
-        function (response) {
-          $scope.busy = false;
-          if (response.data) {
-            $scope.location = response.data.doc;
+        $http({
+          method: 'POST',
+          url: '/api/customers/updateLocations',
+          data: l
+        }).then(
+          function (response) {
+            $scope.busy = false;
+            if (response.data) {
+              $scope.location = response.data.doc;
+            }
+          },
+          function (err) {
+            $scope.busy = false;
+            $scope.error = err;
           }
-        },
-        function (err) {
-          $scope.busy = false;
-          $scope.error = err;
-        }
-      );
+        );
 
 
 
@@ -2622,7 +2742,7 @@ $scope.editLocation = function (l) {
 
 
 
-};
+      };
 
 
 

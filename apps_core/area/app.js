@@ -203,6 +203,34 @@ module.exports = function init(site) {
     }
   })
 
+
+  site.post("/api/area/getAreaByCity/:cityId", (req, res) => {
+    let response = {
+      done: false
+    }
+    $area.findMany({
+      where: {
+        'city._id': String(req.params.cityId),
+      },
+  
+    },
+      (err, doc) => {
+  
+        if (!err && doc.length > 0) {
+          response.doc = doc
+          response.done = true;
+        }
+        if (!doc || doc.length == 0) {
+            response.done = false;
+        }
+        res.json(response);
+      },
+    );
+  
+  })
+
+
+
   site.post("/api/area/all", (req, res) => {
 
     let response = {
