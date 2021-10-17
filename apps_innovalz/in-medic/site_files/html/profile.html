@@ -2578,7 +2578,7 @@ $scope.myLocation = function () {
         }).then(
           function (response) {
             if (response.data.done) {
-              $scope.locationList = response.data.doc.address_list
+              $scope.locationList = response.data.doc[0].address_list
             }
             console.log($scope.locationList)
 
