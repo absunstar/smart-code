@@ -216,7 +216,7 @@
     </script>
     <script>
       function changeColor() {
-        document.getElementById('date').style.backgroundColor = 'red';
+        document.getElementById('date').style.background = 'red';
       }
     </script>
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
@@ -258,6 +258,7 @@
         $scope.serviceTypesList = [];
         $scope.servicePlacesList = [];
         $scope.doctors_visits = {};
+
         $scope.addDoctorVisits = function (b) {
           $scope.error = '';
           let status = {
@@ -298,6 +299,7 @@
             }
           );
         };
+
         $scope.getPatient = function () {
           $scope.error = '';
           $scope.busy = true;
