@@ -214,6 +214,7 @@ module.exports = function init(site) {
                     company_id: doc.id,
                     email: doc.username,
                     password: doc.password,
+                    ref_info: { id: companies_doc.id },
                     roles: [
                       {
                         name: 'companies_admin',
@@ -250,7 +251,6 @@ module.exports = function init(site) {
                         site.call('[company][created]', doc);
                       }
                       res.json(response);
-
                     });
                   });
 
@@ -287,7 +287,6 @@ module.exports = function init(site) {
                   //     }
                   //   }
                   // );
-
                 } else {
                   response.error = err.message;
                   res.json(response);
@@ -398,6 +397,7 @@ module.exports = function init(site) {
                     email: companies_doc.username,
                     password: companies_doc.password,
                     company_id: companies_doc.id,
+                    ref_info: { id: companies_doc.id },
                     is_company: true,
                     branch_list: branch_list,
                     profile: {
@@ -417,6 +417,7 @@ module.exports = function init(site) {
                           email: companies_doc.username,
                           password: companies_doc.password,
                           company_id: companies_doc.id,
+                          ref_info: { id: companies_doc.id },
                           is_company: true,
                           roles: [
                             {
