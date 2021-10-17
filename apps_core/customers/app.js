@@ -1462,6 +1462,7 @@ module.exports = function init(site) {
                           if (!err && doc) {
                             response.done = true;
                             if (doc.address_list) {
+                              
                               doc.address_list.push({
                                 gov: govDoc,
                                 city: cityDoc,
@@ -1476,6 +1477,7 @@ module.exports = function init(site) {
                                 apartmentNumber: address_doc.apartmentNumber,
                                 specialMark: address_doc.specialMark,
                               });
+                              
                             }
                             else {
                               doc.address_list = []
@@ -1494,7 +1496,16 @@ module.exports = function init(site) {
 
                               });
                             }
-
+                            let arr = [];
+                            if (doc.address_list.length > 0) {
+                              for (const [index, value] of doc.address_list.entries()) {
+                    
+                                let xx = value;
+                                xx.id = index + 1;
+                    
+                                arr.push(xx)
+                              }
+                            }
                             response.doc = doc;
                             $customers.update(doc);
                             res.json(response);
