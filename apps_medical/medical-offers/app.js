@@ -63,11 +63,11 @@ module.exports = function init(site) {
       medical_offers_doc.start_date = new Date(medical_offers_doc.start_date);
       medical_offers_doc.end_date = new Date(medical_offers_doc.end_date);
 
-      medical_offers_doc.start_date.setHours(medical_offers_doc.start_date.getHours() + Number(medical_offers_doc.time_start.hours));
-      medical_offers_doc.start_date.setMinutes(medical_offers_doc.start_date.getMinutes() + Number(medical_offers_doc.time_start.minute));
+      medical_offers_doc.start_date.setHours(medical_offers_doc.time_start.hour);
+      medical_offers_doc.start_date.setMinutes(medical_offers_doc.time_start.minute);
 
-      medical_offers_doc.end_date.setHours(medical_offers_doc.end_date.getHours() + Number(medical_offers_doc.time_end.hours));
-      medical_offers_doc.end_date.setMinutes(medical_offers_doc.end_date.getMinutes() + Number(medical_offers_doc.time_end.minute));
+      medical_offers_doc.end_date.setHours(medical_offers_doc.time_end.hour);
+      medical_offers_doc.end_date.setMinutes(medical_offers_doc.time_end.minute);
     }
 
     $medical_offers.add(medical_offers_doc, (err, doc) => {
@@ -97,6 +97,18 @@ module.exports = function init(site) {
       $req: req,
       $res: res,
     });
+
+    if (medical_offers_doc.time_start && medical_offers_doc.time_end) {
+      medical_offers_doc.start_date = new Date(medical_offers_doc.start_date);
+      medical_offers_doc.end_date = new Date(medical_offers_doc.end_date);
+
+      medical_offers_doc.start_date.setHours(medical_offers_doc.time_start.hour);
+      medical_offers_doc.start_date.setMinutes(medical_offers_doc.time_start.minute);
+
+      medical_offers_doc.end_date.setHours(medical_offers_doc.time_end.hour);
+      medical_offers_doc.end_date.setMinutes(medical_offers_doc.time_end.minute);
+    }
+
     if (medical_offers_doc.id) {
       $medical_offers.edit(
         {
