@@ -1227,7 +1227,7 @@
                             </div>
                             <div>
                               <div class="img-with-details">
-                                <img src="/images/analysis-blood.png">
+                                <img ng-src="{{current.scans_list[0].image_url}}" width="10%">
                                 <!-- <p>تفاصيل مع الطلب : علبتين دواء مع شريط كيتوفان وشريط اسبرين مع العلم ان لدي حساسية جيوب أنفية</p>
                                         </div>
                                         <div class="img-with-details">
@@ -1308,9 +1308,10 @@
                               <h2>بيانات شخصية</h2>
                             </div>
                             <div>
-                              <span>الاسم بالكامل : أحمد محمد محمود</span><br>
-                              <span>رقم التليفون : 01065874456</span><br>
-                              <span>العنوان : الحصري - الحي الثاني-مجاورة ثانية-فرسان جيم</span><br>
+                              <span>الاسم بالكامل : {{previous.customer.name_##session.lang##}}</span><br>
+                              <span>رقم التليفون : {{previous.customer.mobile}}</span><br>
+                              <span>العنوان : {{previous.customer.address_list[0].gov.name_##session.lang##}} - {{previous.customer.address_list[0].city.name_##session.lang##}}
+                                - {{previous.customer.address_list[0].area.name_##session.lang##}}</span><br>
 
                             </div>
                           </div>
@@ -1320,8 +1321,7 @@
                               <h2>ملاحظات قبل الاشاعة</h2>
                             </div>
                             <div>
-                              <span>ملاحظات قبل الاشاعة ملاحظات قبل الاشاعة ملاحظات قبل الاشاعة ملاحظات قبل الاشاعة
-                                ملاحظات قبل الاشاعة/span><br>
+                             <span>{{previous.scans_list[0].notes_before_scans}}</span>
 
 
                             </div>
@@ -1331,8 +1331,7 @@
                               <h2>ملاحظات بعد الاشاعة</h2>
                             </div>
                             <div>
-                              <span>ملاحظات بعد الاشاعة ملاحظات بعد الاشاعة ملاحظات بعد الاشاعة ملاحظات بعد الاشاعة
-                                ملاحظات بعد الاشاعة/span><br>
+                              <span>{{previous.scans_list[0].diagnosis.special_notes}}</span>
 
 
                             </div>
@@ -1344,7 +1343,7 @@
                             </div>
                             <div>
                               <div class="img-with-details">
-                                <img src="/images/analysis-blood.png">
+                                <img ng-src="{{previous.scans_list[0].image_url}}" width="10%">
                                 <!-- <p>تفاصيل مع الطلب : علبتين دواء مع شريط كيتوفان وشريط اسبرين مع العلم ان لدي حساسية جيوب أنفية</p>
                                         </div>
                                         <div class="img-with-details">
@@ -1405,14 +1404,14 @@
                 <div class="order-card" ng-repeat="l in locationList">
                   <div class="order-card-body">
                     <div class="pharmacy-img">
-                      <img src="/images/Icon material-location-on.svg">
+                      <img src="/images/pin.png">
                     </div>
 
                     <div class="orders-details" >
 
                       <span>{{l.gov.name_##session.lang##}} - {{l.city.name_##session.lang##}} - {{l.area.name_##session.lang##}} - {{l.streetName}} - {{l.address}} - {{l.specialMark}} - {{l.buildingNumber}} - {{l.role}} - {{l.apartmentNumber}}</span><br>
 
-                      <a href="#edit-location" data-toggle="modal">تعديل</a>
+                      <a href="#edit-location" data-toggle="modal" ng-click="getLocation(l)">تعديل</a>
                     </div>
 
 
@@ -1497,7 +1496,7 @@
                     </div>
 
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-primary" aria-label="Close" data-dismiss="modal" ng-click="addLocation(location)">حفظ</button>
+                      <button type="button" class="btn btn-primary" aria-label="Close" data-dismiss="modal" ng-click="editLocation(location)">حفظ</button>
                     </div>
                   </div>
                 </div>
@@ -1688,9 +1687,10 @@
                               <h2>بيانات شخصية</h2>
                             </div>
                             <div>
-                              <span>الاسم بالكامل : أحمد محمد محمود</span><br>
-                              <span>رقم التليفون : 01065874456</span><br>
-                              <span>العنوان : الحصري - الحي الثاني-مجاورة ثانية-فرسان جيم</span><br>
+                              <span>الاسم بالكامل : {{current.customer.name_##session.lang##}}</span><br>
+                              <span>رقم التليفون : {{current.customer.mobile}}</span><br>
+                              <span>العنوان : {{current.customer.address_list[0].gov.name_##session.lang##}} - {{current.customer.address_list[0].city.name_##session.lang##}}
+                                - {{current.customer.address_list[0].area.name_##session.lang##}}</span><br>
 
                             </div>
                           </div>
@@ -1700,8 +1700,7 @@
                               <h2>ملاحظات قبل تحليل</h2>
                             </div>
                             <div>
-                              <span>ملاحظات قبل تحليل ملاحظات قبل تحليل ملاحظات قبل تحليل ملاحظات قبل تحليل ملاحظات قبل
-                                تحليل/span><br>
+                              <span>{{current.analysis_list[0].notes_before_scans}}</span>
 
 
                             </div>
@@ -1711,8 +1710,7 @@
                               <h2>ملاحظات بعد تحليل</h2>
                             </div>
                             <div>
-                              <span>ملاحظات بعد تحليل ملاحظات بعد تحليل ملاحظات بعد تحليل ملاحظات بعد تحليل ملاحظات بعد
-                                تحليل/span><br>
+                              <span>{{current.analysis_list[0].diagnosis.special_notes}}</span>
 
 
                             </div>
@@ -1724,7 +1722,7 @@
                             </div>
                             <div>
                               <div class="img-with-details">
-                                <img src="/images/analysis-blood.png">
+                                <img ng-src="{{current.analysis_list[0].image_url}}" width="10%">
                                 <!-- <p>تفاصيل مع الطلب : علبتين دواء مع شريط كيتوفان وشريط اسبرين مع العلم ان لدي حساسية جيوب أنفية</p>
                                                 </div>
                                                 <div class="img-with-details">
@@ -1836,9 +1834,10 @@
                               <h2>بيانات شخصية</h2>
                             </div>
                             <div>
-                              <span>الاسم بالكامل : أحمد محمد محمود</span><br>
-                              <span>رقم التليفون : 01065874456</span><br>
-                              <span>العنوان : الحصري - الحي الثاني-مجاورة ثانية-فرسان جيم</span><br>
+                              <span>الاسم بالكامل : {{previous.customer.name_##session.lang##}}</span><br>
+                              <span>رقم التليفون : {{previous.customer.mobile}}</span><br>
+                              <span>العنوان : {{previous.customer.address_list[0].gov.name_##session.lang##}} - {{previous.customer.address_list[0].city.name_##session.lang##}}
+                                - {{previous.customer.address_list[0].area.name_##session.lang##}}</span><br>
 
                             </div>
                           </div>
@@ -1848,8 +1847,7 @@
                               <h2>ملاحظات قبل تحليل</h2>
                             </div>
                             <div>
-                              <span>ملاحظات قبل تحليل ملاحظات قبل تحليل ملاحظات قبل تحليل ملاحظات قبل تحليل ملاحظات قبل
-                                تحليل/span><br>
+                              <span>{{previous.analysis_list[0].notes_before_scans}}</span>
 
 
                             </div>
@@ -1859,8 +1857,7 @@
                               <h2>ملاحظات بعد تحليل</h2>
                             </div>
                             <div>
-                              <span>ملاحظات بعد تحليل ملاحظات بعد تحليل ملاحظات بعد تحليل ملاحظات بعد تحليل ملاحظات بعد
-                                تحليل/span><br>
+                              <span>{{previous.analysis_list[0].diagnosis.special_notes}}</span>
 
 
                             </div>
@@ -1872,7 +1869,7 @@
                             </div>
                             <div>
                               <div class="img-with-details">
-                                <img src="/images/analysis-blood.png">
+                                <img ng-src="{{previous.analysis_list[0].image_url}}" width="10%">
                                 <!-- <p>تفاصيل مع الطلب : علبتين دواء مع شريط كيتوفان وشريط اسبرين مع العلم ان لدي حساسية جيوب أنفية</p>
                                                 </div>
                                                 <div class="img-with-details">
@@ -2589,6 +2586,44 @@ $scope.myLocation = function () {
           },
         );  
       };
+
+
+
+$scope.getLocation = function (location) {
+  $scope.location= location;
+  console.log($scope.location);
+};
+
+
+
+$scope.editLocation = function (l) {
+  $scope.error = " ";
+
+  $http({
+           method: 'POST',
+           url: '/api/customers/updateLocations',
+           data:l
+         }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data) {
+            $scope.location = response.data.doc;
+          }
+        },
+        function (err) {
+          $scope.busy = false;
+          $scope.error = err;
+        }
+      );
+
+
+
+
+
+
+
+};
+
 
 
       $scope.getCompletedVisits();

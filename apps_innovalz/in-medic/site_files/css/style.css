@@ -832,6 +832,7 @@ margin: 12px 10px;
     font-size: 12px;
     font-weight: 700;
     border-radius: 5px;
+    color: #00BCC9 !important;
     
 }
 .account-profile .location-main-body .orders-details span{
