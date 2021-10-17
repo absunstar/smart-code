@@ -1,44 +1,70 @@
 <div ng-hide="busy" id="v1">
-    <div class="form">
-        <div id="customersGroupViewModal">
-            <fieldset>
-                <legend> ##word.medical_offers_informations## </legend>
-                <div class="row">
-                    <div class="col9">
-                        <div class="row">
+  <div class="form">
+    <div id="customersGroupViewModal">
+      <fieldset>
+        <legend>##word.medical_offers_informations##</legend>
+        <div class="row">
+          <div class="col9">
+            <div class="row">
+              <table class="table hover bold">
+                <tr>
+                  <td class="title">##word.medical_offers_code##</td>
+                  <td class="center userPrint blue">{{medical_offers.code}}</td>
+                </tr>
 
-                            <table class="table hover bold">
-                                <tr>
-                                    <td class="title"> ##word.medical_offers_code## </td>
-                                    <td class="center userPrint blue"> {{medical_offers.code}} </td>
-                                </tr>
+                <tr>
+                  <td class="title">##word.medical_offers_name##</td>
+                  <td class="center">{{medical_offers.name_##session.lang##}}</td>
+                </tr>
 
-                                <tr>
-                                    <td class="title"> ##word.medical_offers_name## </td>
-                                    <td class="center"> {{medical_offers.name_##session.lang##}} </td>
-                                </tr>
+                <tr>
+                  <td class="title">##word.start_date##</td>
+                  <td class="center brown">{{medical_offers.start_date |date:"dd - MM - yyyy" }} <b> {{medical_offers.start_date |date:"hh : mm" }} </b></td>
+                </tr>
+                <tr>
+                  <td class="title">##word.end_date##</td>
+                  <td class="center brown">{{medical_offers.end_date |date:"dd - MM - yyyy" }} <b> {{medical_offers.end_date |date:"hh : mm" }}</b></td>
+                </tr>
 
-                                <tr>
-                                    <td class="title"> ##word.active## </td>
-                                    <td ng-show="medical_offers.active == true" class="center green"> ##word.active##
-                                    </td>
-                                    <td ng-show="medical_offers.active == false" class="center red"> ##word.not_active##
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                 
+                <tr>
+                  <td class="title">##word.old_price##</td>
+                  <td class="center red">{{medical_offers.old_price}}</td>
+                </tr>
 
-                    </div>
+                <tr>
+                  <td class="title">##word.new_price##</td>
+                  <td class="center red">{{medical_offers.new_price}}</td>
+                </tr>
 
-                    <div class="col3">
-                        <i-image class="not-print" view ng-model="medical_offers.image_url"> </i-image>
-                    </div>
+                <tr>
+                  <td class="title">##word.notes##</td>
+                  <td class="center">
+                    <p class="lines_text">{{medical_offers.notes}}</p>
+                  </td>
+                </tr>
 
+                <tr>
+                  <td class="title">##word.for_your_information##</td>
+                  <td class="center">
+                    <p class="lines_text">{{medical_offers.information}}</p>
+                  </td>
+                </tr>
 
-                </div>
-            </fieldset>
+                <tr>
+                  <td class="title">##word.active##</td>
+                  <td ng-show="medical_offers.active == true" class="center green">##word.active##</td>
+                  <td ng-show="medical_offers.active == false" class="center red">##word.not_active##</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+
+          <div class="col3">
+            <i-image class="not-print" view ng-model="medical_offers.image_url"> </i-image>
+          </div>
         </div>
+      </fieldset>
     </div>
+  </div>
 </div>
 <div x-import="medical-offers/action_info.html"></div>

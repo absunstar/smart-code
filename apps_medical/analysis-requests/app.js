@@ -549,7 +549,6 @@ module.exports = function init(site) {
       res.json(response);
       return;
     }
-    console.log(req.session.user);
 
     $analysis_requests.aggregate(
       [
@@ -657,7 +656,6 @@ module.exports = function init(site) {
       res.json(response);
       return;
     }
-    console.log(req.session.user);
 
     $analysis_requests.aggregate(
       [

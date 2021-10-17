@@ -15,6 +15,26 @@
     "ar": "الملف الطبي"
   },
   {
+    "name": "old_price",
+    "en": "Old Price",
+    "ar": "السعر القديم"
+  },
+  {
+    "name": "new_price",
+    "en": "New Price",
+    "ar": "السعر الجديد"
+  },
+  {
+    "name": "start_date",
+    "en": "Start Date",
+    "ar": "تاريخ البداية"
+  },
+  {
+    "name": "end_date",
+    "en": "End Date",
+    "ar": "تاريخ النهاية"
+  },
+  {
     "name": "accounting_invoice",
     "en": "Accounting Invoice",
     "ar": "فاتورة الحسابات"

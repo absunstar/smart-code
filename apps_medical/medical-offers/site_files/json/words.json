@@ -5,6 +5,7 @@
     {"name" : "medical_offers" , "en" : "Medical Offers" , "ar" : "العروض الطبية"},
     {"name" : "medical_offers_code" , "en" : "Medical Offers Code" , "ar" : "كود العرض الطبي"},
     {"name" : "medical_offers_name" , "en" : "Medical Offers Name" , "ar" : "إسم العرض الطبي"},
+    {"name" : "for_your_information" , "en" : "For your information" , "ar" : "لمعلوماتك"},
 
     {"name" : "medical_offers_new" , "en" : "New Medical Offer" , "ar" : "عرض طبي جديد"},
     {"name" : "medical_offers_details" , "en" : "Medical Offers Details" , "ar" : "تفاصيل العرض الطبي"},

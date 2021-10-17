@@ -118,5 +118,4 @@ module.exports = function init(site) {
 //     auto: true
 // }, (err, attendance_array) => {
 //     console.log(err)
-//     console.log(attendance_array)
 // })

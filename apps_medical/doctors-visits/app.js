@@ -1372,7 +1372,6 @@ module.exports = function init(site) {
   site.post("/api/doctors_visits/getPatientNotCompleteClinicVisits", (req, res) => {
     req.headers.language = req.headers.language || "en";
     let response = {};
-    console.log(1111111111111111);
     if (!req.session.user) {
       response.message = site.word("loginFirst")[req.headers.language];
       response.done = false;
@@ -1390,7 +1389,6 @@ module.exports = function init(site) {
     startDateObj.setHours(0, 0, 0, 0);
     endDateObj.setHours(0, 0, 0, 0);
     endDateObj.setDate(startDateObj.getDate() + 1);
-console.log(req.session.user.ref_info.id);
     $doctors_visits.aggregate(
       [
         {

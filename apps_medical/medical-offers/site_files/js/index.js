@@ -8,6 +8,9 @@ app.controller("medical_offers", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.medical_offers = {
       image_url: '/images/medical_offers.png',
+      start_date : new Date(),
+      old_price:0,
+      new_price:0,
       active: true
     };
     site.showModal('#medicalOffersAddModal');

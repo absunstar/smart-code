@@ -529,7 +529,6 @@ module.exports = function init(site) {
       res.json(response);
       return;
     }
-    console.log(req.session.user);
 
     $vaccinations_requests.aggregate([
       {
@@ -725,7 +724,6 @@ module.exports = function init(site) {
       res.json(response);
       return;
     }
-    console.log(req.session.user);
 
     $vaccinations_requests.aggregate([
       {

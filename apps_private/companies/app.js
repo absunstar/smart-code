@@ -280,11 +280,9 @@ module.exports = function init(site) {
                   //     },
                   //   },
                   //   (err, user_doc) => {
-                  //     console.log(user_doc, 'oooooooooooooooooooooooooo');
                   //     if (!err && user_doc) {
                   //       doc.user_info = { id: user_doc.id };
                   //       $companies.update(doc);
-                  //       console.log(console.log(doc, 'eeeeeeeeeee'));
                   //       site.call('[company][created]', doc);
                   //     }
                   //   }

@@ -77,7 +77,6 @@ module.exports = function init(site) {
       limit: req.body.limit
     }, (err, docs, count) => {
       if (!err) {
-        console.log(count);
         response.done = true
         response.list = docs
         response.count = count

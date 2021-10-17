@@ -136,7 +136,6 @@ module.exports = function init(site) {
             if (!err) {
               response.done = true;
               response.doc = doc;
-              console.log(req.session.company);
               if (employee_doc.username && employee_doc.password) {
                 if (
                   !employee_doc.username.contains("@") &&
