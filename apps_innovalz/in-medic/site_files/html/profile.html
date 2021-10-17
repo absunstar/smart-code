@@ -1215,8 +1215,7 @@
                               <h2>ملاحظات بعد الاشاعة</h2>
                             </div>
                             <div>
-                              <span>ملاحظات بعد الاشاعة ملاحظات بعد الاشاعة ملاحظات بعد الاشاعة ملاحظات بعد الاشاعة
-                                ملاحظات بعد الاشاعة/span><br>
+                              <span>{{current.scans_list[0].diagnosis.special_notes}}</span><br>
 
 
                             </div>
@@ -1403,18 +1402,17 @@
 
               <div class="location-main-body">
 
-                <div class="order-card">
+                <div class="order-card" ng-repeat="l in locationList">
                   <div class="order-card-body">
                     <div class="pharmacy-img">
                       <img src="/images/Icon material-location-on.svg">
                     </div>
 
-                    <div class="orders-details">
+                    <div class="orders-details" >
 
-                      <span>السادس من أكتوبر - الحي الثاني - التوحيد والنور - فرسان جيم المبني الثالث - عمارة 74 - الدور
-                        الأول - شقة 4</span><br>
+                      <span>{{l.gov.name_##session.lang##}} - {{l.city.name_##session.lang##}} - {{l.area.name_##session.lang##}} - {{l.streetName}} - {{l.address}} - {{l.specialMark}} - {{l.buildingNumber}} - {{l.role}} - {{l.apartmentNumber}}</span><br>
 
-                      <a href="#">تعديل</a>
+                      <a href="#edit-location" data-toggle="modal">تعديل</a>
                     </div>
 
 
@@ -1426,81 +1424,161 @@
 
                 </div>
 
-                <div class="order-card">
-                  <div class="order-card-body">
-                    <div class="pharmacy-img">
-                      <img src="/images/Icon material-location-on.svg">
+                
+
+              </div>
+              
+
+              <div class="modal fade" id="edit-location" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <label>العنوان</label><br />
+                          <input ng-model="location.address" type="text" />
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <label>المحافظة</label>
+                          <br />
+                          <select ng-change="getCity(location)" ng-model="location.gov" ng-options="g.name_##session.lang## for g in govList">
+                            <option selected disabled>اختر اسم المحافظة</option>
+                          </select>
+                        </div>
+                        <div class="col-sm-6">
+                          <label> المدينة</label>
+                          <br />
+                          <select ng-model="location.city" ng-change="getArea(location)" ng-options="c.name_##session.lang## for c in cityList">
+                            <option selected disabled>اختر اسم المدينة</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <label>المنطقة </label><br />
+                          <select ng-model="location.area" ng-options="a.name_##session.lang## for a in areaList">
+                            <option selected disabled>اختر اسم المدينة</option>
+                          </select>
+                          
+                        </div>
+                        <div class="col-sm-6">
+                          <label>الشارع</label><br />
+                          <input ng-model="location.streetName" type="text" />
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                          <label> المبني</label><br />
+                          <input ng-model="location.buildingNumber" type="text" />
+                        </div>
+                        <div class="col">
+                          <label>الدور</label><br />
+                          <input ng-model="location.role" type="text" />
+                        </div>
+                        <div class="col">
+                          <label>الشقة</label><br />
+                          <input ng-model="location.apartmentNumber" type="text" />
+                        </div>
+                        <div class="col-sm-6">
+                          <label> أقرب مكان مميز</label><br />
+                          <input ng-model="location.specialMark" type="text" />
+                        </div>
+                      </div>
                     </div>
 
-                    <div class="orders-details">
-
-                      <span>السادس من أكتوبر - الحي الثاني - التوحيد والنور - فرسان جيم المبني الثالث - عمارة 74 - الدور
-                        الأول - شقة 4</span><br>
-
-                      <a href="#">تعديل</a>
-                    </div>
-
-
-
-                    <div class="delete-orders">
-                      <a href="#">&times;</a>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary" aria-label="Close" data-dismiss="modal" ng-click="addLocation(location)">حفظ</button>
                     </div>
                   </div>
-
                 </div>
-
-                <div class="order-card">
-                  <div class="order-card-body">
-                    <div class="pharmacy-img">
-                      <img src="/images/Icon material-location-on.svg">
-                    </div>
-
-                    <div class="orders-details">
-
-                      <span>السادس من أكتوبر - الحي الثاني - التوحيد والنور - فرسان جيم المبني الثالث - عمارة 74 - الدور
-                        الأول - شقة 4</span><br>
-
-                      <a href="#">تعديل</a>
-                    </div>
-
-
-
-                    <div class="delete-orders">
-                      <a href="#">&times;</a>
-                    </div>
-                  </div>
-
-                </div>
-
-                <div class="order-card">
-                  <div class="order-card-body">
-                    <div class="pharmacy-img">
-                      <img src="/images/Icon material-location-on.svg">
-                    </div>
-
-                    <div class="orders-details">
-
-                      <span>السادس من أكتوبر - الحي الثاني - التوحيد والنور - فرسان جيم المبني الثالث - عمارة 74 - الدور
-                        الأول - شقة 4</span><br>
-
-                      <a href="#">تعديل</a>
-                    </div>
-
-
-
-                    <div class="delete-orders">
-                      <a href="#">&times;</a>
-                    </div>
-                  </div>
-
-                </div>
-
               </div>
 
               <div class="location-main-footer">
-                <a href="#">إضافة عنوان جديد</a>
+                <a href="#add-location" data-toggle="modal">إضافة عنوان جديد</a>
               </div>
+              <div class="modal fade" id="add-location" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <label>العنوان</label><br />
+                          <input ng-model="location.address" type="text" />
+                        </div>
+                      </div>
 
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <label>المحافظة</label>
+                          <br />
+                          <select ng-change="getCity(location)" ng-model="location.gov" ng-options="g.name_##session.lang## for g in govList">
+                            <option selected disabled>اختر اسم المحافظة</option>
+                          </select>
+                        </div>
+                        <div class="col-sm-6">
+                          <label> المدينة</label>
+                          <br />
+                          <select ng-model="location.city" ng-change="getArea(location)" ng-options="c.name_##session.lang## for c in cityList">
+                            <option selected disabled>اختر اسم المدينة</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <label>المنطقة </label><br />
+                          <select ng-model="location.area" ng-options="a.name_##session.lang## for a in areaList">
+                            <option selected disabled>اختر اسم المدينة</option>
+                          </select>
+                          
+                        </div>
+                        <div class="col-sm-6">
+                          <label>الشارع</label><br />
+                          <input ng-model="location.streetName" type="text" />
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                          <label> المبني</label><br />
+                          <input ng-model="location.buildingNumber" type="text" />
+                        </div>
+                        <div class="col">
+                          <label>الدور</label><br />
+                          <input ng-model="location.role" type="text" />
+                        </div>
+                        <div class="col">
+                          <label>الشقة</label><br />
+                          <input ng-model="location.apartmentNumber" type="text" />
+                        </div>
+                        <div class="col-sm-6">
+                          <label> أقرب مكان مميز</label><br />
+                          <input ng-model="location.specialMark" type="text" />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary" aria-label="Close" data-dismiss="modal" ng-click="addLocation(location)">حفظ</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
 
             </div>
@@ -2216,22 +2294,12 @@
       };
 
 
-
-
-
-
-
-
-
-
       $scope.getScanDelivaryTime = function (data) {
          console.log("44444444444444" , data);
       };
 
 
       
-
-
 
       $scope.getNotCompletedScans = function (data) {
         $scope.error = '';
@@ -2368,6 +2436,161 @@
       };
      
 
+
+
+
+      $scope.addLocation = function (location) {
+        $scope.error = ' ';
+        
+        let obj = {
+          gov:{
+            id : location.gov.id
+          },
+          city:{
+            id : location.city.id
+          },
+          area:{
+            id : location.area.id
+          },
+             
+           
+              "address":location.address,
+              "streetName":location.streetName,
+              "buildingNumber":location.buildingNumber,
+              "role":location.role,
+              "apartmentNumber":location.apartmentNumber,
+              "specialMark":location.specialMark,
+        };
+        console.log(obj);
+          
+        
+        $http({
+           method: 'POST',
+           url: '/api/customers/addNewAddress',
+           data:obj,
+         }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data) {
+            $scope.location = response.data.doc;
+          }
+        },
+        function (err) {
+          $scope.busy = false;
+          $scope.error = err;
+        }
+      );
+
+      };
+
+
+    $scope.getGov = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/goves/all",
+     
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.govList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.getCity = function (location) {
+   
+      $scope.busy = true;
+     
+
+      $http({
+        method: "POST",
+        url: "/api/city/all",
+        data: {
+          where: {
+            "gov.id": location.gov.id,
+            
+          },
+         
+        },
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done && response.data.list.length > 0) {
+            $scope.cityList = response.data.list;
+          }
+        },
+        function (err) {
+          $scope.busy = false;
+          $scope.error = err;
+        }
+      );
+   
+  };
+
+
+  $scope.getArea = function () {
+   
+   $scope.busy = true;
+  
+
+   $http({
+     method: "POST",
+     url: "/api/area/all",
+     data: {
+      where: {
+        "city.id": $scope.location.city.id
+            
+          },
+      
+      
+     },
+   }).then(
+     function (response) {
+       $scope.busy = false;
+       if (response.data.done && response.data.list.length > 0) {
+         $scope.areaList = response.data.list;
+       }
+     },
+     function (err) {
+       $scope.busy = false;
+       $scope.error = err;
+     }
+   );
+
+};
+
+$scope.myLocation = function () {
+        $scope.error = '';
+        
+          $http({
+          method: 'POST',
+          url: '/api/customers/myAddresses',
+          data: {
+            "id": '##user.ref_info.id##'
+          }
+        }).then(
+          function (response) {
+            if (response.data.done) {
+              $scope.locationList = response.data.doc.address_list
+            }
+            console.log($scope.locationList)
+
+          },
+          function (err) {
+            $scope.busy = false;
+            $scope.error = err;
+          },
+        );  
+      };
+
+
       $scope.getCompletedVisits();
       $scope.getCompletedHomeVisits();
       $scope.getCompletedOnlineVisits();
@@ -2379,6 +2602,8 @@
       $scope.getCompletedAnalysis();
       $scope.getNotCompletedAnalysis();
       $scope.getPatient();
+      $scope.getGov();
+      $scope.myLocation();
     });
   </script>
 </body>
