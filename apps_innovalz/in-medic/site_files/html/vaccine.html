@@ -1,0 +1,675 @@
+<!doctype html>
+<html lang="en" dir="rtl" ng-app="myApp">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/all.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap"
+    rel="stylesheet">
+  <title>Inmedic</title>
+</head>
+
+<body ng-controller="vaccine">
+
+  <nav class="sitebar" x-import="in-medic/nav.html"></nav>
+
+
+  <div class="main-span">
+    <h1> حجز تطعيم</h1>
+  </div>
+  <div ng-repeat="s in list">
+    <section class="booking-doctor">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="booking-dr">
+
+              <div class="doctor">
+                <div class="dr-img">
+                  <img ng-src="{{s.image_url}}" width="80%">
+                </div>
+                <div class="dr-details">
+
+                  <h3>{{s.name_##session.lang##}}</h3>
+
+                  <span>{{s.price}} جنيه</span>
+                </div>
+
+              </div>
+              <div class="book-btn">
+                <a href="#book-now" ng-click="getScanData(s)" data-toggle="modal">احجز الان</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </div>
+ 
+  <section class="pop-up">
+    <div class="modal fade" id="book-now" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" style="max-width: 650px;">
+        <div class="modal-content" style="padding: 20px;border-radius: 40px;">
+
+          <div class="modal-body">
+
+            <div class="dr-book-popup" style="text-align: center;">
+
+              <img ng-src="{{scanData.image_url}}" width="10%">
+
+
+
+              <h3>{{scanData.name_##session.lang##}}</h3>
+
+              <span>{{scanData.price}}جنيه</span>
+
+
+            </div>
+
+            <div class="step-num">
+              <span id="num3">3</span>
+              <span id="num2" class="center-step">2</span>
+              <span id="num1" style="border-color: #1EBCC9;">1</span>
+            </div>
+
+            <div class="step1">
+              <label style="margin-bottom:10px;">أين تريد القيام بالتطعيم ؟</label><br>
+              <input type="radio" value="clinic" name="scan" onclick="homeA()" checked><span>في العيادة</span><br>
+              <input type="radio" ng-model="scanRequest.at_home" value="home" name="scan" onclick="home()"><span>في
+                المنزل</span><span style="color: #5dbdc9; font-weight: 600;">{{scanData.price_at_home}} - جنيه</span>
+              <br>
+
+              <div id="step-tab" style="display: none; transition: all 0.1s ease; text-align: center;">
+
+                <select ng-model="scanRequest.address"
+                  ng-options="s as (s.gov.name_##session.lang##+' - '+s.city.name_##session.lang##+' - '+s.area.name_##session.lang##+' - '+s.address+' - '+s.streetName)   for s in myAddressesList">
+                  <option value="" disabled selected>اختر عنوانك</option>
+                </select>
+                
+              </div>
+              <br>
+
+
+              <label style="margin-bottom: 10px ;">اختر اين تريد استلام التطعيم</label><br>
+              <input type="radio" value="regular" name="typeof" onclick="homeB()" checked><span>في العيادة</span><br>
+              <input type="radio" value="fast" name="typeof" onclick="home2()"><span>في المنزل </span><span
+                style="color: #5dbdc9; font-weight: 600;">(جنيه +20 )</span><br>
+              <div id="step2-tab" style="display: none; transition: all 0.1s ease; text-align: center;">
+
+                <select>
+                  <option value="" disabled selected>اختر عنوانك</option>
+                </select>
+                <a href="#">اضافة عنوان جديد</a>
+              </div>
+
+              <div class="next-step">
+
+                <a href="#" ng-click="daysOfWeekList()" id="step1">التالي</a>
+              </div>
+            </div>
+
+            <div class="step2" style="display: none;">
+              <label style="margin-bottom: 20px;">اختر اليوم</label><br>
+              <div>
+              <div ng-repeat="day in visitDaysList" style=" display: inline-block; margin: 10px 0px;">
+                <a href="#" ng-click="getDateDay(day)" class="date-day"> {{day.day.##session.lang##}} </a><br>
+              </div>
+            </div><br>
+
+              <label style="margin-bottom: 20px;">اختر التاريخ</label><br>
+              <div>
+              <div ng-repeat="a in appointmentDates" style=" display: inline-block; margin: 10px 0px;">
+                <a href="#" ng-click="getDate(a)" class="date">{{a|date:'dd - MM - yyyy'}}</a><br>
+              </div>
+            </div>
+
+              <div class="next-step">
+
+                <a href="#" id="step2">التالي</a>
+              </div>
+
+            </div>
+
+            <div class="step3" style="display: none;">
+              <div class="book-price">
+                <p>المطلوب دفعه هو</p>
+                <span style="font-size: 33px; font-weight: 600;">{{scanData.price}}</span><span>جنيه</span>
+              </div>
+              <label>اختر طريقه الدفع</label><br>
+              <input type="radio" value="clinic" name="pay" checked><span>عند الكشف</span><br>
+              <input type="radio" value="credit" name="pay"><span>الدفع بالكريات كارد او فيزا</span><br>
+              <div class="next-step">
+
+                <a href="#" ng-click="addScanRequest()" id="step3">اتمام الحجز</a>
+              </div>
+
+            </div>
+
+            <div class="final-step" style="display: none;">
+              <img src="/images/check.svg"><br>
+              <h2>تم تأكيد حجزك بنجاح</h2>
+              <span>رقم الكشف : {{returnScanData.visit_number}}</span><br>
+              <span>تاريخ الحجز : {{returnScanData.visit_date|date:'dd - MM - yyyy'}} - {{returnScanData.visit_day.##session.lang##}}</span><br>
+              <span>الوقت المتوقع : ٢ مساء</span><br>
+              <span>سعر الكشف : {{returnScanData.total_value}} جنيها</span><br><br>
+            </div>
+
+
+
+          </div>
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <section class="app" style="margin-top: 100px;">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6" style="margin: auto;">
+          <h1>حمل تطبيق المستخدم الان</h1>
+          <p>من خلال تطبيق الجوال يمكنك الاستفاده بالحجز مع دكتور وحجز تحاليل وحجز تطعيم وايضا طلب سياره اسعاف او زياره
+            منزليه ومراجعه ملفك الطبي بكل سهوله</p>
+          <a href="#"><img src="/images/google.png" width="35%"></a>
+          <a href="#"><img src="/images/app.png" width="35%"></a>
+
+        </div>
+        <div class="col-sm-6">
+          <img src="/images/phone.png" class="app-img">
+
+        </div>
+      </div>
+    </div>
+
+
+  </section>
+
+
+
+  <nav class="sitebottom" x-import="in-medic/footer.html"></nav>
+
+
+
+  <!-- Optional JavaScript; choose one of the two! -->
+  <script>
+    const one = document.querySelector("#num1");
+    const two = document.querySelector("#num2");
+    const three = document.querySelector("#num3");
+    const step1 = document.querySelector("#step1");
+    const step2 = document.querySelector("#step2");
+    const step3 = document.querySelector("#step3");
+
+    step1.addEventListener("click", () => {
+      document.querySelector(".step1").style.display = "none";
+      document.querySelector(".step2").style.display = "block";
+      document.querySelector(".step3").style.display = "none";
+      document.querySelector(".final-step").style.display = "none";
+
+      one.classList.add("active");
+      two.classList.add("border-color");
+
+      two.classList.remove("active");
+      three.classList.remove("active");
+    });
+
+    step2.addEventListener("click", () => {
+      document.querySelector(".step1").style.display = "none";
+      document.querySelector(".step2").style.display = "none";
+      document.querySelector(".step3").style.display = "block";
+      document.querySelector(".final-step").style.display = "none";
+
+      one.classList.add("active");
+      one.classList.remove("border-color");
+
+      two.classList.add("active");
+      three.classList.remove("active");
+      three.classList.add("border-color");
+    });
+
+    step3.addEventListener("click", () => {
+      document.querySelector(".step1").style.display = "none";
+      document.querySelector(".step2").style.display = "none";
+      document.querySelector(".step3").style.display = "none";
+      document.querySelector(".step-num").style.display = "none";
+      document.querySelector(".dr-book-popup").style.display = "none";
+      document.querySelector(".final-step").style.display = "block";
+
+      one.classList.add("active");
+      two.classList.add("active");
+      three.classList.add("border-color");
+    })
+  </script>
+  <script>
+    var a = document.getElementById("step-tab");
+    var b = document.getElementById("step2-tab");
+
+    function home() {
+      if (a.style.display === "none") {
+        a.style.display = "block";
+      } else {
+        a.style.display = "none";
+      };
+    }
+
+    function homeA() {
+      if (a.style.display === "block") {
+        a.style.display = "none";
+      }
+    }
+
+    function home2() {
+      if (b.style.display === "none") {
+        b.style.display = "block";
+      } else {
+        b.style.display = "none";
+      };
+    }
+
+    function homeB() {
+      if (b.style.display === "block") {
+        b.style.display = "none";
+      }
+    }
+  </script>
+  <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+  <script src="/x-js/all.js"></script>
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/popper.min.js"></script>
+  <script>
+    app.controller('nav', function ($scope, $http) {
+      $scope.busy = false;
+
+      $scope.logout = function () {
+        $scope.error = '';
+        $scope.busy = true;
+
+        $http.post('/api/user/logout').then(
+          function (response) {
+            if (response.data.done) {
+              window.location.href = '/';
+            } else {
+              $scope.error = response.data.error;
+              $scope.busy = false;
+            }
+          },
+          function (error) {
+            $scope.busy = false;
+            $scope.error = error;
+          },
+        );
+      };
+    });
+  </script>
+
+
+  <script src="js/main.js"></script>
+  <!-- Option 2: jQuery, Popper.js, and Bootstrap JS
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.rtlcss.com/bootstrap/v4.5.3/js/bootstrap.min.js" integrity="sha384-VmD+lKnI0Y4FPvr6hvZRw6xvdt/QZoNHQ4h5k0RL30aGkR9ylHU56BzrE2UoohWK" crossorigin="anonymous"></script>
+    -->
+  <script>
+    app.controller('vaccine', function ($scope, $http, $timeout) {
+      $scope.scanData = {};
+      $scope.scanRequest = {};
+      $scope.visitDaysList = [];
+
+
+      $scope.getVaccine = function (b) {
+        $scope.error = '';
+
+        $scope.busy = true;
+        $http({
+          method: 'POST',
+          url: '/api/vaccinations/all',
+
+        }).then(
+          function (response) {
+            console.log(response.data);
+            if (response.data) {
+              $scope.list = response.data.list;
+              $scope.busy = false;
+            };
+
+          },
+          function (err) {
+            $scope.busy = false;
+            $scope.error = err;
+          },
+        );
+      };
+
+      
+
+
+      
+
+
+
+     
+     /* $scope.addScanRequest = function (b) {
+        $scope.error = '';
+        
+         if ( $scope.scanRequest.at_home == 'home') {
+          $scope.scanRequest.at_home = true
+         }
+         let x = [];
+          x = new Array($scope.scanData);
+         console.log(x);
+         let obj = {
+           date:new Date(),
+           total_value:$scope.scanData.price,
+           active: true,
+           scans_list: x,
+           address:$scope.scanRequest.address,
+           at_home : $scope.scanRequest.at_home,
+           customer: $scope.scanRequest.customer,
+           visit_date :$scope.scanRequest.visit_date,
+           visit_day : $scope.scanRequest.visit_day,
+           company:$scope.company,
+           branch:$scope.branch
+         };
+         console.log(obj); 
+         $scope.busy = true;
+        $http({
+           method: 'POST',
+           url: '/api/scans_requests/addScanRequest',
+           data: obj
+         }).then(
+           function (response) {
+             if (response.data) {
+               $scope.returnScanData = response.data.doc;
+               
+               $scope.busy = false;
+
+             };
+
+           },
+           function (err) {
+             $scope.busy = false;
+             $scope.error = err;
+           },
+         ); 
+      }; */
+
+
+
+
+      $scope.addScanRequest = function (b) {
+        $scope.error = '';
+        
+         if ( $scope.scanRequest.at_home == 'home') {
+          $scope.scanRequest.at_home = true
+         }
+         let x = [];
+          x = new Array($scope.scanData);
+         console.log(x);
+         let obj = {
+           date:new Date(),
+           total_value:$scope.scanData.price,
+           active: true,
+           scans_list: x,
+           address:$scope.scanRequest.address,
+           at_home : $scope.scanRequest.at_home,
+           customer: $scope.scanRequest.customer,
+           visit_date :$scope.scanRequest.visit_date,
+           visit_day : $scope.scanRequest.visit_day,
+           company:$scope.company,
+           branch:$scope.branch
+         };
+         console.log(obj); 
+         $scope.busy = true;
+        $http({
+           method: 'POST',
+           url: '/api/vaccinations_requests/addVaccinationRequest',
+           data: obj
+         }).then(
+           function (response) {
+             if (response.data) {
+               $scope.returnScanData = response.data.doc;
+               
+               $scope.busy = false;
+
+             };
+
+           },
+           function (err) {
+             $scope.busy = false;
+             $scope.error = err;
+           },
+         ); 
+      };
+      
+
+
+
+
+
+
+      $scope.getScanData = function (b) {
+        $scope.error = '';
+        $scope.scanData = b;
+
+        $scope.scanRequest = {
+          total_value : $scope.scanData.price,
+          scans_list: new Array(b),
+        };
+        $scope.getMyAddresses();
+        $scope.getPatient();
+        $scope.getCompany();
+      };
+
+
+
+
+
+      $scope.getCompany = function (b) {
+        $scope.error = '';
+
+        $scope.busy = true;
+        $http({
+          method: 'POST',
+          url: '/api/customers/getFirstCompany',
+
+        }).then(
+          function (response) {
+            if (response.data) {
+              $scope.company = response.data.doc;
+              $scope.branch = response.data.doc.branch_list[0];
+              $scope.busy = false;
+            
+            };
+
+          },
+          function (err) {
+            $scope.busy = false;
+            $scope.error = err;
+          },
+        );
+      };
+
+
+
+      
+      $scope.daysOfWeekList = function (b) {
+        $scope.error = '';
+
+        $scope.visitDaysList = [{
+            day: {
+              "id": 1,
+              "code": 6,
+              "name": "saturday",
+              "en": "Saturday",
+              "ar": "السبت"
+            }
+          },
+          {
+            day: {
+              "id": 2,
+              "code": 0,
+              "name": "sunday",
+              "en": "Sunday",
+              "ar": "الاحد"
+            }
+          },
+          {
+            day: {
+              "id": 3,
+              "code": 1,
+              "name": "monday",
+              "en": "Monday",
+              "ar": "الاثنين"
+            }
+          },
+          {
+            day: {
+              "id": 4,
+              "code": 2,
+              "name": "tuesday",
+              "en": "Tuesday",
+              "ar": "الثلاثاء"
+            }
+          },
+          {
+            day: {
+              "id": 5,
+              "code": 3,
+              "name": "wednesday",
+              "en": "Wednesday",
+              "ar": "الاربعاء"
+            }
+          },
+          {
+            day: {
+              "id": 6,
+              "code": 4,
+              "name": "thursday",
+              "en": "Thursday",
+              "ar": "الخميس"
+            }
+          },
+          {
+            day: {
+              "id": 7,
+              "code": 5,
+              "name": "friday",
+              "en": "Friday",
+              "ar": "الجمعة"
+            }
+          }
+
+        ]
+      };
+
+      $scope.getDateDay = function (b) {
+        $scope.error = '';
+        console.log(b);
+        $scope.appointmentDates = [];
+        $scope.scanRequest.visit_day = b.day;
+        $scope.busy = true;
+        $http({
+          method: 'POST',
+          url: '/api/dates/day',
+          data: b
+        }).then(
+          function (response) {
+            if (response.data) {
+              $scope.appointmentDates = response.data.list;
+
+            };
+
+          },
+          function (err) {
+            $scope.busy = false;
+            $scope.error = err;
+          },
+        );
+      };
+      $scope.getDate = function (b) {
+        $scope.error = '';
+        $scope.scanRequest.visit_date = b;
+        $scope.busy = true;
+
+      };
+      $scope.getPatient = function (b) {
+        $scope.error = '';
+        $scope.busy = true;
+        $http({
+          method: 'POST',
+          url: '/api/customers/view',
+          data: {
+            id: '##user.ref_info.id##'
+          }
+        }).then(
+          function (response) {
+            if (response.data) {
+              $scope.scanRequest = {
+                customer: response.data.doc
+              };
+              $scope.busy = false;
+
+            };
+
+          },
+          function (err) {
+            $scope.busy = false;
+            $scope.error = err;
+          },
+        );
+      };
+
+      $scope.getMyAddresses = function (b) {
+        $scope.error = '';
+        $scope.busy = true;
+        $http({
+          method: 'POST',
+          url: '/api/customers/myAddresses',
+          data: {
+            id: '##user.ref_info.id##'
+          }
+        }).then(
+          function (response) {
+            console.log(response.data);
+            if (response.data) {
+              $scope.myAddressesList = response.data.doc[0].address_list;
+              $scope.busy = false;
+            };
+
+          },
+          function (err) {
+            $scope.busy = false;
+            $scope.error = err;
+          },
+        );
+      };
+      $scope.getVaccine();
+      
+     
+    });
+  </script>
+</body>
+
+</html>

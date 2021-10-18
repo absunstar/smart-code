@@ -16,6 +16,13 @@ module.exports = function init(site) {
     parser: 'html',
     compress: true,
   });
+
+  site.get({
+    name: 'vaccine',
+    path: __dirname + '/site_files/html/vaccine.html',
+    parser: 'html',
+    compress: true,
+  });
   site.get({
     name: 'profile',
     path: __dirname + '/site_files/html/profile.html',
