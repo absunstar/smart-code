@@ -178,7 +178,7 @@ module.exports = function init(site) {
                     };
                     $employee_list.edit(doc, (err2, doc2) => {});
                   } else {
-                    response.error = err.message;
+                    response.error = err1.message;
                   }
                   res.json(response);
                 });
