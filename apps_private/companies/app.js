@@ -401,7 +401,8 @@ module.exports = function init(site) {
                     is_company: true,
                     branch_list: branch_list,
                     profile: {
-                      name: companies_doc.name_ar,
+                      name_ar: companies_doc.name_ar,
+                      name_en: companies_doc.name_en,
                       mobile: companies_doc.mobile,
                       image_url: companies_doc.image_url,
                     },
