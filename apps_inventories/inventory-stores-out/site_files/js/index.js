@@ -2172,7 +2172,6 @@ app.controller("stores_out", function ($scope, $http, $timeout, $interval) {
       };
       $scope.thermal.net_txt = site.stringfiy($scope.thermal.net_value);
     }
-
     JsBarcode(".barcode", $scope.thermal.code);
     if (
       $scope.defaultSettings.printer_program &&

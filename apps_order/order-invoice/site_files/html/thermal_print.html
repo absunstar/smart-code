@@ -1,8 +1,4 @@
-<div
-  class="row center border font_cairo hidden"
-  id="thermalPrint"
-  style="width: 88mm !important"
->
+<div class="row center border font_cairo hidden" id="thermalPrint" style="width: 88mm !important">
   <div class="center">
     <img class="logoPrint" ng-src="{{invoice_logo}}" />
   </div>
@@ -10,26 +6,25 @@
   <div class="row">
     <div class="center">
       <div class="row">
-        <h2 ng-show="'##session.lang##' == 'ar'" class="black center bold">
-          ##session.company.name_ar##
-        </h2>
-        <h2 ng-show="'##session.lang##' == 'en'" class="black center bold">
-          ##session.company.name_en##
-        </h2>
+        <h2 ng-show="'##session.lang##' == 'ar'" class="black center bold">##session.company.name_ar##</h2>
+        <h2 ng-show="'##session.lang##' == 'en'" class="black center bold">##session.company.name_en##</h2>
       </div>
-      <div
-        class="row center"
-        ng-repeat="i in defaultSettings.printer_program.thermal_header"
-      >
+
+      <div class="row">
+        <h4 ng-show="'##session.lang##' == 'ar'" class="black center bold">##session.branch.name_ar##</h4>
+        <h4 ng-show="'##session.lang##' == 'en'" class="black center bold">##session.branch.name_en##</h4>
+      </div>
+      <br />
+      <br />
+      <div class="row center" ng-repeat="i in defaultSettings.printer_program.thermal_header">
         <p class="txt16 bold black center">{{i.name}}</p>
       </div>
     </div>
   </div>
-
+  <br />
+  <br />
   <div class="row center">
-    <p class="center black bold txt14">
-      ##word.tax_number## : {{defaultSettings.printer_program.tax_number}}
-    </p>
+    <p class="center black bold txt14">##word.tax_number## : {{defaultSettings.printer_program.tax_number}}</p>
   </div>
 
   <br />
@@ -44,9 +39,7 @@
 
   <div class="row">
     <div class="col6">
-      <b class="black"
-        >##word.date## : {{thermal.date |date:"dd - MM - yyyy" }}
-      </b>
+      <b class="black">##word.date## : {{thermal.date |date:"dd - MM - yyyy" }} </b>
     </div>
     <div class="col2"></div>
     <div class="col4">
@@ -59,9 +52,7 @@
 
   <div class="center">
     <b class="black">##word.customer## : </b>
-    <b class="black border_black"
-      >{{thermal.customer.name_##session.lang##}}
-    </b>
+    <b class="black border_black">{{thermal.customer.name_##session.lang##}} </b>
   </div>
   <br />
   <hr />
@@ -83,12 +74,8 @@
 
   <div class="row bold" ng-repeat="itm in thermal.items">
     <div class="col5">
-      <p class="black" ng-show=" itm.add_sizes">
-        {{itm.name_##session.lang##}} {{itm.size_##session.lang##}}
-      </p>
-      <p class="black" ng-hide=" itm.add_sizes">
-        {{itm.size_##session.lang##}}
-      </p>
+      <p class="black" ng-show=" itm.add_sizes">{{itm.name_##session.lang##}} {{itm.size_##session.lang##}}</p>
+      <p class="black" ng-hide=" itm.add_sizes">{{itm.size_##session.lang##}}</p>
     </div>
     <div class="col2 black">
       <p class="black">{{itm.count}}</p>
@@ -137,9 +124,7 @@
   </div>
 
   <div class="row">
-    <p class="txt14 bold center black">
-      {{thermal.net_txt}} {{defaultSettings.accounting.end_num_to_str || ''}}
-    </p>
+    <p class="txt14 bold center black">{{thermal.net_txt}} {{defaultSettings.accounting.end_num_to_str || ''}}</p>
   </div>
 
   <br />
@@ -148,9 +133,7 @@
 
   <div class="row">
     <p class="black">##word.amount_paid## : {{thermal.Paid_from_customer}}</p>
-    <p class="black">
-      ##word.remaining_amount## : {{thermal.remain_from_customer}}
-    </p>
+    <p class="black">##word.remaining_amount## : {{thermal.remain_from_customer}}</p>
   </div>
 
   <br />
@@ -158,33 +141,22 @@
   <br />
 
   <div class="row center">
-    <div class="invoice-barcode center" >
-      <svg style="max-height: 25mm;"
-        class="barcode"
-        jsbarcode-format="auto"
-        jsbarcode-value="{{thermal.code}}"
-        jsbarcode-textmargin="0"
-        jsbarcode-fontoptions="bold"
-      ></svg>
+    <div class="invoice-barcode center">
+      <svg style="max-height: 25mm" class="barcode" jsbarcode-format="auto" jsbarcode-value="{{thermal.code}}" jsbarcode-textmargin="0" jsbarcode-fontoptions="bold"></svg>
     </div>
   </div>
 
   <br />
 
   <div class="row center">
-    <p class="center black bold txt14">
-      ##word.tax_number## : {{defaultSettings.printer_program.tax_number}}
-    </p>
+    <p class="center black bold txt14">##word.tax_number## : {{defaultSettings.printer_program.tax_number}}</p>
   </div>
 
   <br />
   <hr />
   <br />
 
-  <div
-    class="row"
-    ng-repeat="i in defaultSettings.printer_program.thermal_footer"
-  >
+  <div class="row" ng-repeat="i in defaultSettings.printer_program.thermal_footer">
     <p class="txt16 black bold center">{{i.name}}</p>
   </div>
 
