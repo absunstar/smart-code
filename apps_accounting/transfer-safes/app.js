@@ -65,6 +65,7 @@ module.exports = function init(site) {
       if (!err) {
         response.done = true
         response.doc = doc
+
       } else {
         response.error = err.message
       }

@@ -1,4 +1,4 @@
-app.controller("transfer_safes", function ($scope, $http, $timeout) {
+app.controller('transfer_safes', function ($scope, $http, $timeout) {
   $scope._search = {};
 
   $scope.transfer_safes = {};
@@ -11,13 +11,12 @@ app.controller("transfer_safes", function ($scope, $http, $timeout) {
         $scope.transfer_safes = {
           image_url: '/images/transfer_safes.png',
           shift: shift,
-          date: new Date()
+          date: new Date(),
         };
 
         if ($scope.defaultSettings) {
-
           if ($scope.defaultSettings.general_Settings && !$scope.defaultSettings.general_Settings.work_posting) {
-            $scope.transfer_safes.posting = true
+            $scope.transfer_safes.posting = true;
           }
         }
         site.showModal('#transferSafesAddModal');
@@ -35,67 +34,56 @@ app.controller("transfer_safes", function ($scope, $http, $timeout) {
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
-    };
+    }
 
-    $scope.financialYear($scope.transfer_safes.date, is_allowed_date => {
+    $scope.financialYear($scope.transfer_safes.date, (is_allowed_date) => {
       if (!is_allowed_date) {
         $scope.error = '##word.should_open_period##';
       } else {
-
         $scope.busy = true;
 
         $http({
-          method: "POST",
-          url: "/api/transfer_safes/add",
-          data: $scope.transfer_safes
+          method: 'POST',
+          url: '/api/transfer_safes/add',
+          data: $scope.transfer_safes,
         }).then(
           function (response) {
             $scope.busy = false;
             if (response.data.done) {
               let transfer_safes = response.data.doc;
               if (transfer_safes.posting) {
-
                 $scope.addAccountInvoiceFrom(transfer_safes);
-                $scope.addAccountInvoiceTo(transfer_safes);
               }
-
-
 
               site.hideModal('#transferSafesAddModal');
               $scope.getTransferSafesList();
             } else {
               $scope.error = response.data.error;
               if (response.data.error.like('*duplicate key error*')) {
-                $scope.error = "##word.code_exisit##"
+                $scope.error = '##word.code_exisit##';
               } else if (response.data.error.like('*Please write code*')) {
-                $scope.error = "##word.enter_code_inventory##"
+                $scope.error = '##word.enter_code_inventory##';
               } else if (response.data.error.like('*Must Enter Code*')) {
-                $scope.error = "##word.must_enter_code##"
+                $scope.error = '##word.must_enter_code##';
               }
             }
           },
           function (err) {
             console.log(err);
           }
-        )
+        );
       }
-    })
+    });
   };
-
 
   $scope.addAccountInvoiceFrom = function (transfer_safes) {
     $scope.error = '';
 
-    if ($scope.busy) {
-      return;
-    }
-
-
-    let account_invoices = {
+    let obj = {
       source_type: {
         id: 14,
         en: 'Transfer of safes balances',
-        ar: 'تحويل أرصدة الخزن'
+        ar: 'تحويل أرصدة الخزن',
       },
       type: 'from',
       date: transfer_safes.date,
@@ -106,54 +94,48 @@ app.controller("transfer_safes", function ($scope, $http, $timeout) {
       safe: transfer_safes.safe_from,
       payment_method: transfer_safes.type_from,
       paid_up: transfer_safes.value_from,
-      posting: true
+      posting: true,
     };
 
     $http({
-      method: "POST",
-      url: "/api/account_invoices/add",
-      data: account_invoices
+      method: 'POST',
+      url: '/api/account_invoices/add',
+      data: { ...obj },
     }).then(
       function (response) {
         if (response.data.done) {
-
+          $scope.addAccountInvoiceTo({...transfer_safes});
         } else {
           $scope.error = response.data.error;
           if (response.data.error.like('*duplicate key error*')) {
-            $scope.error = "##word.code_exisit##"
+            $scope.error = '##word.code_exisit##';
           } else if (response.data.error.like('*Please write code*')) {
-            $scope.error = "##word.enter_code_inventory##"
+            $scope.error = '##word.enter_code_inventory##';
           } else if (response.data.error.like('*n`t Found Open Shi*')) {
-            $scope.error = "##word.open_shift_not_found##"
+            $scope.error = '##word.open_shift_not_found##';
           } else if (response.data.error.like('*n`t Open Perio*')) {
-            $scope.error = "##word.should_open_period##"
+            $scope.error = '##word.should_open_period##';
           } else if (response.data.error.like('*Must Enter Code*')) {
-            $scope.error = "##word.must_enter_code##"
+            $scope.error = '##word.must_enter_code##';
           } else if (response.data.error.like('*sure to specify the data of the transferee*')) {
-            $scope.error = "##word.sure_specify_data_transferee##"
+            $scope.error = '##word.sure_specify_data_transferee##';
           }
         }
       },
       function (err) {
         console.log(err);
       }
-    )
-
+    );
   };
 
   $scope.addAccountInvoiceTo = function (transfer_safes) {
     $scope.error = '';
 
-    if ($scope.busy) {
-      return;
-    }
-
-
-    let account_invoices = {
+    let obj = {
       source_type: {
         id: 14,
         en: 'Transfer of safes balances',
-        ar: 'تحويل أرصدة الخزن'
+        ar: 'تحويل أرصدة الخزن',
       },
       type: 'to',
       code: transfer_safes.code,
@@ -164,45 +146,41 @@ app.controller("transfer_safes", function ($scope, $http, $timeout) {
       safe: transfer_safes.safe_to,
       payment_method: transfer_safes.type_to,
       paid_up: transfer_safes.value_to,
-      posting: true
+      posting: true,
     };
-
-
+    console.log(obj,"Ddddddddddddddddddddddddd");
     $http({
-      method: "POST",
-      url: "/api/account_invoices/add",
-      data: account_invoices
+      method: 'POST',
+      url: '/api/account_invoices/add',
+      data: { ...obj },
     }).then(
       function (response) {
         if (response.data.done) {
-
+          $scope.busy = false;
         } else {
           $scope.error = response.data.error;
           if (response.data.error.like('*duplicate key error*')) {
-            $scope.error = "##word.code_exisit##"
+            $scope.error = '##word.code_exisit##';
           } else if (response.data.error.like('*Please write code*')) {
-            $scope.error = "##word.enter_code_inventory##"
+            $scope.error = '##word.enter_code_inventory##';
           } else if (response.data.error.like('*n`t Found Open Shi*')) {
-            $scope.error = "##word.open_shift_not_found##"
+            $scope.error = '##word.open_shift_not_found##';
           } else if (response.data.error.like('*n`t Open Perio*')) {
-            $scope.error = "##word.should_open_period##"
+            $scope.error = '##word.should_open_period##';
           } else if (response.data.error.like('*Must Enter Code*')) {
-            $scope.error = "##word.must_enter_code##"
+            $scope.error = '##word.must_enter_code##';
           } else if (response.data.error.like('*sure to specify the data of the transferee*')) {
-            $scope.error = "##word.sure_specify_data_transferee##"
+            $scope.error = '##word.sure_specify_data_transferee##';
           }
         }
       },
       function (err) {
         console.log(err);
       }
-    )
-
+    );
   };
 
-
   $scope.displayUpdateTransferSafes = function (transfer_safes) {
-
     $scope.get_open_shift((shift) => {
       if (shift) {
         $scope._search = {};
@@ -221,7 +199,6 @@ app.controller("transfer_safes", function ($scope, $http, $timeout) {
     }
     $scope.error = '';
     if (!posting) {
-
       const v = site.validated('#transferSafesUpdateModal');
       if (!v.ok) {
         $scope.error = v.messages[0].ar;
@@ -229,30 +206,24 @@ app.controller("transfer_safes", function ($scope, $http, $timeout) {
       }
     }
 
-    $scope.financialYear(transfer_safes.date, is_allowed_date => {
+    $scope.financialYear(transfer_safes.date, (is_allowed_date) => {
       if (!is_allowed_date) {
         $scope.error = '##word.should_open_period##';
-
       } else {
-
         $scope.busy = true;
 
         $http({
-          method: "POST",
-          url: "/api/transfer_safes/update",
-          data: transfer_safes
+          method: 'POST',
+          url: '/api/transfer_safes/update',
+          data: transfer_safes,
         }).then(
           function (response) {
             $scope.busy = false;
             if (response.data.done) {
-
               if (posting === 'posting') {
                 $scope.addAccountInvoiceFrom(transfer_safes);
-                $scope.addAccountInvoiceTo(transfer_safes);
-
               } else if (posting === 'unposting') {
                 $scope.deleteInvoice(transfer_safes);
-
               }
 
               site.hideModal('#transferSafesUpdateModal');
@@ -268,9 +239,9 @@ app.controller("transfer_safes", function ($scope, $http, $timeout) {
           function (err) {
             console.log(err);
           }
-        )
+        );
       }
-    })
+    });
   };
 
   $scope.displayDetailsTransferSafes = function (transfer_safes) {
@@ -283,11 +254,11 @@ app.controller("transfer_safes", function ($scope, $http, $timeout) {
   $scope.detailsTransferSafes = function (transfer_safes) {
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/transfer_safes/view",
+      method: 'POST',
+      url: '/api/transfer_safes/view',
       data: {
-        id: transfer_safes.id
-      }
+        id: transfer_safes.id,
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -301,7 +272,7 @@ app.controller("transfer_safes", function ($scope, $http, $timeout) {
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.displayDeleteTransferSafes = function (transfer_safes) {
@@ -318,19 +289,17 @@ app.controller("transfer_safes", function ($scope, $http, $timeout) {
   $scope.deleteTransferSafes = function () {
     $scope.error = '';
 
-    $scope.financialYear($scope.transfer_safes.date, is_allowed_date => {
+    $scope.financialYear($scope.transfer_safes.date, (is_allowed_date) => {
       if (!is_allowed_date) {
         $scope.error = '##word.should_open_period##';
-
       } else {
         $scope.busy = true;
         $http({
-          method: "POST",
-          url: "/api/transfer_safes/delete",
+          method: 'POST',
+          url: '/api/transfer_safes/delete',
           data: {
-            id: $scope.transfer_safes.id
-
-          }
+            id: $scope.transfer_safes.id,
+          },
         }).then(
           function (response) {
             $scope.busy = false;
@@ -352,33 +321,30 @@ app.controller("transfer_safes", function ($scope, $http, $timeout) {
           function (err) {
             console.log(err);
           }
-        )
+        );
       }
-    })
+    });
   };
 
   $scope.deleteInvoice = function (transfer_safes) {
     $scope.error = '';
 
-    $scope.financialYear(transfer_safes.date, is_allowed_date => {
+    $scope.financialYear(transfer_safes.date, (is_allowed_date) => {
       if (!is_allowed_date) {
         $scope.error = '##word.should_open_period##';
-
       } else {
         $scope.busy = true;
         $http({
-          method: "POST",
-          url: "/api/account_invoices/delete",
+          method: 'POST',
+          url: '/api/account_invoices/delete',
           data: {
             company: transfer_safes.company,
             branch: transfer_safes.branch,
             where: {
               invoice_id: transfer_safes.id,
               source_type_id: 14,
-            }
-
-
-          }
+            },
+          },
         }).then(
           function (response) {
             $scope.busy = false;
@@ -391,38 +357,34 @@ app.controller("transfer_safes", function ($scope, $http, $timeout) {
           function (err) {
             console.log(err);
           }
-        )
+        );
       }
-    })
+    });
   };
 
   $scope.deleteInvoiceTo = function (transfer_safes) {
     $scope.error = '';
 
-    $scope.financialYear(transfer_safes.date, is_allowed_date => {
+    $scope.financialYear(transfer_safes.date, (is_allowed_date) => {
       if (!is_allowed_date) {
         $scope.error = '##word.should_open_period##';
-
       } else {
         $scope.busy = true;
         $http({
-          method: "POST",
-          url: "/api/account_invoices/delete",
+          method: 'POST',
+          url: '/api/account_invoices/delete',
           data: {
             company: transfer_safes.company,
             branch: transfer_safes.branch,
             where: {
               invoice_id: transfer_safes.id,
               source_type_id: 14,
-            }
-
-
-          }
+            },
+          },
         }).then(
           function (response) {
             $scope.busy = false;
             if (response.data.done) {
-
             } else {
               $scope.error = response.data.error;
             }
@@ -430,9 +392,9 @@ app.controller("transfer_safes", function ($scope, $http, $timeout) {
           function (err) {
             console.log(err);
           }
-        )
+        );
       }
-    })
+    });
   };
 
   $scope.getTransferSafesList = function (where) {
@@ -440,11 +402,11 @@ app.controller("transfer_safes", function ($scope, $http, $timeout) {
     $scope.list = [];
     $scope.count = 0;
     $http({
-      method: "POST",
-      url: "/api/transfer_safes/all",
+      method: 'POST',
+      url: '/api/transfer_safes/all',
       data: {
-        where: where
-      }
+        where: where,
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -457,26 +419,23 @@ app.controller("transfer_safes", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.searchAll = function () {
     $scope._search = {};
     $scope.getTransferSafesList($scope.search);
     site.hideModal('#transferSafesSearchModal');
-    $scope.search = {}
-
+    $scope.search = {};
   };
-
 
   $scope.getSafeTypeList = function () {
     $scope.error = '';
     $scope.busy = true;
     $scope.safeTypeList = [];
     $http({
-      method: "POST",
-      url: "/api/safe_type/all"
-
+      method: 'POST',
+      url: '/api/safe_type/all',
     }).then(
       function (response) {
         $scope.busy = false;
@@ -486,32 +445,34 @@ app.controller("transfer_safes", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.loadCurrencies = function (safe, type) {
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/currency/all",
+      method: 'POST',
+      url: '/api/currency/all',
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
-          minor_currency_ar: 1, minor_currency_en: 1,
+          name_ar: 1,
+          name_en: 1,
+          minor_currency_ar: 1,
+          minor_currency_en: 1,
           ex_rate: 1,
-          code: 1
+          code: 1,
         },
         where: {
-          active: true
-        }
-      }
+          active: true,
+        },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.currenciesList = response.data.list;
-          $scope.currenciesList.forEach(_c => {
+          $scope.currenciesList.forEach((_c) => {
             if (_c.id === safe.currency.id) {
               if (type === 'from') $scope.transfer_safes.currency_from = _c;
               if (type === 'to') $scope.transfer_safes.currency_to = _c;
@@ -523,7 +484,7 @@ app.controller("transfer_safes", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.loadSafes = function (type, t) {
@@ -531,51 +492,47 @@ app.controller("transfer_safes", function ($scope, $http, $timeout) {
     $scope.busy = true;
 
     if (type && type.id) {
-
       let where = {};
 
-      if (type.id == 1)
-        where['type.id'] = 1;
+      if (type.id == 1) where['type.id'] = 1;
       else where['type.id'] = 2;
 
       $http({
-        method: "POST",
-        url: "/api/safes/all",
+        method: 'POST',
+        url: '/api/safes/all',
         data: {
           select: {
             id: 1,
-            name_ar: 1, name_en: 1,
+            name_ar: 1,
+            name_en: 1,
             commission: 1,
             currency: 1,
             balance: 1,
             type: 1,
-            code: 1
+            code: 1,
           },
-          where: where
-        }
+          where: where,
+        },
       }).then(
         function (response) {
           $scope.busy = false;
           if (response.data.done) {
-
             if (t === 'from') $scope.safesListFrom = response.data.list;
             if (t === 'to') $scope.safesListTo = response.data.list;
           }
-
         },
         function (err) {
           $scope.busy = false;
           $scope.error = err;
         }
-      )
+      );
     }
   };
 
   $scope.calc = function () {
     $timeout(() => {
       if ($scope.transfer_safes.safe_from && $scope.transfer_safes.safe_to) {
-
-        let value_from = (($scope.transfer_safes.value_from || 0) * $scope.transfer_safes.currency_from.ex_rate);
+        let value_from = ($scope.transfer_safes.value_from || 0) * $scope.transfer_safes.currency_from.ex_rate;
         $scope.transfer_safes.value_to = value_from / $scope.transfer_safes.currency_to.ex_rate;
 
         $scope.transfer_safes.value_to = site.toNumber($scope.transfer_safes.value_to);
@@ -585,70 +542,58 @@ app.controller("transfer_safes", function ($scope, $http, $timeout) {
 
         $scope.transfer_safes.safe_transferred_from = site.toNumber($scope.transfer_safes.safe_transferred_from);
         $scope.transfer_safes.safe_transferred_to = site.toNumber($scope.transfer_safes.safe_transferred_to);
-
       }
-
     }, 300);
-
   };
-
 
   $scope.financialYear = function (date, callback) {
     if (site.feature('erp')) {
-
       $scope.busy = true;
       $scope.error = '';
       $http({
-        method: "POST",
-        url: "/api/financial_years/is_allowed_date",
+        method: 'POST',
+        url: '/api/financial_years/is_allowed_date',
         data: {
-          date: new Date(date)
-        }
-      }).then(
-        function (response) {
-          $scope.busy = false;
-          is_allowed_date = response.data.doc;
-          callback(is_allowed_date);
-        }
-      );
+          date: new Date(date),
+        },
+      }).then(function (response) {
+        $scope.busy = false;
+        is_allowed_date = response.data.doc;
+        callback(is_allowed_date);
+      });
     } else callback(true);
-
   };
-
 
   $scope.getDefaultSettings = function () {
     $scope.error = '';
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/default_setting/get",
-      data: {}
+      method: 'POST',
+      url: '/api/default_setting/get',
+      data: {},
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.doc) {
           $scope.defaultSettings = response.data.doc;
-
-        };
+        }
       },
       function (err) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
-
+    );
   };
-
 
   $scope.get_open_shift = function (callback) {
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/shifts/get_open_shift",
+      method: 'POST',
+      url: '/api/shifts/get_open_shift',
       data: {
         where: { active: true },
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 }
-      }
+        select: { id: 1, name_ar: 1, name_en: 1, code: 1, from_date: 1, from_time: 1, to_date: 1, to_time: 1 },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -664,18 +609,18 @@ app.controller("transfer_safes", function ($scope, $http, $timeout) {
         $scope.error = err;
         callback(null);
       }
-    )
+    );
   };
 
   $scope.getNumberingAuto = function () {
     $scope.error = '';
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/numbering/get_automatic",
+      method: 'POST',
+      url: '/api/numbering/get_automatic',
       data: {
-        screen: "transfer_safes"
-      }
+        screen: 'transfer_safes',
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -687,7 +632,7 @@ app.controller("transfer_safes", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.getNumberingAuto();
