@@ -253,6 +253,35 @@ module.exports = function init(site) {
       $res: res,
     });
 
+    if (employee_doc.username && employee_doc.password) {
+      if (
+        !employee_doc.username.contains("@") &&
+        !employee_doc.username.contains(".")
+      ) {
+        employee_doc.username =
+          employee_doc.username + "@" + site.get_company(req).host;
+      } else {
+        if (
+          employee_doc.username.contains("@") &&
+          !employee_doc.username.contains(".")
+        ) {
+          response.error = "Username must be typed correctly";
+          res.json(response);
+          return;
+        } else if (
+          !employee_doc.username.contains("@") &&
+          employee_doc.username.contains(".")
+        ) {
+          response.error = "Username must be typed correctly";
+          res.json(response);
+          return;
+        }
+      }
+
+      user.email = employee_doc.username;
+      user.password = employee_doc.password;
+    }
+
     if (employee_doc.id) {
       $employee_list.edit(
         {
@@ -267,6 +296,7 @@ module.exports = function init(site) {
           if (!err) {
             response.done = true;
             user.employee_id = employee_doc.doc.id;
+            
 
             if (!employee_doc.doc.user_info && user.password && user.email) {
               site.security.addUser(user, (err, doc1) => {
