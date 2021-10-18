@@ -168,7 +168,7 @@ module.exports = function init(site) {
               user.ref_info = {
                 id: doc.id,
               };
-              if (user.password && user.email) {
+              if (employee_doc.password && employee_doc.email) {
                 site.security.addUser(user, (err1, doc1) => {
                   if (!err1) {
                     delete user._id;
@@ -296,9 +296,8 @@ module.exports = function init(site) {
           if (!err) {
             response.done = true;
             user.employee_id = employee_doc.doc.id;
-            
 
-            if (!employee_doc.doc.user_info && user.password && user.email) {
+            if (!employee_doc.doc.user_info && employee_doc.password && employee_doc.email) {
               site.security.addUser(user, (err, doc1) => {
                 if (!err) {
                   delete user._id;
