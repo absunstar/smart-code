@@ -1,46 +1,44 @@
-app.controller("employee_list", function ($scope, $http, $timeout) {
+app.controller('employee_list', function ($scope, $http, $timeout) {
   $scope._search = {};
 
   $scope.employee_list = {};
 
   $scope.displayAddEmployee = function () {
-    $scope.error = "";
+    $scope.error = '';
     $scope.employee_list = {
-      image_url: "/images/employee_list.png",
+      image_url: '/images/employee_list.png',
       /*  class_rooms_list : [{}],
        courses_list : [{}], */
       active: true,
     };
-    site.showModal("#employeeAddModal");
-    document.querySelector("#employeeAddModal .tab-link").click();
+    site.showModal('#employeeAddModal');
+    document.querySelector('#employeeAddModal .tab-link').click();
   };
 
   $scope.addEmployee = function () {
-    $scope.error = "";
-    const v = site.validated("#employeeAddModal");
+    $scope.error = '';
+    const v = site.validated('#employeeAddModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
     }
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/employees/add",
+      method: 'POST',
+      url: '/api/employees/add',
       data: $scope.employee_list,
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal("#employeeAddModal");
+          site.hideModal('#employeeAddModal');
           $scope.getEmployeeList();
         } else {
           $scope.error = response.data.error;
-          if (response.data.error.like("*Must Enter Code*")) {
-            $scope.error = "##word.must_enter_code##";
-          } else if (
-            response.data.error.like("*maximum number of adds exceeded*")
-          ) {
-            $scope.error = "##word.err_maximum_adds##";
+          if (response.data.error.like('*Must Enter Code*')) {
+            $scope.error = '##word.must_enter_code##';
+          } else if (response.data.error.like('*maximum number of adds exceeded*')) {
+            $scope.error = '##word.err_maximum_adds##';
           }
         }
       },
@@ -51,33 +49,33 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
   };
 
   $scope.displayUpdateEmployee = function (employee_list) {
-    $scope.error = "";
+    $scope.error = '';
     $scope.detailsEmployee(employee_list);
     $scope.employee_list = {};
-    site.showModal("#employeeUpdateModal");
-    document.querySelector("#employeeUpdateModal .tab-link").click();
+    site.showModal('#employeeUpdateModal');
+    document.querySelector('#employeeUpdateModal .tab-link').click();
   };
 
   $scope.updateEmployee = function () {
-    $scope.error = "";
-    const v = site.validated("#employeeUpdateModal");
+    $scope.error = '';
+    const v = site.validated('#employeeUpdateModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
     }
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/employees/update",
+      method: 'POST',
+      url: '/api/employees/update',
       data: $scope.employee_list,
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal("#employeeUpdateModal");
+          site.hideModal('#employeeUpdateModal');
           $scope.getEmployeeList();
         } else {
-          $scope.error = "Please Login First";
+          $scope.error = 'Please Login First';
         }
       },
       function (err) {
@@ -87,19 +85,19 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
   };
 
   $scope.displayDetailsEmployee = function (employee_list) {
-    $scope.error = "";
+    $scope.error = '';
     $scope.detailsEmployee(employee_list);
     $scope.employee_list = {};
-    site.showModal("#employeeViewModal");
-    document.querySelector("#employeeViewModal .tab-link").click();
+    site.showModal('#employeeViewModal');
+    document.querySelector('#employeeViewModal .tab-link').click();
   };
 
   $scope.detailsEmployee = function (employee_list) {
     $scope.busy = true;
-    $scope.error = "";
+    $scope.error = '';
     $http({
-      method: "POST",
-      url: "/api/employees/view",
+      method: 'POST',
+      url: '/api/employees/view',
       data: {
         id: employee_list.id,
       },
@@ -119,20 +117,20 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
   };
 
   $scope.displayDeleteEmployee = function (employee_list) {
-    $scope.error = "";
+    $scope.error = '';
     $scope.detailsEmployee(employee_list);
     $scope.employee_list = {};
-    site.showModal("#employeeDeleteModal");
-    document.querySelector("#employeeDeleteModal .tab-link").click();
+    site.showModal('#employeeDeleteModal');
+    document.querySelector('#employeeDeleteModal .tab-link').click();
   };
 
   $scope.deleteEmployee = function () {
     $scope.busy = true;
-    $scope.error = "";
+    $scope.error = '';
 
     $http({
-      method: "POST",
-      url: "/api/employees/delete",
+      method: 'POST',
+      url: '/api/employees/delete',
       data: {
         id: $scope.employee_list.id,
       },
@@ -140,7 +138,7 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal("#employeeDeleteModal");
+          site.hideModal('#employeeDeleteModal');
           $scope.getEmployeeList();
         } else {
           $scope.error = response.data.error;
@@ -170,8 +168,8 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
     }
 
     $http({
-      method: "POST",
-      url: "/api/employees/all",
+      method: 'POST',
+      url: '/api/employees/all',
       data: {
         where: where,
       },
@@ -181,7 +179,7 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
         if (response.data.done && response.data.list.length > 0) {
           $scope.list = response.data.list;
           $scope.count = response.data.count;
-          site.hideModal("#employeeSearchModal");
+          site.hideModal('#employeeSearchModal');
           $scope.search = {};
         }
       },
@@ -195,8 +193,8 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
   $scope.getClassRoomsList = function (where) {
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/hall/all",
+      method: 'POST',
+      url: '/api/hall/all',
       data: {
         where: {
           active: true,
@@ -219,8 +217,8 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
   $scope.getCoursesList = function (where) {
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/courses/all",
+      method: 'POST',
+      url: '/api/courses/all',
       data: {
         where: {
           active: true,
@@ -243,8 +241,8 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
   $scope.loadMaritalsStatus = function () {
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/maritals_status/all",
+      method: 'POST',
+      url: '/api/maritals_status/all',
       data: {
         select: { id: 1, name_ar: 1, name_en: 1, code: 1 },
       },
@@ -265,8 +263,8 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
   $scope.loadMilitariesStatus = function () {
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/militaries_status/all",
+      method: 'POST',
+      url: '/api/militaries_status/all',
       data: {
         select: { id: 1, name_ar: 1, name_en: 1, code: 1 },
       },
@@ -287,8 +285,8 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
   $scope.getJobsList = function (where) {
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/jobs/all",
+      method: 'POST',
+      url: '/api/jobs/all',
       data: {
         select: {
           id: 1,
@@ -319,8 +317,8 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
   $scope.getDegree = function () {
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/employees_degrees/all",
+      method: 'POST',
+      url: '/api/employees_degrees/all',
       data: {},
     }).then(
       function (response) {
@@ -337,12 +335,12 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
   };
 
   $scope.getGender = function () {
-    $scope.error = "";
+    $scope.error = '';
     $scope.busy = true;
     $scope.genderList = [];
     $http({
-      method: "POST",
-      url: "/api/gender/all",
+      method: 'POST',
+      url: '/api/gender/all',
     }).then(
       function (response) {
         $scope.busy = false;
@@ -356,12 +354,12 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
   };
 
   $scope.getAccountingSystem = function () {
-    $scope.error = "";
+    $scope.error = '';
     $scope.busy = true;
     $scope.accountingSystemList = [];
     $http({
-      method: "POST",
-      url: "/api/accounting_system/all",
+      method: 'POST',
+      url: '/api/accounting_system/all',
     }).then(
       function (response) {
         $scope.busy = false;
@@ -377,8 +375,8 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
   $scope.getGovList = function (where) {
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/goves/all",
+      method: 'POST',
+      url: '/api/goves/all',
       data: {
         where: {
           active: true,
@@ -402,11 +400,11 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
   $scope.getCityList = function (gov) {
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/city/all",
+      method: 'POST',
+      url: '/api/city/all',
       data: {
         where: {
-          "gov.id": gov.id,
+          'gov.id': gov.id,
           active: true,
         },
       },
@@ -427,11 +425,11 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
   $scope.getAreaList = function (city) {
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/area/all",
+      method: 'POST',
+      url: '/api/area/all',
       data: {
         where: {
-          "city.id": city.id,
+          'city.id': city.id,
           active: true,
         },
       },
@@ -452,12 +450,12 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
   $scope.getGuideAccountList = function () {
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/accounting_guide_accounts/all",
+      method: 'POST',
+      url: '/api/accounting_guide_accounts/all',
       data: {
         where: {
-          status: "active",
-          type: "detailed",
+          status: 'active',
+          type: 'detailed',
         },
       },
     }).then(
@@ -476,12 +474,12 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
   $scope.getCostCenterList = function () {
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/accounting_cost_centers/all",
+      method: 'POST',
+      url: '/api/accounting_cost_centers/all',
       data: {
         where: {
-          status: "active",
-          type: "detailed",
+          status: 'active',
+          type: 'detailed',
         },
       },
     }).then(
@@ -501,8 +499,8 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
   $scope.getFilesTypesList = function (where) {
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/file_type/all",
+      method: 'POST',
+      url: '/api/file_type/all',
       data: {
         where: {
           active: true,
@@ -523,23 +521,23 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
   };
 
   $scope.addFiles = function () {
-    $scope.error = "";
+    $scope.error = '';
     $scope.employee_list.files_list = $scope.employee_list.files_list || [];
     $scope.employee_list.files_list.push({
       file_date: new Date(),
       file_upload_date: new Date(),
-      upload_by: "##user.name##",
+      upload_by: '##user.name##',
     });
   };
 
   $scope.getNumberingAuto = function () {
-    $scope.error = "";
+    $scope.error = '';
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/numbering/get_automatic",
+      method: 'POST',
+      url: '/api/numbering/get_automatic',
       data: {
-        screen: "employees",
+        screen: 'employees',
       },
     }).then(
       function (response) {
@@ -556,46 +554,43 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
   };
 
   $scope.netSalary = function () {
-    $scope.error = "";
+    $scope.error = '';
     $timeout(() => {
       $scope.employee_list.net_salary = 0;
       if ($scope.employee_list.degree) {
-        $scope.employee_list.salary_differance =
-          $scope.employee_list.salary_differance || 0;
-        let total =
-          $scope.employee_list.degree.salary +
-          $scope.employee_list.salary_differance;
-          let net_salary =
-          (total * site.toNumber($scope.employee_list.degree.tax)) / 100;
+        $scope.employee_list.salary_differance = $scope.employee_list.salary_differance || 0;
+        let total = $scope.employee_list.degree.salary + $scope.employee_list.salary_differance;
+        let net_salary = (total * site.toNumber($scope.employee_list.degree.tax)) / 100;
 
-        $scope.employee_list.net_salary =
-        total - net_salary;
+        $scope.employee_list.net_salary = total - net_salary;
       }
     }, 250);
   };
 
   $scope.displaySearchModal = function () {
-    $scope.error = "";
-    site.showModal("#employeeSearchModal");
+    $scope.error = '';
+    site.showModal('#employeeSearchModal');
   };
 
   $scope.searchAll = function () {
     $scope.getEmployeeList($scope.search);
-    site.hideModal("#employeeSearchModal");
+    site.hideModal('#employeeSearchModal');
     $scope.search = {};
   };
 
-  $scope.email_examble = "";
-  if (typeof "##session.company.host##" === "string") {
-    $scope.email_examble = "examble##session.company.host##";
+  $scope.email_examble = '';
+  if (typeof '##session.company.host##' === 'string') {
+    $scope.email_examble = 'examble##session.company.host##';
   } else {
-    $scope.email_examble = "you@examble.com";
+    $scope.email_examble = 'you@examble.com';
   }
 
   $scope.getEmployeeList();
   $scope.getGovList();
-  $scope.getClassRoomsList();
-  $scope.getCoursesList();
+  if (site.feature('school')) {
+    $scope.getClassRoomsList();
+    $scope.getCoursesList();
+  }
   $scope.getJobsList();
   $scope.getDegree();
   $scope.getNumberingAuto();
@@ -604,7 +599,7 @@ app.controller("employee_list", function ($scope, $http, $timeout) {
   $scope.loadMilitariesStatus();
   $scope.getFilesTypesList();
   $scope.getAccountingSystem();
-  if (site.feature("erp")) {
+  if (site.feature('erp')) {
     $scope.getGuideAccountList();
     $scope.getCostCenterList();
   }
