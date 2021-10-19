@@ -420,6 +420,8 @@ module.exports = function init(site) {
       date: new Date(analysis_requests_doc.date),
 
     };
+
+    console.log("11111111111111111111");
     if (whereObj.date) {
       let d1 = site.toDate(whereObj.date);
       let d2 = site.toDate(whereObj.date);
@@ -440,12 +442,14 @@ module.exports = function init(site) {
                 id: analysis_requests_doc.customer.id,
               },
             },
+            
             (err, customerData) => {
               if (!err) {
                 if (!customerData) {
                   response.error = "no patient found";
                   return;
                 } else {
+                  
                   analysis_requests_doc.customer = customerData;
                   analysis_requests_doc.$req = req;
                   analysis_requests_doc.$res = res;
@@ -468,14 +472,14 @@ module.exports = function init(site) {
                   };
                   if (analysis_requests_doc.analysis_list[0].period.id == 2) {
                     var result = new Date(analysis_requests_doc.visit_date);
-
+                    
                     result.setHours(result.getHours() + analysis_requests_doc.analysis_list[0].delivery_time);
                     analysis_requests_doc.delivaryDate = result
                   }
 
                   if (analysis_requests_doc.analysis_list[0].period.id == 1) {
                     var result = new Date(analysis_requests_doc.visit_date);
-
+                   
                     result.setDate(result.getDate() + analysis_requests_doc.analysis_list[0].delivery_time);
                     analysis_requests_doc.delivaryDate = result
                   }
@@ -489,7 +493,7 @@ module.exports = function init(site) {
                         analysis_requests_doc,
                         (callBackAdd) => {
                           analysis_requests_doc.patient_ticket_id = callBackAdd.id;
-
+                          
                           $analysis_requests.add(
                             analysis_requests_doc,
                             (err, doc) => {
