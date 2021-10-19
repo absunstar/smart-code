@@ -477,8 +477,10 @@
             function (response) {
               if (response.data) {
                 $scope.arr = response.data.list;
+               console.log("$scope.arr" , $scope.arr);
 
                 for (const iterator of $scope.arr) {
+                  console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" , iterator);
                   for (const iterator1 of iterator.appointmentsList) {
                     $scope.appointmentsList.push(iterator1);
                   }
