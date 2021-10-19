@@ -393,7 +393,6 @@ module.exports = function init(site) {
                 site.call(
                   '[user][update]',
                   {
-                    id: companies_doc.user_info.id,
                     email: companies_doc.username,
                     password: companies_doc.password,
                     company_id: companies_doc.id,

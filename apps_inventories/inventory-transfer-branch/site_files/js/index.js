@@ -22,6 +22,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
     $scope.item.sizes.splice($scope.item.sizes.indexOf(itm), 1);
 
   };
+
   $scope.newTransferBranch = function () {
     $scope.error = '';
     $scope.get_open_shift((shift) => {
@@ -863,7 +864,6 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
       }
     )
   };
-
 
   $scope.loadBranches = function () {
     $scope.error = '';

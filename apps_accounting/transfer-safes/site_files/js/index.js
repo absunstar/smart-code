@@ -104,7 +104,7 @@ app.controller('transfer_safes', function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         if (response.data.done) {
-          $scope.addAccountInvoiceTo({...transfer_safes});
+          $scope.addAccountInvoiceTo({ ...transfer_safes });
         } else {
           $scope.error = response.data.error;
           if (response.data.error.like('*duplicate key error*')) {
@@ -148,7 +148,6 @@ app.controller('transfer_safes', function ($scope, $http, $timeout) {
       paid_up: transfer_safes.value_to,
       posting: true,
     };
-    console.log(obj,"Ddddddddddddddddddddddddd");
     $http({
       method: 'POST',
       url: '/api/account_invoices/add',
@@ -487,7 +486,7 @@ app.controller('transfer_safes', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.loadSafes = function (type, t) {
+  $scope.loadSafes = function (type, t,branchCode) {
     $scope.error = '';
     $scope.busy = true;
 
@@ -512,6 +511,7 @@ app.controller('transfer_safes', function ($scope, $http, $timeout) {
             code: 1,
           },
           where: where,
+          branchCode
         },
       }).then(
         function (response) {
@@ -612,6 +612,27 @@ app.controller('transfer_safes', function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.loadBranches = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: 'POST',
+      url: '/api/branches/all',
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.branchesList = response.data.list;
+          $scope.branchCode = response.data.branch;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.getNumberingAuto = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -639,4 +660,5 @@ app.controller('transfer_safes', function ($scope, $http, $timeout) {
   $scope.getSafeTypeList();
   $scope.getDefaultSettings();
   $scope.getTransferSafesList();
+  $scope.loadBranches();
 });
