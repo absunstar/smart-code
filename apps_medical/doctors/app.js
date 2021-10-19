@@ -752,7 +752,7 @@ module.exports = function init(site) {
      
       delete where['name']
     }
-    if (where['name']) {
+    if (where['name'] != "") {
       where.$or = []
       where.$or.push({
         'doctor.name_ar': site.get_RegExp(where['name'], 'i')
