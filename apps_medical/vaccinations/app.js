@@ -275,9 +275,9 @@ module.exports = function init(site) {
     if (where['name']) {
       where.$or = []
       where.$or.push({
-        'doctor.name_ar': site.get_RegExp(where['name'], 'i')
+        'name_ar': site.get_RegExp(where['name'], 'i')
       },{
-        'doctor.name_en': site.get_RegExp(where['name'], 'i')
+        'name_en': site.get_RegExp(where['name'], 'i')
       }
       )
       delete where['name']

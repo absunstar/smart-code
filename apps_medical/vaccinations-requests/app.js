@@ -764,6 +764,60 @@ module.exports = function init(site) {
   });
 
 
+  // my  vaccinition
+  site.post('/api/vaccinations_requests/myProfile', (req, res) => {
+    req.headers.language = req.headers.language || 'en'
+    let response = {}
+    if (!req.session.user) {
+      response.message = site.word('loginFirst')[req.headers.language];
+      response.done = false;
+      res.json(response);
+      return;
+    }
+    else if (!req.session.user.ref_info) {
+      response.message = site.word('loginFirst')[req.headers.language];
+      response.done = false;
+      res.json(response);
+      return;
+    }
+
+    $vaccinations_requests.aggregate([
+      {
+        "$match": {
+          "customer.id": req.session.user.ref_info.id
+        },
+       
+      },
+      {
+        "$project": {
+          "date": 1.0,
+          visit_day: 1,
+
+          "visit_date": 1,
+          "vaccinations_list": 1.0,
+          "net_value": 1.0,
+          "id": 1.0
+        }
+      }
+    ], (err, docs) => {
+      if (docs && docs.length > 0) {
+        response.done = true;
+        response.list = docs;
+
+        res.json(response)
+      } else {
+        response.done = false
+
+        response.list = [];
+        res.json(response)
+      }
+
+
+    })
+
+  });
+
+
    // my delivered user vaccinition
    site.post('/api/vaccinations_requests/getDeliveredVaccination', (req, res) => {
     req.headers.language = req.headers.language || 'en'
