@@ -99,7 +99,7 @@
 
                 <div>
                   <div ng-repeat="a in appointmentsList" style="display: inline-block; margin: 10px 0px">
-                    <a href=" #" ng-click="getDateDay(a)" class="date-day">{{a.day.##session.lang##}} </a><br />
+                    <a href="#" ng-click="getDateDay(a)" ng-class="{'btn-success': a}" class="date-day">{{a.day.##session.lang##}} </a><br />
                   </div>
                 </div>
                 <br /><br />
@@ -107,7 +107,7 @@
                 <p style="margin-bottom: 20px">اختر التاريخ</p>
                 <div>
                   <div ng-repeat="a in appointmentDates" style="display: inline-block; margin: 10px 0px">
-                    <a href="#" ng-click="getDate(a)"  class="date" id="datesss"> {{a|date:'dd - MM - yyyy'}} </a>
+                    <a href="#" ng-click="getDate(a)" ng-class="{'btn-primary': a}"  class="date" id="datesss"> {{a|date:'dd - MM - yyyy'}} </a>
                   </div>
                 </div>
                 <div class="next-step">
