@@ -142,7 +142,8 @@
             <div class="step3" style="display: none;">
               <div class="book-price">
                 <p>المطلوب دفعه هو</p>
-                <span style="font-size: 33px; font-weight: 600;">{{vaccineData.price}}</span><span>جنيه</span>
+                <span style="font-size: 33px; font-weight: 600;" ng-show="vaccineRequest.at_home == 'home'">{{vaccineData.price + vaccineData.price_at_home}}</span><span ng-show="vaccineRequest.at_home == 'home'">جنيه</span>
+                <span style="font-size: 33px; font-weight: 600;" ng-show="vaccineRequest.at_home != 'home'">{{vaccineData.price}}</span><span ng-show="vaccineRequest.at_home != 'home'">جنيه</span>
               </div>
               <label>اختر طريقه الدفع</label><br>
               <input type="radio" value="clinic" name="pay" checked><span>عند الكشف</span><br>
@@ -159,7 +160,7 @@
               <h2>تم تأكيد حجزك بنجاح</h2>
               <span>رقم الكشف : {{returnvaccineData.visit_number}}</span><br>
               <span>تاريخ الحجز : {{returnvaccineData.visit_date|date:'dd - MM - yyyy'}} - {{returnvaccineData.visit_day.##session.lang##}}</span><br>
-              <span>الوقت المتوقع : ٢ مساء</span><br>
+              <!-- <span>الوقت المتوقع : ٢ مساء</span><br> -->
               <span>سعر الكشف : {{returnvaccineData.total_value}} جنيها</span><br><br>
             </div>
 
@@ -375,7 +376,7 @@
          console.log(x);
          let obj = {
            date:new Date(),
-           total_value:$scope.vaccineData.price,
+           total_value: $scope.vaccineRequest.at_home == true? ($scope.vaccineData.price +$scope.vaccineData.price_at_home) : $scope.vaccineData.price ,
            active: true,
            vaccines_list: x,
            address:$scope.vaccineRequest.address ?$scope.vaccineRequest.address : "",

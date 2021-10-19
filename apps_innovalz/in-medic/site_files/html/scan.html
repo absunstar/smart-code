@@ -142,7 +142,8 @@
             <div class="step3" style="display: none;">
               <div class="book-price">
                 <p>المطلوب دفعه هو</p>
-                <span style="font-size: 33px; font-weight: 600;">{{scanData.price}}</span><span>جنيه</span>
+                <span style="font-size: 33px; font-weight: 600;" ng-show="scanRequest.at_home == 'home'">{{scanData.price + scanData.price_at_home}}</span><span ng-show="scanRequest.at_home == 'home'">جنيه</span>
+                <span style="font-size: 33px; font-weight: 600;" ng-show="scanRequest.at_home != 'home'">{{scanData.price}}</span><span ng-show="scanRequest.at_home != 'home'">جنيه</span>
               </div>
               <label>اختر طريقه الدفع</label><br>
               <input type="radio" value="clinic" name="pay" checked><span>عند الكشف</span><br>
@@ -159,7 +160,7 @@
               <h2>تم تأكيد حجزك بنجاح</h2>
               <span>رقم الكشف : {{returnScanData.visit_number}}</span><br>
               <span>تاريخ الحجز : {{returnScanData.visit_date|date:'dd - MM - yyyy'}} - {{returnScanData.visit_day.##session.lang##}}</span><br>
-              <span>الوقت المتوقع : ٢ مساء</span><br>
+              <!-- <span>الوقت المتوقع : ٢ مساء</span><br> -->
               <span>سعر الكشف : {{returnScanData.total_value}} جنيها</span><br><br>
             </div>
 
@@ -347,7 +348,7 @@
          console.log(x);
          let obj = {
            date:new Date(),
-           total_value:$scope.scanData.price,
+           total_value:$scope.scanRequest.at_home == true? ($scope.scanData.price +$scope.scanData.price_at_home) : $scope.scanData.price ,
            active: true,
            scans_list: x,
            address:$scope.scanRequest.address,
