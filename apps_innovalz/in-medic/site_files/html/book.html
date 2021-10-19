@@ -268,6 +268,7 @@
             status: status,
             place_examination: $scope.doctors_visits.place_examination,
             selected_doctor: $scope.doctorData.doctor,
+            selected_clinic: $scope.doctorData.shifts[0].clinicId,
             selected_time: $scope.doctors_visits.selected_time,
             visit_type: $scope.doctors_visits.visit_type,
             total_value: $scope.doctorData.at_clinic_price.detection,
@@ -369,8 +370,7 @@
         $scope.getDoctorData = function (b) {
           $scope.error = '';
           $scope.doctorData = b;
-          console.log('111111111111111', typeof '##user.ref_info.id##');
-          console.log('111111111111111', '##user.ref_info.id##');
+          console.log("111111111111111" , b);
           $scope.doctors_visits.total_value = b.at_clinic_price.detection;
           $scope.doctors_visits.selected_doctor = b.doctor;
         };
