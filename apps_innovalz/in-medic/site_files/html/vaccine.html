@@ -45,7 +45,7 @@
 
               </div>
               <div class="book-btn">
-                <a href="#book-now" ng-click="getScanData(s)" data-toggle="modal">احجز الان</a>
+                <a href="#book-now" ng-click="getvaccineData(s)" data-toggle="modal">احجز الان</a>
               </div>
             </div>
           </div>
@@ -64,13 +64,13 @@
 
             <div class="dr-book-popup" style="text-align: center;">
 
-              <img ng-src="{{scanData.image_url}}" width="10%">
+              <img ng-src="{{vaccineData.image_url}}" width="10%">
 
 
 
-              <h3>{{scanData.name_##session.lang##}}</h3>
+              <h3>{{vaccineData.name_##session.lang##}}</h3>
 
-              <span>{{scanData.price}}جنيه</span>
+              <span>{{vaccineData.price}}جنيه</span>
 
 
             </div>
@@ -83,14 +83,14 @@
 
             <div class="step1">
               <label style="margin-bottom:10px;">أين تريد القيام بالتطعيم ؟</label><br>
-              <input type="radio" value="clinic" name="scan" onclick="homeA()" checked><span>في العيادة</span><br>
-              <input type="radio" ng-model="scanRequest.at_home" value="home" name="scan" onclick="home()"><span>في
-                المنزل</span><span style="color: #5dbdc9; font-weight: 600;">{{scanData.price_at_home}} - جنيه</span>
+              <input type="radio" value="clinic" name="vaccine" onclick="homeA()" checked><span>في العيادة</span><br>
+              <input type="radio" ng-model="vaccineRequest.at_home" value="home" name="vaccine" onclick="home()"><span>في
+                المنزل</span><span style="color: #5dbdc9; font-weight: 600;">{{vaccineData.price_at_home}} - جنيه</span>
               <br>
 
               <div id="step-tab" style="display: none; transition: all 0.1s ease; text-align: center;">
 
-                <select ng-model="scanRequest.address"
+                <select ng-model="vaccineRequest.address"
                   ng-options="s as (s.gov.name_##session.lang##+' - '+s.city.name_##session.lang##+' - '+s.area.name_##session.lang##+' - '+s.address+' - '+s.streetName)   for s in myAddressesList">
                   <option value="" disabled selected>اختر عنوانك</option>
                 </select>
@@ -142,14 +142,14 @@
             <div class="step3" style="display: none;">
               <div class="book-price">
                 <p>المطلوب دفعه هو</p>
-                <span style="font-size: 33px; font-weight: 600;">{{scanData.price}}</span><span>جنيه</span>
+                <span style="font-size: 33px; font-weight: 600;">{{vaccineData.price}}</span><span>جنيه</span>
               </div>
               <label>اختر طريقه الدفع</label><br>
               <input type="radio" value="clinic" name="pay" checked><span>عند الكشف</span><br>
               <input type="radio" value="credit" name="pay"><span>الدفع بالكريات كارد او فيزا</span><br>
               <div class="next-step">
 
-                <a href="#" ng-click="addScanRequest()" id="step3">اتمام الحجز</a>
+                <a href="#" ng-click="addvaccineRequest()" id="step3">اتمام الحجز</a>
               </div>
 
             </div>
@@ -157,10 +157,10 @@
             <div class="final-step" style="display: none;">
               <img src="/images/check.svg"><br>
               <h2>تم تأكيد حجزك بنجاح</h2>
-              <span>رقم الكشف : {{returnScanData.visit_number}}</span><br>
-              <span>تاريخ الحجز : {{returnScanData.visit_date|date:'dd - MM - yyyy'}} - {{returnScanData.visit_day.##session.lang##}}</span><br>
+              <span>رقم الكشف : {{returnvaccineData.visit_number}}</span><br>
+              <span>تاريخ الحجز : {{returnvaccineData.visit_date|date:'dd - MM - yyyy'}} - {{returnvaccineData.visit_day.##session.lang##}}</span><br>
               <span>الوقت المتوقع : ٢ مساء</span><br>
-              <span>سعر الكشف : {{returnScanData.total_value}} جنيها</span><br><br>
+              <span>سعر الكشف : {{returnvaccineData.total_value}} جنيها</span><br><br>
             </div>
 
 
@@ -333,8 +333,8 @@
     -->
   <script>
     app.controller('vaccine', function ($scope, $http, $timeout) {
-      $scope.scanData = {};
-      $scope.scanRequest = {};
+      $scope.vaccineData = {};
+      $scope.vaccineRequest = {};
       $scope.visitDaysList = [];
 
 
@@ -362,81 +362,25 @@
         );
       };
 
-      
-
-
-      
-
-
-
-     
-     /* $scope.addScanRequest = function (b) {
+      $scope.addvaccineRequest = function (b) {
         $scope.error = '';
         
-         if ( $scope.scanRequest.at_home == 'home') {
-          $scope.scanRequest.at_home = true
+         if ( $scope.vaccineRequest.at_home == 'home') {
+          $scope.vaccineRequest.at_home = true
          }
          let x = [];
-          x = new Array($scope.scanData);
+          x = new Array($scope.vaccineData);
          console.log(x);
          let obj = {
            date:new Date(),
-           total_value:$scope.scanData.price,
+           total_value:$scope.vaccineData.price,
            active: true,
-           scans_list: x,
-           address:$scope.scanRequest.address,
-           at_home : $scope.scanRequest.at_home,
-           customer: $scope.scanRequest.customer,
-           visit_date :$scope.scanRequest.visit_date,
-           visit_day : $scope.scanRequest.visit_day,
-           company:$scope.company,
-           branch:$scope.branch
-         };
-         console.log(obj); 
-         $scope.busy = true;
-        $http({
-           method: 'POST',
-           url: '/api/scans_requests/addScanRequest',
-           data: obj
-         }).then(
-           function (response) {
-             if (response.data) {
-               $scope.returnScanData = response.data.doc;
-               
-               $scope.busy = false;
-
-             };
-
-           },
-           function (err) {
-             $scope.busy = false;
-             $scope.error = err;
-           },
-         ); 
-      }; */
-
-
-
-
-      $scope.addScanRequest = function (b) {
-        $scope.error = '';
-        
-         if ( $scope.scanRequest.at_home == 'home') {
-          $scope.scanRequest.at_home = true
-         }
-         let x = [];
-          x = new Array($scope.scanData);
-         console.log(x);
-         let obj = {
-           date:new Date(),
-           total_value:$scope.scanData.price,
-           active: true,
-           scans_list: x,
-           address:$scope.scanRequest.address,
-           at_home : $scope.scanRequest.at_home,
-           customer: $scope.scanRequest.customer,
-           visit_date :$scope.scanRequest.visit_date,
-           visit_day : $scope.scanRequest.visit_day,
+           vaccines_list: x,
+           address:$scope.vaccineRequest.address,
+           at_home : $scope.vaccineRequest.at_home,
+           customer: $scope.vaccineRequest.customer,
+           visit_date :$scope.vaccineRequest.visit_date,
+           visit_day : $scope.vaccineRequest.visit_day,
            company:$scope.company,
            branch:$scope.branch
          };
@@ -449,7 +393,7 @@
          }).then(
            function (response) {
              if (response.data) {
-               $scope.returnScanData = response.data.doc;
+               $scope.returnvaccineData = response.data.doc;
                
                $scope.busy = false;
 
@@ -469,13 +413,13 @@
 
 
 
-      $scope.getScanData = function (b) {
+      $scope.getvaccineData = function (b) {
         $scope.error = '';
-        $scope.scanData = b;
+        $scope.vaccineData = b;
 
-        $scope.scanRequest = {
-          total_value : $scope.scanData.price,
-          scans_list: new Array(b),
+        $scope.vaccineRequest = {
+          total_value : $scope.vaccineData.price,
+          vaccines_list: new Array(b),
         };
         $scope.getMyAddresses();
         $scope.getPatient();
@@ -588,7 +532,7 @@
         $scope.error = '';
         console.log(b);
         $scope.appointmentDates = [];
-        $scope.scanRequest.visit_day = b.day;
+        $scope.vaccineRequest.visit_day = b.day;
         $scope.busy = true;
         $http({
           method: 'POST',
@@ -610,7 +554,7 @@
       };
       $scope.getDate = function (b) {
         $scope.error = '';
-        $scope.scanRequest.visit_date = b;
+        $scope.vaccineRequest.visit_date = b;
         $scope.busy = true;
 
       };
@@ -626,7 +570,7 @@
         }).then(
           function (response) {
             if (response.data) {
-              $scope.scanRequest = {
+              $scope.vaccineRequest = {
                 customer: response.data.doc
               };
               $scope.busy = false;
