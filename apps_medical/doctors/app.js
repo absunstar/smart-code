@@ -748,7 +748,10 @@ module.exports = function init(site) {
     ) {
       skip = (parseInt(req.body.page) - 1) * 10;
     }
-
+    if (where["name"] == undefined ||where["name"] == "" ) {
+     
+      delete where['name']
+    }
     if (where['name']) {
       where.$or = []
       where.$or.push({

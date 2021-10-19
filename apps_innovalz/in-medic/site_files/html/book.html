@@ -107,7 +107,7 @@
                 <p style="margin-bottom: 20px">اختر التاريخ</p>
                 <div>
                   <div ng-repeat="a in appointmentDates" style="display: inline-block; margin: 10px 0px">
-                    <a href="#" ng-click="getDate(a); changeColor($index)" class="date" id="date"> {{a|date:'dd - MM - yyyy'}} </a>
+                    <a href="#" ng-click="getDate(a)"  class="date" id="datesss"> {{a|date:'dd - MM - yyyy'}} </a>
                   </div>
                 </div>
                 <div class="next-step">
@@ -214,11 +214,7 @@
         three.classList.add('border-color');
       });
     </script>
-    <script>
-      function changeColor() {
-        document.getElementById('date').style.background = 'red';
-      }
-    </script>
+    
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
 
     <script src="/x-js/all.js"></script>
@@ -497,6 +493,7 @@
         };
 
         $scope.getDateDay = function (b) {
+         
           $scope.error = '';
           $scope.doctors_visits.selected_time = b;
           $scope.busy = true;
@@ -520,7 +517,12 @@
         $scope.getDate = function (b) {
           $scope.error = '';
           $scope.doctors_visits.selected_time.date = b;
+          console.log("rrrrrrrrrrrrrrrrrrrrr" , b);
+         
           $scope.busy = true;
+        };
+        $scope.changeColor = function () {
+          document.getElementById('datesss').style.color='blue';
         };
 
         $scope.serviceTypes();
