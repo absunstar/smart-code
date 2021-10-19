@@ -367,6 +367,8 @@
         
          if ( $scope.vaccineRequest.at_home == 'home') {
           $scope.vaccineRequest.at_home = true
+         }else{
+          $scope.vaccineRequest.at_home = false
          }
          let x = [];
           x = new Array($scope.vaccineData);
@@ -376,15 +378,14 @@
            total_value:$scope.vaccineData.price,
            active: true,
            vaccines_list: x,
-           address:$scope.vaccineRequest.address,
+           address:$scope.vaccineRequest.address ?$scope.vaccineRequest.address : "",
            at_home : $scope.vaccineRequest.at_home,
            customer: $scope.vaccineRequest.customer,
            visit_date :$scope.vaccineRequest.visit_date,
            visit_day : $scope.vaccineRequest.visit_day,
-           company:$scope.company,
-           branch:$scope.branch
+          
          };
-         console.log(obj); 
+         console.log("1111111111111111" , obj); 
          $scope.busy = true;
         $http({
            method: 'POST',
@@ -393,6 +394,7 @@
          }).then(
            function (response) {
              if (response.data) {
+               console.log("response.data.doc" , response.data.doc);
                $scope.returnvaccineData = response.data.doc;
                
                $scope.busy = false;
