@@ -881,7 +881,7 @@ module.exports = function init(site) {
       APP_ID,
       APP_CERTIFICATE,
       channelName,
-      uid,
+     
       role,
       privilegeExpireTime
     );
@@ -892,7 +892,7 @@ module.exports = function init(site) {
         APP_ID: APP_ID,
         APP_CERTIFICATE: APP_CERTIFICATE,
         token: token,
-        uid: uid,
+        
         role: role,
         privilegeExpireTime: privilegeExpireTime,
         channel: channelName,
@@ -903,7 +903,7 @@ module.exports = function init(site) {
         id: req.body.doctors_visits.id,
       },
       set: {
-        ...obj,
+        ...obj.data,
         startConsultationTime: new Date(),
         onlineStatus: "ready"
       },
