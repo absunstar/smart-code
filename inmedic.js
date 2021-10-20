@@ -47,31 +47,7 @@ site.importApps(__dirname + '/apps_hr');
 site.importApps(__dirname + '/apps_medic');
 site.importApps(__dirname + '/apps_core');
 
-const $companies = site.connectCollection('companies');
-let obj = {
-  name_ar: 'test',
-  name_en: 'test',
-  host: 'admin.admin.com',
-  username: 'admin@admin.com',
-  password: '123',
-  id: 1,
-  branch_list: [
-    {
-      code: 1,
-      name_ar: 'الفرع الرئيسى',
-      name_en: 'Main Branch',
-      charge: [{}],
-    },
-  ],
-};
 
-$companies.findOne({}, (err, doc) => {
-  if (!err && doc) {
-    return false;
-  } else {
-    $companies.add(obj);
-  }
-});
 
 setTimeout(() => {
   site.importApp(__dirname + '/apps_private/companies');
@@ -81,5 +57,35 @@ setTimeout(() => {
 setTimeout(() => {
   site.ready = true;
 }, 1000 * 2);
+
+
+// site.onWS('/notification', (client) => {
+//   client.onMessage = function (message) {
+//     if (message.type === 'info') {
+//       client.info = message.content
+//     }
+//   }
+// })
+
+// setInterval(() => {
+//   site.ws.clientList.forEach(client => {
+//     if (client.path === '/notification') {
+//       if (client.info && client.info.type === 'doctor') {
+//         client.send({ type: 'you are a doctor' })
+//       } else {
+//         client.send({ type: 'you are Not a doctor' })
+//       }
+//     }
+
+//   });
+// }, 1000 * 5);
+
+// site.sendEmail({
+//   from : 'amr@egytag.com',
+//   to : 'a.yousry2122@gmail.com',
+//   subject : 'test mail server 1',
+//   message : 'test message 1'
+// })
+
 
 site.run();

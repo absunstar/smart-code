@@ -1,6 +1,33 @@
 module.exports = function init(site) {
   const $companies = site.connectCollection('companies');
 
+  site.default_company = {
+    name_ar: 'test',
+    name_en: 'test',
+    host: 'admin.admin.com',
+    username: 'admin@admin.com',
+    password: '123',
+    id: 1,
+    branch_list: [
+      {
+        code: 1,
+        name_ar: 'الفرع الرئيسى',
+        name_en: 'Main Branch',
+        charge: [{}],
+      },
+    ],
+  };
+
+  $companies.findOne({}, (err, doc) => {
+    if (!err && doc) {
+      site.default_company = doc
+    } else {
+      $companies.add(default_company, (err, doc) => {
+        site.default_company = doc
+      });
+    }
+  });
+
   // site.on('[register][company][add]', doc => {
 
   //   $companies.add({
@@ -40,12 +67,12 @@ module.exports = function init(site) {
 
   site.get_company = function (req) {
     let company = req.session('company');
-    return company ? site.fromJson(company) || {} : {};
+    return company ? site.fromJson(company) || site.default_company : site.default_company;
   };
 
   site.get_branch = function (req) {
     let branch = req.session('branch');
-    return branch ? site.fromJson(branch) || {} : {};
+    return branch ? site.fromJson(branch) || site.default_company.branch_list[0] : site.default_company.branch_list[0];
   };
 
   site.post({
