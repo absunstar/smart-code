@@ -1584,7 +1584,7 @@ module.exports = function init(site) {
           $match: {
             "status.id": 4,
             "place_examination.id": 1,
-            date: {
+            'selected_time.date': {
               $gte: startDateObj,
               $lt: endDateObj,
             },
@@ -1642,7 +1642,7 @@ module.exports = function init(site) {
           $match: {
             "status.id": 4,
             "place_examination.id": 2,
-            date: {
+            'selected_time.date': {
               $gte: startDateObj,
               $lt: endDateObj,
             },
@@ -1702,7 +1702,7 @@ module.exports = function init(site) {
           $match: {
             "status.id": 4,
             "place_examination.id": 3,
-            date: {
+            'selected_time.date': {
               $gte: startDateObj,
               $lt: endDateObj,
             },
@@ -1765,7 +1765,7 @@ module.exports = function init(site) {
               $nin: [4.0],
             },
             "place_examination.id": 1,
-            date: {
+            'selected_time.date': {
               $gte: startDateObj,
               $lt: endDateObj,
             },
@@ -1825,7 +1825,7 @@ module.exports = function init(site) {
               $nin: [4.0],
             },
             "place_examination.id": 2,
-            date: {
+            'selected_time.date': {
               $gte: startDateObj,
               $lt: endDateObj,
             },
@@ -1885,7 +1885,7 @@ module.exports = function init(site) {
               $nin: [4.0],
             },
             "place_examination.id": 3,
-            date: {
+            'selected_time.date': {
               $gte: startDateObj,
               $lt: endDateObj,
             },
@@ -1960,7 +1960,7 @@ module.exports = function init(site) {
             "status.id": {
               $nin: [4.0],
             },
-            date: {
+            'selected_time.date': {
               $gte: startDateObj,
               $lt: endDateObj,
             },
