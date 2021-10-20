@@ -870,8 +870,9 @@ module.exports = function init(site) {
     // if (!uid || uid == '') {
     //   uid = 20;
     // }
-    let role = RtcRole.SUBSCRIBER;
-
+    // let role = RtcRole.SUBSCRIBER;
+    let role = RtcRole.PUBLISHER;
+     
     // get the expire time
     let expireTime = 3600;
 
