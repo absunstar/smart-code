@@ -862,10 +862,10 @@ module.exports = function init(site) {
     const APP_ID = "210ed2de0c3e46fbb02596beb3699813";
     const APP_CERTIFICATE = "b0f362d6373e4d22955db3a608b6b2c1";
 
-    const channelName = new Date().getTime().toString();
+    const channelName = "test";
 
     // get uid
-     const uid = new Date().getTime();
+     const uid = 0 // any one;
     // const uid = 200;
     // if (!uid || uid == '') {
     //   uid = 20;
