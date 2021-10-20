@@ -865,15 +865,18 @@ module.exports = function init(site) {
     const channelName = new Date().getTime().toString();
 
     // get uid
-    let uid = new Date().getTime();
-
+     const uid = new Date().getTime();
+    // const uid = 200;
+    // if (!uid || uid == '') {
+    //   uid = 20;
+    // }
     let role = RtcRole.SUBSCRIBER;
 
     // get the expire time
-    let expireTime = 1000 * 60 * 30;
+    let expireTime = 3600;
 
     // calculate privilege expire time
-    const currentTime = new Date().getTime();
+    const currentTime = Math.floor(Date.now() / 1000);
     const privilegeExpireTime = currentTime + expireTime;
     // build the token
 
@@ -881,7 +884,7 @@ module.exports = function init(site) {
       APP_ID,
       APP_CERTIFICATE,
       channelName,
-     
+      uid,
       role,
       privilegeExpireTime
     );
@@ -892,7 +895,7 @@ module.exports = function init(site) {
         APP_ID: APP_ID,
         APP_CERTIFICATE: APP_CERTIFICATE,
         token: token,
-        
+        uid: uid,
         role: role,
         privilegeExpireTime: privilegeExpireTime,
         channel: channelName,
