@@ -347,7 +347,7 @@ module.exports = function init(site) {
                     response.cb.vaccinations_requests.remain +=
                       _vaccinationR.remain || 0;
 
-                    _vaccinationR.vaccinations_list.forEach((_va) => {
+                    _vaccinationR.vaccination_list.forEach((_va) => {
                       if (_vaccinationR.at_home) _va.at_home = true;
                       _va.date = _vaccinationR.date;
                       response.cb.vaccinations_requests.list.push(_va);

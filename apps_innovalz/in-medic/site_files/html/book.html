@@ -99,7 +99,7 @@
 
                 <div>
                   <div ng-repeat="a in appointmentsList" style="display: inline-block; margin: 10px 0px">
-                    <a href=" #" ng-click="getDateDay(a)" class="date-day">{{a.day.##session.lang##}} </a><br />
+                    <a href="#" ng-click="getDateDay(a)" ng-class="{'btn-success': a}" class="date-day">{{a.day.##session.lang##}} </a><br />
                   </div>
                 </div>
                 <br /><br />
@@ -107,7 +107,7 @@
                 <p style="margin-bottom: 20px">اختر التاريخ</p>
                 <div>
                   <div ng-repeat="a in appointmentDates" style="display: inline-block; margin: 10px 0px">
-                    <a href="#" ng-click="getDate(a); changeColor($index)" class="date" id="date"> {{a|date:'dd - MM - yyyy'}} </a>
+                    <a href="#" ng-click="getDate(a)" ng-class="{'btn-primary': a}"  class="date" id="datesss"> {{a|date:'dd - MM - yyyy'}} </a>
                   </div>
                 </div>
                 <div class="next-step">
@@ -118,7 +118,7 @@
               <div class="step3" style="display: none">
                 <div class="book-price">
                   <p>المطلوب دفعه هو</p>
-                  <span style="font-size: 33px; font-weight: 600">{{doctorData.at_clinic_price.detection}}</span><span>جنيه</span>
+                  <span style="font-size: 33px; font-weight: 600" >{{doctorData.at_clinic_price.detection}}</span><span>جنيه</span>
                 </div>
                 <label>اختر طريقه الدفع</label><br />
                 <input type="radio" value="clinic" name="pay" checked /><span>عند الكشف</span><br />
@@ -214,11 +214,7 @@
         three.classList.add('border-color');
       });
     </script>
-    <script>
-      function changeColor() {
-        document.getElementById('date').style.background = 'red';
-      }
-    </script>
+    
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
 
     <script src="/x-js/all.js"></script>
@@ -272,6 +268,7 @@
             status: status,
             place_examination: $scope.doctors_visits.place_examination,
             selected_doctor: $scope.doctorData.doctor,
+            selected_clinic: $scope.doctorData.shifts[0].clinicId,
             selected_time: $scope.doctors_visits.selected_time,
             visit_type: $scope.doctors_visits.visit_type,
             total_value: $scope.doctorData.at_clinic_price.detection,
@@ -373,8 +370,7 @@
         $scope.getDoctorData = function (b) {
           $scope.error = '';
           $scope.doctorData = b;
-          console.log('111111111111111', typeof '##user.ref_info.id##');
-          console.log('111111111111111', '##user.ref_info.id##');
+          console.log("111111111111111" , b);
           $scope.doctors_visits.total_value = b.at_clinic_price.detection;
           $scope.doctors_visits.selected_doctor = b.doctor;
         };
@@ -477,8 +473,10 @@
             function (response) {
               if (response.data) {
                 $scope.arr = response.data.list;
+               console.log("$scope.arr" , $scope.arr);
 
                 for (const iterator of $scope.arr) {
+                  console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" , iterator);
                   for (const iterator1 of iterator.appointmentsList) {
                     $scope.appointmentsList.push(iterator1);
                   }
@@ -495,6 +493,7 @@
         };
 
         $scope.getDateDay = function (b) {
+         
           $scope.error = '';
           $scope.doctors_visits.selected_time = b;
           $scope.busy = true;
@@ -518,7 +517,12 @@
         $scope.getDate = function (b) {
           $scope.error = '';
           $scope.doctors_visits.selected_time.date = b;
+          console.log("rrrrrrrrrrrrrrrrrrrrr" , b);
+         
           $scope.busy = true;
+        };
+        $scope.changeColor = function () {
+          document.getElementById('datesss').style.color='blue';
         };
 
         $scope.serviceTypes();

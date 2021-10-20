@@ -580,6 +580,7 @@ module.exports = function init(site) {
         },
         {
           "$addFields": {
+            "shifts": "$doctor_list.shift",
             "appointmentsList": "$doctor_list.shift.times_list",
             "doctor.name_ar": "$doctor_list.doctor.name_ar",
             "doctor.name_en": "$doctor_list.doctor.name_en",
@@ -594,7 +595,8 @@ module.exports = function init(site) {
             'doctor.name_ar': 1,
             'doctor.name_en': 1,
             'doctor.image_url': 1,
-            "appointmentsList": 1.0
+            "appointmentsList": 1.0,
+            "shifts": 1.0
           }
         }
         ],
@@ -605,28 +607,26 @@ module.exports = function init(site) {
             let uniqueArray = [];
             let arr = [];
 
+            var merged = [].concat.apply([], docs.map(li => li.appointmentsList))
+           
+            const unique = [];
 
-
-            for (const iterator of docs) {
-              uniqueArray = iterator.appointmentsList.reduce((unique, o) => {
-                if (!unique.some(obj => obj.day.id === o.day.id)) {
-                  unique.push(o);
-                }
-                return unique;
-              }, []);
-              arr.push({
-                name_ar: iterator.name_ar,
-                name_en: iterator.name_en,
-                doctor: {
-                  'name_ar': iterator.doctor.name_ar,
-                  'name_en': iterator.doctor.name_en,
-                  "image_url": iterator.doctor.image_url,
+            merged.map(x => unique.filter(a => a.day.id == x.day.id ).length > 0 ? null : unique.push(x));
+            
+        
+            arr.push({
+              name_ar: docs[0].name_ar,
+              name_en: docs[0].name_en,
+                  doctor: {
+                  'name_ar': docs[0].doctor.name_ar,
+                  'name_en': docs[0].doctor.name_en,
+                  "image_url": docs[0].doctor.image_url,
                 },
-                appointmentsList: uniqueArray
-              })
-            }
+              appointmentsList :unique 
+            })
+
             response.list = arr;
-            response.count = arr.length;
+           
           } else {
             response.error = err.message;
           }

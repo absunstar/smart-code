@@ -145,7 +145,8 @@
             <div class="step3" style="display: none;">
               <div class="book-price">
                 <p>المطلوب دفعه هو</p>
-                <span style="font-size: 33px; font-weight: 600;">{{analysisData.price}}</span><span>جنيه</span>
+                <span style="font-size: 33px; font-weight: 600;" ng-show="analysisRequest.at_home == 'home'">{{analysisData.price + analysisData.price_at_home}}</span><span ng-show="analysisRequest.at_home == 'home'">جنيه</span>
+                <span style="font-size: 33px; font-weight: 600;" ng-show="analysisRequest.at_home != 'home'">{{analysisData.price}}</span><span ng-show="analysisRequest.at_home != 'home'">جنيه</span>
               </div>
               <label>اختر طريقه الدفع</label><br>
               <input type="radio" value="clinic" name="pay" checked><span>عند الكشف</span><br>
@@ -163,7 +164,7 @@
               <span>رقم الكشف : {{returnAnalysisData.visit_number}}</span><br>
               <span>تاريخ الحجز : {{returnAnalysisData.visit_date|date:'dd - MM - yyyy'}} -
                 {{returnAnalysisData.visit_day.##session.lang##}}</span><br>
-              <span>الوقت المتوقع : ٢ مساء</span><br>
+              <!-- <span>الوقت المتوقع : ٢ مساء</span><br> -->
               <span>سعر الكشف : {{returnAnalysisData.total_value}} جنيها</span><br><br>
             </div>
 
@@ -350,14 +351,17 @@
         if ($scope.analysisRequest.at_home == 'home') {
           $scope.analysisRequest.at_home = true
         }
+        else{
+          $scope.analysisRequest.at_home = false
+        }
         let x = [];
         x = new Array($scope.analysisData);
         let obj = {
           date: new Date(),
-          total_value: $scope.analysisData.price,
+          total_value: $scope.analysisRequest.at_home == true? ($scope.analysisData.price +$scope.analysisData.price_at_home) : $scope.analysisData.price ,
           active: true,
           analysis_list: x,
-          address: $scope.analysisRequest.address,
+          address: $scope.analysisRequest.address?$scope.analysisRequest.address:'',
           at_home: $scope.analysisRequest.at_home,
           customer: $scope.analysisRequest.customer,
           visit_date: $scope.analysisRequest.visit_date,
@@ -375,7 +379,6 @@
             if (response.data) {
 
               $scope.returnAnalysisData = response.data.doc;
-
               $scope.busy = false;
 
             };

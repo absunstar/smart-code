@@ -414,96 +414,111 @@ module.exports = function init(site) {
     //   return
     // }
     let vaccinations_requests_doc = req.body
+    let whereObj = {
+      date: new Date(vaccinations_requests_doc.date),
 
-    $customer.findOne({
-      where: {
-        id: vaccinations_requests_doc.customer.id,
-      },
-    },
-      (err, customerData) => {
-        if (!customerData) {
-          response.error = 'no patient found';
-          res.json(response);
-          return
-        } else {
-          vaccinations_requests_doc.customer = customerData;
-          vaccinations_requests_doc.$req = req
-          vaccinations_requests_doc.$res = res
-          vaccinations_requests_doc.company = site.get_company(req);
-          vaccinations_requests_doc.branch = site.get_branch(req);
+    };
+    if (whereObj.date) {
+      let d1 = site.toDate(whereObj.date);
+      let d2 = site.toDate(whereObj.date);
+      d2.setDate(d2.getDate() + 1);
+      whereObj.date = {
+        $gte: d1,
+        $lt: d2,
+      };
+    }
+    $vaccinations_requests.findMany({ where: whereObj }, (err, docs, count) => {
+      if (!err) {
+        vaccinations_requests_doc.visit_number = count + 1;
+        $customer.findOne({
+          where: {
+            id: vaccinations_requests_doc.customer.id,
+          },
+        },
+          (err, customerData) => {
+            if (!customerData) {
+              response.error = 'no patient found';
+              res.json(response);
+              return
+            } else {
+              vaccinations_requests_doc.customer = customerData;
+              vaccinations_requests_doc.$req = req
+              vaccinations_requests_doc.$res = res
+              vaccinations_requests_doc.company = site.get_company(req);
+              vaccinations_requests_doc.branch = site.get_branch(req);
 
-          vaccinations_requests_doc.add_user_info = site.security.getUserFinger({
-            $req: req,
-            $res: res
-          })
-
-
-          const randomNumber = (length) => {
-            let text = "";
-            let possible = "123456789";
-            for (let i = 0; i < length; i++) {
-              let sup = Math.floor(Math.random() * possible.length);
-              text += i > 0 && sup == i ? "0" : possible.charAt(sup);
-            }
-            return (text);
-          }
-
-
-          vaccinations_requests_doc.code = String(randomNumber(4))
-
-
-          site.getPatientTicket(customerData, callBackGet => {
-
-            if (!callBackGet) {
-
-              site.addPatientTicket(vaccinations_requests_doc, callBackAdd => {
-                vaccinations_requests_doc.patient_ticket_id = callBackAdd.id
-
-                $vaccinations_requests.add(vaccinations_requests_doc, (err, doc) => {
-
-                  if (!err) {
-                    response.done = true
-                    response.doc = doc
-
-                  } else {
-                    response.error = "error happened";
-                  }
-                  res.json(response)
-                })
-
+              vaccinations_requests_doc.add_user_info = site.security.getUserFinger({
+                $req: req,
+                $res: res
               })
 
 
-
-            } else {
-
-              if (callBackGet.status && callBackGet.status.id === 2) {
-                response.error = 'holding ticket for this patient';
-                res.json(response);
-                return;
-
+              const randomNumber = (length) => {
+                let text = "";
+                let possible = "123456789";
+                for (let i = 0; i < length; i++) {
+                  let sup = Math.floor(Math.random() * possible.length);
+                  text += i > 0 && sup == i ? "0" : possible.charAt(sup);
+                }
+                return (text);
               }
 
-              vaccinations_requests_doc.patient_ticket_id = callBackGet.id
 
-              $vaccinations_requests.add(vaccinations_requests_doc, (err, doc) => {
+              vaccinations_requests_doc.code = String(randomNumber(4))
 
-                if (!err) {
-                  response.done = true
-                  response.doc = doc
+              site.getPatientTicket(customerData, callBackGet => {
+                if (!callBackGet) {
+
+                  site.addPatientTicket(vaccinations_requests_doc, callBackAdd => {
+                    vaccinations_requests_doc.patient_ticket_id = callBackAdd.id
+
+                    $vaccinations_requests.add(vaccinations_requests_doc, (err, doc) => {
+
+                      if (!err) {
+                        response.done = true
+                        response.doc = doc
+
+                      } else {
+                        response.error = "error happened";
+                      }
+                      res.json(response)
+                    })
+
+                  })
+
+
 
                 } else {
-                  response.error = "error happened";
+                  if (callBackGet.status && callBackGet.status.id === 2) {
+                    response.error = 'holding ticket for this patient';
+                    res.json(response);
+                    return;
+
+                  }
+
+                  vaccinations_requests_doc.patient_ticket_id = callBackGet.id
+
+                  $vaccinations_requests.add(vaccinations_requests_doc, (err, doc) => {
+                    if (!err) {
+                      response.done = true
+                      response.doc = doc
+
+                    } else {
+                      response.error = "error happened";
+                    }
+                    res.json(response)
+                  })
                 }
-                res.json(response)
+
               })
+
             }
-
-          })
-
-        }
+          }
+        );
       }
-    );
+    })
+
+
 
 
 
@@ -566,146 +581,7 @@ module.exports = function init(site) {
   });
 
 
-  /* ATM APIS */
-  site.post("/api/vaccinations_requests/addVaccinationRequest", (req, res) => {
-    let response = {
-      done: false
-    }
-    // if (!req.session.user) {
-    //   response.error = 'Please Login First'
-    //   res.json(response)
-    //   return
-    // }
 
-    let vaccinations_requests_doc = req.body
-    vaccinations_requests_doc.$req = req
-    vaccinations_requests_doc.$res = res
-
-
-    vaccinations_requests_doc.company = site.get_company(req);
-    vaccinations_requests_doc.branch = site.get_branch(req);
-
-    vaccinations_requests_doc.add_user_info = site.security.getUserFinger({
-      $req: req,
-      $res: res
-    })
-
-    if (vaccinations_requests_doc.at_home) {
-      let found = false;
-      let foundList = [];
-      vaccinations_requests_doc.vaccinations_list.forEach((_a) => {
-        if (!_a.made_home_vaccination) {
-          found = true;
-          if (req.session.lang == "ar") {
-            foundList.push(_a.name_ar);
-          } else if (req.session.lang == "en") {
-            foundList.push(_a.name_en);
-          }
-        }
-      });
-
-      if (found) {
-        if (req.session.lang == "ar") {
-          response.error = `يوجد تطعيمات لا يمكن إجراءها في المنزل ( ${foundList.join(
-            "-"
-          )} )`;
-        } else if (req.session.lang == "en") {
-          response.error = `There are Vaccinations that cannot be done at home ( ${foundList.join(
-            "-"
-          )} )`;
-        }
-        res.json(response);
-        return;
-      }
-    }
-
-    let num_obj = {
-      company: site.get_company(req),
-      screen: 'vaccinations_requests',
-      date: vaccinations_requests_doc.date
-    };
-
-    let cb = site.getNumbering(num_obj);
-    if (!vaccinations_requests_doc.code && !cb.auto) {
-      response.error = 'Must Enter Code';
-      res.json(response);
-      return;
-
-    } else if (cb.auto) {
-      vaccinations_requests_doc.code = cb.code;
-    }
-
-    $customer.findOne({
-      where: {
-        id: analysis_requests_doc.customer.id,
-      },
-    }, (err, customerData) => {
-      if (!err) {
-
-        if (!customerData) {
-          response.error = "no patient found";
-          return;
-        }
-        else {
-          vaccinations_requests_doc.customer = customerData;
-          site.getPatientTicket(vaccinations_requests_doc.customer, callBackGet => {
-
-            if (!callBackGet) {
-
-              site.addPatientTicket(vaccinations_requests_doc, callBackAdd => {
-                vaccinations_requests_doc.patient_ticket_id = callBackAdd.id
-
-                $vaccinations_requests.add(vaccinations_requests_doc, (err, doc) => {
-
-                  if (!err) {
-                    response.done = true
-                    response.doc = doc
-
-                  } else {
-                    response.error = err.message
-                  }
-                  res.json(response)
-                })
-
-              })
-
-
-
-            } else {
-
-              if (callBackGet.status && callBackGet.status.id === 2) {
-                response.error = 'holding ticket for this patient';
-                res.json(response);
-                return;
-
-              }
-
-              vaccinations_requests_doc.patient_ticket_id = callBackGet.id
-
-              $vaccinations_requests.add(vaccinations_requests_doc, (err, doc) => {
-
-                if (!err) {
-                  response.done = true
-                  response.doc = doc
-
-                } else {
-                  response.error = err.message
-                }
-                res.json(response)
-              })
-            }
-
-          })
-        }
-
-      }
-
-    })
-
-
-
-
-  })
 
 
   // my current user vaccinition
@@ -730,8 +606,8 @@ module.exports = function init(site) {
         "$match": {
           "customer.id": req.session.user.ref_info.id
         },
-        delivery:{
-          $nin:[true]
+        delivery: {
+          $nin: [true]
         }
       },
       {
@@ -764,8 +640,8 @@ module.exports = function init(site) {
   });
 
 
-   // my delivered user vaccinition
-   site.post('/api/vaccinations_requests/getDeliveredVaccination', (req, res) => {
+  // my  vaccinition
+  site.post('/api/vaccinations_requests/myProfile', (req, res) => {
     req.headers.language = req.headers.language || 'en'
     let response = {}
     if (!req.session.user) {
@@ -786,7 +662,61 @@ module.exports = function init(site) {
         "$match": {
           "customer.id": req.session.user.ref_info.id
         },
-        delivery:true
+
+      },
+      {
+        "$project": {
+          "date": 1.0,
+          visit_day: 1,
+
+          "visit_date": 1,
+          "vaccinations_list": 1.0,
+          "net_value": 1.0,
+          "id": 1.0
+        }
+      }
+    ], (err, docs) => {
+      if (docs && docs.length > 0) {
+        response.done = true;
+        response.list = docs;
+
+        res.json(response)
+      } else {
+        response.done = false
+
+        response.list = [];
+        res.json(response)
+      }
+
+
+    })
+
+  });
+
+
+  // my delivered user vaccinition
+  site.post('/api/vaccinations_requests/getDeliveredVaccination', (req, res) => {
+    req.headers.language = req.headers.language || 'en'
+    let response = {}
+    if (!req.session.user) {
+      response.message = site.word('loginFirst')[req.headers.language];
+      response.done = false;
+      res.json(response);
+      return;
+    }
+    else if (!req.session.user.ref_info) {
+      response.message = site.word('loginFirst')[req.headers.language];
+      response.done = false;
+      res.json(response);
+      return;
+    }
+
+    $vaccinations_requests.aggregate([
+      {
+        "$match": {
+          "customer.id": req.session.user.ref_info.id
+        },
+        delivery: true
       },
       {
         "$project": {
