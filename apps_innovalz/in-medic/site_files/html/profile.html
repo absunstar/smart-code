@@ -847,7 +847,7 @@
                             <span> 20-3-2021 </span><span> , 06:40 ص</span><br>
 
                           </div>
-                          <a href="/video-call/{{}}" class="btn" ng-show="status === 'ready'">بدا الكشف</a>
+                          <!-- <a href="/video-call/search={{current.id}}" class="btn" ng-show="current.onlineStatus === 'ready'">بدا الكشف</a> -->
                           <!-- <div class="modal fade" id="cancel-order" tabindex="-1" aria-labelledby="exampleModalLabel"
                             aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
@@ -2109,6 +2109,15 @@
   <script src="js/main.js"></script>
   <script>
     app.controller('profile', function ($scope, $http, $timeout) {
+
+      $scope.displayVideo = function (video) {
+    $scope.error = '';
+   console.log("11111111111111111111" , $scope.current);
+   window.location.href = '/video-call';
+  };
+
+ 
+
 
       $scope.editLocation = {};
       $scope.updatePersonalData = function (b) {
