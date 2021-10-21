@@ -47,5 +47,11 @@ module.exports = function init(site) {
     parser: 'html',
     compress: true,
   });
+  site.get({
+    name: 'video-call',
+    path: __dirname + '/site_files/html/video.html',
+    parser: 'html',
+    compress: true,
+  });
   
 };

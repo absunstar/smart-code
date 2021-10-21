@@ -17,7 +17,8 @@
               </a>
               <ul class="dropdown-menu text-center account" aria-labelledby="navbarScrollingDropdown">
                 
-                <li><a class="dropdown-item sign-in" href="profile">ملفك الطبي </a></li>
+                <li x-permissions="customers_ui"><a class="dropdown-item sign-in" href="profile">ملفك الطبي </a></li>
+                <li x-permissions="doctors_manage || nursing_manage"><a class="dropdown-item sign-in" href="/patients_tickets" >لوحه التحكم</a></li>
                 <li><a class="dropdown-item sign-in"  href="/" ng-click="logout()">تسجيل الخروج</a></li>
                 
               </ul>
