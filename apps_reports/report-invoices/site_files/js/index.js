@@ -1,4 +1,4 @@
-app.controller("report_invoices", function ($scope, $http, $timeout) {
+app.controller('report_invoices', function ($scope, $http, $timeout) {
   $scope._search = {};
 
   $scope.report_invoices = {};
@@ -8,9 +8,8 @@ app.controller("report_invoices", function ($scope, $http, $timeout) {
     $scope.busy = true;
     $scope.transactionTypeList = [];
     $http({
-      method: "POST",
-      url: "/api/order_invoice/transaction_type/all"
-
+      method: 'POST',
+      url: '/api/order_invoice/transaction_type/all',
     }).then(
       function (response) {
         $scope.busy = false;
@@ -20,7 +19,7 @@ app.controller("report_invoices", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.getPaymentMethodList = function () {
@@ -28,9 +27,8 @@ app.controller("report_invoices", function ($scope, $http, $timeout) {
     $scope.busy = true;
     $scope.paymentMethodList = [];
     $http({
-      method: "POST",
-      url: "/api/payment_method/all"
-
+      method: 'POST',
+      url: '/api/payment_method/all',
     }).then(
       function (response) {
         $scope.busy = false;
@@ -40,7 +38,7 @@ app.controller("report_invoices", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.getSourceType = function () {
@@ -48,22 +46,22 @@ app.controller("report_invoices", function ($scope, $http, $timeout) {
     $scope.busy = true;
     $scope.sourceTypeList = [];
     $http({
-      method: "POST",
-      url: "/api/source_type/all"
+      method: 'POST',
+      url: '/api/source_type/all',
     }).then(
       function (response) {
         $scope.busy = false;
-        if (site.feature('club')) $scope.sourceTypeList = response.data.filter(i => i.id != 3 && i.id != 5 && i.id != 6 && i.id != 7);
-        else if (site.feature('restaurant')) $scope.sourceTypeList = response.data.filter(i => i.id != 4 && i.id != 5 && i.id != 6 && i.id != 7);
-        else if (site.feature('pos') || site.feature('erp') || site.feature('eco')) $scope.sourceTypeList = response.data.filter(i => i.id != 4 && i.id != 3 && i.id != 5 && i.id != 6 && i.id != 7);
-        else if (site.feature('academy')) $scope.sourceTypeList = response.data.filter(i => i.id != 4 && i.id != 3);
+        if (site.feature('club')) $scope.sourceTypeList = response.data.filter((i) => i.id != 3 && i.id != 5 && i.id != 6 && i.id != 7);
+        else if (site.feature('restaurant')) $scope.sourceTypeList = response.data.filter((i) => i.id != 4 && i.id != 5 && i.id != 6 && i.id != 7);
+        else if (site.feature('pos') || site.feature('erp') || site.feature('eco')) $scope.sourceTypeList = response.data.filter((i) => i.id != 4 && i.id != 3 && i.id != 5 && i.id != 6 && i.id != 7);
+        else if (site.feature('academy')) $scope.sourceTypeList = response.data.filter((i) => i.id != 4 && i.id != 3);
         else $scope.sourceTypeList = response.data;
       },
       function (err) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.getReportInvoicesList = function (where) {
@@ -71,14 +69,14 @@ app.controller("report_invoices", function ($scope, $http, $timeout) {
     $scope.list = [];
     $scope.count = 0;
     where = where || {};
-    where.source_type = { id: site.toNumber("##query.type##") };
+    where.source_type = { id: site.toNumber('##query.type##') };
 
     $http({
-      method: "POST",
-      url: "/api/report_invoices/all",
+      method: 'POST',
+      url: '/api/report_invoices/all',
       data: {
-        where: where
-      }
+        where: where,
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -92,8 +90,7 @@ app.controller("report_invoices", function ($scope, $http, $timeout) {
           $scope.cash = 0;
           $scope.bank = 0;
 
-          $scope.list.forEach(_invoice => {
-
+          $scope.list.forEach((_invoice) => {
             _invoice.net_value = site.toNumber(_invoice.net_value);
             _invoice.paid_up = site.toNumber(_invoice.paid_up);
             _invoice.remain_amount = site.toNumber(_invoice.remain_amount);
@@ -106,11 +103,9 @@ app.controller("report_invoices", function ($scope, $http, $timeout) {
             $scope.total_discount += site.toNumber(_invoice.total_discount);
 
             if (_invoice.payment_method) {
-              if (_invoice.payment_method.id === 1)
-                $scope.cash += site.toNumber(_invoice.paid_up);
+              if (_invoice.payment_method.id === 1) $scope.cash += site.toNumber(_invoice.paid_up);
               else $scope.bank += site.toNumber(_invoice.paid_up);
             }
-
           });
 
           $scope.remain_amount = site.toNumber($scope.remain_amount);
@@ -126,9 +121,8 @@ app.controller("report_invoices", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
-
 
   $scope.printAccountInvoive = function (_itemsList) {
     $scope.error = '';
@@ -143,47 +137,42 @@ app.controller("report_invoices", function ($scope, $http, $timeout) {
     if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path) {
       ip = $scope.defaultSettings.printer_program.printer_path.ip_device || '127.0.0.1';
       port = $scope.defaultSettings.printer_program.printer_path.Port_device || '60080';
-    };
-
+    }
 
     let obj_print = { data: [] };
 
     if ($scope.defaultSettings.printer_program) {
-
-      if ($scope.defaultSettings.printer_program.printer_path)
-        obj_print.printer = $scope.defaultSettings.printer_program.printer_path.ip.name.trim();
-
+      if ($scope.defaultSettings.printer_program.printer_path) obj_print.printer = $scope.defaultSettings.printer_program.printer_path.ip.name.trim();
 
       if ($scope.defaultSettings.printer_program.invoice_top_title) {
         obj_print.data.push({
           type: 'invoice-top-title',
-          name: $scope.defaultSettings.printer_program.invoice_top_title
+          name: $scope.defaultSettings.printer_program.invoice_top_title,
         });
       } else {
         obj_print.data.push({
           type: 'invoice-top-title',
-          name: "Smart Code"
+          name: 'Smart Code',
         });
       }
 
       if ($scope.defaultSettings.printer_program.invoice_logo) {
-
         obj_print.data.push({
           type: 'invoice-logo',
-          url: document.location.origin + $scope.defaultSettings.printer_program.invoice_logo
+          url: document.location.origin + $scope.defaultSettings.printer_program.invoice_logo,
         });
       } else {
         obj_print.data.push({
           type: 'invoice-logo',
-          url: "http://127.0.0.1/images/logo.png"
+          url: 'http://127.0.0.1/images/logo.png',
         });
       }
 
       if ($scope.defaultSettings.printer_program.thermal_header && $scope.defaultSettings.printer_program.thermal_header.length > 0) {
-        $scope.defaultSettings.printer_program.thermal_header.forEach(_ih => {
+        $scope.defaultSettings.printer_program.thermal_header.forEach((_ih) => {
           obj_print.data.push({
             type: 'header',
-            value: _ih.name
+            value: _ih.name,
           });
         });
       }
@@ -192,107 +181,119 @@ app.controller("report_invoices", function ($scope, $http, $timeout) {
     obj_print.data.push(
       {
         type: 'title',
-        value: 'Total  Accounts Invoices'
-      }, {
-      type: 'space'
-    }, {
-      type: 'text2',
-      value: 'Date',
-      value2: site.toDateXF(InvoiceDate)
-    }, {
-      type: 'line'
-    }, {
-      type: 'space'
-    }, {
-      type: 'text2',
-      value: 'Required',
-      value2: $scope.net_value
-    }, {
-      type: 'space'
-    }, {
-      type: 'text2',
-      value: 'Paid Up',
-      value2: $scope.paid_up
-    }, {
-      type: 'space'
-    }, {
-      type: 'text2',
-      value: 'Remain',
-      value2: $scope.remain_amount
-    }, {
-      type: 'space'
-    }, {
-      type: 'text2',
-      value: 'Tax',
-      value2: $scope.total_tax
-    }, {
-      type: 'space'
-    }, {
-      type: 'text2',
-      value: 'Discount',
-      value2: $scope.total_discount
-    }, {
-      type: 'space'
-    }, {
-      type: 'text2',
-      value: 'Cash',
-      value2: $scope.cash
-    }, {
-      type: 'space'
-    }, {
-      type: 'text2',
-      value: 'Bank',
-      value2: $scope.bank
-    });
-
+        value: 'Total  Accounts Invoices',
+      },
+      {
+        type: 'space',
+      },
+      {
+        type: 'text2',
+        value: 'Date',
+        value2: site.toDateXF(InvoiceDate),
+      },
+      {
+        type: 'line',
+      },
+      {
+        type: 'space',
+      },
+      {
+        type: 'text2',
+        value: 'Required',
+        value2: $scope.net_value,
+      },
+      {
+        type: 'space',
+      },
+      {
+        type: 'text2',
+        value: 'Paid Up',
+        value2: $scope.paid_up,
+      },
+      {
+        type: 'space',
+      },
+      {
+        type: 'text2',
+        value: 'Remain',
+        value2: $scope.remain_amount,
+      },
+      {
+        type: 'space',
+      },
+      {
+        type: 'text2',
+        value: 'Tax',
+        value2: $scope.total_tax,
+      },
+      {
+        type: 'space',
+      },
+      {
+        type: 'text2',
+        value: 'Discount',
+        value2: $scope.total_discount,
+      },
+      {
+        type: 'space',
+      },
+      {
+        type: 'text2',
+        value: 'Cash',
+        value2: $scope.cash,
+      },
+      {
+        type: 'space',
+      },
+      {
+        type: 'text2',
+        value: 'Bank',
+        value2: $scope.bank,
+      }
+    );
 
     if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.thermal_footer && $scope.defaultSettings.printer_program.thermal_footer.length > 0) {
-      $scope.defaultSettings.printer_program.thermal_footer.forEach(_if => {
+      $scope.defaultSettings.printer_program.thermal_footer.forEach((_if) => {
         obj_print.data.push({
           type: 'header',
-          value: _if.name
+          value: _if.name,
         });
       });
-
     }
 
     $http({
-      method: "POST",
+      method: 'POST',
       url: `http://${ip}:${port}/print`,
-      data: obj_print
+      data: obj_print,
     }).then(
       function (response) {
-        if (response.data.done)
-          $scope.busy = false;
+        if (response.data.done) $scope.busy = false;
       },
       function (err) {
         console.log(err);
       }
     );
-
   };
 
   $scope.getDefaultSettings = function () {
     $scope.error = '';
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/default_setting/get",
-      data: {}
+      method: 'POST',
+      url: '/api/default_setting/get',
+      data: {},
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.doc) {
           $scope.defaultSettings = response.data.doc;
-
-        };
+        }
       },
       function (err) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
-
+    );
   };
 
   $scope.getTargetAccountList = function () {
@@ -300,37 +301,36 @@ app.controller("report_invoices", function ($scope, $http, $timeout) {
     $scope.busy = true;
     $scope.targetAccountList = [];
     $http({
-      method: "POST",
-      url: "/api/target_account/all"
-
+      method: 'POST',
+      url: '/api/target_account/all',
     }).then(
       function (response) {
         $scope.busy = false;
         $scope.targetAccountList = response.data;
-
       },
       function (err) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.getStudentsYearsList = function () {
     $http({
-      method: "POST",
-      url: "/api/students_years/all",
+      method: 'POST',
+      url: '/api/students_years/all',
       data: {
         select: {
           id: 1,
-          name_ar: 1, name_en: 1,
+          name_ar: 1,
+          name_en: 1,
           code: 1,
-          types_expenses_list: 1
+          types_expenses_list: 1,
         },
         where: {
-          active: true
-        }
-      }
+          active: true,
+        },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -339,7 +339,7 @@ app.controller("report_invoices", function ($scope, $http, $timeout) {
       function (err) {
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.displayDetails = function (patients_tickets, type) {
@@ -351,22 +351,19 @@ app.controller("report_invoices", function ($scope, $http, $timeout) {
       customer: patients_tickets.customer,
     };
 
-
     $http({
-      method: "POST",
-      url: "/api/patients_tickets/display_data",
+      method: 'POST',
+      url: '/api/patients_tickets/display_data',
       data: {
-        where: where
-      }
+        where: where,
+      },
     }).then(
       function (response) {
         $scope.busy = false;
         $scope.ticket_data = response.data.cb;
 
         if (type === 'view') {
-
           site.showModal('#displayDataModal');
-
         } else if (type === 'close') {
           $scope.patients_tickets = patients_tickets;
           $scope.displayAccountInvoice($scope.ticket_data);
@@ -375,21 +372,21 @@ app.controller("report_invoices", function ($scope, $http, $timeout) {
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.getCustomersList = function (ev) {
     $scope.busy = true;
     if (ev.which === 13) {
       $http({
-        method: "POST",
-        url: "/api/customers/all",
+        method: 'POST',
+        url: '/api/customers/all',
         data: {
           search: $scope.search_customer,
           where: {
-            active: true
-          }
-        }
+            active: true,
+          },
+        },
       }).then(
         function (response) {
           $scope.busy = false;
@@ -401,7 +398,7 @@ app.controller("report_invoices", function ($scope, $http, $timeout) {
           $scope.busy = false;
           $scope.error = err;
         }
-      )
+      );
     }
   };
 
@@ -410,11 +407,9 @@ app.controller("report_invoices", function ($scope, $http, $timeout) {
     $scope.busy = true;
     if (ev.which === 13) {
       $http({
-        method: "POST",
-        url: "/api/vendors/all",
-        data: {
-
-        }
+        method: 'POST',
+        url: '/api/vendors/all',
+        data: {},
       }).then(
         function (response) {
           $scope.busy = false;
@@ -426,36 +421,33 @@ app.controller("report_invoices", function ($scope, $http, $timeout) {
           $scope.busy = false;
           $scope.error = err;
         }
-      )
+      );
     }
   };
-
 
   $scope.searchAll = function () {
     $scope._search = {};
 
     if ($scope.search && $scope.search.customer && $scope.search.customer.id) {
-
       $scope.customer = $scope.search.customer;
     }
     if ($scope.search && $scope.search.vendor && $scope.search.vendor.id) {
-
       $scope.vendor = $scope.search.vendor;
     }
 
     if ($scope.search && $scope.search.target_account && $scope.search.target_account.id) {
-
       $scope.target_account = $scope.search.target_account;
     }
 
     $scope.getReportInvoicesList($scope.search);
     site.hideModal('#reportInvoicesSearchModal');
-    $scope.search = {}
+    $scope.search = {};
   };
 
   $scope.getReportInvoicesList({ date: new Date() });
-  if (site.feature('restaurant') || site.feature('pos') || site.feature('eco') || site.feature('erp'))
+  if (site.feature('restaurant') || site.feature('pos') || site.feature('eco') || site.feature('erp')) {
     $scope.getTransactionTypeList();
+  }
 
   if (site.feature('school')) {
     $scope.getStudentsYearsList();

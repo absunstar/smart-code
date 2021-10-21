@@ -358,7 +358,6 @@ module.exports = function init(site) {
     }
 
     where['company.id'] = site.get_company(req).id;
-    console.log(req.body.branchCode);
     where['branch.code'] =  req.body.branchCode ?  req.body.branchCode : site.get_branch(req).code;
 
     $safes.findMany(
