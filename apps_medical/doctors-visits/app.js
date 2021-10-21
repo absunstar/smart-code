@@ -928,7 +928,12 @@ module.exports = function init(site) {
       },
       set: {
         endConsultationTime: new Date(),
-        onlineStatus: "end"
+        onlineStatus: "end",
+        "status" : {
+          "id" : 4, 
+          "en" : "Done Detected", 
+          "ar" : "تم الكشف"
+      }, 
       },
     });
     res.json({ done: true });
