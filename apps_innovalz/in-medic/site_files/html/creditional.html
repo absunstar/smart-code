@@ -45,9 +45,8 @@
         </div>
 
         <div class="col-sm-6">
-          <p>{{error}}</p>
           <div class="login-form">
-
+            
             <h2>تسجيل دخول</h2>
             <p>برنامج وتطبيق موبايل يخدم اداره المستشفيات والمستخدم</p>
             <label><img src="/images/mail.svg" width="17%">البريد الالكتروني</label><br>
@@ -55,6 +54,7 @@
             <label><img src="/images/password.svg" width="17%">الرقم السري </label><br>
             <input type="password" placeholder="********" ng-model="user.password"><br>
             <div class="login-btn">
+              <p style="color: red;">{{error}}</p>
               <a href="#" class="login-now" ng-click="login()">دخول</a><br>
               <span>ليس لديك حساب؟ <a href="#" id="register">سجل الان</a></span>
               <a href="#" id="forget-pass" class="lost-pass">نسيت كلمه السر؟</a>
@@ -72,7 +72,7 @@
             <input type="text" placeholder="Example@GMAIL.COM" ng-model="customer.username"><br>
             <label><img src="/images/password.svg" width="17%">الرقم السري </label><br>
             <input type="password" placeholder="********" ng-model="customer.password"><br>
-            <label><img src="/images/password.svg" width="13%"> اعاده الرقم السري </label><br>
+            <!-- <label><img src="/images/password.svg" width="13%"> اعاده الرقم السري </label><br> -->
             <!-- <input type="password" placeholder="********" ng-model="user.password"><br> -->
 
             <div class="next-back">
@@ -367,6 +367,7 @@
                 },
               }).then(
                 function (response) {
+                  console.log(1111111111111111);
                   if (response.data.error) {
                     $scope.error = response.data.error;
                     $scope.busy = false;
@@ -382,6 +383,12 @@
               );
 
 
+            }
+            else{
+              if (response.data.error) {
+                    $scope.error = 'email or password wrong';
+                    $scope.busy = false;
+                  }
             }
           },
           function (err) {

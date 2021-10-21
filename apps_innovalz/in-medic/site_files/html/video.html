@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en" dir="rtl" ng-app="myApp">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/all.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap"
+    rel="stylesheet">
+  <title>Inmedic</title>
+</head>
+
+<body ng-controller="video">
+
+  
+
+
+  <div class="row video-group">
+    <div class="col">
+      <p id="local-player-name" class="player-name"></p>
+      <div id="local-player" class="player"></div>
+    </div>
+    <div class="w-100"></div>
+    <div class="col">
+      <div id="remote-playerlist"></div>
+    </div>
+  </div>
+
+
+
+ 
+
+
+  <script src="/x-js/jquery.js"></script>
+  <script src="/js/agora.js"></script>
+  <script>
+    var client = AgoraRTC.createClient({ mode: 'rtc', codec: 'vp8' });
+
+    var localTracks = {
+      videoTrack: null,
+      audioTrack: null,
+    };
+    var remoteUsers = {};
+    var options = {
+      appid: null,
+      channel: null,
+      uid: null,
+      token: null,
+    };
+
+    async function startVideoCall() {
+      client.on('user-published', handleUserPublished);
+      client.on('user-unpublished', handleUserUnpublished);
+
+      [options.uid, localTracks.audioTrack, localTracks.videoTrack] = await Promise.all([
+        client.join(options.appid, options.channel, options.token || null),
+        AgoraRTC.createMicrophoneAudioTrack(),
+        AgoraRTC.createCameraVideoTrack(),
+      ]);
+
+      localTracks.videoTrack.play('local-player');
+      $('#local-player-name').text(`localVideo(${options.uid})`);
+
+      await client.publish(Object.values(localTracks));
+      console.log('publish success');
+    }
+
+    async function leave() {
+      for (trackName in localTracks) {
+        var track = localTracks[trackName];
+        if (track) {
+          track.stop();
+          track.close();
+          localTracks[trackName] = undefined;
+        }
+      }
+
+      remoteUsers = {};
+      $('#remote-playerlist').html('');
+
+      await client.leave();
+
+      $('#local-player-name').text('');
+      $('#join').attr('disabled', false);
+      $('#leave').attr('disabled', true);
+      console.log('client leaves channel success');
+    }
+
+    async function subscribe(user, mediaType) {
+      const uid = user.uid;
+      await client.subscribe(user, mediaType);
+      console.log('subscribe success');
+      if (mediaType === 'video') {
+        const player = $(`
+    <div id="player-wrapper-${uid}">
+      <p class="player-name">remoteUser(${uid})</p>
+      <div id="player-${uid}" class="player"></div>
+    </div>
+  `);
+        $('#remote-playerlist').append(player);
+        user.videoTrack.play(`player-${uid}`);
+      }
+      if (mediaType === 'audio') {
+        user.audioTrack.play();
+      }
+    }
+
+    function handleUserPublished(user, mediaType) {
+      const id = user.uid;
+      remoteUsers[id] = user;
+      subscribe(user, mediaType);
+    }
+
+    function handleUserUnpublished(user) {
+      const id = user.uid;
+      delete remoteUsers[id];
+      $(`#player-wrapper-${id}`).remove();
+    }
+  </script>
+
+  <!-- Optional JavaScript; choose one of the two! -->
+  
+ 
+  <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+  <script src="/x-js/all.js"></script>
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/popper.min.js"></script>
+ 
+
+
+  <script src="js/main.js"></script>
+  <!-- Option 2: jQuery, Popper.js, and Bootstrap JS
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.rtlcss.com/bootstrap/v4.5.3/js/bootstrap.min.js" integrity="sha384-VmD+lKnI0Y4FPvr6hvZRw6xvdt/QZoNHQ4h5k0RL30aGkR9ylHU56BzrE2UoohWK" crossorigin="anonymous"></script>
+    -->
+  <script>
+    app.controller('video', function ($scope, $http, $timeout) {
+      var myParam = location.search.split('search=')[1]
+      console.log("11111111111111111111111111" , myParam);
+      
+    });
+  </script>
+</body>
+
+</html>

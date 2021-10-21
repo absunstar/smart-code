@@ -1778,6 +1778,392 @@
           <span> ##word.order_slides##</span>
         </a>
       </div>
+<li>
+  <a class="tab-link" onclick="s3()" class="dropbtn">
+    <img src="/images/transaction-white.svg" />
+    <span>##word.account_transactions## </span>
+  </a>
+</li>
+
+
+
+
+<div id="accounting_setting" class="dropdown-content" style="display: none">
+  <a class="tab-link" x-features="medical" href="/account_invoices?type=15" x-permissions="account_invoices_ui || account_invoices_manage">
+    <img src="/images/report-white.svg" />
+    <span>##word.patients_tickets## </span>
+  </a>
+
+  <a class="tab-link" x-features="school" href="/account_invoices?type=13" x-permissions="account_invoices_ui || account_invoices_manage">
+    <img src="/images/hr-white.svg" />
+    <span>##word.school_fees## </span>
+  </a>
+
+  <a class="tab-link" x-features="club" href="/account_invoices?type=4" x-permissions="account_invoices_ui || account_invoices_manage">
+    <img src="/images/report-white.svg" />
+    <span>##word.request_activity_management## </span>
+  </a>
+
+  <a class="tab-link" x-features="!employee && !lawyer" href="/account_invoices?type=1" x-permissions="account_invoices_ui || account_invoices_manage">
+    <img src="/images/config-white.svg" />
+    <span>##word.purchase_invoice## </span>
+  </a>
+
+  <a class="tab-link" x-features="!employee && !lawyer" href="/account_invoices?type=2" x-permissions="account_invoices_ui || account_invoices_manage">
+    <img src="/images/hr-white.svg" />
+    <span>##word.sales_invoice## </span>
+  </a>
+
+  <a class="tab-link" x-features="pos || eco || restaurant || erp" href="/account_invoices?type=3" x-permissions="account_invoices_ui || account_invoices_manage">
+    <img src="/images/warehouse-white.svg" />
+    <span>##word.orders_screen_invoice## </span>
+  </a>
+
+  <a class="tab-link" href="/account_invoices?type=8" x-permissions="account_invoices_ui || account_invoices_manage">
+    <img src="/images/report-white.svg" />
+    <span>##word.amount_in_invoice## </span>
+  </a>
+
+  <a class="tab-link" href="/account_invoices?type=9" x-permissions="account_invoices_ui || account_invoices_manage">
+    <img src="/images/config-white.svg" />
+    <span>##word.amount_out_invoice## </span>
+  </a>
+
+  <a class="tab-link" href="/account_invoices?type=16" x-permissions="account_invoices_ui || account_invoices_manage">
+    <img src="/images/report-white.svg" />
+    <span>##word.opening_balance## </span>
+  </a>
+
+  <a class="tab-link" href="/transfer_safes" x-permissions="transfer_safes_ui || transfer_safes_manage">
+    <img src="/images/warehouse-white.svg" />
+    <span>##word.transfer_safes_balances## </span>
+  </a>
+
+  <a class="tab-link" x-features="!employee" href="/account_invoices?type=10" x-permissions="account_invoices_ui || account_invoices_manage">
+    <img src="/images/hr-white.svg" />
+    <span>##word.recharge_customer_balance## </span>
+  </a>
+
+  <a class="tab-link" href="/account_invoices?type=11" x-permissions="account_invoices_ui || account_invoices_manage">
+    <img src="/images/report-white.svg" />
+    <span>##word.employee_advance## </span>
+  </a>
+
+  <a class="tab-link" href="/account_invoices?type=12" x-permissions="account_invoices_ui || account_invoices_manage">
+    <img src="/images/config-white.svg" />
+    <span>##word.payment_employee_advance## </span>
+  </a>
+
+  <a class="tab-link" x-features="erp" href="/journal_entries" x-permissions="journal_entries_ui || journal_entries_manage">
+    <img src="/images/warehouse-white.svg" />
+    <span> ##word.journal_entries## </span>
+  </a>
+
+  <a class="tab-link" href="/safes">
+    <img src="/images/setting-white.svg" />
+    <span> ##word.system_safe_menus## </span>
+  </a>
+</div>
+
+
+
+<li>
+  <a class="tab-link" onclick="s4()" class="dropbtn">
+    <img src="/images/warehouse-white.svg" />
+    <span>تسكين </span>
+  </a>
+</li>
+
+
+
+
+<div id="building_setting" class="dropdown-content" style="display: none">
+
+  <a class="tab-link" href="/buildings" x-permissions="buildings_ui || buildings_manage">
+    <img src="/images/security-white.svg" />
+    <span> ##word.buildings##</span>
+  </a>
+  
+  <a class="tab-link" href="/floor" x-permissions="floor_ui || floor_manage">
+    <img src="/images/config-white.svg" />
+    <span> ##word.floors##</span>
+  </a>
+  
+  <a class="tab-link" href="/room" x-permissions="room_ui || room_manage">
+    <img src="/images/config-white.svg" />
+    <span> ##word.rooms##</span>
+  </a>
+</div>
+
+
+
+
+
+
+<li>
+  <a class="tab-link" onclick="s5()" class="dropbtn">
+    <img src="/images/warehouse-white.svg" />
+    <span>##word.reports## </span>
+  </a>
+</li>
+
+
+
+
+<div  id="report_setting" class="dropdown-content" style="display: none">
+  
+   
+      <a class="tab-link" href="/report_attend_employees" x-permissions="report_attend_employees_ui || report_attend_employees_manage">
+        <img src="images/config-white.svg" />
+        <span>##word.report_attend_employees##</span>
+      </a>
+
+      <a class="tab-link" href="/employees_salary_report" x-permissions="employees_salary_report_ui || employees_salary_report_manage">
+        <img src="images/config-white.svg" />
+        <span>##word.employees_salary_report##</span>
+      </a>
+
+      <a class="tab-link" href="/report_invoices?type=8" x-permissions="report_invoices_ui || report_invoices_manage">
+        <img src="/images/config-white.svg" />
+        <span>##word.report## ##word.amount_in_invoice## </span>
+      </a>
+
+      <a class="tab-link" href="/report_invoices?type=9" x-permissions="report_invoices_ui || report_invoices_manage">
+        <img src="/images/config-white.svg" />
+        <span>##word.report## ##word.amount_out_invoice## </span>
+      </a>
+
+      <a class="tab-link" href="/report_invoices?type=16" x-permissions="report_invoices_ui || report_invoices_manage">
+        <img src="/images/config-white.svg" />
+        <span>##word.report## ##word.opening_balance## </span>
+      </a>
+
+      <a class="tab-link" href="/safes_payments" x-permissions="safes_payments_ui || safes_payments_manage">
+        <img src="/images/config-white.svg" />
+        <span>##word.safes_payments##</span>
+      </a>
+
+      <a class="tab-link" href="/report_invoices?type=10" x-permissions="report_invoices_ui || report_invoices_manage">
+        <img src="/images/config-white.svg" />
+        <span>##word.report## ##word.recharge_customer_balance## </span>
+      </a>
+
+      <a class="tab-link" href="/report_invoices?type=11" x-permissions="report_invoices_ui || report_invoices_manage">
+        <img src="/images/config-white.svg" />
+        <span>##word.report## ##word.employee_advance## </span>
+      </a>
+
+      <a class="tab-link" href="/report_safes" x-permissions="report_safes_ui || report_safes_manage">
+        <img src="/images/config-white.svg" />
+        <span>##word.report_safes_name##</span>
+      </a>
+    
+
+    
+      <a class="tab-link" x-features="medical" href="/report_invoices?type=15" x-permissions="report_invoices_ui || report_invoices_manage">
+        <img src="/images/config-white.svg" />
+        <span>##word.report## ##word.patients_tickets## </span>
+      </a>
+
+      <a class="tab-link" href="/report_doctors_visits" x-permissions="report_doctors_visits_ui || report_doctors_visits_manage">
+        <img src="/images/config-white.svg" />
+        <span>##word.report_doctors_visits## </span>
+      </a>
+
+      <a class="tab-link" href="/report_analysis_requests" x-permissions="report_analysis_requests_ui || report_analysis_requests_manage">
+        <img src="/images/config-white.svg" />
+        <span>##word.report_analysis_requests## </span>
+      </a>
+
+      <a class="tab-link" href="/report_scans_requests" x-permissions="report_scans_requests_ui || report_scans_requests_manage">
+        <img src="/images/config-white.svg" />
+        <span>##word.report_scans_requests## </span>
+      </a>
+    
+
+    
+   
+
+    <a class="tab-link" x-features="!employee && !lawyer" href="/report_payable_customers" x-permissions="report_payable_customers_ui || report_payable_customers_manage">
+      <img src="/images/config-white.svg" />
+      <span>##word.report_payable_customers##</span>
+    </a>
+
+      <a class="tab-link" href="/report_payable_vendors" x-permissions="report_payable_vendors_ui || report_payable_vendors_manage">
+        <img src="/images/config-white.svg" />
+        <span>##word.report_payable_vendors##</span>
+      </a>
+
+      <a class="tab-link" href="/item_transaction" x-permissions="item_transaction_ui || item_transaction_manage">
+        <img src="/images/config-white.svg" />
+        <span>##word.system_item_transaction_menus##</span>
+      </a>
+
+      <a class="tab-link" href="/report_transaction_total" x-permissions="report_transaction_total_ui || report_transaction_total_manage">
+        <img src="/images/config-white.svg" />
+        <span>##word.report_transaction_total_name##</span>
+      </a>
+
+      <a class="tab-link" href="/report_stores_evaluation" x-permissions="report_stores_evaluation_ui || report_stores_evaluation_manage">
+        <img src="/images/config-white.svg" />
+        <span>##word.report_stores_evaluation_name##</span>
+      </a>
+
+      <a class="tab-link" href="/report_stores_movement" x-permissions="report_stores_movement_ui || report_stores_movement_manage">
+        <img src="/images/config-white.svg" />
+        <span>##word.report_stores_movement_name##</span>
+      </a>
+
+      <a class="tab-link" href="/report_stores_re_order" x-permissions="report_stores_re_order_ui || report_stores_re_order_manage">
+        <img src="/images/config-white.svg" />
+        <span>##word.report_stores_re_order_name##</span>
+      </a>
+
+      <a class="tab-link" href="/report_stores_balance" x-permissions="report_stores_balance_ui || report_stores_balance_manage">
+        <img src="/images/config-white.svg" />
+        <span>##word.report_stores_balance_name##</span>
+      </a>
+
+      <a class="tab-link" href="/report_value_added" x-permissions="report_value_added_ui || report_value_added_manage">
+        <img src="/images/config-white.svg" />
+        <span>##word.report_value_added_name##</span>
+      </a>
+
+      <a class="tab-link" href="/report_itineraries" x-permissions="report_itineraries_ui || report_itineraries_manage">
+        <img src="/images/config-white.svg" />
+        <span>##word.report_itineraries_name##</span>
+      </a>
+
+      <a class="tab-link" href="/report_sales_detailed" x-permissions="report_sales_detailed_ui || report_sales_detailed_manage">
+        <img src="/images/config-white.svg" />
+        <span>##word.report_sales_detailed_name##</span>
+      </a>
+
+      <a class="tab-link" href="/report_sales_total" x-permissions="report_sales_total_ui || report_sales_total_manage">
+        <img src="/images/config-white.svg" />
+        <span>##word.report_sales_total_name##</span>
+      </a>
+
+      <!-- <a class="tab-link" href="/report_invoices" x-permissions="report_invoices_ui || report_invoices_manage">
+              <img src="/images/report_invoices.png">
+              <span>##word.report_invoices_name##</span>
+          </a> -->
+
+      <a class="tab-link" href="/report_invoices?type=1" x-permissions="report_invoices_ui || report_invoices_manage">
+        <img src="/images/config-white.svg" />
+        <span>##word.report## ##word.purchase_invoice## </span>
+      </a>
+
+      <a class="tab-link" href="/report_invoices?type=2" x-permissions="report_invoices_ui || report_invoices_manage">
+        <img src="/images/config-white.svg" />
+        <span>##word.report## ##word.sales_invoice## </span>
+      </a>
+
+
+      <!-- <a class="tab-link" href="/report_invoices?type=14"
+              x-permissions="report_invoices_ui || report_invoices_manage">
+              <img src="/images/transfer_safes_balances.png">
+              <span>##word.report## ##word.transfer_safes_balances## </span>
+          </a> -->
+
+      <a class="tab-link" href="/report_invoices?type=12" x-permissions="report_invoices_ui || report_invoices_manage">
+        <img src="/images/config-white.svg" />
+        <span>##word.report## ##word.payment_employee_advance## </span>
+      </a>
+
+      <a class="tab-link" href="/report_invoices_customers" x-permissions="report_invoices_customers_ui || report_invoices_customers_manage">
+        <img src="/images/config-white.svg" />
+        <span>##word.report_invoices_customers##</span>
+      </a>
+
+      <a class="tab-link" href="/report_invoices_vendors" x-permissions="report_invoices_vendors_ui || report_invoices_vendors_manage">
+        <img src="/images/config-white.svg" />
+        <span>##word.report_invoices_vendors_name##</span>
+      </a>
+
+      <a class="tab-link" href="/report_invoices_payments" x-permissions="report_invoices_payments_ui || report_invoices_payments_manage">
+        <img src="/images/config-white.svg" />
+        <span>##word.report_invoices_payments##</span>
+      </a>
+   
+</div>
+
+
+<li>
+  <a class="tab-link" onclick="s6()" class="dropbtn">
+    <img src="/images/config-white.svg" />
+    <span>##word.hr## </span>
+  </a>
+</li>
+
+
+<div id="hr_setting" class="dropdown-content" style="display: none">
+  
+    <a class="tab-link" href="/employees_report" x-permissions="employees_report_ui || employees_report_manage">
+      <img src="images/security-white.svg" />
+      <span>##word.employees_report##</span>
+    </a>
+
+   
+
+    <a class="tab-link" href="/attend_employees" x-permissions="attend_employees_ui || attend_employees_manage">
+      <img src="/images/security-white.svg" />
+      <span> ##word.attend_employees## </span>
+    </a>
+
+    <a class="tab-link" href="/employees" x-permissions="employee_ui || employee_manage">
+      <img src="/images/security-white.svg" />
+      <span> ##word.employees## </span>
+    </a>
+
+    
+
+   
+
+    <a class="tab-link" href="/jobs" x-permissions="jobs_ui || jobs_manage">
+      <img src="/images/security-white.svg" />
+      <span> ##word.jobs## </span>
+    </a>
+
+    <a class="tab-link" href="/employees_degrees" x-permissions="employees_degrees_ui || employees_degrees_manage">
+      <img src="/images/security-white.svg" />
+      <span>##word.employees_degrees## </span>
+    </a>
+
+    <a class="tab-link" href="/employee_offer" x-permissions="employee_offer_ui || employee_offer_manage">
+      <img src="/images/security-white.svg" />
+      <span> ##word.system_employees_offers_menus## </span>
+    </a>
+
+    <a class="tab-link" href="/employee_discount" x-permissions="employee_discount_ui || employee_discount_manage">
+      <img src="/images/security-white.svg" />
+      <span> ##word.system_employees_discount_menus## </span>
+    </a>
+
+    <a class="tab-link" href="/employees_insurances" x-permissions="employee_insurances_ui || employee_insurances_manage">
+      <img src="/images/security-white.svg" />
+      <span>##word.system_employees_insurance## </span>
+    </a>
+
+    <a class="tab-link" href="/insurances_slides" x-permissions="insurance_slide_ui || insurance_slide_manage">
+      <img src="/images/security-white.svg" />
+      <span>##word.system_insurance_slides## </span>
+    </a>
+
+    <a class="tab-link" href="/facilities_codes" x-permissions="facilities_codes_ui || facilities_codes_manage">
+      <img src="/images/security-white.svg" />
+      <span>##word.menu_facilities##</span>
+    </a>
+
+    
+ 
+</div>
+
+
+
+
+
+
 
       <li>
         <a class="tab-link" href="/security/users">
@@ -1785,12 +2171,14 @@
           <span> ##word.menu_users## </span>
         </a>
       </li>
+     
       <li>
         <a class="tab-link" onclick="s2()" class="dropbtn">
           <img src="/images/config-white.svg" />
           <span>##word.general_setting##</span>
         </a>
       </li>
+      
       <div id="general_setting" class="dropdown-content" style="display: none">
         <a class="tab-link" href="/default_setting" x-features="!employee && !lawyer" x-permissions="default_setting_ui || default_setting_manage">
           <img src="/images/setting-white.svg" />
@@ -1867,14 +2255,22 @@
           <img src="/images/setting-white.svg" />
           <span> ##word.reset## </span>
         </a>
+
+        <a class="tab-link" href="/medical_offers" x-permissions="medical_offers_ui || medical_offers_manage">
+          <img src="/images/report-white.svg" />
+          <span> ##word.medical_offers## </span>
+        </a>
       </div>
     </ul>
   </div>
   <script>
     var x = document.getElementById('basic_setting');
     var y = document.getElementById('general_setting');
-    var z = document.getElementById('myDIV2');
-    var a = document.getElementById('myDIV3');
+    var z = document.getElementById('accounting_setting');
+    var a = document.getElementById('building_setting');
+    var b = document.getElementById('report_setting');
+    var c = document.getElementById('hr_setting');
+
     function s1() {
       if (x.style.display === 'none') {
         x.style.display = 'block';
@@ -1903,9 +2299,30 @@
         a.style.display = 'none';
       }
     }
+
+    function s5() {
+      if (b.style.display === 'none') {
+        b.style.display = 'block';
+      } else {
+        b.style.display = 'none';
+      }
+    }
+    function s6() {
+      if (c.style.display === 'none') {
+        c.style.display = 'block';
+      } else {
+        c.style.display = 'none';
+      }
+    }
     function divcollapse() {
+
       document.getElementById('basic_setting').style.display = 'none';
       document.getElementById('general_setting').style.display = 'none';
+      document.getElementById('accounting_setting').style.display = 'none';
+      document.getElementById('building_setting').style.display = 'none';
+      document.getElementById('report_setting').style.display = 'none';
+      document.getElementById('hr_setting').style.display = 'none';
+
     }
   </script>
 </div>

@@ -1,8 +1,13 @@
 [
     {
         "name": "brand_title",
-        "en": "Smart Code",
-        "ar": "سمـارت كـود"
+        "en": "inmedic",
+        "ar": "inmedic"
+    },
+    {
+        "name": "brand_tag",
+        "en": "inmedic",
+        "ar": " inmedic"
     },
     {
         "name": "customer_register",

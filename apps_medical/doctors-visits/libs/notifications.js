@@ -52,10 +52,10 @@ module.exports = function init(site) {
           source: source,
           message: update_message,
           value: {
-            name: result.old_doc.code,
-            code: result.old_doc.code,
-            en: result.old_doc.name_en,
-            ar: result.old_doc.name_ar
+            name: result.old_doc?result.old_doc.code:"",
+            code: result.old_doc?result.old_doc.code:"",
+            en: result.old_doc?result.old_doc.en:"",
+            ar: result.old_doc?result.old_doc.ar:""
           },
           update: site.objectDiff(result.update.$set, result.old_doc),
           action: 'update'
