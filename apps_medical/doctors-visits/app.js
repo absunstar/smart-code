@@ -859,8 +859,8 @@ module.exports = function init(site) {
   site.post("/api/doctors_visits/startOnlineSession", (req, res) => {
 
 
-    const APP_ID = "210ed2de0c3e46fbb02596beb3699813";
-    const APP_CERTIFICATE = "b0f362d6373e4d22955db3a608b6b2c1";
+    const APP_ID = "93ed0e76a31b41ebbbef7330a1fd614c";
+    const APP_CERTIFICATE = "b1738be45ac847f695ff9859066ed0ea";
 
     const channelName = "test";
 
