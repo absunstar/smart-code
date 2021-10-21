@@ -1,5 +1,5 @@
 const site = require('isite')({
-  port: [9090],
+  port: [80 , 40015],
   lang: 'ar',
   version: '1.0.10',
   name: 'inmedic',
