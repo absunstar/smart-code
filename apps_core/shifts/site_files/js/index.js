@@ -192,19 +192,17 @@ app.controller('shifts', function ($scope, $http, $timeout) {
 
   $scope.is_shift_open = function (callback) {
     $scope.error = '';
-    $scope.busy = true;
+    callback = callback || function () {};
     $http({
       method: 'POST',
       url: '/api/shifts/is_shift_open',
     }).then(
       function (response) {
-        $scope.busy = false;
         $scope.openShift = response.data.is_open;
         callback(response.data.is_open);
       },
       function (err) {
         callback(true);
-        $scope.busy = false;
         $scope.error = err;
       }
     );
@@ -245,7 +243,6 @@ app.controller('shifts', function ($scope, $http, $timeout) {
         if (response.data.done) {
           site.hideModal('#shiftUpdateModal');
           $scope.getShiftList();
-          $scope.getOpenShiftList();
           $scope.is_shift_open();
         } else $scope.error = 'Please Login First';
       },
