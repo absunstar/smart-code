@@ -17,12 +17,12 @@ module.exports = function init(site) {
       },
     ],
   };
-
+  
   $companies.findOne({}, (err, doc) => {
     if (!err && doc) {
       site.default_company = doc
     } else {
-      $companies.add(default_company, (err, doc) => {
+      $companies.add(site.default_company, (err, doc) => {
         site.default_company = doc
       });
     }
