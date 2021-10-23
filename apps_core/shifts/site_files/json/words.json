@@ -8,6 +8,11 @@
         "en": "Shift",
         "ar": "الشيفت"
     },
+     {
+        "name": "shift_code",
+        "en": "Shift Code",
+        "ar": "كود الشيفت"
+    },
     {
         "name": "open_new_shift",
         "en": "Open New Shift",

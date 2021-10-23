@@ -1,107 +1,82 @@
 <!DOCTYPE html>
 <html lang="en" x-permissions="shifts_ui || shifts_manage" data-ng-app="myApp">
+  <head x-import="head.html"> </head>
 
-<head x-import="head.html">
+  <body class="##session.lang##">
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar"></nav>
 
-</head>
-
-<body class="##session.lang##">
-
-    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
-
-    </nav>
-
-    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
-
-    </nav>
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
     <div id="main-layout" class="container loaded">
-        <div class="row">
-            <div class="row" ng-controller="shifts">
-                <div x-permissions="shifts_add || shifts_manage" x-import="shifts/add_modal.html"></div>
-                <div x-permissions="shifts_update || shifts_manage" x-import="shifts/update_modal.html"></div>
-                <div x-permissions="shifts_delete || shifts_manage" x-import="shifts/delete_modal.html"></div>
-                <div x-permissions="shifts_view || shifts_manage" x-import="shifts/view_modal.html"></div>
-                <div x-permissions="shifts_search || shifts_manage" x-import="shifts/search_all_modal.html"></div>
+      <div class="row">
+        <div class="row" ng-controller="shifts">
+          <div x-permissions="shifts_add || shifts_manage" x-import="shifts/add_modal.html"></div>
+          <div x-permissions="shifts_update || shifts_manage" x-import="shifts/update_modal.html"></div>
+          <div x-permissions="shifts_delete || shifts_manage" x-import="shifts/delete_modal.html"></div>
+          <div x-permissions="shifts_view || shifts_manage" x-import="shifts/view_modal.html"></div>
+          <div x-permissions="shifts_search || shifts_manage" x-import="shifts/search_all_modal.html"></div>
 
-                <div class="row">
-                    <h1 class="bold text-center">##word.shifts##</h1>
-                </div>
+          <div class="row">
+            <h1 class="bold text-center">##word.shifts##</h1>
+          </div>
 
-                <div class="top-actions">
-                    <i-button x-permissions="shifts_add || shifts_manage" type="add" label="##word.open_new_shift##"
-                        ng-click="displayAddShift()"></i-button>
+          <div class="top-actions">
+            <i-button x-permissions="shifts_add || shifts_manage" type="add" label="##word.open_new_shift##" ng-click="displayAddShift()"></i-button>
 
-                    <i-button x-permissions="shifts_search || shifts_manage" type="search" label="##word.search_all##"
-                        ng-click="displaySearchModal()"></i-button>
+            <i-button x-permissions="shifts_search || shifts_manage" type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
 
-                    <h2 class="bold red text-center"> {{error}}</h2>
-                    <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
+            <h2 class="bold red text-center">{{error}}</h2>
+            <h3 class="bold text-center">##word.count## : {{count}}</h3>
+          </div>
 
-                </div>
+          <table x-permissions="login" class="table hover bold center loaded" id="t1">
+            <tr>
+              <th class="not-print">##word.logo##</th>
+              <th>##word.code##</th>
+              <th>##word.shifts_name##</th>
+              <th>##word.startup_date##</th>
+              <th>##word.deadline_date##</th>
+              <th class="not-print">##word.actions##</th>
+            </tr>
 
-                <table x-permissions="login" class="table hover bold center loaded" id="t1">
-                    <tr>
-                        <th class="not-print">##word.logo##</th>
-                        <th>##word.code##</th>
-                        <th>##word.shifts_name##</th>
-                        <th>##word.startup_date##</th>
-                        <th>##word.deadline_date##</th>
-                        <th class="not-print">##word.actions##</th>
-                    </tr>
+            <tr ng-repeat="c in list">
+              <td class="center not-print">
+                <i-image view class="logo" ng-model="c.image_url"></i-image>
+              </td>
 
-                    <tr ng-repeat="c in list">
-                        <td class="center not-print">
-                            <i-image view class="logo" ng-model="c.image_url"></i-image>
-                        </td>
+              <td>
+                <p class="blue userPrint">{{c.code}}</p>
+              </td>
 
-                        <td>
-                            <p class="blue userPrint">{{c.code}}</p>
-                        </td>
+              <td class="center title">{{c.name_##session.lang##}}</td>
 
-                        <td class="center title">{{c.name_##session.lang##}}
-                        </td>
+              <td class="center">
+                <i-button type="add" ng-hide="c.active || openShift" label="##word.re_open_shift##" ng-click="openCloseShift(c,true); is_shift_open()"> </i-button>
 
-                        <td class="center">
-                            <i-button type="add" ng-hide="c.active || openShift" label="##word.re_open_shift##"
-                                ng-click="openCloseShift(c,true); is_shift_open()">
-                            </i-button>
+                <p class="center brown" ng-show="c.active || openShift">{{c.from_date |date:'dd - MM - yyyy'}}</p>
+                <p class="center green" ng-show="c.active || openShift">{{c.from_time.minute}} : {{c.from_time.hour}}</p>
+              </td>
 
-                            <p class="center brown" ng-show="c.active || openShift">{{c.from_date |date:'dd - MM - yyyy'}}</p>
-                            <p class="center green" ng-show="c.active || openShift"> {{c.from_time.minute}} : {{c.from_time.hour}}</p>
-                        </td>
+              <td class="center">
+                <i-button type="exit" ng-hide="!c.active" label="##word.close_shift##" ng-click="openCloseShift(c,false); is_shift_open()"> </i-button>
+                <p class="center brown" ng-show="!c.active">{{c.to_date |date:'dd - MM - yyyy'}}</p>
+                <p class="center red" ng-show="!c.active">{{c.to_time.minute}} : {{c.to_time.hour}}</p>
+              </td>
 
-                        <td class="center">
-                            <i-button type="exit" ng-hide="!c.active" label="##word.close_shift##"
-                                ng-click="openCloseShift(c,false); is_shift_open()">
-                            </i-button>
-                            <p class="center brown" ng-show="!c.active">{{c.to_date |date:'dd - MM - yyyy'}}</p>
-                            <p class="center red" ng-show="!c.active"> {{c.to_time.minute}} : {{c.to_time.hour}}</p>
-                        </td>
+              <td class="center not-print">
+                <i-button x-permissions="shifts_view || shifts_manage" type="view" label="##word.details##" ng-click="displayDetailsShift(c)"></i-button>
 
+                <i-button x-permissions="shifts_delete || shifts_manage" type="delete" label="##word.delete##" ng-click="displayDeleteShift(c)"></i-button>
+              </td>
+            </tr>
+          </table>
+          <div x-import="shifts/thermal_print.html"></div>
 
-
-                        <td class="center not-print">
-
-
-                            <i-button x-permissions="shifts_view || shifts_manage" type="view" label="##word.details##"
-                                ng-click="displayDetailsShift(c)"></i-button>
-
-                            <i-button x-permissions="shifts_delete || shifts_manage" type="delete"
-                                label="##word.delete##" ng-click="displayDeleteShift(c)"></i-button>
-                        </td>
-                    </tr>
-                </table>
-
-                <i-button x-permissions="shifts_print || shifts_manage" type="print" label="##word.print##"
-                    onclick="site.print('#t1')"></i-button>
-
-
-            </div>
+          <i-button x-permissions="shifts_print || shifts_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
         </div>
+      </div>
     </div>
 
     <div x-import="scripts.html"></div>
     <script x-import="shifts/index.js"></script>
-</body>
-
+  </body>
 </html>

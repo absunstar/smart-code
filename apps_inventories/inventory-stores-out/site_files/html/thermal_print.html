@@ -17,8 +17,8 @@
       <br />
       <br />
       <div class="row center" ng-repeat="i in defaultSettings.printer_program.thermal_header">
-        <p class="txt16 bold black center">{{i.name}}</p>
-      </div>
+        <p clss="txt16 bold black center">{{i.name}}</p>
+      </div>a
     </div>
   </div>
   <br />
@@ -39,11 +39,11 @@
 
   <div class="row">
     <div class="col6">
-      <b class="black">##word.date## : {{thermal.date |date:"dd - MM - yyyy" }} </b>
+      <h4 class="black bold">##word.date## : {{thermal.date |date:"dd - MM - yyyy" }} </h4>
     </div>
     <div class="col2"></div>
     <div class="col4">
-      <b class="black">##word.time## : {{thermal.date |date:"hh : mm" }} </b>
+      <h4 class="black bold">##word.time## : {{thermal.date |date:"hh : mm" }} </h4>
     </div>
   </div>
 
@@ -51,8 +51,8 @@
   <br />
 
   <div class="center">
-    <b class="black">##word.customer## : </b>
-    <b class="black border_black">{{thermal.customer.name_##session.lang##}} </b>
+    <h3 class="black">##word.customer## : </h3>
+    <h3 class="black border_black">{{thermal.customer.name_##session.lang##}} </h3>
   </div> 
   <br />
   <hr />
@@ -96,13 +96,13 @@
   <div class="row font_cairo bold">
     <div class="col7 center">
       <br />
-      <p class="black">##word.total_before_tax##</p>
+      <h4 class="black">##word.total_before_tax##</h4>
       <br />
-      <p class="black">##word.value_added##</p>
+      <h4 class="black">##word.value_added##</h4>
       <br />
-      <p class="black">##word.total_after_tax##</p>
+      <h4 class="black">##word.total_after_tax##</h4>
       <br />
-      <p class="black">##word.discount_cash##</p>
+      <h4 class="black">##word.discount_cash##</h4>
       <br />
       <h2 class="black bold center">##word.net##</h2>
       <br />
@@ -110,13 +110,13 @@
     <div class="col1"></div>
     <div class="col4">
       <br />
-      <p class="black">{{thermal.before_value_added}}</p>
+      <h4 class="black">{{thermal.before_value_added}}</h4>
       <br />
-      <p class="black">{{thermal.total_value_added}}</p>
+      <h4 class="black">{{thermal.total_value_added}}</h4>
       <br />
-      <p class="black">{{thermal.total_value}}</p>
+      <h4 class="black">{{thermal.total_value}}</h4>
       <br />
-      <p class="black">{{thermal.total_discount}}</p>
+      <h4 class="black">{{thermal.total_discount}}</h4>
       <br />
       <h2 class="black bold center">{{thermal.net_value}}</h2>
       <br />
@@ -124,7 +124,7 @@
   </div>
 
   <div class="row">
-    <p class="txt14 bold center black">{{thermal.net_txt}} {{defaultSettings.accounting.end_num_to_str || ''}}</p>
+    <h3 class="bold center black">{{thermal.net_txt}} {{defaultSettings.accounting.end_num_to_str || ''}}</h3>
   </div>
 
   <br />

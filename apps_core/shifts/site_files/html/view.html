@@ -1,87 +1,79 @@
 <div ng-hide="busy" class="row">
-    <div id="basicInformation" class="">
-        <fieldset>
-            <legend> ##word.basic_information##</legend>
-            <div class="col9">
+  <div id="basicInformation" class="">
+    <fieldset>
+      <legend>##word.basic_information##</legend>
+      <div class="col9">
+        <div class="row">
+          <table id="v1" class="table hover bold">
+            <tr>
+              <td class="title">##word.shifts_name##</td>
+              <td class="center">
+                {{shift.name_##session.lang##}}
+                <p class="blue userPrint">{{shift.code}}</p>
+              </td>
+            </tr>
 
-                <div class="row">
+            <tr>
+              <td class="title">##word.startup_date##</td>
 
-                    <table id="v1" class="table hover bold">
-                        <tr>
-                            <td class="title">##word.shifts_name##</td>
-                            <td class="center">{{shift.name_##session.lang##}}<p class="blue userPrint">{{shift.code}}</p>
-                            </td>
-                        </tr>
+              <td class="center brown">
+                {{shift.from_date |date:'dd - MM - yyyy'}}
+                <p class="center green">{{shift.from_time.minute}} : {{shift.from_time.hour}}</p>
+              </td>
+            </tr>
 
-                        <tr>
-                            <td class="title">##word.startup_date##</td>
+            <tr>
+              <td class="title">##word.deadline_date##</td>
 
-                            <td class="center brown">{{shift.from_date |date:'dd - MM - yyyy'}}
-                                <p class="center green"> {{shift.from_time.minute}} : {{shift.from_time.hour}}</p>
-                            </td>
-                        </tr>
+              <td class="center">
+                <p class="center brown" ng-show="shift.to_date">{{shift.to_date |date:'dd - MM - yyyy'}}</p>
+                <p class="center red" ng-show="shift.to_date">{{shift.to_time.minute}} : {{shift.to_time.hour}}</p>
+              </td>
+            </tr>
 
-                        <tr>
-                            <td class="title">##word.deadline_date##</td>
+            <tr>
+              <td class="title">##word.description##</td>
+              <td class="center">{{shift.description}}</td>
+            </tr>
+          </table>
+        </div>
 
-                            <td class="center">
-                                <p class="center brown" ng-show="shift.to_date">{{shift.to_date |date:'dd - MM - yyyy'}}
-                                </p>
-                                <p class="center red" ng-show="shift.to_date"> {{shift.to_time.minute}} :
-                                    {{shift.to_time.hour}}</p>
-                            </td>
-                        </tr>
+        <div class="row">
+          <table class="table hover bold center loaded">
+            <tr>
+              <th>##word.status##</th>
+              <th>##word.the_user##</th>
+              <th>##word.date##</th>
+              <th>##word.actions##</th>
+            </tr>
 
-                        <tr>
-                            <td class="title">##word.description##</td>
-                            <td class="center">{{shift.description}}</td>
-                        </tr>
+            <tr ng-repeat="s in shift.open_close_list">
+              <td>
+                <p class="center green" ng-show="s.active">##word.open##</p>
+                <p class="center red" ng-show="!s.active">##word._close##</p>
+              </td>
 
-                    </table>
+              <td>
+                <p class="blue">{{s.user.name_##session.lang##}}</p>
+              </td>
 
-                </div>
+              <td class="center">
+                <small ng-show="s.active" class="green"> {{s.date |date:"hh:mm"}} </small>
+                <small ng-show="!s.active" class="red"> {{s.date |date:"hh:mm"}} </small>
+                <small class="brown"> {{s.date |date:"dd - MM - yyyy"}} </small>
+              </td>
+              <td>
+                <i-button type="print" label="##word.thermal_print##" ng-click="thermalPrint(shift,s)"></i-button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
 
-                <div class="row">
-                    <table class="table hover bold center loaded">
-                        <tr>
-
-                            <th>##word.status##</th>
-                            <th>##word.the_user##</th>
-                            <th>##word.date##</th>
-
-                        </tr>
-                        <tr ng-repeat="s in shift.open_close_list">
-
-                            <td>
-                                <p class="center green" ng-show="s.active">##word.open##</p>
-                                <p class="center red" ng-show="!s.active">##word._close##</p>
-                            </td>
-
-                            <td>
-                                <p class="blue"> {{s.user.name}} </p>
-
-                            </td>
-
-                            <td class="center">
-                                <small ng-show="s.active" class="green"> {{s.date |date:"hh:mm"}} </small>
-                                <small ng-show="!s.active" class="red"> {{s.date |date:"hh:mm"}} </small>
-                                <small class="brown"> {{s.date |date:"dd - MM - yyyy"}} </small>
-
-                            </td>
-
-
-                        </tr>
-                    </table>
-
-                </div>
-
-            </div>
-
-            <div class="col3">
-                <i-image view ng-model="shift.image_url"></i-image>
-            </div>
-
-        </fieldset>
-    </div>
+      <div class="col3">
+        <i-image view ng-model="shift.image_url"></i-image>
+      </div>
+    </fieldset>
+  </div>
 </div>
 <div x-import="shifts/action_info.html"></div>

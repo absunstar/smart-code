@@ -6,8 +6,8 @@ module.exports = function init(site) {
     let doc2 = { ...doc };
     $safes.insertMany([
       {
-        name_ar: 'خزينة بنك إفتراضي',
-        name_en: 'Default Bank Safe',
+        name_ar: 'بنك إفتراضي',
+        name_en: 'Default Bank',
         code: '2-Test',
         balance: 0,
         type: {
@@ -35,8 +35,8 @@ module.exports = function init(site) {
         active: true,
       },
       {
-        name_ar: 'خزينة نقدي إفتراضي',
-        name_en: 'Default Cash Safe',
+        name_ar: 'نقدي إفتراضي',
+        name_en: 'Default Cash',
         code: '1-Test',
         balance: 0,
         type: {
@@ -311,6 +311,7 @@ module.exports = function init(site) {
   site.post('/api/safes/reset', (req, res) => {
     let response = {};
     response.done = false;
+
     if (!req.session.user) {
       response.error = 'Please Login First';
       res.json(response);
@@ -367,7 +368,6 @@ module.exports = function init(site) {
           id: -1,
         },
         limit: req.body.limit,
-
         where: where,
       },
       (err, docs) => {
@@ -381,4 +381,22 @@ module.exports = function init(site) {
       }
     );
   });
+
+  site.getBranchSafes = function (req,callback) {
+   let where = {}
+
+   where['company.id'] = site.get_company(req).id;
+   where['branch.code'] = site.get_branch(req).code;
+
+    $safes.findMany(
+      {
+        where: where,
+      },
+      (err, docs) => {
+        if (!err && docs) {
+          callback(docs);
+        }
+      }
+    );
+  };
 };

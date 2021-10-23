@@ -14,6 +14,8 @@
     "en": "Medical file",
     "ar": "الملف الطبي"
   },
+  { "name": "admin", "en": "Admin", "ar": "المسئول" },
+
   {
     "name": "old_price",
     "en": "Old Price",

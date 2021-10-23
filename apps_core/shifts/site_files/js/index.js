@@ -1,4 +1,4 @@
-app.controller("shifts", function ($scope, $http, $timeout) {
+app.controller('shifts', function ($scope, $http, $timeout) {
   $scope._search = {};
 
   $scope.shift = {};
@@ -12,20 +12,19 @@ app.controller("shifts", function ($scope, $http, $timeout) {
           from_date: new Date(),
           from_time: {
             hour: new Date().getHours(),
-            minute: new Date().getMinutes()
+            minute: new Date().getMinutes(),
           },
-          active: true
+          active: true,
         };
 
         if (site.feature('school')) {
-          $scope.shift.image_url = '/images/school_years.png'
-
+          $scope.shift.image_url = '/images/school_years.png';
         }
 
         site.showModal('#shiftAddModal');
       } else {
-        $scope.error = '##word.must_close_shift##'
-      };
+        $scope.error = '##word.must_close_shift##';
+      }
     });
   };
 
@@ -38,9 +37,9 @@ app.controller("shifts", function ($scope, $http, $timeout) {
     }
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/shifts/add",
-      data: $scope.shift
+      method: 'POST',
+      url: '/api/shifts/add',
+      data: $scope.shift,
     }).then(
       function (response) {
         $scope.busy = false;
@@ -50,14 +49,14 @@ app.controller("shifts", function ($scope, $http, $timeout) {
         } else {
           $scope.error = response.data.error;
           if (response.data.error.like('*Must Enter Code*')) {
-            $scope.error = "##word.must_enter_code##"
+            $scope.error = '##word.must_enter_code##';
           }
         }
       },
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.displayUpdateShift = function (shift) {
@@ -76,9 +75,9 @@ app.controller("shifts", function ($scope, $http, $timeout) {
     }
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/shifts/update",
-      data: $scope.shift
+      method: 'POST',
+      url: '/api/shifts/update',
+      data: $scope.shift,
     }).then(
       function (response) {
         $scope.busy = false;
@@ -92,7 +91,7 @@ app.controller("shifts", function ($scope, $http, $timeout) {
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.displayDetailsShift = function (shift) {
@@ -106,11 +105,11 @@ app.controller("shifts", function ($scope, $http, $timeout) {
     $scope.busy = true;
     $scope.error = '';
     $http({
-      method: "POST",
-      url: "/api/shifts/view",
+      method: 'POST',
+      url: '/api/shifts/view',
       data: {
-        id: shift.id
-      }
+        id: shift.id,
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -123,7 +122,7 @@ app.controller("shifts", function ($scope, $http, $timeout) {
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.displayDeleteShift = function (shift) {
@@ -138,11 +137,11 @@ app.controller("shifts", function ($scope, $http, $timeout) {
     $scope.error = '';
 
     $http({
-      method: "POST",
-      url: "/api/shifts/delete",
+      method: 'POST',
+      url: '/api/shifts/delete',
       data: {
-        id: $scope.shift.id
-      }
+        id: $scope.shift.id,
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -156,7 +155,7 @@ app.controller("shifts", function ($scope, $http, $timeout) {
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.getShiftList = function (where) {
@@ -164,11 +163,11 @@ app.controller("shifts", function ($scope, $http, $timeout) {
     $scope.busy = true;
     $scope.list = [];
     $http({
-      method: "POST",
-      url: "/api/shifts/all",
+      method: 'POST',
+      url: '/api/shifts/all',
       data: {
-        where: where
-      }
+        where: where,
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -177,39 +176,38 @@ app.controller("shifts", function ($scope, $http, $timeout) {
           $scope.count = response.data.count;
           site.hideModal('#shiftSearchModal');
           $scope.search = {};
-
         }
       },
       function (err) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.displaySearchModal = function () {
     $scope.error = '';
     site.showModal('#shiftSearchModal');
-
   };
 
   $scope.is_shift_open = function (callback) {
     $scope.error = '';
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/shifts/is_shift_open"
+      method: 'POST',
+      url: '/api/shifts/is_shift_open',
     }).then(
       function (response) {
         $scope.busy = false;
         $scope.openShift = response.data.is_open;
         callback(response.data.is_open);
-      }, function (err) {
+      },
+      function (err) {
         callback(true);
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.searchAll = function () {
@@ -226,23 +224,21 @@ app.controller("shifts", function ($scope, $http, $timeout) {
     $scope.shift.from_date = new Date();
     $scope.shift.from_time = {
       hour: new Date().getHours(),
-      minute: new Date().getMinutes()
+      minute: new Date().getMinutes(),
     };
-
   };
 
-  $scope.openCloseShift = function (shift,active) {
+  $scope.openCloseShift = function (shift, active) {
     $scope.error = '';
 
-    if(active)
-    shift.active = true;
+    if (active) shift.active = true;
     else shift.active = false;
 
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/shifts/update",
-      data: shift
+      method: 'POST',
+      url: '/api/shifts/update',
+      data: shift,
     }).then(
       function (response) {
         $scope.busy = false;
@@ -250,15 +246,16 @@ app.controller("shifts", function ($scope, $http, $timeout) {
           site.hideModal('#shiftUpdateModal');
           $scope.getShiftList();
           $scope.getOpenShiftList();
+          $scope.is_shift_open();
         } else $scope.error = 'Please Login First';
       },
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
-  $scope.shifOpen = function (shift) {
+  /*  $scope.shifOpen = function (shift) {
     $scope.error = '';
     if ($scope.openShift) {
 
@@ -287,16 +284,72 @@ app.controller("shifts", function ($scope, $http, $timeout) {
     } else $scope.error = '##word.must_close_shift##';
 
   };
+ */
+
+  $scope.getDefaultSettings = function () {
+    $scope.error = "";
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/default_setting/get",
+      data: {},
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.defaultSettings = response.data.doc;
+          $scope.invoice_logo =
+            document.location.origin +
+            $scope.defaultSettings.printer_program.invoice_logo;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+
+  $scope.thermalPrint = function (shift, obj) {
+    $scope.error = '';
+    if ($scope.busy) return;
+    $scope.busy = true;
+
+    $scope.thermal = { ...obj };
+    $scope.thermal.code = shift.code;
+    $scope.thermal.name_ar = shift.name_ar;
+    $scope.thermal.name_en = shift.name_en;
+    $scope.thermal.active = obj.active;
+    $('#thermalPrint').removeClass('hidden');
+
+    JsBarcode('.barcode', $scope.thermal.code);
+    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path && $scope.defaultSettings.printer_program.printer_path.ip) {
+      site.printAsImage({
+        selector: '#thermalPrint',
+        ip: '127.0.0.1',
+        port: '60080',
+        printer: $scope.defaultSettings.printer_program.printer_path.ip.name.trim(),
+      });
+    } else {
+      $scope.error = '##word.thermal_printer_must_select##';
+    }
+
+    $scope.busy = false;
+    $timeout(() => {
+      $('#thermalPrint').addClass('hidden');
+    }, 5000);
+  };
 
   $scope.getNumberingAuto = function () {
     $scope.error = '';
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/numbering/get_automatic",
+      method: 'POST',
+      url: '/api/numbering/get_automatic',
       data: {
-        screen: "shifts"
-      }
+        screen: 'shifts',
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -308,11 +361,11 @@ app.controller("shifts", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
-
 
   $scope.getShiftList();
   $scope.is_shift_open();
   $scope.getNumberingAuto();
+  $scope.getDefaultSettings();
 });
