@@ -260,6 +260,41 @@ module.exports = function init(site) {
     );
   });
 
+  site.post('/api/items_group/handel_company', (req, res) => {
+    let response = {
+      done: false,
+    };
+
+    let where = req.body.where || {};
+    let company = site.get_company(req);
+    let branch = site.get_branch(req);
+
+    $items_group.findMany(
+      {
+        select: req.body.select || {},
+        where: where,
+        sort: req.body.sort || {
+          id: -1,
+        },
+      },
+      (err, docs) => {
+        if (!err) {
+          response.done = true;
+
+          docs.forEach((_docs) => {
+            _docs.company = company
+            _docs.branch = branch
+            $items_group.update(_docs);
+          });
+        } else {
+          response.error = err.message;
+        }
+        res.json(response);
+      }
+    );
+  });
+
+
   site.linkItemsGroups = function (group, callback) {
     callback = callback || {};
 

@@ -232,6 +232,25 @@ app.controller("units", function ($scope, $http, $timeout) {
     $scope.search = {};
   };
 
+  $scope.handelCompany = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/units/handel_company"
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
   $scope.getUnitList();
   $scope.getNumberingAuto();
   $scope.getDefaultSetting();
