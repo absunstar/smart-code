@@ -31,10 +31,11 @@
 
   <br />
   <br />
-  <div class="center">
-    <h2 class="black bold" ng-show="s.active">##word.status## : ##word.open##</h2>
-    <h2 class="black bold" ng-show="!s.active">##word.status## : ##word.close##</h2>
+  <div>
+    <h2 class="black center bold" ng-show="s.active">##word.status## : ##word.open##</h2>
+    <h2 class="black center bold" ng-show="!s.active">##word.status## : ##word.close##</h2>
   </div>
+
   <br />
   <hr />
 
@@ -72,12 +73,13 @@
     <hr />
   </div> -->
 
-  <div class="row center bold" ng-repeat="itm in thermal.safes">
+  <div class="row" ng-repeat="itm in thermal.safes">
+    <hr />
     <hr />
     <br />
-    <h2 class="bold">##word.safe## : {{itm.name_##session.lang##}}</h2>
-    <h2 class="bold">##word.admin## : {{itm.employee.name_##session.lang##}}</h2>
-    <h2 class="bold">##word.balance## : {{itm.balance}}</h2>
+    <h2 class="bold center">##word.safe## : {{itm.name_##session.lang##}}</h2>
+    <h2 class="bold center">##word.admin## : {{itm.employee.name_##session.lang##}}</h2>
+    <h2 class="bold center">##word.balance## : {{itm.balance}}</h2>
   </div>
 
   <br />
