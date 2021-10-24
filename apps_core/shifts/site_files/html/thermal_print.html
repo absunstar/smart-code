@@ -32,7 +32,7 @@
   <br />
   <br />
   <div class="center">
-    <h2 class="black bold">##word.status## : </h2>
+    <h2 class="black bold">##word.status## :</h2>
     <h2 class="black bold border_black" ng-show="s.active">##word.open##</h2>
     <h2 class="black bold border_black" ng-show="!s.active">##word._close##</h2>
   </div>
@@ -40,12 +40,8 @@
   <hr />
 
   <div class="row">
-    <div class="col7">
-      <h2 class="black bold">##word.date## : {{thermal.date |date:"dd - MM - yyyy" }} </h2>
-    </div>
-    <div class="col5">
-      <h2 class="black bold">##word.time## : {{thermal.date |date:"hh : mm" }} </h2>
-    </div>
+    <h2 class="black bold">##word.date## : {{thermal.date |date:"dd - MM - yyyy" }}</h2>
+    <h2 class="black bold">##word.time## : {{thermal.date |date:"hh : mm" }}</h2>
   </div>
 
   <br />
@@ -79,10 +75,10 @@
 
   <div class="row center bold" ng-repeat="itm in thermal.safes">
     <hr />
-    <br>
-    <h2> ##word.safe##  : {{itm.name_##session.lang##}}</h2>
-    <h2> ##word.admin##  : {{itm.employee.name_##session.lang##}}</h2>
-    <h2> ##word.balance##  : {{itm.balance}}</h2>
+    <br />
+    <h2>##word.safe## : {{itm.name_##session.lang##}}</h2>
+    <h2>##word.admin## : {{itm.employee.name_##session.lang##}}</h2>
+    <h2>##word.balance## : {{itm.balance}}</h2>
   </div>
 
   <br />
