@@ -2,6 +2,7 @@ app.controller("attend_subscribers", function ($scope, $http, $timeout, $interva
 
   $scope.attend_subscribers = {};
   $scope.auto_load_attendance = true;
+  $scope.list = [];
 
   $scope.displayAddAttendSubscribers = function () {
     $scope.error = '';
@@ -151,7 +152,6 @@ app.controller("attend_subscribers", function ($scope, $http, $timeout, $interva
     )
   };
 
-  $scope.list = [];
   $scope.getAttendSubscribersList = function (where) {
     $scope.busy = true;
     $scope.error = "";
@@ -167,6 +167,7 @@ app.controller("attend_subscribers", function ($scope, $http, $timeout, $interva
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
           if (response.data.list && response.data.list.length > 0) {
+            $scope.list = response.data.list;
             response.data.list.forEach((d, i) => {
               if (!$scope.list[i].leave_date && d.leave_date) {
                 $scope.list[i].leave_date = d.leave_date;
