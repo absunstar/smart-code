@@ -145,8 +145,40 @@
     -->
   <script>
     app.controller('video', function ($scope, $http, $timeout) {
-      var myParam = location.search.split('search=')[1]
-      console.log("11111111111111111111111111" , myParam);
+     console.log("in video page" , window.localStorage.getItem("onlineId"));
+
+     let bookingId = Number(window.localStorage.getItem("onlineId"));
+
+     $scope.getBookingData = function () {
+        $scope.error = '';
+        $scope.busy = true;
+        $http({
+          method: 'POST',
+          url: '/api/doctors_visits/view',
+          data: {
+            "id": bookingId
+
+
+          }
+        }).then(
+          function (response) {
+            if (response.data) {
+              $scope.bookingVisitData = response.data.doc;
+console.log("2222222222222222222222222" , $scope.bookingVisitData);
+              $scope.busy = false;
+
+            };
+
+          },
+          function (err) {
+            $scope.busy = false;
+            $scope.error = err;
+          },
+        );
+      };
+$scope.getBookingData();
+
+
       
     });
   </script>
