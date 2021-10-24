@@ -6,19 +6,19 @@
   <div class="row">
     <div class="center">
       <div class="row">
-        <h2 ng-show="'##session.lang##' == 'ar'" class="black center bold">##session.company.name_ar##</h2>
-        <h2 ng-show="'##session.lang##' == 'en'" class="black center bold">##session.company.name_en##</h2>
+        <h1 ng-show="'##session.lang##' == 'ar'" class="black center bold">##session.company.name_ar##</h1>
+        <h1 ng-show="'##session.lang##' == 'en'" class="black center bold">##session.company.name_en##</h1>
       </div>
 
       <div class="row">
-        <h3 ng-show="'##session.lang##' == 'ar'" class="black center bold">##session.branch.name_ar##</h3>
-        <h3 ng-show="'##session.lang##' == 'en'" class="black center bold">##session.branch.name_en##</h3>
+        <h2 ng-show="'##session.lang##' == 'ar'" class="black center bold">##session.branch.name_ar##</h2>
+        <h2 ng-show="'##session.lang##' == 'en'" class="black center bold">##session.branch.name_en##</h2>
       </div>
       <br />
       <br />
       <div class="row center" ng-repeat="i in defaultSettings.printer_program.thermal_header">
         <p clss="txt16 bold black center">{{i.name}}</p>
-      </div>a
+      </div>
     </div>
   </div>
   <br />
@@ -38,12 +38,11 @@
   <br />
 
   <div class="row">
-    <div class="col6">
-      <h3 class="black bold">##word.date## : {{thermal.date |date:"dd - MM - yyyy" }} </h3>
+    <div class="col7">
+      <h2 class="black bold">##word.date## : {{thermal.date |date:"dd - MM - yyyy" }}</h2>
     </div>
-    <div class="col2"></div>
-    <div class="col4">
-      <h3 class="black bold">##word.time## : {{thermal.date |date:"hh : mm" }} </h3>
+    <div class="col5">
+      <h2 class="black bold">##word.time## : {{thermal.date |date:"hh : mm" }}</h2>
     </div>
   </div>
 
@@ -51,9 +50,9 @@
   <br />
 
   <div class="center">
-    <h3 class="black">##word.customer## : </h3>
-    <h3 class="black border_black">{{thermal.customer.name_##session.lang##}} </h3>
-  </div> 
+    <h2 class="black bold">##word.customer## :</h2>
+    <h2 class="black bold border_black">{{thermal.customer.name_##session.lang##}}</h2>
+  </div>
   <br />
   <hr />
 
@@ -96,13 +95,13 @@
   <div class="row font_cairo bold">
     <div class="col7 center">
       <br />
-      <h3 class="black">##word.total_before_tax##</h3>
+      <h2 class="black bold">##word.total_before_tax##</h2>
       <br />
-      <h3 class="black">##word.value_added##</h3>
+      <h2 class="black bold">##word.value_added##</h2>
       <br />
-      <h3 class="black">##word.total_after_tax##</h3>
+      <h2 class="black bold">##word.total_after_tax##</h2>
       <br />
-      <h3 class="black">##word.discount_cash##</h3>
+      <h2 class="black bold">##word.discount_cash##</h2>
       <br />
       <h2 class="black bold center">##word.net##</h2>
       <br />
@@ -110,13 +109,13 @@
     <div class="col1"></div>
     <div class="col4">
       <br />
-      <h3 class="black">{{thermal.before_value_added}}</h3>
+      <h2 class="black bold">{{thermal.before_value_added}}</h2>
       <br />
-      <h3 class="black">{{thermal.total_value_added}}</h3>
+      <h2 class="black bold">{{thermal.total_value_added}}</h2>
       <br />
-      <h3 class="black">{{thermal.total_value}}</h3>
+      <h2 class="black bold">{{thermal.total_value}}</h2>
       <br />
-      <h3 class="black">{{thermal.total_discount}}</h3>
+      <h2 class="black bold">{{thermal.total_discount}}</h2>
       <br />
       <h2 class="black bold center">{{thermal.net_value}}</h2>
       <br />
@@ -124,7 +123,7 @@
   </div>
 
   <div class="row">
-    <h3 class="bold center black">{{thermal.net_txt}} {{defaultSettings.accounting.end_num_to_str || ''}}</h3>
+    <h2 class="bold center black">{{thermal.net_txt}} {{defaultSettings.accounting.end_num_to_str || ''}}</h2>
   </div>
 
   <br />
