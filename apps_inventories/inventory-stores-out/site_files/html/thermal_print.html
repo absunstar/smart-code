@@ -54,32 +54,32 @@
 
   <div class="row center bold">
     <div class="col5 light_gray">
-      <p>##word.item_name##</p>
+      <h3>##word.item_name##</h3>
     </div>
     <div class="col2 light_gray">
-      <p>##word.quantity##</p>
+      <h3>##word.quantity##</h3>
     </div>
     <div class="col2 light_gray">
-      <p>##word.price##</p>
+      <h3>##word.price##</h3>
     </div>
     <div class="col3 light_gray">
-      <p>##word.total##</p>
+      <h3>##word.total##</h3>
     </div>
   </div>
 
   <div class="row bold" ng-repeat="itm in thermal.items">
     <div class="col5">
-      <p class="black" ng-show=" itm.add_sizes">{{itm.name_##session.lang##}} {{itm.size_##session.lang##}}</p>
-      <p class="black" ng-hide=" itm.add_sizes">{{itm.size_##session.lang##}}</p>
+      <h3 class="black" ng-show=" itm.add_sizes">{{itm.name_##session.lang##}} {{itm.size_##session.lang##}}</h3>
+      <h3 class="black" ng-hide=" itm.add_sizes">{{itm.size_##session.lang##}}</h3>
     </div>
     <div class="col2 black">
-      <p class="black">{{itm.count}}</p>
+      <h3 class="black">{{itm.count}}</h3>
     </div>
     <div class="col2 black">
-      <p>{{itm.b_price}}</p>
+      <h3>{{itm.b_price}}</h3>
     </div>
     <div class="col3 black">
-      <p>{{itm.total}}</p>
+      <h3>{{itm.total}}</h3>
     </div>
 
     <hr />
