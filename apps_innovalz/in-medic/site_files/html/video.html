@@ -19,7 +19,7 @@
 
 <body ng-controller="video">
 
-  
+
 
 
   <div class="row video-group">
@@ -34,107 +34,26 @@
   </div>
 
 
+  
 
- 
 
 
   <script src="/x-js/jquery.js"></script>
   <script src="/js/agora.js"></script>
   <script>
-    var client = AgoraRTC.createClient({ mode: 'rtc', codec: 'vp8' });
 
-    var localTracks = {
-      videoTrack: null,
-      audioTrack: null,
-    };
-    var remoteUsers = {};
-    var options = {
-      appid: null,
-      channel: null,
-      uid: null,
-      token: null,
-    };
-
-    async function startVideoCall() {
-      client.on('user-published', handleUserPublished);
-      client.on('user-unpublished', handleUserUnpublished);
-
-      [options.uid, localTracks.audioTrack, localTracks.videoTrack] = await Promise.all([
-        client.join(options.appid, options.channel, options.token || null),
-        AgoraRTC.createMicrophoneAudioTrack(),
-        AgoraRTC.createCameraVideoTrack(),
-      ]);
-
-      localTracks.videoTrack.play('local-player');
-      $('#local-player-name').text(`localVideo(${options.uid})`);
-
-      await client.publish(Object.values(localTracks));
-      console.log('publish success');
-    }
-
-    async function leave() {
-      for (trackName in localTracks) {
-        var track = localTracks[trackName];
-        if (track) {
-          track.stop();
-          track.close();
-          localTracks[trackName] = undefined;
-        }
-      }
-
-      remoteUsers = {};
-      $('#remote-playerlist').html('');
-
-      await client.leave();
-
-      $('#local-player-name').text('');
-      $('#join').attr('disabled', false);
-      $('#leave').attr('disabled', true);
-      console.log('client leaves channel success');
-    }
-
-    async function subscribe(user, mediaType) {
-      const uid = user.uid;
-      await client.subscribe(user, mediaType);
-      console.log('subscribe success');
-      if (mediaType === 'video') {
-        const player = $(`
-    <div id="player-wrapper-${uid}">
-      <p class="player-name">remoteUser(${uid})</p>
-      <div id="player-${uid}" class="player"></div>
-    </div>
-  `);
-        $('#remote-playerlist').append(player);
-        user.videoTrack.play(`player-${uid}`);
-      }
-      if (mediaType === 'audio') {
-        user.audioTrack.play();
-      }
-    }
-
-    function handleUserPublished(user, mediaType) {
-      const id = user.uid;
-      remoteUsers[id] = user;
-      subscribe(user, mediaType);
-    }
-
-    function handleUserUnpublished(user) {
-      const id = user.uid;
-      delete remoteUsers[id];
-      $(`#player-wrapper-${id}`).remove();
-    }
   </script>
 
   <!-- Optional JavaScript; choose one of the two! -->
-  
- 
+
+
   <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
   <script src="/x-js/all.js"></script>
   <script src="/js/jquery.min.js"></script>
   <script src="/js/bootstrap.bundle.min.js"></script>
   <script src="/js/bootstrap.min.js"></script>
   <script src="/js/popper.min.js"></script>
- 
+
 
 
   <script src="js/main.js"></script>
@@ -146,9 +65,108 @@
   <script>
     app.controller('video', function ($scope, $http, $timeout) {
 
-     let bookingId = Number(window.localStorage.getItem("onlineId"));
 
-     $scope.getBookingData = function () {
+
+
+
+
+
+
+
+      var client = AgoraRTC.createClient({ mode: 'rtc', codec: 'vp8' });
+
+      var localTracks = {
+        videoTrack: null,
+        audioTrack: null,
+      };
+      var remoteUsers = {};
+      var options = {
+        appid: null,
+        channel: null,
+        uid: null,
+        token: null,
+      };
+
+      $scope.startVideoCall = async function() {
+        console.log("bookingVisitData", $scope.bookingVisitData);
+         client.on('user-published', handleUserPublished);
+        client.on('user-unpublished', handleUserUnpublished);
+        [$scope.bookingVisitData.uid, localTracks.audioTrack, localTracks.videoTrack] = await Promise.all([
+          client.join($scope.bookingVisitData.APP_ID, $scope.bookingVisitData.channel, $scope.bookingVisitData.token || null),
+          AgoraRTC.createMicrophoneAudioTrack(),
+          AgoraRTC.createCameraVideoTrack(),
+        ]);
+
+        localTracks.videoTrack.play('local-player');
+        $('#local-player-name').text(`localVideo(${bookingVisitData.uid})`);
+
+        await client.publish(Object.values(localTracks));
+        console.log('publish success'); 
+      };
+
+      async function leave() {
+        for (trackName in localTracks) {
+          var track = localTracks[trackName];
+          if (track) {
+            track.stop();
+            track.close();
+            localTracks[trackName] = undefined;
+          }
+        }
+
+        remoteUsers = {};
+        $('#remote-playerlist').html('');
+
+        await client.leave();
+
+        $('#local-player-name').text('');
+        $('#join').attr('disabled', false);
+        $('#leave').attr('disabled', true);
+        console.log('client leaves channel success');
+      }
+
+      async function subscribe(user, mediaType) {
+        const uid = user.uid;
+        await client.subscribe(user, mediaType);
+        console.log('subscribe success');
+        if (mediaType === 'video') {
+          const player = $(`
+<div id="player-wrapper-${uid}">
+  <p class="player-name">remoteUser(${uid})</p>
+  <div id="player-${uid}" class="player"></div>
+</div>
+`);
+          $('#remote-playerlist').append(player);
+          user.videoTrack.play(`player-${uid}`);
+        }
+        if (mediaType === 'audio') {
+          user.audioTrack.play();
+        }
+      }
+
+      function handleUserPublished(user, mediaType) {
+        const id = user.uid;
+        remoteUsers[id] = user;
+        subscribe(user, mediaType);
+      }
+
+      function handleUserUnpublished(user) {
+        const id = user.uid;
+        delete remoteUsers[id];
+        $(`#player-wrapper-${id}`).remove();
+      }
+
+
+
+
+
+
+      /* let bookingId = Number(window.localStorage.getItem("onlineId")); */
+      console.log(111111111111111111111111111);
+      let url = window.location.href;
+
+      let bookingId = Number(url.split('/').pop());
+      $scope.getBookingData = function () {
         $scope.error = '';
         $scope.busy = true;
         $http({
@@ -163,9 +181,10 @@
           function (response) {
             if (response.data) {
               $scope.bookingVisitData = response.data.doc;
-console.log("2222222222222222222222222" , $scope.bookingVisitData);
               $scope.busy = false;
-
+setTimeout(() => {
+  $scope.startVideoCall()
+}, 2000);
             };
 
           },
@@ -175,10 +194,10 @@ console.log("2222222222222222222222222" , $scope.bookingVisitData);
           },
         );
       };
-$scope.getBookingData();
+      $scope.getBookingData();
 
 
-      
+
     });
   </script>
 </body>

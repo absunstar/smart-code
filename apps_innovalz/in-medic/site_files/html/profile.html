@@ -2114,7 +2114,8 @@
     $scope.error = '';
     console.log(video);
     window.localStorage.setItem("onlineId", video.id);
-    window.location.href = "/video-call";
+    /* window.location.href = "/video-call"; */
+    window.location.href = "/video-call/"+video.id;
   };
 
  
