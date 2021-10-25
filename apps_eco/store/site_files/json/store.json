@@ -1,0 +1,29 @@
+[
+    {
+        "title": "in_medic",
+        "subTitle": "in_medic_subTitle",
+        "type": "medical",
+        "description": "medical app description",
+        "images": [
+            {
+                "id": 1,
+                "name": "http://127.0.0.1:9090/images/medicalImages/neighborhood.png"
+            }
+        ],
+        "base_url": "127.0.0.1:9090/in_medic",
+        "logo": "http://127.0.0.1:9090/images/neighborhood.png"
+    }, {
+        "title": "in_medic2",
+        "subTitle": "in_medic_subTitle",
+        "type": "web",
+        "description": "medical app description",
+        "images": [
+            {
+                "id": 1,
+                "name": "http://127.0.0.1:9090/images/medicalImages/neighborhood.png"
+            }
+        ],
+        "base_url": "http://127.0.0.1:9090/in_medic",
+        "logo": "http://127.0.0.1:9090/images/neighborhood.png"
+    }
+]
