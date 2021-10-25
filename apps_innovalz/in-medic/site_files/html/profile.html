@@ -847,7 +847,7 @@
                             <span> 20-3-2021 </span><span> , 06:40 ص</span><br>
 
                           </div>
-                          <!-- <a href="/video-call/search={{current.id}}" class="btn" ng-show="current.onlineStatus === 'ready'">بدا الكشف</a> -->
+                          <a  ng-click="displayVideo(current)" class="btn" ng-show="current.onlineStatus === 'ready'">بدا الكشف</a>
                           <!-- <div class="modal fade" id="cancel-order" tabindex="-1" aria-labelledby="exampleModalLabel"
                             aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
@@ -2112,8 +2112,10 @@
 
       $scope.displayVideo = function (video) {
     $scope.error = '';
-   console.log("11111111111111111111" , $scope.current);
-   window.location.href = '/video-call';
+    console.log(video);
+    window.localStorage.setItem("onlineId", video.id);
+    /* window.location.href = "/video-call"; */
+    window.location.href = "/video-call/"+video.id;
   };
 
  
