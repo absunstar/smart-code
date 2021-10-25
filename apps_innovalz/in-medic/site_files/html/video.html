@@ -34,7 +34,7 @@
   </div>
 
 
-  
+
 
 
 
@@ -65,14 +65,6 @@
   <script>
     app.controller('video', function ($scope, $http, $timeout) {
 
-
-
-
-
-
-
-
-
       var client = AgoraRTC.createClient({ mode: 'rtc', codec: 'vp8' });
 
       var localTracks = {
@@ -87,9 +79,9 @@
         token: null,
       };
 
-      $scope.startVideoCall = async function() {
+      $scope.startVideoCall = async function () {
         console.log("bookingVisitData", $scope.bookingVisitData);
-         client.on('user-published', handleUserPublished);
+        client.on('user-published', handleUserPublished);
         client.on('user-unpublished', handleUserUnpublished);
         [$scope.bookingVisitData.uid, localTracks.audioTrack, localTracks.videoTrack] = await Promise.all([
           client.join($scope.bookingVisitData.APP_ID, $scope.bookingVisitData.channel, $scope.bookingVisitData.token || null),
@@ -101,7 +93,7 @@
         $('#local-player-name').text(`localVideo(${bookingVisitData.uid})`);
 
         await client.publish(Object.values(localTracks));
-        console.log('publish success'); 
+        console.log('publish success');
       };
 
       async function leave() {
@@ -182,9 +174,9 @@
             if (response.data) {
               $scope.bookingVisitData = response.data.doc;
               $scope.busy = false;
-setTimeout(() => {
-  $scope.startVideoCall()
-}, 2000);
+              setTimeout(() => {
+                $scope.startVideoCall()
+              }, 2000);
             };
 
           },
