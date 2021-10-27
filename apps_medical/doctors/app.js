@@ -783,6 +783,7 @@ module.exports = function init(site) {
           "preserveNullAndEmptyArrays": false
         }
       },
+     
       {
         "$group": {
           "_id": "$doctor_list.doctor.id",
@@ -796,17 +797,36 @@ module.exports = function init(site) {
           "doctor": {
             "$first": "$doctor_list.doctor"
           },
-          detection_price:
-               {
-                 $cond: { if: { $gte: [ "$doctor_list.detection_price.detection", 0 ] }, then: {"$first": "$doctor_list.detection_price"},
-                  else: "$detection_price" }
-               }
-         
+          "clinic_detection_price": {
+            "$first": "$detection_price"
+          },
+          "detection_price": {
+            "$first": "$doctor_list.detection_price"
+          }
         }
       },
       {
         "$match": where
       },
+      {
+        "$project": {
+          "detection_price": {
+            "$cond": {
+              "if": {
+                "$eq": [
+                  "$detection_price",
+                  null
+                ]
+              },
+              "then": "$clinic_detection_price",
+              "else": "$detection_price"
+            }
+          },
+          "shifts": 1.0,
+          "doctor": 1.0
+        }
+      },
+
       {
         $skip: skip
       },
