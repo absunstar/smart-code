@@ -748,8 +748,8 @@ module.exports = function init(site) {
     ) {
       skip = (parseInt(req.body.page) - 1) * 10;
     }
-    if (where["name"] == undefined ||where["name"] == "" ) {
-     
+    if (where["name"] == undefined || where["name"] == "") {
+
       delete where['name']
     }
     if (where['name'] != "") {
@@ -773,7 +773,7 @@ module.exports = function init(site) {
           "id": 1.0,
           "name_ar": 1.0,
           "name_en": 1.0,
-
+          "detection_price": 1.0,
         }
       },
       {
@@ -796,9 +796,12 @@ module.exports = function init(site) {
           "doctor": {
             "$first": "$doctor_list.doctor"
           },
-          "detection_price": {
-            "$first": "$doctor_list.detection_price"
-          }
+          detection_price:
+               {
+                 $cond: { if: { $gte: [ "$doctor_list.detection_price.detection", 0 ] }, then: {"$first": "$doctor_list.detection_price"},
+                  else: "$detection_price" }
+               }
+         
         }
       },
       {
