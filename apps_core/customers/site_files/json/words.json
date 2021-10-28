@@ -360,8 +360,9 @@
     {"name" : "buildingNumber" , "en" : "building Number" , "ar" : "رقم البناء"},
     {"name" : "role" , "en" : "role" , "ar" : "الدور"},
     {"name" : "apartmentNumber" , "en" : "apartment Number" , "ar" : "رقم الشقة"},
-    {"name" : "specialMark" , "en" : "special Mark" , "ar" : "علامة مميزة"}
-
+    {"name" : "specialMark" , "en" : "special Mark" , "ar" : "علامة مميزة"},
+    {"name" : "contracting_company" , "en" : "contracting company" , "ar" : "شركة التعاقد"}
+    
     
     
 ]

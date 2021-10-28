@@ -1,0 +1,29 @@
+<div class="form">
+    <div id="basicInformation" class="">
+        <fieldset>
+            <legend> ##word.basic_information## </legend>
+            <div class="row">
+                <div class="col9">
+                    <div class="row">
+                        <i-control ng-hide="disabledCode" class="col2" label="##word.code##" ng-model="contracting_company.code"></i-control>
+                        </i-control>
+                        <i-control help-id="contracting_companies_name" v="r ll2" class="col4" label="##word.name_ar##"
+                            ng-model="contracting_company.name_ar"></i-control>
+
+                        <i-control help-id="contracting_companies_name_en" v="r" class="col4" label="##word.name_en##"
+                            ng-model="contracting_company.name_en"></i-control>
+
+                        <i-checkbox help-id="contracting_companies_active" class="col2" label="##word.active##" ng-model="contracting_company.active">
+                        </i-checkbox>
+                    </div>
+
+                </div>
+
+                <div class="col3">
+                    <i-image help-id="contracting_companies_logo" ng-model="contracting_company.image_url"></i-image>
+                </div>
+            </div>
+        </fieldset>
+
+    </div>
+</div>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+    <div id="main-layout" class="container loaded">
+        <div class="row">
+            <div class="row" ng-controller="contracting_companies">
+                <div  x-import="contracting_companies/add_modal.html"></div>
+                <div  x-import="contracting_companies/update_modal.html"></div>
+                <div  x-import="contracting_companies/delete_modal.html"></div>
+                <div  x-import="contracting_companies/view_modal.html"></div>
+                <div  x-import="contracting_companies/search_all_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center">##word.contracting_companies##</h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button  type="add" label="##word.contracting_companies_new##" ng-click="displayAddContracting_company()"></i-button>
+
+                    <i-button  type="search" label="##word.search_all##"
+                        ng-click="displaySearchModal()"></i-button>
+
+                   
+                    <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
+                    <h3 class="bold text-center red"> {{error}}</h3>
+
+                </div>
+
+                <table x-permissions="login" class="table hover bold loaded" id="t1">
+                    <tr>
+                        <th class="not-print">##word.logo##</th>
+                        <th>##word.code##</th>
+                        <th>##word.name##</th>
+
+                        <th>##word.status##</th>
+                        <th class="not-print">##word.actions##</th>
+                    </tr>
+                    <tr ng-repeat="c in list">
+                        <td class="center not-print">
+                            <i-image view class="logo" ng-model="c.image_url"></i-image>
+                        </td>
+                        <td class="center userPrint blue">{{c.code}}</td>
+                        <td class="center title">{{c.name_##session.lang##}}</td>
+                        <td class="center">
+                            <p ng-show="c.active ==true" class="green"> ##word.active## </p>
+                            <p ng-show="c.active ==false" class="red"> ##word.not_active## </p>
+                        </td>
+
+                        <td class="center not-print">
+                            <i-button  type="view" label="##word.details##"
+                                ng-click="displayDetailsContracting_company(c)"></i-button>
+
+                            <i-button  type="edit" label="##word.edit##"
+                                ng-click="displayUpdateContracting_company(c)"></i-button>
+
+                            <i-button  type="delete" label="##word.delete##"
+                                ng-click="displayDeleteContracting_company(c)"></i-button>
+                        </td>
+                    </tr>
+                </table>
+
+                <i-button x-permissions="contracting_companies_print || contracting_companies_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+
+                
+            </div>
+        </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+    <script x-import="contracting_companies/index.js"></script>
+</body>
+
+</html>

@@ -4,30 +4,30 @@ module.exports = function init(site) {
 
   site.on("[register][doctor][add]", (doc) => {
     $doctors.add({
-      code: "1-Test",
-      name_ar: "طبيب إفتراضي",
-      name_en: "Default Doctor",
-      image_url: "/images/doctors.png",
-      specialty: {
-        id: doc.id,
-        code: doc.code,
-        name_ar: doc.name_ar,
-        name_en: doc.name_en,
+        code: "1-Test",
+        name_ar: "طبيب إفتراضي",
+        name_en: "Default Doctor",
+        image_url: "/images/doctors.png",
+        specialty: {
+          id: doc.id,
+          code: doc.code,
+          name_ar: doc.name_ar,
+          name_en: doc.name_en,
+        },
+        doctor: true,
+        company: {
+          id: doc.company.id,
+          name_ar: doc.company.name_ar,
+          name_en: doc.company.name_en,
+        },
+        branch: {
+          code: doc.branch.code,
+          name_ar: doc.branch.name_ar,
+          name_en: doc.branch.name_en,
+        },
+        active: true,
       },
-      doctor: true,
-      company: {
-        id: doc.company.id,
-        name_ar: doc.company.name_ar,
-        name_en: doc.company.name_en,
-      },
-      branch: {
-        code: doc.branch.code,
-        name_ar: doc.branch.name_ar,
-        name_en: doc.branch.name_en,
-      },
-      active: true,
-    },
-      (err, doc1) => { }
+      (err, doc1) => {}
     );
   });
 
@@ -76,19 +76,19 @@ module.exports = function init(site) {
     doctor_doc.branch = site.get_branch(req);
 
     $doctors.find({
-      where: {
-        "company.id": site.get_company(req).id,
-        "branch.code": site.get_branch(req).code,
+        where: {
+          "company.id": site.get_company(req).id,
+          "branch.code": site.get_branch(req).code,
 
-        $or: [{
-          name_ar: doctor_doc.name_ar,
+          $or: [{
+              name_ar: doctor_doc.name_ar,
+            },
+            {
+              name_en: doctor_doc.name_en,
+            },
+          ],
         },
-        {
-          name_en: doctor_doc.name_en,
-        },
-        ],
       },
-    },
       (err, doc) => {
         if (!err && doc) {
           response.error = "Name , Phone Or mobile Exists";
@@ -121,7 +121,7 @@ module.exports = function init(site) {
             en: "Employee Admin",
             ar: "إدارة الموظفين",
             permissions: ["doctor_manage"],
-          },];
+          }, ];
 
           user.profile = {
             name_ar: user.name_ar,
@@ -146,7 +146,7 @@ module.exports = function init(site) {
           user.branch_list = [{
             company: company,
             branch: branch,
-          },];
+          }, ];
 
 
           user.company = doctor_doc.company;
@@ -256,7 +256,7 @@ module.exports = function init(site) {
       en: "Employee Admin",
       ar: "إدارة الموظفين",
       permissions: ["doctor_manage"],
-    },];
+    }, ];
 
     user.profile = {
       name_ar: user.name_ar,
@@ -279,13 +279,13 @@ module.exports = function init(site) {
 
     if (doctor_doc.id) {
       $doctors.edit({
-        where: {
-          id: doctor_doc.id,
+          where: {
+            id: doctor_doc.id,
+          },
+          set: doctor_doc,
+          $req: req,
+          $res: res,
         },
-        set: doctor_doc,
-        $req: req,
-        $res: res,
-      },
         (err, doctor_doc) => {
           if (!err) {
             response.done = true;
@@ -312,7 +312,7 @@ module.exports = function init(site) {
               doctor_doc.doc.user_info.id
             ) {
               user.id = doctor_doc.doc.user_info.id;
-              site.security.updateUser(user, (err, user_doc) => { });
+              site.security.updateUser(user, (err, user_doc) => {});
             }
           } else {
             response.error = "Code Already Exist";
@@ -338,10 +338,10 @@ module.exports = function init(site) {
     }
 
     $doctors.findOne({
-      where: {
-        id: req.body.id,
+        where: {
+          id: req.body.id,
+        },
       },
-    },
       (err, doc) => {
         if (!err) {
           response.done = true;
@@ -369,10 +369,10 @@ module.exports = function init(site) {
 
     if (id) {
       $doctors.delete({
-        id: id,
-        $req: req,
-        $res: res,
-      },
+          id: id,
+          $req: req,
+          $res: res,
+        },
         (err, result) => {
           if (!err) {
             response.done = true;
@@ -394,10 +394,10 @@ module.exports = function init(site) {
     };
 
     $doctors.findMany({
-      where: {
-        "job.doctors": true,
+        where: {
+          "job.doctors": true,
+        },
       },
-    },
       (err, docs) => {
         response.done = true;
 
@@ -524,13 +524,13 @@ module.exports = function init(site) {
     where["branch.code"] = site.get_branch(req).code;
 
     $doctors.findMany({
-      select: req.body.select || {},
-      where: where,
-      sort: req.body.sort || {
-        id: -1,
+        select: req.body.select || {},
+        where: where,
+        sort: req.body.sort || {
+          id: -1,
+        },
+        limit: req.body.limit,
       },
-      limit: req.body.limit,
-    },
       (err, docs, count) => {
         if (!err) {
           response.done = true;
@@ -736,12 +736,26 @@ module.exports = function init(site) {
   //   })
 
   site.post("/api/doctors/searchAll", (req, res) => {
+    req.headers.language = req.headers.language || "en";
     let response = {
       done: false,
     };
+    if (!req.session.user) {
+      response.message = site.word("loginFirst")[req.headers.language];
+      response.done = false;
+      res.json(response);
+      return;
+    } else if (!req.session.user.ref_info) {
+      response.message = site.word("loginFirst")[req.headers.language];
+      response.done = false;
+      res.json(response);
+      return;
+    }
+
     let where = req.body.where || {};
     let limit = 10;
     let skip = 0;
+   
     if (
       req.body.page ||
       (parseInt(req.body.page) && parseInt(req.body.page) > 1)
@@ -758,8 +772,7 @@ module.exports = function init(site) {
         'doctor.name_ar': site.get_RegExp(where['name'], 'i')
       }, {
         'doctor.name_en': site.get_RegExp(where['name'], 'i')
-      }
-      )
+      })
       delete where['name']
     }
 
@@ -767,72 +780,129 @@ module.exports = function init(site) {
 
 
     $clinics.aggregate(
-      [{
-        "$project": {
-          "doctor_list": 1.0,
-          "id": 1.0,
-          "name_ar": 1.0,
-          "name_en": 1.0,
-          "detection_price": 1.0,
-        }
-      },
-      {
-        "$unwind": {
-          "path": "$doctor_list",
-          "includeArrayIndex": "arrayIndex",
-          "preserveNullAndEmptyArrays": false
-        }
-      },
-     
-      {
-        "$group": {
-          "_id": "$doctor_list.doctor.id",
-          "shifts": {
-            "$push": {
-              "shift": "$doctor_list.shift",
-              "clinicId": { id: "$id", name_ar: "$name_ar", name_en: "$name_en" },
-              "detection_price": "$doctor_list.detection_price"
-            }
-          },
-          "doctor": {
-            "$first": "$doctor_list.doctor"
-          },
-          "clinic_detection_price": {
-            "$first": "$detection_price"
-          },
-          "detection_price": {
-            "$first": "$doctor_list.detection_price"
-          }
-        }
-      },
-      {
-        "$match": where
-      },
-      {
-        "$project": {
-          "detection_price": {
-            "$cond": {
-              "if": {
-                "$eq": [
-                  "$detection_price",
-                  null
-                ]
-              },
-              "then": "$clinic_detection_price",
-              "else": "$detection_price"
-            }
-          },
-          "shifts": 1.0,
-          "doctor": 1.0
-        }
-      },
+      [
 
-      {
-        $skip: skip
-      },
-      {
-        $limit: limit
-      }
+        {
+          "$addFields": {
+            "customerId": req.session.user.ref_info.id,
+          }
+        },
+        {
+          "$lookup": {
+            "from": "customers",
+            "localField": "customerId",
+            "foreignField": "id",
+            "as": "customerList"
+          }
+        },
+        {
+          "$unwind": {
+            "path": "$customerList"
+          }
+        },
+        {
+          "$addFields": {
+            "customerContractingCompany": "$customerList.contracting_company.id"
+          }
+        },
+
+        {
+          "$project": {
+            "doctor_list": 1.0,
+            "id": 1.0,
+            "name_ar": 1.0,
+            "name_en": 1.0,
+            "detection_price": 1.0,
+            "customerContractingCompany": 1.0,
+            "contracting_company_list": {
+              "$filter": {
+                "input": "$contracting_company_list",
+                "as": "item",
+                "cond": {
+                  "$eq": [
+                    "$$item.contracting_company.id",
+                    "$customerContractingCompany"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "$unwind": {
+            "path": "$doctor_list",
+            "includeArrayIndex": "arrayIndex",
+            "preserveNullAndEmptyArrays": false
+          }
+        },
+
+        {
+          "$group": {
+            "_id": "$doctor_list.doctor.id",
+            "shifts": {
+              "$push": {
+                "shift": "$doctor_list.shift",
+                "clinicId": {
+                  id: "$id",
+                  name_ar: "$name_ar",
+                  name_en: "$name_en"
+                },
+                "detection_price": "$doctor_list.detection_price"
+              }
+            },
+            "doctor": {
+              "$first": "$doctor_list.doctor"
+            },
+            "clinic_detection_price": {
+              "$first": "$detection_price"
+            },
+            "contracting_company_detection_price": {
+              "$first": "$contracting_company_list.detection_price"
+            },
+            "detection_price": {
+              "$first": "$doctor_list.detection_price"
+            }
+          }
+        },
+        {
+          "$match": where
+        },
+        {
+          "$project": {
+            "detection_price": {
+              "$cond": {
+                "if": {
+                  "$ne": [
+                    "$contracting_company_detection_price",
+                    null
+                  ]
+                },
+                "then": "$contracting_company_detection_price",
+                "else": {
+                  "$cond": {
+                    "if": {
+                      "$eq": [
+                        "$detection_price",
+                        null
+                      ]
+                    },
+                    "then": "$clinic_detection_price",
+                    "else": "$detection_price"
+                  }
+                }
+              }
+            },
+            "shifts": 1.0,
+            "doctor": 1.0
+          }
+        },
+
+        {
+          $skip: skip
+        },
+        {
+          $limit: limit
+        }
       ],
       (err, docs) => {
         let count = docs.length
@@ -860,32 +930,32 @@ module.exports = function init(site) {
 
                   if (_doc.detection_price.online.type == "percent")
                     _doc.online_price.detection =
-                      ((_doc.detection_price.detection * site.toNumber(_doc.detection_price.online.price)) /
-                        100) + _doc.detection_price.detection;
+                    ((_doc.detection_price.detection * site.toNumber(_doc.detection_price.online.price)) /
+                      100) + _doc.detection_price.detection;
                   else _doc.online_price.detection = _doc.detection_price.detection + site.toNumber(_doc.detection_price.online.price);
                 }
                 if (_doc.detection_price.re_detection) {
 
                   if (_doc.detection_price.online.type == "percent")
                     _doc.online_price.re_detection =
-                      ((_doc.detection_price.re_detection * site.toNumber(_doc.detection_price.online.price)) /
-                        100) + _doc.detection_price.re_detection;
+                    ((_doc.detection_price.re_detection * site.toNumber(_doc.detection_price.online.price)) /
+                      100) + _doc.detection_price.re_detection;
                   else _doc.online_price.re_detection = _doc.detection_price.re_detection + site.toNumber(_doc.detection_price.online.price);
                 }
                 if (_doc.detection_price.consultation) {
 
                   if (_doc.detection_price.online.type == "percent")
                     _doc.online_price.consultation =
-                      ((_doc.detection_price.consultation * site.toNumber(_doc.detection_price.online.price)) /
-                        100) + _doc.detection_price.consultation;
+                    ((_doc.detection_price.consultation * site.toNumber(_doc.detection_price.online.price)) /
+                      100) + _doc.detection_price.consultation;
                   else _doc.online_price.consultation = _doc.detection_price.consultation + site.toNumber(_doc.detection_price.online.price);
                 }
                 if (_doc.detection_price.session) {
 
                   if (_doc.detection_price.online.type == "percent")
                     _doc.online_price.session =
-                      ((_doc.detection_price.session * site.toNumber(_doc.detection_price.online.price)) /
-                        100) + _doc.detection_price.session;
+                    ((_doc.detection_price.session * site.toNumber(_doc.detection_price.online.price)) /
+                      100) + _doc.detection_price.session;
                   else _doc.online_price.session = _doc.detection_price.session + site.toNumber(_doc.detection_price.online.price);
                 }
               }
@@ -895,32 +965,32 @@ module.exports = function init(site) {
 
                   if (_doc.detection_price.at_home.type == "percent")
                     _doc.at_home_price.detection =
-                      ((_doc.detection_price.detection * site.toNumber(_doc.detection_price.at_home.price)) /
-                        100) + _doc.detection_price.detection;
+                    ((_doc.detection_price.detection * site.toNumber(_doc.detection_price.at_home.price)) /
+                      100) + _doc.detection_price.detection;
                   else _doc.at_home_price.detection = _doc.detection_price.detection + site.toNumber(_doc.detection_price.at_home.price);
                 }
                 if (_doc.detection_price.re_detection) {
 
                   if (_doc.detection_price.at_home.type == "percent")
                     _doc.at_home_price.re_detection =
-                      ((_doc.detection_price.re_detection * site.toNumber(_doc.detection_price.at_home.price)) /
-                        100) + _doc.detection_price.re_detection;
+                    ((_doc.detection_price.re_detection * site.toNumber(_doc.detection_price.at_home.price)) /
+                      100) + _doc.detection_price.re_detection;
                   else _doc.at_home_price.re_detection = _doc.detection_price.re_detection + site.toNumber(_doc.detection_price.at_home.price);
                 }
                 if (_doc.detection_price.consultation) {
 
                   if (_doc.detection_price.at_home.type == "percent")
                     _doc.at_home_price.consultation =
-                      ((_doc.detection_price.consultation * site.toNumber(_doc.detection_price.at_home.price)) /
-                        100) + _doc.detection_price.consultation;
+                    ((_doc.detection_price.consultation * site.toNumber(_doc.detection_price.at_home.price)) /
+                      100) + _doc.detection_price.consultation;
                   else _doc.at_home_price.consultation = _doc.detection_price.consultation + site.toNumber(_doc.detection_price.at_home.price);
                 }
                 if (_doc.detection_price.session) {
 
                   if (_doc.detection_price.at_home.type == "percent")
                     _doc.at_home_price.session =
-                      ((_doc.detection_price.session * site.toNumber(_doc.detection_price.at_home.price)) /
-                        100) + _doc.detection_price.session;
+                    ((_doc.detection_price.session * site.toNumber(_doc.detection_price.at_home.price)) /
+                      100) + _doc.detection_price.session;
                   else _doc.at_home_price.session = _doc.detection_price.session + site.toNumber(_doc.detection_price.at_home.price);
                 }
               }
@@ -931,32 +1001,32 @@ module.exports = function init(site) {
 
                   if (_doc.detection_price.urgent_visit.type == "percent")
                     _doc.urgent_visit_price.detection =
-                      ((_doc.detection_price.detection * site.toNumber(_doc.detection_price.urgent_visit.price)) /
-                        100) + _doc.detection_price.detection;
+                    ((_doc.detection_price.detection * site.toNumber(_doc.detection_price.urgent_visit.price)) /
+                      100) + _doc.detection_price.detection;
                   else _doc.urgent_visit_price.detection = _doc.detection_price.detection + site.toNumber(_doc.detection_price.urgent_visit.price);
                 }
                 if (_doc.detection_price.re_detection) {
 
                   if (_doc.detection_price.urgent_visit.type == "percent")
                     _doc.urgent_visit_price.re_detection =
-                      ((_doc.detection_price.re_detection * site.toNumber(_doc.detection_price.urgent_visit.price)) /
-                        100) + _doc.detection_price.re_detection;
+                    ((_doc.detection_price.re_detection * site.toNumber(_doc.detection_price.urgent_visit.price)) /
+                      100) + _doc.detection_price.re_detection;
                   else _doc.urgent_visit_price.re_detection = _doc.detection_price.re_detection + site.toNumber(_doc.detection_price.urgent_visit.price);
                 }
                 if (_doc.detection_price.consultation) {
 
                   if (_doc.detection_price.urgent_visit.type == "percent")
                     _doc.urgent_visit_price.consultation =
-                      ((_doc.detection_price.consultation * site.toNumber(_doc.detection_price.urgent_visit.price)) /
-                        100) + _doc.detection_price.consultation;
+                    ((_doc.detection_price.consultation * site.toNumber(_doc.detection_price.urgent_visit.price)) /
+                      100) + _doc.detection_price.consultation;
                   else _doc.urgent_visit_price.consultation = _doc.detection_price.consultation + site.toNumber(_doc.detection_price.urgent_visit.price);
                 }
                 if (_doc.detection_price.session) {
 
                   if (_doc.detection_price.urgent_visit.type == "percent")
                     _doc.urgent_visit_price.session =
-                      ((_doc.detection_price.session * site.toNumber(_doc.detection_price.urgent_visit.price)) /
-                        100) + _doc.detection_price.session;
+                    ((_doc.detection_price.session * site.toNumber(_doc.detection_price.urgent_visit.price)) /
+                      100) + _doc.detection_price.session;
                   else _doc.urgent_visit_price.session = _doc.detection_price.session + site.toNumber(_doc.detection_price.urgent_visit.price);
                 }
               }
@@ -1340,7 +1410,7 @@ module.exports = function init(site) {
       en: "Employee Admin",
       ar: "إدارة الموظفين",
       permissions: ["doctor_manage"],
-    },];
+    }, ];
 
     user.profile = {
       name_ar: user.name_ar,
@@ -1363,13 +1433,13 @@ module.exports = function init(site) {
 
     if (doctor_doc.id) {
       $doctors.edit({
-        where: {
-          id: doctor_doc.id,
+          where: {
+            id: doctor_doc.id,
+          },
+          set: doctor_doc,
+          $req: req,
+          $res: res,
         },
-        set: doctor_doc,
-        $req: req,
-        $res: res,
-      },
         (err, doctor_doc) => {
           if (!err) {
             response.done = true;
@@ -1396,7 +1466,7 @@ module.exports = function init(site) {
               doctor_doc.doc.user_info.id
             ) {
               user.id = doctor_doc.doc.user_info.id;
-              site.security.updateUser(user, (err, user_doc) => { });
+              site.security.updateUser(user, (err, user_doc) => {});
             }
           } else {
             response.error = "doctor id is error";

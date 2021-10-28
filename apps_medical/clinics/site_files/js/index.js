@@ -37,6 +37,7 @@ app.controller("clinics", function ($scope, $http, $timeout) {
       doctor_list: [],
       nurse_list: [],
       vacation_list: [],
+      contracting_company_list:[],
     };
     site.showModal("#clinicAddModal");
     document.querySelector("#clinicAddModal  .tab-link").click();
@@ -137,6 +138,32 @@ app.controller("clinics", function ($scope, $http, $timeout) {
       },
       function (err) {
         console.log(err);
+      }
+    );
+  };
+
+
+  $scope.getContractingCompaniesList = function (where) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/contracting_companies/all",
+      data: {
+        where: {
+          active: true,
+        },
+        select: { id: 1, name_ar: 1, name_en: 1, code: 1 },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.contractingCompanyList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
       }
     );
   };
@@ -412,7 +439,9 @@ app.controller("clinics", function ($scope, $http, $timeout) {
   /*   $scope.getHospitalList();
    */
   $scope.getClinicList();
+  $scope.getContractingCompaniesList();
   $scope.getSpecialList();
   $scope.getDayList();
   $scope.getNumberingAuto();
+
 });
