@@ -361,7 +361,10 @@
     {"name" : "role" , "en" : "role" , "ar" : "الدور"},
     {"name" : "apartmentNumber" , "en" : "apartment Number" , "ar" : "رقم الشقة"},
     {"name" : "specialMark" , "en" : "special Mark" , "ar" : "علامة مميزة"},
-    {"name" : "contracting_company" , "en" : "contracting company" , "ar" : "شركة التعاقد"}
+    {"name" : "contracting_company" , "en" : "contracting company" , "ar" : "شركة التعاقد"},
+    {"name" : "hasContractingCompany" , "en" : "has Contracting Company" , "ar" : "له شركة تعاقد"},
+    {"name" : "workPlace" , "en" : "work Place" , "ar" : "مكان العمل"},
+    {"name" : "contractingNumber" , "en" : "contractingNumber" , "ar" : "رقم التعاقد"}
     
     
     
