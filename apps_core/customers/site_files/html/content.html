@@ -125,16 +125,19 @@
                                 <i-checkbox class="row" label="##word.hasContractingCompany##"
                                     ng-model="hasContractingCompany"></i-checkbox>
                                 <div class="row" ng-show="hasContractingCompany">
-                                    <i-list help-id="" ng-search="_search.$gender_search" class="col4"
+                                    <i-list help-id="" ng-search="_search.$gender_search" class="col3"
                                         label="##word.contracting_company##" ng-model="customer.contracting_company"
                                         items="contractingCompaniesList" display="name_##session.lang##">
                                     </i-list>
-                                    <i-control class="col4" label="##word.workPlace##" ng-model="customer.workPlace">
+                                    <i-control class="col3" label="##word.workPlace##" ng-model="customer.workPlace">
                                     </i-control>
-                                    <i-control class="col4" label="##word.contractingNumber##"
+                                    <i-control class="col3" label="##word.contractingNumber##"
                                         ng-model="customer.contractingNumber">
                                     </i-control>
-
+                                    <div class="col3">
+                                       <label >##word.contractingImg##</label>
+                                        <i-image category="customers" ng-model="customer.contractingImg"></i-image>
+                                    </div>
                                 </div>
 
                             </div>
