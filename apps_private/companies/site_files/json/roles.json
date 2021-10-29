@@ -14,6 +14,7 @@
       "lecture_admin",
       "lecture_manage",
       "vaccinations_requests_manage",
+      "visit_sources_manage",
       "buildings_manage",
       "floor_manage",
       "room_manage",

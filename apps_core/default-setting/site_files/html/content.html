@@ -1,43 +1,12 @@
 <div class="form" id="setting_default">
   <div class="tabs inline-block">
     <div class="tabs-header">
-      <a
-        class="tab-link"
-        onclick="site.showTabContent(event, '#general_Settings')"
-      >
-        ##word.general_Settings##
-      </a>
-      <a
-        class="tab-link"
-        onclick="site.showTabContent(event, '#finger_program')"
-      >
-        ##word.finger_program##
-      </a>
-      <a
-        class="tab-link"
-        onclick="site.showTabContent(event, '#printer_program')"
-      >
-        ##word.printer_program##
-      </a>
-      <a
-        class="tab-link"
-        x-feature="school"
-        onclick="site.showTabContent(event, '#exams_setting')"
-      >
-        ##word.exams_setting##
-      </a>
-      <a
-        class="tab-link"
-        onclick="site.showTabContent(event, '#accounting_settings')"
-      >
-        ##word.accounting_settings##
-      </a>
-      <a
-        class="tab-link"
-        onclick="site.showTabContent(event, '#inventory_settings')"
-      >
-        ##word.inventory_settings##
-      </a>
+      <a class="tab-link" onclick="site.showTabContent(event, '#general_Settings')"> ##word.general_Settings## </a>
+      <a class="tab-link" onclick="site.showTabContent(event, '#finger_program')"> ##word.finger_program## </a>
+      <a class="tab-link" onclick="site.showTabContent(event, '#printer_program')"> ##word.printer_program## </a>
+      <a class="tab-link" x-feature="school" onclick="site.showTabContent(event, '#exams_setting')"> ##word.exams_setting## </a>
+      <a class="tab-link" onclick="site.showTabContent(event, '#accounting_settings')"> ##word.accounting_settings## </a>
+      <a class="tab-link" onclick="site.showTabContent(event, '#inventory_settings')"> ##word.inventory_settings## </a>
     </div>
     <div class="tabs-content">
       <div id="general_Settings" class="tab-content">
@@ -45,13 +14,7 @@
           <legend>##word.general_Settings##</legend>
 
           <div class="row">
-            <i-control
-              ng-keydown="getCustomerList($event)"
-              class="col2"
-              ng-model="search_customer"
-              label="##word.search##"
-              type="text"
-            ></i-control>
+            <i-control ng-keydown="getCustomerList($event)" class="col2" ng-model="search_customer" label="##word.search##" type="text"></i-control>
 
             <i-list
               ng-search="_search.$customer"
@@ -66,13 +29,7 @@
 
             <div class="col1"></div>
 
-            <i-control
-              ng-keydown="loadVendors($event)"
-              class="col2"
-              ng-model="search_vendor"
-              label="##word.search##"
-              type="text"
-            ></i-control>
+            <i-control ng-keydown="loadVendors($event)" class="col2" ng-model="search_vendor" label="##word.search##" type="text"></i-control>
 
             <i-list
               class="col3"
@@ -90,21 +47,9 @@
           <br />
 
           <div class="row" x-features="medical">
-            <i-control
-              class="col2"
-              label="##word.doctor_search##"
-              ng-model="doctor_search"
-              ng-keydown="getDoctorList($event)"
-            ></i-control>
+            <i-control class="col2" label="##word.doctor_search##" ng-model="doctor_search" ng-keydown="getDoctorList($event)"></i-control>
 
-            <i-list
-              class="col3"
-              label="##word.doctors##"
-              ng-model="default_setting.general_Settings.doctor"
-              items="doctorList"
-              display="name_##session.lang##"
-              ng-search="_search.$doctors_searching"
-            >
+            <i-list class="col3" label="##word.doctors##" ng-model="default_setting.general_Settings.doctor" items="doctorList" display="name_##session.lang##" ng-search="_search.$doctors_searching">
             </i-list>
 
             <i-list
@@ -119,14 +64,7 @@
           </div>
 
           <div class="row" x-features="medical">
-            <i-list
-              class="col3"
-              label="##word.clinic##"
-              ng-model="default_setting.general_Settings.clinic"
-              items="clinicList"
-              display="name_##session.lang##"
-              ng-search="_search.$clinic_search"
-            >
+            <i-list class="col3" label="##word.clinic##" ng-model="default_setting.general_Settings.clinic" items="clinicList" display="name_##session.lang##" ng-search="_search.$clinic_search">
             </i-list>
 
             <i-list
@@ -140,13 +78,13 @@
             </i-list>
 
             <i-list
-            class="col3"
-            label="##word.place_examination##"
-            ng-model="default_setting.general_Settings.place_examination"
-            items="placeExaminationList"
-            display="##session.lang##"
-            ng-search="_search.$doctors_placeExamination_search"
-          ></i-list>
+              class="col3"
+              label="##word.place_examination##"
+              ng-model="default_setting.general_Settings.place_examination"
+              items="placeExaminationList"
+              display="##session.lang##"
+              ng-search="_search.$doctors_placeExamination_search"
+            ></i-list>
           </div>
 
           <div class="row" x-features="school">
@@ -216,14 +154,7 @@
             >
             </i-list>
 
-            <i-control
-              class="col1"
-              ng-model="default_setting.general_Settings.service"
-              x-features="restaurant"
-              label="##word.service##"
-              type="number"
-            >
-            </i-control>
+            <i-control class="col1" ng-model="default_setting.general_Settings.service" x-features="restaurant" label="##word.service##" type="number"> </i-control>
 
             <div class="col1">
               <br />
@@ -234,52 +165,26 @@
           </div>
 
           <div class="row">
-            <i-checkbox
-              label="##word.work_posting##"
-              ng-click="linkPostUnPost()"
-              ng-model="default_setting.general_Settings.work_posting"
-            >
-            </i-checkbox>
-            <i-checkbox
-              label="##word.work_unposting##"
-              ng-click="linkPostUnPost()"
-              ng-model="default_setting.general_Settings.work_unposting"
-            >
-            </i-checkbox>
+            <i-checkbox label="##word.pay_full_price_examination##" x-features="medical" ng-model="default_setting.general_Settings.pay_full_price_examination"> </i-checkbox>
+
+            <i-checkbox label="##word.work_posting##" ng-click="linkPostUnPost()" ng-model="default_setting.general_Settings.work_posting"> </i-checkbox>
+            <i-checkbox label="##word.work_unposting##" ng-click="linkPostUnPost()" ng-model="default_setting.general_Settings.work_unposting"> </i-checkbox>
           </div>
         </fieldset>
 
-        <i-button
-          type="default left"
-          fa="2x fa-angle-double-left"
-          onclick="document.querySelector('.tab-link.active + .tab-link').click();"
-        ></i-button>
+        <i-button type="default left" fa="2x fa-angle-double-left" onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
       </div>
 
       <div id="finger_program" class="tab-content">
         <fieldset>
           <legend>##word.finger_program##</legend>
           <div class="row">
-            <i-control
-              help-id="finger_program"
-              class="col3"
-              label="##word.program_ip##"
-              ng-model="default_setting.finger_program.ip"
-            ></i-control>
+            <i-control help-id="finger_program" class="col3" label="##word.program_ip##" ng-model="default_setting.finger_program.ip"></i-control>
 
-            <i-control
-              help-id="finger_program"
-              class="col3"
-              label="##word.program_port##"
-              ng-model="default_setting.finger_program.port"
-            ></i-control>
+            <i-control help-id="finger_program" class="col3" label="##word.program_port##" ng-model="default_setting.finger_program.port"></i-control>
           </div>
         </fieldset>
-        <i-button
-          type="default left"
-          fa="2x fa-angle-double-left"
-          onclick="document.querySelector('.tab-link.active + .tab-link').click();"
-        ></i-button>
+        <i-button type="default left" fa="2x fa-angle-double-left" onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
       </div>
 
       <div id="printer_program" class="tab-content">
@@ -308,44 +213,30 @@
                 >
                 </i-list>
 
-
                 <!-- <i-list class="col3" ng-model="default_setting.printer_program.place_program"
                                     items="placeProgramList" display="##session.lang##"
                                     ng-search="_search.$place_program" label="##word.place_program##"></i-list> -->
 
                 <div class="col1"></div>
 
-                <i-checkbox
-                  label="##word.auto_thermal_print##"
-                  ng-model="default_setting.printer_program.auto_thermal_print"
-                >
-                </i-checkbox>
+                <i-checkbox label="##word.auto_thermal_print##" ng-model="default_setting.printer_program.auto_thermal_print"> </i-checkbox>
               </div>
 
               <div class="row">
-           <!--      <i-control
+                <!--      <i-control
                   help-id="invoice_top_title"
                   class="col6"
                   label="##word.invoice_top_title##"
                   ng-model="default_setting.printer_program.invoice_top_title"
                 ></i-control> -->
 
-                <i-control
-                  help-id="tax_number"
-                  class="col6"
-                  label="##word.tax_number##"
-                  ng-model="default_setting.printer_program.tax_number"
-                ></i-control>
+                <i-control help-id="tax_number" class="col6" label="##word.tax_number##" ng-model="default_setting.printer_program.tax_number"></i-control>
               </div>
             </div>
             <div class="col3">
               <div class="col1"></div>
               <div>
-                <i-image
-                  help-id="units_logo"
-                  ng-model="default_setting.printer_program.invoice_logo"
-                >
-                </i-image>
+                <i-image help-id="units_logo" ng-model="default_setting.printer_program.invoice_logo"> </i-image>
               </div>
             </div>
           </div>
@@ -363,17 +254,10 @@
                 <div class="row">
                   <h2 class="black">
                     ##word.invoice_header_right##
-                    <i-button
-                      type="add default"
-                      ng-click="default_setting.printer_program.invoice_header.push({})"
-                    >
-                    </i-button>
+                    <i-button type="add default" ng-click="default_setting.printer_program.invoice_header.push({})"> </i-button>
                   </h2>
 
-                  <div
-                    ng-repeat="h in default_setting.printer_program.invoice_header track by $index"
-                    class="row"
-                  >
+                  <div ng-repeat="h in default_setting.printer_program.invoice_header track by $index" class="row">
                     <i-control class="col9" ng-model="h.name"></i-control>
                     <i-button
                       class="col2"
@@ -389,17 +273,10 @@
                 <div class="row">
                   <h2 class="black">
                     ##word.invoice_header_left##
-                    <i-button
-                      type="add default"
-                      ng-click="default_setting.printer_program.invoice_header2.push({})"
-                    >
-                    </i-button>
+                    <i-button type="add default" ng-click="default_setting.printer_program.invoice_header2.push({})"> </i-button>
                   </h2>
 
-                  <div
-                    ng-repeat="f in default_setting.printer_program.invoice_header2 track by $index"
-                    class="row"
-                  >
+                  <div ng-repeat="f in default_setting.printer_program.invoice_header2 track by $index" class="row">
                     <i-control class="col9" ng-model="f.name"></i-control>
 
                     <i-button
@@ -417,24 +294,13 @@
             <div class="row">
               <h2 class="black">
                 ##word.invoice_footer##
-                <i-button
-                  type="add default"
-                  ng-click="default_setting.printer_program.invoice_footer.push({})"
-                >
-                </i-button>
+                <i-button type="add default" ng-click="default_setting.printer_program.invoice_footer.push({})"> </i-button>
               </h2>
 
-              <div
-                ng-repeat="f in default_setting.printer_program.invoice_footer track by $index"
-                class="row"
-              >
+              <div ng-repeat="f in default_setting.printer_program.invoice_footer track by $index" class="row">
                 <i-control class="col8" ng-model="f.name"></i-control>
 
-                <i-button
-                  class="col2"
-                  type="delete default"
-                  ng-click="default_setting.printer_program.invoice_footer.length ==1 || default_setting.printer_program.invoice_footer.splice($index,1)"
-                >
+                <i-button class="col2" type="delete default" ng-click="default_setting.printer_program.invoice_footer.length ==1 || default_setting.printer_program.invoice_footer.splice($index,1)">
                 </i-button>
               </div>
             </div>
@@ -453,17 +319,10 @@
                 <div class="row">
                   <h2 class="black">
                     ##word.invoice_header##
-                    <i-button
-                      type="add default"
-                      ng-click="default_setting.printer_program.thermal_header.push({})"
-                    >
-                    </i-button>
+                    <i-button type="add default" ng-click="default_setting.printer_program.thermal_header.push({})"> </i-button>
                   </h2>
 
-                  <div
-                    ng-repeat="h in default_setting.printer_program.thermal_header track by $index"
-                    class="row"
-                  >
+                  <div ng-repeat="h in default_setting.printer_program.thermal_header track by $index" class="row">
                     <i-control class="col9" ng-model="h.name"></i-control>
                     <i-button
                       class="col2"
@@ -479,17 +338,10 @@
                 <div class="row">
                   <h2 class="black">
                     ##word.invoice_footer##
-                    <i-button
-                      type="add default"
-                      ng-click="default_setting.printer_program.thermal_footer.push({})"
-                    >
-                    </i-button>
+                    <i-button type="add default" ng-click="default_setting.printer_program.thermal_footer.push({})"> </i-button>
                   </h2>
 
-                  <div
-                    ng-repeat="f in default_setting.printer_program.thermal_footer track by $index"
-                    class="row"
-                  >
+                  <div ng-repeat="f in default_setting.printer_program.thermal_footer track by $index" class="row">
                     <i-control class="col9" ng-model="f.name"></i-control>
 
                     <i-button
@@ -513,67 +365,34 @@
             <div class="col9">
               <div class="row">
                 <h2 class="black">##word.exam_header##</h2>
-                <i-button
-                  type="add default"
-                  ng-click="default_setting.exams_setting.exam_header.push({})"
-                >
-                </i-button>
+                <i-button type="add default" ng-click="default_setting.exams_setting.exam_header.push({})"> </i-button>
 
-                <div
-                  ng-repeat="h in default_setting.exams_setting.exam_header track by $index"
-                  class="row"
-                >
+                <div ng-repeat="h in default_setting.exams_setting.exam_header track by $index" class="row">
                   <i-control class="col8" ng-model="h.name"></i-control>
-                  <i-button
-                    class="col2"
-                    type="delete default"
-                    ng-click="default_setting.exams_setting.exam_header.length ==1 || default_setting.exams_setting.exam_header.splice($index,1)"
-                  >
+                  <i-button class="col2" type="delete default" ng-click="default_setting.exams_setting.exam_header.length ==1 || default_setting.exams_setting.exam_header.splice($index,1)">
                   </i-button>
                 </div>
               </div>
               <div class="row">
                 <h2 class="black">##word.exam_header2##</h2>
-                <i-button
-                  type="add default"
-                  ng-click="default_setting.exams_setting.exam_header2.push({})"
-                >
-                </i-button>
+                <i-button type="add default" ng-click="default_setting.exams_setting.exam_header2.push({})"> </i-button>
 
-                <div
-                  ng-repeat="f in default_setting.exams_setting.exam_header2 track by $index"
-                  class="row"
-                >
+                <div ng-repeat="f in default_setting.exams_setting.exam_header2 track by $index" class="row">
                   <i-control class="col8" ng-model="f.name"></i-control>
 
-                  <i-button
-                    class="col2"
-                    type="delete default"
-                    ng-click="default_setting.exams_setting.exam_header2.length ==1 || default_setting.exams_setting.exam_header2.splice($index,1)"
-                  >
+                  <i-button class="col2" type="delete default" ng-click="default_setting.exams_setting.exam_header2.length ==1 || default_setting.exams_setting.exam_header2.splice($index,1)">
                   </i-button>
                 </div>
               </div>
 
               <div class="row">
                 <h2 class="black">##word.exam_footer##</h2>
-                <i-button
-                  type="add default"
-                  ng-click="default_setting.exams_setting.exam_footer.push({})"
-                >
-                </i-button>
+                <i-button type="add default" ng-click="default_setting.exams_setting.exam_footer.push({})"> </i-button>
 
-                <div
-                  ng-repeat="f in default_setting.exams_setting.exam_footer track by $index"
-                  class="row"
-                >
+                <div ng-repeat="f in default_setting.exams_setting.exam_footer track by $index" class="row">
                   <i-control class="col8" ng-model="f.name"></i-control>
 
-                  <i-button
-                    class="col2"
-                    type="delete default"
-                    ng-click="default_setting.exams_setting.exam_footer.length ==1 || default_setting.exams_setting.exam_footer.splice($index,1)"
-                  >
+                  <i-button class="col2" type="delete default" ng-click="default_setting.exams_setting.exam_footer.length ==1 || default_setting.exams_setting.exam_footer.splice($index,1)">
                   </i-button>
                 </div>
               </div>
@@ -581,21 +400,13 @@
             <div class="col3">
               <div class="col1"></div>
               <div>
-                <i-image
-                  help-id="units_logo"
-                  ng-model="default_setting.exams_setting.exam_logo"
-                >
-                </i-image>
+                <i-image help-id="units_logo" ng-model="default_setting.exams_setting.exam_logo"> </i-image>
               </div>
             </div>
           </div>
         </fieldset>
 
-        <i-button
-          type="default left"
-          fa="2x fa-angle-double-left"
-          onclick="document.querySelector('.tab-link.active + .tab-link').click();"
-        ></i-button>
+        <i-button type="default left" fa="2x fa-angle-double-left" onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
       </div>
 
       <div id="accounting_settings" class="tab-content">
@@ -633,14 +444,7 @@
               label="##word.safe_bank##"
             ></i-list>
 
-            <i-list
-              class="col3"
-              ng-model="default_setting.accounting.safe_box"
-              items="safesBoxList"
-              display="name_##session.lang##"
-              ng-search="_search.$serach_safes_box"
-              label="##word.safe_box##"
-            >
+            <i-list class="col3" ng-model="default_setting.accounting.safe_box" items="safesBoxList" display="name_##session.lang##" ng-search="_search.$serach_safes_box" label="##word.safe_box##">
             </i-list>
           </div>
 
@@ -649,40 +453,19 @@
                             label="##word.invoice_source##" ng-model="default_setting.accounting.source_type"
                             items="sourceTypeList" display="##session.lang##"></i-list> -->
 
-            <i-control
-              class="col3"
-              label="##word.end_num_to_str##"
-              ng-model="default_setting.accounting.end_num_to_str"
-            ></i-control>
+            <i-control class="col3" label="##word.end_num_to_str##" ng-model="default_setting.accounting.end_num_to_str"></i-control>
           </div>
 
           <div class="row">
-            <i-checkbox
-              label="##word.create_invoice_auto##"
-              ng-click="linkWarehouseAccountInvoices()"
-              ng-model="default_setting.accounting.create_invoice_auto"
-            ></i-checkbox>
+            <i-checkbox label="##word.create_invoice_auto##" ng-click="linkWarehouseAccountInvoices()" ng-model="default_setting.accounting.create_invoice_auto"></i-checkbox>
 
-            <i-checkbox
-              label="##word.link_warehouse_account_invoices##"
-              ng-click="linkWarehouseAccountInvoices()"
-              ng-model="default_setting.accounting.link_warehouse_account_invoices"
-            >
-            </i-checkbox>
+            <i-checkbox label="##word.link_warehouse_account_invoices##" ng-click="linkWarehouseAccountInvoices()" ng-model="default_setting.accounting.link_warehouse_account_invoices"> </i-checkbox>
           </div>
 
           <div class="row" x-feature="erp">
-            <i-checkbox
-              label="##word.auto_generate_account_code_and_cost_center##"
-              ng-model="default_setting.accounting.auto_generate_account_code_and_cost_center"
-            >
-            </i-checkbox>
+            <i-checkbox label="##word.auto_generate_account_code_and_cost_center##" ng-model="default_setting.accounting.auto_generate_account_code_and_cost_center"> </i-checkbox>
 
-            <i-checkbox
-              label="##word.link_gl_accounts_with_income_statement_and_budget##"
-              ng-model="default_setting.accounting.link_gl_accounts_with_income_statement_and_budget"
-            >
-            </i-checkbox>
+            <i-checkbox label="##word.link_gl_accounts_with_income_statement_and_budget##" ng-model="default_setting.accounting.link_gl_accounts_with_income_statement_and_budget"> </i-checkbox>
           </div>
 
           <div class="row" x-feature="erp">
@@ -697,11 +480,7 @@
           </div>
         </fieldset>
 
-        <i-button
-          type="default left"
-          fa="2x fa-angle-double-left"
-          onclick="document.querySelector('.tab-link.active + .tab-link').click();"
-        ></i-button>
+        <i-button type="default left" fa="2x fa-angle-double-left" onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
       </div>
 
       <div id="inventory_settings" class="tab-content">
@@ -727,75 +506,28 @@
               items="itemsTypesList"
             ></i-list>
 
-            <i-list
-              class="col3"
-              ng-model="default_setting.inventory.store"
-              items="storesList"
-              display="name_##session.lang##"
-              ng-search="_search.$_store"
-              label="##word.store##"
-            ></i-list>
+            <i-list class="col3" ng-model="default_setting.inventory.store" items="storesList" display="name_##session.lang##" ng-search="_search.$_store" label="##word.store##"></i-list>
 
-            <i-list
-              class="col3"
-              ng-model="default_setting.inventory.unit"
-              ng-search="_search.$search_unit"
-              display="name_##session.lang##"
-              label="##word.unit##"
-              items="unitsList"
-            >
-            </i-list>
+            <i-list class="col3" ng-model="default_setting.inventory.unit" ng-search="_search.$search_unit" display="name_##session.lang##" label="##word.unit##" items="unitsList"> </i-list>
           </div>
 
           <div class="row">
-            <i-list
-              class="col3"
-              ng-model="default_setting.inventory.delegate"
-              display="name_##session.lang##"
-              ng-search="_search.$items_group_search"
-              label="##word.delegate##"
-              items="delegatesList"
-            >
+            <i-list class="col3" ng-model="default_setting.inventory.delegate" display="name_##session.lang##" ng-search="_search.$items_group_search" label="##word.delegate##" items="delegatesList">
             </i-list>
 
-            <i-control
-              class="col2"
-              type="number"
-              label="##word.value_added##"
-              ng-model="default_setting.inventory.value_added"
-            >
-            </i-control>
+            <i-control class="col2" type="number" label="##word.value_added##" ng-model="default_setting.inventory.value_added"> </i-control>
 
-            <i-control
-              class="col2"
-              type="number"
-              label="##word.number_best_selling##"
-              ng-model="default_setting.inventory.number_best_selling"
-            >
-            </i-control>
+            <i-control class="col2" type="number" label="##word.number_best_selling##" ng-model="default_setting.inventory.number_best_selling"> </i-control>
           </div>
 
           <div class="row">
-            <i-checkbox
-              label="##word.auto_item_code_generation##"
-              ng-model="default_setting.inventory.auto_barcode_generation"
-            ></i-checkbox>
+            <i-checkbox label="##word.auto_item_code_generation##" ng-model="default_setting.inventory.auto_barcode_generation"></i-checkbox>
 
-            <i-checkbox
-              label="##word.auto_unit_barcode_generation##"
-              ng-model="default_setting.inventory.auto_unit_barcode_generation"
-            ></i-checkbox>
+            <i-checkbox label="##word.auto_unit_barcode_generation##" ng-model="default_setting.inventory.auto_unit_barcode_generation"></i-checkbox>
 
-            <i-checkbox
-              label="##word.dont_exceed_maximum_discount_item##"
-              ng-model="default_setting.inventory.dont_max_discount_items"
-            ></i-checkbox>
+            <i-checkbox label="##word.dont_exceed_maximum_discount_item##" ng-model="default_setting.inventory.dont_max_discount_items"></i-checkbox>
 
-            <i-checkbox
-              label="##word.overdraft##"
-              ng-model="default_setting.inventory.overdraft"
-            >
-            </i-checkbox>
+            <i-checkbox label="##word.overdraft##" ng-model="default_setting.inventory.overdraft"> </i-checkbox>
           </div>
         </fieldset>
       </div>

@@ -1,0 +1,30 @@
+<div class="form">
+    <div id="visitSourcesAddModal">
+        <fieldset>
+            <legend> ##word.visit_sources_informations## </legend>
+            <div class="row">
+                <div class="col9">
+                    <div class="row">
+
+                        <i-control ng-hide="disabledCode" class="col2" label="##word.code##"
+                            ng-model="visit_sources.code">
+                        </i-control>
+
+                        <i-control v="r" class="col4" label="##word.visit_sources_name##" ng-model="visit_sources.name_ar">
+                        </i-control>
+
+                        <i-control class="col4" v="r" label="##word.name_en##" ng-model="visit_sources.name_en">
+                        </i-control>
+
+                        <i-checkbox class="col2" label="##word.active##" ng-model="visit_sources.active"></i-checkbox>
+                    </div>
+
+                </div>
+
+                <div class="col3">
+                    <i-image category="visit_sources" ng-model="visit_sources.image_url"> </i-image>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>

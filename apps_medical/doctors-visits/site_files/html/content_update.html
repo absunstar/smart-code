@@ -78,6 +78,14 @@
             <div class="row">
               <div class="col8">
                 <div class="row">
+                  <div class="col3">
+                    <h2 class="black">##word.booking_date## :</h2>
+                    <h2 class="brown">
+                      {{doctors_visits.date | date : 'dd - MM - yyyy'}}
+                    </h2>
+                  </div>
+                </div>
+                <div class="row">
                   <i-list
                     class="col3"
                     label="##word.visit_type##"
@@ -99,12 +107,15 @@
                     ng-search="_search.$doctors_placeExamination_search"
                   ></i-list>
 
-                  <div class="col3">
-                    <h2 class="black">##word.booking_date## :</h2>
-                    <h2 class="brown">
-                      {{doctors_visits.date | date : 'dd - MM - yyyy'}}
-                    </h2>
-                  </div>
+                  <i-list
+                  class="col3"
+                  label="##word.visit_source##"
+                  ng-model="doctors_visits.visit_source"
+                  items="visitSourcesList"
+                  display="name_##session.lang##"
+                  ng-search="_search.$visitSourcesList_search"
+                >
+
                 </div>
                 <div class="row">
                   <i-control

@@ -10,6 +10,11 @@
         "ar": "الإعدادات الإفتراضية"
     },
     {
+        "name": "pay_full_price_examination",
+        "en": "Pay the full price of the Examination",
+        "ar": "دفع سعر الحجز كاملا"
+    },
+    {
         "name": "number_best_selling",
         "en": "The number of best-selling items",
         "ar": "عدد الأصناف الأكثر مبيعا"

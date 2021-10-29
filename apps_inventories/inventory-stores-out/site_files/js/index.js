@@ -2173,6 +2173,8 @@ app.controller("stores_out", function ($scope, $http, $timeout, $interval) {
       $scope.thermal.net_txt = site.stringfiy($scope.thermal.net_value);
     }
     JsBarcode(".barcode", $scope.thermal.code);
+    site.qrcode({selector : '#qrcode' , text : document.location.protocol
+ + '//' +     document.location.hostname +  `/stores_out?id=${$scope.thermal.id}`})
     if (
       $scope.defaultSettings.printer_program &&
       $scope.defaultSettings.printer_program.printer_path &&
@@ -2190,9 +2192,9 @@ app.controller("stores_out", function ($scope, $http, $timeout, $interval) {
     }
 
     $scope.busy = false;
-    $timeout(() => {
+  /*   $timeout(() => {
       $("#thermalPrint").addClass("hidden");
-    }, 5000);
+    }, 5000); */
   };
 
   $scope.print = function () {

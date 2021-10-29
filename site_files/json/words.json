@@ -15,6 +15,7 @@
     "ar": "الملف الطبي"
   },
   { "name": "admin", "en": "Admin", "ar": "المسئول" },
+  { "name": "free", "en": "Free", "ar": "مجاني" },
 
   {
     "name": "old_price",

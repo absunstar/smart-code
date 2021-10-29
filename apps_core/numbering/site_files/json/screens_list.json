@@ -834,6 +834,13 @@
     },
     {
         "category": "general_setting",
+        "feature": "medical",
+        "name": "visit_sources",
+        "en": "Visits Sources",
+        "ar": "مصادر الزيارات"
+    },
+    {
+        "category": "general_setting",
         "feature": "public",
         "name": "nationalities",
         "en": "Nationalities",

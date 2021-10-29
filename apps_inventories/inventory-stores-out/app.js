@@ -76,7 +76,26 @@ module.exports = function init(site) {
     compress: false,
   });
 
+  // site.get({
+  //   name: "show-invoice",
+  //   path: __dirname + "/site_files/html/invoice.html",
+  //   parser: "html",
+  //   compress: false,
+  //   public : true
+  // });
+
   site.post("/api/stores_out/add", (req, res) => {
+
+    // let $items = site.connectCollection({
+    //   db : 'test',
+    //   collection : 'item2'
+    // })
+
+    // $items.findMany({} , (err , docs)=>{
+      
+    // })
+
+
     let response = {};
     response.done = false;
 

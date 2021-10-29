@@ -10,6 +10,11 @@
         "ar": "حجز كشف"
     },
     {
+        "name": "must_pay_full_price_examination",
+        "en": "Must Pay the full price of the Examination",
+        "ar": "يجب دفع سعر الحجز كاملا"
+    },
+    {
         "name": "place_examination",
         "en": "Place examination",
         "ar": "مكان الحجز"

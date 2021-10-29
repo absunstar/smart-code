@@ -1,0 +1,14 @@
+[
+    {"name" : "visit_sources_informations" , "en" : "Visit Source Informations" , "ar" : "بيانات مصدر زيارة"},
+    {"name" : "visit_sources" , "en" : "Visit Sources" , "ar" : " مصادر الزيارات"},
+    {"name" : "visit_sources_menus" , "en" : "Visits Sources Menu" , "ar" : "قائمة مصادر الزيارات"},
+    {"name" : "visit_sources_code" , "en" : "Visit Source Code" , "ar" : "كود مصدر زيارة"},
+    {"name" : "visit_source" , "en" : "Visit Source" , "ar" : "مصدر زيارة"},
+    {"name" : "visit_sources_name" , "en" : "Visit Source NAme" , "ar" : "إسم مصدر زيارة"},
+    {"name" : "visit_sources_new" , "en" : "New Visit Source" , "ar" : "مصدر زيارة جديد"},
+    {"name" : "visit_sources_details" , "en" : "Visit Source Details" , "ar" : "تفاصيل مصدر زيارة"},
+    {"name" : "visit_sources_update" , "en" : "Edit Visit Source" , "ar" : "تعديل مصدر زيارة"},
+    {"name" : "visit_sources_delete" , "en" : "Delte Visit Source" , "ar" : "حذف مصدر زيارة"},
+    {"name" : "visit_sources_add_name" , "en" : "Add Visit Source" , "ar" : "إضافة مصدر زيارة"}
+
+]

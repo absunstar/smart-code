@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "visit_sources_admin",
+    "en": "Visits Sources Admin",
+    "ar": "إدارة مصادر الزيارات",
+    "permissions": ["visit_sources_manage"]
+}]

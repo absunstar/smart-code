@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="visit_sources_ui || visit_sources_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+    <div id="main-layout" class="container loaded">
+        <div class="row">
+            <div class="row" ng-controller="visit_sources" x-permissions="login">
+                <div x-permissions="visit_sources_add || visit_sources_manage" x-import="visit-sources/add_modal.html"></div>
+                <div x-import="visit-sources/update_modal.html"></div>
+                <div x-import="visit-sources/delete_modal.html"></div>
+                <div x-import="visit-sources/view_modal.html"></div>
+                <div x-permissions="visit_sources_search || visit_sources_manage" x-import="visit-sources/search_all_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center"> ##word.visit_sources## </h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button type="add" x-permissions="visit_sources_add || visit_sources_manage" label="##word.visit_sources_new##" ng-click="displayAddVisitSources()"></i-button>
+                    <i-button type="search" x-permissions="visit_sources_search || visit_sources_manage" label="##word.search_all##" onclick="site.showModal('#visitSourcesSearchModal')"></i-button>
+
+                    <span ng-show="busy">
+                        <span class="sr-only">Loading...</span>
+                    </span>
+                    <h3 class="bold text-center"> ##word.count## : {{count}} </h3>
+                    <br>
+                </div>
+
+                <table class="table loaded center hover bold" id="t1">
+                    <tr>
+                        <th class="not-print"> ##word.logo## </th>
+                        <th> ##word.code## </th>
+                        <th> ##word.visit_sources_name## </th>
+                        <th> ##word.status## </th>
+
+                        <th class="not-print"> ##word.actions## </th>
+                    </tr>
+                    <tr ng-repeat="c in list | orderBy : '-id'">
+                        <td class="not-print">
+                            <i-image view class="logo" ng-model="c.image_url"></i-image>
+                        </td>
+
+                        <td class="userPrint blue"> {{c.code}} </td>
+
+                        <td> {{c.name_##session.lang##}} </td>
+
+                        <td>
+                            <p ng-show="c.active == true" class="green"> ##word.active## </p>
+                            <p ng-show="c.active == false" class="red"> ##word.not_active## </p>
+                        </td>
+
+                        <td class="center not-print">
+                            <i-button type="details" x-permissions="visit_sources_view || visit_sources_manage" label="##word.details##" ng-click="displayDetailsVisitSources(c)"></i-button>
+
+                            <i-button type="update" x-permissions="visit_sources_edit || visit_sources_manage" label="##word.update##" ng-click="displayUpdateVisitSources(c)"></i-button>
+
+                            <i-button type="delete" x-permissions="visit_sources_delete || visit_sources_manage" label="##word.delete##" ng-click="displayDeleteVisitSources(c)"></i-button>
+                        </td>
+                    </tr>
+                </table>
+
+                <div class="row">
+                    <i-button x-permissions="visit_sources_print || visit_sources_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div x-import="scripts.html"></div>
+
+    <script x-permissions="login" x-import="visit-sources/index.js"></script>
+</body>
+
+</html>

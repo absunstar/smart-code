@@ -71,6 +71,16 @@
                   ng-click="displayAddCustomer()"
                 >
                 </i-button>
+
+                <i-list
+                class="col2"
+                label="##word.visit_source##"
+                ng-model="doctors_visits.visit_source"
+                items="visitSourcesList"
+                display="name_##session.lang##"
+                ng-search="_search.$visitSourcesList_search"
+              >
+              </i-list>
               </div>
 
               <div class="row">
@@ -114,6 +124,14 @@
                   label="##word.urgent_visit##"
                   ng-click="calc(doctors_visits)"
                   ng-model="doctors_visits.is_urgent_visit"
+                >
+                </i-checkbox>
+              </div>
+              <div class="row">
+                <i-checkbox
+                  label="##word.free##"
+                  ng-click="calc(doctors_visits)"
+                  ng-model="doctors_visits.free"
                 >
                 </i-checkbox>
               </div>
