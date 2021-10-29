@@ -28,7 +28,8 @@
             <a class="tab-link" x-features="pos || erp" onclick="site.showTabContent(event, '#customers_dealing')">
                 ##word.customers_dealing## </a> -->
 
-            <a class="tab-link" x-features="pos || erp || eco" onclick="site.showTabContent(event, '#officialDocuments')">
+            <a class="tab-link" x-features="pos || erp || eco"
+                onclick="site.showTabContent(event, '#officialDocuments')">
                 ##word.customers_official_documents## </a>
 
             <!-- <a class="tab-link " onclick="site.showTabContent(event, '#openingBalance')">
@@ -40,7 +41,8 @@
             <a class="tab-link " onclick="site.showTabContent(event, '#customersFiles')">
                 ##word.customers_files## </a>
 
-            <a class="tab-link" ng-hide="'##user.type##' == 'customer'" onclick="site.showTabContent(event,'#loginInformation')">
+            <a class="tab-link" ng-hide="'##user.type##' == 'customer'"
+                onclick="site.showTabContent(event,'#loginInformation')">
                 ##word.login_information##
             </a>
 
@@ -75,8 +77,8 @@
                                     ng-search="_search.$customerGroup">
                                 </i-list>
 
-                                <i-control x-features="lawyer" help-id="" class="col4"
-                                    label="##word.national_id##" ng-model="customer.national_id"></i-control>
+                                <i-control x-features="lawyer" help-id="" class="col4" label="##word.national_id##"
+                                    ng-model="customer.national_id"></i-control>
 
                                 <i-date2 x-features="lawyer || academy || school || medical"
                                     ng-model="customer.birth_date" class="col4" label="##word.birth_date##">
@@ -113,10 +115,30 @@
                                     display="##session.lang##">
                                 </i-list>
 
+
+
                                 <div class="col1"></div>
 
                                 <i-checkbox x-features="club || school || medical" class="col2" label="##word.child##"
                                     ng-model="customer.child"></i-checkbox>
+                                <br>
+                                <i-checkbox class="row" label="##word.hasContractingCompany##"
+                                    ng-model="hasContractingCompany"></i-checkbox>
+                                <div class="row" ng-show="hasContractingCompany">
+                                    <i-list help-id="" ng-search="_search.$gender_search" class="col3"
+                                        label="##word.contracting_company##" ng-model="customer.contracting_company"
+                                        items="contractingCompaniesList" display="name_##session.lang##">
+                                    </i-list>
+                                    <i-control class="col3" label="##word.workPlace##" ng-model="customer.workPlace">
+                                    </i-control>
+                                    <i-control class="col3" label="##word.contractingNumber##"
+                                        ng-model="customer.contractingNumber">
+                                    </i-control>
+                                    <div class="col3">
+                                       <label >##word.contractingImg##</label>
+                                        <i-image category="customers" ng-model="customer.contractingImg"></i-image>
+                                    </div>
+                                </div>
 
                             </div>
 
@@ -395,16 +417,17 @@
 
                             <tr ng-repeat="itm in customer.medicines_list">
 
-                                <td class="center"> 
-                                    <p ng-show="itm.add_sizes">{{itm.name_##session.lang##}} {{itm.size_##session.lang##}}</p>
+                                <td class="center">
+                                    <p ng-show="itm.add_sizes">{{itm.name_##session.lang##}}
+                                        {{itm.size_##session.lang##}}</p>
                                     <p ng-hide="itm.add_sizes">{{itm.size_##session.lang##}}</p>
                                     <p class="userPrint center">{{itm.barcode}}</p>
                                 </td>
 
                                 <td>
                                     <i-list ng-model="itm.unit" ng-search="_search.$category_item.$unit_search"
-                                    display="name_##session.lang##" space=" - " ng-change="ChangeUnitPatch(itm);" display2="barcode"
-                                        items="itm.size_units_list">
+                                        display="name_##session.lang##" space=" - " ng-change="ChangeUnitPatch(itm);"
+                                        display2="barcode" items="itm.size_units_list">
                                     </i-list>
                                 </td>
                                 <td>
@@ -437,7 +460,7 @@
                         </table>
 
                     </div>
-                  
+
                 </fieldset>
 
             </div>
@@ -575,13 +598,14 @@
                     <legend> ##word.customers_accounting_informations## </legend>
                     <div class="row">
 
-                        <i-list x-features="erp" ng-search="$ledger_account" display="name_##session.lang##" space=" - " display2="code"
-                            class="col3" items="guideAccountList" ng-model="customer.ledger_account"
+                        <i-list x-features="erp" ng-search="$ledger_account" display="name_##session.lang##" space=" - "
+                            display2="code" class="col3" items="guideAccountList" ng-model="customer.ledger_account"
                             label="##word.ledger_account##">
                         </i-list>
 
-                        <i-list x-features="erp" class="col3" label="##word.customers_currency_name##" ng-model="customer.ledger_account"
-                            disabled display="currency.name_##session.lang##" ng-search="_search.$search_currency">
+                        <i-list x-features="erp" class="col3" label="##word.customers_currency_name##"
+                            ng-model="customer.ledger_account" disabled display="currency.name_##session.lang##"
+                            ng-search="_search.$search_currency">
                         </i-list>
 
                         <i-control sign="%" class="col3" label="##word.customers_discount##"
@@ -636,7 +660,7 @@
             </div>
 
             <div id="contactAndAddress" class="tab-content">
-               
+
                 <fieldset>
                     <legend> ##word.customers_contact_informations## </legend>
                     <div class="row">
@@ -686,54 +710,56 @@
                 </fieldset>
 
                 <fieldset>
-                    <legend> ##word.customers_address_informations## 
-                        <i-button type="add default" ng-click="customer.address_list.push({longitudes:0 ,latitudes:0})"></i-button>
-                    </legend>
-                    <div class="row"  ng-repeat="adrs in customer.address_list">
-                        
-                    <div class="row">
-                        <i-list class="col3" label="##word.customers_gov##" ng-model="adrs.gov" items="govList"
-                            display="name_##session.lang##" ng-change="getCityList(adrs)"
-                            ng-search="_search.$$govNameContact">
-                        </i-list>
-
-                        <i-list class="col3" label="##word.city##" ng-model="adrs.city" items="adrs.$cityList"
-                            ng-change="getAreaList(adrs)" display="name_##session.lang##"
-                            ng-search="_search.$adrs.$city_search"></i-list>
-                        <i-list class="col3" label="##word.area##" ng-model="adrs.area" items="adrs.$areaList"
-                            display="name_##session.lang##" ng-search="_search.$adrs.$area_search"></i-list>
-                       <div class="col1"></div>
-                       <i-button type="delete" label="##word.delete##"
-                            ng-click="customer.address_list.length ===1 ||customer.address_list.splice($index,1)">
+                    <legend> ##word.customers_address_informations##
+                        <i-button type="add default" ng-click="customer.address_list.push({longitudes:0 ,latitudes:0})">
                         </i-button>
-                    </div>
+                    </legend>
+                    <div class="row" ng-repeat="adrs in customer.address_list">
 
-                    <div class="row">
-                        <i-control class="col2" type="number" label="##word.longitudes##" ng-model="adrs.longitudes">
-                        </i-control>
-                        <i-control class="col2" type="number" label="##word.latitudes##" ng-model="adrs.latitudes">
-                        </i-control>
-                        <i-control class="col6" label="##word.customers_address##" ng-model="adrs.address">
-                        </i-control>
-                        
+                        <div class="row">
+                            <i-list class="col3" label="##word.customers_gov##" ng-model="adrs.gov" items="govList"
+                                display="name_##session.lang##" ng-change="getCityList(adrs)"
+                                ng-search="_search.$$govNameContact">
+                            </i-list>
+
+                            <i-list class="col3" label="##word.city##" ng-model="adrs.city" items="adrs.$cityList"
+                                ng-change="getAreaList(adrs)" display="name_##session.lang##"
+                                ng-search="_search.$adrs.$city_search"></i-list>
+                            <i-list class="col3" label="##word.area##" ng-model="adrs.area" items="adrs.$areaList"
+                                display="name_##session.lang##" ng-search="_search.$adrs.$area_search"></i-list>
+                            <div class="col1"></div>
+                            <i-button type="delete" label="##word.delete##"
+                                ng-click="customer.address_list.length ===1 ||customer.address_list.splice($index,1)">
+                            </i-button>
+                        </div>
+
+                        <div class="row">
+                            <i-control class="col2" type="number" label="##word.longitudes##"
+                                ng-model="adrs.longitudes">
+                            </i-control>
+                            <i-control class="col2" type="number" label="##word.latitudes##" ng-model="adrs.latitudes">
+                            </i-control>
+                            <i-control class="col6" label="##word.customers_address##" ng-model="adrs.address">
+                            </i-control>
+
+                        </div>
+                        <div class="row">
+                            <i-control class="col2" label="##word.streetName##" ng-model="adrs.streetName">
+                            </i-control>
+                            <i-control class="col2" label="##word.buildingNumber##" ng-model="adrs.buildingNumber">
+                            </i-control>
+                            <i-control class="col2" label="##word.role##" ng-model="adrs.role">
+                            </i-control>
+                            <i-control class="col2" label="##word.apartmentNumber##" ng-model="adrs.apartmentNumber">
+                            </i-control>
+                            <i-control class="col4" label="##word.specialMark##" ng-model="adrs.specialMark">
+                            </i-control>
+
+                        </div>
+                        <br>
+                        <hr style="height:5px;color:grey;background-color:rgb(0, 0, 199)">
+                        <br>
                     </div>
-                    <div class="row">
-                        <i-control class="col2"  label="##word.streetName##" ng-model="adrs.streetName">
-                        </i-control>
-                        <i-control class="col2"  label="##word.buildingNumber##" ng-model="adrs.buildingNumber">
-                        </i-control>
-                        <i-control class="col2" label="##word.role##" ng-model="adrs.role">
-                        </i-control>
-                        <i-control class="col2" label="##word.apartmentNumber##" ng-model="adrs.apartmentNumber">
-                        </i-control>
-                        <i-control class="col4" label="##word.specialMark##" ng-model="adrs.specialMark">
-                        </i-control>
-                        
-                    </div>
-                    <br>
-                    <hr style="height:5px;color:grey;background-color:rgb(0, 0, 199)">
-                    <br>
-                </div>
 
                 </fieldset>
 
@@ -926,7 +952,7 @@
                     <div class="row">
                         <i ng-show="!customer.username" class="grayDark bold">{{email_examble}}</i>
                         <i ng-show="customer.username" class="grayDark bold">{{customer.username}}</i>
-                        <p  class="grayDark bold">host : {{host}}</p>
+                        <p class="grayDark bold">host : {{host}}</p>
                     </div>
 
                 </fieldset>

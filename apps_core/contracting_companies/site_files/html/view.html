@@ -1,0 +1,35 @@
+<div ng-hide="busy" class="row">
+    <div id="basicInformation" class="">
+        <fieldset>
+            <legend> ##word.basic_information##</legend>
+            <div class="col9">
+                <table id="basicInformationTable" class="table hover bold">
+
+                    <tr>
+                        <td class="title">##word.code##</td>
+                        <td class="center userPrint blue">{{contracting_company.code}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.name##</td>
+                        <td class="center">{{contracting_company.name_##session.lang##}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.status##</td>
+                        <td ng-show="contracting_company.active == true" class="green center"> ##word.active## </td>
+                        <td ng-show="contracting_company.active == false" class="red center"> ##word.not_active## </td>
+                    </tr>
+
+                </table>
+            </div>
+
+            <div class="col3">
+                <i-image view ng-model="contracting_company.image_url"></i-image>
+            </div>
+
+        </fieldset>
+    </div>
+</div>
+
+<div x-import="contracting_companies/action_info.html"></div>

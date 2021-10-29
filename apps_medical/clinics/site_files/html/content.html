@@ -38,6 +38,13 @@
 
       <a
         class="tab-link"
+        onclick="site.showTabContent(event,'#contractingCompaniesIngormations')"
+      >
+        ##word.contracting_companies##
+      </a>
+
+      <a
+        class="tab-link"
         onclick="site.showTabContent(event,'#loginInformation')"
       >
         ##word.login_information##
@@ -550,6 +557,188 @@
           </div>
         </fieldset>
       </div>
+
+
+
+      <div id="contractingCompaniesIngormations" class="tab-content">
+        <fieldset>
+          <legend>
+            <i-button
+              type="add default"
+              ng-click="clinic.contracting_company_list.push({})"
+            ></i-button>
+            ##word.basic_information##
+          </legend>
+
+          <div class="row">
+            <div class="row" ng-repeat="doctor in clinic.contracting_company_list">
+              <br />
+              <div class="row">
+                <i-list
+                  help-id=""
+                  v="r"
+                  class="col3"
+                  label="##word.contracting_company##"
+                  ng-model="doctor.contracting_company"
+                  items="contractingCompanyList"
+                  display="name_##session.lang##"
+                  ng-search="_search.$branch_doctors"
+                ></i-list>
+
+
+                <i-button
+                  type="delete default"
+                  ng-click="clinic.contracting_company_list.length ===1 || clinic.contracting_company_list.splice($index,1)"
+                >
+                </i-button>
+              </div>
+
+              <div class="row">
+                <i-control
+                  type="number"
+                  class="col2"
+                  label="##word.detection_price##"
+                  ng-model="doctor.detection_price.detection"
+                ></i-control>
+
+                <i-control
+                  type="number"
+                  class="col2"
+                  label="##word.re_detection##"
+                  ng-model="doctor.detection_price.re_detection"
+                ></i-control>
+
+                <i-control
+                  type="number"
+                  class="col2"
+                  label="##word.consultation##"
+                  ng-model="doctor.detection_price.consultation"
+                ></i-control>
+
+                <i-control
+                  type="number"
+                  class="col2"
+                  label="##word.session##"
+                  ng-model="doctor.detection_price.session"
+                ></i-control>
+
+                <!-- <i-control type="number" class="col2" label="##word.external_visit##"
+                                    ng-model="doctor.detection_price.external_visit"></i-control> -->
+              </div>
+              <div class="row">
+                <div class="col4">
+                  <div class="row">
+                    <i-control
+                      type="number"
+                      class="col6"
+                      label="##word.increase_urgent_visit##"
+                      ng-model="doctor.detection_price.urgent_visit.price"
+                    ></i-control>
+                    <div class="col1"></div>
+
+                    <div class="col5 center">
+                      <div class="row">
+                        <i-radio
+                          ng-model="doctor.detection_price.urgent_visit.type"
+                          label="##word.amount##"
+                          ng-value="number"
+                          type="radio"
+                        >
+                        </i-radio>
+                      </div>
+                      <div class="row">
+                        <i-radio
+                          ng-model="doctor.detection_price.urgent_visit.type"
+                          label="##word.percent##"
+                          ng-value="percent"
+                          type="radio"
+                        >
+                        </i-radio>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col4">
+                  <div class="row">
+                    <i-control
+                      type="number"
+                      class="col6"
+                      label="##word.at_home##"
+                      ng-model="doctor.detection_price.at_home.price"
+                    ></i-control>
+                    <div class="col1"></div>
+
+                    <div class="col5 center">
+                      <div class="row">
+                        <i-radio
+                          ng-model="doctor.detection_price.at_home.type"
+                          label="##word.amount##"
+                          ng-value="number"
+                          type="radio"
+                        >
+                        </i-radio>
+                      </div>
+                      <div class="row">
+                        <i-radio
+                          ng-model="doctor.detection_price.at_home.type"
+                          label="##word.percent##"
+                          ng-value="percent"
+                          type="radio"
+                        >
+                        </i-radio>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col4">
+                  <div class="row">
+                    <i-control
+                      type="number"
+                      class="col6"
+                      label="##word.online##"
+                      ng-model="doctor.detection_price.online.price"
+                    ></i-control>
+                    <div class="col1"></div>
+
+                    <div class="col5 center">
+                      <div class="row">
+                        <i-radio
+                          ng-model="doctor.detection_price.online.type"
+                          label="##word.amount##"
+                          ng-value="number"
+                          type="radio"
+                        >
+                        </i-radio>
+                      </div>
+                      <div class="row">
+                        <i-radio
+                          ng-model="doctor.detection_price.online.type"
+                          label="##word.percent##"
+                          ng-value="percent"
+                          type="radio"
+                        >
+                        </i-radio>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <br />
+              <br />
+              <hr
+                style="
+                  height: 5px;
+                  color: grey;
+                  background-color: rgb(0, 0, 199);
+                "
+              />
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+
+
 
       <div id="nursingInformation" class="tab-content">
         <fieldset>

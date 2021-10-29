@@ -1,0 +1,41 @@
+[{
+        "name": "contracting_companies",
+        "en": "contracting companies",
+        "ar": "شركات التعاقد"
+    },
+    {
+        "name": "contracting_companies_new",
+        "en": "New Contracting Companies",
+        "ar": "شركة تعاقد جديدة"
+    },
+
+    {
+        "name": "goves_add",
+        "en": "Add Gov",
+        "ar": "إضافة محافظة "
+    },
+    {
+        "name": "goves_edit",
+        "en": "Edit Gov",
+        "ar": "تعديل محافظة "
+    },
+    {
+        "name": "goves_details",
+        "en": "Gov Details",
+        "ar": "تفاصيل المحافظة "
+    },
+    {
+        "name": "goves_delete",
+        "en": "Delete Gov",
+        "ar": "حذف محافظة "
+    },
+    {
+        "name": "goves_name",
+        "en": "Gov Name",
+        "ar": "إسم المحافظة "
+    }
+
+
+
+
+]

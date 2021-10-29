@@ -37,6 +37,11 @@
         "name": "doctors_name",
         "en": "Doctor Name",
         "ar": "إسم الطبيب "
+    },
+    {
+        "name":"loginFirst",
+        "en":"please login first",
+        "ar":"برجاء تسجيل الدخول اولا"
     }
 
 

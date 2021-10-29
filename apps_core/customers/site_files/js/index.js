@@ -493,6 +493,36 @@ app.controller("customers", function ($scope, $http, $timeout) {
     );
   };
 
+
+
+  $scope.getContractingCompaniesList = function (where) {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/contracting_companies/all",
+      data: {
+        where: {
+          active: true,
+        },
+        select: { id: 1, name_ar: 1, name_en: 1, code: 1 },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.contractingCompaniesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+
+
+
   $scope.getCityList = function (adrs) {
     if (adrs.gov) {
       $scope.busy = true;
@@ -995,6 +1025,8 @@ app.controller("customers", function ($scope, $http, $timeout) {
   $scope.getCustomerGroupList();
   $scope.Gender();
   $scope.getGovList();
+  $scope.getContractingCompaniesList();
+  
   $scope.getBloodType();
   $scope.getNationalitiesList();
   $scope.loadMaritalsStatus();
