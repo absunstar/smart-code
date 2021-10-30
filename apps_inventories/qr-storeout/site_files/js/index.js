@@ -98,6 +98,7 @@ app.controller('qr_storeout', function ($scope, $http, $timeout) {
         if (response.data.done) {
           response.data.doc.date = new Date(response.data.doc.date);
           $scope.store_out = response.data.doc;
+
           if ($scope.store_out.currency) {
             site.strings['currency'] = {
               ar: ' ' + $scope.store_out.currency.name_ar + ' ',
@@ -108,8 +109,8 @@ app.controller('qr_storeout', function ($scope, $http, $timeout) {
               en: ' ' + $scope.store_out.currency.minor_currency_en + ' ',
             };
             $scope.store_out.net_txt = site.stringfiy($scope.store_out.net_value);
-            $scope.thermal = { ...$scope.store_out };
           }
+          $scope.getDefaultSettings($scope.store_out);
         } else {
           $scope.error = response.data.error;
         }
@@ -120,20 +121,25 @@ app.controller('qr_storeout', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getDefaultSettings = function () {
+  $scope.getDefaultSettings = function (store_out) {
     $scope.error = '';
     $scope.busy = true;
     $http({
       method: 'POST',
       url: '/api/default_setting/get',
-      data: {},
+      data: {
+        company: store_out.company,
+        branch: store_out.branch,
+      },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.doc) {
           $scope.defaultSettings = response.data.doc;
           $scope.invoice_logo = document.location.origin + $scope.defaultSettings.printer_program.invoice_logo;
-          $scope.view();
+          $scope.thermal = { ...store_out };
+          JsBarcode('.barcode', $scope.thermal.code);
+
         }
       },
       function (err) {
@@ -142,5 +148,5 @@ app.controller('qr_storeout', function ($scope, $http, $timeout) {
       }
     );
   };
-  $scope.getDefaultSettings();
+  $scope.view();
 });

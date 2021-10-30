@@ -36,8 +36,14 @@ module.exports = function init(site) {
 
     let where = req.data.where || {};
 
-    where['company.id'] = site.get_company(req).id
-    where['branch.code'] = site.get_branch(req).code
+    if(req.data.company){
+      where['company.id'] = req.data.company.id
+      where['branch.id'] = req.data.branch.id
+    } else {
+      
+      where['company.id'] = site.get_company(req).id
+      where['branch.code'] = site.get_branch(req).code
+    }
 
     $default_setting.find({
       where: where
