@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  data-ng-app="myApp"
+>
+  <head x-import="head.html">
+    <link
+      rel="stylesheet"
+      href="/css/order_invoice.css?v=##site.options.version##"
+    />
+  </head>
+
+  <body class="##session.lang##">
+    <nav
+      x-import="sitebar/index.html"
+      class="sitebar"
+      data-ng-controller="sitebar"
+    ></nav>
+
+    <nav
+      class="sitebottom"
+      x-import="sitebottom/index.html"
+      ng-controller="sitebottom"
+    ></nav>
+
+    <div id="main-layout" class="container loaded">
+      <div class="row">
+        <div class="row" ng-controller="qr_storeout">
+
+          <!--  <div class="row">
+            <h1 class="bold text-center">##word.qr_storeout##</h1>
+          </div> -->
+
+          <div class="top-actions">
+            <span ng-show="busy">
+              <span class="sr-only">Loading...</span>
+            </span>
+          </div>
+          <div x-import="qr-storeout/thermal_print.html"></div>
+          <div
+            x-import="qr-storeout/a4_print.html"
+          ></div>
+
+        </div>
+
+      </div>
+    </div>
+    <div x-import="scripts.html"></div>
+
+    <script x-import="qr-storeout/index.js"></script>
+  </body>
+</html>

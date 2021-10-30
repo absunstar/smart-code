@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "qr_storeout_admin",
+    "en": "QR Code Invoice Admin",
+    "ar": "إدارة رمز إستجابة الفاتورة",
+    "permissions": ["qr_storeout_manage"]
+}]
