@@ -153,7 +153,6 @@ module.exports = function init(site) {
                   else if (stores_out_doc.type.id == 5) num_obj.screen = 'damage_store';
                   else if (stores_out_doc.type.id == 6) num_obj.screen = 'return_sales_store';
 
-                  console.log(num_obj);
                   let cb = site.getNumbering(num_obj);
                   if (!stores_out_doc.code && !cb.auto) {
                     response.error = 'Must Enter Code';

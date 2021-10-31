@@ -4,9 +4,9 @@ module.exports = function init(site) {
   const $items_col = site.connectCollection({
     db: 'test',
     collection: 'item2',
-    identity : {
-      enabled : false
-    }
+    identity: {
+      enabled: false,
+    },
   });
   site.on('[transfer_branch][stores_items][add_balance]', (obj, callback, next) => {
     // console.log(new Date().getTime() + ' : [transfer_branch][stores_items][add_balance]')
@@ -1421,13 +1421,122 @@ module.exports = function init(site) {
           colDoc.forEach((_colDoc) => {
             itemsGropsList.push({ name_en: _colDoc.category_name_en, name_ar: _colDoc.category_name_ar });
           });
-          // function onlyUnique(value, index, self) {
-          //   return self.indexOf(value) === index;
-          // }
+          function onlyUnique(value, index, self) {
+            return self.indexOf(value) === index;
+          }
 
-          // let itemsGropsListUnique = itemsGropsList.filter(onlyUnique);
+          let itemsGropsListUnique = itemsGropsList.filter(onlyUnique);
+
+          itemsGropsListUnique.forEach((_itemGroup, i) => {
+            $items_group.add({
+              name_en: _itemGroup.category_name_en,
+              name_ar: _itemGroup.category_name_ar,
+              code: i + 1,
+            });
+          });
+          $items_group.findMany(
+            {
+              where: {},
+              sort: req.body.sort || { id: -1 },
+            },
+            (err, itemsGroupsDoc) => {
+              colDoc.forEach((_colDoc, i) => {
+                let itemGroup = itemsGroupsDoc.find((_iG) => {
+                  return _iG.name_en === _colDoc.category_name_en;
+                });
+
+                $stores_items.add({
+                  image_url: '/images/category_item.png',
+                  allow_sell: true,
+                  allow_buy: true,
+                  is_pos: true,
+                  with_discount: false,
+                  item_type: {
+                    id: 1,
+                    name: 'store_item',
+                    en: 'Store Item',
+                    ar: 'صنف مخزني',
+                  },
+                  main_unit: unitsList[0],
+                  name_en: _colDoc.name_en,
+                  name_ar: _colDoc.name_ar,
+                  item_group: itemGroup,
+                  units_list: [
+                    {
+                      id: unitsList[0].id,
+                      name_ar: unitsList[0].name_ar,
+                      name_en: unitsList[0].name_en,
+                      convert: 1,
+                      start_count: 0,
+                      cost: 0,
+                      price: _colDoc.price,
+                      average_cost: 0,
+                      discount: {
+                        value: 0,
+                        max: 0,
+                        type: 'number',
+                      },
+                      barcode: _colDoc.barocde,
+                    },
+                  ],
+                  sizes: [
+                    {
+                      cost: 0,
+                      price: _colDoc.price,
+                      discount: {
+                        value: 0,
+                        max: 0,
+                        type: 'number',
+                      },
+                      image_url: '/images/item_sizes.png',
+                      barcode: _colDoc.barocde,
+                      size_ar: _colDoc.name_ar,
+                      size_en: _colDoc.name_en,
+                      start_count: 0,
+                      current_count: 0,
+                      total_sell_price: 0,
+                      total_sell_count: 0,
+                      total_buy_cost: 0,
+                      total_buy_count: 0,
+                      size_units_list: [
+                        {
+                          id: unitsList[0].id,
+                          name_ar: unitsList[0].name_ar,
+                          name_en: unitsList[0].name_en,
+                          convert: 1,
+                          start_count: 0,
+                          cost: 0,
+                          price: _colDoc.price,
+                          average_cost: 0,
+                          discount: {
+                            value: 0,
+                            max: 0,
+                            type: 'number',
+                          },
+                          barcode: _colDoc.barocde,
+                        },
+                      ],
+                      item_type: {
+                        id: 1,
+                        name: 'store_item',
+                        en: 'Store Item',
+                        ar: 'صنف مخزني',
+                      },
+                    },
+                  ],
+                  company: site.get_company(req),
+                  branch: site.get_branch(req),
+                  add_user_info: site.security.getUserFinger({
+                    $req: req,
+                    $res: res,
+                  }),
+                  code: i + 1,
+                });
+              });
+            }
+          );
+
           console.log(itemsGropsList);
-          // $items_group.add(customer, (err, doc1) => {});
         }
       );
     });
