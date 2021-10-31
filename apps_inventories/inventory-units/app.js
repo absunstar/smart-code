@@ -212,6 +212,7 @@ module.exports = function init(site) {
   })
 
 
+
   site.post("/api/units/all", (req, res) => {
     let response = {
       done: false
@@ -279,5 +280,20 @@ module.exports = function init(site) {
     );
   });
 
+  site.getUnits = function (whereObj, callback) {
+    callback = callback || {};
+    let where = whereObj || {};
+    where['company.id'] = site.get_company(req).id
+    $units.findMany(
+      {
+        where: where,
+        sort: { id: -1 },
+      },
+      (err, docs) => {
+        if (!err && docs) callback(docs);
+        else callback(false);
+      }
+    );
+  };
 
 }

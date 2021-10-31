@@ -73,24 +73,7 @@ module.exports = function init(site) {
     compress: false,
   });
 
-  // site.get({
-  //   name: "show-invoice",
-  //   path: __dirname + "/site_files/html/invoice.html",
-  //   parser: "html",
-  //   compress: false,
-  //   public : true
-  // });
-
   site.post('/api/stores_out/add', (req, res) => {
-    // let $items = site.connectCollection({
-    //   db : 'test',
-    //   collection : 'item2'
-    // })
-
-    // $items.findMany({} , (err , docs)=>{
-
-    // })
-
     let response = {};
     response.done = false;
 
@@ -164,10 +147,13 @@ module.exports = function init(site) {
                     company: site.get_company(req),
                     date: new Date(stores_out_doc.date),
                   };
-                  if (stores_out_doc.type.id == 3) num_obj.screen = 'sales_invoices_store';
-                  else if (stores_out_doc.type.id == 4) num_obj.screen = 'o_screen_store';
+
+                  if (stores_out_doc.type.id == 3 || stores_out_doc.type.id == 4) num_obj.screen = 'sales_invoices_store';
+                  // else if (stores_out_doc.type.id == 4) num_obj.screen = 'o_screen_store';
                   else if (stores_out_doc.type.id == 5) num_obj.screen = 'damage_store';
                   else if (stores_out_doc.type.id == 6) num_obj.screen = 'return_sales_store';
+
+                  console.log(num_obj);
                   let cb = site.getNumbering(num_obj);
                   if (!stores_out_doc.code && !cb.auto) {
                     response.error = 'Must Enter Code';

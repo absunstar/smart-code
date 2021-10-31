@@ -1888,6 +1888,26 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     )
   };
 
+  $scope.getItemsCollection = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/stores_items/getcollection"
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+
   $scope.getDefaultSetting();
   $scope.loadStores();
   $scope.loadItemsGroups();

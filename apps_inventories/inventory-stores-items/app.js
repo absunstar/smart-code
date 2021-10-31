@@ -1,6 +1,13 @@
 module.exports = function init(site) {
   const $stores_items = site.connectCollection('stores_items');
-
+  const $items_group = site.connectCollection('items_group');
+  const $items_col = site.connectCollection({
+    db: 'test',
+    collection: 'item2',
+    identity : {
+      enabled : false
+    }
+  });
   site.on('[transfer_branch][stores_items][add_balance]', (obj, callback, next) => {
     // console.log(new Date().getTime() + ' : [transfer_branch][stores_items][add_balance]')
 
@@ -1380,8 +1387,8 @@ module.exports = function init(site) {
           response.done = true;
 
           docs.forEach((_docs) => {
-            _docs.company = company
-            _docs.branch = branch
+            _docs.company = company;
+            _docs.branch = branch;
             _docs.sizes.forEach((_size) => {
               _size.branches_list = [];
             });
@@ -1393,6 +1400,68 @@ module.exports = function init(site) {
         res.json(response);
       }
     );
+  });
+
+  site.post('/api/stores_items/getcollection', (req, res) => {
+    let response = {
+      done: false,
+    };
+
+    site.getUnits({}, (unitsList) => {
+      $items_col.findMany(
+        {
+          where: {},
+          sort: req.body.sort || {
+            id: -1,
+          },
+        },
+        (err, colDoc) => {
+          console.log(colDoc);
+          let itemsGropsList = [];
+          colDoc.forEach((_colDoc) => {
+            itemsGropsList.push({ name_en: _colDoc.category_name_en, name_ar: _colDoc.category_name_ar });
+          });
+          // function onlyUnique(value, index, self) {
+          //   return self.indexOf(value) === index;
+          // }
+
+          // let itemsGropsListUnique = itemsGropsList.filter(onlyUnique);
+          console.log(itemsGropsList);
+          // $items_group.add(customer, (err, doc1) => {});
+        }
+      );
+    });
+
+    let where = req.body.where || {};
+    let company = site.get_company(req);
+    let branch = site.get_branch(req);
+
+    // $stores_items.findMany(
+    //   {
+    //     select: req.body.select || {},
+    //     where: where,
+    //     sort: req.body.sort || {
+    //       id: -1,
+    //     },
+    //   },
+    //   (err, docs) => {
+    //     if (!err) {
+    //       response.done = true;
+
+    //       docs.forEach((_docs) => {
+    //         _docs.company = company;
+    //         _docs.branch = branch;
+    //         _docs.sizes.forEach((_size) => {
+    //           _size.branches_list = [];
+    //         });
+    //         $stores_items.update(_docs);
+    //       });
+    //     } else {
+    //       response.error = err.message;
+    //     }
+    //     res.json(response);
+    //   }
+    // );
   });
 
   site.post('/api/stores_items/V_S_barcodes', (req, res) => {

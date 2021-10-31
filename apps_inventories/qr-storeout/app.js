@@ -4,7 +4,8 @@ module.exports = function init(site) {
     name: "qr_storeout",
     path: __dirname + "/site_files/html/index.html",
     parser: "html",
-    compress: true
+    compress: true,
+    public : true
   })
 
   site.get({
