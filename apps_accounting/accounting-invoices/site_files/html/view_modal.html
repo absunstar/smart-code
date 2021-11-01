@@ -17,8 +17,11 @@
         </div>
         <h2 class="error"> {{error}} </h2>
         <div class="modal-footer center">
-
-            <i-button class="not-print" label="##word.print##" type="print " ng-click="printAccountInvoive(account_invoices)"></i-button>
+            <!-- <i-button x-permissions="account_invoices_print || account_invoices_manage" label="##word.thermal_print##"
+            ng-click="thermalPrint(account_invoices)"></i-button> -->
+            <i-button type="print" x-permissions="account_invoices_print || account_invoices_manage" label="##word.print##"
+            ng-click="print()"></i-button>
+            <!-- <i-button class="not-print" label="##word.print##" type="print " ng-click="printAccountInvoive(account_invoices)"></i-button> -->
             <i-button type="close" label="##word.close##" onclick="site.hideModal('#accountInvoicesDetailsModal')"></i-button>
 <!--             <i-button class="not-print" label="##word.print##" type="print " onclick="site.print('#accountInvoicesDetailsModal')"></i-button>
  -->        </div>

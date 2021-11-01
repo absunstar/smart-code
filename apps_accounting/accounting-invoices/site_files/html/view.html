@@ -271,7 +271,7 @@
                                     <td class="center userPrint">{{c.barcode}}</td>
                                     <td class="center blue">{{c.count}}</td>
                                     <td class="center">
-                                        <p ng-show="account_invoices.source_type.id ==2 || account_invoices.source_type.id ==3">{{c.b_price}}</p>
+                                        <p ng-show="account_invoices.source_type.id ==2 || account_invoices.source_type.id ==3 || || account_invoices.source_type.id ==8">{{c.b_price}}</p>
                                         <p ng-show="account_invoices.source_type.id ==1">{{c.b_cost}}</p>
                                         <del class="red txt16" ng-show="c.discount.value > 0">
                                             {{c.discount.current}}

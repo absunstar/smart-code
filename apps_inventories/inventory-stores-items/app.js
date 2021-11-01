@@ -1407,7 +1407,7 @@ module.exports = function init(site) {
       done: false,
     };
 
-    site.getUnits({}, (unitsList) => {
+    site.getUnits(req, (unitsList) => {
       $items_col.findMany(
         {
           where: {},
@@ -1416,21 +1416,16 @@ module.exports = function init(site) {
           },
         },
         (err, colDoc) => {
-          console.log(colDoc);
           let itemsGropsList = [];
           colDoc.forEach((_colDoc) => {
-            itemsGropsList.push({ name_en: _colDoc.category_name_en, name_ar: _colDoc.category_name_ar });
+            let found = itemsGropsList.some((_itemG) => _itemG.name_en === _colDoc.category_name_en);
+            if (!found) itemsGropsList.push({ name_en: _colDoc.category_name_en, name_ar: _colDoc.category_name_ar });
           });
-          function onlyUnique(value, index, self) {
-            return self.indexOf(value) === index;
-          }
 
-          let itemsGropsListUnique = itemsGropsList.filter(onlyUnique);
-
-          itemsGropsListUnique.forEach((_itemGroup, i) => {
+          itemsGropsList.forEach((_itemGroup, i) => {
             $items_group.add({
-              name_en: _itemGroup.category_name_en,
-              name_ar: _itemGroup.category_name_ar,
+              name_en: _itemGroup.name_en,
+              name_ar: _itemGroup.name_ar,
               code: i + 1,
             });
           });
@@ -1535,42 +1530,10 @@ module.exports = function init(site) {
               });
             }
           );
-
-          console.log(itemsGropsList);
         }
       );
     });
 
-    let where = req.body.where || {};
-    let company = site.get_company(req);
-    let branch = site.get_branch(req);
-
-    // $stores_items.findMany(
-    //   {
-    //     select: req.body.select || {},
-    //     where: where,
-    //     sort: req.body.sort || {
-    //       id: -1,
-    //     },
-    //   },
-    //   (err, docs) => {
-    //     if (!err) {
-    //       response.done = true;
-
-    //       docs.forEach((_docs) => {
-    //         _docs.company = company;
-    //         _docs.branch = branch;
-    //         _docs.sizes.forEach((_size) => {
-    //           _size.branches_list = [];
-    //         });
-    //         $stores_items.update(_docs);
-    //       });
-    //     } else {
-    //       response.error = err.message;
-    //     }
-    //     res.json(response);
-    //   }
-    // );
   });
 
   site.post('/api/stores_items/V_S_barcodes', (req, res) => {

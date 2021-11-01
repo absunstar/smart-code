@@ -159,7 +159,13 @@
                         </td>
                     </tr>
                 </table>
-
+                <div x-import="accounting-invoices/thermal_print.html"></div>
+                <div
+                class="hidden"
+                id="accountInvoiceDetails"
+                x-import="accounting-invoices/a4_print.html"
+              ></div>
+    
                 <div class="row">
                     <i-button x-permissions="account_invoices_print || account_invoices_manage" type="print"
                         label="##word.print##" onclick="site.print('#t1')"></i-button>

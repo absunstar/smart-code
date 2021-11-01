@@ -280,9 +280,9 @@ module.exports = function init(site) {
     );
   });
 
-  site.getUnits = function (whereObj, callback) {
+  site.getUnits = function (req, callback) {
     callback = callback || {};
-    let where = whereObj || {};
+    let where = {};
     where['company.id'] = site.get_company(req).id
     $units.findMany(
       {
