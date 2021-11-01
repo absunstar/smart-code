@@ -1426,6 +1426,8 @@ module.exports = function init(site) {
             $items_group.add({
               name_en: _itemGroup.name_en,
               name_ar: _itemGroup.name_ar,
+              company: site.get_company(req),
+              branch: site.get_branch(req),
               code: i + 1,
             });
           });

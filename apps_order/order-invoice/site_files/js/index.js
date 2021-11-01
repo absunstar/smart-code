@@ -605,7 +605,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
                         });
                     });
 
-                  if (
+                  if ( 
                     _size.barcode === $scope.search_barcode ||
                     _size.size_units_list[indxUnit].barcode ===
                       $scope.search_barcode
@@ -634,6 +634,11 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
               $scope.search_barcode = "";
             }
+            document.getElementById('searchBarcode').focus()
+         /*    $timeout(() => {
+              document.querySelector("#search_barcode input").focus();
+              console.log("aaaaaaaaaaaaaaaa");
+            }, 200); */
           } else {
             $scope.error = response.data.error;
           }
@@ -1486,6 +1491,7 @@ app.controller("order_invoice", function ($scope, $http, $timeout) {
 
   $scope.getDeliveryEmployeesList = function () {
     $scope.error = "";
+    $scope.deliveryEmployeesList = [];
     $scope.busy = true;
     $http({
       method: "POST",

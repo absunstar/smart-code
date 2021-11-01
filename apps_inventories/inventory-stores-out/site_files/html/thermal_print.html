@@ -38,8 +38,13 @@
   <br />
 
   <div class="row">
-    <h2 class="black bold">##word.date## : {{thermal.date |date:"dd - MM - yyyy" }}</h2>
-    <h2 class="black bold">##word.time## : {{thermal.date |date:"mm : hh" }}</h2>
+    <div class="col6">
+      <b class="black">##word.date## : {{thermal.date |date:"dd - MM - yyyy" }} </b>
+    </div>
+    <div class="col2"></div>
+    <div class="col4">
+      <b class="black">##word.time## : {{thermal.date |date:"hh : mm" }} </b>
+    </div>
   </div>
 
   <br />

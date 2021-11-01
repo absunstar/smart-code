@@ -1273,7 +1273,7 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
             }
             $timeout(() => {
               document.querySelector('#search_barcode input').focus();
-            }, 100);
+            }, 200);
           } else {
             $scope.error = response.data.error;
           }
