@@ -204,6 +204,8 @@ app.controller('order_invoice', function ($scope, $http, $timeout) {
             if ($scope.defaultSettings.general_Settings.customer.mobile) $scope.order_invoice.customer_mobile = $scope.defaultSettings.general_Settings.customer.mobile;
           }
         }
+        document.querySelector('#searchBarcode input').focus();
+
       } else {
         $scope.error = '##word.open_shift_not_found##';
       }
@@ -387,6 +389,8 @@ app.controller('order_invoice', function ($scope, $http, $timeout) {
               if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto && $scope.order_invoice.status.id == 2 && !$scope.order_invoice.invoice) {
                 $scope.displayAccountInvoice($scope.order_invoice);
               }
+            document.querySelector('#searchBarcode input').focus();
+
             },
             function (err) {
               console.log(err);
@@ -730,6 +734,8 @@ app.controller('order_invoice', function ($scope, $http, $timeout) {
           $scope.count = response.data.count;
           site.hideModal('#OrderInvoiceSearchModal');
           $scope.search = {};
+          document.querySelector('#searchBarcode input').focus();
+
         }
       },
       function (err) {
