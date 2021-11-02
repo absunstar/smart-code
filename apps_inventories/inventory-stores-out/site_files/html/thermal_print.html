@@ -6,25 +6,25 @@
   <div class="row">
     <div class="center">
       <div class="row">
-        <h1 ng-show="'##session.lang##' == 'ar'" class="black center  ">##session.company.name_ar##</h1>
-        <h1 ng-show="'##session.lang##' == 'en'" class="black center  ">##session.company.name_en##</h1>
+        <h1 ng-show="'##session.lang##' == 'ar'" class="black center bold">##session.company.name_ar##</h1>
+        <h1 ng-show="'##session.lang##' == 'en'" class="black center bold">##session.company.name_en##</h1>
       </div>
 
       <div class="row">
-        <h2 ng-show="'##session.lang##' == 'ar'" class="black center  ">##session.branch.name_ar##</h2>
-        <h2 ng-show="'##session.lang##' == 'en'" class="black center  ">##session.branch.name_en##</h2>
+        <h2 ng-show="'##session.lang##' == 'ar'" class="black center bold">##session.branch.name_ar##</h2>
+        <h2 ng-show="'##session.lang##' == 'en'" class="black center bold">##session.branch.name_en##</h2>
       </div>
       <br />
       <br />
       <div class="row center" ng-repeat="i in defaultSettings.printer_program.thermal_header">
-        <h2 class="  black center">{{i.name}}</h2>
+        <h2 class="bold black center">{{i.name}}</h2>
       </div>
     </div>
   </div>
   <br />
   <br />
   <div class="row center">
-    <h2 class="center black  ">##word.tax_number## : {{defaultSettings.printer_program.tax_number}}</h2>
+    <h2 class="center black bold">##word.tax_number## : {{defaultSettings.printer_program.tax_number}}</h2>
   </div>
 
   <br />
@@ -51,45 +51,45 @@
   <br />
 
   <div class="center">
-    <h2 class="black   center">##word.customer## :</h2>
-    <h2 class="black   center border_black">{{thermal.customer.name_##session.lang##}}</h2>
+    <h2 class="black bold center">##word.customer## :</h2>
+    <h2 class="black bold center border_black">{{thermal.customer.name_##session.lang##}}</h2>
   </div>
   <br />
   <hr />
 
-  <div class="row center  ">
+  <div class="row center bold">
     <div class="col4">
-      <h3 class=" ">##word.item_name##</h3>
+      <h3 class="bold">##word.item_name##</h3>
     </div>
     <div class="col2">
-      <h3 class=" ">##word.quantity##</h3>
+      <h3 class="bold">##word.quantity##</h3>
     </div>
     <div class="col2">
-      <h3 class=" ">##word.price##</h3>
+      <h3 class="bold">##word.price##</h3>
     </div>
     <div class="col1"></div>
     <div class="col3">
-      <h3 class=" ">##word.total##</h3>
+      <h3 class="bold">##word.total##</h3>
     </div>
   </div>
   <hr />
 
-  <div class="row  " ng-repeat="itm in thermal.items">
+  <div class="row bold" ng-repeat="itm in thermal.items">
     <div class="row">
       <div class="col4">
-        <h3 class="black  " ng-show=" itm.add_sizes">{{itm.name_##session.lang##}} {{itm.size_##session.lang##}}</h3>
-        <h3 class="black  " ng-hide=" itm.add_sizes">{{itm.size_##session.lang##}}</h3>
+        <h3 class="black bold" ng-show=" itm.add_sizes">{{itm.name_##session.lang##}} {{itm.size_##session.lang##}}</h3>
+        <h3 class="black bold" ng-hide=" itm.add_sizes">{{itm.size_##session.lang##}}</h3>
       </div>
       <div class="col2 black">
-        <h3 class="black center  ">{{itm.count}}</h3>
+        <h3 class="black center bold">{{itm.count}}</h3>
       </div>
       <div class="col2 black">
-        <h3 class="black center  ">{{itm.b_price}}</h3>
+        <h3 class="black center bold">{{itm.b_price}}</h3>
       </div>
       <div class="col1"></div>
 
       <div class="col3 black">
-        <h3 class="black center  ">{{itm.total}}</h3>
+        <h3 class="black center bold">{{itm.total}}</h3>
       </div>
     </div>
     <hr />
@@ -98,48 +98,48 @@
   <br />
   <hr />
 
-  <div class="row font_cairo  ">
+  <div class="row font_cairo bold">
     <div class="col7 center">
       <br />
-      <h2 class="black  ">##word.total_before_tax##</h2>
+      <h2 class="black bold">##word.total_before_tax##</h2>
       <br />
-      <h2 class="black  ">##word.value_added##</h2>
+      <h2 class="black bold">##word.value_added##</h2>
       <br />
-      <h2 class="black  ">##word.total_after_tax##</h2>
+      <h2 class="black bold">##word.total_after_tax##</h2>
       <br />
-      <h2 class="black  ">##word.discount_cash##</h2>
+      <h2 class="black bold">##word.discount_cash##</h2>
       <br />
-      <h2 class="black  ">##word.net##</h2>
+      <h2 class="black bold">##word.net##</h2>
       <br />
     </div>
     <div class="col1"></div>
     <div class="col4">
       <br />
-      <h2 class="black  ">{{thermal.before_value_added}}</h2>
+      <h2 class="black bold">{{thermal.before_value_added}}</h2>
       <br />
-      <h2 class="black  ">{{thermal.total_value_added}}</h2>
+      <h2 class="black bold">{{thermal.total_value_added}}</h2>
       <br />
-      <h2 class="black  ">{{thermal.total_value}}</h2>
+      <h2 class="black bold">{{thermal.total_value}}</h2>
       <br />
-      <h2 class="black  ">{{thermal.total_discount}}</h2>
+      <h2 class="black bold">{{thermal.total_discount}}</h2>
       <br />
-      <h2 class="black  ">{{thermal.net_value}}</h2>
+      <h2 class="black bold">{{thermal.net_value}}</h2>
       <br />
     </div>
   </div>
   <hr />
 
   <div class="row">
-    <h2 class="  center black">{{thermal.net_txt}} {{defaultSettings.accounting.end_num_to_str || ''}}</h2>
+    <h2 class="bold center black">{{thermal.net_txt}} {{defaultSettings.accounting.end_num_to_str || ''}}</h2>
   </div>
 
   <br />
   <hr />
   <br />
 
-  <div class="row  ">
-    <h2 class="black   center">##word.amount_paid## : {{thermal.Paid_from_customer}}</h2>
-    <h2 class="black   center">##word.remaining_amount## : {{thermal.remain_from_customer}}</h2>
+  <div class="row bold">
+    <h2 class="black bold center">##word.amount_paid## : {{thermal.Paid_from_customer}}</h2>
+    <h2 class="black bold center">##word.remaining_amount## : {{thermal.remain_from_customer}}</h2>
   </div>
 
   <br />
@@ -148,14 +148,14 @@
 
   <div class="row center">
     <div class="invoice-barcode center">
-      <svg style="max-height: 25mm" class="barcode" jsbarcode-format="auto" jsbarcode-value="{{thermal.code}}" jsbarcode-textmargin="0" jsbarcode-fontoptions=" "></svg>
+      <svg style="max-height: 25mm" class="barcode" jsbarcode-format="auto" jsbarcode-value="{{thermal.code}}" jsbarcode-textmargin="0" jsbarcode-fontoptions="bold"></svg>
     </div>
   </div>
 
   <br />
   <br />
   <div class="row center">
-    <h2 class="center black  ">##word.tax_number## : {{defaultSettings.printer_program.tax_number}}</h2>
+    <h2 class="center black bold">##word.tax_number## : {{defaultSettings.printer_program.tax_number}}</h2>
   </div>
 
   <br />
@@ -165,7 +165,7 @@
   <div id="qrcode"></div>
 
   <div class="row" ng-repeat="i in defaultSettings.printer_program.thermal_footer">
-    <h2 class="black   center">{{i.name}}</h2>
+    <h2 class="black bold center">{{i.name}}</h2>
   </div>
 
   <br />
