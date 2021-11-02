@@ -405,7 +405,7 @@
   },
   {
     "name": "date_exceed",
-    "en": "The transaction date cannot exceed today's date",
+    "en": "The transaction date cannot exceed todays date",
     "ar": "تاريخ المعاملة لا يمكن أن يتجاوز تاريخ اليوم"
   },
   {
@@ -570,7 +570,7 @@
   },
   {
     "name": "recipient_signature",
-    "en": "The recipient's signature",
+    "en": "The recipients signature",
     "ar": "توقيع المستلم"
   },
   {

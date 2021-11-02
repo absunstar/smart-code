@@ -335,6 +335,45 @@ app.controller("default_setting", function ($scope, $http,$timeout) {
     );
   };
 
+  $scope.getPlaceQRList = function () {
+    $scope.error = "";
+    $scope.busy = true;
+    $scope.placeQRList = [];
+    $http({
+      method: "POST",
+      url: "/api/place_qr/all",
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.placeQRList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.getThermalLangList = function () {
+    $scope.error = "";
+    $scope.busy = true;
+    $scope.thermalLangList = [];
+    $http({
+      method: "POST",
+      url: "/api/place_qr/all",
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.thermalLangList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+
   $scope.loadDelegates = function () {
     $scope.busy = true;
     $scope.delegatesList = [];
@@ -803,6 +842,8 @@ app.controller("default_setting", function ($scope, $http,$timeout) {
   $scope.getPrintersPath();
   $scope.loadItemsType();
   $scope.getTransactionTypeList();
+  $scope.getPlaceQRList();
+  $scope.getThermalLangList();
   if (
     site.feature("restaurant") ||
     site.feature("pos") ||

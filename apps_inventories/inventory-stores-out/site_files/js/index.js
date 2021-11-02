@@ -274,6 +274,21 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
         if (response.data.done && response.data.doc) {
           $scope.defaultSettings = response.data.doc;
           $scope.invoice_logo = document.location.origin + $scope.defaultSettings.printer_program.invoice_logo;
+        /*   $scope.thermal_lang = 'ar';
+          $scope.thermal_lang_name = 'name_ar';
+          if ($scope.defaultSettings.printer_program.thermal_lang) {
+            if ($scope.defaultSettings.printer_program.thermal_lang.id == 2) {
+              $scope.thermal_lang = 'en';
+              $scope.thermal_lang_name = 'name_en';
+            } else if ($scope.defaultSettings.printer_program.thermal_lang.id == 3) {
+              $scope.thermal_lang = '##session.lang##';
+              if ('##session.lang##' == 'ar') {
+                $scope.thermal_lang_name = 'name_ar';
+              } else if ('##session.lang##' == 'en') {
+                $scope.thermal_lang_name = 'name_en';
+              }
+            }
+          } */
         }
       },
       function (err) {
@@ -486,6 +501,7 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
                         amount_currency: response.data.doc.amount_currency,
                         net_value: response.data.doc.net_value,
                         Paid_from_customer: response.data.doc.Paid_from_customer,
+                        remain_from_customer: response.data.doc.remain_from_customer,
                         paid_up: response.data.doc.paid_up || 0,
                         payment_method: response.data.doc.payment_method,
                         safe: response.data.doc.safe,
@@ -1871,9 +1887,23 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
       };
       $scope.thermal.net_txt = site.stringfiy($scope.thermal.net_value);
     }
+    console.log($scope.thermal.Paid_from_customer);
     JsBarcode('.barcode', $scope.thermal.code);
     document.querySelector('#qrcode').innerHTML = '';
-    site.qrcode({ selector: '#qrcode', text: document.location.protocol + '//' + document.location.hostname + `/qr_storeout?id=${$scope.thermal.id}` });
+    let datetime = new Date($scope.thermal.date);
+    let formatted_date = datetime.getFullYear() + '-' + (datetime.getMonth() + 1) + '-' + datetime.getDate() + ' ' + datetime.getHours() + ':' + datetime.getMinutes() + ':' + datetime.getSeconds();
+    let qrString = `إسم الشركة : ${'##session.company.name_ar##'}  -  الرقم الضريبي : ${$scope.defaultSettings.printer_program.tax_number}  -  التاريخ : ${formatted_date}  -  ضريبة القيمة المضافة : ${
+      $scope.thermal.total_value_added
+    }  -  الإجمالي شامل ضريبة القيمة المضافة : ${$scope.thermal.net_value}`;
+
+    if ($scope.defaultSettings.printer_program.place_qr) {
+      if ($scope.defaultSettings.printer_program.place_qr.id == 1) {
+        site.qrcode({ selector: '#qrcode', text: document.location.protocol + '//' + document.location.hostname + `/qr_storeout?id=${$scope.thermal.id}` });
+      } else if ($scope.defaultSettings.printer_program.place_qr.id == 2) {
+        site.qrcode({ selector: '#qrcode', text: qrString });
+      }
+    }
+
     if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path && $scope.defaultSettings.printer_program.printer_path.ip) {
       site.printAsImage({
         selector: '#thermalPrint',

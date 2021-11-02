@@ -1,0 +1,17 @@
+[
+    {
+        "id" : 1,
+        "en": "Arabic",
+        "ar": "عربي"
+    },
+    {
+        "id" : 2,
+        "en": "English",
+        "ar": "إنجليزي"
+    },
+    {
+        "id" : 3,
+        "en": "Depending on User language",
+        "ar": "إعتمادا على لغة المستخدم"
+    }
+]

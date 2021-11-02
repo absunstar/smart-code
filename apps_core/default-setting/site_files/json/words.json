@@ -10,6 +10,16 @@
         "ar": "الإعدادات الإفتراضية"
     },
     {
+        "name": "qr_place",
+        "en": "QR Place",
+        "ar": "مكان رمز الإستجابة"
+    },
+    {
+        "name": "thermal_printing_language",
+        "en": "Thermal printing language",
+        "ar": "لغة الطباعة الحرارية"
+    },
+    {
         "name": "pay_full_price_examination",
         "en": "Pay the full price of the Examination",
         "ar": "دفع سعر الحجز كاملا"

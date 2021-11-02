@@ -9,9 +9,9 @@
     {"name" : "exams_results_update" , "en" : "Edit Exams Results" , "ar" : "تعديل نتائج إمتحانات"},
     {"name" : "exams_results_delete" , "en" : "Delte Exams Results" , "ar" : "حذف نتائج إمتحانات"},
     {"name" : "numbers_start_from" , "en" : "The numbers start from" , "ar" : "الأرقام تبدأ من"},
-    {"name" : "student_score" , "en" : "Student's score" , "ar" : "درجة الطالب"},
+    {"name" : "student_score" , "en" : "Student score" , "ar" : "درجة الطالب"},
     {"name" : "successful" , "en" : "Successful" , "ar" : "ناجح"},
-    {"name" : "err_score_higher" , "en" : "The student's score is higher than the final grade" , "ar" : "درجة الطالب أعلى من الدرجة النهائية"},
+    {"name" : "err_score_higher" , "en" : "The student score is higher than the final grade" , "ar" : "درجة الطالب أعلى من الدرجة النهائية"},
     {"name" : "precipitate" , "en" : "Precipitate" , "ar" : "راسب"},
     {"name" : "result" , "en" : "The Result" , "ar" : "النتيجة"},
     {"name" : "exams_results_add_name" , "en" : "Add Exams Results" , "ar" : "إضافة نتائج إمتحانات"}

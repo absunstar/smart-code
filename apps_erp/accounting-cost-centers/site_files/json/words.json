@@ -7,8 +7,8 @@
     {"name" : "accounting_cost_centers_new" , "en" : "New Cost Center" , "ar" : "مركز تكلفة جديد"},
     {"name" : "accounting_cost_centers" , "en" : "Cost Centers" , "ar" : "مراكز التكلفة"},
     {"name" : "accounting_cost_centers_code_err" , "en" : "Code Exist" , "ar" : "الكود مكرر"},
-    {"name" : "detailed_err" , "en" : "Can't Change" , "ar" : "لا يمكن تحويله يحتوي على حسابات فرعية"},
-    {"name" : "cant_delete" , "en" : "Can't Delete" , "ar" : "لا يمكن حذفه يحتوي على حسابات فرعية"},
+    {"name" : "detailed_err" , "en" : "Can nott Change" , "ar" : "لا يمكن تحويله يحتوي على حسابات فرعية"},
+    {"name" : "cant_delete" , "en" : "Can not Delete" , "ar" : "لا يمكن حذفه يحتوي على حسابات فرعية"},
 
     {"name" : "accounting_cost_centers_confirm_delete" , "en" : "Confirm Delete Category" , "ar" : "تأكيد حذف التصنيف !"},
     {"name" : "accounting_cost_centers_delete_side" , "en" : "Delete Category" , "ar" : "حذف تصنيف"},

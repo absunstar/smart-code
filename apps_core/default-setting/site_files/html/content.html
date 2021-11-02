@@ -213,9 +213,14 @@
                 >
                 </i-list>
 
-                <!-- <i-list class="col3" ng-model="default_setting.printer_program.place_program"
-                                    items="placeProgramList" display="##session.lang##"
-                                    ng-search="_search.$place_program" label="##word.place_program##"></i-list> -->
+                <i-list
+                  class="col3"
+                  ng-model="default_setting.printer_program.place_qr"
+                  items="placeQRList"
+                  display="##session.lang##"
+                  ng-search="_search.$place_qr"
+                  label="##word.qr_place##"
+                ></i-list>
 
                 <div class="col1"></div>
 
@@ -231,6 +236,17 @@
                 ></i-control> -->
 
                 <i-control help-id="tax_number" class="col6" label="##word.tax_number##" ng-model="default_setting.printer_program.tax_number"></i-control>
+              
+             <!--  
+                <i-list
+                  class="col3"
+                  ng-model="default_setting.printer_program.thermal_lang"
+                  items="thermalLangList"
+                  display="##session.lang##"
+                  ng-search="_search.$thermal_lang"
+                  label="##word.thermal_printing_language##"
+                ></i-list> -->
+
               </div>
             </div>
             <div class="col3">

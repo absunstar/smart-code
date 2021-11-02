@@ -9,8 +9,8 @@
     {"name" : "accounting_guide_accounts" , "en" : "Guide Accounts" , "ar" : "دليل الحسابات"},
     {"name" : "accounting_guide_accounts_search" , "en" : "Guide Accounts Search" , "ar" : "بحث دليل الحسابات"},
     {"name" : "accounting_guide_accounts_code_err" , "en" : "Code Exists" , "ar" : "الكود مكرر"},
-    {"name" : "detailed_err" , "en" : "Can't Change" , "ar" : "لا يمكن تحويله يحتوي على حسابات فرعية"},
-    {"name" : "cant_delete" , "en" : "Can't Delete" , "ar" : "لا يمكن حذفه يحتوي على حسابات فرعية"},
+    {"name" : "detailed_err" , "en" : "Can not Change" , "ar" : "لا يمكن تحويله يحتوي على حسابات فرعية"},
+    {"name" : "cant_delete" , "en" : "Can not Delete" , "ar" : "لا يمكن حذفه يحتوي على حسابات فرعية"},
     {"name" : "enter_code_tree" , "en" : "Please Enter Code" , "ar" : "من فضلك أدخل الكود"},
 
     {"name" : "accounting_guide_accounts_delete_side" , "en" : "Delete Category" , "ar" : "حذف تصنيف"},

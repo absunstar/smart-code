@@ -10,9 +10,9 @@
     {"name" : "year_works_update" , "en" : "Edit Putting Year Works" , "ar" : "تعديل وضع درجات أعمال السنة"},
     {"name" : "year_works_delete" , "en" : "Delte Putting Year Works" , "ar" : "حذف وضع درجات أعمال السنة"},
     {"name" : "numbers_start_from" , "en" : "The numbers start from" , "ar" : "الأرقام تبدأ من"},
-    {"name" : "student_score" , "en" : "Student's score" , "ar" : "درجة الطالب"},
+    {"name" : "student_score" , "en" : "Student score" , "ar" : "درجة الطالب"},
     {"name" : "successful" , "en" : "Successful" , "ar" : "ناجح"},
-    {"name" : "err_score_higher" , "en" : "The student's score is higher than the final grade" , "ar" : "درجة الطالب أعلى من الدرجة النهائية"},
+    {"name" : "err_score_higher" , "en" : "The student score is higher than the final grade" , "ar" : "درجة الطالب أعلى من الدرجة النهائية"},
     {"name" : "precipitate" , "en" : "Precipitate" , "ar" : "راسب"},
     {"name" : "result" , "en" : "The Result" , "ar" : "النتيجة"},
     {"name" : "year_works_add_name" , "en" : "Add Putting Year Works" , "ar" : "إضافة وضع درجات أعمال السنة"}

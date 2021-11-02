@@ -16,7 +16,7 @@
     },
     {
         "name": "cannot_exceeded_customer",
-        "en": "The customer's credit limit cannot be exceeded",
+        "en": "The customer credit limit cannot be exceeded",
         "ar": "لا يمكن تجاوز الحد الإئتماني للعميل"
     },
     {

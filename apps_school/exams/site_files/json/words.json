@@ -127,7 +127,7 @@
     },
     {
         "name": "student_scores_not_equal_final_score",
-        "en": "The student's grade are greater than the final grade",
+        "en": "The student grade are greater than the final grade",
         "ar": "درجة الطالب أكبر من الدرجة النهائية"
     },
     {
@@ -192,7 +192,7 @@
     },
     {
         "name": "exam_wasnot_completed",
-        "en": "The exam wasn`t completed",
+        "en": "The exam wasn not completed",
         "ar": "لم يتم الإمتحان"
     },
     {
@@ -227,7 +227,7 @@
     },
     {
         "name": "student_degree",
-        "en": "Student's degree",
+        "en": "Student degree",
         "ar": "درجة الطالب"
     },
     {

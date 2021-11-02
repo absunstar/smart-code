@@ -18,6 +18,17 @@ module.exports = function init(site) {
     path: __dirname + "/site_files/json/place_program.json"
   })
 
+  site.post({
+    name: "/api/place_qr/all",
+    path: __dirname + "/site_files/json/place_qr.json"
+  })
+
+  site.post({
+    name: "/api/thermal_lang/all",
+    path: __dirname + "/site_files/json/thermal_lang.json"
+  })
+
+
   // site.post({
   //   name: "/api/discount_method/all",
   //   path: __dirname + "/site_files/json/discount_method.json"
