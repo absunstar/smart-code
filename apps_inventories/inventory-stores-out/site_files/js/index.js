@@ -1892,9 +1892,9 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
     document.querySelector('#qrcode').innerHTML = '';
     let datetime = new Date($scope.thermal.date);
     let formatted_date = datetime.getFullYear() + '-' + (datetime.getMonth() + 1) + '-' + datetime.getDate() + ' ' + datetime.getHours() + ':' + datetime.getMinutes() + ':' + datetime.getSeconds();
-    let qrString = `إسم الشركة : ${'##session.company.name_ar##'}  -  الرقم الضريبي : ${$scope.defaultSettings.printer_program.tax_number}  -  التاريخ : ${formatted_date}  -  ضريبة القيمة المضافة : ${
+    let qrString = `شركة : ${'##session.company.name_ar##'}  -  رقم.ض : ${$scope.defaultSettings.printer_program.tax_number}  -  التاريخ : ${formatted_date}  -  ض.ق.م : ${
       $scope.thermal.total_value_added
-    }  -  الإجمالي شامل ضريبة القيمة المضافة : ${$scope.thermal.net_value}`;
+    }  -  إجمالي شامل ض.ق.م : ${$scope.thermal.net_value}`;
 
     if ($scope.defaultSettings.printer_program.place_qr) {
       if ($scope.defaultSettings.printer_program.place_qr.id == 1) {
@@ -1915,7 +1915,7 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
       $scope.error = '##word.thermal_printer_must_select##';
     }
 
-    $scope.busy = false;
+     $scope.busy = false;
       $timeout(() => {
       $("#thermalPrint").addClass("hidden");
     }, 5000);
