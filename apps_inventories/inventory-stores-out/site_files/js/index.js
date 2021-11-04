@@ -1887,14 +1887,13 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
       };
       $scope.thermal.net_txt = site.stringfiy($scope.thermal.net_value);
     }
-    console.log($scope.thermal.Paid_from_customer);
     JsBarcode('.barcode', $scope.thermal.code);
     document.querySelector('#qrcode').innerHTML = '';
     let datetime = new Date($scope.thermal.date);
     let formatted_date = datetime.getFullYear() + '-' + (datetime.getMonth() + 1) + '-' + datetime.getDate() + ' ' + datetime.getHours() + ':' + datetime.getMinutes() + ':' + datetime.getSeconds();
-    let qrString = `شركة : ${'##session.company.name_ar##'}  -  رقم.ض : ${$scope.defaultSettings.printer_program.tax_number}  -  التاريخ : ${formatted_date}  -  ض.ق.م : ${
+    let qrString = `شركة : [${'##session.company.name_ar##'}]\nرقم ضريبي : [${$scope.defaultSettings.printer_program.tax_number}]\nرقم الفاتورة :[${$scope.thermal.code}]\nتاريخ : [${formatted_date}]\nض.ق.م : [${
       $scope.thermal.total_value_added
-    }  -  إجمالي شامل ض.ق.م : ${$scope.thermal.net_value}`;
+    }]\nقيمة الفاتورة : [${$scope.thermal.net_value}]`;
 
     if ($scope.defaultSettings.printer_program.place_qr) {
       if ($scope.defaultSettings.printer_program.place_qr.id == 1) {
@@ -1916,9 +1915,9 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
     }
 
      $scope.busy = false;
-      $timeout(() => {
+  /*     $timeout(() => {
       $("#thermalPrint").addClass("hidden");
-    }, 5000);
+    }, 5000); */
   };
 
   $scope.print = function () {
