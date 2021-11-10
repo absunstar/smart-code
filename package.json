@@ -20,7 +20,7 @@
   "license": "ISC",
   "dependencies": {
     "agora-access-token": "^2.0.4",
-    "isite": "^1.14.92",
+    "isite": "^1.14.97",
     "zklib": "^0.2.11"
   }
 }
