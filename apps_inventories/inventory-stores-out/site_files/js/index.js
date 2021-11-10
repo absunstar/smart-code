@@ -1993,9 +1993,9 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
       $scope.error = '##word.a4_printer_must_select##';
     }
     $scope.busy = false;
-   /*      $timeout(() => {
+        $timeout(() => {
       $('#storeOutDetails').addClass('hidden');
-    }, 8000); */
+    }, 8000);
   };
 
   /*  $scope.print = function () {
