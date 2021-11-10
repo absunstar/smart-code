@@ -88,10 +88,9 @@ module.exports = function init(site) {
       }
       return
     }
-
     $order_invoice.findOne({ id: obj.invoice_id }, (err, doc) => {
 
-      if (doc.under_paid) {
+      if (doc && doc.under_paid) {
 
         if (obj.return) {
 

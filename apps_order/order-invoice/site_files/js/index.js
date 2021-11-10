@@ -205,56 +205,55 @@ app.controller('order_invoice', function ($scope, $http, $timeout) {
           }
         }
         document.querySelector('#searchBarcode input').focus();
-
       } else {
         $scope.error = '##word.open_shift_not_found##';
       }
     });
   };
 
-  $scope.addOrderInvoice = function (order_invoice, type) {
+  $scope.addOrderInvoice = function (type) {
     $scope.error = '';
-    if (order_invoice.shift) {
-      if ((order_invoice.items && order_invoice.items.length > 0) || type === 'table') {
+    if ($scope.order_invoice.shift) {
+      if (($scope.order_invoice.items && $scope.order_invoice.items.length > 0) || type === 'table') {
         const v = site.validated('#OrderInvoiceAddModal');
         if (!v.ok) {
           $scope.error = v.messages[0].ar;
-          order_invoice.posting = false;
+          $scope.order_invoice.posting = false;
 
-          order_invoice.status = {
+          $scope.order_invoice.status = {
             id: 1,
             en: 'Opened',
             ar: 'مفتوحة',
           };
           return;
         }
-        if (!order_invoice.transaction_type || (order_invoice.transaction_type && !order_invoice.transaction_type.id)) {
+        if (!$scope.order_invoice.transaction_type || ($scope.order_invoice.transaction_type && !$scope.order_invoice.transaction_type.id)) {
           $scope.error = '##word.err_transaction_type##';
-          order_invoice.posting = false;
+          $scope.order_invoice.posting = false;
 
-          order_invoice.status = {
+          $scope.order_invoice.status = {
             id: 1,
             en: 'Opened',
             ar: 'مفتوحة',
           };
           return;
         }
-        if (!order_invoice.customer && order_invoice.transaction_type == 2) {
+        if (!$scope.order_invoice.customer && $scope.order_invoice.transaction_type == 2) {
           $scope.error = '##word.err_customer##';
-          order_invoice.posting = false;
+          $scope.order_invoice.posting = false;
 
-          order_invoice.status = {
+          $scope.order_invoice.status = {
             id: 1,
             en: 'Opened',
             ar: 'مفتوحة',
           };
           return;
         }
-        if (!order_invoice.table && order_invoice.transaction_type == 1) {
+        if (!$scope.order_invoice.table && $scope.order_invoice.transaction_type == 1) {
           $scope.error = '##word.err_table##';
-          order_invoice.posting = false;
+          $scope.order_invoice.posting = false;
 
-          order_invoice.status = {
+          $scope.order_invoice.status = {
             id: 1,
             en: 'Opened',
             ar: 'مفتوحة',
@@ -265,15 +264,15 @@ app.controller('order_invoice', function ($scope, $http, $timeout) {
         if ($scope.defaultSettings.inventory && $scope.defaultSettings.inventory.dont_max_discount_items) {
           let max_discount = false;
 
-          order_invoice.items.forEach((_itemSize) => {
+          $scope.order_invoice.items.forEach((_itemSize) => {
             if (_itemSize.discount.value > _itemSize.discount.max) max_discount = true;
           });
 
           if (max_discount) {
             $scope.error = '##word.err_maximum_discount##';
-            order_invoice.posting = false;
+            $scope.order_invoice.posting = false;
 
-            order_invoice.status = {
+            $scope.order_invoice.status = {
               id: 1,
               en: 'Opened',
               ar: 'مفتوحة',
@@ -282,11 +281,11 @@ app.controller('order_invoice', function ($scope, $http, $timeout) {
           }
         }
 
-        if (new Date(order_invoice.date) > new Date()) {
+        if (new Date($scope.order_invoice.date) > new Date()) {
           $scope.error = '##word.date_exceed##';
-          order_invoice.posting = false;
+          $scope.order_invoice.posting = false;
 
-          order_invoice.status = {
+          $scope.order_invoice.status = {
             id: 1,
             en: 'Opened',
             ar: 'مفتوحة',
@@ -294,16 +293,21 @@ app.controller('order_invoice', function ($scope, $http, $timeout) {
           return;
         }
 
-        if (order_invoice.transaction_type.id != 2 && order_invoice.delivery_employee) order_invoice.delivery_employee = {};
+        if ($scope.order_invoice.status.id == 2 && $scope.order_invoice.paid_up > $scope.order_invoice.amount_currency) {
+          $scope.error = '##word.err_net_value##';
+          return;
+        }
 
-        if (order_invoice.transaction_type.id != 1 && order_invoice.table) order_invoice.table = {};
+        if ($scope.order_invoice.transaction_type.id != 2 && $scope.order_invoice.delivery_employee) $scope.order_invoice.delivery_employee = {};
 
-        if (order_invoice.transaction_type.id != 1 && order_invoice.service) order_invoice.service = 0;
+        if ($scope.order_invoice.transaction_type.id != 1 && $scope.order_invoice.table) $scope.order_invoice.table = {};
 
-        if (order_invoice.transaction_type.id != 2 && order_invoice.price_delivery_service) order_invoice.price_delivery_service = 0;
+        if ($scope.order_invoice.transaction_type.id != 1 && $scope.order_invoice.service) $scope.order_invoice.service = 0;
+
+        if ($scope.order_invoice.transaction_type.id != 2 && $scope.order_invoice.price_delivery_service) $scope.order_invoice.price_delivery_service = 0;
 
         let url = '/api/order_invoice/update';
-        if (order_invoice.id) url = '/api/order_invoice/update';
+        if ($scope.order_invoice.id) url = '/api/order_invoice/update';
         else {
           url = '/api/order_invoice/add';
 
@@ -313,9 +317,9 @@ app.controller('order_invoice', function ($scope, $http, $timeout) {
         }
 
         if (type === 'hold') {
-          order_invoice.hold = true;
+          $scope.order_invoice.hold = true;
         } else {
-          order_invoice.hold = false;
+          $scope.order_invoice.hold = false;
         }
 
         $timeout(() => {
@@ -323,7 +327,7 @@ app.controller('order_invoice', function ($scope, $http, $timeout) {
           $http({
             method: 'POST',
             url: url,
-            data: order_invoice,
+            data: $scope.order_invoice,
           }).then(
             function (response) {
               $scope.busy = false;
@@ -333,30 +337,32 @@ app.controller('order_invoice', function ($scope, $http, $timeout) {
                   $scope.order_invoice.$show_table = true;
                 }
 
-                order_invoice = response.data.doc;
+                $scope.order_invoice = response.data.doc;
 
-                if (order_invoice.status.id == 2) {
+                if ($scope.order_invoice.status.id == 2) {
                   let store_out = {
                     image_url: '/images/store_out.png',
                     supply_date: new Date(),
-                    date: order_invoice.date,
-                    posting: order_invoice.posting,
-                    order_id: order_invoice.id,
-                    customer: order_invoice.customer,
-                    shift: order_invoice.shift,
-                    net_value: order_invoice.net_value,
-                    paid_up: order_invoice.net_value,
-                    payment_method: order_invoice.payment_method,
-                    store: order_invoice.store,
-                    order_code: order_invoice.code,
-                    items: order_invoice.items,
-                    currency: $scope.currencySetting,
-                    before_value_added: order_invoice.before_value_added,
-                    total_value_added: order_invoice.total_value_added,
-                    total_discount: order_invoice.total_discount,
-                    total_tax: order_invoice.total_tax,
-                    total_value: order_invoice.total_value,
-                    net_value: order_invoice.net_value,
+                    date: $scope.order_invoice.date,
+                    posting: $scope.order_invoice.posting,
+                    order_id: $scope.order_invoice.id,
+                    customer: $scope.order_invoice.customer,
+                    shift: $scope.order_invoice.shift,
+                    store: $scope.order_invoice.store,
+                    order_code: $scope.order_invoice.code,
+                    items: $scope.order_invoice.items,
+                    currency: $scope.order_invoice.currency,
+                    safe: $scope.order_invoice.safe,
+                    paid_up: $scope.order_invoice.paid_up,
+                    Paid_from_customer: $scope.order_invoice.Paid_from_customer,
+                    remain_from_customer: $scope.order_invoice.remain_from_customer,
+                    payment_method: $scope.order_invoice.payment_method,
+                    before_value_added: $scope.order_invoice.before_value_added,
+                    total_value_added: $scope.order_invoice.total_value_added,
+                    total_discount: $scope.order_invoice.total_discount,
+                    total_tax: $scope.order_invoice.total_tax,
+                    total_value: $scope.order_invoice.total_value,
+                    net_value: $scope.order_invoice.net_value,
                     type: {
                       id: 4,
                       en: 'Orders Screen',
@@ -371,9 +377,9 @@ app.controller('order_invoice', function ($scope, $http, $timeout) {
                 $scope.error = response.data.error;
                 if (response.data.error.like('*Must Enter Code*')) {
                   $scope.error = '##word.must_enter_code##';
-                  order_invoice.posting = false;
+                  $scope.order_invoice.posting = false;
 
-                  order_invoice.status = {
+                  $scope.order_invoice.status = {
                     id: 1,
                     en: 'Opened',
                     ar: 'مفتوحة',
@@ -385,12 +391,44 @@ app.controller('order_invoice', function ($scope, $http, $timeout) {
               if (type === 'table') {
                 $scope.order_invoice.$show_table = true;
               }
-
               if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto && $scope.order_invoice.status.id == 2 && !$scope.order_invoice.invoice) {
-                $scope.displayAccountInvoice($scope.order_invoice);
+                let account_invoices = {
+                  image_url: '/images/account_invoices.png',
+                  date: $scope.order_invoice.date,
+                  invoice_id: $scope.order_invoice.id,
+                  customer: $scope.order_invoice.customer,
+                  shift: $scope.order_invoice.shift,
+                  order_invoices_type: $scope.order_invoice.transaction_type,
+                  total_value: $scope.order_invoice.total_value,
+                  net_value: $scope.order_invoice.net_value,
+                  total_value_added: $scope.order_invoice.total_value_added,
+                  before_value_added: $scope.order_invoice.before_value_added,
+                  currency: $scope.order_invoice.currency,
+                  safe: $scope.order_invoice.safe,
+                  paid_up: $scope.order_invoice.paid_up,
+                  Paid_from_customer: $scope.order_invoice.Paid_from_customer,
+                  payment_method: $scope.order_invoice.payment_method,
+                  invoice_code: $scope.order_invoice.code,
+                  total_discount: $scope.order_invoice.total_discount,
+                  total_tax: $scope.order_invoice.total_tax,
+                  items: $scope.order_invoice.under_paid.items,
+                  source_type: {
+                    id: 3,
+                    en: 'Orders Screen',
+                    ar: 'شاشة الطلبات',
+                  },
+                  invoice_type: {
+                    id: 4,
+                    en: 'Orders Screen Store',
+                    ar: 'شاشة الطلبات',
+                  },
+                  active: true,
+                };
+                $scope.addAccountInvoice(account_invoices);
+                site.hideModal('#accountInvoiceModal');
               }
-            document.querySelector('#searchBarcode input').focus();
-
+              $scope.newOrderInvoice();
+              document.querySelector('#searchBarcode input').focus();
             },
             function (err) {
               console.log(err);
@@ -412,6 +450,7 @@ app.controller('order_invoice', function ($scope, $http, $timeout) {
         function (response) {
           if (response.data.done) {
             $scope.busy = false;
+            $scope.thermalPrint(response.data.doc);
           } else {
             $scope.error = response.data.error;
           }
@@ -426,53 +465,42 @@ app.controller('order_invoice', function ($scope, $http, $timeout) {
     }
   };
 
-  $scope.addAccountInvoice = function () {
+  $scope.addAccountInvoice = function (account_invoices) {
     $scope.error = '';
-    if ($scope.busy) {
+/*     if ($scope.busy) {
       return;
     }
-    $scope.busy = true;
-
-    if ($scope.account_invoices.paid_up > $scope.account_invoices.amount_currency) {
-      $scope.error = '##word.err_net_value##';
-      return;
-    }
-
-    if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.work_posting) $scope.account_invoices.posting = false;
-    else $scope.account_invoices.posting = true;
-
-    $scope.order_invoice.invoice = true;
+    $scope.busy = true; */
+    
+    if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.work_posting) account_invoices.posting = false;
+    else account_invoices.posting = true;
+    
+    account_invoices.invoice = true;
 
     $http({
       method: 'POST',
       url: '/api/account_invoices/add',
-      data: $scope.account_invoices,
+      data: account_invoices,
     }).then(
       function (response) {
-        $scope.busy = false;
+        /* $scope.busy = false; */
         if (response.data.done) {
-          $scope.account_invoices = response.data.doc;
+          let acc_invo = response.data.doc;
+          if (account_invoices.source_type.id == 3 && account_invoices.paid_up > 0) {
 
-          if ($scope.account_invoices.source_type.id == 3 && $scope.account_invoices.paid_up > 0) {
-            if ($scope.defaultSettings.printer_program.auto_thermal_print) {
-              $scope.thermalPrint(response.data.doc);
-            }
-
-            $scope.account_invoices.in_type = {
+            acc_invo.in_type = {
               id: 2,
               en: 'Orders Screen',
               ar: 'شاشة الطلبات',
             };
-            $scope.account_invoices.source_type = {
+            acc_invo.source_type = {
               id: 8,
               en: 'Amount In',
               ar: 'سند قبض',
             };
-            $scope.account_invoices.ref_invoice_id = response.data.doc.id;
-            $scope.addAccountInvoice();
+            acc_invo.ref_invoice_id = response.data.doc.id;
+            $scope.addAccountInvoice(acc_invo);
           }
-
-          site.hideModal('#accountInvoiceModal');
         } else {
           $scope.error = response.data.error;
           /* if (response.data.error.like("*duplicate key error*")) {
@@ -613,51 +641,22 @@ app.controller('order_invoice', function ($scope, $http, $timeout) {
   $scope.displayAccountInvoice = function (order_invoice) {
     $scope.get_open_shift((shift) => {
       if (shift) {
-        $scope.account_invoices = {
-          image_url: '/images/account_invoices.png',
-          date: new Date(),
-          invoice_id: order_invoice.id,
-          customer: order_invoice.customer,
-          shift: shift,
-          order_invoices_type: order_invoice.transaction_type,
-          total_value: order_invoice.total_value,
-          net_value: order_invoice.net_value,
-          total_value_added: order_invoice.total_value_added,
-          before_value_added: order_invoice.before_value_added,
-          paid_up: 0,
-          invoice_code: order_invoice.code,
-          total_discount: order_invoice.total_discount,
-          total_tax: order_invoice.total_tax,
-          items: order_invoice.under_paid.items,
-          source_type: {
-            id: 3,
-            en: 'Orders Screen',
-            ar: 'شاشة الطلبات',
-          },
-          invoice_type: {
-            id: 4,
-            en: 'Orders Screen Store',
-            ar: 'شاشة الطلبات',
-          },
-          active: true,
-        };
-
         if ($scope.defaultSettings.accounting) {
-          $scope.account_invoices.currency = $scope.currencySetting;
+          $scope.order_invoice.currency = $scope.currencySetting;
           if ($scope.defaultSettings.accounting.payment_method) {
-            $scope.account_invoices.payment_method = $scope.defaultSettings.accounting.payment_method;
-            $scope.loadSafes($scope.account_invoices.payment_method, $scope.account_invoices.currency);
-            if ($scope.account_invoices.payment_method.id == 1) $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe_box;
-            else $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe_bank;
+            $scope.order_invoice.payment_method = $scope.defaultSettings.accounting.payment_method;
+            $scope.loadSafes($scope.order_invoice.payment_method, $scope.order_invoice.currency);
+            if ($scope.order_invoice.payment_method.id == 1) $scope.order_invoice.safe = $scope.defaultSettings.accounting.safe_box;
+            else $scope.order_invoice.safe = $scope.defaultSettings.accounting.safe_bank;
           }
         }
 
-        if ($scope.account_invoices.currency) {
-          $scope.account_invoices.amount_currency = $scope.account_invoices.net_value / $scope.account_invoices.currency.ex_rate;
-          $scope.account_invoices.amount_currency = site.toNumber($scope.account_invoices.amount_currency);
-          $scope.account_invoices.paid_up = $scope.account_invoices.Paid_from_customer = $scope.account_invoices.amount_currency;
+        if ($scope.order_invoice.currency) {
+          $scope.order_invoice.amount_currency = $scope.order_invoice.net_value / $scope.order_invoice.currency.ex_rate;
+          $scope.order_invoice.amount_currency = site.toNumber($scope.order_invoice.amount_currency);
+          $scope.order_invoice.paid_up = $scope.order_invoice.Paid_from_customer = $scope.order_invoice.amount_currency;
         }
-        $scope.calc($scope.account_invoices);
+        $scope.calc($scope.order_invoice);
 
         site.showModal('#accountInvoiceModal');
       } else $scope.error = '##word.open_shift_not_found##';
@@ -735,7 +734,6 @@ app.controller('order_invoice', function ($scope, $http, $timeout) {
           site.hideModal('#OrderInvoiceSearchModal');
           $scope.search = {};
           document.querySelector('#searchBarcode input').focus();
-
         }
       },
       function (err) {
@@ -1605,8 +1603,8 @@ app.controller('order_invoice', function ($scope, $http, $timeout) {
           service: $scope.order_invoice.service,
           net_value: $scope.order_invoice.net_value,
         };
-
-        $scope.addOrderInvoice($scope.order_invoice, 'add');
+        $scope.displayAccountInvoice();
+        /* $scope.addOrderInvoice($scope.order_invoice, 'add'); */
       } else {
         $scope.error = '##word.err_stock_item##';
       }
@@ -2055,14 +2053,13 @@ app.controller('order_invoice', function ($scope, $http, $timeout) {
       };
       $scope.thermal.net_txt = site.stringfiy($scope.thermal.net_value);
     }
-
     JsBarcode('.barcode', $scope.thermal.code);
     document.querySelector('#qrcode').innerHTML = '';
     let datetime = new Date($scope.thermal.date);
     let formatted_date = datetime.getFullYear() + '-' + (datetime.getMonth() + 1) + '-' + datetime.getDate() + ' ' + datetime.getHours() + ':' + datetime.getMinutes() + ':' + datetime.getSeconds();
-    let qrString = `إسم الشركة : ${'##session.company.name_ar##'}  -  الرقم الضريبي : ${$scope.defaultSettings.printer_program.tax_number}  -  التاريخ : ${formatted_date}  -  ضريبة القيمة المضافة : ${
-      $scope.thermal.total_value_added
-    }  -  الإجمالي شامل ضريبة القيمة المضافة : ${$scope.thermal.net_value}`;
+    let qrString = `شركة : [${'##session.company.name_ar##'}]\nرقم ضريبي : [${$scope.defaultSettings.printer_program.tax_number}]\nرقم الفاتورة :[${
+      $scope.thermal.code
+    }]\nتاريخ : [${formatted_date}]\nض.ق.م : [${$scope.thermal.total_value_added}]\nقيمة الفاتورة : [${$scope.thermal.net_value}]`;
 
     if ($scope.defaultSettings.printer_program.place_qr) {
       if ($scope.defaultSettings.printer_program.place_qr.id == 1) {

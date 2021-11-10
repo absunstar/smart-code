@@ -13,12 +13,12 @@
               ng-hide="disabledCodeInvoice"
               class="col3"
               label="##word.code##"
-              ng-model="account_invoices.code"
+              ng-model="order_invoice.code"
             ></i-control>
 
             <i-date2
               class="col5"
-              ng-model="account_invoices.date"
+              ng-model="order_invoice.date"
               label="##word.date##"
             ></i-date2>
           </div>
@@ -29,8 +29,8 @@
               ng-search="_search.$payment_method_search"
               class="col2"
               label="##word.payment_method##"
-              ng-model="account_invoices.payment_method"
-              ng-change="getSafeByType(account_invoices)"
+              ng-model="order_invoice.payment_method"
+              ng-change="getSafeByType(order_invoice)"
               items="paymentMethodList"
               display="##session.lang##"
             >
@@ -39,9 +39,9 @@
             <i-list
               class="col3"
               ng-search="_search.$currency_search"
-              ng-model="account_invoices.currency"
+              ng-model="order_invoice.currency"
               display="name_##session.lang##"
-              ng-change="getSafeByType(account_invoices) ; calc(account_invoices)"
+              ng-change="getSafeByType(order_invoice) ; calc(order_invoice)"
               items="currenciesList"
               label="##word.currency##"
             >
@@ -50,7 +50,7 @@
             <i-control
               class="col2"
               disabled
-              ng-model="account_invoices.currency.ex_rate"
+              ng-model="order_invoice.currency.ex_rate"
               type="number"
               label="##word.exchange_rate##"
             ></i-control>
@@ -59,7 +59,7 @@
               ng-search="_search.$order_invoice.$safes_search"
               class="col4"
               display="name_##session.lang##"
-              ng-model="account_invoices.safe"
+              ng-model="order_invoice.safe"
               label="##word.safe##"
               items="safesList"
             >
@@ -69,8 +69,8 @@
           <div class="row">
             <i-control
               class="col2"
-              ng-show="account_invoices.total_discount"
-              ng-model="account_invoices.total_discount"
+              ng-show="order_invoice.total_discount"
+              ng-model="order_invoice.total_discount"
               disabled
               label="##word.total_discount##"
               type="number"
@@ -79,8 +79,8 @@
 
             <i-control
               class="col2"
-              ng-show="account_invoices.total_tax"
-              ng-model="account_invoices.total_tax"
+              ng-show="order_invoice.total_tax"
+              ng-model="order_invoice.total_tax"
               disabled
               label="##word.total_tax##"
               type="number"
@@ -89,9 +89,9 @@
 
             <i-control
               class="col2"
-              ng-show="account_invoices.net_value"
+              ng-show="order_invoice.net_value"
               disabled
-              ng-model="account_invoices.net_value"
+              ng-model="order_invoice.net_value"
               label="##word.paid_require##"
               type="number"
             >
@@ -102,15 +102,15 @@
             <i-control
               class="col3"
               disabled
-              ng-model="account_invoices.amount_currency"
+              ng-model="order_invoice.amount_currency"
               label="##word.amount_currency##"
               type="number"
             ></i-control>
 
             <i-control
               class="col2"
-              ng-show="account_invoices.net_value"
-              ng-model="account_invoices.paid_up"
+              ng-show="order_invoice.net_value"
+              ng-model="order_invoice.paid_up"
               label="##word.paid_up##"
               type="number"
             >
@@ -118,8 +118,8 @@
 
             <i-control
               class="col3"
-              ng-model="account_invoices.Paid_from_customer"
-              ng-change="calc(account_invoices)"
+              ng-model="order_invoice.Paid_from_customer"
+              ng-change="calc(order_invoice)"
               label="##word.Paid_from_customer##"
               type="number"
             >
@@ -138,7 +138,7 @@
               <i-textarea
                 class="col"
                 label="##word.notes##"
-                ng-model="account_invoices.notes"
+                ng-model="order_invoice.notes"
               >
               </i-textarea>
             </div>
@@ -153,14 +153,14 @@
       <i-button
         type="add"
         label="##word.create_an_invoice##"
-        ng-click="addAccountInvoice(account_invoices)"
+        ng-click="addOrderInvoice('add')"
       >
       </i-button>
       <i-button
         class="not-print"
         label="##word.print_invoice##"
         type="print "
-        ng-click="thermalPrint(account_invoices)"
+        ng-click="thermalPrint(order_invoice)"
       >
       </i-button>
 

@@ -112,7 +112,7 @@
                 <i-button
                   ng-hide="order_invoice.hold || order_invoice.status.id == 2"
                   label="##word.order_hold##"
-                  ng-click="addOrderInvoice(order_invoice,'hold')"
+                  ng-click="addOrderInvoice('hold')"
                 >
                 </i-button>
 
@@ -412,13 +412,13 @@
                     >
                     </i-button>
 
-                    <i-button
+                   <!--  <i-button
                       ng-show="defaultSettings.accounting.create_invoice_auto && order_invoice.status.id == 2 && !order_invoice.invoice"
                       type="save"
                       label="##word.create_an_invoice##"
                       ng-click="displayAccountInvoice(order_invoice)"
                     >
-                    </i-button>
+                    </i-button> -->
                   </div>
                 </div>
                 <div class="col3">
@@ -426,7 +426,7 @@
                     ng-hide="order_invoice.status.id == 2"
                     label="##word.save_order##"
                     type="fa fa-cart-plus saving"
-                    ng-click="addOrderInvoice(order_invoice,'add')"
+                    ng-click="addOrderInvoice('add')"
                   >
                   </i-button>
                   <br />

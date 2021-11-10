@@ -289,6 +289,7 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
               }
             }
           } */
+          
         }
       },
       function (err) {

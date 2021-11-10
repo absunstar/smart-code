@@ -127,6 +127,7 @@
       <br />
     </div>
   </div>
+  <hr />
 
   <div class="row">
     <h2 class="bold center black">{{thermal.net_txt}} {{defaultSettings.accounting.end_num_to_str || ''}}</h2>
@@ -152,7 +153,7 @@
   </div>
 
   <br />
-
+  <br />
   <div class="row center">
     <h2 class="center black bold">##word.tax_number## : {{defaultSettings.printer_program.tax_number}}</h2>
   </div>
@@ -160,6 +161,8 @@
   <br />
   <hr />
   <br />
+
+  <div id="qrcode"></div>
 
   <div class="row" ng-repeat="i in defaultSettings.printer_program.thermal_footer">
     <h2 class="black bold center">{{i.name}}</h2>
