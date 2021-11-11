@@ -1890,9 +1890,9 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
     document.querySelector('#qrcode').innerHTML = '';
     let datetime = new Date($scope.thermal.date);
     let formatted_date = datetime.getFullYear() + '-' + (datetime.getMonth() + 1) + '-' + datetime.getDate() + ' ' + datetime.getHours() + ':' + datetime.getMinutes() + ':' + datetime.getSeconds();
-    let qrString = `شركة : [${'##session.company.name_ar##'}]\nرقم ضريبي : [${$scope.defaultSettings.printer_program.tax_number}]\nرقم الفاتورة :[${
+    let qrString = `[${'##session.company.name_ar##'}]\nرقم ضريبي : [${$scope.defaultSettings.printer_program.tax_number}]\nرقم الفاتورة :[${
       $scope.thermal.code
-    }]\nتاريخ : [${formatted_date}]\nض.ق.م : [${$scope.thermal.total_value_added}]\nقيمة الفاتورة : [${$scope.thermal.net_value}]`;
+    }]\nتاريخ : [${formatted_date}]\nضريبة القيمة المضافة : [${$scope.thermal.total_value_added}]\nالصافي : [${$scope.thermal.net_value}]`;
 
     if ($scope.defaultSettings.printer_program.place_qr) {
       if ($scope.defaultSettings.printer_program.place_qr.id == 1) {
