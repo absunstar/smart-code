@@ -360,7 +360,7 @@ app.controller("default_setting", function ($scope, $http,$timeout) {
     $scope.thermalLangList = [];
     $http({
       method: "POST",
-      url: "/api/place_qr/all",
+      url: "/api/thermal_lang/all",
     }).then(
       function (response) {
         $scope.busy = false;
