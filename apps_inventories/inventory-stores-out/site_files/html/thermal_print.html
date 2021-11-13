@@ -55,10 +55,9 @@
     </div>
     <div class="col2"></div>
     <div class="col4">
-      <b class="black" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">الوقت : </b>
-      <b class="black" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Time : </b>
-      <b class="black" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.time## : </b>
-      <b class="black">{{thermal.date |date:"mm : hh" }} </b>
+      <b class="black" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">الوقت : {{thermal.date |date:"mm : hh" }}</b>
+      <b class="black" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Time : {{thermal.date |date:"hh : mm" }}</b>
+      <b class="black" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.time## : {{thermal.date |date:"mm : hh" }} </b>
     </div>
   </div>
 
@@ -132,6 +131,22 @@
   <hr />
 
   <div class="row font_cairo bold">
+    <div class="col4">
+      <br />
+      <h2 class="black bold">{{thermal.before_value_added}}</h2>
+      <br />
+      <h2 class="black bold">{{thermal.total_value_added}}</h2>
+      <br />
+      <h2 class="black bold">{{thermal.total_value}}</h2>
+      <br />
+      <h2 class="black bold">{{thermal.total_discount}}</h2>
+      <br />
+      <h2 class="black bold">{{thermal.net_value}}</h2>
+      <br />
+    </div>
+
+    <div class="col1"></div>
+
     <div class="col7 center">
       <br />
       <h2 class="black bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">إجمالي قبل .ض</h2>
@@ -155,20 +170,7 @@
       <h2 class="black bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.net##</h2>
       <br />
     </div>
-    <div class="col1"></div>
-    <div class="col4">
-      <br />
-      <h2 class="black bold">{{thermal.before_value_added}}</h2>
-      <br />
-      <h2 class="black bold">{{thermal.total_value_added}}</h2>
-      <br />
-      <h2 class="black bold">{{thermal.total_value}}</h2>
-      <br />
-      <h2 class="black bold">{{thermal.total_discount}}</h2>
-      <br />
-      <h2 class="black bold">{{thermal.net_value}}</h2>
-      <br />
-    </div>
+  
   </div>
   <hr />
 
