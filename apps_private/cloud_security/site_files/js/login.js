@@ -93,7 +93,6 @@ app.controller('login', function ($scope, $http) {
               $scope.company_list.push(b.company);
             }
           });
-
           if (ev && ev.which === 13 && $scope.branch_list.length == 1) {
             $scope.login($scope.branch_list[0]);
           }

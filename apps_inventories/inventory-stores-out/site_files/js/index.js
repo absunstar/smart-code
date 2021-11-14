@@ -274,7 +274,7 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
         if (response.data.done && response.data.doc) {
           $scope.defaultSettings = response.data.doc;
           $scope.invoice_logo = document.location.origin + $scope.defaultSettings.printer_program.invoice_logo;
-          $scope.thermal_lang = 'ar';
+          /* $scope.thermal_lang = 'ar';
           $scope.thermal_lang_name = 'name_ar';
           if ($scope.defaultSettings.printer_program.thermal_lang) {
             if ($scope.defaultSettings.printer_program.thermal_lang.id == 2) {
@@ -288,7 +288,7 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
                 $scope.thermal_lang_name = 'name_en';
               }
             }
-          }
+          } */
         }
       },
       function (err) {
@@ -1914,9 +1914,9 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
     }
 
     $scope.busy = false;
-  /*   $timeout(() => {
+    $timeout(() => {
       $('#thermalPrint').addClass('hidden');
-    }, 5000); */
+    }, 5000);
   };
   $scope.print = function () {
     $scope.error = '';
@@ -1927,9 +1927,9 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
 
       let datetime = new Date($scope.store_out.date);
       let formatted_date = datetime.getFullYear() + '-' + (datetime.getMonth() + 1) + '-' + datetime.getDate() + ' ' + datetime.getHours() + ':' + datetime.getMinutes() + ':' + datetime.getSeconds();
-      let qrString = `شركة : [${'##session.company.name_ar##'}]\nرقم ضريبي : [${$scope.defaultSettings.printer_program.tax_number}]\nرقم الفاتورة :[${
+      let qrString = `[${'##session.company.name_ar##'}]\nرقم ضريبي : [${$scope.defaultSettings.printer_program.tax_number}]\nرقم الفاتورة :[${
         $scope.store_out.code
-      }]\nتاريخ : [${formatted_date}]\nض.ق.م : [${$scope.store_out.total_value_added}]\nقيمة الفاتورة : [${$scope.store_out.net_value}]`;
+      }]\nتاريخ : [${formatted_date}]\nضريبة القيمة المضافة : [${$scope.store_out.total_value_added}]\nالصافي : [${$scope.store_out.net_value}]`;
 
       if ($scope.store_out.items.length > 7) {
         $scope.invList = [];
@@ -1998,92 +1998,6 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
     }, 8000);
   };
 
-  /*  $scope.print = function () {
-    $scope.error = '';
-    if ($scope.busy) return;
-    $scope.busy = true;
-    if ($scope.defaultSettings.printer_program.a4_printer) {
-      $('#storeOutDetails').removeClass('hidden');
-
-    
-      if ($scope.store_out.items.length > 7) {
-        $scope.invList = [];
-        let inv_length = $scope.store_out.items.length / 7;
-        inv_length = parseInt(inv_length);
-        let ramain_items = $scope.store_out.items.length - inv_length * 7;
-
-        if (ramain_items) {
-          inv_length += 1;
-        }
-
-        for (let i_inv = 0; i_inv < inv_length; i_inv++) {
-
-       
-          let s_o = { ...$scope.store_out };
-
-          s_o.items = [];
-          $scope.store_out.items.forEach((itm, i) => {
-            itm.$index = i + 1;
-            if (i < (i_inv + 1) * 7 && !itm.$done_inv) {
-              itm.$done_inv = true;
-              s_o.items.push(itm);
-            }
-          });
-
-          $scope.invList.push(s_o);
-        }
-
-        let datetime = new Date($scope.invList[$scope.invList.length -1].date);
-        let formatted_date = datetime.getFullYear() + '-' + (datetime.getMonth() + 1) + '-' + datetime.getDate() + ' ' + datetime.getHours() + ':' + datetime.getMinutes() + ':' + datetime.getSeconds();
-        let qrString = `شركة : [${'##session.company.name_ar##'}]\nرقم ضريبي : [${$scope.defaultSettings.printer_program.tax_number}]\nرقم الفاتورة :[${$scope.invList[$scope.invList.length -1].code}]\nتاريخ : [${formatted_date}]\nض.ق.م : [${
-          $scope.invList[$scope.invList.length -1].total_value_added
-        }]\nقيمة الفاتورة : [${$scope.invList[$scope.invList.length -1].net_value}]`;
-    
-        if ($scope.defaultSettings.printer_program.place_qr) {
-          if ($scope.defaultSettings.printer_program.place_qr.id == 1) {
-            site.qrcode({ selector: '.qrcode:last-child', text: document.location.protocol + '//' + document.location.hostname + `/qr_storeout?id=${$scope.invList[$scope.invList.length -1].id}` });
-          } else if ($scope.defaultSettings.printer_program.place_qr.id == 2) {
-            site.qrcode({ selector: '.qrcode:last-child', text: qrString });
-          }
-        }
-
-      } else {
-        $scope.store_out.items.forEach((_item, i) => {
-          _item.$index = i + 1;
-        });
-        $scope.invList = [{ ...$scope.store_out }];
-
-        let datetime = new Date($scope.invList[0].date);
-        let formatted_date = datetime.getFullYear() + '-' + (datetime.getMonth() + 1) + '-' + datetime.getDate() + ' ' + datetime.getHours() + ':' + datetime.getMinutes() + ':' + datetime.getSeconds();
-        let qrString = `شركة : [${'##session.company.name_ar##'}]\nرقم ضريبي : [${$scope.defaultSettings.printer_program.tax_number}]\nرقم الفاتورة :[${$scope.invList[0].code}]\nتاريخ : [${formatted_date}]\nض.ق.م : [${
-          $scope.invList[0].total_value_added
-        }]\nقيمة الفاتورة : [${$scope.invList[0].net_value}]`;
-    
-        if ($scope.defaultSettings.printer_program.place_qr) {
-          if ($scope.defaultSettings.printer_program.place_qr.id == 1) {
-            site.qrcode({ selector: '.qrcode:last-child', text: document.location.protocol + '//' + document.location.hostname + `/qr_storeout?id=${$scope.invList[0].id}` });
-          } else if ($scope.defaultSettings.printer_program.place_qr.id == 2) {
-            site.qrcode({ selector: '.qrcode:last-child', text: qrString });
-          }
-        }
-
-      }
-      $timeout(() => {
-        site.print({
-          selector: '#storeOutDetails',
-          ip: '127.0.0.1',
-          port: '60080',
-          printer: $scope.defaultSettings.printer_program.a4_printer.ip.name.trim(),
-        });
-      }, 2000);
-    } else {
-      $scope.error = '##word.a4_printer_must_select##';
-    }
-    $scope.busy = false;
-     $timeout(() => {
-      $('#storeOutDetails').addClass('hidden');
-    }, 8000);
-  }; */
 
   $scope.getCustomerGroupList = function () {
     $http({
