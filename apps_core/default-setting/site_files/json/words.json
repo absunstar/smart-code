@@ -115,6 +115,11 @@
         "ar": "طباعة حرارية أوتوماتيك"
     },
     {
+        "name": "auto_thermal_print_order_screen",
+        "en": "Automatic thermal printing For Order Screen",
+        "ar": "طباعة حرارية أوتوماتيك لشاشة الطلبات"
+    },
+    {
         "name": "exam_header",
         "en": "Header Exam",
         "ar": "مقدمة الإمتحان"

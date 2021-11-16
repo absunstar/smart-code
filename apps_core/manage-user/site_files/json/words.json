@@ -65,6 +65,11 @@
         "ar": "شئون موظفين"
     },
     {
+        "name": "new_username",
+        "en": "New UserName",
+        "ar": "إسم المستخدم الجديد"
+    },
+    {
         "name": "inventory",
         "en": "Inventory",
         "ar": "مخازن"

@@ -1,0 +1,11 @@
+[
+    { "module_name" : "public" , "screen_name" : "contracting-companies" , "name":"contracting_companies_manage" , "en":"Manage" , "ar":"إدارة"},
+    { "module_name" : "public" , "screen_name" : "contracting-companies" , "name":"contracting_companies_add" , "en":"Add" , "ar":"إضافة"},
+    { "module_name" : "public" , "screen_name" : "contracting-companies" , "name":"contracting_companies_update" , "en":"Edit" , "ar":"تعديل"},
+    { "module_name" : "public" , "screen_name" : "contracting-companies" , "name":"contracting_companies_delete" , "en":"Delete" , "ar":"حذف"},
+    { "module_name" : "public" , "screen_name" : "contracting-companies" , "name":"contracting_companies_view" , "en":"View" , "ar":"عرض"},
+    { "module_name" : "public" , "screen_name" : "contracting-companies" , "name":"contracting_companies_search" , "en":"Search" , "ar":"بحث"},
+    { "module_name" : "public" , "screen_name" : "contracting-companies" , "name":"contracting_companies_export" , "en":"Export" , "ar":"تصدير"},
+    { "module_name" : "public" , "screen_name" : "contracting-companies" , "name":"contracting_companies_print" , "en":"Print" , "ar":"طباعة"},
+    { "module_name" : "public" , "screen_name" : "contracting-companies" , "name":"contracting_companies_ui" , "en":"UI" , "ar":"الواجهة الرسومية"}
+]

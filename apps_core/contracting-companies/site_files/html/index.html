@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-ng-app="myApp">
+<html lang="en" x-permissions="contracting_companies_ui || contracting_companies_manage"  data-ng-app="myApp">
 
 <head x-import="head.html">
 
@@ -17,23 +17,22 @@
     <div id="main-layout" class="container loaded">
         <div class="row">
             <div class="row" ng-controller="contracting_companies">
-                <div  x-import="contracting_companies/add_modal.html"></div>
-                <div  x-import="contracting_companies/update_modal.html"></div>
-                <div  x-import="contracting_companies/delete_modal.html"></div>
-                <div  x-import="contracting_companies/view_modal.html"></div>
-                <div  x-import="contracting_companies/search_all_modal.html"></div>
+                <div  x-import="contracting-companies/add_modal.html"></div>
+                <div  x-import="contracting-companies/update_modal.html"></div>
+                <div  x-import="contracting-companies/delete_modal.html"></div>
+                <div  x-import="contracting-companies/view_modal.html"></div>
+                <div  x-import="contracting-companies/search_all_modal.html"></div>
 
                 <div class="row">
                     <h1 class="bold text-center">##word.contracting_companies##</h1>
                 </div>
 
                 <div class="top-actions">
-                    <i-button  type="add" label="##word.contracting_companies_new##" ng-click="displayAddContracting_company()"></i-button>
+                    <i-button  type="add" x-permissions="contracting_companies_add || contracting_companies_manage" label="##word.contracting_companies_new##" ng-click="displayAddContracting_company()"></i-button>
 
                     <i-button  type="search" label="##word.search_all##"
-                        ng-click="displaySearchModal()"></i-button>
+                    x-permissions="contracting_companies_search || contracting_companies_manage"  ng-click="displaySearchModal()"></i-button>
 
-                   
                     <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
                     <h3 class="bold text-center red"> {{error}}</h3>
 
@@ -80,7 +79,7 @@
     </div>
 
     <div x-import="scripts.html"></div>
-    <script x-import="contracting_companies/index.js"></script>
+    <script x-import="contracting-companies/index.js"></script>
 </body>
 
 </html>

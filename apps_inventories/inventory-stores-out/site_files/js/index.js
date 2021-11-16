@@ -483,9 +483,9 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
                       $scope.store_out.type.id != 5 &&
                       !$scope.defaultSettings.general_Settings.work_posting
                     ) {
-                      if ($scope.defaultSettings.printer_program.auto_thermal_print) {
+                   /*    if ($scope.defaultSettings.printer_program.auto_thermal_print) {
                         $scope.thermalPrint(response.data.doc);
-                      }
+                      } */
 
                       let account_invoices = {
                         image_url: '/images/account_invoices.png',

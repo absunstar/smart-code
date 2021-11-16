@@ -886,11 +886,11 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
                     $scope.defaultSettings.accounting.create_invoice_auto &&
                     !$scope.defaultSettings.general_Settings.work_posting
                   ) {
-                    if (
+                  /*   if (
                       $scope.defaultSettings.printer_program.auto_thermal_print
                     ) {
                       $scope.thermalPrint(response.data.doc);
-                    }
+                    } */
 
                     let account_invoices = {
                       image_url: "/images/account_invoices.png",

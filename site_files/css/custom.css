@@ -34,13 +34,13 @@
 
 #qrcode img{
   border-radius: 0px !important;
-  width: 250px;
-  height: 250px;
+  width: 170px  !important;
+  height: 170px  !important;
 }
 .qrcode img{
   border-radius: 0px !important;
-  width: 250px;
-  height: 250px;
+  width: 170px  !important;
+  height: 170px  !important;
 }
 .row .col4 {
   border-radius: 30px;

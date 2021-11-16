@@ -4,10 +4,10 @@
       <div class="col5 center">
         <br />
         <div class="row">
-          <h2 class="green center bold">##session.company.name_ar##</h2>
+          <h2 class="center bold">##session.company.name_ar##</h2>
         </div>
         <div class="row">
-          <h4 class="green center bold">##session.branch.name_ar##</h4>
+          <h4 class="center bold">##session.branch.name_ar##</h4>
         </div>
         <div class="row center" ng-repeat="i in defaultSettings.printer_program.invoice_header">
           <p class="txt16 bold black center">{{i.name}}</p>
@@ -21,10 +21,10 @@
       <div class="col5 center">
         <br />
         <div class="row">
-          <h2 class="green center bold">##session.company.name_en##</h2>
+          <h2 class="center bold">##session.company.name_en##</h2>
         </div>
         <div class="row">
-          <h4 class="green center bold">##session.branch.name_en##</h4>
+          <h4 class="center bold">##session.branch.name_en##</h4>
         </div>
         <div class="row center" ng-repeat="i in defaultSettings.printer_program.invoice_header2">
           <p class="txt16 black bold center">{{i.name}}</p>
@@ -43,12 +43,12 @@
       <table class="table hover bold border-none">
         <tr>
           <td class="title">
-            <b class="txt16 indigoD">التاريخ / Date :</b>
-            <b class="txt16">{{st_i.date |date:"dd - MM - yyyy" }} </b>
+            <b class="txt16 balck">التاريخ / Date :</b>
+            <b class="txt16">{{st_i.date |date:"dd - MM - yyyy : hh - mm" }} </b>
           </td>
 
           <td class="center">
-            <b class="txt16 indigoD">رقم الفاتورة / Invoice No. : </b>
+            <b class="txt16 balck">رقم الفاتورة / Invoice No. : </b>
             <b class="txt16 userPrint">{{st_i.code}}</b>
             <h3 class="center bold userPrint">{{st_i.retured_number}}</h3>
           </td>
@@ -56,12 +56,12 @@
 
         <!-- <tr class="not-print">
                   <td>
-                      <b class="indigoD"> ##word.store## : </b>
+                      <b class="balck"> ##word.store## : </b>
                       <b>{{st_i.store.name_##session.lang##}}</b>
                   </td>
   
                   <td class="center" ng-show="st_i.vendor.id">
-                      <b class="indigoD">##word.stores_in_Company_name## : </b>
+                      <b class="balck">##word.stores_in_Company_name## : </b>
                       <b>{{st_i.vendor.name_##session.lang##}} </b>
                   </td>
               </tr> -->
@@ -108,29 +108,38 @@
   
               <tr class="not-print">
                   <td>
-                      <b class="indigoD">##word.total_discount## : </b>
+                      <b class="balck">##word.total_discount## : </b>
                       <b>{{st_i.total_discount}} $</b>
                   </td>
   
                   <td class="center">
-                      <b class="center indigoD">##word.total_tax## : </b>
+                      <b class="center balck">##word.total_tax## : </b>
                       <b>{{st_i.total_tax}} $</b>
                   </td>
               </tr> -->
 
         <tr>
           <td class="title">
-            <b class="indigoD">##word.transaction_type## : </b>
+            <b class="balck">##word.transaction_type## : </b>
             <b>{{st_i.type.##session.lang##}}</b>
           </td>
 
           <td class="title bold center">
-            <b class="txt16 indigoD">طريقة الدفع / Pay Method :</b>
+            <b class="txt16 balck">طريقة الدفع / Pay Method :</b>
             <b class="txt16 center">{{st_i.payment_method.##session.lang##}} </b>
           </td>
 
+          <tr>
+            <td class="title txt16">
+              <b class="balck"> رقم تسجيل ضريبة القيمة المضافة للمورد / Customer VAT Registration Number :</b>
+            </td>
+            <td class=" txt16">
+              <b class="">{{st_i.vendor.tax_card_number}} </b>
+            </td>
+          </tr>
+
           <!--  <td class="center">
-                      <b class="indigoD">##word.transaction_type## : </b>
+                      <b class="balck">##word.transaction_type## : </b>
                       <b>{{st_i.type.##session.lang##}}</b>
                   </td> -->
         </tr>
@@ -217,34 +226,61 @@
 
     <div class="row right" ng-show="($index+1) == invList.length">
       <div class="col9">
+
         <div class="row">
-          <div class="col5 center bold">
-            <p class="txt16 black">{{st_i.before_value_added}}</p>
-            <p class="txt16 black">{{st_i.total_value_added}}</p>
-            <p class="txt16 black">{{st_i.total_value}}</p>
-            <p class="txt16 black">{{st_i.total_discount}}</p>
-            <p class="txt16 black">{{st_i.net_value}}</p>
+          <div class="col8">
+            <p class="txt18 bold balck">الإجمالي قبل ضريبة القيمة المضافة / Total B.Tax</p>
           </div>
           <div class="col1"></div>
-          <div class="col5 bold">
-            <p class="txt16 indigoD">الإجمالي قبل.ض / Total B.Tax</p>
-            <p class="txt16 indigoD">القيمة الضريبية / VAT</p>
-            <p class="txt16 indigoD">الإجمالي بعد.ض / Total A.Tax</p>
-            <p class="txt16 indigoD">الخصم النقدي / Discount Cash</p>
-            <p class="txt16 indigoD">الصافي / Net.</p>
+          <div class="col3">
+            <p class="txt18 bold black">{{st_i.before_value_added}}</p>
           </div>
         </div>
+        <div class="row">
+          <div class="col8">
+            <p class="txt18 bold balck">القيمة الضريبية / VAT</p>
+          </div>
+          <div class="col1"></div>
+          <div class="col3">
+            <p class="txt18 bold black">{{st_i.total_value_added}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col8">
+            <p class="txt18 bold balck">الإجمالي بعد ضريبة القيمة المضافة / Total A.Tax</p>
+          </div>
+          <div class="col1"></div>
+          <div class="col3">
+            <p class="txt18 bold black">{{st_i.total_value}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col8">
+            <p class="txt18 bold balck">الخصم النقدي / Discount Cash</p>
+          </div>
+          <div class="col1"></div>
+          <div class="col3">
+            <p class="txt18 bold black">{{st_i.total_discount}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col8">
+            <p class="txt18 bold balck">الصافي / Net.</p>
+          </div>
+          <div class="col1"></div>
+          <div class="col3">
+            <p class="txt18 bold black">{{st_i.net_value}}</p>
+          </div>
+        </div>
+
       </div>
       <div class="col3">
         <div class="qrcode"></div>
       </div>
-
-    </div>
-
-    <div class="row">
       <p class="num_str bold center black">{{st_i.net_txt}} {{defaultSettings.accounting.end_num_to_str || ''}}</p>
+
     </div>
-    <br />
+
     <hr />
     <br />
 
@@ -253,9 +289,9 @@
         <p class="txt19 black center">المستلم / Receiver</p>
         <br />
         <br />
-        <p class="indigoD">الإسم / Name :</p>
+        <p class="balck">الإسم / Name :</p>
         <br />
-        <p class="indigoD">التوقيع / Signature :</p>
+        <p class="balck">التوقيع / Signature :</p>
       </div>
 
       <div class="col2"></div>
@@ -264,10 +300,10 @@
         <p class="txt19 black center">المورد / Vendor</p>
         <br />
         <br />
-        <b class="indigoD">الإسم / Name : </b>
+        <b class="balck">الإسم / Name : </b>
         <b class="black">{{st_i.vendor.name_##session.lang##}}</b>
         <br />
-        <p class="indigoD">التوقيع / Signature :</p>
+        <p class="balck">التوقيع / Signature :</p>
       </div>
     </div>
 

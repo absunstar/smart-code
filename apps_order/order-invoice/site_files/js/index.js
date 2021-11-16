@@ -450,7 +450,9 @@ app.controller('order_invoice', function ($scope, $http, $timeout) {
         function (response) {
           if (response.data.done) {
             $scope.busy = false;
-            $scope.thermalPrint(response.data.doc);
+            if ($scope.defaultSettings.printer_program.auto_thermal_print_order_screen) {
+              $scope.thermalPrint(response.data.doc);
+            }
           } else {
             $scope.error = response.data.error;
           }
