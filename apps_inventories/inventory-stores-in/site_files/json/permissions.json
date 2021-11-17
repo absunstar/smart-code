@@ -12,5 +12,8 @@
     { "module_name" : "inventory" , "screen_name" : "inventory-stores-in" , "name":"stores_in_unpost" , "en":"UnPost" , "ar":"فك ترحيل"},
     { "module_name" : "inventory" , "screen_name" : "inventory-stores-in" , "name":"stores_in_price" , "en":"Edit Purchase Price" , "ar":"تعديل سعر الشراء"},
     { "module_name" : "inventory" , "screen_name" : "inventory-stores-in" , "name":"stores_in_ui" , "en":"UI" , "ar":"الواجهة الرسومية"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-in" , "name":"stores_in_sales" , "en":"Sales Invoice" , "ar":"فاتورة مشتريات"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-in" , "name":"stores_in_return_sales" , "en":"Return Sales Invoice" , "ar":"مرتجع فاتورة مشتريات"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-in" , "name":"stores_in_opening_balance" , "en":"Opening Balance" , "ar":"الإرصدة الإفتتاحية"},
     { "module_name" : "inventory" , "screen_name" : "inventory-stores-in" , "name":"stores_in_handle" , "en":"Handler" , "ar":"تهيئة"}
 ]

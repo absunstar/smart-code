@@ -12,5 +12,8 @@
     { "module_name" : "inventory" , "screen_name" : "inventory-stores-out" , "name":"stores_out_unpost" , "en":"UnPost" , "ar":"فك ترحيل"},
     { "module_name" : "inventory" , "screen_name" : "inventory-stores-out" , "name":"stores_out_price" , "en":"Edit Sale Price" , "ar":"تعديل سعر البيع"},
     { "module_name" : "inventory" , "screen_name" : "inventory-stores-out" , "name":"stores_out_ui" , "en":"UI" , "ar":"الواجهة الرسومية"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-out" , "name":"stores_out_purchase" , "en":"Purchase Invouce" , "ar":"فاتورة مشتريات"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-out" , "name":"stores_out_return_purchase" , "en":"Return Purchase Invouce" , "ar":"مرتجع فاتورة مشتريات"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-stores-out" , "name":"stores_out_damage" , "en":"Damage Store" , "ar":"إهلاك/إتلاف مخزني"},
     { "module_name" : "inventory" , "screen_name" : "inventory-stores-out" , "name":"stores_out_details_values" , "en":"Details of values" , "ar":"تفاصيل القيم"}
 ]

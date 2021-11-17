@@ -464,19 +464,24 @@
     "ar": "طباعة حرارية"
   },
   {
+    "name": "value_added_tax",
+    "en": "Value added tax",
+    "ar": "ضريبة القيمة المضافة"
+  },
+  {
     "name": "invoice_remain",
     "en": "Invoice Remain",
     "ar": "باقي الفاتورة"
   },
   {
     "name": "total_before_tax",
-    "en": "Total B.Tax",
-    "ar": "إجمالي قبل .ض"
+    "en": "Total B.VAT",
+    "ar": "إجمالي قبل .ض.ق.م"
   },
   {
     "name": "total_after_tax",
-    "en": "Total A.Tax",
-    "ar": "إجمالي بعد .ض"
+    "en": "Total A.VAT",
+    "ar": "إجمالي بعد .ض.ق.م"
   },
   {
     "name": "discount_cash",

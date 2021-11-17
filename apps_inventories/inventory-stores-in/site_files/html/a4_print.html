@@ -7,7 +7,7 @@
           <h2 class="center bold">##session.company.name_ar##</h2>
         </div>
         <div class="row">
-          <h4 class="center bold">##session.branch.name_ar##</h4>
+          <h3 class="center bold">##session.branch.name_ar##</h3>
         </div>
         <div class="row center" ng-repeat="i in defaultSettings.printer_program.invoice_header">
           <p class="txt16 bold black center">{{i.name}}</p>
@@ -24,7 +24,7 @@
           <h2 class="center bold">##session.company.name_en##</h2>
         </div>
         <div class="row">
-          <h4 class="center bold">##session.branch.name_en##</h4>
+          <h3 class="center bold">##session.branch.name_en##</h3>
         </div>
         <div class="row center" ng-repeat="i in defaultSettings.printer_program.invoice_header2">
           <p class="txt16 black bold center">{{i.name}}</p>
@@ -130,12 +130,10 @@
           </td>
 
           <tr>
-            <td class="title txt16">
-              <b class="balck"> رقم تسجيل ضريبة القيمة المضافة للمورد / Customer VAT Registration Number :</b>
+            <td class="title txt16" colspan="2">
+              <b class="black"> رقم تسجيل ضريبة القيمة المضافة للعميل / Customer VAT Registration Number :  {{st_o.customer.tax_card_number}} </b>
             </td>
-            <td class=" txt16">
-              <b class="">{{st_i.vendor.tax_card_number}} </b>
-            </td>
+         
           </tr>
 
           <!--  <td class="center">
@@ -238,7 +236,7 @@
         </div>
         <div class="row">
           <div class="col8">
-            <p class="txt18 bold balck">القيمة الضريبية / VAT</p>
+            <p class="txt18 bold black">ضريبة القيمة المضافة / VAT</p>
           </div>
           <div class="col1"></div>
           <div class="col3">

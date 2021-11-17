@@ -1590,6 +1590,11 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
       function (response) {
         $scope.busy = false;
         $scope.storesOutTypes = response.data;
+        $scope.storesOutType = {
+          id: 3,
+          en: "Sale Invoice Store",
+          ar: "فاتورة مبيعات"
+      };
         $scope.storesOutTypes.forEach((_t) => {
           if (_t.id == site.toNumber('##query.type##')) $scope.source_type = _t;
         });
