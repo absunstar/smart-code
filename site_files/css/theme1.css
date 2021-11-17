@@ -259,9 +259,10 @@ i-image img:hover {
 .table td {
   border-radius: 25px;
   border-width: 5px;
+  padding: 0px;
   border-color: #f1f4ffba;
-  padding-right: 20px;
-  padding-left: 20px;
+/*   padding-right: 20px;
+  padding-left: 20px; */
 }
 
 .table {

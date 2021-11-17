@@ -5,7 +5,7 @@
     <style>
       table tbody {
         display: block;
-        max-height: 160px;
+        max-height: 250px;
         overflow-y: scroll;
       }
 
@@ -83,7 +83,7 @@
                 <hr style="height: 7px; background-image: linear-gradient(rgb(90 79 255), rgb(227 225 255))" />
               </div>
 
-              <div class="row" style="height: 480px; overflow: auto">
+              <div class="row" style="height: 440px; overflow: auto">
                 <div class="item-list" ng-show="itemsList.length > 0">
                   <a class="item pointer" ng-repeat="i in itemsList" ng-click="showItemsIn(i)" help-id="menu_monitor">
                     <img ng-src="{{i.image_url}}" />
@@ -130,14 +130,9 @@
                   <h2 class="bold center red">{{error}}</h2>
 
                   <div class="row">
-                    <i-date2 class="col6" ng-model="order_invoice.date" label="##word.date##"></i-date2>
+                    <i-date2 class="col5" ng-model="order_invoice.date" label="##word.date##"></i-date2>
 
                     <i-control class="col3 r_indigo" disabled label="##word.shift##" ng-model="shift.name_##session.lang##"></i-control>
-
-                    <i-control class="col3 r_black" disabled label="##word.code##" ng-model="order_invoice.code"></i-control>
-                  </div>
-
-                  <div class="row">
                     <i-list
                       ng-search="_search.$transaction_type"
                       class="col4"
@@ -148,6 +143,8 @@
                       ng-change="changeTransactionType(order_invoice) ; calc(order_invoice)"
                     >
                     </i-list>
+                    <!--                     <i-control class="col3 r_black" disabled label="##word.code##" ng-model="order_invoice.code"></i-control>
+ -->
                   </div>
 
                   <div class="row">

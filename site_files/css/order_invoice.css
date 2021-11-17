@@ -128,6 +128,8 @@ body {
 .bg_font_item {
     background-image: linear-gradient(#3f51b5, #001fcec2);
     height: max-content;
+    min-height: 90px;
+
     border-bottom-left-radius: 7px;
     border-bottom-right-radius: 7px;
 }
@@ -190,18 +192,18 @@ body {
 
 .btn.saving {
     width: 170px;
-    height: 80px;
+    height: 70px;
     font-size: 22px;
     padding-top: 30px;
-    background: #0300a4;
+    background: #ccb300;
     font-weight: bold;
 }
 
 .btn.closing {
     width: 170px;
-    height: 80px;
+    height: 70px;
     font-size: 22px;
-    padding-top: 30px;
+    padding-top: 17px;
     background: #118011;
     font-weight: bold;
 }
