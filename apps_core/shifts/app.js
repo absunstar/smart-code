@@ -378,57 +378,6 @@ module.exports = function init(site) {
     );
   });
 
-  site.post('/api/shifts/get_open_shift', (req, res) => {
-    let response = {
-      done: false,
-    };
-
-    if (!req.session.user) {
-      response.error = 'Please Login First';
-      res.json(response);
-      return;
-    }
-
-    let where = {};
-
-    where['company.id'] = site.get_company(req).id;
-    where['branch.code'] = site.get_branch(req).code;
-    where['active'] = true;
-
-    $shifts.findOne(
-      {
-        select: {
-          id: 1,
-          name_ar: 1,
-          name_en: 1,
-          code: 1,
-          from_date: 1,
-          from_time: 1,
-          to_date: 1,
-          to_time: 1,
-        },
-        where: where,
-      },
-      (err, doc) => {
-        if (!err && doc) {
-          response.done = true;
-          let obj = {
-            id: doc.id,
-            name_ar: doc.name_ar,
-            name_en: doc.name_en,
-            code: doc.code,
-            from_date: doc.from_date,
-            from_time: doc.from_time,
-            to_date: doc.to_date,
-            to_time: doc.to_time,
-          };
-          response.doc = obj;
-        }
-        res.json(response);
-      }
-    );
-  });
-
   site.post('/api/shifts/all', (req, res) => {
     let response = {
       done: false,

@@ -128,7 +128,8 @@ module.exports = function init(site) {
               stores_out_doc.total_value = site.toNumber(stores_out_doc.total_value);
               stores_out_doc.net_value = site.toNumber(stores_out_doc.net_value);
 
-              if (stores_out_doc.type.id != 5 && stores_out_doc.type.id != 6)
+              if (stores_out_doc.type.id == 6){
+
                 stores_out_doc.return_paid = {
                   items: stores_out_doc.items,
                   total_discount: stores_out_doc.total_discount,
@@ -137,6 +138,7 @@ module.exports = function init(site) {
                   total_value: stores_out_doc.total_value,
                   net_value: stores_out_doc.net_value,
                 };
+              }
 
               site.isAllowOverDraft(req, req.body.items, (cbOverDraft) => {
                 if (!cbOverDraft.overdraft && cbOverDraft.value && stores_out_doc.posting && stores_out_doc.type.id != 6) {
@@ -981,7 +983,6 @@ module.exports = function init(site) {
         doc.return_paid.total_tax = site.toNumber(doc.return_paid.total_tax);
         doc.return_paid.total_value = site.toNumber(doc.return_paid.total_value);
         doc.return_paid.net_value = site.toNumber(doc.return_paid.net_value);
-
         $stores_out.update(doc);
       }
     });

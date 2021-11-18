@@ -2767,6 +2767,11 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
           where: {
             posting: true,
             'return_paid.net_value': { $gt: 0 },
+            $or: [{
+              'type.id': 3
+            },{
+              'type.id': 4
+            }]
           },
         },
       }).then(

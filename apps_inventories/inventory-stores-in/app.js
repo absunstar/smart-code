@@ -1040,18 +1040,13 @@ module.exports = function init(site) {
     })
   })
 
-
   site.returnStoresIn = function (obj, res) {
     $stores_in.findOne({ code: obj.retured_number }, (err, doc) => {
       if (doc && doc.return_paid) {
-
         obj.items.forEach(_itemsObj => {
           doc.return_paid.items.forEach(_itemsDoc => {
-
             if (_itemsObj.barcode === _itemsDoc.barcode && _itemsObj.size_ar == _itemsDoc.size_ar) {
-
               if (_itemsObj.patch_list && _itemsObj.patch_list.length > 0 && _itemsDoc.patch_list && _itemsDoc.patch_list.length > 0) {
-
                 let foundPatshList = []
 
                 _itemsObj.patch_list.forEach(objPatch => {
@@ -1060,7 +1055,6 @@ module.exports = function init(site) {
                   if (!foundPatsh) foundPatshList.push(objPatch)
 
                   _itemsDoc.patch_list.forEach(docPatch => {
-
                     if (objPatch.patch === docPatch.patch) {
                       if (obj.return) {
                         docPatch.count = docPatch.count + objPatch.count

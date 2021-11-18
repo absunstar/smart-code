@@ -1,0 +1,53 @@
+<div id="subjectsSearchModal" class="modal">
+    <div class="col2"></div>
+    <div class="modal-content col8">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.search_all## <i class="fa fa-search"></i>
+
+            </h2>
+        </div>
+
+        <div class="modal-body">
+            <form class="form">
+                <fieldset>
+                    <legend>##word.search_all##</legend>
+                    <div class="row">
+
+                        <i-list ng-search="_search.$subjects_group" class="col4" display="name_##session.lang##" display2="code" space=" - "
+                            ng-model="search.subjects_group" label="##word.subjects_group##" items="subjectsGroupList">
+                        </i-list>
+
+                        <i-control type="text" help-id="subjects_number" v="r" class="col3" label="##word.subjects_number##"
+                            ng-model="search.code"></i-control>
+
+                        <i-control type="text" help-id="table_name" v="r" class="col3" label="##word.table_name##"
+                            ng-model="search.name"></i-control>
+
+                        <div class="control col3">
+                            <label> ##word.status## </label>
+                            <select ng-model="search.active">
+                                <option ng-value="true"> ##word.active## </option>
+                                <option ng-value="false"> ##word.not_active## </option>
+                            </select>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+
+        <h2 class="error">{{error}}</h2>
+
+        <div class="modal-footer center">
+
+            <i-button type="search" label="##word.search##" ng-click="searchAll()"> </i-button>
+
+            <i-button type="clear" label="##word.empty_search##" ng-click="search = {}"> </i-button>
+
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#subjectsSearchModal')"> </i-button>
+
+        </div>
+    </div>
+    <div class="col2"></div>
+</div>
