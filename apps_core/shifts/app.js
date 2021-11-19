@@ -173,7 +173,7 @@ module.exports = function init(site) {
         safes: safesCB,
       };
 
-      shifts_doc.open_close_list.push(obj);
+      shifts_doc.open_close_list.unshift(obj);
 
       if (shifts_doc.id) {
         $shifts.edit(

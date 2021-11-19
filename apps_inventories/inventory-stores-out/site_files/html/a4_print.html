@@ -35,7 +35,8 @@
 
     <div class="row center">
       <p class="center black bold txt16">الرقم الضريبي / Tax No. : {{defaultSettings.printer_program.tax_number}}</p>
-      <p class="center black bold txt18">فاتورة ضريبية / Tax Invoice</p>
+      <p ng-show="st_o.type.id != 6" class="center black bold txt18">فاتورة ضريبية / Tax Invoice</p>
+      <p ng-show="st_o.type.id == 6" class="center black bold txt18">إشعار مرتجع / BACK NOTICE</p>
     </div>
 
     <br />
@@ -229,7 +230,8 @@
     <br />
 
     <div class="row" x-permissions="stores_out_details_values || stores_out_manage" ng-show="($index+1) == invList.length">
-      <div class="col9">
+      <div class="col1"></div>
+      <div class="col7">
      
         <div class="row">
           <div class="col8">
@@ -276,19 +278,26 @@
             <p class="txt18 bold black">{{st_o.net_value}}</p>
           </div>
         </div>
+        <div class="row">
+          <div class="col11">
 
+            <p class="num_str bold center black">{{st_o.net_txt}} {{defaultSettings.accounting.end_num_to_str || ''}}</p>
+          </div>
+          <div class="col1"></div>
+        </div>
       </div>
       <div class="col3">
         <div class="qrcode"></div>
       </div>
-      <p class="num_str bold center black">{{st_o.net_txt}} {{defaultSettings.accounting.end_num_to_str || ''}}</p>
+      <div class="col1"></div>
     </div>
 
     <hr />
     <br />
 
     <div class="row">
-      <div class="col5 bold">
+      <div class="col1"></div>
+      <div class="col4 bold">
         <p class="txt19 black center">المستلم / Receiver</p>
         <br />
         <br />
@@ -299,13 +308,11 @@
 
       <div class="col2"></div>
 
-      <div class="col5 bold">
+      <div class="col4 bold">
         <p class="txt19 black center">المندوب / Sales man</p>
         <br />
         <br />
         <b class="black">الإسم / Name : </b>
-        <!--         <b class="black">{{st_o.customer.name_##session.lang##}}</b>
- -->
         <br />
         <p class="black">التوقيع / Signature :</p>
       </div>
@@ -321,11 +328,7 @@
 
     <br />
     <br />
-    <br />
     <p class="txt19 center bold black">Page {{$index + 1}} / {{invList.length}}</p>
-    <br />
-    <hr />
-    <hr />
     <br />
   </div>
 </div>

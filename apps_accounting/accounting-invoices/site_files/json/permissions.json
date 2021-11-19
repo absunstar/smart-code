@@ -11,5 +11,14 @@
     { "module_name" : "accounting" , "screen_name" : "accounting-invoices" , "name":"account_invoices_export" , "en":"Export" , "ar":"تصدير"},
     { "module_name" : "accounting" , "screen_name" : "accounting-invoices" , "name":"account_invoices_print" , "en":"Print" , "ar":"طباعة"},
     { "module_name" : "accounting" , "screen_name" : "accounting-invoices" , "name":"account_invoices_ui" , "en":"UI" , "ar":"الواجهة الرسومية"},
+    { "module_name" : "accounting" , "screen_name" : "accounting-invoices" , "name":"account_invoices_purchase" , "en":"Purchase" , "ar":"المشتريات"},
+    { "module_name" : "accounting" , "screen_name" : "accounting-invoices" , "name":"account_invoices_sales" , "en":"Sales" , "ar":"المبيعات"},
+    { "module_name" : "accounting" , "screen_name" : "accounting-invoices" , "name":"account_invoices_order_screen" , "en":"Order Screen" , "ar":"شاشة الطلبات"},
+    { "module_name" : "accounting" , "screen_name" : "accounting-invoices" , "name":"account_invoices_amount_out" , "en":"Amount Out" , "ar":"سند صرف"},
+    { "module_name" : "accounting" , "screen_name" : "accounting-invoices" , "name":"account_invoices_amount_in" , "en":"Amount In" , "ar":"سند قبض"},
+    { "module_name" : "accounting" , "screen_name" : "accounting-invoices" , "name":"account_invoices_employee_advance" , "en":"Employee Advance" , "ar":"سلف الموظفين"},
+    { "module_name" : "accounting" , "screen_name" : "accounting-invoices" , "name":"account_invoices_payment_employee_advance" , "en":"Payment Employee Advance" , "ar":"تسديد سلف الموظفين"},
+    { "module_name" : "accounting" , "screen_name" : "accounting-invoices" , "name":"account_invoices_transfer_safes_balances" , "en":"Transfer of safes balances" , "ar":"تحويل أرصدة الخزن"},
+    { "module_name" : "accounting" , "screen_name" : "accounting-invoices" , "name":"account_invoices_opening_balance" , "en":"Opening Balance" , "ar":"رصيد إفتتاحي"},
     { "module_name" : "accounting" , "screen_name" : "accounting-invoices" , "name":"account_invoices_handle" , "en":"Handler" , "ar":"تهيئة"}
 ]

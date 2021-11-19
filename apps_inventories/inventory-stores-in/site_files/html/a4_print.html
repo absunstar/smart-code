@@ -34,7 +34,8 @@
 
     <div class="row center">
       <p class="center black bold txt16">الرقم الضريبي / Tax No. : {{defaultSettings.printer_program.tax_number}}</p>
-      <p class="center black bold txt18">فاتورة ضريبية / Tax Invoice</p>
+      <p ng-show="st_i.type.id != 4" class="center black bold txt18">فاتورة ضريبية / Tax Invoice</p>
+      <p ng-show="st_i.type.id == 4" class="center black bold txt18">إشعار مرتجع / BACK NOTICE</p>
     </div>
     <br />
     <hr />
@@ -132,7 +133,7 @@
 
           <tr>
             <td class="title txt16" colspan="2">
-              <b class="black"> رقم تسجيل ضريبة القيمة المضافة للعميل / Customer VAT Registration Number :  {{st_o.customer.tax_card_number}} </b>
+              <b class="black"> رقم تسجيل ضريبة القيمة المضافة للعميل / Customer VAT Registration Number :  {{st_i.customer.tax_card_number}} </b>
             </td>
          
           </tr>
@@ -224,7 +225,8 @@
     <br />
 
     <div class="row right" ng-show="($index+1) == invList.length">
-      <div class="col9">
+      <div class="col1"></div>
+      <div class="col7">
 
         <div class="row">
           <div class="col8">
@@ -271,12 +273,19 @@
             <p class="txt18 bold black">{{st_i.net_value}}</p>
           </div>
         </div>
+        <div class="row">
+          <div class="col11">
+
+            <p class="num_str bold center black">{{st_i.net_txt}} {{defaultSettings.accounting.end_num_to_str || ''}}</p>
+          </div>
+          <div class="col1"></div>
+        </div>
 
       </div>
       <div class="col3">
         <div class="qrcode"></div>
       </div>
-      <p class="num_str bold center black">{{st_i.net_txt}} {{defaultSettings.accounting.end_num_to_str || ''}}</p>
+      <div class="col1"></div>
 
     </div>
 
@@ -318,11 +327,7 @@
 
     <br />
     <br />
-    <br />
     <p class="txt19 center bold black">Page {{$index + 1}} / {{invList.length}}</p>
-    <br />
-    <hr />
-    <hr />
     <br />
   </div>
 </div>

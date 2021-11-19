@@ -469,14 +469,14 @@ app.controller('order_invoice', function ($scope, $http, $timeout) {
 
   $scope.addAccountInvoice = function (account_invoices) {
     $scope.error = '';
-/*     if ($scope.busy) {
+    /*     if ($scope.busy) {
       return;
     }
     $scope.busy = true; */
-    
+
     if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.work_posting) account_invoices.posting = false;
     else account_invoices.posting = true;
-    
+
     account_invoices.invoice = true;
 
     $http({
@@ -489,7 +489,6 @@ app.controller('order_invoice', function ($scope, $http, $timeout) {
         if (response.data.done) {
           let acc_invo = response.data.doc;
           if (account_invoices.source_type.id == 3 && account_invoices.paid_up > 0) {
-
             acc_invo.in_type = {
               id: 2,
               en: 'Orders Screen',
@@ -524,80 +523,89 @@ app.controller('order_invoice', function ($scope, $http, $timeout) {
   $scope.getBarcode = function (ev) {
     $scope.error = '';
     if (ev.which === 13) {
-      $http({
-        method: 'POST',
-        url: '/api/stores_items/all',
-        data: {
-          where: { barcode: $scope.search_barcode },
-        },
-      }).then(
-        function (response) {
-          $scope.busy = false;
-          if (response.data.done) {
-            if (response.data.list.length > 0) {
-              let foundSize = false;
-              if (response.data.list[0].sizes && response.data.list[0].sizes.length > 0)
-                response.data.list[0].sizes.forEach((_size) => {
-                  let foundHold = false;
-                  let indxUnit = 0;
-                  _size.add_sizes = response.data.list[0].add_sizes;
-                  if (_size.size_units_list && _size.size_units_list.length > 0) {
-                    let foundUnit = false;
-                    _size.size_units_list.forEach((_unit, i) => {
-                      if ($scope.search_barcode === _unit.barcode) {
-                        foundUnit = true;
-                        indxUnit = i;
-                      } else if (_unit.id === response.data.list[0].main_unit.id && !foundUnit) {
-                        indxUnit = i;
-                      }
-                    });
-                  }
+      if ($scope.search_barcode.like('*+*') && $scope.order_invoice.items && $scope.order_invoice.items.length > 0) {
 
-                  if (_size.branches_list && _size.branches_list.length > 0)
-                    _size.branches_list.forEach((_branch) => {
-                      if (_branch.code == '##session.branch.code##')
-                        _branch.stores_list.forEach((_store) => {
-                          if ($scope.order_invoice.store && _store.store && _store.store.id == $scope.order_invoice.store.id) {
-                            if (_store.hold) foundHold = true;
-                          }
-                        });
-                    });
+      let count  = site.toNumber($scope.search_barcode.replace(/\+/g, ''));
+      $scope.order_invoice.items[0].count = $scope.order_invoice.items[0].count + count;
+      $scope.calcSize($scope.order_invoice.items[0]);
+      $scope.search_barcode = '';
+      document.querySelector('#searchBarcode input').focus();
 
-                  if (_size.barcode === $scope.search_barcode || _size.size_units_list[indxUnit].barcode === $scope.search_barcode) {
-                    _size.name_ar = response.data.list[0].name_ar;
-                    _size.name_en = response.data.list[0].name_en;
-                    _size.item_group = response.data.list[0].item_group;
-                    _size.store = $scope.order_invoice.store;
-                    _size.count = 1;
-                    _size.value_added = _size.not_value_added ? 0 : $scope.defaultSettings.inventory.value_added || 0;
-                    _size.unit = _size.size_units_list[indxUnit];
-                    _size.discount = _size.size_units_list[indxUnit].discount;
-                    _size.average_cost = _size.size_units_list[indxUnit].average_cost;
-                    _size.cost = _size.size_units_list[indxUnit].cost;
-                    _size.price = _size.size_units_list[indxUnit].price;
-                    _size.total = _size.count * _size.cost;
+      } else {
+        $http({
+          method: 'POST',
+          url: '/api/stores_items/all',
+          data: {
+            where: { barcode: $scope.search_barcode },
+          },
+        }).then(
+          function (response) {
+            $scope.busy = false;
+            if (response.data.done) {
+              if (response.data.list.length > 0) {
+                let foundSize = false;
+                if (response.data.list[0].sizes && response.data.list[0].sizes.length > 0)
+                  response.data.list[0].sizes.forEach((_size) => {
+                    let foundHold = false;
+                    let indxUnit = 0;
+                    _size.add_sizes = response.data.list[0].add_sizes;
+                    if (_size.size_units_list && _size.size_units_list.length > 0) {
+                      let foundUnit = false;
+                      _size.size_units_list.forEach((_unit, i) => {
+                        if ($scope.search_barcode === _unit.barcode) {
+                          foundUnit = true;
+                          indxUnit = i;
+                        } else if (_unit.id === response.data.list[0].main_unit.id && !foundUnit) {
+                          indxUnit = i;
+                        }
+                      });
+                    }
 
-                    if (!foundHold) $scope.order_invoice.items.unshift(_size);
-                  }
-                  $scope.calcSize(_size);
-                });
-              if (foundSize) $scope.error = '##word.dublicate_item##';
+                    if (_size.branches_list && _size.branches_list.length > 0)
+                      _size.branches_list.forEach((_branch) => {
+                        if (_branch.code == '##session.branch.code##')
+                          _branch.stores_list.forEach((_store) => {
+                            if ($scope.order_invoice.store && _store.store && _store.store.id == $scope.order_invoice.store.id) {
+                              if (_store.hold) foundHold = true;
+                            }
+                          });
+                      });
 
-              $scope.search_barcode = '';
-            }
-            document.querySelector('#searchBarcode input').focus();
-            /*    $timeout(() => {
+                    if (_size.barcode === $scope.search_barcode || _size.size_units_list[indxUnit].barcode === $scope.search_barcode) {
+                      _size.name_ar = response.data.list[0].name_ar;
+                      _size.name_en = response.data.list[0].name_en;
+                      _size.item_group = response.data.list[0].item_group;
+                      _size.store = $scope.order_invoice.store;
+                      _size.count = 1;
+                      _size.value_added = _size.not_value_added ? 0 : $scope.defaultSettings.inventory.value_added || 0;
+                      _size.unit = _size.size_units_list[indxUnit];
+                      _size.discount = _size.size_units_list[indxUnit].discount;
+                      _size.average_cost = _size.size_units_list[indxUnit].average_cost;
+                      _size.cost = _size.size_units_list[indxUnit].cost;
+                      _size.price = _size.size_units_list[indxUnit].price;
+                      _size.total = _size.count * _size.cost;
+
+                      if (!foundHold) $scope.order_invoice.items.unshift(_size);
+                    }
+                    $scope.calcSize(_size);
+                  });
+                if (foundSize) $scope.error = '##word.dublicate_item##';
+
+                $scope.search_barcode = '';
+              }
+              document.querySelector('#searchBarcode input').focus();
+              /*    $timeout(() => {
               document.querySelector("#search_barcode input").focus();
-              console.log("aaaaaaaaaaaaaaaa");
             }, 200); */
-          } else {
-            $scope.error = response.data.error;
+            } else {
+              $scope.error = response.data.error;
+            }
+          },
+          function (err) {
+            console.log(err);
           }
-        },
-        function (err) {
-          console.log(err);
-        }
-      );
+        );
+      }
     }
   };
 

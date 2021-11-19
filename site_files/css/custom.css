@@ -163,7 +163,7 @@ popup item:hover {
 }
 .main-menu:hover {
   opacity: 1;
-  min-width: 450px;
+  min-width: 400px;
   box-shadow: 1px 1px 1px 1px #000;
 }
 
