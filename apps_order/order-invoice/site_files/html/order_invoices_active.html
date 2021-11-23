@@ -29,30 +29,30 @@
          
             <div class="active-list pointer row">
                 <br>
-              <h4 class="bold center">
+              <h4 class="bold black center">
                 <b class="indigoD">##word.code## :</b> {{s.code}}
               </h4>
 
-              <h4 class="center bold">
+              <h4 class="center bold black">
                 <b class="indigoD">##word.date## : </b>
                 <b>{{s.date |date:"dd - MM - yyyy" }}</b>
               </h4>
 
-              <h4 class="center bold">
+              <h4 class="center bold black">
                 <b class="indigoD">##word.transaction_type## : </b>
                 {{s.transaction_type.##session.lang##}}
               </h4>
 
-              <h4 class="center bold" ng-show="s.customer.id">
+              <h4 class="center bold black" ng-show="s.customer.id">
                 <b class="indigoD">##word.customer## : </b>
                 {{s.customer.name_##session.lang##}}
               </h4>
-              <h4 class="center bold" ng-show="s.delivery_employee.id">
+              <h4 class="center bold black" ng-show="s.delivery_employee.id">
                 <b class="indigoD">##word.delivery_employee## : </b>
                 {{s.delivery_employee.name_##session.lang##}}
               </h4>
               <h4
-                class="center bold"
+                class="center bold black"
                 x-features="restaurant"
                 ng-show="s.table.id"
               >
@@ -60,7 +60,7 @@
                 {{s.table.name_##session.lang##}}
               </h4>
               <h4
-                class="center bold"
+                class="center bold black"
                 x-features="restaurant"
                 ng-show="s.table.id"
               >
