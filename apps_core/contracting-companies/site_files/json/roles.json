@@ -1,7 +1,7 @@
 [{
     "module_name" : "public" ,
-    "name": "goves_admin",
-    "en": "Goves Admin",
-    "ar": "إدارة المحافظات",
-    "permissions": ["goves_manage"]
+    "name": "contracting_companies_admin",
+    "en": "Contracting Companies Admin",
+    "ar": "إدارة شركات التعاقد",
+    "permissions": ["contracting_companies_manage"]
 }]

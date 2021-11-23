@@ -50,35 +50,23 @@ app.controller('qr_storeout', function ($scope, $http, $timeout) {
     $scope.busy = false;
   };
 
-  $scope.thermalPrint = function (obj) {
+  $scope.thermalPrint = function () {
     $scope.error = '';
     if ($scope.busy) return;
     $scope.busy = true;
 
-    $scope.thermal = { ...obj };
-    if ($scope.thermal.currency) {
+    if ($scope.store_out.currency) {
       site.strings['currency'] = {
-        ar: ' ' + $scope.thermal.currency.name_ar + ' ',
-        en: ' ' + $scope.thermal.currency.name_en + ' ',
+        ar: ' ' + $scope.store_out.currency.name_ar + ' ',
+        en: ' ' + $scope.store_out.currency.name_en + ' ',
       };
       site.strings['from100'] = {
-        ar: ' ' + $scope.thermal.currency.minor_currency_ar + ' ',
-        en: ' ' + $scope.thermal.currency.minor_currency_en + ' ',
+        ar: ' ' + $scope.store_out.currency.minor_currency_ar + ' ',
+        en: ' ' + $scope.store_out.currency.minor_currency_en + ' ',
       };
-      $scope.thermal.net_txt = site.stringfiy($scope.thermal.net_value);
+      $scope.store_out.net_txt = site.stringfiy($scope.store_out.net_value);
     }
-    JsBarcode('.barcode', $scope.thermal.code);
-    site.qrcode({ selector: '#qrcode', text: document.location.protocol + '//' + document.location.hostname + `/stores_out?id=${$scope.thermal.id}` });
-    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path && $scope.defaultSettings.printer_program.printer_path.ip) {
-      site.printAsImage({
-        selector: '#thermalPrint',
-        ip: '127.0.0.1',
-        port: '60080',
-        printer: $scope.defaultSettings.printer_program.printer_path.ip.name.trim(),
-      });
-    } else {
-      $scope.error = '##word.thermal_printer_must_select##';
-    }
+    console.log($scope.store_out,"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 
     $scope.busy = false;
   };
@@ -110,7 +98,7 @@ app.controller('qr_storeout', function ($scope, $http, $timeout) {
             };
             $scope.store_out.net_txt = site.stringfiy($scope.store_out.net_value);
           }
-          $scope.getDefaultSettings($scope.store_out);
+          $scope.getDefaultSettings();
         } else {
           $scope.error = response.data.error;
         }
@@ -121,15 +109,15 @@ app.controller('qr_storeout', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getDefaultSettings = function (store_out) {
+  $scope.getDefaultSettings = function () {
     $scope.error = '';
     $scope.busy = true;
     $http({
       method: 'POST',
       url: '/api/default_setting/get',
       data: {
-        company: store_out.company,
-        branch: store_out.branch,
+        company: $scope.store_out.company,
+        branch: $scope.store_out.branch,
       },
     }).then(
       function (response) {
@@ -137,9 +125,7 @@ app.controller('qr_storeout', function ($scope, $http, $timeout) {
         if (response.data.done && response.data.doc) {
           $scope.defaultSettings = response.data.doc;
           $scope.invoice_logo = document.location.origin + $scope.defaultSettings.printer_program.invoice_logo;
-          $scope.thermal = { ...store_out };
-          JsBarcode('.barcode', $scope.thermal.code);
-
+          $scope.thermalPrint();
         }
       },
       function (err) {

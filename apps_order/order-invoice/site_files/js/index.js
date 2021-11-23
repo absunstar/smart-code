@@ -526,7 +526,7 @@ app.controller('order_invoice', function ($scope, $http, $timeout) {
       if ($scope.search_barcode.like('*+*') && $scope.order_invoice.items && $scope.order_invoice.items.length > 0) {
 
       let count  = site.toNumber($scope.search_barcode.replace(/\+/g, ''));
-      $scope.order_invoice.items[0].count = $scope.order_invoice.items[0].count + count;
+      $scope.order_invoice.items[0].count = count;
       $scope.calcSize($scope.order_invoice.items[0]);
       $scope.search_barcode = '';
       document.querySelector('#searchBarcode input').focus();
@@ -1675,6 +1675,7 @@ app.controller('order_invoice', function ($scope, $http, $timeout) {
             $scope.busy = false;
             if (response.data.done) {
               $scope.itemsList = response.data.list;
+              document.querySelector('#searchBarcode input').focus();
               /*    $scope.itemsList.forEach(element => {
    
                    console.log(element.add_sizes);
@@ -1713,6 +1714,7 @@ app.controller('order_invoice', function ($scope, $http, $timeout) {
     } else {
       site.showModal('#sizesModal');
     }
+
   };
 
   $scope.bookList = function (item) {
@@ -1789,6 +1791,8 @@ app.controller('order_invoice', function ($scope, $http, $timeout) {
       $scope.order_invoice.items.unshift(obj);
       $scope.calcSize($scope.order_invoice.items[0]);
     }
+    document.querySelector('#searchBarcode input').focus();
+
   };
 
   $scope.ChangeUnitPatch = function (itm) {
