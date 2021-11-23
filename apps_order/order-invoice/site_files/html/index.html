@@ -1,281 +1,325 @@
 <!DOCTYPE html>
 <html lang="en" x-permissions="order_invoice_ui || order_invoice_manage" data-ng-app="myApp">
-  <head x-import="head.html">
-    <link rel="stylesheet" href="/css/order_invoice.css?v=##site.options.version##" />
-    <style>
-      table tbody {
-        display: block;
-        max-height: 50vh;
-        overflow-y: scroll;
-      }
+    <head x-import="head.html">
+        <style x-import="order-invoice/order_invoice.css">
+            table tbody {
+                display: block;
+                max-height: 50vh;
+                overflow-y: scroll;
+            }
 
-      table thead,
-      table tbody tr {
-        display: table;
-        width: 100%;
-        table-layout: fixed;
-      }
+            table thead,
+            table tbody tr {
+                display: table;
+                width: 100%;
+                table-layout: fixed;
+            }
 
-      * {
-        min-height: 0px;
-      }
-    </style>
-  </head>
+            * {
+                min-height: 0px;
+            }
+        </style>
+    </head>
 
-  <body class="##session.lang##">
-    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar"></nav>
+    <body class="##session.lang##">
+        <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar"></nav>
 
-    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
+        <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
 
-    <div id="main-layout" class="container loaded">
-      <div class="row">
-        <div class="row" ng-controller="order_invoice">
-          <div x-permissions="order_invoice_add || order_invoice_manage" x-import="order-invoice/order_invoices_active.html"></div>
+        <div id="main-layout" class="container loaded">
+            <div class="row">
+                <div class="row" ng-controller="order_invoice">
+                    <div x-permissions="order_invoice_add || order_invoice_manage" x-import="order-invoice/order_invoices_active.html"></div>
 
-          <div x-permissions="order_invoice_add || order_invoice_manage" x-import="customers/add_modal.html"></div>
+                    <div x-permissions="order_invoice_add || order_invoice_manage" x-import="customers/add_modal.html"></div>
 
-          <div x-permissions="order_invoice_add || order_invoice_manage" x-import="order-invoice/select_table.html"></div>
+                    <div x-permissions="order_invoice_add || order_invoice_manage" x-import="order-invoice/select_table.html"></div>
 
-          <div x-permissions="order_invoice_add || order_invoice_manage" x-import="order-invoice/merge_tables.html"></div>
-          <!--  <div x-permissions="order_invoice_add || order_invoice_manage"
+                    <div x-permissions="order_invoice_add || order_invoice_manage" x-import="order-invoice/merge_tables.html"></div>
+                    <!--  <div x-permissions="order_invoice_add || order_invoice_manage"
                     x-import="order-invoice/change_item_count.html">
                 </div> -->
-          <div x-permissions="order_invoice_add || order_invoice_manage" x-import="order-invoice/account_invoice.html"></div>
+                    <div x-permissions="order_invoice_add || order_invoice_manage" x-import="order-invoice/account_invoice.html"></div>
 
-          <div x-permissions="order_invoice_update || order_invoice_manage" x-import="order-invoice/update_modal.html"></div>
+                    <div x-permissions="order_invoice_update || order_invoice_manage" x-import="order-invoice/update_modal.html"></div>
 
-          <div x-permissions="order_invoice_view || order_invoice_manage" x-import="order-invoice/view_modal.html"></div>
+                    <div x-permissions="order_invoice_view || order_invoice_manage" x-import="order-invoice/view_modal.html"></div>
 
-          <div x-import="order-invoice/items_modal.html"></div>
+                    <div x-import="order-invoice/items_modal.html"></div>
 
-          <div x-import="order-invoice/edit_item.html"></div>
+                    <div x-import="order-invoice/edit_item.html"></div>
 
-          <div x-import="accounting-invoices/add_payments_modal.html"></div>
+                    <div x-import="accounting-invoices/add_payments_modal.html"></div>
 
-          <div x-import="order-invoice/order_details_modal.html"></div>
+                    <div x-import="order-invoice/order_details_modal.html"></div>
 
-          <div class="row">
-            <!-- style="background-color: {{g.color}};" -->
+                    <div class="row">
+                        <!-- style="background-color: {{g.color}};" -->
 
-            <div class="col6">
-              <div class="row">
-                <i-button type="bg-green" label="##word.new_order##" ng-click="newOrderInvoice()"> </i-button>
+                        <div class="col6">
+                            <div class="row">
+                                <i-button fa="cart-plus" type="bg-green white" label="##word.new_order##" ng-click="newOrderInvoice()"> </i-button>
 
-                <i-button type="bg-blue" label="##word.open_orders##" ng-click="viewInvoicesActiveList()"> </i-button>
+                                <i-button fa="cart-arrow-down" type="bg-blue white" label="##word.open_orders##" ng-click="viewInvoicesActiveList()"> </i-button>
 
-                <i-button ng-hide="order_invoice.hold || order_invoice.status.id == 2" label="##word.order_hold##" ng-click="addOrderInvoice('hold')"> </i-button>
+                                <i-button fa="ban" type="bg-brown white" ng-hide="order_invoice.hold || order_invoice.status.id == 2" label="##word.order_hold##" ng-click="addOrderInvoice('hold')">
+                                </i-button>
 
-                <i-button ng-show="order_invoice.hold" label="##word.order_unhold##" ng-click="updateOrderInvoice(order_invoice,'unhold')"> </i-button>
+                                <i-button fa="ban" type="bg-brown white" ng-show="order_invoice.hold" label="##word.order_unhold##" ng-click="updateOrderInvoice(order_invoice,'unhold')"> </i-button>
 
-                <i-button x-permissions="order_invoice_cancel_order || order_invoice_manage" type="bg-red" label="##word.cancel_order##" ng-click="cancelOrderInvoice(order_invoice)"> </i-button>
-              </div>
+                                <i-button
+                                    x-permissions="order_invoice_cancel_order || order_invoice_manage"
+                                    type="bg-red white"
+                                    fa="window-close"
+                                    label="##word.cancel_order##"
+                                    ng-click="cancelOrderInvoice(order_invoice)"
+                                >
+                                </i-button>
+                            </div>
 
-              <br />
-              <div class="row">
-                <i-control id="searchBarcode" label="##word.barcode##" class="center" ng-keydown="getBarcode($event)" ng-model="search_barcode"></i-control>
-              </div>
-              <br />
+                            <br />
+                            <div class="row padding border">
+                                <i-control id="searchBarcode" label="##word.barcode##" class="center" ng-keydown="getBarcode($event)" ng-model="search_barcode"></i-control>
+                            </div>
 
-              <div class="row">
-                <div class="item-groups">
-                  <a class="item pointer center" style="background-color: {{g.color}};" ng-repeat="g in itemsGroupList" ng-click="loadItems(g , $event)" help-id="menu_monitor">
-                    <!-- <img ng-src="{{g.image_url}}"> -->
-                    <p class="center font_name_group">{{g.name_##session.lang##}}</p>
-                  </a>
-                </div>
-                <hr style="height: 7px; background-image: linear-gradient(rgb(90 79 255), rgb(227 225 255))" />
-              </div>
+                            <br />
+                            <br />
+                            <br />
 
-              <div class="row" style="height: 440px; overflow: auto">
-                <div class="item-list" ng-show="itemsList.length > 0">
-                  <a class="item pointer" ng-repeat="i in itemsList" ng-click="showItemsIn(i)" help-id="menu_monitor">
-                    <img ng-src="{{i.image_url}}" />
-                    <div class="bg_font_item">
-                      <p class="center font_name_items">{{i.name_##session.lang##}}</p>
-                    </div>
-                  </a>
-                </div>
-              </div>
-            
+                            <div class="row">
+                                <div class="item-groups">
+                                    <a class="item pointer" ng-repeat="g in itemsGroupList" ng-click="loadItems(g , $event)" help-id="menu_monitor">
+                                        <img ng-src="{{g.image_url}}" />
+                                        <p>{{g.name_##session.lang##}}</p>
+                                    </a>
+                                </div>
+                            </div>
 
-              <br />
+                            <div class="row item-list border" ng-show="itemsList.length > 0">
+                                <a class="item col4 pointer" ng-repeat="i in itemsList" ng-click="showItemsIn(i)" help-id="menu_monitor">
+                                    <div class="row">
+                                        <div class="col4"><img ng-src2="{{i.image_url}}" ng-src="/images/food.png" /></div>
+                                        <div class="col8"><p class="center">{{i.name_##session.lang##}}</p></div>
+                                    </div>
+                                </a>
+                            </div>
 
-              <div id="sizesModal" class="modal small">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <span class="close">&times;</span>
-                  </div>
+                            <br />
 
-                  <div class="modal-body">
-                    <div class="item-list center">
-                      <a class="item pointer center" ng-repeat="s in items.sizes" ng-click="bookList(s)" help-id="menu_monitor">
-                        <img ng-src="{{s.image_url}}" onerror="this.src='/images/no.png'" />
-                        <!-- <h3> ##word.price## : {{s.price}}</h3> -->
-                        <div class="bg_font_item">
-                          <h3 class="center font_name_items">{{s.size_##session.lang##}}</h3>
+                            <div id="sizesModal" class="modal small">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <span class="close">&times;</span>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        <div class="item-list">
+                                            <a class="item pointer" ng-repeat="s in items.sizes" ng-click="bookList(s)" help-id="menu_monitor">
+                                                <img ng-src="{{s.image_url}}" onerror="this.src='/images/no.png'" />
+                                                <!-- <h3> ##word.price## : {{s.price}}</h3> -->
+                                                <div class="bg_font_item">
+                                                    <h3 class="center font_name_items">{{s.size_##session.lang##}}</h3>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal-footer center">
+                                        <i-button type="close" label="##word.close##" onclick="site.hideModal('#sizesModal')"> </i-button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                      </a>
-                    </div>
-                  </div>
 
-                  <div class="modal-footer center">
-                    <i-button type="close" label="##word.close##" onclick="site.hideModal('#sizesModal')"> </i-button>
-                  </div>
-                </div>
-              </div>
-            </div>
+                        <div class="col6 order-invoice">
+                            <div class="row" ng-hide="'##user.type##' == 'table'">
+                                <div class="row">
+                                    <h2 class="bold center red">{{error}}</h2>
 
-            <div class="col6 order-invoice">
-              <div class="row" ng-hide="'##user.type##' == 'table'">
-                <div class="row">
-                  <h2 class="bold center red">{{error}}</h2>
+                                    <div class="row">
+                                        <i-date2 class="col5" ng-model="order_invoice.date" label="##word.date##"></i-date2>
 
-                  <div class="row">
-                    <i-date2 class="col5" ng-model="order_invoice.date" label="##word.date##"></i-date2>
-
-                    <i-control class="col3 r_indigo" disabled label="##word.shift##" ng-model="shift.name_##session.lang##"></i-control>
-                    <i-list
-                      ng-search="_search.$transaction_type"
-                      class="col4"
-                      display="##session.lang##"
-                      ng-model="order_invoice.transaction_type"
-                      label="##word.transaction_type##"
-                      items="transactionTypeList"
-                      ng-change="changeTransactionType(order_invoice) ; calc(order_invoice)"
-                    >
-                    </i-list>
-                    <!--                     <i-control class="col3 r_black" disabled label="##word.code##" ng-model="order_invoice.code"></i-control>
+                                        <i-control class="col3 r_indigo" disabled label="##word.shift##" ng-model="shift.name_##session.lang##"></i-control>
+                                        <i-list
+                                            ng-search="_search.$transaction_type"
+                                            class="col4"
+                                            display="##session.lang##"
+                                            ng-model="order_invoice.transaction_type"
+                                            label="##word.transaction_type##"
+                                            items="transactionTypeList"
+                                            ng-change="changeTransactionType(order_invoice) ; calc(order_invoice)"
+                                        >
+                                        </i-list>
+                                        <!--                     <i-control class="col3 r_black" disabled label="##word.code##" ng-model="order_invoice.code"></i-control>
  -->
-                  </div>
+                                    </div>
 
-                  <div class="row">
-                    <i-button
-                      type="bg-purple btn_board"
-                      ng-show="order_invoice.transaction_type.id == 1 && '##user.type##' != 'table'"
-                      label="##word.table##"
-                      ng-click="showOrderDetails(order_invoice,'table')"
-                    >
-                    </i-button>
+                                    <div class="row">
+                                        <i-button
+                                            type="bg-green white"
+                                            ng-show="order_invoice.transaction_type.id == 1 && '##user.type##' != 'table'"
+                                            label="##word.table##"
+                                            ng-click="showOrderDetails(order_invoice,'table')"
+                                        >
+                                        </i-button>
 
-                    <i-button type="bg-purple btn_board" label="##word.customer##" ng-hide="order_invoice.transaction_type.id == 2" ng-click="showOrderDetails(order_invoice,'customer')"> </i-button>
+                                        <i-button
+                                            type="bg-green white"
+                                            label="##word.customer##"
+                                            fa="user-tie"
+                                            ng-hide="order_invoice.transaction_type.id == 2"
+                                            ng-click="showOrderDetails(order_invoice,'customer')"
+                                        >
+                                        </i-button>
 
-                    <i-button
-                      type="bg-purple btn_board"
-                      ng-show="'##user.type##' != 'table' &&  order_invoice.transaction_type.id == 2"
-                      label="##word.delivery##"
-                      ng-click="showOrderDetails(order_invoice,'delivery')"
-                    >
-                    </i-button>
+                                        <i-button
+                                            type="bg-green white"
+                                            ng-show="'##user.type##' != 'table' &&  order_invoice.transaction_type.id == 2"
+                                            label="##word.delivery##"
+                                            fa="motorcycle"
+                                            ng-click="showOrderDetails(order_invoice,'delivery')"
+                                        >
+                                        </i-button>
 
-                    <i-button ng-hide="'##user.type##' == 'table'" type="bg-purple btn_board" label="##word.discountes##" ng-click="showOrderDetails(order_invoice,'discountes')"> </i-button>
+                                        <i-button
+                                            ng-hide="'##user.type##' == 'table'"
+                                            type="bg-green white"
+                                            label="##word.discountes##"
+                                            fa="percent"
+                                            ng-click="showOrderDetails(order_invoice,'discountes')"
+                                        >
+                                        </i-button>
 
-                    <i-button type="bg-purple btn_board" ng-hide="'##user.type##' == 'table'" label="##word.stores_out_taxes##" ng-click="showOrderDetails(order_invoice,'taxes')"> </i-button>
-                  </div>
+                                        <i-button
+                                            type="bg-green white"
+                                            ng-hide="'##user.type##' == 'table'"
+                                            label="##word.stores_out_taxes##"
+                                            fa="file-invoice-dollar"
+                                            ng-click="showOrderDetails(order_invoice,'taxes')"
+                                        >
+                                        </i-button>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="table-content">
+                                    <div class="table-headers">
+                                        <div class="col4 header">##word.stores_items_name##</div>
+                                        <div class="col2 header">##word.items_count##</div>
+                                        <div class="col1 header">##word.price##</div>
+                                        <div class="col1 header" x-features="restaurant">##word.extras##</div>
+                                        <div class="col2 header">##word.t_o## ##word.price##</div>
+                                        <div class="col2 header">##word.actions##</div>
+                                    </div>
+                                    <div class="table-items" ng-repeat="size in order_invoice.items">
+                                        <div class="col4 item">
+                                            <p ng-show="size.add_sizes">{{size.name_##session.lang##}} {{size.size_##session.lang##}}</p>
+                                            <p ng-hide="size.add_sizes">{{size.size_##session.lang##}}</p>
+                                        </div>
+                                        <div class="col2 item">
+                                            <input class="full-width" ng-change="calcSize(size)" ng-model="size.count" type="number" />
+                                        </div>
+                                        <div class="col1 item">
+                                            <p class="center">{{size.b_price}}</p>
+                                            <del class="red txt16" ng-show="itm.discount.value > 0"> {{size.discount.current}} </del>
+                                        </div>
+                                        <div class="col1 item" x-features="restaurant">{{size.extras_price}}</div>
+                                        <div class="col2 item bold font-18 green">{{size.total}}</div>
+                                        <div class="col2 item">
+                                            <i-button type="edit default" ng-click="showEditItem(size)"></i-button>
+
+                                            <i-button type="delete default" x-permissions="order_invoice_delete_items || order_invoice_manage" ng-click="deleteItemsList(size)"> </i-button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <table x-feature="test" class="table bold hover loaded" id="t1">
+                                    <thead>
+                                        <th class="w200">##word.stores_items_name##</th>
+                                        <th class="w100">##word.items_count##</th>
+                                        <th class="w100">##word.price##</th>
+                                        <th class="w100" x-features="restaurant">##word.extras##</th>
+                                        <th class="w100">##word.t_o## ##word.price##</th>
+                                        <th class="not-print">##word.actions##</th>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr ng-repeat="size in order_invoice.items">
+                                            <td class="center title w200">
+                                                <br />
+                                                <p ng-show="size.add_sizes">{{size.name_##session.lang##}} {{size.size_##session.lang##}}</p>
+                                                <p ng-hide="size.add_sizes">{{size.size_##session.lang##}}</p>
+                                            </td>
+
+                                            <td class="center w100">
+                                                <i-control ng-change="calcSize(size)" ng-model="size.count" type="number"> </i-control>
+                                            </td>
+                                            <td class="center blue w100">
+                                                <br />
+                                                <p class="center">{{size.b_price}}</p>
+                                                <del class="red txt16" ng-show="itm.discount.value > 0"> {{size.discount.current}} </del>
+                                            </td>
+
+                                            <td class="center w100" x-features="restaurant">
+                                                <br />
+                                                {{size.extras_price}}
+                                            </td>
+                                            <td class="center green w100">
+                                                <br />
+                                                {{size.total}}
+                                            </td>
+
+                                            <!-- ng-hide="'##user.type##' == 'table'" -->
+                                            <td class="center not-print">
+                                                <i-button type="edit default" ng-click="showEditItem(size)"></i-button>
+
+                                                <i-button type="delete default" x-permissions="order_invoice_delete_items || order_invoice_manage" ng-click="deleteItemsList(size)"> </i-button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <br />
+                            <br />
+                            <br />
+
+                            <div class="row">
+                                <div class="col10">
+                                    <table class="table">
+                                        <tr>
+                                            <td class="">##word.total_before_tax##</td>
+                                            <td class="">##word.vat##</td>
+                                            <td class="">##word.total_after_tax##</td>
+                                            <td class="">##word.discount_cash##</td>
+                                            <td class="">##word.net##</td>
+                                        </tr>
+                                        <tr>
+                                            <td class='center'>{{order_invoice.before_value_added}}</td>
+                                            <td class="center bold red">{{order_invoice.total_value_added}}</td>
+                                            <td class='center'>{{order_invoice.total_value}}</td>
+                                            <td class='center'>{{order_invoice.total_discount}}</td>
+                                            <td class="center bold green font-18">{{order_invoice.net_value}}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="col2">
+                                    <i-button ng-hide="order_invoice.status.id == 2" fa="cart-plus" label="##word.save_order##" ng-click="addOrderInvoice('add')"> </i-button>
+                                    <br />
+                                    <i-button fa="save" ng-hide="order_invoice.status.id == 2 || order_invoice.hold || '##user.type##' == 'table'" label="##word.close_order##" ng-click="closeOrder()">
+                                    </i-button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div x-import="order-invoice/thermal_print.html"></div>
+                    <div x-import="order-invoice/kitchen_print.html"></div>
                 </div>
-              </div>
-              <br />
-              <div class="row">
-                <table class="table bold hover loaded" id="t1">
-                  <thead>
-                    <th class="w150">##word.stores_items_name##</th>
-                    <th class="">##word.items_count##</th>
-                    <th class="w100">##word.price##</th>
-                    <th class="w100" x-features="restaurant">##word.extras##</th>
-                    <th class="w100">##word.t_o## ##word.price##</th>
-                    <th class="not-print">##word.actions##</th>
-                  </thead>
-
-                  <tbody>
-                    <tr ng-repeat="size in order_invoice.items">
-                      <td class="center title w150">
-                        <br />
-                        <p ng-show="size.add_sizes">{{size.name_##session.lang##}} {{size.size_##session.lang##}}</p>
-                        <p ng-hide="size.add_sizes">{{size.size_##session.lang##}}</p>
-                      </td>
-
-                      <td class="center">
-                        <i-control ng-change="calcSize(size)" ng-model="size.count" type="number"> </i-control>
-                      </td>
-                      <td class="center blue w100">
-                        <br />
-                        <p class="center">{{size.b_price}}</p>
-                        <del class="red txt16" ng-show="itm.discount.value > 0"> {{size.discount.current}} </del>
-                      </td>
-
-                      <td class="center w100" x-features="restaurant">
-                        <br />
-                        {{size.extras_price}}
-                      </td>
-                      <td class="center green w100">
-                        <br />
-                        {{size.total}}
-                      </td>
-
-                      <!-- ng-hide="'##user.type##' == 'table'" -->
-                      <td class="center not-print">
-                        <i-button type="edit default" ng-click="showEditItem(size)"></i-button>
-
-                        <i-button type="delete default" x-permissions="order_invoice_delete_items || order_invoice_manage" ng-click="deleteItemsList(size)"> </i-button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <div class="row">
-                <div class="col9">
-                  <div class="row">
-                    <table class="table bold center hover">
-                      <tr>
-                        <td class="white bg_card">##word.total_before_tax##</td>
-                        <td class="white bg_card">##word.vat##</td>
-                        <td class="white bg_card">##word.total_after_tax##</td>
-                        <td class="white bg_card">##word.discount_cash##</td>
-                        <td class="white bg_card">##word.net##</td>
-                      </tr>
-                      <tr>
-                        <td>{{order_invoice.before_value_added}}</td>
-                        <td>{{order_invoice.total_value_added}}</td>
-                        <td>{{order_invoice.total_value}}</td>
-                        <td>{{order_invoice.total_discount}}</td>
-                        <td>{{order_invoice.net_value}}</td>
-                      </tr>
-                    </table>
-                  </div>
-                  <div class="row">
-                    <!--     <i-button
-                      ng-hide="'##user.type##' == 'table' || order_invoice.items.length < 1"
-                      class="not-print"
-                      label="##word.print_invoice##"
-                      type="print "
-                      ng-click="thermalPrint(order_invoice)"
-                    >
-                    </i-button> -->
-
-                    <!--  <i-button
-                      ng-show="defaultSettings.accounting.create_invoice_auto && order_invoice.status.id == 2 && !order_invoice.invoice"
-                      type="save"
-                      label="##word.create_an_invoice##"
-                      ng-click="displayAccountInvoice(order_invoice)"
-                    >
-                    </i-button> -->
-                  </div>
-                </div>
-                <div class="col3">
-                  <i-button ng-hide="order_invoice.status.id == 2" type="fa fa-cart-plus saving" label="##word.save_order##" ng-click="addOrderInvoice('add')"> </i-button>
-                  <br />
-                  <i-button type="closing" ng-hide="order_invoice.status.id == 2 || order_invoice.hold || '##user.type##' == 'table'" label="##word.close_order##" ng-click="closeOrder()"> </i-button>
-                </div>
-              </div>
             </div>
-          </div>
-          <div x-import="order-invoice/thermal_print.html"></div>
-          <div x-import="order-invoice/kitchen_print.html"></div>
         </div>
-      </div>
-    </div>
 
-    <div x-import="scripts.html"></div>
-    <script x-import="order-invoice/index.js"></script>
-  </body>
+        <div x-import="scripts.html"></div>
+        <script x-import="order-invoice/index.js"></script>
+    </body>
 </html>

@@ -4,9 +4,7 @@
 .qrcode img {
     border-radius: 0px !important;
 }
-.row .col4 {
-    border-radius: 30px;
-}
+
 .popup item {
     border-radius: 30px;
 }
@@ -101,6 +99,7 @@ popup item:hover {
     border-radius: 0px 0px 7px 7px;
     overflow: hidden;
     display: none;
+    box-shadow: 1px 1px 8px 0px #000;
 }
 .en .user-menu {
     right: 50px;
