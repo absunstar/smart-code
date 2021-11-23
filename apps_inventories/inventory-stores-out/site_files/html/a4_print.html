@@ -230,8 +230,7 @@
     <br />
 
     <div class="row" x-permissions="stores_out_details_values || stores_out_manage" ng-show="($index+1) == invList.length">
-      <div class="col1"></div>
-      <div class="col7">
+      <div class="col8">
      
         <div class="row">
           <div class="col8">
@@ -279,17 +278,15 @@
           </div>
         </div>
         <div class="row">
+          <div class="col1"></div>
           <div class="col11">
-
             <p class="num_str bold center black">{{st_o.net_txt}} {{defaultSettings.accounting.end_num_to_str || ''}}</p>
           </div>
-          <div class="col1"></div>
         </div>
       </div>
       <div class="col3">
         <div class="qrcode"></div>
       </div>
-      <div class="col1"></div>
     </div>
 
     <hr />
@@ -300,7 +297,6 @@
       <div class="col4 bold">
         <p class="txt19 black center">المستلم / Receiver</p>
         <br />
-        <br />
         <p class="black">الإسم / Name :</p>
         <p class="black">التوقيع / Signature :</p>
       </div>
@@ -309,7 +305,6 @@
 
       <div class="col4 bold">
         <p class="txt19 black center">المندوب / Sales man</p>
-        <br />
         <br />
         <b class="black">الإسم / Name : </b>
         <p class="black">التوقيع / Signature :</p>
