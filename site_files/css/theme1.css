@@ -1,3 +1,10 @@
+:root{
+  --modal-header-background-color: var(--theme-color);
+  --modal-box-shadow-color: #555;
+  --modal-animation-name: animateopacity;
+  --modal-background: #0000006e;
+  --modal-content-background: var(--x-background);
+}
 .tabs .tabs-content .tab-content {
   display: none;
   padding: 6px 12px;
@@ -6,7 +13,7 @@
   -webkit-animation-duration: var(--tab-animation-duration);
   animation-name: var(--tab-animation-name);
   animation-duration: var(--tab-animation-duration);
-  overflow: scroll;
+  overflow: visible;
 }
 
 .r_blue,
@@ -162,6 +169,103 @@ i-image img:hover {
   border-radius: 25px;
 }
 
+fieldset {
+  margin: 20px;
+  padding: 0 10px 10px;
+  border: 1px solid #0400bc;
+  border-radius: 8px;
+  box-shadow: 0 0 10px #b8abff;
+  padding-top: 10px;
+}
+legend {
+  padding: 2px 4px;
+  background: rgb(255, 255, 255);
+  /* For better legibility against the box-shadow */
+}
+fieldset > legend {
+  margin-top: -20px;
+  background-color: white;
+}
+fieldset > legend + * {
+  clear: both;
+}
+
+
+.tabs .tabs-header .tab-link {
+  font-size: 16px;
+}
+
+.tabs .tabs-header .tab-link.active {
+  background-color: #5369e0;
+  padding-right: 30px;
+}
+
+.tabs .tabs-header .tab-link:hover {
+  background-color: #5369e0;
+  padding-right: 30px;
+}
+
+.btn {
+  font-size: 15px;
+  box-shadow: 0px 8px 14px -1px var(--btn-box-shadow-color);
+  -webkit-box-shadow: 0px 8px 14px -1px var(--btn-box-shadow-color);
+  box-shadow: 0px 8px 14px -1px var(--btn-box-shadow-color);
+
+  --theme-color: #556ae2;
+  --theme-color2: #2f8033;
+  --x-background: #ffffff;
+  --font-size: 14px;
+  --form-color: #444;
+  --input-background-color: var(--x-background);
+  --input-focus-border-color: var(--theme-color);
+  --input-color: #000000;
+  --color: #444;
+  --background-color: var(--x-background);
+ /* --input-border-radius: 30px;
+   --input-background-color: #f8f8ff; */
+  --body-background: #f8f8ff;
+
+  --btn-box-shadow-color: #555;
+  --btn-border-radius: 0px;
+  --btn-color: #000;
+  --btn-background-color: #fff;
+  --fieldset-border: 1px solid var(--theme-color);
+  --fieldset-background: none;
+  --legend-color: #444;
+  --tabs-header-link-color: #444;
+  --tabs-header-link-color2: #ffffff;
+  --tabs-header-link-border-bottom: 1px solid var(--theme-color);
+  --help-content-color: blue;
+  --help-background-color: var(--x-background);
+  --help-border: 1px solid #000;
+}
+
+.modal {
+  background-color: #0000006e;
+  z-index: 999999;
+}
+
+.modal-body {
+  overflow-y: auto;
+}
+.modal.small .modal-content,
+.modal-content.small {
+  width: 50%;
+}
+.modal-content {
+  border-radius: 30px;
+}
+
+.modal-header {
+  border-top-right-radius: 30px;
+  border-top-left-radius: 30px;
+}
+
+.table th {
+  background-color: #677cf1;
+
+  color: #ffffff;
+}
 
 .page-a4 {
   /*  width: 210mm !important; */
@@ -175,43 +279,7 @@ i-image img:hover {
   page-break-inside: avoid !important;
 }
 
-@media print {
-  .page-a4 {
-    /*  width: 210mm !important; */
-    background: white !important;
-    color: #000 !important;
-    height: 297mm !important;
-    padding: 2mm !important;
-    margin: 0mm !important;
-    page-break-before: always !important;
-    page-break-after: always !important;
-    page-break-inside: avoid !important;
-  }
 
-  .important_thing {
-    width: 100%;
-    height: 100%;
-    page-break-after: always;
-  }
-  .printOnly {
-    display: block !important;
-    page-break-after: always;
-  }
-  .table th {
-    border-style: outset !important;
-  }
-  .table td {
-    border-style: outset !important;
-  }
-
-  .table {
-    font-size: 8pt !important;
-  }
-
-  .bg_sf {
-    background-color: #0000b82e !important;
-  }
-}
 .font_cairo {
   font-family: cairo !important;
 }
@@ -272,4 +340,43 @@ i-image img:hover {
 .line_through {
   -webkit-text-decoration-line: line-through; /* Safari */
   text-decoration-line: line-through;
+}
+
+
+@media print {
+  .page-a4 {
+    /*  width: 210mm !important; */
+    background: white !important;
+    color: #000 !important;
+    height: 297mm !important;
+    padding: 2mm !important;
+    margin: 0mm !important;
+    page-break-before: always !important;
+    page-break-after: always !important;
+    page-break-inside: avoid !important;
+  }
+
+  .important_thing {
+    width: 100%;
+    height: 100%;
+    page-break-after: always;
+  }
+  .printOnly {
+    display: block !important;
+    page-break-after: always;
+  }
+  .table th {
+    border-style: outset !important;
+  }
+  .table td {
+    border-style: outset !important;
+  }
+
+  .table {
+    font-size: 8pt !important;
+  }
+
+  .bg_sf {
+    background-color: #0000b82e !important;
+  }
 }
