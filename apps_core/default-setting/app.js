@@ -49,7 +49,7 @@ module.exports = function init(site) {
 
     if(req.data.company){
       where['company.id'] = req.data.company.id
-      where['branch.id'] = req.data.branch.id
+      where['branch.code'] = req.data.branch.code
     } else {
       
       where['company.id'] = site.get_company(req).id
@@ -61,7 +61,6 @@ module.exports = function init(site) {
     }, (err, doc) => {
       if (!err && doc) {
         response.done = true
-        console.log(doc.printer_program);
         response.doc = doc
         res.json(response)
       } else {
