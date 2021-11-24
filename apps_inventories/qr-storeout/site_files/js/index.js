@@ -114,7 +114,7 @@ app.controller('qr_storeout', function ($scope, $http, $timeout) {
               ar: ' ' + $scope.store_out.currency.minor_currency_ar + ' ',
               en: ' ' + $scope.store_out.currency.minor_currency_en + ' ',
             };
-            console.log(defaultSettings.printer_program.thermal_lang.id);
+            console.log($scope.defaultSettings.printer_program.thermal_lang.id);
             $scope.store_out.net_txt = site.stringfiy($scope.store_out.net_value);
           }
         }
