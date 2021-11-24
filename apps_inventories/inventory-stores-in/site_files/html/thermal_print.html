@@ -64,10 +64,10 @@
     <div class="col2"></div>
     <div class="col4">
       <b class="black" ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'ar'"
-        >الوقت : {{thermal.date |date:"mm : hh" }}</b
+        > الوقت : {{thermal.date |date:"mm : hh" }}</b
       >
       <b class="black" ng-show="defaultSettings.printer_program.thermal_lang.id == 2 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'en'"
-        >Time : {{thermal.date |date:"hh : mm" }}</b
+        > Time : {{thermal.date |date:"hh : mm" }}</b
       >
     </div>
   </div>
@@ -78,7 +78,12 @@
     <h3 class="black bold center" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">المورد :</h3>
     <h3 class="black bold center" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Vendor :</h3>
     <h3 class="black bold center" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.vendor## :</h3>
-    <h3 class="black bold center border_black">{{thermal.vendor.name_##session.lang##}}</h3>
+    <h3 class="black bold center border_black" ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'ar'">
+      {{thermal.vendor.name_ar}}
+    </h3>
+    <h3 class="black bold center border_black" ng-show="defaultSettings.printer_program.thermal_lang.id == 2 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'en'">
+      {{thermal.vendor.name_en}}
+    </h3>
   </div>
   <br />
   <hr />
