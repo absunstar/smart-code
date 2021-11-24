@@ -11,13 +11,13 @@
       <div class="row">
         <div class="center">
           <div class="row">
-            <h2 ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3" class="black center bold">{{defaultSettings.company.name_ar}}</h2>
-            <h2 ng-show="defaultSettings.printer_program.thermal_lang.id == 2" class="black center bold">{{defaultSettings.company.name_en}}</h2>
+            <h2 ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3" class="black center bold">{{store_out.company.name_ar}}</h2>
+            <h2 ng-show="defaultSettings.printer_program.thermal_lang.id == 2" class="black center bold">{{store_out.company.name_en}}</h2>
           </div>
     
           <div class="row">
-            <h3 ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3" class="black center bold">{{defaultSettings.branch.name_ar}}</h3>
-            <h3 ng-show="defaultSettings.printer_program.thermal_lang.id == 2" class="black center bold">{{defaultSettings.branch.name_en}}</h3>
+            <h3 ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3" class="black center bold">{{store_out.branch.name_ar}}</h3>
+            <h3 ng-show="defaultSettings.printer_program.thermal_lang.id == 2" class="black center bold">{{store_out.branch.name_en}}</h3>
           </div>
           <br />
           <div class="row center" ng-repeat="i in defaultSettings.printer_program.thermal_header">
