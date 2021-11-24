@@ -1919,9 +1919,9 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
     }
 
     $scope.busy = false;
-   /*  $timeout(() => {
+    $timeout(() => {
       $('#thermalPrint').addClass('hidden');
-    }, 5000); */
+    }, 5000);
   };
   $scope.print = function () {
     $scope.error = '';

@@ -50,27 +50,6 @@ app.controller('qr_storeout', function ($scope, $http, $timeout) {
     $scope.busy = false;
   };
 
-  $scope.thermalPrint = function () {
-    $scope.error = '';
-    if ($scope.busy) return;
-    $scope.busy = true;
-
-    if ($scope.store_out.currency) {
-      site.strings['currency'] = {
-        ar: ' ' + $scope.store_out.currency.name_ar + ' ',
-        en: ' ' + $scope.store_out.currency.name_en + ' ',
-      };
-      site.strings['from100'] = {
-        ar: ' ' + $scope.store_out.currency.minor_currency_ar + ' ',
-        en: ' ' + $scope.store_out.currency.minor_currency_en + ' ',
-      };
-      $scope.store_out.net_txt = site.stringfiy($scope.store_out.net_value);
-    }
-    console.log($scope.store_out,"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-
-    $scope.busy = false;
-  };
-
   $scope.view = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -125,7 +104,19 @@ app.controller('qr_storeout', function ($scope, $http, $timeout) {
         if (response.data.done && response.data.doc) {
           $scope.defaultSettings = response.data.doc;
           $scope.invoice_logo = document.location.origin + $scope.defaultSettings.printer_program.invoice_logo;
-          $scope.thermalPrint();
+
+          if ($scope.store_out.currency) {
+            site.strings['currency'] = {
+              ar: ' ' + $scope.store_out.currency.name_ar + ' ',
+              en: ' ' + $scope.store_out.currency.name_en + ' ',
+            };
+            site.strings['from100'] = {
+              ar: ' ' + $scope.store_out.currency.minor_currency_ar + ' ',
+              en: ' ' + $scope.store_out.currency.minor_currency_en + ' ',
+            };
+            console.log(defaultSettings.printer_program.thermal_lang.id);
+            $scope.store_out.net_txt = site.stringfiy($scope.store_out.net_value);
+          }
         }
       },
       function (err) {
