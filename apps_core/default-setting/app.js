@@ -61,6 +61,7 @@ module.exports = function init(site) {
     }, (err, doc) => {
       if (!err && doc) {
         response.done = true
+        console.log(doc.printer_program);
         response.doc = doc
         res.json(response)
       } else {
