@@ -7,7 +7,7 @@
 
         <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
 
-        <div id="main-layout" class="container">
+        <div x-feature="host.test" id="main-layout" class="container">
             <div class="row center">
                 <div class="row" ng-controller="db">
                     <table class="table hover loaded" id="t1">
@@ -46,6 +46,6 @@
 
         <div x-import="scripts.html"></div>
 
-        <script x-import="db/index.js"></script>
+        <script x-feature="host.test" x-import="db/index.js"></script>
     </body>
 </html>

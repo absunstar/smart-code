@@ -90,7 +90,7 @@ module.exports = function init(site) {
                 if (!result.done) {
                     res.json(result);
                 } else {
-                    res.download(result.file.path);
+                    res.download(result.file_path);
                 }
             },
         );

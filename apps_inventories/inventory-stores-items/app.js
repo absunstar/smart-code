@@ -1445,9 +1445,9 @@ module.exports = function init(site) {
                 $stores_items.deleteMany({});
 
                 oldDocs.forEach((_oldDoc) => {
-                    let unitExists = unitsList.some((u) => u.name_ar === _oldDoc.uint_name_ar.trim());
+                    let unitExists = unitsList.some((u) => u.name_ar === _oldDoc.unit.trim());
                     if (!unitExists) {
-                        unitsList.push({ name_en: _oldDoc.uint_name_ar.trim(), name_ar: _oldDoc.uint_name_ar.trim() });
+                        unitsList.push({ name_en: _oldDoc.unit.trim(), name_ar: _oldDoc.unit.trim() });
                     }
 
                     let groupExists = itemsGroupList.some((g) => g.name_ar === _oldDoc.category_name_ar.trim());
@@ -1501,7 +1501,7 @@ module.exports = function init(site) {
                             return g.name_ar === _oldDoc.category_name_ar.trim();
                         });
                         let itemUnit = unitsList.find((u) => {
-                            return u.name_ar === _oldDoc.uint_name_ar.trim();
+                            return u.name_ar === _oldDoc.unit.trim();
                         });
 
                         $stores_items.add(
