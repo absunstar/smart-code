@@ -1785,9 +1785,7 @@ app.controller('stores_items', function ($scope, $http, $timeout) {
     $scope.loadUserBranches();
     $scope.loadItemsType();
     $scope.loadActiveSubstances();
-    $timeout(() => {
-        $scope.loadUnitsBarcodesList();
-    }, 1000 * 5);
 
+    /* $scope.loadUnitsBarcodesList();*/
     if (site.feature('restaurant')) $scope.loadKitchens();
 });
