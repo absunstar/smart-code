@@ -122,13 +122,13 @@ app.controller('db', function ($scope, $http) {
     $scope.import = function (files, collection) {
         var fd = new FormData();
         fd.append('collectionFile', files[0]);
+        fd.append('collectionName', collection.name);
 
         $http
             .post('/api/db/import', fd, {
                 withCredentials: true,
                 headers: {
                     'Content-Type': undefined,
-                    collection_name: collection.name,
                 },
                 uploadEventHandlers: {
                     progress: function (e) {
@@ -143,7 +143,7 @@ app.controller('db', function ($scope, $http) {
             .then(
                 function (res) {
                     if (res.data && res.data.done) {
-                        $scope.uploadStatus = 'Data Imported to : ' + res.data.collection_name;
+                        $scope.uploadStatus = 'Data Imported to : ' + res.data.collectionName;
                     }
                 },
                 function (error) {
@@ -157,7 +157,7 @@ app.controller('db', function ($scope, $http) {
             url: '/api/db/drop',
             method: 'post',
             data: {
-                collection_name: collection.name,
+                collectionName: collection.name,
             },
         }).then(
             function (res) {

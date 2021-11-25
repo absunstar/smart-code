@@ -9,8 +9,8 @@ module.exports = function init(site) {
     site.post('api/db/import', (req, res) => {
         let response = {
             done: false,
-            collection_name: req.headers.collection_name,
-            file_path: req.files.collectionFile.path,
+            collectionName: req.form.fields.collectionName,
+            file: req.form.files.collectionFile,
         };
 
         if (req.session.user === undefined) {
@@ -19,16 +19,16 @@ module.exports = function init(site) {
             return;
         }
 
-        if (!response.collection_name || response.collection_name == 'default_collection') {
-            response.error = 'response.collection_name : ' + response.collection_name;
+        if (!response.collectionName || response.collectionName == 'default_collection') {
+            response.error = 'response.collectionName : ' + response.collectionName;
             response.headers = req.headers;
             response.form = req.form;
             res.json(response);
             return;
         }
-        if (site.isFileExistsSync(response.file_path)) {
-            let $collection = site.connectCollection(response.collection_name);
-            let docs = site.fromJson(site.readFileSync(response.file_path).toString());
+        if (site.isFileExistsSync(response.file.path)) {
+            let $collection = site.connectCollection(response.collectionName);
+            let docs = site.fromJson(site.readFileSync(response.file.path).toString());
             if (Array.isArray(docs)) {
                 docs.forEach((doc) => {
                     doc.company = site.get_company(req);
@@ -63,7 +63,7 @@ module.exports = function init(site) {
                 console.log('can not import unknown type : ' + site.typeof(docs));
             }
         } else {
-            console.log('file not exists : ' + response.file_path);
+            console.log('file not exists : ' + response.file.path);
         }
 
         res.json(response);
@@ -78,10 +78,10 @@ module.exports = function init(site) {
             res.json(response);
             return;
         }
-        let collection_name = req.query.name;
-        let path = site.path.join(site.options.download_dir, collection_name + '.json');
+        let collectionName = req.query.name;
+        let path = site.path.join(site.options.download_dir, collectionName + '.json');
 
-        site.connectCollection(collection_name).export(
+        site.connectCollection(collectionName).export(
             {
                 limit: 1000000,
             },
@@ -90,7 +90,7 @@ module.exports = function init(site) {
                 if (!result.done) {
                     res.json(result);
                 } else {
-                    res.download(result.file_path);
+                    res.download(result.file.path);
                 }
             },
         );
@@ -99,7 +99,7 @@ module.exports = function init(site) {
     site.post('api/db/drop', (req, res) => {
         let response = {
             done: false,
-            collection_name: req.body.collection_name,
+            collectionName: req.body.collectionName,
         };
 
         if (req.session.user === undefined) {
@@ -108,7 +108,7 @@ module.exports = function init(site) {
             res.json(response);
             return;
         }
-        let $collection = site.connectCollection(response.collection_name);
+        let $collection = site.connectCollection(response.collectionName);
         $collection.removeMany({}, (err, result) => {
             response.err = err;
             response.result = result;
