@@ -20,6 +20,11 @@ module.exports = function init(site) {
             return;
         }
 
+        if(!response.collection_name || response.collection_name == 'default_collection'){
+          response.error = 'response.collection_name : ' + response.collection_name;
+          res.json(response);
+          return;
+        }
         if (site.isFileExistsSync(response.file_path)) {
             let $collection = site.connectCollection(response.collection_name);
             let docs = site.fromJson(site.readFileSync(response.file_path).toString());
