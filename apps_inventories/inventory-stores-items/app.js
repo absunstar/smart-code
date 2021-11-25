@@ -3,7 +3,7 @@ module.exports = function init(site) {
     const $items_group = site.connectCollection('items_group');
     const $units = site.connectCollection('units');
 
-    const $itemsFile = site.connectCollection('item2');
+    const $itemsFile = site.connectCollection('itemsFile');
 
     site.on('[transfer_branch][stores_items][add_balance]', (obj, callback, next) => {
         // console.log(new Date().getTime() + ' : [transfer_branch][stores_items][add_balance]')

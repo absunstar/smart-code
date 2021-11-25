@@ -1,4 +1,7 @@
+const { date } = require('xlsx/jszip');
+
 module.exports = function init(site) {
+    site.XLSX = require('xlsx');
     site.get({
         name: 'db',
         path: __dirname + '/site_files/html/index.html',
@@ -26,9 +29,17 @@ module.exports = function init(site) {
             res.json(response);
             return;
         }
+
         if (site.isFileExistsSync(response.file.path)) {
             let $collection = site.connectCollection(response.collectionName);
-            let docs = site.fromJson(site.readFileSync(response.file.path).toString());
+            let docs = [];
+            if (response.file.name.like('*.xlsx')) {
+                let workbook = site.XLSX.readFile(response.file.path);
+                docs = site.XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]]);
+            } else {
+                docs = site.fromJson(site.readFileSync(response.file.path).toString());
+            }
+
             if (Array.isArray(docs)) {
                 docs.forEach((doc) => {
                     doc.company = site.get_company(req);
@@ -46,14 +57,14 @@ module.exports = function init(site) {
                     });
                 });
             } else if (site.typeof(docs) === 'Object') {
-                doc.company = site.get_company(req);
-                doc.branch = site.get_branch(req);
-                doc.add_user_info = site.security.getUserFinger({
+                docs.company = site.get_company(req);
+                docs.branch = site.get_branch(req);
+                docs.add_user_info = site.security.getUserFinger({
                     $req: req,
                     $res: res,
                 });
                 $collection.addOne(docs, (err, doc2) => {
-                    if (!err && doc) {
+                    if (!err && doc2) {
                         console.log('import doc id : ' + doc2.id);
                     } else {
                         console.log(err.message);
@@ -70,18 +81,22 @@ module.exports = function init(site) {
     });
 
     site.post('api/db/export', (req, res) => {
-        let response = {};
-        response.done = false;
+        let response = {
+            done: false,
+        };
 
         if (req.session.user === undefined) {
             response.error = 'You are not login';
             res.json(response);
             return;
         }
-        let collectionName = req.data.collectionName;
-        let path = site.path.join(site.options.download_dir, collectionName + '.json');
 
-        site.connectCollection(collectionName).export(
+        response.fileType = req.data.fileType || 'json';
+        response.collectionName = req.data.collectionName;
+        response.file_json_path = site.path.join(site.options.download_dir, response.collectionName + '_' + Date.now() + '.json');
+        response.file_xlsx_path = site.path.join(site.options.download_dir, response.collectionName + '_' + Date.now() + '.xlsx');
+
+        site.connectCollection(response.collectionName).findMany(
             {
                 limit: 1000000,
                 where: req.data.where || {
@@ -89,9 +104,29 @@ module.exports = function init(site) {
                     'branch.id': site.get_branch(req).id,
                 },
             },
-            path,
-            (result) => {
-                res.json(result);
+            (err, docs) => {
+                if (!err && docs) {
+                    if (response.fileType == 'xlsx') {
+                        const wb = site.XLSX.utils.book_new();
+                        const ws = site.XLSX.utils.json_to_sheet(docs);
+                        site.XLSX.utils.book_append_sheet(wb, ws, response.collectionName);
+                        site.XLSX.writeFile(wb, response.file_xlsx_path);
+                        response.done = !0;
+                        res.json(response);
+                    } else {
+                        site.writeFile(response.file_json_path, JSON.stringify(docs), (err) => {
+                            if (err) {
+                                response.err = err;
+                            } else {
+                                response.done = !0;
+                            }
+                            res.json(response);
+                        });
+                    }
+                }else{
+                    response.error = err;
+                    res.json(response);
+                }
             },
         );
     });

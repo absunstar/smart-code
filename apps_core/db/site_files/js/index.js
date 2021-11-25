@@ -1,7 +1,7 @@
 app.controller('db', function ($scope, $http) {
     $scope.collection_list = [
         {
-            name: 'item2',
+            name: 'itemsFile',
             ar: 'ملف الاصناف',
             en: 'Items File',
         },
@@ -171,22 +171,22 @@ app.controller('db', function ($scope, $http) {
         );
     };
 
-    $scope.export = function (collection) {
-        let where = null;
-        if (collection.name == 'item2') {
-            where = {};
-        }
-
+    $scope.export = function (collection , fileType) {
         $http({
             url: '/api/db/export',
             method: 'post',
             data: {
                 collectionName: collection.name,
-                where: where,
+                fileType : fileType
             },
         }).then((res) => {
-            if (res.data.done && res.data.file_path) {
-                document.location.href = '/api/db/download?file_path=' + res.data.file_path;
+            if (res.data.done && res.data.fileType) {
+                if(res.data.fileType == 'json'){
+                    document.location.href = '/api/db/download?file_path=' + res.data.file_json_path;
+                }else{
+                    document.location.href = '/api/db/download?file_path=' + res.data.file_xlsx_path;
+                }
+               
             }
         });
     };

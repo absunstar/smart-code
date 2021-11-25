@@ -22,7 +22,7 @@
                             </td>
                             <td class="center">
                                 <div class="row">
-                                    <div class="col4 center">
+                                    <div class="col2 center">
                                         <form class="form text-center pointer">
                                             <input id="input_{{collection.name}}" class="hidden" type="file" name="collectionFile" ng-model="collection.path" />
                                             <input type="hidden" name="collection_name" value="{{collection.name}}" />
@@ -30,8 +30,11 @@
                                             <p class="bold green">{{collection.uploadStatus}}</p>
                                         </form>
                                     </div>
-                                    <div class="col4 center"><i-button fa="cloud-download-alt" label="export" ng-click="export(collection)"></i-button></div>
-                                    <div class="col4 center">
+                                    <div class="col8 center">
+                                        <i-button fa="cloud-download-alt" label="export JSON" ng-click="export(collection , 'json')"></i-button>
+                                        <i-button fa="cloud-download-alt" label="export XLSX" ng-click="export(collection , 'xlsx')"></i-button>
+                                    </div>
+                                    <div class="col2 center">
                                         <i-button type="bg-red white" fa="trash" label="Drop" ng-click="drop(collection)"></i-button>
 
                                         <p>{{collection.dropMessage}}</p>
