@@ -1,43 +1,49 @@
 <!DOCTYPE html>
 <html lang="en" data-ng-app="myApp">
-  <head x-import="head.html"> </head>
+    <head x-import="head.html"> </head>
 
-  <body class="##session.lang##">
-    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar"></nav>
+    <body class="##session.lang##">
+        <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar"></nav>
 
-    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
+        <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
 
-    <div id="main-layout" class="container">
-      <div class="row center">
-        <div class="row" ng-controller="db">
-          <table class="table hover loaded" id="t1">
-            <tr>
-              <th>Collections Names</th>
+        <div id="main-layout" class="container">
+            <div class="row center">
+                <div class="row" ng-controller="db">
+                    <table class="table hover loaded" id="t1">
+                        <tr>
+                            <th class="w200">Collections Names</th>
 
-              <th>Actions</th>
-            </tr>
-            <tr ng-repeat="collection in collection_list">
-              <td>
-                <p class="center"> {{collection.##session.lang##}} </p>
-              </td>
-              <td class="center">
-                <form class="form text-center pointer">
-                  <input id="input_{{collection.name_##session.lang##}}" class="hidden" type="file" name="collectionFile" ng-model="collection.path"  />
-                  <a class="btn add" ng-click="do_click(collection)"> Import </a>
-                  <p>{{uploadStatus}}</p>
-                </form>
-
-                <i-button type="delete" label="export" ng-click="export(collection)"></i-button>
-              </td>
-            </tr>
-          </table>
-          
+                            <th>Actions</th>
+                        </tr>
+                        <tr ng-repeat="collection in collection_list">
+                            <td class="w200">
+                                <p class="center">{{collection.##session.lang##}}</p>
+                            </td>
+                            <td class="center">
+                                <div class="row">
+                                    <div class="col4 center">
+                                        <form class="form text-center pointer">
+                                            <input id="input_{{collection.name}}" class="hidden" type="file" name="collectionFile" ng-model="collection.path" />
+                                            <i-button fa="cloud-upload-alt" ng-click="do_click(collection)" label="Import"></i-button>
+                                            <p class='bold green'>{{collection.uploadStatus}}</p>
+                                        </form>
+                                    </div>
+                                    <div class="col4 center"><i-button fa="cloud-download-alt"  label="export" ng-click="export(collection)"></i-button></div>
+                                    <div class="col4 center"><i-button type="bg-red white" fa="trash" label="Drop" ng-click="drop(collection)"></i-button>
+                                    
+                                      <p> {{collection.dropMessage}}</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-    <div x-import="scripts.html"></div>
+        <div x-import="scripts.html"></div>
 
-    <script x-import="db/index.js"></script>
-  </body>
+        <script x-import="db/index.js"></script>
+    </body>
 </html>

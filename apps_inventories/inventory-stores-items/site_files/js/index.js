@@ -1888,12 +1888,12 @@ app.controller("stores_items", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getItemsCollection = function () {
+  $scope.importItemsFile = function () {
     $scope.error = '';
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/stores_items/getcollection"
+      url: "/api/stores_items/import"
     }).then(
       function (response) {
         $scope.busy = false;
