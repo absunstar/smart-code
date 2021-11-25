@@ -1776,7 +1776,7 @@ app.controller('stores_items', function ($scope, $http, $timeout) {
     $scope.getDefaultSetting();
     $scope.loadStores();
     $scope.loadItemsGroups();
-    $scope.loadItemSizeList();
+
     $scope.getNumberingAuto();
     $scope.getNumberingAutoSwitch();
     $scope.loadUnits();
@@ -1786,6 +1786,9 @@ app.controller('stores_items', function ($scope, $http, $timeout) {
     $scope.loadItemsType();
     $scope.loadActiveSubstances();
 
+    $timeout(() => {
+        $scope.loadItemSizeList();
+    }, 1000 * 10);
     /* $scope.loadUnitsBarcodesList();*/
     if (site.feature('restaurant')) $scope.loadKitchens();
 });
