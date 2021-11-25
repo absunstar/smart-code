@@ -69,7 +69,7 @@ module.exports = function init(site) {
         res.json(response);
     });
 
-    site.get('api/db/export', (req, res) => {
+    site.post('api/db/export', (req, res) => {
         let response = {};
         response.done = false;
 
@@ -78,20 +78,20 @@ module.exports = function init(site) {
             res.json(response);
             return;
         }
-        let collectionName = req.query.name;
+        let collectionName = req.data.collectionName;
         let path = site.path.join(site.options.download_dir, collectionName + '.json');
 
         site.connectCollection(collectionName).export(
             {
                 limit: 1000000,
+                where: req.data.where || {
+                    'company.id': site.get_company(req).id,
+                    'branch.id': site.get_branch(req).id,
+                },
             },
             path,
             (result) => {
-                if (!result.done) {
-                    res.json(result);
-                } else {
-                    res.download(result.file_path);
-                }
+                res.json(result);
             },
         );
     });
@@ -109,11 +109,23 @@ module.exports = function init(site) {
             return;
         }
         let $collection = site.connectCollection(response.collectionName);
-        $collection.removeMany({}, (err, result) => {
-            response.err = err;
-            response.result = result;
-            response.done = true;
-            res.json(response);
-        });
+        $collection.removeMany(
+            {
+                where: {
+                    'company.id': site.get_company(req).id,
+                    'branch.id': site.get_branch(req).id,
+                },
+            },
+            (err, result) => {
+                response.err = err;
+                response.result = result;
+                response.done = true;
+                res.json(response);
+            },
+        );
+    });
+
+    site.get('api/db/download', (req, res) => {
+        res.download(req.query.file_path);
     });
 };

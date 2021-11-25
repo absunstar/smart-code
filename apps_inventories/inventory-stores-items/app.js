@@ -1440,9 +1440,24 @@ module.exports = function init(site) {
                 let unitsList = [];
                 let itemsGroupList = [];
 
-                $units.deleteMany({});
-                $items_group.deleteMany({});
-                $stores_items.deleteMany({});
+                $units.deleteMany({
+                    where: {
+                        'company.id': site.get_company(req).id,
+                        'branch.id': site.get_branch(req).id,
+                    },
+                });
+                $items_group.deleteMany({
+                    where: {
+                        'company.id': site.get_company(req).id,
+                        'branch.id': site.get_branch(req).id,
+                    },
+                });
+                $stores_items.deleteMany({
+                    where: {
+                        'company.id': site.get_company(req).id,
+                        'branch.id': site.get_branch(req).id,
+                    },
+                });
 
                 oldDocs.forEach((_oldDoc) => {
                     let unitExists = unitsList.some((u) => u.name_ar === _oldDoc.unit.trim());

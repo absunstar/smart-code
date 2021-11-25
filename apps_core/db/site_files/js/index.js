@@ -172,6 +172,22 @@ app.controller('db', function ($scope, $http) {
     };
 
     $scope.export = function (collection) {
-        document.location.href = '/api/db/export?name=' + collection.name;
+        let where = null;
+        if (collection.name == 'item2') {
+            where = {};
+        }
+
+        $http({
+            url: '/api/db/export',
+            method: 'post',
+            data: {
+                collectionName: collection.name,
+                where: where,
+            },
+        }).then((res) => {
+            if (res.data.done && res.data.file_path) {
+                document.location.href = '/api/db/download?file_path=' + res.data.file_path;
+            }
+        });
     };
 });
