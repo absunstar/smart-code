@@ -3,6 +3,7 @@ const site = require('isite')({
   lang: 'ar',
   version: '1.0.10',
   name: 'pos',
+  savingTime : 5,
   require: {
     features: [],
     permissions: [],

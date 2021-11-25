@@ -98,8 +98,8 @@
                             <div class="row item-list border" ng-show="itemsList.length > 0">
                                 <a class="item col4 pointer" ng-repeat="i in itemsList" ng-click="showItemsIn(i)" help-id="menu_monitor">
                                     <div class="row">
-                                        <div class="col4"><img ng-src2="{{i.image_url}}" ng-src="/images/food.png" /></div>
-                                        <div class="col8"><p class="center">{{i.name_##session.lang##}}</p></div>
+                                        <div class="col-4"><img ng-src2="{{i.image_url}}" ng-src="/images/food.png" /></div>
+                                        <div class="col-8"><p class="center">{{i.name_##session.lang##}}</p></div>
                                     </div>
                                 </a>
                             </div>
@@ -137,12 +137,12 @@
                                     <h2 class="bold center red">{{error}}</h2>
 
                                     <div class="row">
-                                        <i-date2 class="col5" ng-model="order_invoice.date" label="##word.date##"></i-date2>
+                                        <i-date2 class="col-5" ng-model="order_invoice.date" label="##word.date##"></i-date2>
 
-                                        <i-control class="col3 r_indigo" disabled label="##word.shift##" ng-model="shift.name_##session.lang##"></i-control>
+                                        <i-control class="col-3 r_indigo" disabled label="##word.shift##" ng-model="shift.name_##session.lang##"></i-control>
                                         <i-list
                                             ng-search="_search.$transaction_type"
-                                            class="col4"
+                                            class="col-4"
                                             display="##session.lang##"
                                             ng-model="order_invoice.transaction_type"
                                             label="##word.transaction_type##"
@@ -205,28 +205,28 @@
                             <div class="row">
                                 <div class="table-content">
                                     <div class="table-headers">
-                                        <div class="col4 header">##word.stores_items_name##</div>
-                                        <div class="col2 header">##word.items_count##</div>
-                                        <div class="col1 header">##word.price##</div>
-                                        <div class="col1 header" x-features="restaurant">##word.extras##</div>
-                                        <div class="col2 header">##word.t_o## ##word.price##</div>
-                                        <div class="col2 header">##word.actions##</div>
+                                        <div class="col-4 header">##word.stores_items_name##</div>
+                                        <div class="col-2 header">##word.items_count##</div>
+                                        <div class="col-1 header">##word.price##</div>
+                                        <div class="col-1 header" x-features="restaurant">##word.extras##</div>
+                                        <div class="col-2 header">##word.t_o## ##word.price##</div>
+                                        <div class="col-2 header">##word.actions##</div>
                                     </div>
                                     <div class="table-items" ng-repeat="size in order_invoice.items">
-                                        <div class="col4 item">
+                                        <div class="col-4 item">
                                             <p ng-show="size.add_sizes">{{size.name_##session.lang##}} {{size.size_##session.lang##}}</p>
                                             <p ng-hide="size.add_sizes">{{size.size_##session.lang##}}</p>
                                         </div>
-                                        <div class="col2 item">
+                                        <div class="col-2 item">
                                             <input class="full-width" ng-change="calcSize(size)" ng-model="size.count" type="number" />
                                         </div>
-                                        <div class="col1 item">
+                                        <div class="col-1 item">
                                             <p class="center">{{size.b_price}}</p>
                                             <del class="red txt16" ng-show="itm.discount.value > 0"> {{size.discount.current}} </del>
                                         </div>
-                                        <div class="col1 item" x-features="restaurant">{{size.extras_price}}</div>
-                                        <div class="col2 item bold font-18 green">{{size.total}}</div>
-                                        <div class="col2 item">
+                                        <div class="col-1 item" x-features="restaurant">{{size.extras_price}}</div>
+                                        <div class="col-2 item bold font-18 green">{{size.total}}</div>
+                                        <div class="col-2 item">
                                             <i-button type="edit default" ng-click="showEditItem(size)"></i-button>
 
                                             <i-button type="delete default" x-permissions="order_invoice_delete_items || order_invoice_manage" ng-click="deleteItemsList(size)"> </i-button>
