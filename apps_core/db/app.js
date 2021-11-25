@@ -7,7 +7,6 @@ module.exports = function init(site) {
     });
 
     site.post('api/db/import', (req, res) => {
-
         let response = {
             done: false,
             collection_name: req.headers.collection_name,
@@ -20,10 +19,12 @@ module.exports = function init(site) {
             return;
         }
 
-        if(!response.collection_name || response.collection_name == 'default_collection'){
-          response.error = 'response.collection_name : ' + response.collection_name;
-          res.json(response);
-          return;
+        if (!response.collection_name || response.collection_name == 'default_collection') {
+            response.error = 'response.collection_name : ' + response.collection_name;
+            response.headers = req.headers;
+            response.form = req.form;
+            res.json(response);
+            return;
         }
         if (site.isFileExistsSync(response.file_path)) {
             let $collection = site.connectCollection(response.collection_name);
