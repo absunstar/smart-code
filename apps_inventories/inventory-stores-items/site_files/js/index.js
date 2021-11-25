@@ -1780,8 +1780,8 @@ app.controller('stores_items', function ($scope, $http, $timeout) {
     $scope.getNumberingAuto();
     $scope.getNumberingAutoSwitch();
     $scope.loadUnits();
-    /*$scope.loadAll();*/
-    $scope.loadItems();
+    $scope.loadAll();
+    /*$scope.loadItems();*/
     $scope.loadUserBranches();
     $scope.loadItemsType();
     $scope.loadActiveSubstances();
