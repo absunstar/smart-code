@@ -16,7 +16,7 @@ body {
 }
 .item-groups .item {
     margin: 5px;
-    max-width: 200px;
+    min-width: 200px;
     height: 90%;
     display: inline-flex;
     border: 1px solid #eee;
@@ -69,7 +69,7 @@ body {
 .item-list {
     display: inline-flex;
     flex-flow: wrap;
-    height: 70vh;
+    height: 60vh;
     overflow: scroll;
 }
 
@@ -103,9 +103,11 @@ body {
 }
 
 .table-content {
-    height: 60vh;
     width: 100%;
     overflow: auto;
+}
+.table-content.items {
+    height: 50vh;
 }
 .table-content .table-headers {
     width: 100%;
