@@ -1438,7 +1438,8 @@ module.exports = function init(site) {
                 },
             },
             (err, oldDocs) => {
-                console.log('Load ItemsFile : ' + oldDocs.length);
+                site.dbMessage = 'Load ItemsFile : ' + oldDocs.length;
+                console.log(site.dbMessage);
 
                 let unitsList = [];
                 let itemsGroupList = [];
@@ -1510,8 +1511,8 @@ module.exports = function init(site) {
                     );
                 });
 
-                console.log('Add UnitList : ' + unitsList.length);
-                console.log('Add ItemsGroupsList : ' + itemsGroupList.length);
+                site.dbMessage = 'Add UnitList : ' + unitsList.length + ' \n Add ItemsGroupsList : ' + itemsGroupList.length;
+                console.log(site.dbMessage);
 
                 setTimeout(() => {
                     oldDocs.forEach((_oldDoc, i) => {
@@ -1613,9 +1614,11 @@ module.exports = function init(site) {
                             },
                             (err, doc) => {
                                 if (!err && doc) {
-                                    console.log('Add Item :' + doc.id);
+                                    site.dbMessage = 'Add Item :' + doc.id;
+                                    console.log(site.dbMessage);
                                 } else {
-                                    console.log(err.message);
+                                    site.dbMessage = err.message;
+                                    console.log(site.dbMessage);
                                 }
                             },
                         );

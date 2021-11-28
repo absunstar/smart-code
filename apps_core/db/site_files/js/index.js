@@ -1,4 +1,4 @@
-app.controller('db', function ($scope, $http , $interval) {
+app.controller('db', function ($scope, $http, $interval) {
     $scope.collection_list = [
         {
             name: 'itemsFile',
@@ -174,7 +174,7 @@ app.controller('db', function ($scope, $http , $interval) {
     $scope.getDbMesage = function () {
         $http({
             url: '/api/db/message',
-            method: 'get'
+            method: 'get',
         }).then(
             function (res) {
                 if (res.data.done) {
@@ -186,27 +186,26 @@ app.controller('db', function ($scope, $http , $interval) {
             },
         );
     };
-    $scope.export = function (collection , fileType) {
+    $scope.export = function (collection, fileType) {
         $http({
             url: '/api/db/export',
             method: 'post',
             data: {
                 collectionName: collection.name,
-                fileType : fileType
+                fileType: fileType,
             },
         }).then((res) => {
             if (res.data.done && res.data.fileType) {
-                if(res.data.fileType == 'json'){
+                if (res.data.fileType == 'json') {
                     document.location.href = '/api/db/download?file_path=' + res.data.file_json_path;
-                }else{
+                } else {
                     document.location.href = '/api/db/download?file_path=' + res.data.file_xlsx_path;
                 }
-               
             }
         });
     };
 
-    $interval(()=>{
+    $interval(() => {
         $scope.getDbMesage();
-    } , 1000 * 5)
+    }, 1000 * 5);
 });

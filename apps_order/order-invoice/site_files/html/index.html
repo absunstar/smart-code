@@ -29,6 +29,7 @@
         <div id="main-layout" class="container loaded">
             <div class="row">
                 <div class="row" ng-controller="order_invoice">
+                    <p class="center bold blue">{{dbMessage}}</p>
                     <div x-permissions="order_invoice_add || order_invoice_manage" x-import="order-invoice/order_invoices_active.html"></div>
 
                     <div x-permissions="order_invoice_add || order_invoice_manage" x-import="customers/add_modal.html"></div>
