@@ -203,12 +203,14 @@ app.controller("stores_in", function ($scope, $http, $timeout) {
     }
 
     if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path && $scope.defaultSettings.printer_program.printer_path.ip) {
+      $timeout(() => {
       site.printAsImage({
         selector: '#thermalPrint',
         ip: '127.0.0.1',
         port: '60080',
         printer: $scope.defaultSettings.printer_program.printer_path.ip.name.trim(),
       });
+    }, 1000 * 3);
     } else {
       $scope.error = '##word.thermal_printer_must_select##';
     }

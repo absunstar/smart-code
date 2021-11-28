@@ -1,4 +1,4 @@
-app.controller('order_invoice', function ($scope, $http, $timeout , $interval) {
+app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
     $scope._search = {};
     $scope.thermal = {};
     $scope.discount = { type: 'number' };
@@ -2083,12 +2083,14 @@ app.controller('order_invoice', function ($scope, $http, $timeout , $interval) {
         }
 
         if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path && $scope.defaultSettings.printer_program.printer_path.ip) {
-            site.printAsImage({
-                selector: '#thermalPrint',
-                ip: '127.0.0.1',
-                port: '60080',
-                printer: $scope.defaultSettings.printer_program.printer_path.ip.name.trim(),
-            });
+            $timeout(() => {
+                site.printAsImage({
+                    selector: '#thermalPrint',
+                    ip: '127.0.0.1',
+                    port: '60080',
+                    printer: $scope.defaultSettings.printer_program.printer_path.ip.name.trim(),
+                });
+            }, 1000 * 3);
         } else {
             $scope.error = '##word.thermal_printer_must_select##';
         }
@@ -2139,12 +2141,14 @@ app.controller('order_invoice', function ($scope, $http, $timeout , $interval) {
                     });
                 }
                 if (_kitchen.has_items) {
-                    site.printAsImage({
-                        selector: '#kitchenPrint',
-                        ip: '127.0.0.1',
-                        port: '60080',
-                        printer: $scope.kitchen_print.printer.ip.name.trim(),
-                    });
+                    $timeout(() => {
+                        site.printAsImage({
+                            selector: '#kitchenPrint',
+                            ip: '127.0.0.1',
+                            port: '60080',
+                            printer: $scope.kitchen_print.printer.ip.name.trim(),
+                        });
+                    }, 1000 * 3);
                     if (i + 1 == $scope.kitchensList.length) {
                         $scope.updateOrderInvoice(obj);
                     }
@@ -2440,8 +2444,6 @@ app.controller('order_invoice', function ($scope, $http, $timeout , $interval) {
             },
         );
     };
-
-
 
     $scope.getOrderInvoiceList();
     $scope.loadItemsGroups();

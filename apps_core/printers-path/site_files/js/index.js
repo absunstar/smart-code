@@ -16,7 +16,7 @@ app.controller("printers_path", function ($scope, $http, $timeout) {
 
   $scope.getPrintersNamesList = function () {
     $scope.error = '';
-    let printersList = SOCIALBROWSER.getPrinters();
+    let printersList = window.SOCIALBROWSER ? SOCIALBROWSER.getPrinters() : [];
     $scope.printersNamesList = [];
     printersList.forEach((_p, i) => {
       $scope.printersNamesList.push({ id: i + 1, name: _p.name });
