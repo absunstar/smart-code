@@ -8,6 +8,13 @@ module.exports = function init(site) {
         parser: 'html',
         compress: false,
     });
+    site.dbMessage = '';
+    site.get('api/db/message', (req, res) => {
+        res.json({
+            done: true,
+            message: site.dbMessage,
+        });
+    });
 
     site.post('api/db/import', (req, res) => {
         let response = {
@@ -50,9 +57,11 @@ module.exports = function init(site) {
                     });
                     $collection.addOne(doc, (err, doc2) => {
                         if (!err && doc) {
-                            console.log('import doc id : ' + doc2.id);
+                            site.dbMessage = 'import doc id : ' + doc2.id;
+                            console.log(site.dbMessage);
                         } else {
-                            console.log(err.message);
+                            site.dbMessage = err.message;
+                            console.log(site.dbMessage);
                         }
                     });
                 });
@@ -65,16 +74,20 @@ module.exports = function init(site) {
                 });
                 $collection.addOne(docs, (err, doc2) => {
                     if (!err && doc2) {
-                        console.log('import doc id : ' + doc2.id);
+                        site.dbMessage = 'import doc id : ' + doc2.id;
+                        console.log(site.dbMessage);
                     } else {
-                        console.log(err.message);
+                        site.dbMessage = err.message;
+                        console.log(site.dbMessage);
                     }
                 });
             } else {
-                console.log('can not import unknown type : ' + site.typeof(docs));
+                site.dbMessage = 'can not import unknown type : ' + site.typeof(docs);
+                console.log(site.dbMessage);
             }
         } else {
-            console.log('file not exists : ' + response.file.path);
+            site.dbMessage = 'file not exists : ' + response.file.path;
+            console.log(site.dbMessage);
         }
 
         res.json(response);
@@ -123,7 +136,7 @@ module.exports = function init(site) {
                             res.json(response);
                         });
                     }
-                }else{
+                } else {
                     response.error = err;
                     res.json(response);
                 }
@@ -131,7 +144,7 @@ module.exports = function init(site) {
         );
     });
 
-    site.post('api/db/drop', (req, res) => {
+    site.post('api/db/deleteAll', (req, res) => {
         let response = {
             done: false,
             collectionName: req.body.collectionName,

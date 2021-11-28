@@ -1,4 +1,4 @@
-app.controller('db', function ($scope, $http) {
+app.controller('db', function ($scope, $http , $interval) {
     $scope.collection_list = [
         {
             name: 'itemsFile',
@@ -152,9 +152,9 @@ app.controller('db', function ($scope, $http) {
             );
     };
 
-    $scope.drop = function (collection) {
+    $scope.DeleteAll = function (collection) {
         $http({
-            url: '/api/db/drop',
+            url: '/api/db/deleteAll',
             method: 'post',
             data: {
                 collectionName: collection.name,
@@ -162,15 +162,30 @@ app.controller('db', function ($scope, $http) {
         }).then(
             function (res) {
                 if (res.data.done) {
-                    collection.dropMessage = res.data.err || res.data.result;
+                    collection.DeleteAllMessage = res.data.err || res.data.result;
                 }
             },
             function (error) {
-                collection.dropMessage = error;
+                collection.DeleteAllMessage = error;
             },
         );
     };
 
+    $scope.getDbMesage = function () {
+        $http({
+            url: '/api/db/message',
+            method: 'get'
+        }).then(
+            function (res) {
+                if (res.data.done) {
+                    $scope.dbMessage = res.data.message;
+                }
+            },
+            function (error) {
+                $scope.dbMessage = error;
+            },
+        );
+    };
     $scope.export = function (collection , fileType) {
         $http({
             url: '/api/db/export',
@@ -190,4 +205,8 @@ app.controller('db', function ($scope, $http) {
             }
         });
     };
+
+    $interval(()=>{
+        $scope.getDbMesage();
+    } , 1000 * 5)
 });
