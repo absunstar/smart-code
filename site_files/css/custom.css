@@ -1,3 +1,7 @@
+:root{
+    --modal-color : #000;
+}
+
 #qrcode img {
     border-radius: 0px !important;
 }
