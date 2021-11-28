@@ -2441,25 +2441,7 @@ app.controller('order_invoice', function ($scope, $http, $timeout , $interval) {
         );
     };
 
-    $scope.getDbMesage = function () {
-        $http({
-            url: '/api/db/message',
-            method: 'get',
-        }).then(
-            function (res) {
-                if (res.data.done) {
-                    $scope.dbMessage = res.data.message;
-                }
-            },
-            function (error) {
-                $scope.dbMessage = error;
-            },
-        );
-    };
 
-    $interval(() => {
-        $scope.getDbMesage();
-    }, 1000 * 5);
 
     $scope.getOrderInvoiceList();
     $scope.loadItemsGroups();
