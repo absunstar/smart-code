@@ -1,4 +1,4 @@
-app.controller('order_invoice', function ($scope, $http, $timeout) {
+app.controller('order_invoice', function ($scope, $http, $timeout , $interval) {
     $scope._search = {};
     $scope.thermal = {};
     $scope.discount = { type: 'number' };
