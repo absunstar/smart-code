@@ -2,6 +2,11 @@
     --modal-color : #000;
 }
 
+#thermalPrint{
+    width: 88mm !important;
+    padding: 5mm !important;
+}
+
 #qrcode img {
     border-radius: 0px !important;
 }
