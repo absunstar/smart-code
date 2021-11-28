@@ -4,6 +4,7 @@
   --modal-animation-name: animateopacity;
   --modal-background: #0000006e;
   --modal-content-background: var(--x-background);
+  --modal-color : #000;
 }
 .tabs .tabs-content .tab-content {
   display: none;
