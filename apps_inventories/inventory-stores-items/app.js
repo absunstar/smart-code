@@ -1423,10 +1423,7 @@ module.exports = function init(site) {
         };
 
         res.json(response);
-        if (site.stores_items_import_busy) {
-            return;
-        }
-        site.stores_items_import_busy = true;
+
         $itemsFile.findMany(
             {
                 where: {

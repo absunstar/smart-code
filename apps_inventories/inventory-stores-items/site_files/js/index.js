@@ -1,4 +1,4 @@
-app.controller('stores_items', function ($scope, $http, $timeout , $interval) {
+app.controller('stores_items', function ($scope, $http, $timeout, $interval) {
     $scope._search = {};
 
     $scope.addSize = function () {
@@ -1755,6 +1755,7 @@ app.controller('stores_items', function ($scope, $http, $timeout , $interval) {
     };
 
     $scope.importItemsFile = function () {
+        document.querySelector('#btn_import').style.display = 'none';
         $scope.error = '';
         $scope.busy = true;
         $http({
