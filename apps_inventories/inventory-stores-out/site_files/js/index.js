@@ -1891,7 +1891,7 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
             };
             $scope.thermal.net_txt = site.stringfiy($scope.thermal.net_value);
         }
-        JsBarcode('.barcode', $scope.thermal.code);
+        /*JsBarcode('.barcode', $scope.thermal.code);*/
         document.querySelector('#qrcode').innerHTML = '';
         let datetime = new Date($scope.thermal.date);
         let formatted_date =
@@ -1909,30 +1909,26 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
         }
 
         if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path && $scope.defaultSettings.printer_program.printer_path.ip) {
-            $timeout(() => {
-
-                /*site.print({
+            /*site.print({
                     selector: '#thermalPrint',
                     ip: '127.0.0.1',
                     port: '60080',
                     printer: $scope.defaultSettings.printer_program.printer_path.ip.name.trim(),
                 });*/
 
-                site.printAsImage(
-                    {
-                        selector: '#thermalPrint',
-                        ip: '127.0.0.1',
-                        port: '60080',
-                        printer: $scope.defaultSettings.printer_program.printer_path.ip.name.trim(),
-                    },
-                    () => {
-                        $timeout(() => {
-                            $('#thermalPrint').addClass('hidden');
-                        }, 2000);
-                    },
-                );
-
-            }, 1000 * 3);
+            site.printAsImage(
+                {
+                    selector: '#thermalPrint',
+                    ip: '127.0.0.1',
+                    port: '60080',
+                    printer: $scope.defaultSettings.printer_program.printer_path.ip.name.trim(),
+                },
+                () => {
+                    $timeout(() => {
+                        $('#thermalPrint').addClass('hidden');
+                    }, 2000);
+                },
+            );
         } else {
             $scope.error = '##word.thermal_printer_must_select##';
         }
