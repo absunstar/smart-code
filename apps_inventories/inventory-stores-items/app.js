@@ -1429,7 +1429,10 @@ module.exports = function init(site) {
         site.stores_items_import_busy = true;
         $itemsFile.findMany(
             {
-                where: {},
+                where: {
+                    'company.id': site.get_company(req).id,
+                    'branch.id': site.get_branch(req).id,
+                },
                 sort: req.body.sort || {
                     id: -1,
                 },
