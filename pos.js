@@ -4,6 +4,7 @@ const site = require('isite')({
   version: '2021.11.28.3',
   name: 'pos',
   savingTime : 5,
+  log : true,
   require: {
     features: [],
     permissions: [],
