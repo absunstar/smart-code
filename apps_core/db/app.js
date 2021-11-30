@@ -37,6 +37,12 @@ module.exports = function init(site) {
             return;
         }
 
+        if(!response.file){
+            response.error = "No File Uploaded"
+            res.json(response);
+            return;
+        }
+
         if (site.isFileExistsSync(response.file.path)) {
             let $collection = site.connectCollection(response.collectionName);
             let docs = [];
