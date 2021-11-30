@@ -1794,10 +1794,6 @@ app.controller('stores_items', function ($scope, $http, $timeout, $interval) {
         );
     };
 
-    $interval(() => {
-        $scope.getDbMesage();
-    }, 1000 * 5);
-
     $scope.getDefaultSetting();
     $scope.loadStores();
     $scope.loadItemsGroups();
