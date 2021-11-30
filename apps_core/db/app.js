@@ -48,6 +48,7 @@ module.exports = function init(site) {
             }
 
             if (Array.isArray(docs)) {
+                console.log('Importing Array Count : ' + docs.length);
                 docs.forEach((doc) => {
                     doc.company = site.get_company(req);
                     doc.branch = site.get_branch(req);
@@ -56,7 +57,7 @@ module.exports = function init(site) {
                         $res: res,
                     });
                     $collection.addOne(doc, (err, doc2) => {
-                        if (!err && doc) {
+                        if (!err && doc2) {
                             site.dbMessage = 'import doc id : ' + doc2.id;
                             console.log(site.dbMessage);
                         } else {
