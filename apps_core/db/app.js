@@ -37,8 +37,8 @@ module.exports = function init(site) {
             return;
         }
 
-        if(!response.file){
-            response.error = "No File Uploaded"
+        if (!response.file) {
+            response.error = 'No File Uploaded';
             res.json(response);
             return;
         }
@@ -62,6 +62,10 @@ module.exports = function init(site) {
                         $req: req,
                         $res: res,
                     });
+                    if (response.collectionName == 'itemsFile') {
+                        doc.barcode = doc.barcode ? doc.barcode.toString() : '';
+                    }
+
                     $collection.addOne(doc, (err, doc2) => {
                         if (!err && doc2) {
                             site.dbMessage = 'import doc id : ' + doc2.id;

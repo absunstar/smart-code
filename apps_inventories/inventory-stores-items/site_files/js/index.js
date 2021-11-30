@@ -1781,7 +1781,11 @@ app.controller('stores_items', function ($scope, $http, $timeout, $interval) {
         }).then(
             function (res) {
                 if (res.data.done) {
-                    $scope.dbMessage = res.data.message;
+                    if ($scope.dbMessage != res.data.message) {
+                        $scope.dbMessage = res.data.message;
+                    } else {
+                        $scope.dbMessage = '';
+                    }
                 }
             },
             function (error) {
