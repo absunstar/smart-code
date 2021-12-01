@@ -2004,6 +2004,7 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
                         selector: '#storeOutDetails',
                         ip: '127.0.0.1',
                         port: '60080',
+                        pageSize: "A4",
                         printer: $scope.defaultSettings.printer_program.a4_printer.ip.name.trim(),
                     });
                 }, 500);

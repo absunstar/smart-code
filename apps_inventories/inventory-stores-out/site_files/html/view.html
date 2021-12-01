@@ -1,250 +1,206 @@
 <div class="row" fixed>
-  <div class="row">
+    <div class="row">
+        <br />
+        <table class="table hover bold">
+            <tr>
+                <td>
+                    <b class="indigoD txt16"> ##word.date## :</b>
+                    <b class="center txt16 brown">{{store_out.date |date:"dd - MM - yyyy" }} </b>
+                </td>
+
+                <td class="center">
+                    <b class="indigoD txt16">##word.invoice_number## :</b>
+                    <b class="blue txt16 userPrint">{{store_out.code}}</b>
+                    <h3 class="red bold center userPrint">{{store_out.retured_number}}</h3>
+                </td>
+            </tr>
+
+            <tr class="not-print">
+                <td class="title">
+                    <b class="indigoD txt16"> ##word.transaction_type## :</b>
+                    <b class="center txt16 bold"> {{store_out.type.##session.lang##}} </b>
+                </td>
+
+                <td class="center">
+                    <b class="indigoD"> ##word.store## : </b>
+                    <b> {{store_out.store.name_##session.lang##}} </b>
+                </td>
+            </tr>
+
+            <tr ng-hide="##query.type## == 5">
+                <td class="title txt16 bold">
+                    <b class="indigoD">##word.payment_method## :</b>
+                    <b class="center">{{store_out.payment_method.##session.lang##}} </b>
+                </td>
+
+                <td class="title txt16 center bold">
+                    <b class="indigoD">##word.delegate## :</b>
+                    <b class="center">{{store_out.delegate.name_##session.lang##}} </b>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="title txt16">
+                    <b class="indigoD"> ##word.customer## :</b>
+                    <b class="center">{{store_out.customer.name_##session.lang##}} </b>
+                </td>
+                <td class="center txt16">
+                    <b class="indigoD"> ##word.customer_mobile## :</b>
+                    <b class="center blue">{{store_out.customer.mobile}} </b>
+                </td>
+            </tr>
+
+            <tr class="not-print" ng-show="store_out.taxes.length > 0">
+                <td class="indigoD">##word.stores_out_taxes##</td>
+                <td>
+                    <table class="table hover margin">
+                        <tr>
+                            <th class="indigoD">##word.stores_out_tax_name##</th>
+                            <th class="indigoD">##word.stores_out_tax_value##</th>
+                        </tr>
+                        <tr ng-repeat="tax in store_out.taxes">
+                            <td>
+                                <p class="text-center">{{tax.name_##session.lang##}}</p>
+                            </td>
+                            <td>
+                                <p class="text-center">{{tax.value}} %</p>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <tr class="not-print" ng-show="store_out.discountes.length > 0">
+                <td class="indigoD">##word.discountes##</td>
+                <td>
+                    <table class="table hover margin">
+                        <tr>
+                            <th class="indigoD">##word.discount_name##</th>
+                            <th class="indigoD">##word.discount_value##</th>
+                        </tr>
+                        <tr ng-repeat="discount in store_out.discountes">
+                            <td>{{discount.name_##session.lang##}}</td>
+                            <td>
+                                <p class="text-center" ng-show="discount.type == 'number'">{{discount.value}} %</p>
+                                <p class="text-center" ng-show="discount.type == 'percent'">{{discount.value}} $</p>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <tr class="not-print bold">
+                <td>
+                    <b class="indigoD">##word.total_discount## : </b>
+                    <b>{{store_out.total_discount}} $</b>
+                </td>
+
+                <td class="center">
+                    <b class="indigoD">##word.total_tax## : </b>
+                    <b>{{store_out.total_tax}} $</b>
+                </td>
+            </tr>
+            <tr class="bold txt16">
+                <td><b class="indigoD">##word.notes## :</b></td>
+                <td class="center">{{store_out.notes}}</td>
+            </tr>
+        </table>
+    </div>
+
     <br />
-    <table class="table hover bold">
-      <tr>
-        <td>
-          <b class="indigoD txt16"> ##word.date## :</b>
-          <b class="center txt16 brown"
-            >{{store_out.date |date:"dd - MM - yyyy" }}
-          </b>
-        </td>
-
-        <td class="center">
-          <b class="indigoD txt16">##word.invoice_number## :</b>
-          <b class="blue txt16 userPrint">{{store_out.code}}</b>
-          <h3 class="red bold center userPrint">
-            {{store_out.retured_number}}
-          </h3>
-        </td>
-      </tr>
-
-      <tr class="not-print">
-        <td class="title">
-          <b class="indigoD txt16"> ##word.transaction_type## :</b>
-          <b class="center txt16 bold"> {{store_out.type.##session.lang##}} </b>
-        </td>
-
-        <td class="center">
-          <b class="indigoD"> ##word.store## : </b>
-          <b> {{store_out.store.name_##session.lang##}} </b>
-        </td>
-      </tr>
-
-      <tr ng-hide="##query.type## == 5">
-        <td class="title txt16 bold">
-          <b class="indigoD">##word.payment_method## :</b>
-          <b class="center">{{store_out.payment_method.##session.lang##}} </b>
-        </td>
-
-        <td class="title txt16 center bold">
-          <b class="indigoD">##word.delegate## :</b>
-          <b class="center">{{store_out.delegate.name_##session.lang##}} </b>
-        </td>
-      </tr>
-
-      <tr>
-        <td class="title txt16">
-          <b class="indigoD"> ##word.customer## :</b>
-          <b class="center">{{store_out.customer.name_##session.lang##}} </b>
-        </td>
-        <td class="center txt16">
-          <b class="indigoD"> ##word.customer_mobile## :</b>
-          <b class="center blue">{{store_out.customer.mobile}} </b>
-        </td>
-      </tr>
-
-      <tr class="not-print" ng-show="store_out.taxes.length > 0">
-        <td class="indigoD">##word.stores_out_taxes##</td>
-        <td>
-          <table class="table hover margin">
-            <tr>
-              <th class="indigoD">##word.stores_out_tax_name##</th>
-              <th class="indigoD">##word.stores_out_tax_value##</th>
-            </tr>
-            <tr ng-repeat="tax in store_out.taxes">
-              <td>
-                <p class="text-center">{{tax.name_##session.lang##}}</p>
-              </td>
-              <td>
-                <p class="text-center">{{tax.value}} %</p>
-              </td>
-            </tr>
-          </table>
-        </td>
-      </tr>
-
-      <tr class="not-print" ng-show="store_out.discountes.length > 0">
-        <td class="indigoD">##word.discountes##</td>
-        <td>
-          <table class="table hover margin">
-            <tr>
-              <th class="indigoD">##word.discount_name##</th>
-              <th class="indigoD">##word.discount_value##</th>
-            </tr>
-            <tr ng-repeat="discount in store_out.discountes">
-              <td>{{discount.name_##session.lang##}}</td>
-              <td>
-                <p class="text-center" ng-show="discount.type == 'number'">
-                  {{discount.value}} %
-                </p>
-                <p class="text-center" ng-show="discount.type == 'percent'">
-                  {{discount.value}} $
-                </p>
-              </td>
-            </tr>
-          </table>
-        </td>
-      </tr>
-
-      <tr class="not-print bold">
-        <td>
-          <b class="indigoD">##word.total_discount## : </b>
-          <b>{{store_out.total_discount}} $</b>
-        </td>
-
-        <td class="center">
-          <b class="indigoD">##word.total_tax## : </b>
-          <b>{{store_out.total_tax}} $</b>
-        </td>
-      </tr>
-      <tr class="bold txt16">
-        <td><b class="indigoD">##word.notes## :</b></td>
-        <td class="center">{{store_out.notes}}</td>
-      </tr>
-    </table>
-  </div>
-
-  <br />
-  <br />
-
-  <div class="row">
-    <table class="table center bold hover details">
-      <tr>
-        <th class="light_gray w50 txt16">##word.serial##</th>
-
-        <th class="light_gray w150 txt16">
-          <p>##word.item_code##</p>
-        </th>
-
-        <th class="light_gray w250 txt16">
-          <p>##word.item_name##</p>
-        </th>
-
-        <th class="light_gray w50 txt16">
-          <p>##word.unit##</p>
-        </th>
-
-        <th class="light_gray w50 txt16">
-          <p>##word.quantity##</p>
-        </th>
-
-        <th class="light_gray w50 txt16">
-          <p>##word.unit_price##</p>
-        </th>
-
-        <th
-          class="light_gray w50 txt16"
-          x-permissions="stores_out_details_values || stores_out_manage"
-          ng-show="defaultSettings.inventory.value_added > 0"
-        >
-          <p>##word.total_vat##</p>
-        </th>
-
-        <th
-          class="light_gray w50 txt16"
-          x-permissions="stores_out_details_values || stores_out_manage"
-        >
-          <p>##word.total##</p>
-        </th>
-      </tr>
-
-      <tr ng-repeat="itm in store_out.items">
-        <td class="center txt16 blue">
-          {{$index + 1}}
-          <i-button
-            label="##word.patch##"
-            class="not-print"
-            ng-show="itm.work_patch || itm.work_serial"
-            type="view"
-            ng-click="viewPatchesList(itm)"
-          >
-          </i-button>
-        </td>
-
-        <td class="center txt16 userPrint blue">{{itm.barcode}}</td>
-
-        <td class="center txt16">
-          <p ng-show="itm.add_sizes">{{itm.name_ar}} {{itm.size_ar}}</p>
-          <p ng-show="itm.add_sizes">{{itm.name_en}} {{itm.size_en}}</p>
-          <p ng-hide="itm.add_sizes">{{itm.size_ar}}</p>
-          <p ng-hide="itm.add_sizes">{{itm.size_en}}</p>
-        </td>
-
-        <td class="center txt16">{{itm.unit.name_ar}} {{itm.unit.name_en}}</td>
-
-        <td class="center txt16">{{itm.count}}</td>
-
-        <td
-          class="center txt16"
-          x-permissions="stores_out_details_values || stores_out_manage"
-          ng-hide="store_out.type.id ==5"
-        >
-          {{itm.b_price}}
-
-          <del class="red txt16" ng-show="itm.discount.value > 0">
-            {{itm.discount.current}}
-          </del>
-        </td>
-
-        <td
-          class="center txt16 red"
-          x-permissions="stores_out_details_values || stores_out_manage"
-        >
-          {{itm.total_v_a}}
-        </td>
-
-        <td
-          class="center txt16"
-          x-permissions="stores_out_details_values || stores_out_manage"
-        >
-          {{itm.total}}
-        </td>
-      </tr>
-    </table>
-  </div>
-
-  <br />
-  <br />
-
-  <div
-    class="row"
-    x-permissions="stores_out_details_values || stores_out_manage"
-  >
-    <div class="row">
-      <div class="col4 bold">
-        <p class="txt16 indigoD">##word.total_before_tax##</p>
-        <p class="txt16 indigoD">##word.vat##</p>
-        <p class="txt16 indigoD">##word.total_after_tax##</p>
-        <p class="txt16 indigoD">##word.discount_cash##</p>
-        <p class="txt16 indigoD">##word.net##</p>
-      </div>
-
-      <div class="col4 bold">
-        <p class="txt16 black">{{store_out.before_value_added}}</p>
-        <p class="txt16 black">{{store_out.total_value_added}}</p>
-        <p class="txt16 black">{{store_out.total_value}}</p>
-        <p class="txt16 red">{{store_out.total_discount}}</p>
-        <p class="txt16 green">{{store_out.net_value}}</p>
-      </div>
-    </div>
+    <br />
 
     <div class="row">
-      <p class="num_str bold center black">
-        {{store_out.net_txt}} {{defaultSettings.accounting.end_num_to_str ||
-        ''}}
-      </p>
+        <table class="table center bold hover details">
+            <tr>
+                <th class="light_gray w50 txt16">##word.serial##</th>
+
+                <th class="light_gray w150 txt16">
+                    <p>##word.item_code##</p>
+                </th>
+
+                <th class="light_gray w250 txt16">
+                    <p>##word.item_name##</p>
+                </th>
+
+                <th class="light_gray w50 txt16">
+                    <p>##word.unit##</p>
+                </th>
+
+                <th class="light_gray w50 txt16">
+                    <p>##word.quantity##</p>
+                </th>
+
+                <th class="light_gray w50 txt16">
+                    <p>##word.unit_price##</p>
+                </th>
+
+                <th class="light_gray w50 txt16" x-permissions="stores_out_details_values || stores_out_manage">
+                    <p>##word.total_vat##</p>
+                </th>
+
+                <th class="light_gray w50 txt16" x-permissions="stores_out_details_values || stores_out_manage">
+                    <p>##word.total##</p>
+                </th>
+            </tr>
+
+            <tr ng-repeat="itm in store_out.items">
+                <td class="center txt16 blue">
+                    {{$index + 1}}
+                    <i-button label="##word.patch##" class="not-print" ng-show="itm.work_patch || itm.work_serial" type="view" ng-click="viewPatchesList(itm)"> </i-button>
+                </td>
+
+                <td class="center txt16 userPrint blue">{{itm.barcode}}</td>
+
+                <td class="center txt16">
+                    <p ng-show="itm.add_sizes">{{itm.name_ar}} {{itm.size_ar}}</p>
+                    <p ng-show="itm.add_sizes">{{itm.name_en}} {{itm.size_en}}</p>
+                    <p ng-hide="itm.add_sizes">{{itm.size_ar}}</p>
+                    <p ng-hide="itm.add_sizes">{{itm.size_en}}</p>
+                </td>
+
+                <td class="center txt16">{{itm.unit.name_ar}} {{itm.unit.name_en}}</td>
+
+                <td class="center txt16">{{itm.count}}</td>
+
+                <td class="center txt16" x-permissions="stores_out_details_values || stores_out_manage">
+                    {{itm.b_price}}
+
+                    <del class="red txt16" ng-show="itm.discount.value > 0"> {{itm.discount.current}} </del>
+                </td>
+
+                <td class="center txt16 red" x-permissions="stores_out_details_values || stores_out_manage">{{itm.total_v_a}}</td>
+
+                <td class="center txt16" x-permissions="stores_out_details_values || stores_out_manage">{{itm.total}}</td>
+            </tr>
+        </table>
     </div>
-  </div>
+
+    <br />
+    <br />
+
+    <div class="row" x-permissions="stores_out_details_values || stores_out_manage">
+        <div class="row">
+            <div class="col4 bold">
+                <p class="txt16 indigoD">##word.total_before_tax##</p>
+                <p class="txt16 indigoD">##word.vat##</p>
+                <p class="txt16 indigoD">##word.total_after_tax##</p>
+                <p class="txt16 indigoD">##word.discount_cash##</p>
+                <p class="txt16 indigoD">##word.net##</p>
+            </div>
+
+            <div class="col4 bold">
+                <p class="txt16 black">{{store_out.before_value_added}}</p>
+                <p class="txt16 black">{{store_out.total_value_added}}</p>
+                <p class="txt16 black">{{store_out.total_value}}</p>
+                <p class="txt16 red">{{store_out.total_discount}}</p>
+                <p class="txt16 green">{{store_out.net_value}}</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <p class="num_str bold center black">{{store_out.net_txt}} {{defaultSettings.accounting.end_num_to_str || ''}}</p>
+        </div>
+    </div>
 </div>
 <!-- <div class="not-print" x-import="inventory-stores-out/action_info.html"></div> -->
