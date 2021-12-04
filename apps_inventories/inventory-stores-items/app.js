@@ -254,7 +254,7 @@ module.exports = function init(site) {
                                     let indxStore = 0;
                                     _size.branches_list[indxBranch].stores_list = _size.branches_list[indxBranch].stores_list || [];
                                     _size.branches_list[indxBranch].stores_list.map((s, i_s) => {
-                                        if (s.store.id == obj.store.id) {
+                                        if (obj.store && s.store.id == obj.store.id) {
                                             foundStore = true;
                                             indxStore = i_s;
                                         }
@@ -1036,7 +1036,7 @@ module.exports = function init(site) {
                     _size.size_units_list.forEach((_size_unit, _i) => {
                         let indx = 0;
                         indx = stores_items_doc.units_list.findIndex((_unit1) => _unit1.id == _size_unit.id);
-                        _size_unit.convert = stores_items_doc.units_list[indx].convert;
+                        _size_unit.convert = stores_items_doc.units_list[indx] ? stores_items_doc.units_list[indx].convert : 1;
 
                         if (!_size_unit.average_cost) _size_unit.average_cost = _size_unit.cost;
 

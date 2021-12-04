@@ -1913,6 +1913,7 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
                     selector: '#thermalPrint',
                     ip: '127.0.0.1',
                     port: '60080',
+                    pageSize: "Letter",
                     printer: $scope.defaultSettings.printer_program.printer_path.ip.name.trim(),
                 });*/
 
@@ -1921,6 +1922,7 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
                     selector: '#thermalPrint',
                     ip: '127.0.0.1',
                     port: '60080',
+                    pageSize: 'Letter',
                     printer: $scope.defaultSettings.printer_program.printer_path.ip.name.trim(),
                 },
                 () => {
@@ -2004,7 +2006,7 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
                         selector: '#storeOutDetails',
                         ip: '127.0.0.1',
                         port: '60080',
-                        pageSize: "A4",
+                        pageSize: 'A4',
                         printer: $scope.defaultSettings.printer_program.a4_printer.ip.name.trim(),
                     });
                 }, 500);

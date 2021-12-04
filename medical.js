@@ -1,7 +1,7 @@
 const site = require('isite')({
   port: [80, 40012],
   lang: 'ar',
-  version: '1.0.10',
+  version: '2021.12.04',
   name: 'medical',
   require: {
     features: [],
