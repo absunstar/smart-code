@@ -2,14 +2,15 @@
     --modal-color: #000;
     --font-size: 13px;
 }
-
 #thermalPrint {
     width: 88mm;
-    padding: 0mm;
+    padding: 2mm;
     margin: 0mm;
-    border: 0.5mm solid #bbb;
     display: inline-block;
     box-sizing: border-box;
+}
+#thermalPrint .content {
+    border: 0.5mm solid #bbb;
 }
 
 #qrcode img {
