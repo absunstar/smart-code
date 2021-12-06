@@ -40,10 +40,12 @@
                                     </div>
                                     <div class="col8 center">
                                         <i-button fa="cloud-download-alt" label="export JSON" ng-click="export(collection , 'json')"></i-button>
+                                        <i-button fa="cloud-download-alt" label="export ALL JSON" ng-click="exportAll(collection , 'json')"></i-button>
                                         <i-button fa="cloud-download-alt" label="export XLSX" ng-click="export(collection , 'xlsx')"></i-button>
                                     </div>
                                     <div class="col2 center">
-                                        <i-button type="bg-red white" fa="trash" label="DeleteAll" ng-click="DeleteAll(collection)"></i-button>
+                                        <i-button type="bg-red white" fa="trash" label="Delete" ng-click="Delete(collection)"></i-button>
+                                        <i-button type="bg-red white" fa="trash" label="Delete ALL" ng-click="DeleteAll(collection)"></i-button>
 
                                         <p>{{collection.DeleteAllMessage}}</p>
                                     </div>

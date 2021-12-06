@@ -170,7 +170,7 @@ module.exports = function init(site) {
         let $collection = site.connectCollection(response.collectionName);
         $collection.removeMany(
             {
-                where: {
+                where: req.body.where || {
                     'company.id': site.get_company(req).id,
                     'branch.id': site.get_branch(req).id,
                 },

@@ -152,7 +152,7 @@ app.controller('db', function ($scope, $http, $interval) {
             );
     };
 
-    $scope.DeleteAll = function (collection) {
+    $scope.Delete = function (collection) {
         $http({
             url: '/api/db/deleteAll',
             method: 'post',
@@ -170,7 +170,25 @@ app.controller('db', function ($scope, $http, $interval) {
             },
         );
     };
-
+    $scope.DeleteAll = function (collection) {
+        $http({
+            url: '/api/db/deleteAll',
+            method: 'post',
+            data: {
+                collectionName: collection.name,
+                where: {},
+            },
+        }).then(
+            function (res) {
+                if (res.data.done) {
+                    collection.DeleteAllMessage = res.data.err || res.data.result;
+                }
+            },
+            function (error) {
+                collection.DeleteAllMessage = error;
+            },
+        );
+    };
     $scope.getDbMesage = function () {
         $http({
             url: '/api/db/message',
@@ -204,7 +222,25 @@ app.controller('db', function ($scope, $http, $interval) {
             }
         });
     };
-
+    $scope.exportAll = function (collection, fileType) {
+        $http({
+            url: '/api/db/export',
+            method: 'post',
+            data: {
+                collectionName: collection.name,
+                fileType: fileType,
+                where: {},
+            },
+        }).then((res) => {
+            if (res.data.done && res.data.fileType) {
+                if (res.data.fileType == 'json') {
+                    document.location.href = '/api/db/download?file_path=' + res.data.file_json_path;
+                } else {
+                    document.location.href = '/api/db/download?file_path=' + res.data.file_xlsx_path;
+                }
+            }
+        });
+    };
     $interval(() => {
         $scope.getDbMesage();
     }, 1000 * 5);
