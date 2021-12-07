@@ -206,8 +206,8 @@
                     <td class="center txt16 userPrint">{{itm.barcode}}</td>
 
                     <td class="center txt16">
-                        <p x-lang="ar" ng-show="itm.add_sizes">{{itm.size_ar || itm.name_ar }}</p>
-                        <p x-lang="en" ng-show="itm.add_sizes">{{itm.size_en ||itm.name_en }}</p>
+                        <p x-lang="ar" >{{itm.size_ar || itm.name_ar }}</p>
+                        <p x-lang="en" >{{itm.size_en ||itm.name_en }}</p>
                     </td>
 
                     <td class="center txt16">
@@ -218,11 +218,10 @@
 
                     <td class="center txt16" x-permissions="stores_out_details_values || stores_out_manage" ng-hide="st_o.type.id ==5">
                         {{itm.b_price}}
-
                         <del class="txt16" ng-show="itm.discount.value > 0"> {{itm.discount.current}} </del>
                     </td>
 
-                    <td class="center txt16" x-permissions="stores_out_details_values || stores_out_manage">{{itm.total_v_a}}</td>
+                    <td class="center txt16" x-permissions="stores_out_details_values || stores_out_manage" ng-show="defaultSettings.inventory.value_added > 0">{{itm.total_v_a}}</td>
                     <td class="center txt16" x-permissions="stores_out_details_values || stores_out_manage">{{itm.total}}</td>
                 </tr>
             </table>

@@ -1,7 +1,7 @@
 const site = require('isite')({
     port: [80, 40005],
     lang: 'ar',
-    version: '2021.12.04',
+    version: '2021.12.05',
     name: 'academy',
     require: {
       features: [],

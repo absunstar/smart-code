@@ -2,7 +2,7 @@
 const site = require('isite')({
     port: [80 , 40004],
     lang: 'ar',
-    version : '2021.12.04',
+    version : '2021.12.05',
     name: "restaurant",
     theme: 'theme_paper',
     require: {
