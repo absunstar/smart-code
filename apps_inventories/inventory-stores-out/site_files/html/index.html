@@ -1,288 +1,206 @@
 <!DOCTYPE html>
-<html
-  lang="en"
-  x-permissions="stores_out_ui || stores_out_manage"
-  data-ng-app="myApp"
->
-  <head x-import="head.html"> </head>
+<html lang="en" data-ng-app="myApp">
+    <head x-import="head.html"> </head>
 
-  <body class="##session.lang##">
-    <nav
-      x-import="sitebar/index.html"
-      class="sitebar"
-      data-ng-controller="sitebar"
-    ></nav>
+    <body class="##session.lang##">
+        <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar"></nav>
 
-    <nav
-      class="sitebottom"
-      x-import="sitebottom/index.html"
-      ng-controller="sitebottom"
-    ></nav>
-    <div id="main-layout" class="container loaded">
-      <div class="row">
-        <div class="row" ng-controller="stores_out">
-          <div
-            x-permissions="stores_out_add || stores_out_manage"
-            x-import="inventory-stores-out/add_modal.html"
-          ></div>
+        <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
+        <div id="main-layout" class="container loaded" x-permissions="stores_out_ui || stores_out_manage" >
+            <div class="row">
+                <div class="row" ng-controller="stores_out">
+                    <div x-permissions="stores_out_add || stores_out_manage" x-import="inventory-stores-out/add_modal.html"></div>
 
-          <div
-            x-permissions="stores_out_add || stores_out_manage"
-            x-import="customers/add_modal.html"
-          ></div>
+                    <div x-permissions="stores_out_add || stores_out_manage" x-import="customers/add_modal.html"></div>
 
-          <div
-            x-permissions="stores_out_add || stores_out_manage"
-            x-import="inventory-stores-out/patches_list.html"
-          ></div>
+                    <div x-permissions="stores_out_add || stores_out_manage" x-import="inventory-stores-out/patches_list.html"></div>
 
-          <div x-import="accounting-invoices/view_modal.html"></div>
-          <div x-import="accounting-invoices/payment.html"></div>
+                    <div x-import="accounting-invoices/view_modal.html"></div>
+                    <div x-import="accounting-invoices/payment.html"></div>
 
-          <div
-            x-permissions="stores_out_add || stores_out_manage"
-            x-import="inventory-stores-out/account_invoice.html"
-          ></div>
+                    <div x-permissions="stores_out_add || stores_out_manage" x-import="inventory-stores-out/account_invoice.html"></div>
 
-          <div
-            x-permissions="stores_out_delete || stores_out_manage"
-            x-import="inventory-stores-out/delete_modal.html"
-          ></div>
-          <div
-            x-permissions="stores_out_view || stores_out_manage"
-            x-import="inventory-stores-out/view_modal.html"
-          ></div>
-          <div
-            x-permissions="stores_out_search || stores_out_manage"
-            x-import="inventory-stores-out/search_all_modal.html"
-          ></div>
-          <div
-            x-permissions="stores_out_update || stores_out_manage"
-            x-import="inventory-stores-out/update_modal.html"
-          ></div>
-          <div
-            x-permissions="stores_out_add || stores_out_manage"
-            x-import="inventory-stores-out/select_items_modal.html"
-          ></div>
-          <div x-import="inventory-stores-out/patches_list_re.html"></div>
-          <div x-import="inventory-stores-out/returned.html"></div>
-          <div x-import="accounting-invoices/add_payments_modal.html"></div>
+                    <div x-permissions="stores_out_delete || stores_out_manage" x-import="inventory-stores-out/delete_modal.html"></div>
+                    <div x-permissions="stores_out_view || stores_out_manage" x-import="inventory-stores-out/view_modal.html"></div>
+                    <div x-permissions="stores_out_search || stores_out_manage" x-import="inventory-stores-out/search_all_modal.html"></div>
+                    <div x-permissions="stores_out_update || stores_out_manage" x-import="inventory-stores-out/update_modal.html"></div>
+                    <div x-permissions="stores_out_add || stores_out_manage" x-import="inventory-stores-out/select_items_modal.html"></div>
+                    <div x-import="inventory-stores-out/patches_list_re.html"></div>
+                    <div x-import="inventory-stores-out/returned.html"></div>
+                    <div x-import="accounting-invoices/add_payments_modal.html"></div>
 
-          <div class="row">
-            <h1 class="bold text-center" ng-show="##query.type## == 3">
-              ##word.sales_invoice_store##
-            </h1>
-            <h1 class="bold text-center" ng-show="##query.type## == 4">
-              ##word.orders_screen_permission##
-            </h1>
-            <h1 class="bold text-center" ng-show="##query.type## == 5">
-              ##word.damage_store##
-            </h1>
-            <h1 class="bold text-center" ng-show="##query.type## == 6">
-              ##word.return_sales_invoice##
-            </h1>
-          </div>
+                    <div class="row">
+                        <h1 class="bold text-center" ng-show="##query.type## == 3">##word.sales_invoice_store##</h1>
+                        <h1 class="bold text-center" ng-show="##query.type## == 4">##word.orders_screen_permission##</h1>
+                        <h1 class="bold text-center" ng-show="##query.type## == 5">##word.damage_store##</h1>
+                        <h1 class="bold text-center" ng-show="##query.type## == 6">##word.return_sales_invoice##</h1>
+                    </div>
 
-          <div class="top-actions">
-            <i-button
-              x-permissions="stores_out_add || stores_out_manage"
-              type="add"
-              label="##word.new_sales_invoice##"
-              ng-show="##query.type## == 3"
-              id="clickNew"
-              ng-click="newStoreOut()"
-            ></i-button>
+                    <div class="top-actions">
+                        <i-button
+                            x-permissions="stores_out_add || stores_out_manage"
+                            type="add"
+                            label="##word.new_sales_invoice##"
+                            ng-show="##query.type## == 3"
+                            id="clickNew"
+                            ng-click="newStoreOut()"
+                        ></i-button>
 
-            <i-button
-              x-permissions="stores_out_add || stores_out_manage"
-              type="add"
-              label="##word.new_damage##"
-              ng-show="##query.type## == 5"
-              id="clickNew"
-              ng-click="newStoreOut()"
-            ></i-button>
+                        <i-button
+                            x-permissions="stores_out_add || stores_out_manage"
+                            type="add"
+                            label="##word.new_damage##"
+                            ng-show="##query.type## == 5"
+                            id="clickNew"
+                            ng-click="newStoreOut()"
+                        ></i-button>
 
-            <i-button
-              x-permissions="stores_out_add || stores_out_manage"
-              type="add"
-              label="##word.new_return_sales##"
-              ng-show="##query.type## == 6"
-              id="clickNew"
-              ng-click="newStoreOut()"
-            ></i-button>
+                        <i-button
+                            x-permissions="stores_out_add || stores_out_manage"
+                            type="add"
+                            label="##word.new_return_sales##"
+                            ng-show="##query.type## == 6"
+                            id="clickNew"
+                            ng-click="newStoreOut()"
+                        ></i-button>
 
-            <i-button
-              x-permissions="stores_out_search || stores_out_manage"
-              type="search"
-              label="##word.search_all##"
-              onclick="site.showModal('#StoresOutSearchModal')"
-            ></i-button>
+                        <i-button x-permissions="stores_out_search || stores_out_manage" type="search" label="##word.search_all##" onclick="site.showModal('#StoresOutSearchModal')"></i-button>
 
-            <i-button
-              class="left"
-              ng-hide="stores_out_post_all"
-              label="##word.posting_all##"
-              x-permissions="stores_out_post_all"
-              ng-click="postingAll(list); stores_out_post_all = true"
-            >
-            </i-button>
+                        <i-button class="left" ng-hide="stores_out_post_all" label="##word.posting_all##" x-permissions="stores_out_post_all" ng-click="postingAll(list); stores_out_post_all = true">
+                        </i-button>
 
-            <!--       <i-button class="left" type="save" x-permissions="stores_out_post_all" label="##word.post_all##"
+                        <!--       <i-button class="left" type="save" x-permissions="stores_out_post_all" label="##word.post_all##"
                         ng-click="postAll()"></i-button> -->
 
-            <h2 class="bold red text-center">{{error}}</h2>
-            <h3 class="bold text-center">##word.count## : {{count}}</h3>
-          </div>
-          <table id="t1" class="table loaded bold center hover">
-            <tr>
-              <th class="not-print">##word.logo##</th>
-              <th>##word.stores_out_id##</th>
-              <th>##word.stores_out_date##</th>
-              <th ng-hide="##query.type## == 5">##word.customer##</th>
-              <th>##word.store##</th>
-              <th
-                x-permissions="stores_out_details_values || stores_out_manage"
-              >
-                ##word.stores_out_total_value##
-              </th>
-              <th
-                x-permissions="stores_out_details_values || stores_out_manage"
-              >
-                ##word.stores_out_net_value##
-              </th>
-              <th ng-show="##query.type## == 6">##word.source_code##</th>
-              <th ng-show="##query.type## == 3">##word.transaction_type##</th>
-              <th class="not-print">##word.actions##</th>
-            </tr>
-            <tr ng-repeat="c in list">
-              <td class="not-print">
-                <i-image view class="logo" ng-model="c.image_url"></i-image>
-              </td>
-              <td>
-                <br />
-                <p class="bold blue text-center userPrint">{{c.code}}</p>
-              </td>
+                        <h2 class="bold red text-center">{{error}}</h2>
+                        <h3 class="bold text-center">##word.count## : {{count}}</h3>
+                    </div>
+                    <table id="t1" class="table loaded bold center hover">
+                        <tr>
+                            <th class="not-print">##word.logo##</th>
+                            <th>##word.stores_out_id##</th>
+                            <th>##word.stores_out_date##</th>
+                            <th ng-hide="##query.type## == 5">##word.customer##</th>
+                            <th>##word.store##</th>
+                            <th x-permissions="stores_out_details_values || stores_out_manage">##word.stores_out_total_value##</th>
+                            <th x-permissions="stores_out_details_values || stores_out_manage">##word.stores_out_net_value##</th>
+                            <th ng-show="##query.type## == 6">##word.source_code##</th>
+                            <th ng-show="##query.type## == 3">##word.transaction_type##</th>
+                            <th class="not-print">##word.actions##</th>
+                        </tr>
+                        <tr ng-repeat="c in list">
+                            <td class="not-print">
+                                <i-image view class="logo" ng-model="c.image_url"></i-image>
+                            </td>
+                            <td>
+                                <br />
+                                <p class="bold blue text-center userPrint">{{c.code}}</p>
+                            </td>
 
-              <td>
-                <p class="text-center brown">
-                  <br />
-                  {{c.date | date : 'yyyy - MM - dd'}}
-                </p>
-              </td>
+                            <td>
+                                <p class="text-center brown">
+                                    <br />
+                                    {{c.date | date : 'yyyy - MM - dd'}}
+                                </p>
+                            </td>
 
-              <td ng-hide="##query.type## == 5">
-                <p class="text-center blue">
-                  <br />
-                  {{c.customer.name_##session.lang##}}
-                </p>
-              </td>
-              <td>
-                <p class="text-center">
-                  <br />
-                  {{c.store.name_##session.lang##}}
-                </p>
-              </td>
-              <td
-                x-permissions="stores_out_details_values || stores_out_manage"
-              >
-                <p class="bold text-center">
-                  <br />
-                  {{c.total_value}}
-                </p>
-              </td>
-              <td
-                x-permissions="stores_out_details_values || stores_out_manage"
-              >
-                <p class="bold text-center green">
-                  <br />
-                  {{c.net_value}}
-                </p>
-              </td>
-              <td ng-show="##query.type## == 6">
-                <h3 class="blue bold cente userPrintr">{{c.retured_number}}</h3>
+                            <td ng-hide="##query.type## == 5">
+                                <p class="text-center blue">
+                                    <br />
+                                    {{c.customer.name_##session.lang##}}
+                                </p>
+                            </td>
+                            <td>
+                                <p class="text-center">
+                                    <br />
+                                    {{c.store.name_##session.lang##}}
+                                </p>
+                            </td>
+                            <td x-permissions="stores_out_details_values || stores_out_manage">
+                                <p class="bold text-center">
+                                    <br />
+                                    {{c.total_value}}
+                                </p>
+                            </td>
+                            <td x-permissions="stores_out_details_values || stores_out_manage">
+                                <p class="bold text-center green">
+                                    <br />
+                                    {{c.net_value}}
+                                </p>
+                            </td>
+                            <td ng-show="##query.type## == 6">
+                                <h3 class="blue bold cente userPrintr">{{c.retured_number}}</h3>
 
-                <!-- <p class="bold text-center blue"> <br> {{c.type.##session.lang##}} </p> -->
-              </td>
-              <td ng-show="##query.type## == 3">
+                                <!-- <p class="bold text-center blue"> <br> {{c.type.##session.lang##}} </p> -->
+                            </td>
+                            <td ng-show="##query.type## == 3">
+                                <p class="bold text-center blue">
+                                    <br />
+                                    {{c.type.##session.lang##}}
+                                </p>
+                            </td>
+                            <td class="center not-print">
+                                <i-button x-permissions="stores_out_view || stores_out_manage" type="details" label="##word.details##" ng-click="details(c)"></i-button>
 
-                <p class="bold text-center blue"> <br> {{c.type.##session.lang##}} </p>
-              </td>
-              <td class="center not-print">
-                <i-button
-                  x-permissions="stores_out_view || stores_out_manage"
-                  type="details"
-                  label="##word.details##"
-                  ng-click="details(c)"
-                ></i-button>
+                                <i-button
+                                    ng-show="##query.type## != 4 && c.posting && !c.invoice && !defaultSettings.accounting.create_invoice_auto && c.type.id != 4 && c.type.id != 5"
+                                    type="save"
+                                    label="##word.create_an_invoice##"
+                                    ng-click="displayAccountInvoice(c)"
+                                >
+                                </i-button>
 
-                <i-button
-                  ng-show="##query.type## != 4 && c.posting && !c.invoice && !defaultSettings.accounting.create_invoice_auto && c.type.id != 4 && c.type.id != 5"
-                  type="save"
-                  label="##word.create_an_invoice##"
-                  ng-click="displayAccountInvoice(c)"
-                >
-                </i-button>
+                                <i-button
+                                    x-permissions="stores_out_post || stores_out_manage"
+                                    label="##word.posting##"
+                                    ng-show="defaultSettings.general_Settings.work_posting && !c.posting"
+                                    ng-click="c.posting = true ; posting(c)"
+                                ></i-button>
 
-                <i-button
-                  x-permissions="stores_out_post || stores_out_manage"
-                  label="##word.posting##"
-                  ng-show="defaultSettings.general_Settings.work_posting && !c.posting"
-                  ng-click="c.posting = true ; posting(c)"
-                ></i-button>
+                                <i-button
+                                    x-permissions="stores_out_unpost || stores_out_manage"
+                                    label="##word.unposting##"
+                                    ng-show="defaultSettings.general_Settings.work_unposting && c.posting"
+                                    ng-click="c.posting = false ; posting(c)"
+                                ></i-button>
 
-                <i-button
-                  x-permissions="stores_out_unpost || stores_out_manage"
-                  label="##word.unposting##"
-                  ng-show="defaultSettings.general_Settings.work_unposting && c.posting"
-                  ng-click="c.posting = false ; posting(c)"
-                ></i-button>
+                                <i-button
+                                    x-permissions="stores_out_update || stores_out_manage"
+                                    type="update"
+                                    ng-show="!c.posting && defaultSettings.general_Settings.work_posting"
+                                    label="##word.edit##"
+                                    ng-click="edit(c)"
+                                ></i-button>
 
-                <i-button
-                  x-permissions="stores_out_update || stores_out_manage"
-                  type="update"
-                  ng-show="!c.posting && defaultSettings.general_Settings.work_posting"
-                  label="##word.edit##"
-                  ng-click="edit(c)"
-                ></i-button>
+                                <i-button
+                                    x-permissions="stores_out_view || stores_out_manage"
+                                    type="view"
+                                    ng-show="c.posting && c.invoice && c.type.id !=5"
+                                    label="##word.accounting_invoice##"
+                                    ng-click="detailsAccountInvoices(c)"
+                                ></i-button>
 
-                <i-button
-                  x-permissions="stores_out_view || stores_out_manage"
-                  type="view"
-                  ng-show="c.posting && c.invoice && c.type.id !=5"
-                  label="##word.accounting_invoice##"
-                  ng-click="detailsAccountInvoices(c)"
-                ></i-button>
+                                <i-button
+                                    x-permissions="stores_out_delete || stores_out_manage"
+                                    type="delete"
+                                    ng-hide="c.posting && defaultSettings.general_Settings.work_unposting"
+                                    label="##word.delete##"
+                                    ng-click="remove(c)"
+                                ></i-button>
+                            </td>
+                        </tr>
+                    </table>
 
-                <i-button
-                  x-permissions="stores_out_delete || stores_out_manage"
-                  type="delete"
-                  ng-hide="c.posting && defaultSettings.general_Settings.work_unposting"
-                  label="##word.delete##"
-                  ng-click="remove(c)"
-                ></i-button>
-              </td>
-            </tr>
-          </table>
+                    <div x-import="inventory-stores-out/thermal_print.html"></div>
+                    <div class="hidden" id="storeOutDetails" x-import="inventory-stores-out/a4_print.html"></div>
 
-          <div x-import="inventory-stores-out/thermal_print.html"></div>
-          <div
-            class="hidden"
-            id="storeOutDetails"
-            x-import="inventory-stores-out/a4_print.html"
-          ></div>
-
-          <i-button
-            x-permissions="stores_out_print || stores_out_manage"
-            type="print"
-            label="##word.print##"
-            onclick="site.print('#t1')"
-          ></i-button>
-          <div class="row"></div>
+                    <i-button x-permissions="stores_out_print || stores_out_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+                    <div class="row"></div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-    <div x-import="scripts.html"></div>
-    <script x-import="inventory-stores-out/index.js"></script>
-  </body>
+        <div x-import="scripts.html"></div>
+        <script x-import="inventory-stores-out/index.js"></script>
+    </body>
 </html>
