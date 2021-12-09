@@ -16,13 +16,13 @@
     },
     {
         "name": "amount_paid",
-        "en": "Amount paid",
-        "ar": "المبلغ المدفوع"
+        "en": "paid",
+        "ar": "المدفوع"
     },
     {
         "name": "remaining_amount",
-        "en": "Remaining Amount",
-        "ar": "المبلغ المتبقي"
+        "en": "Remaining",
+        "ar": "المتبقي"
     },
     {
         "name": "opening_balance",
