@@ -24,7 +24,9 @@
       </div>
     </div>
   </div>
+
   <br />
+
   <div class="row center">
     <h3 class="center black bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">الرقم الضريبي : {{defaultSettings.printer_program.tax_number}}</h3>
     <h3 class="center black bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Tax Number : {{defaultSettings.printer_program.tax_number}}</h3>
@@ -54,10 +56,9 @@
       <b class="black" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.date## : </b>
       <b class="black">{{thermal.date |date:"dd - MM - yyyy" }}</b>
     </div>
-    <div class="col2"></div>
-    <div class="col4">
+    <div class="col5">
       <b class="black" ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'ar'"
-        >الوقت : {{thermal.date |date:"mm : hh" }}</b
+        > الوقت : {{thermal.date |date:"mm : hh" }}</b
       >
       <b class="black" ng-show="defaultSettings.printer_program.thermal_lang.id == 2 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'en'"
         >Time : {{thermal.date |date:"hh : mm" }}</b

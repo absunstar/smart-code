@@ -1,0 +1,35 @@
+<div class="row center border font_cairo hidden" id="thermalPrintOrders" style="width: 88mm !important">
+  <div class="center">
+    <img class="logoPrint" ng-src="{{invoice_logo}}" />
+  </div>
+
+  <div class="row">
+    <div class="center">
+      <div class="row">
+        <h1 ng-show="'##session.lang##' == 'ar'" class="black center bold">##session.company.name_ar##</h1>
+        <h1 ng-show="'##session.lang##' == 'en'" class="black center bold">##session.company.name_en##</h1>
+      </div>
+
+      <div class="row">
+        <h2 ng-show="'##session.lang##' == 'ar'" class="black center bold">##session.branch.name_ar##</h2>
+        <h2 ng-show="'##session.lang##' == 'en'" class="black center bold">##session.branch.name_en##</h2>
+      </div>
+    </div>
+  </div>
+
+  <br />
+  <br />
+
+  <div class="row" ng-repeat="order in orderInvoiceslist">
+    <hr />
+    <hr />
+    <br />
+    <h2 class="bold black center">##word.code## : {{order.code}}</h2>
+    <h2 class="bold black center">##word.transaction_type## : {{order.transaction_type.##session.lang##}}</h2>
+    <h2 class="bold black center">##word.net## : {{order.net_value}}</h2>
+  </div>
+
+  <br />
+  <hr />
+  <br />
+</div>

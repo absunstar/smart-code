@@ -45,7 +45,8 @@ module.exports = function init(site) {
                             },
                         ],
                         profile: {
-                            name: doc.name_ar,
+                            name_ar: doc.name_ar,
+                            name_en: doc.name_en,
                             image_url: doc.image_url,
                         },
                     });

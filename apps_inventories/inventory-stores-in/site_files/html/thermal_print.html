@@ -55,14 +55,14 @@
   <br />
 
   <div class="row">
+    <div class="col1"></div>
     <div class="col6">
       <b class="black" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">التاريخ : </b>
       <b class="black" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Date : </b>
       <b class="black" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.date## : </b>
       <b class="black">{{thermal.date |date:"dd - MM - yyyy" }}</b>
     </div>
-    <div class="col2"></div>
-    <div class="col4">
+    <div class="col5">
       <b class="black" ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'ar'"
         > الوقت : {{thermal.date |date:"mm : hh" }}</b
       >
@@ -74,17 +74,24 @@
 
   <br />
 
-  <div class="center">
-    <h3 class="black bold center" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">المورد :</h3>
-    <h3 class="black bold center" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Vendor :</h3>
-    <h3 class="black bold center" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.vendor## :</h3>
-    <h3 class="black bold center border_black" ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'ar'">
-      {{thermal.vendor.name_ar}}
+  <div class="padding margin">
+    <h3 class="black bold right col-4" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">المورد :</h3>
+    <h3 class="black bold left col-4" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Vendor :</h3>
+    <h3 class="black bold right col-4" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.vendor## :</h3>
+    <h3
+        class="black bold center border_black col-8"
+        ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'ar'"
+    >
+        {{thermal.vendor.name_ar}}
     </h3>
-    <h3 class="black bold center border_black" ng-show="defaultSettings.printer_program.thermal_lang.id == 2 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'en'">
-      {{thermal.vendor.name_en}}
+    <h3
+        class="black bold center border_black col-8"
+        ng-show="defaultSettings.printer_program.thermal_lang.id == 2 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'en'"
+    >
+        {{thermal.vendor.name_en}}
     </h3>
-  </div>
+</div>
+
   <br />
   <hr />
 

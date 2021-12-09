@@ -15,6 +15,16 @@
         "ar": "شاشة الطلبات"
     },
     {
+        "name": "item_not_found",
+        "en": "Item Not Fouuund",
+        "ar": "هذا الصنف غر موجود"
+    },
+    {
+        "name": "print_invoices",
+        "en": "Print Invoices",
+        "ar": "طباعة الفواتير"
+    },
+    {
         "name": "select_table",
         "en": "Select Table",
         "ar": "إختيار الطاولة"

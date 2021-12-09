@@ -446,7 +446,15 @@ module.exports = function init(site) {
     if (where['name']) {
       where['name'] = site.get_RegExp(where['name'], "i");
     }
-
+    if (where.date) {
+      let d1 = site.toDate(where.date);
+      let d2 = site.toDate(where.date);
+      d2.setDate(d2.getDate() + 1);
+      where.date = {
+        $gte: d1,
+        $lt: d2,
+      };
+    }
     where['company.id'] = site.get_company(req).id
     where['branch.code'] = site.get_branch(req).code
 

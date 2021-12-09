@@ -74,14 +74,9 @@ module.exports = function init(site) {
     employee_doc.company = site.get_company(req);
     employee_doc.branch = site.get_branch(req);
 
+    
     let user = {
-      branch_list: [
-        {
-          company: site.get_company(req),
-          branch: site.get_branch(req),
-        },
-      ],
-      is_employee: true,
+      type: "employee",
     };
 
     user.roles = [
@@ -94,26 +89,62 @@ module.exports = function init(site) {
       },
     ];
 
+    user.permissions = [];
+
     user.profile = {
       name_ar: employee_doc.name_ar,
       name_en: employee_doc.name_en,
       mobile: employee_doc.mobile,
-      password: employee_doc.password,
       image_url: employee_doc.image_url,
+      gender: employee_doc.gender,
+    };
+    if (user.profile.gender && user.profile.gender.name == "female") {
+      user.permissions.push({
+        name: "female",
+      });
+    }
+
+    let company = {};
+    let branch = {};
+    company = site.get_company(req);
+    if (req.session.user) {
+      branch = site.get_branch(req);
+    } else {
+      employee_doc.active = true;
+      company = employee_doc.company;
+      branch = employee_doc.branch;
+    }
+
+    user.branch_list = [
+      {
+        company: company,
+        branch: branch,
+      },
+    ];
+
+    employee_doc.company = {
+      id: company.id,
+      name_ar: company.name_ar,
+      name_en: company.name_en,
+    };
+
+    employee_doc.branch = {
+      code: branch.code,
+      name_ar: branch.name_ar,
+      name_en: branch.name_en,
     };
 
     user.company = employee_doc.company;
     user.branch = employee_doc.branch;
 
     let num_obj = {
-      company: site.get_company(req),
-      screen: 'employees',
+      company: company,
+      screen: "employees",
       date: new Date(),
     };
-
     let cb = site.getNumbering(num_obj);
     if (!employee_doc.code && !cb.auto) {
-      response.error = 'Must Enter Code';
+      response.error = "Must Enter Code";
       res.json(response);
       return;
     } else if (cb.auto) {
@@ -130,63 +161,90 @@ module.exports = function init(site) {
         if (!err && count >= site.get_company(req).employees_count) {
           response.error = 'The maximum number of adds exceeded';
           res.json(response);
-        } else {
-          $employee_list.add(employee_doc, (err, doc) => {
-
-            if (!err) {
-              response.done = true;
-              response.doc = doc;
-              if (employee_doc.username && employee_doc.password) {
-                if (
-                  !employee_doc.username.contains("@") &&
-                  !employee_doc.username.contains(".")
-                ) {
-                  employee_doc.username =
-                    employee_doc.username + "@" + site.get_company(req).host;
-                } else {
-                  if (
-                    employee_doc.username.contains("@") &&
-                    !employee_doc.username.contains(".")
-                  ) {
-                    response.error = "Username must be typed correctly";
-                    res.json(response);
-                    return;
-                  } else if (
-                    !employee_doc.username.contains("@") &&
-                    employee_doc.username.contains(".")
-                  ) {
-                    response.error = "Username must be typed correctly";
-                    res.json(response);
-                    return;
-                  }
-                }
-    
-                user.email = employee_doc.username;
-                user.password = employee_doc.password;
-              }
-
-              user.ref_info = {
-                id: doc.id,
-              };
-              if (employee_doc.password && employee_doc.email) {
-                site.security.addUser(user, (err1, doc1) => {
-                  if (!err1) {
-                    delete user._id;
-                    delete user.id;
-                    doc.user_info = {
-                      id: doc1.id,
-                    };
-                    $employee_list.edit(doc, (err2, doc2) => {});
-                  } else {
-                    response.error = err1.message;
-                  }
-                  res.json(response);
-                });
-              }
+        }   else {
+          if (employee_doc.username && employee_doc.password) {
+            if (
+              !employee_doc.username.contains("@") &&
+              !employee_doc.username.contains(".")
+            ) {
+              employee_doc.username =
+                employee_doc.username + "@" + company.host;
             } else {
-              response.error = err.message;
+              if (
+                employee_doc.username.contains("@") &&
+                !employee_doc.username.contains(".")
+              ) {
+                response.error = "Username must be typed correctly";
+                res.json(response);
+                return;
+              } else if (
+                !employee_doc.username.contains("@") &&
+                employee_doc.username.contains(".")
+              ) {
+                response.error = "Username must be typed correctly";
+                res.json(response);
+                return;
+              }
             }
-            res.json(response);
+
+            user.email = employee_doc.username;
+            user.password = employee_doc.password;
+          }
+
+          site.security.isUserExists(user, function (err, user_found) {
+            if (user_found) {
+              response.error = "User Is Exist";
+              res.json(response);
+              return;
+            }
+
+            $employee_list.add(employee_doc, (err, doc) => {
+              if (!err) {
+                response.done = true;
+                response.doc = doc;
+
+                if (user.password && user.email) {
+                  user.ref_info = {
+                    id: doc.id,
+                  };
+                  site.security.addUser(user, (err, doc1) => {
+                    if (!err) {
+                      delete user._id;
+                      delete user.id;
+                      doc.user_info = {
+                        id: doc1.id,
+                      };
+                      $employee_list.edit(doc, (err2, doc2) => {
+                        // if (!req.session.user) {
+                        //   site.security.login({
+                        //     email: doc1.email,
+                        //     password: doc1.password,
+                        //     $req: req,
+                        //     $res: res
+                        //   },
+                        //     function (err, user_login) {
+                        //       if (!err) {
+                        //         response.user = user_login
+                        //         response.done = true
+                        //       } else {
+                        //         console.log(err)
+                        //         response.error = err.message
+                        //       }
+                        //       res.json(response)
+                        //     }
+                        //   )
+                        // }
+                      });
+                    } else {
+                      response.error = err.message;
+                    }
+                  });
+                }
+              } else {
+                response.error = err.message;
+              }
+              res.json(response);
+            });
           });
         }
       }
@@ -205,23 +263,9 @@ module.exports = function init(site) {
     }
 
     let employee_doc = req.body;
-    let user = {};
-
-    user = {
-      name_ar: employee_doc.name_ar,
-      name_en: employee_doc.name_en,
-      mobile: employee_doc.mobile,
-      username: employee_doc.username,
-      email: employee_doc.username,
-      password: employee_doc.password,
-      image_url: employee_doc.image_url,
-      branch_list: [
-        {
-          company: site.get_company(req),
-          branch: site.get_branch(req),
-        },
-      ],
-      is_employee: true,
+  
+    let user = {
+      type: "employee",
     };
 
     user.roles = [
@@ -234,24 +278,6 @@ module.exports = function init(site) {
       },
     ];
 
-    user.profile = {
-      name_ar: user.name_ar,
-      name_en: user.name_en,
-      mobile: user.mobile,
-      image_url: user.image_url,
-    };
-
-    user.ref_info = {
-      id: employee_doc.id,
-    };
-
-    user.company = employee_doc.company;
-    user.branch = employee_doc.branch;
-
-    employee_doc.edit_user_info = site.security.getUserFinger({
-      $req: req,
-      $res: res,
-    });
 
     if (employee_doc.username && employee_doc.password) {
       if (
@@ -282,47 +308,91 @@ module.exports = function init(site) {
       user.password = employee_doc.password;
     }
 
-    if (employee_doc.id) {
-      $employee_list.edit(
-        {
-          where: {
-            id: employee_doc.id,
-          },
-          set: employee_doc,
-          $req: req,
-          $res: res,
-        },
-        (err, employee_doc) => {
-          if (!err) {
-            response.done = true;
-            user.employee_id = employee_doc.doc.id;
+    user.permissions = [];
+    user.profile = {
+      name_ar: employee_doc.name_ar,
+      name_en: employee_doc.name_ar,
+      mobile: employee_doc.mobile,
+      image_url: employee_doc.image_url,
+      gender: employee_doc.gender,
+    };
 
-            if (!employee_doc.doc.user_info && employee_doc.password && employee_doc.email) {
-              site.security.addUser(user, (err, doc1) => {
-                if (!err) {
-                  delete user._id;
-                  delete user.id;
-                  employee_doc.doc.user_info = {
-                    id: doc1.id,
-                  };
-                  $employee_list.edit(employee_doc.doc, (err2, doc2) => {
+    if (user.profile.gender && user.profile.gender.name == "female") {
+      user.permissions.push({
+        name: "female",
+      });
+    }
+
+    user.ref_info = {
+      id: employee_doc.id,
+    };
+
+    user.company = employee_doc.company;
+    user.branch = employee_doc.branch;
+
+    user.branch_list = [
+      {
+        company: site.get_company(req),
+        branch: site.get_branch(req),
+      },
+    ];
+
+
+    if (employee_doc.id) {
+      site.security.isUserExists(user, function (err, user_found) {
+        // if (user_found) {
+  
+        //   response.error = 'User Is Exist'
+        //   res.json(response)
+        //   return;
+  
+        // }
+  
+        if (customers_doc.id) {
+          $employee_list.edit(
+            {
+              where: {
+                id: customers_doc.id,
+              },
+              set: customers_doc,
+              $req: req,
+              $res: res,
+            },
+            (err, result) => {
+              if (!err && result.doc) {
+                response.done = true;
+                response.doc = result.doc;
+  
+                if (!result.doc.user_info && user.password && user.email) {
+                  site.security.addUser(user, (err, doc1) => {
+                    if (!err) {
+                      delete user._id;
+                      delete user.id;
+                      result.doc.user_info = {
+                        id: doc1.id,
+                      };
+                      $employee_list.edit(result.doc, (err2, doc2) => {
+                        res.json(response);
+                      });
+                    } else {
+                      response.error = err.message;
+                    }
                     res.json(response);
                   });
-                } else {
-                  response.error = err.message;
+                } else if (result.doc.user_info && result.doc.user_info.id) {
+                  site.security.updateUser(user, (err, user_doc) => { });
                 }
-                res.json(response);
-              });
-            } else if (employee_doc.doc.user_info && employee_doc.doc.user_info.id) {
-              user.id = employee_doc.doc.user_info.id;
-              site.security.updateUser(user, (err, user_doc) => {});
+              } else {
+                response.error = "customer id is error";
+              }
+              res.json(response);
             }
-          } else {
-            response.error = 'Code Already Exist';
-          }
+          );
+        } else {
+          response.error = "no id";
           res.json(response);
         }
-      );
+      });
     } else {
       response.error = 'no id';
       res.json(response);

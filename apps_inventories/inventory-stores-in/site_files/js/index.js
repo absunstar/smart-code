@@ -271,11 +271,11 @@ app.controller('stores_in', function ($scope, $http, $timeout) {
                 $scope.store_in.code
             }]\nتاريخ : [${formatted_date}]\nضريبة القيمة المضافة : [${$scope.store_in.total_value_added}]\nالصافي : [${$scope.store_in.net_value}]`;
 
-            if ($scope.store_in.items.length > 7) {
+            if ($scope.store_in.items.length > 5) {
                 $scope.invList = [];
-                let inv_length = $scope.store_in.items.length / 7;
+                let inv_length = $scope.store_in.items.length / 5;
                 inv_length = parseInt(inv_length);
-                let ramain_items = $scope.store_in.items.length - inv_length * 7;
+                let ramain_items = $scope.store_in.items.length - inv_length * 5;
 
                 if (ramain_items) {
                     inv_length += 1;
@@ -287,7 +287,7 @@ app.controller('stores_in', function ($scope, $http, $timeout) {
                     s_o.items = [];
                     $scope.store_in.items.forEach((itm, i) => {
                         itm.$index = i + 1;
-                        if (i < (i_inv + 1) * 7 && !itm.$done_inv) {
+                        if (i < (i_inv + 1) * 5 && !itm.$done_inv) {
                             itm.$done_inv = true;
                             s_o.items.push(itm);
                         }
