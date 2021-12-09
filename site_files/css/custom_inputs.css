@@ -20,3 +20,13 @@
   border-style: solid;
   border-color: black;
 }
+#qrcode img {
+  border-radius: 0px !important;
+  height: 170px !important;
+  width: 170px !important;
+}
+.qrcode img {
+  height: 170px !important;
+  width: 170px !important;
+  border-radius: 0px !important;
+}
