@@ -131,16 +131,16 @@
         <div class="row bold" ng-repeat="itm in thermal.items">
             <div class="row">
                 <div class="col-5" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">
-                    <p class="black bold font-11" ng-show=" itm.add_sizes">{{itm.name_ar}} {{itm.size_ar}}</p>
-                    <p class="black bold font-11" ng-hide=" itm.add_sizes">{{itm.size_ar}}</p>
+                    <p class="black bold font-10" ng-show=" itm.add_sizes">{{itm.name_ar}} {{itm.size_ar}}</p>
+                    <p class="black bold font-10" ng-hide=" itm.add_sizes">{{itm.size_ar}}</p>
                 </div>
                 <div class="col-5" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">
-                    <p class="black bold font-11" ng-show=" itm.add_sizes">{{itm.name_en}} {{itm.size_en}}</p>
-                    <p class="black bold font-11" ng-hide=" itm.add_sizes">{{itm.size_en}}</p>
+                    <p class="black bold font-10" ng-show=" itm.add_sizes">{{itm.name_en}} {{itm.size_en}}</p>
+                    <p class="black bold font-10" ng-hide=" itm.add_sizes">{{itm.size_en}}</p>
                 </div>
                 <div class="col-5" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">
-                    <p class="black bold font-11" ng-show=" itm.add_sizes">{{itm.name_##session.lang##}} {{itm.size_##session.lang##}}</p>
-                    <p class="black bold font-11" ng-hide=" itm.add_sizes">{{itm.size_##session.lang##}}</p>
+                    <p class="black bold font-10" ng-show=" itm.add_sizes">{{itm.name_##session.lang##}} {{itm.size_##session.lang##}}</p>
+                    <p class="black bold font-10" ng-hide=" itm.add_sizes">{{itm.size_##session.lang##}}</p>
                 </div>
                 <div class="col-2 black">
                     <p class="black center bold font-14">{{itm.count}}</p>
@@ -163,25 +163,25 @@
 
         <div class="bold padding margind">
             <div class="col-7 center">
-                <h3 class="black bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">إجمالي قبل .ض.ق.م</h3>
-                <h3 class="black bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Total B.VAT</h3>
-                <h3 class="black bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.total_before_tax##</h3>
+                <p class="black bold font-16" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">إجمالي قبل .ض.ق.م</p>
+                <p class="black bold font-16" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Total B.VAT</p>
+                <p class="black bold font-16" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.total_before_tax##</p>
 
-                <h3 class="black bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">ضريبة القيمة المضافة</h3>
-                <h3 class="black bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Value added tax</h3>
-                <h3 class="black bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.value_added_tax##</h3>
+                <p class="black bold font-16" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">ضريبة القيمة المضافة</p>
+                <p class="black bold font-16" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Value added tax</p>
+                <p class="black bold font-16" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.value_added_tax##</p>
 
-                <h3 class="black bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">إجمالي بعد .ض.ق.م</h3>
-                <h3 class="black bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Total A.VAT</h3>
-                <h3 class="black bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.total_after_tax##</h3>
+                <p class="black bold font-16" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">إجمالي بعد .ض.ق.م</p>
+                <p class="black bold font-16" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Total A.VAT</p>
+                <p class="black bold font-16" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.total_after_tax##</p>
 
-                <h3 class="black bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">الخصم النقدي</h3>
-                <h3 class="black bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Discount cash</h3>
-                <h3 class="black bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.discount_cash##</h3>
+                <p class="black bold font-16" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">الخصم النقدي</p>
+                <p class="black bold font-16" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Discount cash</p>
+                <p class="black bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.discount_cash##</p>
 
-                <h3 class="black bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">الصافي</h3>
-                <h3 class="black bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Net</h3>
-                <h3 class="black bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.net##</h3>
+                <p class="black bold font-16" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">الصافي</p>
+                <p class="black bold font-16" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Net</p>
+                <p class="black bold font-16" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.net##</p>
             </div>
             <div class="col-2"></div>
             <div class="col-3">
@@ -235,5 +235,7 @@
         <div class="row" ng-repeat="i in defaultSettings.printer_program.thermal_footer">
             <h3 class="black bold center">{{i.name}}</h3>
         </div>
+
+        <p class="center bold font-18"> ... </p>
     </div>
 </div>
