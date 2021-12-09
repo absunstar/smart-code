@@ -2163,7 +2163,7 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
           printer: $scope.defaultSettings.printer_program.printer_path.ip.name.trim(),
         },
         () => {
-          $('#thermalPrint').addClass('hidden');
+         /*  $('#thermalPrint').addClass('hidden'); */
         }
       );
     } else {
