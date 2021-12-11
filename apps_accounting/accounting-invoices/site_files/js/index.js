@@ -1505,7 +1505,7 @@ app.controller('account_invoices', function ($scope, $http, $timeout) {
         if ($scope.defaultSettings.printer_program.a4_printer) {
             $('#accountInvoiceDetails').removeClass('hidden');
 
-            if ($scope.account_invoices.items.length > 7) {
+            if ($scope.account_invoices.items && $scope.account_invoices.items.length > 7) {
                 $scope.invList = [];
                 let inv_length = $scope.account_invoices.items.length / 7;
                 inv_length = parseInt(inv_length);
