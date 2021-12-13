@@ -32,7 +32,7 @@
         <h3 class="center black bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.tax_number## : {{defaultSettings.printer_program.tax_number}}</h3>
       </div>
     
-      <div class="row center" ng-show="store_out.type.id != 6">
+      <div class="row center" ng-show="store_out.type.id != 6 && defaultSettings.printer_program.print_simplified_tax_invoice_sentence">
         <h3 class="center black bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3">
           فاتورة ضريبية مبسطة
         </h3>

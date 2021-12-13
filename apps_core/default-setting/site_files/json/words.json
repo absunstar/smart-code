@@ -120,6 +120,11 @@
         "ar": "طباعة حرارية أوتوماتيك لشاشة الطلبات"
     },
     {
+        "name": "print_simplified_tax_invoice_sentence",
+        "en": "Print a simplified tax invoice sentence",
+        "ar": "إظهار جملة فاتورة ضريبية مبسطة"
+    },
+    {
         "name": "exam_header",
         "en": "Header Exam",
         "ar": "مقدمة الإمتحان"

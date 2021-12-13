@@ -32,13 +32,15 @@
     <h3 class="center black bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Tax Number : {{defaultSettings.printer_program.tax_number}}</h3>
     <h3 class="center black bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.tax_number## : {{defaultSettings.printer_program.tax_number}}</h3>
   </div>
+  <div class="row" ng-show="defaultSettings.printer_program.print_simplified_tax_invoice_sentence">
 
-  <h3 class="center black bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'ar'">
-    فاتورة ضريبية مبسطة
-  </h3>
-  <h3 class="center black bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 2 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'en'">
-    Simplified Tax Invoice
-  </h3>
+    <h3 class="center black bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'ar'">
+      فاتورة ضريبية مبسطة
+    </h3>
+    <h3 class="center black bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 2 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'en'">
+      Simplified Tax Invoice
+    </h3>
+  </div>
 
   <div class="row center txt19 border_black">
     <b class="black" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">رقم الفاتورة : </b>
