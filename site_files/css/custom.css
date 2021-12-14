@@ -15,12 +15,12 @@
 
 #qrcode img {
   border-radius: 0px !important;
-  height: 170 px;
-  width: 170 px;
+  height: 150 px;
+  width: 150 px;
 }
 .qrcode img {
-  height: 170 px;
-  width: 170 px;
+  height: 150 px;
+  width: 150 px;
   border-radius: 0px !important;
 }
 
@@ -288,10 +288,6 @@ nav.sitebottom a.link {
 nav.sitebottom a.link:hover {
   background: #fff;
   color: #444;
-}
-
-.lines_text {
-  white-space: pre-wrap;
 }
 
 .footer {

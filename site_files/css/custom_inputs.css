@@ -20,13 +20,97 @@
   border-style: solid;
   border-color: black;
 }
+/* p {
+  word-break: break-word;
+}
+h1 {
+  word-break: break-word;
+}
+h2 {
+  word-break: break-word;
+}
+h3 {
+  word-break: break-word;
+}
+h4 {
+  word-break: break-word;
+}
+b {
+  word-break: break-word;
+} 
+ .w50 , .w100 , .w150 , .w200, .w250 , .w300 input{
+  white-space: unset !important;
+} */
+/* .w50,
+.w50 input {
+  white-space: unset !important;
+}
+.m50,
+.m50 input {
+  white-space: unset !important;
+} */
+
+.m10,
+.m10 input {
+  width: 10mm !important;
+  min-width: 10mm !important;
+}
+
+.m20,
+.m20 input {
+  width: 20mm !important;
+  min-width: 20mm !important;
+}
+
+.m30,
+.m30 input {
+  width: 30mm !important;
+  min-width: 30mm !important;
+}
+
+.m40,
+.m40 input {
+  width: 40mm !important;
+  min-width: 40mm !important;
+}
+.m50,
+.m50 input {
+  width: 50mm !important;
+  min-width: 50mm !important;
+}
+
+.m60,
+.m60 input {
+  width: 60mm !important;
+  min-width: 60mm !important;
+}
+
+.m70,
+.m70 input {
+  width: 70mm !important;
+  min-width: 70mm !important;
+}
+
+.m80,
+.m80 input {
+  width: 80mm !important;
+  min-width: 80mm !important;
+}
+
+.ww250,
+.ww250 input {
+  width: 250 !important;
+  min-width: 250px !important;
+  white-space: unset !important;
+}
+
 #qrcode img {
   border-radius: 0px !important;
-  height: 170px !important;
-  width: 170px !important;
+  height: 150px !important;
+  width: 150px !important;
 }
 .qrcode img {
-  height: 170px !important;
-  width: 170px !important;
+  height: 150px !important;
+  width: 150px !important;
   border-radius: 0px !important;
 }

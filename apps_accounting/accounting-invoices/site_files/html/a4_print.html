@@ -107,13 +107,13 @@
 
         <tr ng-show="ac_in.customer.id">
           <td class="title txt16" colspan="2">
-            <b class="black"> رقم تسجيل ضريبة القيمة المضافة للعميل / Customer VAT Registration Number : {{ac_in.customer.tax_card_number}} </b>
+            <b class="black"> رقم تسجيل ضريبة القيمة المضافة للعميل / Customer VAT Registration Number : {{ac_in.customer.tax_regstration_number}} </b>
           </td>
         </tr>
 
         <tr ng-show="ac_in.vendor.id">
           <td class="title txt16" colspan="2">
-            <b class="black"> رقم تسجيل ضريبة القيمة المضافة للمورد / Vendor VAT Registration Number : {{ac_in.vendor.tax_card_number}} </b>
+            <b class="black"> رقم تسجيل ضريبة القيمة المضافة للمورد / Vendor VAT Registration Number : {{ac_in.vendor.tax_regstration_number}} </b>
           </td>
         </tr>
 
@@ -195,7 +195,7 @@
         </div>
         <div class="row">
           <div class="col8">
-            <p class="txt18 bold black">ضريبة القيمة المضافة / VAT</p>
+            <p class="txt18 bold black"> ضريبة القيمة المضافة / VAT {{defaultSettings.inventory.value_added}}%</p>
           </div>
           <div class="col1"></div>
           <div class="col3">
