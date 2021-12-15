@@ -1,7 +1,7 @@
 const site = require('isite')({
   port: [80, 40014],
   lang: 'ar',
-  version: '2021.12.06',
+  version: '2021.12.07',
   name: 'eco',
   require: {
     features: [],
