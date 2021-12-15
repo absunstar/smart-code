@@ -310,12 +310,13 @@
           <p class="black">التوقيع / Signature :</p>
         </div>
       </div>
+      <hr />
 
       <div class="row padding" ng-repeat="i in defaultSettings.printer_program.invoice_footer">
-        <p class="font-16 bold black center">{{i.name}}</p>
+        <p class="font-14 bold black center">{{i.name}}</p>
       </div>
 
-      <p class="font-16 center bold black">Page {{$index + 1}} / {{invList.length}}</p>
+      <p class="font-14 center bold black">Page {{$index + 1}} / {{invList.length}}</p>
     </div>
   </div>
 </div>
