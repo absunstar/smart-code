@@ -1,7 +1,7 @@
 const site = require('isite')({
   port: [80 , 40015],
   lang: 'ar',
-  version: '2021.12.05',
+  version: '2021.12.06',
   name: 'inmedic',
   theme: 'theme_paper',
   require: {
