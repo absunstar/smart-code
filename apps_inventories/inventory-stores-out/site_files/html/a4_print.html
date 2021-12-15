@@ -227,70 +227,72 @@
             </table>
         </div>
 
-        <br />
-        <br />
-
-        <div class="row" x-permissions="stores_out_details_values || stores_out_manage" ng-show="($index+1) == invList.length">
-            <div class="col8">
-                <div class="row">
-                    <div class="col8">
-                        <p class="txt18 bold black">الإجمالي قبل ضريبة القيمة المضافة / Total B.Tax</p>
-                    </div>
-                    <div class="col1"></div>
-                    <div class="col3">
-                        <p class="txt18 bold black">{{st_o.before_value_added}}</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col8">
-                        <p class="txt18 bold black">ضريبة القيمة المضافة / VAT {{defaultSettings.inventory.value_added}}%</p>
-                    </div>
-                    <div class="col1"></div>
-                    <div class="col3">
-                        <p class="txt18 bold black">{{st_o.total_value_added}}</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col8">
-                        <p class="txt18 bold black">الإجمالي بعد ضريبة القيمة المضافة / Total A.Tax</p>
-                    </div>
-                    <div class="col1"></div>
-                    <div class="col3">
-                        <p class="txt18 bold black">{{st_o.total_value}}</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col8">
-                        <p class="txt18 bold black">الخصم النقدي / Discount Cash</p>
-                    </div>
-                    <div class="col1"></div>
-                    <div class="col3">
-                        <p class="txt18 bold black">{{st_o.total_discount}}</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col8">
-                        <p class="txt18 bold black">الصافي / Net.</p>
-                    </div>
-                    <div class="col1"></div>
-                    <div class="col3">
-                        <p class="txt18 bold black">{{st_o.net_value}}</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col1"></div>
-                    <div class="col11">
-                        <p class="num_str bold center black">{{st_o.net_txt}} {{defaultSettings.accounting.end_num_to_str || ''}}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col1"></div>
-            <div class="col3">
-                <div class="qrcode"></div>
-            </div>
-        </div>
-
         <div class="footer">
+            <div class="row padding" x-permissions="stores_out_details_values || stores_out_manage" ng-show="($index+1) == invList.length">
+                <div class="col8">
+                    <div class="row">
+                        <div class="col8">
+                            <p class="txt18 bold black">الإجمالي قبل ضريبة القيمة المضافة / Total B.Tax</p>
+                        </div>
+                        <div class="col1"></div>
+                        <div class="col3">
+                            <p class="txt18 bold black">{{st_o.before_value_added}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col8">
+                            <p class="txt18 bold black">ضريبة القيمة المضافة / VAT {{defaultSettings.inventory.value_added}}%</p>
+                        </div>
+                        <div class="col1"></div>
+                        <div class="col3">
+                            <p class="txt18 bold black">{{st_o.total_value_added}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col8">
+                            <p class="txt18 bold black">الإجمالي بعد ضريبة القيمة المضافة / Total A.Tax</p>
+                        </div>
+                        <div class="col1"></div>
+                        <div class="col3">
+                            <p class="txt18 bold black">{{st_o.total_value}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col8">
+                            <p class="txt18 bold black">الخصم النقدي / Discount Cash</p>
+                        </div>
+                        <div class="col1"></div>
+                        <div class="col3">
+                            <p class="txt18 bold black">{{st_o.total_discount}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col8">
+                            <p class="txt18 bold black">الصافي / Net.</p>
+                        </div>
+                        <div class="col1"></div>
+                        <div class="col3">
+                            <p class="txt18 bold black">{{st_o.net_value}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col1"></div>
+                        <div class="col11">
+                            <p class="num_str bold center black">{{st_o.net_txt}} {{defaultSettings.accounting.end_num_to_str || ''}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col1"></div>
+                <div class="col3">
+                    <div class="qrcode"></div>
+                </div>
+                <div class="row">
+                    <br />
+                    <hr />
+                    <br />
+                </div>
+            </div>
+
             <div class="row">
                 <div class="col1"></div>
                 <div class="col4 bold">
