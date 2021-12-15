@@ -1,0 +1,33 @@
+<div id="ordersTodayModal" class="modal small">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+    </div>
+
+    <div class="modal-body">
+      <table class="table hover bold center loaded">
+        <tr>
+          <th>##word.serial##</th>
+          <th>##word.code##</th>
+          <th>##word.transaction_type##</th>
+          <th>##word.net##</th>
+          <th>##word.actions##</th>
+        </tr>
+
+        <tr ng-repeat="order in orderInvoiceslist track by $index">
+          <td><br>{{$index + 1}}</td>
+          <td><br>{{order.code}}</td>
+          <td><br>{{order.transaction_type.##session.lang##}}</td>
+          <td class="green"><br>{{order.net_value}}</td>
+
+          <td>
+            <i-button label="##word.print##" ng-click="thermalPrint(order)"></i-button>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="modal-footer center">
+      <i-button type="close" label="##word.close##" onclick="site.hideModal('#ordersTodayModal')"> </i-button>
+    </div>
+  </div>
+</div>

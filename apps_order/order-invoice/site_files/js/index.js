@@ -204,6 +204,7 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
             if ($scope.defaultSettings.general_Settings.customer.mobile) $scope.order_invoice.customer_mobile = $scope.defaultSettings.general_Settings.customer.mobile;
           }
         }
+        $scope.printOrdersToday();
         document.querySelector('#searchBarcode input').focus();
       } else {
         $scope.error = '##word.open_shift_not_found##';
@@ -668,28 +669,8 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
           $scope.orderInvoiceslist = response.data.list;
-          $('#thermalPrintOrders').removeClass('hidden');
-          JsBarcode('.barcode', $scope.thermal.code, $scope.defaultSettings.printer_program);
-          if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path && $scope.defaultSettings.printer_program.printer_path.ip) {
-            $timeout(() => {
-              site.printAsImage(
-                {
-                  selector: '#thermalPrintOrders',
-                  ip: '127.0.0.1',
-                  port: '60080',
-                  printer: $scope.defaultSettings.printer_program.printer_path.ip.name.trim(),
-                },
-                () => {
-                  $timeout(() => {
-                    $('#thermalPrintOrders').addClass('hidden');
-                  }, 2000);
-                }
-              );
-            }, 1000 * 3);
-          } else {
-            $scope.error = '##word.thermal_printer_must_select##';
-          }
         }
+        console.log($scope.orderInvoiceslist);
       },
       function (err) {
         $scope.busy = false;
@@ -2535,6 +2516,7 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
   $scope.loadCurrencies();
   $scope.getNumberingAuto();
   $scope.getAreaListToDelivery();
+  $scope.printOrdersToday();
   $scope.loadStores();
   $scope.getNumberingAutoInvoice();
   $scope.getNumberingAutoCustomer();

@@ -51,6 +51,7 @@
 
           <div x-import="accounting-invoices/add_payments_modal.html"></div>
 
+          <div x-import="order-invoice/orders_today.html"></div>
           <div x-import="order-invoice/order_details_modal.html"></div>
 
           <div class="row">
@@ -177,7 +178,7 @@
 
                     <i-button type="bg-green white" ng-hide="'##user.type##' == 'table'" label="##word.stores_out_taxes##" fa="file-invoice-dollar" ng-click="showOrderDetails(order_invoice,'taxes')">
                     </i-button>
-                    <i-button type="bg-black white" label="##word.print_invoices##" fa="print" ng-click="printOrdersToday()">
+                    <i-button type="bg-black white" label="##word.print_invoices##" fa="print" onclick="site.showModal('#ordersTodayModal')">
                     </i-button>
 
                   </div>
@@ -256,7 +257,6 @@
             </div>
           </div>
           <div x-import="order-invoice/thermal_print.html"></div>
-          <div x-import="order-invoice/thermal_print_orders.html"></div>
           <div x-import="order-invoice/kitchen_print.html"></div>
         </div>
       </div>
