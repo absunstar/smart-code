@@ -268,18 +268,6 @@ fieldset > legend + * {
   color: #ffffff;
 }
 
-.page-a4 {
-  /*  width: 210mm !important; */
-  background: white !important;
-  color: #000 !important;
-  height: 297mm !important;
-  padding: 2mm !important;
-  margin: 0mm !important;
-  page-break-before: always !important;
-  page-break-after: always !important;
-  page-break-inside: avoid !important;
-}
-
 
 .font_cairo {
   font-family: cairo !important;
