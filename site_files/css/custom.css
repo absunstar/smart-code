@@ -20,8 +20,14 @@
     bottom: 5mm;
     right: 0mm;
     left: 0mm;
+    margin: 0mm;
 }
-
+.page-a4 .header {
+  position: absolute;
+  top: 0mm;
+  right: 0mm;
+  left: 0mm;
+}
 #qrcode img {
     border-radius: 0px !important;
     height: 150 px;
