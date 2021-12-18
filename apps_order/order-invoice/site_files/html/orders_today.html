@@ -15,13 +15,14 @@
         </tr>
 
         <tr ng-repeat="order in orderInvoiceslist track by $index">
-          <td><br>{{$index + 1}}</td>
-          <td><br>{{order.code}}</td>
-          <td><br>{{order.transaction_type.##session.lang##}}</td>
-          <td class="green"><br>{{order.net_value}}</td>
+          <td><br />{{$index + 1}}</td>
+          <td><br />{{order.store_out_code}}</td>
+          <td><br />{{order.transaction_type.##session.lang##}}</td>
+          <td class="green"><br />{{order.net_value}}</td>
 
           <td>
-            <i-button label="##word.print##" ng-click="thermalPrint(order)"></i-button>
+            <i-button type="print" label="##word.print##" ng-click="print(order)"></i-button>
+            <i-button label="##word.thermal_print##" ng-click="thermalPrint(order)"></i-button>
           </td>
         </tr>
       </table>

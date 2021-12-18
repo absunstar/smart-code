@@ -342,7 +342,6 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
         } else {
           $scope.order_invoice.hold = false;
         }
-        console.log(url);
         $timeout(() => {
           $scope.busy = true;
           $http({
@@ -359,7 +358,6 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
                 }
 
                 $scope.order_invoice = response.data.doc;
-                console.log($scope.order_invoice.status);
                 if ($scope.order_invoice.status.id == 2) {
                   let store_out = {
                     image_url: '/images/store_out.png',
@@ -670,7 +668,6 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
         if (response.data.done && response.data.list.length > 0) {
           $scope.orderInvoiceslist = response.data.list;
         }
-        console.log($scope.orderInvoiceslist);
       },
       function (err) {
         $scope.busy = false;
@@ -764,6 +761,7 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.order_invoice = response.data.doc;
+         
         } else {
           $scope.error = response.data.error;
         }
@@ -2099,6 +2097,102 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
         type: 'number',
       };
     }, 250);
+  };
+
+  $scope.print = function (order) {
+    $scope.error = '';
+    if ($scope.busy) return;
+    $scope.busy = true;
+    if ($scope.defaultSettings.printer_program.a4_printer) {
+      $('#ordersDetails').removeClass('hidden');
+
+      let datetime = new Date(order.date);
+      let formatted_date = datetime.getFullYear() + '-' + (datetime.getMonth() + 1) + '-' + datetime.getDate() + ' ' + datetime.getHours() + ':' + datetime.getMinutes() + ':' + datetime.getSeconds();
+      let qrString = `[${'##session.company.name_ar##'}]\nرقم ضريبي : [${$scope.defaultSettings.printer_program.tax_number}]\nرقم الفاتورة :[${
+        order.code
+      }]\nتاريخ : [${formatted_date}]\nضريبة القيمة المضافة : [${order.total_value_added}]\nالصافي : [${order.net_value}]`;
+
+      if (order.currency) {
+        site.strings['currency'] = {
+          ar: ' ' + order.currency.name_ar + ' ',
+          en: ' ' + order.currency.name_en + ' ',
+        };
+        site.strings['from100'] = {
+          ar: ' ' + order.currency.minor_currency_ar + ' ',
+          en: ' ' + order.currency.minor_currency_en + ' ',
+        };
+        order.net_txt = site.stringfiy(order.net_value);
+      }
+
+      if (order.items.length > 7) {
+        $scope.invList = [];
+        let inv_length = order.items.length / 7;
+        inv_length = parseInt(inv_length);
+        let ramain_items = order.items.length - inv_length * 7;
+
+        if (ramain_items) {
+          inv_length += 1;
+        }
+
+        for (let i_inv = 0; i_inv < inv_length; i_inv++) {
+          let s_o = { ...order };
+
+          s_o.items = [];
+          order.items.forEach((itm, i) => {
+            itm.$index = i + 1;
+            if (i < (i_inv + 1) * 7 && !itm.$done_inv) {
+              itm.$done_inv = true;
+              s_o.items.push(itm);
+            }
+          });
+
+          $scope.invList.push(s_o);
+        }
+      } else {
+        order.items.forEach((_item, i) => {
+          _item.$index = i + 1;
+        });
+        $scope.invList = [{ ...order }];
+      }
+
+      $scope.localPrint = function () {
+        if (document.querySelectorAll('.qrcode').length !== $scope.invList.length) {
+          $timeout(() => {
+            $scope.localPrint();
+          }, 300);
+          return;
+        }
+
+        if ($scope.defaultSettings.printer_program.place_qr) {
+          if ($scope.defaultSettings.printer_program.place_qr.id == 1) {
+            site.qrcode({
+              selector: document.querySelectorAll('.qrcode')[$scope.invList.length - 1],
+              text: document.location.protocol + '//' + document.location.hostname + `/qr_storeout?id=${order.id}`,
+            });
+          } else if ($scope.defaultSettings.printer_program.place_qr.id == 2) {
+            site.qrcode({ selector: document.querySelectorAll('.qrcode')[$scope.invList.length - 1], text: qrString });
+          }
+        }
+
+        $timeout(() => {
+          site.print({
+            selector: '#ordersDetails',
+            ip: '127.0.0.1',
+            port: '60080',
+            pageSize: 'A4',
+            printer: $scope.defaultSettings.printer_program.a4_printer.ip.name.trim(),
+          });
+        }, 500);
+      };
+
+      $scope.localPrint();
+    } else {
+      $scope.error = '##word.a4_printer_must_select##';
+    }
+    $scope.busy = false;
+/*     $timeout(() => {
+      $('#ordersDetails').addClass('hidden');
+    }, 8000); */
   };
 
   $scope.thermalPrint = function (obj) {

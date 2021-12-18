@@ -128,8 +128,7 @@ module.exports = function init(site) {
               stores_out_doc.total_value = site.toNumber(stores_out_doc.total_value);
               stores_out_doc.net_value = site.toNumber(stores_out_doc.net_value);
 
-              if (stores_out_doc.type.id == 6){
-
+              if (stores_out_doc.type.id == 6) {
                 stores_out_doc.return_paid = {
                   items: stores_out_doc.items,
                   total_discount: stores_out_doc.total_discount,
@@ -179,6 +178,10 @@ module.exports = function init(site) {
                     if (!err) {
                       response.done = true;
                       response.doc = doc;
+
+                      if (doc.type && doc.type.id == 4) {
+                        site.call('[store_out][order_invoice][data]', doc);
+                      }
 
                       if (doc.posting) {
                         doc.items.forEach((_itm, i) => {
