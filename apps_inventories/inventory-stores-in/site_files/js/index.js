@@ -181,13 +181,19 @@ app.controller('stores_in', function ($scope, $http, $timeout) {
         }
 
         if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path && $scope.defaultSettings.printer_program.printer_path.ip) {
+
+            let printerName = $scope.defaultSettings.printer_program.printer_path.ip.name.trim();
+            if($scope.user.printer_path && $scope.user.printer_path.id){
+                printerName = $scope.user.printer_path.ip.name.trim();
+            }
+
             $timeout(() => {
                 site.printAsImage(
                     {
                         selector: '#thermalPrint',
                         ip: '127.0.0.1',
                         port: '60080',
-                        printer: $scope.defaultSettings.printer_program.printer_path.ip.name.trim(),
+                        printer: printerName,
                     },
                     () => {
                         $timeout(() => {
@@ -321,12 +327,18 @@ app.controller('stores_in', function ($scope, $http, $timeout) {
                     }
                 }
 
+                
+            let printerName = $scope.defaultSettings.printer_program.a4_printer.ip.name.trim();
+            if($scope.user.a4_printer && $scope.user.a4_printer.id){
+                printerName = $scope.user.a4_printer.ip.name.trim();
+            }
+
                 $timeout(() => {
                     site.print({
                         selector: '#storeInDetails',
                         ip: '127.0.0.1',
                         port: '60080',
-                        printer: $scope.defaultSettings.printer_program.a4_printer.ip.name.trim(),
+                        printer: printerName,
                     });
                 }, 500);
             };
@@ -2033,6 +2045,27 @@ app.controller('stores_in', function ($scope, $http, $timeout) {
         );
     };
 
+    $scope.getUser = function () {
+        $scope.busy = true;
+        $http({
+          method: 'POST',
+          url: '/api/user/view',
+          data: {
+            id: '##user.id##',
+          },
+        }).then(
+          function (response) {
+            $scope.busy = false;
+            if (response.data.done) {
+              $scope.user = response.data.doc;
+            } else {
+              $scope.error = response.data.error;
+            }
+          },
+          function (err) {}
+        );
+      };
+
     $scope.loadDiscount_Types = function () {
         $scope.error = '';
         $scope.busy = true;
@@ -2547,6 +2580,7 @@ app.controller('stores_in', function ($scope, $http, $timeout) {
     $scope.getNumberingAuto();
     $scope.getNumberingAutoInvoice();
     $scope.getPaymentMethodList();
+    $scope.getUser();
     $scope.loadTax_Types();
     $scope.loadDiscount_Types();
     $scope.getDefaultSettings();

@@ -404,10 +404,42 @@ app.controller("security", function ($scope, $http, $interval) {
     )
   };
 
+  $scope.getPrintersPath = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/printers_path/all",
+      data: {
+        select: {
+          id: 1,
+          name_ar: 1,
+          name_en: 1,
+          type: 1,
+          ip_device: 1,
+          Port_device: 1,
+          ip: 1,
+          code: 1,
+        },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.printersPathList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
 
 
   $scope.getCompanyList();
   $scope.loadStores();
+  $scope.getPrintersPath();
   $scope.loadAll();
   $scope.loadRoles();
   $scope.loadPermissions();

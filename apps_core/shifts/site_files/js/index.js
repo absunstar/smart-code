@@ -319,13 +319,19 @@ app.controller('shifts', function ($scope, $http, $timeout) {
 
         JsBarcode('.barcode', $scope.thermal.code);
         if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path && $scope.defaultSettings.printer_program.printer_path.ip) {
+        
+            let printerName = $scope.defaultSettings.printer_program.printer_path.ip.name.trim();
+            if($scope.user.printer_path && $scope.user.printer_path.id){
+                printerName = $scope.user.printer_path.ip.name.trim();
+            }
+        
             $timeout(() => {
                 site.printAsImage(
                     {
                         selector: '#thermalPrint',
                         ip: '127.0.0.1',
                         port: '60080',
-                        printer: $scope.defaultSettings.printer_program.printer_path.ip.name.trim(),
+                        printer: printerName,
                     },
                     () => {
                         $timeout(() => {
@@ -340,6 +346,27 @@ app.controller('shifts', function ($scope, $http, $timeout) {
 
         $scope.busy = false;
     };
+
+    $scope.getUser = function () {
+        $scope.busy = true;
+        $http({
+          method: 'POST',
+          url: '/api/user/view',
+          data: {
+            id: '##user.id##',
+          },
+        }).then(
+          function (response) {
+            $scope.busy = false;
+            if (response.data.done) {
+              $scope.user = response.data.doc;
+            } else {
+              $scope.error = response.data.error;
+            }
+          },
+          function (err) {}
+        );
+      };
 
     $scope.getNumberingAuto = function () {
         $scope.error = '';
@@ -366,6 +393,7 @@ app.controller('shifts', function ($scope, $http, $timeout) {
 
     $scope.getShiftList();
     $scope.is_shift_open();
+    $scope.getUser();
     $scope.getNumberingAuto();
     $scope.getDefaultSettings();
 });

@@ -2174,13 +2174,18 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
           }
         }
 
+        let printerName = $scope.defaultSettings.printer_program.a4_printer.ip.name.trim();
+        if($scope.user.a4_printer && $scope.user.a4_printer.id){
+            printerName = $scope.user.a4_printer.ip.name.trim();
+        }
+
         $timeout(() => {
           site.print({
             selector: '#ordersDetails',
             ip: '127.0.0.1',
             port: '60080',
             pageSize: 'A4',
-            printer: $scope.defaultSettings.printer_program.a4_printer.ip.name.trim(),
+            printer: printerName,
           });
         }, 500);
       };
@@ -2230,12 +2235,18 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
     }
 
     if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path && $scope.defaultSettings.printer_program.printer_path.ip) {
+  
+      let printerName = $scope.defaultSettings.printer_program.printer_path.ip.name.trim();
+      if($scope.user.printer_path && $scope.user.printer_path.id){
+          printerName = $scope.user.printer_path.ip.name.trim();
+      }
+  
       site.printAsImage(
         {
           selector: '#thermalPrint',
           ip: '127.0.0.1',
           port: '60080',
-          printer: $scope.defaultSettings.printer_program.printer_path.ip.name.trim(),
+          printer: printerName,
         },
         () => {
           $('#thermalPrint').addClass('hidden');
@@ -2288,6 +2299,7 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
           });
         }
         if (_kitchen.has_items) {
+          
           $timeout(() => {
             site.printAsImage(
               {
@@ -2314,6 +2326,27 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
     if (type === 'view') {
       site.showModal('#addPaymentsModal');
     }
+  };
+
+  $scope.getUser = function () {
+    $scope.busy = true;
+    $http({
+      method: 'POST',
+      url: '/api/user/view',
+      data: {
+        id: '##user.id##',
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.user = response.data.doc;
+        } else {
+          $scope.error = response.data.error;
+        }
+      },
+      function (err) {}
+    );
   };
 
   $scope.changeCustomerAddresses = function (customer) {
@@ -2612,6 +2645,7 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
   $scope.getAreaListToDelivery();
   $scope.printOrdersToday();
   $scope.loadStores();
+  $scope.getUser();
   $scope.getNumberingAutoInvoice();
   $scope.getNumberingAutoCustomer();
   if (site.feature('restaurant')) {

@@ -1513,13 +1513,18 @@ app.controller('account_invoices', function ($scope, $http, $timeout) {
                 printer: $scope.defaultSettings.printer_program.printer_path.ip.name.trim(),
             });*/
 
+            let printerName = $scope.defaultSettings.printer_program.printer_path.ip.name.trim();
+            if($scope.user.printer_path && $scope.user.printer_path.id){
+                printerName = $scope.user.printer_path.ip.name.trim();
+            }
+
         site.printAsImage(
             {
                 selector: '#thermalPrint',
                 ip: '127.0.0.1',
                 port: '60080',
                 pageSize: 'Letter',
-                printer: $scope.defaultSettings.printer_program.printer_path.ip.name.trim(),
+                printer: printerName,
             },
             () => {
                 $timeout(() => {
@@ -1567,14 +1572,17 @@ app.controller('account_invoices', function ($scope, $http, $timeout) {
             site.qrcode({ selector: document.querySelectorAll('.qrcode')[$scope.invList.length - 1], text: qrString });
           }
         }
-
+        let printerName = $scope.defaultSettings.printer_program.a4_printer.ip.name.trim();
+        if($scope.user.a4_printer && $scope.user.a4_printer.id){
+            printerName = $scope.user.a4_printer.ip.name.trim();
+        }
         $timeout(() => {
           site.print({
             selector: '#accountInvoiceDetails',
             ip: '127.0.0.1',
             port: '60080',
             pageSize: 'A4',
-            printer: $scope.defaultSettings.printer_program.a4_printer.ip.name.trim(),
+            printer: printerName,
           });
         }, 500);
       };
@@ -1587,6 +1595,28 @@ app.controller('account_invoices', function ($scope, $http, $timeout) {
     $timeout(() => {
       $('#accountInvoiceDetails').addClass('hidden');
     }, 8000);
+  };
+
+
+  $scope.getUser = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/user/view",
+      data: {
+        id: "##user.id##",
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.user = response.data.doc;
+        } else {
+          $scope.error = response.data.error;
+        }
+      },
+      function (err) {}
+    );
   };
 
   $scope.getCustomersList = function (ev) {
@@ -2007,6 +2037,7 @@ app.controller('account_invoices', function ($scope, $http, $timeout) {
   $scope.loadCurrencies();
   $scope.loadEmployees();
   $scope.loadDelegates();
+  $scope.getUser();
   $scope.loadPaymentTypes();
   $scope.getSafes();
   if (site.feature('school')) {

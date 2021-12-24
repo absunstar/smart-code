@@ -1,262 +1,219 @@
 <div class="form">
-    <div class="tabs">
-        <div class="tabs-header">
+  <div class="tabs">
+    <div class="tabs-header">
+      <a class="tab-link" onclick="site.showTabContent(event, '#basicInformation')"> ##word.security_basic_information## </a>
 
-            <a class="tab-link" onclick="site.showTabContent(event, '#basicInformation')">
-                ##word.security_basic_information## </a>
+      <a class="tab-link" onclick="site.showTabContent(event, '#securityRoles')"> ##word.security_roles## </a>
 
-            <a class="tab-link" onclick="site.showTabContent(event, '#securityRoles')">
-                ##word.security_roles## </a>
+      <a class="tab-link" onclick="site.showTabContent(event, '#securityPublicPermissions')"> ##word.security_public_permissions## </a>
 
-            <a class="tab-link" onclick="site.showTabContent(event, '#securityPublicPermissions')">
-                ##word.security_public_permissions## </a>
+      <a class="tab-link" onclick="site.showTabContent(event, '#securityAccountingPermissions')"> ##word.security_accounting_permissions## </a>
 
-            <a class="tab-link" onclick="site.showTabContent(event, '#securityAccountingPermissions')">
-                ##word.security_accounting_permissions## </a>
+      <a class="tab-link" onclick="site.showTabContent(event, '#securityHrPermissions')"> ##word.security_hr_permissions## </a>
 
-            <a class="tab-link" onclick="site.showTabContent(event, '#securityHrPermissions')">
-                ##word.security_hr_permissions## </a>
-            
-            <a class="tab-link" onclick="site.showTabContent(event, '#securityInventoryPermissions')">
-                ##word.security_inventory_permissions## </a>
+      <a class="tab-link" onclick="site.showTabContent(event, '#securityInventoryPermissions')"> ##word.security_inventory_permissions## </a>
 
-            <a class="tab-link" onclick="site.showTabContent(event, '#securityReportPermissions')">
-                ##word.security_report_permissions## </a>
+      <a class="tab-link" onclick="site.showTabContent(event, '#securityReportPermissions')"> ##word.security_report_permissions## </a>
 
-            <a class="tab-link" onclick="site.showTabContent(event, '#securityAssginBranches')">
-                ##word.security_branches## </a>
-
-        </div>
-
-        <div class="tabs-content">
-
-            <div id="basicInformation" class="tab-content">
-                <div class="row">
-                    <div class="col8">
-                        <form class="form">
-
-                            <div class="row">
-                                <i-control v="r" class="col6" label="##word.security_user_email##"
-                                    ng-model="user.email"></i-control>
-                                <i-control v="r" class="col6" label="##word.security_user_password##"
-                                    ng-model="user.password" type="password"></i-control>
-                            </div>
-
-
-                            <div class="row">
-                                <i-control v="r" class="col6" label="##word.security_user_name##"
-                                    ng-model="user.profile.name_##session.lang##"></i-control>
-                                <i-control v="r" class="col6" label="##word.security_user_mobile##"
-                                    ng-model="user.profile.mobile"></i-control>
-                            </div>
-
-                            <div class="row">
-                                <i-list class="col6" ng-model="user.store" items="storesList"
-                                display="name_##session.lang##" ng-search="_search.$_store" label="##word.store##"></i-list>
-                            </div>
-
-                            <i-textarea ng-model="user.profile.notes" label="##word.notes##"></i-textarea>
-
-
-                        </form>
-                    </div>
-                    <div class="col4">
-                        <i-image category="users" ng-model="user.profile.image_url"></i-image>
-                    </div>
-                </div>
-
-
-
-                <i-button type="default left" fa="2x fa-angle-double-left"
-                    onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
-
-            </div>
-
-            <div id="securityRoles" class="tab-content">
-
-                <div class="row padding">
-                    <fieldset>
-                        <legend>
-                            ##word.security_public_roles##
-                            <i-checkbox ng-model="$public_roles" ng-click="checkAll('public_roles')"></i-checkbox>
-                        </legend>
-
-                        <i-checklist primary="name" label="" items="public_roles" display="##session.lang##"
-                            ng-model="user.roles"></i-checklist>
-                    </fieldset>
-                </div>
-
-                <div class="row padding">
-                    <fieldset>
-                        <legend>
-                            ##word.security_custom_roles##
-                            <i-checkbox ng-model="$custom_roles" ng-click="checkAll('custom_roles')"></i-checkbox>
-
-                        </legend>
-                        <i-checklist primary="name" label="" items="custom_roles" display="##session.lang##"
-                            ng-model="user.roles"></i-checklist>
-                    </fieldset>
-                </div>
-
-                <div class="row padding">
-                    <fieldset>
-                        <legend>
-                            ##word.security_accounting_roles##
-                            <i-checkbox ng-model="$accounting_roles" ng-click="checkAll('accounting_roles')">
-                            </i-checkbox>
-                        </legend>
-                        <i-checklist primary="name" label="" items="accounting_roles" display="##session.lang##"
-                            ng-model="user.roles"></i-checklist>
-                    </fieldset>
-                </div>
-
-
-                <div class="row padding">
-                    <fieldset>
-                        <legend>
-                            ##word.security_hr_roles##
-                            <i-checkbox ng-model="$hr_roles" ng-click="checkAll('hr_roles')"></i-checkbox>
-                        </legend>
-                        <i-checklist primary="name" label="" items="hr_roles" display="##session.lang##"
-                            ng-model="user.roles"></i-checklist>
-                    </fieldset>
-                </div>
-
-                <div class="row padding">
-                    <fieldset>
-                        <legend>
-                            ##word.security_inventory_roles##
-                            <i-checkbox ng-model="$report_roles" ng-click="checkAll('report_roles')"></i-checkbox>
-                        </legend>
-                        <i-checklist primary="name" label="" items="report_roles" display="##session.lang##"
-                            ng-model="user.roles"></i-checklist>
-                    </fieldset>
-                </div>
-
-                <div class="row padding">
-                    <fieldset>
-                        <legend>
-                            ##word.reports##
-                            <i-checkbox ng-model="$inventory_roles" ng-click="checkAll('inventory_roles')"></i-checkbox>
-                        </legend>
-                        <i-checklist primary="name" label="" items="inventory_roles" display="##session.lang##"
-                            ng-model="user.roles"></i-checklist>
-                    </fieldset>
-                </div>
-
-
-
-                <i-button type="default left" fa="2x fa-angle-double-left"
-                    onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
-            </div>
-
-            <div id="securityPublicPermissions" class="tab-content">
-                <div class="row">
-                    <div class="row padding">
-
-                        <fieldset ng-repeat="screen in public_screens">
-                            <legend> {{screen.name_##session.lang##}} </legend>
-                            <i-checklist primary="name" label="" items="screen.permissions" display="##session.lang##"
-                                ng-model="user.permissions"></i-checklist>
-                        </fieldset>
-
-                    </div>
-                </div>
-                <i-button type="default left" fa="2x fa-angle-double-left"
-                    onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
-            </div>
-
-
-            <div id="securityAccountingPermissions" class="tab-content">
-                <div class="row">
-                    <div class="row padding">
-
-                        <fieldset ng-repeat="screen in accounting_screens">
-                            <legend> {{screen.name_##session.lang##}} </legend>
-                            <i-checklist primary="name" label="" items="screen.permissions" display="##session.lang##"
-                                ng-model="user.permissions"></i-checklist>
-                        </fieldset>
-
-                    </div>
-                </div>
-                <i-button type="default left" fa="2x fa-angle-double-left"
-                    onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
-            </div>
-
-
-            <div id="securityHrPermissions" class="tab-content">
-                <div class="row">
-                    <div class="row padding">
-
-                        <fieldset ng-repeat="screen in hr_screens">
-                            <legend> {{screen.name_##session.lang##}} </legend>
-                            <i-checklist primary="name" label="" items="screen.permissions" display="##session.lang##"
-                                ng-model="user.permissions"></i-checklist>
-                        </fieldset>
-
-                    </div>
-                </div>
-                <i-button type="default left" fa="2x fa-angle-double-left"
-                    onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
-            </div>
-
-
-            <div id="securityInventoryPermissions" class="tab-content">
-                <div class="row">
-                    <div class="row padding">
-
-                        <fieldset ng-repeat="screen in inventory_screens">
-                            <legend> {{screen.name_##session.lang##}} </legend>
-                            <i-checklist primary="name" label="" items="screen.permissions" display="##session.lang##"
-                                ng-model="user.permissions"></i-checklist>
-                        </fieldset>
-
-                    </div>
-                </div>
-                <i-button type="default left" fa="2x fa-angle-double-left"
-                    onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
-            </div>
-
-            <div id="securityReportPermissions" class="tab-content">
-                <div class="row">
-                    <div class="row padding">
-
-                        <fieldset ng-repeat="screen in report_screens">
-                            <legend> {{screen.name_##session.lang##}} </legend>
-                            <i-checklist primary="name" label="" items="screen.permissions" display="##session.lang##"
-                                ng-model="user.permissions"></i-checklist>
-                        </fieldset>
-
-                    </div>
-                </div>
-                <i-button type="default left" fa="2x fa-angle-double-left"
-                    onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
-            </div>
-
-            <div id="securityAssginBranches" class="tab-content">
-
-                <fieldset>
-                    <legend>
-                        <i-button type="add default" ng-click="user.branch_list.push({})"></i-button>
-                        ##word.security_branches##
-                    </legend>
-                    <div class="row" ng-repeat="info in user.branch_list">
-                        <i-list label="##word.security_company##" ng-search="_search.$company_search"
-                            display="name_##session.lang##" class="col5" items="company_list" ng-model="info.company">
-                        </i-list>
-                        <i-list label="##word.security_branch##" ng-search="_search.$branch_search" primary="code"
-                            display="name_##session.lang##" class="col5" items="info.company.branch_list"
-                            ng-model="info.branch"></i-list>
-                        <i-button type="delete default"
-                            ng-click="user.branch_list.length === 1 || user.branch_list.splice($index,1)"></i-button>
-                    </div>
-
-                </fieldset>
-
-
-            </div>
-
-        </div>
+      <a class="tab-link" onclick="site.showTabContent(event, '#securityAssginBranches')"> ##word.security_branches## </a>
     </div>
 
+    <div class="tabs-content">
+      <div id="basicInformation" class="tab-content">
+        <div class="row">
+          <div class="col8">
+            <form class="form">
+              <div class="row">
+                <i-control v="r" class="col6" label="##word.security_user_email##" ng-model="user.email"></i-control>
+                <i-control v="r" class="col6" label="##word.security_user_password##" ng-model="user.password" type="password"></i-control>
+              </div>
+
+              <div class="row">
+                <i-control v="r" class="col6" label="##word.security_user_name##" ng-model="user.profile.name_##session.lang##"></i-control>
+                <i-control v="r" class="col6" label="##word.security_user_mobile##" ng-model="user.profile.mobile"></i-control>
+              </div>
+
+              <div class="row">
+                <i-list class="col4" ng-model="user.store" items="storesList" display="name_##session.lang##" ng-search="_search.$_store" label="##word.store##"></i-list>
+
+                <i-list
+                  ng-search="_search.$printers_path"
+                  class="col4"
+                  display="name_##session.lang##"
+                  ng-model="user.printer_path"
+                  label="##word.thermal_print##"
+                  items="printersPathList"
+                >
+                </i-list>
+
+                <i-list
+                  ng-search="_search.$printers_path"
+                  class="col4"
+                  display="name_##session.lang##"
+                  ng-model="user.a4_printer"
+                  label="##word.a4_printer##"
+                  items="printersPathList"
+                >
+                </i-list>
+              </div>
+
+              <i-textarea ng-model="user.profile.notes" label="##word.notes##"></i-textarea>
+            </form>
+          </div>
+          <div class="col4">
+            <i-image category="users" ng-model="user.profile.image_url"></i-image>
+          </div>
+        </div>
+
+        <i-button type="default left" fa="2x fa-angle-double-left" onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
+      </div>
+
+      <div id="securityRoles" class="tab-content">
+        <div class="row padding">
+          <fieldset>
+            <legend>
+              ##word.security_public_roles##
+              <i-checkbox ng-model="$public_roles" ng-click="checkAll('public_roles')"></i-checkbox>
+            </legend>
+
+            <i-checklist primary="name" label="" items="public_roles" display="##session.lang##" ng-model="user.roles"></i-checklist>
+          </fieldset>
+        </div>
+
+        <div class="row padding">
+          <fieldset>
+            <legend>
+              ##word.security_custom_roles##
+              <i-checkbox ng-model="$custom_roles" ng-click="checkAll('custom_roles')"></i-checkbox>
+            </legend>
+            <i-checklist primary="name" label="" items="custom_roles" display="##session.lang##" ng-model="user.roles"></i-checklist>
+          </fieldset>
+        </div>
+
+        <div class="row padding">
+          <fieldset>
+            <legend>
+              ##word.security_accounting_roles##
+              <i-checkbox ng-model="$accounting_roles" ng-click="checkAll('accounting_roles')"> </i-checkbox>
+            </legend>
+            <i-checklist primary="name" label="" items="accounting_roles" display="##session.lang##" ng-model="user.roles"></i-checklist>
+          </fieldset>
+        </div>
+
+        <div class="row padding">
+          <fieldset>
+            <legend>
+              ##word.security_hr_roles##
+              <i-checkbox ng-model="$hr_roles" ng-click="checkAll('hr_roles')"></i-checkbox>
+            </legend>
+            <i-checklist primary="name" label="" items="hr_roles" display="##session.lang##" ng-model="user.roles"></i-checklist>
+          </fieldset>
+        </div>
+
+        <div class="row padding">
+          <fieldset>
+            <legend>
+              ##word.security_inventory_roles##
+              <i-checkbox ng-model="$report_roles" ng-click="checkAll('report_roles')"></i-checkbox>
+            </legend>
+            <i-checklist primary="name" label="" items="report_roles" display="##session.lang##" ng-model="user.roles"></i-checklist>
+          </fieldset>
+        </div>
+
+        <div class="row padding">
+          <fieldset>
+            <legend>
+              ##word.reports##
+              <i-checkbox ng-model="$inventory_roles" ng-click="checkAll('inventory_roles')"></i-checkbox>
+            </legend>
+            <i-checklist primary="name" label="" items="inventory_roles" display="##session.lang##" ng-model="user.roles"></i-checklist>
+          </fieldset>
+        </div>
+
+        <i-button type="default left" fa="2x fa-angle-double-left" onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
+      </div>
+
+      <div id="securityPublicPermissions" class="tab-content">
+        <div class="row">
+          <div class="row padding">
+            <fieldset ng-repeat="screen in public_screens">
+              <legend>{{screen.name_##session.lang##}}</legend>
+              <i-checklist primary="name" label="" items="screen.permissions" display="##session.lang##" ng-model="user.permissions"></i-checklist>
+            </fieldset>
+          </div>
+        </div>
+        <i-button type="default left" fa="2x fa-angle-double-left" onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
+      </div>
+
+      <div id="securityAccountingPermissions" class="tab-content">
+        <div class="row">
+          <div class="row padding">
+            <fieldset ng-repeat="screen in accounting_screens">
+              <legend>{{screen.name_##session.lang##}}</legend>
+              <i-checklist primary="name" label="" items="screen.permissions" display="##session.lang##" ng-model="user.permissions"></i-checklist>
+            </fieldset>
+          </div>
+        </div>
+        <i-button type="default left" fa="2x fa-angle-double-left" onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
+      </div>
+
+      <div id="securityHrPermissions" class="tab-content">
+        <div class="row">
+          <div class="row padding">
+            <fieldset ng-repeat="screen in hr_screens">
+              <legend>{{screen.name_##session.lang##}}</legend>
+              <i-checklist primary="name" label="" items="screen.permissions" display="##session.lang##" ng-model="user.permissions"></i-checklist>
+            </fieldset>
+          </div>
+        </div>
+        <i-button type="default left" fa="2x fa-angle-double-left" onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
+      </div>
+
+      <div id="securityInventoryPermissions" class="tab-content">
+        <div class="row">
+          <div class="row padding">
+            <fieldset ng-repeat="screen in inventory_screens">
+              <legend>{{screen.name_##session.lang##}}</legend>
+              <i-checklist primary="name" label="" items="screen.permissions" display="##session.lang##" ng-model="user.permissions"></i-checklist>
+            </fieldset>
+          </div>
+        </div>
+        <i-button type="default left" fa="2x fa-angle-double-left" onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
+      </div>
+
+      <div id="securityReportPermissions" class="tab-content">
+        <div class="row">
+          <div class="row padding">
+            <fieldset ng-repeat="screen in report_screens">
+              <legend>{{screen.name_##session.lang##}}</legend>
+              <i-checklist primary="name" label="" items="screen.permissions" display="##session.lang##" ng-model="user.permissions"></i-checklist>
+            </fieldset>
+          </div>
+        </div>
+        <i-button type="default left" fa="2x fa-angle-double-left" onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
+      </div>
+
+      <div id="securityAssginBranches" class="tab-content">
+        <fieldset>
+          <legend>
+            <i-button type="add default" ng-click="user.branch_list.push({})"></i-button>
+            ##word.security_branches##
+          </legend>
+          <div class="row" ng-repeat="info in user.branch_list">
+            <i-list label="##word.security_company##" ng-search="_search.$company_search" display="name_##session.lang##" class="col5" items="company_list" ng-model="info.company"> </i-list>
+            <i-list
+              label="##word.security_branch##"
+              ng-search="_search.$branch_search"
+              primary="code"
+              display="name_##session.lang##"
+              class="col5"
+              items="info.company.branch_list"
+              ng-model="info.branch"
+            ></i-list>
+            <i-button type="delete default" ng-click="user.branch_list.length === 1 || user.branch_list.splice($index,1)"></i-button>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+  </div>
 </div>

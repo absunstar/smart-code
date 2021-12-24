@@ -229,7 +229,6 @@ module.exports = function init(site) {
 
     where['company.id'] = site.get_company(req).id
 
-
     $drinks.findMany({
       select: req.body.select || {},
       where: where,
