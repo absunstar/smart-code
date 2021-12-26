@@ -1692,6 +1692,11 @@
     "ar": "عدد الأصناف"
   },
   {
+    "name": "add_invoice",
+    "en": "Add Invoice",
+    "ar": "إضافة فاتورة"
+  },
+  {
     "name": "items_price",
     "en": "Items Price",
     "ar": "سعر الأصناف"

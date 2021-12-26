@@ -125,6 +125,11 @@
         "ar": "إظهار جملة فاتورة ضريبية مبسطة"
     },
     {
+        "name": "print_simplified_invoice_sentence",
+        "en": "Print a simplified invoice sentence",
+        "ar": "إظهار جملة فاتورة مبسطة"
+    },
+    {
         "name": "exam_header",
         "en": "Header Exam",
         "ar": "مقدمة الإمتحان"

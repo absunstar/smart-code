@@ -40,6 +40,15 @@
     </h3>
   </div>
 
+  <div class="row center" ng-show="thermal.type.id != 4 && defaultSettings.printer_program.print_simplified_invoice_sentence">
+    <h3 class="center black bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'ar'">
+      فاتورة مبسطة
+    </h3>
+    <h3 class="center black bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 2 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'en'">
+      Simplified Invoice
+    </h3>
+  </div>
+
   <div class="row center" ng-show="thermal.type.id == 4">
     <h3 class="center black bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'ar'">إشعار مرتجع</h3>
     <h3 class="center black bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 2 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'en'">BACK NOTICE</h3>

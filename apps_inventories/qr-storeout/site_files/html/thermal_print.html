@@ -40,6 +40,15 @@
           Simplified Tax Invoice
         </h3>
       </div>
+
+      <div class="row center" ng-show="store_out.type.id != 6 && defaultSettings.printer_program.print_simplified_invoice_sentence">
+        <h3 class="center black bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3">
+          فاتورة مبسطة
+        </h3>
+        <h3 class="center black bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">
+          Simplified Invoice
+        </h3>
+      </div>
     
       <div class="row center" ng-show="store_out.type.id == 6">
         <h3 class="center black bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3">
