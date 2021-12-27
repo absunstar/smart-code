@@ -1,550 +1,574 @@
 <div class="form">
-    <div id="accountInvoicesAddModal">
-        <fieldset>
-            <legend> ##word.account_invoices_informations## </legend>
+  <div id="accountInvoicesAddModal">
+    <fieldset>
+      <legend>##word.account_invoices_informations##</legend>
+      <div class="row">
+        <div class="col9">
+          <div class="row">
+            <i-control ng-hide="disabledCodeInvoice" class="col2" label="##word.code##" ng-model="account_invoices.code"> </i-control>
+
+            <i-date2 class="col4" ng-model="account_invoices.date" label="##word.date##"></i-date2>
+
+            <i-list
+              class="col2"
+              ng-model="account_invoices.payment_type"
+              items="paymentTypesList"
+              ng-show="account_invoices.source_type.id != 8 && account_invoices.source_type.id!= 9 && account_invoices.source_type.id!= 10  && account_invoices.source_type.id!= 11  && account_invoices.source_type.id!= 14"
+              display="##session.lang##"
+              ng-search="_search.$search_payment_types"
+              label="##word.payment_type##"
+            >
+            </i-list>
+
+            <i-control class="col3 r_indigo" disabled label="##word.shift##" ng-model="shift.name_##session.lang##"> </i-control>
+          </div>
+
+          <div class="row" ng-show="account_invoices.source_type.id == 16 ">
             <div class="row">
-                <div class="col9">
-
-                    <div class="row">
-                        <i-control ng-hide="disabledCodeInvoice" class="col2" label="##word.code##"
-                            ng-model="account_invoices.code">
-                        </i-control>
-
-                        <i-date2 class="col4" ng-model="account_invoices.date" label="##word.date##"></i-date2>
-
-                        <i-list class="col2" ng-model="account_invoices.payment_type" items="paymentTypesList"
-                            ng-show="account_invoices.source_type.id != 8 && account_invoices.source_type.id!= 9 && account_invoices.source_type.id!= 10  && account_invoices.source_type.id!= 11  && account_invoices.source_type.id!= 14"
-                            display="##session.lang##" ng-search="_search.$search_payment_types"
-                            label="##word.payment_type##">
-                        </i-list>
-
-                        <i-control class="col3 r_indigo" disabled label="##word.shift##"
-                            ng-model="shift.name_##session.lang##">
-                        </i-control>
-
-                    </div>
-
-                    <div class="row" ng-show="account_invoices.source_type.id == 16 ">
-                        <div class="row">
-                            <i-list class="col3" ng-model="account_invoices.target_account" items="targetAccountList"
-                                display="##session.lang##" ng-search="_search.$search_target_accounts"
-                                label="##word.target_account##">
-                            </i-list>
-
-                            <i-control ng-show="account_invoices.target_account.id == 1 "
-                                ng-keydown="getCustomersList($event)" id="service" class="col2"
-                                ng-model="search_customer" label="##word.search##" type="text">
-                            </i-control>
-
-                            <i-list ng-show="account_invoices.target_account.id == 1 " ng-search="_search.$customer"
-                                class="col4" display="name_##session.lang##" space=" - " display2="code"
-                                ng-model="account_invoices.customer" label="##word.customer##" items="customersList">
-                            </i-list>
-
-                            <i-control ng-show="account_invoices.target_account.id ===2 "
-                                ng-keydown="loadVendors($event)" class="col2" ng-model="search_vendor"
-                                label="##word.search##" type="text"></i-control>
-
-                            <i-list ng-show="account_invoices.target_account.id ===2 "
-                                ng-model="account_invoices.vendor" class="col4" items="vendorsList" space=" - "
-                                display2="code" display="name_##session.lang##" ng-search="_search.$search_vendor"
-                                label="##word.stores_in_Company_name##">
-                            </i-list>
-
-                        </div>
-
-                        <div class="row">
-
-                            <i-control class="col2" ng-model="account_invoices.paid_up" label="##word.paid_up##"
-                                type="number">
-                            </i-control>
-                            <div class="col3">
-                                <br>
-                                <i-radio ng-model="account_invoices.op_balance_type" ng-value="creditor" group="type"
-                                    label="##word.creditor##"></i-radio>
-
-                                <i-radio ng-model="account_invoices.op_balance_type" group="type" ng-value="debtor"
-                                    label="##word.debtor##">
-                                </i-radio>
-                            </div>
-
-                            <i-list class="col3" ng-search="_search.$currency_search" display="name_##session.lang##"
-                                ng-model="account_invoices.currency" items="currenciesList" label="##word.currency##">
-                            </i-list>
-
-                            <i-control class="col2" disabled ng-model="account_invoices.currency.ex_rate" type="number"
-                                label="##word.exchange_rate##"></i-control>
-                        </div>
-
-                    </div>
-
-                    <div class="row">
-
-                        <div class="row"
-                            ng-show="account_invoices.source_type.id ==11 || account_invoices.source_type.id ==12">
-                            <i-list label="##word.amounts_in_employees##" ng-search="_search.$eng_account_invoices"
-                                class="col4" ng-model="account_invoices.employee" display="name_##session.lang##"
-                                items="employeesList">
-                            </i-list>
-                        </div>
-
-                        <div class="row">
-
-                            <i-list help-id="" ng-show="account_invoices.source_type.id == 3"
-                                ng-change="orderInvoicesTypeList = [] ; account_invoices.items = []"
-                                ng-search="_search.$order_invoices_type_search" class="col3" label="##word.order_type##"
-                                ng-model="account_invoices.order_invoices_type" items="transactionTypeList"
-                                display="##session.lang##">
-                            </i-list>
-
-                            <i-list class="col3" ng-search="_search.$source_account_invoices"
-                                ng-show="account_invoices.source_type.id ==9" ng-model="account_invoices.out_type"
-                                display="##session.lang##" items="outTypesList" label="##word.source_name##">
-                            </i-list>
-
-                            <i-list class="col3" ng-search="_search.$source_account_invoices"
-                                ng-show="account_invoices.source_type.id ==8" ng-model="account_invoices.in_type"
-                                display="##session.lang##" items="inTypesList" label="##word.source_name##">
-                            </i-list>
-
-                            <i-control ng-keydown="loadOrderInvoicesType($event)" id="item_name" class="col3"
-                                type="text" ng-show="account_invoices.in_type.id == 2 || account_invoices.in_type.id == 3 || account_invoices.in_type.id == 4 
-                                || account_invoices.out_type.id == 2 || account_invoices.out_type.id == 3"
-                                ng-model="search_order" label="##word.search##">
-                            </i-control>
-
-                        </div>
-
-                        <div class="row" ng-show="orderInvoicesTypeList.length > 0">
-
-                            <table x-permissions="login" class="table bold hover loaded" id="t1">
-                                <tr>
-                                    <th> ##word.date## </th>
-                                    <th> ##word.code## </th>
-                                    <th
-                                        ng-show="account_invoices.source_type.id == 2 ||account_invoices.source_type.id == 3 || account_invoices.source_type.id == 4">
-                                        ##word.customer## </th>
-                                    <th ng-show="account_invoices.source_type.id == 1"> ##word.vendor## </th>
-
-                                    <th ng-show="account_invoices.source_type.id == 4">##word.trainer## </th>
-                                    <th ng-show="account_invoices.source_type.id == 5">##word.tenants## </th>
-                                    <th
-                                        ng-show="account_invoices.source_type.id == 4 || account_invoices.source_type.id == 5">
-                                        ##word.halls## </th>
-                                    <th ng-show="account_invoices.source_type.id == 4"> ##word.activities## </th>
-
-                                    <th ng-show=" account_invoices.order_invoices_type.id==2">
-                                        ##word.delivery_employee##
-                                    </th>
-                                    <th ng-show="account_invoices.order_invoices_type.id ==1"> ##word.tables_group##
-                                    </th>
-                                    <th ng-show="account_invoices.order_invoices_type.id ==1"> ##word.table## </th>
-                                    <th> ##word.transaction_type## </th>
-                                    <th ng-show="account_invoices.source_type.id ==12"> ##word.value## </th>
-                                </tr>
-
-
-                                <tr class="pointer" ng-repeat="item in orderInvoicesTypeList"
-                                    ng-click="selectOrderInvoices(item)">
-
-                                    <td class="center brown"> {{item.date | date : 'dd - MM - yyyy'}} </td>
-
-                                    <td class="center blue"> {{item.code}} </td>
-                                    <td class="center"
-                                        ng-show="account_invoices.source_type.id == 2 ||account_invoices.source_type.id == 3 || account_invoices.source_type.id == 4">
-                                        {{item.customer.name_##session.lang##}} <b
-                                            ng-show="!item.customer.name_##session.lang##">
-                                            ##word.not_found##</b> </td>
-
-                                    <td class="center" ng-show="account_invoices.source_type.id == 1">
-                                        {{item.vendor.name_##session.lang##}} <b
-                                            ng-show="!item.vendor.name_##session.lang##">
-                                            ##word.not_found##</b> </td>
-
-                                    <td class="center" ng-show="account_invoices.source_type.id == 4">
-                                        {{item.trainer.name_##session.lang##}} <b ng-show="!item.trainer.id">
-                                            ##word.not_found##</b> </td>
-
-                                    <td class="center" ng-show="account_invoices.source_type.id == 5">
-                                        {{item.tenant.name_##session.lang##}} <b ng-show="!item.tenant.id">
-                                            ##word.not_found##</b> </td>
-
-                                    <td class="center"
-                                        ng-show="account_invoices.source_type.id == 5 || account_invoices.source_type.id == 4">
-                                        {{item.hall.name_##session.lang##}} <b ng-show="!item.hall.id">
-                                            ##word.not_found##</b> </td>
-
-                                    <td class="center" ng-show="account_invoices.source_type.id == 4">
-                                        {{item.activity_name_##session.lang##}} </td>
-
-                                    <td ng-show="account_invoices.order_invoices_type.id ==2" class="center">
-                                        {{item.delivery_employee.name_##session.lang##}}</td>
-                                    <td ng-show="account_invoices.order_invoices_type.id == 1" class="center">
-                                        {{item.table.tables_group.name_##session.lang##}} </td>
-                                    <td ng-show="account_invoices.order_invoices_type.id == 1" class="center">
-                                        {{item.table.name_##session.lang##}}</td>
-                                    <td class="center">
-                                        {{item.transaction_type.##session.lang## }} {{item.invoice_type.##session.lang##}} 
-                                     <!--    <b ng-show="!item.transaction_type.##session.lang## && !item.type.##session.lang##">
-                                            ##word.not_found##</b></td> -->
-
-                                    <td class="green center" ng-show="account_invoices.source_type.id ==12">
-                                        {{item.total_paid_up}}
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-
-
-                        <div class="row" ng-show="account_invoices.items.length > 0">
-
-                            <table x-permissions="login" class="table bold hover loaded" id="t1">
-
-                                <tr>
-                                    <th>##word.stores_items_name##</th>
-                                    <th>##word.items_count##</th>
-                                    <th>##word.items_price##</th>
-                                    <th>##word.discount##</th>
-                                    <th>##word.items_price_total##</th>
-                                    <th class="not-print" ng-show="account_invoices.source_type.id == 3">
-                                        ##word.actions##
-                                    </th>
-                                </tr>
-
-                                <tr ng-repeat="c in account_invoices.items">
-                                    <td class="center title">
-                                        <p ng-show="c.add_sizes">{{c.name_##session.lang##}} {{c.size_##session.lang##}}
-                                        </p>
-                                        <p ng-hide="c.add_sizes">{{c.size_##session.lang##}}</p>
-                                    </td>
-                                    <td class="center blue">{{c.count}}</td>
-                                    <td class="center">
-                                        <p ng-hide="account_invoices.source_type.id == 1">{{c.price}}</p>
-                                        <p ng-show="account_invoices.source_type.id == 1">{{c.cost}}</p>
-                                    </td>
-                                    <td class="center red">{{c.discount.value}}
-                                        <b class="red" ng-show="c.discount.type =='number'">$</b>
-                                        <b class="red" ng-show="c.discount.type =='percent'">%</b>
-                                    </td>
-                                    <td class="center green">{{c.total}}</td>
-                                    <td class="center not-print" ng-show="account_invoices.source_type.id == 3">
-                                        <i-button type="delete" label="##word.delete##"
-                                            ng-click="deleteItemsList(c) ; calc(account_invoices)">
-                                        </i-button>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-
-                        <br>
-
-
-                        <div class="row" ng-show="account_invoices.invoice_id">
-                            <div class="col6">
-
-                                <table id="basicInformationTable" class="table hover bold">
-
-                                    <tr ng-show="account_invoices.date">
-                                        <td class="title">##word.date##</td>
-                                        <td class="center brown">
-                                            {{account_invoices.date | date : 'yyyy - MM - dd'}}
-                                        </td>
-                                    </tr>
-
-                                    <tr ng-show="account_invoices.invoice_code">
-                                        <td class="title">##word.code##</td>
-                                        <td class="center blue">{{account_invoices.invoice_code}}</td>
-                                    </tr>
-
-                                    <tr ng-show="account_invoices.employee.id">
-                                        <td class="title">##word.employee##</td>
-                                        <td class="center">{{account_invoices.employee.name_##session.lang##}}</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="title">##word.value##</td>
-                                        <td class="center green">{{account_invoices.net_value}}</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="title">##word.invoice_remain##</td>
-                                        <td class="center">{{account_invoices.remain_source}}</td>
-                                    </tr>
-
-                                    <tr ng-show="account_invoices.customer.id">
-                                        <td class="title">##word.customer##</td>
-                                        <td class="center">{{account_invoices.customer.name_##session.lang##}}</td>
-                                    </tr>
-
-                                    <tr ng-show="account_invoices.vendor.name_##session.lang##">
-                                        <td class="title">##word.vendor##</td>
-                                        <td class="center">{{account_invoices.vendor.name_##session.lang##}}</td>
-                                    </tr>
-
-                                    <tr ng-show="account_invoices.trainer.id">
-                                        <td class="title">##word.trainer##</td>
-                                        <td class="center">{{account_invoices.trainer.name_##session.lang##}}</td>
-                                    </tr>
-
-                                    <tr ng-show="account_invoices.tenant.id">
-                                        <td class="title">##word.tenant##</td>
-                                        <td class="center">{{account_invoices.tenant.name_##session.lang##}}</td>
-                                    </tr>
-
-                                    <tr ng-show="account_invoices.service > 0">
-                                        <td class="title"> ##word.service## </td>
-                                        <td class="center"> {{account_invoices.service}} </td>
-                                    </tr>
-
-                                    <tr ng-show="account_invoices.total_period > 0">
-                                        <td class="title"> ##word.total_period## </td>
-                                        <td class="center"> {{account_invoices.total_period}} </td>
-                                    </tr>
-
-                                    <tr ng-show="account_invoices.period > 0">
-                                        <td class="title"> ##word.period## </td>
-                                        <td class="center"> {{account_invoices.period.##session.lang##}} </td>
-                                    </tr>
-
-                                    <tr ng-show="account_invoices.price_hour > 0">
-                                        <td class="title"> ##word.price_hour## </td>
-                                        <td class="center"> {{account_invoices.price_hour}} </td>
-                                    </tr>
-
-                                    <tr ng-show="account_invoices.price_day > 0">
-                                        <td class="title"> ##word.price_day## </td>
-                                        <td class="center"> {{account_invoices.price_day}} </td>
-                                    </tr>
-
-
-                                    <tr ng-show="account_invoices.price_delivery_service > 0">
-                                        <td class="title"> ##word.price_delivery_service## </td>
-                                        <td class="center"> {{account_invoices.price_delivery_service}} </td>
-                                    </tr>
-
-                                    <tr ng-show="account_invoices.services_price">
-                                        <td class="title">##word.services_price##</td>
-                                        <td class="center">{{account_invoices.services_price}}</td>
-                                    </tr>
-
-                                    <tr ng-show="account_invoices.table.id">
-                                        <td class="title">##word.tables_group##</td>
-                                        <td class="center">{{account_invoices.table.tables_group.name_##session.lang##}}
-                                        </td>
-                                    </tr>
-
-                                    <tr ng-show="account_invoices.table.id">
-                                        <td class="title">##word.table##</td>
-                                        <td class="center">{{account_invoices.table.name_##session.lang##}}</td>
-                                    </tr>
-
-                                    <tr ng-show="account_invoices.hall.id">
-                                        <td class="title">##word.hall##</td>
-                                        <td class="center">{{account_invoices.hall.name_##session.lang##}}</td>
-                                    </tr>
-
-                                    <tr ng-show="account_invoices.activity_name_##session.lang##">
-                                        <td class="title">##word.activity##</td>
-                                        <td class="center">{{account_invoices.activity_name_##session.lang##}}</td>
-                                    </tr>
-
-                                    <tr ng-show="account_invoices.date_from">
-                                        <td class="title">##word.date_from_subscribe##</td>
-                                        <td class="center green">
-                                            {{account_invoices.date_from | date : 'yyyy - MM - dd'}}
-                                        </td>
-                                    </tr>
-                                    <tr ng-show="account_invoices.date_to">
-                                        <td class="title">##word.expired_date##</td>
-                                        <td class="center red">{{account_invoices.date_to | date : 'yyyy - MM - dd'}}
-                                        </td>
-                                    </tr>
-
-                                </table>
-                            </div>
-
-                        </div>
-
-                        <br>
-
-                        <div class="row">
-
-                            <i-control ng-show="account_invoices.total_tax" ng-model="account_invoices.total_tax"
-                                ng-disabled="account_invoices.source_type.id == 1 || account_invoices.source_type.id == 2"
-                                ng-change="calc(account_invoices)" label="##word.stores_out_total_tax##" class="col3"
-                                type="number">
-                            </i-control>
-
-                            <i-control ng-show="account_invoices.total_discount" ng-change="calc(account_invoices)"
-                                ng-disabled="account_invoices.source_type.id == 1 || account_invoices.source_type.id == 2 || account_invoices.source_type.id == 4"
-                                ng-model="account_invoices.total_discount" label="##word.stores_out_total_discount##"
-                                class="col3" type="number"></i-control>
-
-                            <i-control ng-show="account_invoices.total_value_added" disabled
-                                ng-model="account_invoices.total_value_added" label="##word.total_value_added##"
-                                class="col3" type="number"></i-control>
-
-                            <i-control ng-show="account_invoices.price_delivery_service"
-                                ng-change="calc(account_invoices)" ng-model="account_invoices.price_delivery_service"
-                                label="##word.price_delivery_service##" class="col3" type="number"></i-control>
-
-                            <i-control class="col3" ng-show="account_invoices.service"
-                                ng-change="calc(account_invoices)" ng-model="account_invoices.service"
-                                label="##word.service##" type="number"></i-control>
-                            <div class="col2"></div>
-
-                        </div>
-
-                        <div class="row" ng-show="account_invoices.source_type.id ==8">
-
-
-
-                            <i-list class="col3" ng-search="_search.$source_account_invoices"
-                                ng-model="account_invoices.source" display="name_##session.lang##"
-                                ng-show="account_invoices.in_type.id == 1" items="namesInList"
-                                label="##word.incoming_name##">
-                            </i-list>
-
-
-                            <i-control ng-show="account_invoices.in_type.id == 5" ng-keydown="getCustomersList($event)"
-                                id="service" class="col2" ng-model="search_customer" label="##word.search##"
-                                type="text"></i-control>
-
-                            <i-list ng-show="account_invoices.in_type.id == 5" ng-search="_search.$customer"
-                                class="col4" display="name_##session.lang##" space=" - " display2="code"
-                                ng-model="account_invoices.customer" label="##word.customer##" items="customersList">
-                            </i-list>
-
-                        </div>
-
-
-                        <div class="row" ng-show="account_invoices.source_type.id ==9">
-
-
-                            <i-list class="col3" ng-search="_search.$source_account_invoices"
-                                ng-model="account_invoices.source" display="name_##session.lang##"
-                                ng-show="account_invoices.out_type.id == 1" items="namesOutList"
-                                label="##word.expense_name##">
-                            </i-list>
-
-
-                            <i-control ng-show="account_invoices.out_type.id == 4" ng-keydown="loadVendors($event)"
-                                class="col2" ng-model="search_vendor" label="##word.search##" type="text"></i-control>
-
-                            <i-list ng-show="account_invoices.out_type.id == 4" ng-model="account_invoices.vendor"
-                                class="col4" items="vendorsList" space=" - " display2="code"
-                                display="name_##session.lang##" ng-search="_search.$search_vendor"
-                                label="##word.stores_in_Company_name##">
-                            </i-list>
-
-
-                        </div>
-
-
-                        <div class="row"
-                            ng-show="account_invoices.source_type.id ==8 || account_invoices.source_type.id ==9">
-
-                            <i-list class="col4" label="##word.amounts_in_employees##"
-                                ng-search="_search.$eng_account_invoices" ng-model="account_invoices.employee"
-                                display="name_##session.lang##" items="employeesList">
-                            </i-list>
-
-
-                            <i-list class="col4" ng-model="account_invoices.delegate" display="name_##session.lang##"
-                                ng-search="_search.$items_group_search" label="##word.delegate##" items="delegatesList">
-                            </i-list>
-                        </div>
-
-                        <div class="row" ng-show="account_invoices.source_type.id ==13">
-
-                            <i-list ng-search="_search.$_school_grade" class="col3" display="name_##session.lang##"
-                                ng-change="getStudentsYearsList(account_invoices.school_grade)"
-                                ng-model="account_invoices.school_grade" label="##word.school_grade##"
-                                items="schoolGradesList">
-                            </i-list>
-
-                            <i-list class="col3" label="##word.students_year##"
-                                ng-model="account_invoices.students_year" items="studentsYearsList"
-                                display="name_##session.lang##" ng-search="_search.$_students_year">
-                            </i-list>
-
-                            <i-list ng-search="_search.$_types_expenses" class="col3" display="name_##session.lang##"
-                                ng-change="changeTypesExpenses(account_invoices.types_expenses)"
-                                ng-model="account_invoices.types_expenses" label="##word.types_expenses##"
-                                items="account_invoices.students_year.types_expenses_list"></i-list>
-
-                        </div>
-
-                        <div class="row"
-                            ng-show="account_invoices.source_type.id ==10 || account_invoices.source_type.id ==13">
-                            <i-control ng-keydown="getCustomersList($event)" id="service" class="col3"
-                                ng-model="search_customer" label="##word.search##" type="text"></i-control>
-                            <i-list ng-search="_search.$customer" class="col4" display="name_##session.lang##"
-                                ng-model="account_invoices.customer" label="##word.customer##" items="customersList">
-                            </i-list>
-
-                        </div>
-
-                        <div class="row" ng-hide="account_invoices.source_type.id ==16">
-
-                            <i-list help-id="" ng-search="_search.$payment_method_search" class="col2"
-                                label="##word.payment_method##" ng-model="account_invoices.payment_method"
-                                items="paymentMethodList" ng-change="getSafeByType(account_invoices)"
-                                display="##session.lang##">
-                            </i-list>
-
-                            <i-list class="col3" ng-search="_search.$currency_search" display="name_##session.lang##"
-                                ng-model="account_invoices.currency"
-                                ng-change="getSafeByType(account_invoices) ; calc(account_invoices)"
-                                items="currenciesList" label="##word.currency##"></i-list>
-
-                            <i-control class="col2" disabled ng-model="account_invoices.currency.ex_rate" type="number"
-                                label="##word.exchange_rate##"></i-control>
-
-                            <i-list class="col3 " ng-search="_search.$safe_account_invoices"
-                                display="name_##session.lang##" ng-model="account_invoices.safe" items="safesList"
-                                label="##word.amounts_in_safe##">
-                            </i-list>
-
-                        </div>
-
-                        <div class="row" ng-show="account_invoices.invoice_id || account_invoices.source_type.id ==13">
-                            <i-control class="col2" disabled ng-model="account_invoices.net_value"
-                                label="##word.net_value##" type="number">
-                            </i-control>
-
-                            <i-control class="col2" disabled ng-model="amount_currency" label="##word.amount_currency##"
-                                type="number">
-                            </i-control>
-
-                            <i-control class="col2" ng-show="account_invoices.net_value"
-                                ng-model="account_invoices.paid_up" label="##word.paid_up##" type="number">
-                            </i-control>
-                            <i-control class="col2" ng-model="account_invoices.Paid_from_customer"
-                                ng-change="calc(account_invoices)" label="##word.Paid_from_customer##" type="number">
-                            </i-control>
-
-                            <i-button class="col2" label="##word.add_payment##"
-                                ng-click="paymentsPayable(account_invoices,'view')">
-                            </i-button>
-                        </div>
-
-                        <div class="row"
-                            ng-show="account_invoices.source_type.id == 11 || account_invoices.source_type.id == 10 || account_invoices.source_type.id == 9 || account_invoices.source_type.id == 8  || account_invoices.source_type.id == 14">
-
-                            <i-control class="col2" ng-model="account_invoices.paid_up" label="##word.paid_up##"
-                                type="number">
-                            </i-control>
-
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="col3">
-                    <i-image category="account_invoices" ng-model="account_invoices.image_url"> </i-image>
-                </div>
+              <i-list
+                class="col3"
+                ng-model="account_invoices.target_account"
+                items="targetAccountList"
+                display="##session.lang##"
+                ng-search="_search.$search_target_accounts"
+                label="##word.target_account##"
+              >
+              </i-list>
+
+              <i-control
+                ng-show="account_invoices.target_account.id == 1 "
+                ng-keydown="getCustomersList($event)"
+                id="service"
+                class="col2"
+                ng-model="search_customer"
+                label="##word.search##"
+                type="text"
+              >
+              </i-control>
+
+              <i-list
+                ng-show="account_invoices.target_account.id == 1 "
+                ng-search="_search.$customer"
+                class="col4"
+                display="name_##session.lang##"
+                space=" - "
+                display2="code"
+                ng-model="account_invoices.customer"
+                label="##word.customer##"
+                items="customersList"
+              >
+              </i-list>
+
+              <i-control ng-show="account_invoices.target_account.id ===2 " ng-keydown="loadVendors($event)" class="col2" ng-model="search_vendor" label="##word.search##" type="text"></i-control>
+
+              <i-list
+                ng-show="account_invoices.target_account.id ===2 "
+                ng-model="account_invoices.vendor"
+                class="col4"
+                items="vendorsList"
+                space=" - "
+                display2="code"
+                display="name_##session.lang##"
+                ng-search="_search.$search_vendor"
+                label="##word.stores_in_Company_name##"
+              >
+              </i-list>
             </div>
-        </fieldset>
-    </div>
+
+            <div class="row">
+              <i-control class="col2" ng-model="account_invoices.paid_up" label="##word.paid_up##" type="number"> </i-control>
+              <div class="col3">
+                <br />
+                <i-radio ng-model="account_invoices.op_balance_type" ng-value="creditor" group="type" label="##word.creditor##"></i-radio>
+
+                <i-radio ng-model="account_invoices.op_balance_type" group="type" ng-value="debtor" label="##word.debtor##"> </i-radio>
+              </div>
+
+              <i-list class="col3" ng-search="_search.$currency_search" display="name_##session.lang##" ng-model="account_invoices.currency" items="currenciesList" label="##word.currency##"> </i-list>
+
+              <i-control class="col2" disabled ng-model="account_invoices.currency.ex_rate" type="number" label="##word.exchange_rate##"></i-control>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="row" ng-show="account_invoices.source_type.id ==11 || account_invoices.source_type.id ==12">
+              <i-list
+                label="##word.amounts_in_employees##"
+                ng-search="_search.$eng_account_invoices"
+                class="col4"
+                ng-model="account_invoices.employee"
+                display="name_##session.lang##"
+                items="employeesList"
+              >
+              </i-list>
+            </div>
+
+            <div class="row">
+              <i-list
+                help-id=""
+                ng-show="account_invoices.source_type.id == 3"
+                ng-change="orderInvoicesTypeList = [] ; account_invoices.items = []"
+                ng-search="_search.$order_invoices_type_search"
+                class="col3"
+                label="##word.order_type##"
+                ng-model="account_invoices.order_invoices_type"
+                items="transactionTypeList"
+                display="##session.lang##"
+              >
+              </i-list>
+
+              <i-list
+                class="col3"
+                ng-search="_search.$source_account_invoices"
+                ng-show="account_invoices.source_type.id ==9"
+                ng-model="account_invoices.out_type"
+                display="##session.lang##"
+                items="outTypesList"
+                label="##word.source_name##"
+              >
+              </i-list>
+
+              <i-list
+                class="col3"
+                ng-search="_search.$source_account_invoices"
+                ng-show="account_invoices.source_type.id ==8"
+                ng-model="account_invoices.in_type"
+                display="##session.lang##"
+                items="inTypesList"
+                label="##word.source_name##"
+              >
+              </i-list>
+
+              <i-control
+                ng-keydown="loadOrderInvoicesType($event)"
+                id="item_name"
+                class="col3"
+                type="text"
+                ng-show="account_invoices.in_type.id == 2 || account_invoices.in_type.id == 3 || account_invoices.in_type.id == 4 
+                                || account_invoices.out_type.id == 2 || account_invoices.out_type.id == 3"
+                ng-model="search_order"
+                label="##word.search##"
+              >
+              </i-control>
+            </div>
+
+            <div class="row" ng-show="orderInvoicesTypeList.length > 0">
+              <table x-permissions="login" class="table bold hover loaded" id="t1">
+                <tr>
+                  <th>##word.date##</th>
+                  <th>##word.code##</th>
+                  <th ng-show="account_invoices.source_type.id == 2 ||account_invoices.source_type.id == 3 || account_invoices.source_type.id == 4">##word.customer##</th>
+                  <th ng-show="account_invoices.source_type.id == 1">##word.vendor##</th>
+
+                  <th ng-show="account_invoices.source_type.id == 4">##word.trainer##</th>
+                  <th ng-show="account_invoices.source_type.id == 5">##word.tenants##</th>
+                  <th ng-show="account_invoices.source_type.id == 4 || account_invoices.source_type.id == 5">##word.halls##</th>
+                  <th ng-show="account_invoices.source_type.id == 4">##word.activities##</th>
+
+                  <th ng-show=" account_invoices.order_invoices_type.id==2">##word.delivery_employee##</th>
+                  <th ng-show="account_invoices.order_invoices_type.id ==1">##word.tables_group##</th>
+                  <th ng-show="account_invoices.order_invoices_type.id ==1">##word.table##</th>
+                  <th>##word.transaction_type##</th>
+                  <th ng-show="account_invoices.source_type.id ==12">##word.value##</th>
+                </tr>
+
+                <tr class="pointer" ng-repeat="item in orderInvoicesTypeList" ng-click="selectOrderInvoices(item)">
+                  <td class="center brown">{{item.date | date : 'dd - MM - yyyy'}}</td>
+
+                  <td class="center blue">{{item.code}}</td>
+                  <td class="center" ng-show="account_invoices.source_type.id == 2 ||account_invoices.source_type.id == 3 || account_invoices.source_type.id == 4">
+                    {{item.customer.name_##session.lang##}} <b ng-show="!item.customer.name_##session.lang##"> ##word.not_found##</b>
+                  </td>
+
+                  <td class="center" ng-show="account_invoices.source_type.id == 1">{{item.vendor.name_##session.lang##}} <b ng-show="!item.vendor.name_##session.lang##"> ##word.not_found##</b></td>
+
+                  <td class="center" ng-show="account_invoices.source_type.id == 4">{{item.trainer.name_##session.lang##}} <b ng-show="!item.trainer.id"> ##word.not_found##</b></td>
+
+                  <td class="center" ng-show="account_invoices.source_type.id == 5">{{item.tenant.name_##session.lang##}} <b ng-show="!item.tenant.id"> ##word.not_found##</b></td>
+
+                  <td class="center" ng-show="account_invoices.source_type.id == 5 || account_invoices.source_type.id == 4">
+                    {{item.hall.name_##session.lang##}} <b ng-show="!item.hall.id"> ##word.not_found##</b>
+                  </td>
+
+                  <td class="center" ng-show="account_invoices.source_type.id == 4">{{item.activity_name_##session.lang##}}</td>
+
+                  <td ng-show="account_invoices.order_invoices_type.id ==2" class="center">{{item.delivery_employee.name_##session.lang##}}</td>
+                  <td ng-show="account_invoices.order_invoices_type.id == 1" class="center">{{item.table.tables_group.name_##session.lang##}}</td>
+                  <td ng-show="account_invoices.order_invoices_type.id == 1" class="center">{{item.table.name_##session.lang##}}</td>
+                  <td class="center">
+                    {{item.transaction_type.##session.lang## }} {{item.invoice_type.##session.lang##}}
+                    <!--    <b ng-show="!item.transaction_type.##session.lang## && !item.type.##session.lang##">
+                                            ##word.not_found##</b></td> -->
+                  </td>
+
+                  <td class="green center" ng-show="account_invoices.source_type.id ==12">{{item.total_paid_up}}</td>
+                </tr>
+              </table>
+            </div>
+
+            <div class="row" ng-show="account_invoices.items.length > 0">
+              <table x-permissions="login" class="table bold hover loaded" id="t1">
+                <tr>
+                  <th>##word.stores_items_name##</th>
+                  <th>##word.items_count##</th>
+                  <th>##word.items_price##</th>
+                  <th>##word.discount##</th>
+                  <th>##word.items_price_total##</th>
+                  <th class="not-print" ng-show="account_invoices.source_type.id == 3">##word.actions##</th>
+                </tr>
+
+                <tr ng-repeat="c in account_invoices.items">
+                  <td class="center title">
+                    <p ng-show="c.add_sizes">{{c.name_##session.lang##}} {{c.size_##session.lang##}}</p>
+                    <p ng-hide="c.add_sizes">{{c.size_##session.lang##}}</p>
+                  </td>
+                  <td class="center blue">{{c.count}}</td>
+                  <td class="center">
+                    <p ng-hide="account_invoices.source_type.id == 1">{{c.price}}</p>
+                    <p ng-show="account_invoices.source_type.id == 1">{{c.cost}}</p>
+                  </td>
+                  <td class="center red">
+                    {{c.discount.value}}
+                    <b class="red" ng-show="c.discount.type =='number'">$</b>
+                    <b class="red" ng-show="c.discount.type =='percent'">%</b>
+                  </td>
+                  <td class="center green">{{c.total}}</td>
+                  <td class="center not-print" ng-show="account_invoices.source_type.id == 3">
+                    <i-button type="delete" label="##word.delete##" ng-click="deleteItemsList(c) ; calc(account_invoices)"> </i-button>
+                  </td>
+                </tr>
+              </table>
+            </div>
+
+            <br />
+
+            <div class="row" ng-show="account_invoices.invoice_id">
+              <div class="col6">
+                <table id="basicInformationTable" class="table hover bold">
+                  <tr ng-show="account_invoices.date">
+                    <td class="title">##word.date##</td>
+                    <td class="center brown">{{account_invoices.date | date : 'yyyy - MM - dd'}}</td>
+                  </tr>
+
+                  <tr ng-show="account_invoices.invoice_code">
+                    <td class="title">##word.code##</td>
+                    <td class="center blue">{{account_invoices.invoice_code}}</td>
+                  </tr>
+
+                  <tr ng-show="account_invoices.employee.id">
+                    <td class="title">##word.employee##</td>
+                    <td class="center">{{account_invoices.employee.name_##session.lang##}}</td>
+                  </tr>
+
+                  <tr>
+                    <td class="title">##word.value##</td>
+                    <td class="center green">{{account_invoices.net_value}}</td>
+                  </tr>
+
+                  <tr>
+                    <td class="title">##word.invoice_remain##</td>
+                    <td class="center">{{account_invoices.remain_source}}</td>
+                  </tr>
+
+                  <tr ng-show="account_invoices.customer.id">
+                    <td class="title">##word.customer##</td>
+                    <td class="center">{{account_invoices.customer.name_##session.lang##}}</td>
+                  </tr>
+
+                  <tr ng-show="account_invoices.vendor.name_##session.lang##">
+                    <td class="title">##word.vendor##</td>
+                    <td class="center">{{account_invoices.vendor.name_##session.lang##}}</td>
+                  </tr>
+
+                  <tr ng-show="account_invoices.trainer.id">
+                    <td class="title">##word.trainer##</td>
+                    <td class="center">{{account_invoices.trainer.name_##session.lang##}}</td>
+                  </tr>
+
+                  <tr ng-show="account_invoices.tenant.id">
+                    <td class="title">##word.tenant##</td>
+                    <td class="center">{{account_invoices.tenant.name_##session.lang##}}</td>
+                  </tr>
+
+                  <tr ng-show="account_invoices.service > 0">
+                    <td class="title">##word.service##</td>
+                    <td class="center">{{account_invoices.service}}</td>
+                  </tr>
+
+                  <tr ng-show="account_invoices.total_period > 0">
+                    <td class="title">##word.total_period##</td>
+                    <td class="center">{{account_invoices.total_period}}</td>
+                  </tr>
+
+                  <tr ng-show="account_invoices.period > 0">
+                    <td class="title">##word.period##</td>
+                    <td class="center">{{account_invoices.period.##session.lang##}}</td>
+                  </tr>
+
+                  <tr ng-show="account_invoices.price_hour > 0">
+                    <td class="title">##word.price_hour##</td>
+                    <td class="center">{{account_invoices.price_hour}}</td>
+                  </tr>
+
+                  <tr ng-show="account_invoices.price_day > 0">
+                    <td class="title">##word.price_day##</td>
+                    <td class="center">{{account_invoices.price_day}}</td>
+                  </tr>
+
+                  <tr ng-show="account_invoices.price_delivery_service > 0">
+                    <td class="title">##word.price_delivery_service##</td>
+                    <td class="center">{{account_invoices.price_delivery_service}}</td>
+                  </tr>
+
+                  <tr ng-show="account_invoices.services_price">
+                    <td class="title">##word.services_price##</td>
+                    <td class="center">{{account_invoices.services_price}}</td>
+                  </tr>
+
+                  <tr ng-show="account_invoices.table.id">
+                    <td class="title">##word.tables_group##</td>
+                    <td class="center">{{account_invoices.table.tables_group.name_##session.lang##}}</td>
+                  </tr>
+
+                  <tr ng-show="account_invoices.table.id">
+                    <td class="title">##word.table##</td>
+                    <td class="center">{{account_invoices.table.name_##session.lang##}}</td>
+                  </tr>
+
+                  <tr ng-show="account_invoices.hall.id">
+                    <td class="title">##word.hall##</td>
+                    <td class="center">{{account_invoices.hall.name_##session.lang##}}</td>
+                  </tr>
+
+                  <tr ng-show="account_invoices.activity_name_##session.lang##">
+                    <td class="title">##word.activity##</td>
+                    <td class="center">{{account_invoices.activity_name_##session.lang##}}</td>
+                  </tr>
+
+                  <tr ng-show="account_invoices.date_from">
+                    <td class="title">##word.date_from_subscribe##</td>
+                    <td class="center green">{{account_invoices.date_from | date : 'yyyy - MM - dd'}}</td>
+                  </tr>
+                  <tr ng-show="account_invoices.date_to">
+                    <td class="title">##word.expired_date##</td>
+                    <td class="center red">{{account_invoices.date_to | date : 'yyyy - MM - dd'}}</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+
+            <br />
+
+            <div class="row">
+              <i-control
+                ng-show="account_invoices.total_tax"
+                ng-model="account_invoices.total_tax"
+                ng-disabled="account_invoices.source_type.id == 1 || account_invoices.source_type.id == 2"
+                ng-change="calc(account_invoices)"
+                label="##word.stores_out_total_tax##"
+                class="col3"
+                type="number"
+              >
+              </i-control>
+
+              <i-control
+                ng-show="account_invoices.total_discount"
+                ng-change="calc(account_invoices)"
+                ng-disabled="account_invoices.source_type.id == 1 || account_invoices.source_type.id == 2 || account_invoices.source_type.id == 4"
+                ng-model="account_invoices.total_discount"
+                label="##word.stores_out_total_discount##"
+                class="col3"
+                type="number"
+              ></i-control>
+
+              <i-control ng-show="account_invoices.total_value_added" disabled ng-model="account_invoices.total_value_added" label="##word.total_value_added##" class="col3" type="number"></i-control>
+
+              <i-control
+                ng-show="account_invoices.price_delivery_service"
+                ng-change="calc(account_invoices)"
+                ng-model="account_invoices.price_delivery_service"
+                label="##word.price_delivery_service##"
+                class="col3"
+                type="number"
+              ></i-control>
+
+              <i-control class="col3" ng-show="account_invoices.service" ng-change="calc(account_invoices)" ng-model="account_invoices.service" label="##word.service##" type="number"></i-control>
+              <div class="col2"></div>
+            </div>
+
+            <div class="row" ng-show="account_invoices.source_type.id ==8">
+              <i-list
+                class="col3"
+                ng-search="_search.$source_account_invoices"
+                ng-model="account_invoices.source"
+                display="name_##session.lang##"
+                ng-show="account_invoices.in_type.id == 1"
+                items="namesInList"
+                label="##word.incoming_name##"
+              >
+              </i-list>
+
+              <i-control
+                ng-show="account_invoices.in_type.id == 5"
+                ng-keydown="getCustomersList($event)"
+                id="service"
+                class="col2"
+                ng-model="search_customer"
+                label="##word.search##"
+                type="text"
+              ></i-control>
+
+              <i-list
+                ng-show="account_invoices.in_type.id == 5"
+                ng-search="_search.$customer"
+                class="col4"
+                display="name_##session.lang##"
+                space=" - "
+                display2="code"
+                ng-model="account_invoices.customer"
+                label="##word.customer##"
+                items="customersList"
+              >
+              </i-list>
+            </div>
+
+            <div class="row" ng-show="account_invoices.source_type.id ==9">
+              <i-list
+                class="col3"
+                ng-search="_search.$source_account_invoices"
+                ng-model="account_invoices.source"
+                display="name_##session.lang##"
+                ng-show="account_invoices.out_type.id == 1"
+                items="namesOutList"
+                label="##word.expense_name##"
+              >
+              </i-list>
+
+              <i-control ng-show="account_invoices.out_type.id == 4" ng-keydown="loadVendors($event)" class="col2" ng-model="search_vendor" label="##word.search##" type="text"></i-control>
+
+              <i-list
+                ng-show="account_invoices.out_type.id == 4"
+                ng-model="account_invoices.vendor"
+                class="col4"
+                items="vendorsList"
+                space=" - "
+                display2="code"
+                display="name_##session.lang##"
+                ng-search="_search.$search_vendor"
+                label="##word.stores_in_Company_name##"
+              >
+              </i-list>
+            </div>
+
+            <div class="row" ng-show="account_invoices.source_type.id ==8 || account_invoices.source_type.id ==9">
+              <i-list
+                class="col4"
+                label="##word.amounts_in_employees##"
+                ng-search="_search.$eng_account_invoices"
+                ng-model="account_invoices.employee"
+                display="name_##session.lang##"
+                items="employeesList"
+              >
+              </i-list>
+
+              <i-list class="col4" ng-model="account_invoices.delegate" display="name_##session.lang##" ng-search="_search.$items_group_search" label="##word.delegate##" items="delegatesList">
+              </i-list>
+            </div>
+
+            <div class="row" ng-show="account_invoices.source_type.id ==13">
+              <i-list
+                ng-search="_search.$_school_grade"
+                class="col3"
+                display="name_##session.lang##"
+                ng-change="getStudentsYearsList(account_invoices.school_grade)"
+                ng-model="account_invoices.school_grade"
+                label="##word.school_grade##"
+                items="schoolGradesList"
+              >
+              </i-list>
+
+              <i-list
+                class="col3"
+                label="##word.students_year##"
+                ng-model="account_invoices.students_year"
+                items="studentsYearsList"
+                display="name_##session.lang##"
+                ng-search="_search.$_students_year"
+              >
+              </i-list>
+
+              <i-list
+                ng-search="_search.$_types_expenses"
+                class="col3"
+                display="name_##session.lang##"
+                ng-change="changeTypesExpenses(account_invoices.types_expenses)"
+                ng-model="account_invoices.types_expenses"
+                label="##word.types_expenses##"
+                items="account_invoices.students_year.types_expenses_list"
+              ></i-list>
+            </div>
+
+            <div class="row" ng-show="account_invoices.source_type.id ==10 || account_invoices.source_type.id ==13">
+              <i-control ng-keydown="getCustomersList($event)" id="service" class="col3" ng-model="search_customer" label="##word.search##" type="text"></i-control>
+              <i-list ng-search="_search.$customer" class="col4" display="name_##session.lang##" ng-model="account_invoices.customer" label="##word.customer##" items="customersList"> </i-list>
+            </div>
+
+            <div class="row" ng-hide="account_invoices.source_type.id ==16">
+              <i-list
+                help-id=""
+                ng-search="_search.$payment_method_search"
+                class="col2"
+                label="##word.payment_method##"
+                ng-model="account_invoices.payment_method"
+                items="paymentMethodList"
+                ng-change="getSafeByType(account_invoices)"
+                display="##session.lang##"
+              >
+              </i-list>
+
+              <i-list
+                class="col3"
+                ng-search="_search.$currency_search"
+                display="name_##session.lang##"
+                ng-model="account_invoices.currency"
+                ng-change="getSafeByType(account_invoices) ; calc(account_invoices)"
+                items="currenciesList"
+                label="##word.currency##"
+              ></i-list>
+
+              <i-control class="col2" disabled ng-model="account_invoices.currency.ex_rate" type="number" label="##word.exchange_rate##"></i-control>
+
+              <i-list class="col3" ng-search="_search.$safe_account_invoices" display="name_##session.lang##" ng-model="account_invoices.safe" items="safesList" label="##word.amounts_in_safe##">
+              </i-list>
+            </div>
+
+            <div class="row" ng-show="account_invoices.invoice_id || account_invoices.source_type.id ==13">
+              <i-control class="col2" disabled ng-model="account_invoices.net_value" label="##word.net_value##" type="number"> </i-control>
+
+              <i-control class="col2" disabled ng-model="amount_currency" label="##word.amount_currency##" type="number"> </i-control>
+
+              <i-control class="col2" ng-show="account_invoices.net_value" ng-model="account_invoices.paid_up" label="##word.paid_up##" type="number"> </i-control>
+              <i-control class="col2" ng-model="account_invoices.Paid_from_customer" ng-change="calc(account_invoices)" label="##word.Paid_from_customer##" type="number"> </i-control>
+
+              <i-button class="col2" label="##word.add_payment##" ng-click="paymentsPayable(account_invoices,'view')"> </i-button>
+            </div>
+
+            <div
+              class="row"
+              ng-show="account_invoices.source_type.id == 11 || account_invoices.source_type.id == 10 || account_invoices.source_type.id == 9 || account_invoices.source_type.id == 8  || account_invoices.source_type.id == 14"
+            >
+              <i-control class="col2" ng-model="account_invoices.paid_up" label="##word.paid_up##" type="number"> </i-control>
+            </div>
+          </div>
+          <div class="row">
+            <i-textarea class="col6" label="##word.notes##" ng-model="account_invoices.notes"> </i-textarea>
+          </div>
+        </div>
+
+        <div class="col3">
+          <i-image category="account_invoices" ng-model="account_invoices.image_url"> </i-image>
+        </div>
+      </div>
+    </fieldset>
+  </div>
 </div>

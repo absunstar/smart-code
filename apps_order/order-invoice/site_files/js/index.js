@@ -363,6 +363,7 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
                     image_url: '/images/store_out.png',
                     supply_date: new Date(),
                     date: $scope.order_invoice.date,
+                    notes: $scope.order_invoice.notes,
                     posting: $scope.order_invoice.posting,
                     order_id: $scope.order_invoice.id,
                     customer: $scope.order_invoice.customer,
