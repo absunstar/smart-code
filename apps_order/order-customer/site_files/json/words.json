@@ -17,7 +17,7 @@
     {
         "name": "save_order",
         "en": "Save Order",
-        "ar": "حفظ الطلب"
+        "ar": "حفظ طلب"
     },
     {
         "name": "approve_order",
@@ -143,11 +143,11 @@
     {
         "name": "close_order",
         "en": "Close Order",
-        "ar": "غلق الطلب"
+        "ar": "غلق طلب"
     },{
         "name": "cancel_order",
         "en": "Cancel Order",
-        "ar": "الغاء الطلب"
+        "ar": "إلغاء طلب"
     },
     {
         "name": "should_select_safe",

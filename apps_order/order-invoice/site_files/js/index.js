@@ -523,7 +523,6 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
 
           for (let i = 0; i < order_invoice.invoices_list.length; i++) {
             $timeout(() => {
-
               acc_invo.currency = order_invoice.invoices_list[i].currency;
               acc_invo.payment_method = order_invoice.invoices_list[i].payment_method;
               acc_invo.safe = order_invoice.invoices_list[i].safe;
@@ -547,8 +546,9 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
                   data: acc_invo,
                 }).then(function (response) {});
 
-/*                 $scope.addAccountInvoice(acc_invo);
- */              }
+                /*                 $scope.addAccountInvoice(acc_invo);
+                 */
+              }
             }, 1000 * i);
           }
         } else {
@@ -761,14 +761,36 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
         }
 
         if ($scope.order_invoice.invoices_list[0].currency) {
-          $scope.order_invoice.invoices_list[0].amount_currency = $scope.order_invoice.invoices_list[0].net_value / $scope.order_invoice.invoices_list[0].currency.ex_rate;
-          $scope.order_invoice.invoices_list[0].amount_currency = site.toNumber($scope.order_invoice.invoices_list[0].amount_currency);
-          $scope.order_invoice.invoices_list[0].paid_up = $scope.order_invoice.invoices_list[0].Paid_from_customer = $scope.order_invoice.invoices_list[0].amount_currency;
+          /*     $scope.order_invoice.invoices_list[0].amount_currency = $scope.order_invoice.invoices_list[0].net_value / $scope.order_invoice.invoices_list[0].currency.ex_rate;
+          $scope.order_invoice.invoices_list[0].amount_currency = site.toNumber($scope.order_invoice.invoices_list[0].amount_currency); */
+          $scope.order_invoice.invoices_list[0].paid_up = $scope.order_invoice.paid_up = $scope.order_invoice.net_value;
         }
-        $scope.calc($scope.order_invoice.invoices_list[0]);
-        site.showModal('#accountInvoiceModal');
+
+        /*         $scope.calc($scope.order_invoice.invoices_list[0]);
+         */ site.showModal('#accountInvoiceModal');
       } else $scope.error = '##word.open_shift_not_found##';
     });
+  };
+
+  $scope.pushAccountInvoice = function (order_invoice) {
+    $scope.error = '';
+
+    let obj = {};
+    if ($scope.order_invoice.invoices_list.length === 1) {
+      obj.currency = $scope.currencySetting;
+
+      if ($scope.order_invoice.invoices_list[0].payment_method && $scope.order_invoice.invoices_list[0].payment_method.id == 1) {
+
+        obj.payment_method = $scope.paymentMethodList[2];
+        obj.safe = $scope.defaultSettings.accounting.safe_bank;
+      } else {
+      
+        obj.payment_method = $scope.paymentMethodList[0];
+        obj.safe = $scope.defaultSettings.accounting.safe_box;
+      }
+    }
+    obj.paid_up = $scope.order_invoice.net_value - $scope.order_invoice.paid_up;
+    $scope.order_invoice.invoices_list.push(obj);
   };
 
   $scope.displayDetailsOrderInvoice = function (order_invoice) {

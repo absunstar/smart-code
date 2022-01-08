@@ -60,7 +60,7 @@
 
         <fieldset  ng-repeat="inv in order_invoice.invoices_list">
           <legend>
-            <i-button type="add default" ng-click="order_invoice.invoices_list.push({})"></i-button>
+            <i-button type="add default" ng-click="pushAccountInvoice()"></i-button>
             ##word.new_sales_invoice##
             <i-button type="delete default"
                 ng-click="order_invoice.invoices_list.length === 1 || order_invoice.invoices_list.splice($index,1) ; calcInvoice(order_invoice)">
@@ -71,9 +71,9 @@
           <div class="row">
             <i-control
               ng-hide="disabledCodeInvoice"
-              class="col3"
               label="##word.code##"
               ng-model="inv.code"
+              class="col3"
             ></i-control>
 
           </div>
@@ -82,12 +82,12 @@
             <i-list
               help-id=""
               ng-search="_search.$payment_method_search"
-              class="col2"
               label="##word.payment_method##"
-              ng-model="inv.payment_method"
               ng-change="getSafeByType(inv)"
-              items="paymentMethodList"
+              ng-model="inv.payment_method"
               display="##session.lang##"
+              items="paymentMethodList"
+              class="col3"
             >
             </i-list>
 

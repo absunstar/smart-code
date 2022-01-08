@@ -32,12 +32,12 @@
     {
         "name": "order_hold",
         "en": "Order Hold",
-        "ar": "تعليق الطلب"
+        "ar": "تعليق طلب"
     },
     {
         "name": "order_unhold",
         "en": "Order UnHold",
-        "ar": "فك تعليق الطلب"
+        "ar": "فك تعليق طلب"
     },
     {
         "name": "count_person",
@@ -152,12 +152,12 @@
     {
         "name": "close_order",
         "en": "Close Order",
-        "ar": "غلق الطلب"
+        "ar": "غلق طلب"
     },
     {
         "name": "cancel_order",
         "en": "Cancel Order",
-        "ar": "الغاء الطلب"
+        "ar": "إلغاء طلب"
     },
     {
         "name": "should_select_safe",
@@ -222,7 +222,7 @@
     {
         "name": "open_orders",
         "en": "Open Orders",
-        "ar": "الطلبات المفتوحة"
+        "ar": "طلبات مفتوحة"
     },
     {
         "name": "new_order",

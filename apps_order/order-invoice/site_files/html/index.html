@@ -15,6 +15,11 @@
         table-layout: fixed;
       }
 
+      .btn.btnOrders {
+        min-width: 120px !important;
+        margin: 6px !important;
+      }
+
       * {
         min-height: 0px;
       }
@@ -59,17 +64,19 @@
 
             <div class="col6">
               <div class="row">
-                <i-button fa="cart-plus" type="bg-green white" label="##word.new_order##" ng-click="newOrderInvoice()"> </i-button>
+                <i-button fa="cart-plus" type="bg-green white btnOrders" label="##word.new_order##" ng-click="newOrderInvoice()"> </i-button>
 
-                <i-button fa="cart-arrow-down" type="bg-blue white" label="##word.open_orders##" ng-click="viewInvoicesActiveList()"> </i-button>
+                <i-button fa="cart-arrow-down" type="bg-blue white btnOrders" label="##word.open_orders##" ng-click="viewInvoicesActiveList()"> </i-button>
 
-                <i-button fa="ban" type="bg-brown white" ng-hide="order_invoice.hold || order_invoice.status.id == 2" label="##word.order_hold##" ng-click="addOrderInvoice('hold')"> </i-button>
+                <i-button fa="ban" type="bg-brown white btnOrders" ng-hide="order_invoice.hold || order_invoice.status.id == 2" label="##word.order_hold##" ng-click="addOrderInvoice('hold')">
+                </i-button>
 
-                <i-button fa="ban" type="bg-brown white" ng-show="order_invoice.hold" label="##word.order_unhold##" ng-click="updateOrderInvoice(order_invoice,'unhold')"> </i-button>
+                <i-button fa="ban" type="bg-brown white btnOrders" ng-show="order_invoice.hold" label="##word.order_unhold##" ng-click="updateOrderInvoice(order_invoice,'unhold')"> </i-button>
+                <i-button type="bg-yellow btnOrders" ng-hide="order_invoice.status.id == 2" fa="cart-plus" label="##word.save_order##" ng-click="addOrderInvoice('save')"> </i-button>
 
                 <i-button
                   x-permissions="order_invoice_cancel_order || order_invoice_manage"
-                  type="bg-red white"
+                  type="bg-red white btnOrders"
                   fa="window-close"
                   label="##word.cancel_order##"
                   ng-click="cancelOrderInvoice(order_invoice)"
@@ -78,7 +85,7 @@
               </div>
 
               <br />
-              <div class="row padding border">
+              <div class="row padding border center">
                 <i-control id="searchBarcode" label="##word.barcode##" class="center" ng-keydown="getBarcode($event)" ng-model="search_barcode"></i-control>
               </div>
 
@@ -149,24 +156,23 @@
                       ng-change="changeTransactionType(order_invoice) ; calc(order_invoice)"
                     >
                     </i-list>
-                    <!--                     <i-control class="col3 r_black" disabled label="##word.code##" ng-model="order_invoice.code"></i-control>
- -->
+                    <!-- <i-control class="col3 r_black" disabled label="##word.code##" ng-model="order_invoice.code"></i-control> -->
                   </div>
 
                   <div class="row">
                     <i-button
-                      type="bg-green white"
+                      type="bg-blue white"
                       ng-show="order_invoice.transaction_type.id == 1 && '##user.type##' != 'table'"
                       label="##word.table##"
                       ng-click="showOrderDetails(order_invoice,'table')"
                     >
                     </i-button>
 
-                    <i-button type="bg-green white" label="##word.customer##" fa="user-tie" ng-hide="order_invoice.transaction_type.id == 2" ng-click="showOrderDetails(order_invoice,'customer')">
+                    <i-button type="bg-blue white" label="##word.customer##" fa="user-tie" ng-hide="order_invoice.transaction_type.id == 2" ng-click="showOrderDetails(order_invoice,'customer')">
                     </i-button>
 
                     <i-button
-                      type="bg-green white"
+                      type="bg-blue white"
                       ng-show="'##user.type##' != 'table' &&  order_invoice.transaction_type.id == 2"
                       label="##word.delivery##"
                       fa="motorcycle"
@@ -174,13 +180,11 @@
                     >
                     </i-button>
 
-                    <i-button ng-hide="'##user.type##' == 'table'" type="bg-green white" label="##word.discountes##" fa="percent" ng-click="showOrderDetails(order_invoice,'discountes')"> </i-button>
+                    <i-button ng-hide="'##user.type##' == 'table'" type="bg-blue white" label="##word.discountes##" fa="percent" ng-click="showOrderDetails(order_invoice,'discountes')"> </i-button>
 
-                    <i-button type="bg-green white" ng-hide="'##user.type##' == 'table'" label="##word.stores_out_taxes##" fa="file-invoice-dollar" ng-click="showOrderDetails(order_invoice,'taxes')">
+                    <i-button type="bg-blue white" ng-hide="'##user.type##' == 'table'" label="##word.stores_out_taxes##" fa="file-invoice-dollar" ng-click="showOrderDetails(order_invoice,'taxes')">
                     </i-button>
-                    <i-button type="bg-black white" label="##word.print_invoices##" fa="print" onclick="site.showModal('#ordersTodayModal')">
-                    </i-button>
-
+                    <i-button type="bg-black white" label="##word.print_invoices##" fa="print" onclick="site.showModal('#ordersTodayModal')"> </i-button>
                   </div>
                 </div>
               </div>
@@ -211,7 +215,6 @@
                     <div class="col-2 item bold font-18 green">{{size.total}}</div>
                     <div class="col-2 item">
                       <i-button type="edit default" ng-click="showEditItem(size)"></i-button>
-
                       <i-button type="delete default" x-permissions="order_invoice_delete_items || order_invoice_manage" ng-click="deleteItemsList(size)"> </i-button>
                     </div>
                   </div>
@@ -242,10 +245,8 @@
                   </div>
                 </div>
                 <div class="col2">
-                  <i-button type="bg-yellow" ng-hide="order_invoice.status.id == 2" fa="cart-plus" label="##word.save_order##" ng-click="addOrderInvoice('save')"> </i-button>
-                  <br />
                   <i-button
-                    type="bg-green white"
+                    type="bg-green white closing"
                     fa="save"
                     ng-hide="order_invoice.status.id == 2 || order_invoice.hold || '##user.type##' == 'table'"
                     label="##word.close_order##"
