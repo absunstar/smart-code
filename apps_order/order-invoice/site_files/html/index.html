@@ -191,16 +191,16 @@
               <br />
               <div class="row">
                 <div class="table-content items">
-                  <div class="table-headers">
-                    <div class="col-4 header">##word.stores_items_name##</div>
+                  <div class="table-headers center">
+                    <div class="col-5 header">##word.stores_items_name##</div>
                     <div class="col-2 header">##word.items_count##</div>
                     <div class="col-1 header">##word.price##</div>
                     <div class="col-1 header" x-features="restaurant">##word.extras##</div>
                     <div class="col-2 header">##word.t_o## ##word.price##</div>
-                    <div class="col-2 header">##word.actions##</div>
+                    <div class="col-1 header">##word.actions##</div>
                   </div>
-                  <div class="table-items" ng-repeat="size in order_invoice.items">
-                    <div class="col-4 item">
+                  <div class="table-items center" ng-repeat="size in order_invoice.items">
+                    <div class="col-5 item">
                       <p ng-show="size.add_sizes">{{size.name_##session.lang##}} {{size.size_##session.lang##}}</p>
                       <p ng-hide="size.add_sizes">{{size.size_##session.lang##}}</p>
                     </div>
@@ -213,9 +213,16 @@
                     </div>
                     <div class="col-1 item" x-features="restaurant">{{size.extras_price}}</div>
                     <div class="col-2 item bold font-18 green">{{size.total}}</div>
-                    <div class="col-2 item">
-                      <i-button type="edit default" ng-click="showEditItem(size)"></i-button>
-                      <i-button type="delete default" x-permissions="order_invoice_delete_items || order_invoice_manage" ng-click="deleteItemsList(size)"> </i-button>
+                    <div class="col-1 item">
+                      <div class="row center">
+                        <div class="col6">
+                          <i-button type="edit default" ng-click="showEditItem(size)"></i-button>
+                        </div>
+                        <div class="col6">
+                          <i-button type="delete default" x-permissions="order_invoice_delete_items || order_invoice_manage" ng-click="deleteItemsList(size)"> </i-button>
+
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -227,8 +234,8 @@
 
               <div class="row">
                 <div class="col10">
-                  <div class="table-content">
-                    <div class="table-headers">
+                  <div class="table-content ">
+                    <div class="table-headers ">
                       <div class="col-2 header">##word.total_before_tax##</div>
                       <div class="col-2 header">##word.vat##</div>
                       <div class="col-2 header">##word.total_after_tax##</div>
@@ -236,10 +243,10 @@
                       <div class="col-2 header">##word.net##</div>
                     </div>
                     <div class="table-items">
-                      <div class="col-2 item center">{{order_invoice.before_value_added}}</div>
+                      <div class="col-2 item center bold">{{order_invoice.before_value_added}}</div>
                       <div class="col-2 item center bold red">{{order_invoice.total_value_added}}</div>
-                      <div class="col-2 item center">{{order_invoice.total_value}}</div>
-                      <div class="col-2 item center">{{order_invoice.total_discount}}</div>
+                      <div class="col-2 item center bold">{{order_invoice.total_value}}</div>
+                      <div class="col-2 item center bold">{{order_invoice.total_discount}}</div>
                       <div class="col-2 item center bold green font-18">{{order_invoice.net_value}}</div>
                     </div>
                   </div>
