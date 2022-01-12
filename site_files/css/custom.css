@@ -30,15 +30,14 @@
 }
 #qrcode img {
     border-radius: 0px !important;
-    height: 300 px;
-    width: 300 px;
+    height: 150 px;
+    width: 150 px;
 }
 .qrcode img {
-    height: 300 px;
-    width: 300 px;
+    height: 150 px;
+    width: 150 px;
     border-radius: 0px !important;
 }
-
 
 .popup item {
     border-radius: 30px;
@@ -355,8 +354,8 @@ nav.sitebottom a.link:hover {
 }
 
 .logoPrint {
-    width: 340px;
-    height: 320px;
+    width: 140px;
+    height: 120px;
     margin: 1px;
     padding: 1px;
     border-radius: 0;
