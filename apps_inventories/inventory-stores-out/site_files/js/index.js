@@ -1909,7 +1909,7 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
             selector: '#thermalPrint',
             ip: '127.0.0.1',
             port: '60080',
-            pageSize: 'A4',
+            pageSize: 'Letter',
             printer: printerName,
           });
         }, 500);
