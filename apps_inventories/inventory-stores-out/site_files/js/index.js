@@ -1873,73 +1873,59 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
     });
   };
 
+
   $scope.thermalPrint = function (obj) {
     $scope.error = '';
     if ($scope.busy) return;
     $scope.busy = true;
+    if ($scope.defaultSettings.printer_program.printer_path) {
+      $('#thermalPrint').removeClass('hidden');
+      $scope.thermal = { ...obj };
 
-    $scope.thermal = { ...obj };
-    $('#thermalPrint').removeClass('hidden');
-    if ($scope.thermal.currency) {
-      site.strings['currency'] = {
-        ar: ' ' + $scope.thermal.currency.name_ar + ' ',
-        en: ' ' + $scope.thermal.currency.name_en + ' ',
-      };
-      site.strings['from100'] = {
-        ar: ' ' + $scope.thermal.currency.minor_currency_ar + ' ',
-        en: ' ' + $scope.thermal.currency.minor_currency_en + ' ',
-      };
-      $scope.thermal.net_txt = site.stringfiy($scope.thermal.net_value);
-    }
-    /*JsBarcode('.barcode', $scope.thermal.code);*/
-    document.querySelector('#qrcode').innerHTML = '';
-    let datetime = new Date($scope.thermal.date);
-    let formatted_date = datetime.getFullYear() + '-' + (datetime.getMonth() + 1) + '-' + datetime.getDate() + ' ' + datetime.getHours() + ':' + datetime.getMinutes() + ':' + datetime.getSeconds();
-    let qrString = `[${'##session.company.name_ar##'}]\nرقم ضريبي : [${$scope.defaultSettings.printer_program.tax_number}]\nرقم الفاتورة :[${
-      $scope.thermal.code
-    }]\nتاريخ : [${formatted_date}]\nضريبة القيمة المضافة : [${$scope.thermal.total_value_added}]\nالصافي : [${$scope.thermal.net_value}]`;
+      let datetime = new Date($scope.thermal.date);
+      let formatted_date = datetime.getFullYear() + '-' + (datetime.getMonth() + 1) + '-' + datetime.getDate() + ' ' + datetime.getHours() + ':' + datetime.getMinutes() + ':' + datetime.getSeconds();
+      let qrString = `[${'##session.company.name_ar##'}]\nرقم ضريبي : [${$scope.defaultSettings.printer_program.tax_number}]\nرقم الفاتورة :[${
+        $scope.thermal.code
+      }]\nتاريخ : [${formatted_date}]\nضريبة القيمة المضافة : [${$scope.thermal.total_value_added}]\nالصافي : [${$scope.thermal.net_value}]`;
 
-    if ($scope.defaultSettings.printer_program.place_qr) {
-      if ($scope.defaultSettings.printer_program.place_qr.id == 1) {
-        site.qrcode({ selector: '#qrcode', text: document.location.protocol + '//' + document.location.hostname + `/qr_storeout?id=${$scope.thermal.id}` });
-      } else if ($scope.defaultSettings.printer_program.place_qr.id == 2) {
-        site.qrcode({ selector: '#qrcode', text: qrString });
-      }
-    }
-
-    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path && $scope.defaultSettings.printer_program.printer_path.ip) {
-      /*site.print({
-                    selector: '#thermalPrint',
-                    ip: '127.0.0.1',
-                    port: '60080',
-                    pageSize: "Letter",
-                    printer: $scope.defaultSettings.printer_program.printer_path.ip.name.trim(),
-                });*/
-      let printerName = $scope.defaultSettings.printer_program.printer_path.ip.name.trim();
-      if ($scope.user.printer_path && $scope.user.printer_path.id) {
-        printerName = $scope.user.printer_path.ip.name.trim();
-      }
-
-      site.printAsImage(
-        {
-          selector: '#thermalPrint',
-          ip: '127.0.0.1',
-          port: '60080',
-          pageSize: 'Letter',
-          printer: printerName,
-        },
-        () => {
-          $timeout(() => {
-            $('#thermalPrint').addClass('hidden');
-          }, 2000);
+      $scope.localPrint = function () {
+  
+        if ($scope.defaultSettings.printer_program.place_qr) {
+          if ($scope.defaultSettings.printer_program.place_qr.id == 1) {
+            site.qrcode({
+              selector: document.querySelector('.qrcode'),
+              text: document.location.protocol + '//' + document.location.hostname + `/qr_storeout?id=${$scope.thermal.id}`,
+            });
+          } else if ($scope.defaultSettings.printer_program.place_qr.id == 2) {
+            site.qrcode({ selector: document.querySelector('.qrcode'), text: qrString });
+          }
         }
-      );
+        let printerName = $scope.defaultSettings.printer_program.printer_path.ip.name.trim();
+        if ($scope.user.printer_path && $scope.user.printer_path.id) {
+          printerName = $scope.user.printer_path.ip.name.trim();
+        }
+        $timeout(() => {
+          site.print({
+            selector: '#thermalPrint',
+            ip: '127.0.0.1',
+            port: '60080',
+            pageSize: 'A4',
+            printer: printerName,
+          });
+        }, 500);
+      };
+
+      $scope.localPrint();
     } else {
       $scope.error = '##word.thermal_printer_must_select##';
     }
-
     $scope.busy = false;
+    $timeout(() => {
+      $('#thermalPrint').addClass('hidden');
+    }, 8000);
   };
+
+
   $scope.print = function () {
     $scope.error = '';
     if ($scope.busy) return;
