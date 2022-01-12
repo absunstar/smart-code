@@ -104,13 +104,24 @@ b {
   white-space: unset !important;
 }
 
-#qrcode img {
+.font-35 {
+  font-size: 35px !important;
+}
+
+.font-30 {
+  font-size: 30px !important;
+}
+
+.font-27 {
+  font-size: 27px !important;
+}
+/* #qrcode img {
   border-radius: 0px !important;
-  height: 150px !important;
-  width: 150px !important;
+  height: 300px !important;
+  width: 300px !important;
 }
 .qrcode img {
-  height: 150px !important;
-  width: 150px !important;
+  height: 300px !important;
+  width: 300px !important;
   border-radius: 0px !important;
-}
+} */
