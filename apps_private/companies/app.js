@@ -94,12 +94,12 @@ module.exports = function init(site) {
 
     site.get_company = function (req) {
         let company = req.session.company;
-        return company ? site.fromJson(company) || site.default_company : site.default_company;
+        return company || site.default_company;
     };
 
     site.get_branch = function (req) {
         let branch = req.session.branch;
-        return branch ? site.fromJson(branch) || site.default_company.branch_list[0] : site.default_company.branch_list[0];
+        return branch || site.default_company.branch_list[0];
     };
 
     site.post({
