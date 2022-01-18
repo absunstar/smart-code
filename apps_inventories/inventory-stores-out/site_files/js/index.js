@@ -97,7 +97,7 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
                 calc_size.total_v_a = site.toMoney(calc_size.total_v_a);
 
                 if ($scope.store_out.type && $scope.store_out.type.id == 5) calc_size.total = site.toMoney(calc_size.average_cost) * site.toMoney(calc_size.count);
-                else calc_size.total = site.toMoney(calc_size.b_price) * site.toMoney(calc_size.count) + calc_size.total_v_a;
+                else calc_size.total = site.toMoney(calc_size.b_price) * calc_size.count + calc_size.total_v_a;
 
                 calc_size.total = site.toMoney(calc_size.total);
             }
