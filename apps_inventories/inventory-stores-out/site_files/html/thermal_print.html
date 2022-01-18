@@ -12,21 +12,21 @@
         font-size: 28px !important;
     }
     .qrcode img {
-        height: 200px !important;
-        width: 200px !important;
+        height: 150px !important;
+        width: 150px !important;
         border-radius: 0px !important;
     }
     .logoPrint {
-        width: 250px;
-        height: 220px;
+        width: 240px;
+        height: 210px;
         margin: 1px;
         padding: 1px;
         border-radius: 0;
         border: 1px solid var(--background-color);
     }
     #thermalPrint .qrcode img {
-        height: 170px !important;
-        width: 170px !important;
+        height: 150px !important;
+        width: 150px !important;
         border-radius: 0px !important;
     }
 </style>
@@ -39,10 +39,10 @@
         <div class="row">
             <div class="center">
                 <div class="row">
-                    <p ng-show="defaultSettings.printer_program.thermal_lang.id == 1" class="black center font-21 bold">##session.company.name_ar##</p>
-                    <p ng-show="defaultSettings.printer_program.thermal_lang.id == 2" class="black center font-21 bold">##session.company.name_en##</p>
-                    <p ng-show="'##session.lang##' == 'ar' && defaultSettings.printer_program.thermal_lang.id == 3" class="black center font-21 bold">##session.company.name_ar##</p>
-                    <p ng-show="'##session.lang##' == 'en' && defaultSettings.printer_program.thermal_lang.id == 3" class="black center font-21 bold">##session.company.name_en##</p>
+                    <p ng-show="defaultSettings.printer_program.thermal_lang.id == 1" class="black center font-20 bold">##session.company.name_ar##</p>
+                    <p ng-show="defaultSettings.printer_program.thermal_lang.id == 2" class="black center font-20 bold">##session.company.name_en##</p>
+                    <p ng-show="'##session.lang##' == 'ar' && defaultSettings.printer_program.thermal_lang.id == 3" class="black center font-20 bold">##session.company.name_ar##</p>
+                    <p ng-show="'##session.lang##' == 'en' && defaultSettings.printer_program.thermal_lang.id == 3" class="black center font-20 bold">##session.company.name_en##</p>
                 </div>
 
                 <div class="row">
@@ -51,7 +51,7 @@
                     <p ng-show="'##session.lang##' == 'ar' && defaultSettings.printer_program.thermal_lang.id == 3" class="black center font-18 bold">##session.branch.name_ar##</p>
                     <p ng-show="'##session.lang##' == 'en' && defaultSettings.printer_program.thermal_lang.id == 3" class="black center font-18 bold">##session.branch.name_en##</p>
                 </div>
-                <br />
+                <br ng-show="defaultSettings.printer_program.thermal_header.length > 0" />
                 <div class="row center" ng-repeat="i in defaultSettings.printer_program.thermal_header">
                     <p class="bold black font-14 center">{{i.name}}</p>
                 </div>
