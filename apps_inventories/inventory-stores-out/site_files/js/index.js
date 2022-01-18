@@ -1892,13 +1892,13 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
                 if ($scope.defaultSettings.printer_program.place_qr) {
                     if ($scope.defaultSettings.printer_program.place_qr.id == 1) {
                         site.qrcode({
-                            width: 1024,
-                            height: 1024,
+                            width: 250,
+                            height: 250,
                             selector: document.querySelector('.qrcode'),
                             text: document.location.protocol + '//' + document.location.hostname + `/qr_storeout?id=${$scope.thermal.id}`,
                         });
                     } else if ($scope.defaultSettings.printer_program.place_qr.id == 2) {
-                        site.qrcode({ width: 1024, height: 1024, selector: document.querySelector('.qrcode'), text: qrString });
+                        site.qrcode({ width: 250, height: 250, selector: document.querySelector('.qrcode'), text: qrString });
                     }
                 }
                 let printerName = $scope.defaultSettings.printer_program.printer_path.ip.name.trim();
@@ -1922,7 +1922,7 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
         }
         $scope.busy = false;
         $timeout(() => {
-            /*$('#thermalPrint').addClass('hidden');*/
+            $('#thermalPrint').addClass('hidden');
         }, 8000);
     };
 
