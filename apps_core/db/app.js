@@ -43,14 +43,14 @@ module.exports = function init(site) {
             return;
         }
 
-        if (site.isFileExistsSync(response.file.path)) {
+        if (site.isFileExistsSync(response.file.filepath)) {
             let $collection = site.connectCollection(response.collectionName);
             let docs = [];
-            if (response.file.name.like('*.xlsx')) {
-                let workbook = site.XLSX.readFile(response.file.path);
+            if (response.file.originalFilename.like('*.xlsx')) {
+                let workbook = site.XLSX.readFile(response.file.filepath);
                 docs = site.XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]]);
             } else {
-                docs = site.fromJson(site.readFileSync(response.file.path).toString());
+                docs = site.fromJson(site.readFileSync(response.file.filepath).toString());
             }
 
             if (Array.isArray(docs)) {
@@ -97,7 +97,7 @@ module.exports = function init(site) {
                 console.log(site.dbMessage);
             }
         } else {
-            site.dbMessage = 'file not exists : ' + response.file.path;
+            site.dbMessage = 'file not exists : ' + response.file.filepath;
             console.log(site.dbMessage);
         }
 
