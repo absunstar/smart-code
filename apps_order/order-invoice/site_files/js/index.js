@@ -204,7 +204,6 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
             if ($scope.defaultSettings.general_Settings.customer.mobile) $scope.order_invoice.customer_mobile = $scope.defaultSettings.general_Settings.customer.mobile;
           }
         }
-        $scope.printOrdersToday();
         document.querySelector('#searchBarcode input').focus();
       } else {
         $scope.error = '##word.open_shift_not_found##';
@@ -701,6 +700,7 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
           $scope.orderInvoiceslist = response.data.list;
+          site.showModal('#ordersTodayModal');
         }
       },
       function (err) {
@@ -2396,6 +2396,8 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
     }
   };
 
+
+
   $scope.getUser = function () {
     $scope.busy = true;
     $http({
@@ -2711,7 +2713,6 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
   $scope.loadCurrencies();
   $scope.getNumberingAuto();
   $scope.getAreaListToDelivery();
-  $scope.printOrdersToday();
   $scope.loadStores();
   $scope.getUser();
   $scope.getNumberingAutoInvoice();
