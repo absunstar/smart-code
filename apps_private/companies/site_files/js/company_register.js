@@ -72,7 +72,8 @@ app.controller('company_register', function ($scope, $http) {
                 host: company.host,
                 customers_count: company.customers_count,
                 employees_count: company.employees_count,
-                users_count: company.users_count
+                users_count: company.users_count,
+                tax_number: company.tax_number
               }),
               branch: site.to123({
                 code: company.branch_list[0].code,

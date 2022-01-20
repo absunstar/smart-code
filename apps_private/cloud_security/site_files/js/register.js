@@ -102,6 +102,7 @@ app.controller("register", function ($scope, $http) {
                 customers_count: response.data.doc.company.customers_count,
                 employees_count: response.data.doc.company.employees_count,
                 users_count: response.data.doc.company.users_count,
+                tax_number: response.data.doc.company.tax_number,
               }),
               branch: site.to123({
                 code: response.data.doc.branch.code,

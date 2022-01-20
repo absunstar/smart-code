@@ -144,6 +144,7 @@ app.controller("manage_user", function ($scope, $http) {
           customers_count: u.company.customers_count,
           employees_count: u.company.employees_count,
           host: u.company.host,
+          tax_number: u.company.tax_number,
         }),
         branch: site.to123({
           code: u.branch.code,

@@ -243,6 +243,10 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
             ar: 'مغلق من شاشة الأوردرات',
           };
 
+          $scope.order_invoice.currency = $scope.order_invoice.invoices_list[0].currency;
+          $scope.order_invoice.payment_method = $scope.order_invoice.invoices_list[0].payment_method;
+          $scope.order_invoice.safe = $scope.order_invoice.invoices_list[0].safe;
+
           $scope.order_invoice.under_paid = {
             items: $scope.order_invoice.items,
             total_tax: $scope.order_invoice.total_tax,
@@ -377,10 +381,10 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
                     order_code: $scope.order_invoice.code,
                     items: $scope.order_invoice.items,
                     invoices_list: $scope.order_invoice.invoices_list,
-                    /*  currency: $scope.order_invoice.currency,
-                    safe: $scope.order_invoice.safe,
-                    Paid_from_customer: $scope.order_invoice.Paid_from_customer,
-                    payment_method: $scope.order_invoice.payment_method,
+                    currency: $scope.order_invoice.invoices_list[0].currency,
+                    safe: $scope.order_invoice.invoices_list[0].safe,
+                    payment_method: $scope.order_invoice.invoices_list[0].payment_method,
+                    /* Paid_from_customer: $scope.order_invoice.Paid_from_customer,
                     remain_from_customer: $scope.order_invoice.remain_from_customer, */
                     paid_up: $scope.order_invoice.paid_up,
                     before_value_added: $scope.order_invoice.before_value_added,
@@ -780,11 +784,9 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
       obj.currency = $scope.currencySetting;
 
       if ($scope.order_invoice.invoices_list[0].payment_method && $scope.order_invoice.invoices_list[0].payment_method.id == 1) {
-
         obj.payment_method = $scope.paymentMethodList[2];
         obj.safe = $scope.defaultSettings.accounting.safe_bank;
       } else {
-      
         obj.payment_method = $scope.paymentMethodList[0];
         obj.safe = $scope.defaultSettings.accounting.safe_box;
       }
@@ -2196,7 +2198,7 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
 
         for (let i_inv = 0; i_inv < inv_length; i_inv++) {
           let s_o = { ...order };
-
+          
           s_o.items = [];
           order.items.forEach((itm, i) => {
             itm.$index = i + 1;
@@ -2216,7 +2218,7 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
       }
 
       $scope.localPrint = function () {
-        if (document.querySelectorAll('.qrcode').length !== $scope.invList.length) {
+        if (document.querySelectorAll('.qrcode-a4').length !== $scope.invList.length) {
           $timeout(() => {
             $scope.localPrint();
           }, 300);
@@ -2225,12 +2227,15 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
 
         if ($scope.defaultSettings.printer_program.place_qr) {
           if ($scope.defaultSettings.printer_program.place_qr.id == 1) {
+            console.log(document.querySelectorAll('.qrcode-a4'));
             site.qrcode({
-              selector: document.querySelectorAll('.qrcode')[$scope.invList.length - 1],
+              width: 150,
+              height: 150,
+              selector: document.querySelectorAll('.qrcode-a4')[$scope.invList.length - 1],
               text: document.location.protocol + '//' + document.location.hostname + `/qr_storeout?id=${order.id}`,
             });
           } else if ($scope.defaultSettings.printer_program.place_qr.id == 2) {
-            site.qrcode({ selector: document.querySelectorAll('.qrcode')[$scope.invList.length - 1], text: qrString });
+            site.qrcode({ width: 150, height: 150, selector: document.querySelectorAll('.qrcode-a4')[$scope.invList.length - 1], text: qrString });
           }
         }
 
@@ -2264,58 +2269,63 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
     $scope.error = '';
     if ($scope.busy) return;
     $scope.busy = true;
-
-    $scope.thermal = { ...obj };
-    $('#thermalPrint').removeClass('hidden');
-    if ($scope.thermal.currency) {
-      site.strings['currency'] = {
-        ar: ' ' + $scope.thermal.currency.name_ar + ' ',
-        en: ' ' + $scope.thermal.currency.name_en + ' ',
-      };
-      site.strings['from100'] = {
-        ar: ' ' + $scope.thermal.currency.minor_currency_ar + ' ',
-        en: ' ' + $scope.thermal.currency.minor_currency_en + ' ',
-      };
-      $scope.thermal.net_txt = site.stringfiy($scope.thermal.net_value);
-    }
-    /*JsBarcode('.barcode', $scope.thermal.code);*/
-    document.querySelector('#qrcode').innerHTML = '';
-    let datetime = new Date($scope.thermal.date);
-    let formatted_date = datetime.getFullYear() + '-' + (datetime.getMonth() + 1) + '-' + datetime.getDate() + ' ' + datetime.getHours() + ':' + datetime.getMinutes() + ':' + datetime.getSeconds();
-    let qrString = `[${'##session.company.name_ar##'}]\nرقم ضريبي : [${$scope.defaultSettings.printer_program.tax_number}]\nرقم الفاتورة :[${
-      $scope.thermal.code
-    }]\nتاريخ : [${formatted_date}]\nضريبة القيمة المضافة : [${$scope.thermal.total_value_added}]\nالصافي : [${$scope.thermal.net_value}]`;
-
-    if ($scope.defaultSettings.printer_program.place_qr) {
-      if ($scope.defaultSettings.printer_program.place_qr.id == 1) {
-        site.qrcode({ selector: '#qrcode', text: document.location.protocol + '//' + document.location.hostname + `/qr_storeout?id=${$scope.thermal.id}` });
-      } else if ($scope.defaultSettings.printer_program.place_qr.id == 2) {
-        site.qrcode({ selector: '#qrcode', text: qrString });
-      }
-    }
-
-    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path && $scope.defaultSettings.printer_program.printer_path.ip) {
-      let printerName = $scope.defaultSettings.printer_program.printer_path.ip.name.trim();
-      if ($scope.user.printer_path && $scope.user.printer_path.id) {
-        printerName = $scope.user.printer_path.ip.name.trim();
+    if ($scope.defaultSettings.printer_program.printer_path) {
+      $('#thermalPrint').removeClass('hidden');
+      $scope.thermal = { ...obj };
+      if ($scope.thermal.currency) {
+        site.strings['currency'] = {
+          ar: ' ' + $scope.thermal.currency.name_ar + ' ',
+          en: ' ' + $scope.thermal.currency.name_en + ' ',
+        };
+        site.strings['from100'] = {
+          ar: ' ' + $scope.thermal.currency.minor_currency_ar + ' ',
+          en: ' ' + $scope.thermal.currency.minor_currency_en + ' ',
+        };
+        $scope.thermal.net_txt = site.stringfiy($scope.thermal.net_value);
       }
 
-      site.printAsImage(
-        {
-          selector: '#thermalPrint',
-          ip: '127.0.0.1',
-          port: '60080',
-          printer: printerName,
-        },
-        () => {
-          $('#thermalPrint').addClass('hidden');
+      let datetime = new Date($scope.thermal.date);
+      let formatted_date = datetime.getFullYear() + '-' + (datetime.getMonth() + 1) + '-' + datetime.getDate() + ' ' + datetime.getHours() + ':' + datetime.getMinutes() + ':' + datetime.getSeconds();
+      let qrString = `[${'##session.company.name_ar##'}]\nرقم ضريبي : [${$scope.defaultSettings.printer_program.tax_number}]\nرقم الفاتورة :[${
+        $scope.thermal.code
+      }]\nتاريخ : [${formatted_date}]\nضريبة القيمة المضافة : [${$scope.thermal.total_value_added}]\nالصافي : [${$scope.thermal.net_value}]`;
+
+      $scope.localPrint = function () {
+        if ($scope.defaultSettings.printer_program.place_qr) {
+          if ($scope.defaultSettings.printer_program.place_qr.id == 1) {
+            site.qrcode({
+              width: 150,
+              height: 150,
+              selector: document.querySelector('.qrcode'),
+              text: document.location.protocol + '//' + document.location.hostname + `/qr_storeout?id=${$scope.thermal.id}`,
+            });
+          } else if ($scope.defaultSettings.printer_program.place_qr.id == 2) {
+            site.qrcode({ width: 150, height: 150, selector: document.querySelector('.qrcode'), text: qrString });
+          }
         }
-      );
+        let printerName = $scope.defaultSettings.printer_program.printer_path.ip.name.trim();
+        if ($scope.user.printer_path && $scope.user.printer_path.id) {
+          printerName = $scope.user.printer_path.ip.name.trim();
+        }
+        $timeout(() => {
+          site.print({
+            selector: '#thermalPrint',
+            ip: '127.0.0.1',
+            port: '60080',
+            pageSize: 'Letter',
+            printer: printerName,
+          });
+        }, 500);
+      };
+
+      $scope.localPrint();
     } else {
       $scope.error = '##word.thermal_printer_must_select##';
     }
-
     $scope.busy = false;
+    $timeout(() => {
+      $('#thermalPrint').addClass('hidden');
+    }, 8000);
   };
 
   $scope.kitchenPrint = function (obj) {

@@ -112,7 +112,7 @@ body {
 .table-content .table-headers {
     width: 100%;
     height: 40px;
-    background: var(--theme-color);
+    background: #b2d6f3;
     border: 2px solid #ddd;
 }
 .table-content .table-headers .header {
@@ -128,7 +128,7 @@ body {
 .table-content .table-items {
     width: 100%;
     height: 45px;
-    background: var(--theme-color);
+    background: #ffffffeb;
     border: 2px solid #ddd;
 }
 .table-content .table-items .item {

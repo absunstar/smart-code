@@ -59,9 +59,9 @@
         </div>
         <br />
         <div class="row center">
-            <p class="center black font-14 bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">الرقم الضريبي : {{defaultSettings.printer_program.tax_number}}</p>
-            <p class="center black font-14 bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Tax Number : {{defaultSettings.printer_program.tax_number}}</p>
-            <p class="center black font-14 bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.tax_number## : {{defaultSettings.printer_program.tax_number}}</p>
+            <p class="center black font-14 bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">الرقم الضريبي : ##session.company.tax_number##</p>
+            <p class="center black font-14 bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Tax Number : ##session.company.tax_number##</p>
+            <p class="center black font-14 bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.tax_number## : ##session.company.tax_number##</p>
         </div>
 
         <div class="row center" ng-show="thermal.type.id != 6 && defaultSettings.printer_program.print_simplified_tax_invoice_sentence">
@@ -94,13 +94,14 @@
             </p>
         </div>
 
-        <div class="row center ">
-            <div class="col3"></div>
-            <div class="col6 center border_black">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6 center border_black">
                 <b class="black font-14" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">رقم الفاتورة : </b>
                 <b class="black font-14" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Invoice Number : </b>
                 <b class="black font-14" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.invoice_number## : </b>
-                <b class="black font-14">{{thermal.code}} </b>
+                <b class="black font-14" ng-show="thermal.store_out_code">{{thermal.store_out_code}} </b>
+                <b class="black font-14" ng-hide="thermal.store_out_code">{{thermal.code}} </b>
             </div>
         </div>
 

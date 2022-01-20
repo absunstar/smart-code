@@ -40,6 +40,7 @@ app.controller('login', function ($scope, $http) {
           customers_count: $scope.user.company.customers_count,
           employees_count: $scope.user.company.employees_count,
           host: $scope.user.company.host,
+          tax_number: $scope.user.company.tax_number,
         }),
         branch: site.to123({
           code: $scope.user.branch.code,
