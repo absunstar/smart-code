@@ -462,7 +462,6 @@ module.exports = function init(site) {
                     },
                   },
                   (err, user_result) => {
-                      console.log(user_result);
                     if (!companies_doc.user_info) {
                       site.call(
                         '[user][add]',
