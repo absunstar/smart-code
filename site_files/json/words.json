@@ -475,13 +475,13 @@
   },
   {
     "name": "total_before_tax",
-    "en": "Total B.VAT",
-    "ar": "إجمالي قبل .ض.ق.م"
+    "en": "Total Before.VAT",
+    "ar": "إجمالي قبل ضريبة قيمة مضافة"
   },
   {
     "name": "total_after_tax",
-    "en": "Total A.VAT",
-    "ar": "إجمالي بعد .ض.ق.م"
+    "en": "Total After.VAT",
+    "ar": "إجمالي بعد ضريبة قيمة مضافة"
   },
   {
     "name": "discount_cash",
