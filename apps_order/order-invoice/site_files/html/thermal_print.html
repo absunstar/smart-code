@@ -195,6 +195,7 @@
         <p class="black bold font-16">{{thermal.net_value}}</p>
     </div>
 </div>
+<br />
 
   <div class="row center">
     <div class="col-1"></div>
@@ -228,9 +229,12 @@
   <hr />
   <br />
 
-  <div id="qrcode"></div>
-
-  <div class="row" ng-repeat="i in defaultSettings.printer_program.thermal_footer">
-    <h3 class="black bold center">{{i.name}}</h3>
+  <div class="qrcode center"></div>
+<br />
+<div class="row" ng-repeat="i in defaultSettings.printer_program.thermal_footer">
+      <p class="black bold font-15 center">{{i.name}}</p>
   </div>
+
+</div>
+<p class="center bold font-15">...</p>
 </div>

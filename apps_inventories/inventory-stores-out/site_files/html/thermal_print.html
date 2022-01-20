@@ -271,12 +271,14 @@
             <svg style="max-height: 25mm" class="barcode" jsbarcode-format="auto" jsbarcode-value="{{thermal.code}}" jsbarcode-textmargin="0" jsbarcode-fontoptions="bold"></svg>
         </div>
     </div>  -->
+    <br />
 
         <div class="qrcode center"></div>
-        <div class="row" ng-repeat="i in defaultSettings.printer_program.thermal_footer">
+  <br />
+  <div class="row" ng-repeat="i in defaultSettings.printer_program.thermal_footer">
             <p class="black bold font-15 center">{{i.name}}</p>
         </div>
 
-        <p class="center bold font-15">...</p>
     </div>
+    <p class="center bold font-15">...</p>
 </div>
