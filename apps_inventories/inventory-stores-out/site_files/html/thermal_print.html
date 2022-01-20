@@ -314,21 +314,21 @@
  -->
     <div class="row">
       <div class="col-1"></div>
-      <p class="bold center font-11 col-10 black">{{thermal.net_txt}} {{defaultSettings.accounting.end_num_to_str || ''}}</p>
+      <p class="bold center font-10 col-10 black">{{thermal.net_txt}} {{defaultSettings.accounting.end_num_to_str || ''}}</p>
     </div>
 
     <hr />
 
     <div class="row padding">
       <div class="col-6">
-        <p class="black col-11 bold center" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">المدفوع: {{thermal.Paid_from_customer}}</p>
-        <p class="black col-11 bold center" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">paid : {{thermal.Paid_from_customer}}</p>
-        <p class="black col-11 bold center" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.amount_paid## : {{thermal.Paid_from_customer}}</p>
+        <p class="black col-9 bold center" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">المدفوع: {{thermal.Paid_from_customer}}</p>
+        <p class="black col-9 bold center" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">paid : {{thermal.Paid_from_customer}}</p>
+        <p class="black col-9 bold center" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.amount_paid## : {{thermal.Paid_from_customer}}</p>
       </div>
       <div class="col6">
-        <p class="black col-11 bold center" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">المتبقي: {{thermal.remain_from_customer}}</p>
-        <p class="black col-11 bold center" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Remaining : {{thermal.remain_from_customer}}</p>
-        <p class="black col-11 bold center" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.remaining_amount## : {{thermal.remain_from_customer}}</p>
+        <p class="black col-9 bold center" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">المتبقي: {{thermal.remain_from_customer}}</p>
+        <p class="black col-9 bold center" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Remaining : {{thermal.remain_from_customer}}</p>
+        <p class="black col-9 bold center" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.remaining_amount## : {{thermal.remain_from_customer}}</p>
       </div>
     </div>
 
