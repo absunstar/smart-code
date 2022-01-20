@@ -210,33 +210,33 @@
 
         <div class="bold padding margind">
             <div class="col-7 center">
-                <p class="black bold font-8" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">إجمالي قبل ضريبة قيمة مضافة</p>
-                <p class="black bold font-8" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Total Before.VAT</p>
-                <p class="black bold font-8" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.total_before_tax##</p>
+                <p class="black bold font-9" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">إجمالي قبل ضريبة القيمة المضافة</p>
+                <p class="black bold font-9" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Total Before.VAT</p>
+                <p class="black bold font-9" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.total_before_tax##</p>
 
                 <p class="black bold font-12" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">ضريبة القيمة المضافة</p>
                 <p class="black bold font-12" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Value added tax</p>
                 <p class="black bold font-12" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.value_added_tax##</p>
 
-                <p class="black bold font-8" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">إجمالي بعد ضريبة قيمة مضافة</p>
-                <p class="black bold font-8" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Total After.VAT</p>
-                <p class="black bold font-8" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.total_after_tax##</p>
+                <p class="black bold font-9" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">إجمالي بعد ضريبة القيمة المضافة</p>
+                <p class="black bold font-9" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Total After.VAT</p>
+                <p class="black bold font-9" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.total_after_tax##</p>
 
-                <p class="black bold font-12" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">الخصم النقدي</p>
-                <p class="black bold font-12" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Discount cash</p>
+                <p class="black bold font-14" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">الخصم النقدي</p>
+                <p class="black bold font-14" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Discount cash</p>
                 <p class="black bold font-14" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.discount_cash##</p>
 
                 <p class="black bold font-12" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">الصافي</p>
                 <p class="black bold font-12" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Net</p>
                 <p class="black bold font-12" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.net##</p>
             </div>
-            <div class="col-2"></div>
+            <div class="col-1"></div>
             <div class="col-3">
-                <p class="black bold font-12">{{thermal.before_value_added}}</p>
+                <p class="black bold font-9">{{thermal.before_value_added}}</p>
 
                 <p class="black bold font-12">{{thermal.total_value_added}}</p>
 
-                <p class="black bold font-12">{{thermal.total_value}}</p>
+                <p class="black bold font-9">{{thermal.total_value}}</p>
 
                 <p class="black bold font-14">{{thermal.total_discount}}</p>
 
