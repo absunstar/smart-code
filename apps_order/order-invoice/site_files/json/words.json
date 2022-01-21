@@ -15,6 +15,11 @@
         "ar": "شاشة الطلبات"
     },
     {
+        "name": "no_invoices_display",
+        "en": "There are no invoices to display",
+        "ar": "لا يوجد فواتير لعرضها"
+    },
+    {
         "name": "item_not_found",
         "en": "Item Not Fouuund",
         "ar": "هذا الصنف غر موجود"

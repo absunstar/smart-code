@@ -106,14 +106,14 @@
 
     <div class="row">
       <div class="col2"></div>
-      <div class="col9 center border_black">
-        <b class="black font-13 bold center" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">العميل :</b>
-        <b class="black font-13 bold center" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Customer :</b>
-        <b class="black font-13 bold center" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.customer## :</b>
-        <b class="black font-13 bold center" ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'ar'">
+      <div class="col8 center border_black">
+        <b class="black font-13 bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">العميل :</b>
+        <b class="black font-13 bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Customer :</b>
+        <b class="black font-13 bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.customer## :</b>
+        <b class="black font-13 bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'ar'">
           {{thermal.customer.name_ar}}
         </b>
-        <b class="black font-13 bold center" ng-show="defaultSettings.printer_program.thermal_lang.id == 2 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'en'">
+        <b class="black font-13 bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 2 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'en'">
           {{thermal.customer.name_en}}
         </b>
       </div>

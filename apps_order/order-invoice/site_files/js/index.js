@@ -701,6 +701,9 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
         if (response.data.done && response.data.list.length > 0) {
           $scope.orderInvoiceslist = response.data.list;
           site.showModal('#ordersTodayModal');
+        } else {
+          $scope.error = '##word.no_invoices_display##';
+          return;
         }
       },
       function (err) {
@@ -2198,7 +2201,7 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
 
         for (let i_inv = 0; i_inv < inv_length; i_inv++) {
           let s_o = { ...order };
-          
+
           s_o.items = [];
           order.items.forEach((itm, i) => {
             itm.$index = i + 1;
@@ -2395,8 +2398,6 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
       site.showModal('#addPaymentsModal');
     }
   };
-
-
 
   $scope.getUser = function () {
     $scope.busy = true;

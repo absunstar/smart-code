@@ -20,9 +20,9 @@
         margin: 6px !important;
       }
 
-      * {
+    /*   * {
         min-height: 0px;
-      }
+      } */
     </style>
   </head>
 
@@ -215,11 +215,11 @@
                     <div class="col-2 item bold font-18 green">{{size.total}}</div>
                     <div class="col-1 item">
                       <div class="row center">
-                        <div class="col6">
-                          <i-button type="edit default" ng-click="showEditItem(size)"></i-button>
+                        <div class="col6 ">
+                          <i-button class="center" type="edit default" ng-click="showEditItem(size)"></i-button>
                         </div>
                         <div class="col6">
-                          <i-button type="delete default" x-permissions="order_invoice_delete_items || order_invoice_manage" ng-click="deleteItemsList(size)"> </i-button>
+                          <i-button class="center" type="delete default" x-permissions="order_invoice_delete_items || order_invoice_manage" ng-click="deleteItemsList(size)"> </i-button>
 
                         </div>
                       </div>
@@ -236,16 +236,16 @@
                 <div class="col10">
                   <div class="table-content ">
                     <div class="table-headers ">
-                      <div class="col-2 header">##word.total_before_tax##</div>
+                      <div class="col-3 header">##word.total_before_tax##</div>
                       <div class="col-2 header">##word.vat##</div>
-                      <div class="col-2 header">##word.total_after_tax##</div>
+                      <div class="col-3 header">##word.total_after_tax##</div>
                       <div class="col-2 header">##word.discount_cash##</div>
                       <div class="col-2 header">##word.net##</div>
                     </div>
                     <div class="table-items">
-                      <div class="col-2 item center bold">{{order_invoice.before_value_added}}</div>
+                      <div class="col-3 item center bold">{{order_invoice.before_value_added}}</div>
                       <div class="col-2 item center bold red">{{order_invoice.total_value_added}}</div>
-                      <div class="col-2 item center bold">{{order_invoice.total_value}}</div>
+                      <div class="col-3 item center bold">{{order_invoice.total_value}}</div>
                       <div class="col-2 item center bold">{{order_invoice.total_discount}}</div>
                       <div class="col-2 item center bold green font-18">{{order_invoice.net_value}}</div>
                     </div>
