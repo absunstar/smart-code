@@ -214,8 +214,9 @@ module.exports = function init(site) {
         },
         (err, doc) => {
           if (!err && doc) {
+           
             $companies.findMany({}, (err, companiesDoc) => {
-              if (req.data.where.email === '@admin') {
+              if (doc.key) {
                 response.list = doc.branch_list || [];
               } else {
                 let branch_list = [];
