@@ -1,0 +1,11 @@
+[
+    { "module_name" : "public" , "screen_name" : "shipping-company" , "name":"shipping_company_manage" , "en":"Manage" , "ar":"إدارة"},
+    { "module_name" : "public" , "screen_name" : "shipping-company" , "name":"shipping_company_add" , "en":"Add" , "ar":"إضافة"},
+    { "module_name" : "public" , "screen_name" : "shipping-company" , "name":"shipping_company_update" , "en":"Edit" , "ar":"تعديل"},
+    { "module_name" : "public" , "screen_name" : "shipping-company" , "name":"shipping_company_delete" , "en":"Delete" , "ar":"حذف"},
+    { "module_name" : "public" , "screen_name" : "shipping-company" , "name":"shipping_company_view" , "en":"View" , "ar":"عرض"},
+    { "module_name" : "public" , "screen_name" : "shipping-company" , "name":"shipping_company_search" , "en":"Search" , "ar":"بحث"},
+    { "module_name" : "public" , "screen_name" : "shipping-company" , "name":"shipping_company_export" , "en":"Export" , "ar":"تصدير"},
+    { "module_name" : "public" , "screen_name" : "shipping-company" , "name":"shipping_company_print" , "en":"Print" , "ar":"طباعة"},
+    { "module_name" : "public" , "screen_name" : "shipping-company" , "name":"shipping_company_ui" , "en":"UI" , "ar":"الواجهة الرسومية"}
+]

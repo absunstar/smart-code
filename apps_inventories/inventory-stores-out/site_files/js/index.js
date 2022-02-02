@@ -273,7 +273,9 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
         $scope.busy = false;
         if (response.data.done && response.data.doc) {
           $scope.defaultSettings = response.data.doc;
-          $scope.invoice_logo = document.location.origin + $scope.defaultSettings.printer_program.invoice_logo;
+          if ($scope.defaultSettings.printer_program.invoice_logo) {
+            $scope.invoice_logo = document.location.origin + $scope.defaultSettings.printer_program.invoice_logo;
+          }
           /* $scope.thermal_lang = 'ar';
           $scope.thermal_lang_name = 'name_ar';
           if ($scope.defaultSettings.printer_program.thermal_lang) {

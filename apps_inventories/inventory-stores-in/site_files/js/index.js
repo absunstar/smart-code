@@ -624,7 +624,9 @@ app.controller('stores_in', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.doc) {
           $scope.defaultSettings = response.data.doc;
-          $scope.invoice_logo = document.location.origin + $scope.defaultSettings.printer_program.invoice_logo;
+          if ($scope.defaultSettings.printer_program.invoice_logo) {
+            $scope.invoice_logo = document.location.origin + $scope.defaultSettings.printer_program.invoice_logo;
+          }
         }
       },
       function (err) {

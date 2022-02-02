@@ -1,0 +1,51 @@
+[{
+        "name": "products_group",
+        "en": "Products Group",
+        "ar": "مجموعة المنتجات"
+    },
+    {
+        "name": "products_groups",
+        "en": "Products Groups",
+        "ar": "مجموعات المنتجات"
+    },
+    {
+        "name": "products_group_new",
+        "en": "New Products Group",
+        "ar": "مجموعة منتجات جديد"
+    },
+    {
+        "name": "products_group_add",
+        "en": "Add Products Group",
+        "ar": "إضافة مجموعة المنتجات"
+    },
+    {
+        "name": "products_group_edit",
+        "en": "Edit Products Group",
+        "ar": "تعديل مجموعة المنتجات"
+    },
+    {
+        "name": "products_group_details",
+        "en": "Products Group Details",
+        "ar": "تفاصيل مجموعة المنتجات"
+    },
+    {
+        "name": "products_group_delete",
+        "en": "Delete Products Group",
+        "ar": "حذف مجموعة منتجات"
+    },
+    {
+        "name": "products_group_person",
+        "en": "Persons",
+        "ar": "أشخاص"
+    },
+    {
+        "name": "products_group_number",
+        "en": "Products Group Number",
+        "ar": "رقم مجموعة منتجات"
+    },
+    {
+        "name": "products_group_name",
+        "en": "Products Group Name",
+        "ar": "إسم مجموعة منتجات"
+    }
+]

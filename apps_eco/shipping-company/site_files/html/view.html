@@ -1,0 +1,112 @@
+<div ng-hide="busy" class="row">
+    <div id="basicInformation" class="">
+        <fieldset>
+            <legend>##word.basic_information##</legend>
+            <div class="col9">
+              <table id="basicInformationTable" class="table hover bold">
+                <tr>
+                  <td class="title">##word.code##</td>
+                  <td class="center userPrint blue">{{shipping_company.code}}</td>
+                </tr>
+  
+                <tr>
+                  <td class="title">##word.shipping_company_name##</td>
+                  <td class="center">
+                    {{shipping_company.name_##session.lang##}}
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td class="title">##word.companies_gov##</td>
+                  <td class="center">
+                    {{shipping_company.gov.name_##session.lang##}}
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td class="title">##word.companies_city##</td>
+                  <td class="center">
+                    {{shipping_company.city.name_##session.lang##}}
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td class="title">##word.companies_address##</td>
+                  <td class="center">{{shipping_company.address}}</td>
+                </tr>
+  
+                <tr>
+                  <td class="title">##word.companies_phone##</td>
+                  <td class="center">{{shipping_company.phone}}</td>
+                </tr>
+  
+                <tr>
+                  <td class="title">##word.companies_mobile##</td>
+                  <td class="center">{{shipping_company.mobile}}</td>
+                </tr>
+  
+                <tr>
+                  <td class="title">##word.companies_fax##</td>
+                  <td class="center">{{shipping_company.fax}}</td>
+                </tr>
+  
+                <tr>
+                  <td class="title">##word.companies_email##</td>
+                  <td class="center">{{shipping_company.email}}</td>
+                </tr>
+  
+                <tr>
+                  <td class="title">##word.companies_charge_name##</td>
+                  <td class="center">{{shipping_company.admin.name}}</td>
+                </tr>
+  
+                <tr>
+                  <td class="title">##word.companies_charge_job##</td>
+                  <td class="center">{{shipping_company.admin.job}}</td>
+                </tr>
+  
+                <tr>
+                  <td class="title">##word.companies_phone##</td>
+                  <td class="center">{{shipping_company.admin.phone}}</td>
+                </tr>
+  
+                <tr>
+                  <td class="title">##word.companies_internal_number##</td>
+                  <td class="center">{{shipping_company.admin.internal_number}}</td>
+                </tr>
+  
+                <tr>
+                  <td class="title">##word.companies_mobile##</td>
+                  <td class="center">{{shipping_company.admin.mobile}}</td>
+                </tr>
+  
+                <tr>
+                  <td class="title">##word.companies_email##</td>
+                  <td class="center">{{shipping_company.admin.email}}</td>
+                </tr>
+  
+                <tr>
+                  <td class="title">##word.status##</td>
+                  <td
+                    ng-show="shipping_company.active == true"
+                    class="green center"
+                  >
+                    ##word.active##
+                  </td>
+                  <td
+                    ng-show="shipping_company.active == false"
+                    class="red center"
+                  >
+                    ##word.not_active##
+                  </td>
+                </tr>
+              </table>
+            </div>
+  
+            <div class="col3">
+              <i-image view ng-model="shipping_company.image_url"></i-image>
+            </div>
+          </fieldset>
+    </div>
+</div>
+<div x-import="shipping-company/action_info.html"></div>

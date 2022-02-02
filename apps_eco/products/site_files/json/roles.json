@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "products_admin",
+    "en": "Foods Admin",
+    "ar": "إدارة المنتجات",
+    "permissions": ["products_manage"]
+}]

@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "products_group_admin",
+    "en": "Products Gruop Admin",
+    "ar": "إدارة مجموعة المنتجات",
+    "permissions": ["products_group_manage"]
+}]

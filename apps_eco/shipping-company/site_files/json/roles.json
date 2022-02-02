@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "shipping_company_admin",
+    "en": "Shipping Company Admin",
+    "ar": "إدارة شركات الشحن",
+    "permissions": ["shipping_company_manage"]
+}]

@@ -17,12 +17,12 @@
     border-radius: 0px !important;
   }
   .logoPrint {
-    width: 240px;
-    height: 210px;
-    margin: 1px;
-    padding: 1px;
-    border-radius: 0;
-    border: 1px solid var(--background-color);
+    width: 125px !important;
+    height: 105px !important;
+    margin: 1px !important;
+    padding: 1px !important;
+    border-radius: 0 !important;
+    border: 1px solid var(--background-color) !important;
   }
   #thermalPrint .qrcode img {
     height: 150px !important;
@@ -32,7 +32,7 @@
 </style>
 <div class="hidden" id="thermalPrint" style="width: 100%; margin-top: 0%">
   <div class="content page">
-    <div class="center">
+    <div class="center" ng-show="invoice_logo">
       <img class="logoPrint" ng-src="{{invoice_logo}}" />
     </div>
 

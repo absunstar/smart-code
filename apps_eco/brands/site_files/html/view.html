@@ -1,0 +1,48 @@
+<div ng-hide="busy" class="row">
+    <div id="basicInformation" class=" ">
+        <fieldset>
+            <legend> ##word.basic_information##</legend>
+            <div class="col9">
+                <table id="basicInformationTable" class="table hover bold">
+                    <tr>
+                        <td class="title">##word.code##</td>
+                        <td class="center userPrint blue">{{brands.code}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.brand_name_ar##</td>
+                        <td class="center">{{brands.name_ar}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.brand_name_en##</td>
+                        <td class="center">{{brands.name_en}}</td>
+                    </tr>
+
+
+                    <tr>
+                        <td class="title">##word.brand_notes##</td>
+                        <td class="center">{{brands.notes}}</td>
+                    </tr>
+
+                    <!--   <tr>
+                        <td class="title">##word.brands_price##</td>
+                        <td class="center green">{{brands.price}}</td>
+                    </tr> -->
+
+                    <tr>
+                        <td class="title">##word.status##</td>
+                        <td ng-show="brands.active == true" class="green center"> ##word.active## </td>
+                        <td ng-show="brands.active == false" class="red center"> ##word.not_active## </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="col3">
+                <i-image view ng-model="brands.image_url"></i-image>
+            </div>
+
+        </fieldset>
+    </div>
+</div>
+<div x-import="brands/action_info.html"></div>

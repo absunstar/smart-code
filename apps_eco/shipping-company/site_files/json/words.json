@@ -1,0 +1,47 @@
+[
+  {
+    "name": "shipping_company",
+    "en": "Shipping Company",
+    "ar": "شركة الشحن"
+  },
+  {
+    "name": "shipping_companies",
+    "en": "Shipping Companies",
+    "ar": "شركات الشحن"
+  },
+  {
+    "name": "shipping_company_new",
+    "en": "New Shipping Company",
+    "ar": "شركة شحن جديد"
+  },
+  {
+    "name": "shipping_company_add",
+    "en": "Add Shipping Company",
+    "ar": "إضافة شركة شحن"
+  },
+  {
+    "name": "shipping_company_edit",
+    "en": "Edit Shipping Company",
+    "ar": "تعديل شركة شحن"
+  },
+  {
+    "name": "shipping_company_details",
+    "en": "Shipping Company Details",
+    "ar": "تفاصيل الشركة شحن"
+  },
+  {
+    "name": "shipping_company_delete",
+    "en": "Delete Shipping Company",
+    "ar": "حذف شركة شحن"
+  },
+  {
+    "name": "shipping_company_number",
+    "en": "Shipping Company Number",
+    "ar": "رقم شركة شحن"
+  },
+  {
+    "name": "shipping_company_name",
+    "en": "Shipping Company Name",
+    "ar": "إسم شركة شحن"
+  }
+]

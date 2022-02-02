@@ -1,0 +1,75 @@
+[{
+        "name": "product",
+        "en": "Food",
+        "ar": "المنتج"
+    },
+    {
+        "name": "products",
+        "en": "Foods",
+        "ar": "المنتجات"
+    },
+    {
+        "name": "about_this_item",
+        "en": "About This Item",
+        "ar": "حول هذه السلعة"
+    },
+    {
+        "name": "product_description",
+        "en": "Product Description",
+        "ar": "وصف المنتج"
+    },
+    {
+        "name": "main_photo",
+        "en": "Main Photo",
+        "ar": "الصورة الرئيسية"
+    },
+    {
+        "name": "sub_photos",
+        "en": "Sub Photos",
+        "ar": "الصور الفرعية"
+    },
+    {
+        "name": "product_new",
+        "en": "New Foods",
+        "ar": "منتج جديد"
+    },
+    {
+        "name": "product_add",
+        "en": "Add Foods",
+        "ar": "إضافة منتج "
+    },
+    {
+        "name": "product_edit",
+        "en": "Edit Foods",
+        "ar": "تعديل منتج "
+    },
+    {
+        "name": "product_details",
+        "en": "Foods Details",
+        "ar": "تفاصيل المنتج "
+    },
+    {
+        "name": "product_delete",
+        "en": "Delete Foods",
+        "ar": "حذف منتج "
+    },
+    {
+        "name": "product_name_ar",
+        "en": "Foods Name Ar",
+        "ar": "إسم المنتج بالعربي"
+    },
+    {
+        "name": "product_name_en",
+        "en": "Foods Name En",
+        "ar": "إسم المنتج بالإنجليزي"
+    },
+    {
+        "name": "product_notes",
+        "en": "Notes Foods",
+        "ar": "ملاحظات المنتج "
+    }
+
+
+
+
+]

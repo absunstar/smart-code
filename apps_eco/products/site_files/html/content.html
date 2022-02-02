@@ -1,0 +1,99 @@
+<div class="form">
+  <div id="basicInformation" class="">
+    <fieldset>
+      <legend>##word.basic_information##</legend>
+      <div class="row">
+        <div class="col9">
+          <div class="row">
+            <i-control ng-hide="disabledProductCode" class="col2" label="##word.code##" ng-model="product.code"></i-control>
+            <i-control help-id="products_name" v="r ll2" class="col4" label="##word.product_name##" ng-model="product.name_ar"></i-control>
+            <i-control help-id="products_name_en" class="col4" label="##word.name_en##" ng-model="product.name_en"></i-control>
+
+            <div class="col2">
+              <div class="row">
+                <i-checkbox help-id="product_active" label="##word.active##" ng-model="product.active"> </i-checkbox>
+              </div>
+              <div class="row">
+                <i-checkbox help-id="link_items" label="##word.link_items##" ng-model="product.link_items"> </i-checkbox>
+              </div>
+            </div>
+          </div>
+
+          <br />
+
+          <div class="row">
+            <i-list
+              help-id=""
+              v="r"
+              class="col4"
+              label="##word.products_group##"
+              ng-model="product.product_group"
+              display="name_##session.lang##"
+              items="productsGroupsList"
+              ng-search="_search.$product_group"
+            >
+            </i-list>
+
+            <i-list
+              class="col4"
+              ng-show="product.medic_cosmet"
+              ng-model="product.active_substance"
+              display="name_##session.lang##"
+              ng-search="_search.$active_substance_search"
+              label="##word.active_substance##"
+              items="activeSubstancesList"
+            ></i-list>
+
+            <i-control help-id="products_price" type="number" class="col2" label="##word.price##" ng-model="product.price"> </i-control>
+
+            <i-checkbox help-id="products_active" label="##word.medical_cosmetic_product##" ng-model="product.medic_cosmet"> </i-checkbox>
+          </div>
+
+          <br />
+
+          <div class="row">
+            <i-textarea class="co7" label="##word.about_this_item##" ng-model="product.about_this_item"> </i-textarea>
+          </div>
+
+          <div class="row">
+            <i-textarea class="co7" label="##word.product_description##" ng-model="product.product_description"> </i-textarea>
+          </div>
+
+          <div class="row" ng-show="product.medic_cosmet">
+            <div class="row">
+              <i-textarea class="co7" label="##word.indications##" ng-model="product.indications"> </i-textarea>
+            </div>
+
+            <br />
+
+            <div class="row">
+              <i-textarea class="co7" label="##word.contraindications##" ng-model="product.contraindications"> </i-textarea>
+            </div>
+
+            <br />
+
+            <div class="row">
+              <i-textarea class="co7" label="##word.how_use##" ng-model="product.how_use"> </i-textarea>
+            </div>
+
+            <br />
+          </div>
+        </div>
+
+        <div class="col3">
+          <h2>##word.main_photo##</h2>
+          <i-image help-id="products_logo" ng-model="product.image_url"></i-image>
+
+          <fieldset>
+            <legend> ##word.sub_photos## <i-button type="add default" ng-click="product.images_list.push('')"></i-button></legend>
+            <div ng-repeat="i in product.images_list track by $index">
+              <i-button type="delete default" ng-click="deleteImage($index)"> </i-button>
+              <i-image ng-model="i"></i-image>
+              <hr />
+            </div>
+          </fieldset>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+</div>

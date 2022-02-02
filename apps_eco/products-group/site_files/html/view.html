@@ -1,0 +1,45 @@
+<div ng-hide="busy" class="row">
+    <div id="basicInformation" class="">
+        <fieldset>
+            <legend>##word.basic_information##</legend>
+            <div class="col9">
+              <table id="basicInformationTable" class="table hover bold">
+                <tr>
+                  <td class="title">##word.code##</td>
+                  <td class="center userPrint blue">{{products_group.code}}</td>
+                </tr>
+  
+                <tr>
+                  <td class="title">##word.products_group_name##</td>
+                  <td class="center">{{products_group.name_##session.lang##}}</td>
+                </tr>
+  
+                <tr>
+                  <td class="title">##word.link_item_groups##</td>
+                  <td ng-show="products_group.link_item_groups == true" class="green center">
+                    ##word.yes##
+                  </td>
+                  <td ng-show="!products_group.link_item_groups" class="red center">
+                    ##word.no##
+                  </td>
+                </tr>
+                <tr>
+                  <td class="title">##word.status##</td>
+                  <td ng-show="products_group.active == true" class="green center">
+                    ##word.active##
+                  </td>
+                  <td ng-show="products_group.active == false" class="red center">
+                    ##word.not_active##
+                  </td>
+                </tr>
+                
+              </table>
+            </div>
+  
+            <div class="col3">
+              <i-image view ng-model="products_group.image_url"></i-image>
+            </div>
+          </fieldset>
+    </div>
+</div>
+<div x-import="products-group/action_info.html"></div>

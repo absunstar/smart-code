@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "brands_admin",
+    "en": "Brands Admin",
+    "ar": "إدارة العلامات التجارية",
+    "permissions": ["brands_manage"]
+}]

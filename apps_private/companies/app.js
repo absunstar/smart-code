@@ -19,6 +19,18 @@ module.exports = function init(site) {
     ],
   };
 
+  site.onPOST('/api/languages/ar-sa' , (req , res)=>{
+    site.addWord({
+      name : 'username',
+      en : 'User Name',
+      ar : 'zzzzzzzzzzzzzzzzz'
+    })
+
+    res.json({
+      done : true
+    })
+  })
+
   $companies.findOne({}, (err, doc) => {
     if (!err && doc) {
       site.default_company = doc;

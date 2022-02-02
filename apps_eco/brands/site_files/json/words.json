@@ -1,0 +1,55 @@
+[{
+        "name": "brand",
+        "en": "Brand",
+        "ar": "العلامة التجارية"
+    },
+    {
+        "name": "brands",
+        "en": "Brands",
+        "ar": "العلامات التجارية"
+    },
+    {
+        "name": "brand_new",
+        "en": "New Brands",
+        "ar": "علامة تجارة جديدة"
+    },
+    {
+        "name": "brand_add",
+        "en": "Add Brands",
+        "ar": "إضافة علامة تجارة "
+    },
+    {
+        "name": "brand_edit",
+        "en": "Edit Brands",
+        "ar": "تعديل علامة تجارة "
+    },
+    {
+        "name": "brand_details",
+        "en": "Brands Details",
+        "ar": "تفاصيل العلامات التجارية "
+    },
+    {
+        "name": "brand_delete",
+        "en": "Delete Brands",
+        "ar": "حذف علامة تجارة "
+    },
+    {
+        "name": "brand_name_ar",
+        "en": "Brands Name Ar",
+        "ar": "إسم العلامات التجارية بالعربي"
+    },
+    {
+        "name": "brand_name_en",
+        "en": "Brands Name En",
+        "ar": "إسم العلامات التجارية بالإنجليزي"
+    },
+    {
+        "name": "brand_notes",
+        "en": "Notes Brands",
+        "ar": "ملاحظات العلامات التجارية "
+    }
+
+
+
+
+]
