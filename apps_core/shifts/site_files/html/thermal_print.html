@@ -1,5 +1,37 @@
-<div class="row center border font_cairo hidden" id="thermalPrint" style="width: 88mm !important">
-  <div class="center">
+<style>
+  .font-35 {
+    font-size: 35px !important;
+  }
+  .font-35 {
+    font-size: 35px !important;
+  }
+  .font-30 {
+    font-size: 30px !important;
+  }
+  .font-28 {
+    font-size: 28px !important;
+  }
+  .qrcode img {
+    height: 150px !important;
+    width: 150px !important;
+    border-radius: 0px !important;
+  }
+  .logoPrint {
+    width: 125px !important;
+    height: 105px !important;
+    margin: 1px !important;
+    padding: 1px !important;
+    border-radius: 0 !important;
+    border: 1px solid var(--background-color) !important;
+  }
+  #thermalPrint .qrcode img {
+    height: 150px !important;
+    width: 150px !important;
+    border-radius: 0px !important;
+  }
+</style>
+<div class="hidden" id="thermalPrint" style="width: 100%; margin-top: 0%">
+  <div class="center" ng-show="invoice_logo">
     <img class="logoPrint" ng-src="{{invoice_logo}}" />
   </div>
 
@@ -20,13 +52,13 @@
   <br />
 
   <div class="row center txt19 border_black">
-    <b class="black">##word.shift_code## : </b>
-    <b class="black">{{thermal.code}} </b>
+    <b class="black font-23">##word.shift_code## : </b>
+    <b class="black font-23">{{thermal.code}} </b>
   </div>
   <br />
   <div class="row center txt19 border_black">
-    <b class="black">##word.shifts_name## : </b>
-    <b class="black">{{thermal.name_##session.lang##}} </b>
+    <b class="black font-23">##word.shifts_name## : </b>
+    <b class="black font-23">{{thermal.name_##session.lang##}} </b>
   </div>
 
   <br />
