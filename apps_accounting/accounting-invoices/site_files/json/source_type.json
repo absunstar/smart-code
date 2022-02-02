@@ -36,12 +36,12 @@
     },
     {
         "id": 8,
-        "en": "Amount In",
+        "en": "Receipt Voucher",
         "ar": "سند قبض"
     },
     {
         "id": 9,
-        "en": "Amount Out",
+        "en": "Payment Voucher",
         "ar": "سند صرف"
     },
     {

@@ -560,6 +560,11 @@
               <i-control class="col2" ng-model="account_invoices.paid_up" label="##word.paid_up##" type="number"> </i-control>
             </div>
           </div>
+
+          <div class="row" ng-show="account_invoices.source_type.id == 8 || account_invoices.source_type.id == 9">
+            <i-textarea class="col6" label="##word.being##" ng-model="account_invoices.being"> </i-textarea>
+          </div>
+
           <div class="row">
             <i-textarea class="col6" label="##word.notes##" ng-model="account_invoices.notes"> </i-textarea>
           </div>

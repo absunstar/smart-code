@@ -1539,7 +1539,7 @@ app.controller('account_invoices', function ($scope, $http, $timeout) {
     $scope.busy = false;
 };
 
-  $scope.print = function () {
+   $scope.print = function () {
     $scope.error = '';
     if ($scope.busy) return;
     $scope.busy = true;
@@ -1552,26 +1552,7 @@ app.controller('account_invoices', function ($scope, $http, $timeout) {
         $scope.account_invoices.code
       }]\nتاريخ : [${formatted_date}]\nضريبة القيمة المضافة : [${$scope.account_invoices.total_value_added}]\nالصافي : [${$scope.account_invoices.net_value}]`;
 
-      $scope.invList = [{ ...$scope.account_invoices }];
-
-      $scope.localPrint = function () {
-        if (document.querySelectorAll('.qrcode').length !== $scope.invList.length) {
-          $timeout(() => {
-            $scope.localPrint();
-          }, 300);
-          return;
-        }
-
-        if ($scope.defaultSettings.printer_program.place_qr) {
-          if ($scope.defaultSettings.printer_program.place_qr.id == 1) {
-            site.qrcode({
-              selector: document.querySelectorAll('.qrcode')[$scope.invList.length - 1],
-              text: document.location.protocol + '//' + document.location.hostname + `/qr_storeout?id=${$scope.account_invoices.id}`,
-            });
-          } else if ($scope.defaultSettings.printer_program.place_qr.id == 2) {
-            site.qrcode({ selector: document.querySelectorAll('.qrcode')[$scope.invList.length - 1], text: qrString });
-          }
-        }
+    
         let printerName = $scope.defaultSettings.printer_program.a4_printer.ip.name.trim();
         if($scope.user.a4_printer && $scope.user.a4_printer.id){
             printerName = $scope.user.a4_printer.ip.name.trim();
@@ -1585,15 +1566,13 @@ app.controller('account_invoices', function ($scope, $http, $timeout) {
             printer: printerName,
           });
         }, 500);
-      };
 
-      $scope.localPrint();
     } else {
       $scope.error = '##word.a4_printer_must_select##';
     }
     $scope.busy = false;
     $timeout(() => {
-      $('#accountInvoiceDetails').addClass('hidden');
+     /*  $('#accountInvoiceDetails').addClass('hidden'); */
     }, 8000);
   };
 
