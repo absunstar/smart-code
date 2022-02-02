@@ -22,7 +22,7 @@
     {
         "name": "item_not_found",
         "en": "Item Not Fouuund",
-        "ar": "هذا الصنف غر موجود"
+        "ar": "هذا الصنف غير موجود"
     },
     {
         "name": "print_invoices",
