@@ -436,15 +436,15 @@ app.controller('account_invoices', function ($scope, $http, $timeout) {
           $scope.account_invoices = response.data.doc;
           if ($scope.account_invoices.currency) {
             site.strings['currency'] = {
-                ar: ' ' + $scope.account_invoices.currency.name_ar + ' ',
-                en: ' ' + $scope.account_invoices.currency.name_en + ' ',
+              ar: ' ' + $scope.account_invoices.currency.name_ar + ' ',
+              en: ' ' + $scope.account_invoices.currency.name_en + ' ',
             };
             site.strings['from100'] = {
-                ar: ' ' + $scope.account_invoices.currency.minor_currency_ar + ' ',
-                en: ' ' + $scope.account_invoices.currency.minor_currency_en + ' ',
+              ar: ' ' + $scope.account_invoices.currency.minor_currency_ar + ' ',
+              en: ' ' + $scope.account_invoices.currency.minor_currency_en + ' ',
             };
             $scope.account_invoices.net_txt = site.stringfiy($scope.account_invoices.net_value);
-        }
+          }
         } else {
           $scope.error = response.data.error;
         }
@@ -1477,35 +1477,34 @@ app.controller('account_invoices', function ($scope, $http, $timeout) {
     $scope.thermal = { ...obj };
     $('#thermalPrint').removeClass('hidden');
     if ($scope.thermal.currency) {
-        site.strings['currency'] = {
-            ar: ' ' + $scope.thermal.currency.name_ar + ' ',
-            en: ' ' + $scope.thermal.currency.name_en + ' ',
-        };
-        site.strings['from100'] = {
-            ar: ' ' + $scope.thermal.currency.minor_currency_ar + ' ',
-            en: ' ' + $scope.thermal.currency.minor_currency_en + ' ',
-        };
-        $scope.thermal.net_txt = site.stringfiy($scope.thermal.net_value);
+      site.strings['currency'] = {
+        ar: ' ' + $scope.thermal.currency.name_ar + ' ',
+        en: ' ' + $scope.thermal.currency.name_en + ' ',
+      };
+      site.strings['from100'] = {
+        ar: ' ' + $scope.thermal.currency.minor_currency_ar + ' ',
+        en: ' ' + $scope.thermal.currency.minor_currency_en + ' ',
+      };
+      $scope.thermal.net_txt = site.stringfiy($scope.thermal.net_value);
     }
     /*JsBarcode('.barcode', $scope.thermal.code);*/
     document.querySelector('#qrcode').innerHTML = '';
     let datetime = new Date($scope.thermal.date);
-    let formatted_date =
-        datetime.getFullYear() + '-' + (datetime.getMonth() + 1) + '-' + datetime.getDate() + ' ' + datetime.getHours() + ':' + datetime.getMinutes() + ':' + datetime.getSeconds();
+    let formatted_date = datetime.getFullYear() + '-' + (datetime.getMonth() + 1) + '-' + datetime.getDate() + ' ' + datetime.getHours() + ':' + datetime.getMinutes() + ':' + datetime.getSeconds();
     let qrString = `[${'##session.company.name_ar##'}]\nرقم ضريبي : [${$scope.defaultSettings.printer_program.tax_number}]\nرقم الفاتورة :[${
-        $scope.thermal.code
+      $scope.thermal.code
     }]\nتاريخ : [${formatted_date}]\nضريبة القيمة المضافة : [${$scope.thermal.total_value_added}]\nالصافي : [${$scope.thermal.net_value}]`;
 
     if ($scope.defaultSettings.printer_program.place_qr) {
-        if ($scope.defaultSettings.printer_program.place_qr.id == 1) {
-            site.qrcode({ selector: '#qrcode', text: document.location.protocol + '//' + document.location.hostname + `/qr_storeout?id=${$scope.thermal.id}` });
-        } else if ($scope.defaultSettings.printer_program.place_qr.id == 2) {
-            site.qrcode({ selector: '#qrcode', text: qrString });
-        }
+      if ($scope.defaultSettings.printer_program.place_qr.id == 1) {
+        site.qrcode({ selector: '#qrcode', text: document.location.protocol + '//' + document.location.hostname + `/qr_storeout?id=${$scope.thermal.id}` });
+      } else if ($scope.defaultSettings.printer_program.place_qr.id == 2) {
+        site.qrcode({ selector: '#qrcode', text: qrString });
+      }
     }
 
     if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path && $scope.defaultSettings.printer_program.printer_path.ip) {
-        /*site.print({
+      /*site.print({
                 selector: '#thermalPrint',
                 ip: '127.0.0.1',
                 port: '60080',
@@ -1513,77 +1512,80 @@ app.controller('account_invoices', function ($scope, $http, $timeout) {
                 printer: $scope.defaultSettings.printer_program.printer_path.ip.name.trim(),
             });*/
 
-            let printerName = $scope.defaultSettings.printer_program.printer_path.ip.name.trim();
-            if($scope.user.printer_path && $scope.user.printer_path.id){
-                printerName = $scope.user.printer_path.ip.name.trim();
-            }
+      let printerName = $scope.defaultSettings.printer_program.printer_path.ip.name.trim();
+      if ($scope.user.printer_path && $scope.user.printer_path.id) {
+        printerName = $scope.user.printer_path.ip.name.trim();
+      }
 
-        site.printAsImage(
-            {
-                selector: '#thermalPrint',
-                ip: '127.0.0.1',
-                port: '60080',
-                pageSize: 'Letter',
-                printer: printerName,
-            },
-            () => {
-                $timeout(() => {
-                    $('#thermalPrint').addClass('hidden');
-                }, 2000);
-            },
-        );
+      site.printAsImage(
+        {
+          selector: '#thermalPrint',
+          ip: '127.0.0.1',
+          port: '60080',
+          pageSize: 'Letter',
+          printer: printerName,
+        },
+        () => {
+          $timeout(() => {
+            $('#thermalPrint').addClass('hidden');
+          }, 2000);
+        }
+      );
     } else {
-        $scope.error = '##word.thermal_printer_must_select##';
+      $scope.error = '##word.thermal_printer_must_select##';
     }
 
     $scope.busy = false;
-};
+  };
 
-   $scope.print = function () {
+  $scope.print = function () {
     $scope.error = '';
     if ($scope.busy) return;
     $scope.busy = true;
     if ($scope.defaultSettings.printer_program.a4_printer) {
       $('#accountInvoiceDetails').removeClass('hidden');
 
-      let datetime = new Date($scope.account_invoices.date);
-      let formatted_date = datetime.getFullYear() + '-' + (datetime.getMonth() + 1) + '-' + datetime.getDate() + ' ' + datetime.getHours() + ':' + datetime.getMinutes() + ':' + datetime.getSeconds();
-      let qrString = `[${'##session.company.name_ar##'}]\nرقم ضريبي : [${$scope.defaultSettings.printer_program.tax_number}]\nرقم الفاتورة :[${
-        $scope.account_invoices.code
-      }]\nتاريخ : [${formatted_date}]\nضريبة القيمة المضافة : [${$scope.account_invoices.total_value_added}]\nالصافي : [${$scope.account_invoices.net_value}]`;
+      if ($scope.account_invoices.currency) {
+        site.strings['currency'] = {
+          ar: ' ' + $scope.account_invoices.currency.name_ar + ' ',
+          en: ' ' + $scope.account_invoices.currency.name_en + ' ',
+        };
+        site.strings['from100'] = {
+          ar: ' ' + $scope.account_invoices.currency.minor_currency_ar + ' ',
+          en: ' ' + $scope.account_invoices.currency.minor_currency_en + ' ',
+        };
+        $scope.account_invoices.net_txt = site.stringfiy($scope.account_invoices.total_paid_up);
+      }
 
-    
-        let printerName = $scope.defaultSettings.printer_program.a4_printer.ip.name.trim();
-        if($scope.user.a4_printer && $scope.user.a4_printer.id){
-            printerName = $scope.user.a4_printer.ip.name.trim();
-        }
-        $timeout(() => {
-          site.print({
-            selector: '#accountInvoiceDetails',
-            ip: '127.0.0.1',
-            port: '60080',
-            pageSize: 'A4',
-            printer: printerName,
-          });
-        }, 500);
-
+      let printerName = $scope.defaultSettings.printer_program.a4_printer.ip.name.trim();
+      if ($scope.user.a4_printer && $scope.user.a4_printer.id) {
+        printerName = $scope.user.a4_printer.ip.name.trim();
+      }
+      $timeout(() => {
+        site.print({
+          selector: '#accountInvoiceDetails',
+          ip: '127.0.0.1',
+          port: '60080',
+          pageSize: 'A4',
+          printer: printerName,
+        });
+      }, 500);
     } else {
       $scope.error = '##word.a4_printer_must_select##';
     }
     $scope.busy = false;
     $timeout(() => {
-     /*  $('#accountInvoiceDetails').addClass('hidden'); */
+      $('#accountInvoiceDetails').addClass('hidden');
     }, 8000);
   };
-
 
   $scope.getUser = function () {
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/user/view",
+      method: 'POST',
+      url: '/api/user/view',
       data: {
-        id: "##user.id##",
+        id: '##user.id##',
       },
     }).then(
       function (response) {

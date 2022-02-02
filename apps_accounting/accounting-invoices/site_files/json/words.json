@@ -20,6 +20,11 @@
         "ar": "المدفوع"
     },
     {
+        "name": "being",
+        "en": "Being",
+        "ar": "و ذلك مقابل"
+    },
+    {
         "name": "amount_paid",
         "en": "paid",
         "ar": "المدفوع"
