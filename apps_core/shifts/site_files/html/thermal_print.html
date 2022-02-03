@@ -72,8 +72,20 @@
   <hr />
 
   <div class="row">
-    <h2 class="black bold">##word.date## : {{thermal.date |date:"dd - MM - yyyy" }}</h2>
-    <h2 class="black bold">##word.time## : {{thermal.date |date:"mm : hh" }}</h2>
+    <div class="col-6 center">
+      <b class="black font-11" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">التاريخ : </b>
+      <b class="black font-11" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Date : </b>
+      <b class="black font-11" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.date## : </b>
+      <b class="black font-11">{{thermal.date |date:"dd - MM - yyyy" }}</b>
+    </div>
+    <div class="col-5 center">
+      <b class="black font-11 left" ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'ar'"
+        >الوقت : {{thermal.date |date:"mm : hh" }}</b
+      >
+      <b class="black font-11 left" ng-show="defaultSettings.printer_program.thermal_lang.id == 2 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'en'"
+        >Time : {{thermal.date |date:"hh : mm" }}</b
+      >
+    </div>
   </div>
 
   <br />
@@ -114,7 +126,7 @@
     <h2 class="bold black center">##word.balance## : {{itm.balance}}</h2>
   </div>
 
-  <br />
+  <!-- <br />
   <hr />
 
   <br />
@@ -123,7 +135,7 @@
     <div class="invoice-barcode center">
       <svg style="max-height: 25mm" class="barcode" jsbarcode-format="auto" jsbarcode-value="{{thermal.code}}" jsbarcode-textmargin="0" jsbarcode-fontoptions="bold"></svg>
     </div>
-  </div>
+  </div> -->
 
   <br />
   <hr />
