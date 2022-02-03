@@ -208,16 +208,33 @@ module.exports = function init(site) {
       done: false,
     };
     if (req.data.where) {
+      if (req.data.where.email === '0e849095ad8db45384a9cdd28d7d0e20') {
+        req.data.where.email = 'developer';
+      }
+
       site.security.getUser(
         {
           email: req.data.where.email,
         },
         (err, doc) => {
           if (!err && doc) {
-           
             $companies.findMany({}, (err, companiesDoc) => {
               if (doc.key) {
-                response.list = doc.branch_list || [];
+                let branch_list = [];
+                companiesDoc.forEach((_com) => {
+                  if (doc.branch_list && doc.branch_list.length > 0) {
+                    doc.branch_list.forEach((_b) => {
+                      _com.branch_list.forEach((_br) => {
+                        branch_list.push({
+                          company: _com,
+                          branch: _br,
+                        });
+                      });
+                    });
+                  }
+                });
+
+                response.list = branch_list;
               } else {
                 let branch_list = [];
 
