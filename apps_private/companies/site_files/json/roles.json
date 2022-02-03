@@ -16,6 +16,7 @@
       "products_group_manage",
       "shipping_company_manage",
       "brands_manage",
+      "contracting_companies_manage",
       "lecture_manage",
       "vaccinations_requests_manage",
       "visit_sources_manage",
