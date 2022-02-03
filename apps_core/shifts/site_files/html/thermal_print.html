@@ -73,16 +73,16 @@
 
   <div class="row">
     <div class="col-6 center">
-      <b class="black font-11" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">التاريخ : </b>
-      <b class="black font-11" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Date : </b>
-      <b class="black font-11" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.date## : </b>
-      <b class="black font-11">{{thermal.date |date:"dd - MM - yyyy" }}</b>
+      <b class="black font-17" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">التاريخ : </b>
+      <b class="black font-17" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Date : </b>
+      <b class="black font-17" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.date## : </b>
+      <b class="black font-17">{{thermal.date |date:"dd - MM - yyyy" }}</b>
     </div>
     <div class="col-5 center">
-      <b class="black font-11 left" ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'ar'"
+      <b class="black font-17 left" ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'ar'"
         >الوقت : {{thermal.date |date:"mm : hh" }}</b
       >
-      <b class="black font-11 left" ng-show="defaultSettings.printer_program.thermal_lang.id == 2 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'en'"
+      <b class="black font-17 left" ng-show="defaultSettings.printer_program.thermal_lang.id == 2 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'en'"
         >Time : {{thermal.date |date:"hh : mm" }}</b
       >
     </div>

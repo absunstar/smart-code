@@ -320,8 +320,8 @@ app.controller('shifts', function ($scope, $http, $timeout) {
     $scope.thermal.active = obj.active;
     $('#thermalPrint').removeClass('hidden');
 
-    JsBarcode('.barcode', $scope.thermal.code);
-    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path && $scope.defaultSettings.printer_program.printer_path.ip) {
+/*     JsBarcode('.barcode', $scope.thermal.code);
+ */    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path && $scope.defaultSettings.printer_program.printer_path.ip) {
       let printerName = $scope.defaultSettings.printer_program.printer_path.ip.name.trim();
       if ($scope.user.printer_path && $scope.user.printer_path.id) {
         printerName = $scope.user.printer_path.ip.name.trim();
