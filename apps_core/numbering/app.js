@@ -78,20 +78,20 @@ module.exports = function init(site) {
         let screens_list = []
 
         if (site.features.like('*erp*')) {
-          screens_list = moduleListCore.filter((i) => i.feature !== 'restaurant' && i.feature !== 'club' && i.feature !== 'eco' && i.feature !== 'academy' && i.feature !== 'medic' && i.feature !== 'school' && i.feature !== 'medical' && i.feature !== 'lawyer');
+          screens_list = moduleListCore.filter((i) => i.feature !== 'restaurant' && i.feature !== 'club' && i.feature !== 'ecommerce' && i.feature !== 'academy' && i.feature !== 'medic' && i.feature !== 'school' && i.feature !== 'medical' && i.feature !== 'lawyer');
 
         } else if (site.features.like('*restaurant*')) {
-          screens_list = moduleListCore.filter((i) => i.feature !== 'club' && i.feature !== 'eco' && i.feature !== 'erp'  && i.feature !== 'academy' && i.feature !== 'medic' && i.feature !== 'school' && i.feature !== 'medical' && i.feature !== 'lawyer');
+          screens_list = moduleListCore.filter((i) => i.feature !== 'club' && i.feature !== 'ecommerce' && i.feature !== 'erp'  && i.feature !== 'academy' && i.feature !== 'medic' && i.feature !== 'school' && i.feature !== 'medical' && i.feature !== 'lawyer');
 
         } else if (site.features.like('*pos*')) {
-          screens_list = moduleListCore.filter((i) => i.feature !== 'club' && i.feature !== 'eco' && i.feature !== 'erp' && i.feature !== 'restaurant' && i.feature !== 'academy' && i.feature !== 'medic' && i.feature !== 'school' && i.feature !== 'medical' && i.feature !== 'lawyer');
+          screens_list = moduleListCore.filter((i) => i.feature !== 'club' && i.feature !== 'ecommerce' && i.feature !== 'erp' && i.feature !== 'restaurant' && i.feature !== 'academy' && i.feature !== 'medic' && i.feature !== 'school' && i.feature !== 'medical' && i.feature !== 'lawyer');
 
-        } else if (site.features.like('*eco*')) {
+        } else if (site.features.like('*ecommerce*')) {
           screens_list = moduleListCore.filter((i) => i.feature !== 'club' && i.feature !== 'pos' && i.feature !== 'erp' && i.feature !== 'restaurant' && i.feature !== 'academy' && i.feature !== 'medic' && i.feature !== 'school' && i.feature !== 'medical' && i.feature !== 'lawyer');
 
 
         } else if (site.features.like('*lawyer*')) {
-          screens_list = moduleListCore.filter((i) => i.feature !== 'erp' && i.feature !== 'eco' && i.feature !== 'restaurant' && i.feature !== 'club' && i.feature !== 'academy' && i.feature !== 'medic' && i.feature !== 'school' && i.feature !== 'medical');
+          screens_list = moduleListCore.filter((i) => i.feature !== 'erp' && i.feature !== 'ecommerce' && i.feature !== 'restaurant' && i.feature !== 'club' && i.feature !== 'academy' && i.feature !== 'medic' && i.feature !== 'school' && i.feature !== 'medical');
 
 
 
@@ -198,7 +198,7 @@ module.exports = function init(site) {
             }
           });
 
-          screens_list = moduleListCore.filter((i) => i.feature !== 'order' && i.feature !== 'erp' && i.feature !== 'restaurant' && i.feature !== 'eco' && i.feature !== 'club' && i.feature !== 'academy' && i.feature !== 'school' && i.feature !== 'lawyer');
+          screens_list = moduleListCore.filter((i) => i.feature !== 'order' && i.feature !== 'erp' && i.feature !== 'restaurant' && i.feature !== 'ecommerce' && i.feature !== 'club' && i.feature !== 'academy' && i.feature !== 'school' && i.feature !== 'lawyer');
 
           moduleListCore.forEach(_m => {
             if (_m.feature == 'medic' && _m.name != 'hall' && _m.name != 'trainer') {
@@ -208,7 +208,7 @@ module.exports = function init(site) {
 
         } else if (site.features.like('*employee*')) {
 
-          screens_list = moduleListCore.filter((i) => i.feature !== 'order' && i.feature !== 'erp' && i.feature !== 'pos' && i.feature !== 'eco' && i.feature !== 'restaurant' && i.feature !== 'club' && i.feature !== 'academy' && i.feature !== 'school' && i.feature !== 'medic' && i.feature !== 'lawyer' && i.feature !== 'medical');
+          screens_list = moduleListCore.filter((i) => i.feature !== 'order' && i.feature !== 'erp' && i.feature !== 'pos' && i.feature !== 'ecommerce' && i.feature !== 'restaurant' && i.feature !== 'club' && i.feature !== 'academy' && i.feature !== 'school' && i.feature !== 'medic' && i.feature !== 'lawyer' && i.feature !== 'medical');
           moduleListCore.forEach(_mc => {
             if (_mc.name === 'amounts_in') screens_list.push(_mc)
             else if (_mc.name === 'amounts_out') screens_list.push(_mc)

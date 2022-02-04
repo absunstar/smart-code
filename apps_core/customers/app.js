@@ -202,7 +202,7 @@ module.exports = function init(site) {
       site.feature("pos") ||
       site.feature("restaurant") ||
       site.feature("erp") ||
-      site.feature("eco")
+      site.feature("ecommerce")
     ) {
       user.roles.push({
         module_name: "public",
@@ -451,7 +451,7 @@ module.exports = function init(site) {
       site.feature("pos") ||
       site.feature("restaurant") ||
       site.feature("erp") ||
-      site.feature("eco")
+      site.feature("ecommerce")
     ) {
       user.roles.push({
         module_name: "public",
@@ -1040,7 +1040,7 @@ module.exports = function init(site) {
       site.feature("pos") ||
       site.feature("restaurant") ||
       site.feature("erp") ||
-      site.feature("eco")
+      site.feature("ecommerce")
     ) {
       user.roles.push({
         module_name: "public",

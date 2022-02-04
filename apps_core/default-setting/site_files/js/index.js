@@ -277,7 +277,7 @@ app.controller("default_setting", function ($scope, $http,$timeout) {
         else if (
           site.feature("restaurant") ||
           site.feature("pos") ||
-          site.feature("eco") ||
+          site.feature("ecommerce") ||
           site.feature("erp")
         )
           $scope.sourceTypeList = response.data.filter(
@@ -847,7 +847,7 @@ app.controller("default_setting", function ($scope, $http,$timeout) {
   if (
     site.feature("restaurant") ||
     site.feature("pos") ||
-    site.feature("eco") ||
+    site.feature("ecommerce") ||
     site.feature("erp")
   ) {
     $scope.getDeliveryEmployeesList();

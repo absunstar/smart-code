@@ -1,0 +1,150 @@
+<div class="form">
+    <div id="basicInformation" class="">
+        <fieldset>
+            <legend>##word.basic_information##</legend>
+            <div class="row">
+              <div class="col9">
+                <div class="row">
+                  <i-control
+                    ng-hide="disabledBrandCode"
+                    class="col2"
+                    label="##word.code##"
+                    ng-model="brand.code"
+                  ></i-control>
+                  <i-control
+                    help-id="brands_name"
+                    v="r ll2"
+                    class="col4"
+                    label="##word.brand_name##"
+                    ng-model="brand.name_ar"
+                  ></i-control>
+  
+                  <i-control
+                    help-id="brands_name_en"
+                    class="col4"
+                    label="##word.name_en##"
+                    ng-model="brand.name_en"
+                  ></i-control>
+                  <i-checkbox
+                    class="col2"
+                    help-id="brands_active"
+                    label="##word.active##"
+                    ng-model="brand.active"
+                  >
+                  </i-checkbox>
+                </div>
+  
+                <div class="row">
+                  <i-list
+                    class="col3"
+                    label="##word.companies_gov##"
+                    ng-model="brand.gov"
+                    ng-search="_search.$gov"
+                    ng-change="getCityList(brand.gov)"
+                    items="govList"
+                    display="name_##session.lang##"
+                  ></i-list>
+  
+                  <i-list
+                    class="col3"
+                    label="##word.companies_city##"
+                    ng-model="brand.city"
+                    ng-search="_search.$city"
+                    items="cityList"
+                    display="name_##session.lang##"
+                  ></i-list>
+  
+                  <i-control
+                    class="col6"
+                    label="##word.companies_address##"
+                    ng-model="brand.address"
+                  >
+                  </i-control>
+                </div>
+  
+                <div class="row">
+                  <i-control
+                    class="col3"
+                    label="##word.companies_phone##"
+                    ng-model="brand.phone"
+                  >
+                  </i-control>
+                  <i-control
+                    class="col3"
+                    label="##word.companies_mobile##"
+                    ng-model="brand.mobile"
+                  >
+                  </i-control>
+                  <i-control
+                    class="col3"
+                    label="##word.companies_fax##"
+                    ng-model="brand.fax"
+                  ></i-control>
+                  <i-control
+                    class="col3"
+                    label="##word.companies_email##"
+                    ng-model="brand.email"
+                  >
+                  </i-control>
+                </div>
+                <fieldset>
+                  <legend>##word.companies_contact_charge##</legend>
+                  <div class="row">
+                    <i-control
+                      class="col3"
+                      label="##word.companies_charge_name##"
+                      ng-model="brand.admin.name"
+                    >
+                    </i-control>
+  
+                    <i-control
+                      class="col3"
+                      label="##word.companies_charge_job##"
+                      ng-model="brand.admin.job"
+                    >
+                    </i-control>
+  
+                    <i-control
+                      class="col3"
+                      label="##word.companies_phone##"
+                      ng-model="brand.admin.phone"
+                    >
+                    </i-control>
+  
+                    <i-control
+                      class="col3"
+                      label="##word.companies_internal_number##"
+                      ng-model="brand.admin.internal_number"
+                    ></i-control>
+                  </div>
+  
+                  <div class="row">
+                    <i-control
+                      class="col3"
+                      label="##word.companies_mobile##"
+                      ng-model="brand.admin.mobile"
+                    >
+                    </i-control>
+  
+                    <i-control
+                      class="col3"
+                      label="##word.companies_email##"
+                      ng-model="brand.admin.email"
+                    >
+                    </i-control>
+                  </div>
+                </fieldset>
+              </div>
+  
+              <div class="col3">
+                <i-image
+                  help-id="brands_logo"
+                  ng-model="brand.image_url"
+                ></i-image>
+              </div>
+            </div>
+  
+          </fieldset>
+
+    </div>
+</div>

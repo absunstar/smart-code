@@ -191,7 +191,7 @@
         </a>
       </div>
 
-      <div x-features="restaurant || pos || eco || erp || club || academy || school">
+      <div x-features="restaurant || pos || ecommerce || erp || club || academy || school">
         <a class="tab-link" href="/stores_out?type=3" x-permissions="stores_out_purchase || stores_out_manage">
           <img src="/images/sales_invoice_store.png" />
           <span>##word.sales_invoice_store##</span>
@@ -212,7 +212,7 @@
           <span>##word.returns_purchase_invoices## </span>
         </a>
 
-        <div class="" x-features="restaurant || pos || eco || erp">
+        <div class="" x-features="restaurant || pos || ecommerce || erp">
           <a class="tab-link" href="/order_invoice" x-permissions="order_invoice_ui || order_invoice_manage">
             <img src="/images/order_invoice.png" />
             <span> ##word.order_invoice_menus## </span>
@@ -233,7 +233,7 @@
             <span>##word.order_distributor_menus## </span>
           </a>
 
-          <a x-features="pos || erp || eco" class="tab-link" href="/itineraries" x-permissions="itineraries_ui || itineraries_manage">
+          <a x-features="pos || erp || ecommerce" class="tab-link" href="/itineraries" x-permissions="itineraries_ui || itineraries_manage">
             <img src="/images/itinerary.png" />
             <span> ##word.itineraries## </span>
           </a>
@@ -529,12 +529,12 @@
         <span>##word.kitchens##</span>
       </a>
 
-      <a class="tab-link" x-features="erp || pos || eco || restaurant || school" href="/vehicles" x-permissions="vehicles_ui || vehicles_manage">
+      <a class="tab-link" x-features="erp || pos || ecommerce || restaurant || school" href="/vehicles" x-permissions="vehicles_ui || vehicles_manage">
         <img src="/images/vehicles.png" />
         <span> ##word.vehicles##</span>
       </a>
 
-      <a class="tab-link" x-features="erp || pos || eco || restaurant || school" href="/vehicles_types" x-permissions="vehicles_types_ui || vehicles_types_manage">
+      <a class="tab-link" x-features="erp || pos || ecommerce || restaurant || school" href="/vehicles_types" x-permissions="vehicles_types_ui || vehicles_types_manage">
         <img src="/images/vehicles_types.png" />
         <span> ##word.vehicles_types##</span>
       </a>
@@ -593,7 +593,7 @@
         <span>##word.sales_invoice## </span>
       </a>
 
-      <a class="tab-link" x-features="pos || eco || restaurant || erp" href="/account_invoices?type=3" x-permissions="account_invoices_ui || account_invoices_manage">
+      <a class="tab-link" x-features="pos || ecommerce || restaurant || erp" href="/account_invoices?type=3" x-permissions="account_invoices_ui || account_invoices_manage">
         <img src="/images/order_invoice.png" />
         <span>##word.orders_screen_invoice## </span>
       </a>
@@ -789,7 +789,7 @@
         <span>##word.stores_items##</span>
       </a>
 
-      <a class="tab-link" x-features="medical || pos || eco" href="/active_substances" x-permissions="active_substances_ui || active_substances_manage">
+      <a class="tab-link" x-features="medical || pos || ecommerce" href="/active_substances" x-permissions="active_substances_ui || active_substances_manage">
         <img src="/images/active_substances.png" />
         <span>##word.active_substances##</span>
       </a>
@@ -848,7 +848,7 @@
         <span> ##word.trainers##</span>
       </a>
 
-      <div class="" x-features="restaurant || pos || eco || erp">
+      <div class="" x-features="restaurant || pos || ecommerce || erp">
         <a class="tab-link" href="/delegates" x-permissions="delegate_ui || delegate_manage">
           <img src="/images/delegate.png" />
           <span> ##word.delegates## </span>
@@ -990,7 +990,7 @@
         </a>
       </div>
 
-      <a class="tab-link" x-features="pos || eco || erp || restaurant" href="/report_daily" x-permissions="report_daily_ui || report_daily_manage">
+      <a class="tab-link" x-features="pos || ecommerce || erp || restaurant" href="/report_daily" x-permissions="report_daily_ui || report_daily_manage">
         <img src="/images/report_daily.png" />
         <span>##word.report_daily_name##</span>
       </a>
@@ -1129,7 +1129,7 @@
           <span>##word.report## ##word.sales_invoice## </span>
         </a>
 
-        <a class="tab-link" x-features="pos || eco || restaurant || erp" href="/report_invoices?type=3" x-permissions="report_invoices_ui || report_invoices_manage">
+        <a class="tab-link" x-features="pos || ecommerce || restaurant || erp" href="/report_invoices?type=3" x-permissions="report_invoices_ui || report_invoices_manage">
           <img src="/images/order_invoice.png" />
           <span>##word.report## ##word.orders_screen_invoice## </span>
         </a>
@@ -1145,7 +1145,7 @@
           <span>##word.report## ##word.payment_employee_advance## </span>
         </a>
 
-        <a class="tab-link" x-features="restaurant || pos || eco || erp" href="/report_employee_delegate" x-permissions="report_employee_delegate_ui || report_employee_delegate_manage">
+        <a class="tab-link" x-features="restaurant || pos || ecommerce || erp" href="/report_employee_delegate" x-permissions="report_employee_delegate_ui || report_employee_delegate_manage">
           <img src="/images/report_employee_delegate.png" />
           <span>##word.report_employees_delegates##</span>
         </a>
@@ -1165,22 +1165,22 @@
           <span>##word.report_invoices_payments##</span>
         </a>
 
-        <a x-features="restaurant || pos || eco || erp" class="tab-link" href="/report_orders" x-permissions="report_orders_ui || report_orders_manage">
+        <a x-features="restaurant || pos || ecommerce || erp" class="tab-link" href="/report_orders" x-permissions="report_orders_ui || report_orders_manage">
           <img src="/images/report_orders.png" />
           <span>##word.report_orders##</span>
         </a>
 
-        <a x-features="restaurant || pos || eco || erp" class="tab-link" href="/report_employee_user" x-permissions="report_employee_user_ui || report_employee_user_manage">
+        <a x-features="restaurant || pos || ecommerce || erp" class="tab-link" href="/report_employee_user" x-permissions="report_employee_user_ui || report_employee_user_manage">
           <img src="/images/report_employee_user.png" />
           <span>##word.report_employee_user##</span>
         </a>
 
-        <a x-features="restaurant || pos || eco || erp" class="tab-link" href="/report_full_employees" x-permissions="report_full_employees_ui || report_full_employees_manage">
+        <a x-features="restaurant || pos || ecommerce || erp" class="tab-link" href="/report_full_employees" x-permissions="report_full_employees_ui || report_full_employees_manage">
           <img src="/images/report_full_employees.png" />
           <span>##word.report_full_orders_employees##</span>
         </a>
 
-        <a x-features="restaurant || pos || eco || erp" class="tab-link" href="/report_employee_delivery" x-permissions="report_employee_delivery_ui || report_employee_delivery_manage">
+        <a x-features="restaurant || pos || ecommerce || erp" class="tab-link" href="/report_employee_delivery" x-permissions="report_employee_delivery_ui || report_employee_delivery_manage">
           <img src="/images/report_employee_delivery.png" />
           <span>##word.report_employees_delivery##</span>
         </a>
@@ -1204,12 +1204,12 @@
         <span> ##word.contracting_companies## </span>
       </a>
 
-      <a x-features="restaurant || pos || eco || erp" class="tab-link" href="/vendors" x-permissions="vendors_ui || vendors_manage">
+      <a x-features="restaurant || pos || ecommerce || erp" class="tab-link" href="/vendors" x-permissions="vendors_ui || vendors_manage">
         <img src="/images/vendor.png" />
         <span> ##word.vendors## </span>
       </a>
 
-      <a x-features="restaurant || pos || eco || academy || club || erp || lawyer" class="tab-link" href="/shifts" x-permissions="shifts_ui || shifts_manage">
+      <a x-features="restaurant || pos || ecommerce || academy || club || erp || lawyer" class="tab-link" href="/shifts" x-permissions="shifts_ui || shifts_manage">
         <img src="/images/shift.png" />
         <span> ##word.menu_shift## </span>
       </a>
@@ -1423,7 +1423,7 @@
         </a>
       </div>
 
-      <div x-features="restaurant || pos || eco || erp || club || academy || school">
+      <div x-features="restaurant || pos || ecommerce || erp || club || academy || school">
         <a class="tab-link" x-features="erp" href="/financial_years" x-permissions="financial_years_ui || financial_years_manage">
           <img src="/images/financial_years.png" />
           <span> ##word.financial_years## </span>
@@ -1504,7 +1504,7 @@
         <span> ##word.customers_groups## </span>
       </a>
 
-      <a x-features="restaurant || pos || eco || academy || club || erp || school" class="tab-link" href="/vendors_group" x-permissions="vendors_group_ui || vendors_group_manage">
+      <a x-features="restaurant || pos || ecommerce || academy || club || erp || school" class="tab-link" href="/vendors_group" x-permissions="vendors_group_ui || vendors_group_manage">
         <img src="/images/vendor_group.png" />
         <span> ##word.vendors_group## </span>
       </a>
@@ -1534,7 +1534,7 @@
     <div class="tabs-header">
       <a
         class="tab-link"
-        x-features="eco"
+        x-features="ecommerce"
         href="/products"
         x-permissions=" products_ui ||
         products_manage"
@@ -1545,7 +1545,7 @@
 
       <a
         class="tab-link"
-        x-features="eco"
+        x-features="ecommerce"
         href="/products_group"
         x-permissions=" products_group_ui ||
       products_group_manage"
@@ -1556,7 +1556,7 @@
 
       <a
         class="tab-link"
-        x-features="eco"
+        x-features="ecommerce"
         href="/shipping_companies"
         x-permissions=" shipping_company_ui ||
     shipping_company_manage"
@@ -1567,18 +1567,18 @@
 
       <a
         class="tab-link"
-        x-features="eco"
-        href="/brands"
-        x-permissions=" brands_ui ||
-  brands_manage"
+        x-features="ecommerce"
+        href="/brand"
+        x-permissions=" brand_ui ||
+  brand_manage"
       >
-        <img src="/images/brands.png" />
+        <img src="/images/brand.png" />
         <span>##word.brands##</span>
       </a>
 
       <a
         class="tab-link"
-        x-features="eco"
+        x-features="ecommerce"
         href="/ecommerce_setting"
         x-permissions=" ecommerce_setting_ui ||
       ecommerce_setting_manage"
@@ -1589,7 +1589,7 @@
 
       <a
         class="tab-link"
-        x-features="eco"
+        x-features="ecommerce"
         href="/main_eco"
         x-permissions=" main_eco_ui ||
       main_eco_manage"
@@ -1600,7 +1600,7 @@
 
       <a
         class="tab-link"
-        x-features="eco"
+        x-features="ecommerce"
         href="/order_eco"
         x-permissions=" order_eco_ui ||
     order_eco_manage"
@@ -1611,7 +1611,7 @@
 
       <a
         class="tab-link"
-        x-features="eco"
+        x-features="ecommerce"
         href="/report_eco"
         x-permissions=" report_eco_ui ||
   report_eco_manage"
@@ -1636,12 +1636,12 @@
           <span> ##word.security_system##</span>
         </a>
 
-        <a x-features="restaurant || pos || eco || academy || club || erp || school || medical" class="tab-link" onclick="site.showTabs(event, '#inventory_tabs')">
+        <a x-features="restaurant || pos || ecommerce || academy || club || erp || school || medical" class="tab-link" onclick="site.showTabs(event, '#inventory_tabs')">
           <img src="/images/inventory.png" />
           <span>##word.inventory_transactions##</span>
         </a>
 
-        <a x-features="restaurant || pos || eco || academy || club || erp || school || medical" class="tab-link" onclick="site.showTabs(event, '#inventory_setting')">
+        <a x-features="restaurant || pos || ecommerce || academy || club || erp || school || medical" class="tab-link" onclick="site.showTabs(event, '#inventory_setting')">
           <img src="/images/inventory_setting.png" />
           <span>##word.inventory_setting##</span>
         </a>
@@ -1864,7 +1864,7 @@
           <span>##word.sales_invoice## </span>
         </a>
 
-        <a class="tab-link" x-features="pos || eco || restaurant || erp" href="/account_invoices?type=3" x-permissions="account_invoices_ui || account_invoices_manage">
+        <a class="tab-link" x-features="pos || ecommerce || restaurant || erp" href="/account_invoices?type=3" x-permissions="account_invoices_ui || account_invoices_manage">
           <img src="/images/warehouse-white.svg" />
           <span>##word.orders_screen_invoice## </span>
         </a>

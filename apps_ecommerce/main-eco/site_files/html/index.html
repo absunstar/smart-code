@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  x-permissions="main_eco_ui || main_eco_manage"
+  data-ng-app="myApp"
+>
+  <head x-import="head.html">
+    <link
+      rel="stylesheet"
+      href="/css/order_invoice.css?v=##site.options.version##"
+    />
+  </head>
+
+  <body class="##session.lang##">
+    <nav
+      x-import="sitebar/index.html"
+      class="sitebar"
+      data-ng-controller="sitebar"
+    ></nav>
+
+    <nav
+      class="sitebottom"
+      x-import="sitebottom/index.html"
+      ng-controller="sitebottom"
+    ></nav>
+
+    <div id="main-layout" class="container loaded">
+      <div class="row">
+        <div class="row" ng-controller="main_eco" x-permissions="login">
+          <div x-import="main-ecommerce/purchase_modal.html"></div>
+
+          <!--  <div class="row">
+            <h1 class="bold text-center">##word.main_eco##</h1>
+          </div> -->
+
+          <div class="top-actions">
+            <span ng-show="busy">
+              <span class="sr-only">Loading...</span>
+            </span>
+          </div>
+
+          <div class="row">
+            <a
+              class="notification left"
+              onclick="site.showModal('#purchasesModal')"
+            >
+              <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+              <span ng-show="user.eco_order.items.length > 0" class="badge"
+                >{{user.eco_order.items.length}}</span
+              >
+            </a>
+          </div>
+
+          <div class="row">
+            <h1 class="bold text-center">##word.products_groups##</h1>
+          </div>
+          <div class="row center" style="height: 280px; overflow: auto">
+            <div class="item-list" ng-show="productGroupList.length > 0">
+              <a
+                class="item pointer"
+                ng-repeat="g in productGroupList"
+                ng-click="loadProducts(g , $event)"
+                help-id="menu_monitor"
+              >
+                <img ng-src="{{g.image_url}}" />
+                <div class="bg_font_item">
+                  <p class="center font_name_items">
+                    {{g.name_##session.lang##}}
+                  </p>
+                </div>
+              </a>
+            </div>
+            <hr
+              style="
+                height: 7px;
+                background-image: linear-gradient(
+                  rgb(90 79 255),
+                  rgb(227 225 255)
+                );
+              "
+            />
+          </div>
+
+          <div class="row">
+            <div class="row">
+              <h1 class="bold text-center">##word.products##</h1>
+            </div>
+            <div class="row center" style="height: 280px; overflow: auto">
+              <div class="item-list" ng-show="productList.length > 0">
+                <a
+                  class="item pointer"
+                  ng-repeat="p in productList"
+                  ng-click="bookList(p)"
+                  help-id="menu_monitor"
+                >
+                  <img ng-src="{{p.image_url}}" />
+                  <div class="bg_font_item">
+                    <p class="center font_name_items">
+                      {{p.name_##session.lang##}}
+                    </p>
+                  </div>
+                </a>
+              </div>
+              <hr
+                style="
+                  height: 7px;
+                  background-image: linear-gradient(
+                    rgb(90 79 255),
+                    rgb(227 225 255)
+                  );
+                "
+              />
+            </div>
+          </div>
+        </div>
+       
+      </div>
+    </div>
+    <div x-import="scripts.html"></div>
+
+    <script x-permissions="login" x-import="main-ecommerce/index.js"></script>
+  </body>
+</html>

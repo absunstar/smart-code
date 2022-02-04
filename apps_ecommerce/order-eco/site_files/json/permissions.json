@@ -1,0 +1,5 @@
+[
+    { "module_name" : "public" , "screen_name" : "order-ecommerce" , "name":"order_eco_manage" , "en":"Manage" , "ar":"إدارة"},
+    { "module_name" : "public" , "screen_name" : "order-ecommerce" , "name":"order_eco_ui" , "en":"UI" , "ar":"الواجهة الرسومية"}
+
+]

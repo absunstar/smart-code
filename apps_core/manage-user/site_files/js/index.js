@@ -31,7 +31,7 @@ app.controller("manage_user", function ($scope, $http) {
               module_name: _p.module_name,
             });
           });
-          if (site.feature("eco")) {
+          if (site.feature("ecommerce")) {
             $scope.getOrderEcoList();
           }
           $http({

@@ -5,7 +5,7 @@ module.exports = function init(site) {
     if (
       site.feature("pos") ||
       site.feature("erp") ||
-      site.feature("eco") ||
+      site.feature("ecommerce") ||
       site.feature("restaurant")
     ) {
       $delegate_list.add(

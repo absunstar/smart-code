@@ -47,7 +47,7 @@
                         <th>##word.gov##</th>
                         <th>##word.city_name##</th>
                         <th>##word.area_name##</th>
-                        <th x-features="restaurant || pos || erp || eco">##word.price_delivery_service##</th>
+                        <th x-features="restaurant || pos || erp || ecommerce">##word.price_delivery_service##</th>
                         <th>##word.status##</th>
                         <th class="not-print">##word.actions##</th>
                     </tr>
@@ -59,7 +59,7 @@
                         <td class="center">{{c.gov.name_##session.lang##}}</td>
                         <td class="center">{{c.city.name_##session.lang##}}</td>
                         <td class="center title">{{c.name_##session.lang##}}</td>
-                        <td x-features="restaurant || pos  || erp || eco" class="center green">{{c.price_delivery_service}}
+                        <td x-features="restaurant || pos  || erp || ecommerce" class="center green">{{c.price_delivery_service}}
                         </td>
                         <td class="center">
                             <p ng-show="c.active ==true" class="green"> ##word.active## </p>

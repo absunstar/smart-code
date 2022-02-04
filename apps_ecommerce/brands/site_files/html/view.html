@@ -1,0 +1,112 @@
+<div ng-hide="busy" class="row">
+    <div id="basicInformation" class="">
+        <fieldset>
+            <legend>##word.basic_information##</legend>
+            <div class="col9">
+              <table id="basicInformationTable" class="table hover bold">
+                <tr>
+                  <td class="title">##word.code##</td>
+                  <td class="center userPrint blue">{{brand.code}}</td>
+                </tr>
+  
+                <tr>
+                  <td class="title">##word.brand_name##</td>
+                  <td class="center">
+                    {{brand.name_##session.lang##}}
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td class="title">##word.companies_gov##</td>
+                  <td class="center">
+                    {{brand.gov.name_##session.lang##}}
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td class="title">##word.companies_city##</td>
+                  <td class="center">
+                    {{brand.city.name_##session.lang##}}
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td class="title">##word.companies_address##</td>
+                  <td class="center">{{brand.address}}</td>
+                </tr>
+  
+                <tr>
+                  <td class="title">##word.companies_phone##</td>
+                  <td class="center">{{brand.phone}}</td>
+                </tr>
+  
+                <tr>
+                  <td class="title">##word.companies_mobile##</td>
+                  <td class="center">{{brand.mobile}}</td>
+                </tr>
+  
+                <tr>
+                  <td class="title">##word.companies_fax##</td>
+                  <td class="center">{{brand.fax}}</td>
+                </tr>
+  
+                <tr>
+                  <td class="title">##word.companies_email##</td>
+                  <td class="center">{{brand.email}}</td>
+                </tr>
+  
+                <tr>
+                  <td class="title">##word.companies_charge_name##</td>
+                  <td class="center">{{brand.admin.name}}</td>
+                </tr>
+  
+                <tr>
+                  <td class="title">##word.companies_charge_job##</td>
+                  <td class="center">{{brand.admin.job}}</td>
+                </tr>
+  
+                <tr>
+                  <td class="title">##word.companies_phone##</td>
+                  <td class="center">{{brand.admin.phone}}</td>
+                </tr>
+  
+                <tr>
+                  <td class="title">##word.companies_internal_number##</td>
+                  <td class="center">{{brand.admin.internal_number}}</td>
+                </tr>
+  
+                <tr>
+                  <td class="title">##word.companies_mobile##</td>
+                  <td class="center">{{brand.admin.mobile}}</td>
+                </tr>
+  
+                <tr>
+                  <td class="title">##word.companies_email##</td>
+                  <td class="center">{{brand.admin.email}}</td>
+                </tr>
+  
+                <tr>
+                  <td class="title">##word.status##</td>
+                  <td
+                    ng-show="brand.active == true"
+                    class="green center"
+                  >
+                    ##word.active##
+                  </td>
+                  <td
+                    ng-show="brand.active == false"
+                    class="red center"
+                  >
+                    ##word.not_active##
+                  </td>
+                </tr>
+              </table>
+            </div>
+  
+            <div class="col3">
+              <i-image view ng-model="brand.image_url"></i-image>
+            </div>
+          </fieldset>
+    </div>
+</div>
+<div x-import="brands/action_info.html"></div>

@@ -56,7 +56,7 @@ app.controller("report_daily", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (site.feature('club')) $scope.sourceTypeList = response.data.filter(i => i.id != 3 && i.id != 5 && i.id != 6 && i.id != 7);
         else if (site.feature('restaurant')) $scope.sourceTypeList = response.data.filter(i => i.id != 4 && i.id != 5 && i.id != 6 && i.id != 7);
-        else if (site.feature('pos') || site.feature('erp') || site.feature('eco')) $scope.sourceTypeList = response.data.filter(i => i.id != 4 && i.id != 3 && i.id != 5 && i.id != 6 && i.id != 7);
+        else if (site.feature('pos') || site.feature('erp') || site.feature('ecommerce')) $scope.sourceTypeList = response.data.filter(i => i.id != 4 && i.id != 3 && i.id != 5 && i.id != 6 && i.id != 7);
         else if (site.feature('academy')) $scope.sourceTypeList = response.data.filter(i => i.id != 4 && i.id != 3);
         else $scope.sourceTypeList = response.data;
       },
@@ -86,7 +86,7 @@ app.controller("report_daily", function ($scope, $http, $timeout) {
 
           if (!site.feature('academy')) $scope.accInvoList.splice(4, 3);
           if (!site.feature('club')) $scope.accInvoList.splice(3, 1);
-          if ( !site.feature('erp') &&!site.feature('eco') &&!site.feature('pos') && !site.feature('restaurant') && !site.feature('erp')) $scope.accInvoList.splice(2, 1);
+          if ( !site.feature('erp') &&!site.feature('ecommerce') &&!site.feature('pos') && !site.feature('restaurant') && !site.feature('erp')) $scope.accInvoList.splice(2, 1);
         }
       },
       function (err) {
