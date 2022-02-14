@@ -456,58 +456,62 @@ module.exports = function init(site) {
                   });
                 });
 
-                site.call(
-                  '[user][update]',
-                  {
-                    email: companies_doc.username,
-                    password: companies_doc.password,
-                    company_id: companies_doc.id,
-                    ref_info: { id: companies_doc.id },
-                    id: companies_doc.user_info.id,
-                    is_company: true,
-                    branch_list: branch_list,
-                    profile: {
-                      name_ar: companies_doc.name_ar,
-                      name_en: companies_doc.name_en,
-                      mobile: companies_doc.mobile,
-                      image_url: companies_doc.image_url,
+                if (companies_doc.user_info) {
+                  site.call(
+                    '[user][update]',
+                    {
+                      email: companies_doc.username,
+                      password: companies_doc.password,
+                      company_id: companies_doc.id,
+                      ref_info: { id: companies_doc.id },
+                      id: companies_doc.user_info.id,
+                      is_company: true,
+                      branch_list: branch_list,
+                      profile: {
+                        name_ar: companies_doc.name_ar,
+                        name_en: companies_doc.name_en,
+                        mobile: companies_doc.mobile,
+                        image_url: companies_doc.image_url,
+                      },
                     },
-                  },
-                  (err, user_result) => {
-                    if (!companies_doc.user_info) {
-                      site.call(
-                        '[user][add]',
-                        {
-                          email: companies_doc.username,
-                          password: companies_doc.password,
-                          company_id: companies_doc.id,
-                          ref_info: { id: companies_doc.id },
-                          is_company: true,
-                          roles: [
-                            {
-                              name: 'companies_admin',
-                            },
-                          ],
-                          branch_list: branch_list,
-                          profile: {
-                            name_ar: companies_doc.name_ar,
-                            name_en: companies_doc.name_en,
-                            mobile: companies_doc.mobile,
-                            image_url: companies_doc.image_url,
-                          },
-                        },
-                        (err, user_doc) => {
-                          if (!err && user_doc) {
-                            result.doc.user_info = { id: user_doc.id };
-                            $companies.update(result.doc);
-                          } else {
-                            console.log(err);
-                          }
-                        }
-                      );
+                    (err, user_result) => {
+                     
                     }
-                  }
-                );
+                  );
+                } else {
+                  site.call(
+                    '[user][add]',
+                    {
+                      email: companies_doc.username,
+                      password: companies_doc.password,
+                      company_id: companies_doc.id,
+                      ref_info: { id: companies_doc.id },
+                      is_company: true,
+                      roles: [
+                        {
+                          name: 'companies_admin',
+                        },
+                      ],
+                      branch_list: branch_list,
+                      profile: {
+                        name_ar: companies_doc.name_ar,
+                        name_en: companies_doc.name_en,
+                        mobile: companies_doc.mobile,
+                        image_url: companies_doc.image_url,
+                      },
+                    },
+                    (err, user_doc) => {
+                      if (!err && user_doc) {
+                        result.doc.user_info = { id: user_doc.id };
+                        $companies.update(result.doc);
+                      } else {
+                        console.log(err);
+                      }
+                    }
+                  );
+                }
+
+               
               } else {
                 response.error = err.message;
               }

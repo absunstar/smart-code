@@ -207,7 +207,7 @@ module.exports = function init(site) {
     let response = {
       done: false,
     };
-    if (req.data.where) {
+    if (req.data && req.data.where) {
       if (req.data.where.email === '0e849095ad8db45384a9cdd28d7d0e20') {
         req.data.where.email = 'developer';
       }
