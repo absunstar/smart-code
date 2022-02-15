@@ -156,8 +156,13 @@
     },
     {
         "name": "end_num_to_str",
-        "en": "End Num To Str",
+        "en": "End Num To Text",
         "ar": "نهاية التفقيط"
+    },
+    {
+        "name": "end_num_to_str_en",
+        "en": "End Num To Text An Eng",
+        "ar": "نهاية التفقيط بالإنجليزية"
     },
     {
         "name": "default_settings",

@@ -264,7 +264,8 @@
 
     <div class="row">
       <div class="col-1"></div>
-      <p class="bold center font-10 col-10 black">{{thermal.net_txt}} {{defaultSettings.accounting.end_num_to_str || ''}}</p>
+      <p ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'ar'" class="bold center font-10 col-10 black">{{thermal.net_txt}} {{defaultSettings.accounting.end_num_to_str || ''}}</p>
+      <p ng-show="defaultSettings.printer_program.thermal_lang.id == 2 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'en'" class="bold center font-10 col-10 black">{{thermal.net_txt}} {{defaultSettings.accounting.end_num_to_str_en || ''}}</p>
     </div>
  
     <hr />
