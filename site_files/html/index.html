@@ -45,10 +45,11 @@
         text-align: center !important;
         border-radius: 15px;
         color: #000000;
-        background: #ffffff;
         border-top-left-radius: 0px;
         border-top-right-radius: 0px;
         font-size: 16px;
+        background: #f2f2ffb3;
+
       }
 
       .project h2 {
@@ -60,7 +61,7 @@
         text-align: center;
         font-weight: bold;
         color: #fff;
-        padding: 5px;
+        padding: 9px;
         background: #2196f3;
         text-shadow: 1px 1px 8px #000000;
       }
@@ -69,14 +70,14 @@
         margin-top: 20px !important;
         margin-bottom: 20px !important;
         border-radius: 20px;
-        width: 120px;
-        min-height: 180px;
+        width: 130px;
+        height: 120px;
       }
 
       .project p {
         min-height: 150px;
-        max-width: 300px;
-        padding: 15px;
+        max-width: 270px;
+        padding: 7px;
         text-align: center !important;
         color: #ffffff;
         background: #e91e63;
@@ -184,8 +185,9 @@
         text-align: center;
         cursor: pointer;
         text-decoration: none;
+        border-radius: 40px;
         border: 3px solid #4caf50;
-        width: 80%;
+        width: 70%;
       }
 
       a.social-browser:hover {
@@ -205,6 +207,7 @@
         height: 64px;
         vertical-align: middle;
       }
+
     </style>
   </head>
 
@@ -255,7 +258,7 @@
         <br />
       </div>
 
-      <div class="footer" x-features="!login && !site.dynamic">
+    <!--   <div class="footer" x-features="!login && !site.dynamic">
         <div class="row">
           <div class="col1"></div>
 
@@ -303,14 +306,10 @@
 
           <div class="col2"></div>
 
-          <div class="col4">
-            <div class="create center">
-              <a onclick="site.showModal('#companyRegisterModal');"> <span class="bold"> ##word.create## ##word.companies_new## </span> </a>
-            </div>
-          </div>
+          
         </div>
       </div>
-
+ -->
       <br />
 
       <div class="row center">
@@ -323,6 +322,12 @@
             src="//social-browser.com/images/logo.png"
           />
         </a>
+      </div>
+
+      <div class="row center" x-features="!login && !site.dynamic">
+        <div class="create center">
+          <a onclick="site.showModal('#companyRegisterModal');"> <span class="bold"> ##word.create## ##word.companies_new## </span> </a>
+        </div>
       </div>
 
       <br />
@@ -855,7 +860,7 @@
             $('#posts').append(rendered);
             $('#posts').append('<br>');
             $('#posts').append('<br>');
-            $('#posts').append('<hr>');
+            $('#posts').append('<hr style="height:5px;color:grey;background-color:rgb(0, 0, 199)">');
             $('#posts').append('<br>');
             $('#posts').append('<h3 class="center bold blue" style="text-shadow: 3px 3px #b3b3ff; font-size: xx-large ; text-decoration: underline">خصائص البرنامج</h3>');
             $('#posts').append('<br>');

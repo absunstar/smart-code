@@ -466,7 +466,14 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
               $scope.error = '##word.should_open_period##';
             } else {
               if ($scope.account_invoices && $scope.account_invoices.payable_list && $scope.account_invoices.payable_list.length > 0) {
-                $scope.store_out.payable_list = $scope.account_invoices.payable_list;
+                for (let i = 0; i < $scope.account_invoices.payable_list.length; i++) {
+                  let p = $scope.account_invoices.payable_list[i];
+                  p.done = false;
+                  p.paid_up = 0;
+                  p.remain = p.value;
+          
+                }
+              $scope.store_out.payable_list = $scope.account_invoices.payable_list;
               }
 
               $scope.busy = true;
@@ -1430,7 +1437,14 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
           $scope.error = '##word.should_open_period##';
         } else {
           if ($scope.account_invoices && $scope.account_invoices.payable_list && $scope.account_invoices.payable_list.length > 0) {
-            $scope.store_out.payable_list = $scope.account_invoices.payable_list;
+            for (let i = 0; i < $scope.account_invoices.payable_list.length; i++) {
+              let p = $scope.account_invoices.payable_list[i];
+              p.done = false;
+              p.paid_up = 0;
+              p.remain = p.value;
+      
+            }
+         $scope.store_out.payable_list = $scope.account_invoices.payable_list;
           }
 
           $scope.busy = true;

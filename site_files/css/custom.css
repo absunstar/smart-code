@@ -12,6 +12,9 @@
 #thermalPrint .content {
   border: 0.5mm solid #bbb;
 }
+
+
+
 .page-a4 {
   position: relative;
 }
@@ -424,7 +427,7 @@ hr.dot {
 a.pro-template {
   text-decoration: none;
   display: inline-flex;
-  border: 1px solid #ddd;
+  /* border: 1px solid #ddd; */
 }
 a.pro-template .description {
 }
@@ -481,3 +484,108 @@ a.pro-template .description {
     user-select: all;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.full-width {
+  border-radius: 15px;
+  width: 100%;
+  margin: 0px;
+}
+
+.control input {
+  border-radius: 15px;
+}
+
+i-image img {
+  padding: 3px;
+}
+
+img {
+  padding: 3px;
+}
+
+i-image img {
+  /* background-color: url('/images/add_image.png') ; */
+  padding: 3px;
+  border-color: #5b60ff;
+}
+
+i-image img:hover {
+  border-style: solid;
+  box-shadow: 0 0 2px 1px rgba(0, 3, 175, 0.849);
+}
+
+.files {
+  padding: 5px;
+  border-color: #5b60ff;
+}
+
+.files:hover {
+  border-style: solid;
+  box-shadow: 0 0 2px 1px rgba(0, 3, 175, 0.849);
+}
+
+
+fieldset {
+  margin: 15px;
+  padding: 0 5px 5px;
+  border: 1px solid #0400bc;
+  border-radius: 8px;
+  box-shadow: 0 0 3px #b8abff;
+  padding-top: 5px;
+}
+legend {
+  padding: 2px 4px;
+  background: rgb(255, 255, 255);
+  /* For better legibility against the box-shadow */
+}
+fieldset > legend {
+  margin-top: -20px;
+  background-color: white;
+}
+fieldset > legend + * {
+  clear: both;
+}
+
+.tabs .tabs-header .tab-link.active {
+  border-radius: 10px;
+}
+
+.tabs .tabs-header .tab-link:hover {
+  border-radius: 10px;
+}
+
+.modal-content {
+  border-radius: 10px;
+}
+
+i-checkbox .selector {
+  border-radius: 10px;
+}
+
+.modal-header {
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+/* .main-menu .tabs-header .tab-link .tabs .tab-link.active {
+  border-radius: 10px !important; 
+}
+
+
+.main-menu .tabs-header .tab-link .tabs .tab-link.active:hover {
+   border-radius: 10px ; 
+}
+ */

@@ -97,6 +97,8 @@
                         <th> ##word.source_type## </th>
                         <th ng-hide="customer.id"> ##word.customer## </th>
                         <th> ##word.payment_value## </th>
+                        <th> ##word.paid_up## </th>
+                        <th> ##word.remain_amount## </th>
                     </tr>
 
                     <tr ng-repeat="c in list | orderBy : '-id'">
@@ -107,7 +109,9 @@
                         <td class="brown"> {{c.due_date | date : 'dd - MM - yyyy'}} </td>
                         <td> {{c.source_type.##session.lang##}} </td>
                         <td ng-hide="customer.id"> {{c.customer.name_##session.lang##}} </td>
-                        <td class="red"> {{c.value || 0}} </td>
+                        <td class="center blue">{{c.value || 0}}</td>
+                        <td class="center green">{{c.paid_up || 0}}</td>
+                        <td class="center red">{{c.remain || 0}}</td>
                     </tr>
                 </table>
 

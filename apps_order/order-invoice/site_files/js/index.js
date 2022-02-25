@@ -500,6 +500,13 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
       active: true,
     };
 
+    for (let i = 0; i < $scope.account_invoices.payable_list.length; i++) {
+      let p = $scope.account_invoices.payable_list[i];
+      p.done = false;
+      p.paid_up = 0;
+      p.remain = p.value;
+    }
+
     if ($scope.defaultSettings.accounting) {
       account_invoices.currency = $scope.currencySetting;
       if ($scope.defaultSettings.accounting.payment_method) {

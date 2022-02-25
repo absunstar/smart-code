@@ -90,7 +90,9 @@
                         <th> ##word.source_type## </th>
                         <th ng-hide="vendor.id"> ##word.vendor## </th>
                         <th> ##word.payment_value## </th>
-                    </tr>
+                        <th> ##word.paid_up## </th>
+                        <th> ##word.remain_amount## </th>
+                     </tr>
 
                     <tr ng-repeat="c in list | orderBy : '-id'">
                         <td class="not-print">
@@ -101,6 +103,8 @@
                         <td> {{c.source_type.##session.lang##}} </td>
                         <td ng-hide="vendor.id"> {{c.vendor.name_##session.lang##}} </td>
                         <td class="red"> {{c.value || 0}} </td>
+                        <td class="center green">{{c.paid_up || 0}}</td>
+                        <td class="center red">{{c.remain || 0}}</td>
                     </tr>
                 </table>
 

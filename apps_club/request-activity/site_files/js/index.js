@@ -162,6 +162,14 @@ app.controller("request_activity", function ($scope, $http, $timeout) {
     };
 
     if ($scope.account_invoices && $scope.account_invoices.payable_list && $scope.account_invoices.payable_list.length > 0) {
+      for (let i = 0; i < $scope.account_invoices.payable_list.length; i++) {
+        let p = $scope.account_invoices.payable_list[i];
+        p.done = false;
+        p.paid_up = 0;
+        p.remain = p.value;
+
+      }
+
       $scope.request_activity.payable_list = $scope.account_invoices.payable_list;
     };
 
@@ -489,6 +497,14 @@ app.controller("request_activity", function ($scope, $http, $timeout) {
     }
 
     if ($scope.account_invoices && $scope.account_invoices.payable_list && $scope.account_invoices.payable_list.length > 0) {
+      for (let i = 0; i < $scope.account_invoices.payable_list.length; i++) {
+        let p = $scope.account_invoices.payable_list[i];
+        p.done = false;
+        p.paid_up = 0;
+        p.remain = p.value;
+
+      }
+
       $scope.request_activity.payable_list = $scope.account_invoices.payable_list;
     };
 

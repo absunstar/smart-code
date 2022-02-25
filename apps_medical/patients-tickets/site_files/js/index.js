@@ -661,6 +661,15 @@ app.controller("patients_tickets", function ($scope, $http, $timeout) {
       account_invoices.posting = false;
     else account_invoices.posting = true;
 
+    for (let i = 0; i < $scope.account_invoices.payable_list.length; i++) {
+      let p = $scope.account_invoices.payable_list[i];
+      p.done = false;
+      p.paid_up = 0;
+      p.remain = p.value;
+
+    }
+  
+
     $http({
       method: "POST",
       url: "/api/account_invoices/add",

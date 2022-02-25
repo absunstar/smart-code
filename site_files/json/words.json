@@ -1046,6 +1046,16 @@
     "ar": "تحديد الكل"
   },
   {
+    "name": "invoice_code",
+    "en": "Invoice Code",
+    "ar": "كود الفاتورة"
+},
+  {
+    "name": "remain_amount",
+    "en": "Remain Amount",
+    "ar": "المبلغ المتبقي"
+},
+  {
     "name": "select",
     "en": "Select",
     "ar": "تحديد"

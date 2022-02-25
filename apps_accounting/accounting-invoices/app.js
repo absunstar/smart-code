@@ -1,6 +1,38 @@
 module.exports = function init(site) {
   const $account_invoices = site.connectCollection('account_invoices');
 
+  site.on('[account_invoice][in_out_type]', (obj, callback, next) => {
+    $account_invoices.findOne({ id: obj.invoice_id }, (err, doc) => {
+      if (doc) {
+        doc.total_paid_up = doc.total_paid_up + obj.paid_up * obj.currency.ex_rate;
+        doc.remain_amount = doc.remain_amount - obj.paid_up * obj.currency.ex_rate;
+
+        for (let i = 0; i < obj.payable_list.length; i++) {
+          let p = obj.payable_list[i];
+          p.select = false;
+        }
+
+        doc.payable_list = obj.payable_list;
+
+        doc.payment_list.push({
+          date: obj.date,
+          posting: obj.posting ? true : false,
+          safe: obj.safe,
+          shift: obj.shift,
+          payment_method: obj.payment_method,
+          currency: obj.currency,
+          paid_up: obj.paid_up,
+        });
+
+        $account_invoices.update(doc, () => {
+          next();
+        });
+      } else {
+        next();
+      }
+    });
+  });
+
   site.on('[stores_items][item_name][change]', (objectInvoice) => {
     let barcode = objectInvoice.sizes_list.map((_obj) => _obj.barcode);
 
@@ -87,6 +119,7 @@ module.exports = function init(site) {
       delete account_invoices_doc.id;
       delete account_invoices_doc._id;
     }
+
     account_invoices_doc.add_user_info = site.security.getUserFinger({
       $req: req,
       $res: res,
@@ -99,6 +132,27 @@ module.exports = function init(site) {
     //     return;
     //   }
     // }
+
+    if (account_invoices_doc.payable_list && account_invoices_doc.payable_list.length > 0) {
+      let foundPayError = false;
+      for (let i = 0; i < account_invoices_doc.payable_list.length; i++) {
+        let p = account_invoices_doc.payable_list[i];
+
+        if (p.select) {
+          p.paid_up = p.paid_up += account_invoices_doc.paid_up;
+          p.remain = p.remain - account_invoices_doc.paid_up;
+          if (p.paid_up > p.value) {
+            foundPayError = true;
+          }
+        }
+      }
+
+      if (foundPayError) {
+        response.error = 'It is not possible to pay more than the amount due';
+        res.json(response);
+        return;
+      }
+    }
 
     if (account_invoices_doc.paid_up === 0) account_invoices_doc.posting = true;
 
@@ -371,6 +425,7 @@ module.exports = function init(site) {
                           site.quee('[vendor][account_invoice][balance]', vendorObj);
                         }
                       }
+                      site.quee('[account_invoice][in_out_type]', doc);
                     }
                   } else if (doc.source_type.id == 9) {
                     paid_value.operation = { ar: 'سند صرف', en: 'Amount Out', name: 'amount_out' };
@@ -405,6 +460,7 @@ module.exports = function init(site) {
                           site.quee('[customer][account_invoice][balance]', customerObj);
                         }
                       }
+                      site.quee('[account_invoice][in_out_type]', doc);
                     }
                   } else if (doc.source_type.id == 10) {
                     paid_value.operation = { ar: 'دفعة عميل مقدمة', en: 'Customer Advance Payment', name: 'customer_advance' };
@@ -1556,7 +1612,7 @@ module.exports = function init(site) {
     if (account_invoices_doc.source_type.id === 14) {
       if (!account_invoices_doc.payment_method_to || !account_invoices_doc.safe_to) {
         response.error = 'sure to specify the data of the transferee';
-        res.json(response)
+        res.json(response);
         return;
       }
     }

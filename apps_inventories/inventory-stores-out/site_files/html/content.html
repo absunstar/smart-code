@@ -33,12 +33,12 @@
 
                         <fieldset class="row" ng-show="store_out.customer.id">
 
-                            <div class="col6">
-                                <h3 class="bold red">##word.creditor## : {{store_out.customer.balance_creditor || 0}}
+                            <div class="col6 center">
+                                <h3 class="bold center red">##word.creditor## : {{store_out.customer.balance_creditor || 0}}
                                 </h3>
                             </div>
                             <div class="col6">
-                                <h3 class="bold green">##word.debtor## : {{store_out.customer.balance_debtor || 0}}
+                                <h3 class="bold center green">##word.debtor## : {{store_out.customer.balance_debtor || 0}}
                                 </h3>
                             </div>
                         </fieldset>
@@ -93,7 +93,7 @@
             <br>
 
         </div>
-        <div class="col3">
+        <div class="col3 center">
             <i-image category="store_out" ng-model="store_out.image_url"> </i-image>
             <i-files ng-model="store_out.files"></i-files>
 

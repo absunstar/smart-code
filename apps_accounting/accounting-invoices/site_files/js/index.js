@@ -142,10 +142,11 @@ app.controller('account_invoices', function ($scope, $http, $timeout) {
 
       if ($scope.account_invoices.source_type) {
         if (
-          $scope.account_invoices.source_type.id === 8 ||
-          $scope.account_invoices.source_type.id === 9 ||
-          $scope.account_invoices.source_type.id === 10 ||
-          $scope.account_invoices.source_type.id === 11
+          (!$scope.account_invoices.out_type && !$scope.account_invoices.in_type) &&
+          ($scope.account_invoices.source_type.id === 8 ||
+            $scope.account_invoices.source_type.id === 9 ||
+            $scope.account_invoices.source_type.id === 10 ||
+            $scope.account_invoices.source_type.id === 11)
         ) {
           $scope.account_invoices.net_value = $scope.account_invoices.paid_up;
         }
@@ -168,7 +169,7 @@ app.controller('account_invoices', function ($scope, $http, $timeout) {
         }
       }
 
-      if ($scope.account_invoices.paid_up < $scope.amount_currency && $scope.account_invoices.payment_type.id == 1) {
+      if ($scope.account_invoices.paid_up < $scope.amount_currency && $scope.account_invoices.payment_type && $scope.account_invoices.payment_type.id == 1) {
         $scope.error = '##word.amount_must_paid_full##';
         return;
       }
@@ -185,7 +186,7 @@ app.controller('account_invoices', function ($scope, $http, $timeout) {
             function (response) {
               if (response.data.done) {
                 site.hideModal('#accountInvoicesAddModal');
-                $scope.printAccountInvoive($scope.account_invoices);
+                /*  $scope.printAccountInvoive($scope.account_invoices); */
                 $scope.getAccountInvoicesList({ date: new Date() });
               } else {
                 $scope.error = response.data.error;
@@ -201,6 +202,8 @@ app.controller('account_invoices', function ($scope, $http, $timeout) {
                   $scope.error = '##word.must_enter_code##';
                 } else if (response.data.error.like('*sure to specify the data of the transferee*')) {
                   $scope.error = '##word.sure_specify_data_transferee##';
+                } else if (response.data.error.like('*pay more than the amount due*')) {
+                  $scope.error = '##word.not_possible_pay_more_than_amount_due##';
                 }
               }
             },
@@ -649,7 +652,8 @@ app.controller('account_invoices', function ($scope, $http, $timeout) {
   $scope.detailsCustomer = function (callback) {
     $scope.error = '';
     $scope.busy = true;
-    let customer = '';
+    let customer = {};
+
     if ($scope.paid_invoice && $scope.paid_invoice.customer) {
       customer = $scope.paid_invoice.customer;
     } else if ($scope.account_invoices && $scope.account_invoices.customer) {
@@ -669,7 +673,7 @@ app.controller('account_invoices', function ($scope, $http, $timeout) {
           $scope.customer = response.data.doc;
           callback(response.data.doc);
         } else {
-          callback(null);
+          callback({});
         }
       },
       function (err) {
@@ -893,6 +897,7 @@ app.controller('account_invoices', function ($scope, $http, $timeout) {
   $scope.selectOrderInvoices = function (item) {
     $scope.error = '';
     $scope.account_invoices.items = [];
+    $scope.account_invoices.payable_list = item.payable_list;
     $scope.account_invoices.customer = item.customer;
     $scope.account_invoices.tenant = item.tenant;
     $scope.account_invoices.invoice_type = item.type;
@@ -940,7 +945,7 @@ app.controller('account_invoices', function ($scope, $http, $timeout) {
         }
       });
     } else $scope.account_invoices.items = item.items;
-    $scope.calc($scope.account_invoices);
+    $scope.calc($scope.account_invoices, 'pay');
     $scope.orderInvoicesTypeList = [];
   };
 
@@ -987,9 +992,13 @@ app.controller('account_invoices', function ($scope, $http, $timeout) {
           (account_invoices.total_discount || 0);
       }
 
+      /*    if(account_invoices.remain_source){
+        account_invoices.net_value = account_invoices.remain_source;
+      } */
+
       if (account_invoices.currency) {
         if (type === 'pay') {
-          $scope.amount_currency = account_invoices.remain_amount / account_invoices.currency.ex_rate;
+          $scope.amount_currency = (account_invoices.remain_amount || account_invoices.remain_source) / account_invoices.currency.ex_rate;
         } else {
           $scope.amount_currency = account_invoices.net_value / account_invoices.currency.ex_rate;
         }
@@ -1157,7 +1166,7 @@ app.controller('account_invoices', function ($scope, $http, $timeout) {
     $scope.search = {};
   };
 
-  $scope.printAccountInvoive = function (account_invoices) {
+  /*   $scope.printAccountInvoive = function (account_invoices) {
     $scope.error = '';
     if ($scope.busy) return;
     $scope.busy = true;
@@ -1467,7 +1476,7 @@ app.controller('account_invoices', function ($scope, $http, $timeout) {
         console.log(err);
       }
     );
-  };
+  }; */
 
   $scope.thermalPrint = function (obj) {
     $scope.error = '';
@@ -1652,6 +1661,21 @@ app.controller('account_invoices', function ($scope, $http, $timeout) {
     account_invoices.payable_list = account_invoices.payable_list || [{}];
     if (type === 'view') {
       site.showModal('#addPaymentsModal');
+    }
+  };
+
+  $scope.selectPaymentsPayable = function () {
+    $scope.error = '';
+    site.showModal('#selectPaymentsModal');
+  };
+
+  $scope.changeSelectPayableList = function (payableList, _i) {
+    $scope.error = '';
+    for (let i = 0; i < payableList.length; i++) {
+      let p = payableList[i];
+      if (i !== _i) {
+        p.select = false;
+      }
     }
   };
 

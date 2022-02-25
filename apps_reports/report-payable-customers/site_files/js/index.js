@@ -52,7 +52,7 @@ app.controller("report_payable_customers", function ($scope, $http, $timeout) {
           $scope.total_payments_payable = 0;
           $scope.list.forEach(_invoice => {
      
-            $scope.total_payments_payable += _invoice.value;
+            $scope.total_payments_payable += _invoice.remain;
 
           });
           $scope.total_payments_payable = site.toNumber($scope.total_payments_payable);

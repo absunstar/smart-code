@@ -30,9 +30,24 @@
         "ar": "المدفوع"
     },
     {
-        "name": "remaining_amount",
-        "en": "Remaining",
-        "ar": "المتبقي"
+        "name": "amount_paid",
+        "en": "paid",
+        "ar": "المدفوع"
+    },
+    {
+        "name": "not_possible_pay_more_than_amount_due",
+        "en": "It is not possible to pay more than the amount due",
+        "ar": "لا يمكن دفع أكثر من الدفعة المستحقة"
+    },
+    {
+        "name": "include_payment_due",
+        "en": "Include payment due",
+        "ar": "إدراج دفعة مستحقة"
+    },
+    {
+        "name": "invoice_value",
+        "en": "Invoice value",
+        "ar": "قيمة الفاتورة"
     },
     {
         "name": "reference_code",
