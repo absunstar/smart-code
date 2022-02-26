@@ -499,13 +499,13 @@ a.pro-template .description {
 
 
 .full-width {
-  border-radius: 15px;
+ /*  border-radius: 15px; */
   width: 100%;
   margin: 0px;
 }
 
 .control input {
-  border-radius: 15px;
+  /* border-radius: 15px; */
 }
 
 i-image img {

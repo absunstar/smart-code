@@ -551,7 +551,7 @@
 
               <i-control class="col2" ng-model="account_invoices.Paid_from_customer" ng-change="calc(account_invoices)" label="##word.Paid_from_customer##" type="number"> </i-control>
 
-              <i-button class="col2" label="##word.add_payment##" ng-click="paymentsPayable(account_invoices,'view')"> </i-button>
+              <i-button class="col2" label="##word.add_payment##" ng-hide="account_invoices.payable_list.length > 0 && (account_invoices.in_type || account_invoices.out_type)" ng-click="paymentsPayable(account_invoices,'view')"> </i-button>
 
               <i-button class="col2" ng-show="account_invoices.payable_list.length > 0" label="##word.include_payment_due##" ng-click="selectPaymentsPayable()"> </i-button>
             </div>
