@@ -246,8 +246,13 @@
     },
     {
         "name": "err_net_value",
-        "en": " Paid Up Greater Than Net Value",
+        "en": "Paid Up Greater Than Net Value",
         "ar": " المدفوع أكبر من صافي المبلغ"
+    },
+    {
+        "name": "value_batches_greater_remain_invoice",
+        "en": "value of batches is greater than the remain of the invoice",
+        "ar": "قيمة الدفعات أكبر من باقي الفاتورة"
     },
     {
         "name": "err_price_delivery_service",

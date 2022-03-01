@@ -112,11 +112,6 @@
         "ar": "مبلغ الخدمة أكبر من المطلوب"
     },
     {
-        "name": "err_net_value",
-        "en": "Net Value Greater Than Required",
-        "ar": "صافي المبلغ أكبر من المطلوب"
-    },
-    {
         "name": "err_price_delivery_request",
         "en": "Price Delivery Service Greater Than Required",
         "ar": "مبلغ خدمة التوصيل أكبر من المطلوب"

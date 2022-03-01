@@ -100,26 +100,7 @@
         "en": "Paid Up",
         "ar": "المدفوع"
     },
-    {
-        "name": "err_total_tax",
-        "en": "Total Taxes Greater Than Required",
-        "ar": "مجموع الضرائب أكبر من المطلوب"
-    },
-    {
-        "name": "err_total_discount",
-        "en": "Total Discount Greater Than Required",
-        "ar": "مجموع الخصومات أكبر من المطلوب"
-    },
-    {
-        "name": "err_service",
-        "en": "Service/Activity Greater Than Required",
-        "ar": "مبلغ الخدمة/النشاط أكبر من المطلوب"
-    },
-    {
-        "name": "err_net_value",
-        "en": "Net Value Greater Than Required",
-        "ar": "صافي المبلغ أكبر من المطلوب"
-    },
+
     {
         "name": "err_price_delivery_service",
         "en": "Price Delivery Service Greater Than Required",

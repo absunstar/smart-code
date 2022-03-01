@@ -112,7 +112,7 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
       obj.total_value = 0;
       obj.net_value = obj.net_value || 0;
 
-      if (!obj.invoice_id) {
+      if (!obj.invoice_id && obj.items && obj.items.length > 0) {
         obj.total_value_added = 0;
         obj.items.forEach((_itm) => {
           obj.total_value += site.toMoney(_itm.total);
@@ -147,6 +147,10 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
 
       obj.total_value = site.toMoney(obj.total_value);
       obj.net_value = site.toMoney(obj.net_value);
+      if (obj.invoices_list && obj.invoices_list.length === 1) {
+        obj.invoices_list[0].paid_up = obj.net_value;
+        obj.paid_up = obj.net_value;
+      }
 
       if (obj.currency) {
         obj.amount_currency = obj.net_value / obj.currency.ex_rate;
@@ -164,6 +168,19 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
           obj.paid_up = obj.amount_currency;
         }
       }
+    }, 250);
+  };
+
+  $scope.calcInvoice = function (obj) {
+    $timeout(() => {
+      obj.paid_up = 0;
+
+      obj.invoices_list.forEach((_i) => {
+        if (_i.currency) {
+          let pay = _i.paid_up * _i.currency.ex_rate;
+          obj.paid_up += pay;
+        }
+      });
     }, 250);
   };
 
@@ -210,6 +227,7 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
           type: $scope.source_type,
           date: new Date(),
           supply_date: new Date(),
+          invoices_list: [{}],
         };
 
         if ($scope.defaultSettings.general_Settings) {
@@ -219,9 +237,13 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
             });
           }
 
-          if (!$scope.defaultSettings.general_Settings.work_posting) $scope.store_out.posting = true;
+          if (!$scope.defaultSettings.general_Settings.work_posting) {
+            $scope.store_out.posting = true;
+          }
 
-          if ($scope.defaultSettings.general_Settings.payment_type && $scope.store_out.type.id != 5) $scope.store_out.payment_type = $scope.defaultSettings.general_Settings.payment_type;
+          if ($scope.defaultSettings.general_Settings.payment_type && $scope.store_out.type.id != 5) {
+            $scope.store_out.payment_type = $scope.defaultSettings.general_Settings.payment_type;
+          }
         }
 
         if ($scope.defaultSettings.inventory) {
@@ -242,20 +264,16 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
 
         if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
           if ($scope.store_out.type && $scope.store_out.type.id != 5) {
-            $scope.store_out.paid_up = 0;
-            $scope.store_out.currency = $scope.currencySetting;
+            $scope.store_out.invoices_list[0].currency = $scope.currencySetting;
             if ($scope.defaultSettings.accounting.payment_method) {
-              $scope.store_out.payment_method = $scope.defaultSettings.accounting.payment_method;
-              $scope.loadSafes($scope.store_out.payment_method, $scope.store_out.currency, () => {
-                if ($scope.store_out.payment_method.id == 1) {
-                  $scope.store_out.safe = $scope.defaultSettings.accounting.safe_box;
-                } else {
-                  $scope.store_out.safe = $scope.defaultSettings.accounting.safe_bank;
-                }
-              });
+              $scope.store_out.invoices_list[0].payment_method = $scope.defaultSettings.accounting.payment_method;
+              $scope.loadSafes($scope.store_out.invoices_list[0].payment_method, $scope.store_out.invoices_list[0].currency);
+              if ($scope.store_out.invoices_list[0].payment_method.id == 1) $scope.store_out.invoices_list[0].safe = $scope.defaultSettings.accounting.safe_box;
+              else $scope.store_out.invoices_list[0].safe = $scope.defaultSettings.accounting.safe_bank;
             }
           }
         }
+
         site.showModal('#addStoreOutModal');
       } else $scope.error = '##word.open_shift_not_found##';
     });
@@ -350,27 +368,12 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
         return;
       }
 
-      if (!$scope.store_out.payment_type && $scope.store_out.type.id != 5) {
-        $scope.error = '##word.must_choose_payment_type##';
-        return;
-      }
-
       if ($scope.store_out.payment_type) {
         if ($scope.store_out.type && $scope.store_out.type.id != 5 && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto) {
-          if (!$scope.store_out.safe) {
+          /*    if (!$scope.store_out.safe) {
             $scope.error = '##word.nosafe_warning##';
             return;
-          }
-        }
-
-        if ($scope.store_out.paid_up > $scope.store_out.amount_currency) {
-          $scope.error = '##word.err_net_value##';
-          return;
-        }
-
-        if ($scope.store_out.paid_up < $scope.store_out.amount_currency && $scope.store_out.payment_type.id == 1) {
-          $scope.error = '##word.amount_must_paid_full##';
-          return;
+          } */
         }
       } else {
         $scope.store_out.paid_up = undefined;
@@ -465,16 +468,7 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
             if (!is_allowed_date) {
               $scope.error = '##word.should_open_period##';
             } else {
-              if ($scope.account_invoices && $scope.account_invoices.payable_list && $scope.account_invoices.payable_list.length > 0) {
-                for (let i = 0; i < $scope.account_invoices.payable_list.length; i++) {
-                  let p = $scope.account_invoices.payable_list[i];
-                  p.done = false;
-                  p.paid_up = 0;
-                  p.remain = p.value;
-          
-                }
               $scope.store_out.payable_list = $scope.account_invoices.payable_list;
-              }
 
               $scope.busy = true;
               $http({
@@ -496,36 +490,7 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
                         $scope.thermalPrint(response.data.doc);
                       } */
 
-                      let account_invoices = {
-                        image_url: '/images/account_invoices.png',
-                        date: response.data.doc.date,
-                        payable_list: response.data.doc.payable_list,
-                        payment_type: response.data.doc.payment_type,
-                        invoice_id: response.data.doc.id,
-                        customer: response.data.doc.customer,
-                        total_value_added: response.data.doc.total_value_added,
-                        invoice_type: response.data.doc.type,
-                        currency: response.data.doc.currency,
-                        shift: response.data.doc.shift,
-                        amount_currency: response.data.doc.amount_currency,
-                        net_value: response.data.doc.net_value,
-                        Paid_from_customer: response.data.doc.Paid_from_customer,
-                        remain_from_customer: response.data.doc.remain_from_customer,
-                        paid_up: response.data.doc.paid_up || 0,
-                        payment_method: response.data.doc.payment_method,
-                        safe: response.data.doc.safe,
-                        invoice_code: response.data.doc.code,
-                        total_discount: response.data.doc.total_discount,
-                        total_tax: response.data.doc.total_tax,
-                        items: response.data.doc.items,
-                        source_type: {
-                          id: 2,
-                          en: 'Sales Store',
-                          ar: 'إذن صرف / فاتورة مبيعات',
-                        },
-                        active: true,
-                      };
-                      $scope.addAccountInvoice(account_invoices);
+                      $scope.addAccountInvoice(response.data.doc);
                     }
                     $scope.store_out = {};
                     $scope.loadAll({ date: new Date() });
@@ -547,6 +512,18 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
                     } else if (response.data.error.like('*Must Enter Code*')) {
                       $scope.busy = false;
                       $scope.error = '##word.must_enter_code##';
+                    } else if (response.data.error.like('*Must Choose Payment*')) {
+                      $scope.busy = false;
+                      $scope.error = '##word.must_choose_payment_type##';
+                    } else if (response.data.error.like('*Paid Up Greater Than Net*')) {
+                      $scope.busy = false;
+                      $scope.error = '##word.err_net_value##';
+                    } else if (response.data.error.like('*must be paid in full*')) {
+                      $scope.busy = false;
+                      $scope.error = '##word.amount_must_paid_full##';
+                    } else if (response.data.error.like('*value of batches is greater than the remain*')) {
+                      $scope.busy = false;
+                      $scope.error = '##word.value_batches_greater_remain_invoice##';
                     }
                   }
                 },
@@ -575,6 +552,27 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
     });
   };
 
+  $scope.pushAccountInvoice = function (store_out) {
+    $scope.error = '';
+
+    let obj = {};
+    if ($scope.store_out.invoices_list.length === 1) {
+      obj.currency = $scope.currencySetting;
+
+      if ($scope.store_out.invoices_list[0].payment_method && $scope.store_out.invoices_list[0].payment_method.id == 1) {
+        obj.payment_method = $scope.paymentMethodList[2];
+        obj.safe = $scope.defaultSettings.accounting.safe_bank;
+      } else {
+        obj.payment_method = $scope.paymentMethodList[0];
+        obj.safe = $scope.defaultSettings.accounting.safe_box;
+      }
+    }
+    obj.paid_up = $scope.store_out.net_value - $scope.store_out.paid_up;
+    obj.paid_up = site.toMoney(obj.paid_up);
+    $scope.calcInvoice($scope.store_out);
+    $scope.store_out.invoices_list.push(obj);
+  };
+
   $scope.view = function (store_out) {
     $scope.error = '';
     $scope.busy = true;
@@ -600,8 +598,17 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
               ar: ' ' + $scope.store_out.currency.minor_currency_ar + ' ',
               en: ' ' + $scope.store_out.currency.minor_currency_en + ' ',
             };
-            $scope.store_out.net_txt = site.stringfiy($scope.store_out.net_value);
+          } else if ($scope.currencySetting) {
+            site.strings['currency'] = {
+              ar: ' ' + $scope.currencySetting.name_ar + ' ',
+              en: ' ' + $scope.currencySetting.name_en + ' ',
+            };
+            site.strings['from100'] = {
+              ar: ' ' + $scope.currencySetting.minor_currency_ar + ' ',
+              en: ' ' + $scope.currencySetting.minor_currency_en + ' ',
+            };
           }
+          $scope.store_out.net_txt = site.stringfiy($scope.store_out.net_value);
         } else {
           $scope.error = response.data.error;
         }
@@ -1442,9 +1449,8 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
               p.done = false;
               p.paid_up = 0;
               p.remain = p.value;
-      
             }
-         $scope.store_out.payable_list = $scope.account_invoices.payable_list;
+            $scope.store_out.payable_list = $scope.account_invoices.payable_list;
           }
 
           $scope.busy = true;
@@ -1543,7 +1549,7 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
   $scope.getSafeByType = function (obj) {
     $scope.error = '';
     if ($scope.defaultSettings.accounting && obj.payment_method) {
-      $scope.loadSafes(obj.payment_method, obj.currency);
+      $scope.loadSafes(obj.payment_method, obj.currency, obj);
       if (obj.payment_method.id == 1) {
         if ($scope.defaultSettings.accounting.safe_box) obj.safe = $scope.defaultSettings.accounting.safe_box;
       } else {
@@ -1552,10 +1558,13 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
     }
   };
 
-  $scope.loadSafes = function (method, currency, callback) {
+  $scope.loadSafes = function (method, currency, obj, callback) {
     callback = callback || function () {};
     $scope.error = '';
     $scope.busy = true;
+    if (!obj) {
+      obj = {};
+    }
     if (currency) {
       let where = {
         'currency.id': currency.id,
@@ -1563,7 +1572,6 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
 
       if (method.id == 1) where['type.id'] = 1;
       else where['type.id'] = 2;
-
       $http({
         method: 'POST',
         url: '/api/safes/all',
@@ -1584,8 +1592,9 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
           $scope.busy = false;
           if (response.data.done) {
             $scope.safesList = response.data.list;
+            obj.$safesList = response.data.list;
           }
-          callback($scope.safesList);
+          callback($scope.safesList || []);
         },
         function (err) {
           $scope.busy = false;
@@ -1795,7 +1804,165 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
     });
   };
 
-  $scope.addAccountInvoice = function (account_invoices) {
+  $scope.addAccountInvoice = function (order_invoice) {
+    $scope.error = '';
+    /*     if ($scope.busy) {
+      return;
+    }
+    $scope.busy = true; */
+
+    let account_invoices = {
+      image_url: '/images/account_invoices.png',
+      date: order_invoice.date,
+      payable_list: order_invoice.payable_list,
+      payment_type: order_invoice.payment_type,
+      invoice_id: order_invoice.id,
+      customer: order_invoice.customer,
+      invoices_list: order_invoice.invoices_list,
+      total_value_added: order_invoice.total_value_added,
+      invoice_type: order_invoice.type,
+      currency: order_invoice.currency,
+      shift: order_invoice.shift,
+      amount_currency: order_invoice.amount_currency,
+      net_value: order_invoice.net_value,
+      Paid_from_customer: order_invoice.Paid_from_customer,
+      remain_from_customer: order_invoice.remain_from_customer,
+      paid_up: order_invoice.paid_up || 0,
+      payment_method: order_invoice.payment_method,
+      safe: order_invoice.safe,
+      invoice_code: order_invoice.code,
+      total_discount: order_invoice.total_discount,
+      total_tax: order_invoice.total_tax,
+      items: order_invoice.items,
+      source_type: {
+        id: 2,
+        en: 'Sales Store',
+        ar: 'إذن صرف / فاتورة مبيعات',
+      },
+      active: true,
+    };
+    if (account_invoices.payable_list && account_invoices.payable_list.length > 0) {
+      for (let i = 0; i < account_invoices.payable_list.length; i++) {
+        let p = account_invoices.payable_list[i];
+        p.done = false;
+        p.paid_up = 0;
+        p.remain = p.value;
+      }
+    }
+
+    if ($scope.defaultSettings.accounting) {
+      account_invoices.currency = $scope.currencySetting;
+      if ($scope.defaultSettings.accounting.payment_method) {
+        account_invoices.payment_method = $scope.defaultSettings.accounting.payment_method;
+        if (account_invoices.payment_method.id == 1) account_invoices.safe = $scope.defaultSettings.accounting.safe_box;
+        account_invoices.safe = $scope.defaultSettings.accounting.safe_bank;
+      }
+    }
+
+    if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.work_posting) account_invoices.posting = false;
+    else account_invoices.posting = true;
+
+    account_invoices.invoice = true;
+
+    $http({
+      method: 'POST',
+      url: '/api/account_invoices/add',
+      data: account_invoices,
+    }).then(
+      function (response) {
+        /* $scope.busy = false; */
+        if (response.data.done) {
+          let acc_invo = response.data.doc;
+
+          for (let i = 0; i < order_invoice.invoices_list.length; i++) {
+            $timeout(() => {
+              acc_invo.currency = order_invoice.invoices_list[i].currency;
+              acc_invo.payment_method = order_invoice.invoices_list[i].payment_method;
+              acc_invo.safe = order_invoice.invoices_list[i].safe;
+              acc_invo.paid_up = order_invoice.invoices_list[i].paid_up;
+
+              acc_invo.ref_invoice_id = response.data.doc.id;
+              if (account_invoices.invoice_type.id == 3 || account_invoices.invoice_type.id == 4) {
+                if (account_invoices.invoice_type.id == 3) {
+                  acc_invo.in_type = {
+                    id: 3,
+                    en: 'sales invoice',
+                    ar: 'فاتورة مبيعات',
+                  };
+                } else if (account_invoices.invoice_type.id == 4) {
+                  acc_invo.in_type = {
+                    id: 2,
+                    en: 'Orders Screen',
+                    ar: 'شاشة الطلبات',
+                  };
+                }
+
+                acc_invo.source_type = {
+                  id: 8,
+                  en: 'Amount In',
+                  ar: 'سند قبض',
+                };
+              } else if (account_invoices.invoice_type.id == 6) {
+                acc_invo.in_type = {
+                  id: 4,
+                  en: 'Return purchase invoice',
+                  ar: 'مرتجع فاتورة مشتريات',
+                };
+                acc_invo.source_type = {
+                  id: 9,
+                  en: 'Amount Out',
+                  ar: 'سند صرف',
+                };
+              }
+
+              $http({
+                method: 'POST',
+                url: '/api/account_invoices/add',
+                data: acc_invo,
+              }).then(function (response) {});
+
+              /*   if (account_invoices.source_type.id == 3 && account_invoices.paid_up > 0) {
+                acc_invo.in_type = {
+                  id: 2,
+                  en: 'Orders Screen',
+                  ar: 'شاشة الطلبات',
+                };
+                acc_invo.source_type = {
+                  id: 8,
+                  en: 'Amount In',
+                  ar: 'سند قبض',
+                };
+                acc_invo.ref_invoice_id = response.data.doc.id;
+
+                $http({
+                  method: 'POST',
+                  url: '/api/account_invoices/add',
+                  data: acc_invo,
+                }).then(function (response) {});
+
+                
+              } */
+            }, 1000 * i);
+          }
+        } else {
+          $scope.error = response.data.error;
+          /* if (response.data.error.like("*duplicate key error*")) {
+            $scope.error = "##word.code_exisit##";
+          } else */
+          if (response.data.error.like('*Please write code*')) {
+            $scope.error = '##word.enter_code_inventory##';
+          } else if (response.data.error.like('*Must Enter Code*')) {
+            $scope.error = '##word.must_enter_code##';
+          }
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    );
+  };
+
+  /*   $scope.addAccountInvoice = function (account_invoices) {
     $scope.error = '';
     $scope.busy = true;
     $scope.detailsCustomer((customer) => {
@@ -1858,7 +2025,6 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
                   en: 'Amount In',
                   ar: 'سند قبض',
                 };
-                $scope.addAccountInvoice(account_invoices);
               } else if (account_invoices.invoice_type.id == 6) {
                 account_invoices.in_type = {
                   id: 4,
@@ -1887,7 +2053,7 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
         }
       );
     });
-  };
+  }; */
 
   $scope.thermalPrint = function (obj) {
     $scope.error = '';

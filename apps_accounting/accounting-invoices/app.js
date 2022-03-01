@@ -169,8 +169,25 @@ module.exports = function init(site) {
       });
       account_invoices_doc.total_items_discount = site.toNumber(account_invoices_doc.total_items_discount);
     }
+    
+    if(account_invoices_doc.invoices_list && account_invoices_doc.invoices_list.length > 0){
+      account_invoices_doc.payment_list = [];
 
-    if (account_invoices_doc.paid_up && account_invoices_doc.safe) {
+      for (let i = 0; i < account_invoices_doc.invoices_list.length; i++) {
+        let i_l = account_invoices_doc.invoices_list[i];
+        account_invoices_doc.payment_list.push({
+          date: account_invoices_doc.date,
+          posting: account_invoices_doc.posting ? true : false,
+          safe: i_l.safe,
+          shift: account_invoices_doc.shift,
+          payment_method: i_l.payment_method,
+          currency: i_l.currency,
+          paid_up: i_l.paid_up,
+        })
+      }
+      
+
+    } else if (account_invoices_doc.paid_up && account_invoices_doc.safe) {
       account_invoices_doc.payment_list = [
         {
           date: account_invoices_doc.date,

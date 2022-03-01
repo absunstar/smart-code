@@ -130,11 +130,7 @@
         "en": "Service Greater Than Required",
         "ar": "مبلغ الخدمة أكبر من المطلوب"
     },
-    {
-        "name": "err_net_value",
-        "en": "Net Value Greater Than Required",
-        "ar": "صافي المبلغ أكبر من المطلوب"
-    },
+
   
     {
         "name": "report_invoices_total_required",

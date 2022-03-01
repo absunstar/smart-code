@@ -173,6 +173,26 @@ module.exports = function init(site) {
     order_invoice_doc.branch = site.get_branch(req);
     order_invoice_doc.image_url = '/images/order_invoice.png';
 
+    if (order_invoice_doc && order_invoice_doc.payable_list && order_invoice_doc.payable_list.length > 0) {
+      let _num = 0;
+      for (let i = 0; i < order_invoice_doc.payable_list.length; i++) {
+        let p = order_invoice_doc.payable_list[i];
+        p.done = false;
+        p.paid_up = 0;
+        p.remain = p.value;
+       _num += p.value;
+      }
+      if(order_invoice_doc.payment_type && order_invoice_doc.payment_type.id == 2){
+        let remain = order_invoice_doc.net_value - order_invoice_doc.paid_up;
+        if(_num > remain){
+          response.error = 'value of batches is greater than the remain of the invoice';
+          res.json(response);
+          return;
+        }
+      }
+    }
+
+
     if (!order_invoice_doc.status)
       order_invoice_doc.status = {
         id: 1,
@@ -187,6 +207,20 @@ module.exports = function init(site) {
         ar: 'تحت التوصيل',
       };
     }
+
+    // if (order_invoice_doc.paid_up < order_invoice_doc.net_value) {
+    //   order_invoice_doc.payment_type = {
+    //     id: 2,
+    //     en: 'Futures',
+    //     ar: 'آجل',
+    //   };
+    // } else if (order_invoice_doc.paid_up == order_invoice_doc.net_value) {
+    //   order_invoice_doc.payment_type = {
+    //     id: 1,
+    //     en: 'Cash',
+    //     ar: 'كاش',
+    //   };
+    // }
 
     let num_obj = {
       company: site.get_company(req),
@@ -653,18 +687,15 @@ module.exports = function init(site) {
     );
   };
 
-  
   site.on('[store_out][order_invoice][data]', (data) => {
     $order_invoice.findOne({ id: data.order_id }, (err, doc) => {
       if (!err && doc) {
-        doc.store_out_id= data.id;
-        doc.store_out_code= data.code;
-        $order_invoice.update(doc, () => {
-        });
+        doc.store_out_id = data.id;
+        doc.store_out_code = data.code;
+        $order_invoice.update(doc, () => {});
       } else {
       }
     });
- 
   });
 
   // site.setStoreOutForOrder = function (data, callback) {
@@ -672,5 +703,4 @@ module.exports = function init(site) {
   //     callback(doc);
   //   });
   // };
-
 };

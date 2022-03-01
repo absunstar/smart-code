@@ -94,6 +94,45 @@ module.exports = function init(site) {
       $res: res,
     });
 
+    if (!stores_out_doc.payment_type && stores_out_doc.type.id != 5) {
+      response.error = 'Must Choose Payment Type';
+      res.json(response);
+      return;
+    }
+
+    if (stores_out_doc.paid_up > stores_out_doc.net_value) {
+       response.error = 'Paid Up Greater Than Net Value';
+      res.json(response);
+      return;
+    }
+
+    if (stores_out_doc.paid_up < stores_out_doc.net_value && stores_out_doc.payment_type &&  stores_out_doc.payment_type.id == 1) {
+       response.error = 'The amount must be paid in full';
+      res.json(response);
+      return;
+    }
+
+
+    if (stores_out_doc && stores_out_doc.payable_list && stores_out_doc.payable_list.length > 0) {
+      let _num = 0;
+      for (let i = 0; i < stores_out_doc.payable_list.length; i++) {
+        let p = stores_out_doc.payable_list[i];
+        p.done = false;
+        p.paid_up = 0;
+        p.remain = p.value;
+       _num += p.value;
+      }
+      if(stores_out_doc.payment_type && stores_out_doc.payment_type.id == 2){
+        let remain = stores_out_doc.net_value - stores_out_doc.paid_up;
+        if(_num > remain){
+          response.error = 'value of batches is greater than the remain of the invoice';
+          res.json(response);
+          return;
+        }
+      }
+    }
+
+
     site.getOpenShift(
       {
         companyId: stores_out_doc.company.id,

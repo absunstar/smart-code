@@ -334,6 +334,7 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
         if ($scope.order_invoice.transaction_type.id != 1 && $scope.order_invoice.service) $scope.order_invoice.service = 0;
 
         if ($scope.order_invoice.transaction_type.id != 2 && $scope.order_invoice.price_delivery_service) $scope.order_invoice.price_delivery_service = 0;
+        $scope.order_invoice.payable_list = $scope.account_invoices.payable_list;
 
         let url = '/api/order_invoice/update';
         if ($scope.order_invoice.id) url = '/api/order_invoice/update';
@@ -359,6 +360,7 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
           }).then(
             function (response) {
               $scope.busy = false;
+              console.log(response.data.done);
               if (response.data.done) {
                 if (site.feature('restaurant')) {
                   $scope.kitchenPrint({ ...response.data.doc });
@@ -366,6 +368,7 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
                 }
 
                 $scope.order_invoice = response.data.doc;
+
                 if ($scope.order_invoice.status.id == 2) {
                   let store_out = {
                     image_url: '/images/store_out.png',
@@ -376,7 +379,9 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
                     order_id: $scope.order_invoice.id,
                     customer: $scope.order_invoice.customer,
                     shift: $scope.order_invoice.shift,
+                    payment_type: $scope.order_invoice.payment_type,
                     store: $scope.order_invoice.store,
+                    payable_list: $scope.order_invoice.payable_list,
                     order_code: $scope.order_invoice.code,
                     items: $scope.order_invoice.items,
                     invoices_list: $scope.order_invoice.invoices_list,
@@ -399,32 +404,39 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
                     },
                     active: true,
                   };
+                  if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto && $scope.order_invoice.status.id == 2 && !$scope.order_invoice.invoice) {
+                    store_out.invoice = true;
+                  }
 
                   $scope.addStoresOut(store_out);
                 }
+                $scope.order_invoice = response.data.doc;
+                if (type === 'table') {
+                  $scope.order_invoice.$show_table = true;
+                }
+                if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto && $scope.order_invoice.status.id == 2 && !$scope.order_invoice.invoice) {
+                  $scope.addAccountInvoice($scope.order_invoice);
+                  site.hideModal('#accountInvoiceModal');
+                }
+                $scope.newOrderInvoice();
               } else {
                 $scope.error = response.data.error;
                 if (response.data.error.like('*Must Enter Code*')) {
                   $scope.error = '##word.must_enter_code##';
-                  $scope.order_invoice.posting = false;
-
-                  $scope.order_invoice.status = {
-                    id: 1,
-                    en: 'Opened',
-                    ar: 'مفتوحة',
-                  };
+                } else if (response.data.error.like('*value of batches is greater than the remain*')) {
+                  $scope.error = '##word.value_batches_greater_remain_invoice##';
                 }
+                $scope.busy = false;
+                $scope.order_invoice.posting = false;
+
+                $scope.order_invoice.status = {
+                  id: 1,
+                  en: 'Opened',
+                  ar: 'مفتوحة',
+                };
               }
 
-              $scope.order_invoice = response.data.doc;
-              if (type === 'table') {
-                $scope.order_invoice.$show_table = true;
-              }
-              if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto && $scope.order_invoice.status.id == 2 && !$scope.order_invoice.invoice) {
-                $scope.addAccountInvoice($scope.order_invoice);
-                site.hideModal('#accountInvoiceModal');
-              }
-              $scope.newOrderInvoice();
+             
               document.querySelector('#searchBarcode input').focus();
             },
             function (err) {
@@ -464,6 +476,25 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
     }
   };
 
+  $scope.loadPaymentTypes = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: 'POST',
+      url: '/api/payment_type/all',
+      data: {},
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.paymentTypesList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.addAccountInvoice = function (order_invoice) {
     $scope.error = '';
     /*     if ($scope.busy) {
@@ -476,7 +507,10 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
       date: order_invoice.date,
       invoice_id: order_invoice.id,
       customer: order_invoice.customer,
+      payment_type: order_invoice.payment_type,
+      invoices_list: order_invoice.invoices_list,
       shift: order_invoice.shift,
+      payable_list: order_invoice.payable_list,
       order_invoices_type: order_invoice.transaction_type,
       total_value: order_invoice.total_value,
       net_value: order_invoice.net_value,
@@ -500,11 +534,13 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
       active: true,
     };
 
-    for (let i = 0; i < $scope.account_invoices.payable_list.length; i++) {
-      let p = $scope.account_invoices.payable_list[i];
-      p.done = false;
-      p.paid_up = 0;
-      p.remain = p.value;
+    if (account_invoices.payable_list && account_invoices.payable_list.length > 0) {
+      for (let i = 0; i < account_invoices.payable_list.length; i++) {
+        let p = account_invoices.payable_list[i];
+        p.done = false;
+        p.paid_up = 0;
+        p.remain = p.value;
+      }
     }
 
     if ($scope.defaultSettings.accounting) {
@@ -773,6 +809,9 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
             else $scope.order_invoice.invoices_list[0].safe = $scope.defaultSettings.accounting.safe_bank;
           }
         }
+        if ($scope.defaultSettings.general_Settings.payment_type) {
+          $scope.order_invoice.payment_type = $scope.defaultSettings.general_Settings.payment_type;
+        }
 
         if ($scope.order_invoice.invoices_list[0].currency) {
           /*     $scope.order_invoice.invoices_list[0].amount_currency = $scope.order_invoice.invoices_list[0].net_value / $scope.order_invoice.invoices_list[0].currency.ex_rate;
@@ -802,6 +841,8 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
       }
     }
     obj.paid_up = $scope.order_invoice.net_value - $scope.order_invoice.paid_up;
+    obj.paid_up = site.toMoney(obj.paid_up);
+    $scope.calcInvoice($scope.order_invoice);
     $scope.order_invoice.invoices_list.push(obj);
   };
 
@@ -2725,6 +2766,7 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
   $scope.getAreaListToDelivery();
   $scope.loadStores();
   $scope.getUser();
+  $scope.loadPaymentTypes();
   $scope.getNumberingAutoInvoice();
   $scope.getNumberingAutoCustomer();
   if (site.feature('restaurant')) {
