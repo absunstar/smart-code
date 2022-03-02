@@ -101,17 +101,16 @@ module.exports = function init(site) {
     }
 
     if (stores_out_doc.paid_up > stores_out_doc.net_value) {
-       response.error = 'Paid Up Greater Than Net Value';
+      response.error = 'Paid Up Greater Than Net Value';
       res.json(response);
       return;
     }
 
-    if (stores_out_doc.paid_up < stores_out_doc.net_value && stores_out_doc.payment_type &&  stores_out_doc.payment_type.id == 1) {
-       response.error = 'The amount must be paid in full';
+    if (stores_out_doc.paid_up < stores_out_doc.net_value && stores_out_doc.payment_type && stores_out_doc.payment_type.id == 1) {
+      response.error = 'The amount must be paid in full';
       res.json(response);
       return;
     }
-
 
     if (stores_out_doc && stores_out_doc.payable_list && stores_out_doc.payable_list.length > 0) {
       let _num = 0;
@@ -120,18 +119,17 @@ module.exports = function init(site) {
         p.done = false;
         p.paid_up = 0;
         p.remain = p.value;
-       _num += p.value;
+        _num += p.value;
       }
-      if(stores_out_doc.payment_type && stores_out_doc.payment_type.id == 2){
+      if (stores_out_doc.payment_type && stores_out_doc.payment_type.id == 2) {
         let remain = stores_out_doc.net_value - stores_out_doc.paid_up;
-        if(_num > remain){
+        if (_num > remain) {
           response.error = 'value of batches is greater than the remain of the invoice';
           res.json(response);
           return;
         }
       }
     }
-
 
     site.getOpenShift(
       {
@@ -167,7 +165,7 @@ module.exports = function init(site) {
               stores_out_doc.total_value = site.toNumber(stores_out_doc.total_value);
               stores_out_doc.net_value = site.toNumber(stores_out_doc.net_value);
 
-              if (stores_out_doc.type.id == 6) {
+              if (stores_out_doc.type.id !== 5 && stores_out_doc.type.id !== 6) {
                 stores_out_doc.return_paid = {
                   items: stores_out_doc.items,
                   total_discount: stores_out_doc.total_discount,
@@ -322,7 +320,7 @@ module.exports = function init(site) {
                 }
               });
 
-              if (stores_out_doc.type.id !== 5 && stores_out_doc.type.id !== 6)
+              if (stores_out_doc.type.id !== 5 && stores_out_doc.type.id !== 6) {
                 stores_out_doc.return_paid = {
                   items: stores_out_doc.items,
                   total_discount: stores_out_doc.total_discount,
@@ -331,6 +329,7 @@ module.exports = function init(site) {
                   total_value: stores_out_doc.total_value,
                   net_value: stores_out_doc.net_value,
                 };
+              }
 
               stores_out_doc.total_value = site.toNumber(stores_out_doc.total_value);
 
@@ -957,7 +956,7 @@ module.exports = function init(site) {
   });
 
   site.returnStoresOut = function (obj, res) {
-    $stores_out.findOne({ code: obj.retured_number }, (err, doc) => {
+    $stores_out.findOne({ id: obj.retured_id }, (err, doc) => {
       if (doc && doc.return_paid) {
         obj.items.forEach((_itemsObj) => {
           doc.return_paid.items.forEach((_itemsDoc) => {

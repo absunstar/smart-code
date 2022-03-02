@@ -107,7 +107,7 @@ popup item:hover {
 }
 .main-menu.menu-show {
   opacity: 1;
-  min-width: 400px;
+  min-width: 370px;
 }
 
 .main-menu.menu-show .tab-link span {

@@ -1041,7 +1041,7 @@ module.exports = function init(site) {
   })
 
   site.returnStoresIn = function (obj, res) {
-    $stores_in.findOne({ code: obj.retured_number }, (err, doc) => {
+    $stores_in.findOne({ id: obj.retured_id }, (err, doc) => {
       if (doc && doc.return_paid) {
         obj.items.forEach(_itemsObj => {
           doc.return_paid.items.forEach(_itemsDoc => {

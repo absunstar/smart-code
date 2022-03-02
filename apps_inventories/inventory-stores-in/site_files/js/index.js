@@ -2194,6 +2194,7 @@ app.controller('stores_in', function ($scope, $http, $timeout) {
   $scope.selectReturnedStoreIn = function (i) {
     if ($scope.store_in && i.return_paid) {
       $scope.store_in.retured_number = i.code;
+      $scope.store_in.retured_id = i.id;
       $scope.store_in.total_discount = i.return_paid.total_discount;
       $scope.store_in.total_value_added = i.return_paid.total_value_added;
       $scope.store_in.total_tax = i.return_paid.total_tax;

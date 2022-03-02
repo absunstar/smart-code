@@ -3008,6 +3008,7 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
   $scope.selectReturnedStoreOut = function (i) {
     if ($scope.store_out && i.return_paid) {
       $scope.store_out.retured_number = i.code;
+      $scope.store_out.retured_id = i.id;
       $scope.store_out.delegate = i.delegate || {};
       $scope.store_out.total_discount = i.return_paid.total_discount;
       $scope.store_out.total_value_added = i.return_paid.total_value_added;

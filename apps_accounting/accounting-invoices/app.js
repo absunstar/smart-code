@@ -6,13 +6,14 @@ module.exports = function init(site) {
       if (doc) {
         doc.total_paid_up = doc.total_paid_up + obj.paid_up * obj.currency.ex_rate;
         doc.remain_amount = doc.remain_amount - obj.paid_up * obj.currency.ex_rate;
+        if (obj.payable_list && obj.payable_list.length > 0) {
+          for (let i = 0; i < obj.payable_list.length; i++) {
+            let p = obj.payable_list[i];
+            p.select = false;
+          }
 
-        for (let i = 0; i < obj.payable_list.length; i++) {
-          let p = obj.payable_list[i];
-          p.select = false;
+          doc.payable_list = obj.payable_list;
         }
-
-        doc.payable_list = obj.payable_list;
 
         doc.payment_list.push({
           date: obj.date,
@@ -169,8 +170,8 @@ module.exports = function init(site) {
       });
       account_invoices_doc.total_items_discount = site.toNumber(account_invoices_doc.total_items_discount);
     }
-    
-    if(account_invoices_doc.invoices_list && account_invoices_doc.invoices_list.length > 0){
+
+    if (account_invoices_doc.invoices_list && account_invoices_doc.invoices_list.length > 0) {
       account_invoices_doc.payment_list = [];
 
       for (let i = 0; i < account_invoices_doc.invoices_list.length; i++) {
@@ -183,10 +184,8 @@ module.exports = function init(site) {
           payment_method: i_l.payment_method,
           currency: i_l.currency,
           paid_up: i_l.paid_up,
-        })
+        });
       }
-      
-
     } else if (account_invoices_doc.paid_up && account_invoices_doc.safe) {
       account_invoices_doc.payment_list = [
         {
