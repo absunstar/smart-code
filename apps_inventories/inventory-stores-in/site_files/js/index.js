@@ -292,7 +292,7 @@ app.controller('stores_in', function ($scope, $http, $timeout) {
     }
     $scope.busy = false;
     $timeout(() => {
-      $('#storeOutDetails').addClass('hidden');
+      $('#storeInDetails').addClass('hidden');
     }, 8000);
   };
 
@@ -997,7 +997,7 @@ app.controller('stores_in', function ($scope, $http, $timeout) {
   $scope.calcSize = function (calc_size) {
     $scope.error = '';
 
-    setTimeout(() => {
+    $timeout(() => {
       if (calc_size.count) {
         if (calc_size.discount.type == 'number') {
           calc_size.discount.current = calc_size.discount.value;
@@ -1729,7 +1729,7 @@ app.controller('stores_in', function ($scope, $http, $timeout) {
       return;
     } else {
       for (let i = 0; i < _store_in_all.length; i++) {
-        setTimeout(() => {
+        $timeout(() => {
           if (!_store_in_all[i].posting) {
             $scope.getStockItems(_store_in_all[i].items, _store_in_all[i].store, (callback) => {
               $scope.testPatches(_store_in_all[i], (testCallback) => {

@@ -19,17 +19,13 @@ module.exports = function init(site) {
     ],
   };
 
-  site.onPOST('/api/languages/ar-sa' , (req , res)=>{
-    site.addWord({
-      name : 'username',
-      en : 'User Name',
-      ar : 'zzzzzzzzzzzzzzzzz'
-    })
+  site.onGET('/api/languages/ar-sa', (req, res) => {
+    site.addWords(site.dir + '/site_files/json/words-sa.json');
 
     res.json({
-      done : true
-    })
-  })
+      done: true,
+    });
+  });
 
   $companies.findOne({}, (err, doc) => {
     if (!err && doc) {
@@ -474,9 +470,7 @@ module.exports = function init(site) {
                         image_url: companies_doc.image_url,
                       },
                     },
-                    (err, user_result) => {
-                     
-                    }
+                    (err, user_result) => {}
                   );
                 } else {
                   site.call(
@@ -510,8 +504,6 @@ module.exports = function init(site) {
                     }
                   );
                 }
-
-               
               } else {
                 response.error = err.message;
               }

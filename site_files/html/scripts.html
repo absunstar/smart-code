@@ -1,17 +1,17 @@
 <script src="/x-js/all.js?v=##site.options.version##"></script>
 <script>
-    site.features = '##req.features##';
-    site.feature = (f) => site.features.indexOf(f) !== -1;
+  site.features = '##req.features##';
+  site.feature = (f) => site.features.indexOf(f) !== -1;
 
-    setTimeout(() => {
-        document.querySelectorAll('.loaded').forEach((el) => {
-            el.style.visibility = 'visible';
-        });
-    }, 1000);
+  setTimeout(() => {
+    document.querySelectorAll('.loaded').forEach((el) => {
+      el.style.visibility = 'visible';
+    });
+  }, 1000);
 </script>
 
 <script>
-    var app = app || angular.module('myApp', []);
+  var app = app || angular.module('myApp', []);
 </script>
 
 <!-- <script src="/x-js/directive.js?v=##site.options.version##"></script> -->
@@ -27,145 +27,167 @@
 <div x-feature="help" x-import="ui-help/index.html"></div>
 <script x-import="ui-print/index.js"></script>
 <script>
-    $(document).on('keydown', 'input,select', function (e) {
-        if (e.which == 13 || e.keyCode == 13) {
-            e.preventDefault();
-            var $canfocus = $('input,select');
-            var index = $canfocus.index(document.activeElement) + 1;
-            if (index >= $canfocus.length) index = 0;
-            $canfocus.eq(index).focus();
-        }
+  $(document).on('keydown', 'input,select', function (e) {
+    if (e.which == 13 || e.keyCode == 13) {
+      e.preventDefault();
+      var $canfocus = $('input,select');
+      var index = $canfocus.index(document.activeElement) + 1;
+      if (index >= $canfocus.length) index = 0;
+      $canfocus.eq(index).focus();
+    }
+  });
+
+  function string_to_buffer(s) {
+    if (typeof ArrayBuffer !== 'undefined') {
+      var buf = new ArrayBuffer(s.length);
+      var view = new Uint8Array(buf);
+      for (var i = 0; i != s.length; ++i) view[i] = s.charCodeAt(i) & 0xff;
+      return buf;
+    } else {
+      var buf = new Array(s.length);
+      for (var i = 0; i != s.length; ++i) buf[i] = s.charCodeAt(i) & 0xff;
+      return buf;
+    }
+  }
+
+  function export_to_xlsx(id, _fileName) {
+    _fileType = 'xlsx';
+    var workbook = XLSX.utils.table_to_book(document.getElementById(id), {
+      sheet: 'Sheet JS',
     });
-
-    function string_to_buffer(s) {
-        if (typeof ArrayBuffer !== 'undefined') {
-            var buf = new ArrayBuffer(s.length);
-            var view = new Uint8Array(buf);
-            for (var i = 0; i != s.length; ++i) view[i] = s.charCodeAt(i) & 0xff;
-            return buf;
-        } else {
-            var buf = new Array(s.length);
-            for (var i = 0; i != s.length; ++i) buf[i] = s.charCodeAt(i) & 0xff;
-            return buf;
-        }
+    var wbout = XLSX.write(workbook, {
+      bookType: _fileType,
+      bookSST: true,
+      type: 'binary',
+    });
+    var fileName = _fileName || 'file.' + _fileType;
+    try {
+      saveAs(
+        new Blob([string_to_buffer(wbout)], {
+          type: 'application/octet-stream',
+        }),
+        fileName
+      );
+    } catch (e) {
+      if (typeof console != 'undefined') console.log(e);
     }
-
-    function export_to_xlsx(id, _fileName) {
-        _fileType = 'xlsx';
-        var workbook = XLSX.utils.table_to_book(document.getElementById(id), {
-            sheet: 'Sheet JS',
-        });
-        var wbout = XLSX.write(workbook, {
-            bookType: _fileType,
-            bookSST: true,
-            type: 'binary',
-        });
-        var fileName = _fileName || 'file.' + _fileType;
-        try {
-            saveAs(
-                new Blob([string_to_buffer(wbout)], {
-                    type: 'application/octet-stream',
-                }),
-                fileName,
-            );
-        } catch (e) {
-            if (typeof console != 'undefined') console.log(e);
-        }
-        return wbout;
-    }
+    return wbout;
+  }
 </script>
 
 <script x-features="!host.elfgr && *egytag.com*">
-    function add_script(info) {
-        console.log('Adding Script : ' + info.src);
-        var script = document.createElement('script');
-        script.id = info['id'];
-        script.src = info['src'];
-        script.setAttribute('data-ad-client', info['data-ad-client']);
-        script.setAttribute('async', info['async']);
-        document.querySelector('head').appendChild(script);
-    }
+  function add_script(info) {
+    console.log('Adding Script : ' + info.src);
+    var script = document.createElement('script');
+    script.id = info['id'];
+    script.src = info['src'];
+    script.setAttribute('data-ad-client', info['data-ad-client']);
+    script.setAttribute('async', info['async']);
+    document.querySelector('head').appendChild(script);
+  }
 
-    add_script({
-        src: 'https://www.googletagmanager.com/gtag/js?id=UA-59220588-1',
-        id: 'googletagmanager',
-        async: true,
-    });
-    add_script({
-        src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js',
-        id: 'googlesyndication',
-        'data-ad-client': 'ca-pub-3372007384613151',
-        async: true,
-    });
+  add_script({
+    src: 'https://www.googletagmanager.com/gtag/js?id=UA-59220588-1',
+    id: 'googletagmanager',
+    async: true,
+  });
+  add_script({
+    src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js',
+    id: 'googlesyndication',
+    'data-ad-client': 'ca-pub-3372007384613151',
+    async: true,
+  });
 
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-        dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
-    gtag('config', 'UA-59220588-1');
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag('js', new Date());
+  gtag('config', 'UA-59220588-1');
 </script>
 
 <!-- apps.egytag.com -->
 <ins
-    x-features="!host.elfgr && *egytag.com*"
-    class="adsbygoogle"
-    style="display: block"
-    data-ad-client="ca-pub-3372007384613151"
-    data-ad-slot="7771021498"
-    data-ad-format="auto"
-    data-full-width-responsive="true"
+  x-features="!host.elfgr && *egytag.com*"
+  class="adsbygoogle"
+  style="display: block"
+  data-ad-client="ca-pub-3372007384613151"
+  data-ad-slot="7771021498"
+  data-ad-format="auto"
+  data-full-width-responsive="true"
 ></ins>
 <script x-features="!host.elfgr && *egytag.com*">
-    (adsbygoogle = window.adsbygoogle || []).push({});
+  (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 
 <!-- Load Facebook SDK for JavaScript -->
 <div x-features="!host.elfgr && *egytag.com*" id="fb-root"></div>
 <script x-features="!host.elfgr && *egytag.com*">
-    if (
-        !site.features.like('*host.elfgr*') &&
-        !site.features.like('*host.icc*') &&
-        !site.features.like('*host.ft*') &&
-        !site.features.like('*unqcode.net*') &&
-        !site.features.like('*host.valley*') &&
-        !site.features.like('*host.mt*')
-    ) {
-        window.fbAsyncInit = function () {
-            FB.init({
-                xfbml: true,
-                version: 'v9.0',
-            });
-        };
+  if (
+    !site.features.like('*host.elfgr*') &&
+    !site.features.like('*host.icc*') &&
+    !site.features.like('*host.ft*') &&
+    !site.features.like('*unqcode.net*') &&
+    !site.features.like('*host.valley*') &&
+    !site.features.like('*host.mt*')
+  ) {
+    window.fbAsyncInit = function () {
+      FB.init({
+        xfbml: true,
+        version: 'v9.0',
+      });
+    };
 
-        (function (d, s, id) {
-            var js,
-                fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s);
-            js.id = id;
-            js.src = 'https://connect.facebook.net/ar_AR/sdk/xfbml.customerchat.js';
-            fjs.parentNode.insertBefore(js, fjs);
-        })(document, 'script', 'facebook-jssdk');
+    (function (d, s, id) {
+      var js,
+        fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s);
+      js.id = id;
+      js.src = 'https://connect.facebook.net/ar_AR/sdk/xfbml.customerchat.js';
+      fjs.parentNode.insertBefore(js, fjs);
+    })(document, 'script', 'facebook-jssdk');
 
-        window.addEventListener('load', () => {
-            let cds = setInterval(() => {
-                let chat_div = document.querySelector('#fb-root iframe');
-                if (chat_div) {
-                    chat_div.setAttribute('style', chat_div.getAttribute('style') + 'width : 500px;max-width:90vw');
-                    clearInterval(cds);
-                }
-            }, 1000 * 5);
-        });
-    }
+    window.addEventListener('load', () => {
+      let cds = setInterval(() => {
+        let chat_div = document.querySelector('#fb-root iframe');
+        if (chat_div) {
+          chat_div.setAttribute('style', chat_div.getAttribute('style') + 'width : 500px;max-width:90vw');
+          clearInterval(cds);
+        }
+      }, 1000 * 5);
+    });
+  }
 </script>
 
 <!-- Your Chat Plugin code -->
 <div
-    x-features="!host.elfgr && *egytag.com*"
-    class="fb-customerchat"
-    attribution="setup_tool"
-    page_id="545115802193198"
-    logged_in_greeting="شركة سمارت كود ترحب بك - أكتب رسالتك وسنتواصل معك فى أقرب وقت"
-    logged_out_greeting="شركة سمارت كود ترحب بك - أكتب رسالتك وسنتواصل معك فى أقرب وقت"
+  x-features="!host.elfgr && *egytag.com*"
+  class="fb-customerchat"
+  attribution="setup_tool"
+  page_id="545115802193198"
+  logged_in_greeting="شركة سمارت كود ترحب بك - أكتب رسالتك وسنتواصل معك فى أقرب وقت"
+  logged_out_greeting="شركة سمارت كود ترحب بك - أكتب رسالتك وسنتواصل معك فى أقرب وقت"
 ></div>
+
+<script>
+
+$(document).ready(() => {
+    if (!isMenuShow) {
+      $('.tooltip').addClass('tooltip2');
+    }
+  });
+  
+/*   $('.tooltip img').hover(
+    () => {
+      console.log('xxxxxxxxxxxxxxxx');
+      console.log($(this).parent('a'));
+      $(this).parent().addClass('tooltip2');
+      if (!isMenuShow) {
+      }
+    },
+    () => {
+      $(this).parent().removeClass('tooltip2');
+    }
+  ); */
+</script>

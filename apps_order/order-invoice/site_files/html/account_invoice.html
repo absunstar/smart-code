@@ -22,14 +22,37 @@
           ></i-list>
           <i-button class="col2" label="##word.add_payment##" ng-show="order_invoice.payment_type.id == 2" ng-click="paymentsPayable('view')"> </i-button>
         </div>
+
         <div class="row">
-          <i-control class="col2" ng-show="order_invoice.total_discount" ng-model="order_invoice.total_discount" disabled label="##word.total_discount##" type="number"> </i-control>
+          <fieldset class="col8">
+            <div class="row">
 
-          <i-control class="col2" ng-show="order_invoice.total_tax" ng-model="order_invoice.total_tax" disabled label="##word.total_tax##" type="number"> </i-control>
+            <div class="col3" ng-show="order_invoice.total_discount">
+              <h3 class="center bold">##word.total_discount##</h3>
+              <br />
+              <h3 class="center red bold">{{order_invoice.total_discount | xmoney}}</h3>
+            </div>
 
-          <i-control class="col2" ng-show="order_invoice.net_value" disabled ng-model="order_invoice.net_value" label="##word.paid_require##" type="number"> </i-control>
+            <div class="col3" ng-show="order_invoice.total_tax">
+              <h3 class="center bold">##word.total_tax##</h3>
+              <br />
+              <h3 class="center red bold">{{order_invoice.total_tax | xmoney}}</h3>
+            </div>
 
-          <i-control class="col2" disabled ng-model="order_invoice.paid_up" label="##word.total_payments##" type="number"> </i-control>
+            <div class="col3">
+              <h3 class="center bold">##word.paid_require##</h3>
+              <br />
+              <h3 class="center blue bold">{{order_invoice.net_value | xmoney}}</h3>
+            </div>
+
+            <div class="col3">
+              <h3 class="center bold">##word.total_payments##</h3>
+              <br />
+              <h3 class="center green bold">{{order_invoice.paid_up | xmoney}}</h3>
+            </div>
+          </div>
+        </fieldset>
+
         </div>
 
         <fieldset ng-repeat="inv in order_invoice.invoices_list">

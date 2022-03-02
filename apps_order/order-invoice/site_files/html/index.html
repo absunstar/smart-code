@@ -208,11 +208,11 @@
                       <input class="full-width" ng-change="calcSize(size)" ng-model="size.count" type="number" />
                     </div>
                     <div class="col-1 item">
-                      <p class="center bold">{{size.b_price}}</p>
-                      <del class="red txt16" ng-show="itm.discount.value > 0"> {{size.discount.current}} </del>
+                      <p class="center bold">{{size.b_price | xmoney}}</p>
+                      <del class="red txt16" ng-show="itm.discount.value > 0"> {{size.discount.current | xmoney}} </del>
                     </div>
-                    <div class="col-1 item" x-features="restaurant">{{size.extras_price}}</div>
-                    <div class="col-2 item bold font-18 green">{{size.total}}</div>
+                    <div class="col-1 item" x-features="restaurant">{{size.extras_price | xmoney}}</div>
+                    <div class="col-2 item bold font-18 green">{{size.total | xmoney}}</div>
                     <div class="col-1 item">
                       <div class="row center">
                         <div class="col6">
@@ -242,11 +242,11 @@
                       <div class="col-2 header">##word.net##</div>
                     </div>
                     <div class="table-items">
-                      <div class="col-3 item center bold">{{order_invoice.before_value_added}}</div>
-                      <div class="col-2 item center bold red">{{order_invoice.total_value_added}}</div>
-                      <div class="col-3 item center bold">{{order_invoice.total_value}}</div>
-                      <div class="col-2 item center bold">{{order_invoice.total_discount}}</div>
-                      <div class="col-2 item center bold green font-18">{{order_invoice.net_value}}</div>
+                      <div class="col-3 item center bold font-14">{{order_invoice.before_value_added | xmoney}}</div>
+                      <div class="col-2 item center bold font-14 red">{{order_invoice.total_value_added | xmoney}}</div>
+                      <div class="col-3 item center bold font-14">{{order_invoice.total_value | xmoney}}</div>
+                      <div class="col-2 item center bold font-14">{{order_invoice.total_discount | xmoney}}</div>
+                      <div class="col-2 item center bold green font-18">{{order_invoice.net_value | xmoney}}</div>
                     </div>
                   </div>
                 </div>

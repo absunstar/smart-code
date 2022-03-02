@@ -334,7 +334,16 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
         if ($scope.order_invoice.transaction_type.id != 1 && $scope.order_invoice.service) $scope.order_invoice.service = 0;
 
         if ($scope.order_invoice.transaction_type.id != 2 && $scope.order_invoice.price_delivery_service) $scope.order_invoice.price_delivery_service = 0;
-        $scope.order_invoice.payable_list = $scope.account_invoices.payable_list;
+
+        if ($scope.account_invoices && $scope.account_invoices.payable_list && $scope.account_invoices.payable_list.length > 0) {
+          for (let i = 0; i < $scope.account_invoices.payable_list.length; i++) {
+            let p = $scope.account_invoices.payable_list[i];
+            p.done = false;
+            p.paid_up = 0;
+            p.remain = p.value;
+          }
+          $scope.order_invoice.payable_list = $scope.account_invoices.payable_list;
+        }
 
         let url = '/api/order_invoice/update';
         if ($scope.order_invoice.id) url = '/api/order_invoice/update';
@@ -436,7 +445,6 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
                 };
               }
 
-             
               document.querySelector('#searchBarcode input').focus();
             },
             function (err) {

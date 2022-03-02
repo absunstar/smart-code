@@ -164,14 +164,14 @@
                 <td class="center txt16">{{itm.count}}</td>
 
                 <td class="center txt16" x-permissions="stores_out_details_values || stores_out_manage">
-                    {{itm.b_price}}
+                    {{itm.b_price | xmoney}}
 
-                    <del class="red txt16" ng-show="itm.discount.value > 0"> {{itm.discount.current}} </del>
+                    <del class="red txt16" ng-show="itm.discount.value > 0"> {{itm.discount.current | xmoney}} </del>
                 </td>
 
-                <td class="center txt16 red" x-permissions="stores_out_details_values || stores_out_manage">{{itm.total_v_a}}</td>
+                <td class="center txt16 red" x-permissions="stores_out_details_values || stores_out_manage">{{itm.total_v_a | xmoney}}</td>
 
-                <td class="center txt16" x-permissions="stores_out_details_values || stores_out_manage">{{itm.total}}</td>
+                <td class="center txt16" x-permissions="stores_out_details_values || stores_out_manage">{{itm.total | xmoney}}</td>
             </tr>
         </table>
     </div>
@@ -190,11 +190,11 @@
             </div>
 
             <div class="col4 bold">
-                <p class="txt16 black">{{store_out.before_value_added}}</p>
-                <p class="txt16 black">{{store_out.total_value_added}}</p>
-                <p class="txt16 black">{{store_out.total_value}}</p>
-                <p class="txt16 red">{{store_out.total_discount}}</p>
-                <p class="txt16 green">{{store_out.net_value}}</p>
+                <p class="txt16 black">{{store_out.before_value_added | xmoney}}</p>
+                <p class="txt16 black">{{store_out.total_value_added | xmoney}}</p>
+                <p class="txt16 black">{{store_out.total_value | xmoney}}</p>
+                <p class="txt16 red">{{store_out.total_discount | xmoney}}</p>
+                <p class="txt16 green">{{store_out.net_value | xmoney}}</p>
             </div>
         </div>
 

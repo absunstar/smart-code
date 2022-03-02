@@ -1,89 +1,95 @@
 <h2 class="brand" x-features="!atm">
-    <div class="row">
-        <div class="inline title" help-id="brand_title">
-            <a x-permission="login" href="#" onclick="showMenu()"> <i class="fa fa-bars"></i> </a>
+  <div class="row">
+    <div class="inline title" help-id="brand_title">
+      <a x-permission="login" href="#" onclick="showMenu()"> <i class="fa fa-bars"></i> </a>
 
-            <a href="/"> ##word.brand_title## <span> ##word.brand_tag##</span> </a>
-        </div>
-        <!-- style=" margin-left: 400px;
-      margin-right: 400px;" -->
-        <div class="inline text-center desktop">
-            <div class="info bord" x-features="login">
-                <a id="btn_change_branch" onclick="site.showModal('#changeBranchModal');">
-                    <i ng-show="'##session.lang##' == 'ar'"> ##session.company.name_ar## - ##session.branch.name_ar## </i>
-                    <i ng-show="'##session.lang##' == 'en'"> ##session.company.name_en## - ##session.branch.name_en## </i>
-                </a>
-            </div>
-        </div>
-        <div class="info">
-            <a x-features="login" href="#" onclick="event.stopPropagation(); $('.user-menu').toggle()"> <img src="##user.profile.image_url##" alt="" /> </a>
-
-            <a x-features="!medical && !login" id="btn_register" ng-click="customerRegister()"> ##word.customer_register## </a>
-
-            <a x-features="!login" id="btn_login" ng-click="login()"> ##word.security_login## </a>
-        </div>
-
-        <div class="user-menu">
-            <div class="center profile">
-                <img class="center" src="##user.profile.image_url##" alt="" /> <br />
-                <span ng-show="'##session.lang##' == 'ar'" class="user-name"> ##user.profile.name_ar## </span> <br />
-                <span ng-show="'##session.lang##' == 'en'" class="user-name"> ##user.profile.name_en## </span> <br />
-                <h5 class="grayDark userPrint center">##user.email##</h5>
-                <br />
-                <div class="center">
-                    <a id="bord_edit" href="/manage_user">
-                        <span class="black">##word.manage_your_personal_account##</span>
-                    </a>
-                </div>
-
-                <br />
-
-                <div class="link" ng-click="logout()">##word.security_logout##</div>
-            </div>
-        </div>
+      <a href="/"> ##word.brand_title## <span> ##word.brand_tag##</span> </a>
     </div>
+    <!-- style=" margin-left: 400px;
+      margin-right: 400px;" -->
+    <div class="inline text-center desktop">
+      <div class="info bord" x-features="login">
+        <a id="btn_change_branch" onclick="site.showModal('#changeBranchModal');">
+          <i ng-show="'##session.lang##' == 'ar'"> ##session.company.name_ar## - ##session.branch.name_ar## </i>
+          <i ng-show="'##session.lang##' == 'en'"> ##session.company.name_en## - ##session.branch.name_en## </i>
+        </a>
+      </div>
+    </div>
+    <div class="info">
+      <a x-features="login" href="#" onclick="event.stopPropagation(); $('.user-menu').toggle()"> <img src="##user.profile.image_url##" alt="" /> </a>
+
+      <a x-features="!medical && !login" id="btn_register" ng-click="customerRegister()"> ##word.customer_register## </a>
+
+      <a x-features="!login" id="btn_login" ng-click="login()"> ##word.security_login## </a>
+    </div>
+
+    <div class="user-menu">
+      <div class="center profile">
+        <img class="center" src="##user.profile.image_url##" alt="" /> <br />
+        <span ng-show="'##session.lang##' == 'ar'" class="user-name"> ##user.profile.name_ar## </span> <br />
+        <span ng-show="'##session.lang##' == 'en'" class="user-name"> ##user.profile.name_en## </span> <br />
+        <h5 class="grayDark userPrint center">##user.email##</h5>
+        <br />
+        <div class="center">
+          <a id="bord_edit" href="/manage_user">
+            <span class="black">##word.manage_your_personal_account##</span>
+          </a>
+        </div>
+
+        <br />
+
+        <div class="link" ng-click="logout()">##word.security_logout##</div>
+      </div>
+    </div>
+  </div>
 </h2>
 
 <section class="header-atm" x-features="atm">
-    <nav class="navbar-atm">
-        <div class="container-atm">
-            <a class="navbar-brand-atm" href="/"><img src="/images/inmedic.svg" width="80%" /></a>
+  <nav class="navbar-atm">
+    <div class="container-atm">
+      <a class="navbar-brand-atm" href="/"><img src="/images/inmedic.svg" width="80%" /></a>
 
-            <ul class="navbar-nav-atm">
-                <li class="nav-item-atm" x-permission="login">
-                    <a class="nav-link-atm" href="#">
-                        <img src="/images/acount.svg" width="40px" />
-                    </a>
-                </li>
+      <ul class="navbar-nav-atm">
+        <li class="nav-item-atm" x-permission="login">
+          <a class="nav-link-atm" href="#">
+            <img src="/images/acount.svg" width="40px" />
+          </a>
+        </li>
 
-                <li class="nav-item-atm" x-permission="!login">
-                    <a class="nav-link-atm" href="#"> دخول او تسجيل جديد</a>
-                </li>
-                <li class="nav-item-atm">
-                    <a class="nav-link-atm" href="#">EN</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+        <li class="nav-item-atm" x-permission="!login">
+          <a class="nav-link-atm" href="#"> دخول او تسجيل جديد</a>
+        </li>
+        <li class="nav-item-atm">
+          <a class="nav-link-atm" href="#">EN</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
 </section>
 
 <div class="links">
-    <div x-permission="login" x-import="menu/index.html"></div>
+  <div x-permission="login" x-import="menu/index.html"></div>
 </div>
 
 <script>
-    var isMenuShow = false;
-    function showMenu() {
-        let menu = document.querySelector('.main-menu');
-        let body = document.querySelector('body');
-        if (isMenuShow) {
-            menu.classList.remove('menu-show');
-            body.classList.remove('menu-show');
-            isMenuShow = false;
-        } else {
-            menu.classList.add('menu-show');
-            body.classList.add('menu-show');
-            isMenuShow = true;
-        }
+  var isMenuShow = false;
+
+
+
+  function showMenu() {
+    let menu = document.querySelector('.main-menu');
+    let body = document.querySelector('body');
+    if (isMenuShow) {
+      menu.classList.remove('menu-show');
+      body.classList.remove('menu-show');
+      isMenuShow = false;
+      $('.tooltip').addClass('tooltip2');
+    } else {
+      $('.tooltip').removeClass('tooltip2');
+
+      menu.classList.add('menu-show');
+      body.classList.add('menu-show');
+      isMenuShow = true;
     }
+  }
 </script>

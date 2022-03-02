@@ -10,6 +10,11 @@
         "ar": "الإعدادات الإفتراضية"
     },
     {
+        "name": "remove_logo",
+        "en": "Remove Logo",
+        "ar": "حذف اللوجو"
+    },
+    {
         "name": "qr_place",
         "en": "QR Place",
         "ar": "مكان رمز الإستجابة"

@@ -231,7 +231,6 @@
                   ng-model="default_setting.printer_program.invoice_top_title"
                 ></i-control> -->
 
-
                 <i-list
                   class="col4"
                   ng-model="default_setting.printer_program.thermal_lang"
@@ -251,6 +250,10 @@
               <div class="col1"></div>
               <div>
                 <i-image help-id="units_logo" ng-model="default_setting.printer_program.invoice_logo"> </i-image>
+                <div class="row center">
+                  <i-button class="center" type="delete" label="##word.remove_logo##" ng-click="default_setting.printer_program.invoice_logo = ''"></i-button>
+
+                </div>
               </div>
             </div>
           </div>

@@ -201,11 +201,11 @@
           <p class="black center font-10 bold">{{itm.count}}</p>
         </div>
         <div class="col-2 black">
-          <p class="black center font-10 bold">{{itm.b_price}}</p>
+          <p class="black center font-10 bold">{{itm.b_price | xmoney}}</p>
         </div>
 
         <div class="col-3 black">
-          <p class="black center font-10 bold">{{itm.total}}</p>
+          <p class="black center font-10 bold">{{itm.total | xmoney}}</p>
         </div>
       </div>
       <hr />
@@ -220,7 +220,7 @@
       </div>
       <div class="col-1"></div>
       <div class="col-3">
-        <p class="black bold font-11">{{thermal.before_value_added}}</p>
+        <p class="black bold font-11">{{thermal.before_value_added | xmoney}}</p>
       </div>
     </div>
 
@@ -232,7 +232,7 @@
         </div>
         <div class="col-1"></div>
         <div class="col-3">
-            <p class="black bold font-11">{{thermal.total_value_added}}</p>
+            <p class="black bold font-11">{{thermal.total_value_added | xmoney}}</p>
         </div>
       </div>
 
@@ -245,7 +245,7 @@
         </div>
         <div class="col-1"></div>
         <div class="col-3">
-            <p class="black bold font-11">{{thermal.total_value}}</p>
+            <p class="black bold font-11">{{thermal.total_value | xmoney}}</p>
         </div>
       </div>
 
@@ -258,7 +258,7 @@
         </div>
         <div class="col-1"></div>
         <div class="col-3">
-            <p class="black bold font-12">{{thermal.total_discount}}</p>
+            <p class="black bold font-12">{{thermal.total_discount | xmoney}}</p>
         </div>
       </div>
 
@@ -271,7 +271,7 @@
         </div>
         <div class="col-1"></div>
         <div class="col-3">
-            <p class="black bold font-11">{{thermal.net_value}}</p>
+            <p class="black bold font-11">{{thermal.net_value | xmoney}}</p>
         </div>
       </div>
 

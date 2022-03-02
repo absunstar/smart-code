@@ -235,12 +235,12 @@
           <td class="center width-15-mm font-12">{{itm.count}}</td>
 
           <td class="center width-15-mm font-12" x-permissions="stores_out_details_values || stores_out_manage" ng-hide="st_o.type.id ==5">
-            {{itm.b_price}}
-            <del class="font-12" ng-show="itm.discount.value > 0"> {{itm.discount.current}} </del>
+            {{itm.b_price | xmoney}}
+            <del class="font-12" ng-show="itm.discount.value > 0"> {{itm.discount.current | xmoney}} </del>
           </td>
 
-          <td class="center width-15-mm font-12" x-permissions="stores_out_details_values || stores_out_manage" ng-show="defaultSettings.inventory.value_added > 0">{{itm.total_v_a}}</td>
-          <td class="center width-15-mm font-12" x-permissions="stores_out_details_values || stores_out_manage">{{itm.total}}</td>
+          <td class="center width-15-mm font-12" x-permissions="stores_out_details_values || stores_out_manage" ng-show="defaultSettings.inventory.value_added > 0">{{itm.total_v_a | xmoney}}</td>
+          <td class="center width-15-mm font-12" x-permissions="stores_out_details_values || stores_out_manage">{{itm.total | xmoney}}</td>
         </tr>
       </table>
     </div>
@@ -254,7 +254,7 @@
             </div>
             <div class="col1"></div>
             <div class="col3">
-              <p class="txt18 bold black">{{st_o.before_value_added}}</p>
+              <p class="txt18 bold black">{{st_o.before_value_added | xmoney}}</p>
             </div>
           </div>
           <div class="row">
@@ -263,7 +263,7 @@
             </div>
             <div class="col1"></div>
             <div class="col3">
-              <p class="txt18 bold black">{{st_o.total_value_added}}</p>
+              <p class="txt18 bold black">{{st_o.total_value_added | xmoney}}</p>
             </div>
           </div>
           <div class="row">
@@ -272,7 +272,7 @@
             </div>
             <div class="col1"></div>
             <div class="col3">
-              <p class="txt18 bold black">{{st_o.total_value}}</p>
+              <p class="txt18 bold black">{{st_o.total_value | xmoney}}</p>
             </div>
           </div>
           <div class="row">
@@ -281,7 +281,7 @@
             </div>
             <div class="col1"></div>
             <div class="col3">
-              <p class="txt18 bold black">{{st_o.total_discount}}</p>
+              <p class="txt18 bold black">{{st_o.total_discount | xmoney}}</p>
             </div>
           </div>
           <div class="row">
@@ -290,7 +290,7 @@
             </div>
             <div class="col1"></div>
             <div class="col3">
-              <p class="txt18 bold black">{{st_o.net_value}}</p>
+              <p class="txt18 bold black">{{st_o.net_value | xmoney}}</p>
             </div>
           </div>
           <div class="row">

@@ -19,7 +19,7 @@ app.controller('sitebottom' , ($scope , $http)=>{
     $scope.changeLang = function(lang){
         $http({
             method: 'POST',
-            url: '/@language/change',
+            url: '/x-language/change',
             data:{ name : lang}
         }).then(function (response) {
             if (response.data.done) {

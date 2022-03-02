@@ -186,7 +186,7 @@
 
               <td class="green">
                 <br />
-                {{itm.total}}
+                {{itm.total | xmoney}}
               </td>
 
               <td>
@@ -297,34 +297,69 @@
         </div>
 
         <div class="row" ng-show="store_out.type.id != 5">
-          <i-control
-            class="col2"
-            ng-model="store_out.total_discount"
-            type="number"
-            ng-disabled="store_out.type.id !== 6"
-            ng-change="calcReturn(store_out)"
-            label="##word.stores_out_total_discount##"
-          ></i-control>
+          <fieldset class="col8">
+            <div class="row">
+              <i-control
+                class="col3"
+                ng-model="store_out.total_discount"
+                type="number"
+                ng-show="store_out.type.id == 6"
+                ng-change="calcReturn(store_out)"
+                label="##word.stores_out_total_discount##"
+              ></i-control>
 
-          <i-control
-            class="col2"
-            ng-model="store_out.total_tax"
-            type="number"
-            ng-disabled="store_out.type.id !== 6"
-            ng-change="calcReturn(store_out)"
-            label="##word.stores_out_total_tax##"
-          ></i-control>
+              <i-control class="col3" ng-model="store_out.total_tax" type="number" ng-show="store_out.type.id == 6" ng-change="calcReturn(store_out)" label="##word.stores_out_total_tax##"></i-control>
 
-          <i-control class="col2" ng-model="store_out.total_value_added" type="number" disabled label="##word.total_value_added##"></i-control>
+              <div class="col3" ng-hide="store_out.type.id == 6">
+                <h3 class="center bold">##word.stores_out_total_discount##</h3>
+                <br />
+                <h3 class="center red bold">{{store_out.total_discount | xmoney}}</h3>
+              </div>
 
-          <i-control class="col2" ng-model="store_out.total_value" type="number" disabled label="##word.stores_out_total_value##"></i-control>
+              <div class="col3" ng-hide="store_out.type.id == 6">
+                <h3 class="center bold">##word.stores_out_total_tax##</h3>
+                <br />
+                <h3 class="center red bold">{{store_out.total_tax | xmoney}}</h3>
+              </div>
+
+              <div class="col3">
+                <h3 class="center bold">##word.total_value_added##</h3>
+                <br />
+                <h3 class="center blue bold">{{store_out.total_value_added | xmoney}}</h3>
+              </div>
+
+              <div class="col3">
+                <h3 class="center bold">##word.stores_out_total_value##</h3>
+                <br />
+                <h3 class="center green bold">{{store_out.total_value | xmoney}}</h3>
+              </div>
+            </div>
+          </fieldset>
         </div>
 
         <div class="row" ng-show="store_out.type.id != 5">
-          <i-control class="col2" ng-show="store_out.net_value" disabled ng-model="store_out.net_value" label="##word.paid_require##" type="number"> </i-control>
+          <fieldset class="col4" ng-show="store_out.net_value">
+            <div class="row">
+              <div class="col6">
+                <h3 class="center bold">##word.paid_require##</h3>
+                <br />
+                <h3 class="center bold">{{store_out.net_value | xmoney}}</h3>
+              </div>
+              <div class="col6">
+                <h3 class="center bold">##word.total_payments##</h3>
+                <br />
+                <h3 class="center green bold">{{store_out.paid_up | xmoney}}</h3>
+              </div>
+            </div>
+          </fieldset>
 
-          <i-control class="col2" disabled ng-model="store_out.paid_up" label="##word.total_payments##" type="number"> </i-control>
-          <i-button ng-show="store_out.type.id != 5 && defaultSettings.accounting.create_invoice_auto && store_out.payment_type.id == 2" class="col2" label="##word.add_payment##" ng-click="paymentsPayable('view')"> </i-button>
+          <i-button
+            ng-show="store_out.type.id != 5 && defaultSettings.accounting.create_invoice_auto && store_out.payment_type.id == 2"
+            class="col2"
+            label="##word.add_payment##"
+            ng-click="paymentsPayable('view')"
+          >
+          </i-button>
         </div>
 
         <fieldset ng-repeat="inv in store_out.invoices_list" ng-show="store_out.type.id != 5 && defaultSettings.accounting.create_invoice_auto">
@@ -365,55 +400,10 @@
               <i-control class="col2" ng-model="inv.paid_up" label="##word.paid_up##" ng-change="calcInvoice(store_out)" type="number"> </i-control>
             </div>
 
-            <div class="row">
-            </div>
+            <div class="row"></div>
           </div>
         </fieldset>
 
-        <!--   <div class="row" ng-show="store_out.type.id != 5 && defaultSettings.accounting.create_invoice_auto">
-
-                    <i-list help-id="" ng-search="_search.$payment_method_search" class="col2"
-                        label="##word.payment_method##" ng-model="store_out.payment_method"
-                        ng-change="getSafeByType(store_out)" items="paymentMethodList" display="##session.lang##">
-                    </i-list>
-
-                    <i-list class="col3" ng-search="_search.$currency_search" ng-model="store_out.currency"
-                        ng-change="getSafeByType(store_out) ; calc(store_out)" items="currenciesList"
-                        display="name_##session.lang##" label="##word.currency##">
-                    </i-list>
-
-                    <i-control class="col2" disabled ng-model="store_out.currency.ex_rate" type="number"
-                        label="##word.exchange_rate##"></i-control>
-
-                    <i-list ng-search="_search.$order_invoice.$safes_search" class="col3" ng-model="store_out.safe"
-                        display="name_##session.lang##" label="##word.safe##" items="safesList">
-                    </i-list>
-                </div>
-
-                <div class="row">
-
-                    <i-control class="col2" ng-model="store_out.net_value" type="number" disabled
-                        label="##word.stores_out_net_value##"></i-control>
-
-                    <i-control class="col3"
-                        ng-show="store_out.type.id != 5 && defaultSettings.accounting.create_invoice_auto" disabled
-                        ng-model="store_out.amount_currency" label="##word.amount_currency##" type="number"></i-control>
-
-                    <i-control class="col2"
-                        ng-show="store_out.type.id != 5 && defaultSettings.accounting.create_invoice_auto && store_out.payment_type.id == 2"
-                        ng-model="store_out.paid_up" label="##word.paid_up##" type="number">
-                    </i-control>
-
-                    <i-control class="col2"
-                        ng-show="store_out.type.id != 5 && store_out.type.id != 6 && defaultSettings.accounting.create_invoice_auto"
-                        ng-model="store_out.Paid_from_customer" ng-change="calc(store_out)"
-                        label="##word.Paid_from_customer##" type="number">
-                    </i-control>
-
-                    <i-button ng-show="store_out.type.id != 5 && defaultSettings.accounting.create_invoice_auto"
-                        class="col2" label="##word.add_payment##" ng-click="paymentsPayable('view')">
-                    </i-button>
-                </div> -->
         <div class="row">
           <i-textarea class="col9" label="##word.stores_out_notes##" ng-model="store_out.notes"></i-textarea>
         </div>

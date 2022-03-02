@@ -1203,7 +1203,6 @@ module.exports = function init(site) {
             }
             if (search != undefined) {
                 where.$or = [];
-ئ
                 where.$or.push({
                     'sizes.size_ar': site.get_RegExp(search, 'i'),
                 });
