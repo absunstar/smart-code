@@ -47,7 +47,6 @@
 
     {"name" : "customers_count" , "en" : "Customers Count" , "ar" : "عدد العملاء"},
     {"name" : "employees_count" , "en" : "Employees Count" , "ar" : "عدد الموظفين"},
-    {"name" : "companies_gov" , "en" : "Gov" , "ar" : "المحافظة"},
     {"name" : "companies_city" , "en" : "City" , "ar" : "المدينة"},
     {"name" : "companies_email" , "en" : "Email" , "ar" : "البريد الالكتروني"},
     {"name" : "companies_fax" , "en" : "Fax" , "ar" : "الفاكس"},

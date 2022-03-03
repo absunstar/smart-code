@@ -4,11 +4,15 @@
         "ar": "المحافظات"
     },
     {
+        "name": "gov",
+        "en": "Gov",
+        "ar": "المحافظة"
+    },
+    {
         "name": "goves_new",
         "en": "New Gov",
         "ar": "محافظة جديدة"
     },
-
     {
         "name": "goves_add",
         "en": "Add Gov",

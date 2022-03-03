@@ -174,11 +174,7 @@
         "en": "Date",
         "ar": "التاريخ"
     },
-    {
-        "name": "companies_gov",
-        "en": "Gov",
-        "ar": "المحافظة"
-    },
+
     {
         "name": "companies_city",
         "en": "City",

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" x-permissions="companies_ui || companies_manage" data-ng-app="myApp">
+<html lang="en" x-permissions="developer" data-ng-app="myApp">
 
 <head x-import="head.html">
 
@@ -17,7 +17,7 @@
 
     <div id="main-layout" class="container">
         <div class="row">
-            <div class="row" ng-controller="companies" x-permissions="login">
+            <div class="row" ng-controller="companies" x-permissions="developer">
                 <div x-import="companies/add_modal.html"></div>
                 <div x-import="companies/update_modal.html"></div>
                 <div x-import="companies/delete_modal.html"></div>
@@ -29,10 +29,10 @@
                 </div>
 
                 <div class="top-actions">
-                    <i-button type="add" x-permissions="companies_add || companies_manage"
+                    <i-button type="add" x-permissions="developer"
                         label="##word.companies_new##" ng-click="displayAddcompany()"></i-button>
 
-                    <i-button type="search" x-permissions="companies_search || companies_manage"
+                    <i-button type="search" x-permissions="developer"
                         label="##word.search_all##" onclick="site.showModal('#companieSearchModal')"></i-button>
 
                     <span ng-show="busy">
@@ -64,20 +64,20 @@
                         </td>
 
                         <td class="center not-print">
-                            <i-button type="details" x-permissions="companies_view || companies_manage"
+                            <i-button type="details" x-permissions="developer"
                                 label="##word.details##" ng-click="displayDetailscompany(c)"></i-button>
 
-                            <i-button type="update" x-permissions="companies_edit || companies_manage"
+                            <i-button type="update" x-permissions="developer"
                                 label="##word.update##" ng-click="displayUpdatecompany(c)"></i-button>
 
-                            <i-button type="delete" x-permissions="companies_delete || companies_manage"
+                            <i-button type="delete" x-permissions="developer"
                                 label="##word.delete##" ng-click="displayDeletecompany(c)"></i-button>
                         </td>
                     </tr>
                 </table>
 
                 <div class="row">
-                    <i-button x-permissions="companies_print || companies_manage" type="print" label="##word.print##"
+                    <i-button x-permissions="developer" type="print" label="##word.print##"
                         onclick="site.print('#t1')"></i-button>
 
                    
@@ -89,7 +89,7 @@
 
     <div x-import="scripts.html"></div>
 
-    <script x-permissions="login" x-import="companies/index.js"></script>
+    <script x-permissions="developer" x-import="companies/index.js"></script>
 </body>
 
 </html>

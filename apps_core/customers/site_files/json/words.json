@@ -290,7 +290,6 @@
 
     {"name" : "customers_contact_and_addresses" , "en" : "Contact and Addresses" , "ar" : "الاتصال والعناوين"},
     {"name" : "customers_address_informations" , "en" : "Address Informaion" , "ar" : "بيانات العناوين"},
-    {"name" : "customers_gov" , "en" : "Gov" , "ar" : "المحافظة"},
     {"name" : "customers_city" , "en" : "City" , "ar" : "المدينة"},
     {"name" : "customers_address" , "en" : "Address" , "ar" : "العنوان"},
 
@@ -316,7 +315,6 @@
     {"name" : "customers_branch_code" , "en" : "Branch Code" , "ar" : "كود الفرع"},
     {"name" : "customers_branch_name" , "en" : "Branch Name" , "ar" : "إسم الفرع"},
     {"name" : "customers_branch_notes" , "en" : "Branch Notes" , "ar" : "ملاحظات الفرع"},
-    {"name" : "customers_branch_gov" , "en" : "Branch Gov" , "ar" : "المحافظة"},
     {"name" : "customers_branch_city" , "en" : "Branch  City" , "ar" : "المدينة"},
     {"name" : "customers_branch_address" , "en" : "Branch  Address" , "ar" : "العنوان"},
     {"name" : "customers_branch_phone" , "en" : "Branch Phone" , "ar" : "التليفون"},
