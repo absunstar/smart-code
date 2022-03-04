@@ -1,0 +1,138 @@
+
+
+<div ng-hide="busy" class="row" id="v1" fixed>
+        <div class="col9">
+            <br>
+            <table class="table">
+    
+                <tr>
+                    <td class="title">##word.prices_offers_date##</td>
+                    <td>{{prices_offers.date | dateX}}</td>
+                </tr>
+    
+    
+                <tr>
+                    <td class="title">##word.prices_offers_supply_date##</td>
+                    <td>{{prices_offers.supply_date | dateX}}</td>
+                </tr>
+    
+                <tr>
+                    <td class="title">##word.prices_offers_id##</td>
+                    <td>{{prices_offers.number}}</td>
+                </tr>
+                <tr>
+                        <td class="title">##word.prices_offers_supply_number##</td>
+                        <td>{{prices_offers.supply_number}}</td>
+                </tr>
+    
+                <tr>
+                    <td class="title">##word.prices_offers_Company_name##</td>
+                    <td>{{prices_offers.vendor.name_##session.lang##}}</td>
+                </tr>
+    
+                <tr>
+                    <td class="title">##word.prices_offers_store_name##</td>
+                    <td>{{prices_offers.store.name_##session.lang##}}</td>
+                </tr>
+                <tr>
+                    <td class="title">##word.prices_offers_categry##</td>
+                    <td>{{prices_offers.category.name_##session.lang##}}</td>
+                </tr>
+    
+                <tr>
+                    <td class="title">##word.prices_offerstypes##</td>
+                    <td>{{prices_offers.type.##session.lang##}}</td>
+                </tr>
+    
+                <tr>
+                    <td class="title">##word.prices_offers_items##</td>
+                    <td>
+                        <table class="table hover">
+                            <tr>
+                                <th>##word.serial##</th>
+                                <th>##word.prices_offers_item_name##</th>
+                                <th>##word.prices_offers_item_size##</th>
+                                <th>##word.prices_offers_item_count##</th>
+                                <th class="not-print">##word.prices_offers_item_cost##</th>
+                                <th class="not-print">##word.prices_offers_item_price##</th>
+                                <th>##word.prices_offers_item_total##</th>
+                                <th>##word.prices_offers_ticket_code##</th>
+                            </tr>
+
+                            <tr ng-repeat="itm in prices_offers.items">
+                                <td>{{$index + 1}}</td>
+                                <td>{{itm.name_##session.lang##}}</td>
+                                <td>{{itm.size_##session.lang##}}</td>
+                                <td>{{itm.count}}</td>
+                                <td class="not-print">{{itm.cost}}</td>
+                                <td class="not-print">{{itm.price}}</td>
+                                <td>{{itm.total}}</td>
+                                <td>{{itm.ticket_code}}</td>
+    
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+    
+                <tr ng-show="prices_offers.taxes.length > 0">
+                    <td class="title">##word.prices_offers_taxes##</td>
+                    <td>
+                        <table class="table hover margin">
+                            <tr>
+                                <th>##word.prices_offers_tax_name##</th>
+                                <th>##word.prices_offers_tax_value##</th>
+                            </tr>
+                            <tr ng-repeat="tax in prices_offers.taxes">
+                                <td> <p class="text-center"> {{tax.name_##session.lang##}} </p> </td>
+                                <td> <p class="text-center"> {{tax.value}} % </p>   </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+    
+                <tr ng-show="prices_offers.discountes.length > 0">
+                    <td class="title">##word.discountes##</td>
+                    <td>
+                        <table class="table hover margin">
+                            <tr>
+                                <th>##word.discount_name##</th>
+                                <th>##word.discount_value##</th>
+                            </tr>
+                            <tr ng-repeat="discount in prices_offers.discountes">
+                                <td>{{discount.name_##session.lang##}}</td>
+                                <td>
+                                    <p class="text-center" ng-show="discount.type == '%'"> {{discount.value}} % </p>
+                                    <p class="text-center" ng-show="discount.type == '0'"> {{discount.value}} $ </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+    
+                <tr>
+                    <td class="title">##word.prices_offers_total_value##</td>
+                    <td>{{prices_offers.total_value}} $</td>
+                </tr>
+    
+                <tr>
+                    <td class="title">##word.prices_offers_net_value##</td>
+                    <td>{{prices_offers.net_value}} $</td>
+                </tr>
+    
+                <tr>
+                    <td class="title">##word.prices_offers_notes##</td>
+                    <td>{{prices_offers.notes}}</td>
+                </tr>
+    
+            </table>
+        </div>
+           <div class="col3">
+                <br>
+            <i-image view category="stores_images" class="not-print" ng-model="prices_offers.image_url"></i-image>
+            <br>
+            <i-files view ng-model="prices_offers.files"></i-files>   
+           </div>
+    
+    </div>
+    
+    

@@ -20,7 +20,7 @@ module.exports = function init(site) {
   };
 
   site.onGET('/api/languages/ar-sa', (req, res) => {
-    site.addWords(site.dir + '/site_files/json/words-sa.json');
+    site.words.addList(site.dir + '/site_files/json/words-sa.json', true);
 
     res.json({
       done: true,

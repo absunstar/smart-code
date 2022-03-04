@@ -72,7 +72,7 @@
     {"name" : "transfer_branch_add_tax" , "en" : "Discount Value" , "ar" : "أضف الضريبة"}, 
     {"name" : "transfer_branch_err_count" , "en" : "Must Enter Correct Counts" , "ar" : "يجب إدخال الأعداد بشكل صحيح"}, 
     {"name" : "transfer_branch_err_barcode" , "en" : "Must Enter Barcode" , "ar" : "يجب إدخال الباركود بشكل صحيح"}, 
-    {"name" : "transfer_branch_err_barcode_exist" , "en" : "Barcode Is Exist" , "ar" : "ألباركود مكرر"}, 
+    {"name" : "transfer_branch_err_barcode_exist" , "en" : "Barcode Is Exist" , "ar" : "الباركود مكرر"}, 
     {"name" : "transfer_branch_err_item_name" , "en" : "Must Enter Item Name" , "ar" : "يجب إدخال  إسم الصنف"}, 
     
     {"name" : "transfer_branch_net_value" , "en" : "Net Value" , "ar" : "القيمة المطلوبة"},    

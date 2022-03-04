@@ -317,7 +317,7 @@
     {
         "name": "stores_out_err_barcode_exist",
         "en": "Barcode Is Exist",
-        "ar": "ألباركود مكرر"
+        "ar": "الباركود مكرر"
     },
     {
         "name": "stores_out_err_item_name",

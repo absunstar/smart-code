@@ -1,0 +1,27 @@
+<div id="viewPricesOffersModal" class="modal">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.prices_offers_details## <i class="fa fa-file"></i>
+            </h2>
+            
+
+        </div>
+        <div class="modal-body">
+
+            <div x-import="inventory-prices-offers/view.html"></div>
+
+        </div>
+        <h2 class="bold red text-center"> {{error}}</h2>
+        <div class="modal-footer center">
+            <i-button type="print" x-permissions="prices_offers_print || prices_offers_manage" label="##word.print##"
+                ng-click="print()"></i-button>
+
+          <!--   <i-button x-permissions="prices_offers_print || prices_offers_manage" label="##word.thermal_print##"
+                ng-click="thermalPrint(prices_offers)"></i-button> -->
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#viewPricesOffersModal')"></i-button>
+        </div>
+    </div>
+</div>

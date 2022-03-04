@@ -1,0 +1,11 @@
+[
+    {
+        "module_name": "inventory",
+        "name": "prices_offers_admin",
+        "en": "Prices offers Admin",
+        "ar": "إدارة عروض الأسعار",
+        "permissions": [
+            "prices_offers_manage"
+        ]
+    }
+]

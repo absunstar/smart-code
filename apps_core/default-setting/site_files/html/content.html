@@ -252,7 +252,6 @@
                 <i-image help-id="units_logo" ng-model="default_setting.printer_program.invoice_logo"> </i-image>
                 <div class="row center">
                   <i-button class="center" type="delete" label="##word.remove_logo##" ng-click="default_setting.printer_program.invoice_logo = ''"></i-button>
-
                 </div>
               </div>
             </div>
@@ -370,6 +369,22 @@
                   </div>
                 </div>
               </div>
+            </div>
+          </fieldset>
+
+          <br />
+          <hr />
+          <br />
+
+          <fieldset>
+            <legend>##word.price_offer_footer##</legend>
+            <br />
+            <br />
+
+            <div class="row">
+              <i-textarea label="##word.arabic##" ng-model="default_setting.printer_program.price_offer_ar"></i-textarea>
+              <i-textarea label="##word.english##" ng-model="default_setting.printer_program.price_offer_en"></i-textarea>
+
             </div>
           </fieldset>
         </fieldset>

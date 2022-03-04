@@ -8,6 +8,7 @@
       "account_course_manage",
       "book_course_manage",
       "book_hall_manage",
+      "prices_offers_manage",
       "courses_manage",
       "create_course_manage",
       "hosting_manage",

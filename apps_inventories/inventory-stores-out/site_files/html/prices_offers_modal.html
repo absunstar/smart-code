@@ -1,0 +1,64 @@
+<div id="pricesOffersModal" class="modal" fixed>
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.stores_out_items##
+            </h2>
+        </div>
+        <div class="modal-body">
+            <form>
+                <div class="row">
+                    <i-control ng-keydown="getPricesOffers($event)" id="pricesOffers" class="col3"
+                        ng-model="search_prices_offers" label="##word.search##" type="text"></i-control>
+                </div>
+                <div class="row">
+
+                    <fieldset>
+                        <legend> ##word.prices_offers## </legend>
+
+                        <table class="table pointer loaded bold center hover">
+                            <tr>
+                              <th>##word.code##</th>
+                              <th>##word.date##</th>
+                              <th>##word.customer##</th>
+                              <th>##word.paid_require##</th>
+                            </tr>
+                            <tr ng-repeat="c in pricesOffersList" ng-click="selectPricesOffers(c)">
+
+                              <td>
+                                <p class="bold blue text-center userPrint">{{c.code}}</p>
+                              </td>
+
+                              <td>
+                                <p class="text-center brown">
+                                  {{c.date | date : 'yyyy - MM - dd'}}
+                                </p>
+                              </td>
+
+                              <td>
+                                <p class="text-center blue">
+                                  {{c.customer.name_##session.lang##}}
+                                </p>
+                              </td>
+
+                              <td x-permissions="stores_out_details_values || stores_out_manage">
+                                <p class="bold text-center">
+                                  {{c.net_value}}
+                                </p>
+                              </td>
+
+                            </tr>
+                          </table>
+
+                    </fieldset>
+                </div>
+            </form>
+        </div>
+        <h2 class="error center bold">{{error}}</h2>
+        <div class="modal-footer center">
+            <i-button type="add" label="##word.stores_out_add_to_items##" ng-click="addToItems()"></i-button>
+            <i-button type="close" label=" ##word.close##" onclick="site.hideModal('#pricesOffersModal')"></i-button>
+        </div>
+    </div>
+</div>

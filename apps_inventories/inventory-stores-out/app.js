@@ -147,6 +147,7 @@ module.exports = function init(site) {
                 delete stores_out_doc.customer;
                 delete stores_out_doc.delegate;
               }
+              site.call('[prices_offers][stores_out][invoice]', stores_out_doc);
 
               stores_out_doc.items.forEach((_itm) => {
                 _itm.current_count = site.toNumber(_itm.current_count);

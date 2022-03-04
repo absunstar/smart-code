@@ -519,7 +519,7 @@
     {
         "name": "stores_in_err_barcode_exist",
         "en": "Barcode Is Exist",
-        "ar": "ألباركود مكرر"
+        "ar": "الباركود مكرر"
     },
     {
         "name": "stores_in_err_item_name",

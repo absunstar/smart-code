@@ -296,6 +296,13 @@
     {
         "category": "inventory",
         "feature": "pos",
+        "name": "prices_offers",
+        "en": "Prices Offers",
+        "ar": "عروض الأسعار"
+    },
+    {
+        "category": "inventory",
+        "feature": "pos",
         "name": "purchases_invoices_store",
         "en": "Purchases Invoices Store",
         "ar": "فواتير مشتريات مخزنية"

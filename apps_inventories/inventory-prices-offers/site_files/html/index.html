@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="myApp">
+  <head x-import="head.html"> </head>
+
+  <body class="##session.lang##">
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar"></nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
+    <div id="main-layout" class="container loaded" x-permissions="prices_offers_ui || prices_offers_manage">
+      <div class="row">
+        <div class="row" ng-controller="prices_offers">
+          <div x-permissions="prices_offers_add || prices_offers_manage" x-import="inventory-prices-offers/add_modal.html"></div>
+
+          <div x-permissions="prices_offers_add || prices_offers_manage" x-import="customers/add_modal.html"></div>
+
+          <div x-permissions="prices_offers_add || prices_offers_manage" x-import="inventory-prices-offers/patches_list.html"></div>
+
+          <div x-permissions="prices_offers_delete || prices_offers_manage" x-import="inventory-prices-offers/delete_modal.html"></div>
+          <div x-permissions="prices_offers_view || prices_offers_manage" x-import="inventory-prices-offers/view_modal.html"></div>
+          <div x-permissions="prices_offers_search || prices_offers_manage" x-import="inventory-prices-offers/search_all_modal.html"></div>
+          <div x-permissions="prices_offers_update || prices_offers_manage" x-import="inventory-prices-offers/update_modal.html"></div>
+          <div x-permissions="prices_offers_add || prices_offers_manage" x-import="inventory-prices-offers/select_items_modal.html"></div>
+
+          <div class="row">
+            <h1 class="bold text-center">##word.prices_offers##</h1>
+          </div>
+
+          <div class="top-actions">
+            <i-button x-permissions="prices_offers_add || prices_offers_manage" type="add" label="##word.prices_offers_new##" id="clickNew" ng-click="newPricesOffers()"></i-button>
+
+            <i-button x-permissions="prices_offers_search || prices_offers_manage" type="search" label="##word.search_all##" onclick="site.showModal('#PricesOffersSearchModal')"></i-button>
+
+            <h2 class="bold red text-center">{{error}}</h2>
+            <h3 class="bold text-center">##word.count## : {{count}}</h3>
+          </div>
+          <table id="t1" class="table loaded bold center hover">
+            <tr>
+              <th class="not-print">##word.logo##</th>
+              <th>##word.prices_offers_code##</th>
+              <th>##word.prices_offers_date##</th>
+              <th>##word.customer##</th>
+              <th x-permissions="prices_offers_details_values || prices_offers_manage">##word.paid_require##</th>
+              <th class="not-print">##word.actions##</th>
+            </tr>
+            <tr ng-repeat="c in list">
+              <td class="not-print">
+                <i-image view class="logo" ng-model="c.image_url"></i-image>
+              </td>
+              <td>
+                <br />
+                <p class="bold blue text-center userPrint">{{c.code}}</p>
+              </td>
+
+              <td>
+                <p class="text-center brown">
+                  <br />
+                  {{c.date | date : 'yyyy - MM - dd'}}
+                </p>
+              </td>
+
+              <td>
+                <p class="text-center blue">
+                  <br />
+                  {{c.customer.name_##session.lang##}}
+                </p>
+              </td>
+           
+              <td x-permissions="prices_offers_details_values || prices_offers_manage">
+                <p class="bold text-center green">
+                  <br />
+                  {{c.net_value}}
+                </p>
+              </td>
+           
+              </td>
+              <td class="center not-print">
+                <i-button x-permissions="prices_offers_view || prices_offers_manage" type="details" label="##word.details##" ng-click="details(c)"></i-button>
+
+                <i-button
+                  ng-show="!c.invoice && !defaultSettings.accounting.create_invoice_auto && c.type.id != 4 && c.type.id != 5"
+                  type="save"
+                  label="##word.create_an_invoice##"
+                  ng-click="displayAccountInvoice(c)"
+                >
+                </i-button>
+
+                <i-button
+                  x-permissions="prices_offers_update || prices_offers_manage"
+                  type="update"
+                  ng-show="!c.invoice"
+                  label="##word.edit##"
+                  ng-click="edit(c)"
+                >
+                </i-button>
+
+                <i-button
+                  x-permissions="prices_offers_delete || prices_offers_manage"
+                  type="delete"
+                  ng-hide="c.invoice"
+                  label="##word.delete##"
+                  ng-click="remove(c)"
+                ></i-button>
+              </td>
+            </tr>
+          </table>
+
+          <div x-import="inventory-prices-offers/thermal_print.html"></div>
+          <div class="hidden" id="pricesOffersDetails" x-import="inventory-prices-offers/a4_print.html"></div>
+
+          <i-button x-permissions="prices_offers_print || prices_offers_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+          <div class="row"></div>
+        </div>
+      </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+    <script x-import="inventory-prices-offers/index.js"></script>
+  </body>
+</html>

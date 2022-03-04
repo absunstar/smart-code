@@ -2843,6 +2843,10 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
     } else site.showModal('#selectItemsModal');
   };
 
+  $scope.displayPricesOffers = function () {
+    site.showModal('#pricesOffersModal');
+  };
+
   $scope.patchesList = function (itm) {
     $scope.error = '';
     $scope.item_patch = itm;
@@ -3042,12 +3046,6 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
         });
       }
 
-      /*   if ($scope.store_out.currency) {
-          $scope.amount_currency = site.toNumber($scope.store_out.net_value) / site.toNumber($scope.store_out.currency.ex_rate);
-          $scope.amount_currency = site.toNumber($scope.amount_currency);
-          $scope.store_out.paid_up = $scope.amount_currency;
-  
-        } */
       site.hideModal('#returnedViewModal');
     }
   };
@@ -3068,6 +3066,65 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
         callback(is_allowed_date);
       });
     } else callback(true);
+  };
+
+  $scope.getPricesOffers = function (ev) {
+    $scope.error = '';
+    if (ev.which === 13) {
+
+    $scope.busy = true;
+    $http({
+      method: 'POST',
+      url: '/api/prices_offers/all',
+      data: {
+        where: {
+          invoice: { $ne: true },
+        },
+        search: $scope.search_prices_offers,
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.pricesOffersList = response.data.list;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+};
+
+  $scope.selectPricesOffers = function (c) {
+    $scope.error = '';
+
+    $scope.store_out.items = c.items;
+    $scope.store_out.discountes = c.discountes;
+    $scope.store_out.taxes = c.taxes;
+    $scope.store_out.customer = c.customer;
+    $scope.store_out.total_value = c.total_value;
+    $scope.store_out.net_value = c.net_value;
+    $scope.store_out.total_value_added = c.total_value_added;
+    $scope.store_out.total_tax = c.total_tax;
+    $scope.store_out.total_discount = c.total_discount;
+    $scope.store_out.before_value_added = c.before_value_added;
+    $scope.store_out.prices_offers_code = c.code;
+    $scope.store_out.prices_offers_id = c.id;
+
+    if($scope.store_out.invoices_list && $scope.store_out.invoices_list.length == 1) {
+   
+      if($scope.store_out.invoices_list[0].currency){
+
+        $scope.store_out.invoices_list[0].paid_up = $scope.store_out.net_value * $scope.store_out.invoices_list[0].currency.ex_rate;
+     
+      } else {
+        
+        $scope.store_out.invoices_list[0].paid_up = $scope.store_out.net_value;
+
+      }
+    }
+    site.hideModal('#pricesOffersModal');
+
   };
 
   $scope.loadPaymentTypes = function () {

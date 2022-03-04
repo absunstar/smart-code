@@ -1,0 +1,19 @@
+[
+    { "module_name" : "inventory" , "screen_name" : "inventory-prices-offers" , "name":"prices_offers_manage" , "en":"Manage" , "ar":"إدارة"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-prices-offers" , "name":"prices_offers_add" , "en":"Add" , "ar":"إضافة"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-prices-offers" , "name":"prices_offers_update" , "en":"Edit" , "ar":"تعديل"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-prices-offers" , "name":"prices_offers_delete" , "en":"Delete" , "ar":"حذف"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-prices-offers" , "name":"prices_offers_view" , "en":"View" , "ar":"عرض"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-prices-offers" , "name":"prices_offers_search" , "en":"Search" , "ar":"بحث"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-prices-offers" , "name":"prices_offers_export" , "en":"Export" , "ar":"تصدير"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-prices-offers" , "name":"prices_offers_print" , "en":"Print" , "ar":"طباعة"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-prices-offers" , "name":"prices_offers_post_all" , "en":"Post All" , "ar":"ترحيل الكل"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-prices-offers" , "name":"prices_offers_post" , "en":"Post" , "ar":"ترحيل"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-prices-offers" , "name":"prices_offers_unpost" , "en":"UnPost" , "ar":"فك ترحيل"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-prices-offers" , "name":"prices_offers_price" , "en":"Edit Sale Price" , "ar":"تعديل سعر البيع"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-prices-offers" , "name":"prices_offers_ui" , "en":"UI" , "ar":"الواجهة الرسومية"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-prices-offers" , "name":"prices_offers_purchase" , "en":"Purchase Invouce" , "ar":"فاتورة مشتريات"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-prices-offers" , "name":"prices_offers_return_purchase" , "en":"Return Purchase Invouce" , "ar":"مرتجع فاتورة مشتريات"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-prices-offers" , "name":"prices_offers_damage" , "en":"Damage Store" , "ar":"إهلاك/إتلاف مخزني"},
+    { "module_name" : "inventory" , "screen_name" : "inventory-prices-offers" , "name":"prices_offers_details_values" , "en":"Details of values" , "ar":"تفاصيل القيم"}
+]

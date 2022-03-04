@@ -1,0 +1,191 @@
+<div class="row" fixed>
+    <div class="row">
+        <br />
+        <table class="table hover bold">
+            <tr>
+
+                <td>
+                    <b class="indigoD txt16"> ##word.prices_offers_date## :</b>
+                    <b class="center txt16 brown">{{prices_offers.date |date:"dd - MM - yyyy" }} </b>
+                </td>
+
+                <td class="center">
+                    <b class="indigoD center txt16"> ##word.offer_end_date## :</b>
+                    <b class="center txt16 red">{{prices_offers.end_date |date:"dd - MM - yyyy" }} </b>
+                </td>
+
+            </tr>
+
+            <tr>
+                <td class="">
+                    <b class="indigoD txt16">##word.prices_offers_code## :</b>
+                    <b class="blue txt16 center userPrint">{{prices_offers.code}}</b>
+                </td>
+
+            </tr>
+
+            <tr>
+                <td class="title txt16">
+                    <b class="indigoD"> ##word.customer## :</b>
+                    <b class="center">{{prices_offers.customer.name_##session.lang##}} </b>
+                </td>
+                <td class="center txt16">
+                    <b class="indigoD"> ##word.customer_mobile## :</b>
+                    <b class="center blue">{{prices_offers.customer.mobile}} </b>
+                </td>
+            </tr>
+
+            <tr class="not-print" ng-show="prices_offers.taxes.length > 0">
+                <td class="indigoD">##word.prices_offers_taxes##</td>
+                <td>
+                    <table class="table hover margin">
+                        <tr>
+                            <th class="indigoD">##word.prices_offers_tax_name##</th>
+                            <th class="indigoD">##word.prices_offers_tax_value##</th>
+                        </tr>
+                        <tr ng-repeat="tax in prices_offers.taxes">
+                            <td>
+                                <p class="text-center">{{tax.name_##session.lang##}}</p>
+                            </td>
+                            <td>
+                                <p class="text-center">{{tax.value}} %</p>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <tr class="not-print" ng-show="prices_offers.discountes.length > 0">
+                <td class="indigoD">##word.discountes##</td>
+                <td>
+                    <table class="table hover margin">
+                        <tr>
+                            <th class="indigoD">##word.discount_name##</th>
+                            <th class="indigoD">##word.discount_value##</th>
+                        </tr>
+                        <tr ng-repeat="discount in prices_offers.discountes">
+                            <td>{{discount.name_##session.lang##}}</td>
+                            <td>
+                                <p class="text-center" ng-show="discount.type == 'number'">{{discount.value}} %</p>
+                                <p class="text-center" ng-show="discount.type == 'percent'">{{discount.value}} $</p>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <tr class="not-print bold">
+                <td>
+                    <b class="indigoD">##word.total_discount## : </b>
+                    <b>{{prices_offers.total_discount}} $</b>
+                </td>
+
+                <td class="center">
+                    <b class="indigoD">##word.total_tax## : </b>
+                    <b>{{prices_offers.total_tax}} $</b>
+                </td>
+            </tr>
+            <tr class="bold txt16">
+                <td><b class="indigoD">##word.notes## :</b></td>
+                <td class="center">{{prices_offers.notes}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <br />
+    <br />
+
+    <div class="row">
+        <table class="table center bold hover details">
+            <tr>
+                <th class="light_gray w50 txt16">##word.serial##</th>
+
+                <th class="light_gray w150 txt16">
+                    <p>##word.item_code##</p>
+                </th>
+
+                <th class="light_gray w250 txt16">
+                    <p>##word.item_name##</p>
+                </th>
+
+                <th class="light_gray w50 txt16">
+                    <p>##word.unit##</p>
+                </th>
+
+                <th class="light_gray w50 txt16">
+                    <p>##word.quantity##</p>
+                </th>
+
+                <th class="light_gray w50 txt16">
+                    <p>##word.unit_price##</p>
+                </th>
+
+                <th class="light_gray w50 txt16" x-permissions="prices_offers_details_values || prices_offers_manage">
+                    <p>##word.total_vat##</p>
+                </th>
+
+                <th class="light_gray w50 txt16" x-permissions="prices_offers_details_values || prices_offers_manage">
+                    <p>##word.total##</p>
+                </th>
+            </tr>
+
+            <tr ng-repeat="itm in prices_offers.items">
+                <td class="center txt16 blue">
+                    {{$index + 1}}
+                    <i-button label="##word.patch##" class="not-print" ng-show="itm.work_patch || itm.work_serial" type="view" ng-click="viewPatchesList(itm)"> </i-button>
+                </td>
+
+                <td class="center txt16 userPrint blue">{{itm.barcode}}</td>
+
+                <td class="center txt16">
+                    <p ng-show="itm.add_sizes">{{itm.name_ar}} {{itm.size_ar}}</p>
+                    <p ng-show="itm.add_sizes">{{itm.name_en}} {{itm.size_en}}</p>
+                    <p ng-hide="itm.add_sizes">{{itm.size_ar}}</p>
+                    <p ng-hide="itm.add_sizes">{{itm.size_en}}</p>
+                </td>
+
+                <td class="center txt16">{{itm.unit.name_ar}} {{itm.unit.name_en}}</td>
+
+                <td class="center txt16">{{itm.count}}</td>
+
+                <td class="center txt16" x-permissions="prices_offers_details_values || prices_offers_manage">
+                    {{itm.b_price | xmoney}}
+
+                    <del class="red txt16" ng-show="itm.discount.value > 0"> {{itm.discount.current | xmoney}} </del>
+                </td>
+
+                <td class="center txt16 red" x-permissions="prices_offers_details_values || prices_offers_manage">{{itm.total_v_a | xmoney}}</td>
+
+                <td class="center txt16" x-permissions="prices_offers_details_values || prices_offers_manage">{{itm.total | xmoney}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <br />
+    <br />
+
+    <div class="row" x-permissions="prices_offers_details_values || prices_offers_manage">
+        <div class="row">
+            <div class="col4 bold">
+                <p class="txt16 indigoD">##word.total_before_tax##</p>
+                <p class="txt16 indigoD">##word.vat##</p>
+                <p class="txt16 indigoD">##word.total_after_tax##</p>
+                <p class="txt16 indigoD">##word.discount_cash##</p>
+                <p class="txt16 indigoD">##word.net##</p>
+            </div>
+
+            <div class="col4 bold">
+                <p class="txt16 black">{{prices_offers.before_value_added | xmoney}}</p>
+                <p class="txt16 black">{{prices_offers.total_value_added | xmoney}}</p>
+                <p class="txt16 black">{{prices_offers.total_value | xmoney}}</p>
+                <p class="txt16 red">{{prices_offers.total_discount | xmoney}}</p>
+                <p class="txt16 green">{{prices_offers.net_value | xmoney}}</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <p class="num_str bold center black">{{prices_offers.net_txt}} {{defaultSettings.accounting.end_num_to_str || ''}}</p>
+        </div>
+    </div>
+</div>
+<!-- <div class="not-print" x-import="inventory-prices-offers/action_info.html"></div> -->

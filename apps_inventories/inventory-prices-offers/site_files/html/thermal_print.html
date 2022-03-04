@@ -1,0 +1,349 @@
+<style>
+  .font-35 {
+    font-size: 35px !important;
+  }
+  .font-35 {
+    font-size: 35px !important;
+  }
+  .font-30 {
+    font-size: 30px !important;
+  }
+  .font-28 {
+    font-size: 28px !important;
+  }
+  .qrcode img {
+    height: 150px !important;
+    width: 150px !important;
+    border-radius: 0px !important;
+  }
+  .logoPrint {
+    width: 125px !important;
+    height: 105px !important;
+    margin: 1px !important;
+    padding: 1px !important;
+    border-radius: 0 !important;
+    border: 1px solid var(--background-color) !important;
+  }
+  #thermalPrint .qrcode img {
+    height: 150px !important;
+    width: 150px !important;
+    border-radius: 0px !important;
+  }
+</style>
+<div class="hidden" id="thermalPrint" style="width: 100%; margin-top: 0%">
+  <div class="content page">
+    <div class="center" ng-show="invoice_logo">
+      <img class="logoPrint" ng-src="{{invoice_logo}}" />
+    </div>
+
+    <div class="row">
+      <div class="center">
+        <div class="row">
+          <p ng-show="defaultSettings.printer_program.thermal_lang.id == 1" class="black center font-20 bold">##session.company.name_ar##</p>
+          <p ng-show="defaultSettings.printer_program.thermal_lang.id == 2" class="black center font-20 bold">##session.company.name_en##</p>
+          <p ng-show="'##session.lang##' == 'ar' && defaultSettings.printer_program.thermal_lang.id == 3" class="black center font-20 bold">##session.company.name_ar##</p>
+          <p ng-show="'##session.lang##' == 'en' && defaultSettings.printer_program.thermal_lang.id == 3" class="black center font-20 bold">##session.company.name_en##</p>
+        </div>
+
+        <div class="row">
+          <p ng-show="defaultSettings.printer_program.thermal_lang.id == 1" class="black center font-18 bold">##session.branch.name_ar##</p>
+          <p ng-show="defaultSettings.printer_program.thermal_lang.id == 2" class="black center font-18 bold">##session.branch.name_en##</p>
+          <p ng-show="'##session.lang##' == 'ar' && defaultSettings.printer_program.thermal_lang.id == 3" class="black center font-18 bold">##session.branch.name_ar##</p>
+          <p ng-show="'##session.lang##' == 'en' && defaultSettings.printer_program.thermal_lang.id == 3" class="black center font-18 bold">##session.branch.name_en##</p>
+        </div>
+        <br ng-show="defaultSettings.printer_program.thermal_header.length > 0" />
+        <div class="row center" ng-repeat="i in defaultSettings.printer_program.thermal_header">
+          <p class="bold black font-14 center">{{i.name}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="row center">
+      <p class="center black font-14 bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">الرقم الضريبي : ##session.company.tax_number##</p>
+      <p class="center black font-14 bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Tax Number : ##session.company.tax_number##</p>
+      <p class="center black font-14 bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.tax_number## : ##session.company.tax_number##</p>
+    </div>
+
+    <div class="row center" ng-show="thermal.type.id != 6 && defaultSettings.printer_program.print_simplified_tax_invoice_sentence">
+      <p class="center black font-14 bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'ar'">
+        فاتورة ضريبية مبسطة
+      </p>
+      <p class="center black font-14 bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 2 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'en'">
+        Simplified Tax Invoice
+      </p>
+    </div>
+
+    <div class="row center" ng-show="thermal.type.id != 6 && defaultSettings.printer_program.print_simplified_invoice_sentence">
+      <p class="center black font-14 bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'ar'">
+        فاتورة مبسطة
+      </p>
+      <p class="center black font-14 bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 2 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'en'">
+        Simplified Invoice
+      </p>
+    </div>
+
+    <div class="row center" ng-show="thermal.type.id == 6">
+      <p class="center black font-14 bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'ar'">
+        إشعار مرتجع
+      </p>
+      <p class="center black font-14 bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 2 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'en'">
+        BACK NOTICE
+      </p>
+    </div>
+
+    <div class="row">
+      <div class="col-3"></div>
+      <div class="col-6 center border_black">
+        <b class="black font-14" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">رقم الفاتورة : </b>
+        <b class="black font-14" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Invoice Number : </b>
+        <b class="black font-14" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.invoice_number## : </b>
+        <b class="black font-14" ng-show="thermal.prices_offers_code">{{thermal.prices_offers_code}} </b>
+        <b class="black font-14" ng-hide="thermal.prices_offers_code">{{thermal.code}} </b>
+      </div>
+    </div>
+
+    <br />
+
+    <div class="row">
+      <div class="col2"></div>
+      <div class="col8 center border_black">
+        <b class="black font-13 bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">العميل :</b>
+        <b class="black font-13 bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Customer :</b>
+        <b class="black font-13 bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.customer## :</b>
+        <b class="black font-13 bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'ar'">
+          {{thermal.customer.name_ar}}
+        </b>
+        <b class="black font-13 bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 2 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'en'">
+          {{thermal.customer.name_en}}
+        </b>
+      </div>
+    </div>
+
+    <br />
+    <hr />
+
+    <div class="row">
+      <div class="col-6 center">
+        <b class="black font-11" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">التاريخ : </b>
+        <b class="black font-11" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Date : </b>
+        <b class="black font-11" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.date## : </b>
+        <b class="black font-11">{{thermal.date |date:"dd - MM - yyyy" }}</b>
+      </div>
+      <div class="col-5 center">
+        <b class="black font-11 left" ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'ar'"
+          >الوقت : {{thermal.date |date:"mm : hh" }}</b
+        >
+        <b class="black font-11 left" ng-show="defaultSettings.printer_program.thermal_lang.id == 2 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'en'"
+          >Time : {{thermal.date |date:"hh : mm" }}</b
+        >
+      </div>
+    </div>
+
+    <br />
+    <hr />
+
+    <div class="row center bold">
+      <div class="col-5">
+        <p class="bold center font-10" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">إسم الصنف</p>
+        <p class="bold center font-10" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Item Name</p>
+        <p class="bold center font-10" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.item_name##</p>
+      </div>
+      <div class="col-2">
+        <p class="bold center font-10" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">الكمية</p>
+        <p class="bold center font-10" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Qty.</p>
+        <p class="bold center font-10" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.quantity##</p>
+      </div>
+      <div class="col-2">
+        <p class="bold center font-10" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">السعر</p>
+        <p class="bold center font-10" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Price</p>
+        <p class="bold center font-10" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.price##</p>
+      </div>
+      <div class="col-3">
+        <p class="bold center font-10" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">الإجمالي</p>
+        <p class="bold center font-10" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Total</p>
+        <p class="bold center font-10" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.total##</p>
+      </div>
+    </div>
+
+    <hr />
+    <hr />
+    <div class="row bold" ng-repeat="itm in thermal.items">
+      <div class="row">
+     <!--    <div class="col-5" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">
+          <p class="black bold center font-9" ng-show=" itm.add_sizes">{{itm.name_ar | limitTo: 12 }} {{itm.size_ar | limitTo: 8 }}</p>
+          <p class="black bold center font-9" ng-hide=" itm.add_sizes">{{itm.size_ar | limitTo: 20 }}</p>
+        </div>
+
+        <div class="col-5" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">
+          <p class="black bold center font-9" ng-show=" itm.add_sizes">{{itm.name_en | limitTo: 12 }} {{itm.size_en | limitTo: 8 }}</p>
+          <p class="black bold center font-9" ng-hide=" itm.add_sizes">{{itm.size_en | limitTo: 20 }}</p>
+        </div>
+
+        <div class="col-5" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">
+          <p class="black bold center font-9" ng-show=" itm.add_sizes">{{itm.name_##session.lang## | limitTo: 12}} {{itm.size_##session.lang## | limitTo: 8}}</p>
+          <p class="black bold center font-9" ng-hide=" itm.add_sizes">{{itm.size_##session.lang## | limitTo: 20}}</p>
+        </div> -->
+
+        <div class="col-5" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">
+            <p class="black bold center font-8" ng-show=" itm.add_sizes">{{itm.name_ar }} {{itm.size_ar}}</p>
+            <p class="black bold center font-8" ng-hide=" itm.add_sizes">{{itm.size_ar}}</p>
+          </div>
+
+          <div class="col-5" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">
+            <p class="black bold center font-8" ng-show=" itm.add_sizes">{{itm.name_en }} {{itm.size_en}}</p>
+            <p class="black bold center font-8" ng-hide=" itm.add_sizes">{{itm.size_en}}</p>
+          </div>
+  
+          <div class="col-5" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">
+            <p class="black bold center font-8" ng-show=" itm.add_sizes">{{itm.name_##session.lang##}} {{itm.size_##session.lang##}}</p>
+            <p class="black bold center font-8" ng-hide=" itm.add_sizes">{{itm.size_##session.lang##}}</p>
+          </div>
+        <div class="col-2 black">
+          <p class="black center font-10 bold">{{itm.count}}</p>
+        </div>
+        <div class="col-2 black">
+          <p class="black center font-10 bold">{{itm.b_price | xmoney}}</p>
+        </div>
+
+        <div class="col-3 black">
+          <p class="black center font-10 bold">{{itm.total | xmoney}}</p>
+        </div>
+      </div>
+      <hr />
+    </div>
+    <hr />
+
+    <div class="row">
+      <div class="col-8 center">
+        <p class="black bold font-10" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">إجمالي قبل ضريبة القيمة المضافة</p>
+        <p class="black bold font-10" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Total Before.VAT</p>
+        <p class="black bold font-10" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.total_before_tax##</p>
+      </div>
+      <div class="col-1"></div>
+      <div class="col-3">
+        <p class="black bold font-11">{{thermal.before_value_added | xmoney}}</p>
+      </div>
+    </div>
+
+    <div class="row">
+        <div class="col-8 center">
+            <p class="black bold font-11" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">ضريبة القيمة المضافة {{defaultSettings.inventory.value_added}}%</p>
+            <p class="black bold font-11" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Value added tax {{defaultSettings.inventory.value_added}}%</p>
+            <p class="black bold font-11" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.value_added_tax## {{defaultSettings.inventory.value_added}}%</p>
+        </div>
+        <div class="col-1"></div>
+        <div class="col-3">
+            <p class="black bold font-11">{{thermal.total_value_added | xmoney}}</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-8 center">
+            <p class="black bold font-10" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">إجمالي بعد ضريبة القيمة المضافة</p>
+            <p class="black bold font-10" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Total After.VAT</p>
+            <p class="black bold font-10" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.total_after_tax##</p>
+    
+        </div>
+        <div class="col-1"></div>
+        <div class="col-3">
+            <p class="black bold font-11">{{thermal.total_value | xmoney}}</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-8 center">
+            <p class="black bold font-12" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">الخصم النقدي</p>
+            <p class="black bold font-12" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Discount cash</p>
+            <p class="black bold font-12" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.discount_cash##</p>
+
+        </div>
+        <div class="col-1"></div>
+        <div class="col-3">
+            <p class="black bold font-12">{{thermal.total_discount | xmoney}}</p>
+        </div>
+      </div>
+
+      
+      <div class="row">
+        <div class="col-8 center">
+            <p class="black bold font-11" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">الصافي</p>
+        <p class="black bold font-11" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Net</p>
+        <p class="black bold font-11" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.net##</p>
+        </div>
+        <div class="col-1"></div>
+        <div class="col-3">
+            <p class="black bold font-11">{{thermal.net_value | xmoney}}</p>
+        </div>
+      </div>
+
+ <!--    <div class="bold padding margind">
+      <div class="col-7 center">
+        <p class="black bold font-9" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">إجمالي قبل ضريبة القيمة المضافة</p>
+        <p class="black bold font-9" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Total Before.VAT</p>
+        <p class="black bold font-9" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.total_before_tax##</p>
+
+        <p class="black bold font-12" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">ضريبة القيمة المضافة</p>
+        <p class="black bold font-12" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Value added tax</p>
+        <p class="black bold font-12" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.value_added_tax##</p>
+
+        <p class="black bold font-9" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">إجمالي بعد ضريبة القيمة المضافة</p>
+        <p class="black bold font-9" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Total After.VAT</p>
+        <p class="black bold font-9" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.total_after_tax##</p>
+
+        <p class="black bold font-14" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">الخصم النقدي</p>
+        <p class="black bold font-14" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Discount cash</p>
+        <p class="black bold font-14" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.discount_cash##</p>
+
+        <p class="black bold font-12" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">الصافي</p>
+        <p class="black bold font-12" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Net</p>
+        <p class="black bold font-12" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.net##</p>
+      </div>
+      <div class="col-1"></div>
+      <div class="col-3">
+        <p class="black bold font-9">{{thermal.before_value_added}}</p>
+
+        <p class="black bold font-12">{{thermal.total_value_added}}</p>
+
+        <p class="black bold font-9">{{thermal.total_value}}</p>
+
+        <p class="black bold font-14">{{thermal.total_discount}}</p>
+
+        <p class="black bold font-12">{{thermal.net_value}}</p>
+      </div>
+    </div>
+ -->
+    <div class="row">
+      <div class="col-1"></div>
+      <p ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'ar'" class="bold center font-10 col-10 black">{{thermal.net_txt}} {{defaultSettings.accounting.end_num_to_str || ''}}</p>
+      <p ng-show="defaultSettings.printer_program.thermal_lang.id == 2 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'en'" class="bold center font-10 col-10 black">{{thermal.net_txt}} {{defaultSettings.accounting.end_num_to_str_en || ''}}</p>
+    </div>
+
+ <!--   <hr />
+
+     <div class="row padding">
+      <div class="col-6">
+        <p class="black bold center" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">المدفوع: {{thermal.Paid_from_customer}}</p>
+        <p class="black bold center" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">paid : {{thermal.Paid_from_customer}}</p>
+        <p class="black bold center" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.amount_paid## : {{thermal.Paid_from_customer}}</p>
+      </div>
+      <div class="col6">
+        <p class="black bold center" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">المتبقي: {{thermal.remain_from_customer}}</p>
+        <p class="black bold center" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Remaining : {{thermal.remain_from_customer}}</p>
+        <p class="black bold center" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.remaining_amount## : {{thermal.remain_from_customer}}</p>
+      </div>
+    </div> -->
+
+    <hr />
+
+    <!-- <div class="row center">
+        <div class="invoice-barcode center">
+            <svg style="max-height: 25mm" class="barcode" jsbarcode-format="auto" jsbarcode-value="{{thermal.code}}" jsbarcode-textmargin="0" jsbarcode-fontoptions="bold"></svg>
+        </div>
+    </div>  -->
+    <br />
+
+    <div class="qrcode center"></div>
+    <div class="row" ng-repeat="i in defaultSettings.printer_program.thermal_footer">
+      <p class="black bold font-15 center">{{i.name}}</p>
+    </div>
+  </div>
+</div>

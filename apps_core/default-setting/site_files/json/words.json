@@ -15,6 +15,11 @@
         "ar": "حذف اللوجو"
     },
     {
+        "name": "price_offer_footer",
+        "en": "Price Offer Footer",
+        "ar": "هامش عرض السعر"
+    },
+    {
         "name": "qr_place",
         "en": "QR Place",
         "ar": "مكان رمز الإستجابة"

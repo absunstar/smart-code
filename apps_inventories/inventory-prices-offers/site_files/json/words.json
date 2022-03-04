@@ -1,0 +1,264 @@
+[
+    {
+        "name": "prices_offers_search_all",
+        "en": "Search All",
+        "ar": "بحث شامل"
+    },
+    {
+        "name": "prices_offers_date",
+        "en": "Offer Date",
+        "ar": "تاريخ العرض"
+    },
+    {
+        "name": "offer_end_date",
+        "en": "Offer end date",
+        "ar": "تاريخ نهاية العرض"
+    },
+    {
+        "name": "prices_offers_search",
+        "en": "Search",
+        "ar": "بحث"
+    },
+    {
+        "name": "prices_offers_code",
+        "en": "Offer Code",
+        "ar": "كود العرض"
+    },
+    {
+        "name": "from_order_management_screen",
+        "en": "You need to post from the order management screen",
+        "ar": "يجب الترحيل من شاشة إدارة الطلبات"
+    },
+    {
+        "name": "cannot_exceeded_customer",
+        "en": "The customer credit limit cannot be exceeded",
+        "ar": "لا يمكن تجاوز الحد الإئتماني للعميل"
+    },
+    {
+        "name": "err_patch_current_count",
+        "en": "There is a higher amount of balance",
+        "ar": "يوجد كمية أكبر من الرصيد"
+    },
+    {
+        "name": "prices_offers_store",
+        "en": "Store",
+        "ar": "المخزن"
+    },
+    {
+        "name": "Paid_from_customer",
+        "en": "Paid From Customer",
+        "ar": "المدفوع من العميل"
+    },
+    {
+        "name": "remain_to_customer",
+        "en": "Remain To Customer",
+        "ar": "الباقي للعميل"
+    },
+    {
+        "name": "amount_must_paid_full",
+        "en": "The amount must be paid in full",
+        "ar": "يجب دفع المبلغ بالكامل"
+    },
+    {
+        "name": "view_maximum_discount",
+        "en": "View Max.D",
+        "ar": "عرض أ.خ"
+    },
+    {
+        "name": "hide_maximum_discount",
+        "en": "Hide Max.D",
+        "ar": "إخفاء أ.خ"
+    },
+    {
+        "name": "prices_offers_empty_search",
+        "en": "Empty Search",
+        "ar": "تفريغ الحقول"
+    },
+    {
+        "name": "prices_offers",
+        "en": "Prices offers",
+        "ar": "عروض الأسعار"
+    },
+    {
+        "name": "price_offer",
+        "en": "Price offer",
+        "ar": "عرض السعر"
+    },
+    {
+        "name": "prices_offers_add",
+        "en": "Add Prices offers",
+        "ar": "إضافة عرض سعر"
+    },
+    {
+        "name": "prices_offers_new",
+        "en": "New Prices offers",
+        "ar": "عرض سعر جديد"
+    },
+    {
+        "name": "prices_offers_details",
+        "en": "Prices offers Details",
+        "ar": "تفاصيل عرض سعر"
+    },
+    {
+        "name": "prices_offers_edit",
+        "en": "Edit Prices offers",
+        "ar": "تعديل بيانات عرض سعر"
+    },
+    {
+        "name": "prices_offers_delete",
+        "en": "Delete Prices offers",
+        "ar": "حذف عرض سعر"
+    },
+
+    {
+        "name": "prices_offers_categry",
+        "en": "Classfication",
+        "ar": "  التصنيف "
+    },
+    {
+        "name": "edit_ticket",
+        "en": "Edit ticket",
+        "ar": "  تعديل الطلب "
+    },
+    {
+        "name": "prices_offers_Company_code",
+        "en": "vendor Code",
+        "ar": "كود المورد"
+    },
+    {
+        "name": "prices_offers_Company_name",
+        "en": "vendor Name",
+        "ar": "إسم المورد"
+    },
+    {
+        "name": "prices_offers_items",
+        "en": "Items",
+        "ar": "الأصناف"
+    },
+    {
+        "name": "prices_offers_item_name",
+        "en": "Item Name",
+        "ar": "إسم الصنف"
+    },
+    {
+        "name": "prices_offers_item_Company",
+        "en": "Item vendor",
+        "ar": "إسم المصنع"
+    },
+    {
+        "name": "prices_offers_item_size",
+        "en": "Item Size",
+        "ar": "المقاس"
+    },
+    {
+        "name": "prices_offers_item_count",
+        "en": "Count",
+        "ar": "العدد"
+    },
+    {
+        "name": "prices_offers_item_store_balance",
+        "en": "Store Balance",
+        "ar": "رصيد المخزن"
+    },
+    {
+        "name": "prices_offers_section",
+        "en": "Section",
+        "ar": "القسم"
+    },
+    {
+        "name": "prices_offers_item_cost",
+        "en": "Price",
+        "ar": "سعر الشراء"
+    },
+    {
+        "name": "prices_offers_item_price",
+        "en": "Price",
+        "ar": "سعر البيع"
+    },
+    {
+        "name": "prices_offers_item_total",
+        "en": "Total",
+        "ar": "الاجمالي"
+    },
+    {
+        "name": "prices_offers_categories",
+        "en": "Categories",
+        "ar": "مجموعة الصنف"
+    },
+    {
+        "name": "prices_offers_add_item",
+        "en": "Add Item",
+        "ar": "إضافة صنف"
+    },
+    {
+        "name": "prices_offers_item_section",
+        "en": "Section",
+        "ar": "القسم"
+    },
+    {
+        "name": "prices_offers_item_categories",
+        "en": "Categories",
+        "ar": "مجموعة الصنف"
+    },
+    {
+        "name": "prices_offers_add_to_sizes",
+        "en": "Add To Sizes",
+        "ar": "أضف رقم جديد"
+    },
+    {
+        "name": "prices_offers_add_to_items",
+        "en": "Add To Items",
+        "ar": "أضف الى الإذن"
+    },
+    {
+        "name": "prices_offers_total_value",
+        "en": "Total Value",
+        "ar": "القيمة الاجمالية"
+    },
+    {
+        "name": "prices_offers_total_tax",
+        "en": "Total Tax",
+        "ar": "اجمالى الضرائب"
+    },
+    {
+        "name": "prices_offers_taxes",
+        "en": "Taxes",
+        "ar": " الضرائب"
+    },
+    {
+        "name": "prices_offers_tax_name",
+        "en": "Tax Name",
+        "ar": "الإسم"
+    },
+    {
+        "name": "prices_offers_tax_value",
+        "en": "Tax Value",
+        "ar": "القيمة"
+    },
+    {
+        "name": "prices_offers_total_discount",
+        "en": "Total Discount",
+        "ar": "اجمالى الخصم"
+    },
+    {
+        "name": "prices_offers_add_tax",
+        "en": "Discount Value",
+        "ar": "أضف الضريبة"
+    },
+    {
+        "name": "prices_offers_err_count",
+        "en": "Must Enter Correct Counts",
+        "ar": "يجب إدخال الأعداد بشكل صحيح"
+    },
+    {
+        "name": "prices_offers_err_barcode",
+        "en": "Must Enter Barcode",
+        "ar": "يجب إدخال الباركود بشكل صحيح"
+    },
+    {
+        "name": "prices_offers_err_barcode_exist",
+        "en": "Barcode Is Exist",
+        "ar": "الباركود مكرر"
+    }
+
+]

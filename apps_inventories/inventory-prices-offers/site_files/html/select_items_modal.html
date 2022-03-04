@@ -1,0 +1,129 @@
+<div id="selectItemsModal" class="modal" fixed>
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.prices_offers_items##
+            </h2>
+        </div>
+        <div class="modal-body">
+            <form>
+                <div class="row">
+                    <i-control ng-keydown="getItemsName($event)" id="item_name" class="col3"
+                        ng-model="item.search_item_name" label="##word.search##" type="text"></i-control>
+                    <i-list class="col4" label="##word.prices_offers_item_name##" ng-model="item.itm"
+                        display="name_##session.lang##" items="itemsNameList" ng-change="itemsPricesOffers()"
+                        ng-search="item_searching"></i-list>
+                </div>
+                <div class="row">
+
+                    <fieldset>
+                        <legend> ##word.stores_items_sizes## </legend>
+
+                        <div class="row">
+                            <div class="col2 center">
+                                <label>##word.prices_offers_item_name##</label>
+                                <!--  <br>
+                                 <i-button type="add" label="##word.prices_offers_add_to_sizes##" ng-click="addToSizes()">
+                                </i-button> -->
+                            </div>
+                            <div class="col2 center">
+                                <label>##word.barcode##</label>
+                            </div>
+
+                            <div class="col2 center">
+                                <label>##word.unit##</label>
+                            </div>
+
+                            <div class="col1 center">
+                                <div class="control">
+                                    <label>##word.balance##</label>
+                                </div>
+                            </div>
+                            <div class="col1 center">
+                                <div class="control">
+                                    <label>##word.prices_offers_item_store_balance##</label>
+                                </div>
+                            </div>
+                            <div class="col1 center">
+                                <div class="control">
+                                    <label>##word.quantity##</label>
+                                </div>
+                            </div>
+
+                            <div class="col1 center" ng-hide="prices_offers.type.id ==5">
+                                <div class="control">
+                                    <label>##word.prices_offers_item_price##</label>
+                                </div>
+                            </div>
+
+                            <div class="col1 center">
+                                <div class="control">
+                                    <label>##word.prices_offers_item_total##</label>
+                                </div>
+                            </div>
+                            <div class="col1 center">
+                                <div class="control">
+                                    <label>##word.actions##</label>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div ng-repeat="s in item.sizes track by $index">
+                            <hr>
+                            <div class="row center">
+                                <div class="col2">
+                                    <br ng-hide="s.$new">
+                                    <h3 class="bold center" ng-show="s.add_sizes">{{s.name_##session.lang##}}
+                                        {{s.size_##session.lang##}}</h3>
+                                    <h3 class="bold center" ng-show="!s.add_sizes">{{s.size_##session.lang##}}</h3>
+                                    <!-- <i-control ng-show="s.$new" ng-model="s.size_ar" type="text">
+                                    </i-control> -->
+                                </div>
+
+                                <div class="col2">
+                                    <br ng-hide="s.$new">
+                                    <h3 ng-hide="s.$new" class="bold center">{{s.barcode}}</h3>
+
+                                    <!-- <i-control ng-show="s.$new" ng-model="s.barcode" type="text">
+                                    </i-control> -->
+                                </div>
+
+                                <i-list ng-model="s.unit" display="name_##session.lang##" class="col2"
+                                    ng-search="_search.$category_item.$unit_search"
+                                    ng-change="s.discount = s.unit.discount ; s.cost = s.unit.cost ; s.average_cost = s.unit.average_cost;changeUnitSelect(s)"
+                                    space=" - " display2="barcode" items="s.size_units_list"></i-list>
+
+                                <i-control disabled class="col1" ng-model="s.current_count" type="number">
+                                </i-control>
+
+                                <i-control disabled class="col1" ng-model="s.store_count" type="number">
+                                </i-control>
+
+                                <i-control class="col1" ng-model="s.count" type="number">
+                                </i-control>
+
+                                <i-control ng-hide="prices_offers.type.id ==5" disabled class="col1" ng-model="s.price"
+                                    type="number">
+                                </i-control>
+
+                                <i-control disabled class="col1" ng-model="s.total" type="number">
+                                </i-control>
+
+                                <div class="col1 center">
+                                    <i-button type="delete" label="##word.delete##" ng-click="deleteitem(s)"></i-button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </div>
+            </form>
+        </div>
+        <h2 class="error center bold">{{error}}</h2>
+        <div class="modal-footer center">
+            <i-button type="add" label="##word.prices_offers_add_to_items##" ng-click="addToItems()"></i-button>
+            <i-button type="close" label=" ##word.close##" onclick="site.hideModal('#selectItemsModal')"></i-button>
+        </div>
+    </div>
+</div>

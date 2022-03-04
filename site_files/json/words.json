@@ -1,5 +1,15 @@
 [
   {
+    "name": "arabic",
+    "en": "Arabic",
+    "ar": "عربي"
+  },
+  {
+    "name": "english",
+    "en": "English",
+    "ar": "إنجليزي"
+  },
+  {
     "name": "customer_register",
     "en": "New Customer",
     "ar": "عميل جديد"
