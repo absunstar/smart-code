@@ -76,37 +76,37 @@
     },
     {
         "name": "prices_offers",
-        "en": "Prices offers",
+        "en": "Quotations",
         "ar": "عروض الأسعار"
     },
     {
         "name": "price_offer",
-        "en": "Price offer",
+        "en": "Quotation",
         "ar": "عرض السعر"
     },
     {
         "name": "prices_offers_add",
-        "en": "Add Prices offers",
+        "en": "Add Quotation",
         "ar": "إضافة عرض سعر"
     },
     {
         "name": "prices_offers_new",
-        "en": "New Prices offers",
+        "en": "New Quotation",
         "ar": "عرض سعر جديد"
     },
     {
         "name": "prices_offers_details",
-        "en": "Prices offers Details",
+        "en": "Quotation Details",
         "ar": "تفاصيل عرض سعر"
     },
     {
         "name": "prices_offers_edit",
-        "en": "Edit Prices offers",
+        "en": "Edit Quotation",
         "ar": "تعديل بيانات عرض سعر"
     },
     {
         "name": "prices_offers_delete",
-        "en": "Delete Prices offers",
+        "en": "Delete Quotation",
         "ar": "حذف عرض سعر"
     },
 
