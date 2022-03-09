@@ -6,8 +6,8 @@ module.exports = function init(site) {
     let doc2 = { ...doc };
     $safes.insertMany([
       {
-        name_ar: 'بنك إفتراضي',
-        name_en: 'Default Bank',
+        name_ar: 'خزينة بنك',
+        name_en: 'Bank Safe',
         code: '2-Test',
         balance: 0,
         type: {
@@ -35,8 +35,8 @@ module.exports = function init(site) {
         active: true,
       },
       {
-        name_ar: 'نقدي إفتراضي',
-        name_en: 'Default Cash',
+        name_ar: 'خزينة نقدي',
+        name_en: 'Cash Safe',
         code: '1-Test',
         balance: 0,
         type: {
