@@ -110,6 +110,11 @@ popup item:hover {
   min-width: 370px;
 }
 
+.table td {
+  padding: 2px;
+ 
+}
+
 .main-menu.menu-show .tab-link span {
   display: inline-block;
 }

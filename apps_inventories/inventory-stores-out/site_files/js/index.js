@@ -212,6 +212,7 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
 
     $scope.get_open_shift((shift) => {
       if (shift) {
+
         $scope.shift = shift;
         $scope.error = '';
         $scope.item = {};
@@ -273,6 +274,7 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
             }
           }
         }
+        $scope.discountEditorAdd = !$scope.discountEditorAdd;
 
         site.showModal('#addStoreOutModal');
       } else $scope.error = '##word.open_shift_not_found##';
