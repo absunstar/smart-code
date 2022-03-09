@@ -1521,7 +1521,7 @@ module.exports = function init(site) {
 
                         $stores_items.add(
                             {
-                                image_url: '/images/category_item.png',
+                                image_url: '/images/store_item.png',
                                 allow_sell: true,
                                 allow_buy: true,
                                 is_pos: true,

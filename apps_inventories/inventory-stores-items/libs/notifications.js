@@ -6,7 +6,7 @@ module.exports = function init(site) {
     ar: "نظام المخازن",
   };
 
-  let image_url = "/images/category_item.png";
+  let image_url = "/images/store_item.png";
   let add_message = { en: "New Item Added", ar: "تم إضافة صنف جديد" };
   let update_message = { en: " Item  updated", ar: "تم تعديل   صنف" };
   let delete_message = { en: " Item  dleteted", ar: "تم حذف  صنف  " };
