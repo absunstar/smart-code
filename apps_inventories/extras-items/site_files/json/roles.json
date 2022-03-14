@@ -1,7 +1,7 @@
 [{
-    "module_name" : "public" ,
+    "module_name" : "inventory" ,
     "name": "extras_items_admin",
-    "en": "School Grades Admin",
-    "ar": "إدارة المراحل الدراسية",
+    "en": "Extras items Admin",
+    "ar": "إدارة إضافات الأصناف",
     "permissions": ["extras_items_manage"]
 }]

@@ -1,0 +1,37 @@
+<div class="form">
+  <div id="vehiclesTypesAddModal">
+    <fieldset>
+      <legend>##word.barcode_printer_informations##</legend>
+      <div class="row">
+        <div class="col9">
+          <div class="row">
+            <i-control ng-keydown="getItemsName($event)" id="item_name" class="col3" ng-model="item.search_item_name" label="##word.items_search##" type="text"></i-control>
+            <i-control class="col2" type="number" ng-model="barcode_printer.count_prints" label="##word.count_prints##" type="text"></i-control>
+            <!-- <i-list
+              class="col4"
+              label="##word.stores_out_item_name##"
+              ng-model="item.itm"
+              display="name_##session.lang##"
+              items="itemsNameList"
+              ng-change="itemsSelect()"
+              ng-search="item_searching"
+            ></i-list> -->
+          </div>
+          <br />
+          <hr style="height: 5px; color: grey; background-color: rgb(0, 0, 199)" />
+          <br />
+          <div class="row">
+            <i-control class="col4" label="##word.company_name##" ng-model="barcode_printer.company_name"> </i-control>
+            <i-control class="col4" label="##word.product_name##" ng-model="barcode_printer.item_name"> </i-control>
+            <i-control class="col4" label="##word.barcode##" ng-model="barcode_printer.barcode"> </i-control>
+            <i-control class="col2" label="##word.price##" type="number" ng-model="barcode_printer.price"> </i-control>
+          </div>
+        </div>
+
+        <div class="col3">
+          <i-image category="barcode_printer" view ng-model="barcode_printer.image_url"> </i-image>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+</div>

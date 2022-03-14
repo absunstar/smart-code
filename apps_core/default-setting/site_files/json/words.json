@@ -120,6 +120,11 @@
         "ar": "يجد تحديد الطابعة الحرارية من الإعدادات"
     },
     {
+        "name": "barcode_printer_must_select",
+        "en": "You must select the name of the Barcode printer from the settings",
+        "ar": "يجد تحديد طابعة الباركود من الإعدادات"
+    },
+    {
         "name": "auto_thermal_print",
         "en": "Automatic thermal printing",
         "ar": "طباعة حرارية أوتوماتيك"

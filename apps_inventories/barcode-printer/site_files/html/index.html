@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="barcode_printer_ui || barcode_printer_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+    </nav>
+
+    <div id="main-layout" class="container loaded">
+        <div class="row">
+            <div class="row" ng-controller="barcode_printer" x-permissions="login">
+
+                <div class="row">
+                    <h1 class="bold text-center"> ##word.barcode_printer## </h1>
+                </div>
+                <br>
+                <div
+                x-permissions="barcode_printer_view || barcode_printer_manage"
+                x-import="barcode-printer/content.html"
+              ></div>
+
+              <div x-import="barcode-printer/barcode_printer.html"></div>
+           
+              <i-button
+                x-permissions="barcode_printer_print || barcode_printer_manage"
+                type="print"
+                label="##word.print##"
+                ng-click="print()"
+              ></i-button>
+
+            </div>
+        </div>
+    </div>
+    <div x-import="scripts.html"></div>
+
+    <script x-permissions="login" x-import="barcode-printer/index.js"></script>
+</body>
+
+</html>

@@ -1371,6 +1371,11 @@
     "ar": "هامش الفاتورة"
   },
   {
+    "name": "product_name",
+    "en": "Product Name",
+    "ar": "إسم المنتج"
+  },
+  {
     "name": "company_name",
     "en": "Company Name",
     "ar": "إسم الشركة"

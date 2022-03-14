@@ -1,0 +1,17 @@
+[
+    {
+        "name": "barcode_printer_informations",
+        "en": "Barcode printer Informations",
+        "ar": "بيانات طباعة الباركود"
+    },
+    {
+        "name": "barcode_printer",
+        "en": "Barcode printer",
+        "ar": "طباعة الباركود"
+    },
+    {
+        "name": "count_prints",
+        "en": "Count of prints",
+        "ar": "عدد المطبوعات"
+    }
+]

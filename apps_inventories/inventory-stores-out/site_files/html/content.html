@@ -2,7 +2,6 @@
 table { border-collapse: collapse; width: 100%; }
 th, td { background: #fff; padding: 8px 16px; }
 
-
 .tableFixHead {
   overflow: auto;
   height: 320px;
@@ -12,6 +11,7 @@ th, td { background: #fff; padding: 8px 16px; }
   position: sticky;
   top: 0;
 }
+
 </style>
 <form class="form">
   <div class="row">
@@ -144,7 +144,7 @@ th, td { background: #fff; padding: 8px 16px; }
               </td>
               <td>
                 <br />
-                <p ng-show="itm.add_sizes">{{itm.name_##session.lang##}} {{itm.size_##session.lang##}}</p>
+                <p ng-show="itm.add_sizes">{{itm.name_##session.lang##}} - {{itm.size_##session.lang##}}</p>
                 <p ng-hide="itm.add_sizes">{{itm.size_##session.lang##}}</p>
               </td>
 

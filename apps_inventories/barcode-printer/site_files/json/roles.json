@@ -1,0 +1,7 @@
+[{
+    "module_name" : "inventory" ,
+    "name": "barcode_printer_admin",
+    "en": "Barcode Printer Admin",
+    "ar": "إدارة طباعة الباركود",
+    "permissions": ["barcode_printer_manage"]
+}]

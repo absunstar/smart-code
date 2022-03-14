@@ -214,13 +214,15 @@
                 </i-list>
 
                 <i-list
-                  class="col3"
-                  ng-model="default_setting.printer_program.place_qr"
-                  items="placeQRList"
-                  display="##session.lang##"
-                  ng-search="_search.$place_qr"
-                  label="##word.qr_place##"
-                ></i-list>
+                ng-search="_search.$printers_path"
+                class="col3"
+                display="name_##session.lang##"
+                ng-model="default_setting.printer_program.barcode_printer"
+                label="##word.barcode_printer##"
+                items="printersPathList"
+              >
+              </i-list>
+               
               </div>
 
               <div class="row">
@@ -230,7 +232,14 @@
                   label="##word.invoice_top_title##"
                   ng-model="default_setting.printer_program.invoice_top_title"
                 ></i-control> -->
-
+                <i-list
+                class="col3"
+                ng-model="default_setting.printer_program.place_qr"
+                items="placeQRList"
+                display="##session.lang##"
+                ng-search="_search.$place_qr"
+                label="##word.qr_place##"
+              ></i-list>
                 <i-list
                   class="col4"
                   ng-model="default_setting.printer_program.thermal_lang"
