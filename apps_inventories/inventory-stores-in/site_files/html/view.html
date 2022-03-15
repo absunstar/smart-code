@@ -193,7 +193,7 @@
                     <b class="red" ng-show="itm.discount.type =='number'">$</b>
                     <b class="red" ng-show="itm.discount.type =='percent'">%</b>
                 </td> -->
-          <td class="center txt16">{{itm.total_v_a | xmoney}}</td>
+          <td ng-show="defaultSettings.inventory.value_added > 0" class="center txt16">{{itm.total_v_a | xmoney}}</td>
           <td class="center txt16">{{itm.total | xmoney}}</td>
         </tr>
       </table>

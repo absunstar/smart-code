@@ -135,7 +135,7 @@
                     <p>##word.unit_price##</p>
                 </th>
 
-                <th class="light_gray w50 txt16" x-permissions="stores_out_details_values || stores_out_manage">
+                <th ng-show="defaultSettings.inventory.value_added > 0" class="light_gray w50 txt16" x-permissions="stores_out_details_values || stores_out_manage">
                     <p>##word.total_vat##</p>
                 </th>
 
@@ -169,7 +169,7 @@
                     <del class="red txt16" ng-show="itm.discount.value > 0"> {{itm.discount.current | xmoney}} </del>
                 </td>
 
-                <td class="center txt16 red" x-permissions="stores_out_details_values || stores_out_manage">{{itm.total_v_a | xmoney}}</td>
+                <td class="center txt16 red" ng-show="defaultSettings.inventory.value_added > 0" x-permissions="stores_out_details_values || stores_out_manage">{{itm.total_v_a | xmoney}}</td>
 
                 <td class="center txt16" x-permissions="stores_out_details_values || stores_out_manage">{{itm.total | xmoney}}</td>
             </tr>
