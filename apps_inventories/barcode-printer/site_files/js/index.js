@@ -110,7 +110,7 @@ app.controller('barcode_printer', function ($scope, $http, $timeout) {
                 $timeout(() => {
                     site.print(
                         {
-                            content: document.querySelector('#barcodePrint').innerHTML,
+                            content: document.querySelector('#barcodePage').innerHTML,
                             selector: '#barcodePrint',
                             ip: '127.0.0.1',
                             port: '60080',
