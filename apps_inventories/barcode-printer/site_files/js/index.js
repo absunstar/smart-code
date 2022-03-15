@@ -94,38 +94,35 @@ app.controller('barcode_printer', function ($scope, $http, $timeout) {
     $scope.error = '';
     if ($scope.busy) return;
     $scope.busy = true;
-    let count = ($scope.barcode_printer.count_prints || 1) + 1;
     $scope.print = { ...$scope.barcode_printer };
-    for (let i = 0; i < count; i++) {
-      $timeout(() => {
-        $('#barcodePrint').removeClass('hidden');
+    $timeout(() => {
+      $('#barcodePrint').removeClass('hidden');
 
-        JsBarcode('.barcode', $scope.print.barcode);
+      JsBarcode('.barcode', $scope.print.barcode);
 
-        if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.barcode_printer && $scope.defaultSettings.printer_program.barcode_printer.ip) {
-          let printerName = $scope.defaultSettings.printer_program.barcode_printer.ip.name.trim();
-          $timeout(() => {
-            site.print(
-              {
-                selector: '#barcodePrint',
-                ip: '127.0.0.1',
-                port: '60080',
-                printer: printerName,
-              },
-              () => {
-                if (i === $scope.barcode_printer.count_prints) {
+      if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.barcode_printer && $scope.defaultSettings.printer_program.barcode_printer.ip) {
+        let printerName = $scope.defaultSettings.printer_program.barcode_printer.ip.name.trim();
+        $timeout(() => {
+          site.print(
+            {
+              selector: '#barcodePrint',
+              ip: '127.0.0.1',
+              port: '60080',
+              printer: printerName,
+            },
+            () => {
+              /*    if (i === $scope.barcode_printer.count_prints) {
                   $timeout(() => {
                     $('#barcodePrint').addClass('hidden');
                   }, 2000);
-                }
-              }
-            );
-          }, 1000 * 3);
-        } else {
-          $scope.error = '##word.barcode_printer_must_select##';
-        }
-      }, 1000);
-    }
+                } */
+            }
+          );
+        }, 1000 * 3);
+      } else {
+        $scope.error = '##word.barcode_printer_must_select##';
+      }
+    }, 1000);
 
     $scope.busy = false;
   };

@@ -1,18 +1,32 @@
-<Style>
-
-</Style>
-<div class="hidden center"  id="barcodePrint" style="width: 108mm ;height: 18mm;">
+<style>
+  @media print {
+    .page-print {
+      width: 21cm;
+      height: 29.7cm;
+      margin: 0;
+      border: initial;
+      border-radius: initial;
+      width: initial;
+      min-height: initial;
+      box-shadow: initial;
+      background: initial;
+      page-break-after: always;
+    }
+    .col-print {
+      width: 100%;
+    }
+  }
+</style>
+<div class="hidden page-print" id="barcodePrint" style="width: 108mm; height: 18mm">
   <div class="row center">
-    <div class="invoice-barcode center">
-      <svg style="max-height: 25mm" class="barcode" jsbarcode-format="auto" jsbarcode-value="{{print.barcode}}" jsbarcode-textmargin="0" jsbarcode-fontoptions="bold"></svg>
+    <div class="invoice-barcode col-print">
+      <svg class="barcode" jsbarcode-format="auto" jsbarcode-value="{{print.barcode}}" jsbarcode-textmargin="0" jsbarcode-fontoptions="bold"></svg>
     </div>
   </div>
   <div class="row center">
-
     <p class="black font-15 bold" ng-show="print.company_name">{{print.company_name}}</p>
     <p class="black font-13 bold" ng-show="print.item_name">{{print.item_name}}</p>
     <p class="black font-15 bold" ng-show="print.price && barcode_printer.print_lang.id == 1">السعر : {{print.price}}</p>
     <p class="black font-15 bold" ng-show="print.price && barcode_printer.print_lang.id == 2">Price : {{print.price}}</p>
-
   </div>
 </div>
