@@ -100,7 +100,7 @@ app.controller('barcode_printer', function ($scope, $http, $timeout) {
 
             JsBarcode('.barcode', $scope.print.barcode, {
                 format: 'CODE128',
-                displayValue: false,
+                displayValue: true,
             });
 
             if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.barcode_printer && $scope.defaultSettings.printer_program.barcode_printer.ip) {
@@ -108,6 +108,7 @@ app.controller('barcode_printer', function ($scope, $http, $timeout) {
                 $timeout(() => {
                     site.print(
                         {
+                            content: document.querySelector('#barcodePrint').innerHTML,
                             selector: '#barcodePrint',
                             ip: '127.0.0.1',
                             port: '60080',
