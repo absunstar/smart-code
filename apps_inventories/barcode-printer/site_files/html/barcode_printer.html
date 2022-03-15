@@ -11,7 +11,8 @@
 
     <p class="black font-15 bold" ng-show="print.company_name">{{print.company_name}}</p>
     <p class="black font-13 bold" ng-show="print.item_name">{{print.item_name}}</p>
-    <p class="black font-15 bold" ng-show="print.price">##word.price## : {{print.price}}</p>
+    <p class="black font-15 bold" ng-show="print.price && barcode_printer.print_lang.id == 1">السعر : {{print.price}}</p>
+    <p class="black font-15 bold" ng-show="print.price && barcode_printer.print_lang.id == 2">Price : {{print.price}}</p>
 
   </div>
 </div>

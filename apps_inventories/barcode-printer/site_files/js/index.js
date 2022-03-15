@@ -1,11 +1,31 @@
 app.controller('barcode_printer', function ($scope, $http, $timeout) {
   $scope._search = {};
+  $scope.startBarcodePrinter = function () {
+    $scope.printingLanguageList = [
+      {
+        id: 1,
+        ar: 'عربي',
+        en: 'Arabic',
+      },
+      {
+        id: 2,
+        ar: 'إنجليزي',
+        en: 'English',
+      },
+    ];
+    $scope.barcode_printer = {
+      image_url: '/images/barcode_printer.png',
+      count_prints: 1,
+      price: 0,
+    };
 
-  $scope.barcode_printer = {
-    image_url: '/images/barcode_printer.png',
-    company_name: '##session.company.name_ar##',
-    count_prints: 1,
-    price: 0,
+    if ('##session.lang##' == 'ar') {
+      $scope.barcode_printer.company_name = '##session.company.name_ar##';
+      $scope.barcode_printer.print_lang = $scope.printingLanguageList[0];
+    } else if ('##session.lang##' == 'en') {
+      $scope.barcode_printer.company_name = '##session.company.name_en##';
+      $scope.barcode_printer.print_lang = $scope.printingLanguageList[1];
+    }
   };
 
   $scope.getItemsName = function (ev) {
@@ -23,16 +43,30 @@ app.controller('barcode_printer', function ($scope, $http, $timeout) {
           if (response.data.done) {
             if (response.data.list.length > 0) {
               let foundSize = false;
-              $scope.item.sizes = $scope.item.sizes || [];
               response.data.list.forEach((_item) => {
                 if (_item.sizes && _item.sizes.length > 0)
                   _item.sizes.forEach((_size) => {
                     if (_size.barcode === $scope.item.search_item_name) {
-                      if (_size.add_sizes) {
-                        $scope.barcode_printer.item_name = _item.name_ar + '-' + _size.size_ar;
-                      } else {
-                        $scope.barcode_printer.item_name = _size.size_ar;
+                      $scope.item.size = { ..._size };
+                      if ($scope.barcode_printer.print_lang.id) {
+                        if ($scope.barcode_printer.print_lang.id == 1) {
+                          $scope.barcode_printer.company_name = '##session.company.name_ar##';
+
+                          if ($scope.item.size.add_sizes) {
+                            $scope.barcode_printer.item_name = _item.name_ar + '-' + $scope.item.size.size_ar;
+                          } else {
+                            $scope.barcode_printer.item_name = $scope.item.size.size_ar;
+                          }
+                        } else if ($scope.barcode_printer.print_lang.id == 2) {
+                          $scope.barcode_printer.company_name = '##session.company.name_en##';
+                          if ($scope.item.size.add_sizes) {
+                            $scope.barcode_printer.item_name = _item.name_en + '-' + $scope.item.size.size_en;
+                          } else {
+                            $scope.barcode_printer.item_name = $scope.item.size.size_en;
+                          }
+                        }
                       }
+
                       $scope.barcode_printer.barcode = _size.barcode;
                       $scope.barcode_printer.price = _size.price;
                     }
@@ -64,37 +98,57 @@ app.controller('barcode_printer', function ($scope, $http, $timeout) {
     $scope.print = { ...$scope.barcode_printer };
     for (let i = 0; i < count; i++) {
       $timeout(() => {
-      $('#barcodePrint').removeClass('hidden');
+        $('#barcodePrint').removeClass('hidden');
 
-      JsBarcode('.barcode', $scope.print.barcode);
+        JsBarcode('.barcode', $scope.print.barcode);
 
-      if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.barcode_printer && $scope.defaultSettings.printer_program.barcode_printer.ip) {
-        let printerName = $scope.defaultSettings.printer_program.barcode_printer.ip.name.trim();
-        $timeout(() => {
-          site.print(
-            {
-              selector: '#barcodePrint',
-              ip: '127.0.0.1',
-              port: '60080',
-              printer: printerName,
-            },
-            () => {
-             if(i === $scope.barcode_printer.count_prints){
-              $timeout(() => {
-                $('#barcodePrint').addClass('hidden');
-              }, 2000);
-             }
-            }
-          );
-        }, 1000 * 3);
-      } else {
-        $scope.error = '##word.barcode_printer_must_select##';
-      }
-    }, 1000);
-     
+        if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.barcode_printer && $scope.defaultSettings.printer_program.barcode_printer.ip) {
+          let printerName = $scope.defaultSettings.printer_program.barcode_printer.ip.name.trim();
+          $timeout(() => {
+            site.print(
+              {
+                selector: '#barcodePrint',
+                ip: '127.0.0.1',
+                port: '60080',
+                printer: printerName,
+              },
+              () => {
+                if (i === $scope.barcode_printer.count_prints) {
+                  $timeout(() => {
+                    $('#barcodePrint').addClass('hidden');
+                  }, 2000);
+                }
+              }
+            );
+          }, 1000 * 3);
+        } else {
+          $scope.error = '##word.barcode_printer_must_select##';
+        }
+      }, 1000);
     }
 
     $scope.busy = false;
+  };
+
+  $scope.changePrinterLang = function () {
+    if ($scope.barcode_printer.print_lang.id) {
+      if ($scope.barcode_printer.print_lang.id == 1) {
+        $scope.barcode_printer.company_name = '##session.company.name_ar##';
+
+        if ($scope.item.size.add_sizes) {
+          $scope.barcode_printer.item_name = _item.name_ar + '-' + $scope.item.size.size_ar;
+        } else {
+          $scope.barcode_printer.item_name = $scope.item.size.size_ar;
+        }
+      } else if ($scope.barcode_printer.print_lang.id == 2) {
+        $scope.barcode_printer.company_name = '##session.company.name_en##';
+        if ($scope.item.size.add_sizes) {
+          $scope.barcode_printer.item_name = _item.name_en + '-' + $scope.item.size.size_en;
+        } else {
+          $scope.barcode_printer.item_name = $scope.item.size.size_en;
+        }
+      }
+    }
   };
 
   $scope.getDefaultSettings = function () {
@@ -122,4 +176,5 @@ app.controller('barcode_printer', function ($scope, $http, $timeout) {
   };
 
   $scope.getDefaultSettings();
+  $scope.startBarcodePrinter();
 });

@@ -7,15 +7,15 @@
           <div class="row">
             <i-control ng-keydown="getItemsName($event)" id="item_name" class="col3" ng-model="item.search_item_name" label="##word.items_search##" type="text"></i-control>
             <i-control class="col2" type="number" ng-model="barcode_printer.count_prints" label="##word.count_prints##" type="text"></i-control>
-            <!-- <i-list
-              class="col4"
-              label="##word.stores_out_item_name##"
-              ng-model="item.itm"
-              display="name_##session.lang##"
-              items="itemsNameList"
-              ng-change="itemsSelect()"
+            <i-list
+              class="col2"
+              label="##word.printing_language##"
+              ng-model="barcode_printer.print_lang"
+              display="##session.lang##"
+              items="printingLanguageList"
+              ng-change="changePrinterLang()"
               ng-search="item_searching"
-            ></i-list> -->
+            ></i-list>
           </div>
           <br />
           <hr style="height: 5px; color: grey; background-color: rgb(0, 0, 199)" />
