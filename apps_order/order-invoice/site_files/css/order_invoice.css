@@ -74,7 +74,7 @@ body {
 .item-list {
     display: inline-flex;
     flex-flow: wrap;
-    height: 53vh;
+    height: 55vh;
     overflow: scroll;
 }
 

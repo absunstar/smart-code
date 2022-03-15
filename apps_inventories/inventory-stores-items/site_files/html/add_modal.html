@@ -12,7 +12,7 @@
         </div>
         <h2 class="error">{{error}}</h2>
         <div class="modal-footer center">
-            <i-button id="add_category_item_btn" ng-click="add()" type="add" label="##word.add##">
+            <i-button id="add_category_item_btn" ng-hide="hideAdd" ng-click="add()" type="add" label="##word.add##">
             </i-button>
             <i-button onclick="site.hideModal('#addCategoryItemModal');" type="close" label="##word.close##"></i-button>
         </div>

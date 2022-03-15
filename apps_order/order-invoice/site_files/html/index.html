@@ -85,10 +85,15 @@
               </div>
 
               <fieldset>
-
-                <div class="row  center">
-                  <i-control id="searchBarcode" label="##word.barcode##" class="center" ng-keydown="getBarcode($event)" ng-model="search_barcode"></i-control>
+                <div class="row center">
+                  <div class="col-2"></div>
+                  <div class="col-2">
+                    <br />
+                    <b class="font-16">##word.barcode##</b> :
+                  </div>
+                  <i-control id="searchBarcode" class="center col-6" ng-keydown="getBarcode($event)" ng-model="search_barcode"></i-control>
                 </div>
+                <div class="col-2"></div>
               </fieldset>
 
               <div class="row">
@@ -188,7 +193,7 @@
                 </div>
               </div>
               <br />
-              <div class="row" >
+              <div class="row">
                 <div class="table-content items">
                   <div class="table-headers center">
                     <div class="col-5 header">##word.stores_items_name##</div>
@@ -233,7 +238,7 @@
               <div class="row">
                 <div class="col10">
                   <div class="table-content">
-                    <div class="table-headers" style="height: 45px;">
+                    <div class="table-headers" style="height: 45px">
                       <div class="col-3 header">##word.total_before_tax##</div>
                       <div class="col-2 header">##word.vat##</div>
                       <div class="col-3 header">##word.total_after_tax##</div>
