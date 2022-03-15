@@ -103,6 +103,8 @@ app.controller('barcode_printer', function ($scope, $http, $timeout) {
                 displayValue: true,
                 textMargin: 0,
                 height: 50,
+                fontSize: 25,
+                fontOptions: 'bold',
             });
 
             if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.barcode_printer && $scope.defaultSettings.printer_program.barcode_printer.ip) {
