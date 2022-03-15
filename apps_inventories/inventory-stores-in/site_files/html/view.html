@@ -6,17 +6,13 @@
         <tr>
           <td class="title">
             <b class="txt16 indigoD">##word.date## :</b>
-            <b class="txt16 brown"
-              >{{store_in.date |date:"dd - MM - yyyy" }}
-            </b>
+            <b class="txt16 brown">{{store_in.date |date:"dd - MM - yyyy" }} </b>
           </td>
 
           <td class="center">
             <b class="txt16 indigoD">##word.invoice_number## : </b>
             <b class="txt16 blue userPrint">{{store_in.code}}</b>
-            <h3 class="red center bold userPrint">
-              {{store_in.retured_number}}
-            </h3>
+            <h3 class="red center bold userPrint">{{store_in.retured_number}}</h3>
           </td>
         </tr>
 
@@ -57,22 +53,14 @@
           <td>
             <table class="table hover margin">
               <tr>
-                <th style="background: gray">
-                  ##word.stores_in_discount_name##
-                </th>
-                <th style="background: gray">
-                  ##word.stores_in_discount_value##
-                </th>
+                <th style="background: gray">##word.stores_in_discount_name##</th>
+                <th style="background: gray">##word.stores_in_discount_value##</th>
               </tr>
               <tr ng-repeat="discount in store_in.discountes">
                 <td>{{discount.name_##session.lang##}}</td>
                 <td>
-                  <p class="text-center" ng-show="discount.type == 'number'">
-                    {{discount.value}} %
-                  </p>
-                  <p class="text-center" ng-show="discount.type == 'percent'">
-                    {{discount.value}} $
-                  </p>
+                  <p class="text-center" ng-show="discount.type == 'number'">{{discount.value}} %</p>
+                  <p class="text-center" ng-show="discount.type == 'percent'">{{discount.value}} $</p>
                 </td>
               </tr>
             </table>
@@ -95,9 +83,7 @@
         <tr>
           <td class="title bold">
             <b class="txt16 indigoD">##word.payment_method## :</b>
-            <b class="txt16 center"
-              >{{store_in.payment_method.##session.lang##}}
-            </b>
+            <b class="txt16 center">{{store_in.payment_method.##session.lang##}} </b>
           </td>
           <td class="title center">
             <b class="txt16 indigoD">##word.notes## : </b>
@@ -139,10 +125,7 @@
             <p>##word.unit_price##</p>
           </th>
 
-          <th
-            ng-show="defaultSettings.inventory.value_added > 0"
-            class="light_gray txt16 w50"
-          >
+          <th ng-show="defaultSettings.inventory.value_added > 0" class="light_gray txt16 w50">
             <p>##word.total_vat##</p>
           </th>
 
@@ -154,14 +137,7 @@
         <tr ng-repeat="itm in store_in.items">
           <td class="center blue">
             {{$index + 1}}
-            <i-button
-              class="not-print"
-              label="##word.patch##"
-              ng-show="itm.work_patch || itm.work_serial"
-              type="view"
-              ng-click="viewPatchesList(itm)"
-            >
-            </i-button>
+            <i-button class="not-print" label="##word.patch##" ng-show="itm.work_patch || itm.work_serial" type="view" ng-click="viewPatchesList(itm)"> </i-button>
           </td>
 
           <td class="center">
@@ -169,12 +145,8 @@
           </td>
 
           <td class="center">
-            <p class="txt16" ng-show="itm.add_sizes">
-              {{itm.name_##session.lang##}} {{itm.size_##session.lang##}}
-            </p>
-            <p class="txt16" ng-hide="itm.add_sizes">
-              {{itm.size_##session.lang##}}
-            </p>
+            <p class="txt16" ng-show="itm.add_sizes">{{itm.name_##session.lang##}} {{itm.size_##session.lang##}}</p>
+            <p class="txt16" ng-hide="itm.add_sizes">{{itm.size_##session.lang##}}</p>
           </td>
 
           <td class="center txt16">{{itm.unit.name_##session.lang##}}</td>
@@ -183,9 +155,7 @@
 
           <td class="txt16 center">
             {{itm.b_cost | xmoney}}
-            <del class="red txt16" ng-show="itm.discount.value > 0">
-              {{itm.discount.current | xmoney}}
-            </del>
+            <del class="red txt16" ng-show="itm.discount.value > 0"> {{itm.discount.current | xmoney}} </del>
           </td>
 
           <!--    <td class="center w50">
@@ -222,10 +192,7 @@
       </div>
 
       <div class="row">
-        <p class="num_str bold center black">
-          {{store_in.net_txt}} {{defaultSettings.accounting.end_num_to_str ||
-          ''}}
-        </p>
+        <p class="num_str bold center black">{{store_in.net_txt}} {{defaultSettings.accounting.end_num_to_str || ''}}</p>
       </div>
     </div>
   </div>

@@ -31,6 +31,9 @@
             <div class="invoice-barcode col-print">
                 <svg class="barcode" jsbarcode-value="{{print.barcode}}"></svg>
             </div>
+            <b>{{print.item_name}}</b>
+            <b ng-show="barcode_printer.print_lang.id == 1">السعر : {{print.price}}</b>
+            <b ng-show="barcode_printer.print_lang.id == 2">Price : {{print.price}}</b>
         </div>
     </div>
 </div>
