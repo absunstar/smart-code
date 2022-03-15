@@ -8,7 +8,7 @@ body {
 }
 
 .item-groups {
-    height: 110px;
+    height: 100px;
     flex-flow: wrap;
     background: #2196f33b;
     overflow: auto;
@@ -16,8 +16,8 @@ body {
 }
 .item-groups .item {
     margin: 5px;
-    min-width: 200px;
-    height: 90%;
+    min-width: 180px;
+    height: 88%;
     display: inline-flex;
     border: 1px solid #eee;
     background-color: #2196f3;
@@ -74,7 +74,7 @@ body {
 .item-list {
     display: inline-flex;
     flex-flow: wrap;
-    height: 55vh;
+    height: 53vh;
     overflow: scroll;
 }
 
@@ -82,7 +82,7 @@ body {
     border: 2px solid #ddd;
     background-color: #ffffff;
     text-align: center;
-    height: 100px;
+    height: 93px;
     padding: 2px;
 }
 .item-list .item:hover,
@@ -95,13 +95,13 @@ body {
 }
 .item-list .item img {
     width: 90px;
-    height: 90px;
+    height: 85px;
     background-color: #ffffff;
 }
 .item-list .item p {
     color: #272727;
     background: #ffffff;
-    height: 90px;
+    height: 80px;
     font-size: 14px;
     padding: 5px;
     font-weight: 700;

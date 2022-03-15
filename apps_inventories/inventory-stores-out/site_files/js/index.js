@@ -212,7 +212,6 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
 
     $scope.get_open_shift((shift) => {
       if (shift) {
-
         $scope.shift = shift;
         $scope.error = '';
         $scope.item = {};
@@ -432,7 +431,9 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
           }
         }
       }
-
+      if ($scope.store_out.invoices_list && $scope.store_out.invoices_list.length > 0) {
+        $scope.store_out.currency = $scope.store_out.invoices_list[0].currency;
+      }
       if ($scope.store_out.items.length > 0 && !$scope.busy) {
         $scope.store_out.items.forEach((_itemSize) => {
           if (_itemSize.work_patch && _itemSize.patch_list && _itemSize.patch_list.length > 0) {
@@ -3073,29 +3074,28 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
   $scope.getPricesOffers = function (ev) {
     $scope.error = '';
     if (ev.which === 13) {
-
-    $scope.busy = true;
-    $http({
-      method: 'POST',
-      url: '/api/prices_offers/all',
-      data: {
-        where: {
-          invoice: { $ne: true },
+      $scope.busy = true;
+      $http({
+        method: 'POST',
+        url: '/api/prices_offers/all',
+        data: {
+          where: {
+            invoice: { $ne: true },
+          },
+          search: $scope.search_prices_offers,
         },
-        search: $scope.search_prices_offers,
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        $scope.pricesOffersList = response.data.list;
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          $scope.pricesOffersList = response.data.list;
+        },
+        function (err) {
+          $scope.busy = false;
+          $scope.error = err;
+        }
+      );
+    }
   };
-};
 
   $scope.selectPricesOffers = function (c) {
     $scope.error = '';
@@ -3113,20 +3113,14 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
     $scope.store_out.prices_offers_code = c.code;
     $scope.store_out.prices_offers_id = c.id;
 
-    if($scope.store_out.invoices_list && $scope.store_out.invoices_list.length == 1) {
-   
-      if($scope.store_out.invoices_list[0].currency){
-
+    if ($scope.store_out.invoices_list && $scope.store_out.invoices_list.length == 1) {
+      if ($scope.store_out.invoices_list[0].currency) {
         $scope.store_out.invoices_list[0].paid_up = $scope.store_out.net_value * $scope.store_out.invoices_list[0].currency.ex_rate;
-     
       } else {
-        
         $scope.store_out.invoices_list[0].paid_up = $scope.store_out.net_value;
-
       }
     }
     site.hideModal('#pricesOffersModal');
-
   };
 
   $scope.loadPaymentTypes = function () {

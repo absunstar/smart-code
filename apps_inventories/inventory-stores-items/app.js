@@ -863,10 +863,11 @@ module.exports = function init(site) {
                                     // let h = new Date().getHours().toString();
                                     let y = new Date().getFullYear().toString();
 
-                                    let num = Math.floor(Math.random() * 100);
+                                    let num = Math.floor(Math.random() * 100).toString();
+                                    let docIdString = doc.id.toString();
 
                                     doc.sizes.forEach((_size, i_size) => {
-                                        if (!_size.barcode || _size.barcode == null) _size.barcode = doc.company.id + doc.id + num + y + i_size;
+                                        if (!_size.barcode || _size.barcode == null) _size.barcode = doc.company.id + docIdString + num  + i_size;
 
                                         _size.size_units_list.forEach((_size_unit, _i) => {
                                             let indx = doc.units_list.findIndex((_unit1) => _unit1.id == _size_unit.id);
@@ -874,7 +875,7 @@ module.exports = function init(site) {
 
                                             if (!_size_unit.average_cost) _size_unit.average_cost = _size_unit.cost;
 
-                                            if (!_size_unit.barcode || _size_unit.barcode == null) _size_unit.barcode = doc.company.id + doc.id + (_size_unit.id || 0) + y + num + i_size + _i;
+                                            if (!_size_unit.barcode || _size_unit.barcode == null) _size_unit.barcode = doc.company.id + docIdString + (_size_unit.id || 0) + num + i_size + _i;
                                         });
                                     });
                                     $stores_items.update(doc);
@@ -1028,10 +1029,10 @@ module.exports = function init(site) {
                 let d = new Date().getDate().toString();
                 let h = new Date().getHours().toString();
                 let m = new Date().getMinutes().toString();
-
+                let docIdString = doc.id.toString();
                 stores_items_doc.sizes.forEach((_size, i) => {
                     _size.item_type = stores_items_doc.item_type;
-                    if (!_size.barcode || _size.barcode == null) _size.barcode = stores_items_doc.company.id + stores_items_doc.id + d + h + m + i;
+                    if (!_size.barcode || _size.barcode == null) _size.barcode = stores_items_doc.company.id + docIdString + d + h + m + i;
 
                     _size.size_units_list.forEach((_size_unit, _i) => {
                         let indx = 0;
@@ -1040,7 +1041,7 @@ module.exports = function init(site) {
 
                         if (!_size_unit.average_cost) _size_unit.average_cost = _size_unit.cost;
 
-                        if (!_size_unit.barcode || _size_unit.barcode == null) _size_unit.barcode = stores_items_doc.company.id + stores_items_doc.id + (_size_unit.id || 0) + d + h + m + i + _i;
+                        if (!_size_unit.barcode || _size_unit.barcode == null) _size_unit.barcode = stores_items_doc.company.id + docIdString + (_size_unit.id || 0) + d + h + m + i + _i;
                     });
                 });
 
@@ -2335,9 +2336,10 @@ module.exports = function init(site) {
                                 _doc.sizes.forEach((_sizes) => {
                                     if (unit.id) {
                                         let y = new Date().getFullYear().toString();
+                                        let docIdString = doc.id.toString();
 
-                                        let _barcode = _doc.id + _doc.company.id + y + Math.floor(Math.random() * 100);
-                                        let _barcodeUnit = _doc.id + _doc.company.id + unit.id + Math.floor(Math.random() * 100) + y;
+                                        let _barcode = docIdString + _doc.company.id + y + Math.floor(Math.random() * 100);
+                                        let _barcodeUnit = docIdString + _doc.company.id + unit.id + Math.floor(Math.random() * 100) + y;
 
                                         _sizes.barcode = _barcode;
                                         _sizes.current_count = 0;
