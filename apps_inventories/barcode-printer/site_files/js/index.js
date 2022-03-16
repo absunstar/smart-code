@@ -102,8 +102,8 @@ app.controller('barcode_printer', function ($scope, $http, $timeout) {
                 format: 'CODE128',
                 displayValue: true,
                 textMargin: 0,
-                height: 50,
-                fontSize: 25,
+                height: 23,
+                fontSize: 15,
                 fontOptions: 'bold',
             });
 
