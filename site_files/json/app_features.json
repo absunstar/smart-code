@@ -706,11 +706,11 @@
     },
     {
         "feature": "public",
-        "title_ar": "التجنيد و الحالات الإجتماعية",
-        "title_en": "Enlistment and Social status",
-        "image_url": "/images/military.png",
-        "description_ar": "يتيح لك إضافة حالات تجنيد و حالات إجتماعية و ربطها بالموظفين لمعرفة حالاتهم الإجتماعاية و موقف التجنيد.",
-        "description_en": "It allows you to add recruitment and social cases and link them to employees to know their social status and recruitment situation."
+        "title_ar": "الحالات الإجتماعية",
+        "title_en": "Social status",
+        "image_url": "/images/marital.png",
+        "description_ar": "يتيح لك إضافة  حالات إجتماعية و ربطها بالموظفين لمعرفة حالاتهم الإجتماعاية.",
+        "description_en": "It allows you to add social cases and link them to employees to know their social status."
     },
     {
         "feature": "public",
