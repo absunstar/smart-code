@@ -2194,8 +2194,8 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
         if ($scope.defaultSettings.printer_program.place_qr) {
           if ($scope.defaultSettings.printer_program.place_qr.id == 1) {
             site.qrcode({
-              width: 250,
-              height: 250,
+              width: 170,
+              height: 170,
               selector: document.querySelectorAll('.qrcode-a4')[$scope.invList.length - 1],
               text: document.location.protocol + '//' + document.location.hostname + `/qr_storeout?id=${$scope.store_out.id}`,
             });
@@ -2221,7 +2221,7 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
                   vat_total: qrString.vat_total.toString(),
                 },
                 (data) => {
-                  site.qrcode({ width: 250, height: 250, selector: document.querySelectorAll('.qrcode-a4')[$scope.invList.length - 1], text: data.value });
+                  site.qrcode({ width: 170, height: 170, selector: document.querySelectorAll('.qrcode-a4')[$scope.invList.length - 1], text: data.value });
                 }
               );
             } else {
