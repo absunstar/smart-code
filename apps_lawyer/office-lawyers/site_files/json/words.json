@@ -74,7 +74,7 @@
     {"name" : "office_lawyers_contact_informations" , "en" : "Contact Informaion" , "ar" : "بيانات الاتصال"},
     {"name" : "office_lawyers_phone" , "en" : "Phone" , "ar" : "التليفون"},
     {"name" : "office_lawyers_internal_number" , "en" : "Internal Number" , "ar" : "الرقم الداخلي"},
-    {"name" : "office_lawyers_mobile" , "en" : "Mobile" , "ar" : "الجوال "},
+    {"name" : "office_lawyers_mobile" , "en" : "Mobile" , "ar" : "الموبايل "},
     {"name" : "office_lawyers_fax" , "en" : "Fax" , "ar" : "الفاكس"},
 
     {"name" : "office_lawyers_post_informations" , "en" : "Post Informaion" , "ar" : "بيانات البريد"},
@@ -96,7 +96,7 @@
     {"name" : "office_lawyers_branch_city" , "en" : "Branch  City" , "ar" : "المدينة"},
     {"name" : "office_lawyers_branch_address" , "en" : "Branch  Address" , "ar" : "العنوان"},
     {"name" : "office_lawyers_branch_phone" , "en" : "Branch Phone" , "ar" : "التليفون"},
-    {"name" : "office_lawyers_branch_mobile" , "en" : "Branch  Mobile" , "ar" : "الجوال "},
+    {"name" : "office_lawyers_branch_mobile" , "en" : "Branch  Mobile" , "ar" : "الموبايل "},
     {"name" : "office_lawyers_branch_fax" , "en" : "Branch Fax" , "ar" : "الفاكس"},
     {"name" : "office_lawyers_branch_email" , "en" : "Branch Email" , "ar" : "البريد الالكتروني"},
 
@@ -105,7 +105,7 @@
     {"name" : "office_lawyers_charge_job" , "en" : "Charge Job" , "ar" : "الوظيفة"},   
     {"name" : "office_lawyers_charge_phone" , "en" : "Charge Phone" , "ar" : "التليفون"},
     {"name" : "office_lawyers_charge_internal_number" , "en" : "Charge Internal Number" , "ar" : "الرقم الداخلي"},
-    {"name" : "office_lawyers_charge_mobile" , "en" : "Charge Mobile" , "ar" : "الجوال "},
+    {"name" : "office_lawyers_charge_mobile" , "en" : "Charge Mobile" , "ar" : "الموبايل "},
     {"name" : "office_lawyers_charge_email" , "en" : "Charge Email" , "ar" : "البريد الالكتروني"},
     {"name" : "office_lawyers_files" , "en" : "Files" , "ar" : "الملفات"},
 

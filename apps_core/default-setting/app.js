@@ -24,6 +24,11 @@ module.exports = function init(site) {
   });
 
   site.post({
+    name: '/api/country_qr/all',
+    path: __dirname + '/site_files/json/country_qr.json',
+  });
+
+  site.post({
     name: '/api/thermal_lang/all',
     path: __dirname + '/site_files/json/thermal_lang.json',
   });

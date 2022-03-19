@@ -49,7 +49,6 @@
         border-top-right-radius: 0px;
         font-size: 16px;
         background: #f2f2ffb3;
-
       }
 
       .project h2 {
@@ -207,7 +206,6 @@
         height: 64px;
         vertical-align: middle;
       }
-
     </style>
   </head>
 
@@ -217,7 +215,7 @@
     <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
 
     <div id="main-layout">
-      <div x-feature="!login">
+      <div >
         <div class="row inout hidden">
           <div class="center inout">
             <img class="img_inout" ng-src="/images/inout.png" />
@@ -258,7 +256,7 @@
         <br />
       </div>
 
-    <!--   <div class="footer" x-features="!login && !site.dynamic">
+      <!--   <div class="footer" x-features="!login && !site.dynamic">
         <div class="row">
           <div class="col1"></div>
 
@@ -335,7 +333,7 @@
 
       <div id="posts" class="center"></div>
 
-      <div class="price-info hidden" x-features="!host.ft && !host.elfgr && !host.qelada && !host.ethraa && !host.free && !host.inout && !host.valley && !host.protouch && !host.mt">
+      <div class="price-info hidden" x-features="!host.ft && !host.elfgr && !host.qelada && !host.ethraa && !host.free && !host.inout && !host.valley && !protouch && !host.mt">
         <div class="row padding">
           <table class="table hover">
             <tr>
@@ -471,7 +469,7 @@
       <br />
       <br />
       <div x-import="scripts.html"></div>
-      <div class="footer" x-feature="!login">
+      <div class="footer">
         <div class="row egypt hidden">
           <h2 class="center">
             <span>
@@ -675,10 +673,13 @@
         </div>
       </a>
     </script>
+
     <script>
       let busy = false;
-
-      if ('##req.headers.host##'.like('*inout*')) {
+      if (window.protouch) {
+        $('.protouch').removeClass('hidden');
+        $('.price-info').removeClass('hidden');
+      } else if ('##req.headers.host##'.like('*inout*')) {
         $('.inout').removeClass('hidden');
         $('.price-info').removeClass('hidden');
       } else if ('##req.headers.host##'.like('*mt*')) {

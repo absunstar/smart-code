@@ -60,10 +60,10 @@
                             <i-list help-id="" ng-search="_search.$gender_search" class="col2" label="##word.gender##"
                             ng-model="delegate_list.gender" items="genderList" display="##session.lang##"></i-list>
 
-                            <i-list ng-search="marital_status" class="col3" items="maritals_status"
+                            <i-list x-features="!protouch" ng-search="marital_status" class="col3" items="maritals_status"
                             display="name_##session.lang##"  ng-model="delegate_list.marital_status" label="##word.marital_status##">
                             </i-list>
-                            <i-list ng-search="military_status" class="col3" items="militaries_status"
+                            <i-list x-features="!protouch" ng-search="military_status" class="col3" items="militaries_status"
                             display="name_##session.lang##"  ng-model="delegate_list.military_status" label="##word.military_status##">
                             </i-list>
 

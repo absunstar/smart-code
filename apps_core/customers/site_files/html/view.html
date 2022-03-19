@@ -339,14 +339,14 @@
                             <td class="center blue"> {{customer.tax_card_number}} </td>
                         </tr>
 
-                        <tr>
+                        <tr x-features="!protouch">
                             <td class="title"> ##word.customers_tax_office_code## </td>
                             <td class="center blue"> {{customer.tax_office_code}} </td>
                         </tr>
 
-                        <tr>
+                        <tr x-features="!protouch">
                             <td class="title"> ##word.customers_tax_office_name## </td>
-                            <td class="center"> {{customer.tax_office_name_##session.lang##}} </td>
+                            <td class="center"> {{customer.tax_office_name}} </td>
                         </tr>
 
                         <tr>
@@ -699,6 +699,26 @@
                             <td class="center">
                                 <a ng-show="customer.social_google" href="tel:{{customer.social_google}}">
                                     {{customer.social_google}}
+                                    <i class="red fa fa-google-plus" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.customers_social_instagram## </td>
+                            <td class="center">
+                                <a ng-show="customer.social_instagram" href="tel:{{customer.social_instagram}}">
+                                    {{customer.social_instagram}}
+                                    <i class="red fa fa-google-plus" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title"> ##word.customers_social_snap## </td>
+                            <td class="center">
+                                <a ng-show="customer.social_snap" href="tel:{{customer.social_snap}}">
+                                    {{customer.social_snap}}
                                     <i class="red fa fa-google-plus" aria-hidden="true"></i>
                                 </a>
                             </td>

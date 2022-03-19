@@ -10,7 +10,7 @@
         <div class="modal-body">
             <form class="form">
                 <div class="row">
-                    <div class="row">
+                  <!--   <div class="row">
                         <i-control class="col2" ng-model="item.value_add.value" label="##word.value_added##"
                             type="number">
                         </i-control>
@@ -18,9 +18,9 @@
                             group="type" type="radio"></i-radio>
                         <i-radio ng-model="item.value_add.type" label="##word.percent##"
                             ng-value="percent" group="type" type="radio"></i-radio>
-                    </div>
+                    </div> -->
                     <div class="row">
-                        <i-control ng-keydown="getItemsName($event)" id="item_name" class="col3"
+                        <i-control ng-keydown="getItemsName($event)" id="item_name" class="col2"
                             ng-model="search_item_name" label="##word.search##" type="text"></i-control>
 
                         <i-list class="col4" label="##word.stores_in_item_name##" ng-model="selectedItem" display="name_##session.lang##"

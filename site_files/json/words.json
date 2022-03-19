@@ -1,5 +1,10 @@
 [
   {
+    "name": "protouch_title",
+    "en": "Pro Touch",
+    "ar": "بروتتش"
+  },
+  {
     "name": "arabic",
     "en": "Arabic",
     "ar": "عربي"
@@ -1059,12 +1064,12 @@
     "name": "invoice_code",
     "en": "Invoice Code",
     "ar": "كود الفاتورة"
-},
+  },
   {
     "name": "remain_amount",
     "en": "Remain Amount",
     "ar": "المبلغ المتبقي"
-},
+  },
   {
     "name": "select",
     "en": "Select",

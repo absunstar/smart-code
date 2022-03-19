@@ -1,6 +1,8 @@
 :root {
   --modal-color: #000;
   --font-size: 13px;
+  /* --theme-color: #841a1a; */
+
 }
 #thermalPrint {
   width: 88mm;
@@ -150,7 +152,9 @@ popup item:hover {
 .backColor {
   background-color: #a6a7b852;
 }
-
+.broTouchTitle {
+  color : #cfcfcf !important;
+}
 .user-menu .link {
   background: var(--theme-color);
   color: #fff;

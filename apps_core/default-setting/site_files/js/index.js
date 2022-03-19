@@ -354,6 +354,25 @@ app.controller("default_setting", function ($scope, $http,$timeout) {
     );
   };
 
+  $scope.getCountryQRList = function () {
+    $scope.error = "";
+    $scope.busy = true;
+    $scope.countryQRList = [];
+    $http({
+      method: "POST",
+      url: "/api/country_qr/all",
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.countryQRList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.getThermalLangList = function () {
     $scope.error = "";
     $scope.busy = true;
@@ -843,6 +862,7 @@ app.controller("default_setting", function ($scope, $http,$timeout) {
   $scope.loadItemsType();
   $scope.getTransactionTypeList();
   $scope.getPlaceQRList();
+  $scope.getCountryQRList();
   $scope.getThermalLangList();
   if (
     site.feature("restaurant") ||

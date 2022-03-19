@@ -1029,7 +1029,7 @@ module.exports = function init(site) {
                 let d = new Date().getDate().toString();
                 let h = new Date().getHours().toString();
                 let m = new Date().getMinutes().toString();
-                let docIdString = doc.id.toString();
+                let docIdString = stores_items_doc.id.toString();
                 stores_items_doc.sizes.forEach((_size, i) => {
                     _size.item_type = stores_items_doc.item_type;
                     if (!_size.barcode || _size.barcode == null) _size.barcode = stores_items_doc.company.id + docIdString + d + h + m + i;

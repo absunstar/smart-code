@@ -475,10 +475,10 @@
                         <i-control class="col3" label="##word.customers_tax_card_number##"
                             ng-model="customer.tax_card_number"></i-control>
 
-                        <i-control class="col3" label="##word.customers_tax_office_code##"
+                        <i-control x-features="!protouch" class="col3" label="##word.customers_tax_office_code##"
                             ng-model="customer.tax_office_code"></i-control>
 
-                        <i-control class="col3" label="##word.customers_tax_office_name##"
+                        <i-control x-features="!protouch" class="col3" label="##word.customers_tax_office_name##"
                             ng-model="customer.tax_office_name"></i-control>
                     </div>
 
@@ -705,6 +705,14 @@
 
                         <i-control class="col3" label="##word.customers_social_google_account##"
                             ng-model="customer.social_google"></i-control>
+                    </div>
+                    <div class="row">
+
+                        <i-control class="col3" label="##word.customers_social_instagram##"
+                            ng-model="customer.social_instagram"></i-control>
+
+                        <i-control class="col3" label="##word.customers_social_snap##"
+                            ng-model="customer.social_snap"></i-control>
                     </div>
 
                 </fieldset>

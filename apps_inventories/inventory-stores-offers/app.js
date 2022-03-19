@@ -413,13 +413,11 @@ module.exports = function init(site) {
 
     where['active'] = true
 
-
     $stores_offer.findOne({
       where: where,
       sort: { id: -1 }
     }, (err, doc) => {
       if (!err && doc) {
-
         response.done = true
         let item = {}
         doc.items.forEach(_itm => {

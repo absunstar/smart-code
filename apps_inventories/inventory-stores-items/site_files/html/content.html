@@ -1,613 +1,456 @@
 <div class="row">
-    <form class="form">
+  <form class="form">
+    <div class="tabs">
+      <div class="tabs-header">
+        <a class="tab-link" onclick="site.showTabContent(event, '#basic_information')"> ##word.basic_information## </a>
 
-        <div class="tabs">
-            <div class="tabs-header">
-                <a class="tab-link" onclick="site.showTabContent(event, '#basic_information')">
-                    ##word.basic_information## </a>
+        <a ng-hide="!category_item.add_sizes" class="tab-link" onclick="site.showTabContent(event, '#stores_items_sizes')"> ##word.stores_items_sizes## </a>
 
-                <a ng-hide="!category_item.add_sizes" class="tab-link"
-                    onclick="site.showTabContent(event, '#stores_items_sizes')">
-                    ##word.stores_items_sizes## </a>
+        <a class="tab-link" onclick="site.showTabContent(event, '#informationInstructions')" ng-show="category_item.item_type.id === 3"> ##word.information_instructions## </a>
+      </div>
 
-                <a class="tab-link" onclick="site.showTabContent(event, '#informationInstructions')"
-                    ng-show="category_item.item_type.id === 3">
-                    ##word.information_instructions## </a>
+      <div class="tabs-content">
+        <div id="basic_information" class="tab-content">
+          <fieldset>
+            <legend>##word.basic_information##</legend>
+            <div class="row">
+              <div class="col10">
+                <div class="row">
+                  <div class="col11">
+                    <div class="row">
+                      <i-control ng-hide="disabledCode" class="col2" label="##word.code##" ng-model="category_item.code"></i-control>
+
+                      <i-control class="col5" id="category_name" ng-model="category_item.name_ar" label="##word.stores_items_name##" type="text" v="r"></i-control>
+
+                      <i-control class="col5" id="category_name_en" ng-model="category_item.name_en" label="##word.name_en##" type="text" v="r"></i-control>
+                    </div>
+
+                    <div class="row">
+                      <i-list
+                        class="col6"
+                        ng-model="category_item.item_group"
+                        v="r"
+                        display="name_##session.lang##"
+                        ng-search="_search.$category_item.$items_group_search"
+                        label="##word.item_group##"
+                        items="itemsGroupList"
+                      ></i-list>
+
+                      <i-list
+                        class="col5"
+                        ng-model="category_item.item_type"
+                        display="##session.lang##"
+                        ng-search="_search.$category_item.$item_type_search"
+                        label="##word.item_type##"
+                        items="itemsTypesList"
+                      ></i-list>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col2">
+                <i-image category="store_assemble" ng-model="category_item.image_url"> </i-image>
+              </div>
+            </div>
+            <div class="row">
+              <i-checkbox label="##word.stores_items_allow_sell##" ng-model="category_item.allow_sell"> </i-checkbox>
+
+              <i-checkbox ng-hide="category_item.item_type.id === 2" label="##word.stores_items_allow_buy##" ng-model="category_item.allow_buy"> </i-checkbox>
+
+              <i-checkbox ng-hide="category_item.item_type.id === 2" label="##word.stores_items_is_pos##" ng-model="category_item.is_pos"> </i-checkbox>
+
+              <i-checkbox label="##word.add_sizes##" ng-model="category_item.add_sizes"> </i-checkbox>
             </div>
 
-            <div class="tabs-content">
-                <div id="basic_information" class="tab-content">
-                    <fieldset>
-                        <legend>##word.basic_information##</legend>
-                        <div class="row">
+            <br />
+            <hr ng-hide="category_item.item_type.id === 2" style="height: 5px; color: grey; background-color: rgb(0, 0, 199)" />
+            <br ng-hide="category_item.item_type.id === 2" />
+            <fieldset ng-hide="category_item.item_type.id === 2">
+              <legend>##word.units_data##</legend>
+              <div class="row">
+                <div class="row">
+                  <i-list
+                    class="col4"
+                    ng-model="category_item.main_unit"
+                    display="name_##session.lang##"
+                    ng-change="addMainUnit(category_item)"
+                    ng-search="_search.$category_item.$main_unit_search"
+                    label="##word.main_unit##"
+                    items="unitsList"
+                  ></i-list>
 
-                            <div class="col10">
+                  <i-list class="col4" ng-model="unit" ng-search="_search.$category_item.$unit_search" display="name_##session.lang##" label="##word.unit##" items="unitsList"> </i-list>
 
-                                <div class="row">
-                                    <div class="col11">
+                  <i-button class="col2" type="add" label="##word.add_unit##" ng-click="addUnitsList(unit)"> </i-button>
+                </div>
 
-                                        <div class="row">
-                                            <i-control ng-hide="disabledCode" class="col2" label="##word.code##"
-                                                ng-model="category_item.code"></i-control>
+                <div class="row" ng-show="(category_item.add_sizes && !category_item.id) || category_item.id">
+                  <div class="col3"></div>
 
-                                            <i-control class="col5" id="category_name" ng-model="category_item.name_ar"
-                                                label="##word.stores_items_name##" type="text" v="r"></i-control>
+                  <div class="col6" ng-show="category_item.units_list.length > 0">
+                    <table class="table hover loaded">
+                      <tr>
+                        <th>##word.unit##</th>
+                        <th>##word.unit_convert##</th>
+                        <th ng-hide="category_item.units_list.length === 1">##word.actions##</th>
+                      </tr>
 
-                                            <i-control class="col5" id="category_name_en"
-                                                ng-model="category_item.name_en" label="##word.name_en##" type="text"
-                                                v="r"></i-control>
+                      <tr ng-repeat="u in category_item.units_list track by $index">
+                        <td>
+                          <p class="bold text-center">
+                            <br />
+                            {{u.name_##session.lang##}}
+                          </p>
+                        </td>
 
-                                        </div>
+                        <td>
+                          <i-control ng-disabled="category_item.main_unit.id == u.id || u.$edit" ng-model="u.convert" type="number"> </i-control>
+                        </td>
 
-                                        <div class="row">
+                        <td ng-hide="category_item.units_list.length === 1">
+                          <i-button type="delete center" ng-hide="category_item.main_unit.id == u.id || u.$edit" ng-click="deleteUnit(u)"> </i-button>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
 
-                                            <i-list class="col6" ng-model="category_item.item_group" v="r"
-                                                display="name_##session.lang##"
-                                                ng-search="_search.$category_item.$items_group_search"
-                                                label="##word.item_group##" items="itemsGroupList"></i-list>
-
-                                            <i-list class="col5" ng-model="category_item.item_type"
-                                                display="##session.lang##"
-                                                ng-search="_search.$category_item.$item_type_search"
-                                                label="##word.item_type##" items="itemsTypesList"></i-list>
-
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <div class="col2">
-                                <i-image category="store_assemble" ng-model="category_item.image_url"> </i-image>
-                            </div>
-
-                        </div>
-                        <div class="row">
-
-                            <i-checkbox label="##word.stores_items_allow_sell##" ng-model="category_item.allow_sell">
-                            </i-checkbox>
-
-                            <i-checkbox ng-hide="category_item.item_type.id === 2"
-                                label="##word.stores_items_allow_buy##" ng-model="category_item.allow_buy">
-                            </i-checkbox>
-
-                            <i-checkbox ng-hide="category_item.item_type.id === 2" label="##word.stores_items_is_pos##"
-                                ng-model="category_item.is_pos">
-                            </i-checkbox>
-
-                            <i-checkbox label="##word.add_sizes##" ng-model="category_item.add_sizes">
-                            </i-checkbox>
-                        </div>
-
-                        <br>
-                        <hr ng-hide="category_item.item_type.id === 2"
-                            style="height:5px;color:grey;background-color:rgb(0, 0, 199)">
-                        <br ng-hide="category_item.item_type.id === 2">
-                        <fieldset ng-hide="category_item.item_type.id === 2">
-                            <legend>##word.units_data##</legend>
-                            <div class="row">
-                                <div class="row">
-
-                                    <i-list class="col4" ng-model="category_item.main_unit"
-                                        display="name_##session.lang##" ng-change="addMainUnit(category_item)"
-                                        ng-search="_search.$category_item.$main_unit_search" label="##word.main_unit##"
-                                        items="unitsList"></i-list>
-
-                                    <i-list class="col4" ng-model="unit" ng-search="_search.$category_item.$unit_search"
-                                        display="name_##session.lang##" label="##word.unit##" items="unitsList">
-                                    </i-list>
-
-                                    <i-button class="col2" type="add" label="##word.add_unit##"
-                                        ng-click="addUnitsList(unit)">
-                                    </i-button>
-                                </div>
-
-                                <div class="row"
-                                    ng-show="(category_item.add_sizes && !category_item.id) || category_item.id">
-
-                                    <div class="col3"></div>
-
-                                    <div class="col6" ng-show="category_item.units_list.length > 0">
-
-                                        <table class="table hover loaded">
-
-                                            <tr>
-                                                <th>##word.unit##</th>
-                                                <th>##word.unit_convert##</th>
-                                                <th ng-hide="category_item.units_list.length === 1">##word.actions##
-                                                </th>
-                                            </tr>
-
-                                            <tr ng-repeat="u in category_item.units_list track by $index">
-
-                                                <td>
-                                                    <p class="bold text-center"> <br> {{u.name_##session.lang##}}
-                                                    </p>
-                                                </td>
-
-                                                <td>
-                                                    <i-control
-                                                        ng-disabled="category_item.main_unit.id == u.id || u.$edit"
-                                                        ng-model="u.convert" type="number">
-                                                    </i-control>
-                                                </td>
-
-                                                <td ng-hide="category_item.units_list.length === 1">
-                                                    <i-button type="delete center"
-                                                        ng-hide="category_item.main_unit.id == u.id || u.$edit"
-                                                        ng-click="deleteUnit(u)">
-                                                    </i-button>
-                                                </td>
-
-                                            </tr>
-                                        </table>
-                                    </div>
-
-                                </div>
-
-                                <div class="row" ng-hide="category_item.add_sizes  || category_item.id">
-
-                                    <table class="table hover loaded">
-
-                                        <tr>
-                                            <th>##word.unit##</th>
-                                            <th>##word.unit_convert##</th>
-                                            <!-- <th ng-hide="category_item.item_type.id === 2 || category_item.id">##word.stores_start_balance##
+                <div class="row" ng-hide="category_item.add_sizes  || category_item.id">
+                  <table class="table hover loaded">
+                    <tr>
+                      <th>##word.unit##</th>
+                      <th>##word.unit_convert##</th>
+                      <!-- <th ng-hide="category_item.item_type.id === 2 || category_item.id">##word.stores_start_balance##
                                         </th> -->
-                                            <th>##word.unit_barcode##</th>
-                                            <th ng-hide="category_item.item_type.id === 2">##word.stores_items_cost##
-                                            </th>
-                                            <th>##word.stores_items_price##</th>
-                                            <th>##word.average_cost##</th>
-                                            <th>##word.stores_in_discountes##</th>
-                                            <th ng-hide="category_item.units_list.length === 1">##word.actions##
-                                            </th>
-                                        </tr>
+                      <th>##word.unit_barcode##</th>
+                      <th ng-hide="category_item.item_type.id === 2">##word.stores_items_cost##</th>
+                      <th>##word.stores_items_price##</th>
+                      <th>##word.average_cost##</th>
+                      <th>##word.stores_in_discountes##</th>
+                      <th ng-hide="category_item.units_list.length === 1">##word.actions##</th>
+                    </tr>
 
-                                        <tr ng-repeat="u in category_item.units_list track by $index">
+                    <tr ng-repeat="u in category_item.units_list track by $index">
+                      <td>
+                        <p class="bold text-center">
+                          <br />
+                          {{u.name_##session.lang##}}
+                        </p>
+                      </td>
 
-                                            <td>
-                                                <p class="bold text-center"> <br> {{u.name_##session.lang##}}
-                                                </p>
-                                            </td>
+                      <td>
+                        <i-control ng-disabled="category_item.main_unit.id == u.id || u.$edit" ng-model="u.convert" type="number"> </i-control>
+                      </td>
 
-                                            <td>
-                                                <i-control ng-disabled="category_item.main_unit.id == u.id || u.$edit"
-                                                    ng-model="u.convert" type="number">
-                                                </i-control>
-                                            </td>
-
-                                            <!-- 
+                      <!-- 
                                         <td ng-hide="category_item.item_type.id === 2 || category_item.id">
                                             <i-control ng-model="u.start_count" type="number">
                                             </i-control>
                                         </td> -->
 
-                                            <td>
-                                                <!-- <br ng-show="_view"> -->
-                                                <p ng-show="_view" class="bold userPrint center"> {{u.barcode}} </p>
+                      <td>
+                        <!-- <br ng-show="_view"> -->
+                        <p ng-show="_view" class="bold userPrint center">{{u.barcode}}</p>
 
-                                                <i-control ng-hide="_view"
-                                                    ng-disabled="defaultSettings.inventory.auto_unit_barcode_generation"
-                                                    ng-model="u.barcode"></i-control>
-                                            </td>
+                        <i-control ng-hide="_view" ng-disabled="defaultSettings.inventory.auto_unit_barcode_generation" ng-model="u.barcode"></i-control>
+                      </td>
 
-                                            <td ng-hide="category_item.item_type.id === 2">
-                                                <!-- <br ng-show="_view"> -->
-                                                <p ng-show="_view" class="bold red center"> {{u.cost}} </p>
-                                                <i-control ng-hide="_view" ng-model="u.cost" type="number"></i-control>
-                                            </td>
+                      <td ng-hide="category_item.item_type.id === 2">
+                        <!-- <br ng-show="_view"> -->
+                        <p ng-show="_view" class="bold red center">{{u.cost}}</p>
+                        <i-control ng-hide="_view" ng-model="u.cost" type="number"></i-control>
+                      </td>
 
-                                            <td>
-                                                <!-- <br ng-show="_view"> -->
-                                                <p ng-show="_view" class="bold green center"> {{u.price}} </p>
-                                                <i-control ng-hide="_view" ng-model="u.price" type="number"></i-control>
-                                            </td>
+                      <td>
+                        <!-- <br ng-show="_view"> -->
+                        <p ng-show="_view" class="bold green center">{{u.price}}</p>
+                        <i-control ng-hide="_view" ng-model="u.price" type="number"></i-control>
+                      </td>
 
-                                            <td>
-                                                <!-- <br ng-show="_view"> -->
-                                                <p ng-show="_view" class="bold  center"> {{u.average_cost}} </p>
-                                                <i-control ng-hide="_view" ng-model="u.average_cost" type="number">
-                                                </i-control>
-                                            </td>
+                      <td>
+                        <!-- <br ng-show="_view"> -->
+                        <p ng-show="_view" class="bold center">{{u.average_cost}}</p>
+                        <i-control ng-hide="_view" ng-model="u.average_cost" type="number"> </i-control>
+                      </td>
 
-                                            <td class="center bold">
-
-                                                <div ng-show="_view" class="center">
-
-                                                    <b>##word.discount## : <b class="red">{{u.discount.value}} </b></b>
-                                                    <br>
-                                                    <b>##word.maximum_discount## : <b
-                                                            class="red">{{u.discount.max}}</b></b>
-                                                    <b class="red" ng-show="u.discount.type == 'number'">
-                                                        $</b>
-                                                    <b class="red" ng-show="u.discount.type == 'percent'"> % </b>
-                                                </div>
-
-                                                <div class="row" ng-hide="_view">
-                                                    <i-control type="number" class="col6" label="##word.discount##"
-                                                        ng-model="u.discount.value">
-                                                    </i-control>
-
-                                                    <i-control class="col6" type="number"
-                                                        label="##word.maximum_discount##" ng-model="u.discount.max">
-                                                    </i-control>
-
-                                                </div>
-                                                <div class="row center" ng-hide="_view">
-                                                    <i-radio ng-model="u.discount.type" label="##word.amount##"
-                                                        ng-value="number" group="type" type="radio"></i-radio>
-                                                    <i-radio ng-model="u.discount.type" label="##word.percent##"
-                                                        ng-value="percent" group="type" type="radio"></i-radio>
-                                                </div>
-                                            </td>
-
-
-                                            <td ng-hide="category_item.units_list.length === 1">
-                                                <br>
-                                                <br>
-                                                <i-button type="delete center"
-                                                    ng-hide="category_item.main_unit.id == u.id || u.$edit"
-                                                    ng-click="deleteUnit(u)">
-                                                </i-button>
-                                            </td>
-
-                                        </tr>
-                                    </table>
-
-                                </div>
-
-
-                            </div>
-                        </fieldset>
-
-                        <br>
-                        <hr ng-hide="category_item.add_sizes"
-                            style="height:5px;color:grey;background-color:rgb(0, 0, 199)">
-                        <br ng-hide="category_item.add_sizes">
-                        <div class="row" ng-hide="category_item.add_sizes || category_item.id">
-
-                            <div class="col9">
-
-                                <div class="row">
-
-                                    <div class="row">
-
-                                        <i-control class="col5"
-                                            ng-hide="defaultSettings.inventory.auto_barcode_generation"
-                                            ng-model="item.barcode" label="##word.item_code##" type="text">
-                                        </i-control>
-
-                                    </div>
-
-                                    <div class="row">
-
-                                        <div class="col3" ng-hide="category_item.item_type.id === 2">
-                                            <i-checkbox ng-hide="item.work_serial" label="##word.work_patch##"
-                                                ng-model="item.work_patch">
-                                            </i-checkbox>
-                                            <i-control ng-show="item.work_patch" type="number" label="##word.validit##"
-                                                ng-model="item.validit">
-                                            </i-control>
-
-                                        </div>
-
-                                        <div class="col2" ng-hide="category_item.item_type.id === 2">
-
-                                            <i-checkbox ng-hide="item.work_patch" label="##word.work_serial##"
-                                                ng-model="item.work_serial">
-                                            </i-checkbox>
-                                        </div>
-
-                                        <div class="col3">
-                                            <i-checkbox label="##word.not_value_added##"
-                                                ng-model="item.not_value_added">
-                                            </i-checkbox>
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <div class="col3" ng-hide="category_item.item_type.id === 2">
-
-                                <i-checkbox label="##word.stores_items_complex##" ng-model="item.item_complex">
-                                </i-checkbox>
-
-                                <br>
-
-                                <i-button ng-hide="!item.item_complex" type="view" label="##word.complex_items##"
-                                    ng-click="showComplexItems()"> </i-button>
-                                <br>
-
-                                <i-button ng-hide="category_item.id || item.work_patch ||item.work_serial" label="##word.opening_balance_add##"
-                                    ng-click="addOpeningBalance(item,'show')"> </i-button>
-
-                                <br>
-
-                                <i-button x-features="restaurant" ng-hide="category_item.id" label="##word.kitchen_set##"
-                                    ng-click="KitchenSet(item)"> </i-button>
-                                <br>
-
-                            </div>
-
+                      <td class="center bold">
+                        <div ng-show="_view" class="center">
+                          <b>##word.discount## : <b class="red">{{u.discount.value}} </b></b>
+                          <br />
+                          <b>##word.maximum_discount## : <b class="red">{{u.discount.max}}</b></b>
+                          <b class="red" ng-show="u.discount.type == 'number'"> $</b>
+                          <b class="red" ng-show="u.discount.type == 'percent'"> % </b>
                         </div>
 
-                        <div class="row grid"
-                            ng-show="category_item.sizes.length > 0 && !category_item.add_sizes && category_item.id">
+                        <div class="row" ng-hide="_view">
+                          <i-control type="number" class="col6" label="##word.discount##" ng-model="u.discount.value"> </i-control>
 
-                            <table class="table hover center loaded">
-                                <tr>
-                                    <th>##word.logo##</th>
-                                    <th>##word.item_code##</th>
-                                    <th ng-hide="category_item.item_type.id === 2">##word.stores_current_balance##</th>
-                                    <th ng-hide="category_item.item_type.id === 2">##word.stores_items_start_count##
-                                    </th>
-                                    <th>##word.actions##</th>
-                                </tr>
-
-                                <tr class="bold" ng-repeat="itm in category_item.sizes track by $index"
-                                    ng-hide="itm.$hide">
-                                    <td class="not-print center">
-                                        <i-image class="logo" ng-model="itm.image_url"></i-image>
-                                    </td>
-
-                                    <td>
-                                        <br>
-                                        <p class="center blue userPrint">{{itm.barcode}}</p>
-                                    </td>
-
-                                    <td ng-hide="category_item.item_type.id === 2">
-                                        <br>
-                                        <p class="center bold green" ng-show="itm.current_count > 0">
-                                            {{itm.current_count}} </p>
-                                        <p class="bold red center"
-                                            ng-show="itm.current_count == 0 ||itm.current_count < 0">
-                                            {{itm.current_count}} </p>
-                                    </td>
-
-                                    <td ng-hide="category_item.item_type.id === 2">
-                                        <br>
-                                        <p class="center blue">{{itm.start_count}}</p>
-                                    </td>
-
-                                    <td>
-                                        <div class="row" ng-hide="category_item.item_type.id === 2">
-
-                                            <div class="col5">
-                                                <div class="row center">
-                                                    <i-control ng-show="itm.work_patch" type="number"
-                                                        label="##word.validit##" ng-model="itm.validit">
-                                                    </i-control>
-                                                </div>
-
-                                                <div class="row center">
-
-                                                    <i-checkbox label="##word.not_value_added##"
-                                                        ng-model="itm.not_value_added">
-                                                    </i-checkbox>
-                                                </div>
-
-                                            </div>
-
-                                            <div class="col2"></div>
-
-                                            <div class="col5">
-
-                                                <div class="row center">
-                                                    <i-button ng-show="itm.item_complex == true" type="view"
-                                                        label="##word.complex_items##"
-                                                        ng-click="showComplexItemsView(itm)">
-                                                    </i-button>
-                                                </div>
-
-                                                <div class="row center">
-                                                    <i-button type="view" label="##word.branches_balances##"
-                                                        ng-click="branchesBalances(itm)">
-                                                    </i-button>
-                                                </div>
-
-                                                <div class="row center">
-                                                    <i-button type="edit" label="##word.units##"
-                                                        ng-click="viewUnits(itm)">
-                                                    </i-button>
-                                                </div>
-
-                                            </div>
-                                        </div>
-
-                                        <div class="row center">
-                                            <div class="row center">
-                                                <i-button type="edit" ng-show="category_item.item_type.id === 2"
-                                                    label="##word.units##" ng-click="viewUnits(itm)">
-                                                </i-button>
-                                            </div>
-                                            <i-button type="delete" ng-click="deleteSize(itm)"></i-button>
-                                        </div>
-
-                                    </td>
-
-                                </tr>
-
-                            </table>
+                          <i-control class="col6" type="number" label="##word.maximum_discount##" ng-model="u.discount.max"> </i-control>
                         </div>
+                        <div class="row center" ng-hide="_view">
+                          <i-radio ng-model="u.discount.type" label="##word.amount##" ng-value="number" group="type" type="radio"></i-radio>
+                          <i-radio ng-model="u.discount.type" label="##word.percent##" ng-value="percent" group="type" type="radio"></i-radio>
+                        </div>
+                      </td>
 
-                    </fieldset>
+                      <td ng-hide="category_item.units_list.length === 1">
+                        <br />
+                        <br />
+                        <i-button type="delete center" ng-hide="category_item.main_unit.id == u.id || u.$edit" ng-click="deleteUnit(u)"> </i-button>
+                      </td>
+                    </tr>
+                  </table>
                 </div>
+              </div>
+            </fieldset>
 
-                <div id="stores_items_sizes" ng-hide="!category_item.add_sizes" class="tab-content">
-                    <fieldset>
-                        <legend> ##word.stores_items_sizes## </legend>
+            <br />
+            <hr ng-hide="category_item.add_sizes" style="height: 5px; color: grey; background-color: rgb(0, 0, 199)" />
+            <br ng-hide="category_item.add_sizes" />
+            <div class="row" ng-hide="category_item.add_sizes || category_item.id">
+              <div class="col9">
+                <div class="row">
+                  <div class="row">
+                    <i-control class="col5" ng-hide="defaultSettings.inventory.auto_barcode_generation" ng-model="item.barcode" label="##word.item_code##" type="text"> </i-control>
+                  </div>
 
-                        <i-button id="add_category_item_btn" ng-show="category_item.add_sizes" ng-click="showAddSizes()"
-                            type="add" label="##word.add_items_sizes##">
-                        </i-button>
+                  <div class="row">
+                    <div class="col3" ng-hide="category_item.item_type.id === 2">
+                      <i-checkbox ng-hide="item.work_serial" label="##word.work_patch##" ng-model="item.work_patch"> </i-checkbox>
+                      <i-control ng-show="item.work_patch" type="number" label="##word.validit##" ng-model="item.validit"> </i-control>
+                    </div>
 
-                        <br>
-                        <br ng-show="category_item.add_sizes">
-                        <hr style="height:5px;color:grey;background-color:rgb(0, 0, 199)"
-                            ng-show="category_item.add_sizes">
-                        <br>
+                    <div class="col2" ng-hide="category_item.item_type.id === 2">
+                      <i-checkbox ng-hide="item.work_patch" label="##word.work_serial##" ng-model="item.work_serial"> </i-checkbox>
+                    </div>
 
-                        <div class="row grid" ng-show="category_item.sizes.length > 0">
-                            <table class="table hover center loaded">
-                                <tr>
-                                    <th>##word.logo##</th>
-                                    <th>##word.stores_items_sizes##</th>
-                                    <th>##word.item_code##</th>
-                                    <th ng-hide="category_item.item_type.id === 2">##word.stores_current_balance##</th>
-                                    <th ng-hide="category_item.item_type.id === 2">##word.stores_items_start_count##
-                                    </th>
-                                    <th>##word.actions##</th>
-                                </tr>
-
-                                <tr class="bold" ng-repeat="itm in category_item.sizes track by $index"
-                                    ng-hide="itm.$hide">
-                                    <td class="not-print center">
-                                        <i-image class="logo" ng-model="itm.image_url"></i-image>
-                                    </td>
-
-                                    <td>
-                                        <i-control label="##word.name_size##" ng-model="itm.size_ar"></i-control>
-                                        <br>
-                                        <i-control label="##word.size_en##" ng-model="itm.size_en"></i-control>
-                                    </td>
-
-                                    <td>
-                                        <br>
-                                        <p class="center blue userPrint">{{itm.barcode}}</p>
-                                    </td>
-
-                                    <td ng-hide="category_item.item_type.id === 2">
-                                        <br>
-                                        <p class="center bold green" ng-show="itm.current_count > 0">
-                                            {{itm.current_count}} </p>
-                                        <p class="bold red center"
-                                            ng-show="itm.current_count == 0 ||itm.current_count < 0">
-                                            {{itm.current_count}} </p>
-                                    </td>
-
-                                    <td ng-hide="category_item.item_type.id === 2">
-                                        <br>
-                                        <p class="center blue">{{itm.start_count}}</p>
-                                    </td>
-
-                                    <td>
-                                        <div class="row" ng-hide="category_item.item_type.id === 2">
-
-                                            <div class="col5">
-                                                <div class="row center">
-                                                    <i-control ng-show="itm.work_patch" type="number"
-                                                        label="##word.validit##" ng-model="itm.validit">
-                                                    </i-control>
-                                                </div>
-
-                                                <div class="row center">
-
-                                                    <i-checkbox label="##word.not_value_added##"
-                                                        ng-model="itm.not_value_added">
-                                                    </i-checkbox>
-                                                </div>
-
-                                            </div>
-
-                                            <div class="col2"></div>
-
-                                            <div class="col5">
-
-                                                <div class="row center">
-                                                    <i-button ng-show="itm.item_complex == true" type="view"
-                                                        label="##word.complex_items##"
-                                                        ng-click="showComplexItemsView(itm)">
-                                                    </i-button>
-                                                </div>
-
-                                                <div class="row center">
-                                                    <i-button type="view" label="##word.branches_balances##"
-                                                        ng-click="branchesBalances(itm)">
-                                                    </i-button>
-                                                </div>
-
-                                                <div class="row center">
-                                                    <i-button type="edit" label="##word.units##"
-                                                        ng-click="viewUnits(itm)">
-                                                    </i-button>
-                                                </div>
-
-                                            </div>
-                                        </div>
-
-                                        <div class="row center">
-                                            <div class="row center">
-                                                <i-button type="edit" ng-show="category_item.item_type.id === 2"
-                                                    label="##word.units##" ng-click="viewUnits(itm)">
-                                                </i-button>
-                                            </div>
-                                            <i-button type="delete" ng-click="deleteSize(itm)"></i-button>
-                                        </div>
-
-                                    </td>
-
-                                </tr>
-
-                            </table>
-                        </div>
-                    </fieldset>
-
+                    <div class="col3">
+                      <i-checkbox label="##word.not_value_added##" ng-model="item.not_value_added"> </i-checkbox>
+                    </div>
+                  </div>
                 </div>
+              </div>
 
-                <div id="informationInstructions" class="tab-content" ng-show="category_item.item_type.id === 3">
-                    <fieldset>
+              <div class="col3" ng-hide="category_item.item_type.id === 2">
+                <i-checkbox label="##word.stores_items_complex##" ng-model="item.item_complex"> </i-checkbox>
 
-                        <br>
-                        <div class="row">
+                <br />
 
-                            <i-list class="col5" ng-model="category_item.information_instructions.active_substance"
-                                display="name_##session.lang##"
-                                ng-search="_search.$category_item.$active_substance_search"
-                                label="##word.active_substance##" items="activeSubstancesList"></i-list>
+                <i-button ng-hide="!item.item_complex" type="view" label="##word.complex_items##" ng-click="showComplexItems()"> </i-button>
+                <br />
 
-                        </div>
+                <i-button ng-hide="category_item.id || item.work_patch ||item.work_serial" label="##word.opening_balance_add##" ng-click="addOpeningBalance(item,'show')"> </i-button>
 
-                        <br>
+                <br />
 
-                        <div class="row">
-
-                            <i-textarea class="co7" label="##word.indications##"
-                                ng-model="category_item.information_instructions.indications">
-                            </i-textarea>
-
-                        </div>
-
-                        <br>
-
-                        <div class="row">
-
-                            <i-textarea class="co7" label="##word.contraindications##"
-                                ng-model="category_item.information_instructions.contraindications">
-                            </i-textarea>
-                        </div>
-
-                        <br>
-
-                        <div class="row">
-
-                            <i-textarea class="co7" label="##word.how_use##"
-                                ng-model="category_item.information_instructions.how_use">
-                            </i-textarea>
-
-                        </div>
-
-                        <br>
-
-                    </fieldset>
-                </div>
+                <i-button x-features="restaurant" ng-hide="category_item.id" label="##word.kitchen_set##" ng-click="KitchenSet(item)"> </i-button>
+                <br />
+              </div>
             </div>
 
+            <div class="row grid" ng-show="category_item.sizes.length > 0 && !category_item.add_sizes && category_item.id">
+              <table class="table hover center loaded">
+                <tr>
+                  <th>##word.logo##</th>
+                  <th>##word.item_code##</th>
+                  <th ng-hide="category_item.item_type.id === 2">##word.stores_current_balance##</th>
+                  <th ng-hide="category_item.item_type.id === 2">##word.stores_items_start_count##</th>
+                  <th>##word.actions##</th>
+                </tr>
+
+                <tr class="bold" ng-repeat="itm in category_item.sizes track by $index" ng-hide="itm.$hide">
+                  <td class="not-print center">
+                    <i-image class="logo" ng-model="itm.image_url"></i-image>
+                  </td>
+
+                  <td>
+                    <br />
+                    <p class="center blue userPrint">{{itm.barcode}}</p>
+
+                    <i-control x-permissions="developer" type="number" ng-model="itm.barcode"> </i-control>
+                  </td>
+
+                  <td ng-hide="category_item.item_type.id === 2">
+                    <br />
+                    <p class="center bold green" ng-show="itm.current_count > 0">{{itm.current_count}}</p>
+                    <p class="bold red center" ng-show="itm.current_count == 0 ||itm.current_count < 0">{{itm.current_count}}</p>
+                  </td>
+
+                  <td ng-hide="category_item.item_type.id === 2">
+                    <br />
+                    <p class="center blue">{{itm.start_count}}</p>
+                  </td>
+
+                  <td>
+                    <div class="row" ng-hide="category_item.item_type.id === 2">
+                      <div class="col5">
+                        <div class="row center">
+                          <i-control ng-show="itm.work_patch" type="number" label="##word.validit##" ng-model="itm.validit"> </i-control>
+                        </div>
+
+                        <div class="row center">
+                          <i-checkbox label="##word.not_value_added##" ng-model="itm.not_value_added"> </i-checkbox>
+                        </div>
+                      </div>
+
+                      <div class="col2"></div>
+
+                      <div class="col5">
+                        <div class="row center">
+                          <i-button ng-show="itm.item_complex == true" type="view" label="##word.complex_items##" ng-click="showComplexItemsView(itm)"> </i-button>
+                        </div>
+
+                        <div class="row center">
+                          <i-button type="view" label="##word.branches_balances##" ng-click="branchesBalances(itm)"> </i-button>
+                        </div>
+
+                        <div class="row center">
+                          <i-button type="edit" label="##word.units##" ng-click="viewUnits(itm)"> </i-button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row center">
+                      <div class="row center">
+                        <i-button type="edit" ng-show="category_item.item_type.id === 2" label="##word.units##" ng-click="viewUnits(itm)"> </i-button>
+                      </div>
+                      <i-button type="delete" ng-click="deleteSize(itm)"></i-button>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </fieldset>
         </div>
 
-    </form>
+        <div id="stores_items_sizes" ng-hide="!category_item.add_sizes" class="tab-content">
+          <fieldset>
+            <legend>##word.stores_items_sizes##</legend>
+
+            <i-button id="add_category_item_btn" ng-show="category_item.add_sizes" ng-click="showAddSizes()" type="add" label="##word.add_items_sizes##"> </i-button>
+
+            <br />
+            <br ng-show="category_item.add_sizes" />
+            <hr style="height: 5px; color: grey; background-color: rgb(0, 0, 199)" ng-show="category_item.add_sizes" />
+            <br />
+
+            <div class="row grid" ng-show="category_item.sizes.length > 0">
+              <table class="table hover center loaded">
+                <tr>
+                  <th>##word.logo##</th>
+                  <th>##word.stores_items_sizes##</th>
+                  <th>##word.item_code##</th>
+                  <th ng-hide="category_item.item_type.id === 2">##word.stores_current_balance##</th>
+                  <th ng-hide="category_item.item_type.id === 2">##word.stores_items_start_count##</th>
+                  <th>##word.actions##</th>
+                </tr>
+
+                <tr class="bold" ng-repeat="itm in category_item.sizes track by $index" ng-hide="itm.$hide">
+                  <td class="not-print center">
+                    <i-image class="logo" ng-model="itm.image_url"></i-image>
+                  </td>
+
+                  <td>
+                    <i-control label="##word.name_size##" ng-model="itm.size_ar"></i-control>
+                    <br />
+                    <i-control label="##word.size_en##" ng-model="itm.size_en"></i-control>
+                  </td>
+
+                  <td>
+                    <br />
+                    <p class="center blue userPrint">{{itm.barcode}}</p>
+                  </td>
+
+                  <td ng-hide="category_item.item_type.id === 2">
+                    <br />
+                    <p class="center bold green" ng-show="itm.current_count > 0">{{itm.current_count}}</p>
+                    <p class="bold red center" ng-show="itm.current_count == 0 ||itm.current_count < 0">{{itm.current_count}}</p>
+                  </td>
+
+                  <td ng-hide="category_item.item_type.id === 2">
+                    <br />
+                    <p class="center blue">{{itm.start_count}}</p>
+                  </td>
+
+                  <td>
+                    <div class="row" ng-hide="category_item.item_type.id === 2">
+                      <div class="col5">
+                        <div class="row center">
+                          <i-control ng-show="itm.work_patch" type="number" label="##word.validit##" ng-model="itm.validit"> </i-control>
+                        </div>
+
+                        <div class="row center">
+                          <i-checkbox label="##word.not_value_added##" ng-model="itm.not_value_added"> </i-checkbox>
+                        </div>
+                      </div>
+
+                      <div class="col2"></div>
+
+                      <div class="col5">
+                        <div class="row center">
+                          <i-button ng-show="itm.item_complex == true" type="view" label="##word.complex_items##" ng-click="showComplexItemsView(itm)"> </i-button>
+                        </div>
+
+                        <div class="row center">
+                          <i-button type="view" label="##word.branches_balances##" ng-click="branchesBalances(itm)"> </i-button>
+                        </div>
+
+                        <div class="row center">
+                          <i-button type="edit" label="##word.units##" ng-click="viewUnits(itm)"> </i-button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row center">
+                      <div class="row center">
+                        <i-button type="edit" ng-show="category_item.item_type.id === 2" label="##word.units##" ng-click="viewUnits(itm)"> </i-button>
+                      </div>
+                      <i-button type="delete" ng-click="deleteSize(itm)"></i-button>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </fieldset>
+        </div>
+
+        <div id="informationInstructions" class="tab-content" ng-show="category_item.item_type.id === 3">
+          <fieldset>
+            <br />
+            <div class="row">
+              <i-list
+                class="col5"
+                ng-model="category_item.information_instructions.active_substance"
+                display="name_##session.lang##"
+                ng-search="_search.$category_item.$active_substance_search"
+                label="##word.active_substance##"
+                items="activeSubstancesList"
+              ></i-list>
+            </div>
+
+            <br />
+
+            <div class="row">
+              <i-textarea class="co7" label="##word.indications##" ng-model="category_item.information_instructions.indications"> </i-textarea>
+            </div>
+
+            <br />
+
+            <div class="row">
+              <i-textarea class="co7" label="##word.contraindications##" ng-model="category_item.information_instructions.contraindications"> </i-textarea>
+            </div>
+
+            <br />
+
+            <div class="row">
+              <i-textarea class="co7" label="##word.how_use##" ng-model="category_item.information_instructions.how_use"> </i-textarea>
+            </div>
+
+            <br />
+          </fieldset>
+        </div>
+      </div>
+    </div>
+  </form>
 </div>

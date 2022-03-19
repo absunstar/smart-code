@@ -106,7 +106,7 @@ app.controller("stores_offer", function ($scope, $http, $timeout) {
               if (response.data.done) {
                 site.hideModal('#addStoreOfferModal');
 
-                $scope.loadAll({ startup_date: new Date() });
+                $scope.loadAll();
 
               } else {
                 $scope.error = response.data.error;
@@ -190,7 +190,7 @@ app.controller("stores_offer", function ($scope, $http, $timeout) {
             $scope.busy = false;
             if (response.data.done) {
               site.hideModal('#deleteStoreOfferModal');
-              $scope.loadAll({ startup_date: new Date() });
+              $scope.loadAll();
             } else {
               $scope.error = response.data.error;
               if (response.data.error.like('*n`t Found Open Shi*')) {
@@ -602,7 +602,7 @@ app.controller("stores_offer", function ($scope, $http, $timeout) {
               $scope.busy = false;
               if (response.data.done) {
                 site.hideModal('#updateStoreOfferModal');
-                $scope.loadAll({ startup_date: new Date() });
+                $scope.loadAll();
               } else {
                 $scope.error = '##word.error##';
                 if (response.data.error.like('*n`t Found Open Shi*')) {
@@ -778,5 +778,5 @@ app.controller("stores_offer", function ($scope, $http, $timeout) {
   $scope.getNumberingAuto();
   $scope.loadCategories();
   $scope.getDefaultSettings();
-  $scope.loadAll({ date: new Date() });
+  $scope.loadAll();
 });

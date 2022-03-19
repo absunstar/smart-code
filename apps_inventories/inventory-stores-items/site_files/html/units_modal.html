@@ -33,20 +33,21 @@
                         <tr ng-repeat="s in size.size_units_list track by $index">
 
                             <td>
+                                <br ng-hide="_view">
                                 <p class="bold center"> {{s.name_##session.lang##}} </p>
                             </td>
 
                             <td>
-                                <!-- <br ng-show="_view"> -->
-                                <p ng-show="_view" class="bold userPrint center"> {{s.barcode}} </p>
+                                 <br>
+                                <p class="bold userPrint center"> {{s.barcode}} </p>
 
-                                <i-control ng-hide="_view"
-                                    ng-disabled="defaultSettings.inventory.auto_unit_barcode_generation"
+                                <i-control
+                                x-permissions="developer"
                                     ng-model="s.barcode"></i-control>
                             </td>
 
                             <td ng-hide="category_item.item_type.id === 2">
-
+                                <br ng-hide="_view">
                                 <p class="center bold green" ng-show="s.current_count > 0">
                                     {{s.current_count}} </p>
                                 <p class="bold red center" ng-show="s.current_count == 0 ||s.current_count < 0">
@@ -54,7 +55,7 @@
                             </td>
 
                             <td ng-hide="category_item.item_type.id === 2">
-                                
+                                <br ng-hide="_view">
                                 <p class="bold center"> {{s.start_count}} </p>
                             </td>
 

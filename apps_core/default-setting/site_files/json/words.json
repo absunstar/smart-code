@@ -25,6 +25,11 @@
         "ar": "مكان رمز الإستجابة"
     },
     {
+        "name": "qr_country",
+        "en": "QR Country",
+        "ar": "بلد رمز الإستجابة"
+    },
+    {
         "name": "thermal_printing_language",
         "en": "Thermal printing language",
         "ar": "لغة الطباعة الحرارية"

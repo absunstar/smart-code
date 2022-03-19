@@ -145,7 +145,7 @@ app.controller('stores_in', function ($scope, $http, $timeout) {
       }
     );
   };
-  $scope.thermalPrint = function (obj) {
+ /*  $scope.thermalPrint = function (obj) {
     $scope.error = '';
     if ($scope.busy) return;
     $scope.busy = true;
@@ -205,7 +205,7 @@ app.controller('stores_in', function ($scope, $http, $timeout) {
     }
 
     $scope.busy = false;
-  };
+  }; */
 
   $scope.print = function () {
     $scope.error = '';

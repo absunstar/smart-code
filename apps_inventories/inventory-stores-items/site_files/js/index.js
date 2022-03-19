@@ -808,7 +808,7 @@ app.controller('stores_items', function ($scope, $http, $timeout, $interval) {
           work_patch: $scope.items_size.work_patch,
           work_serial: $scope.items_size.work_serial,
           size_units_list: $scope.items_size.size_units_list,
-          count: 0,
+          count: 1,
         });
       } else $scope.error = '##word.dublicate_item##';
     } else $scope.error = '##word.Err_should_select_item##';

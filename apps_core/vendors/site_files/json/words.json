@@ -99,7 +99,7 @@
     {"name" : "vendors_contact_informations" , "en" : "Contact Informaion" , "ar" : "بيانات الاتصال"},
     {"name" : "vendors_phone" , "en" : "Phone" , "ar" : "التليفون"},
     {"name" : "vendors_internal_number" , "en" : "Internal Number" , "ar" : "الرقم الداخلي"},
-    {"name" : "vendors_mobile" , "en" : "Mobile" , "ar" : "الجوال "},
+    {"name" : "vendors_mobile" , "en" : "Mobile" , "ar" : "الموبايل "},
     {"name" : "vendors_fax" , "en" : "Fax" , "ar" : "الفاكس"},
 
     {"name" : "vendors_post_informations" , "en" : "Post Informaion" , "ar" : "بيانات البريد"},
@@ -125,7 +125,7 @@
     {"name" : "vendors_branch_city" , "en" : "Branch  City" , "ar" : "المدينة"},
     {"name" : "vendors_branch_address" , "en" : "Branch  Address" , "ar" : "العنوان"},
     {"name" : "vendors_branch_phone" , "en" : "Branch Phone" , "ar" : "التليفون"},
-    {"name" : "vendors_branch_mobile" , "en" : "Branch  Mobile" , "ar" : "الجوال "},
+    {"name" : "vendors_branch_mobile" , "en" : "Branch  Mobile" , "ar" : "الموبايل "},
     {"name" : "vendors_branch_fax" , "en" : "Branch Fax" , "ar" : "الفاكس"},
     {"name" : "vendors_branch_email" , "en" : "Branch Email" , "ar" : "البريد الالكتروني"},
 
@@ -135,7 +135,7 @@
     {"name" : "vendors_charge_job" , "en" : "Charge Job" , "ar" : "الوظيفة"},   
     {"name" : "vendors_charge_phone" , "en" : "Charge Phone" , "ar" : "التليفون"},
     {"name" : "vendors_charge_internal_number" , "en" : "Charge Internal Number" , "ar" : "الرقم الداخلي"},
-    {"name" : "vendors_charge_mobile" , "en" : "Charge Mobile" , "ar" : "الجوال "},
+    {"name" : "vendors_charge_mobile" , "en" : "Charge Mobile" , "ar" : "الموبايل "},
     {"name" : "vendors_charge_email" , "en" : "Charge Email" , "ar" : "البريد الالكتروني"},
 
 

@@ -74,11 +74,11 @@
                                             {{trainer.employment_date | date : 'dd / MM / yyyy'}}</td>
                                     </tr>
 
-                                    <tr>
+                                    <tr x-features="!protouch">
                                         <td class="title">##word.marital_status##</td>
                                         <td class="center">{{trainer.marital_status.name_##session.lang##}}</td>
                                     </tr>
-                                    <tr>
+                                    <tr x-features="!protouch">
                                         <td class="title">##word.military_status##</td>
                                         <td class="center">{{trainer.military_status.name_##session.lang##}}</td>
                                     </tr>

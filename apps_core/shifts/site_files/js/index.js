@@ -333,6 +333,7 @@ app.controller('shifts', function ($scope, $http, $timeout) {
             selector: '#thermalPrint',
             ip: '127.0.0.1',
             port: '60080',
+            pageSize: 'Letter',
             printer: printerName,
           },
           () => {

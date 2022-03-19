@@ -31,18 +31,10 @@ site.get({
     parser: 'html css js',
 });
 
-site.words.add(
-    {
-        name: 'le',
-        en: 'Ryal',
-        ar: 'ريال',
-    },
-    {
-        name: 'le',
-        en: 'Ryal',
-        ar: 'ريال',
-    },
-);
+
+if(site.hasFeature('protouch')){
+    site.words.addList(__dirname + '/site_files/json/words-sa.json');
+}
 
 site.ready = false;
 site.loadLocalApp('client-side');
