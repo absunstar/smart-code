@@ -2078,8 +2078,8 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
         if ($scope.defaultSettings.printer_program.place_qr) {
           if ($scope.defaultSettings.printer_program.place_qr.id == 1) {
             site.qrcode({
-              width: 200,
-              height: 200,
+              width: 170,
+              height: 170,
               selector: document.querySelector('.qrcode'),
               text: document.location.protocol + '//' + document.location.hostname + `/qr_storeout?id=${$scope.thermal.id}`,
             });
@@ -2105,7 +2105,7 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
                   vat_total: qrString.vat_total.toString(),
                 },
                 (data) => {
-                  site.qrcode({ width: 200, height: 200, selector: document.querySelector('.qrcode'), text: data.value });
+                  site.qrcode({ width: 170, height: 170, selector: document.querySelector('.qrcode'), text: data.value });
                 }
               );
             } else {
@@ -2115,7 +2115,7 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
               let qrString = `[${'##session.company.name_ar##'}]\nرقم ضريبي : [${$scope.defaultSettings.printer_program.tax_number}]\nرقم الفاتورة :[${
                 $scope.thermal.code
               }]\nتاريخ : [${formatted_date}]\nضريبة القيمة المضافة : [${$scope.thermal.total_value_added}]\nالصافي : [${$scope.thermal.net_value}]`;
-              site.qrcode({ width: 200, height: 200, selector: document.querySelector('.qrcode'), text: qrString });
+              site.qrcode({ width: 170, height: 170, selector: document.querySelector('.qrcode'), text: qrString });
             }
           }
         }
@@ -2231,7 +2231,7 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
                 $scope.store_out.code
               }]\nتاريخ : [${formatted_date}]\nضريبة القيمة المضافة : [${$scope.store_out.total_value_added}]\nالصافي : [${$scope.store_out.net_value}]`;
         
-              site.qrcode({ width: 200, height: 200, selector: document.querySelectorAll('.qrcode-a4')[$scope.invList.length - 1], text: qrString });
+              site.qrcode({ width: 170, height: 170, selector: document.querySelectorAll('.qrcode-a4')[$scope.invList.length - 1], text: qrString });
             }
 
 

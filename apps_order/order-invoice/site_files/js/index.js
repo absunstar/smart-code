@@ -2229,12 +2229,6 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
     if ($scope.defaultSettings.printer_program.a4_printer) {
       $('#ordersDetails').removeClass('hidden');
 
-      let datetime = new Date(order.date);
-      let formatted_date = datetime.getFullYear() + '-' + (datetime.getMonth() + 1) + '-' + datetime.getDate() + ' ' + datetime.getHours() + ':' + datetime.getMinutes() + ':' + datetime.getSeconds();
-      let qrString = `[${'##session.company.name_ar##'}]\nرقم ضريبي : [${$scope.defaultSettings.printer_program.tax_number}]\nرقم الفاتورة :[${
-        order.code
-      }]\nتاريخ : [${formatted_date}]\nضريبة القيمة المضافة : [${order.total_value_added}]\nالصافي : [${order.net_value}]`;
-
       if (order.currency) {
         site.strings['currency'] = {
           ar: ' ' + order.currency.name_ar + ' ',
@@ -2290,13 +2284,46 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
           if ($scope.defaultSettings.printer_program.place_qr.id == 1) {
             console.log(document.querySelectorAll('.qrcode-a4'));
             site.qrcode({
-              width: 150,
-              height: 150,
+              width: 170,
+              height: 170,
               selector: document.querySelectorAll('.qrcode-a4')[$scope.invList.length - 1],
               text: document.location.protocol + '//' + document.location.hostname + `/qr_storeout?id=${order.id}`,
             });
           } else if ($scope.defaultSettings.printer_program.place_qr.id == 2) {
-            site.qrcode({ width: 150, height: 150, selector: document.querySelectorAll('.qrcode-a4')[$scope.invList.length - 1], text: qrString });
+            if ($scope.defaultSettings.printer_program.country_qr && $scope.defaultSettings.printer_program.country_qr.id == 2) {
+              let qrString = {
+                vat_number: '##session.company.tax_number##',
+                time: new Date(order.date).toISOString(),
+                total: order.net_value,
+                vat_total: order.total_value_added,
+              };
+              if ($scope.defaultSettings.printer_program.thermal_lang.id == 1 || ($scope.defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'ar')) {
+                qrString.name = '##session.company.name_ar##';
+              } else if ($scope.defaultSettings.printer_program.thermal_lang.id == 2 || ($scope.defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'en')) {
+                qrString.name = '##session.company.name_en##';
+              }
+              site.zakat2(
+                {
+                  name: qrString.name,
+                  vat_number: qrString.vat_number,
+                  time: qrString.time,
+                  total: qrString.total.toString(),
+                  vat_total: qrString.vat_total.toString(),
+                },
+                (data) => {
+                  site.qrcode({ width: 170, height: 170, selector: document.querySelectorAll('.qrcode-a4')[$scope.invList.length - 1], text: data.value });
+                }
+              );
+            } else {
+              let datetime = new Date(order.date);
+              let formatted_date =
+                datetime.getFullYear() + '-' + (datetime.getMonth() + 1) + '-' + datetime.getDate() + ' ' + datetime.getHours() + ':' + datetime.getMinutes() + ':' + datetime.getSeconds();
+              let qrString = `[${'##session.company.name_ar##'}]\nرقم ضريبي : [${$scope.defaultSettings.printer_program.tax_number}]\nرقم الفاتورة :[${
+                order.code
+              }]\nتاريخ : [${formatted_date}]\nضريبة القيمة المضافة : [${order.total_value_added}]\nالصافي : [${order.net_value}]`;
+
+              site.qrcode({ width: 170, height: 170, selector: document.querySelectorAll('.qrcode-a4')[$scope.invList.length - 1], text: qrString });
+            }
           }
         }
 
@@ -2345,23 +2372,49 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
         $scope.thermal.net_txt = site.stringfiy($scope.thermal.net_value);
       }
 
-      let datetime = new Date($scope.thermal.date);
-      let formatted_date = datetime.getFullYear() + '-' + (datetime.getMonth() + 1) + '-' + datetime.getDate() + ' ' + datetime.getHours() + ':' + datetime.getMinutes() + ':' + datetime.getSeconds();
-      let qrString = `[${'##session.company.name_ar##'}]\nرقم ضريبي : [${$scope.defaultSettings.printer_program.tax_number}]\nرقم الفاتورة :[${
-        $scope.thermal.code
-      }]\nتاريخ : [${formatted_date}]\nضريبة القيمة المضافة : [${$scope.thermal.total_value_added}]\nالصافي : [${$scope.thermal.net_value}]`;
-
       $scope.localPrint = function () {
         if ($scope.defaultSettings.printer_program.place_qr) {
           if ($scope.defaultSettings.printer_program.place_qr.id == 1) {
             site.qrcode({
-              width: 150,
-              height: 150,
+              width: 170,
+              height: 170,
               selector: document.querySelector('.qrcode'),
               text: document.location.protocol + '//' + document.location.hostname + `/qr_storeout?id=${$scope.thermal.id}`,
             });
           } else if ($scope.defaultSettings.printer_program.place_qr.id == 2) {
-            site.qrcode({ width: 150, height: 150, selector: document.querySelector('.qrcode'), text: qrString });
+            if ($scope.defaultSettings.printer_program.country_qr && $scope.defaultSettings.printer_program.country_qr.id == 2) {
+              let qrString = {
+                vat_number: '##session.company.tax_number##',
+                time: new Date($scope.thermal.date).toISOString(),
+                total: $scope.thermal.net_value,
+                vat_total: $scope.thermal.total_value_added,
+              };
+              if ($scope.defaultSettings.printer_program.thermal_lang.id == 1 || ($scope.defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'ar')) {
+                qrString.name = '##session.company.name_ar##';
+              } else if ($scope.defaultSettings.printer_program.thermal_lang.id == 2 || ($scope.defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'en')) {
+                qrString.name = '##session.company.name_en##';
+              }
+              site.zakat2(
+                {
+                  name: qrString.name,
+                  vat_number: qrString.vat_number,
+                  time: qrString.time,
+                  total: qrString.total.toString(),
+                  vat_total: qrString.vat_total.toString(),
+                },
+                (data) => {
+                  site.qrcode({ width: 170, height: 170, selector: document.querySelector('.qrcode'), text: data.value });
+                }
+              );
+            } else {
+              let datetime = new Date($scope.thermal.date);
+              let formatted_date =
+                datetime.getFullYear() + '-' + (datetime.getMonth() + 1) + '-' + datetime.getDate() + ' ' + datetime.getHours() + ':' + datetime.getMinutes() + ':' + datetime.getSeconds();
+              let qrString = `[${'##session.company.name_ar##'}]\nرقم ضريبي : [${$scope.defaultSettings.printer_program.tax_number}]\nرقم الفاتورة :[${
+                $scope.thermal.code
+              }]\nتاريخ : [${formatted_date}]\nضريبة القيمة المضافة : [${$scope.thermal.total_value_added}]\nالصافي : [${$scope.thermal.net_value}]`;
+              site.qrcode({ width: 170, height: 170, selector: document.querySelector('.qrcode'), text: qrString });
+            }
           }
         }
         let printerName = $scope.defaultSettings.printer_program.printer_path.ip.name.trim();
