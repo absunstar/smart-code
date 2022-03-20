@@ -2284,8 +2284,8 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
           if ($scope.defaultSettings.printer_program.place_qr.id == 1) {
             console.log(document.querySelectorAll('.qrcode-a4'));
             site.qrcode({
-              width: 170,
-              height: 170,
+              width: 140,
+              height: 140,
               selector: document.querySelectorAll('.qrcode-a4')[$scope.invList.length - 1],
               text: document.location.protocol + '//' + document.location.hostname + `/qr_storeout?id=${order.id}`,
             });
@@ -2302,6 +2302,7 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
               } else if ($scope.defaultSettings.printer_program.thermal_lang.id == 2 || ($scope.defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'en')) {
                 qrString.name = '##session.company.name_en##';
               }
+              qrString.name = '##session.company.name_en##';
               site.zakat2(
                 {
                   name: qrString.name,
@@ -2311,7 +2312,7 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
                   vat_total: qrString.vat_total.toString(),
                 },
                 (data) => {
-                  site.qrcode({ width: 170, height: 170, selector: document.querySelectorAll('.qrcode-a4')[$scope.invList.length - 1], text: data.value });
+                  site.qrcode({ width: 140, height: 140, selector: document.querySelectorAll('.qrcode-a4')[$scope.invList.length - 1], text: data.value });
                 }
               );
             } else {
@@ -2322,7 +2323,7 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
                 order.code
               }]\nتاريخ : [${formatted_date}]\nضريبة القيمة المضافة : [${order.total_value_added}]\nالصافي : [${order.net_value}]`;
 
-              site.qrcode({ width: 170, height: 170, selector: document.querySelectorAll('.qrcode-a4')[$scope.invList.length - 1], text: qrString });
+              site.qrcode({ width: 140, height: 140, selector: document.querySelectorAll('.qrcode-a4')[$scope.invList.length - 1], text: qrString });
             }
           }
         }
@@ -2376,8 +2377,8 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
         if ($scope.defaultSettings.printer_program.place_qr) {
           if ($scope.defaultSettings.printer_program.place_qr.id == 1) {
             site.qrcode({
-              width: 170,
-              height: 170,
+              width: 140,
+              height: 140,
               selector: document.querySelector('.qrcode'),
               text: document.location.protocol + '//' + document.location.hostname + `/qr_storeout?id=${$scope.thermal.id}`,
             });
@@ -2394,6 +2395,7 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
               } else if ($scope.defaultSettings.printer_program.thermal_lang.id == 2 || ($scope.defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'en')) {
                 qrString.name = '##session.company.name_en##';
               }
+              qrString.name = '##session.company.name_en##';
               site.zakat2(
                 {
                   name: qrString.name,
@@ -2403,7 +2405,7 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
                   vat_total: qrString.vat_total.toString(),
                 },
                 (data) => {
-                  site.qrcode({ width: 170, height: 170, selector: document.querySelector('.qrcode'), text: data.value });
+                  site.qrcode({ width: 140, height: 140, selector: document.querySelector('.qrcode'), text: data.value });
                 }
               );
             } else {
@@ -2413,7 +2415,7 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
               let qrString = `[${'##session.company.name_ar##'}]\nرقم ضريبي : [${$scope.defaultSettings.printer_program.tax_number}]\nرقم الفاتورة :[${
                 $scope.thermal.code
               }]\nتاريخ : [${formatted_date}]\nضريبة القيمة المضافة : [${$scope.thermal.total_value_added}]\nالصافي : [${$scope.thermal.net_value}]`;
-              site.qrcode({ width: 170, height: 170, selector: document.querySelector('.qrcode'), text: qrString });
+              site.qrcode({ width: 140, height: 140, selector: document.querySelector('.qrcode'), text: qrString });
             }
           }
         }
