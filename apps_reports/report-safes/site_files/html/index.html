@@ -100,9 +100,9 @@
                                 <p ng-show="c.price_delivery_service"> ##word.price_delivery_service## </p>
                                 <p ng-show="c.price_delivery_service">{{c.price_delivery_service}}</p>
                             </td>
-                            <td> {{c.net_value}} </td>
-                            <td class="green"> {{c.paid ||0}} </td>
-                            <td ng-show="search.safe.type.id == 2" class="red"> {{c.commission ||0}} </td>
+                            <td> {{c.net_value | xmoney}} </td>
+                            <td class="green"> {{c.paid | xmoney}} </td>
+                            <td ng-show="search.safe.type.id == 2" class="red"> {{c.commission | xmoney}} </td>
                             <td>
                                 <p ng-show="c.active == true" class="green"> ##word.active## </p>
                                 <p ng-show="c.active == false" class="red"> ##word.not_active## </p>

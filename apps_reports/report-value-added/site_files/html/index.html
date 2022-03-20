@@ -93,8 +93,8 @@
                                 <p>{{c.vendor.name_##session.lang##}}</p>
                                 <p class="blue">{{c.vendor.tax_identification_number}}</p>
                             </td>
-                            <td> {{c.net_value}} </td>
-                            <td class="red"> {{c.total_value_added ||0}} </td>
+                            <td> {{c.net_value  | xmoney}} </td>
+                            <td class="red"> {{c.total_value_added  | xmoney}} </td>
                             <td>
                                 <p ng-show="c.active == true" class="green"> ##word.active## </p>
                                 <p ng-show="c.active == false" class="red"> ##word.not_active## </p>

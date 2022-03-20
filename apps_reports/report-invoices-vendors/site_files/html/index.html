@@ -133,9 +133,9 @@
                         </td>
                         <td> {{c.total_tax ||0}} </td>
                         <td> {{c.total_discount ||0}} </td>
-                        <td class="green"> {{c.net_value}} </td>
-                        <td class="blue"> {{c.total_paid_up || 0}} </td>
-                        <td class="red"> {{c.remain_amount || 0}} </td>
+                        <td class="green"> {{c.net_value | xmoney}} </td>
+                        <td class="blue"> {{c.total_paid_up | xmoney}} </td>
+                        <td class="red"> {{c.remain_amount | xmoney}} </td>
                     </tr>
                 </table>
 

@@ -57,11 +57,11 @@
                     </td>
 
                     <td ng-show="storeInvoDetails.source_type.id == 1 || storeInvoDetails.source_type.id == 2">
-                        <p class="bold text-center"> <br> {{c.total_value}} </p>
+                        <p class="bold text-center"> <br> {{c.total_value | xmoney}} </p>
                     </td>
 
                     <td ng-show="storeInvoDetails.source_type.id == 1 || storeInvoDetails.source_type.id == 2">
-                        <p class="bold text-center green"> <br> {{c.net_value}} </p>
+                        <p class="bold text-center green"> <br> {{c.net_value | xmoney}} </p>
                     </td>
 
                     <td ng-show="storeInvoDetails.source_type.id == 1 || storeInvoDetails.source_type.id == 2">

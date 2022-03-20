@@ -70,8 +70,8 @@
                                 <tr ng-repeat="c in report_invoices.items">
                                     <td class="center title">{{c.size_##session.lang##}}</td>
                                     <td class="center blue">{{c.count}}</td>
-                                    <td class="center blue">{{c.price}}</td>
-                                    <td class="center green">{{c.total}}</td>
+                                    <td class="center blue">{{c.price | xmoney}}</td>
+                                    <td class="center green">{{c.total | xmoney}}</td>
                                 </tr>
                             </table>
                         </div>
@@ -97,7 +97,7 @@
                                         <td class="center brown">{{c.date | date : 'dd / MM / yyyy'}}</td>
                                         <td class="center blue">{{c.safe.name_##session.lang##}}
                                         </td>
-                                        <td class="center green">{{c.paid_up}}</td>
+                                        <td class="center green">{{c.paid_up | xmoney}}</td>
                                     </tr>
                                 </table>
                             </fieldset>

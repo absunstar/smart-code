@@ -80,8 +80,8 @@
                                         <td> {{u.name_##session.lang##}} </td>
                                         <td class="blue"> {{u.barcode}} </td>
                                         <td> {{u.current_count || 0}} </td>
-                                        <td class="red"> {{u.average_cost}} </td>
-                                        <td> {{u.total_average_cost}} </td>
+                                        <td class="red"> {{u.average_cost  | xmoney}} </td>
+                                        <td> {{u.total_average_cost  | xmoney}} </td>
                                     </tr>
                                 </table>
                             </td>

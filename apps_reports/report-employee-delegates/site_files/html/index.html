@@ -103,8 +103,8 @@
                         <td ng-hide="delegate.id"> {{c.delegate.name_##session.lang##}} </td>
                         <td class="red"> {{c.total_tax ||0}} </td>
                         <td> {{c.total_discount ||0}} </td>
-                        <td>{{c.total_value}}</td>
-                        <td class="green"> {{c.net_value}} </td>
+                        <td>{{c.total_value | xmoney}}</td>
+                        <td class="green"> {{c.net_value | xmoney}} </td>
                     </tr>
                 </table>
 

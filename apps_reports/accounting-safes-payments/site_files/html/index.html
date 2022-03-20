@@ -73,16 +73,16 @@
                             <p class="blue">{{c.payment_method.##session.lang##}}</p>
                         </td>
 
-                        <td class="center bold red">{{c.pre_balance}}</td>
+                        <td class="center bold red">{{c.pre_balance | xmoney}}</td>
 
-                        <td class="center bold green">{{c.balance}}</td>
+                        <td class="center bold green">{{c.balance | xmoney}}</td>
 
                         <td>
-                            <p class="center bold red" ng-show="c.transition_type == 'out'">{{c.value}}</p>
+                            <p class="center bold red" ng-show="c.transition_type == 'out'">{{c.value | xmoney}}</p>
                         </td>
 
                         <td>
-                            <p class="center bold green" ng-show="c.transition_type == 'in'">{{c.value}}</p>
+                            <p class="center bold green" ng-show="c.transition_type == 'in'">{{c.value | xmoney}}</p>
                         </td>
 
                         <td class="center bold red">{{c.description}}</td>
