@@ -19,6 +19,10 @@ const site = require('isite')({
     },
 });
 
+if(site.hasFeature('protouch')){
+    site.words.addList(__dirname + '/site_files/json/words-sa.json');
+}
+
 site.get({
     name: '/',
     path: site.dir + '/',
@@ -32,9 +36,7 @@ site.get({
 });
 
 
-if(site.hasFeature('protouch')){
-    site.words.addList(__dirname + '/site_files/json/words-sa.json');
-}
+
 
 site.ready = false;
 site.loadLocalApp('client-side');

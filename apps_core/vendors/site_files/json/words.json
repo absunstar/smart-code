@@ -99,7 +99,6 @@
     {"name" : "vendors_contact_informations" , "en" : "Contact Informaion" , "ar" : "بيانات الاتصال"},
     {"name" : "vendors_phone" , "en" : "Phone" , "ar" : "التليفون"},
     {"name" : "vendors_internal_number" , "en" : "Internal Number" , "ar" : "الرقم الداخلي"},
-    {"name" : "vendors_mobile" , "en" : "Mobile" , "ar" : "الموبايل "},
     {"name" : "vendors_fax" , "en" : "Fax" , "ar" : "الفاكس"},
 
     {"name" : "vendors_post_informations" , "en" : "Post Informaion" , "ar" : "بيانات البريد"},

@@ -19,13 +19,13 @@ module.exports = function init(site) {
     ],
   };
 
-  site.onGET('/api/languages/ar-sa', (req, res) => {
-    site.words.addList(site.dir + '/site_files/json/words-sa.json', true);
+  // site.onGET('/api/languages/ar-sa', (req, res) => {
+  //   site.words.addList(site.dir + '/site_files/json/words-sa.json', true);
 
-    res.json({
-      done: true,
-    });
-  });
+  //   res.json({
+  //     done: true,
+  //   });
+  // });
 
   $companies.findOne({}, (err, doc) => {
     if (!err && doc) {

@@ -18,6 +18,11 @@ const site = require('isite')({
       }
 })
 
+if(site.hasFeature('protouch')){
+    site.words.addList(__dirname + '/site_files/json/words-sa.json');
+}
+
+
 site.get({
     name: '/',
     path: site.dir + '/'

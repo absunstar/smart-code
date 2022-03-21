@@ -3,5 +3,10 @@
     "name": "le",
     "en": "Ryal",
     "ar": "ريال"
+  },
+  {
+    "name": "mobile",
+    "en": "Mobile",
+    "ar": "رقم الجوال"
   }
 ]

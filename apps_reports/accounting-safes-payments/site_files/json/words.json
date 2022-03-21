@@ -18,10 +18,10 @@
     {"name" : "safes_payments_source" , "en" : "Source Type" , "ar" : "أسماء الشاشات الواردة"},
     {"name" : "safes_payments_safe" , "en" : "Safe Name" , "ar" : "إسم الخزينة"}, 
     {"name" : "safes_payments_sources" , "en" : "Source Name" , "ar" : "إسم المعاملة"}, 
-    {"name" : "safes_payments_store_in" , "en" : "IN " , "ar" : "الوارد"}, 
+    {"name" : "safes_payments_store_in" , "en" : "Incoming " , "ar" : "الوارد"}, 
     {"name" : "safes_payments_store_out" , "en" : " OUT" , "ar" : "المنصرف"}, 
-    {"name" : "safes_payments_safe_balance" , "en" : " Safe Balance" , "ar" : "الرصيد الحالي"}, 
-    {"name" : "safes_payments_pre_safe_balance" , "en" : " Pre Safe Balance" , "ar" : "الرصيد السابقة"},
+    {"name" : "safes_payments_safe_balance" , "en" : "Balance A. invoice" , "ar" : "الرصيد بعد الفاتورة"}, 
+    {"name" : "safes_payments_pre_safe_balance" , "en" : "Balance B. invoice" , "ar" : "رصيد قبل الفاتورة"},
     {"name" : "safes_payments_description" , "en" : " Descroiption" , "ar" : "البيان"},
     
     {"name" : "safes_payments_logo" , "en" : "Safe Logo" , "ar" : "الشعار"},

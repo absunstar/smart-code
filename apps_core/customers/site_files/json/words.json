@@ -15,7 +15,6 @@
     {"name" : "customers_name_en" , "en" : "Customer Name English" , "ar" : "إسم العميل بالانجليزية"},
     {"name" : "customer_name" , "en" : "Customer Name" , "ar" : "إسم العميل"},
     {"name" : "customer" , "en" : "Customer " , "ar" : " العميل"},
-    {"name" : "customer_mobile" , "en" : "Customer Mobile" , "ar" : "موبايل العميل"},
     {"name" : "balance_creditor" , "en" : "Balance Creditor " , "ar" : "رصيد دائن"},
     {"name" : "balance_debtor" , "en" : "Balance Debtor " , "ar" : "رصيد مدين"},
     {
@@ -292,11 +291,14 @@
     {"name" : "customers_address_informations" , "en" : "Address Informaion" , "ar" : "بيانات العناوين"},
     {"name" : "customers_city" , "en" : "City" , "ar" : "المدينة"},
     {"name" : "customers_address" , "en" : "Address" , "ar" : "العنوان"},
-
+    {
+        "name": "mobile",
+        "en": "Mobile",
+        "ar": "رقم الموبيل"
+      },
     {"name" : "customers_contact_informations" , "en" : "Contact Informaion" , "ar" : "بيانات الاتصال"},
     {"name" : "customers_phone" , "en" : "Phone" , "ar" : "التليفون"},
     {"name" : "customers_internal_number" , "en" : "Internal Number" , "ar" : "الرقم الداخلي"},
-    {"name" : "customers_mobile" , "en" : "Mobile" , "ar" : "الموبايل "},
     {"name" : "customers_fax" , "en" : "Fax" , "ar" : "الفاكس"},
 
     {"name" : "customers_post_informations" , "en" : "Post Informaion" , "ar" : "بيانات البريد"},

@@ -46,8 +46,8 @@
                         <th class="center">##word.safes_payments_safe_name##</th>
                         <th class="center">##word.safes_payments_pre_safe_balance##</th>
                         <th class="center">##word.safes_payments_safe_balance##</th>
-                        <th class="center">##word.safes_payments_store_out##</th>
                         <th class="center">##word.safes_payments_store_in##</th>
+                        <th class="center">##word.safes_payments_store_out##</th>
                         <th class="center">##word.safes_payments_description##</th>
                         <th class="center">##word.safes_payments_source##</th>
 
@@ -78,11 +78,11 @@
                         <td class="center bold green">{{c.balance | xmoney}}</td>
 
                         <td>
-                            <p class="center bold red" ng-show="c.transition_type == 'out'">{{c.value | xmoney}}</p>
+                            <p class="center bold green" ng-show="c.transition_type == 'in'">{{c.value | xmoney}}</p>
                         </td>
 
                         <td>
-                            <p class="center bold green" ng-show="c.transition_type == 'in'">{{c.value | xmoney}}</p>
+                            <p class="center bold red" ng-show="c.transition_type == 'out'">{{c.value | xmoney}}</p>
                         </td>
 
                         <td class="center bold red">{{c.description}}</td>

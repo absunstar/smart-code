@@ -301,8 +301,8 @@
     },
     {
         "name": "item_transaction_previous_count",
-        "ar": "  الرصيد السابق ",
-        "en": "Previous Count"
+        "ar": "رصيد قبل الفاتورة",
+        "en": "Balance B. invoice"
     },
     {
         "name": "item_transaction_status",
