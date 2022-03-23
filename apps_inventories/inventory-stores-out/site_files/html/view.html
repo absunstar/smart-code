@@ -30,7 +30,7 @@
             <tr ng-hide="##query.type## == 5">
                 <td class="title txt16 bold">
                     <b class="indigoD">##word.payment_method## :</b>
-                    <b class="center">{{store_out.payment_method.##session.lang##}} </b>
+                    <b class="center">{{store_out.payment_method.##session.lang## || store_out.invoices_list[0].payment_method.##session.lang##}} </b>
                 </td>
 
                 <td class="title txt16 center bold">
