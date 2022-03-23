@@ -433,6 +433,7 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
       }
       if ($scope.store_out.invoices_list && $scope.store_out.invoices_list.length > 0) {
         $scope.store_out.currency = $scope.store_out.invoices_list[0].currency;
+        $scope.store_out.payment_method = $scope.store_out.invoices_list[0].payment_method;
       }
       if ($scope.store_out.items.length > 0 && !$scope.busy) {
         $scope.store_out.items.forEach((_itemSize) => {
