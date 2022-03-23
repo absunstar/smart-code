@@ -21,6 +21,7 @@
                     <h1 class="bold text-center"> ##word.report_safes_name## </h1>
                 </div>
 
+             
                 <div class="top-actions">
                     <!--<i-button type="add" x-permissions="report_safes_add || report_safes_manage"
                         label="##word.report_safes_new##" ng-click="displayAddReportInvoices()"></i-button>-->
@@ -34,6 +35,8 @@
                     <h3 class="bold text-center"> ##word.count## : {{count}} </h3>
                     <br>
                 </div>
+
+
 
                 <div ng-show="search.safe.id" class="row margin padding dashed">
                     <div class="col6 padding">
@@ -59,6 +62,34 @@
                         </table>
                     </div>
 
+                </div>
+
+                <div class="row">
+                    <div class="col5">
+                        <fieldset class="row">
+                            <div class="col6">
+                              <h2 class="bold center">##word.total_incoming## : {{total_incoming | xmoney}}</h2>
+                            </div>
+                            <div class="col6">
+                              <h2 class="bold center">##word.total_incoming_comm## : {{total_incoming_comm | xmoney}}</h2>
+                            </div>
+                        </fieldset>
+
+                    </div>
+                </div>
+
+                <div class="row" ng-show="search.safe.type.id == 2">
+                    <div class="col5">
+                        <fieldset class="row">
+                            <div class="col6">
+                              <h2 class="bold center">##word.total_outgoing## : {{total_outgoing | xmoney}}</h2>
+                            </div>
+                            <div class="col6">
+                              <h2 class="bold center">##word.total_outgoing_comm## : {{total_outgoing_comm | xmoney}}</h2>
+                            </div>
+                        </fieldset>
+
+                    </div>
                 </div>
 
 
@@ -120,14 +151,7 @@
 
                 </div>
 
-                <div class="row" id="t1" ng-show="search.safe.type.id == 2">
-
-                    <i-control class="col2 r_darkRed" ng-model="total_outgoing" label="##word.total_outgoing##"
-                        type="number" disabled></i-control>
-
-                    <i-control class="col2 r_blue" ng-model="total_outgoing_comm" label="##word.total_outgoing_comm##"
-                        type="number" disabled></i-control>
-                </div>
+               
 
                 <div class="row">
                     <i-button x-permissions="report_safes_print || report_safes_manage" type="print"

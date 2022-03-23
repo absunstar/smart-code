@@ -95,17 +95,19 @@ module.exports = function init(site) {
     }, (err, docs, count) => {
       if (!err) {
         response.done = true
-
         docs.forEach(_docs => {
           _docs.paid = 0
           _docs.commission = 0
-          _docs.payment_list.forEach(_payment_list => {
-            if (_payment_list.safe.id == safe.id) {
-              _docs.paid += _payment_list.paid_up
+          if(_docs.payment_list && _docs.payment_list.length > 0){
 
-              _docs.commission += (_payment_list.paid_up * (_payment_list.safe.commission || safe.commission) / 100)
-            }
-          });
+            _docs.payment_list.forEach(_payment_list => {
+              if (_payment_list.safe.id == safe.id) {
+                _docs.paid += _payment_list.paid_up
+                
+                _docs.commission += (_payment_list.paid_up * (_payment_list.safe.commission || safe.commission) / 100)
+              }
+            });
+          }
           _docs.commission = site.toNumber(_docs.commission)
         });
 

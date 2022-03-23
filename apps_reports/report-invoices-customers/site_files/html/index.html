@@ -80,18 +80,20 @@
                 </div>
 
                 <div class="row">
+                    <div class="col9">
 
-                    <i-control id="item_name" class="col2 r_blue" ng-model="net_value"
-                        label="##word.stores_out_net_value##" type="number" disabled></i-control>
-
-                    <i-control id="item_name" class="col2 r_green" ng-model="total_paid_up"
-                        label="##word.total_paid_up##" type="number" disabled></i-control>
-
-                    <i-control id="item_name" class="col2 r_darkRed" ng-model="remain_amount"
-                        label="##word.total_remain##" type="number" disabled></i-control>
-
-                    <!--  <i-control id="item_name" class="col2 r_darkRed" ng-model="net_total_return"
-                        label="##word.net_total_return##" type="number" disabled></i-control> -->
+                        <fieldset class="row">
+                            <div class="col4">
+                                <h2 class="bold center">##word.stores_out_net_value## : {{net_value | xmoney}}</h2>
+                            </div>
+                            <div class="col4">
+                                <h2 class="bold center">##word.total_paid_up## : {{total_paid_up | xmoney}}</h2>
+                            </div>
+                            <div class="col4">
+                                <h2 class="bold center">##word.total_remain## : {{remain_amount | xmoney}}</h2>
+                            </div>
+                        </fieldset>
+                    </div>
                 </div>
 
                 <!--     <div class="row">

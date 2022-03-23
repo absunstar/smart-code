@@ -65,22 +65,20 @@
                         </fieldset>
                     </div>
 
-
                     <span ng-show="busy">
                         <span class="sr-only">Loading...</span>
                     </span>
                     <h3 class="bold text-center" ng-hide="vendor.id"> ##word.count## : {{count}} </h3>
                     <br>
                 </div>
-
+                
                 <div class="row">
-
-                    <i-control id="item_name" class="col2 r_blue" ng-model="total_payments_payable"
-                        label="##word.total_payments_payable##" type="number" disabled></i-control>
-
+                    <fieldset class="col4">
+                          <h2 class="bold center">##word.total_payments_payable## : {{total_payments_payable | xmoney}}</h2>
+                    </fieldset>
                 </div>
-
-
+                <br>
+                <br>
 
                 <table class="table loaded center hover bold" id="t1">
                     <tr>
