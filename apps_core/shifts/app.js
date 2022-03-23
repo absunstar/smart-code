@@ -14,8 +14,8 @@ module.exports = function init(site) {
   });
 
   site.on('[company][created]', (doc) => {
-    let name_ar = 'شيفت إفتراضي';
-    let name_en = 'Default Shift';
+    let name_ar = 'شيفت' + ' ' + doc.name_ar;
+    let name_en = doc.name_en + ' ' + 'Shift';
     let image = '/images/shift.png';
 
     if (site.feature('school')) {

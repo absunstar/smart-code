@@ -1156,7 +1156,15 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
           _item.average_cost = _item.size_units_list[indxUnit].average_cost;
           _item.price = _item.size_units_list[indxUnit].price;
           _item.cost = _item.size_units_list[indxUnit].cost;
-
+          $scope.getOfferActive(_item.barcode, (offer_active) => {
+            if (offer_active) {
+              offer_active.size_units_list.forEach((_offerUnit) => {
+                if (_offerUnit.id === _item.unit.id) {
+                  _item.discount = _offerUnit.discount;
+                }
+              });
+            } else _size.discount = _size.size_units_list[indxUnit].discount;
+          });
           if ($scope.store_out.type && $scope.store_out.type.id == 5) _item.total = _item.count * _item.average_cost;
           else _item.total = _item.count * _item.price;
         }

@@ -38,11 +38,10 @@
                             </td>
 
                             <td>
-                                 <br>
-                                <p class="bold userPrint center"> {{s.barcode}} </p>
+                                <p ng-show="_view" class="bold userPrint center"> {{s.barcode}} </p>
 
-                                <i-control
-                                x-permissions="developer"
+                                <i-control ng-hide="_view"
+                                    ng-disabled="defaultSettings.inventory.auto_unit_barcode_generation"
                                     ng-model="s.barcode"></i-control>
                             </td>
 

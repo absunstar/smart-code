@@ -1927,32 +1927,41 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
     let indxUnit = item.size_units_list.findIndex((_unit) => _unit.id == item.main_unit.id);
     item.value_added = item.not_value_added ? 0 : $scope.defaultSettings.inventory.value_added || 0;
 
-    if (!exist && !foundHold) {
-      let obj = {
-        item_id: item.item_id,
-        kitchen: kitchenBranch,
-        name_ar: item.name_ar,
-        name_en: item.name_en,
-        store: item.store,
-        value_added: item.value_added,
-        barcode: item.barcode,
-        size_ar: item.size_ar,
-        size_en: item.size_en,
-        item_group: item.item_group,
-        add_sizes: item.add_sizes,
-        size_units_list: item.size_units_list,
-        unit: item.size_units_list[indxUnit],
-        total: item.size_units_list[indxUnit].price - item.discount.value,
-        vendor: item.vendor,
-        price: item.size_units_list[indxUnit].price,
-        discount: item.size_units_list[indxUnit].discount,
-        extras_price: 0,
-        count: 1,
-      };
-      $scope.order_invoice.items.unshift(obj);
-      $scope.calcSize($scope.order_invoice.items[0]);
-    }
-    document.querySelector('#searchBarcode input').focus();
+    $scope.getOfferActive(item.barcode, (offer_active) => {
+      if (offer_active) {
+        offer_active.size_units_list.forEach((_offerUnit) => {
+          if (_offerUnit.id === item.size_units_list[indxUnit].id) {
+            item.size_units_list[indxUnit].discount = _offerUnit.discount;
+          }
+        });
+      } else item.size_units_list[indxUnit].discount = item.size_units_list[indxUnit].discount;
+      if (!exist && !foundHold) {
+        let obj = {
+          item_id: item.item_id,
+          kitchen: kitchenBranch,
+          name_ar: item.name_ar,
+          name_en: item.name_en,
+          store: item.store,
+          value_added: item.value_added,
+          barcode: item.barcode,
+          size_ar: item.size_ar,
+          size_en: item.size_en,
+          item_group: item.item_group,
+          add_sizes: item.add_sizes,
+          size_units_list: item.size_units_list,
+          unit: item.size_units_list[indxUnit],
+          total: item.size_units_list[indxUnit].price - item.size_units_list[indxUnit].discount.value,
+          vendor: item.vendor,
+          price: item.size_units_list[indxUnit].price,
+          discount: item.size_units_list[indxUnit].discount,
+          extras_price: 0,
+          count: 1,
+        };
+        $scope.order_invoice.items.unshift(obj);
+        $scope.calcSize($scope.order_invoice.items[0]);
+      }
+      document.querySelector('#searchBarcode input').focus();
+    });
   };
 
   $scope.ChangeUnitPatch = function (itm) {

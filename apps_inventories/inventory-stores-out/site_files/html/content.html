@@ -22,16 +22,13 @@ th, td { background: #fff; padding: 8px 16px; }
 
           <i-control class="col1 r_indigo" type="text" disabled label="##word.shift##" ng-model="shift.name_##session.lang##"> </i-control>
 
-          <i-date2 class="col2" ng-model="store_out.date" label="##word.stores_out_date##"></i-date2>
-          <div class="col2">
-            <br />
-            <i-button type="add" label="##word.customers_new##" ng-click="displayAddCustomer()"> </i-button>
-            <i-button type="add" label="##word.prices_offers##" ng-click="displayPricesOffers()"> </i-button>
-          </div>
-          <div class="col6" ng-hide="store_out.type.id ==5">
+          <i-date2 class="col3" ng-model="store_out.date" label="##word.stores_out_date##"></i-date2>
+
+          <div class="col7" ng-hide="store_out.type.id ==5">
             <div class="row">
-              <i-control ng-keydown="getCustomerList($event)" id="service" class="col3" ng-model="search_customer" label="##word.search##" type="text"></i-control>
-              <i-list ng-search="_search.$customer" class="col5" display="name_##session.lang##" ng-model="store_out.customer" label="##word.customer##" items="customersList"> </i-list>
+              <div class="col1"></div>
+              <i-control ng-keydown="getCustomerList($event)" id="service" class="col2" ng-model="search_customer" label="##word.search##" type="text"></i-control>
+              <i-list ng-search="_search.$customer" class="col4" display="name_##session.lang##" ng-model="store_out.customer" label="##word.customer##" items="customersList"> </i-list>
               <div class="col4">
                 <br /><br />
 
@@ -43,6 +40,11 @@ th, td { background: #fff; padding: 8px 16px; }
                     <h3 class="bold center green">##word.debtor## : {{store_out.customer.balance_debtor || 0}}</h3>
                   </div>
                 </fieldset>
+              </div>
+              <div>
+                <br />
+                <i-button type="add" label="##word.customers_new##" ng-click="displayAddCustomer()"> </i-button>
+                <i-button type="add" label="##word.prices_offers##" ng-click="displayPricesOffers()"> </i-button>
               </div>
             </div>
           </div>

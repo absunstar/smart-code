@@ -259,6 +259,7 @@ app.controller('stores_items', function ($scope, $http, $timeout, $interval) {
               let err = response.data.error.slice(7);
               $scope.error = '##word.err_barcode_exist##' + err;
             }
+            $scope.hideAdd = true;
           }
         },
         function (err) {

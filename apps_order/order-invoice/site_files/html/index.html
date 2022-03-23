@@ -123,14 +123,26 @@
                   </div>
 
                   <div class="modal-body">
-                    <div class="item-list">
-                      <a class="item pointer" ng-repeat="s in items.sizes" ng-click="bookList(s)" help-id="menu_monitor">
+                    <div class="row">
+                      <div class="col2"></div>
+                      <div class="col8">
+                        <div class="row item-list border">
+                          <a class="item col4 pointer" ng-repeat="s in items.sizes" ng-click="bookList(s)" help-id="menu_monitor">
+                            <div class="row">
+                              <div class="col-4"><img ng-src="{{s.image_url}}" ng-src2="/images/food.png" /></div>
+                              <div class="col-8"><p class="center">{{s.size_##session.lang##}}</p></div>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                      <div class="col2"></div>
+                      <!-- <a class="item pointer" ng-repeat="s in items.sizes" ng-click="bookList(s)" help-id="menu_monitor">
                         <img ng-src="{{s.image_url}}" onerror="this.src='/images/no.png'" />
-                        <!-- <h3> ##word.price## : {{s.price}}</h3> -->
+                         <h3> ##word.price## : {{s.price}}</h3>
                         <div class="bg_font_item">
                           <h3 class="center font_name_items">{{s.size_##session.lang##}}</h3>
                         </div>
-                      </a>
+                      </a> -->
                     </div>
                   </div>
 
