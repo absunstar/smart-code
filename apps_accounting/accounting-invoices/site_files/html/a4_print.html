@@ -77,7 +77,7 @@
         </td>
       </tr>
 
-      <tr>
+      <tr ng-show="defaultSettings.printer_program.Print_written_amount">
         <td class="title font-12" colspan="2">
           <b class="black"> المبلغ كتابيا / Amount in writing : </b>
            <p ng-show="'##session.lang##' == 'ar'" class="num_str bold center black">{{account_invoices.net_txt}} {{defaultSettings.accounting.end_num_to_str || ''}}</p>

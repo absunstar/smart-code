@@ -163,40 +163,40 @@
 
                                 <tr ng-show="account_invoices.price_hour > 0">
                                     <td class="title"> ##word.price_hour## </td>
-                                    <td class="center"> {{account_invoices.price_hour}} </td>
+                                    <td class="center"> {{account_invoices.price_hour | xmoney}} </td>
                                 </tr>
 
                                 <tr ng-show="account_invoices.price_day > 0">
                                     <td class="title"> ##word.price_day## </td>
-                                    <td class="center"> {{account_invoices.price_day}} </td>
+                                    <td class="center"> {{account_invoices.price_day | xmoney}} </td>
                                 </tr>
 
                                 <tr ng-show="account_invoices.price_day > 0">
                                     <td class="title"> ##word.price_day## </td>
-                                    <td class="center"> {{account_invoices.price_day}} </td>
+                                    <td class="center"> {{account_invoices.price_day | xmoney}} </td>
                                 </tr>
 
                                 <tr ng-show="account_invoices.price_delivery_service > 0">
                                     <td class="title"> ##word.price_delivery_service## </td>
-                                    <td class="center"> {{account_invoices.price_delivery_service}} </td>
+                                    <td class="center"> {{account_invoices.price_delivery_service | xmoney}} </td>
                                 </tr>
                                 <tr ng-show="account_invoices.services_price">
                                     <td class="title">##word.services_price##</td>
-                                    <td class="center">{{account_invoices.services_price}}</td>
+                                    <td class="center">{{account_invoices.services_price | xmoney}}</td>
                                 </tr>
 
                                 <tr ng-show="account_invoices.total_discount > 0">
                                     <td class="title"> ##word.stores_out_total_discount## </td>
-                                    <td class="center"> {{account_invoices.total_discount}} </td>
+                                    <td class="center"> {{account_invoices.total_discount | xmoney}} </td>
                                 </tr>
                                 <tr ng-show="account_invoices.total_tax > 0">
                                     <td class="title"> ##word.stores_out_total_tax## </td>
-                                    <td class="center"> {{account_invoices.total_tax}} </td>
+                                    <td class="center"> {{account_invoices.total_tax  | xmoney}} </td>
                                 </tr>
 
                                 <tr ng-show="account_invoices.net_value">
                                     <td class="title"> ##word.net_value## </td>
-                                    <td class="center green"> {{account_invoices.net_value}} </td>
+                                    <td class="center green"> {{account_invoices.net_value  | xmoney}} </td>
                                 </tr>
 
                                 <tr ng-show="##query.type## == 14 || ##query.type## == 16">
@@ -271,10 +271,10 @@
                                     <td class="center userPrint">{{c.barcode}}</td>
                                     <td class="center blue">{{c.count}}</td>
                                     <td class="center">
-                                        <p ng-show="account_invoices.source_type.id ==2 || account_invoices.source_type.id ==3 || account_invoices.source_type.id ==8">{{c.b_price}}</p>
-                                        <p ng-show="account_invoices.source_type.id ==1">{{c.b_cost}}</p>
+                                        <p ng-show="account_invoices.source_type.id ==2 || account_invoices.source_type.id ==3 || account_invoices.source_type.id ==8">{{c.b_price | xmoney}}</p>
+                                        <p ng-show="account_invoices.source_type.id ==1">{{c.b_cost | xmoney}}</p>
                                         <del class="red txt16" ng-show="c.discount.value > 0">
-                                            {{c.discount.current}}
+                                            {{c.discount.current | xmoney}}
                                           </del>
                                     </td>
                                     <td class="center red">{{c.total_v_a | xmoney}}</td>

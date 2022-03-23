@@ -292,7 +292,7 @@
               <p class="txt18 bold black">{{st_o.net_value | xmoney}}</p>
             </div>
           </div>
-          <div class="row">
+          <div class="row" ng-show="defaultSettings.printer_program.Print_written_amount">
             <div class="col1"></div>
             <p ng-show="'##session.lang##' == 'ar'" class="num_str bold center black">{{st_o.net_txt}} {{defaultSettings.accounting.end_num_to_str || ''}}</p>
             <p ng-show="'##session.lang##' == 'en'" class="num_str bold center black">{{st_o.net_txt}} {{defaultSettings.accounting.end_num_to_str_en || ''}}</p>

@@ -119,15 +119,15 @@
                             {{c.order_invoices_type.##session.lang##}}
                         </td>
                         <td ng-click="displayDetailsAccountInvoices(c) " class="bold" ng-hide="##query.type## == 16">
-                            {{c.net_value}}
+                            {{c.net_value  | xmoney}}
                         </td>
                         <td ng-click="displayDetailsAccountInvoices(c)"
                             ng-hide="##query.type## == 8 || ##query.type## == 9" class="bold green">
-                            {{c.total_paid_up}}
+                            {{c.total_paid_up  | xmoney}}
                         </td>
                         <td ng-click="displayDetailsAccountInvoices(c)" class="bold red"
                             ng-hide="##query.type## == 16|| ##query.type## == 8 ||##query.type## == 9 || ##query.type## == 10  || ##query.type## == 11">
-                            {{c.remain_amount}}
+                            {{c.remain_amount  | xmoney}}
                         </td>
                         <td class="center not-print">
 

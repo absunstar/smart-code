@@ -145,6 +145,11 @@
         "ar": "طباعة حرارية أوتوماتيك"
     },
     {
+        "name": "Print_written_amount",
+        "en": "Print the written amount",
+        "ar": "طباعة المبلغ مكتوب"
+    },
+    {
         "name": "auto_thermal_print_order_screen",
         "en": "Automatic thermal printing For Order Screen",
         "ar": "طباعة حرارية أوتوماتيك لشاشة الطلبات"
@@ -152,12 +157,12 @@
     {
         "name": "print_simplified_tax_invoice_sentence",
         "en": "Print a simplified tax invoice sentence",
-        "ar": "إظهار جملة فاتورة ضريبية مبسطة"
+        "ar": "طباعة جملة فاتورة ضريبية مبسطة"
     },
     {
         "name": "print_simplified_invoice_sentence",
         "en": "Print a simplified invoice sentence",
-        "ar": "إظهار جملة فاتورة مبسطة"
+        "ar": "طباعة جملة فاتورة مبسطة"
     },
     {
         "name": "exam_header",

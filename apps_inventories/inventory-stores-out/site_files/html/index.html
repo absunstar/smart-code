@@ -98,13 +98,13 @@
               <td x-permissions="stores_out_details_values || stores_out_manage">
                 <p class="bold text-center">
                   <br />
-                  {{c.total_value}}
+                  {{c.total_value  | xmoney}}
                 </p>
               </td>
               <td x-permissions="stores_out_details_values || stores_out_manage">
                 <p class="bold text-center green">
                   <br />
-                  {{c.net_value}}
+                  {{c.net_value  | xmoney}}
                 </p>
               </td>
               <td ng-show="##query.type## == 6">
