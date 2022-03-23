@@ -115,9 +115,19 @@
         "ar": "طابعة A4"
     },
     {
+        "name": "pdf_printer",
+        "en": "PDF printer",
+        "ar": "طابعة PDF"
+    },
+    {
         "name": "a4_printer_must_select",
         "en": "You must select the name of the A4 printer from the settings",
         "ar": "يجد تحديد الطابعة A4 من الإعدادات"
+    },
+    {
+        "name": "pdf_printer_must_select",
+        "en": "You must select the name of the PDF printer from the settings",
+        "ar": "يجد تحديد الطابعة PDF من الإعدادات"
     },
     {
         "name": "thermal_printer_must_select",

@@ -12,8 +12,9 @@
     </div>
     <h2 class="bold red text-center">{{error}}</h2>
     <div class="modal-footer center">
-      <i-button type="print" x-permissions="stores_in_print || stores_in_manage" label="##word.print##" ng-click="print()"></i-button>
+      <i-button type="print" x-permissions="stores_in_print || stores_in_manage" label="##word.print##" ng-click="print('a4')"></i-button>
       <i-button x-permissions="stores_in_print || stores_in_manage" label="##word.thermal_print##" ng-click="thermalPrint(store_in)"></i-button>
+      <i-button type="print" x-permissions="stores_in_print || stores_in_manage" label="##word.pdf_print##" ng-click="print('pdf')"></i-button>
       <i-button type="close" label="##word.close##" onclick="site.hideModal('#viewStoreInModal')"></i-button>
     </div>
   </div>

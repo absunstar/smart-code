@@ -2153,11 +2153,10 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
     }, 8000);
   };
 
-  $scope.print = function () {
+  $scope.print = function (type) {
     $scope.error = '';
     if ($scope.busy) return;
     $scope.busy = true;
-    if ($scope.defaultSettings.printer_program.a4_printer) {
       $('#storeOutDetails').removeClass('hidden');
 
     
@@ -2244,14 +2243,30 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
               site.qrcode({ width: 150, height: 150, selector: document.querySelectorAll('.qrcode-a4')[$scope.invList.length - 1], text: qrString });
             }
 
-
-
           }
         }
-        let printerName = $scope.defaultSettings.printer_program.a4_printer.ip.name.trim();
+        let printerName = '';
+        if (type == 'a4') {
+          if($scope.defaultSettings.printer_program.a4_printer){
+
+            printerName = $scope.defaultSettings.printer_program.a4_printer.ip.name.trim();
+          } else {
+          $scope.error = '##word.a4_printer_must_select##';
+          return;
+        }
         if ($scope.user.a4_printer && $scope.user.a4_printer.id) {
           printerName = $scope.user.a4_printer.ip.name.trim();
         }
+      } else if(type === 'pdf'){
+          if($scope.defaultSettings.printer_program.pdf_printer){
+
+            printerName = $scope.defaultSettings.printer_program.pdf_printer.ip.name.trim();
+          } else {
+          $scope.error = '##word.pdf_printer_must_select##';
+          return;
+        }
+      }
+
         $timeout(() => {
           site.print({
             selector: '#storeOutDetails',
@@ -2264,9 +2279,7 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
       };
 
       $scope.localPrint();
-    } else {
-      $scope.error = '##word.a4_printer_must_select##';
-    }
+   
     $scope.busy = false;
     $timeout(() => {
       $('#storeOutDetails').addClass('hidden');

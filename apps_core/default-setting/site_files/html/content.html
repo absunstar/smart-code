@@ -214,6 +214,16 @@
                 </i-list>
 
                 <i-list
+                ng-search="_search.$printers_path"
+                class="col3"
+                display="name_##session.lang##"
+                ng-model="default_setting.printer_program.pdf_printer"
+                label="##word.pdf_printer##"
+                items="printersPathList"
+              >
+              </i-list>
+
+                <i-list
                   ng-search="_search.$printers_path"
                   class="col3"
                   display="name_##session.lang##"

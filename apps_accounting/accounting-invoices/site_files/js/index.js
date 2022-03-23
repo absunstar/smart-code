@@ -1547,11 +1547,10 @@ app.controller('account_invoices', function ($scope, $http, $timeout) {
     $scope.busy = false;
   };
 
-  $scope.print = function () {
+  $scope.print = function (type) {
     $scope.error = '';
     if ($scope.busy) return;
     $scope.busy = true;
-    if ($scope.defaultSettings.printer_program.a4_printer) {
       $('#accountInvoiceDetails').removeClass('hidden');
 
       if ($scope.account_invoices.currency) {
@@ -1565,11 +1564,28 @@ app.controller('account_invoices', function ($scope, $http, $timeout) {
         };
         $scope.account_invoices.net_txt = site.stringfiy($scope.account_invoices.total_paid_up);
       }
+      let printerName = '';
+      if (type == 'a4') {
+        if($scope.defaultSettings.printer_program.a4_printer){
 
-      let printerName = $scope.defaultSettings.printer_program.a4_printer.ip.name.trim();
+          printerName = $scope.defaultSettings.printer_program.a4_printer.ip.name.trim();
+        } else {
+        $scope.error = '##word.a4_printer_must_select##';
+        return;
+      }
       if ($scope.user.a4_printer && $scope.user.a4_printer.id) {
         printerName = $scope.user.a4_printer.ip.name.trim();
       }
+    } else if(type === 'pdf'){
+        if($scope.defaultSettings.printer_program.pdf_printer){
+
+          printerName = $scope.defaultSettings.printer_program.pdf_printer.ip.name.trim();
+        } else {
+        $scope.error = '##word.pdf_printer_must_select##';
+        return;
+      }
+    }
+     
       $timeout(() => {
         site.print({
           selector: '#accountInvoiceDetails',
@@ -1579,9 +1595,7 @@ app.controller('account_invoices', function ($scope, $http, $timeout) {
           printer: printerName,
         });
       }, 500);
-    } else {
-      $scope.error = '##word.a4_printer_must_select##';
-    }
+  
     $scope.busy = false;
     $timeout(() => {
       $('#accountInvoiceDetails').addClass('hidden');
