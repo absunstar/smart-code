@@ -29,20 +29,15 @@ th, td { background: #fff; padding: 8px 16px; }
               <div class="col1"></div>
               <i-control ng-keydown="getCustomerList($event)" id="service" class="col2" ng-model="search_customer" label="##word.search##" type="text"></i-control>
               <i-list ng-search="_search.$customer" class="col4" display="name_##session.lang##" ng-model="store_out.customer" label="##word.customer##" items="customersList"> </i-list>
-              <div class="col4">
-                <br /><br />
-
+              <div class="col2">
+                <br />
+                <br />
                 <fieldset class="row" ng-show="store_out.customer.id">
-                  <div class="col6 center">
                     <h3 class="bold center red">##word.creditor## : {{store_out.customer.balance_creditor || 0}}</h3>
-                  </div>
-                  <div class="col6">
                     <h3 class="bold center green">##word.debtor## : {{store_out.customer.balance_debtor || 0}}</h3>
-                  </div>
                 </fieldset>
               </div>
-              <div>
-                <br />
+              <div class="col2">
                 <i-button type="add" label="##word.customers_new##" ng-click="displayAddCustomer()"> </i-button>
                 <i-button type="add" label="##word.prices_offers##" ng-click="displayPricesOffers()"> </i-button>
               </div>
@@ -348,7 +343,7 @@ th, td { background: #fff; padding: 8px 16px; }
         </div>
       </div>
       <div class="row">
-        <div class="col9">
+        <div class="col8">
           <fieldset ng-repeat="inv in store_out.invoices_list" ng-show="store_out.type.id != 5 && defaultSettings.accounting.create_invoice_auto">
             <legend>
               <i-button type="add default" ng-click="pushAccountInvoice()"></i-button>
@@ -395,10 +390,10 @@ th, td { background: #fff; padding: 8px 16px; }
             <i-textarea class="col9" label="##word.stores_out_notes##" ng-model="store_out.notes"></i-textarea>
           </div>
         </div>
-        <div class="col3" ng-show="store_out.type.id != 5">
+        <div class="col4" ng-show="store_out.type.id != 5">
           <div class="row">
-            <br /><br />
             <div class="col8">
+              <br>
               <fieldset ng-show="store_out.net_value">
                 <div class="col6">
                   <h3 class="center bold">##word.paid_require##</h3>
