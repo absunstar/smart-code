@@ -17,6 +17,16 @@
     <br />
 
     <div class="row">
+
+      <i-list
+        class="col2"
+        ng-model="store_offer.offer_type"
+        items="offerTypes"
+        display="##session.lang##"
+        ng-search="_search.$search_offer_type"
+        label="##word.offer_type##">
+      </i-list>
+
       <i-control type="number" label="##word.offer_value##" v="r" class="col2" ng-change="calc()" ng-model="store_offer.offer_value.value"></i-control>
 
       <div class="col3">
@@ -71,7 +81,9 @@
                 </tr>
 
                 <tr ng-repeat="i in itm.size_units_list">
-                  <td>{{i.name_##session.lang##}} <b ng-show="i.barcode"> - </b> <b class="blue">{{i.barcode}}</b></td>
+                  <td>{{i.name_##session.lang##}} 
+                    <p class="blue">{{i.barcode}}</p>
+                  </td>
 
                   <td>
                     <div class="row center">

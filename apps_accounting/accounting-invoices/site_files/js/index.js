@@ -446,7 +446,8 @@ app.controller('account_invoices', function ($scope, $http, $timeout) {
               ar: ' ' + $scope.account_invoices.currency.minor_currency_ar + ' ',
               en: ' ' + $scope.account_invoices.currency.minor_currency_en + ' ',
             };
-            $scope.account_invoices.net_txt = site.stringfiy($scope.account_invoices.net_value);
+
+            $scope.account_invoices.net_txt = site.stringfiy($scope.account_invoices.net_value,'##session.lang##');
           }
         } else {
           $scope.error = response.data.error;

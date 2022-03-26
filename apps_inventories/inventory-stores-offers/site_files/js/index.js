@@ -15,7 +15,6 @@ app.controller("stores_offer", function ($scope, $http, $timeout) {
   $scope.deleteitem = function (itm) {
     $scope.error = '';
     $scope.item.sizes.splice($scope.item.sizes.indexOf(itm), 1);
-
   };
 
   $scope.newStoreOffer = function () {
@@ -32,8 +31,8 @@ app.controller("stores_offer", function ($scope, $http, $timeout) {
             value: 0,
             max: 0,
             type: 'percent',
-
           },
+          offer_type: $scope.offerTypes[1],
           items: [],
           startup_date: new Date(),
         };
@@ -624,6 +623,25 @@ app.controller("stores_offer", function ($scope, $http, $timeout) {
     }
   };
 
+  $scope.loadOfferTypes = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: 'POST',
+      url: '/api/stores_offer/offer_types/all',
+      data: {},
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.offerTypes = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.loadCategories = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -778,5 +796,6 @@ app.controller("stores_offer", function ($scope, $http, $timeout) {
   $scope.getNumberingAuto();
   $scope.loadCategories();
   $scope.getDefaultSettings();
+  $scope.loadOfferTypes();
   $scope.loadAll();
 });

@@ -56,7 +56,7 @@
                         <th>##word.stores_offer_id##</th>
                         <th>##word.startup_date##</th>
                         <th>##word.deadline_date##</th>
-                        <th>##word.offer_value##</th>
+                        <th>##word.offer_type##</th>
                         <th>##word.status##</th>
                         <th class="not-print">##word.actions##</th>
                     </tr>
@@ -78,12 +78,13 @@
                         </td>
 
                         <td>
-                            <p class="text-center red">
+                            <p>{{c.offer_type.##session.lang##}}</p>
+                            <!-- <p class="text-center red">
 
                                 <b class="red" ng-show="c.offer_value.type == 'number'">
                                     {{c.offer_value.value}} $</b>
                                 <b class="red" ng-show="c.offer_value.type == 'percent'"> {{c.offer_value.value}} % </b>
-                            </p>
+                            </p> -->
                         </td>
 
                         <td class="center">

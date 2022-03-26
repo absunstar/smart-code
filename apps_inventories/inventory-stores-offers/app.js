@@ -2,6 +2,23 @@ module.exports = function init(site) {
 
   const $stores_offer = site.connectCollection("stores_offer")
 
+  site.get({
+    name: "stores_offer",
+    path: __dirname + "/site_files/html/index.html",
+    parser: "html",
+    compress: false
+  })
+
+  site.get({
+    name: 'images',
+    path: __dirname + '/site_files/images/'
+  })
+
+  site.post({
+    name: '/api/stores_offer/offer_types/all',
+    path: __dirname + '/site_files/json/offer_types.json'
+  })
+
   site.on('[stores_items][item_name][change]', objectStock => {
 
     let barcode = objectStock.sizes_list.map(_obj => _obj.barcode)
@@ -23,18 +40,6 @@ module.exports = function init(site) {
     });
   });
 
-
-  site.get({
-    name: "stores_offer",
-    path: __dirname + "/site_files/html/index.html",
-    parser: "html",
-    compress: false
-  })
-
-  site.get({
-    name: 'images',
-    path: __dirname + '/site_files/images/'
-  })
 
   site.post("/api/stores_offer/add", (req, res) => {
     let response = {}
@@ -419,13 +424,12 @@ module.exports = function init(site) {
     }, (err, doc) => {
       if (!err && doc) {
         response.done = true
-        let item = {}
+        let obj = {offer_type : doc.offer_type};
         doc.items.forEach(_itm => {
-
-          if (_itm.barcode == barcode) item = _itm
+          if (_itm.barcode == barcode) obj.item = _itm
         });
 
-        response.doc = item
+        response.doc = obj
       } else {
         response.error = err
       }

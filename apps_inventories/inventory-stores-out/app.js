@@ -672,6 +672,10 @@ module.exports = function init(site) {
     if (search) {
       where.$or = [];
       where.$or.push({
+        'code': search,
+      });   
+
+      where.$or.push({
         'customer.name_ar': site.get_RegExp(search, 'i'),
       });
 
@@ -693,10 +697,6 @@ module.exports = function init(site) {
 
       where.$or.push({
         'customer.email': site.get_RegExp(search, 'i'),
-      });
-
-      where.$or.push({
-        'store.code': site.get_RegExp(search, 'i'),
       });
 
       where.$or.push({
@@ -871,7 +871,7 @@ module.exports = function init(site) {
     if (req.session.user && req.session.user.type === 'delegate') {
       where['delegate.id'] = req.session.user.ref_info.id;
     }
-
+    console.log(where);
     $stores_out.findMany(
       {
         select: req.body.select || {},

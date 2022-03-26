@@ -1012,8 +1012,8 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
                       _size.store = $scope.store_out.store;
                       _size.unit = _size.size_units_list[indxUnit];
                       $scope.getOfferActive(_size.barcode, (offer_active) => {
-                        if (offer_active) {
-                          offer_active.size_units_list.forEach((_offerUnit) => {
+                        if (offer_active && offer_active.offer_type.id === 2) {
+                          offer_active.item.size_units_list.forEach((_offerUnit) => {
                             if (_offerUnit.id === _size.unit.id) {
                               _size.discount = _offerUnit.discount;
                             }
@@ -1158,8 +1158,8 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
           _item.price = _item.size_units_list[indxUnit].price;
           _item.cost = _item.size_units_list[indxUnit].cost;
           $scope.getOfferActive(_item.barcode, (offer_active) => {
-            if (offer_active) {
-              offer_active.size_units_list.forEach((_offerUnit) => {
+            if (offer_active && offer_active.offer_type.id === 2) {
+              offer_active.item.size_units_list.forEach((_offerUnit) => {
                 if (_offerUnit.id === _item.unit.id) {
                   _item.discount = _offerUnit.discount;
                 }
@@ -1277,8 +1277,8 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
                     _size.unit = _size.size_units_list[indxUnit];
 
                     $scope.getOfferActive(_size.barcode, (offer_active) => {
-                      if (offer_active) {
-                        offer_active.size_units_list.forEach((_offerUnit) => {
+                      if (offer_active && offer_active.offer_type.id === 2) {
+                        offer_active.item.size_units_list.forEach((_offerUnit) => {
                           if (_offerUnit.id === _size.unit.id) {
                             _size.discount = _offerUnit.discount;
                           }
@@ -2335,8 +2335,8 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
     itm.average_cost = itm.unit.average_cost;
 
     $scope.getOfferActive(itm.barcode, (offer_active) => {
-      if (offer_active) {
-        offer_active.size_units_list.forEach((_offerUnit) => {
+      if (offer_active && offer_active.offer_type.id === 2) {
+        offer_active.item.size_units_list.forEach((_offerUnit) => {
           if (_offerUnit.id === itm.unit.id) {
             itm.discount = _offerUnit.discount;
           }
@@ -3273,7 +3273,6 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
     }).then(
       function (response) {
         $scope.busy = false;
-        console.log(response.data.doc);
         if (response.data.done && response.data.doc) {
           callback(response.data.doc);
         } else {

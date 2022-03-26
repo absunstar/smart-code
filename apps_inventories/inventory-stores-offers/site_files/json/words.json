@@ -35,6 +35,7 @@
     {"name" : "permission_detailes" , "en" : "Permission Detailes" , "ar" : "تفاصيل الإذن"},
     {"name" : "must_enter_quantity" , "en" : "Must Enter Quantity" , "ar" : "يجب إدخال الكمية"},
 
+    {"name" : "offer_type" , "en" : "Offer type" , "ar" : "نوع العرض"},
     {"name" : "stores_offer_safe" , "en" : "Safe Number" , "ar" : "  الخزينة "},
     {"name" : "stores_offer_no_safe" , "en" : "No Safe" , "ar" : "  لا يوجد خزينة "},
     {"name" : "nosafe_warning" , "en" : "You should choose a Safe" , "ar" : "  يرجى التأكد من اختيار الخزينة"},

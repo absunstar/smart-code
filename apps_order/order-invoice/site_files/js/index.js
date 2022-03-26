@@ -1928,8 +1928,8 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
     item.value_added = item.not_value_added ? 0 : $scope.defaultSettings.inventory.value_added || 0;
 
     $scope.getOfferActive(item.barcode, (offer_active) => {
-      if (offer_active) {
-        offer_active.size_units_list.forEach((_offerUnit) => {
+      if (offer_active && offer_active.offer_type.id === 2) {
+        offer_active.item.size_units_list.forEach((_offerUnit) => {
           if (_offerUnit.id === item.size_units_list[indxUnit].id) {
             item.size_units_list[indxUnit].discount = _offerUnit.discount;
           }
@@ -1970,8 +1970,8 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
     itm.average_cost = itm.unit.average_cost;
 
     $scope.getOfferActive(itm.barcode, (offer_active) => {
-      if (offer_active) {
-        offer_active.size_units_list.forEach((_offerUnit) => {
+      if (offer_active && offer_active.offer_type.id === 2) {
+        offer_active.item.size_units_list.forEach((_offerUnit) => {
           if (_offerUnit.id === itm.unit.id) {
             itm.discount = _offerUnit.discount;
           }

@@ -807,7 +807,7 @@ module.exports = function init(site) {
       })
 
       where.$or.push({
-        'store.code': site.get_RegExp(search, "i")
+        'code': search
       })
 
       where.$or.push({
