@@ -31,12 +31,12 @@
             <h1 class="bold text-center">##word.stores_items##</h1>
           </div>
           <div class="modal-footer center"></div>
-          <div class="top-actions">
+          <div class="top-actions">  
             <p class="center bold blue">{{dbMessage}}</p>
             <i-button x-permissions="stores_items_add || stores_items_manage" type="add" label="##word.stores_items_new##" ng-click="newCategoryItem()"></i-button>
 
             <i-button x-permissions="stores_items_search || stores_items_manage" type="search" label="##word.search_all##" onclick="site.showModal('#CategoryItemSearchModal')"></i-button>
-            <i-button id="btn_import" x-feature="host.test" label="نقل الأصناف" ng-click="importItemsFile()"> </i-button>
+            <i-button id="btn_import" x-permissions="developer" label="نقل الأصناف" ng-click="importItemsFile()"> </i-button>
             <!-- <i-button label="تهيئة الشركة" ng-click="handelCompany()"> </i-button> -->
 
             <!--     <i-button class="left" label="إعادة تهيئة الأصناف"
