@@ -1582,6 +1582,7 @@ module.exports = function init(site) {
                                                 name_en: itemUnit.name_en,
                                                 convert: 1,
                                                 start_count: 0,
+                                                current_count: 0,
                                                 cost: 0,
                                                 price: _oldDoc.price,
                                                 average_cost: 0,
