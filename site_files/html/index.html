@@ -8,6 +8,12 @@
         width: 300px;
       }
 
+      .logo_ttl {
+    border-radius: 15px;
+    height: 550px;
+    width: 700px;
+}
+
       .logo_pro {
         border-radius: 15px;
         height: 200px;
@@ -240,6 +246,12 @@
           </div>
         </div>
 
+        <div class="row ttl hidden">
+          <div class="center ttl">
+            <img class="logo_ttl" ng-src="/images/ttl_logo.png" />
+          </div>
+        </div>
+
         <div class="row qelada hidden">
           <div class="center qelada">
             <img class="img_qelada" ng-src="/images/qelada.png" />
@@ -252,8 +264,6 @@
           </div>
         </div>
 
-        <br />
-        <br />
       </div>
 
       <!--   <div class="footer" x-features="!login && !site.dynamic">
@@ -333,7 +343,7 @@
 
       <div id="posts" class="center"></div>
 
-      <div class="price-info hidden" x-features="!host.ft && !host.elfgr && !host.qelada && !host.ethraa && !host.free && !host.inout && !host.valley && !protouch && !host.mt">
+      <div class="price-info hidden" x-features="!host.ft && !host.elfgr && !host.qelada && !host.ethraa && !host.free && !host.inout && !host.valley && !protouch  && !ttl && !host.mt">
         <div class="row padding">
           <table class="table hover">
             <tr>
@@ -531,6 +541,20 @@
           </h2>
         </div>
 
+        <div class="row ttl hidden">
+          <h2 class="center">
+            <span>
+              <h2 class="center bold green" style="text-shadow: 3px 3px #b3b3ff; font-size: xxx-large">TTL</h2>
+              <br />
+              <a href="tel:+201010070770"> +201010070770 <i class="fa fa-whatsapp" aria-hidden="true"></i> </a> <br />
+              <a href="mailto:sales@ttl-eg.com"> sales@ttl-eg.com <i class="fa fa-envelope" aria-hidden="true"></i> </a> <br />
+              <a href="https://ttl-eg.com" target="_blank"> /ttl-eg.com <i class="fa fa-globe" aria-hidden="true"></i> </a>
+              <br />
+              <br />
+            </span>
+          </h2>
+        </div>
+
         <div class="row unqcode hidden">
           <h2 class="center">
             <span>
@@ -678,6 +702,9 @@
       let busy = false;
       if (window.protouch) {
         $('.protouch').removeClass('hidden');
+        $('.price-info').removeClass('hidden');
+      } else if (window.ttl) {
+        $('.ttl').removeClass('hidden');
         $('.price-info').removeClass('hidden');
       } else if ('##req.headers.host##'.like('*inout*')) {
         $('.inout').removeClass('hidden');

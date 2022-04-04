@@ -2110,8 +2110,8 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
   $scope.calcSize = function (_size) {
     $scope.error = '';
     $timeout(() => {
-      if (!_size.count) _size.count = 0;
-      if (!_size.price) _size.price = 0;
+     /*  if (!_size.count) _size.count = 0;
+      if (!_size.price) _size.price = 0; */
 
       if (_size.discount.type == 'number') {
         _size.discount.current = _size.discount.value;
