@@ -1514,10 +1514,10 @@ module.exports = function init(site) {
                 setTimeout(() => {
                     oldDocs.forEach((_oldDoc, i) => {
                         let itemGroup = itemsGroupList.find((g) => {
-                            return g.name_ar === _oldDoc.category_name_ar.trim();
+                            return g.name_ar === _oldDoc.category_name_ar;
                         });
                         let itemUnit = unitsList.find((u) => {
-                            return u.name_ar === _oldDoc.unit.trim();
+                            return u.name_ar === _oldDoc.unit;
                         });
 
                         $stores_items.add(
