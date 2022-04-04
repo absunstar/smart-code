@@ -1461,14 +1461,14 @@ module.exports = function init(site) {
                 });
 
                 oldDocs.forEach((_oldDoc) => {
-                    let unitExists = unitsList.some((u) => u.name_ar === _oldDoc.unit.trim());
+                    let unitExists = unitsList.some((u) => u.name_ar === _oldDoc.unit);
                     if (!unitExists) {
-                        unitsList.push({ name_en: _oldDoc.unit.trim(), name_ar: _oldDoc.unit.trim() });
+                        unitsList.push({ name_en: _oldDoc.unit, name_ar: _oldDoc.unit });
                     }
 
-                    let groupExists = itemsGroupList.some((g) => g.name_ar === _oldDoc.category_name_ar.trim());
+                    let groupExists = itemsGroupList.some((g) => g.name_ar === _oldDoc.category_name_ar);
                     if (!groupExists) {
-                        itemsGroupList.push({ name_en: _oldDoc.category_name_en.trim(), name_ar: _oldDoc.category_name_ar.trim() });
+                        itemsGroupList.push({ name_en: _oldDoc.category_name_en, name_ar: _oldDoc.category_name_ar });
                     }
                 });
 
