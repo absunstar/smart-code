@@ -214,7 +214,7 @@ app.controller("items_group", function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/items_group/handel_company"
+      url: "/api/items_group/general_company"
     }).then(
       function (response) {
         $scope.busy = false;

@@ -871,7 +871,6 @@ module.exports = function init(site) {
     if (req.session.user && req.session.user.type === 'delegate') {
       where['delegate.id'] = req.session.user.ref_info.id;
     }
-    console.log(where);
     $stores_out.findMany(
       {
         select: req.body.select || {},

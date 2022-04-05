@@ -421,7 +421,6 @@ module.exports = function init(site) {
 
     };
 
-    console.log("11111111111111111111");
     if (whereObj.date) {
       let d1 = site.toDate(whereObj.date);
       let d2 = site.toDate(whereObj.date);

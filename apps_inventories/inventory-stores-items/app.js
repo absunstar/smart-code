@@ -1378,7 +1378,7 @@ module.exports = function init(site) {
         );
     });
 
-    site.post('/api/stores_items/handel_company', (req, res) => {
+    site.post('/api/stores_items/general_company', (req, res) => {
         let response = {
             done: false,
         };
@@ -1398,13 +1398,9 @@ module.exports = function init(site) {
             (err, docs) => {
                 if (!err) {
                     response.done = true;
-
                     docs.forEach((_docs) => {
                         _docs.company = company;
                         _docs.branch = branch;
-                        _docs.sizes.forEach((_size) => {
-                            _size.branches_list = [];
-                        });
                         $stores_items.update(_docs);
                     });
                 } else {

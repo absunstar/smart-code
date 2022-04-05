@@ -232,7 +232,7 @@ app.controller("units", function ($scope, $http, $timeout) {
     $scope.search = {};
   };
 
-  $scope.handelCompany = function () {
+/*   $scope.handelCompany = function () {
     $scope.error = '';
     $scope.busy = true;
     $http({
@@ -249,7 +249,7 @@ app.controller("units", function ($scope, $http, $timeout) {
         $scope.error = err;
       }
     )
-  };
+  }; */
 
   $scope.getUnitList();
   $scope.getNumberingAuto();

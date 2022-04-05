@@ -318,7 +318,6 @@ module.exports = function init(site) {
     if (req.body.page || (parseInt(req.body.page) && parseInt(req.body.page) > 1)) {
       skip = (parseInt(req.body.page) - 1) * 10
     }
-    console.log(where);
     $analysis.findMany({
         select: req.body.select || {},
         where: where,

@@ -246,7 +246,7 @@ module.exports = function init(site) {
   })
 
 
-  site.post('/api/units/handel_company', (req, res) => {
+  site.post('/api/units/general_company', (req, res) => {
     let response = {
       done: false,
     };

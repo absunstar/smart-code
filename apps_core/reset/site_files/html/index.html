@@ -24,7 +24,7 @@
                 <h1 class="bold blue text-center">{{length_posting}}</h1>
                 <h1 class="bold green text-center">{{done_posting}}</h1>
             </div>
-            <br><br><br>
+            <br><br>
 
             <div class="row">
 
@@ -39,7 +39,31 @@
                                 ng-click="resetItems();reset_stores_items = true ">
                             </i-button>
                         </div>
-                        <br><br><br>
+                        <br><br>
+
+                        <div class="row" ng-hide="Genera_company_in_items">
+
+                            <i-button x-permissions="reset_stores_i || reset_manage" label="##word.Genera_company_in_items##"
+                                ng-click="generalCompanyItems();Genera_company_in_items = true ">
+                            </i-button>
+                        </div>
+                        <br><br>
+
+                        <div class="row" ng-hide="Genera_company_in_itemsGroups">
+
+                            <i-button x-permissions="reset_stores_i || reset_manage" label="##word.Genera_company_in_itemsGroups##"
+                                ng-click="generalCompanyItemsGroups();Genera_company_in_itemsGroups = true ">
+                            </i-button>
+                        </div>
+                        <br><br>
+
+                        <div class="row" ng-hide="Genera_company_in_units">
+
+                            <i-button x-permissions="reset_stores_i || reset_manage" label="##word.Genera_company_in_units##"
+                                ng-click="generalCompanyUnits();Genera_company_in_units = true ">
+                            </i-button>
+                        </div>
+                        <br><br>
 
                         <div class="row" ng-hide="reset_unpost_store_in">
 
@@ -48,7 +72,7 @@
                                 ng-click="unPostStoreIn();reset_unpost_store_in = true ">
                             </i-button>
                         </div>
-                        <br><br><br>
+                        <br><br>
 
                         <div class="row" ng-hide="reset_unpost_store_out">
 
@@ -57,7 +81,7 @@
                                 ng-click="unPostStoreOut();reset_unpost_store_out = true ">
                             </i-button>
                         </div>
-                        <br><br><br>
+                        <br><br>
 
                         <div class="row" ng-hide="reset_unpost_assemble">
 
@@ -66,7 +90,7 @@
                                 ng-click="unPostAssemble();reset_unpost_assemble = true ">
                             </i-button>
                         </div>
-                        <br><br><br>
+                        <br><br>
 
                         <div class="row" ng-hide="reset_unpost_store_transfer">
                             <i-button x-permissions="reset_unpost_store_transfer || reset_manage"
@@ -74,7 +98,7 @@
                                 ng-click="unPostStoreTransfer();reset_unpost_store_transfer = true ">
                             </i-button>
                         </div>
-                        <br><br><br>
+                        <br><br>
 
                         <div class="row" ng-hide="reset_stores_stock">
 
@@ -83,7 +107,7 @@
                                 ng-click="unPostStoreStock();reset_stores_stock = true">
                             </i-button>
                         </div>
-                        <br><br><br>
+                        <br><br>
 
                         <div class="row" ng-hide="reset_unpost_acc_invoice">
 
@@ -93,7 +117,7 @@
                             </i-button>
                         </div>
 
-                        <br><br><br>
+                        <br><br>
 
                         <div class="row" ng-hide="reset_safes">
 
@@ -101,7 +125,7 @@
                                 ng-click="safesReset();reset_safes = true ">
                             </i-button>
                         </div>
-                        <br><br><br>
+                        <br><br>
 
                         <div class="row" ng-hide="reset_i_transaction">
 
@@ -110,7 +134,7 @@
                                 ng-click="resetItemTransaction() ;reset_i_transaction = true">
                             </i-button>
                         </div>
-                        <br><br><br>
+                        <br><br>
 
                         <div class="row" ng-hide="reset_safes_payments">
 
@@ -119,7 +143,7 @@
                                 ng-click="resetSafesPayment() ;reset_safes_payments = true">
                             </i-button>
                         </div>
-                        <br><br><br>
+                        <br><br>
 
                         <div class="row" ng-hide="reset_orders_screen">
 
@@ -128,7 +152,7 @@
                                 ng-click="resetOrdersScreen() ;reset_orders_screen = true">
                             </i-button>
                         </div>
-                        <br><br><br>
+                        <br><br>
 
                         <div class="row" ng-hide="reset_numbering">
 
@@ -137,7 +161,7 @@
                                 ng-click="resetNumbering() ;reset_numbering = true">
                             </i-button>
                         </div>
-                        <br><br><br>
+                        <br><br>
 
                     </fieldset>
                 </div>
@@ -154,7 +178,7 @@
                             </i-button>
 
                         </div>
-                        <br><br><br>
+                        <br><br>
 
                         <div class="row" ng-hide="reset_post_stores_out">
 
@@ -163,7 +187,7 @@
                                 ng-click="postingStoreOutAll();reset_post_stores_out = true">
                             </i-button>
                         </div>
-                        <br><br><br>
+                        <br><br>
 
                         <div class="row" ng-hide="reset_post_stores_transfer">
 
@@ -172,7 +196,7 @@
                                 ng-click="confirmTransferBranchAll();reset_post_stores_transfer = true">
                             </i-button>
                         </div>
-                        <br><br><br>
+                        <br><br>
 
                         <div class="row" ng-hide="reset_post_account_invoice">
 
@@ -181,7 +205,7 @@
                                 ng-click="postingAccountingAll();reset_post_account_invoice = true">
                             </i-button>
                         </div>
-                        <br><br><br>
+                        <br><br>
                     </fieldset>
 
                 </div>
@@ -196,7 +220,7 @@
                                 ng-click="handelStoreInInvoice();reset_account_invoice_store_in = true">
                             </i-button>
                         </div>
-                        <br><br><br>
+                        <br><br>
                         <div class="row" ng-hide="reset_account_invoice_store_out">
 
                             <i-button x-permissions="reset_account_invoice_store_out || reset_manage" class="col5"
@@ -204,7 +228,7 @@
                                 ng-click="handelStoreOutInvoice();reset_account_invoice_store_out = true">
                             </i-button>
                         </div>
-                        <br><br><br>
+                        <br><br>
                     </fieldset>
 
                 </div>

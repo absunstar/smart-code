@@ -260,7 +260,7 @@ module.exports = function init(site) {
     );
   });
 
-  site.post('/api/items_group/handel_company', (req, res) => {
+  site.post('/api/items_group/general_company', (req, res) => {
     let response = {
       done: false,
     };

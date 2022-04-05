@@ -5,6 +5,21 @@
         "ar": "تهيئة الأصناف المخزنية"
     },
     {
+        "name": "Genera_company_in_items",
+        "en": "Generalization of the company in items",
+        "ar": "تعميم الشركة في الأصناف"
+    },
+    {
+        "name": "Genera_company_in_units",
+        "en": "Generalization of the company in units",
+        "ar": "تعميم الشركة في الوحدات"
+    },
+    {
+        "name": "Genera_company_in_itemsGroups",
+        "en": "Generalization of the company in itemsGroups",
+        "ar": "تعميم الشركة في مجموعات الأصناف"
+    },
+    {
         "name": "reset_i_transactions",
         "en": "Delete Item Transactions",
         "ar": "حذف معاملات كارتة الصنف"
