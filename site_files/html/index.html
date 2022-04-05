@@ -343,7 +343,7 @@
 
       <div id="posts" class="center"></div>
 
-      <div class="price-info hidden" x-features="!host.ft && !host.elfgr && !host.qelada && !host.ethraa && !host.free && !host.inout && !host.valley && !protouch  && !ttl && !host.mt">
+      <div class="price-info hidden" x-features="!host.ft && !host.elfgr && !host.qelada && !host.ethraa && !host.free && !host.inout && !host.valley && !protouch  && !host.ttl && !host.mt">
         <div class="row padding">
           <table class="table hover">
             <tr>
@@ -701,10 +701,7 @@
 
     <script>
       let busy = false;
-      if (window.protouch) {
-        $('.protouch').removeClass('hidden');
-        $('.price-info').removeClass('hidden');
-      } else if (window.ttl) {
+       if ('##req.headers.host##'.like('*ttl*')) {
         $('.ttl').removeClass('hidden');
         $('.price-info').removeClass('hidden');
       } else if ('##req.headers.host##'.like('*inout*')) {
@@ -732,6 +729,9 @@
         $('.unqcode').removeClass('hidden');
       } else if ('##req.headers.host##'.like('*valley*')) {
         $('.valley').removeClass('hidden');
+      } else if (window.protouch) {
+        $('.protouch').removeClass('hidden');
+        $('.price-info').removeClass('hidden');
       } else if ('##req.headers.host##'.like('*elfgr*')) {
       } else {
         $('.egypt').removeClass('hidden');

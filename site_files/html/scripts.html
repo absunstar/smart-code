@@ -17,9 +17,9 @@
   window.protouch = true;
 </script>
 
-<script x-features="ttl">
+<!-- <script x-features="ttl">
   window.ttl = true;
-</script>
+</script> -->
 
 <!-- <script src="/x-js/directive.js?v=##site.options.version##"></script> -->
 <script src="/js/sitebar.js?v=##site.options.version##"></script>
@@ -136,6 +136,7 @@
     !site.features.like('*host.ft*') &&
     !site.features.like('*unqcode.net*') &&
     !site.features.like('*host.valley*') &&
+    !site.features.like('*host.ttl*') &&
     !site.features.like('*host.mt*')
   ) {
     window.fbAsyncInit = function () {
