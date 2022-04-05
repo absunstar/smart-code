@@ -15,7 +15,13 @@
   border: 0.5mm solid #bbb;
 }
 
-
+.fa-social {
+  font-family: 'Font Awesome 5 Brands';
+  font-weight: 800;
+  margin: 12px;
+  color: white;
+  font-size: x-large;
+}
 
 .page-a4 {
   position: relative;
