@@ -1,14 +1,15 @@
-
 const site = require('isite')({
     port: [80 , 40004],
     lang: 'ar',
     version : '2021.12.05',
     name: "restaurant",
-    theme: 'theme_paper',
+    savingTime: 5,
+    log: true,
     require: {
         features: [],
         permissions: []
     },
+    theme: 'theme_paper',
     mongodb: {
         db: 'smart_code_restaurants',
         limit: 100000
@@ -85,6 +86,8 @@ setTimeout(() => {
 }, 1000 * 2);
 
 site.run()
+site.security.addKey('5e8edd851d2fdfbd7415232c67367cc3');
+site.security.addKey('0e849095ad8db45384a9cdd28d7d0e20');
 
 
 // site.on('zk attend', attend=>{

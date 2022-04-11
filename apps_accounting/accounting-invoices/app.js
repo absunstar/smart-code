@@ -1343,7 +1343,7 @@ module.exports = function init(site) {
             response.error = 'Don`t Open Period';
             res.json(response);
           } else {
-            $account_invoices.deleteOne(
+            $account_invoices.deleteMany(
               {
                 where: where,
                 $req: req,
