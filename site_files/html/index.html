@@ -479,7 +479,7 @@
       <br />
       <br />
       <div x-import="scripts.html"></div>
-      <div class="footer">
+      <div class="">
         <div class="row egypt hidden">
           <h2 class="center">
             <span>
@@ -677,9 +677,8 @@
       </div>
     </div>
 
-    <script id="post-template" type="x-tmpl-mustache">
-
-      <div class="post img__wrap" x-permissions="!login">
+    <script id="post-template" x-permissions="!login"  type="x-tmpl-mustache">
+      <div class="post img__wrap" >
         <h2> {{title_##session.lang##}} </h2>
         <img src="{{image_url}}" alt="">
         <p class="description userPrint"> {{description_##session.lang##}} </p>
@@ -688,8 +687,9 @@
       </div>
     </script>
 
-    <script id="pro-template" type="x-tmpl-mustache">
-      <a class="pro-template" target="_blank" href="{{link}}" x-permissions="login">
+    <script id="pro-template"  x-features="!host.ft && !host.elfgr && !host.qelada && !host.ethraa && !host.free && !host.inout && !host.valley && !protouch  && !host.ttl && !host.mt" type="x-tmpl-mustache">
+      
+      <a class="pro-template" target="_blank" href="{{link}}">
         <div class="project img__wrap" >
           <h2> {{title_##session.lang##}} </h2>
           <img src="{{image_url}}" alt="">
@@ -837,8 +837,8 @@
 
         $('.posts-loading').remove();
         $('#posts').append('<p class="posts-loading"> <img src="/images/loading.gif"> </p>');
-        $('#posts').append('<h3 class="center bold blue" style="text-shadow: 3px 3px #b3b3ff; font-size: xx-large ; text-decoration: underline">برامجنا</h3>');
-        $('#posts').append('<br>');
+/*         $('#posts').append('<h3 class="center bold blue" style="text-shadow: 3px 3px #b3b3ff; font-size: xx-large ; text-decoration: underline">برامجنا</h3>');
+ */        $('#posts').append('<br>');
 
         busy = true;
 
