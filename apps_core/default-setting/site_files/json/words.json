@@ -120,6 +120,11 @@
         "ar": "طابعة PDF"
     },
     {
+        "name": "pdf_print",
+        "en": "PDF print",
+        "ar": "طباعة PDF"
+    },
+    {
         "name": "a4_printer_must_select",
         "en": "You must select the name of the A4 printer from the settings",
         "ar": "يجد تحديد الطابعة A4 من الإعدادات"

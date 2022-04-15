@@ -369,7 +369,6 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
           }).then(
             function (response) {
               $scope.busy = false;
-              console.log(response.data.done);
               if (response.data.done) {
                 if (site.feature('restaurant')) {
                   $scope.kitchenPrint({ ...response.data.doc });
@@ -378,7 +377,7 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
 
                 $scope.order_invoice = response.data.doc;
 
-                if ($scope.order_invoice.status.id == 2) {
+                if ($scope.order_invoice.status.id == 2 && !$scope.defaultSettings.general_Settings.work_posting) {
                   let store_out = {
                     image_url: '/images/store_out.png',
                     supply_date: new Date(),
@@ -415,18 +414,18 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
                   };
                   if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto && $scope.order_invoice.status.id == 2 && !$scope.order_invoice.invoice) {
                     store_out.invoice = true;
+                    $scope.addStoresOut(store_out);
+                    $scope.addAccountInvoice($scope.order_invoice);
                   }
-
-                  $scope.addStoresOut(store_out);
                 }
+
+                site.hideModal('#accountInvoiceModal');
+
                 $scope.order_invoice = response.data.doc;
                 if (type === 'table') {
                   $scope.order_invoice.$show_table = true;
                 }
-                if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto && $scope.order_invoice.status.id == 2 && !$scope.order_invoice.invoice) {
-                  $scope.addAccountInvoice($scope.order_invoice);
-                  site.hideModal('#accountInvoiceModal');
-                }
+
                 $scope.newOrderInvoice();
               } else {
                 $scope.error = response.data.error;
@@ -560,10 +559,13 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
       }
     }
 
-    if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.work_posting) account_invoices.posting = false;
-    else account_invoices.posting = true;
-
-    account_invoices.invoice = true;
+    if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.work_posting) {
+      account_invoices.posting = false;
+      account_invoices.invoice = false;
+    } else {
+      account_invoices.invoice = true;
+      account_invoices.posting = true;
+    }
 
     $http({
       method: 'POST',
@@ -2110,7 +2112,7 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
   $scope.calcSize = function (_size) {
     $scope.error = '';
     $timeout(() => {
-     /*  if (!_size.count) _size.count = 0;
+      /*  if (!_size.count) _size.count = 0;
       if (!_size.price) _size.price = 0; */
 
       if (_size.discount.type == 'number') {

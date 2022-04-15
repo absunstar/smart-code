@@ -202,11 +202,11 @@ module.exports = function init(site) {
 
     account_invoices_doc.total_paid_up = 0;
     account_invoices_doc.remain_amount = 0;
-
-    if (account_invoices_doc.paid_up) {
+    
+    if (account_invoices_doc.paid_up && account_invoices_doc.currency) {
       account_invoices_doc.total_paid_up = account_invoices_doc.paid_up * account_invoices_doc.currency.ex_rate;
       account_invoices_doc.total_paid_up = site.toNumber(account_invoices_doc.total_paid_up);
-      if (account_invoices_doc.currency) account_invoices_doc.remain_amount = site.toNumber(account_invoices_doc.net_value) - account_invoices_doc.total_paid_up;
+      account_invoices_doc.remain_amount = site.toNumber(account_invoices_doc.net_value) - account_invoices_doc.total_paid_up;
     } else account_invoices_doc.remain_amount = site.toNumber(account_invoices_doc.net_value);
     account_invoices_doc.remain_amount = site.toNumber(account_invoices_doc.remain_amount);
 

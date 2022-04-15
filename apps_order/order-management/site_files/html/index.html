@@ -1,121 +1,118 @@
 <!DOCTYPE html>
 <html lang="en" x-permissions="order_management_ui || order_management_manage" data-ng-app="myApp">
+  <head x-import="head.html"> </head>
 
-<head x-import="head.html">
-
-</head>
-
-<body class="##session.lang##">
-
-    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
-    </nav>
-    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
-    </nav>
+  <body class="##session.lang##">
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar"></nav>
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
 
     <div id="main-layout" class="container loaded">
-        <div class="row">
-            <div class="row" ng-controller="order_management" x-permissions="login">
-                <div x-import="order-management/add_modal.html"></div>
-                <div x-import="order-management/account_invoice.html"></div>
-                <div x-import="order-management/delivery_emplyee.html"></div>
-                <div x-import="order-management/update_modal.html"></div>
-                <div x-import="order-management/delete_modal.html"></div>
-                <div x-import="order-management/view_modal.html"></div>
-                <div x-import="order-management/search_all_modal.html"></div>
-                <div x-import="order-management/extras_modal.html"></div>
-                <div x-import="accounting-invoices/add_payments_modal.html"></div>
+      <div class="row">
+        <div class="row" ng-controller="order_management" x-permissions="login">
+          <div x-import="order-management/add_modal.html"></div>
+          <div x-import="order-management/account_invoice.html"></div>
+          <div x-import="order-management/delivery_emplyee.html"></div>
+          <div x-import="order-management/update_modal.html"></div>
+          <div x-import="order-management/delete_modal.html"></div>
+          <div x-import="order-management/view_modal.html"></div>
+          <div x-import="order-management/search_all_modal.html"></div>
+          <div x-import="order-management/extras_modal.html"></div>
+          <div x-import="accounting-invoices/add_payments_modal.html"></div>
 
-                <div class="row">
-                    <h1 class="bold text-center"> ##word.order_management_menus## </h1>
-                </div>
+          <div class="row">
+            <h1 class="bold text-center">##word.order_management_menus##</h1>
+          </div>
 
-                <div class="top-actions">
+          <div class="top-actions">
+            <i-button type="search" x-permissions="order_management_search || order_management_manage" label="##word.search_all##" onclick="site.showModal('#reportInvoicesSearchModal')"></i-button>
+            <i-button label="##word.handel_orders##" ng-click="handelOrders()"> </i-button>
 
-                    <i-button type="search" x-permissions="order_management_search || order_management_manage"
-                        label="##word.search_all##" onclick="site.showModal('#reportInvoicesSearchModal')"></i-button>
-                    <i-button label="##word.handel_orders##" ng-click="handelOrders()">
-                    </i-button>
+            <span ng-show="busy">
+              <span class="sr-only">Loading...</span>
+            </span>
+            <h2 class="bold red text-center">{{error}}</h2>
+            <h3 class="bold text-center">##word.count## : {{count}}</h3>
+            <br />
+          </div>
 
-                    <span ng-show="busy">
-                        <span class="sr-only">Loading...</span>
-                    </span>
-                    <h2 class="bold red text-center">{{error}} </h2>
-                    <h3 class="bold text-center"> ##word.count## : {{count}} </h3>
-                    <br>
-                </div>
+          <table class="table loaded center hover bold" id="t1">
+            <tr>
+              <!--<th class="not-print"> ##word.logo## </th>-->
+              <th>##word.date##</th>
+              <th>##word.order_code##</th>
+              <th>##word.transaction_type##</th>
+              <th>##word.stores_out_total_tax##</th>
+              <th>##word.stores_out_total_discount##</th>
+              <th>##word.services##</th>
+              <th>##word.total_items_price##</th>
+              <th>##word.net_value##</th>
+              <th>##word.status##</th>
+              <th>##word.actions##</th>
+            </tr>
 
-                <table class="table loaded center hover bold" id="t1">
-                    <tr>
-                        <!--<th class="not-print"> ##word.logo## </th>-->
-                        <th> ##word.date## </th>
-                        <th> ##word.order_code## </th>
-                        <th> ##word.transaction_type## </th>
-                        <th> ##word.stores_out_total_tax## </th>
-                        <th> ##word.stores_out_total_discount## </th>
-                        <th> ##word.services## </th>
-                        <th> ##word.total_items_price## </th>
-                        <th> ##word.net_value## </th>
-                        <th> ##word.status## </th>
-                        <th> ##word.actions## </th>
-                    </tr>
-
-                    <tr ng-repeat="c in list | orderBy : '-id'">
-                        <!--    <td ng-click="showDetailes(c)" class="pointer not-print">
+            <tr ng-repeat="c in list | orderBy : '-id'">
+              <!--    <td ng-click="showDetailes(c)" class="pointer not-print">
                             <i-image view class="logo" ng-model="c.image_url"></i-image>
                         </td> -->
-                        <td ng-click="showDetailes(c)" class="pointer brown"> {{c.date | date : 'dd - MM - yyyy'}} </td>
-                        <td ng-click="showDetailes(c)" class="pointer blue"> {{c.code}} </td>
-                        <td ng-click="showDetailes(c)" class="pointer"> {{c.transaction_type.##session.lang##}}
-                            <p ng-show="c.transaction_type.id ==2" class="blue">
-                                ({{c.status_delivery.##session.lang##}})</p>
-                        </td>
-                        <td ng-click="showDetailes(c)" class="pointer"> {{c.total_tax ||0}} </td>
-                        <td ng-click="showDetailes(c)" class="pointer"> {{c.total_discount ||0}} </td>
-                        <td ng-click="showDetailes(c)" class="pointer">
-                            <p ng-show="c.service"> ##word.service## </p>
-                            <p ng-show="c.service">{{c.service || 0}}</p>
-                            <p ng-show="c.price_delivery_service"> ##word.price_delivery_service## </p>
-                            <p ng-show="c.price_delivery_service">{{c.price_delivery_service}}</p>
-                        </td>
+              <td ng-click="showDetailes(c)" class="pointer brown">{{c.date | date : 'dd - MM - yyyy'}}</td>
+              <td ng-click="showDetailes(c)" class="pointer blue">{{c.code}}</td>
+              <td ng-click="showDetailes(c)" class="pointer">
+                {{c.transaction_type.##session.lang##}}
+                <p ng-show="c.transaction_type.id ==2" class="blue">({{c.status_delivery.##session.lang##}})</p>
+              </td>
+              <td ng-click="showDetailes(c)" class="pointer">{{c.total_tax | xmoney}}</td>
+              <td ng-click="showDetailes(c)" class="pointer">{{c.total_discount | xmoney}}</td>
+              <td ng-click="showDetailes(c)" class="pointer">
+                <p ng-show="c.service">##word.service##</p>
+                <p ng-show="c.service">{{c.service | xmoney}}</p>
+                <p ng-show="c.price_delivery_service">##word.price_delivery_service##</p>
+                <p ng-show="c.price_delivery_service">{{c.price_delivery_service | xmoney}}</p>
+              </td>
 
-                        <td ng-click="showDetailes(c)" class="pointer blue"> {{c.total_items ||0}} </td>
-                        <td ng-click="showDetailes(c)" class="pointer"> {{c.net_value}} </td>
-                        <td ng-click="showDetailes(c)" class="pointer">{{c.status.##session.lang##}}</td>
-                        <td>
+              <td ng-click="showDetailes(c)" class="pointer blue">{{c.total_items | xmoney}}</td>
+              <td ng-click="showDetailes(c)" class="pointer">{{c.net_value | xmoney}}</td>
+              <td ng-click="showDetailes(c)" class="pointer">{{c.status.##session.lang##}}</td>
+              <td>
+                <i-button
+                  type="add"
+                  ng-show="c.transaction_type.id == 2 && (c.status.id == 1 || c.status_delivery.id == 1)"
+                  x-permissions="order_management_edit || order_management_manage"
+                  label="##word.set_employee_delivery##"
+                  ng-click="showDeliveryEmployee(c)"
+                ></i-button>
 
-                            <i-button type="add"
-                                ng-show="c.transaction_type.id == 2 && (c.status.id == 1 || c.status_delivery.id == 1)"
-                                x-permissions="order_management_edit || order_management_manage"
-                                label="##word.set_employee_delivery##" ng-click="showDeliveryEmployee(c)"></i-button>
-
-                            <i-button type="save" ng-show="!c.posting && c.status.id == 2"
-                                x-permissions="order_management_edit || order_management_manage"
-                                label="##word.store_posting##" ng-click="postOrder(c)"></i-button>
-
-                            <i-button ng-show="c.posting && c.status.id == 2" type="save"
+                <!-- <i-button ng-show="c.posting && c.status.id == 2" type="save"
                                 label="##word.create_an_invoice##" ng-click="displayAccountInvoice(c)">
-                            </i-button>
-                            <!--  <i-button type="exit" ng-show="!c.reset_items && (c.status.id == 2)"
-                                x-permissions="order_management_edit || order_management_manage"
-                                label="##word.return_to_order##" ng-click="returnToOrders(c)"></i-button> -->
-                        </td>
-                    </tr>
-                </table>
+                            </i-button> -->
+                <i-button
+                  fa="undo"
+                  ng-show="!c.posting && (c.status.id == 2)"
+                  x-permissions="order_management_edit || order_management_manage"
+                  label="##word.return_to_order##"
+                  ng-click="returnToOrders(c)"
+                ></i-button>
 
-                <div class="row">
-                    <i-button x-permissions="order_management_print || order_management_manage" type="print"
-                        label="##word.print##" onclick="site.print('#t1')"></i-button>
-                    <i-button x-permissions="order_management_export || order_management_manage" type="export"
-                        label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'order_management.xlsx')">
-                    </i-button>
-                </div>
+                <i-button
+                  type="save"
+                  ng-show="!c.posting && c.status.id == 2"
+                  x-permissions="order_management_edit || order_management_manage"
+                  label="##word.posting##"
+                  ng-click="postOrder(c)"
+                ></i-button>
+              </td>
+            </tr>
+          </table>
 
-            </div>
+          <div class="row">
+            <i-button x-permissions="order_management_print || order_management_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+            <i-button x-permissions="order_management_export || order_management_manage" type="export" label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'order_management.xlsx')">
+            </i-button>
+          </div>
         </div>
+      </div>
     </div>
     <div x-import="scripts.html"></div>
 
     <script x-permissions="login" x-import="order-management/index.js"></script>
-</body>
-
+  </body>
 </html>
