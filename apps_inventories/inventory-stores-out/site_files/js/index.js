@@ -1164,7 +1164,7 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
                   _item.discount = _offerUnit.discount;
                 }
               });
-            } else _size.discount = _size.size_units_list[indxUnit].discount;
+            } else _item.discount = _item.size_units_list[indxUnit].discount;
           });
           if ($scope.store_out.type && $scope.store_out.type.id == 5) _item.total = _item.count * _item.average_cost;
           else _item.total = _item.count * _item.price;
@@ -1879,7 +1879,7 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
       }
     }
 
-    if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.work_posting) account_invoices.posting = false;
+    if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.work_posting && !$scope.defaultSettings.accounting.link_warehouse_account_invoices) account_invoices.posting = false;
     else account_invoices.posting = true;
 
     account_invoices.invoice = true;
@@ -2720,34 +2720,7 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
                       $scope.defaultSettings.accounting &&
                       $scope.defaultSettings.accounting.link_warehouse_account_invoices
                     ) {
-                      let account_invoices = {
-                        image_url: '/images/account_invoices.png',
-                        date: response.data.doc.date,
-                        invoice_id: response.data.doc.id,
-                        payment_type: response.data.doc.payment_type,
-                        payable_list: response.data.doc.payable_list,
-                        customer: response.data.doc.customer,
-                        total_value_added: response.data.doc.total_value_added,
-                        invoice_type: response.data.doc.type,
-                        currency: response.data.doc.currency,
-                        shift: response.data.doc.shift,
-                        net_value: response.data.doc.net_value,
-                        Paid_from_customer: response.data.doc.Paid_from_customer,
-                        paid_up: response.data.doc.paid_up || 0,
-                        payment_method: response.data.doc.payment_method,
-                        safe: response.data.doc.safe,
-                        invoice_code: response.data.doc.code,
-                        total_discount: response.data.doc.total_discount,
-                        total_tax: response.data.doc.total_tax,
-                        items: response.data.doc.items,
-                        source_type: {
-                          id: 2,
-                          en: 'Sales Store',
-                          ar: 'إذن صرف / فاتورة مبيعات',
-                        },
-                        active: true,
-                      };
-                      $scope.addAccountInvoice(account_invoices);
+                      $scope.addAccountInvoice(response.data.doc);
                     }
                   } else {
                     $scope.error = '##word.error##';
