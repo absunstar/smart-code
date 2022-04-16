@@ -1015,8 +1015,8 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
       data: {
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          ar: 1,
+          en: 1,
           price: 1,
           code: 1,
         },
@@ -2473,44 +2473,43 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
         };
         _kitchen.has_items = false;
         $scope.kitchen_print.printer = $scope.printersPathList.find((_printer) => {
-          return _printer.id === _kitchen.printer_path.id;
+          if (_kitchen.printer_path) {
+            return _printer.id === _kitchen.printer_path.id;
+          }
         });
 
         if (obj.items && obj.items.length > 0) {
           obj.items.forEach((item_book) => {
             if (item_book.kitchen && !item_book.printed) {
               if (item_book.kitchen.id == _kitchen.id) {
-                let extras = '';
                 if (item_book.extras_item && item_book.extras_item.length > 0) {
                   item_book.extras_item.forEach((_extra) => {
-                    extras = extras + ' - ' + _extra[name_lang];
+                    item_book.extras = item_book.extras + ' - ' + _extra[name_lang];
                   });
                 }
 
                 item_book.printed = true;
                 _kitchen.has_items = true;
-                $scope.kitchen_print.items.unshift({ ...item_book, extras });
+                $scope.kitchen_print.items.unshift({ ...item_book });
               }
             }
           });
         }
-        if (_kitchen.has_items) {
-          $timeout(() => {
-            site.printAsImage(
-              {
-                selector: '#kitchenPrint',
-                ip: '127.0.0.1',
-                port: '60080',
-                printer: $scope.kitchen_print.printer.ip.name.trim(),
-              },
-              () => {}
-            );
-          }, 1000 * 3);
+        if (_kitchen.has_items && $scope.kitchen_print.printer) {
+          site.print(
+            {
+              selector: '#kitchenPrint',
+              ip: '127.0.0.1',
+              port: '60080',
+              printer: $scope.kitchen_print.printer.ip.name.trim(),
+            },
+            () => {}
+          );
           if (i + 1 == $scope.kitchensList.length) {
             $scope.updateOrderInvoice(obj);
           }
         }
-      }, 5000);
+      }, 1000 * 3);
     });
   };
 

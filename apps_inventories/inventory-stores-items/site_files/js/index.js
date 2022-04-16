@@ -81,6 +81,14 @@ app.controller('stores_items', function ($scope, $http, $timeout, $interval) {
     };
 
     $scope.loadItemSizeList();
+    $scope.error = '##word.add_done##';
+
+    $timeout(() => {
+
+      $scope.error = '';
+
+    }, 1500);
+
   };
 
   $scope.deleteSize = function (itm) {
@@ -159,7 +167,7 @@ app.controller('stores_items', function ($scope, $http, $timeout, $interval) {
     $scope.item = {};
     $scope.items_size = {};
     $scope.category_item = {
-      image_url: '/images/store_item.png',
+      image_url: '/images/stores_item.png',
       allow_sell: true,
       allow_buy: true,
       is_pos: true,

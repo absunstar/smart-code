@@ -50,7 +50,7 @@
 
                         <i-list class="col5" ng-model="extras_items"
                             ng-search="_search.extras_items_search"
-                            display="name_##session.lang##" label="##word.extras_items##"
+                            display="##session.lang##" label="##word.extras_items##"
                             items="extrasItemsList">
                         </i-list>
 
@@ -80,7 +80,7 @@
                                         {{$index + 1}}
                                     </td>
                                     <td>
-                                        {{e.name_##session.lang##}}
+                                        {{e.##session.lang##}}
                                     </td>
                                     <td class="green">
                                         {{e.price}}

@@ -26,8 +26,8 @@ module.exports = function init(site) {
   site.on('[company][created]', doc => {
 
     $extras_items.add({
-      name_ar: "إضافة إفتراضية",
-      name_en: "Default extra",
+      ar: "إضافة إفتراضية",
+      en: "Default extra",
       image_url: '/images/extras_items.png',
       code: "1-Test",
       price : 0,
@@ -210,12 +210,12 @@ module.exports = function init(site) {
       where['code'] = site.get_RegExp(where['code'], 'i')
     }
 
-    if (where['name_ar']) {
-      where['name_ar'] = site.get_RegExp(where['name_ar'], 'i')
+    if (where['ar']) {
+      where['ar'] = site.get_RegExp(where['ar'], 'i')
     }
 
-    if (where['name_en']) {
-      where['name_en'] = site.get_RegExp(where['name_en'], 'i')
+    if (where['en']) {
+      where['en'] = site.get_RegExp(where['en'], 'i')
     }
 
     // if (where['active'] !== 'all') {
