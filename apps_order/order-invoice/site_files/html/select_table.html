@@ -25,13 +25,14 @@
                             <i-button label="{{g.name_##session.lang##}}"></i-button>
                         </legend>
 
-                        <div class="item-list">
-                            <a ng-class="{'table-busy' : t.busy }" class="item pointer " ng-repeat="t in g.tables_list" ng-click="selectTable(t , g)"
-                                help-id="menu_monitor">
-                                <img ng-src="{{t.image_url}}">
-                                <p class="center font_name_table">{{t.name_##session.lang##}} </p>
+                        <div class="row item-list border" >
+                            <a ng-class="{'table-busy' : t.busy }" class="item col4 pointer" ng-repeat="t in g.tables_list" ng-click="selectTable(t , g)" help-id="menu_monitor">
+                              <div class="row">
+                                <div class="col-4"><img ng-src="{{t.image_url}}"></div>
+                                <div class="col-8 "><p class="center">{{t.name_##session.lang##}}</p></div>
+                              </div>
                             </a>
-                        </div>
+                          </div>
 
                     </fieldset>
 

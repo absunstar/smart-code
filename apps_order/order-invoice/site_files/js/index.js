@@ -787,7 +787,7 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
     $http({
       method: 'POST',
       url: '/api/order_invoice/update',
-      data: order_invoice || $scope.order_invoice,
+      data: order_invoice,
     }).then(
       function (response) {
         $scope.busy = false;
@@ -2458,8 +2458,8 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
   $scope.kitchenPrint = function (obj) {
     $scope.error = '';
 
-    let name_lang = 'name_ar';
-    if ('##session.lang##' === 'en') name_lang = 'name_en';
+    let name_lang = 'ar';
+    if ('##session.lang##' === 'en') name_lang = 'en';
 
     $('#kitchenPrint').removeClass('hidden');
 
@@ -2479,18 +2479,21 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
         });
 
         if (obj.items && obj.items.length > 0) {
-          obj.items.forEach((item_book) => {
-            if (item_book.kitchen && !item_book.printed) {
-              if (item_book.kitchen.id == _kitchen.id) {
-                if (item_book.extras_item && item_book.extras_item.length > 0) {
-                  item_book.extras_item.forEach((_extra) => {
-                    item_book.extras = item_book.extras + ' - ' + _extra[name_lang];
+          obj.items.forEach((_item) => {
+            if (_item.kitchen && !_item.printed) {
+              if (_item.kitchen.id == _kitchen.id) {
+                if (_item.extras_item && _item.extras_item.length > 0) {
+                  _item.extras_item.forEach((_extra) => {
+                    if (_item.extras) {
+                      _item.extras = _item.extras + ' - ' + _extra[name_lang];
+                    } else {
+                      _item.extras = _extra[name_lang];
+                    }
                   });
                 }
-
-                item_book.printed = true;
+                _item.printed = true;
                 _kitchen.has_items = true;
-                $scope.kitchen_print.items.unshift({ ...item_book });
+                $scope.kitchen_print.items.unshift({ ..._item });
               }
             }
           });

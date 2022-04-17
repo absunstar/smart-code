@@ -78,46 +78,56 @@
                 <div class="row" ng-show="order_invoice.transaction_type.id == 1">
 
 
-                    <div class="item-list col4" ng-show="order_invoice.table.id">
+                
+                    <div class="col4 item-list border" ng-show="order_invoice.table.id">
                         <a class="item pointer" help-id="menu_monitor">
-                            <img ng-src="{{order_invoice.table.image_url}}">
-                            <p class="center font_name_table">{{order_invoice.table.name_##session.lang##}} </p>
+                          <div class="row">
+                            <div class="col-4"><img ng-src="{{order_invoice.table.image_url}}"></div>
+                            <div class="col-8 "><p class="center">{{order_invoice.table.name_##session.lang##}}</p></div>
+                          </div>
                         </a>
-                    </div>
+                      </div>
+
                     <div class="col1"></div>
-                    <div class="col4">
+                    <div class="col8">
                         <div class="row">
-
-                            <i-control class="col6" ng-model="order_invoice.count_person" label="##word.count_person##"
-                                type="number"></i-control>
-
-                            <i-control class="col6" ng-model="order_invoice.service" label="##word.service##"
-                                type="number" ng-change="calc(order_invoice)"></i-control>
-
+                            <div class="col6">
+                                <div class="row">
+        
+                                    <i-control class="col6" ng-model="order_invoice.count_person" label="##word.count_person##"
+                                        type="number"></i-control>
+        
+                                    <i-control class="col6" ng-model="order_invoice.service" label="##word.service##"
+                                        type="number" ng-change="calc(order_invoice)"></i-control>
+        
+                                </div>
+        
+                              
+                            </div>
+                            <div class="col1"></div>
+        
+                            <div class="col5">
+        
+                                <i-button label="##word.select_table##" ng-click="showTables()">
+                                </i-button>
+        
+                                <i-button ng-show="order_invoice.transaction_type.id == 1 && order_invoice.id" type="bg-blue"
+                                    label="##word.merge_table##" ng-click="viewInvoicesTablesList()">
+                                </i-button>
+                            </div>
                         </div>
-
-                        <br>
-
                         <div class="row" ng-show="order_invoice.table.id">
-                            <i-control class="col6" ng-model="order_invoice.table.minimum" label="##word.tables_min##"
+                            <div class="col1"></div>
+                            <i-control class="col5" ng-model="order_invoice.table.minimum" label="##word.tables_min##"
                                 type="number" disabled></i-control>
 
-                            <i-control class="col6" disabled ng-model="order_invoice.table.maxmum"
+                            <i-control class="col5" disabled ng-model="order_invoice.table.maxmum"
                                 label="##word.tables_max##" type="number"></i-control>
+                                <div class="col1"></div>
 
                         </div>
                     </div>
-                    <div class="col1"></div>
-
-                    <div class="col3">
-
-                        <i-button type="bg-blue" label="##word.select_table##" ng-click="showTables()">
-                        </i-button>
-
-                        <i-button ng-show="order_invoice.transaction_type.id == 1 && order_invoice.id" type="bg-blue"
-                            label="##word.merge_table##" ng-click="viewInvoicesTablesList()">
-                        </i-button>
-                    </div>
+                 
 
                 </div>
             </div>

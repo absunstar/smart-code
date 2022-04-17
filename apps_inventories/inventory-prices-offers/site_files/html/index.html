@@ -31,7 +31,7 @@
             <i-button x-permissions="prices_offers_search || prices_offers_manage" type="search" label="##word.search_all##" onclick="site.showModal('#PricesOffersSearchModal')"></i-button>
 
             <h2 class="bold red text-center">{{error}}</h2>
-            <h3 class="bold text-center">##word.count## : {{count}}</h3>
+            <h3 class="bold text-center">##word.count## : {{count || 0}}</h3>
           </div>
           <table id="t1" class="table loaded bold center hover">
             <tr>

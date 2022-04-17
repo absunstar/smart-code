@@ -3152,11 +3152,12 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
 
   $scope.selectPricesOffers = function (c) {
     $scope.error = '';
-
+    $scope.store_out.customer = $scope.customersGetList.find((_customer) => {
+      return _customer.id === c.customer.id;
+    });
     $scope.store_out.items = c.items;
     $scope.store_out.discountes = c.discountes;
     $scope.store_out.taxes = c.taxes;
-    $scope.store_out.customer = c.customer;
     $scope.store_out.total_value = c.total_value;
     $scope.store_out.net_value = c.net_value;
     $scope.store_out.total_value_added = c.total_value_added;

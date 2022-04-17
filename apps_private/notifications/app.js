@@ -157,6 +157,14 @@ module.exports = function init(site) {
       where['value.ar'] = site.get_RegExp(where['value.ar'], 'i')
     }
 
+    where['company.id'] = site.get_company(req).id;
+
+    if (where['branchAll']) {
+      delete where['branchAll'];
+    } else {
+      where['branch.code'] = site.get_branch(req).code;
+    }
+    console.log(where);
     $notifications.findMany({
       sort: {
         id: -1
@@ -165,6 +173,7 @@ module.exports = function init(site) {
       limit: req.data.limit
     }, (err, docs) => {
       if (!err) {
+        console.log(docs);
         response.done = true
         response.list = docs
       } else {

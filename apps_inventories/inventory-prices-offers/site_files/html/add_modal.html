@@ -1,20 +1,16 @@
 <div id="addPricesOffersModal" class="modal" fixed>
-    <div class="modal-content">
-        <div class="modal-header">
-            <span class="close">&times;</span>
-            <h2>
-                ##word.sales_invoice_store## <i class="fa fa-plus"></i>
-            </h2>
-         
-        </div>
-        <div class="modal-body">
-            <div x-import="inventory-prices-offers/content.html"></div>
-
-        </div>
-        <h2 class="error center bold">{{error}}</h2>
-        <div class="modal-footer center">
-            <i-button type="add" label="##word.add##" ng-click="add()"></i-button>
-            <i-button type="close" label=" ##word.close##" onclick="site.hideModal('#addPricesOffersModal')"></i-button>
-        </div>
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>##word.prices_offers_add## <i class="fa fa-plus"></i></h2>
     </div>
+    <div class="modal-body">
+      <div x-import="inventory-prices-offers/content.html"></div>
+    </div>
+    <h2 class="error center bold">{{error}}</h2>
+    <div class="modal-footer center">
+      <i-button type="add" label="##word.add##" ng-click="add()"></i-button>
+      <i-button type="close" label=" ##word.close##" onclick="site.hideModal('#addPricesOffersModal')"></i-button>
+    </div>
+  </div>
 </div>
