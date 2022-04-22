@@ -30,6 +30,7 @@
     {"name" : "companies_branch_notes" , "en" : "Branch Notes" , "ar" : "ملاحظات الفرع"},
 
     {"name" : "companies_charge_name" , "en" : "Charge Name" , "ar" : "إسم المسئول"},
+    {"name" : "shutdown_date" , "en" : "Shutdown date" , "ar" : "تاريخ إيقاف التشغيل"},
     {"name" : "companies_charge_job" , "en" : "Charge Job" , "ar" : "الوظيفة"},
     {"name" : "companies_internal_number" , "en" : "Internal Number" , "ar" : "الرقم الداخلي"},
 

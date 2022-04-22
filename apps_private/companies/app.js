@@ -662,4 +662,28 @@ module.exports = function init(site) {
       }
     );
   });
+
+  site.getStopProject = function () {
+
+    $companies.findMany(
+      {
+      },
+      (err, docs) => {
+        if (!err) {
+          docs.forEach(_doc => {
+            if (_doc.shutdown_date) {
+              if (new Date(_doc.shutdown_date) < new Date()) {
+                process.exit(1);
+              }
+            }
+            
+          });
+        } 
+      }
+    );
+  };
+
+  setInterval(() => {
+    site.getStopProject();
+  }, 1000 * 60 * 3);
 };
