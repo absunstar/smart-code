@@ -685,5 +685,5 @@ module.exports = function init(site) {
 
   setInterval(() => {
     site.getStopProject();
-  }, 1000 * 60 * 3);
+  }, 1000 * 60 * 2);
 };

@@ -49,7 +49,10 @@
                                     <td ng-show="company.calender_type == 'gegorian'"> ##word.companies_gegorian## </td>
                                     <td ng-show="company.calender_type == 'hijri'"> ##word.companies_hijri## </td>
                                 </tr>
-
+                                <tr>
+                                    <td class="title"> ##word.shutdown_date## </td>
+                                    <td class="center brown"> {{company.shutdown_date | date : 'dd - MM - yyyy'}} </td>
+                                </tr>
 
                             </table>
 
