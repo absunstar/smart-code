@@ -68,19 +68,6 @@ setTimeout(() => {
     site.importApp(__dirname + '/apps_private/companies')
     site.importApp(__dirname + '/apps_private/zk-reader')
 
-  // site.zk.load_attendance( {
-    //     ip: '192.168.100.201',
-    //     port: 4370,
-    //     inport: 5200,
-    //     timeout: 5000,
-    //     attendanceParser: 'v6.60',
-    //     connectionType: 'udp',
-    //     auto: true,
-    //     auto_time: 1000 * 3
-    // }, (err, attendance_array) => {
-    //     console.log(attendance_array || err)
-    // })
-
 }, 1000)
 
 
@@ -91,9 +78,4 @@ setTimeout(() => {
 site.run()
 site.security.addKey('5e8edd851d2fdfbd7415232c67367cc3');
 site.security.addKey('0e849095ad8db45384a9cdd28d7d0e20');
-
-
-// site.on('zk attend', attend=>{
-//     console.log(attend)
-// })
 
