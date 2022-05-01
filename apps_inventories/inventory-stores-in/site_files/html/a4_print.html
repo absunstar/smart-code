@@ -43,10 +43,10 @@
       </div>
     </div>
 
-    <div class="row center">
-      <p class="center black bold font-12">الرقم الضريبي / Tax No. : {{defaultSettings.printer_program.tax_number}}</p>
-      <p ng-show="st_i.type.id != 4" class="center black bold txt18">فاتورة ضريبية / Tax Invoice</p>
-      <p ng-show="st_i.type.id == 4" class="center black bold txt18">إشعار مرتجع / BACK NOTICE</p>
+    <div class="row center" ng-show="##session.company.tax_number##">
+      <p class="center black bold font-12">الرقم الضريبي / Tax No. : ##session.company.tax_number##</p>
+      <p ng-show="st_o.type.id != 6" class="center black bold txt18">فاتورة ضريبية / Tax Invoice</p>
+      <p ng-show="st_o.type.id == 6" class="center black bold txt18">إشعار مرتجع / BACK NOTICE</p>
     </div>
 
     <br />

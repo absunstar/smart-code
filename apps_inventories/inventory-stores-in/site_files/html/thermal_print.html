@@ -59,7 +59,7 @@
       </div>
     </div>
 
-    <div class="row center">
+    <div class="row center" ng-show="##session.company.tax_number##">
       <p class="center black font-14 bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">الرقم الضريبي : ##session.company.tax_number##</p>
       <p class="center black font-14 bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Tax Number : ##session.company.tax_number##</p>
       <p class="center black font-14 bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.tax_number## : ##session.company.tax_number##</p>
