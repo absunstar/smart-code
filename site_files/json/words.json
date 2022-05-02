@@ -1816,6 +1816,11 @@
     "ar": "ﻻ"
   },
   {
+    "name": "and",
+    "en": "&",
+    "ar": "و"
+  },
+  {
     "name": "code_exisit",
     "en": "Code Exisit",
     "ar": "الكود مسجل من قبل"

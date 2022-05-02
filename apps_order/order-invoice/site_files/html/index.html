@@ -84,8 +84,18 @@
                 </i-button>
               </div>
 
-              <fieldset>
-                <div class="row center">
+              <fieldset x-features="restaurant" ng-show="order_invoice.transaction_type.id == 1">
+                <div class="row center" > 
+                  <div class="col-1"></div>
+                  <br />
+                  <b class="font-16">##word.table##</b> : <b class="font-16 bold blue">{{order_invoice.table.name_##session.lang##}} ( {{order_invoice.table.code}} )</b>
+                  <div class="col-2"></div>
+                </div>
+              </fieldset>
+
+              <fieldset x-features="!restaurant">
+            
+                <div class="row center" > 
                   <div class="col-2"></div>
                   <div class="col-2">
                     <br />
@@ -196,10 +206,9 @@
                     >
                     </i-button>
 
-                    <i-button ng-hide="'##user.type##' == 'table'" type="bg-blue white" label="##word.discountes##" fa="percent" ng-click="showOrderDetails(order_invoice,'discountes')"> </i-button>
+                    <i-button ng-hide="'##user.type##' == 'table'" type="bg-blue white" label="##word.discountes## ##word.and## ##word.stores_out_taxes##" fa="file-invoice-dollar" ng-click="showOrderDetails(order_invoice,'discountes_tax')"> </i-button>
 
-                    <i-button type="bg-blue white" ng-hide="'##user.type##' == 'table'" label="##word.stores_out_taxes##" fa="file-invoice-dollar" ng-click="showOrderDetails(order_invoice,'taxes')">
-                    </i-button>
+                  </i-button>
                     <i-button type="bg-black white" label="##word.print_invoices##" fa="print" ng-click="printOrdersToday()"> </i-button>
                   </div>
                 </div>

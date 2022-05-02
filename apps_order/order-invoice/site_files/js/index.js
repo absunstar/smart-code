@@ -371,7 +371,7 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
               $scope.busy = false;
               if (response.data.done) {
                 if (site.feature('restaurant')) {
-                  $scope.kitchenPrint({ ...response.data.doc });
+                  /* $scope.kitchenPrint({ ...response.data.doc }); */
                   $scope.order_invoice.$show_table = true;
                 }
 
@@ -411,6 +411,9 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
                       ar: 'شاشة الطلبات',
                     },
                     active: true,
+                  };
+                  if($scope.order_invoice.transaction_type.id ==1 && $scope.order_invoice.table) {
+                    store_out.table = $scope.order_invoice.table;
                   };
                   if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto && $scope.order_invoice.status.id == 2 && !$scope.order_invoice.invoice) {
                     store_out.invoice = true;
@@ -2706,30 +2709,20 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
       obj.$show_customer = true;
       obj.$show_delivery = false;
       obj.$show_table = false;
-      obj.$show_discountes = false;
-      obj.$show_taxes = false;
+      obj.$show_discountes_tax = false;
     } else if (type === 'table') {
-      obj.$show_discountes = false;
+      obj.$show_discountes_tax = false;
       obj.$show_delivery = false;
-      obj.$show_taxes = false;
       obj.$show_table = true;
       obj.$show_customer = false;
-    } else if (type === 'discountes') {
-      obj.$show_discountes = true;
+    } else if (type === 'discountes_tax') {
+      obj.$show_discountes_tax = true;
       obj.$show_delivery = false;
-      obj.$show_taxes = false;
-      obj.$show_table = false;
-      obj.$show_customer = false;
-    } else if (type === 'taxes') {
-      obj.$show_taxes = true;
-      obj.$show_delivery = false;
-      obj.$show_discountes = false;
       obj.$show_table = false;
       obj.$show_customer = false;
     } else if (type === 'delivery') {
       obj.$show_delivery = true;
-      obj.$show_taxes = false;
-      obj.$show_discountes = false;
+      obj.$show_discountes_tax = false;
       obj.$show_table = false;
       obj.$show_customer = false;
     }

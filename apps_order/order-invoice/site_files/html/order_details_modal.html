@@ -77,8 +77,6 @@
             <div class="row" ng-show="order_invoice.$show_table">
                 <div class="row" ng-show="order_invoice.transaction_type.id == 1">
 
-
-                
                     <div class="col4 item-list border" ng-show="order_invoice.table.id">
                         <a class="item pointer" help-id="menu_monitor">
                           <div class="row">
@@ -132,13 +130,7 @@
                 </div>
             </div>
 
-            <div class="row" ng-show="order_invoice.$show_discountes">
-                <!-- 
-                <div class="row ">
-                    <i-list class="col4" ng-model="discount" display="name_##session.lang##"
-                        ng-search="_search.$discount_name" items="discount_types" label="##word.discount_name##">
-                    </i-list>
-                </div> -->
+            <div class="row" ng-show="order_invoice.$show_discountes_tax">
 
                 <div class="row">
                     <i-list class="col4" ng-model="discount" display="name_##session.lang##"
@@ -207,11 +199,9 @@
                         </tr>
                     </table>
                 </div>
-
-            </div>
-
-            <div class="row" ng-show="order_invoice.$show_taxes">
-
+                <br>
+                <hr style="height: 5px; color: grey; background-color: rgb(0, 0, 199)" />
+                <br>
                 <div class="row">
                     <i-list class="col4" ng-model="tax" label="##word.tax_types_name##" display="name_##session.lang##"
                         ng-search="_search.$taxtypes" items="tax_types">
@@ -268,6 +258,11 @@
 
                     </table>
                 </div>
+            </div>
+
+            <div class="row" ng-show="order_invoice.$show_taxes">
+
+              
 
             </div>
 
