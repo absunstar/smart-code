@@ -110,10 +110,10 @@
         <b class="black font-13 bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Table :</b>
         <b class="black font-13 bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 3">##word.table## :</b>
         <b class="black font-13 bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 1 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'ar'">
-          {{thermal.table.name_ar}}
+          {{thermal.table.name_ar}} ( {{thermal.table.code}} )
         </b>
         <b class="black font-13 bold" ng-show="defaultSettings.printer_program.thermal_lang.id == 2 || defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'en'">
-          {{thermal.table.name_en}}
+          {{thermal.table.name_en}} ( {{thermal.table.code}} )
         </b>
       </div>
     </div>
@@ -229,7 +229,7 @@
     </div>
     <hr />
 
-    <div class="row">
+    <div class="row" ng-show="defaultSettings.inventory.value_added">
       <div class="col-8 center">
         <p class="black bold font-10" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">إجمالي قبل ضريبة القيمة المضافة</p>
         <p class="black bold font-10" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Total Before.VAT</p>
@@ -241,7 +241,7 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row" ng-show="defaultSettings.inventory.value_added">
       <div class="col-8 center">
         <p class="black bold font-11" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">ضريبة القيمة المضافة {{defaultSettings.inventory.value_added}}%</p>
         <p class="black bold font-11" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Value added tax {{defaultSettings.inventory.value_added}}%</p>
@@ -253,7 +253,7 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row" ng-show="defaultSettings.inventory.value_added">
       <div class="col-8 center">
         <p class="black bold font-10" ng-show="defaultSettings.printer_program.thermal_lang.id == 1">إجمالي بعد ضريبة القيمة المضافة</p>
         <p class="black bold font-10" ng-show="defaultSettings.printer_program.thermal_lang.id == 2">Total After.VAT</p>
