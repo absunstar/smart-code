@@ -412,9 +412,9 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
                     },
                     active: true,
                   };
-                  if($scope.order_invoice.transaction_type.id ==1 && $scope.order_invoice.table) {
+                  if ($scope.order_invoice.transaction_type.id == 1 && $scope.order_invoice.table) {
                     store_out.table = $scope.order_invoice.table;
-                  };
+                  }
                   if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto && $scope.order_invoice.status.id == 2 && !$scope.order_invoice.invoice) {
                     store_out.invoice = true;
                     $scope.addStoresOut(store_out);
@@ -1847,6 +1847,11 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
             $scope.busy = false;
             if (response.data.done) {
               $scope.itemsList = response.data.list;
+              if ($scope.itemsList && $scope.itemsList.length > 0) {
+                site.showModal('#itemModal');
+              } else {
+                $scope.error = "##word.items_not_found##";
+              }
               document.querySelector('#searchBarcode input').focus();
             }
           },
@@ -2579,7 +2584,6 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
       if (shift) {
         $scope.getTablesList(() => {
           $scope.getTablesGroupList();
-          site.showModal('#showTablesModal');
         });
       } else $scope.error = '##word.open_shift_not_found##';
     });
@@ -2609,6 +2613,7 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
           }).then(
             function (response) {
               $scope.order_invoice.count_person = $scope.order_invoice.count_person || 1;
+              $scope.showTables();
             },
             function (err) {
               $scope.busy = false;

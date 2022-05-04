@@ -180,18 +180,17 @@ module.exports = function init(site) {
         p.done = false;
         p.paid_up = 0;
         p.remain = p.value;
-       _num += p.value;
+        _num += p.value;
       }
-      if(order_invoice_doc.payment_type && order_invoice_doc.payment_type.id == 2){
+      if (order_invoice_doc.payment_type && order_invoice_doc.payment_type.id == 2) {
         let remain = order_invoice_doc.net_value - order_invoice_doc.paid_up;
-        if(_num > remain){
+        if (_num > remain) {
           response.error = 'value of batches is greater than the remain of the invoice';
           res.json(response);
           return;
         }
       }
     }
-
 
     if (!order_invoice_doc.status)
       order_invoice_doc.status = {
@@ -238,9 +237,15 @@ module.exports = function init(site) {
     }
 
     if (order_invoice_doc.transaction_type && order_invoice_doc.transaction_type.id == 1 && order_invoice_doc.table) {
-      let table = order_invoice_doc.table;
-      table.busy = true;
-      site.call('[order_invoice][tables][busy]', table);
+      if (order_invoice_doc.status.id == 1) {
+        let table = order_invoice_doc.table;
+        table.busy = true;
+        site.call('[order_invoice][tables][busy]', table);
+      } else {
+        let table = order_invoice_doc.table;
+        table.busy = false;
+        site.call('[order_invoice][tables][busy]', table);
+      }
     }
 
     order_invoice_doc.total_items = 0;
@@ -299,13 +304,13 @@ module.exports = function init(site) {
       }
 
       if (order_invoice_doc.table && order_invoice_doc.table.id) {
-        if (order_invoice_doc.status.id == 2) {
-          let table = order_invoice_doc.table;
-          table.busy = false;
-          site.call('[order_invoice][tables][busy]', table);
-        } else if (order_invoice_doc.status.id == 1) {
+        if (order_invoice_doc.status.id == 1) {
           let table = order_invoice_doc.table;
           table.busy = true;
+          site.call('[order_invoice][tables][busy]', table);
+        } else {
+          let table = order_invoice_doc.table;
+          table.busy = false;
           site.call('[order_invoice][tables][busy]', table);
         }
       }

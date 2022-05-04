@@ -8,16 +8,15 @@ body {
 }
 
 .item-groups {
-    height: 95px;
     flex-flow: wrap;
-    background: #2196f33b;
-    overflow: auto;
-    white-space: nowrap;
+    
+    white-space: initial;
 }
 .item-groups .item {
     margin: 5px;
     min-width: 180px;
     height: 88%;
+    width: 220px;
     display: inline-flex;
     border: 1px solid #eee;
     background-color: #2196f3;
@@ -26,13 +25,17 @@ body {
     border-radius: 20px;
 }
 
+.item-groups img {
+    height: 80px;
+
+}
+
 .item-groups .item p {
 /*     min-width: 190px;
  */    white-space: pre-line;
     display: inline-block;
     color: #ffffff;
     text-align: center;
-    padding-top: 25px;
     padding: 7px;
     padding-top: 25px;
     font-weight: bold;
@@ -40,7 +43,7 @@ body {
     text-align: center;
 }
 
-.item-groups::-webkit-scrollbar {
+ .item-groups::-webkit-scrollbar {
     height: 10px;
 }
 
@@ -51,7 +54,7 @@ body {
 
 .item-groups::-webkit-scrollbar-thumb:hover {
     background: #2414ff;
-}
+} 
 
 .active-list {
     position: relative;
@@ -70,12 +73,14 @@ body {
     background: #dfe4f0;
     font-size: large;
 }
+.scroll {
+    overflow: scroll;
+
+}
 
 .item-list {
     /* display: inline-flex; */
     flex-flow: wrap;
-    height: 55vh;
-    overflow: scroll;
 }
 
 .item-list .item {
@@ -104,6 +109,7 @@ body {
     height: 80px;
     font-size: 14px;
     padding: 5px;
+    padding-top: 2px;
     font-weight: 700;
 }
 
@@ -113,7 +119,7 @@ body {
 }
 
 .table-content.items {
-    height: 43vh;
+    height: 40vh;
 }
 .table-content .table-headers {
     width: 100%;

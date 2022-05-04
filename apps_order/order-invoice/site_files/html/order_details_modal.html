@@ -1,280 +1,257 @@
 <div id="orderDetailsModal" class="modal small">
-
-    <div class="modal-content">
-        <div class="modal-header">
-            <span class="close">&times;</span>
-        </div>
-
-        <div class="modal-body">
-            <div class="row">
-
-                <div class="row" ng-show="order_invoice.$show_customer || order_invoice.$show_delivery">
-
-                    <i-button type="add" label="##word.customers_new##" ng-click="displayAddCustomer()">
-                    </i-button>
-
-                    <i-control ng-keydown="getCustomerList($event)" id="service" class="col3" ng-model="search_customer"
-                        label="##word.search##" type="text"></i-control>
-
-                    <i-list ng-search="_search.$order_customers" class="col5" display="name_##session.lang##"
-                        ng-model="order_invoice.customer" label="##word.customer_name##"
-                        ng-change="changeCustomerAddresses(order_invoice.customer)" items="customersList">
-                    </i-list>
-
-                </div>
-
-                <div class="row" ng-show="order_invoice.transaction_type.id == 2 && order_invoice.$show_delivery">
-                    <i-list ng-search="_search.$order_invoice_employee" class="col4" display="name_##session.lang##"
-                        ng-model="order_invoice.delivery_employee" label="##word.delivery_employee##"
-                        items="deliveryEmployeesList"></i-list>
-                </div>
-
-                <br>
-                <br>
-
-                <fieldset ng-show="order_invoice.transaction_type.id == 2 && order_invoice.$show_delivery">
-                    <legend> ##word.customer_data##</legend>
-                    <div class="row">
-                        <div class="row">
-
-                            <i-list class="col3" label="##word.gov##" ng-model="order_invoice.gov"
-                                items="govList" display="name_##session.lang##"
-                                ng-change="getCityList(order_invoice.gov)" ng-search="_search.$govNameContact"></i-list>
-
-                            <i-list class="col3" label="##word.city##" ng-model="order_invoice.city" items="cityList"
-                                ng-change="getAreaList(order_invoice.city)" display="name_##session.lang##"
-                                ng-search="_search.$order_invoice_city_search">
-                            </i-list>
-
-                            <i-list class="col3" label="##word.area##" ng-model="order_invoice.area" items="areaList"
-                                display="name_##session.lang##"
-                                ng-change=" order_invoice.price_delivery_service = order_invoice.area.price_delivery_service"
-                                ng-search="_search.$order_invoice.$area_search"></i-list>
-
-                            <i-control ng-show="order_invoice.transaction_type.id == 2"
-                                ng-model="order_invoice.price_delivery_service" label="##word.price_delivery_service##"
-                                ng-change="calc(order_invoice)" class="col3" type="number">
-                            </i-control>
-
-                        </div>
-
-                        <div class="row">
-
-                            <i-control class="col8" label="##word.customers_address##" ng-model="order_invoice.address">
-                            </i-control>
-
-                            <i-control class="col4" label="##word.mobile##"
-                                ng-model="order_invoice.customer_mobile">
-                            </i-control>
-
-                        </div>
-
-                    </div>
-                </fieldset>
-            </div>
-
-
-            <div class="row" ng-show="order_invoice.$show_table">
-                <div class="row" ng-show="order_invoice.transaction_type.id == 1">
-
-                    <div class="col4 item-list border" ng-show="order_invoice.table.id">
-                        <a class="item pointer" help-id="menu_monitor">
-                          <div class="row">
-                            <div class="col-4"><img ng-src="{{order_invoice.table.image_url}}"></div>
-                            <div class="col-8 "><p class="center">{{order_invoice.table.name_##session.lang##}}</p></div>
-                          </div>
-                        </a>
-                      </div>
-
-                    <div class="col1"></div>
-                    <div class="col8">
-                        <div class="row">
-                            <div class="col6">
-                                <div class="row">
-        
-                                    <i-control class="col6" ng-model="order_invoice.count_person" label="##word.count_person##"
-                                        type="number"></i-control>
-        
-                                    <i-control class="col6" ng-model="order_invoice.service" label="##word.service##"
-                                        type="number" ng-change="calc(order_invoice)"></i-control>
-        
-                                </div>
-        
-                              
-                            </div>
-                            <div class="col1"></div>
-        
-                            <div class="col5">
-        
-                                <i-button label="##word.select_table##" ng-click="showTables()">
-                                </i-button>
-        
-                                <i-button ng-show="order_invoice.transaction_type.id == 1 && order_invoice.id" type="bg-blue"
-                                    label="##word.merge_table##" ng-click="viewInvoicesTablesList()">
-                                </i-button>
-                            </div>
-                        </div>
-                        <div class="row" ng-show="order_invoice.table.id">
-                            <div class="col1"></div>
-                            <i-control class="col5" ng-model="order_invoice.table.minimum" label="##word.tables_min##"
-                                type="number" disabled></i-control>
-
-                            <i-control class="col5" disabled ng-model="order_invoice.table.maxmum"
-                                label="##word.tables_max##" type="number"></i-control>
-                                <div class="col1"></div>
-
-                        </div>
-                    </div>
-                 
-
-                </div>
-            </div>
-
-            <div class="row" ng-show="order_invoice.$show_discountes_tax">
-
-                <div class="row">
-                    <i-list class="col4" ng-model="discount" display="name_##session.lang##"
-                        ng-search="_search.$discount_name" items="discount_types" label="##word.discount_name##">
-                    </i-list>
-
-                    <i-control class="col2" ng-model="discount.value" type="number" label="##word.discount_value##">
-                    </i-control>
-
-                    <div class="col2">
-                        <div class="row">
-
-                            <i-radio ng-model="discount.type" ng-value="number" group="type" label="##word.amount##">
-                            </i-radio>
-                        </div>
-                        <div class="row">
-
-                            <i-radio ng-model="discount.type" group="type" ng-value="percent" label="##word.percent##">
-                            </i-radio>
-                        </div>
-                    </div>
-                    <div class="col1"></div>
-
-                    <div class="col3">
-                        <br>
-                        <i-button ng-click="addDiscount() ;calc(order_invoice)" label="##word.stores_out_add_discount##"
-                            type="add">
-                        </i-button>
-                    </div>
-
-                </div>
-                <br>
-                <br>
-                <div class="row" ng-show="order_invoice.discountes.length > 0">
-
-
-                    <table class="table hover bold center loaded">
-
-                        <tr>
-                            <th>##word.serial##</th>
-                            <th>##word.discount_name##</th>
-                            <th>##word.discount_value##</th>
-                            <th>
-                                ##word.actions##
-                            </th>
-                        </tr>
-
-                        <tr ng-repeat="d1 in order_invoice.discountes track by $index">
-                            <td>
-                                {{$index + 1}}
-                            </td>
-                            <td>
-                                {{d1.name_##session.lang##}}
-                            </td>
-                            <td>
-                                <span class="bold red" ng-show="d1.type === 'percent'">{{d1.value}}
-                                    %</span>
-                                <span class="bold red" ng-show="d1.type === 'number'">{{d1.value}}$</span>
-                            </td>
-
-                            <td>
-                                <i-button type="delete" ng-click="deleteDiscount(d1) ; calc(order_invoice)">
-                                </i-button>
-                            </td>
-
-                        </tr>
-                    </table>
-                </div>
-                <br>
-                <hr style="height: 5px; color: grey; background-color: rgb(0, 0, 199)" />
-                <br>
-                <div class="row">
-                    <i-list class="col4" ng-model="tax" label="##word.tax_types_name##" display="name_##session.lang##"
-                        ng-search="_search.$taxtypes" items="tax_types">
-                    </i-list>
-
-                    <i-control class="col2" ng-model="tax.value" label="##word.tax_types_value##">
-                    </i-control>
-                    <div class="col1"></div>
-                    <div class="col3">
-                        <br>
-                        <i-button type="add" label="##word.stores_out_add_tax##"
-                            ng-click="addTax() ;calc(order_invoice)">
-                        </i-button>
-
-                    </div>
-                </div>
-
-                <br>
-                <br>
-
-                <div class="row" ng-show="order_invoice.taxes.length > 0">
-
-
-                    <table class="table hover bold center loaded">
-
-                        <tr>
-                            <th>##word.serial##</th>
-                            <th>##word.tax_types_name##</th>
-                            <th>##word.tax_types_value##</th>
-                            <th>
-                                ##word.actions##
-                            </th>
-                        </tr>
-
-                        <tr ng-repeat="tx in order_invoice.taxes track by $index">
-                            <td>
-                                {{$index + 1}}
-                            </td>
-
-                            <td>
-                                {{tx.name_##session.lang##}}
-                            </td>
-
-                            <td>
-                                <span class="bold red">{{tx.value}} %</span>
-                            </td>
-
-                            <td>
-                                <i-button type="delete" ng-click="deleteTax(tx) ;calc(order_invoice)">
-                                </i-button>
-                            </td>
-
-                        </tr>
-
-                    </table>
-                </div>
-            </div>
-
-            <div class="row" ng-show="order_invoice.$show_taxes">
-
-              
-
-            </div>
-
-        </div>
-
-        <h2 class="error"> {{error}} </h2>
-
-        <div class="modal-footer center">
-
-            <i-button type="close" label="##word.close##" onclick="site.hideModal('#orderDetailsModal')"> </i-button>
-
-        </div>
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
     </div>
 
+    <div class="modal-body">
+      <div class="row">
+        <div class="row" ng-show="order_invoice.$show_customer || order_invoice.$show_delivery">
+          <i-button type="add" label="##word.customers_new##" ng-click="displayAddCustomer()"> </i-button>
+
+          <i-control ng-keydown="getCustomerList($event)" id="service" class="col3" ng-model="search_customer" label="##word.search##" type="text"></i-control>
+
+          <i-list
+            ng-search="_search.$order_customers"
+            class="col5"
+            display="name_##session.lang##"
+            ng-model="order_invoice.customer"
+            label="##word.customer_name##"
+            ng-change="changeCustomerAddresses(order_invoice.customer)"
+            items="customersList"
+          >
+          </i-list>
+        </div>
+
+        <div class="row" ng-show="order_invoice.transaction_type.id == 2 && order_invoice.$show_delivery">
+          <i-list
+            ng-search="_search.$order_invoice_employee"
+            class="col4"
+            display="name_##session.lang##"
+            ng-model="order_invoice.delivery_employee"
+            label="##word.delivery_employee##"
+            items="deliveryEmployeesList"
+          ></i-list>
+        </div>
+
+        <br />
+        <br />
+
+        <fieldset ng-show="order_invoice.transaction_type.id == 2 && order_invoice.$show_delivery">
+          <legend>##word.customer_data##</legend>
+          <div class="row">
+            <div class="row">
+              <i-list
+                class="col3"
+                label="##word.gov##"
+                ng-model="order_invoice.gov"
+                items="govList"
+                display="name_##session.lang##"
+                ng-change="getCityList(order_invoice.gov)"
+                ng-search="_search.$govNameContact"
+              ></i-list>
+
+              <i-list
+                class="col3"
+                label="##word.city##"
+                ng-model="order_invoice.city"
+                items="cityList"
+                ng-change="getAreaList(order_invoice.city)"
+                display="name_##session.lang##"
+                ng-search="_search.$order_invoice_city_search"
+              >
+              </i-list>
+
+              <i-list
+                class="col3"
+                label="##word.area##"
+                ng-model="order_invoice.area"
+                items="areaList"
+                display="name_##session.lang##"
+                ng-change=" order_invoice.price_delivery_service = order_invoice.area.price_delivery_service"
+                ng-search="_search.$order_invoice.$area_search"
+              ></i-list>
+
+              <i-control
+                ng-show="order_invoice.transaction_type.id == 2"
+                ng-model="order_invoice.price_delivery_service"
+                label="##word.price_delivery_service##"
+                ng-change="calc(order_invoice)"
+                class="col3"
+                type="number"
+              >
+              </i-control>
+            </div>
+
+            <div class="row">
+              <i-control class="col8" label="##word.customers_address##" ng-model="order_invoice.address"> </i-control>
+
+              <i-control class="col4" label="##word.mobile##" ng-model="order_invoice.customer_mobile"> </i-control>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="row" ng-show="order_invoice.$show_table">
+        <div class="row" ng-show="order_invoice.transaction_type.id == 1">
+          <div class="row">
+            <div class="col4 item-list" ng-show="order_invoice.table.id">
+              <fieldset>
+                <a class="item pointer" help-id="menu_monitor">
+                  <div class="row">
+                    <div class="col-4"><img ng-src="{{order_invoice.table.image_url}}" /></div>
+                    <div class="col-8"><p class="center">{{order_invoice.table.name_##session.lang##}} ( {{order_invoice.table.code}} )</p></div>
+                  </div>
+                </a>
+              </fieldset>
+            </div>
+
+            <div class="col2"></div>
+            <div class="col7">
+              <div class="row">
+                <div class="col6">
+                  <div class="row">
+                    <i-control class="col6" ng-model="order_invoice.count_person" label="##word.count_person##" type="number"></i-control>
+
+                    <i-control class="col6" ng-model="order_invoice.service" label="##word.service##" type="number" ng-change="calc(order_invoice)"></i-control>
+                  </div>
+                </div>
+                <div class="col1"></div>
+
+                <div class="col5">
+                  <!-- <i-button label="##word.select_table##" ng-click="showTables()"> </i-button> -->
+
+                  <i-button ng-show="order_invoice.transaction_type.id == 1 && order_invoice.id" label="##word.merge_table##" ng-click="viewInvoicesTablesList()"> </i-button>
+                </div>
+              </div>
+              <div class="row" ng-show="order_invoice.table.id">
+                <div class="col1"></div>
+                <i-control class="col5" ng-model="order_invoice.table.minimum" label="##word.tables_min##" type="number" disabled></i-control>
+
+                <i-control class="col5" disabled ng-model="order_invoice.table.maxmum" label="##word.tables_max##" type="number"></i-control>
+                <div class="col1"></div>
+              </div>
+            </div>
+          </div>
+
+          <br />
+          <hr style="height: 5px; color: grey; background-color: rgb(0, 0, 199)" />
+          <br />
+          <div class="row" ng-repeat="g in tablesGroupList">
+            <fieldset>
+              <legend>
+                <i-button label="{{g.name_##session.lang##}}"></i-button>
+              </legend>
+
+              <div class="row item-list border">
+                <a ng-class="{'table-busy' : t.busy }" class="item col4 pointer" ng-repeat="t in g.tables_list" ng-click="selectTable(t , g)" help-id="menu_monitor">
+                  <div class="row">
+                    <div class="col-4"><img ng-src="{{t.image_url}}" /></div>
+                    <div class="col-8"><p class="center">{{t.name_##session.lang##}} ( {{t.code}} ) </p></div>
+                  </div>
+                </a>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" ng-show="order_invoice.$show_discountes_tax">
+        <div class="row">
+          <i-list class="col4" ng-model="discount" display="name_##session.lang##" ng-search="_search.$discount_name" items="discount_types" label="##word.discount_name##"> </i-list>
+
+          <i-control class="col2" ng-model="discount.value" type="number" label="##word.discount_value##"> </i-control>
+
+          <div class="col2">
+            <div class="row">
+              <i-radio ng-model="discount.type" ng-value="number" group="type" label="##word.amount##"> </i-radio>
+            </div>
+            <div class="row">
+              <i-radio ng-model="discount.type" group="type" ng-value="percent" label="##word.percent##"> </i-radio>
+            </div>
+          </div>
+          <div class="col1"></div>
+
+          <div class="col3">
+            <br />
+            <i-button ng-click="addDiscount() ;calc(order_invoice)" label="##word.stores_out_add_discount##" type="add"> </i-button>
+          </div>
+        </div>
+        <br />
+        <br />
+        <div class="row" ng-show="order_invoice.discountes.length > 0">
+          <table class="table hover bold center loaded">
+            <tr>
+              <th>##word.serial##</th>
+              <th>##word.discount_name##</th>
+              <th>##word.discount_value##</th>
+              <th>##word.actions##</th>
+            </tr>
+
+            <tr ng-repeat="d1 in order_invoice.discountes track by $index">
+              <td>{{$index + 1}}</td>
+              <td>{{d1.name_##session.lang##}}</td>
+              <td>
+                <span class="bold red" ng-show="d1.type === 'percent'">{{d1.value}} %</span>
+                <span class="bold red" ng-show="d1.type === 'number'">{{d1.value}}$</span>
+              </td>
+
+              <td>
+                <i-button type="delete" ng-click="deleteDiscount(d1) ; calc(order_invoice)"> </i-button>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <br />
+        <hr style="height: 5px; color: grey; background-color: rgb(0, 0, 199)" />
+        <br />
+        <div class="row">
+          <i-list class="col4" ng-model="tax" label="##word.tax_types_name##" display="name_##session.lang##" ng-search="_search.$taxtypes" items="tax_types"> </i-list>
+
+          <i-control class="col2" ng-model="tax.value" label="##word.tax_types_value##"> </i-control>
+          <div class="col1"></div>
+          <div class="col3">
+            <br />
+            <i-button type="add" label="##word.stores_out_add_tax##" ng-click="addTax() ;calc(order_invoice)"> </i-button>
+          </div>
+        </div>
+
+        <br />
+        <br />
+
+        <div class="row" ng-show="order_invoice.taxes.length > 0">
+          <table class="table hover bold center loaded">
+            <tr>
+              <th>##word.serial##</th>
+              <th>##word.tax_types_name##</th>
+              <th>##word.tax_types_value##</th>
+              <th>##word.actions##</th>
+            </tr>
+
+            <tr ng-repeat="tx in order_invoice.taxes track by $index">
+              <td>{{$index + 1}}</td>
+
+              <td>{{tx.name_##session.lang##}}</td>
+
+              <td>
+                <span class="bold red">{{tx.value}} %</span>
+              </td>
+
+              <td>
+                <i-button type="delete" ng-click="deleteTax(tx) ;calc(order_invoice)"> </i-button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="row" ng-show="order_invoice.$show_taxes"></div>
+    </div>
+
+    <h2 class="error">{{error}}</h2>
+
+    <div class="modal-footer center">
+      <i-button type="close" label="##word.close##" onclick="site.hideModal('#orderDetailsModal')"> </i-button>
+    </div>
+  </div>
 </div>

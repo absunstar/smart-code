@@ -72,6 +72,7 @@
                 </i-button>
 
                 <i-button fa="ban" type="bg-brown white btnOrders" ng-show="order_invoice.hold" label="##word.order_unhold##" ng-click="updateOrderInvoice(order_invoice,'unhold')"> </i-button>
+
                 <i-button type="bg-yellow btnOrders" ng-hide="order_invoice.status.id == 2" fa="cart-plus" label="##word.save_order##" ng-click="addOrderInvoice('save')"> </i-button>
 
                 <i-button
@@ -85,17 +86,14 @@
               </div>
 
               <fieldset x-features="restaurant" ng-show="order_invoice.transaction_type.id == 1">
-                <div class="row center" > 
-                  <div class="col-1"></div>
-                  <br />
-                  <b class="font-16">##word.table##</b> : <b class="font-16 bold blue">{{order_invoice.table.name_##session.lang##}}</b>
-                  <div class="col-2"></div>
+                <div class="row center" >
+                  <b class="font-16">##word.table##</b> : <b class="font-16 bold blue">{{order_invoice.table.name_##session.lang##}} ( {{order_invoice.table.code}} )</b>
                 </div>
               </fieldset>
 
               <fieldset x-features="!restaurant">
             
-                <div class="row center" > 
+                <div class="row center"> 
                   <div class="col-2"></div>
                   <div class="col-2">
                     <br />
@@ -106,25 +104,65 @@
                 <div class="col-2"></div>
               </fieldset>
 
-              <div class="row">
-                <div class="item-groups">
-                  <a class="item pointer" ng-repeat="g in itemsGroupList" ng-click="loadItems(g , $event)" help-id="menu_monitor">
-                    <img ng-src="{{g.image_url}}" />
-                    <p>{{g.name_##session.lang##}}</p>
-                  </a>
-                </div>
+              <div class="row scroll item-groups" style="height: 73vh;">
+                <fieldset style="background: #2196f33b;">
+
+                    <a class="item pointer" ng-repeat="g in itemsGroupList" ng-click="loadItems(g , $event)" help-id="menu_monitor">
+                      <img ng-src="{{g.image_url}}" />
+                      <p>{{g.name_##session.lang##}}</p>
+                    </a>
+                </fieldset>
               </div>
 
-              <div class="row item-list border" ng-show="itemsList.length > 0">
+              <!-- <div class="row item-list scroll border" style="height: 55vh;" ng-show="itemsList.length > 0">
                 <a class="item col4 pointer" ng-repeat="i in itemsList" ng-click="showItemsIn(i)" help-id="menu_monitor">
                   <div class="row">
                     <div class="col-4"><img ng-src="{{i.image_url}}" ng-src2="/images/food.png" /></div>
                     <div class="col-8"><p class="center">{{i.name_##session.lang##}}</p></div>
                   </div>
                 </a>
-              </div>
+              </div> -->
 
               <br />
+
+              <div id="itemModal" class="modal">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <span class="close">&times;</span>
+                  </div>
+
+                  <div class="modal-body">
+                    <div class="row">
+                      <div class="col2"></div>
+                      <div class="col8">
+                        <fieldset>
+
+                          <div class="row item-list" ng-show="itemsList.length > 0">
+                            <a class="item col4 pointer" ng-repeat="i in itemsList" ng-click="showItemsIn(i)" help-id="menu_monitor">
+                              <div class="row">
+                                <div class="col-4"><img ng-src="{{i.image_url}}" ng-src2="/images/food.png" /></div>
+                                <div class="col-8"><p class="center">{{i.name_##session.lang##}}</p></div>
+                              </div>
+                            </a>
+                          </div>
+                        </fieldset>
+                      </div>
+                      <div class="col2"></div>
+                      <!-- <a class="item pointer" ng-repeat="s in items.sizes" ng-click="bookList(s)" help-id="menu_monitor">
+                        <img ng-src="{{s.image_url}}" onerror="this.src='/images/no.png'" />
+                         <h3> ##word.price## : {{s.price}}</h3>
+                        <div class="bg_font_item">
+                          <h3 class="center font_name_items">{{s.size_##session.lang##}}</h3>
+                        </div>
+                      </a> -->
+                    </div>
+                  </div>
+
+                  <div class="modal-footer center">
+                    <i-button type="close" label="##word.close##" onclick="site.hideModal('#sizesModal')"> </i-button>
+                  </div>
+                </div>
+              </div>
 
               <div id="sizesModal" class="modal small">
                 <div class="modal-content">
@@ -136,7 +174,7 @@
                     <div class="row">
                       <div class="col2"></div>
                       <div class="col8">
-                        <div class="row item-list border">
+                        <div class="row item-list">
                           <a class="item col4 pointer" ng-repeat="s in items.sizes" ng-click="bookList(s)" help-id="menu_monitor">
                             <div class="row">
                               <div class="col-4"><img ng-src="{{s.image_url}}" ng-src2="/images/food.png" /></div>
@@ -190,7 +228,7 @@
                       type="bg-blue white"
                       ng-show="order_invoice.transaction_type.id == 1 && '##user.type##' != 'table'"
                       label="##word.table##"
-                      ng-click="showOrderDetails(order_invoice,'table')"
+                      ng-click="showOrderDetails(order_invoice,'table');showTables()"
                     >
                     </i-button>
 

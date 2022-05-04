@@ -14,7 +14,6 @@ module.exports = function init(site) {
 
           doc.payable_list = obj.payable_list;
         }
-
         doc.payment_list.push({
           date: obj.date,
           posting: obj.posting ? true : false,
