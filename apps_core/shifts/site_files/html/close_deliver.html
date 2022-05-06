@@ -1,0 +1,37 @@
+<div id="closeDeliverModal" class="modal" fixed>
+  <div class="modal-content small">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>
+        ##word.closing_delivery##
+        <i class="fa fa-plus"></i>
+      </h2>
+    </div>
+
+    <div class="modal-body">
+      <div class="row">
+        <fieldset>
+          <legend>##word.safes##</legend>
+          <div class="row" ng-repeat="s in shift.safes_list">
+            <div class="row">
+              <div class="col3">
+                <br />
+                <b class="font-20">{{s.name_##session.lang##}} : </b>
+              </div>
+              <i-control class="col2" label="##word.amount_delivered##" type="number" ng-model="s.amount_delivered"></i-control>
+              <i-list class="col3" items="employeesList" ng-search="_search.$employee" display="name_##session.lang##" label="##word.receiving_employee##" ng-model="s.receiving_employee"> </i-list>
+            </div>
+            <hr style="height: 5px; color: grey; background-color: rgb(0, 0, 199)" />
+          </div>
+        </fieldset>
+      </div>
+    </div>
+
+    <div class="modal-footer center">
+      <h2 class="error">{{error}}</h2>
+      <i-button type="add" label="##word.open_new_shift##" ng-click="openCloseShift(shift,false);addNewShift(shift)"></i-button>
+
+      <i-button type="close" label="##word.close##" onclick="site.hideModal( '#closeDeliverModal')"></i-button>
+    </div>
+  </div>
+</div>

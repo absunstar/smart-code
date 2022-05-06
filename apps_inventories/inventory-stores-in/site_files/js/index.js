@@ -1061,6 +1061,7 @@ app.controller('stores_in', function ($scope, $http, $timeout) {
         });
       $scope.calc($scope.store_in);
       $scope.item.sizes = [];
+      site.hideModal('#selectItemsModal');
     } else $scope.error = '##word.err_transaction_type##';
   };
 

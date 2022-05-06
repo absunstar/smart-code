@@ -3,6 +3,43 @@ app.controller('shifts', function ($scope, $http, $timeout) {
 
   $scope.shift = {};
 
+  $scope.addNewShift = function (s) {
+    $scope.error = '';
+
+    let shift = {
+      image_url: '/images/shift.png',
+      from_date: new Date(),
+      from_time: {
+        hour: new Date().getHours(),
+        minute: new Date().getMinutes(),
+      },
+      safes_list: s.safes_list,
+      active: true,
+    };
+
+    $http({
+      method: 'POST',
+      url: '/api/shifts/add',
+      data: shift,
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          site.hideModal('#closeDeliverModal');
+          $scope.getShiftList();
+        } else {
+          $scope.error = response.data.error;
+          if (response.data.error.like('*Must Enter Code*')) {
+            $scope.error = '##word.must_enter_code##';
+          }
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    );
+  };
+
   $scope.displayAddShift = function () {
     $scope.is_shift_open((yes) => {
       if (!yes) {
@@ -226,6 +263,14 @@ app.controller('shifts', function ($scope, $http, $timeout) {
     };
   };
 
+  $scope.displayCloseDelivery = function (c) {
+    $scope.error = '';
+    $scope.shift = c;
+    $scope.getSafesList();
+
+    site.showModal('#closeDeliverModal');
+  };
+
   $scope.openCloseShift = function (shift, active) {
     $scope.error = '';
 
@@ -307,7 +352,6 @@ app.controller('shifts', function ($scope, $http, $timeout) {
     );
   };
 
- 
   $scope.thermalPrint = function (shift, obj) {
     $scope.error = '';
     if ($scope.busy) return;
@@ -320,8 +364,8 @@ app.controller('shifts', function ($scope, $http, $timeout) {
     $scope.thermal.active = obj.active;
     $('#thermalPrint').removeClass('hidden');
 
-/*     JsBarcode('.barcode', $scope.thermal.code);
- */    if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path && $scope.defaultSettings.printer_program.printer_path.ip) {
+    /*     JsBarcode('.barcode', $scope.thermal.code);
+     */ if ($scope.defaultSettings.printer_program && $scope.defaultSettings.printer_program.printer_path && $scope.defaultSettings.printer_program.printer_path.ip) {
       let printerName = $scope.defaultSettings.printer_program.printer_path.ip.name.trim();
       if ($scope.user.printer_path && $scope.user.printer_path.id) {
         printerName = $scope.user.printer_path.ip.name.trim();
@@ -371,6 +415,54 @@ app.controller('shifts', function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.getSafesList = function (c) {
+    $scope.busy = true;
+    $http({
+      method: 'POST',
+      url: '/api/safes/all',
+      data: {},
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.shift.safes_list = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.getEmployeeList = function (where) {
+    $scope.busy = true;
+    where = where || {};
+    where.trainer = { $ne: true };
+    where.delivery = { $ne: true };
+    where.delegate = { $ne: true };
+    where.active = true;
+
+    $http({
+      method: 'POST',
+      url: '/api/employees/all',
+      data: {
+        where: where,
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.employeesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.getNumberingAuto = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -398,5 +490,6 @@ app.controller('shifts', function ($scope, $http, $timeout) {
   $scope.is_shift_open();
   $scope.getUser();
   $scope.getNumberingAuto();
+  $scope.getEmployeeList();
   $scope.getDefaultSettings();
 });

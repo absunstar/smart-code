@@ -498,9 +498,9 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
                       $scope.store_out.type.id != 5 &&
                       !$scope.defaultSettings.general_Settings.work_posting
                     ) {
-                      /*    if ($scope.defaultSettings.printer_program.auto_thermal_print) {
+                      if ($scope.defaultSettings.printer_program.auto_thermal_print_sales_invo) {
                         $scope.thermalPrint(response.data.doc);
-                      } */
+                      }
 
                       $scope.addAccountInvoice(response.data.doc);
                     }
@@ -958,6 +958,7 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
           }
         });
       $scope.item.sizes = [];
+      site.hideModal('#selectItemsModal');
     } else $scope.error = '##word.err_transaction_type##';
   };
 
@@ -1879,7 +1880,8 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
       }
     }
 
-    if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.work_posting && !$scope.defaultSettings.accounting.link_warehouse_account_invoices) account_invoices.posting = false;
+    if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.work_posting && !$scope.defaultSettings.accounting.link_warehouse_account_invoices)
+      account_invoices.posting = false;
     else account_invoices.posting = true;
 
     account_invoices.invoice = true;
@@ -2158,129 +2160,126 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
     $scope.error = '';
     if ($scope.busy) return;
     $scope.busy = true;
-      $('#storeOutDetails').removeClass('hidden');
+    $('#storeOutDetails').removeClass('hidden');
 
-    
-      if ($scope.store_out.items.length > 7) {
-        $scope.invList = [];
-        let inv_length = $scope.store_out.items.length / 7;
-        inv_length = parseInt(inv_length);
-        let ramain_items = $scope.store_out.items.length - inv_length * 7;
+    if ($scope.store_out.items.length > 7) {
+      $scope.invList = [];
+      let inv_length = $scope.store_out.items.length / 7;
+      inv_length = parseInt(inv_length);
+      let ramain_items = $scope.store_out.items.length - inv_length * 7;
 
-        if (ramain_items) {
-          inv_length += 1;
-        }
-
-        for (let i_inv = 0; i_inv < inv_length; i_inv++) {
-          let s_o = { ...$scope.store_out };
-
-          s_o.items = [];
-          $scope.store_out.items.forEach((itm, i) => {
-            itm.$index = i + 1;
-            if (i < (i_inv + 1) * 7 && !itm.$done_inv) {
-              itm.$done_inv = true;
-              s_o.items.push(itm);
-            }
-          });
-
-          $scope.invList.push(s_o);
-        }
-      } else {
-        $scope.store_out.items.forEach((_item, i) => {
-          _item.$index = i + 1;
-        });
-        $scope.invList = [{ ...$scope.store_out }];
+      if (ramain_items) {
+        inv_length += 1;
       }
 
-      $scope.localPrint = function () {
-        if (document.querySelectorAll('.qrcode-a4').length !== $scope.invList.length) {
-          $timeout(() => {
-            $scope.localPrint();
-          }, 300);
-          return;
-        }
+      for (let i_inv = 0; i_inv < inv_length; i_inv++) {
+        let s_o = { ...$scope.store_out };
 
-        if ($scope.defaultSettings.printer_program.place_qr) {
-          if ($scope.defaultSettings.printer_program.place_qr.id == 1) {
-            site.qrcode({
-              width: 140,
-              height: 140,
-              selector: document.querySelectorAll('.qrcode-a4')[$scope.invList.length - 1],
-              text: document.location.protocol + '//' + document.location.hostname + `/qr_storeout?id=${$scope.store_out.id}`,
-            });
-          } else if ($scope.defaultSettings.printer_program.place_qr.id == 2) {
-            if ($scope.defaultSettings.printer_program.country_qr && $scope.defaultSettings.printer_program.country_qr.id == 2) {
-              let qrString = {
-                vat_number: '##session.company.tax_number##',
-                time: new Date($scope.store_out.date).toISOString(),
-                total: $scope.store_out.net_value,
-                vat_total: $scope.store_out.total_value_added,
-              };
-              if ($scope.defaultSettings.printer_program.thermal_lang.id == 1 || ($scope.defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'ar')) {
-                qrString.name = '##session.company.name_ar##';
-              } else if ($scope.defaultSettings.printer_program.thermal_lang.id == 2 || ($scope.defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'en')) {
-                qrString.name = '##session.company.name_en##';
-              }
+        s_o.items = [];
+        $scope.store_out.items.forEach((itm, i) => {
+          itm.$index = i + 1;
+          if (i < (i_inv + 1) * 7 && !itm.$done_inv) {
+            itm.$done_inv = true;
+            s_o.items.push(itm);
+          }
+        });
+
+        $scope.invList.push(s_o);
+      }
+    } else {
+      $scope.store_out.items.forEach((_item, i) => {
+        _item.$index = i + 1;
+      });
+      $scope.invList = [{ ...$scope.store_out }];
+    }
+
+    $scope.localPrint = function () {
+      if (document.querySelectorAll('.qrcode-a4').length !== $scope.invList.length) {
+        $timeout(() => {
+          $scope.localPrint();
+        }, 300);
+        return;
+      }
+
+      if ($scope.defaultSettings.printer_program.place_qr) {
+        if ($scope.defaultSettings.printer_program.place_qr.id == 1) {
+          site.qrcode({
+            width: 140,
+            height: 140,
+            selector: document.querySelectorAll('.qrcode-a4')[$scope.invList.length - 1],
+            text: document.location.protocol + '//' + document.location.hostname + `/qr_storeout?id=${$scope.store_out.id}`,
+          });
+        } else if ($scope.defaultSettings.printer_program.place_qr.id == 2) {
+          if ($scope.defaultSettings.printer_program.country_qr && $scope.defaultSettings.printer_program.country_qr.id == 2) {
+            let qrString = {
+              vat_number: '##session.company.tax_number##',
+              time: new Date($scope.store_out.date).toISOString(),
+              total: $scope.store_out.net_value,
+              vat_total: $scope.store_out.total_value_added,
+            };
+            if ($scope.defaultSettings.printer_program.thermal_lang.id == 1 || ($scope.defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'ar')) {
+              qrString.name = '##session.company.name_ar##';
+            } else if ($scope.defaultSettings.printer_program.thermal_lang.id == 2 || ($scope.defaultSettings.printer_program.thermal_lang.id == 3 && '##session.lang##' == 'en')) {
               qrString.name = '##session.company.name_en##';
-              site.zakat2(
-                {
-                  name: qrString.name,
-                  vat_number: qrString.vat_number,
-                  time: qrString.time,
-                  total: qrString.total.toString(),
-                  vat_total: qrString.vat_total.toString(),
-                },
-                (data) => {
-                  site.qrcode({ width: 140, height: 140, selector: document.querySelectorAll('.qrcode-a4')[$scope.invList.length - 1], text: data.value });
-                }
-              );
-            } else {
-              let datetime = new Date($scope.store_out.date);
-              let formatted_date = datetime.getFullYear() + '-' + (datetime.getMonth() + 1) + '-' + datetime.getDate() + ' ' + datetime.getHours() + ':' + datetime.getMinutes() + ':' + datetime.getSeconds();
-              let qrString = `[${'##session.company.name_ar##'}]\nرقم ضريبي : [${$scope.defaultSettings.printer_program.tax_number}]\nرقم الفاتورة :[${
-                $scope.store_out.code
-              }]\nتاريخ : [${formatted_date}]\nضريبة القيمة المضافة : [${$scope.store_out.total_value_added}]\nالصافي : [${$scope.store_out.net_value}]`;
-        
-              site.qrcode({ width: 150, height: 150, selector: document.querySelectorAll('.qrcode-a4')[$scope.invList.length - 1], text: qrString });
             }
+            qrString.name = '##session.company.name_en##';
+            site.zakat2(
+              {
+                name: qrString.name,
+                vat_number: qrString.vat_number,
+                time: qrString.time,
+                total: qrString.total.toString(),
+                vat_total: qrString.vat_total.toString(),
+              },
+              (data) => {
+                site.qrcode({ width: 140, height: 140, selector: document.querySelectorAll('.qrcode-a4')[$scope.invList.length - 1], text: data.value });
+              }
+            );
+          } else {
+            let datetime = new Date($scope.store_out.date);
+            let formatted_date =
+              datetime.getFullYear() + '-' + (datetime.getMonth() + 1) + '-' + datetime.getDate() + ' ' + datetime.getHours() + ':' + datetime.getMinutes() + ':' + datetime.getSeconds();
+            let qrString = `[${'##session.company.name_ar##'}]\nرقم ضريبي : [${$scope.defaultSettings.printer_program.tax_number}]\nرقم الفاتورة :[${
+              $scope.store_out.code
+            }]\nتاريخ : [${formatted_date}]\nضريبة القيمة المضافة : [${$scope.store_out.total_value_added}]\nالصافي : [${$scope.store_out.net_value}]`;
 
+            site.qrcode({ width: 150, height: 150, selector: document.querySelectorAll('.qrcode-a4')[$scope.invList.length - 1], text: qrString });
           }
         }
-        let printerName = '';
-        if (type == 'a4') {
-          if($scope.defaultSettings.printer_program.a4_printer){
-
-            printerName = $scope.defaultSettings.printer_program.a4_printer.ip.name.trim();
-          } else {
+      }
+      let printerName = '';
+      if (type == 'a4') {
+        if ($scope.defaultSettings.printer_program.a4_printer) {
+          printerName = $scope.defaultSettings.printer_program.a4_printer.ip.name.trim();
+        } else {
           $scope.error = '##word.a4_printer_must_select##';
           return;
         }
         if ($scope.user.a4_printer && $scope.user.a4_printer.id) {
           printerName = $scope.user.a4_printer.ip.name.trim();
         }
-      } else if(type === 'pdf'){
-          if($scope.defaultSettings.printer_program.pdf_printer){
-
-            printerName = $scope.defaultSettings.printer_program.pdf_printer.ip.name.trim();
-          } else {
+      } else if (type === 'pdf') {
+        if ($scope.defaultSettings.printer_program.pdf_printer) {
+          printerName = $scope.defaultSettings.printer_program.pdf_printer.ip.name.trim();
+        } else {
           $scope.error = '##word.pdf_printer_must_select##';
           return;
         }
       }
 
-        $timeout(() => {
-          site.print({
-            selector: '#storeOutDetails',
-            ip: '127.0.0.1',
-            port: '60080',
-            pageSize: 'A4',
-            printer: printerName,
-          });
-        }, 500);
-      };
+      $timeout(() => {
+        site.print({
+          selector: '#storeOutDetails',
+          ip: '127.0.0.1',
+          port: '60080',
+          pageSize: 'A4',
+          printer: printerName,
+        });
+      }, 500);
+    };
 
-      $scope.localPrint();
-   
+    $scope.localPrint();
+
     $scope.busy = false;
     $timeout(() => {
       $('#storeOutDetails').addClass('hidden');

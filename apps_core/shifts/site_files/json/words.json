@@ -1,105 +1,122 @@
-[{
-        "name": "shifts",
-        "en": "Shifts",
-        "ar": "الشيفتات"
-    },
-    {
-        "name": "shift",
-        "en": "Shift",
-        "ar": "الشيفت"
-    },
-     {
-        "name": "shift_code",
-        "en": "Shift Code",
-        "ar": "كود الشيفت"
-    },
-    {
-        "name": "open_new_shift",
-        "en": "Open New Shift",
-        "ar": " فتح شيفت جديد "
-    },
-    {
-        "name": "open_shift",
-        "en": "Open New Shift",
-        "ar": " فتح شيفت جديد "
-    },
-    {
-        "name": "re_open_shift",
-        "en": "Re-Open Shift",
-        "ar": "إعادة فتح الشيفت"
-    },
-    {
-        "name": "close_shift",
-        "en": "Close Shift",
-        "ar": "غلق الشيفت"
-    },
-    {
-        "name": "open_shift",
-        "en": "Open Shift",
-        "ar": "فتح الشيفت"
-    },
-    {
-        "name": "open_shift_not_found",
-        "en": "Not Found Open Shift",
-        "ar": "لا يوجد شيفت مفتوح"
-    },
-    {
-        "name": "must_close_shift",
-        "en": "All Shifts Must Be Closed Before Opening A New Shift",
-        "ar": "يجب غلق جميع الشيفتات قبل فتح شيفت جديد"
-    },
-    {
-        "name": "shift_start",
-        "en": "Add Start",
-        "ar": "بدء الشيفت"
-    },
-    {
-        "name": "shift_period",
-        "en": "Add Period",
-        "ar": "مدة الشيفت"
-    },
-    {
-        "name": "_close",
-        "en": "Close",
-        "ar": "غلق"
-    },
-    {
-        "name": "open",
-        "en": "Open",
-        "ar": "فتح"
-    },
-    {
-        "name": "shifts_add",
-        "en": "Add Shift",
-        "ar": "إضافة شيفت "
-    },
-    {
-        "name": "shifts_edit",
-        "en": "Edit Shift",
-        "ar": "تعديل شيفت "
-    },
-    {
-        "name": "shifts_details",
-        "en": "Shift Details",
-        "ar": "تفاصيل الشيفت "
-    },
-    {
-        "name": "shifts_delete",
-        "en": "Delete Shift",
-        "ar": "حذف شيفت "
-    },
-    {
-        "name": "shifts_name",
-        "en": "Shift Name",
-        "ar": "إسم الشيفت "
-    },
-    {
-        "name": "track_opening_closing_shift",
-        "en": "Track opening and closing of the Shift",
-        "ar": "تتبع فتح و غلق الشيفت"
-    }
-
-
-
-
+[
+  {
+    "name": "shifts",
+    "en": "Shifts",
+    "ar": "الشيفتات"
+  },
+  {
+    "name": "shift",
+    "en": "Shift",
+    "ar": "الشيفت"
+  },
+  {
+    "name": "amount_delivered",
+    "en": "Amount delivered",
+    "ar": "المبلغ المسلم"
+  },
+  {
+    "name": "receiving_employee",
+    "en": "Receiving employee",
+    "ar": "الموظف المستلم"
+  },
+  {
+    "name": "closing_delivery",
+    "en": "closing and delivery",
+    "ar": "غلق وتسليم"
+  },
+  {
+    "name": "balance_relay",
+    "en": "Balance relay",
+    "ar": "رصيد مرحل"
+  },
+  {
+    "name": "shift_code",
+    "en": "Shift Code",
+    "ar": "كود الشيفت"
+  },
+  {
+    "name": "open_new_shift",
+    "en": "Open New Shift",
+    "ar": " فتح شيفت جديد "
+  },
+  {
+    "name": "open_shift",
+    "en": "Open Shift",
+    "ar": "فتح شيفت"
+  },
+  {
+    "name": "re_open_shift",
+    "en": "Re-Open Shift",
+    "ar": "إعادة فتح الشيفت"
+  },
+  {
+    "name": "close_shift",
+    "en": "Close Shift",
+    "ar": "غلق الشيفت"
+  },
+  {
+    "name": "open_shift",
+    "en": "Open Shift",
+    "ar": "فتح الشيفت"
+  },
+  {
+    "name": "open_shift_not_found",
+    "en": "Not Found Open Shift",
+    "ar": "لا يوجد شيفت مفتوح"
+  },
+  {
+    "name": "must_close_shift",
+    "en": "All Shifts Must Be Closed Before Opening A New Shift",
+    "ar": "يجب غلق جميع الشيفتات قبل فتح شيفت جديد"
+  },
+  {
+    "name": "shift_start",
+    "en": "Add Start",
+    "ar": "بدء الشيفت"
+  },
+  {
+    "name": "shift_period",
+    "en": "Add Period",
+    "ar": "مدة الشيفت"
+  },
+  {
+    "name": "_close",
+    "en": "Close",
+    "ar": "غلق"
+  },
+  {
+    "name": "open",
+    "en": "Open",
+    "ar": "فتح"
+  },
+  {
+    "name": "shifts_add",
+    "en": "Add Shift",
+    "ar": "إضافة شيفت "
+  },
+  {
+    "name": "shifts_edit",
+    "en": "Edit Shift",
+    "ar": "تعديل شيفت "
+  },
+  {
+    "name": "shifts_details",
+    "en": "Shift Details",
+    "ar": "تفاصيل الشيفت "
+  },
+  {
+    "name": "shifts_delete",
+    "en": "Delete Shift",
+    "ar": "حذف شيفت "
+  },
+  {
+    "name": "shifts_name",
+    "en": "Shift Name",
+    "ar": "إسم الشيفت "
+  },
+  {
+    "name": "track_opening_closing_shift",
+    "en": "Track opening and closing of the Shift",
+    "ar": "تتبع فتح و غلق الشيفت"
+  }
 ]

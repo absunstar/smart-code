@@ -155,9 +155,19 @@
         "ar": "طباعة المبلغ مكتوب"
     },
     {
+        "name": "user_appears_in_invoice",
+        "en": "The user appears in the invoice",
+        "ar": "ظهور المستخدم في الفاتورة"
+    },
+    {
         "name": "auto_thermal_print_order_screen",
         "en": "Automatic thermal printing For Order Screen",
         "ar": "طباعة حرارية أوتوماتيك لشاشة الطلبات"
+    },
+    {
+        "name": "auto_thermal_print_sales_invo",
+        "en": "Automatic thermal printing For sales invo",
+        "ar": "طباعة حرارية أوتوماتيك لفاتورة المبيعات"
     },
     {
         "name": "print_simplified_tax_invoice_sentence",

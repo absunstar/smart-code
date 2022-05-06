@@ -153,19 +153,11 @@ app.controller('employee_list', function ($scope, $http, $timeout) {
   $scope.getEmployeeList = function (where) {
     $scope.busy = true;
     $scope.list = [];
-    if (where) {
-      where.trainer = { $ne: true };
-      where.delivery = { $ne: true };
-      where.delegate = { $ne: true };
-      where.active = true;
-    } else {
-      where = {
-        trainer: { $ne: true },
-        delivery: { $ne: true },
-        delegate: { $ne: true },
-        active: true,
-      };
-    }
+    where = where || {};
+    where.trainer = { $ne: true };
+    where.delivery = { $ne: true };
+    where.delegate = { $ne: true };
+    where.active = true;
 
     $http({
       method: 'POST',
