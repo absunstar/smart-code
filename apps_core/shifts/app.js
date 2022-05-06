@@ -98,45 +98,48 @@ module.exports = function init(site) {
     shifts_doc.company = site.get_company(req);
     shifts_doc.branch = site.get_branch(req);
     site.getBranchSafes(req, (safesCB) => {
-    shifts_doc.open_close_list = [
-      {
-        active: true,
-        user: site.security.getUserFinger({
-          $req: req,
-          $res: res,
-        }),
-        date: new Date(),
-        safes: safesCB,
-      },
-    ];
-
-    $shifts.find(
-      {
-        where: {
-          'company.id': site.get_company(req).id,
-          'branch.code': site.get_branch(req).code,
-          code: shifts_doc.code,
+      shifts_doc.open_close_list = [
+        {
+          active: true,
+          user: site.security.getUserFinger({
+            $req: req,
+            $res: res,
+          }),
+          date: new Date(),
+          safes: safesCB,
         },
-      },
-      (err, doc) => {
-        if (!err && doc) {
-          response.error = 'Code Exists';
-          res.json(response);
-        } else {
-          $shifts.add(shifts_doc, (err, doc) => {
-            if (!err) {
-              response.done = true;
-              response.doc = doc;
-            } else {
-              response.error = err.message;
-            }
+      ];
+
+      $shifts.find(
+        {
+          where: {
+            'company.id': site.get_company(req).id,
+            'branch.code': site.get_branch(req).code,
+            code: shifts_doc.code,
+          },
+        },
+        (err, doc) => {
+          if (!err && doc) {
+            response.error = 'Code Exists';
             res.json(response);
-          });
+          } else {
+            $shifts.add(shifts_doc, (err, doc) => {
+              if (!err) {
+                response.done = true;
+                response.doc = doc;
+                if (doc.last_safes_list) {
+                  site.call('[shift][safes][change_user]', doc);
+                }
+              } else {
+                response.error = err.message;
+              }
+              res.json(response);
+            });
+          }
         }
-      }
-    );
+      );
+    });
   });
-});
 
   site.post('/api/shifts/update', (req, res) => {
     let response = {

@@ -115,6 +115,16 @@
     "ar": "إسم الشيفت "
   },
   {
+    "name": "name_new_shift_ar",
+    "en": "Name new shift AR",
+    "ar": "إسم الشيفت الجديد عربي"
+  },
+  {
+    "name": "name_new_shift_en",
+    "en": "Name new shift EN",
+    "ar": "إسم الشيفت الجديد إنجليزي"
+  },
+  {
     "name": "track_opening_closing_shift",
     "en": "Track opening and closing of the Shift",
     "ar": "تتبع فتح و غلق الشيفت"

@@ -10,6 +10,14 @@
 
     <div class="modal-body">
       <div class="row">
+        <i-control ng-hide="disabledCode" class="col2" label="##word.code##" ng-model="newShift.code"> </i-control>
+
+        <i-control help-id="shifts_name_ar" v="r" class="col5" label="##word.name_new_shift_ar##" ng-model="newShift.name_ar"> </i-control>
+
+        <i-control help-id="shifts_name_en" class="col5" label="##word.name_new_shift_en##" ng-model="newShift.name_en"> </i-control>
+      </div>
+
+      <div class="row">
         <fieldset>
           <legend>##word.safes##</legend>
           <div class="row" ng-repeat="s in shift.safes_list">
@@ -29,7 +37,7 @@
 
     <div class="modal-footer center">
       <h2 class="error">{{error}}</h2>
-      <i-button type="add" label="##word.open_new_shift##" ng-click="openCloseShift(shift,false);addNewShift(shift)"></i-button>
+      <i-button type="add" label="##word.open_new_shift##" ng-click="addNewShift(shift,newShift)"></i-button>
 
       <i-button type="close" label="##word.close##" onclick="site.hideModal( '#closeDeliverModal')"></i-button>
     </div>

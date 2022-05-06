@@ -13,6 +13,7 @@
           <div x-permissions="shifts_update || shifts_manage" x-import="shifts/update_modal.html"></div>
           <div x-permissions="shifts_delete || shifts_manage" x-import="shifts/delete_modal.html"></div>
           <div x-permissions="shifts_view || shifts_manage" x-import="shifts/view_modal.html"></div>
+          <div x-permissions="shifts_view || shifts_manage" x-import="shifts/open_close_modal.html"></div>
           <div x-permissions="shifts_update || shifts_manage" x-import="shifts/close_deliver.html"></div>
           <div x-permissions="shifts_search || shifts_manage" x-import="shifts/search_all_modal.html"></div>
 
@@ -57,7 +58,7 @@
 
               <td class="center">
                 <i-button type="exit" ng-hide="!c.active" label="##word.close_shift##" ng-click="openCloseShift(c,false)"> </i-button>
-                <!-- <i-button type="exit" ng-hide="!c.active" label="##word.closing_delivery##" onclick="site.showModal('#closeDeliverModal')"> </i-button> -->
+                <i-button type="exit" ng-hide="!c.active" label="##word.closing_delivery##" ng-click="displayCloseDelivery(c)"> </i-button>
                 <p class="center brown" ng-show="!c.active">{{c.to_date |date:'dd - MM - yyyy'}}</p>
                 <p class="center red" ng-show="!c.active">{{c.to_time.minute}} : {{c.to_time.hour}}</p>
               </td>

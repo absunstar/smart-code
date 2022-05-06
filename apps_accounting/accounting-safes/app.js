@@ -116,6 +116,22 @@ module.exports = function init(site) {
   //   })
   // })
 
+  site.on('[shift][safes][change_user]', (obj) => {
+    $safes.findMany({ 'company.id': obj.company.id }, (err, docs) => {
+      docs.forEach((_doc) => {
+        obj.last_safes_list.forEach((_s) => {
+          if (_s.id === _doc.id) {
+
+            _doc.employee = _s.receiving_employee
+
+          }
+        });
+
+        $safes.update(_doc);
+      });
+    });
+  });
+
   site.get({
     name: 'safes',
     path: __dirname + '/site_files/html/index.html',
@@ -359,7 +375,7 @@ module.exports = function init(site) {
     }
 
     where['company.id'] = site.get_company(req).id;
-    where['branch.code'] =  req.body.branchCode ?  req.body.branchCode : site.get_branch(req).code;
+    where['branch.code'] = req.body.branchCode ? req.body.branchCode : site.get_branch(req).code;
 
     $safes.findMany(
       {
@@ -382,11 +398,11 @@ module.exports = function init(site) {
     );
   });
 
-  site.getBranchSafes = function (req,callback) {
-   let where = {}
+  site.getBranchSafes = function (req, callback) {
+    let where = {};
 
-   where['company.id'] = site.get_company(req).id;
-   where['branch.code'] = site.get_branch(req).code;
+    where['company.id'] = site.get_company(req).id;
+    where['branch.code'] = site.get_branch(req).code;
 
     $safes.findMany(
       {

@@ -3,9 +3,14 @@ app.controller('shifts', function ($scope, $http, $timeout) {
 
   $scope.shift = {};
 
-  $scope.addNewShift = function (s) {
+  $scope.addNewShift = function (s, newShift) {
     $scope.error = '';
-
+    const v = site.validated('#closeDeliverModal');
+    if (!v.ok) {
+      $scope.error = v.messages[0].ar;
+      return;
+    }
+    $scope.busy = true;
     let shift = {
       image_url: '/images/shift.png',
       from_date: new Date(),
@@ -13,9 +18,15 @@ app.controller('shifts', function ($scope, $http, $timeout) {
         hour: new Date().getHours(),
         minute: new Date().getMinutes(),
       },
-      safes_list: s.safes_list,
+      last_safes_list: s.safes_list,
+      name_ar: newShift.name_ar,
+      name_en: newShift.name_en,
       active: true,
     };
+
+    if (newShift.code) {
+      shift.code = newShift.code;
+    }
 
     $http({
       method: 'POST',
@@ -26,7 +37,7 @@ app.controller('shifts', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal('#closeDeliverModal');
-          $scope.getShiftList();
+          $scope.openCloseShift(s, false);
         } else {
           $scope.error = response.data.error;
           if (response.data.error.like('*Must Enter Code*')) {
@@ -94,6 +105,24 @@ app.controller('shifts', function ($scope, $http, $timeout) {
         console.log(err);
       }
     );
+  };
+
+  $scope.shiftDetailes = function (s) {
+    $scope.error = '';
+    $scope.safes_list = [];
+    s.safes.forEach((_s) => {
+      let obj = { safe: _s ,current_balance : _s.balance};
+      if($scope.shift.last_safes_list && $scope.shift.last_safes_list.length > 0){
+
+        $scope.shift.last_safes_list.forEach((_l) => {
+          if (_l.id === _s.id) {
+            obj.balance_relay = _l.amount_delivered
+          }
+        });
+      }
+      $scope.safes_list.push(obj);
+    });
+    site.showModal('#openCloseModal');
   };
 
   $scope.displayUpdateShift = function (shift) {

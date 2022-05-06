@@ -854,7 +854,7 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
       }
     }
     obj.paid_up = $scope.order_invoice.net_value - $scope.order_invoice.paid_up;
-    obj.paid_up = site.toMoney(obj.paid_up);
+    obj.paid_up = site.toNumber(obj.paid_up);
     $scope.calcInvoice($scope.order_invoice);
     $scope.order_invoice.invoices_list.push(obj);
   };
@@ -2129,10 +2129,10 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
         _size.discount.current = (_size.discount.value * _size.price) / 100;
       }
 
-      _size.discount.current = site.toMoney(_size.discount.current);
+      _size.discount.current = site.toNumber(_size.discount.current);
 
       _size.b_price = _size.price - _size.discount.current;
-      _size.b_price = site.toMoney(_size.b_price);
+      _size.b_price = site.toNumber(_size.b_price);
       _size.extras_price = 0;
       if (_size.extras_item && _size.extras_item.length > 0) {
         _size.extras_item.forEach((_exItm) => {
@@ -2141,11 +2141,11 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
       }
 
       _size.total_v_a = (_size.value_added * (_size.b_price * _size.count)) / 100;
-      _size.total_v_a = site.toMoney(_size.total_v_a);
+      _size.total_v_a = site.toNumber(_size.total_v_a);
 
       _size.total = _size.b_price * _size.count + _size.extras_price * _size.count + _size.total_v_a;
 
-      _size.total = site.toMoney(_size.total);
+      _size.total = site.toNumber(_size.total);
 
       $scope.calc($scope.order_invoice);
     }, 150);
@@ -2160,15 +2160,15 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
 
       if (obj.items && obj.items.length > 0) {
         obj.items.forEach((_itm) => {
-          obj.total_value += site.toMoney(_itm.total);
+          obj.total_value += site.toNumber(_itm.total);
 
           obj.total_value_added += _itm.total_v_a;
         });
       }
-      obj.total_value_added = site.toMoney(obj.total_value_added);
+      obj.total_value_added = site.toNumber(obj.total_value_added);
 
       obj.before_value_added = obj.total_value - obj.total_value_added;
-      obj.before_value_added = site.toMoney(obj.before_value_added);
+      obj.before_value_added = site.toNumber(obj.before_value_added);
 
       if (obj.taxes && obj.taxes.length > 0) {
         obj.taxes.forEach((tx) => {
@@ -2178,14 +2178,14 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
 
       if (obj.discountes && obj.discountes.length > 0) {
         obj.discountes.forEach((ds) => {
-          if (ds.type === 'percent') obj.total_discount += (site.toMoney(obj.total_value) * site.toNumber(ds.value)) / 100;
-          else obj.total_discount += site.toMoney(ds.value);
+          if (ds.type === 'percent') obj.total_discount += (site.toNumber(obj.total_value) * site.toNumber(ds.value)) / 100;
+          else obj.total_discount += site.toNumber(ds.value);
         });
       }
 
       if (obj.transaction_type && obj.transaction_type.id == 2) {
         obj.service = 0;
-        obj.price_delivery_service = site.toMoney(obj.price_delivery_service) || 0;
+        obj.price_delivery_service = site.toNumber(obj.price_delivery_service) || 0;
       }
 
       if (obj.transaction_type && obj.transaction_type.id == 1) {
@@ -2198,16 +2198,16 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
         obj.price_delivery_service = 0;
       }
 
-      obj.net_value = site.toMoney(obj.total_value) + (obj.total_tax || 0) + (obj.price_delivery_service || 0) - (obj.total_discount || 0);
-      let service = ((obj.service || 0) * site.toMoney(obj.net_value)) / 100;
+      obj.net_value = site.toNumber(obj.total_value) + (obj.total_tax || 0) + (obj.price_delivery_service || 0) - (obj.total_discount || 0);
+      let service = ((obj.service || 0) * site.toNumber(obj.net_value)) / 100;
       obj.net_value = obj.net_value + service;
 
-      obj.total_value = site.toMoney(obj.total_value);
+      obj.total_value = site.toNumber(obj.total_value);
       obj.net_value = site.toMoney(obj.net_value);
 
       if (obj.currency) {
         obj.amount_currency = obj.net_value / obj.currency.ex_rate;
-        obj.amount_currency = site.toMoney(obj.amount_currency);
+        obj.amount_currency = site.toNumber(obj.amount_currency);
         if (obj.Paid_from_customer) {
           if (obj.Paid_from_customer <= obj.amount_currency) {
             obj.paid_up = obj.Paid_from_customer;
@@ -2216,7 +2216,7 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
             obj.paid_up = obj.amount_currency;
             obj.remain_from_customer = obj.Paid_from_customer - obj.amount_currency;
           }
-          obj.remain_from_customer = site.toMoney(obj.remain_from_customer);
+          obj.remain_from_customer = site.toNumber(obj.remain_from_customer);
         } else {
           obj.paid_up = obj.amount_currency;
         }
