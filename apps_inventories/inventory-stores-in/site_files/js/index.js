@@ -1341,10 +1341,7 @@ app.controller('stores_in', function ($scope, $http, $timeout) {
                   if (_size.size_units_list && _size.size_units_list.length > 0) {
                     let foundUnit = false;
                     _size.size_units_list.forEach((_unit, i) => {
-                      if ($scope.search_barcode === _unit.barcode) {
-                        foundUnit = true;
-                        indxUnit = i;
-                      } else if (_unit.id === _l.main_unit.id && !foundUnit) {
+                      if (_unit.id === _l.main_unit.id && !foundUnit) {
                         indxUnit = i;
                       }
                     });
@@ -1371,12 +1368,11 @@ app.controller('stores_in', function ($scope, $http, $timeout) {
                   _size.cost = _size.size_units_list[indxUnit].cost;
                   _size.price = _size.size_units_list[indxUnit].price;
                   _size.total = _size.count * _size.cost;
-
                   if (!foundHold) $scope.store_in.items.unshift(_size);
-
                   $scope.calcSize(_size);
                 });
 
+              $scope.search_barcode = '';
             });
           }
           $timeout(() => {
