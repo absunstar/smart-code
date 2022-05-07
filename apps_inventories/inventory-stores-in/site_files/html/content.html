@@ -68,6 +68,8 @@
         <div class="col1"></div>
         <i-button type="search" label=" ##word.select_items##" ng-click="selectItems()"> </i-button>
         <div class="col1"></div>
+        <i-button type="" ng-show="store_in.type.id == 3" label=" ##word.stores_stock_general##" ng-click="itemsGeneral()">
+        </i-button>
         <i-button type="edit" x-permissions="stores_in_price || stores_in_manage" ng-hide="edit_price" label="##word.edit_purchase_price##" ng-click="edit_price = true"></i-button>
       </div>
       <br />
