@@ -1286,7 +1286,7 @@ module.exports = function init(site) {
       $stores_items.findMany(
         {
           select: req.body.select,
-          limit: limit || 500,
+          limit: limit || 1000,
           where: where,
           sort: sort,
         },
