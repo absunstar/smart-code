@@ -23,7 +23,6 @@ module.exports = function init(site) {
 
   site.on('[stores_items][stores_in][openingBalance]', openingBalanceObj => {
     let stores_item_doc = { ...openingBalanceObj };
-
     site.getOpenShift({ companyId: stores_item_doc.company.id, branchCode: stores_item_doc.branch.code }, shiftCb => {
       if (shiftCb) {
         // site.getDefaultSetting(openingBalanceObj.req, settingCb => {
@@ -69,6 +68,7 @@ module.exports = function init(site) {
               size_units_list: _size.size_units_list,
               unit: unit,
               cost: unit.cost,
+              b_cost: unit.cost,
               price: unit.price,
               average_cost: unit.average_cost,
               barcode: _size.barcode,
@@ -149,7 +149,6 @@ module.exports = function init(site) {
           $stores_in.add(_opBa, (err, doc) => {
 
             if (!err) {
-
 
               if (doc.posting) {
 

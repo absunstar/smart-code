@@ -308,6 +308,11 @@
                         <div class="row center">
                           <i-button type="edit" label="##word.units##" ng-click="viewUnits(itm)"> </i-button>
                         </div>
+
+                        <div class="row center">
+                          <i-button ng-hide="itm.start_count || itm.work_patch ||itm.work_serial" label="##word.opening_balance_add##" ng-click="addOpeningBalance(itm,'show')"> </i-button>
+                        </div>
+
                       </div>
                     </div>
 
@@ -394,6 +399,10 @@
 
                         <div class="row center">
                           <i-button type="view" label="##word.branches_balances##" ng-click="branchesBalances(itm)"> </i-button>
+                        </div>
+
+                        <div class="row center">
+                          <i-button ng-hide="itm.start_count || itm.work_patch ||itm.work_serial" label="##word.opening_balance_add##" ng-click="addOpeningBalance(itm,'show')"> </i-button>
                         </div>
 
                         <div class="row center">

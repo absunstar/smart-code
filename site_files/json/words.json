@@ -874,6 +874,11 @@
     "ar": "تم"
   },
   {
+    "name": "branch",
+    "en": "Branch",
+    "ar": "الفرع"
+  },
+  {
     "name": "auto_item_code_generation",
     "en": "Automatic Item code Generation",
     "ar": "توليد اّلي لكود الصنف"

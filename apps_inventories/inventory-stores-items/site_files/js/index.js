@@ -84,11 +84,8 @@ app.controller('stores_items', function ($scope, $http, $timeout, $interval) {
     $scope.error = '##word.add_done##';
 
     $timeout(() => {
-
       $scope.error = '';
-
     }, 1500);
-
   };
 
   $scope.deleteSize = function (itm) {
@@ -376,8 +373,11 @@ app.controller('stores_items', function ($scope, $http, $timeout, $interval) {
             $scope.category_item.units_list.map((_u) => (_u.$edit = true));
           }
 
-          if ($scope.hideObj) {
-            $scope.category_item.sizes.forEach((_sizes) => {
+          $scope.category_item.sizes.forEach((_sizes) => {
+            if (_sizes.opening_palnce_list) {
+              _sizes.opening_palnce_list = [];
+            };
+            if ($scope.hideObj) {
               if (
                 _sizes &&
                 ((_sizes.size_ar && _sizes.size_ar.contains($scope.hideObj.size_ar)) ||
@@ -388,8 +388,8 @@ app.controller('stores_items', function ($scope, $http, $timeout, $interval) {
               } else {
                 _sizes.$hide = true;
               }
+            }
             });
-          }
         } else {
           $scope.error = response.data.error;
         }
@@ -520,6 +520,8 @@ app.controller('stores_items', function ($scope, $http, $timeout, $interval) {
     obj.store = $scope.storesList.find((_store) => {
       return _store.id === $scope.defaultSettings.inventory.store.id;
     });
+    obj.branch = $scope.branchCode;
+
     obj.vendor = $scope.defaultSettings.general_Settings.vendor;
     if (type === 'add') {
       if ($scope.size_balance.opening_palnce_list && $scope.size_balance.opening_palnce_list.length > 0) {
@@ -1526,6 +1528,27 @@ app.controller('stores_items', function ($scope, $http, $timeout, $interval) {
     });
   };
 
+  $scope.loadBranches = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: 'POST',
+      url: '/api/branches/all',
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.branchesList = response.data.list;
+          $scope.branchCode = response.data.branch;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.getSerialList = function (items, callback) {
     $scope.error = '';
     $scope.busy = true;
@@ -1809,7 +1832,7 @@ app.controller('stores_items', function ($scope, $http, $timeout, $interval) {
   $scope.getDefaultSetting();
   $scope.loadStores();
   $scope.loadItemsGroups();
-
+  $scope.loadBranches();
   $scope.getNumberingAuto();
   $scope.getNumberingAutoSwitch();
   $scope.loadUnits();

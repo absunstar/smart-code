@@ -175,17 +175,17 @@
     <div class="row">
       <div class="row">
         <div class="col4 bold">
-          <p class="txt16 indigoD">##word.total_before_tax##</p>
-          <p class="txt16 indigoD">##word.vat##</p>
-          <p class="txt16 indigoD">##word.total_after_tax##</p>
+          <p class="txt16 indigoD" ng-show="defaultSettings.inventory.value_added">##word.total_before_tax##</p>
+          <p class="txt16 indigoD" ng-show="defaultSettings.inventory.value_added">##word.vat##</p>
+          <p class="txt16 indigoD" ng-show="defaultSettings.inventory.value_added">##word.total_after_tax##</p>
           <p class="txt16 indigoD">##word.discount_cash##</p>
           <p class="txt16 indigoD">##word.net##</p>
         </div>
 
         <div class="col4 bold">
-          <p class="txt16 black">{{store_in.before_value_added | xmoney}}</p>
-          <p class="txt16 black">{{store_in.total_value_added | xmoney}}</p>
-          <p class="txt16 black">{{store_in.total_value | xmoney}}</p>
+          <p class="txt16 black" ng-show="defaultSettings.inventory.value_added">{{store_in.before_value_added | xmoney}}</p>
+          <p class="txt16 black" ng-show="defaultSettings.inventory.value_added">{{store_in.total_value_added | xmoney}}</p>
+          <p class="txt16 black" ng-show="defaultSettings.inventory.value_added">{{store_in.total_value | xmoney}}</p>
           <p class="txt16 red">{{store_in.total_discount | xmoney}}</p>
           <p class="txt16 green">{{store_in.net_value | xmoney}}</p>
         </div>

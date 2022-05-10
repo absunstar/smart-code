@@ -490,47 +490,12 @@ module.exports = function init(site) {
                   } else _size.branches_list.push(obj_branch);
                 } else _size.branches_list = [obj_branch];
               }
-
-              // if (_size.item_complex) {
-              //   _size.complex_items.forEach(_complex_item => {
-              //     _complex_item.count = _complex_item.count * obj.count
-              //     site.quee('[transfer_branch][stores_items][add_balance]', Object.assign({}, _complex_item))
-              //   })
-              // }
             });
-
-            // doc.sizes.forEach(ziiii => {
-            //   ziiii.branches_list.forEach(bbbbbb => {
-            //     bbbbbb.stores_list.forEach(ssssssss => {
-            //       ssssssss.size_units_list.forEach(element => {
-            //       });
-            //     });
-            //   });
-            // });
 
             $stores_items.update(doc, (err, doooc) => {
               if (obj.current_status == 'stock') {
                 site.holdingItems({ ...obj.transaction_obj });
               }
-
-              // doooc.doc.sizes.forEach(ziiii => {
-              //   ziiii.branches_list.forEach(bbbbbb => {
-              //     bbbbbb.stores_list.forEach(ssssssss => {
-              //       ssssssss.size_units_list.forEach(element => {
-              //         console.log("new Doc", element, doooc.doc.id);
-              //       });
-              //     });
-              //   });
-              // });
-
-              // doooc.old_doc.sizes.forEach(ziiii => {
-              //   ziiii.branches_list.forEach(bbbbbb => {
-              //     bbbbbb.stores_list.forEach(ssssssss => {
-              //       ssssssss.size_units_list.forEach(element => {
-              //       });
-              //     });
-              //   });
-              // });
 
               next();
             });
@@ -821,18 +786,6 @@ module.exports = function init(site) {
                 stores_items_doc.code = cb.code;
               }
 
-              let opening_balances_obj = {
-                image_url: stores_items_doc.image_url,
-                company: stores_items_doc.company,
-                branch: stores_items_doc.branch,
-                name_ar: stores_items_doc.name_ar,
-                name_en: stores_items_doc.name_en,
-                add_user_info: stores_items_doc.add_user_info,
-                item_group: stores_items_doc.item_group,
-                sizes: stores_items_doc.sizes,
-              };
-              site.quee('[stores_items][stores_in][openingBalance]', opening_balances_obj);
-
               // stores_items_doc.sizes.forEach(_size => {
               //   if (_size.opening_palnce_list) {
               //     delete _size.opening_palnce_list
@@ -842,6 +795,18 @@ module.exports = function init(site) {
               $stores_items.add(stores_items_doc, (err, doc) => {
                 if (!err) {
                   response.done = true;
+
+                  let opening_balances_obj = {
+                    image_url: doc.image_url,
+                    company: doc.company,
+                    branch: doc.branch,
+                    name_ar: doc.name_ar,
+                    name_en: doc.name_en,
+                    add_user_info: doc.add_user_info,
+                    item_group: doc.item_group,
+                    sizes: doc.sizes,
+                  };
+                  site.call('[stores_items][stores_in][openingBalance]', opening_balances_obj);
 
                   // let d = new Date().getDate().toString();
                   // let h = new Date().getHours().toString();
@@ -883,7 +848,7 @@ module.exports = function init(site) {
       return;
     }
 
-    let stores_items_doc = req.body.category_item;
+    let stores_items_doc = {...req.body.category_item};
 
     stores_items_doc.edit_user_info = site.security.getUserFinger({
       $req: req,
@@ -1028,8 +993,19 @@ module.exports = function init(site) {
             if (!_size_unit.barcode || _size_unit.barcode == null) _size_unit.barcode = stores_items_doc.company.id + docIdString + (_size_unit.id || 0) + d + h + m + i + _i;
           });
         });
-
         if (stores_items_doc._id) {
+          let opening_balances_obj = {
+            image_url: stores_items_doc.image_url,
+            company: stores_items_doc.company,
+            branch: stores_items_doc.branch,
+            name_ar: stores_items_doc.name_ar,
+            name_en: stores_items_doc.name_en,
+            add_user_info: stores_items_doc.add_user_info,
+            item_group: stores_items_doc.item_group,
+            sizes: stores_items_doc.sizes,
+          };
+          site.call('[stores_items][stores_in][openingBalance]', opening_balances_obj);
+
           $stores_items.edit(
             {
               where: {
@@ -1043,6 +1019,8 @@ module.exports = function init(site) {
             (err, item_doc) => {
               if (!err) {
                 response.done = true;
+            
+
                 let obj = { sizes_list: [] };
                 let exist = false;
                 let foundNameAr = false;

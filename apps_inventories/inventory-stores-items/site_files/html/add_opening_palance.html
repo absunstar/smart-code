@@ -20,12 +20,15 @@
                     <div class="row" ng-repeat="o_b in size_balance.opening_palnce_list">
                         <div class="row">
 
-                            <i-list class="col6" ng-model=" o_b.store" display="name_##session.lang##"
+                            <i-list class="col4" ng-model="o_b.branch" primary="code" display="name_##session.lang##" items="branchesList" ng-search="_search.$branch_from" label="##word.branch##">
+                            </i-list>
+
+                            <i-list class="col4" ng-model=" o_b.store" display="name_##session.lang##"
                                 ng-search="_search.$category_item.$stores_search" label="##word.store##"
                                 items="storesList"></i-list>
                             </i-list>
 
-                            <i-list class="col6" ng-model=" o_b.unit" display="name_##session.lang##"
+                            <i-list class="col4" ng-model=" o_b.unit" display="name_##session.lang##"
                                 ng-search="_search.$items_group_search" label="##word.unit##"
                                 items="category_item.units_list"></i-list>
 
