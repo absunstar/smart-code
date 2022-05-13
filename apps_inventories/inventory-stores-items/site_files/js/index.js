@@ -113,7 +113,7 @@ app.controller('stores_items', function ($scope, $http, $timeout, $interval) {
     $scope.list = [];
 
     if (!where || !Object.keys(where).length) {
-      where = { limit: 500 };
+      where = { limit: 1000 };
     }
 
     $http({
