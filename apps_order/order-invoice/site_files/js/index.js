@@ -204,7 +204,9 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
             if ($scope.defaultSettings.general_Settings.customer.mobile) $scope.order_invoice.customer_mobile = $scope.defaultSettings.general_Settings.customer.mobile;
           }
         }
-        document.querySelector('#searchBarcode input').focus();
+        if (!site.feature('restaurant')) {
+          document.querySelector('#searchBarcode input').focus();
+        }
       } else {
         $scope.error = '##word.open_shift_not_found##';
       }
@@ -371,7 +373,7 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
               $scope.busy = false;
               if (response.data.done) {
                 if (site.feature('restaurant')) {
-                  /* $scope.kitchenPrint({ ...response.data.doc }); */
+                  $scope.kitchenPrint({ ...response.data.doc });
                   $scope.order_invoice.$show_table = true;
                 }
 
@@ -447,7 +449,9 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
                 };
               }
 
-              document.querySelector('#searchBarcode input').focus();
+              if (!site.feature('restaurant')) {
+                document.querySelector('#searchBarcode input').focus();
+              }
             },
             function (err) {
               console.log(err);
@@ -637,7 +641,9 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
         $scope.calcSize($scope.order_invoice.items[0]);
         $scope.search_barcode = '';
         $timeout(() => {
-          document.querySelector('#searchBarcode input').focus();
+          if (!site.feature('restaurant')) {
+            document.querySelector('#searchBarcode input').focus();
+          }
         }, 500);
       } else {
         $http({
@@ -722,7 +728,9 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
                   $scope.search_barcode = '';
                 }, 1000);
               }
-              document.querySelector('#searchBarcode input').focus();
+              if (!site.feature('restaurant')) {
+                document.querySelector('#searchBarcode input').focus();
+              }
               /*    $timeout(() => {
               document.querySelector("#search_barcode input").focus();
             }, 200); */
@@ -929,7 +937,9 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
           $scope.count = response.data.count;
           site.hideModal('#OrderInvoiceSearchModal');
           $scope.search = {};
-          document.querySelector('#searchBarcode input').focus();
+          if (!site.feature('restaurant')) {
+            document.querySelector('#searchBarcode input').focus();
+          }
         }
       },
       function (err) {
@@ -1850,9 +1860,11 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
               if ($scope.itemsList && $scope.itemsList.length > 0) {
                 site.showModal('#itemModal');
               } else {
-                $scope.error = "##word.items_not_found##";
+                $scope.error = '##word.items_not_found##';
               }
-              document.querySelector('#searchBarcode input').focus();
+              if (!site.feature('restaurant')) {
+                document.querySelector('#searchBarcode input').focus();
+              }
             }
           },
           function (err) {
@@ -1970,7 +1982,9 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
         $scope.order_invoice.items.unshift(obj);
         $scope.calcSize($scope.order_invoice.items[0]);
       }
-      document.querySelector('#searchBarcode input').focus();
+      if (!site.feature('restaurant')) {
+        document.querySelector('#searchBarcode input').focus();
+      }
     });
   };
 
@@ -2470,58 +2484,63 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
     if ('##session.lang##' === 'en') name_lang = 'en';
 
     $('#kitchenPrint').removeClass('hidden');
+    $scope.kitchen_print_list = [];
 
     $scope.kitchensList.forEach((_kitchen, i) => {
-      $timeout(() => {
-        $scope.kitchen_print = {
-          date: obj.date,
-          code: obj.code,
-          kitchen: _kitchen,
-          items: [],
-        };
-        _kitchen.has_items = false;
-        $scope.kitchen_print.printer = $scope.printersPathList.find((_printer) => {
-          if (_kitchen.printer_path) {
-            return _printer.id === _kitchen.printer_path.id;
+      let kitchen_print = {
+        date: obj.date,
+        code: obj.code,
+        kitchen: _kitchen,
+        items: [],
+      };
+      _kitchen.has_items = false;
+      kitchen_print.printer = $scope.printersPathList.find((_printer) => {
+        if (_kitchen.printer_path) {
+          return _printer.id === _kitchen.printer_path.id;
+        }
+      });
+
+      if (obj.items && obj.items.length > 0) {
+        obj.items.forEach((_item) => {
+          if (_item.kitchen && !_item.printed) {
+            if (_item.kitchen.id == _kitchen.id) {
+              if (_item.extras_item && _item.extras_item.length > 0) {
+                _item.extras_item.forEach((_extra) => {
+                  if (_item.extras) {
+                    _item.extras = _item.extras + ' - ' + _extra[name_lang];
+                  } else {
+                    _item.extras = _extra[name_lang];
+                  }
+                });
+              }
+              _item.printed = true;
+              _kitchen.has_items = true;
+              kitchen_print.items.unshift({ ..._item });
+            }
           }
         });
+      }
+      if (_kitchen.has_items && kitchen_print.printer) {
+        $scope.kitchen_print_list.push(kitchen_print);
 
-        if (obj.items && obj.items.length > 0) {
-          obj.items.forEach((_item) => {
-            if (_item.kitchen && !_item.printed) {
-              if (_item.kitchen.id == _kitchen.id) {
-                if (_item.extras_item && _item.extras_item.length > 0) {
-                  _item.extras_item.forEach((_extra) => {
-                    if (_item.extras) {
-                      _item.extras = _item.extras + ' - ' + _extra[name_lang];
-                    } else {
-                      _item.extras = _extra[name_lang];
-                    }
-                  });
-                }
-                _item.printed = true;
-                _kitchen.has_items = true;
-                $scope.kitchen_print.items.unshift({ ..._item });
-              }
-            }
-          });
+        if (i + 1 == $scope.kitchensList.length) {
+          $scope.updateOrderInvoice(obj);
         }
-        if (_kitchen.has_items && $scope.kitchen_print.printer) {
-          site.print(
-            {
-              selector: '#kitchenPrint',
-              ip: '127.0.0.1',
-              port: '60080',
-              printer: $scope.kitchen_print.printer.ip.name.trim(),
-            },
-            () => {}
-          );
-          if (i + 1 == $scope.kitchensList.length) {
-            $scope.updateOrderInvoice(obj);
-          }
-        }
-      }, 1000 * 3);
+      }
     });
+    $timeout(() => {
+      $scope.kitchen_print_list.forEach((k, i) => {
+        site.print(
+          {
+            selector: '#kitchenPrint_' + i,
+            ip: '127.0.0.1',
+            port: '60080',
+            printer: k.printer.ip.name.trim(),
+          },
+          () => {}
+        );
+      });
+    }, 1000 * 2);
   };
 
   $scope.paymentsPayable = function (type) {

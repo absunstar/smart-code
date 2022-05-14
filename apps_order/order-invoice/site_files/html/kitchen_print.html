@@ -1,4 +1,4 @@
-<div class="row center border font_cairo hidden" id="kitchenPrint" style="width: 88mm !important">
+<div class="row center border font_cairo " ng-repeat="kitchen_print in kitchen_print_list" id="kitchenPrint_{{$index}}" style="width: 88mm !important">
   <div class="center txt23">
     <b class="black">##word.kitchen## : </b>
     <b class="black">{{kitchen_print.kitchen.name_##session.lang##}} </b>

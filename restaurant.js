@@ -13,6 +13,7 @@ const site = require('isite')({
     mongodb: {
         db: 'smart_code_restaurants',
         limit: 100000,
+        events: true,
         identity: {
             enabled: !0,
         },
