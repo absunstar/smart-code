@@ -213,6 +213,20 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
     });
   };
 
+  $scope.closeItemsModal = function () {
+    if (!site.feature('restaurant')) {
+      document.querySelector('#searchBarcode input').focus();
+    }
+    site.hideModal('#itemModal');
+  };
+
+  $scope.closeSizesModal = function () {
+    if (!site.feature('restaurant')) {
+      document.querySelector('#searchBarcode input').focus();
+    }
+    site.hideModal('#sizesModal');
+  };
+
   $scope.addOrderInvoice = function (type) {
     $scope.error = '';
     if ($scope.order_invoice.shift) {
