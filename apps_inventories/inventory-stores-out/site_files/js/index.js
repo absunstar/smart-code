@@ -111,9 +111,9 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
     $timeout(() => {
       obj.total_value = 0;
       obj.net_value = obj.net_value || 0;
+      obj.total_value_added = 0;
 
       if (!obj.invoice_id && obj.items && obj.items.length > 0) {
-        obj.total_value_added = 0;
         obj.items.forEach((_itm) => {
           obj.total_value += site.toNumber(_itm.total);
 
