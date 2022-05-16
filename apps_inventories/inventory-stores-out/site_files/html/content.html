@@ -165,7 +165,7 @@ th, td { background: #fff; padding: 8px 16px; }
 
               <td ng-hide="store_out.type.id ==5">
                 <br ng-hide="edit_price" />
-                <p ng-hide="edit_price">{{itm.price}}</p>
+                <p ng-hide="edit_price">{{itm.price | xmoney2}}</p>
                 <i-control ng-show="edit_price" ng-change="calcSize(itm)" type="number" ng-model="itm.price"></i-control>
               </td>
 
