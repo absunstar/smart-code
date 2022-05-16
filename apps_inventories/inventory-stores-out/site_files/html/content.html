@@ -189,12 +189,12 @@ th, td { background: #fff; padding: 8px 16px; }
               <td ng-hide="store_out.type.id == 5">
                 <i-control ng-change="calcSize(itm)" type="number" ng-model="itm.value_added"> </i-control>
                 <b class="red">##word.total##</b>
-                <b>({{itm.total_v_a}})</b>
+                <b>({{itm.total_v_a | xmoney2}})</b>
               </td>
 
               <td class="green">
                 <br />
-                {{itm.total | xmoney}}
+                {{itm.total | xmoney2}}
               </td>
 
               <td>
@@ -240,25 +240,25 @@ th, td { background: #fff; padding: 8px 16px; }
               <div class="col3" ng-hide="store_out.type.id == 6">
                 <h3 class="center bold">##word.stores_out_total_discount##</h3>
                 <br />
-                <h3 class="center red bold">{{store_out.total_discount | xmoney}}</h3>
+                <h3 class="center red bold">{{store_out.total_discount | xmoney2}}</h3>
               </div>
 
               <div class="col3" ng-hide="store_out.type.id == 6">
                 <h3 class="center bold">##word.stores_out_total_tax##</h3>
                 <br />
-                <h3 class="center red bold">{{store_out.total_tax | xmoney}}</h3>
+                <h3 class="center red bold">{{store_out.total_tax | xmoney2}}</h3>
               </div>
 
               <div class="col3">
                 <h3 class="center bold">##word.total_value_added##</h3>
                 <br />
-                <h3 class="center blue bold">{{store_out.total_value_added}}</h3>
+                <h3 class="center blue bold">{{store_out.total_value_added | xmoney2}}</h3>
               </div>
 
               <div class="col3">
                 <h3 class="center bold">##word.stores_out_total_value##</h3>
                 <br />
-                <h3 class="center green bold">{{store_out.total_value | xmoney}}</h3>
+                <h3 class="center green bold">{{store_out.total_value | xmoney2}}</h3>
               </div>
             </div>
           </fieldset>
@@ -398,12 +398,12 @@ th, td { background: #fff; padding: 8px 16px; }
                 <div class="col6">
                   <h3 class="center bold">##word.paid_require##</h3>
                   <br />
-                  <h3 class="center bold">{{store_out.net_value | xmoney}}</h3>
+                  <h3 class="center bold">{{store_out.net_value | xmoney2}}</h3>
                 </div>
                 <div class="col6">
                   <h3 class="center bold">##word.total_payments##</h3>
                   <br />
-                  <h3 class="center green bold">{{store_out.paid_up | xmoney}}</h3>
+                  <h3 class="center green bold">{{store_out.paid_up | xmoney2}}</h3>
                 </div>
               </fieldset>
             </div>

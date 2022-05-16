@@ -54,12 +54,12 @@
 
                                 <tr ng-show="order_management.total_tax > 0">
                                     <td class="title"> ##word.stores_out_total_tax## </td>
-                                    <td class="center"> {{order_management.total_tax | xmoney}} </td>
+                                    <td class="center"> {{order_management.total_tax | xmoney2}} </td>
                                 </tr>
 
                                 <tr>
                                     <td class="title"> ##word.net_value## </td>
-                                    <td class="center blue"> {{order_management.net_value | xmoney}} </td>
+                                    <td class="center blue"> {{order_management.net_value | xmoney2}} </td>
                                 </tr>
 
                                 <tr ng-show="order_management.table">
@@ -149,16 +149,16 @@
 
                             <td class="center blue">{{c.count}}</td>
 
-                            <td class="center">{{c.price | xmoney}}</td>
+                            <td class="center">{{c.price | xmoney2}}</td>
 
-                            <td x-features="restaurant" class="center">{{c.extras_price | xmoney}}</td>
+                            <td x-features="restaurant" class="center">{{c.extras_price | xmoney2}}</td>
 
                             <td class="center red">{{c.discount.value}}
                                 <b class="red" ng-show="c.discount.type =='number'">$</b>
                                 <b class="red" ng-show="c.discount.type =='percent'">%</b>
                             </td>
 
-                            <td class="center green">{{c.total | xmoney}}</td>
+                            <td class="center green">{{c.total | xmoney2}}</td>
                             <td x-features="restaurant" class="center">{{c.kitchen.name_##session.lang##}}</td>
 
                             <td class="center">{{c.notes}}</td>

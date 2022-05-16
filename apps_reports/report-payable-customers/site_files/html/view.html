@@ -42,7 +42,7 @@
                                 </tr>
                                 <tr>
                                     <td class="title"> ##word.net_value## </td>
-                                    <td class="center blue"> {{report_invoices.net_value | xmoney}} </td>
+                                    <td class="center blue"> {{report_invoices.net_value | xmoney2}} </td>
                                 </tr>
 
                                 <tr ng-show="report_invoices.safe">
@@ -70,8 +70,8 @@
                                 <tr ng-repeat="c in report_invoices.items">
                                     <td class="center title">{{c.size_##session.lang##}}</td>
                                     <td class="center blue">{{c.count}}</td>
-                                    <td class="center blue">{{c.price | xmoney}}</td>
-                                    <td class="center green">{{c.total | xmoney}}</td>
+                                    <td class="center blue">{{c.price | xmoney2}}</td>
+                                    <td class="center green">{{c.total | xmoney2}}</td>
                                 </tr>
                             </table>
                         </div>

@@ -68,13 +68,13 @@
 
                             <fieldset class="row">
                                 <div class="col4">
-                                    <h2 class="bold center">##word.report_invoices_total_required## : {{net_value | xmoney}}</h2>
+                                    <h2 class="bold center">##word.report_invoices_total_required## : {{net_value | xmoney2}}</h2>
                                 </div>
                                 <div class="col4">
-                                    <h2 class="bold center">##word.total_paid_up## : {{paid_up | xmoney}}</h2>
+                                    <h2 class="bold center">##word.total_paid_up## : {{paid_up | xmoney2}}</h2>
                                 </div>
                                 <div class="col4">
-                                    <h2 class="bold center">##word.total_remain## : {{remain_amount | xmoney}}</h2>
+                                    <h2 class="bold center">##word.total_remain## : {{remain_amount | xmoney2}}</h2>
                                 </div>
                             </fieldset>
                         </div>
@@ -83,20 +83,20 @@
                         <div class="col5">
                             <fieldset class="row">
                                 <div class="col6">
-                                  <h2 class="bold center">##word.cash## : {{cash | xmoney}}</h2>
+                                  <h2 class="bold center">##word.cash## : {{cash | xmoney2}}</h2>
                                 </div>
                                 <div class="col6">
-                                  <h2 class="bold center">##word.bank## : {{bank | xmoney}}</h2>
+                                  <h2 class="bold center">##word.bank## : {{bank | xmoney2}}</h2>
                                 </div>
                               </fieldset>
 
                               <fieldset class="row">
                             
                                 <div class="col6">
-                                    <h2 class="bold center">##word.stores_out_total_tax## : {{total_tax | xmoney}}</h2>
+                                    <h2 class="bold center">##word.stores_out_total_tax## : {{total_tax | xmoney2}}</h2>
                                 </div>
                                 <div class="col6">
-                                    <h2 class="bold center">##word.stores_out_total_discount## : {{total_discount | xmoney}}</h2>
+                                    <h2 class="bold center">##word.stores_out_total_discount## : {{total_discount | xmoney2}}</h2>
                                 </div>
                               </fieldset>
                         </div>
@@ -279,15 +279,15 @@
                                 <p ng-show="c.price_delivery_service"> ##word.price_delivery_service## </p>
                                 <p ng-show="c.price_delivery_service">{{c.price_delivery_service}}</p>
                             </td>
-                            <td ng-hide="##query.type## == 16"> {{c.net_value | xmoney}} </td>
+                            <td ng-hide="##query.type## == 16"> {{c.net_value | xmoney2}} </td>
                             <td ng-show="##query.type## == 16">
                                 {{c.target_account.##session.lang##}}
                                 -
                                 <b class="blue" ng-show="c.op_balance_type == 'creditor'">##word.creditor##</b>
                                 <b class="blue" ng-show="c.op_balance_type == 'debtor'">##word.debtor##</b>
                             </td>
-                            <td class="green"> {{c.paid_up | xmoney}} </td>
-                            <td class="red" ng-hide="##query.type## == 16"> {{c.remain_amount| xmoney}} </td>
+                            <td class="green"> {{c.paid_up | xmoney2}} </td>
+                            <td class="red" ng-hide="##query.type## == 16"> {{c.remain_amount| xmoney2}} </td>
                             <td ng-show="##query.type## == 15">
                                 <i-button type="view" label="##word.details##" ng-click="displayDetails(c,'view')">
                                 </i-button>

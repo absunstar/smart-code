@@ -137,7 +137,7 @@
 
             <td>
               <br ng-hide="edit_price" />
-              <p ng-hide="edit_price">{{itm.cost | xmoney}}</p>
+              <p ng-hide="edit_price">{{itm.cost | xmoney2}}</p>
               <i-control ng-disabled="store_in.type.id == 4" ng-show="edit_price" ng-change="calcSize(itm)" type="number" ng-model="itm.cost"></i-control>
             </td>
 
@@ -156,12 +156,12 @@
             <td ng-hide="##query.type## == 3 || ##query.type## == 2">
               <i-control ng-change="calcSize(itm)" type="number" ng-model="itm.value_added"> </i-control>
               <p class="red">##word.total_v_a##</p>
-              <p>{{itm.total_v_a | xmoney}}</p>
+              <p>{{itm.total_v_a | xmoney2}}</p>
             </td>
 
             <td class="green">
               <br />
-              {{itm.total | xmoney}}
+              {{itm.total | xmoney2}}
             </td>
 
             <td>
@@ -271,25 +271,25 @@
             <div class="col3" ng-hide="store_in.type.id == 4">
               <h3 class="center bold">##word.stores_out_total_discount##</h3>
               <br />
-              <h3 class="center red bold">{{store_in.total_discount | xmoney}}</h3>
+              <h3 class="center red bold">{{store_in.total_discount | xmoney2}}</h3>
             </div>
 
             <div class="col3" ng-hide="store_in.type.id == 4">
               <h3 class="center bold">##word.stores_out_total_tax##</h3>
               <br />
-              <h3 class="center red bold">{{store_in.total_tax | xmoney}}</h3>
+              <h3 class="center red bold">{{store_in.total_tax | xmoney2}}</h3>
             </div>
 
             <div class="col3">
               <h3 class="center bold">##word.total_value_added##</h3>
               <br />
-              <h3 class="center blue bold">{{store_in.total_value_added | xmoney}}</h3>
+              <h3 class="center blue bold">{{store_in.total_value_added | xmoney2}}</h3>
             </div>
 
             <div class="col3">
               <h3 class="center bold">##word.stores_in_total_value##</h3>
               <br />
-              <h3 class="center green bold">{{store_in.total_value | xmoney}}</h3>
+              <h3 class="center green bold">{{store_in.total_value | xmoney2}}</h3>
             </div>
           </div>
         </fieldset>
@@ -330,12 +330,12 @@
             <div class="col6">
               <h3 class="center bold">##word.stores_in_net_value##</h3>
               <br />
-              <h3 class="center bold">{{store_in.net_value | xmoney}}</h3>
+              <h3 class="center bold">{{store_in.net_value | xmoney2}}</h3>
             </div>
             <div class="col6" ng-show="(store_in.type.id== 1 || store_in.type.id== 4)  && defaultSettings.accounting.create_invoice_auto ">
               <h3 class="center bold">##word.amount_currency##</h3>
               <br />
-              <h3 class="center green bold">{{store_in.amount_currency | xmoney}}</h3>
+              <h3 class="center green bold">{{store_in.amount_currency | xmoney2}}</h3>
             </div>
           </div>
         </fieldset>

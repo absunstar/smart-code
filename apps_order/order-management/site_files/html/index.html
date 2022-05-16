@@ -60,17 +60,17 @@
                 {{c.transaction_type.##session.lang##}}
                 <p ng-show="c.transaction_type.id ==2" class="blue">({{c.status_delivery.##session.lang##}})</p>
               </td>
-              <td ng-click="showDetailes(c)" class="pointer">{{c.total_tax | xmoney}}</td>
-              <td ng-click="showDetailes(c)" class="pointer">{{c.total_discount | xmoney}}</td>
+              <td ng-click="showDetailes(c)" class="pointer">{{c.total_tax | xmoney2}}</td>
+              <td ng-click="showDetailes(c)" class="pointer">{{c.total_discount | xmoney2}}</td>
               <td ng-click="showDetailes(c)" class="pointer">
                 <p ng-show="c.service">##word.service##</p>
-                <p ng-show="c.service">{{c.service | xmoney}}</p>
+                <p ng-show="c.service">{{c.service | xmoney2}}</p>
                 <p ng-show="c.price_delivery_service">##word.price_delivery_service##</p>
-                <p ng-show="c.price_delivery_service">{{c.price_delivery_service | xmoney}}</p>
+                <p ng-show="c.price_delivery_service">{{c.price_delivery_service | xmoney2}}</p>
               </td>
 
-              <td ng-click="showDetailes(c)" class="pointer blue">{{c.total_items | xmoney}}</td>
-              <td ng-click="showDetailes(c)" class="pointer">{{c.net_value | xmoney}}</td>
+              <td ng-click="showDetailes(c)" class="pointer blue">{{c.total_items | xmoney2}}</td>
+              <td ng-click="showDetailes(c)" class="pointer">{{c.net_value | xmoney2}}</td>
               <td ng-click="showDetailes(c)" class="pointer">{{c.status.##session.lang##}}</td>
               <td>
                 <i-button

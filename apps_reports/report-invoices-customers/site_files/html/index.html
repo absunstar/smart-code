@@ -84,13 +84,13 @@
 
                         <fieldset class="row">
                             <div class="col4">
-                                <h2 class="bold center">##word.stores_out_net_value## : {{net_value | xmoney}}</h2>
+                                <h2 class="bold center">##word.stores_out_net_value## : {{net_value | xmoney2}}</h2>
                             </div>
                             <div class="col4">
-                                <h2 class="bold center">##word.total_paid_up## : {{total_paid_up | xmoney}}</h2>
+                                <h2 class="bold center">##word.total_paid_up## : {{total_paid_up | xmoney2}}</h2>
                             </div>
                             <div class="col4">
-                                <h2 class="bold center">##word.total_remain## : {{remain_amount | xmoney}}</h2>
+                                <h2 class="bold center">##word.total_remain## : {{remain_amount | xmoney2}}</h2>
                             </div>
                         </fieldset>
                     </div>
@@ -129,9 +129,9 @@
                         <td ng-hide="customer.id"> {{c.customer.name_##session.lang##}} </td>
                         <td> {{c.total_tax ||0}} </td>
                         <td> {{c.total_discount ||0}} </td>
-                        <td class="green"> {{c.net_value | xmoney}} </td>
-                        <td class="blue"> {{c.total_paid_up | xmoney}} </td>
-                        <td class="red"> {{c.remain_amount | xmoney}} </td>
+                        <td class="green"> {{c.net_value | xmoney2}} </td>
+                        <td class="blue"> {{c.total_paid_up | xmoney2}} </td>
+                        <td class="red"> {{c.remain_amount | xmoney2}} </td>
                     </tr>
                 </table>
 

@@ -149,14 +149,14 @@
                 <td class="center txt16">{{itm.count}}</td>
 
                 <td class="center txt16" x-permissions="prices_offers_details_values || prices_offers_manage">
-                    {{itm.b_price | xmoney}}
+                    {{itm.b_price | xmoney2}}
 
-                    <del class="red txt16" ng-show="itm.discount.value > 0"> {{itm.discount.current | xmoney}} </del>
+                    <del class="red txt16" ng-show="itm.discount.value > 0"> {{itm.discount.current | xmoney2}} </del>
                 </td>
 
-                <td class="center txt16 red" x-permissions="prices_offers_details_values || prices_offers_manage">{{itm.total_v_a | xmoney}}</td>
+                <td class="center txt16 red" x-permissions="prices_offers_details_values || prices_offers_manage">{{itm.total_v_a | xmoney2}}</td>
 
-                <td class="center txt16" x-permissions="prices_offers_details_values || prices_offers_manage">{{itm.total | xmoney}}</td>
+                <td class="center txt16" x-permissions="prices_offers_details_values || prices_offers_manage">{{itm.total | xmoney2}}</td>
             </tr>
         </table>
     </div>
@@ -175,11 +175,11 @@
             </div>
 
             <div class="col4 bold">
-                <p class="txt16 black">{{prices_offers.before_value_added | xmoney}}</p>
-                <p class="txt16 black">{{prices_offers.total_value_added | xmoney}}</p>
-                <p class="txt16 black">{{prices_offers.total_value | xmoney}}</p>
-                <p class="txt16 red">{{prices_offers.total_discount | xmoney}}</p>
-                <p class="txt16 green">{{prices_offers.net_value | xmoney}}</p>
+                <p class="txt16 black">{{prices_offers.before_value_added | xmoney2}}</p>
+                <p class="txt16 black">{{prices_offers.total_value_added | xmoney2}}</p>
+                <p class="txt16 black">{{prices_offers.total_value | xmoney2}}</p>
+                <p class="txt16 red">{{prices_offers.total_discount | xmoney2}}</p>
+                <p class="txt16 green">{{prices_offers.net_value | xmoney2}}</p>
             </div>
         </div>
 

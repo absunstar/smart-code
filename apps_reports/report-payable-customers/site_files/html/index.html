@@ -82,7 +82,7 @@
 
                 <div class="row">
                         <fieldset class="col4">
-                              <h2 class="bold center">##word.total_payments_payable## : {{total_payments_payable | xmoney}}</h2>
+                              <h2 class="bold center">##word.total_payments_payable## : {{total_payments_payable | xmoney2}}</h2>
                         </fieldset>
                 </div>
                 <br>
@@ -108,9 +108,9 @@
                         <td class="brown"> {{c.due_date | date : 'dd - MM - yyyy'}} </td>
                         <td> {{c.source_type.##session.lang##}} </td>
                         <td ng-hide="customer.id"> {{c.customer.name_##session.lang##}} </td>
-                        <td class="center blue">{{c.value | xmoney}}</td>
-                        <td class="center green">{{c.paid_up | xmoney}}</td>
-                        <td class="center red">{{c.remain | xmoney}}</td>
+                        <td class="center blue">{{c.value | xmoney2}}</td>
+                        <td class="center green">{{c.paid_up | xmoney2}}</td>
+                        <td class="center red">{{c.remain | xmoney2}}</td>
                     </tr>
                 </table>
 

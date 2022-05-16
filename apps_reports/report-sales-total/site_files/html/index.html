@@ -80,9 +80,9 @@
                                 <p>{{c.unit.barcode}}</p>
                             </td>
                             <td> {{c.count}} </td>
-                            <td class="green"> {{c.total | xmoney}} </td>
+                            <td class="green"> {{c.total | xmoney2}} </td>
                             <td class="red" x-permissions="report_sales_total_average || report_sales_total_manage">
-                                {{c.average_cost | xmoney}} </td>
+                                {{c.average_cost | xmoney2}} </td>
                         </tr>
                     </table>
                 </div>

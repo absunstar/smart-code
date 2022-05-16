@@ -68,10 +68,10 @@
                     <div class="col5">
                         <fieldset class="row">
                             <div class="col6">
-                              <h2 class="bold center">##word.total_incoming## : {{total_incoming | xmoney}}</h2>
+                              <h2 class="bold center">##word.total_incoming## : {{total_incoming | xmoney2}}</h2>
                             </div>
                             <div class="col6">
-                              <h2 class="bold center">##word.total_incoming_comm## : {{total_incoming_comm | xmoney}}</h2>
+                              <h2 class="bold center">##word.total_incoming_comm## : {{total_incoming_comm | xmoney2}}</h2>
                             </div>
                         </fieldset>
 
@@ -82,10 +82,10 @@
                     <div class="col5">
                         <fieldset class="row">
                             <div class="col6">
-                              <h2 class="bold center">##word.total_outgoing## : {{total_outgoing | xmoney}}</h2>
+                              <h2 class="bold center">##word.total_outgoing## : {{total_outgoing | xmoney2}}</h2>
                             </div>
                             <div class="col6">
-                              <h2 class="bold center">##word.total_outgoing_comm## : {{total_outgoing_comm | xmoney}}</h2>
+                              <h2 class="bold center">##word.total_outgoing_comm## : {{total_outgoing_comm | xmoney2}}</h2>
                             </div>
                         </fieldset>
 
@@ -131,9 +131,9 @@
                                 <p ng-show="c.price_delivery_service"> ##word.price_delivery_service## </p>
                                 <p ng-show="c.price_delivery_service">{{c.price_delivery_service}}</p>
                             </td>
-                            <td> {{c.net_value | xmoney}} </td>
-                            <td class="green"> {{c.paid | xmoney}} </td>
-                            <td ng-show="search.safe.type.id == 2" class="red"> {{c.commission | xmoney}} </td>
+                            <td> {{c.net_value | xmoney2}} </td>
+                            <td class="green"> {{c.paid | xmoney2}} </td>
+                            <td ng-show="search.safe.type.id == 2" class="red"> {{c.commission | xmoney2}} </td>
                             <td>
                                 <p ng-show="c.active == true" class="green"> ##word.active## </p>
                                 <p ng-show="c.active == false" class="red"> ##word.not_active## </p>

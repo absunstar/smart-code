@@ -30,25 +30,25 @@
             <div class="col3" ng-show="order_invoice.total_discount">
               <h3 class="center bold">##word.total_discount##</h3>
               <br />
-              <h3 class="center red bold">{{order_invoice.total_discount | xmoney}}</h3>
+              <h3 class="center red bold">{{order_invoice.total_discount | xmoney2}}</h3>
             </div>
 
             <div class="col3" ng-show="order_invoice.total_tax">
               <h3 class="center bold">##word.total_tax##</h3>
               <br />
-              <h3 class="center red bold">{{order_invoice.total_tax | xmoney}}</h3>
+              <h3 class="center red bold">{{order_invoice.total_tax | xmoney2}}</h3>
             </div>
 
             <div class="col3">
               <h3 class="center bold">##word.paid_require##</h3>
               <br />
-              <h3 class="center blue bold">{{order_invoice.net_value | xmoney}}</h3>
+              <h3 class="center blue bold">{{order_invoice.net_value | xmoney2}}</h3>
             </div>
 
             <div class="col3">
               <h3 class="center bold">##word.total_payments##</h3>
               <br />
-              <h3 class="center green bold">{{order_invoice.paid_up | xmoney}}</h3>
+              <h3 class="center green bold">{{order_invoice.paid_up | xmoney2}}</h3>
             </div>
           </div>
         </fieldset>

@@ -164,14 +164,14 @@
                 <td class="center txt16">{{itm.count}}</td>
 
                 <td class="center txt16" x-permissions="stores_out_details_values || stores_out_manage">
-                    {{itm.b_price | xmoney}}
+                    {{itm.b_price | xmoney2}}
 
-                    <del class="red txt16" ng-show="itm.discount.value > 0"> {{itm.discount.current | xmoney}} </del>
+                    <del class="red txt16" ng-show="itm.discount.value > 0"> {{itm.discount.current | xmoney2}} </del>
                 </td>
 
-                <td class="center txt16 red" ng-show="defaultSettings.inventory.value_added > 0" x-permissions="stores_out_details_values || stores_out_manage">{{itm.total_v_a | xmoney}}</td>
+                <td class="center txt16 red" ng-show="defaultSettings.inventory.value_added > 0" x-permissions="stores_out_details_values || stores_out_manage">{{itm.total_v_a | xmoney2}}</td>
 
-                <td class="center txt16" x-permissions="stores_out_details_values || stores_out_manage">{{itm.total | xmoney}}</td>
+                <td class="center txt16" x-permissions="stores_out_details_values || stores_out_manage">{{itm.total | xmoney2}}</td>
             </tr>
         </table>
     </div>
@@ -190,11 +190,11 @@
             </div>
 
             <div class="col4 bold">
-                <p class="txt16 black">{{store_out.before_value_added | xmoney}}</p>
-                <p class="txt16 black">{{store_out.total_value_added}}</p>
-                <p class="txt16 black">{{store_out.total_value | xmoney}}</p>
-                <p class="txt16 red">{{store_out.total_discount | xmoney}}</p>
-                <p class="txt16 green">{{store_out.net_value | xmoney}}</p>
+                <p class="txt16 black">{{store_out.before_value_added | xmoney2}}</p>
+                <p class="txt16 black">{{store_out.total_value_added  | xmoney2}}</p>
+                <p class="txt16 black">{{store_out.total_value | xmoney2}}</p>
+                <p class="txt16 red">{{store_out.total_discount | xmoney2}}</p>
+                <p class="txt16 green">{{store_out.net_value | xmoney2}}</p>
             </div>
         </div>
 

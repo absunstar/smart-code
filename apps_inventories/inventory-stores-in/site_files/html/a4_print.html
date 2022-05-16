@@ -233,12 +233,12 @@
           <td class="center width-15-mm font-12">{{itm.count}}</td>
 
           <td class="center width-15-mm font-12" >
-            {{itm.b_cost | xmoney}}
-            <del class="font-12" ng-show="itm.discount.value > 0"> {{itm.discount.current | xmoney}} </del>
+            {{itm.b_cost | xmoney2}}
+            <del class="font-12" ng-show="itm.discount.value > 0"> {{itm.discount.current | xmoney2}} </del>
           </td>
 
-          <td class="center width-15-mm font-12"  ng-show="defaultSettings.inventory.value_added > 0">{{itm.total_v_a | xmoney}}</td>
-          <td class="center width-15-mm font-12" >{{itm.total | xmoney}}</td>
+          <td class="center width-15-mm font-12"  ng-show="defaultSettings.inventory.value_added > 0">{{itm.total_v_a | xmoney2}}</td>
+          <td class="center width-15-mm font-12" >{{itm.total | xmoney2}}</td>
         </tr>
       </table>
     </div>
@@ -252,16 +252,16 @@
             </div>
             <div class="col1"></div>
             <div class="col3">
-              <p class="txt18 bold black">{{st_i.before_value_added | xmoney}}</p>
+              <p class="txt18 bold black">{{st_i.before_value_added | xmoney2}}</p>
             </div>
           </div>
           <div class="row">
             <div class="col8">
-              <p class="txt18 bold black">ضريبة القيمة المضافة / VAT {{defaultSettings.inventory.value_added | xmoney}}%</p>
+              <p class="txt18 bold black">ضريبة القيمة المضافة / VAT {{defaultSettings.inventory.value_added | xmoney2}}%</p>
             </div>
             <div class="col1"></div>
             <div class="col3">
-              <p class="txt18 bold black">{{st_i.total_value_added | xmoney}}</p>
+              <p class="txt18 bold black">{{st_i.total_value_added | xmoney2}}</p>
             </div>
           </div>
           <div class="row">
@@ -270,7 +270,7 @@
             </div>
             <div class="col1"></div>
             <div class="col3">
-              <p class="txt18 bold black">{{st_i.total_value | xmoney}}</p>
+              <p class="txt18 bold black">{{st_i.total_value | xmoney2}}</p>
             </div>
           </div>
           <div class="row">
@@ -279,7 +279,7 @@
             </div>
             <div class="col1"></div>
             <div class="col3">
-              <p class="txt18 bold black">{{st_i.total_discount | xmoney}}</p>
+              <p class="txt18 bold black">{{st_i.total_discount | xmoney2}}</p>
             </div>
           </div>
           <div class="row">
@@ -288,7 +288,7 @@
             </div>
             <div class="col1"></div>
             <div class="col3">
-              <p class="txt18 bold black">{{st_i.net_value | xmoney}}</p>
+              <p class="txt18 bold black">{{st_i.net_value | xmoney2}}</p>
             </div>
           </div>
           <div class="row" ng-show="defaultSettings.printer_program.Print_written_amount">

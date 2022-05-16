@@ -186,14 +186,14 @@
           <td class="center width-15-mm font-12">{{itm.count}}</td>
 
           <td class="center width-15-mm font-12" x-permissions="prices_offers_details_values || prices_offers_manage" ng-hide="p_offer.type.id ==5">
-            {{itm.b_price | xmoney}}
-            <del class="font-12" ng-show="itm.discount.value > 0"> {{itm.discount.current | xmoney}} </del>
+            {{itm.b_price | xmoney2}}
+            <del class="font-12" ng-show="itm.discount.value > 0"> {{itm.discount.current | xmoney2}} </del>
           </td>
 
           <td class="center width-15-mm font-12" x-permissions="prices_offers_details_values || prices_offers_manage" ng-show="defaultSettings.inventory.value_added > 0">
-            {{itm.total_v_a | xmoney}}
+            {{itm.total_v_a | xmoney2}}
           </td>
-          <td class="center width-15-mm font-12" x-permissions="prices_offers_details_values || prices_offers_manage">{{itm.total | xmoney}}</td>
+          <td class="center width-15-mm font-12" x-permissions="prices_offers_details_values || prices_offers_manage">{{itm.total | xmoney2}}</td>
         </tr>
       </table>
     </div>
@@ -208,16 +208,16 @@
             </div>
             <div class="col1"></div>
             <div class="col3">
-              <p class="txt18 bold black">{{p_offer.before_value_added | xmoney}}</p>
+              <p class="txt18 bold black">{{p_offer.before_value_added | xmoney2}}</p>
             </div>
           </div>
           <div class="row">
             <div class="col8">
-              <p class="txt18 bold black">ضريبة القيمة المضافة / VAT {{defaultSettings.inventory.value_added | xmoney}}%</p>
+              <p class="txt18 bold black">ضريبة القيمة المضافة / VAT {{defaultSettings.inventory.value_added | xmoney2}}%</p>
             </div>
             <div class="col1"></div>
             <div class="col3">
-              <p class="txt18 bold black">{{p_offer.total_value_added | xmoney}}</p>
+              <p class="txt18 bold black">{{p_offer.total_value_added | xmoney2}}</p>
             </div>
           </div>
           <div class="row">
@@ -226,7 +226,7 @@
             </div>
             <div class="col1"></div>
             <div class="col3">
-              <p class="txt18 bold black">{{p_offer.total_value | xmoney}}</p>
+              <p class="txt18 bold black">{{p_offer.total_value | xmoney2}}</p>
             </div>
           </div>
           <div class="row">
@@ -235,7 +235,7 @@
             </div>
             <div class="col1"></div>
             <div class="col3">
-              <p class="txt18 bold black">{{p_offer.total_discount | xmoney}}</p>
+              <p class="txt18 bold black">{{p_offer.total_discount | xmoney2}}</p>
             </div>
           </div>
           <div class="row">
@@ -244,7 +244,7 @@
             </div>
             <div class="col1"></div>
             <div class="col3">
-              <p class="txt18 bold black">{{p_offer.net_value | xmoney}}</p>
+              <p class="txt18 bold black">{{p_offer.net_value | xmoney2}}</p>
             </div>
           </div>
           <div class="row" ng-show="defaultSettings.printer_program.Print_written_amount">
