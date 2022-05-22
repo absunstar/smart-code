@@ -2231,7 +2231,7 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
       obj.net_value = obj.net_value + service;
 
       obj.total_value = site.toNumber(obj.total_value);
-      obj.net_value = site.toMoney(obj.net_value);
+      obj.net_value = site.toNumber(obj.net_value);
 
       if (obj.currency) {
         obj.amount_currency = obj.net_value / obj.currency.ex_rate;

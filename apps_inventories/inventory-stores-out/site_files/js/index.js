@@ -146,7 +146,7 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
       }
 
       obj.total_value = site.toNumber(obj.total_value);
-      obj.net_value = site.toMoney(obj.net_value);
+      obj.net_value = site.toNumber(obj.net_value);
       if (obj.invoices_list && obj.invoices_list.length === 1) {
         obj.invoices_list[0].paid_up = obj.net_value;
         obj.paid_up = obj.net_value;
