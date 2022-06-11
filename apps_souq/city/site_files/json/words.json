@@ -1,0 +1,51 @@
+[{
+        "name": "city",
+        "en": "City",
+        "ar": "المدينة"
+    },
+    {
+        "name": "cities",
+        "en": "Cities",
+        "ar": "المدن"
+    },
+    {
+        "name": "city_new",
+        "en": "New City",
+        "ar": "مدينة  جديدة"
+    },
+
+    {
+        "name": "city_add",
+        "en": "Add City",
+        "ar": "إضافة مدينة "
+    },
+    {
+        "name": "city_edit",
+        "en": "Edit City",
+        "ar": "تعديل مدينة "
+    },
+    {
+        "name": "city_details",
+        "en": "City Details",
+        "ar": "تفاصيل المدينة "
+    },
+    {
+        "name": "city_delete",
+        "en": "Delete City",
+        "ar": "حذف مدينة "
+    },
+    {
+        "name": "city_name",
+        "en": "City Name",
+        "ar": "إسم المدينة "
+    },
+    {
+        "name": "loginFirst",
+        "en": "please login first",
+        "ar": "برجاء تسجيل الدخول"
+    }
+
+
+
+
+]

@@ -1,0 +1,412 @@
+[
+  {
+    "name": "default_setting_tenant_search",
+    "en": "Search",
+    "ar": "بحث"
+  },
+  {
+    "name": "default_setting",
+    "en": "Default Setting",
+    "ar": "الإعدادات الإفتراضية"
+  },
+  {
+    "name": "remove_logo",
+    "en": "Remove Logo",
+    "ar": "حذف اللوجو"
+  },
+  {
+    "name": "price_offer_footer",
+    "en": "Price Offer Footer",
+    "ar": "هامش عرض السعر"
+  },
+  {
+    "name": "qr_place",
+    "en": "QR Place",
+    "ar": "مكان رمز الإستجابة"
+  },
+  {
+    "name": "qr_country",
+    "en": "QR Country",
+    "ar": "بلد رمز الإستجابة"
+  },
+  {
+    "name": "thermal_printing_language",
+    "en": "Thermal printing language",
+    "ar": "لغة الطباعة الحرارية"
+  },
+  {
+    "name": "pay_full_price_examination",
+    "en": "Pay the full price of the Examination",
+    "ar": "دفع سعر الحجز كاملا"
+  },
+  {
+    "name": "number_best_selling",
+    "en": "The number of best-selling items",
+    "ar": "عدد الأصناف الأكثر مبيعا"
+  },
+  {
+    "name": "default_setting_tenant_date_from",
+    "en": "Date From",
+    "ar": "من تاريخ"
+  },
+  {
+    "name": "default_setting_tenant_date_to",
+    "en": "Date To",
+    "ar": "إلى تاريخ"
+  },
+  {
+    "name": "link_gl_accounts_with_income_statement_and_budget",
+    "en": "Link gl_Accounts With Income Statement And Budget",
+    "ar": "ربط الحسابات بتصنيفات قائمة الدخل والميزانية"
+  },
+  {
+    "name": "order_type",
+    "en": "Order Type",
+    "ar": "نوع الطلب"
+  },
+  {
+    "name": "printer_program",
+    "en": "Printer Program",
+    "ar": "برنامج الطباعة"
+  },
+  {
+    "name": "finger_program",
+    "en": "Finger Print Program",
+    "ar": "برنامج البصمة"
+  },
+  {
+    "name": "settings_saved",
+    "en": "Settings saved",
+    "ar": "تم حفظ الإعدادات"
+  },
+  {
+    "name": "finger_code",
+    "en": "Finger Print Code",
+    "ar": "كود البصمة"
+  },
+  {
+    "name": "basic_printer",
+    "en": "Basic Printer",
+    "ar": "الطابعة الرئيسية"
+  },
+  {
+    "name": "place_program",
+    "en": "Place Program",
+    "ar": "مكان البرنامج "
+  },
+  {
+    "name": "program_ip",
+    "en": "Program Ip",
+    "ar": " أي بي البرنامج"
+  },
+  {
+    "name": "program_port",
+    "en": "Program Port",
+    "ar": "بورت البرنامج"
+  },
+  {
+    "name": "thermal_print",
+    "en": "Thermal printing",
+    "ar": "الطابعة حرارية"
+  },
+  {
+    "name": "a4_printer",
+    "en": "A4 printer",
+    "ar": "طابعة A4"
+  },
+  {
+    "name": "pdf_printer",
+    "en": "PDF printer",
+    "ar": "طابعة PDF"
+  },
+  {
+    "name": "pdf_print",
+    "en": "PDF print",
+    "ar": "طباعة PDF"
+  },
+  {
+    "name": "a4_printer_must_select",
+    "en": "You must select the name of the A4 printer from the settings",
+    "ar": "يجد تحديد الطابعة A4 من الإعدادات"
+  },
+  {
+    "name": "pdf_printer_must_select",
+    "en": "You must select the name of the PDF printer from the settings",
+    "ar": "يجد تحديد الطابعة PDF من الإعدادات"
+  },
+  {
+    "name": "thermal_printer_must_select",
+    "en": "You must select the name of the Thermal printer from the settings",
+    "ar": "يجد تحديد الطابعة الحرارية من الإعدادات"
+  },
+  {
+    "name": "barcode_printer_must_select",
+    "en": "You must select the name of the Barcode printer from the settings",
+    "ar": "يجد تحديد طابعة الباركود من الإعدادات"
+  },
+  {
+    "name": "auto_thermal_print",
+    "en": "Automatic thermal printing",
+    "ar": "طباعة حرارية أوتوماتيك"
+  },
+  {
+    "name": "Print_written_amount",
+    "en": "Print the written amount",
+    "ar": "طباعة المبلغ مكتوب"
+  },
+  {
+    "name": "user_appears_in_invoice",
+    "en": "The user appears in the invoice",
+    "ar": "ظهور المستخدم في الفاتورة"
+  },
+  {
+    "name": "auto_thermal_print_order_screen",
+    "en": "Automatic thermal printing For Order Screen",
+    "ar": "طباعة حرارية أوتوماتيك لشاشة الطلبات"
+  },
+  {
+    "name": "auto_thermal_print_sales_invo",
+    "en": "Automatic thermal printing For sales invo",
+    "ar": "طباعة حرارية أوتوماتيك لفاتورة المبيعات"
+  },
+  {
+    "name": "print_simplified_tax_invoice_sentence",
+    "en": "Print a simplified tax invoice sentence",
+    "ar": "طباعة جملة فاتورة ضريبية مبسطة"
+  },
+  {
+    "name": "print_simplified_invoice_sentence",
+    "en": "Print a simplified invoice sentence",
+    "ar": "طباعة جملة فاتورة مبسطة"
+  },
+  {
+    "name": "exam_header",
+    "en": "Header Exam",
+    "ar": "مقدمة الإمتحان"
+  },
+  {
+    "name": "exam_header2",
+    "en": "Header Exam 2",
+    "ar": "مقدمة الإمتحان 2"
+  },
+  {
+    "name": "exam_footer",
+    "en": "Footer Exam",
+    "ar": "هامش الإمتحان"
+  },
+  {
+    "name": "exams_setting",
+    "en": "Exams Setting",
+    "ar": "إعدادات الإمتحانات"
+  },
+  {
+    "name": "auto_generate_account_code_and_cost_center",
+    "en": "Automatic generation of account tree code and cost centers",
+    "ar": "توليد آلي لكود شجرة الحسابات و مراكز التكلفة"
+  },
+  {
+    "name": "end_num_to_str",
+    "en": "End Num To Text",
+    "ar": "نهاية التفقيط"
+  },
+  {
+    "name": "end_num_to_str_en",
+    "en": "End Num To Text An Eng",
+    "ar": "نهاية التفقيط بالإنجليزية"
+  },
+  {
+    "name": "default_settings",
+    "en": "Default Settings",
+    "ar": "الإعدادت الافتراضية"
+  },
+  {
+    "name": "discount_method",
+    "en": "Discount Method from Store",
+    "ar": "طريقة الخصم من المخزن"
+  },
+  {
+    "name": "default_setting_tenant_date",
+    "en": "Date",
+    "ar": "التاريخ"
+  },
+  {
+    "name": "general_Settings",
+    "en": "General Settings",
+    "ar": "إعدادات عامة"
+  },
+  {
+    "name": "inventory_settings",
+    "en": "Inventory",
+    "ar": "المخازن"
+  },
+  {
+    "name": "accounting_settings",
+    "en": "Accountinng",
+    "ar": "الحسابات"
+  },
+  {
+    "name": "default_setting_sales_invoices",
+    "en": "default_setting Sales Invoices",
+    "ar": "تقرير فواتير البيع"
+  },
+  {
+    "name": "default_setting_tenant_date",
+    "en": "Date",
+    "ar": "التاريخ"
+  },
+  {
+    "name": "piece_name",
+    "en": "Piece Of Name",
+    "ar": "إسم القطعة"
+  },
+  {
+    "name": "store_name",
+    "en": "Piece Of Name",
+    "ar": "إسم القطعة"
+  },
+  {
+    "name": "attend_absence_list",
+    "en": "Attend & Absence List",
+    "ar": "بيان الحضور و الغياب"
+  },
+  {
+    "name": "attend_hour",
+    "en": "Attend Hour",
+    "ar": "حضور الساعة"
+  },
+  {
+    "name": "out_hour",
+    "en": "Out Hour",
+    "ar": "إنصراف الساعة"
+  },
+  {
+    "name": "link_warehouse_account_invoices",
+    "en": "Linking inventory and accounting invoices",
+    "ar": "ربط الفواتير المخزنية و الحسابية"
+  },
+  {
+    "name": "default_setting_serial",
+    "en": "Serial",
+    "ar": "رقم مسلسل"
+  },
+  {
+    "name": "default_setting_tenant_required",
+    "en": "Required",
+    "ar": "المطلوب"
+  },
+  {
+    "name": "default_setting_tenant_total_required",
+    "en": "Total Required",
+    "ar": "إجمالي المطلوب"
+  },
+  {
+    "name": "default_setting_tenant_total",
+    "en": "Total Rest",
+    "ar": "إجمالي المدفوع"
+  },
+  {
+    "name": "default_setting_tenant_total_rest",
+    "en": "Total Rest",
+    "ar": "إجمالي الباقي"
+  },
+  {
+    "name": "default_setting_tenant_rest",
+    "en": "Rest",
+    "ar": "الباقي"
+  },
+  {
+    "name": "default_setting_tenant_paid",
+    "en": "paid",
+    "ar": "المدفوع"
+  },
+  {
+    "name": "default_setting_tenant_date",
+    "en": "Offer Date",
+    "ar": "التاريخ"
+  },
+  {
+    "name": "ads_settings",
+    "en": "Ads settings",
+    "ar": "إعدادات الإعلاانات"
+  },
+  {
+    "name": "default_image_for_ad",
+    "en": "Default image for ad",
+    "ar": "صورة إفتراضية للإعلان"
+  },
+  {
+    "name": "default_image_for_store",
+    "en": "Default image for store",
+    "ar": "صورة إفتراضية للمتجر"
+  },
+  {
+    "name": "publishing_system",
+    "en": "Publishing system",
+    "ar": "نظام النشر"
+  },
+  {
+    "name": "ad_status",
+    "en": "Ad status",
+    "ar": "حالة الإعلان"
+  },
+  {
+    "name": "store_status",
+    "en": "Store status",
+    "ar": "حالة المتجر"
+  },
+  {
+    "name": "closing_system",
+    "en": "Closing system",
+    "ar": "نظام الإنتهاء"
+  },
+  {
+    "name": "quantities_can_be_used",
+    "en": "Quantities can be used",
+    "ar": "إمكانية إستخدام الكميات"
+  },
+  {
+    "name": "upload_multiple_photos",
+    "en": "Upload multiple photos",
+    "ar": "رفع صور متعددة"
+  },
+  {
+    "name": "maximum_ads",
+    "en": "Maximum ads",
+    "ar": "الحد الأقصى للإعلانات"
+  },
+  {
+    "name": "maximum_stores",
+    "en": "Maximum stores",
+    "ar": "الحد الأقصى للمتاجر"
+  },
+  {
+    "name": "maximum_ads_for_store",
+    "en": "Maximum ads for store",
+    "ar": "الحد الأقصى لإعلانات المتجر"
+  },
+  {
+    "name": "expiry_date",
+    "en": "Expiry date",
+    "ar": "تاريخ الإنتهاء"
+  },
+  {
+    "name": "duration_type",
+    "en": "Duration type",
+    "ar": "نوع المدة"
+  },
+  {
+    "name": "duration",
+    "en": "Duration",
+    "ar": "المدة"
+  },
+  {
+    "name": "stores_settings",
+    "en": "Stores settings",
+    "ar": "إعدادات المتاجر"
+  },
+  {
+    "name": "Activate_stores_system",
+    "en": "Activate the store system",
+    "ar": "تفعيل نظام المتاجر"
+  }
+]

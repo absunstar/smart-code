@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html lang="en" x-permissions="numbering_manage" data-ng-app="myApp" class="bg-white">
+
+<head x-import="head.html">
+</head>
+
+<body style="background : white" class=" ##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+
+    <div id="main-layout" class="container" ng-controller="numbering">
+        <div x-import="numbering/year_month.html"></div>
+        <div class="row ">
+
+            <br>
+            <h1 class="center bold black"> ##word.numbering_screen## </h1>
+            <br>
+            <div class="row">
+                
+            </div>
+            <br>
+            <br>
+            <div x-import="numbering/content.html"></div>
+            <br>
+            <br>
+            <br>
+
+            <i-button type="save" label="##word.save##" x-permissions="numbering_update || numbering_manage" ng-click="saveNumbering()"></i-button>
+
+
+        </div>
+    </div>
+
+
+    <div x-import="scripts.html"></div>
+    <script x-import="numbering/index.js"></script>
+
+
+</body>
+
+
+</html>
+

@@ -14,6 +14,8 @@
       "create_course_manage",
       "hosting_manage",
       "lecture_admin",
+      "countries_manage",
+      "numbering_manage",
       "products_manage",
       "products_group_manage",
       "shipping_company_manage",

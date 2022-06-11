@@ -1,17 +1,23 @@
 <style>
-table { border-collapse: collapse; width: 100%; }
-th, td { background: #fff; padding: 8px 16px; }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  th,
+  td {
+    background: #fff;
+    padding: 8px 16px;
+  }
 
-.tableFixHead {
-  overflow: auto;
-  height: 320px;
-}
+  .tableFixHead {
+    overflow: auto;
+    height: 320px;
+  }
 
-.tableFixHead thead th {
-  position: sticky;
-  top: 0;
-}
-
+  .tableFixHead thead th {
+    position: sticky;
+    top: 0;
+  }
 </style>
 <form class="form">
   <div class="row">
@@ -33,8 +39,8 @@ th, td { background: #fff; padding: 8px 16px; }
                 <br />
                 <br />
                 <fieldset class="row" ng-show="store_out.customer.id">
-                    <h3 class="bold center red">##word.creditor## : {{store_out.customer.balance_creditor || 0}}</h3>
-                    <h3 class="bold center green">##word.debtor## : {{store_out.customer.balance_debtor || 0}}</h3>
+                  <h3 class="bold center red">##word.creditor## : {{store_out.customer.balance_creditor || 0}}</h3>
+                  <h3 class="bold center green">##word.debtor## : {{store_out.customer.balance_debtor || 0}}</h3>
                 </fieldset>
               </div>
               <div class="col2">
@@ -108,7 +114,7 @@ th, td { background: #fff; padding: 8px 16px; }
     </div> -->
 
     <div class="row">
-      <div  class="row tableFixHead margin padding">
+      <div class="row tableFixHead margin padding">
         <fieldset>
           <legend>##word.permission_detailes##</legend>
 
@@ -126,7 +132,7 @@ th, td { background: #fff; padding: 8px 16px; }
               <th>##word.actions##</th>
             </thead>
 
-            <tbody  ng-repeat="itm in store_out.items">
+            <tbody ng-repeat="itm in store_out.items">
               <td>
                 <br ng-hide="itm.work_patch || itm.work_serial" />
                 {{$index + 1}}
@@ -393,7 +399,7 @@ th, td { background: #fff; padding: 8px 16px; }
         <div class="col4" ng-show="store_out.type.id != 5">
           <div class="row">
             <div class="col8">
-              <br>
+              <br />
               <fieldset ng-show="store_out.net_value">
                 <div class="col6">
                   <h3 class="center bold">##word.paid_require##</h3>

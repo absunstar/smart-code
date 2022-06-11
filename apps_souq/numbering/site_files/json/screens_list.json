@@ -1,0 +1,40 @@
+[
+
+    {
+        "category": "main",
+        "name": "countries",
+        "en": "Countries",
+        "ar": "الدول"
+    },
+    {
+        "category": "main",
+        "name": "gov",
+        "en": "Goves",
+        "ar": "المحافظات"
+    },
+    {
+        "category": "main",
+        "name": "city",
+        "en": "City",
+        "ar": "المدن"
+    },
+    {
+        "category": "main",
+        "name": "area",
+        "en": "Areas",
+        "ar": "المناطق"
+    },
+    {
+        "category": "main",
+        "name": "currencies",
+        "en": "Currencies",
+        "ar": "العملات"
+    },
+    {
+        "category": "main",
+        "name": "units",
+        "en": "Units",
+        "ar": "الوحدات"
+    }
+
+]

@@ -1,0 +1,42 @@
+[
+    {
+        "name": "units",
+        "en": "Units",
+        "ar": "الوحدات"
+    },
+    {
+        "name": "unit",
+        "en": "Unit",
+        "ar": "الوحدة"
+    },
+    {
+        "name": "units_new",
+        "en": "New Unit",
+        "ar": "وحدة جديدة"
+    },
+    {
+        "name": "units_add",
+        "en": "Add Unit",
+        "ar": "إضافة وحدة "
+    },
+    {
+        "name": "units_edit",
+        "en": "Edit Unit",
+        "ar": "تعديل وحدة "
+    },
+    {
+        "name": "units_details",
+        "en": "Unit Details",
+        "ar": "تفاصيل الوحدة "
+    },
+    {
+        "name": "units_delete",
+        "en": "Delete Unit",
+        "ar": "حذف وحدة "
+    },
+    {
+        "name": "unit_name",
+        "en": "Unit Name",
+        "ar": "إسم الوحدة "
+    }
+]

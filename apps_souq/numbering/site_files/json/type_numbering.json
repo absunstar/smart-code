@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "en": "Financial year",
+        "ar": "سنة مالية"
+    },
+    {
+        "id": 2,
+        "en": "Accounting period",
+        "ar": "فترة محاسبية"
+    },
+    {
+        "id": 3,
+        "en": "Connected",
+        "ar": "متصل"
+    },
+    {
+        "id": 4,
+        "en": "Manual",
+        "ar": "يدوي"
+    }
+
+]

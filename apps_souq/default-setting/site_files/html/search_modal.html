@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html lang="en" data-ng-app="myApp" class="bg-white">
+
+<head x-import="head.html">
+</head>
+
+<body style="background : white" class=" ##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+    <div class="container" ng-controller="default_setting">
+        <div class="row center">
+
+            <br>
+            <h1 class="center bold black">##word.report_sales_invoices##</h1>
+            <br>
+
+            <div x-import="default-setting/search_modal.html"></div>
+
+            <div class="top-actions">
+                <i-button type="search" id="searchAllBtn" label="##word.search_all##" ng-click="showSearch()">
+                </i-button>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div x-import="scripts.html"></div>
+    <script x-import="default-setting/index.js"></script>
+
+
+</body>
+
+
+</html>
+
+

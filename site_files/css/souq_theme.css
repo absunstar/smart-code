@@ -1,0 +1,14 @@
+:root {
+  --theme-color: #2BB741;
+}
+.img__description {
+  background : #2BB741 !important;
+}
+
+.post h2{
+  background : #25D366 !important;
+}
+
+.post p {
+  background : #25D366 !important;
+}

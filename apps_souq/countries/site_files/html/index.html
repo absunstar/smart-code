@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="countries_ui || countries_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+
+    <div id="main-layout" class="container loaded">
+        <div class="row">
+            <div class="row" ng-controller="countries">
+                <div x-permissions="countries_add || countries_manage" x-import="countries/add_modal.html"></div>
+                <div x-permissions="countries_update || countries_manage" x-import="countries/update_modal.html"></div>
+                <div x-permissions="countries_delete || countries_manage" x-import="countries/delete_modal.html"></div>
+                <div x-permissions="countries_view || countries_manage" x-import="countries/view_modal.html"></div>
+                <div x-permissions="countries_search || countries_manage" x-import="countries/search_all_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center">##word.countries##</h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button x-permissions="countries_add || countries_manage" type="add" label="##word.country_new##"
+                        ng-click="displayAddCountries()"></i-button>
+
+                    <i-button x-permissions="countries_search || countries_manage" type="search" label="##word.search_all##"
+                        ng-click="displaySearchModal()"></i-button>
+
+                    <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
+                </div>
+
+                <table x-permissions="login" class="table bold hover loaded" id="t1">
+                    <tr>
+                        <th class="not-print">##word.logo##</th>
+                        <th>##word.code##</th>
+                        <th>##word.country_name_ar##</th>
+                        <th>##word.country_name_en##</th>
+                        <th>##word.status##</th>
+                        <th class="not-print">##word.actions##</th>
+                    </tr>
+                    <tr ng-repeat="c in list">
+                        <td class="center not-print">
+                            <i-image view class="logo" ng-model="c.image_url"></i-image>
+                        </td>
+                        <td class="center userPrint blue">{{c.code}}</td>
+                        <td class="center title">{{c.name_ar}}</td>
+                        <td class="center title">{{c.name_en}}</td>
+                        <td class="center">
+                            <p ng-show="c.active ==true" class="green"> ##word.active## </p>
+                            <p ng-show="c.active ==false" class="red"> ##word.not_active## </p>
+                        </td>
+
+                        <td class="center not-print">
+                            <i-button x-permissions="countries_view || countries_manage" type="view" label="##word.details##"
+                                ng-click="displayDetailsCountries(c)"></i-button>
+
+                            <i-button x-permissions="countries_update || countries_manage" type="edit" label="##word.edit##"
+                                ng-click="displayUpdateCountries(c)"></i-button>
+
+                            <i-button x-permissions="countries_delete || countries_manage" type="delete" label="##word.delete##"
+                                ng-click="displayDeleteCountries(c)"></i-button>
+                        </td>
+                    </tr>
+                </table>
+                <i-button x-permissions="countries_print || countries_manage" type="print" label="##word.print##"
+                    onclick="site.print('#t1')"></i-button>
+
+                <i-button x-permissions="countries_export || countries_manage" label="##word.export_to_excel##"
+                    onclick="export_to_xlsx('t1' , 'countries.xlsx')"></i-button>
+            </div>
+        </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+    <script x-import="countries/index.js"></script>
+</body>
+
+</html>

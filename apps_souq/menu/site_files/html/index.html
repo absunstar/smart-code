@@ -1,0 +1,110 @@
+<style>
+  .tab-link img {
+    width: 32px;
+    height: 32px;
+    padding: 1px;
+    background: #fff;
+    border-radius: 25px;
+    margin: 0px;
+  }
+  .tooltip {
+    position: static !important;
+  }
+
+  .tab-link span {
+    padding-right: 20px;
+    padding-left: 20px;
+    vertical-align: super;
+  }
+
+  .tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+  }
+
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    right: 0px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+  }
+
+  .tooltip .tooltiptext::after {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent black transparent;
+  }
+
+  .tooltip2:hover .tooltiptext {
+    visibility: visible;
+  }
+</style>
+
+<div class="main-menu" x-features="!atm">
+  <div id="main_tabs" class="tabs">
+    <div class="tabs-header">
+      <a class="tab-link tooltip" href="/default_setting" x-permissions="default_setting_ui || default_setting_manage">
+        <img src="/images/default_setting.png" />
+        <span> ##word.default_setting## </span>
+        <h6 class="tooltiptext">##word.default_setting##</h6>
+      </a>
+
+      <a class="tab-link tooltip" href="/numbering" x-permissions="numbering_manage">
+        <img src="/images/numbering.png" />
+        <span> ##word.numbering_screen## </span>
+        <h6 class="tooltiptext">##word.numbering_screen##</h6>
+      </a>
+
+      <a class="tab-link tooltip" href="/units" x-permissions="units_ui || units_manage">
+        <img src="/images/unit.png" />
+        <span>##word.units##</span>
+        <h6 class="tooltiptext">##word.units##</h6>
+      </a>
+
+      <a class="tab-link tooltip" href="/currency" x-permissions="currency_ui || currency_manage">
+        <img src="/images/currency.png" />
+        <span> ##word.currencies## </span>
+        <h6 class="tooltiptext">##word.currencies##</h6>
+      </a>
+
+      <a class="tab-link tooltip" href="/countries" x-permissions="countries_ui || countries_manage">
+        <img src="/images/countries.png" />
+        <span> ##word.countries## </span>
+        <h6 class="tooltiptext">##word.countries##</h6>
+      </a>
+
+      <a class="tab-link tooltip" href="/goves" x-permissions="goves_ui || goves_manage">
+        <img src="/images/gov.png" />
+        <span> ##word.goves## </span>
+        <h6 class="tooltiptext">##word.menu_goves##</h6>
+      </a>
+
+      <a class="tab-link tooltip" href="/city" x-permissions="city_ui || city_manage">
+        <img src="/images/city.png" />
+        <span> ##word.cities## </span>
+        <h6 class="tooltiptext">##word.menu_city##</h6>
+      </a>
+
+      <a class="tab-link tooltip" href="/area" x-permissions="area_ui || area_manage">
+        <img src="/images/area.png" />
+        <span> ##word.areas## </span>
+        <h6 class="tooltiptext">##word.menu_area##</h6>
+      </a>
+
+    </div>
+  </div>
+</div>

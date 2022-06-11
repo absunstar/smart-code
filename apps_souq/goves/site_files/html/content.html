@@ -1,0 +1,35 @@
+<div class="form">
+    <div id="basicInformation" class="">
+        <fieldset>
+            <legend> ##word.basic_information## </legend>
+            <div class="row">
+                <div class="col9">
+                    <div class="row">
+                        <i-control ng-hide="disabledCode" class="col2" label="##word.code##" ng-model="gov.code"></i-control>
+                        </i-control>
+                        <i-control help-id="goves_name" v="r ll2" class="col4" label="##word.goves_name##"
+                            ng-model="gov.name_ar"></i-control>
+
+                        <i-control help-id="goves_name_en" v="r" class="col4" label="##word.name_en##"
+                            ng-model="gov.name_en"></i-control>
+
+                        <i-checkbox help-id="goves_active" class="col2" label="##word.active##" ng-model="gov.active">
+                        </i-checkbox>
+                    </div>
+
+                    <div class="row">
+                        <i-list help-id="" v="r" class="col4" label="##word.country##" ng-model="gov.country"
+                            display="name_##session.lang##" items="countriesList" ng-search="_search.$gov_countries"></i-list>
+
+                    </div>
+
+                </div>
+
+                <div class="col3">
+                    <i-image help-id="goves_logo" ng-model="gov.image_url"></i-image>
+                </div>
+            </div>
+        </fieldset>
+
+    </div>
+</div>

@@ -1,0 +1,12 @@
+[
+    {
+        "id" : 1,
+        "en": "Immediately",
+        "ar": "فوري"
+    },
+    {
+        "id" : 2,
+        "en": "Specific date",
+        "ar": "تاريخ معين"
+    }
+]

@@ -1,0 +1,125 @@
+<div class="form" id="setting_default">
+  <div class="tabs inline-block">
+    <div class="tabs-header">
+      <a class="tab-link" onclick="site.showTabContent(event, '#ads_settings')"> ##word.ads_settings## </a>
+      <a class="tab-link" onclick="site.showTabContent(event, '#stores_settings')"> ##word.stores_settings## </a>
+    </div>
+    <div class="tabs-content">
+      <div id="ads_settings" class="tab-content">
+        <fieldset>
+          <legend>##word.ads_settings##</legend>
+
+          <div class="row">
+            <div class="col8">
+              <div class="row">
+                <i-list
+                  class="col4"
+                  ng-model="default_setting.ads_settings.publishing_system"
+                  items="publishingSystemList"
+                  display="##session.lang##"
+                  ng-search="_search.$search_publishing_system"
+                  label="##word.publishing_system##"
+                ></i-list>
+
+                <i-list
+                  class="col4"
+                  ng-model="default_setting.ads_settings.ad_status"
+                  items="adStatusList"
+                  display="##session.lang##"
+                  ng-search="_search.$search_ad_status"
+                  label="##word.ad_status##"
+                ></i-list>
+                <i-control label="##word.maximum_ads##" type="number" class="col3" ng-model="default_setting.ads_settings.maximum_ads"></i-control>
+              </div>
+              <div class="row">
+                <i-list
+                  class="col4"
+                  ng-model="default_setting.ads_settings.closing_system"
+                  items="closingSystemList"
+                  display="##session.lang##"
+                  ng-search="_search.$search_closing_system"
+                  label="##word.closing_system##"
+                ></i-list>
+
+                <i-control
+                  ng-show="default_setting.ads_settings.closing_system.id == 2"
+                  label="##word.duration##"
+                  type="number"
+                  class="col3"
+                  ng-model="default_setting.ads_settings.duration"
+                ></i-control>
+                <i-list
+                  class="col3"
+                  ng-model="default_setting.ads_settings.duration_type"
+                  items="durationExpiryList"
+                  ng-show="default_setting.ads_settings.closing_system.id == 2"
+                  display="##session.lang##"
+                  ng-search="_search.$search_duration_type"
+                  label="##word.duration_type##"
+                ></i-list>
+                <i-date2 class="col5" ng-show="default_setting.ads_settings.closing_system.id == 1" ng-model="default_setting.ads_settings.expiry_date" label="##word.expiry_date##"></i-date2>
+              </div>
+            </div>
+            <div class="col4">
+              <h2 class="black center">##word.default_image_for_ad##</h2>
+              <i-image help-id="units_logo" ng-model="default_setting.printer_program.default_image_ad"> </i-image>
+            </div>
+          </div>
+
+          <div class="row">
+            <i-checkbox class="row" label="##word.quantities_can_be_used##" ng-model="default_setting.ads_settings.quantities_can_be_used"></i-checkbox>
+            <i-checkbox class="row" label="##word.upload_multiple_photos##" ng-model="default_setting.ads_settings.upload_multiple_photos"></i-checkbox>
+          </div>
+        </fieldset>
+
+        <i-button type="default left" fa="2x fa-angle-double-left" onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+      <div id="stores_settings" class="tab-content">
+        <fieldset>
+          <legend>##word.stores_settings##</legend>
+          <div class="row">
+            <i-checkbox class="row" label="##word.Activate_stores_system##" ng-model="default_setting.stores_settings.Activate_stores_system"></i-checkbox>
+          </div>
+        
+
+          <div class="row" ng-show="default_setting.stores_settings.Activate_stores_system">
+            <div class="col8">
+              <div class="row">
+
+                <i-list
+                  class="col4"
+                  ng-model="default_setting.stores_settings.store_status"
+                  items="adStatusList"
+                  display="##session.lang##"
+                  ng-search="_search.$search_store_status"
+                  label="##word.store_status##"
+                ></i-list>
+                <i-control label="##word.maximum_stores##" type="number" class="col3" ng-model="default_setting.stores_settings.maximum_stores"></i-control>
+                <i-control label="##word.maximum_ads_for_store##" type="number" class="col4" ng-model="default_setting.stores_settings.maximum_ads_for_store"></i-control>
+              </div>
+            </div>
+            <div class="col4">
+              <h2 class="black center">##word.default_image_for_store##</h2>
+              <i-image help-id="units_logo" ng-model="default_setting.printer_program.default_image_store"> </i-image>
+            </div>
+          </div>
+        </fieldset>
+        <i-button type="default left" fa="2x fa-angle-double-left" onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
+      </div>
+    </div>
+  </div>
+</div>

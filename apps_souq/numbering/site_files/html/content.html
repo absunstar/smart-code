@@ -1,0 +1,118 @@
+<div class="form" id="numbering">
+
+    <div class="tabs">
+        <div class="tabs-header">
+
+            <a class="tab-link" x-features="!employee" onclick="site.showTabContent(event, '#main_tabs')">
+                <img src="/images/main.png">
+                <span> ##word.main##</span>
+            </a>
+
+        </div>
+
+
+
+        <div class="tabs-content">
+
+            <div id="main_tabs" class="tab-content">
+
+                <fieldset>
+                    <legend> ##word.main## </legend>
+
+                    <div class="row">
+                        <div class="col2"></div>
+
+                        <i-list class="col2" ng-model="circulate.type_numbering" items="typeNumberingList"
+                            display="##session.lang##" label="##word.type_numbering##"
+                            ng-search="_search.$search_type_numbering"></i-list>
+
+                        <i-control class="col2" ng-model="circulate.first_value" label="##word.beginning_numbering##"
+                            type="number"></i-control>
+
+                        <i-control class="col2" ng-model="circulate.length_level" label="##word.length_level##"
+                            type="number">
+                        </i-control>
+
+                        <div class="col1"></div>
+
+                        <i-button type="edit" label="##word.circulate##" ng-click="setCirculate('main')">
+                        </i-button>
+                    </div>
+
+                    <br>
+                    <br>
+
+                    <div class="row">
+                        <table class="table loaded center bold hover">
+
+                            <tr>
+                                <th>##word.screen_name##</th>
+                                <th>##word.type_numbering##</th>
+                                <th>##word.beginning_numbering##</th>
+                                <th>##word.last_transaction_number##</th>
+                                <th>##word.length_level##</th>
+                                <th>##word.separator_symbol##</th>
+                                <th>##word.actions##</th>
+                            </tr>
+
+                            <tr ng-repeat="screen0 in numbering.screens_list | filter:{category :'main'} ">
+
+                                <td>
+                                    <p class="text-center blue"> {{screen0.##session.lang##}} </p>
+                                </td>
+
+                                <td>
+                                    <i-list class="col3" ng-model="screen0.type_numbering" items="typeNumberingList"
+                                        display="##session.lang##" ng-search="_search.$search_type_numbering">
+                                    </i-list>
+                                </td>
+
+                                <td>
+                                    <i-control ng-show="screen0.type_numbering.id ==3" ng-model="screen0.first_value"
+                                        type="number">
+                                    </i-control>
+                                </td>
+
+                                <td>
+                                    <p class="text-center red" ng-show="screen0.type_numbering.id ==3">
+                                        {{screen0.last_value}} </p>
+                                </td>
+
+                                <td>
+                                    <i-control ng-model="screen0.length_level" ng-show="screen0.type_numbering.id ==3"
+                                        type="number">
+                                    </i-control>
+                                </td>
+
+                                <td>
+                                    <i-control ng-model="screen0.separator_symbol"
+                                        ng-show="screen0.type_numbering.id ==3">
+                                    </i-control>
+                                </td>
+
+                                <td class="center">
+
+                                    <i-button type="bg-green" ng-show="screen0.type_numbering.id ==3" fa="recycle"
+                                        ng-click="screen0.last_value = 0"></i-button>
+
+                                    <i-button type="view"
+                                        ng-hide="screen0.type_numbering.id ==3 || screen0.type_numbering.id ==4 "
+                                        ng-click="viewCurrentNumbering(screen0)"></i-button>
+
+
+                                </td>
+
+                            </tr>
+
+                        </table>
+                    </div>
+
+                </fieldset>
+
+            </div>
+
+        </div>
+    </div>
+
+
+</div>

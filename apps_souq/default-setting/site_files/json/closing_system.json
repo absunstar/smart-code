@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "en": "Specific date",
+    "ar": "تاريخ معين"
+  },
+  {
+    "id": 2,
+    "en": "Specific duration",
+    "ar": "مدة معينة"
+  },
+  {
+    "id": 3,
+    "en": "Undefined",
+    "ar": "غير محدد"
+  }
+]
