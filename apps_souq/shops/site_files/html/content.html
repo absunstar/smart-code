@@ -1,0 +1,64 @@
+<div class="form">
+  <div id="basicInformation" class="">
+    <fieldset>
+      <legend>##word.basic_information##</legend>
+      <div class="row">
+        <div class="col9">
+          <div class="row">
+            <i-control ng-hide="disabledCode" class="col2" label="##word.code##" ng-model="shop.code"> </i-control>
+
+            <i-control help-id="shop_name_ar" v="r ll2" class="col4" label="##word.shop_name##" ng-model="shop.name_ar"></i-control>
+
+            <i-control help-id="shop_name_en" v="r" class="col4" label="##word.name_en##" ng-model="shop.name_en"></i-control>
+
+            <i-checkbox help-id="shops_active" class="col2" label="##word.active##" ng-model="shop.active"> </i-checkbox>
+          </div>
+          <br />
+          <div class="row">
+            <i-control help-id="shop_rating" type="number" class="col3" label="##word.shop_rating##" ng-model="shop.ad_rating"></i-control>
+            <i-control help-id="shop_number_views" type="number" class="col3" label="##word.number_views##" ng-model="shop.number_views"></i-control>
+            <i-control help-id="shop_number_likes" type="number" class="col3" label="##word.number_likes##" ng-model="shop.number_likes"></i-control>
+          </div>
+          <br />
+
+          <div class="row">
+            <i-textarea ng-model="shop.description" class="col6" label="##word.description##"> </i-textarea>
+          </div>
+
+        </div>
+
+        <div class="col3">
+          <i-image help-id="shops_logo" ng-model="shop.image_url"></i-image>
+        </div>
+      </div>
+      <br />
+      <br />
+      <fieldset class="row">
+        <legend>
+          <i-button type="add default" ng-click="addComments()"></i-button>
+          ##word.comments##
+        </legend>
+        <div class="row" ng-repeat="c in shop.comments_list">
+          <div class="row">
+            <div class="col2">
+              <i-list ng-search="_search.$comment_type" display="name_##session.lang##" ng-model="c.comment_type" label="##word.comment_type##" items="commentsTypesList"> </i-list>
+            </div>
+            <div class="col8">
+              <i-textarea ng-model="c.comment" label="##word.comment##"> </i-textarea>
+            </div>
+
+            <div class="col2">
+              <br />
+              <i-button type="delete" ng-click="shop.comments_list.splice($index,1)"> </i-button>
+            </div>
+          </div>
+          <hr style="height: 5px; color: grey; background-color: rgb(0, 0, 199)" />
+        </div>
+        <br />
+      </fieldset>
+      <br />
+      <br />
+  
+    </fieldset>
+  </div>
+</div>

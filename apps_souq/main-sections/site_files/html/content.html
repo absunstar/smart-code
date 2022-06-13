@@ -1,0 +1,47 @@
+<div class="form">
+  <div id="basicInformation" class="">
+    <fieldset>
+      <legend>##word.basic_information##</legend>
+      <div class="row">
+        <div class="col9">
+          <div class="row">
+            <i-control ng-hide="disabledCode" class="col2" label="##word.code##" ng-model="main_sections.code"> </i-control>
+
+            <i-control type="text" help-id="main_sections_name" v="r" class="col4" label="##word.main_sections_name##" ng-model="main_sections.name_ar"></i-control>
+
+            <i-control type="text" help-id="main_sections_name_en" v="r" class="col4" label="##word.name_en##" ng-model="main_sections.name_en"></i-control>
+
+            <i-checkbox help-id="main_sections_active" class="col2" label="##word.active##" ng-model="main_sections.active"></i-checkbox>
+          </div>
+
+          <br>
+          <br>
+
+          <div class="row">
+            <i-control type="text" help-id="first_subsection_name" class="col4" label="##word.first_subsections_name##" ng-model="main_sections.first_subsection_ar"></i-control>
+            <i-control type="text" help-id="name_en" class="col4" label="##word.name_en##" ng-model="main_sections.first_subsection_en"></i-control>
+
+          </div>
+          <br>
+
+          <div class="row">
+            <i-control type="text" help-id="second_subsection_name" class="col4" label="##word.second_subsections_name##" ng-model="main_sections.second_subsection_ar"></i-control>
+            <i-control type="text" help-id="name_en" class="col4" label="##word.name_en##" ng-model="main_sections.second_subsection_en"></i-control>
+
+          </div>
+          <br>
+
+          <div class="row">
+            <i-control type="text" help-id="third_subsection_name" class="col4" label="##word.third_subsections_name##" ng-model="main_sections.third_subsection_ar"></i-control>
+            <i-control type="text" help-id="name_en" class="col4" label="##word.name_en##" ng-model="main_sections.third_subsection_en"></i-control>
+
+          </div>
+        </div>
+
+        <div class="col3">
+          <i-image help-id="main_sections_logo" ng-model="main_sections.image_url"></i-image>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+</div>

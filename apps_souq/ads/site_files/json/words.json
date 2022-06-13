@@ -1,0 +1,103 @@
+[
+  {
+    "name": "ads",
+    "en": "Ads",
+    "ar": "الإعلانات"
+  },
+  {
+    "name": "ad",
+    "en": "Ad",
+    "ar": "الإعلان"
+  },
+  {
+    "name": "ads_new",
+    "en": "New Ad",
+    "ar": "إعلان جديدة"
+  },
+  {
+    "name": "ads_add",
+    "en": "Add Ad",
+    "ar": "إضافة إعلان "
+  },
+  {
+    "name": "ads_edit",
+    "en": "Edit Ad",
+    "ar": "تعديل إعلان "
+  },
+  {
+    "name": "ads_details",
+    "en": "Ad Details",
+    "ar": "تفاصيل الإعلان "
+  },
+  {
+    "name": "ads_delete",
+    "en": "Delete Ad",
+    "ar": "حذف إعلان "
+  },
+  {
+    "name": "ad_name",
+    "en": "Ad Name",
+    "ar": "إسم الإعلان"
+  },
+  {
+    "name": "ad_name_en",
+    "en": "Ad Name En",
+    "ar": "إسم الإعلان إنجليزي"
+  },
+  {
+    "name": "ad_images",
+    "en": "Ad Images",
+    "ar": "صور الإعلان"
+  },
+  {
+    "name": "ad_name",
+    "en": "Ad Name",
+    "ar": "الكمية المتاحة"
+  },
+  {
+    "name": "comments",
+    "en": "Comments",
+    "ar": "التعليقات"
+  },
+  {
+    "name": "comment",
+    "en": "Comment",
+    "ar": "التعليق"
+  },
+  {
+    "name": "maximum_order",
+    "en": "Maximum order",
+    "ar": "أقصى حد للطلب"
+  },
+  {
+    "name": "minimum_order",
+    "en": "Minimum order",
+    "ar": "أقل حد للطلب"
+  },
+  {
+    "name": "ad_rating",
+    "en": "Ad Rating",
+    "ar": "تقييم الإعلان"
+  },
+
+  {
+    "name": "number_views",
+    "en": "Number of Views",
+    "ar": "عدد المشاهدات"
+  },
+  {
+    "name": "number_likes",
+    "en": "Number of Likes",
+    "ar": "عدد اللايكات"
+  },
+  {
+    "name": "ad_name",
+    "en": "Ad Name",
+    "ar": "التعليقات"
+  },
+  {
+    "name": "quantities",
+    "en": "Quantities",
+    "ar": "الكميات"
+  }
+]

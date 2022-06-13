@@ -1,0 +1,47 @@
+[
+  {
+    "name": "comments_types",
+    "en": "Comments Types",
+    "ar": "أنواع التعليقات"
+  },
+  {
+    "name": "comment_type",
+    "en": "Comment Type",
+    "ar": "نوع التعليق"
+  },
+  {
+    "name": "comments_types_new",
+    "en": "New Comments Type",
+    "ar": "نوع تعليق جديد"
+  },
+  {
+    "name": "comments_types_add",
+    "en": "Add Comments Type",
+    "ar": "إضافة نوع تعليق"
+  },
+  {
+    "name": "comments_types_edit",
+    "en": "Edit Comments Type",
+    "ar": "تعديل نوع تعليق"
+  },
+  {
+    "name": "comments_types_details",
+    "en": "Comments Type Details",
+    "ar": "تفاصيل نوع تعليق"
+  },
+  {
+    "name": "comments_types_delete",
+    "en": "Delete first subsections",
+    "ar": "حذف نوع تعليق"
+  },
+  {
+    "name": "comments_types_number",
+    "en": "Comments Type Number",
+    "ar": "رقم نوع تعليق"
+  },
+  {
+    "name": "comments_types_name",
+    "en": "Comments Type Name",
+    "ar": "إسم نوع التعليق"
+  }
+]

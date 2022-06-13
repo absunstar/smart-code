@@ -1,0 +1,111 @@
+<div class="form">
+  <div id="basicInformation" class="">
+    <fieldset>
+      <legend>##word.basic_information##</legend>
+      <div class="row">
+        <div class="col9">
+          <div class="row">
+            <i-control ng-hide="disabledCode" class="col2" label="##word.code##" ng-model="ad.code"> </i-control>
+
+            <i-control help-id="ad_name_ar" v="r ll2" class="col4" label="##word.ad_name##" ng-model="ad.name_ar"></i-control>
+
+            <i-control help-id="ad_name_en" v="r" class="col4" label="##word.name_en##" ng-model="ad.name_en"></i-control>
+
+            <i-checkbox help-id="ads_active" class="col2" label="##word.active##" ng-model="ad.active"> </i-checkbox>
+          </div>
+          <br />
+          <div class="row">
+            <i-control help-id="ad_rating" type="number" class="col3" label="##word.ad_rating##" ng-model="ad.ad_rating"></i-control>
+            <i-control help-id="ad_number_views" type="number" class="col3" label="##word.number_views##" ng-model="ad.number_views"></i-control>
+            <i-control help-id="ad_number_likes" type="number" class="col3" label="##word.number_likes##" ng-model="ad.number_likes"></i-control>
+          </div>
+          <br />
+
+          <div class="row">
+            <i-textarea ng-model="ad.description" class="col6" label="##word.description##"> </i-textarea>
+          </div>
+
+          <br />
+
+          <fieldset class="col10">
+            <legend>
+              <i-button type="add default" ng-click="addImage()"></i-button>
+              ##word.ad_images##
+            </legend>
+            <div class="row" ng-repeat="a in ad.images_list">
+              <div class="row">
+                <div class="col1"></div>
+                <div class="col7">
+                  <i-image help-id="ads_logo" ng-model="a.image_url"></i-image>
+                </div>
+                <div class="col1"></div>
+                <div class="col2">
+                  <br />
+                  <br />
+                  <br />
+                  <i-button type="delete" ng-click="a.images_list.splice($index,1)"> </i-button>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="col3">
+          <i-image help-id="ads_logo" ng-model="ad.image_url"></i-image>
+        </div>
+      </div>
+      <br />
+      <br />
+      <fieldset class="row">
+        <legend>
+          <i-button type="add default" ng-click="addComments()"></i-button>
+          ##word.comments##
+        </legend>
+        <div class="row" ng-repeat="c in ad.comments_list">
+          <div class="row">
+            <div class="col2">
+              <i-list ng-search="_search.$comment_type" display="name_##session.lang##" ng-model="c.comment_type" label="##word.comment_type##" items="commentsTypesList"> </i-list>
+            </div>
+            <div class="col8">
+              <i-textarea ng-model="c.comment" label="##word.comment##"> </i-textarea>
+            </div>
+
+            <div class="col2">
+              <br />
+              <i-button type="delete" ng-click="ad.comments_list.splice($index,1)"> </i-button>
+            </div>
+          </div>
+          <hr style="height: 5px; color: grey; background-color: rgb(0, 0, 199)" />
+        </div>
+        <br />
+      </fieldset>
+      <br />
+      <br />
+      <fieldset class="row">
+        <legend>
+          <i-button type="add default" ng-click="addComments()"></i-button>
+          ##word.comments##
+        </legend>
+        <div class="row" ng-repeat="c in ad.comments_list">
+          <div class="row">
+            <div class="col2">
+              <i-list ng-search="_search.$comment_type" display="name_##session.lang##" ng-model="c.comment_type" label="##word.comment_type##" items="commentsTypesList"> </i-list>
+            </div>
+            <div class="col8">
+              <i-textarea ng-model="c.comment" label="##word.comment##"> </i-textarea>
+            </div>
+
+            <div class="col2">
+              <br />
+              <i-button type="delete" ng-click="ad.comments_list.splice($index,1)"> </i-button>
+            </div>
+          </div>
+          <hr style="height: 5px; color: grey; background-color: rgb(0, 0, 199)" />
+        </div>
+        <br />
+      </fieldset>
+      <br />
+      <br />
+    </fieldset>
+  </div>
+</div>

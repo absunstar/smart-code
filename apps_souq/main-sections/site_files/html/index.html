@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="main_sections_ui || main_sections_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+    <div id="main-layout" class="container loaded">
+        <div class="row">
+            <div class="row" ng-controller="main_sections">
+                <div x-permissions="main_sections_add || main_sections_manage" x-import="main-sections/add_modal.html">
+                </div>
+                <div x-permissions="main_sections_update || main_sections_manage"
+                    x-import="main-sections/update_modal.html"></div>
+                <div x-permissions="main_sections_delete || main_sections_manage"
+                    x-import="main-sections/delete_modal.html"></div>
+                <div x-permissions="main_sections_view || main_sections_manage" x-import="main-sections/view_modal.html">
+                </div>
+                <div x-permissions="main_sections_search || main_sections_manage"
+                    x-import="main-sections/search_all_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center">##word.main_sections##</h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button x-permissions="main_sections_add || main_sections_manage" type="add"
+                        label="##word.main_sections_new##" ng-click="displayAddMainSections()"></i-button>
+
+                    <i-button x-permissions="main_sections_search || main_sections_manage" type="search"
+                        label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
+
+                    <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
+                </div>
+
+                <table x-permissions="login" class="table hover bold loaded" id="t1">
+                    <tr>
+                        <th class="not-print">##word.logo##</th>
+                        <th>##word.main_sections_number##</th>
+                        <th>##word.main_sections_name##</th>
+                        <th>##word.status##</th>
+                        <th class="not-print">##word.actions##</th>
+                    </tr>
+                    <tr ng-repeat="c in list">
+                        <td class="center not-print">
+                            <i-image view class="logo" ng-model="c.image_url"></i-image>
+                        </td>
+                        <td class="center userPrint blue">{{c.code}}</td>
+                        <td class="center ">{{c.name_##session.lang##}}</td>
+
+                        <td class="center">
+                            <p ng-show="c.active ==true" class="green"> ##word.active## </p>
+                            <p ng-show="c.active ==false" class="red"> ##word.not_active## </p>
+                        </td>
+
+                        <td class="center not-print">
+                            <i-button x-permissions="main_sections_view || main_sections_manage" type="view"
+                                label="##word.details##" ng-click="displayDetailsMainSections(c)"></i-button>
+
+                            <i-button x-permissions="main_sections_update || main_sections_manage" type="edit"
+                                label="##word.edit##" ng-click="displayUpdateMainSections(c)"></i-button>
+
+                            <i-button x-permissions="main_sections_delete || main_sections_manage" type="delete"
+                                label="##word.delete##" ng-click="displayDeleteMainSections(c)"></i-button>
+                        </td>
+                    </tr>
+                </table>
+                <i-button x-permissions="main_sections_print || main_sections_manage" type="print" label="##word.print##"
+                    onclick="site.print('#t1')"></i-button>
+
+            </div>
+        </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+    <script x-import="main-sections/index.js"></script>
+</body>
+
+</html>

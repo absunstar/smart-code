@@ -1,40 +1,80 @@
 [
+  {
+    "category": "main",
+    "name": "ads",
+    "en": "ADS",
+    "ar": "الإعلانات"
+  },  {
+    "category": "main",
+    "name": "shops",
+    "en": "Shops",
+    "ar": "المتاجر"
+  },
+  {
+    "category": "main",
+    "name": "main_sections",
+    "en": "Main Sections",
+    "ar": "القسم الرئيسي"
+  },
 
-    {
-        "category": "main",
-        "name": "countries",
-        "en": "Countries",
-        "ar": "الدول"
-    },
-    {
-        "category": "main",
-        "name": "gov",
-        "en": "Goves",
-        "ar": "المحافظات"
-    },
-    {
-        "category": "main",
-        "name": "city",
-        "en": "City",
-        "ar": "المدن"
-    },
-    {
-        "category": "main",
-        "name": "area",
-        "en": "Areas",
-        "ar": "المناطق"
-    },
-    {
-        "category": "main",
-        "name": "currencies",
-        "en": "Currencies",
-        "ar": "العملات"
-    },
-    {
-        "category": "main",
-        "name": "units",
-        "en": "Units",
-        "ar": "الوحدات"
-    }
-
+  {
+    "category": "main",
+    "name": "first_subsections",
+    "en": "First Subsections",
+    "ar": "القسم الفرعي الأول"
+  },
+  {
+    "category": "main",
+    "name": "second_subsections",
+    "en": "Second Subsections",
+    "ar": "القسم الفرعي الثاني"
+  },
+  {
+    "category": "main",
+    "name": "third_subsections",
+    "en": "Third Subsections",
+    "ar": "القسم الفرعي الثالث"
+  },
+  {
+    "category": "main",
+    "name": "comments_types",
+    "en": "Comments Types",
+    "ar": "أنواع التعليقات"
+  },
+  {
+    "category": "main",
+    "name": "countries",
+    "en": "Countries",
+    "ar": "الدول"
+  },
+  {
+    "category": "main",
+    "name": "gov",
+    "en": "Goves",
+    "ar": "المحافظات"
+  },
+  {
+    "category": "main",
+    "name": "city",
+    "en": "City",
+    "ar": "المدن"
+  },
+  {
+    "category": "main",
+    "name": "area",
+    "en": "Areas",
+    "ar": "المناطق"
+  },
+  {
+    "category": "main",
+    "name": "currencies",
+    "en": "Currencies",
+    "ar": "العملات"
+  },
+  {
+    "category": "main",
+    "name": "units",
+    "en": "Units",
+    "ar": "الوحدات"
+  }
 ]

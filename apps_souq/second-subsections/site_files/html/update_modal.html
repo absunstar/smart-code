@@ -1,0 +1,25 @@
+<div id="secondSubsectionsUpdateModal" class="modal" fixed>
+        
+    <div class="modal-content ">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.second_subsections_edit##
+                <i class="fa fa-pencil"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+
+            <div x-import="second-subsections/content.html"></div>
+            <div x-import="second-subsections/action_info.html"></div>
+        </div>
+
+        <div class="modal-footer center">
+            <h2 class="error"> {{error}} </h2>
+            <i-button type="edit" label="##word.edit##" ng-click="updateSecondSubsections(second_subsections)"></i-button>
+            <i-button type="close" label="##word.close##" onclick="site.hideModal( '#secondSubsectionsUpdateModal')"></i-button>
+        </div>
+    </div>
+    
+</div>

@@ -1,0 +1,47 @@
+[
+  {
+    "name": "first_subsections",
+    "en": "First subsections",
+    "ar": "الأقسام الفرعية الأولى"
+  },
+  {
+    "name": "first_subsection",
+    "en": "First subsection",
+    "ar": "القسم الفرعي الأول"
+  },
+  {
+    "name": "first_subsections_new",
+    "en": "New First subsection",
+    "ar": "قسم فرعي أول جديد"
+  },
+  {
+    "name": "first_subsections_add",
+    "en": "Add First subsection",
+    "ar": "إضافة قسم فرعي أول"
+  },
+  {
+    "name": "first_subsections_edit",
+    "en": "Edit First subsection",
+    "ar": "تعديل قسم فرعي أول"
+  },
+  {
+    "name": "first_subsections_details",
+    "en": "First subsection Details",
+    "ar": "تفاصيل القسم الفرعي الأول"
+  },
+  {
+    "name": "first_subsections_delete",
+    "en": "Delete first subsections",
+    "ar": "حذف قسم فرعي أول"
+  },
+  {
+    "name": "first_subsections_number",
+    "en": "First subsection Number",
+    "ar": "رقم القسم الفرعي الأول"
+  },
+  {
+    "name": "first_subsections_name",
+    "en": "First subsection Name",
+    "ar": "إسم القسم الفرعي الأول"
+  }
+]

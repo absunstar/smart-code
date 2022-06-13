@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "ads_admin",
+    "en": "Ads Admin",
+    "ar": "إدارة الإعلانات",
+    "permissions": ["ads_manage"]
+}]

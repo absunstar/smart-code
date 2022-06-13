@@ -1,0 +1,47 @@
+[
+  {
+    "name": "main_sections",
+    "en": "Main sections",
+    "ar": "الأقسام الرئيسية"
+  },
+  {
+    "name": "main_section",
+    "en": "Main section",
+    "ar": "القسم الرئيسي"
+  },
+  {
+    "name": "main_sections_new",
+    "en": "New Main section",
+    "ar": "قسم رئيسي جديد"
+  },
+  {
+    "name": "main_sections_add",
+    "en": "Add Main section",
+    "ar": "إضافة قسم رئيسي"
+  },
+  {
+    "name": "main_sections_edit",
+    "en": "Edit Main section",
+    "ar": "تعديل قسم رئيسي"
+  },
+  {
+    "name": "main_sections_details",
+    "en": "Main section Details",
+    "ar": "تفاصيل القسم الرئيسي"
+  },
+  {
+    "name": "main_sections_delete",
+    "en": "Delete main_sections",
+    "ar": "حذف قسم رئيسي"
+  },
+  {
+    "name": "main_sections_number",
+    "en": "Main section Number",
+    "ar": "رقم القسم الرئيسي"
+  },
+  {
+    "name": "main_sections_name",
+    "en": "Main section Name",
+    "ar": "إسم القسم الرئيسي"
+  }
+]

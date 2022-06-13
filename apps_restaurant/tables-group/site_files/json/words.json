@@ -6,7 +6,7 @@
     {
         "name": "tables_group_new",
         "en": "New Tables Group",
-        "ar": "مجموعة طاولات جديد"
+        "ar": "مجموعة طاولات جديدة"
     },
     {
         "name": "tables_group_add",
@@ -25,7 +25,7 @@
     },
     {
         "name": "tables_group_delete",
-        "en": "Delete tables_group",
+        "en": "Delete tables group",
         "ar": "حذف مجموعة طاولات"
     },
     {

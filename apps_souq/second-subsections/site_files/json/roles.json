@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "second_subsections_admin",
+    "en": "Second subsections Admin",
+    "ar": "إدارة الأقسام الفرعية الثانية",
+    "permissions": ["second_subsections_manage"]
+}]

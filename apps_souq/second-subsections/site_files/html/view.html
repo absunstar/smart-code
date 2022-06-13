@@ -1,0 +1,30 @@
+<div ng-hide="busy" class="row">
+    <div id="basicInformation" class="">
+        <fieldset>
+            <legend> ##word.basic_information##</legend>
+            <div class="col9">
+                <table id="basicInformationTable" class="table bold hover">
+                    <tr>
+                        <td class="title">##word.second_subsections_number##</td>
+                        <td class="center userPrint blue">{{second_subsections.code}}</td>
+                    </tr>
+                    <tr>
+                        <td class="title">##word.second_subsections_name##</td>
+                        <td class="center">{{second_subsections.name_##session.lang##}}</td>
+                    </tr>
+                    <tr>
+                        <td class="title">##word.status##</td>
+                        <td ng-show="second_subsections.active == true" class="green center"> ##word.active## </td>
+                        <td ng-show="second_subsections.active == false" class="red center"> ##word.not_active## </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="col3">
+                <i-image view ng-model="second_subsections.image_url"></i-image>
+            </div>
+
+        </fieldset>
+    </div>
+</div>
+<div x-import="second-subsections/action_info.html"></div>
