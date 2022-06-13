@@ -15,6 +15,15 @@
           </div>
           <br />
           <div class="row">
+            <i-list
+            class="col3"
+            v="r"
+            ng-model="ad.ad_status"
+            items="adStatusList"
+            display="##session.lang##"
+            ng-search="_search.$search_ad_status"
+            label="##word.ad_status##"
+          ></i-list>
             <i-control help-id="ad_rating" type="number" class="col3" label="##word.ad_rating##" ng-model="ad.ad_rating"></i-control>
             <i-control help-id="ad_number_views" type="number" class="col3" label="##word.number_views##" ng-model="ad.number_views"></i-control>
             <i-control help-id="ad_number_likes" type="number" class="col3" label="##word.number_likes##" ng-model="ad.number_likes"></i-control>
@@ -22,12 +31,12 @@
           <br />
 
           <div class="row">
-            <i-textarea ng-model="ad.description" class="col6" label="##word.description##"> </i-textarea>
+            <i-textarea ng-model="ad.description"  label="##word.description##"> </i-textarea>
           </div>
 
           <br />
 
-          <fieldset class="col10">
+          <fieldset class="col10" ng-show="defaultSettings.ads_settings.upload_multiple_photos">
             <legend>
               <i-button type="add default" ng-click="addImage()"></i-button>
               ##word.ad_images##
@@ -56,6 +65,34 @@
       </div>
       <br />
       <br />
+      <br />
+
+      <fieldset class="row" ng-show="defaultSettings.ads_settings.quantities_can_be_used">
+        <legend>
+          <i-button type="add default" ng-click="addQuantity()"></i-button>
+          ##word.quantities##
+        </legend>
+        <div class="row" ng-repeat="c in ad.quantity_list">
+          <div class="row">
+            <i-list ng-search="_search.$unit" class="col2" display="name_##session.lang##" ng-model="c.unit" label="##word.unit##" items="unitsList"> </i-list>
+            <i-control help-id="ad_available_quantity" type="number" class="col1" label="##word.available_quantity##" ng-model="c.available_quantity"></i-control>
+            <i-control help-id="ad_maximum_order" type="number" class="col2" label="##word.maximum_order##" ng-model="c.maximum_order"></i-control>
+            <i-control help-id="ad_minimum_order" type="number" class="col2" label="##word.minimum_order##" ng-model="c.minimum_order"></i-control>
+            <i-control help-id="ad_price" type="number" class="col1" label="##word.price##" ng-model="c.price"></i-control>
+            <i-list ng-search="_search.$currency" class="col2" display="name_##session.lang##" ng-model="c.currency" label="##word.currency##" items="currenciesList"> </i-list>
+
+            <div class="col1">
+              <br />
+              <i-button type="delete" ng-click="ad.quantity_list.splice($index,1)"> </i-button>
+            </div>
+          </div>
+          <hr class="center" style="width: 70%; height: 5px; color: grey; background-color: rgb(0, 0, 199)" />
+        </div>
+        <br />
+      </fieldset>
+      <br />
+      <br />
+      <br />
       <fieldset class="row">
         <legend>
           <i-button type="add default" ng-click="addComments()"></i-button>
@@ -75,35 +112,11 @@
               <i-button type="delete" ng-click="ad.comments_list.splice($index,1)"> </i-button>
             </div>
           </div>
-          <hr style="height: 5px; color: grey; background-color: rgb(0, 0, 199)" />
+          <hr class="center" style="width: 70%; height: 5px; color: grey; background-color: rgb(0, 0, 199)" />
         </div>
         <br />
       </fieldset>
       <br />
-      <br />
-      <fieldset class="row">
-        <legend>
-          <i-button type="add default" ng-click="addComments()"></i-button>
-          ##word.comments##
-        </legend>
-        <div class="row" ng-repeat="c in ad.comments_list">
-          <div class="row">
-            <div class="col2">
-              <i-list ng-search="_search.$comment_type" display="name_##session.lang##" ng-model="c.comment_type" label="##word.comment_type##" items="commentsTypesList"> </i-list>
-            </div>
-            <div class="col8">
-              <i-textarea ng-model="c.comment" label="##word.comment##"> </i-textarea>
-            </div>
-
-            <div class="col2">
-              <br />
-              <i-button type="delete" ng-click="ad.comments_list.splice($index,1)"> </i-button>
-            </div>
-          </div>
-          <hr style="height: 5px; color: grey; background-color: rgb(0, 0, 199)" />
-        </div>
-        <br />
-      </fieldset>
       <br />
       <br />
     </fieldset>

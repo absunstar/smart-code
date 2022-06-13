@@ -50,8 +50,8 @@
     "ar": "صور الإعلان"
   },
   {
-    "name": "ad_name",
-    "en": "Ad Name",
+    "name": "available_quantity",
+    "en": "Available Qty.",
     "ar": "الكمية المتاحة"
   },
   {

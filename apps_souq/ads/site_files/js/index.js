@@ -6,9 +6,21 @@ app.controller('ads', function ($scope, $http, $timeout) {
   $scope.displayAddAd = function () {
     $scope.error = '';
     $scope.ad = {
-      image_url: '/images/ads.png',
+      comments_list : [{}],
       active: true,
     };
+    if ($scope.defaultSettings.ads_settings) {
+      if ($scope.defaultSettings.ads_settings.ad_status) {
+        $scope.ad.ad_status = $scope.defaultSettings.ads_settings.ad_status;
+      }
+      if ($scope.defaultSettings.ads_settings.quantities_can_be_used) {
+        $scope.ad.quantity_list = [{}];
+      }
+      if ($scope.defaultSettings.ads_settings.upload_multiple_photos) {
+        $scope.ad.images_list = [{}];
+      }
+      $scope.ad.image_url = $scope.defaultSettings.ads_settings.default_image_ad || '/images/ads.png';
+    }
     site.showModal('#adAddModal');
   };
 
@@ -230,11 +242,11 @@ app.controller('ads', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $scope.commentsTypesList = [];
     $http({
-      method: "POST",
-      url: "/api/comments_types/all",
+      method: 'POST',
+      url: '/api/comments_types/all',
       data: {
-        where: {active:true}
-      }
+        where: { active: true },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -246,7 +258,72 @@ app.controller('ads', function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
+  };
+
+  $scope.getAdStatusList = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.adStatusList = [];
+    $http({
+      method: 'POST',
+      url: '/api/ads_status/all',
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.adStatusList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.getUnitsList = function () {
+    $scope.busy = true;
+    $scope.unitsList = [];
+    $http({
+      method: 'POST',
+      url: '/api/units/all',
+      data: {
+        where: { active: true },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.unitsList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.getCurrenciesList = function () {
+    $scope.busy = true;
+    $scope.currenciesList = [];
+    $http({
+      method: 'POST',
+      url: '/api/currency/all',
+      data: {
+        where: { active: true },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.currenciesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
   };
 
   $scope.addImage = function () {
@@ -261,8 +338,17 @@ app.controller('ads', function ($scope, $http, $timeout) {
     $scope.ad.comments_list.push({});
   };
 
+  $scope.addQuantity = function () {
+    $scope.error = '';
+    $scope.ad.quantity_list = $scope.ad.quantity_list || [];
+    $scope.ad.quantity_list.push({});
+  };
+
   $scope.getAdList();
   $scope.getNumberingAuto();
   $scope.getDefaultSetting();
   $scope.getCommentsTypesList();
+  $scope.getUnitsList();
+  $scope.getAdStatusList();
+  $scope.getCurrenciesList();
 });

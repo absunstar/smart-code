@@ -438,10 +438,16 @@
     "en": "Try Application With All Features Free",
     "ar": "جرب البرنامج الأن مع جميع الميزات مجاناّ"
   },
+  
   {
     "name": "quantity",
     "en": "Qty.",
     "ar": "الكمية"
+  },
+  {
+    "name": "quantities",
+    "en": "Quantities",
+    "ar": "الكميات"
   },
   {
     "name": "unit_price",
