@@ -43,6 +43,12 @@
   },
   {
     "category": "main",
+    "name": "reports_types",
+    "en": "Reports Types",
+    "ar": "أنواع البلاغات"
+  },
+  {
+    "category": "main",
     "name": "countries",
     "en": "Countries",
     "ar": "الدول"

@@ -1,13 +1,13 @@
 [
     {
         "id": 1,
-        "en": "Financial year",
-        "ar": "سنة مالية"
+        "en": "Yearly",
+        "ar": "سنوي"
     },
     {
         "id": 2,
-        "en": "Accounting period",
-        "ar": "فترة محاسبية"
+        "en": "Monthly",
+        "ar": "شهري"
     },
     {
         "id": 3,

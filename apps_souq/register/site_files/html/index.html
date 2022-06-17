@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="en" data-ng-app="myApp">
+  <head x-import="head.html"> </head>
+
+  <body class="##session.lang##">
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar"></nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
+    <div id="main-layout" class="container">
+      <div class="row" id="registersouqModal">
+        <div class="row" ng-controller="register_souq">
+          <div class="row">
+            <h1 class="bold text-center">##word.register##</h1>
+          </div>
+
+          <div class="row">
+            <h2 class="bold red ">{{error}}</h2>
+
+          </div>
+
+          <div class="row">
+            <i-image help-id="user_logo" ng-model="user.image_url"></i-image>
+          </div>
+
+
+          <div class="row">
+            <i-user ng-model="user"></i-user>
+            <i-control class="col4" v="r" label="##word.first_name##" ng-model="user.first_name"> </i-control>
+            <i-control class="col4" v="r" label="##word.last_name##" ng-model="user.last_name"> </i-control>
+          </div>
+          <div class="row">
+            <i-control class="col4" v="r" label="##word.mobile_email##" ng-model="user.email"> </i-control>
+          </div>
+          <div class="row">
+            <i-control class="col4" label="##word.password##" type="password" v="r"  id="pass1" ng-model="user.password"> </i-control>
+          </div>
+          <div class="row">
+            <i-control class="col4" label="##word.retype_password##" type="password" v="r"  id="pass2" ng-model="user.re_password"> </i-control>
+          </div>
+          <div class="row">
+            <i-checkbox  class="col2" label="##word.show_password##" ng-change="showPass()"  ng-model="show_password"> </i-checkbox>
+          </div>
+
+          <i-button type="add" label="##word.register_now##" ng-click="registerSouq()" ></i-button>
+          <form >
+            <p class="font-18">##word.existing_user## <a href="/login">##word.login_now##</a></p>
+          </form>
+
+
+        </div>
+      </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+    <script x-import="register/index.js"></script>
+  </body>
+</html>

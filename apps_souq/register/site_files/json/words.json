@@ -1,0 +1,84 @@
+[
+  {
+    "name": "country",
+    "en": "Country",
+    "ar": "الدولة"
+  },
+  {
+    "name": "countries",
+    "en": "Countries",
+    "ar": "الدول"
+  },
+  {
+    "name": "country_new",
+    "en": "New Country",
+    "ar": "دولة جديد"
+  },
+  {
+    "name": "country_add",
+    "en": "Add Country",
+    "ar": "إضافة دولة "
+  },
+  {
+    "name": "country_edit",
+    "en": "Edit Country",
+    "ar": "تعديل دولة "
+  },
+  {
+    "name": "country_details",
+    "en": "Country Details",
+    "ar": "تفاصيل الدولة "
+  },
+  {
+    "name": "country_delete",
+    "en": "Delete Country",
+    "ar": "حذف دولة "
+  },
+  {
+    "name": "country_name_ar",
+    "en": "Country Name Ar",
+    "ar": "إسم الدولة بالعربي"
+  },
+  {
+    "name": "country_name_en",
+    "en": "Country Name En",
+    "ar": "إسم الدولة بالإنجليزي"
+  },
+  {
+    "name": "country_notes",
+    "en": "Notes Country",
+    "ar": "ملاحظات الدولة "
+  },
+  {
+    "name": "email_or_pass_error",
+    "en": "Email Or Password Error",
+    "ar": "إسم المستخدم أو كلمة المرور خطأ"
+  },
+  {
+    "name": "login_now",
+    "en": "Login Now",
+    "ar": "تسجيل الدخول الاّن"
+  },
+  {
+    "name": "login_via",
+    "en": "Login Via",
+    "ar": "تسجيل الدخول عبر"
+  },
+  {
+    "name": "not_registered",
+    "en": "Not registered?",
+    "ar": "غير مسجل؟"
+  },
+  { "name": "password_err_match", "en": "password does not match", "ar": "كلمة السر غير متطابقة" },
+  { "name": "register_now", "en": "Register Now", "ar": "تسجيل الاّن" },
+  {
+    "name": "create_account",
+    "en": "Create an account",
+    "ar": "أنشئ حساب"
+  },
+  {
+    "name": "existing_user",
+    "en": "Existing user?",
+    "ar": "مستخدم موجود؟"
+  }
+]

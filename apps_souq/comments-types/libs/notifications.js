@@ -8,15 +8,15 @@ module.exports = function init(site) {
 
   let image_url = "/images/comments_types.png";
   let add_message = {
-    en: "New Comments types Added",
+    en: "New Comment type Added",
     ar: "تم إضافة نوع تعليق جديد",
   };
   let update_message = {
-    en: " Comments types Updated",
+    en: " Comment type Updated",
     ar: "تم تعديل نوع تعليق",
   };
   let delete_message = {
-    en: " Comments types Deleted",
+    en: " Comment type Deleted",
     ar: "تم حذف نوع تعليق ",
   };
 

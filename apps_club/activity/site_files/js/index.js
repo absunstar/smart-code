@@ -271,7 +271,7 @@ app.controller("activity", function ($scope, $http, $timeout) {
           $scope.activity.complex_activ_price += Number(_s.activities_price) * Number(_s.count)
         });
       }
-    }, 100);
+    }, 200);
 
   };
 

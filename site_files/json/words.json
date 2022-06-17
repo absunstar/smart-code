@@ -419,6 +419,16 @@
     "ar": "فقط"
   },
   {
+    "name": "yearly",
+    "en": "Yearly",
+    "ar": "سنوي"
+  },
+  {
+    "name": "monthly",
+    "en": "Monthly",
+    "ar": "شهري"
+  },
+  {
     "name": "Just_no_other",
     "en": "Just No Other",
     "ar": "فقط لا غير"
@@ -438,7 +448,16 @@
     "en": "Try Application With All Features Free",
     "ar": "جرب البرنامج الأن مع جميع الميزات مجاناّ"
   },
-  
+  {
+    "name": "login",
+    "en": "Login",
+    "ar": "تسجيل دخول"
+  },
+  {
+    "name": "register",
+    "en": "Register",
+    "ar": "تسجيل"
+  },
   {
     "name": "quantity",
     "en": "Qty.",

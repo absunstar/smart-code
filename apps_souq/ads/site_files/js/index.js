@@ -6,7 +6,7 @@ app.controller('ads', function ($scope, $http, $timeout) {
   $scope.displayAddAd = function () {
     $scope.error = '';
     $scope.ad = {
-      comments_list : [{}],
+      comments_list: [{}],
       active: true,
     };
     if ($scope.defaultSettings.ads_settings) {
@@ -14,7 +14,17 @@ app.controller('ads', function ($scope, $http, $timeout) {
         $scope.ad.ad_status = $scope.defaultSettings.ads_settings.ad_status;
       }
       if ($scope.defaultSettings.ads_settings.quantities_can_be_used) {
-        $scope.ad.quantity_list = [{}];
+        $scope.ad.quantity_list = [
+          {
+            price: 0,
+            discount: 0,
+            discount_type: 'number',
+            require: 0,
+            available_quantity: 0,
+            maximum_order: 0,
+            minimum_order: 0,
+          },
+        ];
       }
       if ($scope.defaultSettings.ads_settings.upload_multiple_photos) {
         $scope.ad.images_list = [{}];
@@ -238,6 +248,16 @@ app.controller('ads', function ($scope, $http, $timeout) {
     $scope.search = {};
   };
 
+  $scope.calcDiscount = function (obj) {
+    $scope.error = '';
+    $timeout(() => {
+      let discount = obj.discount || 0;
+      if (obj.discount_type == 'percent') discount = (obj.price * obj.discount) / 100;
+
+      obj.net_value = obj.price - discount;
+    }, 200);
+  };
+
   $scope.getCommentsTypesList = function (where) {
     $scope.busy = true;
     $scope.commentsTypesList = [];
@@ -252,6 +272,144 @@ app.controller('ads', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
           $scope.commentsTypesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.getReportsTypesList = function (where) {
+    $scope.busy = true;
+    $scope.reportsTypesList = [];
+    $http({
+      method: 'POST',
+      url: '/api/reports_types/all',
+      data: {
+        where: { active: true },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.reportsTypesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+
+  $scope.getMainSectionsList = function (where) {
+    $scope.busy = true;
+    $scope.mainSectionsList = [];
+    $http({
+      method: 'POST',
+      url: '/api/comments_types/all',
+      data: {
+        where: { active: true },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.mainSectionsList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+  $scope.getMainSectionsList = function (where) {
+    $scope.busy = true;
+    $scope.mainSectionsList = [];
+    $http({
+      method: 'POST',
+      url: '/api/main_sections/all',
+      data: {
+        where: { active: true },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.mainSectionsList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.getFirstSubsectionsList = function (where) {
+    $scope.busy = true;
+    $scope.firstSubsectionsList = [];
+    $http({
+      method: 'POST',
+      url: '/api/first_subsections/all',
+      data: {
+        where: { active: true },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.firstSubsectionsList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.getSecondSubsectionsList = function (where) {
+    $scope.busy = true;
+    $scope.secondSubsectionsList = [];
+    $http({
+      method: 'POST',
+      url: '/api/second_subsections/all',
+      data: {
+        where: { active: true },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.secondSubsectionsList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.getThirdSubsectionsList = function (where) {
+    $scope.busy = true;
+    $scope.thirdSubsectionsList = [];
+    $http({
+      method: 'POST',
+      url: '/api/third_subsections/all',
+      data: {
+        where: { active: true },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.thirdSubsectionsList = response.data.list;
         }
       },
       function (err) {
@@ -341,14 +499,28 @@ app.controller('ads', function ($scope, $http, $timeout) {
   $scope.addQuantity = function () {
     $scope.error = '';
     $scope.ad.quantity_list = $scope.ad.quantity_list || [];
-    $scope.ad.quantity_list.push({});
+    let obj = {
+      price: 0,
+      discount: 0,
+      discount_type: 'number',
+      require: 0,
+      available_quantity: 0,
+      maximum_order: 0,
+      minimum_order: 0,
+    };
+    $scope.ad.quantity_list.push(obj);
   };
 
   $scope.getAdList();
   $scope.getNumberingAuto();
   $scope.getDefaultSetting();
   $scope.getCommentsTypesList();
+  $scope.getReportsTypesList();
   $scope.getUnitsList();
   $scope.getAdStatusList();
   $scope.getCurrenciesList();
+  $scope.getMainSectionsList();
+  $scope.getFirstSubsectionsList();
+  $scope.getSecondSubsectionsList();
+  $scope.getThirdSubsectionsList();
 });

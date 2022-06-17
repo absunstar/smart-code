@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="myApp">
+  <head x-import="head.html"> </head>
+
+  <body class="##session.lang##">
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar"></nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
+    <div id="main-layout" class="container" id="loginSouqModal">
+      <div class="row">
+        <div class="row" ng-controller="login_souq">
+          <div class="row">
+            <h1 class="bold text-center">##word.login##</h1>
+          </div>
+
+          <div class="row">
+            <h2 class="bold red ">{{error}}</h2>
+
+          </div>
+        
+          <div class="row">
+            <i-control class="col4" v="r" label="##word.mobile_email##" ng-model="user.email"> </i-control>
+          </div>
+          <div class="row">
+            <i-control class="col4" label="##word.password##" type="password" v="r" value="FakePSW" id="pass" ng-model="user.password"> </i-control>
+          </div>
+          <div class="row">
+            <i-checkbox  class="col2" label="##word.show_password##" ng-click="showPass()"  ng-model="show_password"> </i-checkbox>
+          </div>
+          <i-button type="add" label="##word.login_now##" ng-click="login()" ></i-button>
+
+          <form >
+            <p class="font-18">##word.not_registered## <a href="/register">##word.create_account##</a></p>
+          </form>
+
+
+        </div>
+      </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+    <script x-import="login/index.js"></script>
+  </body>
+</html>

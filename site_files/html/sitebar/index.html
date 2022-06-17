@@ -8,7 +8,7 @@
     </div>
     <!-- style=" margin-left: 400px;
       margin-right: 400px;" -->
-    <div class="inline text-center desktop">
+    <div class="inline text-center desktop" x-features="!souq">
       <div class="info bord" x-features="login">
         <a id="btn_change_branch" onclick="site.showModal('#changeBranchModal');">
           <i ng-show="'##session.lang##' == 'ar'"> ##session.company.name_ar## - ##session.branch.name_ar## </i>
@@ -19,16 +19,19 @@
     <div class="info">
       <a x-features="login" href="#" onclick="event.stopPropagation(); $('.user-menu').toggle()"> <img src="##user.profile.image_url##" alt="" /> </a>
 
-      <a x-features="!medical && !login" id="btn_register" ng-click="customerRegister()"> ##word.customer_register## </a>
+      <a x-features="!medical&& !souq" x-permission="!login" id="btn_register" ng-click="customerRegister()"> ##word.customer_register## </a>
+      <a x-features="!souq" x-permission="!login" id="btn_login" ng-click="login()"> ##word.security_login## </a>
 
-      <a x-features="!login" id="btn_login" ng-click="login()"> ##word.security_login## </a>
+      <a class="btn left bg-green" x-features="souq && !login" href="/login"> ##word.login##</a>
+      <a class="btn left bg-green" x-features="souq && !login" href="/register"> ##word.register##</a>
     </div>
 
     <div class="user-menu">
       <div class="center profile">
         <img class="center" src="##user.profile.image_url##" alt="" /> <br />
-        <span ng-show="'##session.lang##' == 'ar'" class="user-name"> ##user.profile.name_ar## </span> <br />
-        <span ng-show="'##session.lang##' == 'en'" class="user-name"> ##user.profile.name_en## </span> <br />
+        <span x-features="souq" class="user-name"> ##user.profile.name## </span> <br />
+        <span ng-show="'##session.lang##' == 'ar'" x-features="!souq" class="user-name"> ##user.profile.name_ar## </span> <br />
+        <span ng-show="'##session.lang##' == 'en'" x-features="!souq" class="user-name"> ##user.profile.name_en## </span> <br />
         <h5 class="grayDark userPrint center">##user.email##</h5>
         <br />
         <div class="center">
@@ -75,8 +78,6 @@
 
 <script>
   var isMenuShow = false;
-
-
 
   function showMenu() {
     let menu = document.querySelector('.main-menu');

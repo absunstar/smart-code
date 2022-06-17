@@ -74,10 +74,11 @@ module.exports = function init(site) {
     let where = req.body.where || {};
 
     if (req.session.user.is_admin) {
-      where = {};
-    } else {
+    } else if (!site.feature('souq')) {
       where['company.id'] = site.get_company(req).id;
       where['branch.code'] = site.get_branch(req).code;
+    } else if (site.feature('souq')) {
+      where.company_id = { $ne: 1 };
     }
 
     site.security.getUsers(

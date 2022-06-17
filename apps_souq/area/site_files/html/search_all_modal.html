@@ -1,4 +1,4 @@
-<div id="areaSearchModal" class="modal">
+<div id="manageUsersSearchModal" class="modal">
     <div class="col2"></div>
     <div class="modal-content col8">
         <div class="modal-header">
@@ -15,13 +15,13 @@
                     <legend>##word.search_all##</legend>
                     <div class="row">
                         <i-list class="col3" label="##word.gov##" ng-model="search.gov" items="govList"
-                            ng-change="getCityList(search.gov)" display="name_##session.lang##" ng-search="_search.$area.$gov_search">
+                            ng-change="getCityList(search.gov)" display="name_##session.lang##" ng-search="_search.$manage_user.$gov_search">
                         </i-list>
 
                         <i-list class="col4" label="##word.city##" ng-model="search.city" items="cityList"
-                            display="name_##session.lang##" ng-search="_search.$area.$city_search"></i-list>
+                            display="name_##session.lang##" ng-search="_search.$manage_user.$city_search"></i-list>
 
-                        <i-control class="col3" label="##word.area_name##" ng-model="search.name"></i-control>
+                        <i-control class="col3" label="##word.manage_user_name##" ng-model="search.name"></i-control>
 
                         <div class="control col3">
                             <label> ##word.status## </label>
@@ -43,7 +43,7 @@
 
             <i-button type="clear" label="##word.empty_search##" ng-click="search = {}"> </i-button>
 
-            <i-button type="close" label="##word.close##" onclick="site.hideModal('#areaSearchModal')"> </i-button>
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#manageUsersSearchModal')"> </i-button>
 
         </div>
     </div>

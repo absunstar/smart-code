@@ -32,7 +32,6 @@
               <th class="not-print">##word.logo##</th>
               <th>##word.code##</th>
               <th>##word.ad_name##</th>
-              <th>##word.status##</th>
               <th class="not-print">##word.actions##</th>
             </tr>
             <tr ng-repeat="c in list">
@@ -41,10 +40,6 @@
               </td>
               <td class="center userPrint blue">{{c.code}}</td>
               <td class="center title">{{c.name_##session.lang##}}</td>
-              <td class="center">
-                <p ng-show="c.active == true" class="green">##word.active##</p>
-                <p ng-show="c.active == false" class="red">##word.not_active##</p>
-              </td>
 
               <td class="center not-print">
                 <i-button x-permissions="ads_view || ads_manage" type="view" label="##word.details##" ng-click="displayDetailsAd(c)"></i-button>

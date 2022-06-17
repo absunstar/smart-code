@@ -1,0 +1,132 @@
+[
+  {
+    "name": "manage_users",
+    "en": "Manage Users",
+    "ar": "إدارة المستخدمين"
+  },
+  {
+    "name": "manage_users_new",
+    "en": "New User",
+    "ar": "مستخدم جديد"
+  },
+  {
+    "name": "manage_users_add",
+    "en": "Add User",
+    "ar": "إضافة مستخدم "
+  },
+  {
+    "name": "manage_users_edit",
+    "en": "Edit User",
+    "ar": "تعديل مستخدم "
+  },
+  {
+    "name": "manage_users_details",
+    "en": "User Details",
+    "ar": "تفاصيل المستخدم "
+  },
+  {
+    "name": "manage_users_delete",
+    "en": "Delete User",
+    "ar": "حذف مستخدم "
+  },
+  {
+    "name": "manage_users_name",
+    "en": "User Name",
+    "ar": "إسم المستخدم "
+  },
+  {
+    "name": "personal_info",
+    "en": "Personal Info",
+    "ar": "معلومات شخصية"
+  },
+  {
+    "name": "current_password",
+    "en": "Current Password",
+    "ar": "كلمة المرور الحالية"
+  },
+  {
+    "name": "current_password_incorrect",
+    "en": "The current password is incorrect",
+    "ar": "كلمة المرور الحالية غير صحيحة"
+  },
+  {
+    "name": "there_no_products_cart",
+    "en": "There are no products in the cart",
+    "ar": "لا يوجد منتجات في السلة"
+  },
+  {
+    "name": "new_password",
+    "en": "New Password",
+    "ar": "كلمة المرور الجديدة"
+  },
+  {
+    "name": "basic_info",
+    "en": "Basic Info",
+    "ar": "معلومات أساسية"
+  },
+  {
+    "name": "companies_branches",
+    "en": "Companies and Branches",
+    "ar": "الشركات و الفروع"
+  },
+  {
+    "name": "contact_info",
+    "en": "Contact Info",
+    "ar": "معلومات الإتصال"
+  },
+  {
+    "name": "general_validity",
+    "en": "General Validity",
+    "ar": "صلاحيات عامة"
+  },
+  {
+    "name": "validity_ar",
+    "en": "Ar. Validity",
+    "ar": "الصلاحية بالعربي"
+  },
+  {
+    "name": "validity_en",
+    "en": "En. Validity",
+    "ar": "الصلاحية بالإنجليزي"
+  },
+  {
+    "name": "public",
+    "en": "Public",
+    "ar": "عام"
+  },
+  {
+    "name": "hr",
+    "en": "HR",
+    "ar": "شئون موظفين"
+  },
+  {
+    "name": "new_username",
+    "en": "New UserName",
+    "ar": "إسم المستخدم الجديد"
+  },
+  {
+    "name": "inventory",
+    "en": "Inventory",
+    "ar": "مخازن"
+  },
+  {
+    "name": "accounting",
+    "en": "Accounting",
+    "ar": "حسابات"
+  },
+  {
+    "name": "reports",
+    "en": "Reports",
+    "ar": "تقارير"
+  },
+  {
+    "name": "type",
+    "en": "Type",
+    "ar": "النوع"
+  },
+  {
+    "name": "screens_management",
+    "en": "Screens management",
+    "ar": "إدارة الشاشات"
+  }
+]

@@ -628,7 +628,7 @@ app.controller("transfer_branch", function ($scope, $http, $timeout) {
             }
             $timeout(() => {
               document.querySelector('#search_barcode input').focus();
-            }, 100);
+            }, 200);
 
           } else {
             $scope.error = response.data.error;

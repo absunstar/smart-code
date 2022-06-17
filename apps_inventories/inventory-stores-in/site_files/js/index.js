@@ -1086,7 +1086,7 @@ app.controller('stores_in', function ($scope, $http, $timeout) {
         calc_size.total = site.toNumber(calc_size.total);
       }
       $scope.calc($scope.store_in);
-    }, 100);
+    }, 200);
   };
 
   $scope.calc = function (obj) {

@@ -145,6 +145,15 @@ app.controller("goves", function ($scope, $http, $timeout) {
     )
   };
 
+  
+  $scope.searchAll = function () {
+
+    $scope.getGovList($scope.search);
+    site.hideModal('#govSearchModal');
+    $scope.search = {};
+  };
+
+
   $scope.getGovList = function (where) {
     $scope.busy = true;
     $scope.list = [];
@@ -229,13 +238,6 @@ app.controller("goves", function ($scope, $http, $timeout) {
     $scope.error = '';
     site.showModal('#govSearchModal');
 
-  };
-
-  $scope.searchAll = function () {
-
-    $scope.getGovList($scope.search);
-    site.hideModal('#govSearchModal');
-    $scope.search = {};
   };
 
   $scope.getGovList();

@@ -91,13 +91,49 @@
     "ar": "عدد اللايكات"
   },
   {
-    "name": "ad_name",
-    "en": "Ad Name",
-    "ar": "التعليقات"
-  },
-  {
     "name": "quantities",
     "en": "Quantities",
     "ar": "الكميات"
+  },
+  {
+    "name": "liked",
+    "en": "Liked",
+    "ar": "تم الإعجاب"
+  },
+  {
+    "name": "commented",
+    "en": "Commented",
+    "ar": "تم التعليق"
+  },
+
+  {
+    "name": "like",
+    "en": "Like",
+    "ar": "إعجاب"
+  },
+  {
+    "name": "comment",
+    "en": "Comment",
+    "ar": "تعليق"
+  },
+  {
+    "name": "favorite",
+    "en": "Favorite",
+    "ar": "مفضل"
+  },
+  {
+    "name": "reported",
+    "en": "Report",
+    "ar": "بلاغ"
+  },
+  {
+    "name": "rate",
+    "en": "Rate",
+    "ar": "تقييم"
+  },
+  {
+    "name": "comment_on_report",
+    "en": "Comment on the report",
+    "ar": "التعليق على البلاغ"
   }
 ]

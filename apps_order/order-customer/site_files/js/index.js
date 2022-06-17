@@ -1441,7 +1441,7 @@ app.controller("order_customer", function ($scope, $http, $timeout) {
         _size.total = (site.toNumber(_size.price) * site.toNumber(_size.count)) - discount;
       }
       $scope.calc($scope.order_customer);
-    }, 100);
+    }, 200);
   };
 
   $scope.calc = function (obj) {

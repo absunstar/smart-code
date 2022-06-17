@@ -345,6 +345,11 @@
     "ar": "نظام النشر"
   },
   {
+    "name": "publishing_date",
+    "en": "Publishing date",
+    "ar": "تاريخ النشر"
+  },
+  {
     "name": "ad_status",
     "en": "Ad status",
     "ar": "حالة الإعلان"
