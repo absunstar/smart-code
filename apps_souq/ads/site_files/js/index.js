@@ -7,6 +7,13 @@ app.controller('ads', function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.ad = {
       comments_list: [{}],
+      ad_rating: 0,
+      number_views: 0,
+      number_likes: 0,
+      number_comments: 0,
+      number_favorites: 0,
+      number_reports: 0,
+      priority_level: 0,
       active: true,
     };
     if ($scope.defaultSettings.ads_settings) {
@@ -19,7 +26,7 @@ app.controller('ads', function ($scope, $http, $timeout) {
             price: 0,
             discount: 0,
             discount_type: 'number',
-            require: 0,
+            net_value: 0,
             available_quantity: 0,
             maximum_order: 0,
             minimum_order: 0,
@@ -304,44 +311,22 @@ app.controller('ads', function ($scope, $http, $timeout) {
     );
   };
 
-
-  $scope.getMainSectionsList = function (where) {
+  $scope.loadMainCategories = function () {
+    $scope.error = '';
     $scope.busy = true;
-    $scope.mainSectionsList = [];
+    $scope.mainCategories = [];
     $http({
       method: 'POST',
-      url: '/api/comments_types/all',
+      url: '/api/main_categories/all',
       data: {
-        where: { active: true },
+        where: {
+          active: true,
+        },
       },
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.mainSectionsList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-  $scope.getMainSectionsList = function (where) {
-    $scope.busy = true;
-    $scope.mainSectionsList = [];
-    $http({
-      method: 'POST',
-      url: '/api/main_sections/all',
-      data: {
-        where: { active: true },
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.mainSectionsList = response.data.list;
-        }
+        if (response.data.done) $scope.mainCategories = response.data.list;
       },
       function (err) {
         $scope.busy = false;
@@ -350,21 +335,29 @@ app.controller('ads', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getFirstSubsectionsList = function (where) {
+  $scope.loadSubCategories1 = function (main_category) {
+    $scope.error = '';
     $scope.busy = true;
-    $scope.firstSubsectionsList = [];
+    $scope.subCategories1 = [];
     $http({
       method: 'POST',
-      url: '/api/first_subsections/all',
+      url: '/api/sub_categories_1/all',
       data: {
-        where: { active: true },
+        where: {
+          'main_category.id': main_category.id,
+          active: true,
+        },
+        select: {
+          id: 1,
+          name_ar: 1,
+          name_en: 1,
+          code: 1,
+        },
       },
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.firstSubsectionsList = response.data.list;
-        }
+        if (response.data.done) $scope.subCategories1 = response.data.list;
       },
       function (err) {
         $scope.busy = false;
@@ -373,21 +366,29 @@ app.controller('ads', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getSecondSubsectionsList = function (where) {
+  $scope.loadSubCategories2 = function (sub_category_1) {
+    $scope.error = '';
     $scope.busy = true;
-    $scope.secondSubsectionsList = [];
+    $scope.subCategories2 = [];
     $http({
       method: 'POST',
-      url: '/api/second_subsections/all',
+      url: '/api/sub_categories_2/all',
       data: {
-        where: { active: true },
+        where: {
+          'sub_category_1.id': sub_category_1.id,
+          active: true,
+        },
+        select: {
+          id: 1,
+          name_ar: 1,
+          name_en: 1,
+          code: 1,
+        },
       },
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.secondSubsectionsList = response.data.list;
-        }
+        if (response.data.done) $scope.subCategories2 = response.data.list;
       },
       function (err) {
         $scope.busy = false;
@@ -396,21 +397,29 @@ app.controller('ads', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getThirdSubsectionsList = function (where) {
+  $scope.loadSubCategories3 = function (sub_category_2) {
+    $scope.error = '';
     $scope.busy = true;
-    $scope.thirdSubsectionsList = [];
+    $scope.subCategories3 = [];
     $http({
       method: 'POST',
-      url: '/api/third_subsections/all',
+      url: '/api/sub_categories_3/all',
       data: {
-        where: { active: true },
+        where: {
+          'sub_category_2.id': sub_category_2.id,
+          active: true,
+        },
+        select: {
+          id: 1,
+          name_ar: 1,
+          name_en: 1,
+          code: 1,
+        },
       },
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.thirdSubsectionsList = response.data.list;
-        }
+        if (response.data.done) $scope.subCategories3 = response.data.list;
       },
       function (err) {
         $scope.busy = false;
@@ -503,7 +512,7 @@ app.controller('ads', function ($scope, $http, $timeout) {
       price: 0,
       discount: 0,
       discount_type: 'number',
-      require: 0,
+      net_value: 0,
       available_quantity: 0,
       maximum_order: 0,
       minimum_order: 0,
@@ -516,11 +525,8 @@ app.controller('ads', function ($scope, $http, $timeout) {
   $scope.getDefaultSetting();
   $scope.getCommentsTypesList();
   $scope.getReportsTypesList();
+  $scope.loadMainCategories();
   $scope.getUnitsList();
   $scope.getAdStatusList();
   $scope.getCurrenciesList();
-  $scope.getMainSectionsList();
-  $scope.getFirstSubsectionsList();
-  $scope.getSecondSubsectionsList();
-  $scope.getThirdSubsectionsList();
 });

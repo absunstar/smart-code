@@ -1,0 +1,47 @@
+<div class="form">
+  <div id="basicInformation" class="">
+    <fieldset>
+      <legend>##word.basic_information##</legend>
+      <div class="row">
+        <div class="col9">
+          <div class="row">
+            <i-control ng-hide="disabledCode" class="col2" label="##word.code##" ng-model="main_categories.code"> </i-control>
+
+            <i-control type="text" help-id="main_categories_name" v="r" class="col4" label="##word.main_categories_name##" ng-model="main_categories.name_ar"></i-control>
+
+            <i-control type="text" help-id="main_categories_name_en" v="r" class="col4" label="##word.name_en##" ng-model="main_categories.name_en"></i-control>
+
+            <i-checkbox help-id="main_categories_active" class="col2" label="##word.active##" ng-model="main_categories.active"></i-checkbox>
+          </div>
+
+          <br>
+          <br>
+
+          <div class="row">
+            <i-control type="text" help-id="sub_category_1" class="col4" label="##word.sub_category_1##" ng-model="main_categories.sub_category_1_ar"></i-control>
+            <i-control type="text" help-id="name_en" class="col4" label="##word.name_en##" ng-model="main_categories.sub_category_1_en"></i-control>
+
+          </div>
+          <br>
+
+          <div class="row">
+            <i-control type="text" help-id="sub_category_1_name" class="col4" label="##word.sub_category_1##" ng-model="main_categories.sub_category_2_ar"></i-control>
+            <i-control type="text" help-id="name_en" class="col4" label="##word.name_en##" ng-model="main_categories.sub_category_2_en"></i-control>
+
+          </div>
+          <br>
+
+          <div class="row">
+            <i-control type="text" help-id="sub_category_1_name" class="col4" label="##word.sub_category_1##" ng-model="main_categories.sub_category_3_ar"></i-control>
+            <i-control type="text" help-id="name_en" class="col4" label="##word.name_en##" ng-model="main_categories.sub_category_3_en"></i-control>
+
+          </div>
+        </div>
+
+        <div class="col3">
+          <i-image help-id="main_categories_logo" ng-model="main_categories.image_url"></i-image>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+</div>

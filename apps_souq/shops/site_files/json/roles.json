@@ -1,7 +1,0 @@
-[{
-    "module_name" : "public" ,
-    "name": "shops_admin",
-    "en": "Shops Admin",
-    "ar": "إدارة المتاجر",
-    "permissions": ["shops_manage"]
-}]

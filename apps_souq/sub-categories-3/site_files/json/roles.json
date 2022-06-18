@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "sub_category_3_admin",
+    "en": "Sub Category 3 Admin",
+    "ar": "إدارة الأقسام الفرعية 3",
+    "permissions": ["sub_categories_3_manage"]
+}]

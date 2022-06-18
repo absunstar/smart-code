@@ -1,7 +1,0 @@
-[{
-    "module_name" : "public" ,
-    "name": "main_sections_admin",
-    "en": "Main sections Admin",
-    "ar": "إدارة الأقسام الرئيسية",
-    "permissions": ["main_sections_manage"]
-}]

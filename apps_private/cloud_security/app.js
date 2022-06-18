@@ -81,6 +81,26 @@ module.exports = function init(site) {
       where.company_id = { $ne: 1 };
     }
 
+  
+    if (where['search']) {
+      where.$or = [];
+
+      where.$or.push({
+        'profile.name': site.get_RegExp(where['search'], 'i'),
+      });
+
+      where.$or.push({
+        'profile.last_name': site.get_RegExp(where['search'], 'i'),
+      });
+
+      where.$or.push({
+        'email': site.get_RegExp(where['search'], 'i'),
+      });
+
+      delete where['search']
+    }
+
+
     site.security.getUsers(
       {
         where: where,

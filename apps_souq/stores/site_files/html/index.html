@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="stores_ui || stores_manage" data-ng-app="myApp">
+  <head x-import="head.html"> </head>
+
+  <body class="##session.lang##">
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar"></nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
+    <div id="main-layout" class="container loaded">
+      <div class="row">
+        <div class="row" ng-controller="stores">
+          <div x-permissions="stores_add || stores_manage" x-import="stores/add_modal.html"></div>
+          <div x-permissions="stores_update || stores_manage" x-import="stores/update_modal.html"></div>
+          <div x-permissions="stores_delete || stores_manage" x-import="stores/delete_modal.html"></div>
+          <div x-permissions="stores_view || stores_manage" x-import="stores/view_modal.html"></div>
+          <div x-permissions="stores_search || stores_manage" x-import="stores/search_all_modal.html"></div>
+
+          <div class="row">
+            <h1 class="bold text-center">##word.stores##</h1>
+          </div>
+
+          <div class="top-actions">
+            <i-button x-permissions="stores_add || stores_manage" type="add" label="##word.stores_new##" ng-click="displayAddStore()"></i-button>
+
+            <i-button x-permissions="stores_search || stores_manage" type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
+            <!-- <i-button label="تهيئة الشركة" ng-click="handelCompany()"> </i-button> -->
+            <h3 class="bold text-center">##word.count## : {{count}}</h3>
+          </div>
+
+          <table x-permissions="login" class="table hover bold loaded" id="t1">
+            <tr>
+              <th class="not-print">##word.logo##</th>
+              <th>##word.code##</th>
+              <th>##word.store_name##</th>
+              <th class="not-print">##word.actions##</th>
+            </tr>
+            <tr ng-repeat="c in list">
+              <td class="center not-print">
+                <i-image view class="logo" ng-model="c.image_url"></i-image>
+              </td>
+              <td class="center userPrint blue">{{c.code}}</td>
+              <td class="center title">{{c.name_##session.lang##}}</td>
+            
+              <td class="center not-print">
+                <i-button x-permissions="stores_view || stores_manage" type="view" label="##word.details##" ng-click="displayDetailsStore(c)"></i-button>
+
+                <i-button x-permissions="stores_update || stores_manage" type="edit" label="##word.edit##" ng-click="displayUpdateStore(c)"></i-button>
+
+                <i-button x-permissions="stores_delete || stores_manage" type="delete" label="##word.delete##" ng-click="displayDeleteStore(c)"></i-button>
+              </td>
+            </tr>
+          </table>
+
+          <i-button x-permissions="stores_print || stores_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+        </div>
+      </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+    <script x-import="stores/index.js"></script>
+  </body>
+</html>

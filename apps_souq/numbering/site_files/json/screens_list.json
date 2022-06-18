@@ -6,34 +6,34 @@
     "ar": "الإعلانات"
   },  {
     "category": "main",
-    "name": "shops",
-    "en": "Shops",
+    "name": "stores",
+    "en": "Stores",
     "ar": "المتاجر"
   },
   {
     "category": "main",
-    "name": "main_sections",
-    "en": "Main Sections",
-    "ar": "القسم الرئيسي"
+    "name": "main_categories",
+    "en": "Main Categories",
+    "ar": "الأقسام الرئيسية"
   },
 
   {
     "category": "main",
-    "name": "first_subsections",
-    "en": "First Subsections",
-    "ar": "القسم الفرعي الأول"
+    "name": "sub_categories_1",
+    "en": "Sub Categories 1",
+    "ar": "الأقسام الفرعية 1"
   },
   {
     "category": "main",
-    "name": "second_subsections",
-    "en": "Second Subsections",
-    "ar": "القسم الفرعي الثاني"
+    "name": "sub_categories_2",
+    "en": "Sub Categories 2",
+    "ar": "الأقسام الفرعية 2"
   },
   {
     "category": "main",
-    "name": "third_subsections",
-    "en": "Third Subsections",
-    "ar": "القسم الفرعي الثالث"
+    "name": "sub_categories_3",
+    "en": "Sub Categories 3",
+    "ar": "الأقسام الفرعية 3"
   },
   {
     "category": "main",

@@ -1,0 +1,40 @@
+<div ng-hide="busy" class="row">
+    <div id="basicInformation" class="">
+        <fieldset>
+            <legend> ##word.basic_information##</legend>
+            <div class="col9">
+                <table id="basicInformationTable" class="table bold hover">
+                    <tr>
+                        <td class="title">##word.sub_categories_2_number##</td>
+                        <td class="center userPrint blue">{{sub_categories_2.code}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.main_category##</td>
+                        <td class="center">{{sub_categories_2.main_category.name_##session.lang##}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.sub_category_1##</td>
+                        <td class="center">{{sub_categories_2.sub_category_1.name_##session.lang##}}</td>
+                    </tr>
+                    <tr>
+                        <td class="title">##word.sub_categories_2_name##</td>
+                        <td class="center">{{sub_categories_2.name_##session.lang##}}</td>
+                    </tr>
+                    <tr>
+                        <td class="title">##word.status##</td>
+                        <td ng-show="sub_categories_2.active == true" class="green center"> ##word.active## </td>
+                        <td ng-show="sub_categories_2.active == false" class="red center"> ##word.not_active## </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="col3">
+                <i-image view ng-model="sub_categories_2.image_url"></i-image>
+            </div>
+
+        </fieldset>
+    </div>
+</div>
+<div x-import="sub-categories-2/action_info.html"></div>

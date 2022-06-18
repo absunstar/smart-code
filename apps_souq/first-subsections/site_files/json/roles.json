@@ -1,7 +1,0 @@
-[{
-    "module_name" : "public" ,
-    "name": "first_subsections_admin",
-    "en": "First subsections Admin",
-    "ar": "إدارة الأقسام الفرعية الأولى",
-    "permissions": ["first_subsections_manage"]
-}]

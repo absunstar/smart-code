@@ -1,5 +1,29 @@
-<h1> I User HTML </h1>
-<p> {{ ngModel.first_name }}</p>
-<i-list>
-    
-</i-list>
+<b class="font-18 pointer green" ng-click="showModal()" ng-show="ngModel.id">##word.the_user## : </b>
+<b class="font-18 under_line pointer" ng-show="ngModel.id" ng-click="showModal()"> {{ngModel.profile.name}} </b>
+<b class="font-18 pointer green" ng-click="showModal()" ng-show="!ngModel.id">##word.the_user## : </b>
+<b class="font-18 under_line pointer" ng-show="!ngModel.id" ng-click="showModal()"> ##word.not_found## </b>
+
+<div id="userMoal_{{id2}}" class="modal small">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>##word.users_search## <i class="fa fa-search"></i></h2>
+    </div>
+
+    <div class="modal-body">
+      <div class="row">
+        <div class="col2"></div>
+        <div class="col8">
+          <fieldset>
+            <i-control ng-keydown="loadUsers($event,search_user)" class="col3" ng-model="search_user" label="##word.search##" type="text"></i-control>
+            <i-list ng-search="_search.$user" class="col6" display="profile.name" ng-model="ngModel" label="##word.user##" items="users_list"> </i-list>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer center">
+      <i-button type="save" label="##word.save##" ng-click="hideModal()"> </i-button>
+    </div>
+  </div>
+</div>

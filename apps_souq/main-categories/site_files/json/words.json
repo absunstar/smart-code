@@ -1,0 +1,47 @@
+[
+  {
+    "name": "main_categories",
+    "en": "Main categories",
+    "ar": "الأقسام الرئيسية"
+  },
+  {
+    "name": "main_category",
+    "en": "Main category",
+    "ar": "القسم الرئيسي"
+  },
+  {
+    "name": "main_categories_new",
+    "en": "New Main category",
+    "ar": "قسم رئيسي جديد"
+  },
+  {
+    "name": "main_categories_add",
+    "en": "Add Main category",
+    "ar": "إضافة قسم رئيسي"
+  },
+  {
+    "name": "main_categories_edit",
+    "en": "Edit Main category",
+    "ar": "تعديل قسم رئيسي"
+  },
+  {
+    "name": "main_categories_details",
+    "en": "Main category Details",
+    "ar": "تفاصيل القسم الرئيسي"
+  },
+  {
+    "name": "main_categories_delete",
+    "en": "Delete main_categories",
+    "ar": "حذف قسم رئيسي"
+  },
+  {
+    "name": "main_categories_number",
+    "en": "Main category Number",
+    "ar": "رقم القسم الرئيسي"
+  },
+  {
+    "name": "main_categories_name",
+    "en": "Main category Name",
+    "ar": "إسم القسم الرئيسي"
+  }
+]

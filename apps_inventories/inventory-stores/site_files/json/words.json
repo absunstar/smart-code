@@ -1,5 +1,6 @@
 [
-    {"name" : "store" , "en" : "Stores" , "ar" : "المخازن"},
+    {"name" : "stores" , "en" : "Stores" , "ar" : "المخازن"},
+    {"name" : "store" , "en" : "Store" , "ar" : "المخزن"},
     {"name" : "inventory_stores" , "en" : "Stores" , "ar" : "المخازن"},
     {"name" : "stores_add" , "en" : "Add Store" , "ar" : "إضافة مخزن"},
     {"name" : "stores_new" , "en" : "New Store" , "ar" : "مخزن جديد"},

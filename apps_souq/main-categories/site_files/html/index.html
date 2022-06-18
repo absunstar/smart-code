@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="main_categories_ui || main_categories_manage" data-ng-app="myApp">
+
+<head x-import="head.html">
+
+</head>
+
+<body class="##session.lang##">
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
+
+    </nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
+
+    </nav>
+    <div id="main-layout" class="container loaded">
+        <div class="row">
+            <div class="row" ng-controller="main_categories">
+                <div x-permissions="main_categories_add || main_categories_manage" x-import="main-categories/add_modal.html">
+                </div>
+                <div x-permissions="main_categories_update || main_categories_manage"
+                    x-import="main-categories/update_modal.html"></div>
+                <div x-permissions="main_categories_delete || main_categories_manage"
+                    x-import="main-categories/delete_modal.html"></div>
+                <div x-permissions="main_categories_view || main_categories_manage" x-import="main-categories/view_modal.html">
+                </div>
+                <div x-permissions="main_categories_search || main_categories_manage"
+                    x-import="main-categories/search_all_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center">##word.main_categories##</h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button x-permissions="main_categories_add || main_categories_manage" type="add"
+                        label="##word.main_categories_new##" ng-click="displayAddMainCategories()"></i-button>
+
+                    <i-button x-permissions="main_categories_search || main_categories_manage" type="search"
+                        label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
+
+                    <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
+                </div>
+
+                <table x-permissions="login" class="table hover bold loaded" id="t1">
+                    <tr>
+                        <th class="not-print">##word.logo##</th>
+                        <th>##word.main_categories_number##</th>
+                        <th>##word.main_categories_name##</th>
+                        <th>##word.status##</th>
+                        <th class="not-print">##word.actions##</th>
+                    </tr>
+                    <tr ng-repeat="c in list">
+                        <td class="center not-print">
+                            <i-image view class="logo" ng-model="c.image_url"></i-image>
+                        </td>
+                        <td class="center userPrint blue">{{c.code}}</td>
+                        <td class="center ">{{c.name_##session.lang##}}</td>
+
+                        <td class="center">
+                            <p ng-show="c.active ==true" class="green"> ##word.active## </p>
+                            <p ng-show="c.active ==false" class="red"> ##word.not_active## </p>
+                        </td>
+
+                        <td class="center not-print">
+                            <i-button x-permissions="main_categories_view || main_categories_manage" type="view"
+                                label="##word.details##" ng-click="displayDetailsMainCategories(c)"></i-button>
+
+                            <i-button x-permissions="main_categories_update || main_categories_manage" type="edit"
+                                label="##word.edit##" ng-click="displayUpdateMainCategories(c)"></i-button>
+
+                            <i-button x-permissions="main_categories_delete || main_categories_manage" type="delete"
+                                label="##word.delete##" ng-click="displayDeleteMainCategories(c)"></i-button>
+                        </td>
+                    </tr>
+                </table>
+                <i-button x-permissions="main_categories_print || main_categories_manage" type="print" label="##word.print##"
+                    onclick="site.print('#t1')"></i-button>
+
+            </div>
+        </div>
+    </div>
+
+    <div x-import="scripts.html"></div>
+    <script x-import="main-categories/index.js"></script>
+</body>
+
+</html>

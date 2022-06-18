@@ -1,0 +1,26 @@
+<div id="subCategories3AddModal" class="modal" fixed>
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.sub_categories_3_add##
+                <i class="fa fa-plus "></i>
+            </h2>
+
+        </div>
+
+        <div class="modal-body">
+            <div x-import="sub-categories-3/content.html"></div>
+        </div>
+
+
+
+        <div class="modal-footer center">
+            <h2 class="error"> {{error}} </h2>
+            <i-button type="add" label="##word.add##" ng-click="addSubCategories3()"></i-button>
+
+            <i-button type="close" label="##word.close##" onclick="site.hideModal( '#subCategories3AddModal')"></i-button>
+        </div>
+    </div>
+    
+</div>

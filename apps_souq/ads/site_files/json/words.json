@@ -91,6 +91,26 @@
     "ar": "عدد اللايكات"
   },
   {
+    "name": "number_comments",
+    "en": "Number of Comments",
+    "ar": "عدد التعليقات"
+  },
+  {
+    "name": "number_favorites",
+    "en": "Number of FavoriteS",
+    "ar": "عدد المفضلات"
+  },
+  {
+    "name": "priority_level",
+    "en": "Priority Level",
+    "ar": "درجة الأهمية"
+  },
+  {
+    "name": "number_reports",
+    "en": "Number of Reports",
+    "ar": "عدد البلاغات"
+  },
+  {
     "name": "quantities",
     "en": "Quantities",
     "ar": "الكميات"

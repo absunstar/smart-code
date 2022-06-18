@@ -347,11 +347,20 @@
     "en": "T.Value",
     "ar": "إجمالي قيمة"
   },
-
   {
     "name": "required",
     "en": "Required",
     "ar": "المطلوب"
+  },
+  {
+    "name": "the_user",
+    "en": "The User",
+    "ar": "المستخدم"
+  },
+  {
+    "name": "users_search",
+    "en": "Users Search",
+    "ar": "بحث المستخدمين"
   },
   {
     "name": "requiredy",
@@ -1186,11 +1195,6 @@
     "ar": "موقف التجنيد"
   },
   {
-    "name": "store",
-    "en": "ًStore",
-    "ar": "مخزن"
-  },
-  {
     "name": "total_tax",
     "en": "ًTotal Tax",
     "ar": "إجمالي الضرائب"
@@ -1594,11 +1598,6 @@
     "name": "add_permission",
     "en": "Add Permission",
     "ar": "أضف الى الصلاحيات"
-  },
-  {
-    "name": "stores",
-    "en": "Stores",
-    "ar": "المخازن"
   },
   {
     "name": "accounts",

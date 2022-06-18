@@ -1,7 +1,0 @@
-[{
-    "module_name" : "public" ,
-    "name": "third_subsections_admin",
-    "en": "Third subsections Admin",
-    "ar": "إدارة الأقسام الفرعية الثالثة",
-    "permissions": ["third_subsections_manage"]
-}]
