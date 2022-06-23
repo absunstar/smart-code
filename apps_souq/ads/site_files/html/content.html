@@ -27,10 +27,7 @@
             <i-control help-id="ad_number_favorites" type="number" class="col3" label="##word.number_favorites##" ng-model="ad.number_favorites"></i-control>
             <i-control help-id="ad_number_reports" type="number" class="col3" label="##word.number_reports##" ng-model="ad.number_reports"></i-control>
           </div>
-          <i-list class="" ng-model="ad.main_category" display="name_##session.lang##" items="mainCategories"></i-list>
-
-          <!--           <i-category ng-model="ad.main_category.sub_category_list[0]" items="ad.main_category.sub_category_list"></i-category>
- -->
+          <i-category ng-model="ad.main_category" ng-label="##word.main_category##" ng-list="category_list"></i-category>
           <br />
 
           <div class="row" ng-show="ad.main_category">

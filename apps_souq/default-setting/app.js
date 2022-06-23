@@ -105,7 +105,7 @@ module.exports = function init(site) {
           callback(site.getDefaultSettingDoc);
         }
         else{
-          callback(false);
+          callback(null);
         } 
       }
     );

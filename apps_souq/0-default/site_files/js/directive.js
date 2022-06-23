@@ -124,141 +124,16 @@ app.directive('iCategory', [
       require: 'ngModel',
       scope: {
         ngModel: '=',
+        ngList:'=',
+        ngLabel:'@'
       },
       link: function ($scope, element, attrs, ctrl) {
         if (!$scope.id2) {
           $scope.id2 = Math.random().toString().replace('.', '_');
         }
-
-        $scope.loadMainCategories = function () {
-          $scope.error = '';
-          $scope.busy = true;
-          $scope.mainCategories = [];
-          $http({
-            method: 'POST',
-            url: '/api/main_categories/all',
-            data: {
-              where: {
-                active: true,
-              },
-            },
-          }).then(
-            function (response) {
-              $scope.busy = false;
-              if (response.data.done) $scope.mainCategories = response.data.list;
-            },
-            function (err) {
-              $scope.busy = false;
-              $scope.error = err;
-            }
-          );
-        };
-
-        $scope.loadSubCategories1 = function (obj, main_category) {
-          $scope.error = '';
-          $scope.busy = true;
-          $scope.subCategories1 = [];
-          $http({
-            method: 'POST',
-            url: '/api/sub_categories_1/all',
-            data: {
-              where: {
-                'main_category.id': main_category.id,
-                active: true,
-              },
-              select: {
-                id: 1,
-                name_ar: 1,
-                name_en: 1,
-                code: 1,
-              },
-            },
-          }).then(
-            function (response) {
-              $scope.busy = false;
-              if (response.data.done) {
-                $scope.subCategories1 = response.data.list;
-                obj.sub_category_1 = {};
-                obj.sub_category_2 = {};
-                obj.sub_category_3 = {};
-              }
-            },
-            function (err) {
-              $scope.busy = false;
-              $scope.error = err;
-            }
-          );
-        };
-
-        $scope.loadSubCategories2 = function (obj, sub_category_1) {
-          $scope.error = '';
-          $scope.busy = true;
-          $scope.subCategories2 = [];
-          $http({
-            method: 'POST',
-            url: '/api/sub_categories_2/all',
-            data: {
-              where: {
-                'sub_category_1.id': sub_category_1.id,
-                active: true,
-              },
-              select: {
-                id: 1,
-                name_ar: 1,
-                name_en: 1,
-                code: 1,
-              },
-            },
-          }).then(
-            function (response) {
-              $scope.busy = false;
-              if (response.data.done) {
-                $scope.subCategories2 = response.data.list;
-                obj.sub_category_2 = {};
-                obj.sub_category_3 = {};
-              }
-            },
-            function (err) {
-              $scope.busy = false;
-              $scope.error = err;
-            }
-          );
-        };
-
-        $scope.loadSubCategories3 = function (obj, sub_category_2) {
-          $scope.error = '';
-          $scope.busy = true;
-          $scope.subCategories3 = [];
-          $http({
-            method: 'POST',
-            url: '/api/sub_categories_3/all',
-            data: {
-              where: {
-                'sub_category_2.id': sub_category_2.id,
-                active: true,
-              },
-              select: {
-                id: 1,
-                name_ar: 1,
-                name_en: 1,
-                code: 1,
-              },
-            },
-          }).then(
-            function (response) {
-              $scope.busy = false;
-              if (response.data.done) {
-                $scope.subCategories3 = response.data.list;
-                obj.sub_category_3 = {};
-              }
-            },
-            function (err) {
-              $scope.busy = false;
-              $scope.error = err;
-            }
-          );
-        };
-        $scope.loadMainCategories();
+        $scope.log = function(msg){
+          console.log(msg)
+        }
       },
       template: `/*##0-default/i-category.html*/`,
     };

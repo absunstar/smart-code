@@ -250,7 +250,7 @@ module.exports = function init(site) {
     let start = (req.data.page_number || 0) * (req.data.limit || 0);
     let end = start + (req.data.limit || 100);
 
-    if (JSON.stringify(where) === '{}') {
+    if (true) {
       response.done = true;
       response.list = site.ad_list.filter((i) => !i.$delete).slice(start, end);
       response.count = response.list.length;

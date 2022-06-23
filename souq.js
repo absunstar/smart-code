@@ -39,6 +39,7 @@ site.get(
   },
   (req, res) => {
     site.getDefaultSetting((data) => {
+      data = data || {}
       data.site_settings = data.site_settings || {};
       data.site_settings.user_design = data.site_settings.user_design || { id: 5 };
       if (data.site_settings.user_design.id == 1) {

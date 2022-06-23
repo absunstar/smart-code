@@ -1,4 +1,6 @@
 <div id="categories_{{id2}}" class="row">
-  <i-list ng-show="ngModel" ng-model="ngModel" display="name_##session.lang##" items="items"></i-list>
-  <i-category ng-show="ngModel.sub_category_list[0]" ng-model="ngModel" display="name_##session.lang##" items="ngModel.sub_category_list"></i-category>
+  <i-list class="col3" display="name_##session.lang##" ng-model="ngModel" label="{{ngLabel}}" items="ngList"></i-list>
+  <i-list class="col3" ng-repeat="s1 in ngModel.sub_category_list" display="name_##session.lang##" ng-model="ngModel.sub_category_1" label="{{s1.name_##session.lang##}}" items="s1.sub_category_list"></i-list>
+  <i-list class="col3" ng-repeat="s2 in ngModel.sub_category_1.sub_category_list" display="name_##session.lang##" ng-model="ngModel.sub_category_2" label="{{s2.name_##session.lang##}}" items="s2.sub_category_list"></i-list>
+ 
 </div>
