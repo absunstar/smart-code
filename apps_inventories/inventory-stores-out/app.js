@@ -176,92 +176,104 @@ module.exports = function init(site) {
                   net_value: stores_out_doc.net_value,
                 };
               }
+              site.getDefaultSetting(req, (settingCallback) => {
+                let items_list = req.body.items;
+                if (settingCallback.inventory.automatic_item_assembly_upon_sale) {
+                  items_list = req.body.items.filter((_i) => !_i.item_complex) || [];
+                }
 
-              site.isAllowOverDraft(req, req.body.items, (cbOverDraft) => {
-                if (!cbOverDraft.overdraft && cbOverDraft.value && stores_out_doc.posting && stores_out_doc.type.id != 6) {
-                  response.error = 'OverDraft Not Active';
-                  res.json(response);
-                } else {
-                  let num_obj = {
-                    company: site.get_company(req),
-                    date: new Date(stores_out_doc.date),
-                  };
-
-                  if (stores_out_doc.type.id == 3 || stores_out_doc.type.id == 4) num_obj.screen = 'sales_invoices_store';
-                  // else if (stores_out_doc.type.id == 4) num_obj.screen = 'o_screen_store';
-                  else if (stores_out_doc.type.id == 5) num_obj.screen = 'damage_store';
-                  else if (stores_out_doc.type.id == 6) num_obj.screen = 'return_sales_store';
-
-                  let cb = site.getNumbering(num_obj);
-                  if (!stores_out_doc.code && !cb.auto) {
-                    response.error = 'Must Enter Code';
+                site.isAllowOverDraft(req, items_list, (cbOverDraft) => {
+                  if (!cbOverDraft.overdraft && cbOverDraft.value && stores_out_doc.posting && stores_out_doc.type.id != 6) {
+                    response.error = 'OverDraft Not Active';
                     res.json(response);
-                    return;
-                  } else if (cb.auto) {
-                    stores_out_doc.code = cb.code;
-                  }
-                  // if (stores_out_doc.Paid_from_customer) {
-                  //   stores_out_doc.remain_from_customer =
-                  //     stores_out_doc.Paid_from_customer -
-                  //     stores_out_doc.amount_currency;
-                  // } else {
-                  //   stores_out_doc.Paid_from_customer = 0;
-                  //   stores_out_doc.remain_from_customer = 0;
-                  // }
-                  // stores_out_doc.remain_from_customer = site.toNumber(
-                  //   stores_out_doc.remain_from_customer
-                  // );
+                  } else {
+                    let num_obj = {
+                      company: site.get_company(req),
+                      date: new Date(stores_out_doc.date),
+                    };
 
-                  $stores_out.add(stores_out_doc, (err, doc) => {
-                    if (!err) {
-                      response.done = true;
-                      response.doc = doc;
+                    if (stores_out_doc.type.id == 3 || stores_out_doc.type.id == 4) num_obj.screen = 'sales_invoices_store';
+                    // else if (stores_out_doc.type.id == 4) num_obj.screen = 'o_screen_store';
+                    else if (stores_out_doc.type.id == 5) num_obj.screen = 'damage_store';
+                    else if (stores_out_doc.type.id == 6) num_obj.screen = 'return_sales_store';
 
-                      if (doc.type && doc.type.id == 4) {
-                        site.call('[store_out][order_invoice][data]', doc);
+                    let cb = site.getNumbering(num_obj);
+                    if (!stores_out_doc.code && !cb.auto) {
+                      response.error = 'Must Enter Code';
+                      res.json(response);
+                      return;
+                    } else if (cb.auto) {
+                      stores_out_doc.code = cb.code;
+                    }
+                    // if (stores_out_doc.Paid_from_customer) {
+                    //   stores_out_doc.remain_from_customer =
+                    //     stores_out_doc.Paid_from_customer -
+                    //     stores_out_doc.amount_currency;
+                    // } else {
+                    //   stores_out_doc.Paid_from_customer = 0;
+                    //   stores_out_doc.remain_from_customer = 0;
+                    // }
+                    // stores_out_doc.remain_from_customer = site.toNumber(
+                    //   stores_out_doc.remain_from_customer
+                    // );
+                    site.storesAssemble(req, res, (assembleCallBack) => {
+                      if (assembleCallBack.error) {
+                        response.error = assembleCallBack.error;
+                        res.json(response);
+                        return;
                       }
+                      $stores_out.add(stores_out_doc, (err, doc) => {
+                        if (!err) {
+                          response.done = true;
+                          response.doc = doc;
 
-                      if (doc.posting) {
-                        doc.items.forEach((_itm, i) => {
-                          _itm.store = doc.store;
-                          _itm.company = doc.company;
-                          _itm.branch = doc.branch;
-                          _itm.source_type = doc.type;
-                          _itm.code = doc.code;
-                          _itm.current_status = 'sold';
-                          _itm.date = doc.date;
-                          _itm.customer = doc.customer;
-                          _itm.shift = {
-                            id: doc.shift.id,
-                            code: doc.shift.code,
-                            name_ar: doc.shift.name_ar,
-                            name_en: doc.shift.name_en,
-                          };
-                          if (doc.type.id == 6) {
-                            _itm.returnSell = true;
-                            _itm.type = 'sum';
-                            _itm.count = -Math.abs(_itm.count);
-                            _itm.transaction_type = 'out';
-                            site.quee('item_transaction - items', Object.assign({}, _itm));
-                            site.returnStoresOut(doc, (res) => {});
-                          } else {
-                            if (doc.type.id == 5) _itm.set_average = 'minus_average';
-
-                            _itm.type = 'minus';
-                            _itm.transaction_type = 'out';
-                            site.quee('item_transaction - items', Object.assign({}, _itm));
+                          if (doc.type && doc.type.id == 4) {
+                            site.call('[store_out][order_invoice][data]', doc);
                           }
 
-                          _itm.count = Math.abs(_itm.count);
-                          site.quee('[transfer_branch][stores_items][add_balance]', _itm);
-                        });
-                      }
-                    } else {
-                      response.error = err.message;
-                    }
-                    res.json(response);
-                  });
-                }
+                          if (doc.posting) {
+                            doc.items.forEach((_itm, i) => {
+                              _itm.store = doc.store;
+                              _itm.company = doc.company;
+                              _itm.branch = doc.branch;
+                              _itm.source_type = doc.type;
+                              _itm.code = doc.code;
+                              _itm.current_status = 'sold';
+                              _itm.date = doc.date;
+                              _itm.customer = doc.customer;
+                              _itm.shift = {
+                                id: doc.shift.id,
+                                code: doc.shift.code,
+                                name_ar: doc.shift.name_ar,
+                                name_en: doc.shift.name_en,
+                              };
+                              if (doc.type.id == 6) {
+                                _itm.returnSell = true;
+                                _itm.type = 'sum';
+                                _itm.count = -Math.abs(_itm.count);
+                                _itm.transaction_type = 'out';
+                                site.quee('item_transaction - items', Object.assign({}, _itm));
+                                site.returnStoresOut(doc, (res) => {});
+                              } else {
+                                if (doc.type.id == 5) _itm.set_average = 'minus_average';
+
+                                _itm.type = 'minus';
+                                _itm.transaction_type = 'out';
+                                site.quee('item_transaction - items', Object.assign({}, _itm));
+                              }
+
+                              _itm.count = Math.abs(_itm.count);
+                              site.quee('[transfer_branch][stores_items][add_balance]', _itm);
+                            });
+                          }
+                        } else {
+                          response.error = err.message;
+                        }
+                        res.json(response);
+                      });
+                    });
+                  }
+                });
               });
             }
           });
@@ -672,8 +684,8 @@ module.exports = function init(site) {
     if (search) {
       where.$or = [];
       where.$or.push({
-        'code': search,
-      });   
+        code: search,
+      });
 
       where.$or.push({
         'customer.name_ar': site.get_RegExp(search, 'i'),

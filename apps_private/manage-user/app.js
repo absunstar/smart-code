@@ -30,7 +30,9 @@ module.exports = function init(site) {
         if (!err) {
           response.done = true;
           let user = { ...doc };
-          delete user.password;
+          if (!req.body.all) {
+            delete user.password;
+          }
           response.doc = user;
         } else {
           response.error = err.message;

@@ -214,14 +214,14 @@
                 </i-list>
 
                 <i-list
-                ng-search="_search.$printers_path"
-                class="col3"
-                display="name_##session.lang##"
-                ng-model="default_setting.printer_program.pdf_printer"
-                label="##word.pdf_printer##"
-                items="printersPathList"
-              >
-              </i-list>
+                  ng-search="_search.$printers_path"
+                  class="col3"
+                  display="name_##session.lang##"
+                  ng-model="default_setting.printer_program.pdf_printer"
+                  label="##word.pdf_printer##"
+                  items="printersPathList"
+                >
+                </i-list>
 
                 <i-list
                   ng-search="_search.$printers_path"
@@ -590,6 +590,8 @@
             <i-checkbox label="##word.dont_exceed_maximum_discount_item##" ng-model="default_setting.inventory.dont_max_discount_items"></i-checkbox>
 
             <i-checkbox label="##word.overdraft##" ng-model="default_setting.inventory.overdraft"> </i-checkbox>
+
+            <i-checkbox label="##word.automatic_item_assembly_upon_sale##" ng-model="default_setting.inventory.automatic_item_assembly_upon_sale"> </i-checkbox>
           </div>
         </fieldset>
       </div>

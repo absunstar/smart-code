@@ -848,7 +848,7 @@ module.exports = function init(site) {
       return;
     }
 
-    let stores_items_doc = {...req.body.category_item};
+    let stores_items_doc = { ...req.body.category_item };
 
     stores_items_doc.edit_user_info = site.security.getUserFinger({
       $req: req,
@@ -1019,7 +1019,6 @@ module.exports = function init(site) {
             (err, item_doc) => {
               if (!err) {
                 response.done = true;
-            
 
                 let obj = { sizes_list: [] };
                 let exist = false;
@@ -2369,7 +2368,6 @@ module.exports = function init(site) {
       } else {
         cbObj.overdraft = false;
       }
-
       $stores_items.findMany(
         {
           select: req.body.select || {},
@@ -2389,43 +2387,54 @@ module.exports = function init(site) {
                         let foundUnit = false;
                         let foundStores = false;
                         let foundBranch = false;
-
                         if (currentSize.branches_list && currentSize.branches_list.length > 0) {
-                          currentSize.branches_list.forEach((branchesList) => {
-                            if (branchesList.stores_list && branchesList.stores_list.length > 0) {
-                              if (branchesList.code === req.body.branch.code) {
-                                foundBranch = true;
-                                branchesList.stores_list.forEach((storesList) => {
-                                  if (storesList.size_units_list && storesList.size_units_list.length > 0) {
-                                    if (storesList.store && store.id === storesList.store.id) {
-                                      foundStores = true;
+                          let current_branch = currentSize.branches_list.find((_branch) => {
+                            return _branch.code === req.body.branch.code;
+                          });
 
-                                      storesList.size_units_list.forEach((sizeUnits) => {
-                                        if (cbSize.unit && sizeUnits.id === cbSize.unit.id) {
-                                          foundUnit = true;
-                                          objFound.current.push({
-                                            unit: cbSize.unit,
-                                            store: storesList.store,
-                                            barcode: currentSize.barcode,
-                                          });
-                                          objFound.cb.push({ cbSize });
-                                          let over = 0;
-                                          over = site.toNumber(sizeUnits.current_count) - site.toNumber(cbSize.count);
-                                          if (site.toNumber(over) < 0) {
-                                            cbObj.value = true;
-                                          }
-                                        }
-                                      });
+                          if (current_branch) {
+                            if (current_branch.stores_list && current_branch.stores_list.length > 0) {
+                              foundBranch = true;
+                              let current_store = current_branch.stores_list.find((_store) => {
+                                return _store.store.id === store.id;
+                              });
+
+                              if (current_store) {
+                                foundStores = true;
+                                if (current_store.size_units_list && current_store.size_units_list.length > 0) {
+
+                                  let current_unit = current_store.size_units_list.find((_unit) => {
+                                    return _unit.id === cbSize.unit.id;
+                                  });
+                                  if (current_unit) {
+                                    foundUnit = true;
+                                    objFound.current.push({
+                                      unit: cbSize.unit,
+                                      store: current_store.store,
+                                      barcode: currentSize.barcode,
+                                    });
+                                    objFound.cb.push({ cbSize });
+                                    let over = 0;
+                                    over = site.toNumber(current_unit.current_count) - site.toNumber(cbSize.count);
+                                    if (site.toNumber(over) < 0) {
+                                      cbObj.value = true;
                                     }
                                   } else {
                                     objFound.notFound.push({
                                       id: _item.id,
                                       barcode: currentSize.barcode,
-                                      action: 'notUnit',
+                                      action: 'notFoundUnit',
                                     });
                                     cbObj.value = true;
                                   }
+                                }
+                              } else {
+                                objFound.notFound.push({
+                                  id: _item.id,
+                                  barcode: currentSize.barcode,
+                                  action: 'notFoundStore',
                                 });
+                                cbObj.value = true;
                               }
                             } else {
                               objFound.notFound.push({
@@ -2436,7 +2445,15 @@ module.exports = function init(site) {
 
                               cbObj.value = true;
                             }
-                          });
+                          } else {
+                            objFound.notFound.push({
+                              id: _item.id,
+                              barcode: currentSize.barcode,
+                              action: 'notBranch',
+                            });
+
+                            cbObj.value = true;
+                          }
                         } else {
                           objFound.notFound.push({
                             id: _item.id,

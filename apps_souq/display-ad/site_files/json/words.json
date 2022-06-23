@@ -1,0 +1,22 @@
+[
+  {
+    "name": "display_ad",
+    "en": "Display Ad",
+    "ar": "عرض الإعلان"
+  },
+  {
+    "name": "add_comment",
+    "en": "Add a comment",
+    "ar": "إضافة تعليق"
+  },
+  {
+    "name": "submit_report",
+    "en": "Submit a report",
+    "ar": "تقديم بلاغ"
+  },
+  {
+    "name": "add_report",
+    "en": "Add a report",
+    "ar": "إضافة بلاغ"
+  }
+]

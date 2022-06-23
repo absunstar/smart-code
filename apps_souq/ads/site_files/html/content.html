@@ -10,6 +10,7 @@
             <i-control help-id="ad_name_ar" v="r ll2" class="col4" label="##word.ad_name##" ng-model="ad.name_ar"></i-control>
 
             <i-control help-id="ad_name_en" v="r" class="col4" label="##word.name_en##" ng-model="ad.name_en"></i-control>
+
             <i-store class="col3 padding_10" ng-model="ad.store"></i-store>
           </div>
           <br />
@@ -26,55 +27,20 @@
             <i-control help-id="ad_number_favorites" type="number" class="col3" label="##word.number_favorites##" ng-model="ad.number_favorites"></i-control>
             <i-control help-id="ad_number_reports" type="number" class="col3" label="##word.number_reports##" ng-model="ad.number_reports"></i-control>
           </div>
+          <i-list class="" ng-model="ad.main_category" display="name_##session.lang##" items="mainCategories"></i-list>
 
-          <div class="row">
-            <i-list
-              ng-search="_search.$main_categories"
-              class="col3"
-              ng-change="loadSubCategories1(ad.main_category)"
-              display="name_##session.lang##"
-              ng-model="ad.main_category"
-              label="##word.main_category##"
-              items="mainCategories"
-            >
-            </i-list>
-
-            <i-list
-              ng-search="_search.$sub_category_1"
-              ng-change="loadSubCategories2(ad.sub_category_1)"
-              class="col3"
-              ng-show="ad.main_category.id"
-              display="name_##session.lang##"
-              ng-model="ad.sub_category_1"
-              label="{{ad.main_category.sub_category_1_##session.lang##}}"
-              items="subCategories1"
-            >
-            </i-list>
-
-            <i-list
-              ng-search="_search.$sub_category_2"
-              ng-show="ad.sub_category_1.id"
-              display="name_##session.lang##"
-              ng-change="loadSubCategories3(ad.sub_category_2)"
-              class="col3"
-              label="{{ad.main_category.sub_category_2_##session.lang##}}"
-              ng-model="ad.sub_category_2"
-              items="subCategories2"
-            >
-            </i-list>
-
-            <i-list
-              ng-search="_search.$sub_category_3"
-              ng-show="ad.sub_category_2.id"
-              display="name_##session.lang##"
-              class="col3"
-              label="{{ad.main_category.sub_category_3_##session.lang##}}"
-              ng-model="ad.sub_category_3"
-              items="subCategories3"
-            >
-            </i-list>
-          </div>
+          <!--           <i-category ng-model="ad.main_category.sub_category_list[0]" items="ad.main_category.sub_category_list"></i-category>
+ -->
           <br />
+
+          <div class="row" ng-show="ad.main_category">
+            <fieldset>
+              <legend>##word.ad_require##</legend>
+              <div class="row" ng-repeat="c in ad.main_category.category_require_list">
+                <i-ad-require ng-model="c"></i-ad-require>
+              </div>
+            </fieldset>
+          </div>
 
           <div class="row">
             <i-textarea ng-model="ad.description" label="##word.description##"> </i-textarea>
@@ -156,46 +122,7 @@
       <br />
       <br />
       <br />
-      <fieldset class="row">
-        <legend>
-          <i-button type="add default" ng-click="addComments()"></i-button>
-          ##word.comments##
-        </legend>
-        <div class="row" ng-repeat="c in ad.comments_list">
-          <div class="row">
-            <i-user class="col3 padding-10" ng-model="c.user"></i-user>
-            <i-checkbox class="col1" label="##word.liked##" ng-model="c.liked"> </i-checkbox>
-            <i-checkbox class="col1" label="##word.commented##" ng-model="c.commented"> </i-checkbox>
-            <i-list
-              ng-search="_search.$comment_type"
-              ng-show="c.commented"
-              class="col2"
-              display="name_##session.lang##"
-              ng-model="c.comment_type"
-              label="##word.comment_type##"
-              items="commentsTypesList"
-            >
-            </i-list>
-            <i-textarea class="col5" ng-show="c.commented" ng-model="a.comment" label="##word.comment##"> </i-textarea>
-          </div>
-
-          <div class="row">
-            <div class="col3 padding_10" ng-hide="c.report"></div>
-            <i-checkbox class="col1" label="##word.favorite##" ng-model="c.favorite"> </i-checkbox>
-            <i-checkbox class="col1" label="##word.reported##" ng-model="c.report"> </i-checkbox>
-            <i-list ng-show="c.report" ng-search="_search.$report_type" class="col2" display="name_##session.lang##" ng-model="c.report_type" label="##word.report_type##" items="reportsTypesList">
-            </i-list>
-            <i-textarea class="col5" ng-show="c.report" ng-model="a.comment_report" label="##word.comment_on_report##"> </i-textarea>
-            <div class="col1"></div>
-            <div class="col1">
-              <i-button type="delete" ng-click="ad.comments_list.splice($index,1)"> </i-button>
-            </div>
-          </div>
-
-          <hr class="center" style="width: 70%; height: 5px; color: grey; background-color: rgb(76, 199, 0)" />
-        </div>
-        <br />
-      </fieldset>
+      <i-comment class="padding_10" ng-model="ad"></i-comment>
       <br />
       <br />
       <br />

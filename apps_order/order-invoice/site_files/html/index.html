@@ -318,9 +318,9 @@
                   <i-button
                     type="bg-green white closing"
                     fa="save"
-                    ng-hide="order_invoice.status.id == 2 || order_invoice.hold || '##user.type##' == 'table'"
+                    ng-hide="order_invoice.hold || '##user.type##' == 'table'"
                     label="##word.close_order##"
-                    ng-click="closeOrder()"
+                    ng-click="displayCloseOrder()"
                   >
                   </i-button>
                 </div>

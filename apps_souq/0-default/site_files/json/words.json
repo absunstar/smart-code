@@ -191,8 +191,53 @@
         "ar": "العنوان"
     },
     {
+        "name": "ad_owner",
+        "en": "Ad owner",
+        "ar": "صاحب الإعلان"
+    },
+    {
+        "name": "comment_activity",
+        "en": "Comment Activity",
+        "ar": "نشاط التعليق"
+    },
+    {
+        "name": "comments_activities",
+        "en": "Comments Activities",
+        "ar": "أنشطة التعليقات"
+    },
+    {
         "name": "companies_customer_service",
         "en": "Customer Services",
         "ar": "خدمة العملاء"
+    },
+    {
+        "name": "content_type",
+        "en": "Content type",
+        "ar": "نوع المحتوى"
+    },
+    {
+        "name": "content_name_ar",
+        "en": "Content name AR",
+        "ar": "إسم المحتوى عربي"
+    },
+    {
+        "name": "report",
+        "en": "Sub Categories",
+        "ar": "أقسام فرعرية"
+    },
+    {
+        "name": "report",
+        "en": "Report",
+        "ar": "إبلاغ"
+    },
+    {
+        "name": "add_categories",
+        "en": "Add Categories",
+        "ar": "إضافة أقسام فرعرية"
+    },
+    {
+        "name": "name_sub_category_arabic",
+        "en": "Name Sub Category Arabic",
+        "ar": "إسم القسم الفرعي بالعربي"
     }
 ]

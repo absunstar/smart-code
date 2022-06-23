@@ -43,5 +43,25 @@
     "name": "main_categories_name",
     "en": "Main category Name",
     "ar": "إسم القسم الرئيسي"
+  },
+  {
+    "name": "content_types",
+    "en": "Content Types",
+    "ar": "أنواع المحتوى"
+  },
+  {
+    "name": "types_category_require",
+    "en": "Types Category Requirement",
+    "ar": "أنواع متطلبات القسم"
+  },
+  {
+    "name": "category_require",
+    "en": "Category Requirement",
+    "ar": "متطلبات القسم"
+  },
+  {
+    "name": "ad_require",
+    "en": "Ad Requirement",
+    "ar": "متطلبات الإعلان"
   }
 ]

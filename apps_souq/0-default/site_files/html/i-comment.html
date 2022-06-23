@@ -1,0 +1,51 @@
+<div id="comments_{{id2}}" class="row">
+  <fieldset class="row">
+    <legend>
+      ##word.comments##
+      <i-button type="add default" ng-click="addComments()"></i-button>
+     <!--  <i-checkbox ng-click="filterComments('like')" label="##word.like##" ng-model="filter.like"> </i-checkbox>
+      <i-checkbox ng-click="filterComments('favorite')" label="##word.favorite##" ng-model="filter.favorite"> </i-checkbox>
+      <i-checkbox ng-click="filterComments('report')" label="##word.report##" ng-model="filter.report"> </i-checkbox>
+      <i-checkbox ng-click="filterComments('comment')" label="##word.comment##" ng-model="filter.comment"> </i-checkbox> -->
+    </legend>
+    <div class="row" ng-repeat="c in ngModel.comments_activities">
+      <div class="row">
+        <div class="col2">
+          <br />
+          <i-user class="padding-10" ng-model="c.user"></i-user>
+        </div>
+        <i-list ng-search="_search.$comment_activities_list" class="col2" display="##session.lang##" ng-model="c.comment_activity" label="##word.comment_activity##" items="commentActivitiesList">
+        </i-list>
+        <i-list
+          ng-show="c.comment_activity.id == 3"
+          ng-search="_search.$report_type"
+          class="col2"
+          display="name_##session.lang##"
+          ng-model="c.report_type"
+          label="##word.report_type##"
+          items="reportsTypesList"
+        >
+        </i-list>
+        <i-textarea class="col5" ng-show="c.comment_activity.id == 3" ng-model="c.comment_report" label="##word.comment_on_report##"> </i-textarea>
+        <i-list
+          ng-search="_search.$comment_type"
+          ng-show="c.comment_activity.id == 4"
+          class="col2"
+          display="name_##session.lang##"
+          ng-model="c.comment_type"
+          label="##word.comment_type##"
+          items="commentsTypesList"
+        >
+        </i-list>
+        <i-textarea class="col5" ng-show="c.comment_activity.id == 4" ng-model="c.comment" label="##word.comment##"> </i-textarea>
+        <div class="col1 center">
+          <br />
+          <i-button type="delete default" ng-click="ngModel.comments_activities.splice($index,1)"> </i-button>
+        </div>
+
+        <hr class="center" style="width: 70%; height: 5px; color: grey; background-color: rgb(76, 199, 0)" />
+      </div>
+    </div>
+    <br />
+  </fieldset>
+</div>

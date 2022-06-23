@@ -7,7 +7,7 @@ app.controller('stores', function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.store = {
       image_url: '/images/stores.png',
-      comments_list: [{}],
+      comments_activities: [{date : new Date()}],
       store_rating: 0,
       number_views: 0,
       number_likes: 0,
@@ -210,122 +210,6 @@ app.controller('stores', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getGovesList = function (country) {
-    $scope.busy = true;
-    $http({
-      method: 'POST',
-      url: '/api/goves/all',
-      data: {
-        where: {
-          'country.id': country.id,
-          active: true,
-        },
-        select: {
-          id: 1,
-          name_ar: 1,
-          name_en: 1,
-        },
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.govesList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
-  $scope.getCountriesList = function (where) {
-    $scope.busy = true;
-    $http({
-      method: 'POST',
-      url: '/api/countries/all',
-      data: {
-        where: {
-          active: true,
-        },
-        select: {
-          id: 1,
-          name_ar: 1,
-          name_en: 1,
-        },
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.countriesList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
-  $scope.getCityList = function (gov) {
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/city/all",
-      data: {
-        where: {
-          'gov.id': gov.id,
-          active: true
-        },
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1 }
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.cityList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-
-    )
-
-  };
-
-  $scope.getAreaList = function (city) {
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/area/all",
-      data: {
-        where: {
-          'city.id': city.id,
-          active: true
-        },
-        select: { id: 1, name_ar: 1, name_en: 1, code: 1 }
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.areaList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-
-    )
-
-  };
-
-
   $scope.displaySearchModal = function () {
     $scope.error = '';
     site.showModal('#storeSearchModal');
@@ -431,17 +315,10 @@ app.controller('stores', function ($scope, $http, $timeout) {
     $scope.store.images_list.push({});
   };
 
-  $scope.addComments = function () {
-    $scope.error = '';
-    $scope.store.comments_list = $scope.store.comments_list || [];
-    $scope.store.comments_list.push({});
-  };
-
   $scope.getStoreList();
   $scope.getNumberingAuto();
   $scope.getDefaultSettings();
   $scope.getCommentsTypesList();
   $scope.getReportsTypesList();
   $scope.getStoresStatusList();
-  $scope.getCountriesList();
 });

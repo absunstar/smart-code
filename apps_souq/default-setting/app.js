@@ -13,10 +13,17 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/images',
   });
 
+
   site.post({
     name: '/api/publishing_system/all',
     path: __dirname + '/site_files/json/publishing_system.json',
   });
+
+  site.post({
+    name: '/api/user_design/all',
+    path: __dirname + '/site_files/json/user_design.json',
+  });
+
 
   site.post({
     name: '/api/duration_expiry/all',
@@ -80,8 +87,12 @@ module.exports = function init(site) {
     );
   });
 
-  site.getDefaultSetting = function (req, callback) {
-    callback = callback || {};
+  site.getDefaultSetting = function (callback) {
+    callback = callback || function(){};
+    if(site.getDefaultSettingDoc){
+      callback(site.getDefaultSettingDoc);
+      return site.getDefaultSettingDoc
+    }
 
     let where = {};
     $default_setting.findOne(
@@ -89,8 +100,13 @@ module.exports = function init(site) {
         where: where,
       },
       (err, doc) => {
-        if (!err && doc) callback(doc);
-        else callback(false);
+        if (!err && doc){
+          site.getDefaultSettingDoc = doc
+          callback(site.getDefaultSettingDoc);
+        }
+        else{
+          callback(false);
+        } 
       }
     );
   };
@@ -120,6 +136,7 @@ module.exports = function init(site) {
     $default_setting.update(data, (err, result) => {
       if (!err) {
         response.done = true;
+        site.getDefaultSettingDoc = null;
       } else {
         response.error = err.message;
       }

@@ -10,6 +10,16 @@
     "ar": "الإعدادات الإفتراضية"
   },
   {
+    "name": "user_design",
+    "en": "User Design",
+    "ar": "تصميم المستخدم"
+  },
+  {
+    "name": "site_settings",
+    "en": "Site Settings",
+    "ar": "إعدادات الموقع"
+  },
+  {
     "name": "remove_logo",
     "en": "Remove Logo",
     "ar": "حذف اللوجو"

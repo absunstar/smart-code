@@ -7,11 +7,23 @@ app.controller("main_categories", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.main_categories = {
       image_url: '/images/main_categories.png',
+      sub_category_list : [{sub_category_list : []}],
+      category_require_list : [{}],
       active: true/* ,
       immediate : false */
     };
     site.showModal('#mainCategoriesAddModal');
-    
+
+  };
+
+  $scope.addSubCategoryList = function (m) {
+    m.sub_category_list = m.sub_category_list || [{sub_category_list : []}];
+    m.sub_category_list.push({sub_category_list : []});
+  };
+
+  $scope.addTypesCategoryRequireList = function (m) {
+    m.category_require_list = m.category_require_list || [];
+    m.category_require_list.push({});
   };
 
   $scope.addMainCategories = function () {

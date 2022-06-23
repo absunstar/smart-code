@@ -9,10 +9,10 @@
       }
 
       .logo_ttl {
-    border-radius: 15px;
-    height: 550px;
-    width: 700px;
-}
+        border-radius: 15px;
+        height: 550px;
+        width: 700px;
+      }
 
       .logo_pro {
         border-radius: 15px;
@@ -221,7 +221,7 @@
     <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
 
     <div id="main-layout">
-      <div >
+      <div>
         <div class="row inout hidden">
           <div class="center inout">
             <img class="img_inout" ng-src="/images/inout.png" />
@@ -263,7 +263,6 @@
             <img class="img_brand" ng-src="/images/ethraa.png" />
           </div>
         </div>
-
       </div>
 
       <!--   <div class="footer" x-features="!login && !site.dynamic">
@@ -546,8 +545,8 @@
             <span>
               <h2 class="center bold green" style="text-shadow: 3px 3px #b3b3ff; font-size: xxx-large">TTL</h2>
               <br />
-              
-                <a href="tel:+201010070770"> +201010070770 <i class="fab fa-whatsapp-square"></i> </a> <br />
+
+              <a href="tel:+201010070770"> +201010070770 <i class="fab fa-whatsapp-square"></i> </a> <br />
               <a href="mailto:sales@ttl-eg.com"> sales@ttl-eg.com <i class="fa fa-envelope" aria-hidden="true"></i> </a> <br />
               <a href="https://ttl-eg.com" target="_blank"> /ttl-eg.com <i class="fa fa-globe" aria-hidden="true"></i> </a>
               <br />
@@ -677,7 +676,7 @@
       </div>
     </div>
 
-    <script id="post-template"  type="x-tmpl-mustache">
+    <script id="post-template" x-features="!host.valley" type="x-tmpl-mustache">
       <div class="post img__wrap" >
         <h2> {{title_##session.lang##}} </h2>
         <img src="{{image_url}}" alt="">
@@ -687,7 +686,11 @@
       </div>
     </script>
 
-    <script id="pro-template"  x-features="!host.ft && !host.elfgr && !host.qelada && !host.ethraa && !host.free && !host.inout && !host.valley && !protouch  && !host.ttl && !host.mt" type="x-tmpl-mustache">
+    <script
+      id="pro-template"
+      x-features="!host.ft && !host.elfgr && !host.qelada && !host.ethraa && !host.free && !host.inout && !host.valley && !protouch  && !host.ttl && !host.mt"
+      type="x-tmpl-mustache"
+    >
 
       <a class="pro-template" target="_blank" href="{{link}}">
         <div class="project img__wrap" >
@@ -701,7 +704,7 @@
 
     <script>
       let busy = false;
-       if ('##req.headers.host##'.like('*ttl*')) {
+      if ('##req.headers.host##'.like('*ttl*')) {
         $('.ttl').removeClass('hidden');
         $('.price-info').removeClass('hidden');
       } else if ('##req.headers.host##'.like('*inout*')) {
@@ -837,8 +840,8 @@
 
         $('.posts-loading').remove();
         $('#posts').append('<p class="posts-loading"> <img src="/images/loading.gif"> </p>');
-/*         $('#posts').append('<h3 class="center bold blue" style="text-shadow: 3px 3px #b3b3ff; font-size: xx-large ; text-decoration: underline">برامجنا</h3>');
- */        $('#posts').append('<br>');
+        /*         $('#posts').append('<h3 class="center bold blue" style="text-shadow: 3px 3px #b3b3ff; font-size: xx-large ; text-decoration: underline">برامجنا</h3>');
+         */ $('#posts').append('<br>');
 
         busy = true;
 
@@ -891,7 +894,9 @@
             $('#posts').append('<br>');
             $('#posts').append('<hr style="height:5px;color:grey;background-color:rgb(0, 0, 199)">');
             $('#posts').append('<br>');
-            $('#posts').append('<h3 class="center bold blue" style="text-shadow: 3px 3px #b3b3ff; font-size: xx-large ; text-decoration: underline">خصائص البرنامج</h3>');
+            if (!site.features.like(`*valley*`)) {
+              $('#posts').append('<h3 class="center bold blue" style="text-shadow: 3px 3px #b3b3ff; font-size: xx-large ; text-decoration: underline">خصائص البرنامج</h3>');
+            }
             $('#posts').append('<br>');
             busy = false;
             $('.posts-loading').remove();

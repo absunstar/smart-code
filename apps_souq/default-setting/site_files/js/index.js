@@ -113,6 +113,25 @@ app.controller("default_setting", function ($scope, $http,$timeout) {
     );
   };
 
+  $scope.getUserDesignList = function () {
+    $scope.error = "";
+    $scope.busy = true;
+    $scope.userDesignList = [];
+    $http({
+      method: "POST",
+      url: "/api/user_design/all",
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.userDesignList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.getDurationExpiryList = function () {
     $scope.error = "";
     $scope.busy = true;
@@ -219,6 +238,7 @@ app.controller("default_setting", function ($scope, $http,$timeout) {
   $scope.loadUnits();
   $scope.loadCurrencies();
   $scope.loadSetting();
+  $scope.getUserDesignList();
   $scope.getPublishingSystemsList();
   $scope.getAdStatusList();
   $scope.getClosingSystemList();

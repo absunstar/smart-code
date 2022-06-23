@@ -12,7 +12,7 @@ app.directive('iUser', [
       },
       link: function ($scope, element, attrs, ctrl) {
         if (!$scope.id2) {
-          $scope.id2 = Math.random().toString().replace('.','_');
+          $scope.id2 = Math.random().toString().replace('.', '_');
         }
         $scope.showModal = function (params) {
           site.showModal('#userMoal_' + $scope.id2);
@@ -56,9 +56,6 @@ app.directive('iUser', [
   },
 ]);
 
-
-
-
 app.directive('iStore', [
   '$http',
   '$interval',
@@ -73,7 +70,7 @@ app.directive('iStore', [
       },
       link: function ($scope, element, attrs, ctrl) {
         if (!$scope.id2) {
-          $scope.id2 = Math.random().toString().replace('.','_');
+          $scope.id2 = Math.random().toString().replace('.', '_');
         }
         $scope.showModal = function (params) {
           site.showModal('#storeMoal_' + $scope.id2);
@@ -112,6 +109,548 @@ app.directive('iStore', [
         };
       },
       template: `/*##0-default/i-store.html*/`,
+    };
+  },
+]);
+
+app.directive('iCategory', [
+  '$http',
+  '$interval',
+  '$timeout',
+  'isite',
+  function ($http, $interval, $timeout, isite) {
+    return {
+      restrict: 'E',
+      require: 'ngModel',
+      scope: {
+        ngModel: '=',
+      },
+      link: function ($scope, element, attrs, ctrl) {
+        if (!$scope.id2) {
+          $scope.id2 = Math.random().toString().replace('.', '_');
+        }
+
+        $scope.loadMainCategories = function () {
+          $scope.error = '';
+          $scope.busy = true;
+          $scope.mainCategories = [];
+          $http({
+            method: 'POST',
+            url: '/api/main_categories/all',
+            data: {
+              where: {
+                active: true,
+              },
+            },
+          }).then(
+            function (response) {
+              $scope.busy = false;
+              if (response.data.done) $scope.mainCategories = response.data.list;
+            },
+            function (err) {
+              $scope.busy = false;
+              $scope.error = err;
+            }
+          );
+        };
+
+        $scope.loadSubCategories1 = function (obj, main_category) {
+          $scope.error = '';
+          $scope.busy = true;
+          $scope.subCategories1 = [];
+          $http({
+            method: 'POST',
+            url: '/api/sub_categories_1/all',
+            data: {
+              where: {
+                'main_category.id': main_category.id,
+                active: true,
+              },
+              select: {
+                id: 1,
+                name_ar: 1,
+                name_en: 1,
+                code: 1,
+              },
+            },
+          }).then(
+            function (response) {
+              $scope.busy = false;
+              if (response.data.done) {
+                $scope.subCategories1 = response.data.list;
+                obj.sub_category_1 = {};
+                obj.sub_category_2 = {};
+                obj.sub_category_3 = {};
+              }
+            },
+            function (err) {
+              $scope.busy = false;
+              $scope.error = err;
+            }
+          );
+        };
+
+        $scope.loadSubCategories2 = function (obj, sub_category_1) {
+          $scope.error = '';
+          $scope.busy = true;
+          $scope.subCategories2 = [];
+          $http({
+            method: 'POST',
+            url: '/api/sub_categories_2/all',
+            data: {
+              where: {
+                'sub_category_1.id': sub_category_1.id,
+                active: true,
+              },
+              select: {
+                id: 1,
+                name_ar: 1,
+                name_en: 1,
+                code: 1,
+              },
+            },
+          }).then(
+            function (response) {
+              $scope.busy = false;
+              if (response.data.done) {
+                $scope.subCategories2 = response.data.list;
+                obj.sub_category_2 = {};
+                obj.sub_category_3 = {};
+              }
+            },
+            function (err) {
+              $scope.busy = false;
+              $scope.error = err;
+            }
+          );
+        };
+
+        $scope.loadSubCategories3 = function (obj, sub_category_2) {
+          $scope.error = '';
+          $scope.busy = true;
+          $scope.subCategories3 = [];
+          $http({
+            method: 'POST',
+            url: '/api/sub_categories_3/all',
+            data: {
+              where: {
+                'sub_category_2.id': sub_category_2.id,
+                active: true,
+              },
+              select: {
+                id: 1,
+                name_ar: 1,
+                name_en: 1,
+                code: 1,
+              },
+            },
+          }).then(
+            function (response) {
+              $scope.busy = false;
+              if (response.data.done) {
+                $scope.subCategories3 = response.data.list;
+                obj.sub_category_3 = {};
+              }
+            },
+            function (err) {
+              $scope.busy = false;
+              $scope.error = err;
+            }
+          );
+        };
+        $scope.loadMainCategories();
+      },
+      template: `/*##0-default/i-category.html*/`,
+    };
+  },
+]);
+
+app.directive('iComment', [
+  '$http',
+  '$interval',
+  '$timeout',
+  'isite',
+  function ($http, $interval, $timeout, isite) {
+    return {
+      restrict: 'E',
+      require: 'ngModel',
+      scope: {
+        ngModel: '=',
+      },
+      link: function ($scope, element, attrs, ctrl) {
+        if (!$scope.id2) {
+          $scope.id2 = Math.random().toString().replace('.', '_');
+        }
+        $scope.filter = {
+          like : true,
+          favorite : true,
+          report : true,
+          comment : true,
+        };
+       /*  $scope.filterComments = function (type) {
+
+          $scope.ngModel.comments_activities = response.data.filter((i) => i.id != 4 && i.id != 5 && i.id != 6 && i.id != 7);
+
+
+        }; */
+
+        $scope.getCommentActivitieList = function () {
+          $scope.error = '';
+          $scope.busy = true;
+          $scope.commentActivitiesList = [];
+          $http({
+            method: 'POST',
+            url: '/api/comment_activities/all',
+          }).then(
+            function (response) {
+              $scope.busy = false;
+              $scope.commentActivitiesList = response.data;
+            },
+            function (err) {
+              $scope.busy = false;
+              $scope.error = err;
+            }
+          );
+        };
+
+        $scope.getCommentsTypesList = function (where) {
+          $scope.busy = true;
+          $scope.commentsTypesList = [];
+          $http({
+            method: 'POST',
+            url: '/api/comments_types/all',
+            data: {
+              where: { active: true },
+            },
+          }).then(
+            function (response) {
+              $scope.busy = false;
+              if (response.data.done && response.data.list.length > 0) {
+                $scope.commentsTypesList = response.data.list;
+              }
+            },
+            function (err) {
+              $scope.busy = false;
+              $scope.error = err;
+            }
+          );
+        };
+
+        $scope.getReportsTypesList = function (where) {
+          $scope.busy = true;
+          $scope.reportsTypesList = [];
+          $http({
+            method: 'POST',
+            url: '/api/reports_types/all',
+            data: {
+              where: { active: true },
+            },
+          }).then(
+            function (response) {
+              $scope.busy = false;
+              if (response.data.done && response.data.list.length > 0) {
+                $scope.reportsTypesList = response.data.list;
+              }
+            },
+            function (err) {
+              $scope.busy = false;
+              $scope.error = err;
+            }
+          );
+        };
+
+        $scope.getAdStatusList = function () {
+          $scope.error = '';
+          $scope.busy = true;
+          $scope.adStatusList = [];
+          $http({
+            method: 'POST',
+            url: '/api/ads_status/all',
+          }).then(
+            function (response) {
+              $scope.busy = false;
+              $scope.adStatusList = response.data;
+            },
+            function (err) {
+              $scope.busy = false;
+              $scope.error = err;
+            }
+          );
+        };
+
+        $scope.addComments = function () {
+          $scope.error = '';
+          $scope.ngModel.comments_activities = $scope.ngModel.comments_activities || [];
+          $scope.ngModel.comments_activities.push({date : new Date()});
+        };
+
+        $scope.getAdStatusList();
+        $scope.getCommentsTypesList();
+        $scope.getReportsTypesList();
+        $scope.getCommentActivitieList();
+      },
+      template: `/*##0-default/i-comment.html*/`,
+    };
+  },
+]);
+
+app.directive('iAddress', [
+  '$http',
+  '$interval',
+  '$timeout',
+  'isite',
+  function ($http, $interval, $timeout, isite) {
+    return {
+      restrict: 'E',
+      require: 'ngModel',
+      scope: {
+        ngModel: '=',
+      },
+      link: function ($scope, element, attrs, ctrl) {
+        if (!$scope.id2) {
+          $scope.id2 = Math.random().toString().replace('.', '_');
+        }
+        $scope.getCountriesList = function (where) {
+          $scope.busy = true;
+          $http({
+            method: 'POST',
+            url: '/api/countries/all',
+            data: {
+              where: {
+                active: true,
+              },
+              select: {
+                id: 1,
+                name_ar: 1,
+                name_en: 1,
+              },
+            },
+          }).then(
+            function (response) {
+              $scope.busy = false;
+              if (response.data.done && response.data.list.length > 0) {
+                $scope.countriesList = response.data.list;
+              }
+            },
+            function (err) {
+              $scope.busy = false;
+              $scope.error = err;
+            }
+          );
+        };
+
+        $scope.getGovesList = function (country) {
+          $scope.busy = true;
+          $http({
+            method: 'POST',
+            url: '/api/goves/all',
+            data: {
+              where: {
+                'country.id': country.id,
+                active: true,
+              },
+              select: {
+                id: 1,
+                name_ar: 1,
+                name_en: 1,
+              },
+            },
+          }).then(
+            function (response) {
+              $scope.busy = false;
+              if (response.data.done && response.data.list.length > 0) {
+                $scope.govesList = response.data.list;
+              }
+            },
+            function (err) {
+              $scope.busy = false;
+              $scope.error = err;
+            }
+          );
+        };
+
+        $scope.getCityList = function (gov) {
+          $scope.busy = true;
+          $http({
+            method: 'POST',
+            url: '/api/city/all',
+            data: {
+              where: {
+                'gov.id': gov.id,
+                active: true,
+              },
+              select: { id: 1, name_ar: 1, name_en: 1, code: 1 },
+            },
+          }).then(
+            function (response) {
+              $scope.busy = false;
+              if (response.data.done && response.data.list.length > 0) {
+                $scope.cityList = response.data.list;
+              }
+            },
+            function (err) {
+              $scope.busy = false;
+              $scope.error = err;
+            }
+          );
+        };
+
+        $scope.getAreaList = function (city) {
+          $scope.busy = true;
+          $http({
+            method: 'POST',
+            url: '/api/area/all',
+            data: {
+              where: {
+                'city.id': city.id,
+                active: true,
+              },
+              select: { id: 1, name_ar: 1, name_en: 1, code: 1 },
+            },
+          }).then(
+            function (response) {
+              $scope.busy = false;
+              if (response.data.done && response.data.list.length > 0) {
+                $scope.areaList = response.data.list;
+              }
+            },
+            function (err) {
+              $scope.busy = false;
+              $scope.error = err;
+            }
+          );
+        };
+        $scope.getCountriesList();
+      },
+      template: `/*##0-default/i-address.html*/`,
+    };
+  },
+]);
+
+app.directive('iCategoryRequire', [
+  '$http',
+  '$interval',
+  '$timeout',
+  'isite',
+  function ($http, $interval, $timeout, isite) {
+    return {
+      restrict: 'E',
+      require: 'ngModel',
+      scope: {
+        ngModel: '=',
+      },
+      link: function ($scope, element, attrs, ctrl) {
+        if (!$scope.id2) {
+          $scope.id2 = Math.random().toString().replace('.', '_');
+        }
+
+        $scope.getTypesCategoryRequireList = function () {
+          $scope.error = '';
+          $scope.busy = true;
+          $scope.typesCategoryRequireList = [];
+          $http({
+            method: 'POST',
+            url: '/api/types_category_require/all',
+          }).then(
+            function (response) {
+              $scope.busy = false;
+              $scope.typesCategoryRequireList = response.data;
+            },
+            function (err) {
+              $scope.busy = false;
+              $scope.error = err;
+            }
+          );
+        };
+
+        $scope.getTypesCategoryRequireList();
+      },
+      template: `/*##0-default/i-category-require.html*/`,
+    };
+  },
+]);
+
+app.directive('iAdRequire', [
+  '$http',
+  '$interval',
+  '$timeout',
+  'isite',
+  function ($http, $interval, $timeout, isite) {
+    return {
+      restrict: 'E',
+      require: 'ngModel',
+      scope: {
+        ngModel: '=',
+      },
+      link: function ($scope, element, attrs, ctrl) {
+        if (!$scope.id2) {
+          $scope.id2 = Math.random().toString().replace('.', '_');
+        }
+
+      
+      },
+      template: `/*##0-default/i-ad-require.html*/`,
+    };
+  },
+]);
+
+app.directive('iSubCategory', [
+  '$http',
+  '$interval',
+  '$timeout',
+  'isite',
+  function ($http, $interval, $timeout, isite) {
+    return {
+      restrict: 'E',
+      require: 'ngModel',
+      scope: {
+        ngModel: '=',
+      },
+      link: function ($scope, element, attrs, ctrl) {
+        if (!$scope.id2) {
+          $scope.id2 = Math.random().toString().replace('.', '_');
+        }
+        $scope.showModal = function (ngModel) {
+          site.showModal('#sub_category_' + $scope.id2);
+        };
+        $scope.hideModal = function (params) {
+          site.hideModal('#sub_category_' + $scope.id2);
+        };
+        $scope.addSubCategoryList = function (ngModel) {
+          ngModel.sub_category_list = ngModel.sub_category_list || [{sub_category_list : []}];
+          ngModel.sub_category_list.push({sub_category_list : []});
+        };
+        $scope.loadUsers = function (ev, search_user) {
+          $scope.users_list = [];
+          if (ev.which === 13) {
+            $scope.busy = true;
+            $http({
+              method: 'POST',
+              url: '/api/users/all',
+              data: {
+                where: {
+                  search: search_user,
+                },
+                select: { id: 1, email: 1, profile: 1 },
+              },
+            }).then(
+              function (response) {
+                $scope.busy = false;
+
+                if (response.data.done) {
+                  $scope.users_list = response.data.users;
+                } else {
+                }
+              },
+              function (err) {
+                $scope.busy = false;
+                $scope.error = err;
+              }
+            );
+          }
+        };
+      },
+      template: `/*##0-default/i-sub-category.html*/`,
     };
   },
 ]);

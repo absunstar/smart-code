@@ -1,10 +1,37 @@
 <div class="form" id="setting_default">
   <div class="tabs inline-block">
     <div class="tabs-header">
+      <a class="tab-link" onclick="site.showTabContent(event, '#site_settings')"> ##word.site_settings## </a>
       <a class="tab-link" onclick="site.showTabContent(event, '#ads_settings')"> ##word.ads_settings## </a>
       <a class="tab-link" onclick="site.showTabContent(event, '#stores_settings')"> ##word.stores_settings## </a>
     </div>
+    
     <div class="tabs-content">
+
+
+      <div id="site_settings" class="tab-content">
+        <fieldset>
+          <legend>##word.site_settings##</legend>
+   
+          <div class="row" >
+            <i-list
+                  class="col4"
+                  ng-model="default_setting.site_settings.user_design"
+                  items="userDesignList"
+                  display="##session.lang##"
+                  ng-search="_search.$search_user_design"
+                  label="##word.user_design##"
+                ></i-list>
+          </div>
+        </fieldset>
+        <i-button type="default left" fa="2x fa-angle-double-left" onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
+      </div>
+
+
+
+
+
+
       <div id="ads_settings" class="tab-content">
         <fieldset>
           <legend>##word.ads_settings##</legend>
@@ -78,13 +105,6 @@
 
         <i-button type="default left" fa="2x fa-angle-double-left" onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
       </div>
-
-
-
-
-
-
-
 
 
 

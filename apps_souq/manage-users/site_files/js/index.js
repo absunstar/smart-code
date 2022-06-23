@@ -137,7 +137,7 @@ app.controller("manage_users", function ($scope, $http) {
     $http({
       method: "POST",
       url: "/api/manage_user/view",
-      data: { id: manage_users.id },
+      data: { id: manage_users.id,all : true },
     }).then(
       function (response) {
         $scope.busy = false;

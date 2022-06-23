@@ -14,28 +14,35 @@
             <i-checkbox help-id="main_categories_active" class="col2" label="##word.active##" ng-model="main_categories.active"></i-checkbox>
           </div>
 
-          <br>
+          <div class="row">
+            <fieldset>
+              <legend>
+                ##word.add_categories##
+                <i-button type="add default" ng-click="addSubCategoryList(main_categories)"></i-button>
+              </legend>
+              <div class="row" ng-repeat="c in main_categories.sub_category_list">
+                <i-sub-category ng-model="c"></i-sub-category>
+                <i-button type="delete default" ng-click="main_categories.sub_category_list.splice($index,1)"> </i-button>
+              </div>
+            </fieldset>
+          </div>
+
           <br>
 
           <div class="row">
-            <i-control type="text" help-id="sub_category_1" class="col4" label="##word.sub_category_1##" ng-model="main_categories.sub_category_1_ar"></i-control>
-            <i-control type="text" help-id="name_en" class="col4" label="##word.name_en##" ng-model="main_categories.sub_category_1_en"></i-control>
-
+            <fieldset>
+              <legend>
+                ##word.category_require##
+                <i-button type="add default" ng-click="addTypesCategoryRequireList(main_categories)"></i-button>
+              </legend>
+              <div class="row" ng-repeat="c in main_categories.category_require_list">
+                <i-category-require ng-model="c"></i-category-require>
+                <br>
+                <i-button type="delete default" ng-click="main_categories.category_require_list.splice($index,1)"> </i-button>
+              </div>
+            </fieldset>
           </div>
-          <br>
 
-          <div class="row">
-            <i-control type="text" help-id="sub_category_1_name" class="col4" label="##word.sub_category_1##" ng-model="main_categories.sub_category_2_ar"></i-control>
-            <i-control type="text" help-id="name_en" class="col4" label="##word.name_en##" ng-model="main_categories.sub_category_2_en"></i-control>
-
-          </div>
-          <br>
-
-          <div class="row">
-            <i-control type="text" help-id="sub_category_1_name" class="col4" label="##word.sub_category_1##" ng-model="main_categories.sub_category_3_ar"></i-control>
-            <i-control type="text" help-id="name_en" class="col4" label="##word.name_en##" ng-model="main_categories.sub_category_3_en"></i-control>
-
-          </div>
         </div>
 
         <div class="col3">

@@ -285,39 +285,9 @@
         "ar": "ربط الفواتير المخزنية و الحسابية"
     },
     {
-        "name": "default_setting_serial",
-        "en": "Serial",
-        "ar": "رقم مسلسل"
-    },
-    {
-        "name": "default_setting_tenant_required",
-        "en": "Required",
-        "ar": "المطلوب"
-    },
-    {
-        "name": "default_setting_tenant_total_required",
-        "en": "Total Required",
-        "ar": "إجمالي المطلوب"
-    },
-    {
-        "name": "default_setting_tenant_total",
-        "en": "Total Rest",
-        "ar": "إجمالي المدفوع"
-    },
-    {
-        "name": "default_setting_tenant_total_rest",
-        "en": "Total Rest",
-        "ar": "إجمالي الباقي"
-    },
-    {
-        "name": "default_setting_tenant_rest",
-        "en": "Rest",
-        "ar": "الباقي"
-    },
-    {
-        "name": "default_setting_tenant_paid",
-        "en": "paid",
-        "ar": "المدفوع"
+        "name": "automatic_item_assembly_upon_sale",
+        "en": "Automatic item assembly upon sale",
+        "ar": "تجميع تلقائي للصنف عند البيع"
     },
     {
         "name": "default_setting_tenant_date",

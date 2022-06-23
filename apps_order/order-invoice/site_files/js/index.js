@@ -227,6 +227,97 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
     site.hideModal('#sizesModal');
   };
 
+  $scope.displayCloseOrder = function () {
+    $scope.error = '';
+
+    $scope.getStockItems($scope.order_invoice.items, $scope.order_invoice.store, (callback) => {
+      if (!callback) {
+        $scope.order_invoice.shift = $scope.order_invoice.shift || $scope.shift;
+        if (!$scope.order_invoice || !$scope.order_invoice.shift) {
+          return;
+        }
+
+        $scope.displayAccountInvoice();
+        /* $scope.addOrderInvoice($scope.order_invoice, 'add'); */
+      } else {
+        $scope.error = '##word.err_stock_item##';
+      }
+    });
+  };
+
+  $scope.closeOrder = function () {
+    if ($scope.order_invoice.paid_up > $scope.order_invoice.net_value) {
+      $scope.error = '##word.err_net_value##';
+      return;
+    }
+
+    if ($scope.defaultSettings.general_Settings && !$scope.defaultSettings.general_Settings.work_posting) {
+      $scope.order_invoice.posting = true;
+    }
+
+    $scope.order_invoice.status = {
+      id: 2,
+      en: 'Closed Of Orders Screen',
+      ar: 'مغلق من شاشة الأوردرات',
+    };
+    $scope.order_invoice.currency = $scope.order_invoice.invoices_list[0].currency;
+    $scope.order_invoice.payment_method = $scope.order_invoice.invoices_list[0].payment_method;
+    $scope.order_invoice.safe = $scope.order_invoice.invoices_list[0].safe;
+
+    $scope.order_invoice.under_paid = {
+      items: $scope.order_invoice.items,
+      total_tax: $scope.order_invoice.total_tax,
+      total_discount: $scope.order_invoice.total_discount,
+      price_delivery_service: $scope.order_invoice.price_delivery_service,
+      service: $scope.order_invoice.service,
+      net_value: $scope.order_invoice.net_value,
+    };
+
+    if (!$scope.defaultSettings.general_Settings.work_posting) {
+      let store_out = {
+        image_url: '/images/store_out.png',
+        supply_date: new Date(),
+        date: $scope.order_invoice.date,
+        notes: $scope.order_invoice.notes,
+        posting: $scope.order_invoice.posting,
+        order_id: $scope.order_invoice.id,
+        customer: $scope.order_invoice.customer,
+        shift: $scope.order_invoice.shift,
+        payment_type: $scope.order_invoice.payment_type,
+        store: $scope.order_invoice.store,
+        payable_list: $scope.order_invoice.payable_list,
+        order_code: $scope.order_invoice.code,
+        items: $scope.order_invoice.items,
+        invoices_list: $scope.order_invoice.invoices_list,
+        currency: $scope.order_invoice.invoices_list[0].currency,
+        safe: $scope.order_invoice.invoices_list[0].safe,
+        payment_method: $scope.order_invoice.invoices_list[0].payment_method,
+        /* Paid_from_customer: $scope.order_invoice.Paid_from_customer,
+        remain_from_customer: $scope.order_invoice.remain_from_customer, */
+        paid_up: $scope.order_invoice.paid_up,
+        before_value_added: $scope.order_invoice.before_value_added,
+        total_value_added: $scope.order_invoice.total_value_added,
+        total_discount: $scope.order_invoice.total_discount,
+        total_tax: $scope.order_invoice.total_tax,
+        total_value: $scope.order_invoice.total_value,
+        net_value: $scope.order_invoice.net_value,
+        type: {
+          id: 4,
+          en: 'Orders Screen',
+          ar: 'شاشة الطلبات',
+        },
+        active: true,
+      };
+      if ($scope.order_invoice.transaction_type.id == 1 && $scope.order_invoice.table) {
+        store_out.table = $scope.order_invoice.table;
+      }
+      if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto && $scope.order_invoice.status.id == 2 && !$scope.order_invoice.invoice) {
+        store_out.invoice = true;
+        $scope.addStoresOut(store_out);
+      }
+    }
+  };
+
   $scope.addOrderInvoice = function (type) {
     $scope.error = '';
     if ($scope.order_invoice.shift) {
@@ -244,33 +335,6 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
           return;
         }
 
-        if (type == 'close') {
-          if ($scope.order_invoice.paid_up > $scope.order_invoice.net_value) {
-            $scope.error = '##word.err_net_value##';
-            return;
-          }
-
-          if ($scope.defaultSettings.general_Settings && !$scope.defaultSettings.general_Settings.work_posting) $scope.order_invoice.posting = true;
-
-          $scope.order_invoice.status = {
-            id: 2,
-            en: 'Closed Of Orders Screen',
-            ar: 'مغلق من شاشة الأوردرات',
-          };
-
-          $scope.order_invoice.currency = $scope.order_invoice.invoices_list[0].currency;
-          $scope.order_invoice.payment_method = $scope.order_invoice.invoices_list[0].payment_method;
-          $scope.order_invoice.safe = $scope.order_invoice.invoices_list[0].safe;
-
-          $scope.order_invoice.under_paid = {
-            items: $scope.order_invoice.items,
-            total_tax: $scope.order_invoice.total_tax,
-            total_discount: $scope.order_invoice.total_discount,
-            price_delivery_service: $scope.order_invoice.price_delivery_service,
-            service: $scope.order_invoice.service,
-            net_value: $scope.order_invoice.net_value,
-          };
-        }
         if (!$scope.order_invoice.customer && $scope.order_invoice.transaction_type == 2) {
           $scope.error = '##word.err_customer##';
           $scope.order_invoice.posting = false;
@@ -393,54 +457,6 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
 
                 $scope.order_invoice = response.data.doc;
 
-                if ($scope.order_invoice.status.id == 2 && !$scope.defaultSettings.general_Settings.work_posting) {
-                  let store_out = {
-                    image_url: '/images/store_out.png',
-                    supply_date: new Date(),
-                    date: $scope.order_invoice.date,
-                    notes: $scope.order_invoice.notes,
-                    posting: $scope.order_invoice.posting,
-                    order_id: $scope.order_invoice.id,
-                    customer: $scope.order_invoice.customer,
-                    shift: $scope.order_invoice.shift,
-                    payment_type: $scope.order_invoice.payment_type,
-                    store: $scope.order_invoice.store,
-                    payable_list: $scope.order_invoice.payable_list,
-                    order_code: $scope.order_invoice.code,
-                    items: $scope.order_invoice.items,
-                    invoices_list: $scope.order_invoice.invoices_list,
-                    currency: $scope.order_invoice.invoices_list[0].currency,
-                    safe: $scope.order_invoice.invoices_list[0].safe,
-                    payment_method: $scope.order_invoice.invoices_list[0].payment_method,
-                    /* Paid_from_customer: $scope.order_invoice.Paid_from_customer,
-                    remain_from_customer: $scope.order_invoice.remain_from_customer, */
-                    paid_up: $scope.order_invoice.paid_up,
-                    before_value_added: $scope.order_invoice.before_value_added,
-                    total_value_added: $scope.order_invoice.total_value_added,
-                    total_discount: $scope.order_invoice.total_discount,
-                    total_tax: $scope.order_invoice.total_tax,
-                    total_value: $scope.order_invoice.total_value,
-                    net_value: $scope.order_invoice.net_value,
-                    type: {
-                      id: 4,
-                      en: 'Orders Screen',
-                      ar: 'شاشة الطلبات',
-                    },
-                    active: true,
-                  };
-                  if ($scope.order_invoice.transaction_type.id == 1 && $scope.order_invoice.table) {
-                    store_out.table = $scope.order_invoice.table;
-                  }
-                  if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto && $scope.order_invoice.status.id == 2 && !$scope.order_invoice.invoice) {
-                    store_out.invoice = true;
-                    $scope.addStoresOut(store_out);
-                    $scope.addAccountInvoice($scope.order_invoice);
-                  }
-                }
-
-                site.hideModal('#accountInvoiceModal');
-
-                $scope.order_invoice = response.data.doc;
                 if (type === 'table') {
                   $scope.order_invoice.$show_table = true;
                 }
@@ -490,8 +506,36 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
             if ($scope.defaultSettings.printer_program.auto_thermal_print_order_screen) {
               $scope.thermalPrint(response.data.doc);
             }
+
+            $scope.addAccountInvoice($scope.order_invoice);
+            $scope.addOrderInvoice();
           } else {
             $scope.error = response.data.error;
+            if (response.data.error.like('*OverDraft Not*')) {
+              $scope.busy = false;
+              $scope.error = '##word.overdraft_not_active##';
+            } else if (response.data.error.like('*n`t Found Open Shi*')) {
+              $scope.busy = false;
+              $scope.error = '##word.open_shift_not_found##';
+            } else if (response.data.error.like('*n`t Open Perio*')) {
+              $scope.busy = false;
+              $scope.error = '##word.should_open_period##';
+            } else if (response.data.error.like('*Must Enter Code*')) {
+              $scope.busy = false;
+              $scope.error = '##word.must_enter_code##';
+            } else if (response.data.error.like('*Must Choose Payment*')) {
+              $scope.busy = false;
+              $scope.error = '##word.must_choose_payment_type##';
+            } else if (response.data.error.like('*Paid Up Greater Than Net*')) {
+              $scope.busy = false;
+              $scope.error = '##word.err_net_value##';
+            } else if (response.data.error.like('*must be paid in full*')) {
+              $scope.busy = false;
+              $scope.error = '##word.amount_must_paid_full##';
+            } else if (response.data.error.like('*value of batches is greater than the remain*')) {
+              $scope.busy = false;
+              $scope.error = '##word.value_batches_greater_remain_invoice##';
+            }
           }
         },
         function (err) {
@@ -597,6 +641,7 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
         /* $scope.busy = false; */
         if (response.data.done) {
           let acc_invo = response.data.doc;
+          site.hideModal('#accountInvoiceModal');
 
           for (let i = 0; i < order_invoice.invoices_list.length; i++) {
             $timeout(() => {
@@ -1799,24 +1844,6 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
     );
   };
 
-  $scope.closeOrder = function () {
-    $scope.error = '';
-
-    $scope.getStockItems($scope.order_invoice.items, $scope.order_invoice.store, (callback) => {
-      if (!callback) {
-        $scope.order_invoice.shift = $scope.order_invoice.shift || $scope.shift;
-        if (!$scope.order_invoice || !$scope.order_invoice.shift) {
-          return;
-        }
-
-        $scope.displayAccountInvoice();
-        /* $scope.addOrderInvoice($scope.order_invoice, 'add'); */
-      } else {
-        $scope.error = '##word.err_stock_item##';
-      }
-    });
-  };
-
   $scope.getStockItems = function (items, store, callback) {
     $scope.error = '';
     $scope.busy = true;
@@ -1983,6 +2010,8 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
           size_ar: item.size_ar,
           size_en: item.size_en,
           item_group: item.item_group,
+          item_complex: item.item_complex,
+          complex_items: item.complex_items,
           add_sizes: item.add_sizes,
           size_units_list: item.size_units_list,
           unit: item.size_units_list[indxUnit],

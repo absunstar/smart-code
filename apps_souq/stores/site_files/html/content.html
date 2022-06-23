@@ -14,7 +14,6 @@
             <i-control help-id="store_name_ar" v="r ll2" class="col4" label="##word.store_name##" ng-model="store.name_ar"></i-control>
 
             <i-control help-id="store_name_en" v="r" class="col4" label="##word.name_en##" ng-model="store.name_en"></i-control>
-
           </div>
 
           <div class="row">
@@ -31,74 +30,27 @@
           </div>
 
           <div class="row">
-
-            <i-list help-id="" v="r" class="col3" label="##word.country##" ng-change="getGovesList(store.country)" ng-model="store.country" display="name_##session.lang##" items="countriesList" ng-search="_search.$city_country"></i-list>
-
-            <i-list class="col3" label="##word.gov##" ng-model="store.gov" items="govesList"
-                ng-change="getCityList(store.gov)" display="name_##session.lang##"
-                ng-search="_search.$store.$gov_search">
-            </i-list>
-
-            <i-list class="col3"  ng-change="getAreaList(store.city)" label="##word.city##" ng-model="store.city" items="cityList"
-                display="name_##session.lang##" ng-search="_search.$store.$city_search">
-            </i-list>
-
-            <i-list class="col3" label="##word.area##" ng-model="store.area" items="areaList"
-            display="name_##session.lang##" ng-search="_search.$store.$area_search">
-        </i-list>
-
+            <i-adress class="padding_10" ng-model="store"></i-adress>
           </div>
 
           <div class="row">
             <i-textarea ng-model="store.description" label="##word.description##"> </i-textarea>
           </div>
-
         </div>
 
         <div class="col3">
           <i-image help-id="stores_logo" ng-model="store.image_url"></i-image>
         </div>
       </div>
-      <br />
-      <br />
-      <br />
-      <fieldset class="row">
-        <legend>
-          <i-button type="add default" ng-click="addComments()"></i-button>
-          ##word.comments##
-        </legend>
-        <div class="row" ng-repeat="c in store.comments_list">
 
-          <div class="row">
-            <i-user class="col3 padding-10" ng-model="c.user"></i-user>
-            <i-checkbox class="col1" label="##word.liked##" ng-model="c.liked"> </i-checkbox>
-            <i-checkbox class="col1" label="##word.commented##" ng-model="c.commented"> </i-checkbox>
-            <i-list ng-search="_search.$comment_type" ng-show="c.commented" class="col2" display="name_##session.lang##" ng-model="c.comment_type" label="##word.comment_type##" items="commentsTypesList"> </i-list>
-            <i-textarea class="col5" ng-show="c.commented" ng-model="a.comment" label="##word.comment##"> </i-textarea>
-
-          </div>
-
-          <div class="row">
-            <div class="col3 padding_10" ng-hide="c.report"></div>
-            <i-checkbox class="col1" label="##word.favorite##" ng-model="c.favorite"> </i-checkbox>
-            <i-checkbox class="col1" label="##word.reported##" ng-model="c.report"> </i-checkbox>
-            <i-list ng-show="c.report" ng-search="_search.$report_type" class="col2" display="name_##session.lang##" ng-model="c.report_type" label="##word.report_type##" items="reportsTypesList"> </i-list>
-            <i-textarea class="col5" ng-show="c.report" ng-model="a.comment_report" label="##word.comment_on_report##"> </i-textarea>
-            <div class="col1"></div>
-            <div class="col1">
-              <i-button type="delete" ng-click="store.comments_list.splice($index,1)"> </i-button>
-            </div>
-          </div>
-
-
-          <hr class="center" style="width: 70%; height: 5px; color: grey; background-color: rgb(76, 199, 0)" />
-        </div>
-        <br />
-      </fieldset>
       <br />
       <br />
       <br />
-  
+      <i-comment class="padding_10" ng-model="store"></i-comment>
+
+      <br />
+      <br />
+      <br />
     </fieldset>
   </div>
 </div>

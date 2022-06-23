@@ -1,0 +1,55 @@
+<div class="form" id="display_ad">
+  <br />
+  <br />
+  <div class="ro">
+    <div class="col8">
+      <div class="row">
+        <h1>{{ad.store.user.profile.name}}</h1>
+        <h1>{{ad.store.name_##session.lang##}}</h1>
+        <h1>{{ad.name_##session.lang##}}</h1>
+      </div>
+      <br />
+      <br />
+      <br />
+      <div class="row">
+        <h2 class="pre_text">{{ad.description}}</h2>
+      </div>
+    </div>
+    <div class="col4">
+      <img src="{{ad.image_url}}" alt="Girl in a jacket" width="350" height="450" />
+    </div>
+  </div>
+  <div class="row center" ng-repeat="i in ad.images_list">
+    <h2 class="pre_text center">{{i.description}}</h2>
+    <img src="{{i.image_url}}" alt="Girl in a jacket" width="500" height="600" />
+    <br />
+    <br />
+  </div>
+
+  <div class="row">
+    <i-checkbox class="col2" label="##word.like##" ng-click="updateComment('like')" ng-model="activity.like"> </i-checkbox>
+    <i-checkbox class="col2" label="##word.favorite##" ng-click="updateComment('favorite')" ng-model="activity.favorite"> </i-checkbox>
+    <i-button fa="flag" label="##word.submit_report##" onclick="site.showModal('#reportModal')"></i-button>
+  </div>
+
+  <div class="row">
+    <h1>##word.comments## :</h1>
+  </div>
+
+  <div class="row">
+    <i-textarea class="col7" ng-model="activity.comment"> </i-textarea>
+    <i-button type="add" label="##word.add_comment##" ng-click="updateComment('comment')"></i-button>
+  </div>
+
+  <br />
+  <br />
+
+  <div class="row" ng-repeat="c in ad.comments_activities">
+    <p ng-show="c.comment_activity.id == 4" class="font-22">{{c.user.profile.name}}</p>
+    <p ng-show="c.comment_activity.id == 4" class="font-18 pre_text">{{c.comment}}</p>
+    <small class="brown"> {{c.date |date:"dd - MM - yyyy"}} </small>
+    <small class="green"> {{c.date |date:"hh:mm"}} </small>
+    <br />
+    <br />
+  </div>
+</div>
