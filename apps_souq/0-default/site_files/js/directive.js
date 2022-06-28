@@ -124,23 +124,23 @@ app.directive('iCategory', [
       require: 'ngModel',
       scope: {
         ngModel: '=',
-        ngList:'=',
-        ngLabel:'@'
+        ngList: '=',
+        ngLabel: '@',
       },
       link: function ($scope, element, attrs, ctrl) {
         if (!$scope.id2) {
           $scope.id2 = Math.random().toString().replace('.', '_');
         }
-        $scope.log = function(msg){
-          console.log(msg)
-        }
+        $scope.log = function (msg) {
+          console.log(msg);
+        };
       },
       template: `/*##0-default/i-category.html*/`,
     };
   },
 ]);
 
-app.directive('iComment', [
+app.directive('iFeedback', [
   '$http',
   '$interval',
   '$timeout',
@@ -157,29 +157,29 @@ app.directive('iComment', [
           $scope.id2 = Math.random().toString().replace('.', '_');
         }
         $scope.filter = {
-          like : true,
-          favorite : true,
-          report : true,
-          comment : true,
+          like: true,
+          favorite: true,
+          report: true,
+          comment: true,
         };
-       /*  $scope.filterComments = function (type) {
+        /*  $scope.filterComments = function (type) {
 
-          $scope.ngModel.comments_activities = response.data.filter((i) => i.id != 4 && i.id != 5 && i.id != 6 && i.id != 7);
+          $scope.ngModel.feedback_list = response.data.filter((i) => i.id != 4 && i.id != 5 && i.id != 6 && i.id != 7);
 
 
         }; */
 
-        $scope.getCommentActivitieList = function () {
+        $scope.getFeedbackTypeList = function () {
           $scope.error = '';
           $scope.busy = true;
-          $scope.commentActivitiesList = [];
+          $scope.feedbackTypeList = [];
           $http({
             method: 'POST',
-            url: '/api/comment_activities/all',
+            url: '/api/feedback_type/all',
           }).then(
             function (response) {
               $scope.busy = false;
-              $scope.commentActivitiesList = response.data;
+              $scope.feedbackTypeList = response.data;
             },
             function (err) {
               $scope.busy = false;
@@ -253,18 +253,18 @@ app.directive('iComment', [
           );
         };
 
-        $scope.addComments = function () {
+        $scope.addFeedback = function () {
           $scope.error = '';
-          $scope.ngModel.comments_activities = $scope.ngModel.comments_activities || [];
-          $scope.ngModel.comments_activities.push({date : new Date()});
+          $scope.ngModel.feedback_list = $scope.ngModel.feedback_list || [];
+          $scope.ngModel.feedback_list.push({ date: new Date() });
         };
 
         $scope.getAdStatusList();
         $scope.getCommentsTypesList();
         $scope.getReportsTypesList();
-        $scope.getCommentActivitieList();
+        $scope.getFeedbackTypeList();
       },
-      template: `/*##0-default/i-comment.html*/`,
+      template: `/*##0-default/i-feedback.html*/`,
     };
   },
 ]);
@@ -316,6 +316,9 @@ app.directive('iAddress', [
 
         $scope.getGovesList = function (country) {
           $scope.busy = true;
+          $scope.govesList = [];
+          $scope.cityList = [];
+          $scope.areaList = [];
           $http({
             method: 'POST',
             url: '/api/goves/all',
@@ -346,6 +349,8 @@ app.directive('iAddress', [
 
         $scope.getCityList = function (gov) {
           $scope.busy = true;
+          $scope.cityList = [];
+          $scope.areaList = [];
           $http({
             method: 'POST',
             url: '/api/city/all',
@@ -372,6 +377,7 @@ app.directive('iAddress', [
 
         $scope.getAreaList = function (city) {
           $scope.busy = true;
+          $scope.areaList = [];
           $http({
             method: 'POST',
             url: '/api/area/all',
@@ -461,8 +467,6 @@ app.directive('iAdRequire', [
         if (!$scope.id2) {
           $scope.id2 = Math.random().toString().replace('.', '_');
         }
-
-      
       },
       template: `/*##0-default/i-ad-require.html*/`,
     };
@@ -492,8 +496,8 @@ app.directive('iSubCategory', [
           site.hideModal('#sub_category_' + $scope.id2);
         };
         $scope.addSubCategoryList = function (ngModel) {
-          ngModel.sub_category_list = ngModel.sub_category_list || [{sub_category_list : []}];
-          ngModel.sub_category_list.push({sub_category_list : []});
+          ngModel.sub_category_list = ngModel.sub_category_list || [{ sub_category_list: [] }];
+          ngModel.sub_category_list.push({ sub_category_list: [] });
         };
         $scope.loadUsers = function (ev, search_user) {
           $scope.users_list = [];

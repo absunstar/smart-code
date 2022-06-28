@@ -2,10 +2,10 @@
     <b class="font-25 col4">{{ngModel.name_##session.lang##}}</b>
     <div class="col1"></div>
     <i-image ng-show="ngModel.types_category_require.id == 1" help-id="ads_logo" ng-model="ngModel.image_url"></i-image>
-    <i-date2 ng-show="ngModel.types_category_require.id == 4" class="col5" ng-model="ngModel.date" label="##word.date##"></i-date2>
-    <i-files ng-show="ngModel.types_category_require.id == 3" class="col6" ng-model="ngModel.files"></i-files>
-    <i-textarea ng-show="ngModel.types_category_require.id == 2" class="col6" label="##word.text##" ng-model="ngModel.text"></i-textarea>
-    <hr>
+    <i-control ng-show="ngModel.types_category_require.id == 2" class="col6" label="##word.text##" ng-model="ngModel.text"></i-control>
+    <i-textarea ng-show="ngModel.types_category_require.id == 3" class="col6" label="##word.description##" ng-model="ngModel.text"></i-textarea>
+    <i-files ng-show="ngModel.types_category_require.id == 4" class="col6" ng-model="ngModel.files"></i-files>
+    <i-date2 ng-show="ngModel.types_category_require.id == 5" class="col5" ng-model="ngModel.date" label="##word.date##"></i-date2>
     <hr class="center" style="width: 70%; height: 5px; color: grey; background-color: rgb(76, 199, 0)" />
 
 </div>

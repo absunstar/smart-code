@@ -1,17 +1,17 @@
 module.exports = function init(site) {
-  const $register = site.connectCollection("register")
+  const $register = site.connectCollection('register');
 
   site.get({
     name: 'images',
-    path: __dirname + '/site_files/images/'
-  })
+    path: __dirname + '/site_files/images/',
+  });
 
   site.get({
-    name: "register",
-    path: __dirname + "/site_files/html/index.html",
-    parser: "html",
-    compress: true
-  })
+    name: 'register',
+    path: __dirname + '/site_files/html/index.html',
+    parser: 'html',
+    compress: true,
+  });
 
   site.post('/api/register', (req, res) => {
     let response = {};
@@ -26,14 +26,15 @@ module.exports = function init(site) {
       }
     }
 
-
     site.security.register(
       {
         email: req.body.email,
         password: req.body.password,
+        feedback_list: [],
+        other_addresses_list : [],
         ip: req.ip,
         permissions: ['user'],
-        active : true,
+        active: true,
         profile: {
           files: [],
           name: req.body.first_name,
@@ -53,5 +54,4 @@ module.exports = function init(site) {
       }
     );
   });
-
-}
+};

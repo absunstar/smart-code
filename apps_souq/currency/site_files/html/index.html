@@ -5,7 +5,7 @@
 
 </head>
 
-<body class="##session.lang##">
+<body class="##session.lang##" ng-controller="currency">
 
     <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
 
@@ -17,7 +17,7 @@
 
     <div id="main-layout" class="container loaded">
         <div class="row">
-            <div class="row" ng-controller="currency">
+            <div class="row" >
                 <div x-permissions="currency_add || currency_manage" x-import="currency/add_modal.html"></div>
                 <div x-permissions="currency_update || currency_manage" x-import="currency/update_modal.html"></div>
                 <div x-permissions="currency_delete || currency_manage" x-import="currency/delete_modal.html"></div>

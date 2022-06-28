@@ -6,6 +6,11 @@ module.exports = function init(site) {
     compress: false,
   });
 
+  // site.get({
+  //   name: 'css',
+  //   path: __dirname + '/site_files/css/',
+  // });
+
   site.get({
     name: '/images',
     path: __dirname + '/site_files/images',
@@ -42,7 +47,7 @@ module.exports = function init(site) {
     );
   });
 
-  site.post('/api/manage_user/update', (req, res) => {
+  site.post('/api/manage_user/update_personal_info', (req, res) => {
     let response = {
       done: false,
     };
@@ -63,17 +68,21 @@ module.exports = function init(site) {
           let _user = { ...user };
           if (type === 'email') {
             if (req.body.user.new_email) {
-              if (!req.body.user.new_email.contains('@') && !req.body.user.new_email.contains('.')) {
-                _user.email = req.body.user.new_email + '@' + site.get_company(req).host;
+              if (site.feature('souq')) {
+                _user.email = req.body.user.new_email;
               } else {
-                if (req.body.user.new_email.contains('@') && !req.body.user.new_email.contains('.')) {
-                  response.error = 'Email must be typed correctly';
-                  res.json(response);
-                  return;
-                } else if (!req.body.user.new_email.contains('@') && req.body.user.new_email.contains('.')) {
-                  response.error = 'Email must be typed correctly';
-                  res.json(response);
-                  return;
+                if (!req.body.user.new_email.contains('@') && !req.body.user.new_email.contains('.')) {
+                  _user.email = req.body.user.new_email + '@' + site.get_company(req).host;
+                } else {
+                  if (req.body.user.new_email.contains('@') && !req.body.user.new_email.contains('.')) {
+                    response.error = 'Email must be typed correctly';
+                    res.json(response);
+                    return;
+                  } else if (!req.body.user.new_email.contains('@') && req.body.user.new_email.contains('.')) {
+                    response.error = 'Email must be typed correctly';
+                    res.json(response);
+                    return;
+                  }
                 }
               }
             } else {

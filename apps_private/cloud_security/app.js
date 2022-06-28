@@ -73,15 +73,9 @@ module.exports = function init(site) {
 
     let where = req.body.where || {};
 
-    if (req.session.user.is_admin) {
-    } else if (!site.feature('souq')) {
-      where['company.id'] = site.get_company(req).id;
-      where['branch.code'] = site.get_branch(req).code;
-    } else if (site.feature('souq')) {
-      where.company_id = { $ne: 1 };
-    }
+    where['company.id'] = site.get_company(req).id;
+    where['branch.code'] = site.get_branch(req).code;
 
-  
     if (where['search']) {
       where.$or = [];
 
@@ -94,12 +88,11 @@ module.exports = function init(site) {
       });
 
       where.$or.push({
-        'email': site.get_RegExp(where['search'], 'i'),
+        email: site.get_RegExp(where['search'], 'i'),
       });
 
-      delete where['search']
+      delete where['search'];
     }
-
 
     site.security.getUsers(
       {

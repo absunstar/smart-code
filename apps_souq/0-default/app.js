@@ -6,7 +6,7 @@ module.exports = function init(site) {
         path: __dirname + '/site_files/json/types_category_require.json',
       });
       site.post({
-        name: '/api/comment_activities/all',
-        path: __dirname + '/site_files/json/comment_activities.json',
+        name: '/api/feedback_type/all',
+        path: __dirname + '/site_files/json/feedback_type.json',
       });
 }

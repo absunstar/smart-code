@@ -201,9 +201,19 @@
         "ar": "نشاط التعليق"
     },
     {
-        "name": "comments_activities",
-        "en": "Comments Activities",
-        "ar": "أنشطة التعليقات"
+        "name": "feedbacks",
+        "en": "Feedbacks",
+        "ar": "التقييمات"
+    },
+    {
+        "name": "feedback",
+        "en": "Feedback",
+        "ar": "التقييم"
+    },
+    {
+        "name": "detailed_address",
+        "en": "Detailed address",
+        "ar": "العنوان تفصيلي"
     },
     {
         "name": "companies_customer_service",
@@ -223,17 +233,27 @@
     {
         "name": "report",
         "en": "Sub Categories",
-        "ar": "أقسام فرعرية"
+        "ar": "أقسام فرعية"
     },
+    {
+        "name": "cart",
+        "en": "Cart",
+        "ar": "السلة"
+      },
     {
         "name": "report",
         "en": "Report",
         "ar": "إبلاغ"
     },
     {
+        "name": "add_to_cart",
+        "en": "Add to cart",
+        "ar": "إضافة إلى السلة"
+    },
+    {
         "name": "add_categories",
         "en": "Add Categories",
-        "ar": "إضافة أقسام فرعرية"
+        "ar": "إضافة أقسام فرعية"
     },
     {
         "name": "name_sub_category_arabic",

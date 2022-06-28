@@ -2,14 +2,14 @@
 <html lang="en" x-permissions="manage_users_ui || manage_users_manage" data-ng-app="myApp">
   <head x-import="head.html"> </head>
 
-  <body class="##session.lang##">
+  <body class="##session.lang##"  ng-controller="manage_users">
     <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar"></nav>
 
     <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
 
     <div id="main-layout" class="container loaded">
       <div class="row">
-        <div class="row" ng-controller="manage_users">
+        <div class="row">
           <div x-permissions="manage_users_update || manage_users_manage" x-import="manage-users/update_modal.html"></div>
           <div x-permissions="manage_users_delete || manage_users_manage" x-import="manage-users/delete_modal.html"></div>
           <div x-permissions="manage_users_view || manage_users_manage" x-import="manage-users/view_modal.html"></div>

@@ -7,7 +7,7 @@ app.controller('stores', function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.store = {
       image_url: '/images/stores.png',
-      comments_activities: [{date : new Date()}],
+      feedback_list: [{date : new Date()}],
       store_rating: 0,
       number_views: 0,
       number_likes: 0,

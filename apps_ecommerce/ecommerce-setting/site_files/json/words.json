@@ -19,56 +19,7 @@
     "en": "Link to item groups",
     "ar": "ربط بمجموعات الأصناف"
   },
-  {
-    "name": "products",
-    "en": "Products",
-    "ar": "المنتجات"
-  },
-  {
-    "name": "products_menu",
-    "en": "Products menu",
-    "ar": "قائمة المنتجات"
-  },
-  {
-    "name": "product_name",
-    "en": "Product Name",
-    "ar": "إسم المنتج"
-  },
-  {
-    "name": "product_new",
-    "en": "New Product",
-    "ar": "منتج جديد"
-  },
-  {
-    "name": "product_add",
-    "en": "Add Product",
-    "ar": "إضافة منتج "
-  },
-  {
-    "name": "product_edit",
-    "en": "Edit Product",
-    "ar": "تعديل منتج "
-  },
-  {
-    "name": "product_details",
-    "en": "Product Details",
-    "ar": "تفاصيل المنتج "
-  },
-  {
-    "name": "product_delete",
-    "en": "Delete Product",
-    "ar": "حذف منتج "
-  },
-  {
-    "name": "products_groups",
-    "en": "Products Groups",
-    "ar": "مجموعات المنتجات"
-  },
-  {
-    "name": "products_group",
-    "en": "Products Group",
-    "ar": "مجموعة المنتجات"
-  },
+
   {
     "name": "products_group_name",
     "en": "Products Group Name",
@@ -139,30 +90,6 @@
     "name": "shipping_company_delete",
     "en": "Delete Shipping company",
     "ar": "حذف شركة شحن "
-  },
-  {
-    "name": "upon_receipt",
-    "en": "upon receipt",
-    "ar": "عند الإستلام"
-  },
-  {
-    "name": "delivery_type",
-    "en": "Delivery Type",
-    "ar": "نوع التوصيل"
-  },
-  {
-    "name": "fee_upon_receipt",
-    "en": "Fee upon receipt",
-    "ar": "رسوم عند الإستلام"
-  },
-  {
-    "name": "normal_delivery_fee",
-    "en": "Normal delivery fee",
-    "ar": "رسوم توصيل عادي"
-  },
-  {
-    "name": "fast_delivery_fee",
-    "en": "Fast delivery fee",
-    "ar": "رسوم توصيل سريع"
   }
+ 
 ]

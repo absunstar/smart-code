@@ -2,13 +2,13 @@
 <html lang="en" x-permissions="area_ui || area_manage" data-ng-app="myApp">
   <head x-import="head.html"> </head>
 
-  <body class="##session.lang##">
+  <body class="##session.lang##" ng-controller="area">
     <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar"></nav>
 
     <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
     <div id="main-layout" class="container loaded">
       <div class="row">
-        <div class="row" ng-controller="area">
+        <div class="row" >
           <div x-permissions="area_add || area_manage" x-import="area/add_modal.html"></div>
           <div x-permissions="area_update || area_manage" x-import="area/update_modal.html"></div>
           <div x-permissions="area_delete || area_manage" x-import="area/delete_modal.html"></div>

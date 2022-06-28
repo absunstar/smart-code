@@ -5,7 +5,7 @@
 
 </head>
 
-<body class="##session.lang##">
+<body class="##session.lang##"  ng-controller="comments_types">
     <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
 
     </nav>
@@ -15,7 +15,7 @@
     </nav>
     <div id="main-layout" class="container loaded">
         <div class="row">
-            <div class="row" ng-controller="comments_types">
+            <div class="row">
                 <div x-permissions="comments_types_add || comments_types_manage" x-import="comments-types/add_modal.html">
                 </div>
                 <div x-permissions="comments_types_update || comments_types_manage"

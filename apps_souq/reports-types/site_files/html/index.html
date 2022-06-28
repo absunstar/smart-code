@@ -5,7 +5,7 @@
 
 </head>
 
-<body class="##session.lang##">
+<body class="##session.lang##" ng-controller="reports_types">
     <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
 
     </nav>
@@ -15,7 +15,7 @@
     </nav>
     <div id="main-layout" class="container loaded">
         <div class="row">
-            <div class="row" ng-controller="reports_types">
+            <div class="row" >
                 <div x-permissions="reports_types_add || reports_types_manage" x-import="reports-types/add_modal.html">
                 </div>
                 <div x-permissions="reports_types_update || reports_types_manage"

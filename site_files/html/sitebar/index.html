@@ -1,5 +1,5 @@
 <h2 class="brand" x-features="!atm">
-  <div class="row">
+  <div class="row loaded">
     <div class="inline title" help-id="brand_title">
       <a x-permission="login" href="#" onclick="showMenu()"> <i class="fa fa-bars"></i> </a>
       <a x-features="protouch && !host.ttl" class="broTouchTitle" href="/"> ##word.protouch_title## <span> ##word.brand_tag##</span> </a>
@@ -8,9 +8,14 @@
     </div>
     <!-- style=" margin-left: 400px;
       margin-right: 400px;" -->
-    <div class="inline text-center desktop" x-features="!souq">
+    <div class="inline text-center desktop">
       <div class="info bord" x-features="login">
-        <a id="btn_change_branch" onclick="site.showModal('#changeBranchModal');">
+        <a class="notification" href="/cart" x-features="souq">
+          <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+          <span class="badge">{{user.cart.items.length || 0}}</span>
+        </a>
+
+        <a id="btn_change_branch" onclick="site.showModal('#changeBranchModal');" x-features="!souq">
           <i ng-show="'##session.lang##' == 'ar'"> ##session.company.name_ar## - ##session.branch.name_ar## </i>
           <i ng-show="'##session.lang##' == 'en'"> ##session.company.name_en## - ##session.branch.name_en## </i>
         </a>

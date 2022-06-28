@@ -65,6 +65,16 @@
     "ar": "إلى تاريخ"
   },
   {
+    "name": "addresses_appear",
+    "en": "Addresses appear",
+    "ar": "ظهور العناوين"
+  },
+  {
+    "name": "order_settings",
+    "en": "Order settings",
+    "ar": "إعدادات الطلب"
+  },
+  {
     "name": "link_gl_accounts_with_income_statement_and_budget",
     "en": "Link gl_Accounts With Income Statement And Budget",
     "ar": "ربط الحسابات بتصنيفات قائمة الدخل والميزانية"

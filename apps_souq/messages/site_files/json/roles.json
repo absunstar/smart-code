@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "messages_admin",
+    "en": "Messages Admin",
+    "ar": "إدارة الرسائل",
+    "permissions": ["messages_manage"]
+}]

@@ -30,7 +30,7 @@
                 <tr>
                   <td class="title">##word.payment_method##</td>
                   <td class="center">
-                    {{order.pay_method_eco.##session.lang##}}
+                    {{order.payment_method.##session.lang##}}
                   </td>
                 </tr>
 
@@ -116,8 +116,10 @@
               <th class="not-print">##word.logo##</th>
               <th>##word.code##</th>
               <th>##word.product_name##</th>
+              <th>##word.unit##</th>
               <th>##word.count##</th>
               <th>##word.price##</th>
+              <th>##word.currency##</th>
               <th>##word.total##</th>
             </tr>
             <tr ng-repeat="o in order.items">
@@ -126,8 +128,10 @@
               </td>
               <td class="center userPrint indigoD">{{o.code}}</td>
               <td class="center title">{{o.name_##session.lang##}}</td>
+              <td class="center title">{{o.select_quantity.unit.name_##session.lang##}}</td>
               <td class="center">{{o.count}}</td>
-              <td class="center green">{{o.price}}</td>
+              <td class="center green">{{o.select_quantity.price}}</td>
+              <td class="center">{{o.select_quantity.currency.name_##session.lang##}}</td>
               <td class="center blue">{{o.total}}</td>
             </tr>
           </table>

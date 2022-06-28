@@ -218,6 +218,131 @@
     "ar": "جلسة"
   },
   {
+    "name": "create_order",
+    "en": "Create order",
+    "ar": "إنشاء طلب"
+  },
+  {
+    "name": "total_purchase_price",
+    "en": "Total Purchase Price",
+    "ar": "إجمالي سعر المشتريات"
+  },
+  {
+    "name": "total_purchase_count",
+    "en": "Total Purchase Count",
+    "ar": "إجمالي عدد المشتريات"
+  },
+  {
+    "name": "products_must_added_basket",
+    "en": "Products must be added to the basket",
+    "ar": "يجب إضافة منتجات إلى السلة"
+  },
+  {
+    "name": "send",
+    "en": "Send",
+    "ar": "إرسال"
+  },
+  {
+    "name": "must_write_message",
+    "en": "You must write a message",
+    "ar": "يجب كتابة رسالة"
+  },
+  {
+    "name": "write_your_message_here",
+    "en": "Write your message here",
+    "ar": "أكتب رسالتك هنا"
+  },
+  {
+    "name": "quick_message_to",
+    "en": "Quick message to",
+    "ar": "رسالة سريعة إلى"
+  },
+  {
+    "name": "products",
+    "en": "Products",
+    "ar": "المنتجات"
+  },
+  {
+    "name": "products_menu",
+    "en": "Products menu",
+    "ar": "قائمة المنتجات"
+  },
+  {
+    "name": "product_name",
+    "en": "Product Name",
+    "ar": "إسم المنتج"
+  },
+  {
+    "name": "product_new",
+    "en": "New Product",
+    "ar": "منتج جديد"
+  },
+  {
+    "name": "product_add",
+    "en": "Add Product",
+    "ar": "إضافة منتج "
+  },
+  {
+    "name": "product_edit",
+    "en": "Edit Product",
+    "ar": "تعديل منتج "
+  },
+  {
+    "name": "upon_receipt",
+    "en": "upon receipt",
+    "ar": "عند الإستلام"
+  },
+  {
+    "name": "fee_upon_receipt",
+    "en": "Fee upon receipt",
+    "ar": "رسوم عند الإستلام"
+  },
+  {
+    "name": "normal_delivery_fee",
+    "en": "Normal delivery fee",
+    "ar": "رسوم توصيل عادي"
+  },
+  {
+    "name": "fast_delivery_fee",
+    "en": "Fast delivery fee",
+    "ar": "رسوم توصيل سريع"
+  },
+  {
+    "name": "product_details",
+    "en": "Product Details",
+    "ar": "تفاصيل المنتج "
+  },
+  {
+    "name": "product_delete",
+    "en": "Delete Product",
+    "ar": "حذف منتج "
+  },
+  {
+    "name": "products_groups",
+    "en": "Products Groups",
+    "ar": "مجموعات المنتجات"
+  },
+  {
+    "name": "products_group",
+    "en": "Products Group",
+    "ar": "مجموعة المنتجات"
+  },
+  {
+    "name": "delivery_type",
+    "en": "Delivery Type",
+    "ar": "نوع التوصيل"
+  },
+  {
+    "name": "products_basket",
+    "en": "Products basket",
+    "ar": "سلة المنتجات"
+  },
+  {
+    "name": "my_orders",
+    "en": "My Orders",
+    "ar": "طلباتي"
+  },
+  {
     "name": "create",
     "en": "Create",
     "ar": "إنشاء"
@@ -1223,6 +1348,41 @@
     "name": "branch_to",
     "en": "ًBranch To",
     "ar": "إلى فرع"
+  },
+  {
+    "name": "create_order",
+    "en": "Create order",
+    "ar": "إنشاء طلب"
+  },
+  {
+    "name": "payment_currency",
+    "en": "Payment currency",
+    "ar": "عملة الدفع"
+  },
+  {
+    "name": "approve_order",
+    "en": "Approve Order",
+    "ar": "إعتماد الطلب"
+  },
+  {
+    "name": "main_address",
+    "en": "Main address",
+    "ar": "العنوان الرئيسي"
+  },
+  {
+    "name": "other_addresses",
+    "en": "Other addresses",
+    "ar": "عناوين أخرى"
+  },
+  {
+    "name": "my_addresses",
+    "en": "My addresses",
+    "ar": "عناويني"
+  },
+  {
+    "name": "text",
+    "en": "Text",
+    "ar": "نص"
   },
   {
     "name": "description",

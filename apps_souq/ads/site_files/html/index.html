@@ -2,13 +2,13 @@
 <html lang="en" x-permissions="ads_ui || ads_manage" data-ng-app="myApp">
   <head x-import="head.html"> </head>
 
-  <body class="##session.lang##">
+  <body class="##session.lang##"  ng-controller="ads">
     <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar"></nav>
 
     <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
     <div id="main-layout" class="container loaded">
       <div class="row">
-        <div class="row" ng-controller="ads">
+        <div class="row">
           <div x-permissions="ads_add || ads_manage" x-import="ads/add_modal.html"></div>
           <div x-permissions="ads_update || ads_manage" x-import="ads/update_modal.html"></div>
           <div x-permissions="ads_delete || ads_manage" x-import="ads/delete_modal.html"></div>

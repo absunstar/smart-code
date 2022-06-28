@@ -26,10 +26,16 @@
     <br />
   </div>
 
+  <div class="row" ng-repeat="q in ad.quantity_list">
+    <b class="col4"><br /><b>{{q.unit.name_##session.lang##}} {{q.net_value}} {{q.currency.name_##session.lang##}}</b></b>
+    <i-button class="col2" type="add" ng-hide="ad.store.user.id == user.id" label="##word.add_to_cart##" ng-click="bookList(ad,$index)"></i-button>
+  </div>
+
   <div class="row">
     <i-checkbox class="col2" label="##word.like##" ng-click="updateComment('like')" ng-model="activity.like"> </i-checkbox>
     <i-checkbox class="col2" label="##word.favorite##" ng-click="updateComment('favorite')" ng-model="activity.favorite"> </i-checkbox>
     <i-button fa="flag" label="##word.submit_report##" onclick="site.showModal('#reportModal')"></i-button>
+    <i-button fa="envelope" label="##word.message##" onclick="site.showModal('#messageModal')"></i-button>
   </div>
 
   <div class="row">
@@ -44,9 +50,9 @@
   <br />
   <br />
 
-  <div class="row" ng-repeat="c in ad.comments_activities">
-    <p ng-show="c.comment_activity.id == 4" class="font-22">{{c.user.profile.name}}</p>
-    <p ng-show="c.comment_activity.id == 4" class="font-18 pre_text">{{c.comment}}</p>
+  <div class="row" ng-repeat="c in ad.feedback_list">
+    <p ng-show="c.type.id == 4" class="font-22">{{c.user.profile.name}}</p>
+    <p ng-show="c.type.id == 4" class="font-18 pre_text">{{c.comment}}</p>
     <small class="brown"> {{c.date |date:"dd - MM - yyyy"}} </small>
     <small class="green"> {{c.date |date:"hh:mm"}} </small>
     <br />

@@ -1,46 +1,25 @@
 <!DOCTYPE html>
 
-<html
-  lang="en"
-  data-ng-app="myApp"
-  class="bg-white"
-  x-permissions="display_ad_ui || display_ad_manage"
->
+<html lang="en" data-ng-app="myApp" class="bg-white" x-permissions="display_ad_ui || display_ad_manage">
   <head x-import="head.html"> </head>
 
-  <body style="background: white" class="##session.lang##">
-    <nav
-      x-import="sitebar/index.html"
-      class="sitebar"
-      data-ng-controller="sitebar"
-    ></nav>
+  <body style="background: white" class="##session.lang##" ng-controller="display_ad">
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar"></nav>
 
-    <nav
-      class="sitebottom"
-      x-import="sitebottom/index.html"
-      ng-controller="sitebottom"
-    ></nav>
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
 
-    <div
-      id="main-layout"
-      class="container loaded"
-      ng-controller="display_ad"
-    >
-    <div x-import="display-ad/report_modal.html"></div>
+    <div id="main-layout" class="container loaded">
+      <div x-import="display-ad/report_modal.html"></div>
+      <div x-import="display-ad/message_modal.html"></div>
 
       <div class="row">
         <br />
         <h1 class="center bold black">##word.display_ad##</h1>
         <br />
 
-        <div
-          x-permissions="display_ad_view || display_ad_manage"
-          x-import="display-ad/content.html"
-        ></div>
-
+        <div x-permissions="display_ad_view || display_ad_manage" x-import="display-ad/content.html"></div>
+      </div>
     </div>
-
-
     <div x-import="scripts.html"></div>
     <script x-import="display-ad/index.js"></script>
   </body>

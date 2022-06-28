@@ -28,7 +28,7 @@ module.exports = function init(site) {
         });
       }
     });
-  }, 1000 * 30);
+  }, 1000 * 7);
 
   site.post('/api/ads/add', (req, res) => {
     let response = {
@@ -137,63 +137,77 @@ module.exports = function init(site) {
       return;
     }
     let user = {
-      id : req.session.user.id,
-      email : req.session.user.email,
-      profile : req.session.user.profile,
-    }
-    let ads_doc = req.body;
+      id: req.session.user.id,
+      email: req.session.user.email,
+      profile: req.session.user.profile,
+    };
+    let user_ad = req.body;
     let ad = site.ad_list.find((_ad) => {
-      return _ad.id === ads_doc.id;
+      return _ad.id === user_ad.id;
     });
-    ad.comments_activities = ad.comments_activities || [];
-    // let index = 0;
-    // ad.comments_activities.forEach((_c, i) => {
-    //   if (req.session.user.id === _c.user.id) {
-    //     if (ads_doc.type == 'like') {
-    //       if (_c.comment_activity && _c.comment_activity.id == 1) {
-    //         index = i;
-    //       }
-    //     } else if (ads_doc.type == 'favorite') {
-    //       if (_c.comment_activity && _c.comment_activity.id == 2) {
-    //         index = i;
-    //       }
-    //     }
-    //   }
-    // });
-    if (ads_doc.type == 'like') {
-      if (ads_doc.obj.like) {
-        ad.comments_activities.push({
+    if (!ad) {
+      response.error = 'no id';
+      res.json(response);
+      return;
+    }
+    // ad.feedback_list
+    ad.feedback_list = ad.feedback_list || [];
+    if (user_ad.feedback.type == 'like') {
+      if (user_ad.feedback.like === true) {
+        req.session.user.feedback_list = req.session.user.feedback_list || [];
+        req.session.user.feedback_list.push({type: { id: 1} , ad : {id : user_ad.id}});
+        site.security.updateUser(req.session.user, (err, user_doc) => {});
+        ad.feedback_list.push({
+          date: new Date(),
           user: user,
-          comment_activity: { id: 1, en: 'Like', ar: 'إعجاب' },
+          type: { id: 1, en: 'Like', ar: 'إعجاب'},
+        });
+      } else {
+        req.session.user.feedback_list.splice(
+          req.session.user.feedback_list.findIndex((c) =>  c.type && c.ad && c.type.id == 1 && c.ad.id == ad.id),
+          1
+        );
+        site.security.updateUser(req.session.user, (err, user_doc) => {});
+        ad.feedback_list.splice(
+          ad.feedback_list.findIndex((c) => c.type.id == 1),
+          1
+        );
+      }
+    } else if (user_ad.feedback.type == 'favorite') {
+      if (user_ad.feedback.favorite === true) {
+        req.session.user.feedback_list.push({type: { id: 2} , ad : {id : user_ad.id}});
+        site.security.updateUser(req.session.user, (err, user_doc) => {});
+        ad.feedback_list.push({
+          user: user,
+          type: { id: 2, en: 'Favorite', ar: 'مفضل' },
           date: new Date(),
         });
       } else {
-        ad.comments_activities.splice(ad.comments_activities.findIndex(c =>  c.comment_activity.id == 1) , 1)
+        req.session.user.feedback_list.splice(
+          req.session.user.feedback_list.findIndex((c) => c.type && c.ad && c.type.id == 2 && c.ad.id == ad.id),
+
+          1
+        );
+        site.security.updateUser(req.session.user, (err, user_doc) => {});
+        ad.feedback_list.splice(
+          ad.feedback_list.findIndex((c) => c.type.id == 2),
+          1
+        );
       }
-    } else if (ads_doc.type == 'favorite') {
-      if (ads_doc.obj.favorite) {
-        ad.comments_activities.push({
-          user: user,
-          comment_activity: { id: 2, en: 'Favorite', ar: 'مفضل' },
-          date: new Date(),
-        });
-      } else {
-        ad.comments_activities.splice(ad.comments_activities.findIndex(c =>  c.comment_activity.id == 2) , 1)
-      }
-    } else if (ads_doc.type == 'report') {
-      ad.comments_activities.push({
+    } else if (user_ad.feedback.type == 'report') {
+      ad.feedback_list.push({
         user: user,
-        comment_activity: { id: 3, en: 'Report', ar: 'إبلاغ' },
-        report_type: ads_doc.obj.report_type,
-        comment_report: ads_doc.obj.comment_report,
+        type: { id: 3, en: 'Report', ar: 'إبلاغ' },
+        report_type: user_ad.feedback.report_type,
+        comment_report: user_ad.feedback.comment_report,
         date: new Date(),
       });
-    } else if (ads_doc.type == 'comment') {
-      ad.comments_activities.push({
+    } else if (user_ad.feedback.type == 'comment') {
+      ad.feedback_list.push({
         user: user,
-        comment_activity: { id: 4, en: 'Comment', ar: 'تعليق' },
-        comment_type: ads_doc.obj.comment_type,
-        comment: ads_doc.obj.comment,
+        type: { id: 4, en: 'Comment', ar: 'تعليق' },
+        comment_type: user_ad.feedback.comment_type,
+        comment: user_ad.feedback.comment,
         date: new Date(),
       });
     }
@@ -220,10 +234,15 @@ module.exports = function init(site) {
       res.json(response);
       return;
     }
+
     let ad = null;
     site.ad_list.forEach((a) => {
       if (a.id == req.body.id) {
         ad = a;
+        if (req.body.display) {
+          a.$update = true;
+          a.number_views += 1;
+        }
       }
     });
 
@@ -250,34 +269,34 @@ module.exports = function init(site) {
     let start = (req.data.page_number || 0) * (req.data.limit || 0);
     let end = start + (req.data.limit || 100);
 
-    if (true) {
-      response.done = true;
-      response.list = site.ad_list.filter((i) => !i.$delete).slice(start, end);
-      response.count = response.list.length;
-      res.json(response);
-    } else {
-      $ads.findMany(
-        {
-          sort: req.body.sort || {
-            id: -1,
-          },
-          select: req.body.select || {},
-          limit: req.data.limit || 20,
-          where: where,
-          skip: skip,
+    // if (true) {
+    //   response.done = true;
+    //   response.list = site.ad_list.filter((i) => !i.$delete).slice(start, end);
+    //   response.count = response.list.length;
+    //   res.json(response);
+    // } else {
+    $ads.findMany(
+      {
+        sort: req.body.sort || {
+          id: -1,
         },
-        (err, docs, count) => {
-          if (!err) {
-            response.done = true;
-            response.list = docs;
-            response.count = count;
-          } else {
-            response.error = err.message;
-          }
-          res.json(response);
+        select: req.body.select || {},
+        limit: req.data.limit || 20,
+        where: where,
+        skip: skip,
+      },
+      (err, docs, count) => {
+        if (!err) {
+          response.done = true;
+          response.list = docs;
+          response.count = count;
+        } else {
+          response.error = err.message;
         }
-      );
-    }
+        res.json(response);
+      }
+    );
+    // }
   });
 
   site.getAd = function (id, callback) {

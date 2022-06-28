@@ -5,7 +5,7 @@
 
 </head>
 
-<body class="##session.lang##">
+<body class="##session.lang##" ng-controller="main_categories">
     <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
 
     </nav>
@@ -15,7 +15,7 @@
     </nav>
     <div id="main-layout" class="container loaded">
         <div class="row">
-            <div class="row" ng-controller="main_categories">
+            <div class="row" >
                 <div x-permissions="main_categories_add || main_categories_manage" x-import="main-categories/add_modal.html">
                 </div>
                 <div x-permissions="main_categories_update || main_categories_manage"

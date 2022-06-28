@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="cart_ui || cart_manage" data-ng-app="myApp">
+  <head x-import="head.html">
+    <link rel="stylesheet" href="/css/order_invoice.css?v=##site.options.version##" />
+  </head>
+
+  <body class="##session.lang##" ng-controller="cart">
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar"></nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
+
+    <div id="main-layout" class="container loaded">
+      <div class="row">
+        <div class="row" x-permissions="login">
+          <!--  <div class="row">
+            <h1 class="bold text-center">##word.cart##</h1>
+          </div> -->
+
+          <div class="top-actions">
+            <span ng-show="busy">
+              <span class="sr-only">Loading...</span>
+            </span>
+          </div>
+
+          <br />
+          <br />
+          <br />
+          <div class="row" ng-hide="user.cart.items.length > 0">
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <h1 class="center blue bold">##word.products_must_added_basket##</h1>
+          </div>
+          <div id="orderCart" class="row" ng-show="user.cart.items.length > 0">
+            <div class="row">
+              <div class="col4"></div>
+              <i-list help-id="" v="r" class="col2" label="##word.payment_method##" ng-change="calc(user)" ng-model="user.cart.payment_method" display="##session.lang##" items="orderPaymentList" ng-search="_search.$payment_method"> </i-list>
+            </div>
+
+            <br />
+            <br />
+            <h2 class="error">{{error}}</h2>
+            <br />
+            <div class="row">
+              <div class="col2"></div>
+              <div class="col8">
+                <table x-permissions="login" class="table hover bold">
+                  <tr>
+                    <th class="not-print">##word.logo##</th>
+                    <th>##word.product_name##</th>
+                    <th>##word.unit##</th>
+                    <th>##word.count##</th>
+                    <th>##word.price##</th>
+                    <th>##word.currency##</th>
+                    <th>##word.total##</th>
+                    <th class="not-print">##word.actions##</th>
+                  </tr>
+                  <tr ng-repeat="p in user.cart.items">
+                    <td class="center not-print">
+                      <i-image view class="logo" ng-model="p.image_url"></i-image>
+                    </td>
+                    <td class="center title">{{p.name_##session.lang##}}</td>
+                    <td class="center title">{{p.select_quantity.unit.name_##session.lang##}}</td>
+                    <td class="center">
+                      <i-control type="number" ng-change="calc(user)" ng-model="p.count"></i-control>
+                    </td>
+                    <td class="center green">{{p.select_quantity.price}}</td>
+                    <td class="center">{{p.select_quantity.currency.name_##session.lang##}}</td>
+                    <td class="center blue">{{p.total}}</td>
+                    <td class="center not-print">
+                      <i-button type="delete" ng-click="user.cart.items.splice($index,1) ; calc(user)"> </i-button>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col2"></div>
+              <i-control class="col2 r_black center" ng-show="user.cart.payment_method.id == 1" type="number" disabled label="##word.fee_upon_receipt##" ng-model="user.cart.fee_upon_receipt"></i-control>
+
+              <i-control id="item_name" class="col2 r_green center" label="##word.total_purchase_price##" type="number" ng-model="user.cart.net_value" disabled></i-control>
+              <i-list class="col3" ng-search="_search.$currency_search" display="name_##session.lang##" ng-model="user.cart.currency" ng-change="calc(user)" items="currenciesList" label="##word.payment_currency##"> </i-list>
+
+              <i-control class="col2" disabled ng-model="user.cart.currency.ex_rate" type="number" label="##word.exchange_rate##"></i-control>
+              <i-control id="item_name" class="col2 r_green center" label="##word.paid_require##" type="number" ng-model="user.cart.paid_require" disabled></i-control>
+            </div>
+            <br />
+            <br />
+            <div class="row center">
+              <i-button type="fa fa-cart-plus saving" label="##word.create_order##" ng-click="createOrder()"> </i-button>
+            </div>
+          </div>
+        </div>
+        <div id="alert" class="modal alert small">
+          <div class="modal-content">
+            <div class="modal-body">
+              <h1 class="blue center">##word.added_to_orders##</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div x-import="scripts.html"></div>
+
+    <script x-permissions="login" x-import="cart/index.js"></script>
+  </body>
+</html>

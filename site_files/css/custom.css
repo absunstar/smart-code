@@ -457,7 +457,7 @@ a.pro-template .description {
 .notification {
   text-decoration: none;
   padding: 2px 5px;
-  font-size: -webkit-xxx-large;
+  font-size: x-large;
   border-radius: 50%;
   position: relative;
   display: inline-block;
@@ -467,7 +467,7 @@ a.pro-template .description {
   position: absolute;
   top: -3px;
   right: -9px;
-  font-size: x-large;
+  /* font-size: x-large; */
   padding: 0px 6px;
   border-radius: 50%;
   background-color: red;
@@ -512,8 +512,30 @@ a.pro-template .description {
 
 
 
+._scroll {
+  overflow: scroll;
 
+}
+._scroll::-webkit-scrollbar {
+  width: 10px;
+}
 
+/* Track */
+._scroll::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+._scroll::-webkit-scrollbar-thumb {
+  background: green; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+._scroll::-webkit-scrollbar-thumb:hover {
+  background: #04AA6D; 
+}
 
 
 

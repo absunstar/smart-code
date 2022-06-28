@@ -1,22 +1,3 @@
 [
-    {
-        "name": "create_order",
-        "en": "Create order",
-        "ar": "إنشاء طلب"
-    },
-    {
-        "name": "main_eco",
-        "en": "Main Ecommerce",
-        "ar": "المتجر الرئيسي"
-    },
-    {
-        "name": "products_must_added",
-        "en": "Products must be added",
-        "ar": "يجب إضافة منتجات"
-    },
-    {
-        "name": "added_to_orders",
-        "en": "Added to orders",
-        "ar": "تم الإضافة إلى الطلبات"
-    }
+ 
 ]

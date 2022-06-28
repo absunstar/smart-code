@@ -1,0 +1,36 @@
+<div class="form">
+    <div id="basicInformation" class="">
+        <fieldset>
+            <legend> ##word.basic_information## </legend>
+            <div class="row">
+                <div class="col9">
+                    <div class="row">
+
+                        <i-control ng-hide="disabledCode" class="col2" label="##word.code##" ng-model="message.code">
+                        </i-control>
+
+                        <i-control help-id="message_name_ar" v="r ll2" class="col4" label="##word.message_name##"
+                            ng-model="message.name_ar"></i-control>
+
+                        <i-control help-id="message_name_en" v="r" class="col4" label="##word.name_en##"
+                            ng-model="message.name_en"></i-control>
+
+                        <i-checkbox help-id="messages_active" class="col2" label="##word.active##" ng-model="message.active">
+                        </i-checkbox>
+                    </div>
+
+                    <div class="row">
+                        <i-textarea ng-model="message.description" class="col6" label="##word.description##">
+                        </i-textarea>
+                    </div>
+
+                </div>
+
+                <div class="col3">
+                    <i-image help-id="messages_logo" ng-model="message.image_url"></i-image>
+                </div>
+            </div>
+        </fieldset>
+
+    </div>
+</div>

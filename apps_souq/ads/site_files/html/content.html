@@ -27,10 +27,13 @@
             <i-control help-id="ad_number_favorites" type="number" class="col3" label="##word.number_favorites##" ng-model="ad.number_favorites"></i-control>
             <i-control help-id="ad_number_reports" type="number" class="col3" label="##word.number_reports##" ng-model="ad.number_reports"></i-control>
           </div>
+
+          <i-address ng-show="defaultSettings.ads_settings.addresses_appear" ng-model="ad"></i-address>
+
           <i-category ng-model="ad.main_category" ng-label="##word.main_category##" ng-list="category_list"></i-category>
           <br />
 
-          <div class="row" ng-show="ad.main_category">
+          <div class="row" ng-show="ad.main_category.category_require_list.length > 0">
             <fieldset>
               <legend>##word.ad_require##</legend>
               <div class="row" ng-repeat="c in ad.main_category.category_require_list">
@@ -119,7 +122,7 @@
       <br />
       <br />
       <br />
-      <i-comment class="padding_10" ng-model="ad"></i-comment>
+      <i-feedback class="padding_10" ng-model="ad"></i-feedback>
       <br />
       <br />
       <br />

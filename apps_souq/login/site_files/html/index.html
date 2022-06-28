@@ -2,13 +2,13 @@
 <html lang="en" data-ng-app="myApp">
   <head x-import="head.html"> </head>
 
-  <body class="##session.lang##">
+  <body class="##session.lang##" ng-controller="login_souq">
     <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar"></nav>
 
     <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
     <div id="main-layout" class="container" id="loginSouqModal">
       <div class="row">
-        <div class="row" ng-controller="login_souq">
+        <div class="row" >
           <div class="row">
             <h1 class="bold text-center">##word.login##</h1>
           </div>

@@ -6,7 +6,7 @@ app.controller('ads', function ($scope, $http, $timeout) {
   $scope.displayAddAd = function () {
     $scope.error = '';
     $scope.ad = {
-      comments_activities: [{ date: new Date() }],
+      feedback_list: [{ date: new Date() }],
       ad_rating: 0,
       number_views: 0,
       number_likes: 0,

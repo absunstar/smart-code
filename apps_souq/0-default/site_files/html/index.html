@@ -1,29 +1,37 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="myApp">
   <head x-import="head.html"></head>
-  <body class="##session.lang##">
+  <body class="##session.lang##" ng-controller="index_souq">
     <nav class="sitebar" x-import="sitebar/index.html" ng-controller="sitebar"></nav>
 
     <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
 
     <div id="main-layout" class="container loaded">
-      <div class="row" ng-controller="index_souq">
+      <div class="row">
         <div class="row">
           <i-control ng-keydown="getAdsList($event,search_ads)" class="col4" ng-model="search_ads" label="##word.search_all##" type="text"></i-control>
           <i-button type="search" label="##word.search##" ng-click="getAdsList({which:13},search_ads)"> </i-button>
         </div>
         <div class="row">
           <fieldset>
-            <div ng-repeat="i in adsList" class="post pointer img__wrap" ng-click="displayAd(i.id)">
-              <h2>{{i.name_##session.lang##}}</h2>
-              <img src="{{i.image_url}}" alt="" />
-              <div class="post_description">
-                <p><b class="black"> ##word.ad_owner## : </b><b> {{i.store.user.profile.name}} </b></p>
-                <p><b class="black"> ##word.store## : </b><b> {{i.store.name_##session.lang##}} </b></p>
-                <p ng-repeat="q in i.quantity_list"><b>{{q.unit.name_##session.lang##}} {{q.net_value}} {{q.currency.name_##session.lang##}}</b></p>
+            <div ng-repeat="a in adsList">
+              <div class="row" ng-click="displayAd(a.id)">
+                <i-image view class="logo col2" ng-model="a.image_url"></i-image>
+                <b class="bold col4">{{a.name_##session.lang##}}</b>
               </div>
-
-              <!-- <b class="img__description userPrint"> {{i.name_##session.lang##}} </b> -->
+              <div class="row" ng-click="displayAd(a.id)">
+                <p><b class="black"> ##word.ad_owner## : </b><b> {{a.store.user.profile.name}} </b></p>
+                <p><b class="black"> ##word.store## : </b><b> {{a.store.name_##session.lang##}} </b></p>
+                <p ng-repeat="q in a.quantity_list"><b>{{q.unit.name_##session.lang##}} {{q.net_value}} {{q.currency.name_##session.lang##}}</b></p>
+              </div>
+              <div class="row">
+                <i-button fa="shopping-cart" ng-hide="a.store.user.id == user.id" label="##word.add_to_cart##" ng-click="bookList(a,0)"> </i-button>
+                <i-checkbox label="##word.like##" ng-click="updateComment(a,'like')" ng-model="a.like"> </i-checkbox>
+                <i-checkbox label="##word.favorite##" ng-click="updateComment(a,'favorite')" ng-model="a.favorite"> </i-checkbox>
+              </div>
+              <br />
+              <hr>
+              <br />
             </div>
           </fieldset>
         </div>

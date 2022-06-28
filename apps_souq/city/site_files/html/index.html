@@ -5,7 +5,7 @@
 
 </head>
 
-<body class="##session.lang##">
+<body class="##session.lang##" ng-controller="city">
 
     <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
 
@@ -17,7 +17,7 @@
 
     <div id="main-layout" class="container loaded">
         <div class="row">
-            <div class="row" ng-controller="city">
+            <div class="row" >
                 <div x-permissions="city_add || city_manage" x-import="city/add_modal.html"></div>
                 <div x-permissions="city_update || city_manage" x-import="city/update_modal.html"></div>
                 <div x-permissions="city_delete || city_manage" x-import="city/delete_modal.html"></div>

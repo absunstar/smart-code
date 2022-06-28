@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "en": "New Order",
+        "ar": "طلب جديد"
+    },
+    {
+        "id": 2,
+        "en": "Order approved",
+        "ar": "تم إعتماد الطلب"
+    },
+    {
+        "id": 3,
+        "en": "Under Delivery",
+        "ar": "قيد التوصيل"
+    },
+    {
+        "id": 4,
+        "en": "Done delivery",
+        "ar": "تم التوصيل"
+    }
+]

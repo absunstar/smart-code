@@ -5,7 +5,7 @@
 
 </head>
 
-<body class="##session.lang##">
+<body class="##session.lang##" ng-controller="goves">
 
     <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
 
@@ -16,7 +16,7 @@
     </nav>
     <div id="main-layout" class="container loaded">
         <div class="row">
-            <div class="row" ng-controller="goves">
+            <div class="row" >
                 <div x-permissions="goves_add || goves_manage" x-import="goves/add_modal.html"></div>
                 <div x-permissions="goves_update || goves_manage" x-import="goves/update_modal.html"></div>
                 <div x-permissions="goves_delete || goves_manage" x-import="goves/delete_modal.html"></div>

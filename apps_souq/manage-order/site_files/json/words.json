@@ -1,0 +1,16 @@
+[
+    {"name" : "manage_order" , "en" : "Manage Order" , "ar" : "إدارة الطلب"},
+    {"name" : "manage_orders" , "en" : "Manage Orders" , "ar" : "إدارة الطلبات"},
+    {"name" : "order_approved" , "en" : "Order approved" , "ar" : "تم إعتماد الطلب"},
+    {"name" : "order_approval" , "en" : "Approval of the order" , "ar" : "إعتماد الطلب"},
+    {"name" : "under_delivery" , "en" : "Under delivery" , "ar" : "قيد التوصيل"},
+    {"name" : "done_delivery" , "en" : "Done delivery" , "ar" : "تم التوصيل"},
+    {"name" : "delivery_details" , "en" : "Delivery details" , "ar" : "تفاصيل التوصيل"},
+    {"name" : "delivery_agency" , "en" : "Delivery agency" , "ar" : "الجهة الموصلة"},
+    {"name" : "conductor" , "en" : "Conductor" , "ar" : "الموصل"},
+    {"name" : "delivery_agency_set" , "en" : "Delivery agency set" , "ar" : "تعيين الجهة الموصلة"},
+    {"name" : "manage_order_code" , "en" : "Order Code" , "ar" : "كود الطلب"}
+
+
+
+]

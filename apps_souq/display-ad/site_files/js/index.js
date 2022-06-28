@@ -9,13 +9,14 @@ app.controller('display_ad', function ($scope, $http, $timeout) {
       url: '/api/ads/view',
       data: {
         id: site.toNumber('##query.id##'),
+        display: true,
       },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.ad = response.data.doc;
-          $scope.ad.comments_activities = $scope.ad.comments_activities || [];
+          /* $scope.ad.comments_activities = $scope.ad.comments_activities || [];
           $scope.ad.comments_activities.forEach((_c) => {
             if (_c.user && _c.user.id === site.toNumber('##user.id##')) {
               if (_c.comment_activity && _c.comment_activity.id == 1) {
@@ -24,7 +25,7 @@ app.controller('display_ad', function ($scope, $http, $timeout) {
                 $scope.activity.favorite = true;
               }
             }
-          });
+          }); */
         } else {
           $scope.error = response.data.error;
         }
@@ -35,8 +36,31 @@ app.controller('display_ad', function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.sendMessage = function () {
+    let data = { user: $scope.ad.store.user, message: $scope.activity.message };
+
+    $http({
+      method: 'POST',
+      url: '/api/messages/update',
+      data: data,
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.activity.message = '';
+          site.hideModal('#messageModal');
+        } else {
+          $scope.error = 'Please Login First';
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    );
+  };
+
   $scope.updateComment = function (type) {
-    let data = { id: $scope.ad.id, type: type, obj: $scope.activity };
+    let data = { id: $scope.ad.id, feedback: { ...$scope.activity, type: type } };
 
     $http({
       method: 'POST',
@@ -47,9 +71,9 @@ app.controller('display_ad', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           if (type == 'comment') {
-            $scope.ad.comments_activities.push({
+            $scope.ad.feedback_list.push({
               user: { profile: { name: '##user.profile.name##' } },
-              comment_activity: { id: 4, en: 'Comment', ar: 'تعليق' },
+              type: { id: 4, en: 'Comment', ar: 'تعليق' },
               comment_type: $scope.activity.comment_type,
               comment: $scope.activity.comment,
               date: new Date(),
@@ -68,6 +92,99 @@ app.controller('display_ad', function ($scope, $http, $timeout) {
         console.log(err);
       }
     );
+  };
+
+  $scope.getUser = function () {
+    $scope.busy = true;
+    $http({
+      method: 'POST',
+      url: '/api/user/view',
+      data: {
+        id: '##user.id##',
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.user = response.data.doc;
+          if (!$scope.user.cart) {
+            $scope.user.cart = {
+              total: 0,
+              fee_upon_receipt: 0,
+              normal_delivery_fee: 0,
+              fast_delivery_fee: 0,
+              items: [],
+            };
+          } else {
+            $scope.calc($scope.user);
+          }
+         
+          $scope.activity.like = $scope.user.feedback_list.some((_l) =>_l.type && _l.ad && _l.type.id == 1 && _l.ad.id == site.toNumber('##query.id##'));
+          $scope.activity.favorite = $scope.user.feedback_list.some((_f) =>_f.type && _f.ad && _f.type.id == 2 && _f.ad.id == site.toNumber('##query.id##'));
+        } else {
+          $scope.error = response.data.error;
+        }
+      },
+      function (err) {}
+    );
+  };
+
+  $scope.bookList = function (ad, i) {
+    $scope.error = '';
+    $scope.user.cart.items = $scope.user.cart.items || [];
+    let exist = false;
+
+    $scope.user.cart.items.forEach((el) => {
+      if (ad.id == el.id && el.select_quantity.unit.id == ad.quantity_list[i].unit.id) {
+        exist = true;
+        el.count += 1;
+      }
+    });
+
+    if (!exist) {
+      let obj = {
+        id: ad.id,
+        code: ad.code,
+        image_url: ad.image_url,
+        name_ar: ad.name_ar,
+        name_en: ad.name_en,
+        unit: ad.unit,
+        select_quantity: ad.quantity_list[i],
+        count: 1,
+      };
+      $scope.user.cart.items.unshift(obj);
+    }
+
+    $scope.calc($scope.user);
+  };
+
+  $scope.calc = function (obj) {
+    $scope.error = '';
+    $timeout(() => {
+      obj.cart.net_value = 0;
+      if (obj.cart.items && obj.cart.items.length > 0) {
+        obj.cart.items.forEach((_p) => {
+          _p.total = _p.select_quantity.price * _p.count;
+          obj.cart.net_value += _p.total;
+        });
+      }
+      $http({
+        method: 'POST',
+        url: '/api/user/update',
+        data: obj,
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done) {
+          } else {
+            $scope.error = response.data.error;
+          }
+        },
+        function (err) {
+          $scope.getUser();
+        }
+      );
+    }, 300);
   };
 
   $scope.getReportsTypesList = function (where) {
@@ -95,4 +212,5 @@ app.controller('display_ad', function ($scope, $http, $timeout) {
 
   $scope.getReportsTypesList();
   $scope.dissplayAd();
+  $scope.getUser();
 });

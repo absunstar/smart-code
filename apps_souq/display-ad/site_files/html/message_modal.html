@@ -1,0 +1,22 @@
+<div id="messageModal" class="modal small">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>##word.messsage## <i class="fa fa-flag"></i></h2>
+    </div>
+    <div class="modal-body">
+      <div class="row center">
+        <p>##word.quick_message_to##</p>
+        <p class="font-18 black bold">{{ad.store.user.profile.name}}</p>
+      </div>
+      <div class="row center">
+        <i-textarea ng-model="activity.message" label="##word.write_your_message_here##"> </i-textarea>
+      </div>
+    </div>
+    <h2 class="error center bold">{{error}}</h2>
+    <div class="modal-footer center">
+      <i-button type="add" label="##word.send##" ng-click="sendMessage()"></i-button>
+      <i-button type="close" label=" ##word.close##" onclick="site.hideModal('#messageModal')"></i-button>
+    </div>
+  </div>
+</div>

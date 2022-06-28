@@ -1,9 +1,5 @@
 [
-    {
-        "name": "create_order",
-        "en": "Create order",
-        "ar": "إنشاء طلب"
-    },
+   
     {
         "name": "qr_storeout",
         "en": "Main Ecommerce",

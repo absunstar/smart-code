@@ -5,7 +5,7 @@
 
 </head>
 
-<body class="##session.lang##">
+<body class="##session.lang##"  ng-controller="countries">
 
     <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
 
@@ -17,7 +17,7 @@
 
     <div id="main-layout" class="container loaded">
         <div class="row">
-            <div class="row" ng-controller="countries">
+            <div class="row">
                 <div x-permissions="countries_add || countries_manage" x-import="countries/add_modal.html"></div>
                 <div x-permissions="countries_update || countries_manage" x-import="countries/update_modal.html"></div>
                 <div x-permissions="countries_delete || countries_manage" x-import="countries/delete_modal.html"></div>

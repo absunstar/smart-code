@@ -3,13 +3,13 @@
 <html lang="en" data-ng-app="myApp">
   <head x-import="head.html"> </head>
 
-  <body class="##session.lang##">
+  <body class="##session.lang##" ng-controller="register_souq">
     <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar"></nav>
 
     <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
     <div id="main-layout" class="container">
       <div class="row" id="registersouqModal">
-        <div class="row" ng-controller="register_souq">
+        <div class="row" >
           <div class="row">
             <h1 class="bold text-center">##word.register##</h1>
           </div>

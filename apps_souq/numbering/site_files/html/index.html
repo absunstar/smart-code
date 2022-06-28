@@ -5,7 +5,7 @@
 <head x-import="head.html">
 </head>
 
-<body style="background : white" class=" ##session.lang##">
+<body style="background : white" class=" ##session.lang##" ng-controller="numbering">
 
     <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
 
@@ -15,7 +15,7 @@
 
     </nav>
 
-    <div id="main-layout" class="container" ng-controller="numbering">
+    <div id="main-layout" class="container" >
         <div x-import="numbering/year_month.html"></div>
         <div class="row ">
 

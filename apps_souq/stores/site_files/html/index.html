@@ -2,13 +2,13 @@
 <html lang="en" x-permissions="stores_ui || stores_manage" data-ng-app="myApp">
   <head x-import="head.html"> </head>
 
-  <body class="##session.lang##">
+  <body class="##session.lang##" ng-controller="stores">
     <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar"></nav>
 
     <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
     <div id="main-layout" class="container loaded">
       <div class="row">
-        <div class="row" ng-controller="stores">
+        <div class="row" >
           <div x-permissions="stores_add || stores_manage" x-import="stores/add_modal.html"></div>
           <div x-permissions="stores_update || stores_manage" x-import="stores/update_modal.html"></div>
           <div x-permissions="stores_delete || stores_manage" x-import="stores/delete_modal.html"></div>

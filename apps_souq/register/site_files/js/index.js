@@ -44,7 +44,6 @@ app.controller('register_souq', function ($scope, $http, $timeout) {
   };
 
   $scope.showPass = function () {
-    console.log('xxxxxxxxxxxxxxxxxxxxxx');
     let x = document.querySelector('#pass1 input');
     let z = document.querySelector('#pass2 input');
     if (x.type === 'password' && z.type === 'password') {

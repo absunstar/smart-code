@@ -2,6 +2,7 @@
   <div class="tabs inline-block">
     <div class="tabs-header">
       <a class="tab-link" onclick="site.showTabContent(event, '#site_settings')"> ##word.site_settings## </a>
+      <a class="tab-link" onclick="site.showTabContent(event, '#order_settings')"> ##word.order_settings## </a>
       <a class="tab-link" onclick="site.showTabContent(event, '#ads_settings')"> ##word.ads_settings## </a>
       <a class="tab-link" onclick="site.showTabContent(event, '#stores_settings')"> ##word.stores_settings## </a>
     </div>
@@ -22,6 +23,20 @@
                   ng-search="_search.$search_user_design"
                   label="##word.user_design##"
                 ></i-list>
+          </div>
+        </fieldset>
+        <i-button type="default left" fa="2x fa-angle-double-left" onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
+      </div>
+
+
+
+      <div id="order_settings" class="tab-content">
+        <fieldset>
+          <legend>##word.order_settings##</legend>
+   
+          <div class="row" >
+            <i-control class="col2" type="number" label="##word.fee_upon_receipt##" ng-model="default_setting.order_settings.fee_upon_receipt"></i-control>
+
           </div>
         </fieldset>
         <i-button type="default left" fa="2x fa-angle-double-left" onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
@@ -98,6 +113,7 @@
           </div>
 
           <div class="row">
+            <i-checkbox class="row" label="##word.addresses_appear##" ng-model="default_setting.ads_settings.addresses_appear"></i-checkbox>
             <i-checkbox class="row" label="##word.quantities_can_be_used##" ng-model="default_setting.ads_settings.quantities_can_be_used"></i-checkbox>
             <i-checkbox class="row" label="##word.upload_multiple_photos##" ng-model="default_setting.ads_settings.upload_multiple_photos"></i-checkbox>
           </div>

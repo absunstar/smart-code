@@ -20,11 +20,6 @@
         "ar": "حفظ طلب"
     },
     {
-        "name": "approve_order",
-        "en": "Approve Order",
-        "ar": "إعتماد الطلب"
-    },
-    {
         "name": "select_table",
         "en": "Select Table",
         "ar": "إختيار الطاولة"
