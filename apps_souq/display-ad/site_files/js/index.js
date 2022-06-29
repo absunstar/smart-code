@@ -115,12 +115,10 @@ app.controller('display_ad', function ($scope, $http, $timeout) {
               fast_delivery_fee: 0,
               items: [],
             };
-          } else {
-            $scope.calc($scope.user);
           }
-         
-          $scope.activity.like = $scope.user.feedback_list.some((_l) =>_l.type && _l.ad && _l.type.id == 1 && _l.ad.id == site.toNumber('##query.id##'));
-          $scope.activity.favorite = $scope.user.feedback_list.some((_f) =>_f.type && _f.ad && _f.type.id == 2 && _f.ad.id == site.toNumber('##query.id##'));
+
+          $scope.activity.like = $scope.user.feedback_list.some((_l) => _l.type && _l.ad && _l.type.id == 1 && _l.ad.id == site.toNumber('##query.id##'));
+          $scope.activity.favorite = $scope.user.feedback_list.some((_f) => _f.type && _f.ad && _f.type.id == 2 && _f.ad.id == site.toNumber('##query.id##'));
         } else {
           $scope.error = response.data.error;
         }
@@ -155,36 +153,28 @@ app.controller('display_ad', function ($scope, $http, $timeout) {
       $scope.user.cart.items.unshift(obj);
     }
 
-    $scope.calc($scope.user);
+    $scope.updateCart($scope.user);
   };
 
-  $scope.calc = function (obj) {
+  $scope.updateCart = function (obj) {
     $scope.error = '';
-    $timeout(() => {
-      obj.cart.net_value = 0;
-      if (obj.cart.items && obj.cart.items.length > 0) {
-        obj.cart.items.forEach((_p) => {
-          _p.total = _p.select_quantity.price * _p.count;
-          obj.cart.net_value += _p.total;
-        });
-      }
-      $http({
-        method: 'POST',
-        url: '/api/user/update',
-        data: obj,
-      }).then(
-        function (response) {
-          $scope.busy = false;
-          if (response.data.done) {
-          } else {
-            $scope.error = response.data.error;
-          }
-        },
-        function (err) {
-          $scope.getUser();
+
+    $http({
+      method: 'POST',
+      url: '/api/user/update',
+      data: obj,
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+        } else {
+          $scope.error = response.data.error;
         }
-      );
-    }, 300);
+      },
+      function (err) {
+        $scope.getUser();
+      }
+    );
   };
 
   $scope.getReportsTypesList = function (where) {

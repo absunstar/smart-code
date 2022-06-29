@@ -26,32 +26,37 @@ module.exports = function init(site) {
       }
     }
 
-    site.security.register(
-      {
-        email: req.body.email,
-        password: req.body.password,
-        feedback_list: [],
-        other_addresses_list : [],
-        ip: req.ip,
-        permissions: ['user'],
-        active: true,
-        profile: {
-          files: [],
-          name: req.body.first_name,
-          last_name: req.body.last_name,
-        },
-        $req: req,
-        $res: res,
+    let user = {
+      email: req.body.email,
+      password: req.body.password,
+      feedback_list: [],
+      other_addresses_list: [],
+      ip: req.ip,
+      permissions: ['user'],
+      active: true,
+      profile: {
+        files: [],
+        name: req.body.first_name,
+        last_name: req.body.last_name,
       },
-      function (err, doc) {
-        if (!err) {
-          response.user = doc;
-          response.done = true;
-        } else {
-          response.error = err.message;
-        }
-        res.json(response);
+      $req: req,
+      $res: res,
+    };
+
+    if (site.defaultSettingDoc && site.defaultSettingDoc.stores_settings && site.defaultSettingDoc.stores_settings.maximum_stores) {
+      user.maximum_stores = site.defaultSettingDoc.stores_settings.maximum_stores;
+    } else {
+      user.maximum_stores = 10;
+    }
+
+    site.security.register(user, function (err, doc) {
+      if (!err) {
+        response.user = doc;
+        response.done = true;
+      } else {
+        response.error = err.message;
       }
-    );
+      res.json(response);
+    });
   });
 };

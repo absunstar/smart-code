@@ -196,6 +196,11 @@
         "ar": "صاحب الإعلان"
     },
     {
+        "name": "store_owner",
+        "en": "Store owner",
+        "ar": "صاحب المتجر"
+    },
+    {
         "name": "comment_activity",
         "en": "Comment Activity",
         "ar": "نشاط التعليق"

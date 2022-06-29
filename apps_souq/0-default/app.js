@@ -1,6 +1,5 @@
 module.exports = function init(site) {
 
-
     site.post({
         name: '/api/types_category_require/all',
         path: __dirname + '/site_files/json/types_category_require.json',

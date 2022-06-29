@@ -35,7 +35,7 @@
     <i-checkbox class="col2" label="##word.like##" ng-click="updateComment('like')" ng-model="activity.like"> </i-checkbox>
     <i-checkbox class="col2" label="##word.favorite##" ng-click="updateComment('favorite')" ng-model="activity.favorite"> </i-checkbox>
     <i-button fa="flag" label="##word.submit_report##" onclick="site.showModal('#reportModal')"></i-button>
-    <i-button fa="envelope" label="##word.message##" onclick="site.showModal('#messageModal')"></i-button>
+    <i-button fa="envelope" label="##word.message##" ng-hide="ad.store.user.id == user.id" onclick="site.showModal('#messageModal')"></i-button>
   </div>
 
   <div class="row">
@@ -50,7 +50,7 @@
   <br />
   <br />
 
-  <div class="row" ng-repeat="c in ad.feedback_list">
+  <div class="row" ng-repeat="c in ad.feedback_list" ng-show="c.user && c.comment">
     <p ng-show="c.type.id == 4" class="font-22">{{c.user.profile.name}}</p>
     <p ng-show="c.type.id == 4" class="font-18 pre_text">{{c.comment}}</p>
     <small class="brown"> {{c.date |date:"dd - MM - yyyy"}} </small>

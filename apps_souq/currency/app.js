@@ -1,6 +1,34 @@
 module.exports = function init(site) {
   const $currency = site.connectCollection('currency');
+  site.currency_list = [];
+  $currency.findMany({}, (err, docs) => {
+    if (!err && docs) {
+      site.currency_list = [...site.currency_list, ...docs];
+    }
+  });
 
+  setInterval(() => {
+    site.currency_list.forEach((a, i) => {
+      if (a.$add) {
+        $currency.add(a, (err, doc) => {
+          if (!err && doc) {
+            site.currency_list[i] = doc;
+          }
+        });
+      } else if (a.$update) {
+        $currency.edit({
+          where: {
+            id: a.id,
+          },
+          set: a,
+        });
+      } else if (a.$delete) {
+        $currency.delete({
+          id: a.id,
+        });
+      }
+    });
+  }, 1000 * 7);
   site.get({
     name: 'images',
     path: __dirname + '/site_files/images/',
@@ -147,31 +175,6 @@ module.exports = function init(site) {
       }
     );
 
-    // $currency.insertMany(
-    //   {
-    //     name_ar: 'ريال سعودي',
-    //     name_en: 'SR',
-    //     minor_currency_ar: 'هللة',
-    //     minor_currency_en: 'Halala',
-    //     image_url: '/images/currency.png',
-    //     ex_rate: 1,
-    //     code: '1-Test',
-    //     company: {
-    //       id: doc.id,
-    //       name_ar: doc.name_ar,
-    //       name_en: doc.name_en,
-    //     },
-    //     branch: {
-    //       code: doc.branch_list[0].code,
-    //       name_ar: doc.branch_list[0].name_ar,
-    //       name_en: doc.branch_list[0].name_en,
-    //     },
-    //     active: true,
-    //   },
-    //   (err, doc1) => {
-    //     site.call('[currency][safe][add]', doc1);
-    //   }
-    // );
   });
 
   site.post('/api/currency/add', (req, res) => {
@@ -198,38 +201,10 @@ module.exports = function init(site) {
     }
 
  
-    $currency.findMany(
-      {
-   
-      },
-      (err, docs, count) => {
-     
-          let num_obj = {
-            screen: 'currencies',
-            date: new Date(),
-          };
-
-          let cb = site.getNumbering(num_obj);
-          if (!currency_doc.code && !cb.auto) {
-            response.error = 'Must Enter Code';
-            res.json(response);
-            return;
-          } else if (cb.auto) {
-            currency_doc.code = cb.code;
-          }
-
-          $currency.add(currency_doc, (err, doc) => {
-            if (!err) {
-              response.done = true;
-              response.doc = doc;
-            } else {
-              response.error = err.message;
-            }
-            res.json(response);
-          });
-        
-      }
-    );
+    response.done = true;
+    currency_doc.$add = true;
+    site.currency_list.push(currency_doc);
+    res.json(response);
   });
 
   site.post('/api/currency/update', (req, res) => {
@@ -250,29 +225,19 @@ module.exports = function init(site) {
       $res: res,
     });
 
-    if (currency_doc.id) {
-      $currency.edit(
-        {
-          where: {
-            id: currency_doc.id,
-          },
-          set: currency_doc,
-          $req: req,
-          $res: res,
-        },
-        (err) => {
-          if (!err) {
-            response.done = true;
-          } else {
-            response.error = 'Code Already Exist';
-          }
-          res.json(response);
-        }
-      );
-    } else {
-      response.error = 'no id';
+    if (!currency_doc.id) {
+      response.error = 'No id';
       res.json(response);
+      return;
     }
+    response.done = true;
+    currency_doc.$update = true;
+    site.currency_list.forEach((a, i) => {
+      if (a.id === currency_doc.id) {
+        site.currency_list[i] = currency_doc;
+      }
+    });
+    res.json(response);
   });
 
   site.post('/api/currency/view', (req, res) => {
@@ -286,22 +251,21 @@ module.exports = function init(site) {
       return;
     }
 
-    $currency.findOne(
-      {
-        where: {
-          id: req.body.id,
-        },
-      },
-      (err, doc) => {
-        if (!err) {
-          response.done = true;
-          response.doc = doc;
-        } else {
-          response.error = err.message;
-        }
-        res.json(response);
+    let ad = null;
+    site.currency_list.forEach((a) => {
+      if (a.id == req.body.id) {
+        ad = a;
       }
-    );
+    });
+
+    if (ad) {
+      response.done = true;
+      response.doc = ad;
+      res.json(response);
+    } else {
+      response.error = 'no id'
+      res.json(response);
+    }
   });
 
   site.post('/api/currency/delete', (req, res) => {
@@ -315,36 +279,19 @@ module.exports = function init(site) {
       return;
     }
 
-    let id = req.body.id;
-    let data = { name: 'currency', id: id };
+    if (!req.body.id) {
+      response.error = 'no id';
+      res.json(response);
+      return;
+    }
 
-    site.getAccountingDataToDelete(data, (callback) => {
-      if (callback == true) {
-        response.error = 'Cant Delete Currency Its Exist In Other Transaction';
-        res.json(response);
-      } else {
-        if (id) {
-          $currency.delete(
-            {
-              id: id,
-              $req: req,
-              $res: res,
-            },
-            (err, result) => {
-              if (!err) {
-                response.done = true;
-              } else {
-                response.error = err.message;
-              }
-              res.json(response);
-            }
-          );
-        } else {
-          response.error = 'no id';
-          res.json(response);
-        }
+    site.currency_list.forEach((a) => {
+      if (req.body.id && a.id === req.body.id) {
+        a.$delete = true;
       }
     });
+    response.done = true;
+    res.json(response);
   });
 
   site.post('/api/currency/all', (req, res) => {

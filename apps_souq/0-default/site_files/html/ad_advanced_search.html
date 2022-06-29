@@ -1,0 +1,40 @@
+<div id="adAdvancedSearchModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.search_all## <i class="fa fa-search"></i>
+
+            </h2>
+        </div>
+
+        <div class="modal-body">
+            <form class="form">
+                <fieldset>
+                    <legend>##word.search_all##</legend>
+                    <div class="row">
+                        <div class="row">
+                            <i-user class="col3" ng-model="search.user"></i-user>
+                            <i-store class="col3" ng-model="search.store"></i-store>
+
+                        </div>
+                        <i-address ng-model="search"></i-address>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+
+        <h2 class="error">{{error}}</h2>
+
+        <div class="modal-footer center">
+
+            <i-button type="search" label="##word.search##" ng-click="searchAll(search)"> </i-button>
+
+            <i-button type="clear" label="##word.empty_search##" ng-click="search = {}"> </i-button>
+
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#adAdvancedSearchModal')"> </i-button>
+
+        </div>
+    </div>
+    <div class="col2"></div>
+</div>

@@ -70,6 +70,11 @@ module.exports = function init(site) {
       $req: req,
       $res: res,
     });
+    if (!ads_doc.id) {
+      response.error = 'No id';
+      res.json(response);
+      return;
+    }
     response.done = true;
     ads_doc.$update = true;
     site.ad_list.forEach((a, i) => {
@@ -155,31 +160,31 @@ module.exports = function init(site) {
     if (user_ad.feedback.type == 'like') {
       if (user_ad.feedback.like === true) {
         req.session.user.feedback_list = req.session.user.feedback_list || [];
-        req.session.user.feedback_list.push({type: { id: 1} , ad : {id : user_ad.id}});
+        req.session.user.feedback_list.push({ type: { id: 1 }, ad: { id: user_ad.id } });
         site.security.updateUser(req.session.user, (err, user_doc) => {});
         ad.feedback_list.push({
           date: new Date(),
           user: user,
-          type: { id: 1, en: 'Like', ar: 'إعجاب'},
+          type: { id: 1, en: 'Like', ar: 'إعجاب' },
         });
       } else {
         req.session.user.feedback_list.splice(
-          req.session.user.feedback_list.findIndex((c) =>  c.type && c.ad && c.type.id == 1 && c.ad.id == ad.id),
+          req.session.user.feedback_list.findIndex((c) => c.type && c.ad && c.type.id == 1 && c.ad.id == ad.id),
           1
         );
         site.security.updateUser(req.session.user, (err, user_doc) => {});
         ad.feedback_list.splice(
-          ad.feedback_list.findIndex((c) => c.type.id == 1),
+          ad.feedback_list.findIndex((c) => c.type.id == 1 && c.user.id == req.session.user.id),
           1
         );
       }
     } else if (user_ad.feedback.type == 'favorite') {
       if (user_ad.feedback.favorite === true) {
-        req.session.user.feedback_list.push({type: { id: 2} , ad : {id : user_ad.id}});
+        req.session.user.feedback_list.push({ type: { id: 2 }, ad: { id: user_ad.id } });
         site.security.updateUser(req.session.user, (err, user_doc) => {});
         ad.feedback_list.push({
           user: user,
-          type: { id: 2, en: 'Favorite', ar: 'مفضل' },
+          type: { id: 2, en: 'Favorite', ar: 'تفضيل' },
           date: new Date(),
         });
       } else {
@@ -190,7 +195,7 @@ module.exports = function init(site) {
         );
         site.security.updateUser(req.session.user, (err, user_doc) => {});
         ad.feedback_list.splice(
-          ad.feedback_list.findIndex((c) => c.type.id == 2),
+          ad.feedback_list.findIndex((c) => c.type.id == 2 && c.user.id == req.session.user.id),
           1
         );
       }
@@ -251,6 +256,7 @@ module.exports = function init(site) {
       response.doc = ad;
       res.json(response);
     } else {
+      response.error = 'no id';
       res.json(response);
     }
   });
@@ -268,6 +274,61 @@ module.exports = function init(site) {
     let skip = 0;
     let start = (req.data.page_number || 0) * (req.data.limit || 0);
     let end = start + (req.data.limit || 100);
+    delete where['search_ads'];
+
+    if (where['country']) {
+      where['country.id'] = where['country'].id;
+      delete where['country'];
+    }
+    if (where['gov']) {
+      where['gov.id'] = where['gov'].id;
+      delete where['gov'];
+    }
+    if (where['city']) {
+      where['city.id'] = where['city'].id;
+      delete where['city'];
+    }
+    if (where['area']) {
+      where['area.id'] = where['area'].id;
+      delete where['area'];
+    }
+    if (where['area']) {
+      where['area.id'] = where['area'].id;
+      delete where['area'];
+    }
+    if (where['store']) {
+      where['store.id'] = where['store'].id;
+      delete where['store'];
+    }
+    if (where['user']) {
+      where['store.user.id'] = where['user'].id;
+      delete where['user'];
+    }
+    if (where['main_category']) {
+      where['main_category.id'] = where['main_category'].id;
+      delete where['main_category'];
+    }
+
+    if (where['category2']) {
+      where['main_category.category2.0.id'] = where['category2'].id;
+      delete where['category2'];
+    }
+
+    if (where['category3']) {
+      where['main_category.category3.0.id'] = where['category3'].id;
+      delete where['category3'];
+    }
+
+    if (where['category4']) {
+      where['main_category.category4.0.id'] = where['category4'].id;
+      delete where['category4'];
+    }
+
+    if (where['category5']) {
+      where['main_category.category5.0.id'] = where['category5'].id;
+      delete where['category5'];
+    }
+
 
     // if (true) {
     //   response.done = true;

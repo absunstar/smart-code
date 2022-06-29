@@ -50,8 +50,6 @@
         background-color: #04aa6d;
       }
 
-   
-
       .msg_left {
         text-align: left;
       }
@@ -67,12 +65,19 @@
 
     <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
 
-    <div id="main-layout" class="container loaded" >
-      <div x-import="manage-user/order_modal.html"></div>
-      <div x-import="manage-user/add_modal_ad.html"></div>
-      <div x-import="manage-user/delete_modal_ad.html"></div>
-      <div x-import="manage-user/update_modal_ad.html"></div>
-      <div x-import="manage-user/view_modal_ad.html"></div>
+    <div id="main-layout" class="container loaded">
+      <div x-features="ecommerce || souq">
+        <div x-import="manage-user/order_modal.html"></div>
+        <div x-import="manage-user/add_modal_ad.html"></div>
+        <div x-import="manage-user/delete_modal_ad.html"></div>
+        <div x-import="manage-user/update_modal_ad.html"></div>
+        <div x-import="manage-user/view_modal_ad.html"></div>
+
+        <div x-import="manage-user/add_modal_store.html"></div>
+        <div x-import="manage-user/delete_modal_store.html"></div>
+        <div x-import="manage-user/update_modal_store.html"></div>
+        <div x-import="manage-user/view_modal_store.html"></div>
+      </div>
       <div class="row">
         <br />
         <h1 class="center bold black">##word.manage_your_personal_account##</h1>

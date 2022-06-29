@@ -50,6 +50,11 @@
         "ar": "إعلاناتي"
     },
     {
+        "name": "my_stores",
+        "en": "My Stores",
+        "ar": "متاجري"
+    },
+    {
         "name": "new_password",
         "en": "New Password",
         "ar": "كلمة المرور الجديدة"

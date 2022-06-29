@@ -1,0 +1,31 @@
+<div ng-hide="busy" class="row">
+    <div id="basicInformation" class="">
+        <fieldset>
+            <legend> ##word.basic_information##</legend>
+            <div class="col9">
+                <table id="basicInformationTable" class="table hover bold">
+                    <tr>
+                        <td class="title">##word.code##</td>
+                        <td class="center userPrint blue">{{store.code}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.store_name##</td>
+                        <td class="center">{{store.name_##session.lang##}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.description##</td>
+                        <td class="center">{{store.description}}</td>
+                    </tr>
+
+                </table>
+            </div>
+
+            <div class="col3">
+                <i-image view ng-model="store.image_url"></i-image>
+            </div>
+
+        </fieldset>
+    </div>
+</div>

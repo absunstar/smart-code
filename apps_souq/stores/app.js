@@ -1,6 +1,34 @@
 module.exports = function init(site) {
   const $stores = site.connectCollection('stores');
+  site.store_list = [];
+  $stores.findMany({}, (err, docs) => {
+    if (!err && docs) {
+      site.store_list = [...site.store_list, ...docs];
+    }
+  });
 
+  setInterval(() => {
+    site.store_list.forEach((a, i) => {
+      if (a.$add) {
+        $stores.add(a, (err, doc) => {
+          if (!err && doc) {
+            site.store_list[i] = doc;
+          }
+        });
+      } else if (a.$update) {
+        $stores.edit({
+          where: {
+            id: a.id,
+          },
+          set: a,
+        });
+      } else if (a.$delete) {
+        $stores.delete({
+          id: a.id,
+        });
+      }
+    });
+  }, 1000 * 7);
   site.get({
     name: 'images',
     path: __dirname + '/site_files/images/',
@@ -13,20 +41,6 @@ module.exports = function init(site) {
     compress: true,
   });
 
-  site.on('[company][created]', (doc) => {
-    let y = new Date().getFullYear().toString();
-    $stores.add(
-      {
-        name_ar: 'إعلان إفتراضي',
-        name_en: 'Default Ad',
-        image_url: '/images/stores.png',
-        code: '1-Test',
-        active: true,
-      },
-      (err, doc) => {}
-    );
-  });
-
   site.post('/api/stores/add', (req, res) => {
     let response = {
       done: false,
@@ -37,44 +51,41 @@ module.exports = function init(site) {
       return;
     }
 
-    let ads_doc = req.body;
-    ads_doc.$req = req;
-    ads_doc.$res = res;
+    let store_doc = req.body;
+    store_doc.$req = req;
+    store_doc.$res = res;
 
-    ads_doc.add_user_info = site.security.getUserFinger({
+    store_doc.add_user_info = site.security.getUserFinger({
       $req: req,
       $res: res,
     });
 
-    if (typeof ads_doc.active === 'undefined') {
-      ads_doc.active = true;
+    if (typeof store_doc.active === 'undefined') {
+      store_doc.active = true;
+    }
+    let num_obj = {
+      screen: 'stores',
+      date: new Date(),
+    };
+    let cb = site.getNumbering(num_obj);
+    if (!store_doc.code && !cb.auto) {
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+    } else if (cb.auto) {
+      store_doc.code = cb.code;
     }
 
-    $stores.findMany({}, (err, docs, count) => {
-      let num_obj = {
-        screen: 'stores',
-        date: new Date(),
-      };
-
-      let cb = site.getNumbering(num_obj);
-      if (!ads_doc.code && !cb.auto) {
-        response.error = 'Must Enter Code';
-        res.json(response);
-        return;
-      } else if (cb.auto) {
-        ads_doc.code = cb.code;
-      }
-
-      $stores.add(ads_doc, (err, doc) => {
-        if (!err) {
-          response.done = true;
-          response.doc = doc;
-        } else {
-          response.error = err.message;
-        }
-        res.json(response);
-      });
-    });
+    let result = site.store_list.filter((store) => store.user.id == store_doc.user.id);
+    if (result.length >=req.session.user.maximum_stores) {
+      response.error = 'maximum stores to user';
+      res.json(response);
+      return;
+    }
+    response.done = true;
+    store_doc.$add = true;
+    site.store_list.push(store_doc);
+    res.json(response);
   });
 
   site.post('/api/stores/update', (req, res) => {
@@ -88,36 +99,125 @@ module.exports = function init(site) {
       return;
     }
 
-    let ads_doc = req.body;
+    let store_doc = req.body;
 
-    ads_doc.edit_user_info = site.security.getUserFinger({
+    store_doc.edit_user_info = site.security.getUserFinger({
       $req: req,
       $res: res,
     });
 
-    if (ads_doc.id) {
-      $stores.edit(
-        {
-          where: {
-            id: ads_doc.id,
-          },
-          set: ads_doc,
-          $req: req,
-          $res: res,
-        },
-        (err) => {
-          if (!err) {
-            response.done = true;
-          } else {
-            response.error = 'Code Already Exist';
-          }
-          res.json(response);
-        }
-      );
-    } else {
+    if (!store_doc.id) {
+      response.error = 'No id';
+      res.json(response);
+      return;
+    }
+    response.done = true;
+    store_doc.$update = true;
+    site.store_list.forEach((a, i) => {
+      if (a.id === store_doc.id) {
+        site.store_list[i] = store_doc;
+      }
+    });
+    res.json(response);
+  });
+
+
+  site.post('/api/stores/update_comment', (req, res) => {
+    let response = {
+      done: false,
+    };
+
+    if (!req.session.user) {
+      response.error = 'Please Login First';
+      res.json(response);
+      return;
+    }
+    let user = {
+      id: req.session.user.id,
+      email: req.session.user.email,
+      profile: req.session.user.profile,
+    };
+    let user_store = req.body;
+    let store = site.store_list.find((_store) => {
+      return _store.id === user_store.id;
+    });
+    if (!store) {
       response.error = 'no id';
       res.json(response);
+      return;
     }
+    // store.feedback_list
+    store.feedback_list = store.feedback_list || [];
+    if (user_store.feedback.type == 'like') {
+      if (user_store.feedback.like === true) {
+        req.session.user.feedback_list = req.session.user.feedback_list || [];
+        req.session.user.feedback_list.push({type: { id: 1} , store : {id : user_store.id}});
+        site.security.updateUser(req.session.user, (err, user_doc) => {});
+        store.feedback_list.push({
+          date: new Date(),
+          user: user,
+          type: { id: 1, en: 'Like', ar: 'إعجاب'},
+        });
+      } else {
+        req.session.user.feedback_list.splice(
+          req.session.user.feedback_list.findIndex((c) =>  c.type && c.store && c.type.id == 1 && c.store.id == store.id),
+          1
+        );
+        site.security.updateUser(req.session.user, (err, user_doc) => {});
+        store.feedback_list.splice(
+          store.feedback_list.findIndex((c) => c.type.id == 1 && c.user.id == req.session.user.id),
+          1
+        );
+      }
+    } else if (user_store.feedback.type == 'favorite') {
+      if (user_store.feedback.favorite === true) {
+        req.session.user.feedback_list.push({type: { id: 2} , store : {id : user_store.id}});
+        site.security.updateUser(req.session.user, (err, user_doc) => {});
+        store.feedback_list.push({
+          user: user,
+          type: { id: 2, en: 'Favorite', ar: 'تفضيل' },
+          date: new Date(),
+        });
+      } else {
+        req.session.user.feedback_list.splice(
+          req.session.user.feedback_list.findIndex((c) => c.type && c.store && c.type.id == 2 && c.store.id == store.id),
+
+          1
+        );
+        site.security.updateUser(req.session.user, (err, user_doc) => {});
+        store.feedback_list.splice(
+          store.feedback_list.findIndex((c) => c.type.id == 2 && c.user.id == req.session.user.id),
+          1
+        );
+      }
+    } else if (user_store.feedback.type == 'report') {
+      store.feedback_list.push({
+        user: user,
+        type: { id: 3, en: 'Report', ar: 'إبلاغ' },
+        report_type: user_store.feedback.report_type,
+        comment_report: user_store.feedback.comment_report,
+        date: new Date(),
+      });
+    } else if (user_store.feedback.type == 'comment') {
+      store.feedback_list.push({
+        user: user,
+        type: { id: 4, en: 'Comment', ar: 'تعليق' },
+        comment_type: user_store.feedback.comment_type,
+        comment: user_store.feedback.comment,
+        date: new Date(),
+      });
+    }
+
+    store.$update = true;
+    site.ad_list.forEach((a, i) => {
+      if (a.id === store.id) {
+        site.ad_list[i] = store;
+      }
+    });
+
+    response.done = true;
+    response.error = 'no id';
+    res.json(response);
   });
 
   site.post('/api/stores/view', (req, res) => {
@@ -131,22 +231,21 @@ module.exports = function init(site) {
       return;
     }
 
-    $stores.findOne(
-      {
-        where: {
-          id: req.body.id,
-        },
-      },
-      (err, doc) => {
-        if (!err) {
-          response.done = true;
-          response.doc = doc;
-        } else {
-          response.error = err.message;
-        }
-        res.json(response);
+    let ad = null;
+    site.store_list.forEach((a) => {
+      if (a.id == req.body.id) {
+        ad = a;
       }
-    );
+    });
+
+    if (ad) {
+      response.done = true;
+      response.doc = ad;
+      res.json(response);
+    } else {
+      response.error = 'no id';
+      res.json(response);
+    }
   });
 
   site.post('/api/stores/delete', (req, res) => {
@@ -160,35 +259,19 @@ module.exports = function init(site) {
       return;
     }
 
-    let id = req.body.id;
+    if (!req.body.id) {
+      response.error = 'no id';
+      res.json(response);
+      return;
+    }
 
-    site.getUnitToDelete(id, (callback) => {
-      if (callback == true) {
-        response.error = 'Cant Delete Its Exist In Other Transaction';
-        res.json(response);
-      } else {
-        if (id) {
-          $stores.delete(
-            {
-              id: id,
-              $req: req,
-              $res: res,
-            },
-            (err, result) => {
-              if (!err) {
-                response.done = true;
-              } else {
-                response.error = err.message;
-              }
-              res.json(response);
-            }
-          );
-        } else {
-          response.error = 'no id';
-          res.json(response);
-        }
+    site.store_list.forEach((a) => {
+      if (req.body.id && a.id === req.body.id) {
+        a.$delete = true;
       }
     });
+    response.done = true;
+    res.json(response);
   });
 
   site.post('/api/stores/all', (req, res) => {
@@ -208,11 +291,11 @@ module.exports = function init(site) {
       where.$or = [];
 
       where.$or.push({
-        'name_ar': site.get_RegExp(where['search'], 'i'),
+        name_ar: site.get_RegExp(where['search'], 'i'),
       });
 
       where.$or.push({
-        'name_en': site.get_RegExp(where['search'], 'i'),
+        name_en: site.get_RegExp(where['search'], 'i'),
       });
 
       where.$or.push({

@@ -303,6 +303,8 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
       $scope.getLikedAdsList();
     } else if (selector == '#favorite_ads') {
       $scope.getFavoriteAdsList();
+    }else if (selector == '#my_stores') {
+      $scope.getMyStoresList();
     }
   };
 
@@ -326,6 +328,35 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
           $scope.myAdslist = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.getMyStoresList = function (where) {
+    $scope.busy = true;
+    $scope.myStoreslist = [];
+    $http({
+      method: 'POST',
+      url: '/api/stores/all',
+      data: {
+        where: {
+          $and: [
+            {
+              'user.id': $scope.manage_user.id,
+            },
+          ],
+        },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.myStoreslist = response.data.list;
         }
       },
       function (err) {
@@ -405,10 +436,199 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.displayAddStore = function () {
+    $scope.error = '';
+    $scope.store = {
+      image_url: '/images/stores.png',
+      feedback_list: [],
+      store_rating: 0,
+      number_views: 0,
+      number_likes: 0,
+      number_comments: 0,
+      number_favorites: 0,
+      number_reports: 0,
+      priority_level: 0,
+      active: true,
+    };
+    if($scope.defaultSettings){
+      if($scope.defaultSettings.stores_settings.store_status){
+        $scope.store.store_status = $scope.defaultSettings.stores_settings.store_status;
+      }
+    }
+    site.showModal('#storeAddModal');
+  };
+
+  $scope.addStore = function () {
+    $scope.error = '';
+    const v = site.validated('#storeAddModal');
+    if (!v.ok) {
+      $scope.error = v.messages[0].ar;
+      return;
+    }
+
+    $scope.store.user = {
+      id : site.toNumber('##user.id##'),
+      profile : '##user.profile##',
+      email : '##user.email##',
+    }
+
+    $scope.busy = true;
+    $http({
+      method: 'POST',
+      url: '/api/stores/add',
+      data: $scope.store,
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          site.hideModal('#storeAddModal');
+          $scope.getStoreList();
+        } else {
+          $scope.error = response.data.error;
+          if (response.data.error.like('*Must Enter Code*')) {
+            $scope.error = '##word.must_enter_code##';
+          } else  if (response.data.error.like('*maximum stores to user*')) {
+            $scope.error = "##word.maximum_number_stores_exceeded##"
+          }
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    );
+  };
+
+  $scope.displayUpdateStore = function (store) {
+    $scope.error = '';
+    $scope.viewStore(store);
+    $scope.store = {};
+    site.showModal('#storeUpdateModal');
+  };
+
+  $scope.updateStore = function () {
+    $scope.error = '';
+    const v = site.validated('#storeUpdateModal');
+    if (!v.ok) {
+      $scope.error = v.messages[0].ar;
+      return;
+    }
+    $scope.busy = true;
+    $http({
+      method: 'POST',
+      url: '/api/stores/update',
+      data: $scope.store,
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          site.hideModal('#storeUpdateModal');
+          $scope.getStoreList();
+        } else {
+          $scope.error = 'Please Login First';
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    );
+  };
+
+  $scope.displayDetailsStore = function (store) {
+    $scope.error = '';
+    $scope.viewStore(store);
+    $scope.store = {};
+    site.showModal('#storeViewModal');
+  };
+
+  $scope.viewStore = function (store) {
+    $scope.busy = true;
+    $scope.error = '';
+    $http({
+      method: 'POST',
+      url: '/api/stores/view',
+      data: {
+        id: store.id,
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.store = response.data.doc;
+        } else {
+          $scope.error = response.data.error;
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    );
+  };
+
+  $scope.displayDeleteStore = function (store) {
+    $scope.error = '';
+
+    $scope.viewStore(store);
+    $scope.store = {};
+    site.showModal('#storeDeleteModal');
+  };
+
+  $scope.deleteStore = function () {
+    $scope.busy = true;
+    $scope.error = '';
+
+    $http({
+      method: 'POST',
+      url: '/api/stores/delete',
+      data: {
+        id: $scope.store.id,
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          site.hideModal('#storeDeleteModal');
+          $scope.getStoreList();
+        } else {
+          $scope.error = response.data.error;
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    );
+  };
+
+  $scope.getStoreList = function (where) {
+    $scope.busy = true;
+    $scope.list = [];
+    $http({
+      method: 'POST',
+      url: '/api/stores/all',
+      data: {
+        where: where,
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.list = response.data.list;
+          $scope.count = response.data.count;
+          site.hideModal('#storeSearchModal');
+          $scope.search = {};
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+
   $scope.displayAddAd = function () {
     $scope.error = '';
     $scope.ad = {
-      feedback_list: [{ date: new Date() }],
+      feedback_list: [],
       ad_rating: 0,
       number_views: 0,
       number_likes: 0,

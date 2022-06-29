@@ -1,6 +1,11 @@
 module.exports = function init(site) {
   const $default_setting = site.connectCollection('default_setting');
-
+  site.defaultSettingDoc = null;
+  $default_setting.findOne({}, (err, doc) => {
+    if (!err && doc) {
+      site.defaultSettingDoc = doc;
+    }
+  });
   site.get({
     name: 'default_setting',
     path: __dirname + '/site_files/html/index.html',
@@ -13,7 +18,6 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/images',
   });
 
-
   site.post({
     name: '/api/publishing_system/all',
     path: __dirname + '/site_files/json/publishing_system.json',
@@ -24,12 +28,11 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/json/user_design.json',
   });
 
-
   site.post({
     name: '/api/duration_expiry/all',
     path: __dirname + '/site_files/json/duration_expiry.json',
   });
-  
+
   site.post({
     name: '/api/closing_system/all',
     path: __dirname + '/site_files/json/closing_system.json',
@@ -39,7 +42,6 @@ module.exports = function init(site) {
     name: '/api/ads_status/all',
     path: __dirname + '/site_files/json/ads_status.json',
   });
-
 
   // site.post({
   //   name: "/api/discount_method/all",
@@ -59,56 +61,49 @@ module.exports = function init(site) {
 
     let where = req.data.where || {};
 
-    $default_setting.find(
-      {
-        where: where,
-      },
-      (err, doc) => {
+    if (site.defaultSettingDoc != null) {
+      response.done = true;
+      response.doc = site.defaultSettingDoc;
+      res.json(response);
+    } else {
+      let obj = {};
+      $default_setting.add(obj, (err, doc) => {
         if (!err && doc) {
           response.done = true;
           response.doc = doc;
+          site.defaultSettingDoc = response.doc;
           res.json(response);
         } else {
-          let obj = {
-          };
-
-          $default_setting.add(obj, (err, doc) => {
-            if (!err && doc) {
-              response.done = true;
-              response.doc = doc;
-              res.json(response);
-            } else {
-              response.error = err.message;
-              res.json(response);
-            }
-          });
+          response.error = err.message;
+          res.json(response);
         }
-      }
-    );
+      });
+    }
+
+   
   });
 
   site.getDefaultSetting = function (callback) {
-    callback = callback || function(){};
-    if(site.getDefaultSettingDoc){
-      callback(site.getDefaultSettingDoc);
-      return site.getDefaultSettingDoc
+    callback = callback || function () {};
+    if (site.defaultSettingDoc) {
+      callback(site.defaultSettingDoc);
+      return site.defaultSettingDoc;
     }
 
-    let where = {};
-    $default_setting.findOne(
-      {
-        where: where,
-      },
-      (err, doc) => {
-        if (!err && doc){
-          site.getDefaultSettingDoc = doc
-          callback(site.getDefaultSettingDoc);
-        }
-        else{
-          callback(null);
-        } 
-      }
-    );
+    // let where = {};
+    // $default_setting.findOne(
+    //   {
+    //     where: where,
+    //   },
+    //   (err, doc) => {
+    //     if (!err && doc) {
+    //       site.defaultSettingDoc = doc;
+    //       callback(site.defaultSettingDoc);
+    //     } else {
+    //       callback(null);
+    //     }
+    //   }
+    // );
   };
 
   //   site.getDefaultSetting = function (callback) {
@@ -136,7 +131,7 @@ module.exports = function init(site) {
     $default_setting.update(data, (err, result) => {
       if (!err) {
         response.done = true;
-        site.getDefaultSettingDoc = null;
+        site.defaultSettingDoc = data;
       } else {
         response.error = err.message;
       }

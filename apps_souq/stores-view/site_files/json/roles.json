@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "stores_view_admin",
+    "en": "Stores View Admin",
+    "ar": "إدارة عرض المتاجر",
+    "permissions": ["stores_view_manage"]
+}]

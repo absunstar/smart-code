@@ -1,6 +1,34 @@
 module.exports = function init(site) {
   const $city = site.connectCollection("city")
+  site.city_list = [];
+  $city.findMany({}, (err, docs) => {
+    if (!err && docs) {
+      site.city_list = [...site.city_list, ...docs];
+    }
+  });
 
+  setInterval(() => {
+    site.city_list.forEach((a, i) => {
+      if (a.$add) {
+        $city.add(a, (err, doc) => {
+          if (!err && doc) {
+            site.city_list[i] = doc;
+          }
+        });
+      } else if (a.$update) {
+        $city.edit({
+          where: {
+            id: a.id,
+          },
+          set: a,
+        });
+      } else if (a.$delete) {
+        $city.delete({
+          id: a.id,
+        });
+      }
+    });
+  }, 1000 * 7);
   site.get({
     name: 'images',
     path: __dirname + '/site_files/images/'
@@ -27,16 +55,7 @@ module.exports = function init(site) {
       name_en: "Default City",
       code : '1-Test',
       image_url: '/images/city.png',
-      company: {
-        id: doc.company.id,
-        name_ar: doc.company.name_ar,
-        name_en: doc.company.name_en
-      },
-      branch: {
-        code: doc.branch.code,
-        name_ar: doc.branch.name_ar,
-        name_en: doc.branch.name_en
-      },
+     
       active: true
     }, (err, doc1) => {
       site.call('[register][area][add]', doc1)
@@ -69,11 +88,9 @@ module.exports = function init(site) {
       city_doc.active = true
     }
 
-    city_doc.company = site.get_company(req)
-    city_doc.branch = site.get_branch(req)
+  
 
     let num_obj = {
-      company: site.get_company(req),
       screen: 'city',
       date: new Date()
     };
@@ -88,15 +105,10 @@ module.exports = function init(site) {
       city_doc.code = cb.code;
     }
 
-    $city.add(city_doc, (err, doc) => {
-      if (!err) {
-        response.done = true
-        response.doc = doc
-      } else {
-        response.error = err.message
-      }
-      res.json(response)
-    })
+    response.done = true;
+    city_doc.$add = true;
+    site.city_list.push(city_doc);
+    res.json(response);
 
   })
 
@@ -117,27 +129,19 @@ module.exports = function init(site) {
       $req: req,
       $res: res
     })
-    if (city_doc.id) {
-
-      $city.edit({
-        where: {
-          id: city_doc.id
-        },
-        set: city_doc,
-        $req: req,
-        $res: res
-      }, err => {
-        if (!err) {
-          response.done = true
-        } else {
-          response.error = 'Code Already Exist'
-        }
-        res.json(response)
-      })
-    } else {
-      response.error = 'no id'
-      res.json(response)
+    if (!city_doc.id) {
+      response.error = 'No id';
+      res.json(response);
+      return;
     }
+    response.done = true;
+    city_doc.$update = true;
+    site.city_list.forEach((a, i) => {
+      if (a.id === city_doc.id) {
+        site.city_list[i] = city_doc;
+      }
+    });
+    res.json(response);
   })
 
   site.post("/api/city/view", (req, res) => {
@@ -150,20 +154,21 @@ module.exports = function init(site) {
       res.json(response)
       return
     }
+    let ad = null;
+    site.city_list.forEach((a) => {
+      if (a.id == req.body.id) {
+        ad = a;
+      }
+    });
 
-    $city.findOne({
-      where: {
-        id: req.body.id
-      }
-    }, (err, doc) => {
-      if (!err) {
-        response.done = true
-        response.doc = doc
-      } else {
-        response.error = err.message
-      }
-      res.json(response)
-    })
+    if (ad) {
+      response.done = true;
+      response.doc = ad;
+      res.json(response);
+    } else {
+      response.error = 'no id'
+      res.json(response);
+    }
   })
 
   site.post("/api/city/delete", (req, res) => {
@@ -176,26 +181,20 @@ module.exports = function init(site) {
       res.json(response)
       return
     }
-
-    let id = req.body.id
-
-    if (id) {
-      $city.delete({
-        id: id,
-        $req: req,
-        $res: res
-      }, (err, result) => {
-        if (!err) {
-          response.done = true
-        } else {
-          response.error = err.message
-        }
-        res.json(response)
-      })
-    } else {
-      response.error = 'no id'
-      res.json(response)
+ 
+    if (!req.body.id) {
+      response.error = 'no id';
+      res.json(response);
+      return;
     }
+
+    site.city_list.forEach((a) => {
+      if (req.body.id && a.id === req.body.id) {
+        a.$delete = true;
+      }
+    });
+    response.done = true;
+    res.json(response);
   })
 
   site.post("/api/city/all", (req, res) => {
@@ -216,9 +215,7 @@ module.exports = function init(site) {
       where['name'] = site.get_RegExp(where['name'], "i");
     }
 
-    if (site.get_company(req) && site.get_company(req).id)
-      where['company.id'] = site.get_company(req).id
-
+  
 
     $city.findMany({
       select: req.body.select || {},

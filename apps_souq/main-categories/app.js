@@ -1,6 +1,34 @@
 module.exports = function init(site) {
   const $main_categories = site.connectCollection("main_categories")
+  site.main_category_list = [];
+  $main_categories.findMany({}, (err, docs) => {
+    if (!err && docs) {
+      site.main_category_list = [...site.main_category_list, ...docs];
+    }
+  });
 
+  setInterval(() => {
+    site.main_category_list.forEach((a, i) => {
+      if (a.$add) {
+        $main_categories.add(a, (err, doc) => {
+          if (!err && doc) {
+            site.main_category_list[i] = doc;
+          }
+        });
+      } else if (a.$update) {
+        $main_categories.edit({
+          where: {
+            id: a.id,
+          },
+          set: a,
+        });
+      } else if (a.$delete) {
+        $main_categories.delete({
+          id: a.id,
+        });
+      }
+    });
+  }, 1000 * 7);
   site.get({
     name: 'images',
     path: __dirname + '/site_files/images/'
@@ -66,31 +94,10 @@ module.exports = function init(site) {
       main_categories_doc.code = cb.code;
     }
 
-    $main_categories.find({
-      where: {
-        $or: [{
-          'name_ar': main_categories_doc.name_ar
-        },{
-          'name_en': main_categories_doc.name_en
-        }]
-    
-      }
-    }, (err, doc) => {
-      if (!err && doc) {
-        response.error = 'Name Exists'
-        res.json(response)
-      } else {
-        $main_categories.add(main_categories_doc, (err, doc) => {
-          if (!err) {
-            response.done = true
-            response.doc = doc
-          } else {
-            response.error = err.message
-          }
-          res.json(response)
-        })
-      }
-    })
+    response.done = true;
+    main_categories_doc.$add = true;
+    site.main_category_list.push(main_categories_doc);
+    res.json(response);
   })
 
   site.post("/api/main_categories/update", (req, res) => {
@@ -111,26 +118,19 @@ module.exports = function init(site) {
       $res: res
     })
 
-    if (main_categories_doc.id) {
-      $main_categories.edit({
-        where: {
-          id: main_categories_doc.id
-        },
-        set: main_categories_doc,
-        $req: req,
-        $res: res
-      }, err => {
-        if (!err) {
-          response.done = true
-        } else {
-          response.error = 'Code Already Exist'
-        }
-        res.json(response)
-      })
-    } else {
-      response.error = 'no id'
-      res.json(response)
+    if (!main_categories_doc.id) {
+      response.error = 'No id';
+      res.json(response);
+      return;
     }
+    response.done = true;
+    main_categories_doc.$update = true;
+    site.main_category_list.forEach((a, i) => {
+      if (a.id === main_categories_doc.id) {
+        site.main_category_list[i] = main_categories_doc;
+      }
+    });
+    res.json(response);
   })
 
   site.post("/api/main_categories/view", (req, res) => {
@@ -144,19 +144,21 @@ module.exports = function init(site) {
       return
     }
 
-    $main_categories.findOne({
-      where: {
-        id: req.body.id
+    let ad = null;
+    site.main_category_list.forEach((a) => {
+      if (a.id == req.body.id) {
+        ad = a;
       }
-    }, (err, doc) => {
-      if (!err) {
-        response.done = true
-        response.doc = doc
-      } else {
-        response.error = err.message
-      }
-      res.json(response)
-    })
+    });
+
+    if (ad) {
+      response.done = true;
+      response.doc = ad;
+      res.json(response);
+    } else {
+      response.error = 'no id'
+      res.json(response);
+    }
   })
 
   site.post("/api/main_categories/delete", (req, res) => {
@@ -170,25 +172,20 @@ module.exports = function init(site) {
       return
     }
 
-    let id = req.body.id
-
-    if (id) {
-      $main_categories.delete({
-        id: id,
-        $req: req,
-        $res: res
-      }, (err, result) => {
-        if (!err) {
-          response.done = true
-        } else {
-          response.error = err.message
-        }
-        res.json(response)
-      })
-    } else {
-      response.error = 'no id'
-      res.json(response)
+     
+    if (!req.body.id) {
+      response.error = 'no id';
+      res.json(response);
+      return;
     }
+
+    site.main_category_list.forEach((a) => {
+      if (req.body.id && a.id === req.body.id) {
+        a.$delete = true;
+      }
+    });
+    response.done = true;
+    res.json(response);
   })
 
   site.post("/api/main_categories/all", (req, res) => {

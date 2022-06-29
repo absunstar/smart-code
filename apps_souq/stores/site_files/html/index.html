@@ -32,6 +32,7 @@
               <th class="not-print">##word.logo##</th>
               <th>##word.code##</th>
               <th>##word.store_name##</th>
+              <th>##word.store_status##</th>
               <th class="not-print">##word.actions##</th>
             </tr>
             <tr ng-repeat="c in list">
@@ -40,6 +41,7 @@
               </td>
               <td class="center userPrint blue">{{c.code}}</td>
               <td class="center title">{{c.name_##session.lang##}}</td>
+              <td class="center title">{{c.store_status.##session.lang##}}</td>
             
               <td class="center not-print">
                 <i-button x-permissions="stores_view || stores_manage" type="view" label="##word.details##" ng-click="displayDetailsStore(c)"></i-button>

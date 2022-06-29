@@ -7,7 +7,7 @@ app.controller('stores', function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.store = {
       image_url: '/images/stores.png',
-      feedback_list: [{date : new Date()}],
+      feedback_list: [],
       store_rating: 0,
       number_views: 0,
       number_likes: 0,
@@ -158,8 +158,6 @@ app.controller('stores', function ($scope, $http, $timeout) {
       }
     );
   };
-
-
 
   $scope.getStoreList = function (where) {
     $scope.busy = true;

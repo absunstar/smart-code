@@ -1,0 +1,28 @@
+<div class="form">
+  <div id="basicInformation" class="">
+    <fieldset>
+      <legend>##word.basic_information##</legend>
+      <div class="row">
+        <div class="col9">
+          <div class="row">
+            <i-control help-id="store_name_ar" v="r ll2" class="col4" label="##word.store_name##" ng-model="store.name_ar"></i-control>
+
+            <i-control help-id="store_name_en" v="r" class="col4" label="##word.name_en##" ng-model="store.name_en"></i-control>
+          </div>
+
+          <div class="row">
+            <i-address class="padding_10" ng-model="store"></i-address>
+          </div>
+
+          <div class="row">
+            <i-textarea ng-model="store.description" label="##word.description##"> </i-textarea>
+          </div>
+        </div>
+
+        <div class="col3">
+          <i-image help-id="stores_logo" ng-model="store.image_url"></i-image>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+</div>

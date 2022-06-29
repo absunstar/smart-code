@@ -1,6 +1,34 @@
 module.exports = function init(site) {
   const $units = site.connectCollection('units');
+  site.unit_list = [];
+  $units.findMany({}, (err, docs) => {
+    if (!err && docs) {
+      site.unit_list = [...site.unit_list, ...docs];
+    }
+  });
 
+  setInterval(() => {
+    site.unit_list.forEach((a, i) => {
+      if (a.$add) {
+        $units.add(a, (err, doc) => {
+          if (!err && doc) {
+            site.unit_list[i] = doc;
+          }
+        });
+      } else if (a.$update) {
+        $units.edit({
+          where: {
+            id: a.id,
+          },
+          set: a,
+        });
+      } else if (a.$delete) {
+        $units.delete({
+          id: a.id,
+        });
+      }
+    });
+  }, 1000 * 7);
   site.get({
     name: 'images',
     path: __dirname + '/site_files/images/',
@@ -50,31 +78,23 @@ module.exports = function init(site) {
       units_doc.active = true;
     }
 
-    $units.findMany({}, (err, docs, count) => {
-      let num_obj = {
-        screen: 'units',
-        date: new Date(),
-      };
+    let num_obj = {
+      screen: 'units',
+      date: new Date(),
+    };
 
-      let cb = site.getNumbering(num_obj);
-      if (!units_doc.code && !cb.auto) {
-        response.error = 'Must Enter Code';
-        res.json(response);
-        return;
-      } else if (cb.auto) {
-        units_doc.code = cb.code;
-      }
-
-      $units.add(units_doc, (err, doc) => {
-        if (!err) {
-          response.done = true;
-          response.doc = doc;
-        } else {
-          response.error = err.message;
-        }
-        res.json(response);
-      });
-    });
+    let cb = site.getNumbering(num_obj);
+    if (!units_doc.code && !cb.auto) {
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+    } else if (cb.auto) {
+      units_doc.code = cb.code;
+    }
+    response.done = true;
+    units_doc.$add = true;
+    site.unit_list.push(units_doc);
+    res.json(response);
   });
 
   site.post('/api/units/update', (req, res) => {
@@ -95,29 +115,19 @@ module.exports = function init(site) {
       $res: res,
     });
 
-    if (units_doc.id) {
-      $units.edit(
-        {
-          where: {
-            id: units_doc.id,
-          },
-          set: units_doc,
-          $req: req,
-          $res: res,
-        },
-        (err) => {
-          if (!err) {
-            response.done = true;
-          } else {
-            response.error = 'Code Already Exist';
-          }
-          res.json(response);
-        }
-      );
-    } else {
-      response.error = 'no id';
+    if (!units_doc.id) {
+      response.error = 'No id';
       res.json(response);
+      return;
     }
+    response.done = true;
+    units_doc.$update = true;
+    site.unit_list.forEach((a, i) => {
+      if (a.id === units_doc.id) {
+        site.unit_list[i] = units_doc;
+      }
+    });
+    res.json(response);
   });
 
   site.post('/api/units/view', (req, res) => {
@@ -131,22 +141,21 @@ module.exports = function init(site) {
       return;
     }
 
-    $units.findOne(
-      {
-        where: {
-          id: req.body.id,
-        },
-      },
-      (err, doc) => {
-        if (!err) {
-          response.done = true;
-          response.doc = doc;
-        } else {
-          response.error = err.message;
-        }
-        res.json(response);
+    let ad = null;
+    site.unit_list.forEach((a) => {
+      if (a.id == req.body.id) {
+        ad = a;
       }
-    );
+    });
+
+    if (ad) {
+      response.done = true;
+      response.doc = ad;
+      res.json(response);
+    } else {
+      response.error = 'no id'
+      res.json(response);
+    }
   });
 
   site.post('/api/units/delete', (req, res) => {
@@ -160,35 +169,20 @@ module.exports = function init(site) {
       return;
     }
 
-    let id = req.body.id;
+   
+    if (!req.body.id) {
+      response.error = 'no id';
+      res.json(response);
+      return;
+    }
 
-    site.getUnitToDelete(id, (callback) => {
-      if (callback == true) {
-        response.error = 'Cant Delete Its Exist In Other Transaction';
-        res.json(response);
-      } else {
-        if (id) {
-          $units.delete(
-            {
-              id: id,
-              $req: req,
-              $res: res,
-            },
-            (err, result) => {
-              if (!err) {
-                response.done = true;
-              } else {
-                response.error = err.message;
-              }
-              res.json(response);
-            }
-          );
-        } else {
-          response.error = 'no id';
-          res.json(response);
-        }
+    site.unit_list.forEach((a) => {
+      if (req.body.id && a.id === req.body.id) {
+        a.$delete = true;
       }
     });
+    response.done = true;
+    res.json(response);
   });
 
   site.post('/api/units/all', (req, res) => {

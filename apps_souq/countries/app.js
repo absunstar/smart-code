@@ -1,239 +1,230 @@
 module.exports = function init(site) {
-  const $countries = site.connectCollection("countries")
+  const $countries = site.connectCollection('countries');
+  site.country_list = [];
+  $countries.findMany({}, (err, docs) => {
+    if (!err && docs) {
+      site.country_list = [...site.country_list, ...docs];
+    }
+  });
 
-  site.on('[company][created]', doc => {
-      $countries.add({
-        code: "1-Test",
-        name_ar: "دولة إفتراضية",
-        name_en: "Default Country",
+  setInterval(() => {
+    site.country_list.forEach((a, i) => {
+      if (a.$add) {
+        $countries.add(a, (err, doc) => {
+          if (!err && doc) {
+            site.country_list[i] = doc;
+          }
+        });
+      } else if (a.$update) {
+        $countries.edit({
+          where: {
+            id: a.id,
+          },
+          set: a,
+        });
+      } else if (a.$delete) {
+        $countries.delete({
+          id: a.id,
+        });
+      }
+    });
+  }, 1000 * 7);
+  site.on('[company][created]', (doc) => {
+    $countries.add(
+      {
+        code: '1-Test',
+        name_ar: 'دولة إفتراضية',
+        name_en: 'Default Country',
         image_url: '/images/countries.png',
-      
-        active: true
-      }, (err, doc) => { })
-  })
 
+        active: true,
+      },
+      (err, doc) => {}
+    );
+  });
 
   site.get({
     name: 'images',
-    path: __dirname + '/site_files/images/'
-  })
+    path: __dirname + '/site_files/images/',
+  });
 
   site.get({
-    name: "countries",
-    path: __dirname + "/site_files/html/index.html",
-    parser: "html",
-    compress: true
-  })
+    name: 'countries',
+    path: __dirname + '/site_files/html/index.html',
+    parser: 'html',
+    compress: true,
+  });
 
-  site.post("/api/countries/add", (req, res) => {
+  site.post('/api/countries/add', (req, res) => {
     let response = {
-      done: false
-    }
+      done: false,
+    };
     if (!req.session.user) {
-      response.error = 'Please Login First'
-      res.json(response)
-      return
+      response.error = 'Please Login First';
+      res.json(response);
+      return;
     }
 
-    let countries_doc = req.body
-    countries_doc.$req = req
-    countries_doc.$res = res
+    let countries_doc = req.body;
+    countries_doc.$req = req;
+    countries_doc.$res = res;
 
     countries_doc.add_user_info = site.security.getUserFinger({
       $req: req,
-      $res: res
-    })
+      $res: res,
+    });
 
     if (typeof countries_doc.active === 'undefined') {
-      countries_doc.active = true
+      countries_doc.active = true;
     }
 
-  
-    $countries.find({
-      where: {
+    let num_obj = {
+      screen: 'countries',
+      date: new Date(),
+    };
 
-        $or: [{
-          'name_ar': countries_doc.name_ar
-        },{
-          'name_en': countries_doc.name_en
-        }]
-      
-      }
-    }, (err, doc) => {
-      if (!err && doc) {
-        response.error = 'Name Exists'
-        res.json(response)
-      } else {
+    let cb = site.getNumbering(num_obj);
+    if (!countries_doc.code && !cb.auto) {
+      response.error = 'Must Enter Code';
+      res.json(response);
+      return;
+    } else if (cb.auto) {
+      countries_doc.code = cb.code;
+    }
 
-        let num_obj = {
-          screen: 'countries',
-          date: new Date()
-        };
+    response.done = true;
+    countries_doc.$add = true;
+    site.country_list.push(countries_doc);
+    res.json(response);
+  });
 
-        let cb = site.getNumbering(num_obj);
-        if (!countries_doc.code && !cb.auto) {
-          response.error = 'Must Enter Code';
-          res.json(response);
-          return;
-
-        } else if (cb.auto) {
-          countries_doc.code = cb.code;
-        }
-
-        $countries.add(countries_doc, (err, doc) => {
-          if (!err) {
-            response.done = true
-            response.doc = doc
-          } else {
-            response.error = err.message
-          }
-          res.json(response)
-        })
-      }
-    })
-  })
-
-  site.post("/api/countries/update", (req, res) => {
+  site.post('/api/countries/update', (req, res) => {
     let response = {
-      done: false
-    }
+      done: false,
+    };
 
     if (!req.session.user) {
-      response.error = 'Please Login First'
-      res.json(response)
-      return
+      response.error = 'Please Login First';
+      res.json(response);
+      return;
     }
 
-    let countries_doc = req.body
+    let countries_doc = req.body;
 
     countries_doc.edit_user_info = site.security.getUserFinger({
       $req: req,
-      $res: res
-    })
+      $res: res,
+    });
 
-    if (countries_doc.id) {
-      $countries.edit({
-        where: {
-          id: countries_doc.id
-        },
-        set: countries_doc,
-        $req: req,
-        $res: res
-      }, err => {
-        if (!err) {
-          response.done = true
-        } else {
-          response.error = 'Code Already Exist'
-        }
-        res.json(response)
-      })
+    if (!countries_doc.id) {
+      response.error = 'No id';
+      res.json(response);
+      return;
+    }
+    response.done = true;
+    countries_doc.$update = true;
+    site.country_list.forEach((a, i) => {
+      if (a.id === countries_doc.id) {
+        site.country_list[i] = countries_doc;
+      }
+    });
+    res.json(response);
+  });
+
+  site.post('/api/countries/view', (req, res) => {
+    let response = {
+      done: false,
+    };
+
+    if (!req.session.user) {
+      response.error = 'Please Login First';
+      res.json(response);
+      return;
+    }
+
+    let ad = null;
+    site.country_list.forEach((a) => {
+      if (a.id == req.body.id) {
+        ad = a;
+      }
+    });
+
+    if (ad) {
+      response.done = true;
+      response.doc = ad;
+      res.json(response);
     } else {
       response.error = 'no id'
-      res.json(response)
+      res.json(response);
     }
-  })
+  });
 
-  site.post("/api/countries/view", (req, res) => {
+  site.post('/api/countries/delete', (req, res) => {
     let response = {
-      done: false
-    }
+      done: false,
+    };
 
     if (!req.session.user) {
-      response.error = 'Please Login First'
-      res.json(response)
-      return
+      response.error = 'Please Login First';
+      res.json(response);
+      return;
     }
 
-    $countries.findOne({
-      where: {
-        id: req.body.id
+    if (!req.body.id) {
+      response.error = 'No id';
+      res.json(response);
+      return;
+    }
+
+    site.country_list.forEach((a) => {
+      if (req.body.id && a.id === req.body.id) {
+        a.$delete = true;
       }
-    }, (err, doc) => {
-      if (!err) {
-        response.done = true
-        response.doc = doc
-      } else {
-        response.error = err.message
-      }
-      res.json(response)
-    })
-  })
+    });
+    response.done = true;
+    res.json(response);
+  });
 
-  site.post("/api/countries/delete", (req, res) => {
+  site.post('/api/countries/all', (req, res) => {
     let response = {
-      done: false
-    }
+      done: false,
+    };
 
     if (!req.session.user) {
-      response.error = 'Please Login First'
-      res.json(response)
-      return
+      response.error = 'Please Login First';
+      res.json(response);
+      return;
     }
 
-    let id = req.body.id
-
-    if (id) {
-      $countries.delete({
-        id: id,
-        $req: req,
-        $res: res
-      }, (err, result) => {
-        if (!err) {
-          response.done = true
-        } else {
-          response.error = err.message
-        }
-        res.json(response)
-      })
-    } else {
-      response.error = 'no id'
-      res.json(response)
-    }
-  })
-
-
-  site.post("/api/countries/all", (req, res) => {
-    let response = {
-      done: false
-    }
-
-    if (!req.session.user) {
-      response.error = 'Please Login First'
-      res.json(response)
-      return
-    }
-
-
-    let where = req.body.where || {}
+    let where = req.body.where || {};
 
     if (where['name_ar']) {
-      where['name_ar'] = site.get_RegExp(where['name_ar'], "i");
+      where['name_ar'] = site.get_RegExp(where['name_ar'], 'i');
     }
 
-    
     if (where['name_en']) {
-      where['name_en'] = site.get_RegExp(where['name_en'], "i");
+      where['name_en'] = site.get_RegExp(where['name_en'], 'i');
     }
 
-
-
-    $countries.findMany({
-      select: req.body.select || {},
-      where: where,
-      sort: req.body.sort || {
-        id: -1
+    $countries.findMany(
+      {
+        select: req.body.select || {},
+        where: where,
+        sort: req.body.sort || {
+          id: -1,
+        },
+        limit: req.body.limit,
       },
-      limit: req.body.limit
-    }, (err, docs, count) => {
-      if (!err) {
-        response.done = true
-        response.list = docs
-        response.count = count
-      } else {
-        response.error = err.message
+      (err, docs, count) => {
+        if (!err) {
+          response.done = true;
+          response.list = docs;
+          response.count = count;
+        } else {
+          response.error = err.message;
+        }
+        res.json(response);
       }
-      res.json(response)
-    })
-  })
-
-}
+    );
+  });
+};

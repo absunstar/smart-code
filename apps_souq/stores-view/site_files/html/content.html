@@ -1,0 +1,31 @@
+<div class="form" id="stores_view">
+  <div class="row">
+    <div class="row">
+      <i-control ng-keydown="getStoresList($event,search_stores)" class="col4" ng-model="search_stores" label="##word.search_all##" type="text"></i-control>
+      <i-button type="search" label="##word.search##" ng-click="getStoresList({which:13},search_stores)"> </i-button>
+    </div>
+    <div class="row">
+      <fieldset>
+        <div ng-repeat="a in storesList">
+          <div class="row" ng-click="displayStore(a.id)">
+            <i-image view class="logo col2" ng-model="a.image_url"></i-image>
+            <b class="bold col4">{{a.name_##session.lang##}}</b>
+          </div>
+          <div class="row" ng-click="displayStore(a.id)">
+            <p><b class="black"> ##word.store## : </b><b> {{a.name_##session.lang##}} </b></p>
+            <p><b class="black"> ##word.store_owner## : </b><b> {{a.user.profile.name}} </b></p>
+            <p ng-repeat="q in a.quantity_list"><b>{{q.unit.name_##session.lang##}} {{q.net_value}} {{q.currency.name_##session.lang##}}</b></p>
+          </div>
+          <div class="row">
+            <i-button fa="shopping-cart" ng-hide="a.user.id == user.id" label="##word.add_to_cart##" ng-click="bookList(a,0)"> </i-button>
+            <i-checkbox label="##word.like##" ng-click="updateComment(a,'like')" ng-model="a.like"> </i-checkbox>
+            <i-checkbox label="##word.favorite##" ng-click="updateComment(a,'favorite')" ng-model="a.favorite"> </i-checkbox>
+          </div>
+          <br />
+          <hr>
+          <br />
+        </div>
+      </fieldset>
+    </div>
+  </div>
+</div>

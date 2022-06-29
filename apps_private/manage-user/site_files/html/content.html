@@ -12,6 +12,7 @@
       <a class="tab-link" x-features="ecommerce || souq" onclick="site.showTabContent(event, '#cart')"> ##word.cart## </a>
       <a class="tab-link" x-features="ecommerce || souq" ng-click="showTab($event,'#my_orders')"> ##word.my_orders## </a>
       <a class="tab-link" x-features="ecommerce || souq" ng-click="showTab($event,'#my_ads')"> ##word.my_ads## </a>
+      <a class="tab-link" x-features="ecommerce || souq" ng-click="showTab($event,'#my_stores')"> ##word.my_stores## </a>
       <a class="tab-link" x-features="ecommerce || souq" ng-click="showTab($event,'#liked_ads')"> ##word.liked_ads## </a>
       <a class="tab-link" x-features="ecommerce || souq" ng-click="showTab($event,'#favorite_ads')"> ##word.favorite_ads## </a>
     </div>
@@ -429,6 +430,47 @@
                   <i-button type="edit" label="##word.edit##" ng-click="displayUpdateAd(l)"></i-button>
 
                   <i-button type="delete" label="##word.delete##" ng-click="displayDeleteAd(l)"></i-button>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </fieldset>
+      </div>
+
+      <div id="my_stores" class="tab-content">
+        <fieldset>
+          <legend>##word.my_stores##</legend>
+          <br />
+
+          <div class="row" ng-hide="myStoreslist.length > 0">
+            <br />
+            <br />
+            <h1 class="blue bold center">##word.there_no_Stores##</h1>
+            <br />
+            <br />
+          </div>
+          <div class="top-actions" ng-show="myStoreslist.length > 0">
+            <i-button type="add" label="##word.stores_new##" ng-click="displayAddStore()"></i-button>
+          </div>
+          <div class="row" ng-show="myStoreslist.length > 0">
+            <table class="table loaded hover pointer center bold">
+              <tr>
+                <th>##word.logo##</th>
+                <th>##word.name##</th>
+                <th>##word.store_status##</th>
+                <th class="not-print">##word.actions##</th>
+              </tr>
+
+              <tr ng-repeat="l in myStoreslist">
+                <td ng-click="viewOrder(l)"><i-image view class="logo" ng-model="l.image_url"></i-image></td>
+                <td ng-click="viewOrder(l)">{{l.name_##session.lang##}}</td>
+                <td ng-click="viewOrder(l)" class="">{{l.store_status.##session.lang##}}</td>
+                <td class="center not-print">
+                  <i-button type="view" label="##word.details##" ng-click="displayDetailsStore(l)"></i-button>
+
+                  <i-button type="edit" label="##word.edit##" ng-click="displayUpdateStore(l)"></i-button>
+
+                  <i-button type="delete" label="##word.delete##" ng-click="displayDeleteStore(l)"></i-button>
                 </td>
               </tr>
             </table>

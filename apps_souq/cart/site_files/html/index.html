@@ -79,14 +79,14 @@
             </div>
 
             <div class="row">
-              <div class="col2"></div>
+              <div class="col1"></div>
               <i-control class="col2 r_black center" ng-show="user.cart.payment_method.id == 1" type="number" disabled label="##word.fee_upon_receipt##" ng-model="user.cart.fee_upon_receipt"></i-control>
 
-              <i-control id="item_name" class="col2 r_green center" label="##word.total_purchase_price##" type="number" ng-model="user.cart.net_value" disabled></i-control>
-              <i-list class="col3" ng-search="_search.$currency_search" display="name_##session.lang##" ng-model="user.cart.currency" ng-change="calc(user)" items="currenciesList" label="##word.payment_currency##"> </i-list>
+              <i-control class="col2 r_green center" label="##word.total_purchase_price##" type="number" ng-model="user.cart.net_value" disabled></i-control>
+              <i-list class="col2" display="name_##session.lang##" ng-model="user.cart.currency" ng-change="calc(user)" items="currenciesList" label="##word.payment_currency##" ng-search="_search.$currency_search"></i-list>
 
-              <i-control class="col2" disabled ng-model="user.cart.currency.ex_rate" type="number" label="##word.exchange_rate##"></i-control>
-              <i-control id="item_name" class="col2 r_green center" label="##word.paid_require##" type="number" ng-model="user.cart.paid_require" disabled></i-control>
+              <i-control class="col2 center" label="##word.exchange_rate##" disabled ng-model="user.cart.currency.ex_rate" type="number"></i-control>
+              <i-control class="col2 r_green center" label="##word.paid_require##" type="number" ng-model="user.cart.paid_require" disabled></i-control>
             </div>
             <br />
             <br />

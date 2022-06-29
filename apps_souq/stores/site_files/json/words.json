@@ -96,6 +96,11 @@
     "ar": "عدد اللايكات"
   },
   {
+    "name": "maximum_number_stores_exceeded",
+    "en": "Maximum number of stores exceeded",
+    "ar": "تم تخطي الحد الأقصى من عدد المتاجر"
+  },
+  {
     "name": "quantities",
     "en": "Quantities",
     "ar": "الكميات"

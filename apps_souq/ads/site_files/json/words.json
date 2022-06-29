@@ -103,7 +103,7 @@
   {
     "name": "number_favorites",
     "en": "Number of FavoriteS",
-    "ar": "عدد المفضلات"
+    "ar": "عدد التفضيلات"
   },
   {
     "name": "priority_level",
@@ -144,7 +144,7 @@
   {
     "name": "favorite",
     "en": "Favorite",
-    "ar": "مفضل"
+    "ar": "تفضيل"
   },
   {
     "name": "reported",

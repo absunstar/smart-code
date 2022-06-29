@@ -1,6 +1,34 @@
 module.exports = function init(site) {
   const $area = site.connectCollection("area")
+  site.area_list = [];
+  $area.findMany({}, (err, docs) => {
+    if (!err && docs) {
+      site.area_list = [...site.area_list, ...docs];
+    }
+  });
 
+  setInterval(() => {
+    site.area_list.forEach((a, i) => {
+      if (a.$add) {
+        $area.add(a, (err, doc) => {
+          if (!err && doc) {
+            site.area_list[i] = doc;
+          }
+        });
+      } else if (a.$update) {
+        $area.edit({
+          where: {
+            id: a.id,
+          },
+          set: a,
+        });
+      } else if (a.$delete) {
+        $area.delete({
+          id: a.id,
+        });
+      }
+    });
+  }, 1000 * 7);
   site.get({
     name: 'images',
     path: __dirname + '/site_files/images/'
@@ -34,16 +62,7 @@ module.exports = function init(site) {
       code : '1-Test',
       price_delivery_service: 0,
       image_url: '/images/area.png',
-      company: {
-        id: doc.company.id,
-        name_ar: doc.company.name_ar,
-        name_en: doc.company.name_en,
-      },
-      branch: {
-        code: doc.branch.code,
-        name_ar: doc.branch.name_ar,
-        name_en: doc.branch.name_en,
-      },
+    
       active: true
     }, (err, doc) => { })
   })
@@ -74,10 +93,8 @@ module.exports = function init(site) {
       area_doc.active = true
     }
 
-    area_doc.company = site.get_company(req)
-    area_doc.branch = site.get_branch(req)
+ 
     let num_obj = {
-      company: site.get_company(req),
       screen: 'area',
       date: new Date()
     };
@@ -93,15 +110,10 @@ module.exports = function init(site) {
     }
 
 
-    $area.add(area_doc, (err, doc) => {
-      if (!err) {
-        response.done = true
-        response.doc = doc
-      } else {
-        response.error = err.message
-      }
-      res.json(response)
-    })
+    response.done = true;
+    area_doc.$add = true;
+    site.area_list.push(area_doc);
+    res.json(response);
 
   })
 
@@ -122,27 +134,19 @@ module.exports = function init(site) {
       $req: req,
       $res: res
     })
-    if (area_doc.id) {
-
-      $area.edit({
-        where: {
-          id: area_doc.id
-        },
-        set: area_doc,
-        $req: req,
-        $res: res
-      }, err => {
-        if (!err) {
-          response.done = true
-        } else {
-          response.error = 'Code Already Exist'
-        }
-        res.json(response)
-      })
-    } else {
-      response.error = 'no id'
-      res.json(response)
+    if (!area_doc.id) {
+      response.error = 'No id';
+      res.json(response);
+      return;
     }
+    response.done = true;
+    area_doc.$update = true;
+    site.area_list.forEach((a, i) => {
+      if (a.id === area_doc.id) {
+        site.area_list[i] = area_doc;
+      }
+    });
+    res.json(response);
   })
 
   site.post("/api/area/view", (req, res) => {
@@ -156,19 +160,21 @@ module.exports = function init(site) {
       return
     }
 
-    $area.findOne({
-      where: {
-        id: req.body.id
+    let ad = null;
+    site.area_list.forEach((a) => {
+      if (a.id == req.body.id) {
+        ad = a;
       }
-    }, (err, doc) => {
-      if (!err) {
-        response.done = true
-        response.doc = doc
-      } else {
-        response.error = err.message
-      }
-      res.json(response)
-    })
+    });
+
+    if (ad) {
+      response.done = true;
+      response.doc = ad;
+      res.json(response);
+    } else {
+      response.error = 'no id'
+      res.json(response);
+    }
   })
 
   site.post("/api/area/delete", (req, res) => {
@@ -181,26 +187,19 @@ module.exports = function init(site) {
       res.json(response)
       return
     }
-
-    let id = req.body.id
-
-    if (id) {
-      $area.delete({
-        id: id,
-        $req: req,
-        $res: res
-      }, (err, result) => {
-        if (!err) {
-          response.done = true
-        } else {
-          response.error = err.message
-        }
-        res.json(response)
-      })
-    } else {
-      response.error = 'no id'
-      res.json(response)
+    if (!req.body.id) {
+      response.error = 'no id';
+      res.json(response);
+      return;
     }
+
+    site.area_list.forEach((a) => {
+      if (req.body.id && a.id === req.body.id) {
+        a.$delete = true;
+      }
+    });
+    response.done = true;
+    res.json(response);
   })
 
 
@@ -254,8 +253,6 @@ module.exports = function init(site) {
     if (where['name']) {
       where['name'] = site.get_RegExp(where['name'], "i");
     }
-    if (site.get_company(req) && site.get_company(req).id)
-      where['company.id'] = site.get_company(req).id
 
     $area.findMany({
       select: req.body.select || {},

@@ -1,6 +1,34 @@
 module.exports = function init(site) {
   const $comments_types = site.connectCollection("comments_types")
+  site.comment_type_list = [];
+  $comments_types.findMany({}, (err, docs) => {
+    if (!err && docs) {
+      site.comment_type_list = [...site.comment_type_list, ...docs];
+    }
+  });
 
+  setInterval(() => {
+    site.comment_type_list.forEach((a, i) => {
+      if (a.$add) {
+        $comments_types.add(a, (err, doc) => {
+          if (!err && doc) {
+            site.comment_type_list[i] = doc;
+          }
+        });
+      } else if (a.$update) {
+        $comments_types.edit({
+          where: {
+            id: a.id,
+          },
+          set: a,
+        });
+      } else if (a.$delete) {
+        $comments_types.delete({
+          id: a.id,
+        });
+      }
+    });
+  }, 1000 * 7);
   site.get({
     name: 'images',
     path: __dirname + '/site_files/images/'
@@ -65,32 +93,10 @@ module.exports = function init(site) {
     } else if (cb.auto) {
       comments_types_doc.code = cb.code;
     }
-
-    $comments_types.find({
-      where: {
-        $or: [{
-          'name_ar': comments_types_doc.name_ar
-        },{
-          'name_en': comments_types_doc.name_en
-        }]
-    
-      }
-    }, (err, doc) => {
-      if (!err && doc) {
-        response.error = 'Name Exists'
-        res.json(response)
-      } else {
-        $comments_types.add(comments_types_doc, (err, doc) => {
-          if (!err) {
-            response.done = true
-            response.doc = doc
-          } else {
-            response.error = err.message
-          }
-          res.json(response)
-        })
-      }
-    })
+    response.done = true;
+    comments_types_doc.$add = true;
+    site.comment_type_list.push(comments_types_doc);
+    res.json(response);
   })
 
   site.post("/api/comments_types/update", (req, res) => {
@@ -111,26 +117,19 @@ module.exports = function init(site) {
       $res: res
     })
 
-    if (comments_types_doc.id) {
-      $comments_types.edit({
-        where: {
-          id: comments_types_doc.id
-        },
-        set: comments_types_doc,
-        $req: req,
-        $res: res
-      }, err => {
-        if (!err) {
-          response.done = true
-        } else {
-          response.error = 'Code Already Exist'
-        }
-        res.json(response)
-      })
-    } else {
-      response.error = 'no id'
-      res.json(response)
+    if (!comments_types_doc.id) {
+      response.error = 'No id';
+      res.json(response);
+      return;
     }
+    response.done = true;
+    comments_types_doc.$update = true;
+    site.comment_type_list.forEach((a, i) => {
+      if (a.id === comments_types_doc.id) {
+        site.comment_type_list[i] = comments_types_doc;
+      }
+    });
+    res.json(response);
   })
 
   site.post("/api/comments_types/view", (req, res) => {
@@ -144,19 +143,22 @@ module.exports = function init(site) {
       return
     }
 
-    $comments_types.findOne({
-      where: {
-        id: req.body.id
+   
+    let ad = null;
+    site.comment_type_list.forEach((a) => {
+      if (a.id == req.body.id) {
+        ad = a;
       }
-    }, (err, doc) => {
-      if (!err) {
-        response.done = true
-        response.doc = doc
-      } else {
-        response.error = err.message
-      }
-      res.json(response)
-    })
+    });
+
+    if (ad) {
+      response.done = true;
+      response.doc = ad;
+      res.json(response);
+    } else {
+      response.error = 'no id'
+      res.json(response);
+    }
   })
 
   site.post("/api/comments_types/delete", (req, res) => {
@@ -170,25 +172,20 @@ module.exports = function init(site) {
       return
     }
 
-    let id = req.body.id
-
-    if (id) {
-      $comments_types.delete({
-        id: id,
-        $req: req,
-        $res: res
-      }, (err, result) => {
-        if (!err) {
-          response.done = true
-        } else {
-          response.error = err.message
-        }
-        res.json(response)
-      })
-    } else {
-      response.error = 'no id'
-      res.json(response)
+    
+    if (!req.body.id) {
+      response.error = 'no id';
+      res.json(response);
+      return;
     }
+
+    site.comment_type_list.forEach((a) => {
+      if (req.body.id && a.id === req.body.id) {
+        a.$delete = true;
+      }
+    });
+    response.done = true;
+    res.json(response);
   })
 
   site.post("/api/comments_types/all", (req, res) => {
