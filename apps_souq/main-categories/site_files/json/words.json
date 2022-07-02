@@ -10,6 +10,21 @@
     "ar": "القسم الرئيسي"
   },
   {
+    "name": "the_sub_categories",
+    "en": "The sub categories",
+    "ar": "الأقسام الفرعية"
+  },
+  {
+    "name": "sub_categories",
+    "en": "Sub categories",
+    "ar": "أقسام فرعية"
+  },
+  {
+    "name": "sub_category_name",
+    "en": "sub category name",
+    "ar": "إسم القسم الفرعي"
+  },
+  {
     "name": "main_categories_new",
     "en": "New Main category",
     "ar": "قسم رئيسي جديد"

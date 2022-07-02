@@ -30,6 +30,11 @@
         "ar": "لا يوجد رسائل"
     },
     {
+        "name": "there_no_stores",
+        "en": "There are no Stores",
+        "ar": "لا يوجد متاجر"
+    },
+    {
         "name": "there_no_ads",
         "en": "There are no Ads",
         "ar": "لا يوجد إعلانات"
@@ -37,12 +42,22 @@
     {
         "name": "liked_ads",
         "en": "Liked Ads",
-        "ar": "إعلانات أعجبت بها"
+        "ar": "إعلانات معجب بها"
     },
     {
         "name": "favorite_ads",
         "en": "Favorite Ads",
         "ar": "إعلانات مفضلة"
+    },
+    {
+        "name": "liked_stores",
+        "en": "Liked Stores",
+        "ar": "متاجر معجب بها"
+    },
+    {
+        "name": "favorite_stores",
+        "en": "Favorite Stores",
+        "ar": "متاجر مفضلة"
     },
     {
         "name": "my_ads",

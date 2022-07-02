@@ -2259,6 +2259,7 @@ app.controller('stores_in', function ($scope, $http, $timeout) {
           $scope.busy = false;
           if (response.data.done) {
             $scope.vendorsList = response.data.list;
+            $scope.search_vendor = '';
           }
         },
         function (err) {

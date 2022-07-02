@@ -1,95 +1,63 @@
 <div id="viewManageUserModal" class="modal small" fixed>
-    <div class="modal-content">
-        <div class="modal-header">
-            <span class="close"> &times; </span>
-            <h2>
-                ##word.edit##
-                <i class="fa fa-file "></i>
-            </h2>
-
-        </div>
-
-        <div class="modal-body">
-            <div class="row">
-
-                <div class="col4"></div>
-                <div class="col4 center">
-
-                    <i-image ng-show="viewText === 'logo'" ng-model="manage_user.profile.image_url">
-                    </i-image>
-
-                    <i-control ng-show="viewText === 'name'" label="##word.the_name##"
-                        ng-model="manage_user.profile.name_ar">
-                    </i-control>
-
-                    <i-control ng-show="viewText === 'name'" label="##word.name_en##"
-                    ng-model="manage_user.profile.name_en">
-                </i-control>
-
-                    <i-date ng-show="viewText === 'birth_date'" ng-model="manage_user.profile.birth_date"
-                        label="##word.birth_date##">
-                    </i-date>
-
-                    <i-list ng-show="viewText === 'gender'" ng-search="_search.$gender_search" label="##word.gender##"
-                        ng-model="manage_user.gender" primary="##session.lang##" items="genderList" display="##session.lang##">
-                    </i-list>
-
-                    <i-control ng-show="viewText === 'email'" label="##word.new_username##" ng-model="manage_user.new_email">
-                    </i-control>
-
-                    <i-control ng-show="viewText === 'phone'" label="##word.phone##" ng-model="manage_user.phone">
-                    </i-control>
-
-                    <i-control ng-show="viewText === 'mobile'" label="##word.mobile##" ng-model="manage_user.mobile">
-                    </i-control>
-
-                    <i-control v="r" ng-show="viewText === 'password'" type="password" label="##word.current_password##"
-                        ng-model="manage_user.current_password">
-                    </i-control>
-
-
-                </div>
-                <div class="col4"></div>
-
-            </div>
-
-            <div class="row center" ng-show="viewText === 'password'">
-                <div class="col2"></div>
-                <i-control v="r" class="col4" type="password" label="##word.new_password##"
-                    ng-model="manage_user.new_password">
-                </i-control>
-
-                <i-control v="r" class="col4" type="password" label="##word.security_user_password_return##"
-                    ng-model="manage_user.re_password">
-                </i-control>
-
-            </div>
-        </div>
-
-        <div class="modal-footer center">
-            <h2 class="error"> {{error}} </h2>
-            <div class="row center">
-
-                <i-button type="save" ng-show="viewText === 'password'" label="##word.save##"
-                    ng-click="editPersonalInfoUser('password')"></i-button>
-                <i-button type="save" ng-show="viewText === 'logo'" label="##word.save##"
-                    ng-click="editPersonalInfoUser('logo')"></i-button>
-                <i-button type="save" ng-show="viewText === 'name'" label="##word.save##"
-                    ng-click="editPersonalInfoUser('name')"></i-button>
-                <i-button type="save" ng-show="viewText === 'birth_date'" label="##word.save##"
-                    ng-click="editPersonalInfoUser('birth_date')"></i-button>
-                <i-button type="save" ng-show="viewText === 'gender'" label="##word.save##"
-                    ng-click="editPersonalInfoUser('gender')"></i-button>
-                <i-button type="save" ng-show="viewText === 'email'" label="##word.save##"
-                    ng-click="editPersonalInfoUser('email')"></i-button>
-                <i-button type="save" ng-show="viewText === 'phone'" label="##word.save##"
-                    ng-click="editPersonalInfoUser('phone')"></i-button>
-                <i-button type="save" ng-show="viewText === 'mobile'" label="##word.save##"
-                    ng-click="editPersonalInfoUser('mobile')"></i-button>
-                <i-button type="close" label="##word.close##" onclick="site.hideModal( '#viewManageUserModal')">
-                </i-button>
-
-            </div>
-
-        </div>
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close"> &times; </span>
+      <h2>
+        ##word.edit##
+        <i class="fa fa-file"></i>
+      </h2>
     </div>
+
+    <div class="modal-body">
+      <div class="row">
+        <div class="col4"></div>
+        <div class="col4 center">
+          <i-image ng-show="viewText === 'logo'" ng-model="manage_user.profile.image_url"> </i-image>
+
+          <i-control ng-show="viewText === 'name'" label="##word.the_name##" ng-model="manage_user.profile.name_ar"> </i-control>
+
+          <i-control ng-show="viewText === 'name'" label="##word.name_en##" ng-model="manage_user.profile.name_en"> </i-control>
+
+          <i-control ng-show="viewText === 'first_name'" label="##word.the_name##" ng-model="manage_user.profile.name"> </i-control>
+
+          <i-control ng-show="viewText === 'first_name'" label="##word.last_name##" ng-model="manage_user.profile.last_name"> </i-control>
+
+          <i-date ng-show="viewText === 'birth_date'" ng-model="manage_user.profile.birth_date" label="##word.birth_date##"> </i-date>
+
+          <i-list ng-show="viewText === 'gender'" ng-search="_search.$gender_search" label="##word.gender##" ng-model="manage_user.gender" primary="##session.lang##" items="genderList" display="##session.lang##"> </i-list>
+
+          <i-control ng-show="viewText === 'email'" label="##word.new_username##" ng-model="manage_user.new_email"> </i-control>
+
+          <i-control ng-show="viewText === 'phone'" label="##word.phone##" ng-model="manage_user.profile.phone"> </i-control>
+
+          <i-control ng-show="viewText === 'mobile'" label="##word.mobile##" ng-model="manage_user.profile.mobile"> </i-control>
+
+          <i-control v="r" ng-show="viewText === 'password'" type="password" label="##word.current_password##" ng-model="manage_user.current_password"> </i-control>
+        </div>
+        <div class="col4"></div>
+      </div>
+
+      <div class="row center" ng-show="viewText === 'password'">
+        <div class="col2"></div>
+        <i-control v="r" class="col4" type="password" label="##word.new_password##" ng-model="manage_user.new_password"> </i-control>
+
+        <i-control v="r" class="col4" type="password" label="##word.security_user_password_return##" ng-model="manage_user.re_password"> </i-control>
+      </div>
+    </div>
+
+    <div class="modal-footer center">
+      <h2 class="error">{{error}}</h2>
+      <div class="row center">
+        <i-button type="save" ng-show="viewText === 'password'" label="##word.save##" ng-click="editPersonalInfoUser('password')"></i-button>
+        <i-button type="save" ng-show="viewText === 'logo'" label="##word.save##" ng-click="editPersonalInfoUser('logo')"></i-button>
+        <i-button type="save" ng-show="viewText === 'name'" label="##word.save##" ng-click="editPersonalInfoUser('name')"></i-button>
+        <i-button type="save" ng-show="viewText === 'birth_date'" label="##word.save##" ng-click="editPersonalInfoUser('birth_date')"></i-button>
+        <i-button type="save" ng-show="viewText === 'gender'" label="##word.save##" ng-click="editPersonalInfoUser('gender')"></i-button>
+        <i-button type="save" ng-show="viewText === 'email'" label="##word.save##" ng-click="editPersonalInfoUser('email')"></i-button>
+        <i-button type="save" ng-show="viewText === 'phone'" label="##word.save##" ng-click="editPersonalInfoUser('phone')"></i-button>
+        <i-button type="save" ng-show="viewText === 'mobile'" label="##word.save##" ng-click="editPersonalInfoUser('mobile')"></i-button>
+        <i-button type="close" label="##word.close##" onclick="site.hideModal( '#viewManageUserModal')"> </i-button>
+      </div>
+    </div>
+  </div>
+</div>

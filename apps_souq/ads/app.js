@@ -44,6 +44,18 @@ module.exports = function init(site) {
     ads_doc.$req = req;
     ads_doc.$res = res;
 
+    if (!ads_doc.store || !ads_doc.store.id) {
+      response.error = 'Store must specified';
+      res.json(response);
+      return;
+    }
+    foundUserFeedback = ads_doc.feedback_list.every((_f) => _f.user && _f.user.id);
+    if (!foundUserFeedback) {
+      response.error = 'User must be specified in feedbacks';
+      res.json(response);
+      return;
+    }
+
     ads_doc.add_user_info = site.security.getUserFinger({
       $req: req,
       $res: res,
@@ -65,6 +77,17 @@ module.exports = function init(site) {
     }
 
     let ads_doc = req.body;
+    if (!ads_doc.store || !ads_doc.store.id) {
+      response.error = 'Store must specified';
+      res.json(response);
+      return;
+    }
+    foundUserFeedback = ads_doc.feedback_list.every((_f) => _f.user && _f.user.id);
+    if (!foundUserFeedback) {
+      response.error = 'User must be specified in feedbacks';
+      res.json(response);
+      return;
+    }
 
     ads_doc.edit_user_info = site.security.getUserFinger({
       $req: req,
@@ -131,7 +154,7 @@ module.exports = function init(site) {
     );
   });
 
-  site.post('/api/ads/update_comment', (req, res) => {
+  site.post('/api/ads/update_feedback', (req, res) => {
     let response = {
       done: false,
     };
@@ -159,6 +182,7 @@ module.exports = function init(site) {
     ad.feedback_list = ad.feedback_list || [];
     if (user_ad.feedback.type == 'like') {
       if (user_ad.feedback.like === true) {
+        ad.number_likes = ad.number_likes + 1;
         req.session.user.feedback_list = req.session.user.feedback_list || [];
         req.session.user.feedback_list.push({ type: { id: 1 }, ad: { id: user_ad.id } });
         site.security.updateUser(req.session.user, (err, user_doc) => {});
@@ -168,6 +192,7 @@ module.exports = function init(site) {
           type: { id: 1, en: 'Like', ar: 'إعجاب' },
         });
       } else {
+        ad.number_likes = ad.number_likes - 1;
         req.session.user.feedback_list.splice(
           req.session.user.feedback_list.findIndex((c) => c.type && c.ad && c.type.id == 1 && c.ad.id == ad.id),
           1
@@ -180,6 +205,7 @@ module.exports = function init(site) {
       }
     } else if (user_ad.feedback.type == 'favorite') {
       if (user_ad.feedback.favorite === true) {
+        ad.number_favorites = ad.number_favorites + 1;
         req.session.user.feedback_list.push({ type: { id: 2 }, ad: { id: user_ad.id } });
         site.security.updateUser(req.session.user, (err, user_doc) => {});
         ad.feedback_list.push({
@@ -188,6 +214,7 @@ module.exports = function init(site) {
           date: new Date(),
         });
       } else {
+        ad.number_favorites = ad.number_favorites - 1;
         req.session.user.feedback_list.splice(
           req.session.user.feedback_list.findIndex((c) => c.type && c.ad && c.type.id == 2 && c.ad.id == ad.id),
 
@@ -200,6 +227,7 @@ module.exports = function init(site) {
         );
       }
     } else if (user_ad.feedback.type == 'report') {
+      ad.number_reports = ad.number_reports + 1;
       ad.feedback_list.push({
         user: user,
         type: { id: 3, en: 'Report', ar: 'إبلاغ' },
@@ -208,6 +236,7 @@ module.exports = function init(site) {
         date: new Date(),
       });
     } else if (user_ad.feedback.type == 'comment') {
+      ad.number_comments = ad.number_comments + 1;
       ad.feedback_list.push({
         user: user,
         type: { id: 4, en: 'Comment', ar: 'تعليق' },

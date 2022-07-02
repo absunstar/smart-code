@@ -17,8 +17,8 @@ app.controller('stores', function ($scope, $http, $timeout) {
       priority_level: 0,
       active: true,
     };
-    if($scope.defaultSettings){
-      if($scope.defaultSettings.stores_settings.store_status){
+    if ($scope.defaultSettings.stores_settings) {
+      if ($scope.defaultSettings.stores_settings.store_status) {
         $scope.store.store_status = $scope.defaultSettings.stores_settings.store_status;
       }
     }
@@ -50,6 +50,10 @@ app.controller('stores', function ($scope, $http, $timeout) {
             $scope.error = '##word.must_enter_code##';
           } else if (response.data.error.like('*maximum number of adds exceeded*')) {
             $scope.error = '##word.err_maximum_adds##';
+          } else if (response.data.error.like('*ser must specifi*')) {
+            $scope.error = '##word.user_must_specified##';
+          } else if (response.data.error.like('*must be specified in feed*')) {
+            $scope.error = '##word.user_must_specified_in_feedbacks##';
           }
         }
       },
@@ -86,6 +90,11 @@ app.controller('stores', function ($scope, $http, $timeout) {
           $scope.getStoreList();
         } else {
           $scope.error = 'Please Login First';
+          if (response.data.error.like('*ser must specifi*')) {
+            $scope.error = '##word.user_must_specified##';
+          } else if (response.data.error.like('*must be specified in feed*')) {
+            $scope.error = '##word.user_must_specified_in_feedbacks##';
+          }
         }
       },
       function (err) {
@@ -282,16 +291,15 @@ app.controller('stores', function ($scope, $http, $timeout) {
     );
   };
 
-
   $scope.getCommentsTypesList = function (where) {
     $scope.busy = true;
     $scope.commentsTypesList = [];
     $http({
-      method: "POST",
-      url: "/api/comments_types/all",
+      method: 'POST',
+      url: '/api/comments_types/all',
       data: {
-        where: {active:true}
-      }
+        where: { active: true },
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -303,9 +311,8 @@ app.controller('stores', function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
-  
 
   $scope.addImage = function () {
     $scope.error = '';

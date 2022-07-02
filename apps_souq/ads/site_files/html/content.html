@@ -28,7 +28,14 @@
             <i-control help-id="ad_number_reports" type="number" class="col3" label="##word.number_reports##" ng-model="ad.number_reports"></i-control>
           </div>
 
-          <i-address ng-show="defaultSettings.ads_settings.addresses_appear" ng-model="ad"></i-address>
+          <i-address ng-model="ad"></i-address>
+
+          <div class="row">
+            <p class="col3 bold">##word.mobile_number_or_contact_method##</p> : 
+            <i-checkbox class="col3" label="##word.hide_mobile_number##" ng-model="ad.hide_mobile"> </i-checkbox> :
+            <i-control class="col4" ng-hide="ad.hide_mobile" label="##word.cell_phone_number##" ng-model="ad.mobile"></i-control>
+            
+          </div>
 
           <i-category ng-model="ad.main_category" ng-label="##word.main_category##" ng-list="category_list"></i-category>
           <br />

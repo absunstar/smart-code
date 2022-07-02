@@ -114,12 +114,12 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.updateComment = function (ad, type) {
+  $scope.updateFeedback = function (ad, type) {
     let data = { id: ad.id, feedback: { like: ad.like, favorite: ad.favorite, type: type } };
 
     $http({
       method: 'POST',
-      url: '/api/ads/update_comment',
+      url: '/api/ads/update_feedback',
       data: data,
     }).then(
       function (response) {

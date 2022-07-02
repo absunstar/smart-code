@@ -373,6 +373,11 @@
     "ar": "طفل"
   },
   {
+    "name": "communication",
+    "en": "Communication",
+    "ar": "التواصل"
+  },
+  {
     "name": "contact_information",
     "en": "Contact Information",
     "ar": "بيانات الاتصال"
@@ -1384,6 +1389,12 @@
     "en": "Text",
     "ar": "نص"
   },
+  {
+    "name": "cell_phone_number",
+    "en": "Mobile number",
+    "ar": "رقم الجوال"
+  },
+  
   {
     "name": "advanced_search",
     "en": "Advanced Search",

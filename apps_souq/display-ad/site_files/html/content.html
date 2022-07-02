@@ -10,6 +10,9 @@
       </div>
       <br />
       <br />
+      <b>{{ad.country.name_##session.lang##}} {{ad.gov.name_##session.lang##}} {{ad.city.name_##session.lang##}} {{ad.area.name_##session.lang##}}</b>
+      <br />
+      <br />
       <br />
       <div class="row">
         <h2 class="pre_text">{{ad.description}}</h2>
@@ -31,20 +34,27 @@
     <i-button class="col2" type="add" ng-hide="ad.store.user.id == user.id" label="##word.add_to_cart##" ng-click="bookList(ad,$index)"></i-button>
   </div>
 
+  <i-button fa="envelope" ng-hide="ad.hide_mobile" label="##word.communication##" ng-click="showCommunication(ad)"></i-button>
   <div class="row">
-    <i-checkbox class="col2" label="##word.like##" ng-click="updateComment('like')" ng-model="activity.like"> </i-checkbox>
-    <i-checkbox class="col2" label="##word.favorite##" ng-click="updateComment('favorite')" ng-model="activity.favorite"> </i-checkbox>
+    <i-checkbox class="col2" label="##word.like##" ng-click="updateFeedback('like')" ng-model="activity.like"> </i-checkbox>
+    <i-checkbox class="col2" label="##word.favorite##" ng-click="updateFeedback('favorite')" ng-model="activity.favorite"> </i-checkbox>
     <i-button fa="flag" label="##word.submit_report##" onclick="site.showModal('#reportModal')"></i-button>
     <i-button fa="envelope" label="##word.message##" ng-hide="ad.store.user.id == user.id" onclick="site.showModal('#messageModal')"></i-button>
   </div>
+  <div class="row">
+    <b> ##word.number_favorites## : {{ad.number_favorites}}</b>
+    <b> ##word.number_likes## : {{ad.number_likes}}</b>
+    <b> ##word.number_views## : {{ad.number_views}}</b>
 
+  </div>
   <div class="row">
     <h1>##word.comments## :</h1>
+    <b> ##word.number_comments## : {{ad.number_comments}}</b>
   </div>
 
   <div class="row">
     <i-textarea class="col7" ng-model="activity.comment"> </i-textarea>
-    <i-button type="add" label="##word.add_comment##" ng-click="updateComment('comment')"></i-button>
+    <i-button type="add" label="##word.add_comment##" ng-click="updateFeedback('comment')"></i-button>
   </div>
 
   <br />

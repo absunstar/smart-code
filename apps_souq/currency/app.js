@@ -308,7 +308,20 @@ module.exports = function init(site) {
     let where = req.body.where || {};
 
     if (where['name']) {
-      where['name'] = site.get_RegExp(where['name'], 'i');
+      where.$or = [];
+      where.$or.push({
+        name_ar: site.get_RegExp(where['name'], 'i'),
+      });
+      where.$or.push({
+        name_en: site.get_RegExp(where['name'], 'i'),
+      });
+      where.$or.push({
+        minor_currency_ar: site.get_RegExp(where['name'], 'i'),
+      });
+      where.$or.push({
+        minor_currency_en: site.get_RegExp(where['name'], 'i'),
+      });
+      delete where['name']
     }
 
     $currency.findMany(

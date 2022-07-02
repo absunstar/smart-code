@@ -1694,6 +1694,7 @@ app.controller('stores_items', function ($scope, $http, $timeout, $interval) {
           $scope.busy = false;
           if (response.data.done) {
             $scope.vendorsList = response.data.list;
+            $scope.search_vendor = '';
           }
         },
         function (err) {

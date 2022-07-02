@@ -11,6 +11,12 @@
           </div>
 
           <div class="row">
+            <p class="col3 bold">##word.mobile_number_or_contact_method##</p>
+            : <i-checkbox class="col3" label="##word.hide_mobile_number##" ng-model="store.hide_mobile"> </i-checkbox> :
+            <i-control class="col4" ng-hide="store.hide_mobile" label="##word.cell_phone_number##" ng-model="store.mobile"></i-control>
+          </div>
+
+          <div class="row">
             <i-address class="padding_10" ng-model="store"></i-address>
           </div>
 

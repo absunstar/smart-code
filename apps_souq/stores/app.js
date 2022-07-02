@@ -63,6 +63,19 @@ module.exports = function init(site) {
     if (typeof store_doc.active === 'undefined') {
       store_doc.active = true;
     }
+
+    if (!store_doc.user || !store_doc.user.id) {
+      response.error = 'User must specified';
+      res.json(response);
+      return;
+    }
+    foundUserFeedback = store_doc.feedback_list.every((_f) => _f.user && _f.user.id);
+    if (!foundUserFeedback) {
+      response.error = 'User must be specified in feedbacks';
+      res.json(response);
+      return;
+    }
+
     let num_obj = {
       screen: 'stores',
       date: new Date(),
@@ -77,7 +90,7 @@ module.exports = function init(site) {
     }
 
     let result = site.store_list.filter((store) => store.user.id == store_doc.user.id);
-    if (result.length >=req.session.user.maximum_stores) {
+    if (result.length >= req.session.user.maximum_stores) {
       response.error = 'maximum stores to user';
       res.json(response);
       return;
@@ -106,6 +119,18 @@ module.exports = function init(site) {
       $res: res,
     });
 
+    if (!store_doc.user || !store_doc.user.id) {
+      response.error = 'User must specified';
+      res.json(response);
+      return;
+    }
+    foundUserFeedback = store_doc.feedback_list.every((_f) => _f.user && _f.user.id);
+    if (!foundUserFeedback) {
+      response.error = 'User must be specified in feedbacks';
+      res.json(response);
+      return;
+    }
+
     if (!store_doc.id) {
       response.error = 'No id';
       res.json(response);
@@ -121,8 +146,7 @@ module.exports = function init(site) {
     res.json(response);
   });
 
-
-  site.post('/api/stores/update_comment', (req, res) => {
+  site.post('/api/stores/update_feedback', (req, res) => {
     let response = {
       done: false,
     };
@@ -150,17 +174,19 @@ module.exports = function init(site) {
     store.feedback_list = store.feedback_list || [];
     if (user_store.feedback.type == 'like') {
       if (user_store.feedback.like === true) {
+        store.number_likes = store.number_likes + 1;
         req.session.user.feedback_list = req.session.user.feedback_list || [];
-        req.session.user.feedback_list.push({type: { id: 1} , store : {id : user_store.id}});
+        req.session.user.feedback_list.push({ type: { id: 1 }, store: { id: user_store.id } });
         site.security.updateUser(req.session.user, (err, user_doc) => {});
         store.feedback_list.push({
           date: new Date(),
           user: user,
-          type: { id: 1, en: 'Like', ar: 'إعجاب'},
+          type: { id: 1, en: 'Like', ar: 'إعجاب' },
         });
       } else {
+        store.number_likes = store.number_likes - 1;
         req.session.user.feedback_list.splice(
-          req.session.user.feedback_list.findIndex((c) =>  c.type && c.store && c.type.id == 1 && c.store.id == store.id),
+          req.session.user.feedback_list.findIndex((c) => c.type && c.store && c.type.id == 1 && c.store.id == store.id),
           1
         );
         site.security.updateUser(req.session.user, (err, user_doc) => {});
@@ -171,7 +197,8 @@ module.exports = function init(site) {
       }
     } else if (user_store.feedback.type == 'favorite') {
       if (user_store.feedback.favorite === true) {
-        req.session.user.feedback_list.push({type: { id: 2} , store : {id : user_store.id}});
+        store.number_favorites = store.number_favorites + 1;
+        req.session.user.feedback_list.push({ type: { id: 2 }, store: { id: user_store.id } });
         site.security.updateUser(req.session.user, (err, user_doc) => {});
         store.feedback_list.push({
           user: user,
@@ -179,6 +206,7 @@ module.exports = function init(site) {
           date: new Date(),
         });
       } else {
+        store.number_favorites = store.number_favorites - 1;
         req.session.user.feedback_list.splice(
           req.session.user.feedback_list.findIndex((c) => c.type && c.store && c.type.id == 2 && c.store.id == store.id),
 
@@ -191,6 +219,7 @@ module.exports = function init(site) {
         );
       }
     } else if (user_store.feedback.type == 'report') {
+      store.number_reports = store.number_reports + 1;
       store.feedback_list.push({
         user: user,
         type: { id: 3, en: 'Report', ar: 'إبلاغ' },
@@ -199,6 +228,7 @@ module.exports = function init(site) {
         date: new Date(),
       });
     } else if (user_store.feedback.type == 'comment') {
+      store.number_comments = store.number_comments + 1;
       store.feedback_list.push({
         user: user,
         type: { id: 4, en: 'Comment', ar: 'تعليق' },
@@ -235,6 +265,10 @@ module.exports = function init(site) {
     site.store_list.forEach((a) => {
       if (a.id == req.body.id) {
         ad = a;
+        if (req.body.display) {
+          a.$update = true;
+          a.number_views += 1;
+        }
       }
     });
 

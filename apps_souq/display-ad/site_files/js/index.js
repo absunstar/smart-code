@@ -58,13 +58,17 @@ app.controller('display_ad', function ($scope, $http, $timeout) {
       }
     );
   };
+  $scope.showCommunication = function (obj) {
+    $scope.main_obj = obj;
+    site.showModal('#communicationModal');
+  };
 
-  $scope.updateComment = function (type) {
+  $scope.updateFeedback = function (type) {
     let data = { id: $scope.ad.id, feedback: { ...$scope.activity, type: type } };
 
     $http({
       method: 'POST',
-      url: '/api/ads/update_comment',
+      url: '/api/ads/update_feedback',
       data: data,
     }).then(
       function (response) {
@@ -79,11 +83,13 @@ app.controller('display_ad', function ($scope, $http, $timeout) {
               date: new Date(),
             });
             $scope.activity.comment = '';
+            $scope.ad.number_comments += 1;
           } else if (type == 'report') {
             $scope.activity.report_type = {};
             $scope.activity.comment_report = '';
             site.hideModal('#reportModal');
           }
+
         } else {
           $scope.error = 'Please Login First';
         }

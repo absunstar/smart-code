@@ -147,29 +147,7 @@ app.controller("messages", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getDefaultSetting = function () {
-
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/default_setting/get",
-      data: {}
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.doc) {
-          $scope.defaultSettings = response.data.doc;
-
-        };
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-
-  };
-
+ 
   $scope.getMessageList = function (where) {
     $scope.busy = true;
     $scope.list = [];
@@ -196,28 +174,6 @@ app.controller("messages", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getNumberingAuto = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/numbering/get_automatic",
-      data: {
-        screen: "messages"
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.disabledCode = response.data.isAuto;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
 
   $scope.displaySearchModal = function () {
     $scope.error = '';
@@ -252,6 +208,4 @@ app.controller("messages", function ($scope, $http, $timeout) {
   }; */
 
   $scope.getMessageList();
-  $scope.getNumberingAuto();
-  $scope.getDefaultSetting();
 });

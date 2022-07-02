@@ -36,6 +36,7 @@ app.controller('ads', function ($scope, $http, $timeout) {
       if ($scope.defaultSettings.ads_settings.upload_multiple_photos) {
         $scope.ad.images_list = [{}];
       }
+
       $scope.ad.image_url = $scope.defaultSettings.ads_settings.default_image_ad || '/images/ads.png';
     }
     site.showModal('#adAddModal');
@@ -66,6 +67,10 @@ app.controller('ads', function ($scope, $http, $timeout) {
             $scope.error = '##word.must_enter_code##';
           } else if (response.data.error.like('*maximum number of adds exceeded*')) {
             $scope.error = '##word.err_maximum_adds##';
+          } else if (response.data.error.like('*store must specifi*')) {
+            $scope.error = '##word.store_must_specified##';
+          } else if (response.data.error.like('*must be specified in feed*')) {
+            $scope.error = '##word.user_must_specified_in_feedbacks##';
           }
         }
       },
@@ -102,6 +107,11 @@ app.controller('ads', function ($scope, $http, $timeout) {
           $scope.getAdList();
         } else {
           $scope.error = 'Please Login First';
+          if (response.data.error.like('*store must specifi*')) {
+            $scope.error = '##word.store_must_specified##';
+          } else if (response.data.error.like('*must be specified in feed*')) {
+            $scope.error = '##word.user_must_specified_in_feedbacks##';
+          }
         }
       },
       function (err) {
@@ -210,7 +220,7 @@ app.controller('ads', function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $scope.category_list =  response.data.list;
+          $scope.category_list = response.data.list;
           $scope.category_list.forEach((l) => {
             $scope.mainCategories.push({
               id: l.id,

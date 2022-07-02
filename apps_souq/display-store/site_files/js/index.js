@@ -49,12 +49,12 @@ app.controller('display_store', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.updateComment = function (type) {
+  $scope.updateFeedback = function (type) {
     let data = { id: $scope.store.id, feedback: { ...$scope.activity, type: type } };
 
     $http({
       method: 'POST',
-      url: '/api/stores/update_comment',
+      url: '/api/stores/update_feedback',
       data: data,
     }).then(
       function (response) {
@@ -69,6 +69,8 @@ app.controller('display_store', function ($scope, $http, $timeout) {
               date: new Date(),
             });
             $scope.activity.comment = '';
+            $scope.store.number_comments += 1;
+
           } else if (type == 'report') {
             $scope.activity.report_type = {};
             $scope.activity.comment_report = '';
@@ -117,12 +119,17 @@ app.controller('display_store', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.updateCommentAd = function (ad, type) {
+  $scope.showCommunication = function (obj) {
+    $scope.main_obj = obj;
+    site.showModal('#communicationModal');
+  };
+
+  $scope.updateFeedbackAd = function (ad, type) {
     let data = { id: ad.id, feedback: { like: ad.like, favorite: ad.favorite, type: type } };
 
     $http({
       method: 'POST',
-      url: '/api/ads/update_comment',
+      url: '/api/ads/update_feedback',
       data: data,
     }).then(
       function (response) {

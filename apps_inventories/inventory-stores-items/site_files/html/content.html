@@ -44,6 +44,19 @@
                         label="##word.item_type##"
                         items="itemsTypesList"
                       ></i-list>
+
+                      <i-control ng-keydown="loadVendors($event)" class="col2" ng-model="search_vendor" label="##word.search##" type="text"></i-control>
+
+                      <i-list
+                        class="col3"
+                        ng-model="category_item.vendor"
+                        items="vendorsList"
+                        display="name_##session.lang##"
+                        space=" - "
+                        display2="code"
+                        ng-search="_search.$search_vendor"
+                        label="##word.stores_in_Company_name##"
+                      ></i-list>
                     </div>
                   </div>
                 </div>

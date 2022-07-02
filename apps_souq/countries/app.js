@@ -198,12 +198,15 @@ module.exports = function init(site) {
 
     let where = req.body.where || {};
 
-    if (where['name_ar']) {
-      where['name_ar'] = site.get_RegExp(where['name_ar'], 'i');
-    }
-
-    if (where['name_en']) {
-      where['name_en'] = site.get_RegExp(where['name_en'], 'i');
+    if (where['name']) {
+      where.$or = [];
+      where.$or.push({
+        name_ar: site.get_RegExp(where['name'], 'i'),
+      });
+      where.$or.push({
+        name_en: site.get_RegExp(where['name'], 'i'),
+      });
+      delete where['name']
     }
 
     $countries.findMany(

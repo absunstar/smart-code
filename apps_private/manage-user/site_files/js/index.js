@@ -303,9 +303,21 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
       $scope.getLikedAdsList();
     } else if (selector == '#favorite_ads') {
       $scope.getFavoriteAdsList();
-    }else if (selector == '#my_stores') {
+    } else if (selector == '#liked_stores') {
+      $scope.getLikedStoresList();
+    } else if (selector == '#favorite_stores') {
+      $scope.getFavoriteStoresList();
+    } else if (selector == '#my_stores') {
       $scope.getMyStoresList();
     }
+  };
+
+  $scope.displayAd = function (id) {
+    window.open(`/display_ad?id=${id}`, '_blank');
+  };
+
+  $scope.displayStore = function (id) {
+    window.open(`/display_store?id=${id}`, '_blank');
   };
 
   $scope.getMyAdsList = function (where) {
@@ -401,6 +413,41 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.getLikedStoresList = function (where) {
+    $scope.busy = true;
+    $scope.likedStoreslist = [];
+    $http({
+      method: 'POST',
+      url: '/api/stores/all',
+      data: {
+        where: {
+          $and: [
+            {
+              'feedback_list.user.id': $scope.manage_user.id,
+            },
+            {
+              'feedback_list.type.id': 1,
+            },
+            {
+              'store_status.id': { $ne: 3 },
+            },
+          ],
+        },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.likedStoreslist = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.getFavoriteAdsList = function (where) {
     $scope.busy = true;
     $scope.favoriteAdslist = [];
@@ -436,10 +483,46 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.getFavoriteStoresList = function (where) {
+    $scope.busy = true;
+    $scope.favoriteStoreslist = [];
+    $http({
+      method: 'POST',
+      url: '/api/stores/all',
+      data: {
+        where: {
+          $and: [
+            {
+              'feedback_list.user.id': $scope.manage_user.id,
+            },
+            {
+              'feedback_list.type.id': 2,
+            },
+            {
+              'store_status.id': { $ne: 3 },
+            },
+          ],
+        },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.favoriteStoreslist = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.displayAddStore = function () {
     $scope.error = '';
     $scope.store = {
       image_url: '/images/stores.png',
+      mobile: $scope.manage_user.profile.mobile,
       feedback_list: [],
       store_rating: 0,
       number_views: 0,
@@ -450,9 +533,15 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
       priority_level: 0,
       active: true,
     };
-    if($scope.defaultSettings){
-      if($scope.defaultSettings.stores_settings.store_status){
+    if ($scope.defaultSettings) {
+      if ($scope.defaultSettings.stores_settings.store_status) {
         $scope.store.store_status = $scope.defaultSettings.stores_settings.store_status;
+      } else {
+        $scope.store.store_status = {
+          id: 2,
+          en: 'Under review',
+          ar: 'قيد المراجعة',
+        };
       }
     }
     site.showModal('#storeAddModal');
@@ -467,10 +556,10 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
     }
 
     $scope.store.user = {
-      id : site.toNumber('##user.id##'),
-      profile : '##user.profile##',
-      email : '##user.email##',
-    }
+      id: site.toNumber('##user.id##'),
+      profile: '##user.profile##',
+      email: '##user.email##',
+    };
 
     $scope.busy = true;
     $http({
@@ -487,8 +576,8 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
           $scope.error = response.data.error;
           if (response.data.error.like('*Must Enter Code*')) {
             $scope.error = '##word.must_enter_code##';
-          } else  if (response.data.error.like('*maximum stores to user*')) {
-            $scope.error = "##word.maximum_number_stores_exceeded##"
+          } else if (response.data.error.like('*maximum stores to user*')) {
+            $scope.error = '##word.maximum_number_stores_exceeded##';
           }
         }
       },
@@ -624,10 +713,10 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
     );
   };
 
-
   $scope.displayAddAd = function () {
     $scope.error = '';
     $scope.ad = {
+      mobile: $scope.manage_user.profile.mobile,
       feedback_list: [],
       ad_rating: 0,
       number_views: 0,
@@ -641,6 +730,12 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
     if ($scope.defaultSettings.ads_settings) {
       if ($scope.defaultSettings.ads_settings.ad_status) {
         $scope.ad.ad_status = $scope.defaultSettings.ads_settings.ad_status;
+      } else {
+        $scope.ad.ad_status = {
+          id: 2,
+          en: 'Under review',
+          ar: 'قيد المراجعة',
+        };
       }
       if ($scope.defaultSettings.ads_settings.quantities_can_be_used) {
         $scope.ad.quantity_list = [
@@ -931,12 +1026,12 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
   };
 
   $scope.saveUserChanges = function (user) {
-    $scope.error = "";
+    $scope.error = '';
 
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/user/update",
+      method: 'POST',
+      url: '/api/user/update',
       data: user,
     }).then(
       function (response) {
@@ -949,7 +1044,6 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
       function (err) {}
     );
   };
-
 
   $scope.getDefaultSetting = function () {
     $scope.busy = true;

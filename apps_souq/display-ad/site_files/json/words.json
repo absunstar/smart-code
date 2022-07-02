@@ -18,5 +18,10 @@
     "name": "add_report",
     "en": "Add a report",
     "ar": "إضافة بلاغ"
+  },
+  {
+    "name": "communicate_with_advertiser",
+    "en": "Communicate with the advertiser",
+    "ar": "التواصل مع المعلن"
   }
 ]

@@ -44,6 +44,11 @@
         "ar": "إسم الدولة بالإنجليزي"
     },
     {
+        "name": "country_name",
+        "en": "Country Name",
+        "ar": "إسم الدولة"
+    },
+    {
         "name": "country_notes",
         "en": "Notes Country",
         "ar": "ملاحظات الدولة "

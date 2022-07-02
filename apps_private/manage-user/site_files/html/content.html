@@ -14,7 +14,9 @@
       <a class="tab-link" x-features="ecommerce || souq" ng-click="showTab($event,'#my_ads')"> ##word.my_ads## </a>
       <a class="tab-link" x-features="ecommerce || souq" ng-click="showTab($event,'#my_stores')"> ##word.my_stores## </a>
       <a class="tab-link" x-features="ecommerce || souq" ng-click="showTab($event,'#liked_ads')"> ##word.liked_ads## </a>
+      <a class="tab-link" x-features="ecommerce || souq" ng-click="showTab($event,'#liked_stores')"> ##word.liked_stores## </a>
       <a class="tab-link" x-features="ecommerce || souq" ng-click="showTab($event,'#favorite_ads')"> ##word.favorite_ads## </a>
+      <a class="tab-link" x-features="ecommerce || souq" ng-click="showTab($event,'#favorite_stores')"> ##word.favorite_stores## </a>
     </div>
     <div class="tabs-content">
       <div id="personal_info" class="tab-content">
@@ -90,7 +92,7 @@
           <legend>##word.contact_info##</legend>
           <div class="row">
             <table class="table loaded hover center bold">
-              <tr>
+              <tr x-features="!ecommerce && !souq">
                 <td class="blue">
                   <br />
                   ##word.the_name##
@@ -103,6 +105,22 @@
 
                 <td>
                   <i-button type="update" label="##word.update##" ng-click="view('name')"> </i-button>
+                </td>
+              </tr>
+
+              <tr x-features="ecommerce || souq">
+                <td class="blue">
+                  <br />
+                  ##word.the_name##
+                </td>
+
+                <td class="userPrint">
+                  <br />
+                  {{manage_user.profile.name}} {{manage_user.profile.last_name}}
+                </td>
+
+                <td>
+                  <i-button type="update" label="##word.update##" ng-click="view('first_name')"> </i-button>
                 </td>
               </tr>
 
@@ -190,7 +208,6 @@
             </fieldset>
           </div>
           <i-button type="save" label="##word.save##" ng-click="saveUserChanges(manage_user)"> </i-button>
-
         </fieldset>
       </div>
 
@@ -399,17 +416,10 @@
           <legend>##word.my_ads##</legend>
           <br />
 
-          <div class="row" ng-hide="myAdslist.length > 0">
-            <br />
-            <br />
-            <h1 class="blue bold center">##word.there_no_ads##</h1>
-            <br />
-            <br />
-          </div>
-          <div class="top-actions" ng-show="myAdslist.length > 0">
+          <div class="top-actions">
             <i-button type="add" label="##word.ads_new##" ng-click="displayAddAd()"></i-button>
           </div>
-          <div class="row" ng-show="myAdslist.length > 0">
+          <div class="row">
             <table class="table loaded hover pointer center bold">
               <tr>
                 <th>##word.logo##</th>
@@ -442,17 +452,10 @@
           <legend>##word.my_stores##</legend>
           <br />
 
-          <div class="row" ng-hide="myStoreslist.length > 0">
-            <br />
-            <br />
-            <h1 class="blue bold center">##word.there_no_Stores##</h1>
-            <br />
-            <br />
-          </div>
-          <div class="top-actions" ng-show="myStoreslist.length > 0">
+          <div class="top-actions">
             <i-button type="add" label="##word.stores_new##" ng-click="displayAddStore()"></i-button>
           </div>
-          <div class="row" ng-show="myStoreslist.length > 0">
+          <div class="row">
             <table class="table loaded hover pointer center bold">
               <tr>
                 <th>##word.logo##</th>
@@ -486,7 +489,7 @@
           <div class="row" ng-hide="likedAdslist.length > 0">
             <br />
             <br />
-            <h1 class="blue bold center">##word.there_no_orders##</h1>
+            <h1 class="blue bold center">##word.there_no_ads##</h1>
             <br />
             <br />
           </div>
@@ -500,11 +503,42 @@
                 <th>##word.store##</th>
               </tr>
 
-              <tr ng-repeat="l in likedAdslist">
-                <td ng-click="viewOrder(l)"><i-image view class="logo" ng-model="l.image_url"></i-image></td>
-                <td ng-click="viewOrder(l)">{{l.name_##session.lang##}}</td>
-                <td ng-click="viewOrder(l)" class="">{{l.store.user.profile.name}}</td>
-                <td ng-click="viewOrder(l)" class="blue">{{l.store.name_##session.lang##}}</td>
+              <tr ng-repeat="l in likedAdslist" ng-click="displayAd(l.id)">
+                <td><i-image view class="logo" ng-model="l.image_url"></i-image></td>
+                <td>{{l.name_##session.lang##}}</td>
+                <td class="">{{l.store.user.profile.name}}</td>
+                <td class="blue">{{l.store.name_##session.lang##}}</td>
+              </tr>
+            </table>
+          </div>
+        </fieldset>
+      </div>
+
+      <div id="liked_stores" class="tab-content">
+        <fieldset>
+          <legend>##word.liked_stores##</legend>
+          <br />
+
+          <div class="row" ng-hide="likedStoreslist.length > 0">
+            <br />
+            <br />
+            <h1 class="blue bold center">##word.there_no_stores##</h1>
+            <br />
+            <br />
+          </div>
+
+          <div class="row" ng-show="likedStoreslist.length > 0">
+            <table class="table loaded hover pointer center bold">
+              <tr>
+                <th>##word.logo##</th>
+                <th>##word.name##</th>
+                <th>##word.store_owner##</th>
+              </tr>
+
+              <tr ng-repeat="l in likedStoreslist" ng-click="displayStore(l.id)">
+                <td><i-image view class="logo" ng-model="l.image_url"></i-image></td>
+                <td>{{l.name_##session.lang##}}</td>
+                <td class="">{{l.user.profile.name}}</td>
               </tr>
             </table>
           </div>
@@ -533,11 +567,42 @@
                 <th>##word.store##</th>
               </tr>
 
-              <tr ng-repeat="l in favoriteAdslist">
-                <td ng-click="viewOrder(l)"><i-image view class="logo" ng-model="l.image_url"></i-image></td>
-                <td ng-click="viewOrder(l)">{{l.name_##session.lang##}}</td>
-                <td ng-click="viewOrder(l)" class="">{{l.store.user.profile.name}}</td>
-                <td ng-click="viewOrder(l)" class="blue">{{l.store.name_##session.lang##}}</td>
+              <tr ng-repeat="f in favoriteAdslist" ng-click="displayAd(f.id)">
+                <td><i-image view class="logo" ng-model="f.image_url"></i-image></td>
+                <td>{{f.name_##session.lang##}}</td>
+                <td class="">{{f.store.user.profile.name}}</td>
+                <td class="blue">{{f.store.name_##session.lang##}}</td>
+              </tr>
+            </table>
+          </div>
+        </fieldset>
+      </div>
+
+      <div id="favorite_stores" class="tab-content">
+        <fieldset>
+          <legend>##word.favorite_stores##</legend>
+          <br />
+
+          <div class="row" ng-hide="favoriteStoreslist.length > 0">
+            <br />
+            <br />
+            <h1 class="blue bold center">##word.there_no_stores##</h1>
+            <br />
+            <br />
+          </div>
+
+          <div class="row" ng-show="favoriteStoreslist.length > 0">
+            <table class="table loaded hover pointer center bold">
+              <tr>
+                <th>##word.logo##</th>
+                <th>##word.name##</th>
+                <th>##word.store_owner##</th>
+              </tr>
+
+              <tr ng-repeat="f in favoriteStoreslist" ng-click="displayStore(f.id)">
+                <td><i-image view class="logo" ng-model="f.image_url"></i-image></td>
+                <td>{{f.name_##session.lang##}}</td>
+                <td class="">{{f.user.profile.name}}</td>
               </tr>
             </table>
           </div>

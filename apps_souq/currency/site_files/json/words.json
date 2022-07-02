@@ -15,6 +15,11 @@
         "ar": "إسم العملة"
     },
     {
+        "name": "currency_main_or_minor_name",
+        "en": "Name of the main or minor currency",
+        "ar": "إسم العملة الرئيسية أو الصغرى"
+    },
+    {
         "name": "err_delete_currency",
         "en": "The currency cannot be deleted for other transactions",
         "ar": "لأ يمكن حذف العملة لإستخدامها في معاملات أخرى"

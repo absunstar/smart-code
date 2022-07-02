@@ -157,6 +157,16 @@
     "ar": "تقييم"
   },
   {
+    "name": "hide_mobile_number",
+    "en": "Hide mobile number",
+    "ar": "إخفاء رقم الجوال"
+  },
+  {
+    "name": "mobile_number_or_contact_method",
+    "en": "Mobile number or contact method",
+    "ar": "رقم الجوال او وسيلة التواصل"
+  },
+  {
     "name": "comment_on_report",
     "en": "Comment on the report",
     "ar": "التعليق على البلاغ"

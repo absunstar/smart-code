@@ -93,6 +93,7 @@ module.exports = function init(site) {
 
       delete where['search'];
     }
+    where['id'] = { $ne: 1 };
 
     site.security.getUsers(
       {

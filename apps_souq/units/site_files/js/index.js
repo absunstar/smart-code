@@ -147,28 +147,7 @@ app.controller("units", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getDefaultSetting = function () {
-
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/default_setting/get",
-      data: {}
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.doc) {
-          $scope.defaultSettings = response.data.doc;
-
-        };
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-
-  };
+  
 
   $scope.getUnitList = function (where) {
     $scope.busy = true;
@@ -253,5 +232,4 @@ app.controller("units", function ($scope, $http, $timeout) {
 
   $scope.getUnitList();
   $scope.getNumberingAuto();
-  $scope.getDefaultSetting();
 });

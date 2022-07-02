@@ -64,12 +64,12 @@ app.controller('stores_view', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.updateComment = function (store, type) {
+  $scope.updateFeedback = function (store, type) {
     let data = { id: store.id, feedback: { like: store.like, favorite: store.favorite, type: type } };
 
     $http({
       method: 'POST',
-      url: '/api/stores/update_comment',
+      url: '/api/stores/update_feedback',
       data: data,
     }).then(
       function (response) {
