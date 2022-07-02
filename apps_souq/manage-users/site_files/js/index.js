@@ -93,6 +93,7 @@ app.controller("manage_users", function ($scope, $http) {
     $scope.viewManageUsers(manage_users);
     $scope.manage_users = {};
     site.showModal('#manageUsersUpdateModal');
+    document.querySelector("#manageUsersUpdateModal .tab-link").click();
   };
 
   $scope.updateManageUsers = function () {
@@ -189,6 +190,74 @@ app.controller("manage_users", function ($scope, $http) {
     );
   };
 
+  $scope.loadPermissions = function () {
+    $http({
+      method: "POST",
+      url: "/api/security/permissions",
+      data: {}
+    }).then(
+      function (response) {
+        $scope.screens = [];
+        if (response.data.done) {
+          response.data.permissions.forEach(p => {
+
+            let exist = false;
+
+            $scope.screens.forEach(s => {
+              if (s.name == p.screen_name) {
+                exist = true
+                s.permissions.push(p)
+              }
+            });
+
+            if (!exist && p.screen_name) {
+              $scope.screens.push({
+                name: p.screen_name,
+                module_name: p.module_name,
+                permissions: [p]
+              })
+            }
+          });
+
+
+
+          $http({
+            method: 'POST',
+            url: '/api/get_dir_names',
+            data: $scope.screens
+          }).then(
+            function (response) {
+              let data = response.data.doc
+              if (data) {
+                $scope.trans = data;
+                $scope.screens.forEach(s => {
+                  let newname = data.find(el => el.name == s.name.replace(/-/g, '_'));
+                  if (newname) {
+                    s.name_ar = newname.ar;
+                    s.name_en = newname.en;
+                  }
+
+                })
+              }
+
+            }, function (err) {
+
+
+            });
+
+      
+          $scope.public_screens = $scope.screens.filter(s => s.module_name == 'public');
+          $scope.public_screens.pop();
+          console.log($scope.public_screens);
+          $scope.permissions = response.data.permissions;
+
+        }
+      },
+      function (err) {
+        $scope.error = err;
+      })
+  };
+
 
 
   $scope.displayDeleteManageUsers = function (manage_users) {
@@ -196,6 +265,7 @@ app.controller("manage_users", function ($scope, $http) {
     $scope.viewManageUsers(manage_users);
     $scope.manage_users = {};
     site.showModal('#manageUsersDeleteModal');
+    document.querySelector("#manageUsersDeleteModal .tab-link").click();
   };
 
   $scope.deleteManageUsers = function () {
@@ -253,6 +323,24 @@ app.controller("manage_users", function ($scope, $http) {
     );
   };
 
+  $scope.loadRoles = function () {
+    $http({
+      method: "POST",
+      url: "/api/security/roles",
+      data: {}
+    }).then(
+      function (response) {
+        if (response.data.done) {
+          $scope.roles = response.data.roles;
+          $scope.public_roles = $scope.roles.filter(s => s.module_name == 'public');
+        }
+      },
+      function (err) {
+        $scope.error = err;
+      })
+  };
+
+
  /*  $scope.view = function (type) {
     $scope.error = "";
     $scope.viewText = type;
@@ -290,6 +378,36 @@ app.controller("manage_users", function ($scope, $http) {
     );
   };
  */
+
+  $scope.checkAll = function (name) {
+    $scope[name].forEach(r => {
+      r.$selected = $scope['$' + name];
+      if (r.$selected) {
+        let exists = false;
+        $scope.user.roles.forEach(r2 => {
+          if (r.name == r2.name) {
+            exists = true
+            r2.$selected = true;
+          }
+        });
+        if (!exists) {
+          $scope.user.roles.push(r);
+        }
+      } else if (!r.$selected) {
+        let exists = false;
+        $scope.user.roles.forEach((r2, i) => {
+          if (r.name == r2.name) {
+            r2.$selected = false;
+            $scope.user.roles.splice(i, 1);
+          }
+        });
+
+      }
+    });
+  };
+
   $scope.loadManageUsers();
+  $scope.loadPermissions();
+  $scope.loadRoles();
  /*  $scope.getGender() */;
 });

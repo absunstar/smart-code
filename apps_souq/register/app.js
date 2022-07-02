@@ -38,6 +38,7 @@ module.exports = function init(site) {
         files: [],
         name: req.body.first_name,
         last_name: req.body.last_name,
+        image_url: req.body.image_url,
       },
       $req: req,
       $res: res,

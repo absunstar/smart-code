@@ -1,28 +1,65 @@
 <div class="form">
-  <div id="basicInformation" class="">
-    <fieldset>
-      <legend>##word.basic_information##</legend>
-      <div class="row">
-        <div class="col9">
-          <div class="row">
-            <i-control help-id="manage_users_name" v="r" class="col4" label="##word.first_name##" ng-model="manage_users.profile.name"></i-control>
-            <i-control help-id="manage_users_name_en" v="r" class="col4" label="##word.last_name##" ng-model="manage_users.profile.last_name"> </i-control>
-            <i-checkbox help-id="manage_users_active" class="col2" label="##word.active##" ng-model="manage_users.active"> </i-checkbox>
-          </div>
-          <div class="row">
-            <i-control help-id="manage_users_name_en" v="r" class="col4" label="##word.email##" ng-model="manage_users.email"> </i-control>
-            <i-control help-id="manage_users_password" v="r" class="col4" label="##word.password##" ng-model="manage_users.password"> </i-control>
-          </div>
-        </div>
-        <div class="row">
-          <i-control label="##word.maximum_stores##" type="number" class="col3" ng-model="manage_users.maximum_stores"></i-control>
+  <div class="tabs">
+    <div class="tabs-header">
+      <a class="tab-link" onclick="site.showTabContent(event, '#personalInformation')"> ##word.basic_information## </a>
+      <a class="tab-link" onclick="site.showTabContent(event, '#securityRoles')"> ##word.security_roles## </a>
+      <a class="tab-link" onclick="site.showTabContent(event, '#securityPublicPermissions')"> ##word.security_public_permissions## </a>
 
-        </div>
+    </div>
 
-        <div class="col3">
-          <i-image help-id="manage_users_logo" ng-model="manage_users.image_url"></i-image>
-        </div>
+    <div class="tabs-content">
+      <div id="personalInformation" class="tab-content">
+        <fieldset>
+          <legend>##word.basic_information##</legend>
+          <div class="row">
+            <div class="col9">
+              <div class="row">
+                <i-control help-id="manage_users_name" v="r" class="col4" label="##word.first_name##" ng-model="manage_users.profile.name"></i-control>
+                <i-control help-id="manage_users_name_en" v="r" class="col4" label="##word.last_name##" ng-model="manage_users.profile.last_name"> </i-control>
+                <i-checkbox help-id="manage_users_active" class="col2" label="##word.active##" ng-model="manage_users.active"> </i-checkbox>
+              </div>
+              <div class="row">
+                <i-control help-id="manage_users_name_en" v="r" class="col4" label="##word.email##" ng-model="manage_users.email"> </i-control>
+                <i-control help-id="manage_users_password" v="r" class="col4" label="##word.password##" ng-model="manage_users.password"> </i-control>
+              </div>
+              <div class="row">
+                <i-control label="##word.maximum_stores##" type="number" class="col3" ng-model="manage_users.maximum_stores"></i-control>
+              </div>
+            </div>
+
+            <div class="col3">
+              <i-image help-id="manage_users_logo" ng-model="manage_users.image_url"></i-image>
+            </div>
+          </div>
+        </fieldset>
       </div>
-    </fieldset>
+
+      <div id="securityRoles" class="tab-content">
+        <div class="row padding">
+          <fieldset>
+            <legend>
+              ##word.security_public_roles##
+              <i-checkbox ng-model="$public_roles" ng-click="checkAll('public_roles')"></i-checkbox>
+            </legend>
+
+            <i-checklist primary="name" label="" items="public_roles" display="##session.lang##" ng-model="manage_users.roles"></i-checklist>
+          </fieldset>
+        </div>
+
+        <i-button type="default left" fa="2x fa-angle-double-left" onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
+      </div>
+
+      <div id="securityPublicPermissions" class="tab-content">
+        <div class="row">
+          <div class="row padding">
+            <fieldset ng-repeat="screen in public_screens">
+              <legend>{{screen.name_##session.lang##}}</legend>
+              <i-checklist primary="name" label="" items="screen.permissions" display="##session.lang##" ng-model="manage_users.permissions"></i-checklist>
+            </fieldset>
+          </div>
+        </div>
+        <i-button type="default left" fa="2x fa-angle-double-left" onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
+      </div>
+    </div>
   </div>
 </div>

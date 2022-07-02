@@ -1,7 +1,1 @@
-[{
-    "module_name" : "public" ,
-    "name": "cart_admin",
-    "en": "Cart Admin",
-    "ar": "إدارة السلة",
-    "permissions": ["card_manage"]
-}]
+[]
