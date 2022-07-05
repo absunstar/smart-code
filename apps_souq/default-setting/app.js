@@ -1,6 +1,6 @@
 module.exports = function init(site) {
   const $default_setting = site.connectCollection('default_setting');
-  site.defaultSettingDoc = null;
+  site.defaultSettingDoc = {};
   $default_setting.findOne({}, (err, doc) => {
     if (!err && doc) {
       site.defaultSettingDoc = doc;
@@ -61,7 +61,7 @@ module.exports = function init(site) {
 
     let where = req.data.where || {};
 
-    if (site.defaultSettingDoc != null) {
+    if ( Object.keys(site.defaultSettingDoc).length === 0) {
       response.done = true;
       response.doc = site.defaultSettingDoc;
       res.json(response);
