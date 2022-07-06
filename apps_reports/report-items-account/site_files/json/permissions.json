@@ -1,0 +1,7 @@
+[
+    { "module_name" : "report" , "screen_name" : "report-items-account" , "name":"report_items_account_manage" , "en":"Manage" , "ar":"إدارة"},
+    { "module_name" : "report" , "screen_name" : "report-items-account" , "name":"report_items_account_search" , "en":"Search" , "ar":"بحث"},
+    { "module_name" : "report" , "screen_name" : "report-items-account" , "name":"report_items_account_export" , "en":"Export" , "ar":"تصدير"},
+    { "module_name" : "report" , "screen_name" : "report-items-account" , "name":"report_items_account_print" , "en":"Print" , "ar":"طباعة"},
+    { "module_name" : "report" , "screen_name" : "report-items-account" , "name":"report_items_account_ui" , "en":"UI" , "ar":"الواجهة الرسومية"}
+]

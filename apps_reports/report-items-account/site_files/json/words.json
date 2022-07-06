@@ -1,0 +1,52 @@
+[
+    {
+        "name": "report_items_account_informations",
+        "en": "Report Items Account Informations",
+        "ar": "بيانات تقرير حساب الأصناف"
+    },
+    {
+        "name": "report_items_account",
+        "en": "Items Account report",
+        "ar": "تقرير حساب الأصناف"
+    },
+    {
+        "name": "supplied_quantity",
+        "en": "Supplied Quantity",
+        "ar": "الكمية الموردة"
+    },
+    {
+        "name": "total_price",
+        "en": "Total price",
+        "ar": "إجمالي السعر"
+    },
+    {
+        "name": "items_supplied",
+        "en": "Items supplied",
+        "ar": "الأصناف الموردة"
+    },
+    {
+        "name": "items_sold",
+        "en": "Items sold",
+        "ar": "الأصناف المباعة"
+    },
+    {
+        "name": "sold_quantity",
+        "en": "Sold Quantity",
+        "ar": "الكمية المباعة"
+    },
+    {
+        "name": "remaining_in_stock",
+        "en": "Remaining in stock",
+        "ar": "المتبقى بالمخازن"
+    },
+    {
+        "name": "total_supplier_account",
+        "en": "Total Supplier Account",
+        "ar": "إجمالي حساب المورد"
+    },
+    {
+        "name": "total_receivable",
+        "en": "Total receivable",
+        "ar": "إجمالي المستحق"
+    }
+]

@@ -25,6 +25,11 @@
         "ar": "تهيئة"
     },
     {
+        "name": "report",
+        "en": "Report",
+        "ar": "تقرير"
+    },
+    {
         "name": "purchase_invoice",
         "en": "Purchase Invoice",
         "ar": "فواتير المشتريات"

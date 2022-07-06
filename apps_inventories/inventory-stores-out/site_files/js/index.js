@@ -491,13 +491,7 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
                 function (response) {
                   if (response.data.done) {
                     $scope.busy = false;
-                    if (
-                      $scope.defaultSettings.accounting &&
-                      $scope.defaultSettings.accounting.create_invoice_auto &&
-                      $scope.store_out.type &&
-                      $scope.store_out.type.id != 5 &&
-                      !$scope.defaultSettings.general_Settings.work_posting
-                    ) {
+                    if ($scope.defaultSettings.accounting && $scope.defaultSettings.accounting.create_invoice_auto && $scope.store_out.type && $scope.store_out.type.id != 5 && !$scope.defaultSettings.general_Settings.work_posting) {
                       if ($scope.defaultSettings.printer_program.auto_thermal_print_sales_invo) {
                         $scope.thermalPrint(response.data.doc);
                       }
@@ -840,13 +834,7 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
       } else if ($scope.paid_invoice.payment_paid_up > $scope.paid_invoice.amount_currency) {
         $scope.error = '##word.err_paid_up_payment##';
         return;
-      } else if (
-        $scope.paid_invoice.payment_paid_up > $scope.paid_invoice.amount_currency &&
-        $scope.paid_invoice.source_type.id != 8 &&
-        $scope.paid_invoice.source_type.id != 9 &&
-        $scope.paid_invoice.source_type.id != 10 &&
-        $scope.paid_invoice.source_type.id != 11
-      ) {
+      } else if ($scope.paid_invoice.payment_paid_up > $scope.paid_invoice.amount_currency && $scope.paid_invoice.source_type.id != 8 && $scope.paid_invoice.source_type.id != 9 && $scope.paid_invoice.source_type.id != 10 && $scope.paid_invoice.source_type.id != 11) {
         $scope.error = '##word.err_net_value##';
         return;
       }
@@ -948,11 +936,13 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
               price: _size.unit.price,
               discount: _size.discount,
               barcode: _size.barcode,
+              vendor: _size.vendor,
               count: _size.count,
               total: _size.total,
               store_count: _size.store_count,
               add_sizes: _size.add_sizes,
             };
+         
             $scope.store_out.items.push(itmObj);
             $scope.calcSize($scope.store_out.items[$scope.store_out.items.length - 1]);
           }
@@ -1073,6 +1063,14 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
                             }
                           }
                         });
+                      }
+
+                      if ($scope.item.vendor) {
+                        _size.vendor = {
+                          id: $scope.item.vendor.id,
+                          name_ar: $scope.item.vendor.name_ar,
+                          name_en: $scope.item.vendor.name_en,
+                        };
                       }
 
                       if (!foundSize && !foundHold) $scope.item.sizes.push(_size);
@@ -1218,6 +1216,13 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
         }
 
         if (!foundSize && !foundHold) {
+          if ($scope.item.itm.vendor) {
+            _item.vendor = {
+              id: $scope.item.itm.vendor.id,
+              name_ar: $scope.item.itm.vendor.name_ar,
+              name_en: $scope.item.itm.vendor.name_en,
+            };
+          }
           $scope.item.sizes.push(_item);
         }
       });
@@ -1308,6 +1313,14 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
                       });
                     }
                     _size.branches_list = [];
+
+                    if (response.data.list[0].vendor) {
+                      _size.vendor = {
+                        id: response.data.list[0].vendor.id,
+                        name_ar: response.data.list[0].vendor.name_ar,
+                        name_en: response.data.list[0].vendor.name_en,
+                      };
+                    }
                     if (!foundSize && !foundHold) $scope.store_out.items.unshift(_size);
                     else if (foundSize) {
                       $scope.store_out.items.forEach((_item) => {
@@ -1880,8 +1893,7 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
       }
     }
 
-    if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.work_posting && !$scope.defaultSettings.accounting.link_warehouse_account_invoices)
-      account_invoices.posting = false;
+    if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.work_posting && !$scope.defaultSettings.accounting.link_warehouse_account_invoices) account_invoices.posting = false;
     else account_invoices.posting = true;
 
     account_invoices.invoice = true;
@@ -2122,11 +2134,8 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
               );
             } else {
               let datetime = new Date($scope.thermal.date);
-              let formatted_date =
-                datetime.getFullYear() + '-' + (datetime.getMonth() + 1) + '-' + datetime.getDate() + ' ' + datetime.getHours() + ':' + datetime.getMinutes() + ':' + datetime.getSeconds();
-              let qrString = `[${'##session.company.name_ar##'}]\nرقم ضريبي : [${$scope.defaultSettings.printer_program.tax_number}]\nرقم الفاتورة :[${
-                $scope.thermal.code
-              }]\nتاريخ : [${formatted_date}]\nضريبة القيمة المضافة : [${$scope.thermal.total_value_added}]\nالصافي : [${$scope.thermal.net_value}]`;
+              let formatted_date = datetime.getFullYear() + '-' + (datetime.getMonth() + 1) + '-' + datetime.getDate() + ' ' + datetime.getHours() + ':' + datetime.getMinutes() + ':' + datetime.getSeconds();
+              let qrString = `[${'##session.company.name_ar##'}]\nرقم ضريبي : [${$scope.defaultSettings.printer_program.tax_number}]\nرقم الفاتورة :[${$scope.thermal.code}]\nتاريخ : [${formatted_date}]\nضريبة القيمة المضافة : [${$scope.thermal.total_value_added}]\nالصافي : [${$scope.thermal.net_value}]`;
               site.qrcode({ width: 140, height: 140, selector: document.querySelector('.qrcode'), text: qrString });
             }
           }
@@ -2237,11 +2246,8 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
             );
           } else {
             let datetime = new Date($scope.store_out.date);
-            let formatted_date =
-              datetime.getFullYear() + '-' + (datetime.getMonth() + 1) + '-' + datetime.getDate() + ' ' + datetime.getHours() + ':' + datetime.getMinutes() + ':' + datetime.getSeconds();
-            let qrString = `[${'##session.company.name_ar##'}]\nرقم ضريبي : [${$scope.defaultSettings.printer_program.tax_number}]\nرقم الفاتورة :[${
-              $scope.store_out.code
-            }]\nتاريخ : [${formatted_date}]\nضريبة القيمة المضافة : [${$scope.store_out.total_value_added}]\nالصافي : [${$scope.store_out.net_value}]`;
+            let formatted_date = datetime.getFullYear() + '-' + (datetime.getMonth() + 1) + '-' + datetime.getDate() + ' ' + datetime.getHours() + ':' + datetime.getMinutes() + ':' + datetime.getSeconds();
+            let qrString = `[${'##session.company.name_ar##'}]\nرقم ضريبي : [${$scope.defaultSettings.printer_program.tax_number}]\nرقم الفاتورة :[${$scope.store_out.code}]\nتاريخ : [${formatted_date}]\nضريبة القيمة المضافة : [${$scope.store_out.total_value_added}]\nالصافي : [${$scope.store_out.net_value}]`;
 
             site.qrcode({ width: 150, height: 150, selector: document.querySelectorAll('.qrcode-a4')[$scope.invList.length - 1], text: qrString });
           }
@@ -2711,14 +2717,7 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
                   if (response.data.done) {
                     if (!store_out.posting && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.link_warehouse_account_invoices) {
                       $scope.deleteAccountInvoices(store_out);
-                    } else if (
-                      store_out.posting &&
-                      store_out.type &&
-                      !store_out.invoice &&
-                      store_out.type.id != 5 &&
-                      $scope.defaultSettings.accounting &&
-                      $scope.defaultSettings.accounting.link_warehouse_account_invoices
-                    ) {
+                    } else if (store_out.posting && store_out.type && !store_out.invoice && store_out.type.id != 5 && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.link_warehouse_account_invoices) {
                       $scope.addAccountInvoice(response.data.doc);
                     }
                   } else {
@@ -2796,14 +2795,7 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
                       }).then(
                         function (response) {
                           if (response.data.done) {
-                            if (
-                              _store_out_all[i].posting &&
-                              !_store_out_all[i].invoice &&
-                              _store_out_all[i].type &&
-                              _store_out_all[i].type.id != 5 &&
-                              $scope.defaultSettings.accounting &&
-                              $scope.defaultSettings.accounting.link_warehouse_account_invoices
-                            ) {
+                            if (_store_out_all[i].posting && !_store_out_all[i].invoice && _store_out_all[i].type && _store_out_all[i].type.id != 5 && $scope.defaultSettings.accounting && $scope.defaultSettings.accounting.link_warehouse_account_invoices) {
                               let account_invoices = {
                                 image_url: '/images/account_invoices.png',
                                 date: response.data.doc.date,

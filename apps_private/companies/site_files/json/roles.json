@@ -148,6 +148,7 @@
       "employees_salary_report_manage",
       "item_transaction_manage",
       "report_attend_employees_manage",
+      "report_items_account_manage",
       "report_daily_manage",
       "report_employee_delegate_manage",
       "report_invoices_manage",
