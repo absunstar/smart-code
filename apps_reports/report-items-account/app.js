@@ -97,7 +97,7 @@ module.exports = function init(site) {
                     _list.total_price_supplied = _list.total_price_supplied + _doc.count * _doc.cost;
                   } else if (_doc.transaction_type == 'out') {
                     _list.sold_quantity = _list.sold_quantity + _doc.count;
-                    _list.total_price_sold = _list.total_price_sold + _doc.count * _doc.price;
+                    _list.total_price_sold = _list.total_price_sold + _doc.count * _doc.cost;
                   }
                   _list.remaining_in_stock = _list.supplied_quantity - _list.sold_quantity
                 }
@@ -115,7 +115,7 @@ module.exports = function init(site) {
                   supplied_quantity: _doc.transaction_type == 'in' ? _doc.count : 0,
                   sold_quantity: _doc.transaction_type == 'out' ? _doc.count : 0,
                   total_price_supplied: _doc.transaction_type == 'in' ? _doc.cost * _doc.count : 0,
-                  total_price_sold: _doc.transaction_type == 'out' ? _doc.price * _doc.count : 0,
+                  total_price_sold: _doc.transaction_type == 'out' ? _doc.cost * _doc.count : 0,
                 };
 
                 obj.remaining_in_stock = obj.supplied_quantity - obj.sold_quantity;
