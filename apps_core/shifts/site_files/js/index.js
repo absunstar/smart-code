@@ -110,13 +110,13 @@ app.controller('shifts', function ($scope, $http, $timeout) {
   $scope.shiftDetailes = function (s) {
     $scope.error = '';
     $scope.safes_list = [];
+    s.safes = s.safes || [];
     s.safes.forEach((_s) => {
-      let obj = { safe: _s ,current_balance : _s.balance};
-      if($scope.shift.last_safes_list && $scope.shift.last_safes_list.length > 0){
-
+      let obj = { safe: _s, current_balance: _s.balance };
+      if ($scope.shift.last_safes_list && $scope.shift.last_safes_list.length > 0) {
         $scope.shift.last_safes_list.forEach((_l) => {
           if (_l.id === _s.id) {
-            obj.balance_relay = _l.amount_delivered
+            obj.balance_relay = _l.amount_delivered;
           }
         });
       }
@@ -455,6 +455,30 @@ app.controller('shifts', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
           $scope.shift.safes_list = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.getAccountStatement = function (shift) {
+    $scope.busy = true;
+    $http({
+      method: 'POST',
+      url: '/api/safes_payments/account_statement_shift',
+      data: {
+        where: {'shift.id' : shift.id},
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.account_statement_list = response.data.list;
+     
+          site.showModal('#accountStatementModal');
         }
       },
       function (err) {

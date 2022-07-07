@@ -14,6 +14,7 @@
           <div x-permissions="shifts_delete || shifts_manage" x-import="shifts/delete_modal.html"></div>
           <div x-permissions="shifts_view || shifts_manage" x-import="shifts/view_modal.html"></div>
           <div x-permissions="shifts_view || shifts_manage" x-import="shifts/open_close_modal.html"></div>
+          <div x-permissions="shifts_view || shifts_manage" x-import="shifts/account_statement.html"></div>
           <div x-permissions="shifts_update || shifts_manage" x-import="shifts/close_deliver.html"></div>
           <div x-permissions="shifts_search || shifts_manage" x-import="shifts/search_all_modal.html"></div>
 
@@ -65,7 +66,8 @@
 
               <td class="center not-print">
                 <i-button x-permissions="shifts_view || shifts_manage" type="view" label="##word.details##" ng-click="displayDetailsShift(c)"></i-button>
-
+                <i-button x-permissions="shifts_view || shifts_manage" label="##word.account_statement##" ng-click="getAccountStatement(c)"></i-button>
+                
                 <i-button x-permissions="shifts_delete || shifts_manage" type="delete" label="##word.delete##" ng-click="displayDeleteShift(c)"></i-button>
               </td>
             </tr>

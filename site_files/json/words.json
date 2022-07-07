@@ -1726,6 +1726,11 @@
     "ar": "رقم الفاتورة"
   },
   {
+    "name": "account_statement",
+    "en": "Account Statement",
+    "ar": "كشف حساب"
+},
+  {
     "name": "print",
     "en": "Print",
     "ar": "طباعة"

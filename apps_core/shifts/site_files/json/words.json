@@ -10,6 +10,16 @@
     "ar": "الشيفت"
   },
   {
+    "name": "outgoing_amount",
+    "en": "Outgoing Amount",
+    "ar": "المبلغ المنصرف"
+  },
+  {
+    "name": "incoming_amount",
+    "en": "Incoming Amount",
+    "ar": "المبلغ الوارد"
+  },
+  {
     "name": "amount_delivered",
     "en": "Amount delivered",
     "ar": "المبلغ المسلم"
