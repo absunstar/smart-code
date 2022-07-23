@@ -40,8 +40,6 @@
                         <th>##word.name##</th>
                         <th>##word.vaccinations_name##</th>
                         <th>##word.vaccinations_price##</th>
-                        <th>##word.delivery_time##</th>
-                        <th>##word.immediate##</th>
                         <th>##word.status##</th>
                         <th class="not-print">##word.actions##</th>
                     </tr>
@@ -52,15 +50,7 @@
                         <td class="center userPrint blue">{{c.code}}</td>
                         <td class="center title">{{c.name_##session.lang##}}</td>
                         <td class="center green">{{c.price}}</td>
-                        <td>
-                            <h3 class="blue center">{{c.delivery_time}}</h3>
-                            <h3 class="blue center">{{c.period.ar}}</h3>
-                        </td>
-
-                        <td class="center">
-                            <p ng-show="c.immediate ==true" class="green"> ##word.yes## </p>
-                            <p ng-show="c.immediate ==false" class="red"> ##word.no## </p>
-                        </td>
+                     
 
                         <td class="center">
                             <p ng-show="c.active ==true" class="green"> ##word.active## </p>

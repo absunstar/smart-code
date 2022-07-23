@@ -1,76 +1,51 @@
 <div id="StoresInSearchModal" class="modal" fixed>
-
-    <div class="modal-content">
-        <div class="modal-header">
-            <span class="close">&times;</span>
-            <h2>
-                ##word.stores_in_search_all## <i class="fa fa-search"></i>
-            </h2>
-        </div>
-        <div class="modal-body">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>##word.stores_in_search_all## <i class="fa fa-search"></i></h2>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <form class="form">
+          <fieldset>
+            <legend>##word.search_all##</legend>
             <div class="row">
-                <form class="form">
-                    <fieldset>
-                        <legend>##word.search_all##</legend>
-                        <div class="row">
-                            <i-date2 class="col3" ng-model="search.date" label="##word.amounts_in_date##"></i-date2>
-                            <i-date2 class="col3" ng-model="search.dateFrom" type="date"
-                                label="##word.amounts_in_date_from##"></i-date2>
-                            <i-date2 class="col3" ng-model="search.dateTo" type="date"
-                                label="##word.amounts_in_date_to##">
-                            </i-date2>
+              <i-date2 class="col3" ng-model="search.date" label="##word.amounts_in_date##"></i-date2>
+              <i-date2 class="col3" ng-model="search.dateFrom" type="date" label="##word.amounts_in_date_from##"></i-date2>
+              <i-date2 class="col3" ng-model="search.dateTo" type="date" label="##word.amounts_in_date_to##"> </i-date2>
 
-                            <i-control class="col2" ng-model="search.limit" label="##word.limit##" type="number">
-                            </i-control>
-                            <!-- 
+              <i-control class="col2" ng-model="search.limit" label="##word.limit##" type="number"> </i-control>
+              <!-- 
                             <i-date2 class="col3" ng-model="search.supply_date" label="##word.stores_in_supply_date##">
                             </i-date2> -->
-                        </div>
+            </div>
 
-                        <div class="row">
-                            <i-control class="col2" ng-model="search.name" label="##word.stores_items_name##"
-                                type="text">
-                            </i-control>
+            <div class="row">
+              <i-control class="col2" ng-model="search.name" label="##word.stores_items_name##" type="text"> </i-control>
 
-                            <i-control class="col2" ng-model="search.size_ar" label="##word.stores_in_item_size##"
-                                type="text">
-                            </i-control>
+              <i-control class="col2" ng-model="search.size_ar" label="##word.stores_in_item_size##" type="text"> </i-control>
 
-                            <i-control class="col2" ng-model="search.size_en" label="##word.size_en##" type="text">
-                            </i-control>
+              <i-control class="col2" ng-model="search.size_en" label="##word.size_en##" type="text"> </i-control>
 
-                            <i-control class="col2" ng-model="search.barcode" label="##word.item_code##" type="text">
-                            </i-control>
-                        </div>
+              <i-control class="col2" ng-model="search.barcode" label="##word.item_code##" type="text"> </i-control>
+            </div>
 
-                        <div class="row">
-                            <i-control class="col3 r_indigo" type="text" label="##word.shift##"
-                                ng-model="search.shift_code">
-                            </i-control>
+            <div class="row">
+              <i-control class="col3 r_indigo" type="text" label="##word.shift##" ng-model="search.shift_code"> </i-control>
 
-                            <i-control class="col3" ng-model="search.code" label="##word.stores_in_id##">
-                            </i-control>
+              <i-control class="col3" ng-model="search.code" label="##word.stores_in_id##"> </i-control>
+            </div>
 
-                        </div>
+            <div class="row">
+              <i-control ng-keydown="loadVendors($event)" class="col2" ng-model="search_vendor" label="##word.search##" type="text"></i-control>
+              <i-list class="col3" ng-model="search.vendor" items="vendorsList" display="name_##session.lang##" space=" - " display2="code" ng-search="_search.$search_vendor" label="##word.stores_in_Company_name##"></i-list>
 
-                        <div class="row">
-
-                            
-                            <i-control ng-keydown="loadVendors($event)" class="col2" ng-model="search_vendor"
-                                label="##word.search##" type="text"></i-control>
-                            <i-list class="col3" ng-model="search.vendor" items="vendorsList"
-                                display="name_##session.lang##" space=" - " display2="code"
-                                ng-search="_search.$search_vendor" label="##word.stores_in_Company_name##"></i-list>
-
-
-                            <!-- <i-list ng-search="_search.$storein_type" display="##session.lang##" class="col2"
+              <!-- <i-list ng-search="_search.$storein_type" display="##session.lang##" class="col2"
                                 ng-model="search.type" items="storesInTypes" label="##word.transaction_type##"></i-list> -->
 
-                            <i-control class="col2" ng-model="search.supply_number"
-                                label="##word.stores_in_supply_number##" type="text"></i-control>
-
-                        </div>
-                        <!--   <div class="row">
+              <i-control class="col2" ng-model="search.supply_number" label="##word.stores_in_supply_number##" type="text"></i-control>
+            </div>
+            <!--   <div class="row">
                             <i-control class="col2" ng-model="search.total_discount" type="number"
                                 label="##word.stores_in_total_discount##"></i-control>
                             <i-control class="col2" ng-model="search.total_tax" type="number"
@@ -83,25 +58,24 @@
                             </i-control>
                         </div> -->
 
-                        <!-- <div class="row">
+            <!-- <div class="row">
                             <i-textarea ng-model="search.description" class="col6" type="text"
                                 label="##word.amounts_in_description##"></i-textarea>
                         </div> -->
 
-                        <div class="row">
-                            <i-checkbox class="col1" label="##word.post##" ng-model="search.post"></i-checkbox>
-                            <i-checkbox class="col1" label="##word.un_post##" ng-model="search.un_post"></i-checkbox>
-                        </div>
-                    </fieldset>
-                </form>
+            <div class="row">
+              <i-checkbox class="col1" label="##word.post##" ng-model="search.post"></i-checkbox>
+              <i-checkbox class="col1" label="##word.un_post##" ng-model="search.un_post"></i-checkbox>
             </div>
-        </div>
-        <h2 class="error">{{error}}</h2>
-        <div class="modal-footer center">
-            <i-button type="search" label="##word.search##" ng-hide="busy" ng-click="searchAll()"></i-button>
-            <i-button type="clear" label="##word.clear##" ng-click="search = {}"></i-button>
-            <i-button type="close" label="##word.close##" onclick="site.hideModal('#StoresInSearchModal')"></i-button>
-
-        </div>
+          </fieldset>
+        </form>
+      </div>
     </div>
+    <h2 class="error">{{error}}</h2>
+    <div class="modal-footer center">
+      <i-button type="search" label="##word.search##" ng-hide="busy" ng-click="searchAll()"></i-button>
+      <i-button type="clear" label="##word.clear##" ng-click="search = {}"></i-button>
+      <i-button type="close" label="##word.close##" onclick="site.hideModal('#StoresInSearchModal')"></i-button>
+    </div>
+  </div>
 </div>

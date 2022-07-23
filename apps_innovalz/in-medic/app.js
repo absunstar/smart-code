@@ -36,8 +36,8 @@ module.exports = function init(site) {
     compress: true,
   });
   site.get({
-    name: 'analysis',
-    path: __dirname + '/site_files/html/analysis.html',
+    name: 'analyses',
+    path: __dirname + '/site_files/html/analyses.html',
     parser: 'html',
     compress: true,
   });

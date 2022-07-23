@@ -10,7 +10,7 @@ module.exports = function init(site) {
     name: "images",
     path: __dirname + "/site_files/images/",
   });
-
+ 
   site.get({
     name: "analysis",
     path: __dirname + "/site_files/html/index.html",
@@ -275,7 +275,7 @@ module.exports = function init(site) {
   /* ATM APIS */
 
 
-  site.post("/api/analysis/searchAll", (req, res) => {
+  site.post("/api/analyses/searchAll", (req, res) => {
     let response = {
       done: false,
     };
@@ -285,6 +285,7 @@ module.exports = function init(site) {
      
       delete where['name']
     }
+    where['company.id'] = site.get_company(req).id
 
     if (where['name']) {
       where.$or = []

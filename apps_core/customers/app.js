@@ -1,34 +1,34 @@
 module.exports = function init(site) {
-  const $customers = site.connectCollection("customers");
-  const $city = site.connectCollection("city");
-  const $goves = site.connectCollection("goves");
-  const $area = site.connectCollection("area");
-  const $companies = site.connectCollection("companies");
+  const $customers = site.connectCollection('customers');
+  const $city = site.connectCollection('city');
+  const $goves = site.connectCollection('goves');
+  const $area = site.connectCollection('area');
+  const $companies = site.connectCollection('companies');
 
   site.get({
-    name: "customers",
-    path: __dirname + "/site_files/html/index.html",
-    parser: "html",
+    name: 'customers',
+    path: __dirname + '/site_files/html/index.html',
+    parser: 'html',
     compress: true,
   });
 
   site.post({
-    name: "/api/host/all",
-    path: __dirname + "/site_files/json/host.json",
+    name: '/api/host/all',
+    path: __dirname + '/site_files/json/host.json',
   });
 
   site.post({
-    name: "/api/blood_type/all",
-    path: __dirname + "/site_files/json/blood_type.json",
+    name: '/api/blood_type/all',
+    path: __dirname + '/site_files/json/blood_type.json',
   });
 
   site.get({
-    name: "images",
-    path: __dirname + "/site_files/images/",
+    name: 'images',
+    path: __dirname + '/site_files/images/',
   });
 
   customer_busy_list = [];
-  site.on("[attend_session][busy][+]", (obj) => {
+  site.on('[attend_session][busy][+]', (obj) => {
     customer_busy_list.push(Object.assign({}, obj));
   });
 
@@ -65,7 +65,7 @@ module.exports = function init(site) {
   }
   customer_busy_handle(null);
 
-  site.on("[customer][account_invoice][balance]", (obj, callback, next) => {
+  site.on('[customer][account_invoice][balance]', (obj, callback, next) => {
     $customers.findOne(
       {
         id: obj.id,
@@ -98,16 +98,16 @@ module.exports = function init(site) {
     );
   });
 
-  site.on("[register][customer][add]", (doc) => {
+  site.on('[register][customer][add]', (doc) => {
     let customer = {
       group: {
         id: doc.id,
         name_ar: doc.name_ar,
         name_en: doc.name_en,
       },
-      code: "1-Test",
-      name_ar: "عميل إفتراضي",
-      name_en: "Default Customer",
+      code: '1-Test',
+      name_ar: 'عميل إفتراضي',
+      name_en: 'Default Customer',
       branch_list: [
         {
           charge: [{}],
@@ -127,7 +127,7 @@ module.exports = function init(site) {
       dealing_company: [{}],
       employee_delegate: [{}],
       accounts_debt: [{}],
-      image_url: "/images/customer.png",
+      image_url: '/images/customer.png',
       company: {
         id: doc.company.id,
         name_ar: doc.company.name_ar,
@@ -141,35 +141,30 @@ module.exports = function init(site) {
       active: true,
     };
 
-    if (
-      site.feature("club") ||
-      site.feature("school") ||
-      site.feature("medical") ||
-      site.feature("academy")
-    ) {
+    if (site.feature('club') || site.feature('school') || site.feature('medical') || site.feature('academy')) {
       customer.allergic_food_list = [{}];
       customer.allergic_drink_list = [{}];
       customer.medicine_list = [{}];
       customer.disease_list = [{}];
     }
 
-    if (site.feature("club")) {
-      customer.name_ar = "مشترك إفتراضي";
-      customer.name_en = "Default Subscriber";
-    } else if (site.feature("school") || site.feature("academy")) {
-      customer.name_ar = "طالب إفتراضي";
-      customer.name_en = "Default Student";
-      customer.image_url = "/images/student.png";
-    } else if (site.feature("medical")) {
-      customer.name_ar = "مريض إفتراضي";
-      customer.name_en = "Default Patient";
-      customer.image_url = "/images/patients.png";
+    if (site.feature('club')) {
+      customer.name_ar = 'مشترك إفتراضي';
+      customer.name_en = 'Default Subscriber';
+    } else if (site.feature('school') || site.feature('academy')) {
+      customer.name_ar = 'طالب إفتراضي';
+      customer.name_en = 'Default Student';
+      customer.image_url = '/images/student.png';
+    } else if (site.feature('medical')) {
+      customer.name_ar = 'مريض إفتراضي';
+      customer.name_en = 'Default Patient';
+      customer.image_url = '/images/patients.png';
     }
 
-    $customers.add(customer, (err, doc1) => { });
+    $customers.add(customer, (err, doc1) => {});
   });
 
-  site.post("/api/customers/add", (req, res) => {
+  site.post('/api/customers/add', (req, res) => {
     let response = {
       done: false,
     };
@@ -185,74 +180,67 @@ module.exports = function init(site) {
     customers_doc.$res = res;
 
     let user = {
-      type: "customer",
+      type: 'customer',
     };
 
     user.roles = [
       {
-        module_name: "public",
-        name: "customers_user",
-        en: "Customers User",
-        ar: "إدارة العملاء للمستخدم",
-        permissions: ["customers_update", "customers_view", "customers_ui"],
+        module_name: 'public',
+        name: 'customers_user',
+        en: 'Customers User',
+        ar: 'إدارة العملاء للمستخدم',
+        permissions: ['customers_update', 'customers_view', 'customers_ui'],
       },
     ];
 
-    if (
-      site.feature("pos") ||
-      site.feature("restaurant") ||
-      site.feature("erp") ||
-      site.feature("ecommerce")
-    ) {
+    if (site.feature('pos') || site.feature('restaurant') || site.feature('erp') || site.feature('ecommerce')) {
       user.roles.push({
-        module_name: "public",
-        name: "order_customer_user",
-        en: "Order Customers User",
-        ar: "طلبات العملاء للمستخدمين",
-        permissions: ["order_customer_ui", "order_customer_delete_items"],
+        module_name: 'public',
+        name: 'order_customer_user',
+        en: 'Order Customers User',
+        ar: 'طلبات العملاء للمستخدمين',
+        permissions: ['order_customer_ui', 'order_customer_delete_items'],
       });
     }
 
-    if (site.feature("club")) {
+    if (site.feature('club')) {
       user.roles.push({
-        module_name: "report",
-        name: "report_info_user",
-        en: "Subscribe Info USer",
-        ar: "معلومات المشتركين للمستخدم",
-        permissions: ["report_info_ui"],
+        module_name: 'report',
+        name: 'report_info_user',
+        en: 'Subscribe Info USer',
+        ar: 'معلومات المشتركين للمستخدم',
+        permissions: ['report_info_ui'],
       });
     }
 
-    if (site.feature("medical")) {
+    if (site.feature('medical')) {
       user.roles.push({
-        module_name: "public",
-        name: "patient_file_user",
-        en: "Patient file User",
-        ar: "ملف المريض للمستخدم",
-        permissions: ["patients_files_ui", "patients_files_view"],
+        module_name: 'public',
+        name: 'patient_file_user',
+        en: 'Patient file User',
+        ar: 'ملف المريض للمستخدم',
+        permissions: ['patients_files_ui', 'patients_files_view'],
       });
     }
 
-    if (site.feature("school")) {
-      if (customers_doc.school_grade)
-        user.school_grade_id = customers_doc.school_grade.id;
-      if (customers_doc.students_year)
-        user.students_year_id = customers_doc.students_year.id;
+    if (site.feature('school')) {
+      if (customers_doc.school_grade) user.school_grade_id = customers_doc.school_grade.id;
+      if (customers_doc.students_year) user.students_year_id = customers_doc.students_year.id;
 
       user.roles.push(
         {
-          module_name: "public",
-          name: "exams_customer",
-          en: "Exams Students",
-          ar: "إمتحانات الطلاب",
-          permissions: ["exams_ui", "exams_view"],
+          module_name: 'public',
+          name: 'exams_customer',
+          en: 'Exams Students',
+          ar: 'إمتحانات الطلاب',
+          permissions: ['exams_ui', 'exams_view'],
         },
         {
-          module_name: "public",
-          name: "libraries_student",
-          en: "Libraries Student",
-          ar: "مكتبة الطلاب",
-          permissions: ["libraries_ui", "libraries_view"],
+          module_name: 'public',
+          name: 'libraries_student',
+          en: 'Libraries Student',
+          ar: 'مكتبة الطلاب',
+          permissions: ['libraries_ui', 'libraries_view'],
         }
       );
     }
@@ -266,9 +254,9 @@ module.exports = function init(site) {
       image_url: customers_doc.image_url,
       gender: customers_doc.gender,
     };
-    if (user.profile.gender && user.profile.gender.name == "female") {
+    if (user.profile.gender && user.profile.gender.name == 'female') {
       user.permissions.push({
-        name: "female",
+        name: 'female',
       });
     }
 
@@ -307,12 +295,12 @@ module.exports = function init(site) {
 
     let num_obj = {
       company: company,
-      screen: "customers",
+      screen: 'customers',
       date: new Date(),
     };
     let cb = site.getNumbering(num_obj);
     if (!customers_doc.code && !cb.auto) {
-      response.error = "Must Enter Code";
+      response.error = 'Must Enter Code';
       res.json(response);
       return;
     } else if (cb.auto) {
@@ -322,35 +310,25 @@ module.exports = function init(site) {
     $customers.findMany(
       {
         where: {
-          "company.id": company.id,
+          'company.id': company.id,
         },
       },
       (err, docs, count) => {
         if (!err && count >= company.customers_count) {
-          response.error = "The maximum number of adds exceeded";
+          response.error = 'The maximum number of adds exceeded';
           res.json(response);
           return;
         } else {
           if (customers_doc.username && customers_doc.password) {
-            if (
-              !customers_doc.username.contains("@") &&
-              !customers_doc.username.contains(".")
-            ) {
-              customers_doc.username =
-                customers_doc.username + "@" + company.host;
+            if (!customers_doc.username.contains('@') && !customers_doc.username.contains('.')) {
+              customers_doc.username = customers_doc.username + '@' + company.host;
             } else {
-              if (
-                customers_doc.username.contains("@") &&
-                !customers_doc.username.contains(".")
-              ) {
-                response.error = "Username must be typed correctly";
+              if (customers_doc.username.contains('@') && !customers_doc.username.contains('.')) {
+                response.error = 'Username must be typed correctly';
                 res.json(response);
                 return;
-              } else if (
-                !customers_doc.username.contains("@") &&
-                customers_doc.username.contains(".")
-              ) {
-                response.error = "Username must be typed correctly";
+              } else if (!customers_doc.username.contains('@') && customers_doc.username.contains('.')) {
+                response.error = 'Username must be typed correctly';
                 res.json(response);
                 return;
               }
@@ -362,7 +340,7 @@ module.exports = function init(site) {
 
           site.security.isUserExists(user, function (err, user_found) {
             if (user_found) {
-              response.error = "User Is Exist";
+              response.error = 'User Is Exist';
               res.json(response);
               return;
             }
@@ -420,13 +398,13 @@ module.exports = function init(site) {
     );
   });
 
-  site.post("/api/customers/update", (req, res) => {
+  site.post('/api/customers/update', (req, res) => {
     let response = {
       done: false,
     };
 
     if (!req.session.user) {
-      response.error = "Please Login First";
+      response.error = 'Please Login First';
       res.json(response);
       return;
     }
@@ -434,98 +412,81 @@ module.exports = function init(site) {
     let customers_doc = req.body;
 
     let user = {
-      type: "customer",
+      type: 'customer',
     };
 
     user.roles = [
       {
-        module_name: "public",
-        name: "customers_user",
-        en: "Customers User",
-        ar: "إدارة العملاء للمستخدم",
-        permissions: ["customers_update", "customers_view", "customers_ui"],
+        module_name: 'public',
+        name: 'customers_user',
+        en: 'Customers User',
+        ar: 'إدارة العملاء للمستخدم',
+        permissions: ['customers_update', 'customers_view', 'customers_ui'],
       },
     ];
 
-    if (
-      site.feature("pos") ||
-      site.feature("restaurant") ||
-      site.feature("erp") ||
-      site.feature("ecommerce")
-    ) {
+    if (site.feature('pos') || site.feature('restaurant') || site.feature('erp') || site.feature('ecommerce')) {
       user.roles.push({
-        module_name: "public",
-        name: "order_customer_user",
-        en: "Order Customers User",
-        ar: "طلبات العملاء للمستخدمين",
-        permissions: ["order_customer_ui", "order_customer_delete_items"],
+        module_name: 'public',
+        name: 'order_customer_user',
+        en: 'Order Customers User',
+        ar: 'طلبات العملاء للمستخدمين',
+        permissions: ['order_customer_ui', 'order_customer_delete_items'],
       });
     }
 
-    if (site.feature("club")) {
+    if (site.feature('club')) {
       user.roles.push({
-        module_name: "report",
-        name: "report_info_user",
-        en: "Subscribe Info USer",
-        ar: "معلومات المشتركين للمستخدم",
-        permissions: ["report_info_ui"],
+        module_name: 'report',
+        name: 'report_info_user',
+        en: 'Subscribe Info USer',
+        ar: 'معلومات المشتركين للمستخدم',
+        permissions: ['report_info_ui'],
       });
     }
 
-    if (site.feature("medical")) {
+    if (site.feature('medical')) {
       user.roles.push({
-        module_name: "public",
-        name: "patient_file_user",
-        en: "Patient file User",
-        ar: "ملف المريض للمستخدم",
-        permissions: ["patients_files_ui", "patients_files_view"],
+        module_name: 'public',
+        name: 'patient_file_user',
+        en: 'Patient file User',
+        ar: 'ملف المريض للمستخدم',
+        permissions: ['patients_files_ui', 'patients_files_view'],
       });
     }
 
-    if (site.feature("school")) {
-      if (customers_doc.school_grade)
-        user.school_grade_id = customers_doc.school_grade.id;
-      if (customers_doc.students_year)
-        user.students_year_id = customers_doc.students_year.id;
+    if (site.feature('school')) {
+      if (customers_doc.school_grade) user.school_grade_id = customers_doc.school_grade.id;
+      if (customers_doc.students_year) user.students_year_id = customers_doc.students_year.id;
 
       user.roles.push(
         {
-          module_name: "public",
-          name: "exams_customer",
-          en: "Exams Students",
-          ar: "إمتحانات الطلاب",
-          permissions: ["exams_ui", "exams_view"],
+          module_name: 'public',
+          name: 'exams_customer',
+          en: 'Exams Students',
+          ar: 'إمتحانات الطلاب',
+          permissions: ['exams_ui', 'exams_view'],
         },
         {
-          module_name: "public",
-          name: "libraries_student",
-          en: "Libraries Student",
-          ar: "مكتبة الطلاب",
-          permissions: ["libraries_ui", "libraries_view"],
+          module_name: 'public',
+          name: 'libraries_student',
+          en: 'Libraries Student',
+          ar: 'مكتبة الطلاب',
+          permissions: ['libraries_ui', 'libraries_view'],
         }
       );
     }
 
     if (customers_doc.username && customers_doc.password) {
-      if (
-        !customers_doc.username.contains("@") &&
-        !customers_doc.username.contains(".")
-      ) {
-        customers_doc.username =
-          customers_doc.username + "@" + site.get_company(req).host;
+      if (!customers_doc.username.contains('@') && !customers_doc.username.contains('.')) {
+        customers_doc.username = customers_doc.username + '@' + site.get_company(req).host;
       } else {
-        if (
-          customers_doc.username.contains("@") &&
-          !customers_doc.username.contains(".")
-        ) {
-          response.error = "Username must be typed correctly";
+        if (customers_doc.username.contains('@') && !customers_doc.username.contains('.')) {
+          response.error = 'Username must be typed correctly';
           res.json(response);
           return;
-        } else if (
-          !customers_doc.username.contains("@") &&
-          customers_doc.username.contains(".")
-        ) {
-          response.error = "Username must be typed correctly";
+        } else if (!customers_doc.username.contains('@') && customers_doc.username.contains('.')) {
+          response.error = 'Username must be typed correctly';
           res.json(response);
           return;
         }
@@ -544,9 +505,9 @@ module.exports = function init(site) {
       gender: customers_doc.gender,
     };
 
-    if (user.profile.gender && user.profile.gender.name == "female") {
+    if (user.profile.gender && user.profile.gender.name == 'female') {
       user.permissions.push({
-        name: "female",
+        name: 'female',
       });
     }
 
@@ -605,28 +566,28 @@ module.exports = function init(site) {
                   res.json(response);
                 });
               } else if (result.doc.user_info && result.doc.user_info.id) {
-                site.security.updateUser(user, (err, user_doc) => { });
+                site.security.updateUser(user, (err, user_doc) => {});
               }
             } else {
-              response.error = "customer id is error";
+              response.error = 'customer id is error';
             }
             res.json(response);
           }
         );
       } else {
-        response.error = "no id";
+        response.error = 'no id';
         res.json(response);
       }
     });
   });
 
-  site.post("/api/customers/view", (req, res) => {
+  site.post('/api/customers/view', (req, res) => {
     let response = {
       done: false,
     };
 
     if (!req.session.user) {
-      response.error = "Please Login First";
+      response.error = 'Please Login First';
       res.json(response);
       return;
     }
@@ -649,32 +610,32 @@ module.exports = function init(site) {
     );
   });
 
-  if (site.feature("school") || site.feature("academy")) {
+  if (site.feature('school') || site.feature('academy')) {
     site.getDataToDelete = function (data, callback) {
       callback(null);
     };
   }
 
-  site.post("/api/customers/delete", (req, res) => {
+  site.post('/api/customers/delete', (req, res) => {
     let response = {
       done: false,
     };
 
     if (!req.session.user) {
-      response.error = "Please Login First";
+      response.error = 'Please Login First';
       res.json(response);
       return;
     }
 
     let id = req.body.id;
     let data = {
-      name: "customer",
+      name: 'customer',
       id: req.body.id,
     };
 
     site.getDataToDelete(data, (callback) => {
       if (callback == true) {
-        response.error = "Cant Delete Its Exist In Other Transaction";
+        response.error = 'Cant Delete Its Exist In Other Transaction';
         res.json(response);
       } else {
         if (id) {
@@ -695,20 +656,20 @@ module.exports = function init(site) {
             }
           );
         } else {
-          response.error = "no id";
+          response.error = 'no id';
           res.json(response);
         }
       }
     });
   });
 
-  site.post("/api/customers/all", (req, res) => {
+  site.post('/api/customers/all', (req, res) => {
     let response = {
       done: false,
     };
 
     if (!req.session.user) {
-      response.error = "Please Login First";
+      response.error = 'Please Login First';
       res.json(response);
       return;
     }
@@ -719,66 +680,66 @@ module.exports = function init(site) {
     if (search) {
       where.$or = [];
       where.$or.push({
-        name_ar: site.get_RegExp(search, "i"),
+        name_ar: site.get_RegExp(search, 'i'),
       });
       where.$or.push({
-        name_en: site.get_RegExp(search, "i"),
+        name_en: site.get_RegExp(search, 'i'),
       });
 
       where.$or.push({
         code: search,
       });
       where.$or.push({
-        mobile: site.get_RegExp(search, "i"),
+        mobile: site.get_RegExp(search, 'i'),
       });
     }
 
-    if (where["name_ar"]) {
-      where["name_ar"] = site.get_RegExp(where["name_ar"], "i");
+    if (where['name_ar']) {
+      where['name_ar'] = site.get_RegExp(where['name_ar'], 'i');
     }
 
-    if (where["name_en"]) {
-      where["name_en"] = site.get_RegExp(where["name_en"], "i");
+    if (where['name_en']) {
+      where['name_en'] = site.get_RegExp(where['name_en'], 'i');
     }
 
     if (where.code) {
-      where["code"] = where.code;
+      where['code'] = where.code;
     }
 
     if (where.nationality) {
-      where["nationality"] = where.nationality;
+      where['nationality'] = where.nationality;
     }
 
     if (where.phone) {
-      where["phone"] = where.phone;
+      where['phone'] = where.phone;
     }
     if (where.mobile) {
-      where["mobile"] = where.mobile;
+      where['mobile'] = where.mobile;
     }
 
-    if (where["students_year"] && where["students_year"].id) {
-      where["students_year.id"] = where["students_year"].id;
-      delete where["students_year"];
+    if (where['students_year'] && where['students_year'].id) {
+      where['students_year.id'] = where['students_year'].id;
+      delete where['students_year'];
     }
 
-    if (where["school_grade"] && where["school_grade"].id) {
-      where["school_grade.id"] = where["school_grade"].id;
-      delete where["school_grade"];
+    if (where['school_grade'] && where['school_grade'].id) {
+      where['school_grade.id'] = where['school_grade'].id;
+      delete where['school_grade'];
     }
 
-    if (where["hall"]) {
-      where["hall.id"] = where["hall"].id;
-      delete where["hall"];
+    if (where['hall']) {
+      where['hall.id'] = where['hall'].id;
+      delete where['hall'];
     }
 
-    where["company.id"] = site.get_company(req).id;
+    where['company.id'] = site.get_company(req).id;
 
-    if (site.feature("school")) {
-      where["branch.code"] = site.get_branch(req).code;
+    if (site.feature('school')) {
+      where['branch.code'] = site.get_branch(req).code;
     }
 
-    if (req.session.user && req.session.user.type === "customer") {
-      where["id"] = req.session.user.ref_info.id;
+    if (req.session.user && req.session.user.type === 'customer') {
+      where['id'] = req.session.user.ref_info.id;
     }
 
     $customers.findMany(
@@ -866,21 +827,21 @@ module.exports = function init(site) {
       //   medicine_notes: 1,
     };
     let where = { ..._where };
-    delete where["id"]
+    delete where['id'];
 
-    if (where["customer"]) {
-      where["id"] = where["customer"].id;
-      delete where["customer"];
+    if (where['customer']) {
+      where['id'] = where['customer'].id;
+      delete where['customer'];
     }
 
     if (where.search) {
       where.$or = [];
       where.$or.push(
         {
-          name_ar: site.get_RegExp(where.search, "i"),
+          name_ar: site.get_RegExp(where.search, 'i'),
         },
         {
-          name_en: site.get_RegExp(where.search, "i"),
+          name_en: site.get_RegExp(where.search, 'i'),
         }
       );
       delete where.search;
@@ -902,61 +863,61 @@ module.exports = function init(site) {
   site.getCustomers = function (data, callback) {
     let where = data.where || {};
 
-    let search = data.search || "";
+    let search = data.search || '';
 
     if (search) {
       where.$or = [];
       where.$or.push({
-        name_ar: site.get_RegExp(search, "i"),
+        name_ar: site.get_RegExp(search, 'i'),
       });
       where.$or.push({
-        name_en: site.get_RegExp(search, "i"),
+        name_en: site.get_RegExp(search, 'i'),
       });
 
       where.$or.push({
         code: search,
       });
       where.$or.push({
-        mobile: site.get_RegExp(search, "i"),
+        mobile: site.get_RegExp(search, 'i'),
       });
     }
 
-    if (where["name_ar"]) {
-      where["name_ar"] = site.get_RegExp(where["name_ar"], "i");
+    if (where['name_ar']) {
+      where['name_ar'] = site.get_RegExp(where['name_ar'], 'i');
     }
 
-    if (where["name_en"]) {
-      where["name_en"] = site.get_RegExp(where["name_en"], "i");
+    if (where['name_en']) {
+      where['name_en'] = site.get_RegExp(where['name_en'], 'i');
     }
 
     if (where.code) {
-      where["code"] = where.code;
+      where['code'] = where.code;
     }
 
     if (where.nationality) {
-      where["nationality"] = where.nationality;
+      where['nationality'] = where.nationality;
     }
 
     if (where.phone) {
-      where["phone"] = where.phone;
+      where['phone'] = where.phone;
     }
     if (where.mobile) {
-      where["mobile"] = where.mobile;
+      where['mobile'] = where.mobile;
     }
 
-    if (where["students_year"] && where["students_year"].id) {
-      where["students_year.id"] = where["students_year"].id;
-      delete where["students_year"];
+    if (where['students_year'] && where['students_year'].id) {
+      where['students_year.id'] = where['students_year'].id;
+      delete where['students_year'];
     }
 
-    if (where["school_grade"] && where["school_grade"].id) {
-      where["school_grade.id"] = where["school_grade"].id;
-      delete where["school_grade"];
+    if (where['school_grade'] && where['school_grade'].id) {
+      where['school_grade.id'] = where['school_grade'].id;
+      delete where['school_grade'];
     }
 
-    if (where["hall"] && where["hall"].id) {
-      where["hall.id"] = where["hall"].id;
-      delete where["hall"];
+    if (where['hall'] && where['hall'].id) {
+      where['hall.id'] = where['hall'].id;
+      delete where['hall'];
     }
     $customers.findMany(
       {
@@ -973,14 +934,13 @@ module.exports = function init(site) {
 
   /* ATM APIS */
 
-
-  site.post("/api/customers/getFirstCompany", (req, res) => {
+  site.post('/api/customers/getFirstCompany', (req, res) => {
     let response = {
       done: false,
     };
 
     if (!req.session.user) {
-      response.error = "Please Login First";
+      response.error = 'Please Login First';
       res.json(response);
       return;
     }
@@ -1003,11 +963,7 @@ module.exports = function init(site) {
     );
   });
 
-
-
-
-
-  site.post("/api/customers/signUp", (req, res) => {
+  site.post('/api/customers/signUp', (req, res) => {
     let response = {
       done: false,
     };
@@ -1019,87 +975,79 @@ module.exports = function init(site) {
     // }
 
     let customers_doc = req.body;
-    customers_doc.$req = req;
-    customers_doc.$res = res;
-
+    // customers_doc.$req = req;
+    // customers_doc.$res = res;
+    customers_doc.active = true;
     let user = {
-      type: "customer",
+      type: 'customer',
     };
-
     user.roles = [
       {
-        module_name: "public",
-        name: "customers_user",
-        en: "Customers User",
-        ar: "إدارة العملاء للمستخدم",
-        permissions: ["customers_update", "customers_view", "customers_ui"],
+        module_name: 'public',
+        name: 'customers_user',
+        en: 'Customers User',
+        ar: 'إدارة العملاء للمستخدم',
+        permissions: ['customers_update', 'customers_view', 'customers_ui'],
       },
     ];
 
-    if (
-      site.feature("pos") ||
-      site.feature("restaurant") ||
-      site.feature("erp") ||
-      site.feature("ecommerce")
-    ) {
+    if (site.feature('pos') || site.feature('restaurant') || site.feature('erp') || site.feature('ecommerce')) {
       user.roles.push({
-        module_name: "public",
-        name: "order_customer_user",
-        en: "Order Customers User",
-        ar: "طلبات العملاء للمستخدمين",
-        permissions: ["order_customer_ui", "order_customer_delete_items"],
+        module_name: 'public',
+        name: 'order_customer_user',
+        en: 'Order Customers User',
+        ar: 'طلبات العملاء للمستخدمين',
+        permissions: ['order_customer_ui', 'order_customer_delete_items'],
       });
     }
 
-    if (site.feature("club")) {
+    if (site.feature('club')) {
       user.roles.push({
-        module_name: "report",
-        name: "report_info_user",
-        en: "Subscribe Info USer",
-        ar: "معلومات المشتركين للمستخدم",
-        permissions: ["report_info_ui"],
+        module_name: 'report',
+        name: 'report_info_user',
+        en: 'Subscribe Info USer',
+        ar: 'معلومات المشتركين للمستخدم',
+        permissions: ['report_info_ui'],
       });
     }
 
-    if (site.feature("medical")) {
+    if (site.feature('medical')) {
       user.roles.push({
-        module_name: "public",
-        name: "patient_file_user",
-        en: "Patient file User",
-        ar: "ملف المريض للمستخدم",
-        permissions: ["patients_files_ui", "patients_files_view"],
+        module_name: 'public',
+        name: 'patient_file_user',
+        en: 'Patient file User',
+        ar: 'ملف المريض للمستخدم',
+        permissions: ['patients_files_ui', 'patients_files_view'],
       });
     }
 
-    if (site.feature("school")) {
-      if (customers_doc.school_grade)
-        user.school_grade_id = customers_doc.school_grade.id;
-      if (customers_doc.students_year)
-        user.students_year_id = customers_doc.students_year.id;
+    if (site.feature('school')) {
+      if (customers_doc.school_grade) user.school_grade_id = customers_doc.school_grade.id;
+      if (customers_doc.students_year) user.students_year_id = customers_doc.students_year.id;
 
       user.roles.push(
         {
-          module_name: "public",
-          name: "exams_customer",
-          en: "Exams Students",
-          ar: "إمتحانات الطلاب",
-          permissions: ["exams_ui", "exams_view"],
+          module_name: 'public',
+          name: 'exams_customer',
+          en: 'Exams Students',
+          ar: 'إمتحانات الطلاب',
+          permissions: ['exams_ui', 'exams_view'],
         },
         {
-          module_name: "public",
-          name: "libraries_student",
-          en: "Libraries Student",
-          ar: "مكتبة الطلاب",
-          permissions: ["libraries_ui", "libraries_view"],
+          module_name: 'public',
+          name: 'libraries_student',
+          en: 'Libraries Student',
+          ar: 'مكتبة الطلاب',
+          permissions: ['libraries_ui', 'libraries_view'],
         }
       );
     }
 
     user.permissions = [];
     let defaultDender = {
-      "name": "male",
-      "en": "Male",
-      "ar": "ذكر"
+      name: 'male',
+      en: 'Male',
+      ar: 'ذكر',
     };
     user.profile = {
       name_ar: customers_doc.username,
@@ -1108,20 +1056,17 @@ module.exports = function init(site) {
       image_url: customers_doc.image_url,
       gender: customers_doc.gender || defaultDender,
     };
-    if (user.profile.gender && user.profile.gender.name == "female") {
+    if (user.profile.gender && user.profile.gender.name == 'female') {
       user.permissions.push({
-        name: "female",
+        name: 'female',
       });
     }
 
-    
     let company = {};
     let branch = {};
     company = site.get_company(req);
-   
-    
-      branch = site.get_branch(req);
-   
+
+    branch = site.get_branch(req);
 
     user.branch_list = [
       {
@@ -1145,56 +1090,43 @@ module.exports = function init(site) {
     user.company = customers_doc.company;
     user.branch = customers_doc.branch;
 
-
-
     const randomNumber = (length) => {
-      let text = "";
-      let possible = "123456789";
+      let text = '';
+      let possible = '123456789';
       for (let i = 0; i < length; i++) {
         let sup = Math.floor(Math.random() * possible.length);
-        text += i > 0 && sup == i ? "0" : possible.charAt(sup);
+        text += i > 0 && sup == i ? '0' : possible.charAt(sup);
       }
-      return (text);
-    }
+      return text;
+    };
 
-
-    customers_doc.code = String(randomNumber(4))
+    customers_doc.code = String(randomNumber(4));
     $customers.findMany(
       {
         where: {
-          "company.id": company.id,
+          'company.id': company.id,
         },
       },
       (err, docs, count) => {
         if (!err && count >= company.customers_count) {
-          response.error = "The maximum number of adds exceeded";
+          response.error = 'The maximum number of adds exceeded';
           res.json(response);
           return;
         } else {
           if (customers_doc.username && customers_doc.password) {
-            if (
-              !customers_doc.username.contains("@") &&
-              !customers_doc.username.contains(".")
-            ) {
-              customers_doc.username =
-                customers_doc.username + "@" + company.host;
-            } else {
-              if (
-                customers_doc.username.contains("@") &&
-                !customers_doc.username.contains(".")
-              ) {
-                response.error = "Username must be typed correctly";
-                res.json(response);
-                return;
-              } else if (
-                !customers_doc.username.contains("@") &&
-                customers_doc.username.contains(".")
-              ) {
-                response.error = "Username must be typed correctly";
-                res.json(response);
-                return;
-              }
-            }
+            // if (!customers_doc.username.contains('@') && !customers_doc.username.contains('.')) {
+            //   customers_doc.username = customers_doc.username + '@' + company.host;
+            // } else {
+            //   if (customers_doc.username.contains('@') && !customers_doc.username.contains('.')) {
+            //     response.error = 'Username must be typed correctly';
+            //     res.json(response);
+            //     return;
+            //   } else if (!customers_doc.username.contains('@') && customers_doc.username.contains('.')) {
+            //     response.error = 'Username must be typed correctly';
+            //     res.json(response);
+            //     return;
+            //   }
+            // }
 
             user.email = customers_doc.username;
             user.password = customers_doc.password;
@@ -1202,11 +1134,11 @@ module.exports = function init(site) {
 
           site.security.isUserExists(user, function (err, user_found) {
             if (user_found) {
-              response.error = "User Is Exist";
+              response.error = 'User Is Exist';
               res.json(response);
               return;
             }
-
+            customers_doc.name_ar = customers_doc.username;
             $customers.add(customers_doc, (err, doc) => {
               if (!err) {
                 response.done = true;
@@ -1259,7 +1191,6 @@ module.exports = function init(site) {
       }
     );
 
-
     // if (req.session.user) {
     //   company = site.get_company(req);
     //   branch = site.get_branch(req);
@@ -1290,30 +1221,25 @@ module.exports = function init(site) {
 
     // user.company = customers_doc.company;
     // user.branch = customers_doc.branch;
-
-
-
-
   });
 
-
-
   // update location
-  site.post("/api/customers/updateLocations", (req, res) => {
-    req.headers.language = req.headers.language || "en";
+  site.post('/api/customers/updateLocations', (req, res) => {
+    req.headers.language = req.headers.language || 'en';
     let response = {};
     if (!req.session.user) {
-      response.message = site.word("loginFirst")[req.headers.language];
+      response.message = site.word('loginFirst')[req.headers.language];
       response.done = false;
       res.json(response);
       return;
     } else if (!req.session.user.ref_info) {
-      response.message = site.word("loginFirst")[req.headers.language];
+      response.message = site.word('loginFirst')[req.headers.language];
       response.done = false;
       res.json(response);
       return;
     }
-    $customers.findOne({
+    $customers.findOne(
+      {
         where: {
           id: req.session.user.ref_info.id,
         },
@@ -1322,54 +1248,51 @@ module.exports = function init(site) {
         let arr = [];
         if (doc.address_list.length > 0) {
           for (const [index, value] of doc.address_list.entries()) {
-
             let xx = value;
             xx.id = index + 1;
 
-            arr.push(xx)
+            arr.push(xx);
           }
         }
-        arr.forEach(element => {
+        arr.forEach((element) => {
           if (element.id == req.body.id) {
-
             if (req.body.gov) {
-              element.gov = req.body.gov
+              element.gov = req.body.gov;
             }
             if (req.body.city) {
-              element.city = req.body.city
+              element.city = req.body.city;
             }
             if (req.body.area) {
-              element.area = req.body.area
+              element.area = req.body.area;
             }
 
             if (req.body.address) {
-              element.address = req.body.address
+              element.address = req.body.address;
             }
             if (req.body.lat) {
-              element.lat = req.body.lat
+              element.lat = req.body.lat;
             }
             if (req.body.long) {
-              element.long = req.body.long
+              element.long = req.body.long;
             }
             if (req.body.streetName) {
-              element.streetName = req.body.streetName
+              element.streetName = req.body.streetName;
             }
             if (req.body.buildingNumber) {
-              element.buildingNumber = req.body.buildingNumber
+              element.buildingNumber = req.body.buildingNumber;
             }
             if (req.body.role) {
-              element.role = req.body.role
+              element.role = req.body.role;
             }
             if (req.body.apartmentNumber) {
-              element.apartmentNumber = req.body.apartmentNumber
+              element.apartmentNumber = req.body.apartmentNumber;
             }
             if (req.body.specialMark) {
-              element.specialMark = req.body.specialMark
+              element.specialMark = req.body.specialMark;
             }
-
           }
         });
-        doc.address_list = arr
+        doc.address_list = arr;
         $customers.update(doc, (err, result) => {
           if (!err && result.count > 0) {
             response.done = true;
@@ -1382,31 +1305,23 @@ module.exports = function init(site) {
             res.json(response);
             return;
           }
-        })
-
-
+        });
       }
     );
-
-
-
-
   });
 
-
-
   // add new address
-  site.post("/api/customers/addNewAddress", (req, res) => {
+  site.post('/api/customers/addNewAddress', (req, res) => {
     let response = {
       done: false,
     };
 
     if (!req.session.user) {
-      response.error = "Please Login First";
+      response.error = 'Please Login First';
       res.json(response);
       return;
     } else if (!req.session.user.ref_info) {
-      response.error = "Please Login First";
+      response.error = 'Please Login First';
       res.json(response);
       return;
     }
@@ -1420,7 +1335,7 @@ module.exports = function init(site) {
       },
       (err, govDoc) => {
         if (!govDoc) {
-          response.error = "gov not found";
+          response.error = 'gov not found';
           res.json(response);
           return;
         }
@@ -1434,7 +1349,7 @@ module.exports = function init(site) {
             },
             (err, cityDoc) => {
               if (!cityDoc) {
-                response.error = "city not found";
+                response.error = 'city not found';
                 res.json(response);
                 return;
               }
@@ -1447,7 +1362,7 @@ module.exports = function init(site) {
                   },
                   (err, areaDoc) => {
                     if (!areaDoc) {
-                      response.error = "area not found";
+                      response.error = 'area not found';
                       res.json(response);
                       return;
                     }
@@ -1462,7 +1377,6 @@ module.exports = function init(site) {
                           if (!err && doc) {
                             response.done = true;
                             if (doc.address_list) {
-                              
                               doc.address_list.push({
                                 gov: govDoc,
                                 city: cityDoc,
@@ -1477,10 +1391,8 @@ module.exports = function init(site) {
                                 apartmentNumber: address_doc.apartmentNumber,
                                 specialMark: address_doc.specialMark,
                               });
-                              
-                            }
-                            else {
-                              doc.address_list = []
+                            } else {
+                              doc.address_list = [];
                               doc.address_list.push({
                                 gov: govDoc,
                                 city: cityDoc,
@@ -1493,17 +1405,15 @@ module.exports = function init(site) {
                                 role: address_doc.role,
                                 apartmentNumber: address_doc.apartmentNumber,
                                 specialMark: address_doc.specialMark,
-
                               });
                             }
                             let arr = [];
                             if (doc.address_list.length > 0) {
                               for (const [index, value] of doc.address_list.entries()) {
-                    
                                 let xx = value;
                                 xx.id = index + 1;
-                    
-                                arr.push(xx)
+
+                                arr.push(xx);
                               }
                             }
                             response.doc = doc;
@@ -1511,7 +1421,7 @@ module.exports = function init(site) {
                             res.json(response);
                           } else {
                             response.done = false;
-                            response.error = "no user found";
+                            response.error = 'no user found';
                             res.json(response);
                           }
                         }
@@ -1524,7 +1434,7 @@ module.exports = function init(site) {
           );
         } else {
           response.done = false;
-          response.error = "no user found";
+          response.error = 'no user found';
           res.json(response);
         }
       }
@@ -1532,16 +1442,16 @@ module.exports = function init(site) {
   });
 
   // my addresses
-  site.post("/api/customers/myAddresses", (req, res) => {
-    req.headers.language = req.headers.language || "en";
+  site.post('/api/customers/myAddresses', (req, res) => {
+    req.headers.language = req.headers.language || 'en';
     let response = {};
     if (!req.session.user) {
-      response.message = site.word("loginFirst")[req.headers.language];
+      response.message = site.word('loginFirst')[req.headers.language];
       response.done = false;
       res.json(response);
       return;
     } else if (!req.session.user.ref_info) {
-      response.message = site.word("loginFirst")[req.headers.language];
+      response.message = site.word('loginFirst')[req.headers.language];
       response.done = false;
       res.json(response);
       return;
@@ -1577,16 +1487,16 @@ module.exports = function init(site) {
   });
 
   // my profile
-  site.post("/api/customers/myProfile", (req, res) => {
-    req.headers.language = req.headers.language || "en";
+  site.post('/api/customers/myProfile', (req, res) => {
+    req.headers.language = req.headers.language || 'en';
     let response = {};
     if (!req.session.user) {
-      response.message = site.word("loginFirst")[req.headers.language];
+      response.message = site.word('loginFirst')[req.headers.language];
       response.done = false;
       res.json(response);
       return;
     } else if (!req.session.user.ref_info) {
-      response.message = site.word("loginFirst")[req.headers.language];
+      response.message = site.word('loginFirst')[req.headers.language];
       response.done = false;
       res.json(response);
       return;

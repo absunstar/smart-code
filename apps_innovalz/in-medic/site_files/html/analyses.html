@@ -17,7 +17,7 @@
   <title>Inmedic</title>
 </head>
 
-<body ng-controller="analysis">
+<body ng-controller="analyses">
 
   <nav class="sitebar" x-import="in-medic/nav.html"></nav>
 
@@ -150,7 +150,7 @@
               </div>
               <label>اختر طريقه الدفع</label><br>
               <input type="radio" value="clinic" name="pay" checked><span>عند الكشف</span><br>
-              <input type="radio" value="credit" name="pay"><span>الدفع بالكريات كارد او فيزا</span><br>
+              <input type="radio" value="credit" name="pay"><span>الدفع بالكريدت كارد او فيزا</span><br>
               <div class="next-step">
 
                 <a href="#" id="step3" ng-click="addAnalysisRequest()">اتمام الحجز</a>
@@ -337,7 +337,7 @@
     <script src="https://cdn.rtlcss.com/bootstrap/v4.5.3/js/bootstrap.min.js" integrity="sha384-VmD+lKnI0Y4FPvr6hvZRw6xvdt/QZoNHQ4h5k0RL30aGkR9ylHU56BzrE2UoohWK" crossorigin="anonymous"></script>
     -->
   <script>
-    app.controller('analysis', function ($scope, $http, $timeout) {
+    app.controller('analyses', function ($scope, $http, $timeout) {
       $scope.analysisData = {};
       $scope.analysisRequest = {};
       $scope.visitDaysList = [];
@@ -403,7 +403,7 @@
         $scope.busy = true;
         $http({
           method: 'POST',
-          url: '/api/analysis/searchAll',
+          url: '/api/analyses/searchAll',
 
         }).then(
           function (response) {

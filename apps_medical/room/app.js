@@ -29,7 +29,7 @@ module.exports = function init(site) {
         name_ar: doc.name_ar,
         name_en: doc.name_en,
       },
-      name_ar: "غرفة إفتراضية",
+      name_ar: "حجرة إفتراضية",
       name_en: "Default Room",
       code : '1-Test',
       image_url: '/images/room.png',

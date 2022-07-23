@@ -756,6 +756,7 @@ module.exports = function init(site) {
     let limit = 10;
     let skip = 0;
    
+    where['company.id'] = site.get_company(req).id
     if (
       req.body.page ||
       (parseInt(req.body.page) && parseInt(req.body.page) > 1)

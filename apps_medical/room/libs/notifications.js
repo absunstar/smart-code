@@ -4,24 +4,24 @@ module.exports = function init(site) {
 
   let source = {
     en: 'Rooms System',
-    ar: 'نظام الغرف'
+    ar: 'نظام الحجرات'
   }
 
   let image_url = '/images/room.png'
 
   let add_message = {
     en: 'New Room Added',
-    ar: 'تم إضافة غرفة جديدة'
+    ar: 'تم إضافة حجرة جديدة'
   }
 
   let update_message = {
     en: ' Room Updated',
-    ar: 'تم تعديل غرفة'
+    ar: 'تم تعديل حجرة'
   }
 
   let delete_message = {
     en: ' Room Deleted',
-    ar: 'تم حذف غرفة '
+    ar: 'تم حذف حجرة '
   }
 
   site.on('mongodb after insert', function (result) {

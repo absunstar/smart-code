@@ -2,6 +2,6 @@
     "module_name" : "public" ,
     "name": "room_admin",
     "en": "Room Admin",
-    "ar": "إدارة الغرف",
+    "ar": "إدارة الحجرات",
     "permissions": ["room_manage"]
 }]

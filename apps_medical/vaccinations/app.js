@@ -271,6 +271,7 @@ module.exports = function init(site) {
      
       delete where['name']
     }
+    where['company.id'] = site.get_company(req).id
 
     if (where['name']) {
       where.$or = []

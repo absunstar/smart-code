@@ -448,10 +448,12 @@ app.controller("patients_tickets", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         $scope.ticket_data = response.data.cb;
-        console.log($scope.ticket_data);
         if (type === "view") {
           site.showModal("#displayDataModal");
-          document.querySelector("#displayDataModal .tab-link").click();
+          if(!site.feature('atm')){
+
+            document.querySelector("#displayDataModal .tab-link").click();
+          }
 
         } else if (type === "close") {
           $scope.patients_tickets = patients_tickets;
