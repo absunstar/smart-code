@@ -477,7 +477,7 @@ module.exports = function init(site) {
       );
     }
 
-    if (customers_doc.username && customers_doc.password) {
+    if (customers_doc.username && customers_doc.password && !site.feature('atm')) {
       if (!customers_doc.username.contains('@') && !customers_doc.username.contains('.')) {
         customers_doc.username = customers_doc.username + '@' + site.get_company(req).host;
       } else {
@@ -978,6 +978,8 @@ module.exports = function init(site) {
     // customers_doc.$req = req;
     // customers_doc.$res = res;
     customers_doc.active = true;
+    customers_doc.address_list = [{}];
+    
     let user = {
       type: 'customer',
     };
@@ -1474,7 +1476,6 @@ module.exports = function init(site) {
         if (docs && docs.length > 0) {
           response.done = true;
           response.doc = docs;
-
           res.json(response);
         } else {
           response.done = false;

@@ -1972,8 +1972,8 @@
   },
   {
     "name": "err_username_contain",
-    "en": "Username must contain the characters ( @ ’ . )",
-    "ar": "يجب أن يحتوي إسم المستخدم على الرموز ( @ ’ . ) "
+    "en": "The username should be typed like ( example@example.com )",
+    "ar": "يجب كتابة إسم المستخدم مثل ( example@example.com )"
   },
   {
     "name": "le",

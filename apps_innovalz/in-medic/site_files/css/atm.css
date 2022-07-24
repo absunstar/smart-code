@@ -191,6 +191,7 @@ margin: 15px auto !important;
     margin: 0px 5px;
 }
 .dropdown-content{
+    position: unset;
     background-color: white;
     width: 90%;
     margin: auto;
@@ -318,7 +319,7 @@ select{
     border-radius: 20px !important;
 }
 .modal-content{
-    width: 55% !important;
+    width: 70% !important;
     border-radius: 20px ;
 }
 .justify-between{
