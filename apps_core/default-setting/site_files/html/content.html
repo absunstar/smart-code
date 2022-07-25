@@ -16,31 +16,13 @@
           <div class="row">
             <i-control ng-keydown="getCustomerList($event)" class="col2" ng-model="search_customer" label="##word.search##" type="text"></i-control>
 
-            <i-list
-              ng-search="_search.$customer"
-              class="col3"
-              display="name_##session.lang##"
-              v="r"
-              ng-model="default_setting.general_Settings.customer"
-              label="##word.customer##"
-              items="customersList"
-            >
-            </i-list>
+            <i-list ng-search="_search.$customer" class="col3" display="name_##session.lang##" v="r" ng-model="default_setting.general_Settings.customer" label="##word.customer##" items="customersList"> </i-list>
 
             <div class="col1"></div>
 
             <i-control ng-keydown="loadVendors($event)" class="col2" ng-model="search_vendor" label="##word.search##" type="text"></i-control>
 
-            <i-list
-              class="col3"
-              ng-model="default_setting.general_Settings.vendor"
-              items="vendorsList"
-              space=" - "
-              display2="code"
-              display="name_##session.lang##"
-              ng-search="_search.$search_vendor"
-              label="##word.stores_in_Company_name##"
-            ></i-list>
+            <i-list class="col3" ng-model="default_setting.general_Settings.vendor" items="vendorsList" space=" - " display2="code" display="name_##session.lang##" ng-search="_search.$search_vendor" label="##word.stores_in_Company_name##"></i-list>
           </div>
 
           <br />
@@ -49,110 +31,34 @@
           <div class="row" x-features="medical">
             <i-control class="col2" label="##word.doctor_search##" ng-model="doctor_search" ng-keydown="getDoctorList($event)"></i-control>
 
-            <i-list class="col3" label="##word.doctors##" ng-model="default_setting.general_Settings.doctor" items="doctorList" display="name_##session.lang##" ng-search="_search.$doctors_searching">
-            </i-list>
+            <i-list class="col3" label="##word.doctors##" ng-model="default_setting.general_Settings.doctor" items="doctorList" display="name_##session.lang##" ng-search="_search.$doctors_searching"> </i-list>
 
-            <i-list
-              class="col3"
-              label="##word.specialty##"
-              ng-model="default_setting.general_Settings.specialty"
-              items="specialtyList"
-              display="name_##session.lang##"
-              ng-search="_search.$specialty_search"
-            >
-            </i-list>
+            <i-list class="col3" label="##word.specialty##" ng-model="default_setting.general_Settings.specialty" items="specialtyList" display="name_##session.lang##" ng-search="_search.$specialty_search"> </i-list>
           </div>
 
           <div class="row" x-features="medical">
-            <i-list class="col3" label="##word.clinic##" ng-model="default_setting.general_Settings.clinic" items="clinicList" display="name_##session.lang##" ng-search="_search.$clinic_search">
-            </i-list>
+            <i-list class="col3" label="##word.clinic##" ng-model="default_setting.general_Settings.clinic" items="clinicList" display="name_##session.lang##" ng-search="_search.$clinic_search"> </i-list>
 
-            <i-list
-              class="col3"
-              label="##word.doctor_visit_type##"
-              ng-model="default_setting.general_Settings.visit_type"
-              items="doctorsVisitsTypeList"
-              display="##session.lang##"
-              ng-search="_search.$visit_type_search"
-            >
-            </i-list>
+            <i-list class="col3" label="##word.doctor_visit_type##" ng-model="default_setting.general_Settings.visit_type" items="doctorsVisitsTypeList" display="##session.lang##" ng-search="_search.$visit_type_search"> </i-list>
 
-            <i-list
-              class="col3"
-              label="##word.place_examination##"
-              ng-model="default_setting.general_Settings.place_examination"
-              items="placeExaminationList"
-              display="##session.lang##"
-              ng-search="_search.$doctors_placeExamination_search"
-            ></i-list>
+            <i-list class="col3" label="##word.place_examination##" ng-model="default_setting.general_Settings.place_examination" items="placeExaminationList" display="##session.lang##" ng-search="_search.$doctors_placeExamination_search"></i-list>
           </div>
 
           <div class="row" x-features="school">
-            <i-list
-              ng-search="_search.$_school_grade"
-              class="col3"
-              display="name_##session.lang##"
-              ng-model="default_setting.general_Settings.school_grade"
-              label="##word.school_grade##"
-              items="schoolGradesList"
-            ></i-list>
+            <i-list ng-search="_search.$_school_grade" class="col3" display="name_##session.lang##" ng-model="default_setting.general_Settings.school_grade" label="##word.school_grade##" items="schoolGradesList"></i-list>
           </div>
           <div class="row">
-            <i-list
-              class="col4"
-              x-features="school || club || academy"
-              items="trainerList"
-              ng-model="default_setting.general_Settings.trainer"
-              display="name_##session.lang##"
-              ng-search="create_course.$trainer_search"
-              label="##word.trainer##"
-            >
-            </i-list>
+            <i-list class="col4" x-features="school || club || academy" items="trainerList" ng-model="default_setting.general_Settings.trainer" display="name_##session.lang##" ng-search="create_course.$trainer_search" label="##word.trainer##"> </i-list>
 
-            <i-list
-              help-id=""
-              ng-search="_search.$payment_type_search"
-              class="col2"
-              label="##word.payment_type##"
-              ng-model="default_setting.general_Settings.payment_type"
-              items="paymentTypesList"
-              display="##session.lang##"
-            >
-            </i-list>
+            <i-list help-id="" ng-search="_search.$payment_type_search" class="col2" label="##word.payment_type##" ng-model="default_setting.general_Settings.payment_type" items="paymentTypesList" display="##session.lang##"> </i-list>
 
-            <i-list
-              ng-search="_search.$order_invoice_employee"
-              class="col3"
-              display="name_##session.lang##"
-              x-features="restaurant || pos  || erp || ecommerce"
-              ng-model="default_setting.general_Settings.delivery_employee"
-              label="##word.delivery_employee##"
-              items="deliveryEmployeesList"
-            ></i-list>
+            <i-list ng-search="_search.$order_invoice_employee" class="col3" display="name_##session.lang##" x-features="restaurant || pos  || erp || ecommerce" ng-model="default_setting.general_Settings.delivery_employee" label="##word.delivery_employee##" items="deliveryEmployeesList"></i-list>
 
-            <i-list
-              ng-search="_search.$order_type"
-              class="col2"
-              display="##session.lang##"
-              x-features="restaurant || pos  || erp || ecommerce"
-              ng-model="default_setting.general_Settings.order_type"
-              label="##word.order_type##"
-              items="transactionTypeList"
-            >
-            </i-list>
+            <i-list ng-search="_search.$order_type" class="col2" display="##session.lang##" x-features="restaurant || pos  || erp || ecommerce" ng-model="default_setting.general_Settings.order_type" label="##word.order_type##" items="transactionTypeList"> </i-list>
           </div>
 
           <div class="row" x-features="restaurant">
-            <i-list
-              class="col3"
-              ng-model="default_setting.general_Settings.kitchen"
-              items="kitchensList"
-              display="name_##session.lang##"
-              x-features="restaurant"
-              ng-search="_search.$search_kitchen"
-              label="##word.kitchen_name##"
-            >
-            </i-list>
+            <i-list class="col3" ng-model="default_setting.general_Settings.kitchen" items="kitchensList" display="name_##session.lang##" x-features="restaurant" ng-search="_search.$search_kitchen" label="##word.kitchen_name##"> </i-list>
 
             <i-control class="col1" ng-model="default_setting.general_Settings.service" x-features="restaurant" label="##word.service##" type="number"> </i-control>
 
@@ -193,45 +99,13 @@
           <div class="row">
             <div class="col9">
               <div class="row">
-                <i-list
-                  ng-search="_search.$printers_path"
-                  class="col3"
-                  display="name_##session.lang##"
-                  ng-model="default_setting.printer_program.printer_path"
-                  label="##word.thermal_print##"
-                  items="printersPathList"
-                >
-                </i-list>
+                <i-list ng-search="_search.$printers_path" class="col3" display="name_##session.lang##" ng-model="default_setting.printer_program.printer_path" label="##word.thermal_print##" items="printersPathList"> </i-list>
 
-                <i-list
-                  ng-search="_search.$printers_path"
-                  class="col3"
-                  display="name_##session.lang##"
-                  ng-model="default_setting.printer_program.a4_printer"
-                  label="##word.a4_printer##"
-                  items="printersPathList"
-                >
-                </i-list>
+                <i-list ng-search="_search.$printers_path" class="col3" display="name_##session.lang##" ng-model="default_setting.printer_program.a4_printer" label="##word.a4_printer##" items="printersPathList"> </i-list>
 
-                <i-list
-                  ng-search="_search.$printers_path"
-                  class="col3"
-                  display="name_##session.lang##"
-                  ng-model="default_setting.printer_program.pdf_printer"
-                  label="##word.pdf_printer##"
-                  items="printersPathList"
-                >
-                </i-list>
+                <i-list ng-search="_search.$printers_path" class="col3" display="name_##session.lang##" ng-model="default_setting.printer_program.pdf_printer" label="##word.pdf_printer##" items="printersPathList"> </i-list>
 
-                <i-list
-                  ng-search="_search.$printers_path"
-                  class="col3"
-                  display="name_##session.lang##"
-                  ng-model="default_setting.printer_program.barcode_printer"
-                  label="##word.barcode_printer##"
-                  items="printersPathList"
-                >
-                </i-list>
+                <i-list ng-search="_search.$printers_path" class="col3" display="name_##session.lang##" ng-model="default_setting.printer_program.barcode_printer" label="##word.barcode_printer##" items="printersPathList"> </i-list>
               </div>
 
               <div class="row">
@@ -241,31 +115,10 @@
                   label="##word.invoice_top_title##"
                   ng-model="default_setting.printer_program.invoice_top_title"
                 ></i-control> -->
-                <i-list
-                  class="col3"
-                  ng-model="default_setting.printer_program.country_qr"
-                  items="countryQRList"
-                  display="##session.lang##"
-                  ng-search="_search.$country_qr"
-                  label="##word.qr_country##"
-                ></i-list>
+                <i-list class="col3" ng-model="default_setting.printer_program.country_qr" items="countryQRList" display="##session.lang##" ng-search="_search.$country_qr" label="##word.qr_country##"></i-list>
 
-                <i-list
-                  class="col3"
-                  ng-model="default_setting.printer_program.place_qr"
-                  items="placeQRList"
-                  display="##session.lang##"
-                  ng-search="_search.$place_qr"
-                  label="##word.qr_place##"
-                ></i-list>
-                <i-list
-                  class="col3"
-                  ng-model="default_setting.printer_program.thermal_lang"
-                  items="thermalLangList"
-                  display="##session.lang##"
-                  ng-search="_search.$thermal_lang"
-                  label="##word.thermal_printing_language##"
-                ></i-list>
+                <i-list class="col3" ng-model="default_setting.printer_program.place_qr" items="placeQRList" display="##session.lang##" ng-search="_search.$place_qr" label="##word.qr_place##"></i-list>
+                <i-list class="col3" ng-model="default_setting.printer_program.thermal_lang" items="thermalLangList" display="##session.lang##" ng-search="_search.$thermal_lang" label="##word.thermal_printing_language##"></i-list>
               </div>
               <div class="row">
                 <i-checkbox label="##word.user_appears_in_invoice##" ng-model="default_setting.printer_program.user_appears_in_invoice"> </i-checkbox>
@@ -296,6 +149,9 @@
             <br />
             <br />
             <div class="row">
+              <div class="row">
+                <i-control class="col3" type="number" label="##word.items_count##" ng-model="default_setting.printer_program.items_count_a4"></i-control>
+              </div>
               <div class="col6">
                 <div class="row">
                   <h2 class="black">
@@ -305,12 +161,7 @@
 
                   <div ng-repeat="h in default_setting.printer_program.invoice_header track by $index" class="row">
                     <i-control class="col9" ng-model="h.name"></i-control>
-                    <i-button
-                      class="col2"
-                      type="delete default"
-                      ng-click="default_setting.printer_program.invoice_header.length ==1 || default_setting.printer_program.invoice_header.splice($index,1)"
-                    >
-                    </i-button>
+                    <i-button class="col2" type="delete default" ng-click="default_setting.printer_program.invoice_header.length ==1 || default_setting.printer_program.invoice_header.splice($index,1)"> </i-button>
                   </div>
                 </div>
               </div>
@@ -325,12 +176,7 @@
                   <div ng-repeat="f in default_setting.printer_program.invoice_header2 track by $index" class="row">
                     <i-control class="col9" ng-model="f.name"></i-control>
 
-                    <i-button
-                      class="col2"
-                      type="delete default"
-                      ng-click="default_setting.printer_program.invoice_header2.length ==1 || default_setting.printer_program.invoice_header2.splice($index,1)"
-                    >
-                    </i-button>
+                    <i-button class="col2" type="delete default" ng-click="default_setting.printer_program.invoice_header2.length ==1 || default_setting.printer_program.invoice_header2.splice($index,1)"> </i-button>
                   </div>
                 </div>
               </div>
@@ -346,8 +192,7 @@
               <div ng-repeat="f in default_setting.printer_program.invoice_footer track by $index" class="row">
                 <i-control class="col8" ng-model="f.name"></i-control>
 
-                <i-button class="col2" type="delete default" ng-click="default_setting.printer_program.invoice_footer.length ==1 || default_setting.printer_program.invoice_footer.splice($index,1)">
-                </i-button>
+                <i-button class="col2" type="delete default" ng-click="default_setting.printer_program.invoice_footer.length ==1 || default_setting.printer_program.invoice_footer.splice($index,1)"> </i-button>
               </div>
             </div>
           </fieldset>
@@ -370,12 +215,7 @@
 
                   <div ng-repeat="h in default_setting.printer_program.thermal_header track by $index" class="row">
                     <i-control class="col9" ng-model="h.name"></i-control>
-                    <i-button
-                      class="col2"
-                      type="delete default"
-                      ng-click="default_setting.printer_program.thermal_header.length ==1 || default_setting.printer_program.thermal_header.splice($index,1)"
-                    >
-                    </i-button>
+                    <i-button class="col2" type="delete default" ng-click="default_setting.printer_program.thermal_header.length ==1 || default_setting.printer_program.thermal_header.splice($index,1)"> </i-button>
                   </div>
                 </div>
               </div>
@@ -390,12 +230,7 @@
                   <div ng-repeat="f in default_setting.printer_program.thermal_footer track by $index" class="row">
                     <i-control class="col9" ng-model="f.name"></i-control>
 
-                    <i-button
-                      class="col2"
-                      type="delete default"
-                      ng-click="default_setting.printer_program.thermal_footer.length ==1 || default_setting.printer_program.thermal_footer.splice($index,1)"
-                    >
-                    </i-button>
+                    <i-button class="col2" type="delete default" ng-click="default_setting.printer_program.thermal_footer.length ==1 || default_setting.printer_program.thermal_footer.splice($index,1)"> </i-button>
                   </div>
                 </div>
               </div>
@@ -430,8 +265,7 @@
 
                 <div ng-repeat="h in default_setting.exams_setting.exam_header track by $index" class="row">
                   <i-control class="col8" ng-model="h.name"></i-control>
-                  <i-button class="col2" type="delete default" ng-click="default_setting.exams_setting.exam_header.length ==1 || default_setting.exams_setting.exam_header.splice($index,1)">
-                  </i-button>
+                  <i-button class="col2" type="delete default" ng-click="default_setting.exams_setting.exam_header.length ==1 || default_setting.exams_setting.exam_header.splice($index,1)"> </i-button>
                 </div>
               </div>
               <div class="row">
@@ -441,8 +275,7 @@
                 <div ng-repeat="f in default_setting.exams_setting.exam_header2 track by $index" class="row">
                   <i-control class="col8" ng-model="f.name"></i-control>
 
-                  <i-button class="col2" type="delete default" ng-click="default_setting.exams_setting.exam_header2.length ==1 || default_setting.exams_setting.exam_header2.splice($index,1)">
-                  </i-button>
+                  <i-button class="col2" type="delete default" ng-click="default_setting.exams_setting.exam_header2.length ==1 || default_setting.exams_setting.exam_header2.splice($index,1)"> </i-button>
                 </div>
               </div>
 
@@ -453,8 +286,7 @@
                 <div ng-repeat="f in default_setting.exams_setting.exam_footer track by $index" class="row">
                   <i-control class="col8" ng-model="f.name"></i-control>
 
-                  <i-button class="col2" type="delete default" ng-click="default_setting.exams_setting.exam_footer.length ==1 || default_setting.exams_setting.exam_footer.splice($index,1)">
-                  </i-button>
+                  <i-button class="col2" type="delete default" ng-click="default_setting.exams_setting.exam_footer.length ==1 || default_setting.exams_setting.exam_footer.splice($index,1)"> </i-button>
                 </div>
               </div>
             </div>
@@ -475,38 +307,13 @@
           <legend>##word.accounting_settings##</legend>
 
           <div class="row">
-            <i-list
-              help-id=""
-              ng-search="_search.$payment_method_search"
-              class="col2"
-              label="##word.payment_method##"
-              ng-model="default_setting.accounting.payment_method"
-              items="paymentMethodList"
-              display="##session.lang##"
-            >
-            </i-list>
+            <i-list help-id="" ng-search="_search.$payment_method_search" class="col2" label="##word.payment_method##" ng-model="default_setting.accounting.payment_method" items="paymentMethodList" display="##session.lang##"> </i-list>
 
-            <i-list
-              class="col3"
-              ng-model="default_setting.accounting.currency"
-              items="currenciesList"
-              display="name_##session.lang##"
-              ng-change="loadSafesBank();loadSafesBox()"
-              ng-search="_search.$serach_currency"
-              label="##word.main_currency##"
-            ></i-list>
+            <i-list class="col3" ng-model="default_setting.accounting.currency" items="currenciesList" display="name_##session.lang##" ng-change="loadSafesBank();loadSafesBox()" ng-search="_search.$serach_currency" label="##word.main_currency##"></i-list>
 
-            <i-list
-              class="col3"
-              ng-model="default_setting.accounting.safe_bank"
-              items="safesBankList"
-              display="name_##session.lang##"
-              ng-search="_search.$serach_safes_bank"
-              label="##word.safe_bank##"
-            ></i-list>
+            <i-list class="col3" ng-model="default_setting.accounting.safe_bank" items="safesBankList" display="name_##session.lang##" ng-search="_search.$serach_safes_bank" label="##word.safe_bank##"></i-list>
 
-            <i-list class="col3" ng-model="default_setting.accounting.safe_box" items="safesBoxList" display="name_##session.lang##" ng-search="_search.$serach_safes_box" label="##word.safe_box##">
-            </i-list>
+            <i-list class="col3" ng-model="default_setting.accounting.safe_box" items="safesBoxList" display="name_##session.lang##" ng-search="_search.$serach_safes_box" label="##word.safe_box##"> </i-list>
           </div>
 
           <div class="row">
@@ -531,14 +338,7 @@
           </div>
 
           <div class="row" x-feature="erp">
-            <i-control
-              ng-show="default_setting.accounting.auto_generate_account_code_and_cost_center"
-              class="col2"
-              label="##word.length_level##"
-              type="number"
-              ng-model="default_setting.accounting.length_level"
-            >
-            </i-control>
+            <i-control ng-show="default_setting.accounting.auto_generate_account_code_and_cost_center" class="col2" label="##word.length_level##" type="number" ng-model="default_setting.accounting.length_level"> </i-control>
           </div>
         </fieldset>
 
@@ -549,33 +349,17 @@
         <fieldset>
           <legend>##word.inventory_settings##</legend>
           <div class="row">
-            <i-list
-              class="col3"
-              ng-model="default_setting.inventory.item_group"
-              display="name_##session.lang##"
-              ng-search="_search.$items_group_search"
-              label="##word.item_group##"
-              items="itemsGroupList"
-            >
-            </i-list>
+            <i-list class="col3" ng-model="default_setting.inventory.item_group" display="name_##session.lang##" ng-search="_search.$items_group_search" label="##word.item_group##" items="itemsGroupList"> </i-list>
 
             <i-list class="col3" ng-model="default_setting.inventory.store" items="storesList" display="name_##session.lang##" ng-search="_search.$_store" label="##word.store##"></i-list>
 
-            <i-list
-              class="col2"
-              ng-model="default_setting.inventory.item_type"
-              display="##session.lang##"
-              ng-search="_search.$category_item.$item_type_search"
-              label="##word.item_type##"
-              items="itemsTypesList"
-            ></i-list>
+            <i-list class="col2" ng-model="default_setting.inventory.item_type" display="##session.lang##" ng-search="_search.$category_item.$item_type_search" label="##word.item_type##" items="itemsTypesList"></i-list>
 
             <i-list class="col2" ng-model="default_setting.inventory.unit" ng-search="_search.$search_unit" display="name_##session.lang##" label="##word.unit##" items="unitsList"> </i-list>
           </div>
 
           <div class="row">
-            <i-list class="col3" ng-model="default_setting.inventory.delegate" display="name_##session.lang##" ng-search="_search.$items_group_search" label="##word.delegate##" items="delegatesList">
-            </i-list>
+            <i-list class="col3" ng-model="default_setting.inventory.delegate" display="name_##session.lang##" ng-search="_search.$items_group_search" label="##word.delegate##" items="delegatesList"> </i-list>
 
             <i-control class="col2" type="number" label="##word.value_added##" ng-model="default_setting.inventory.value_added"> </i-control>
 

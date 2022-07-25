@@ -2317,11 +2317,11 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
         order.net_txt = site.stringfiy(order.net_value);
       }
 
-      if (order.items.length > 7) {
+      if (order.items.length > $scope.defaultSettings.printer_program.items_count_a4) {
         $scope.invList = [];
-        let inv_length = order.items.length / 7;
+        let inv_length = order.items.length / $scope.defaultSettings.printer_program.items_count_a4;
         inv_length = parseInt(inv_length);
-        let ramain_items = order.items.length - inv_length * 7;
+        let ramain_items = order.items.length - inv_length * $scope.defaultSettings.printer_program.items_count_a4;
 
         if (ramain_items) {
           inv_length += 1;
@@ -2333,7 +2333,7 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
           s_o.items = [];
           order.items.forEach((itm, i) => {
             itm.$index = i + 1;
-            if (i < (i_inv + 1) * 7 && !itm.$done_inv) {
+            if (i < (i_inv + 1) * $scope.defaultSettings.printer_program.items_count_a4 && !itm.$done_inv) {
               itm.$done_inv = true;
               s_o.items.push(itm);
             }

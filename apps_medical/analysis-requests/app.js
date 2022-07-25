@@ -441,14 +441,14 @@ module.exports = function init(site) {
                 id: analysis_requests_doc.customer.id,
               },
             },
-            
+
             (err, customerData) => {
               if (!err) {
                 if (!customerData) {
                   response.error = "no patient found";
                   return;
                 } else {
-                  
+
                   analysis_requests_doc.customer = customerData;
                   analysis_requests_doc.$req = req;
                   analysis_requests_doc.$res = res;

@@ -342,17 +342,26 @@
       $scope.analysisRequest = {};
       $scope.visitDaysList = [];
 
-
-
       $scope.addAnalysisRequest = function (b) {
         $scope.error = '';
 
-
         if ($scope.analysisRequest.at_home == 'home') {
-          $scope.analysisRequest.at_home = true
+          $scope.analysisRequest.at_home = true;
         }
         else{
-          $scope.analysisRequest.at_home = false
+          $scope.analysisRequest.at_home = false;
+        }
+
+        if($scope.analysisData.male && $scope.analysisData.female){
+
+          if('##user.profile.gender.name##' == 'male'){
+            $scope.analysisData.from = $scope.analysisData.male.from;
+            $scope.analysisData.to = $scope.analysisData.male.to;
+            
+          } else {
+            $scope.analysisData.from = $scope.analysisData.female.from;
+            $scope.analysisData.to = $scope.analysisData.female.to;
+          }
         }
         let x = [];
         x = new Array($scope.analysisData);
@@ -425,7 +434,7 @@
         $scope.error = '';
 
         $scope.analysisData = b;
-
+     
         $scope.analysisRequest = {
           total_value: $scope.analysisData.price,
           analysis_list: new Array(b),
@@ -435,7 +444,6 @@
         $scope.getPatient();
 
       };
-
 
       $scope.getMyAddresses = function (b) {
         $scope.error = '';

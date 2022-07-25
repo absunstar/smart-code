@@ -1,40 +1,40 @@
-app.controller("patients_tickets", function ($scope, $http, $timeout) {
+app.controller('patients_tickets', function ($scope, $http, $timeout) {
   $scope._search = {};
 
   $scope.patients_tickets = {};
 
   $scope.displayAddPatientsTickets = function () {
-    $scope.error = "";
+    $scope.error = '';
     $scope.patients_tickets = {
-      image_url: "/images/patients_tickets.png",
+      image_url: '/images/patients_tickets.png',
       active: true,
       opening_date: new Date(),
     };
-    site.showModal("#patientsTicketsAddModal");
+    site.showModal('#patientsTicketsAddModal');
   };
 
   $scope.addPatientsTickets = function () {
-    $scope.error = "";
-    const v = site.validated("#patientsTicketsAddModal");
+    $scope.error = '';
+    const v = site.validated('#patientsTicketsAddModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
     }
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/patients_tickets/add",
+      method: 'POST',
+      url: '/api/patients_tickets/add',
       data: $scope.patients_tickets,
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal("#patientsTicketsAddModal");
+          site.hideModal('#patientsTicketsAddModal');
           $scope.getPatientsTicketsList();
         } else {
           $scope.error = response.data.error;
-          if (response.data.error.like("*an unclosed ticket for the same*")) {
-            $scope.error = "##word.err_unclosing_ticket_patient##";
+          if (response.data.error.like('*an unclosed ticket for the same*')) {
+            $scope.error = '##word.err_unclosing_ticket_patient##';
           }
         }
       },
@@ -45,44 +45,44 @@ app.controller("patients_tickets", function ($scope, $http, $timeout) {
   };
 
   $scope.displayUpdatePatientsTickets = function (patients_tickets) {
-    $scope.error = "";
+    $scope.error = '';
     $scope.detailsPatientsTickets(patients_tickets);
     $scope.patients_tickets = {};
-    site.showModal("#patientsTicketsUpdateModal");
+    site.showModal('#patientsTicketsUpdateModal');
   };
 
   $scope.updatePatientsTickets = function (patients_tickets, status) {
-    $scope.error = "";
+    $scope.error = '';
     if (!status) {
-      const v = site.validated("#patientsTicketsUpdateModal");
+      const v = site.validated('#patientsTicketsUpdateModal');
       if (!v.ok) {
         $scope.error = v.messages[0].ar;
         return;
       }
-    } else if (status === "close") {
+    } else if (status === 'close') {
       patients_tickets.status = {
         id: 3,
-        ar: "مغلقة",
-        en: "closing",
+        ar: 'مغلقة',
+        en: 'closing',
       };
-    } else if (status === "hold") {
+    } else if (status === 'hold') {
       patients_tickets.status = {
         id: 2,
-        ar: "معلقة",
-        en: "holding",
+        ar: 'معلقة',
+        en: 'holding',
       };
-    } else if (status === "open") {
+    } else if (status === 'open') {
       patients_tickets.status = {
         id: 1,
-        ar: "مفتوحة",
-        en: "Opening",
+        ar: 'مفتوحة',
+        en: 'Opening',
       };
     }
 
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/patients_tickets/update",
+      method: 'POST',
+      url: '/api/patients_tickets/update',
       data: patients_tickets,
     }).then(
       function (response) {
@@ -90,10 +90,10 @@ app.controller("patients_tickets", function ($scope, $http, $timeout) {
         if (response.data.done) {
           $scope.getPatientsTicketsList();
           if (!status) {
-            site.hideModal("#patientsTicketsUpdateModal");
+            site.hideModal('#patientsTicketsUpdateModal');
           }
         } else {
-          $scope.error = "Please Login First";
+          $scope.error = 'Please Login First';
         }
       },
       function (err) {
@@ -103,18 +103,18 @@ app.controller("patients_tickets", function ($scope, $http, $timeout) {
   };
 
   $scope.displayDetailsPatientsTickets = function (patients_tickets) {
-    $scope.error = "";
+    $scope.error = '';
     $scope.detailsPatientsTickets(patients_tickets);
     $scope.patients_tickets = {};
-    site.showModal("#patientsTicketsViewModal");
+    site.showModal('#patientsTicketsViewModal');
   };
 
   $scope.detailsPatientsTickets = function (patients_tickets) {
     $scope.busy = true;
-    $scope.error = "";
+    $scope.error = '';
     $http({
-      method: "POST",
-      url: "/api/patients_tickets/view",
+      method: 'POST',
+      url: '/api/patients_tickets/view',
       data: {
         id: patients_tickets.id,
       },
@@ -134,19 +134,19 @@ app.controller("patients_tickets", function ($scope, $http, $timeout) {
   };
 
   $scope.displayDeletePatientsTickets = function (patientsTickets) {
-    $scope.error = "";
+    $scope.error = '';
     $scope.detailsPatientsTickets(patientsTickets);
     $scope.patients_tickets = {};
-    site.showModal("#patientsTicketsDeleteModal");
+    site.showModal('#patientsTicketsDeleteModal');
   };
 
   $scope.deletePatientsTickets = function () {
     $scope.busy = true;
-    $scope.error = "";
+    $scope.error = '';
 
     $http({
-      method: "POST",
-      url: "/api/patients_tickets/delete",
+      method: 'POST',
+      url: '/api/patients_tickets/delete',
       data: {
         id: $scope.patients_tickets.id,
       },
@@ -154,7 +154,7 @@ app.controller("patients_tickets", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal("#patientsTicketsDeleteModal");
+          site.hideModal('#patientsTicketsDeleteModal');
           $scope.getPatientsTicketsList();
         } else {
           $scope.error = response.data.error;
@@ -175,8 +175,8 @@ app.controller("patients_tickets", function ($scope, $http, $timeout) {
 
     $scope.customersList = [];
     $http({
-      method: "POST",
-      url: "/api/customers/all",
+      method: 'POST',
+      url: '/api/customers/all',
       data: {
         search: $scope.doctor_search,
         select: {},
@@ -199,8 +199,8 @@ app.controller("patients_tickets", function ($scope, $http, $timeout) {
     $scope.busy = true;
 
     $http({
-      method: "POST",
-      url: "/api/customers/view",
+      method: 'POST',
+      url: '/api/customers/view',
       data: {
         id: id,
         select: {},
@@ -211,8 +211,8 @@ app.controller("patients_tickets", function ($scope, $http, $timeout) {
 
         if (response.data.done) {
           $scope.customer = response.data.doc;
-          site.showModal("#customerDetailsModal");
-          document.querySelector("#customerDetailsModal .tab-link").click();
+          site.showModal('#customerDetailsModal');
+          document.querySelector('#customerDetailsModal .tab-link').click();
         }
       },
       function (err) {
@@ -223,9 +223,9 @@ app.controller("patients_tickets", function ($scope, $http, $timeout) {
   };
 
   $scope.displayAddCustomer = function () {
-    $scope.error = "";
+    $scope.error = '';
     $scope.customer = {
-      image_url: "/images/customer.png",
+      image_url: '/images/customer.png',
       active: true,
       balance_creditor: 0,
       balance_debtor: 0,
@@ -240,30 +240,30 @@ app.controller("patients_tickets", function ($scope, $http, $timeout) {
       dealing_company: [{}],
     };
 
-    if (site.feature("medical")) {
-      $scope.customer.image_url = "/images/patients.png";
+    if (site.feature('medical')) {
+      $scope.customer.image_url = '/images/patients.png';
       $scope.customer.allergic_food_list = [{}];
       $scope.customer.allergic_drink_list = [{}];
       $scope.customer.medicine_list = [{}];
       $scope.customer.disease_list = [{}];
-    } else if (site.feature("school") || site.feature("academy")) {
-      $scope.customer.image_url = "/images/student.png";
+    } else if (site.feature('school') || site.feature('academy')) {
+      $scope.customer.image_url = '/images/student.png';
       $scope.customer.allergic_food_list = [{}];
       $scope.customer.allergic_drink_list = [{}];
       $scope.customer.medicine_list = [{}];
       $scope.customer.disease_list = [{}];
     }
-    site.showModal("#customerAddModal");
-    document.querySelector("#customerAddModal .tab-link").click();
+    site.showModal('#customerAddModal');
+    document.querySelector('#customerAddModal .tab-link').click();
   };
 
   $scope.addCustomer = function () {
-    $scope.error = "";
+    $scope.error = '';
     if ($scope.busy) {
       return;
     }
 
-    const v = site.validated("#customerAddModal");
+    const v = site.validated('#customerAddModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
@@ -272,29 +272,25 @@ app.controller("patients_tickets", function ($scope, $http, $timeout) {
     $scope.busy = true;
 
     $http({
-      method: "POST",
-      url: "/api/customers/add",
+      method: 'POST',
+      url: '/api/customers/add',
       data: $scope.customer,
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal("#customerAddModal");
+          site.hideModal('#customerAddModal');
           $scope.count = $scope.list.length;
         } else {
-          $scope.error = "Please Login First";
-          if (response.data.error.like("*Must Enter Code*")) {
-            $scope.error = "##word.must_enter_code##";
-          } else if (
-            response.data.error.like("*maximum number of adds exceeded*")
-          ) {
-            $scope.error = "##word.err_maximum_adds##";
-          } else if (
-            response.data.error.like("*ername must be typed correctly*")
-          ) {
-            $scope.error = "##word.err_username_contain##";
-          } else if (response.data.error.like("*User Is Exist*")) {
-            $scope.error = "##word.user_exists##";
+          $scope.error = 'Please Login First';
+          if (response.data.error.like('*Must Enter Code*')) {
+            $scope.error = '##word.must_enter_code##';
+          } else if (response.data.error.like('*maximum number of adds exceeded*')) {
+            $scope.error = '##word.err_maximum_adds##';
+          } else if (response.data.error.like('*ername must be typed correctly*')) {
+            $scope.error = '##word.err_username_contain##';
+          } else if (response.data.error.like('*User Is Exist*')) {
+            $scope.error = '##word.user_exists##';
           }
         }
       },
@@ -307,8 +303,8 @@ app.controller("patients_tickets", function ($scope, $http, $timeout) {
   $scope.getGovList = function (where) {
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/goves/all",
+      method: 'POST',
+      url: '/api/goves/all',
       data: {
         where: {
           active: true,
@@ -332,11 +328,11 @@ app.controller("patients_tickets", function ($scope, $http, $timeout) {
   $scope.getCityList = function (gov) {
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/city/all",
+      method: 'POST',
+      url: '/api/city/all',
       data: {
         where: {
-          "gov.id": gov.id,
+          'gov.id': gov.id,
           active: true,
         },
         select: { id: 1, name_ar: 1, name_en: 1, code: 1 },
@@ -358,11 +354,11 @@ app.controller("patients_tickets", function ($scope, $http, $timeout) {
   $scope.getAreaList = function (city) {
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/area/all",
+      method: 'POST',
+      url: '/api/area/all',
       data: {
         where: {
-          "city.id": city.id,
+          'city.id': city.id,
           active: true,
         },
       },
@@ -384,8 +380,8 @@ app.controller("patients_tickets", function ($scope, $http, $timeout) {
     $scope.busy = true;
     $scope.list = [];
     $http({
-      method: "POST",
-      url: "/api/patients_tickets/all",
+      method: 'POST',
+      url: '/api/patients_tickets/all',
       data: {
         where: where,
       },
@@ -395,7 +391,7 @@ app.controller("patients_tickets", function ($scope, $http, $timeout) {
         if (response.data.done && response.data.list.length > 0) {
           $scope.list = response.data.list;
           $scope.count = response.data.count;
-          site.hideModal("#patientsTicketsSearchModal");
+          site.hideModal('#patientsTicketsSearchModal');
           $scope.search = {};
         }
       },
@@ -407,13 +403,13 @@ app.controller("patients_tickets", function ($scope, $http, $timeout) {
   };
 
   $scope.getNumberingAuto = function () {
-    $scope.error = "";
+    $scope.error = '';
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/numbering/get_automatic",
+      method: 'POST',
+      url: '/api/numbering/get_automatic',
       data: {
-        screen: "patients_tickets",
+        screen: 'patients_tickets',
       },
     }).then(
       function (response) {
@@ -431,7 +427,7 @@ app.controller("patients_tickets", function ($scope, $http, $timeout) {
 
   $scope.displayDetails = function (patients_tickets, type) {
     $scope.busy = true;
-    $scope.error = "";
+    $scope.error = '';
 
     let where = {
       id: patients_tickets.id,
@@ -439,8 +435,8 @@ app.controller("patients_tickets", function ($scope, $http, $timeout) {
     };
 
     $http({
-      method: "POST",
-      url: "/api/patients_tickets/display_data",
+      method: 'POST',
+      url: '/api/patients_tickets/display_data',
       data: {
         where: where,
       },
@@ -448,14 +444,12 @@ app.controller("patients_tickets", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         $scope.ticket_data = response.data.cb;
-        if (type === "view") {
-          site.showModal("#displayDataModal");
-          if(!site.feature('atm')){
-
-            document.querySelector("#displayDataModal .tab-link").click();
+        if (type === 'view') {
+          site.showModal('#displayDataModal');
+          if (!site.feature('atm')) {
+            document.querySelector('#displayDataModal .tab-link').click();
           }
-
-        } else if (type === "close") {
+        } else if (type === 'close') {
           $scope.patients_tickets = patients_tickets;
           $scope.displayAccountInvoice($scope.ticket_data);
         }
@@ -470,68 +464,53 @@ app.controller("patients_tickets", function ($scope, $http, $timeout) {
     $scope.get_open_shift((shift) => {
       if (shift) {
         $scope.account_invoices = {
-          image_url: "/images/account_invoices.png",
+          image_url: '/images/account_invoices.png',
           date: new Date(),
           invoice_id: $scope.patients_tickets.id,
           customer: $scope.patients_tickets.customer,
           shift: shift,
-          net_value: patients_tickets.net_value,
+          net_value: patients_tickets.total_value,
           paid_up: patients_tickets.paid,
           invoice_code: $scope.patients_tickets.code,
           total_discount: patients_tickets.total_discount,
           source_type: {
             id: 15,
-            en: "Patient Ticket",
-            ar: "تذكرة مريض",
+            en: 'Patient Ticket',
+            ar: 'تذكرة مريض',
           },
           active: true,
         };
 
         if ($scope.defaultSettings.accounting) {
           if ($scope.defaultSettings.accounting.currency)
-            $scope.account_invoices.currency = $scope.currenciesList.find(
-              (_c) => {
-                return _c.id === $scope.defaultSettings.accounting.currency.id;
-              }
-            );
+            $scope.account_invoices.currency = $scope.currenciesList.find((_c) => {
+              return _c.id === $scope.defaultSettings.accounting.currency.id;
+            });
           if ($scope.defaultSettings.accounting.payment_method) {
-            $scope.account_invoices.payment_method =
-              $scope.defaultSettings.accounting.payment_method;
-            $scope.loadSafes(
-              $scope.account_invoices.payment_method,
-              $scope.account_invoices.currency
-            );
+            $scope.account_invoices.payment_method = $scope.defaultSettings.accounting.payment_method;
+            $scope.loadSafes($scope.account_invoices.payment_method, $scope.account_invoices.currency);
 
-            if ($scope.account_invoices.payment_method.id == 1)
-              $scope.account_invoices.safe =
-                $scope.defaultSettings.accounting.safe_box;
-            else
-              $scope.account_invoices.safe =
-                $scope.defaultSettings.accounting.safe_bank;
+            if ($scope.account_invoices.payment_method.id == 1) $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe_box;
+            else $scope.account_invoices.safe = $scope.defaultSettings.accounting.safe_bank;
           }
         }
         if ($scope.account_invoices.currency) {
-          $scope.account_invoices.amount_currency =
-            $scope.account_invoices.net_value /
-            $scope.account_invoices.currency.ex_rate;
-          $scope.account_invoices.paid_up =
-            $scope.account_invoices.amount_currency = site.toNumber(
-              $scope.account_invoices.amount_currency
-            );
+          $scope.account_invoices.amount_currency = $scope.account_invoices.net_value / $scope.account_invoices.currency.ex_rate;
+          $scope.account_invoices.paid_up = $scope.account_invoices.amount_currency = site.toNumber($scope.account_invoices.amount_currency);
         }
 
-        site.showModal("#accountInvoiceModal");
-      } else $scope.error = "##word.open_shift_not_found##";
+        site.showModal('#accountInvoiceModal');
+      } else $scope.error = '##word.open_shift_not_found##';
     });
   };
 
   $scope.getPaymentMethodList = function () {
-    $scope.error = "";
+    $scope.error = '';
     $scope.busy = true;
     $scope.paymentMethodList = [];
     $http({
-      method: "POST",
-      url: "/api/payment_method/all",
+      method: 'POST',
+      url: '/api/payment_method/all',
     }).then(
       function (response) {
         $scope.busy = false;
@@ -545,32 +524,30 @@ app.controller("patients_tickets", function ($scope, $http, $timeout) {
   };
 
   $scope.getSafeByType = function (obj) {
-    $scope.error = "";
+    $scope.error = '';
     if ($scope.defaultSettings.accounting && obj.payment_method) {
       $scope.loadSafes(obj.payment_method, obj.currency);
       if (obj.payment_method.id == 1) {
-        if ($scope.defaultSettings.accounting.safe_box)
-          obj.safe = $scope.defaultSettings.accounting.safe_box;
+        if ($scope.defaultSettings.accounting.safe_box) obj.safe = $scope.defaultSettings.accounting.safe_box;
       } else {
-        if ($scope.defaultSettings.accounting.safe_bank)
-          obj.safe = $scope.defaultSettings.accounting.safe_bank;
+        if ($scope.defaultSettings.accounting.safe_bank) obj.safe = $scope.defaultSettings.accounting.safe_bank;
       }
     }
   };
 
   $scope.loadSafes = function (method, currency) {
-    $scope.error = "";
+    $scope.error = '';
     $scope.busy = true;
 
     if (currency && currency.id && method && method.id) {
-      let where = { "currency.id": currency.id };
+      let where = { 'currency.id': currency.id };
 
-      if (method.id == 1) where["type.id"] = 1;
-      else where["type.id"] = 2;
+      if (method.id == 1) where['type.id'] = 1;
+      else where['type.id'] = 2;
 
       $http({
-        method: "POST",
-        url: "/api/safes/all",
+        method: 'POST',
+        url: '/api/safes/all',
         data: {
           select: {
             id: 1,
@@ -599,8 +576,8 @@ app.controller("patients_tickets", function ($scope, $http, $timeout) {
   $scope.loadCurrencies = function () {
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/currency/all",
+      method: 'POST',
+      url: '/api/currency/all',
       data: {
         select: {
           id: 1,
@@ -630,63 +607,57 @@ app.controller("patients_tickets", function ($scope, $http, $timeout) {
   };
 
   $scope.calc = function (obj) {
-    $scope.error = "";
+    $scope.error = '';
     $timeout(() => {
       obj.net_value = obj.net_value || 0;
       obj.total_discount = site.toNumber(obj.total_discount);
       obj.net_value = site.toNumber(obj.net_value);
 
       if (obj.currency) {
-        obj.amount_currency =
-          obj.net_value / site.toNumber(obj.currency.ex_rate);
+        obj.amount_currency = obj.net_value / site.toNumber(obj.currency.ex_rate);
         obj.amount_currency = site.toNumber(obj.amount_currency);
       }
     }, 250);
   };
 
   $scope.addAccountInvoice = function (account_invoices) {
-    $scope.error = "";
+    $scope.error = '';
     $scope.busy = true;
 
     if (account_invoices.paid_up > 0 && !account_invoices.safe) {
-      $scope.error = "##word.should_select_safe##";
+      $scope.error = '##word.should_select_safe##';
       return;
     } else if (account_invoices.paid_up > account_invoices.amount_currency) {
-      $scope.error = "##word.err_net_value##";
+      $scope.error = '##word.err_net_value##';
       return;
     }
 
-    if (
-      $scope.defaultSettings.general_Settings &&
-      $scope.defaultSettings.general_Settings.work_posting
-    )
-      account_invoices.posting = false;
+    if ($scope.defaultSettings.general_Settings && $scope.defaultSettings.general_Settings.work_posting) account_invoices.posting = false;
     else account_invoices.posting = true;
-
-    for (let i = 0; i < $scope.account_invoices.payable_list.length; i++) {
-      let p = $scope.account_invoices.payable_list[i];
-      p.done = false;
-      p.paid_up = 0;
-      p.remain = p.value;
-
+    if ($scope.account_invoices.payable_list && $scope.account_invoices.payable_list.length > 0) {
+      for (let i = 0; i < $scope.account_invoices.payable_list.length; i++) {
+        let p = $scope.account_invoices.payable_list[i];
+        p.done = false;
+        p.paid_up = 0;
+        p.remain = p.value;
+      }
     }
-  
 
     $http({
-      method: "POST",
-      url: "/api/account_invoices/add",
+      method: 'POST',
+      url: '/api/account_invoices/add',
       data: account_invoices,
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.account_invoices = response.data.doc;
-          $scope.updatePatientsTickets($scope.patients_tickets, "close");
-          site.hideModal("#accountInvoiceModal");
+          $scope.updatePatientsTickets($scope.patients_tickets, 'close');
+          site.hideModal('#accountInvoiceModal');
         } else {
           $scope.error = response.data.error;
-          if (response.data.error.like("*Must Enter Code*")) {
-            $scope.error = "##word.must_enter_code##";
+          if (response.data.error.like('*Must Enter Code*')) {
+            $scope.error = '##word.must_enter_code##';
           }
         }
       },
@@ -697,11 +668,11 @@ app.controller("patients_tickets", function ($scope, $http, $timeout) {
   };
 
   $scope.get_open_shift = function (callback) {
-    $scope.error = "";
+    $scope.error = '';
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/shifts/get_open_shift",
+      method: 'POST',
+      url: '/api/shifts/get_open_shift',
       data: {
         where: {
           active: true,
@@ -736,13 +707,13 @@ app.controller("patients_tickets", function ($scope, $http, $timeout) {
   };
 
   $scope.getNumberingAutoInvoice = function () {
-    $scope.error = "";
+    $scope.error = '';
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/numbering/get_automatic",
+      method: 'POST',
+      url: '/api/numbering/get_automatic',
       data: {
-        screen: "patient_ticket",
+        screen: 'patient_ticket',
       },
     }).then(
       function (response) {
@@ -759,11 +730,11 @@ app.controller("patients_tickets", function ($scope, $http, $timeout) {
   };
 
   $scope.getDefaultSettings = function () {
-    $scope.error = "";
+    $scope.error = '';
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/default_setting/get",
+      method: 'POST',
+      url: '/api/default_setting/get',
       data: {},
     }).then(
       function (response) {
@@ -780,27 +751,26 @@ app.controller("patients_tickets", function ($scope, $http, $timeout) {
   };
 
   $scope.paymentsPayable = function (type) {
-    $scope.error = "";
+    $scope.error = '';
     $scope.account_invoices = $scope.account_invoices || {};
-    $scope.account_invoices.payable_list = $scope.account_invoices
-      .payable_list || [{}];
-    if (type === "view") {
-      site.showModal("#addPaymentsModal");
+    $scope.account_invoices.payable_list = $scope.account_invoices.payable_list || [{}];
+    if (type === 'view') {
+      site.showModal('#addPaymentsModal');
     }
   };
 
   $scope.displaySearchModal = function () {
-    $scope.error = "";
-    site.showModal("#patientsTicketsSearchModal");
+    $scope.error = '';
+    site.showModal('#patientsTicketsSearchModal');
   };
 
   $scope.searchAll = function () {
     $scope.getPatientsTicketsList($scope.search);
-    site.hideModal("#patientsTicketsSearchModal");
+    site.hideModal('#patientsTicketsSearchModal');
     $scope.search = {};
   };
 
-  $scope.getPatientsTicketsList({'status.id' : {$ne : 3}});
+  $scope.getPatientsTicketsList({ 'status.id': { $ne: 3 } });
   $scope.getNumberingAuto();
   $scope.loadCurrencies();
   $scope.getPaymentMethodList();

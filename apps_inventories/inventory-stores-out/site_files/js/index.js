@@ -2171,11 +2171,11 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
     $scope.busy = true;
     $('#storeOutDetails').removeClass('hidden');
 
-    if ($scope.store_out.items.length > 7) {
+    if ($scope.store_out.items.length > $scope.defaultSettings.printer_program.items_count_a4) {
       $scope.invList = [];
-      let inv_length = $scope.store_out.items.length / 7;
+      let inv_length = $scope.store_out.items.length / $scope.defaultSettings.printer_program.items_count_a4;
       inv_length = parseInt(inv_length);
-      let ramain_items = $scope.store_out.items.length - inv_length * 7;
+      let ramain_items = $scope.store_out.items.length - inv_length * $scope.defaultSettings.printer_program.items_count_a4;
 
       if (ramain_items) {
         inv_length += 1;
@@ -2187,7 +2187,7 @@ app.controller('stores_out', function ($scope, $http, $timeout, $interval) {
         s_o.items = [];
         $scope.store_out.items.forEach((itm, i) => {
           itm.$index = i + 1;
-          if (i < (i_inv + 1) * 7 && !itm.$done_inv) {
+          if (i < (i_inv + 1) * $scope.defaultSettings.printer_program.items_count_a4 && !itm.$done_inv) {
             itm.$done_inv = true;
             s_o.items.push(itm);
           }

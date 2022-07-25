@@ -77,6 +77,7 @@ module.exports = function init(site) {
               code: site.get_branch(req).code,
             },
             printer_program: {
+              items_count_a4 : 7,
               invoice_header: [{ name: '' }],
               invoice_header2: [{ name: '' }],
               invoice_footer: [{ name: '' }],
