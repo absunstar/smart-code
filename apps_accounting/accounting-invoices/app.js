@@ -1352,8 +1352,11 @@ module.exports = function init(site) {
                 if (!err) {
                   response.done = true;
                   response.doc = result.doc;
-                  if (response.doc.source_type.id == 1) site.quee('[store_in][account_invoice][invoice]', response.doc.invoice_id, 'delete');
-                  else if (response.doc.source_type.id == 2) site.quee('[store_out][account_invoice][invoice]', response.doc.invoice_id, 'delete');
+                  if(response.doc.source_type){
+
+                    if (response.doc.source_type.id == 1) site.quee('[store_in][account_invoice][invoice]', response.doc.invoice_id, 'delete');
+                    else if (response.doc.source_type.id == 2) site.quee('[store_out][account_invoice][invoice]', response.doc.invoice_id, 'delete');
+                  }
 
                   if (result.doc.posting) {
                     let totalPaidUp = 0;
