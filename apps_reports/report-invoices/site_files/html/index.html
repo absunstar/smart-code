@@ -209,7 +209,7 @@
                 <td class="not-print">
                   <i-image view class="logo" ng-model="c.image_url"></i-image>
                 </td>
-                <td class="blue">{{c.code}}</td>
+                <td class="blue">{{c.invoice_code}}</td>
                 <td class="brown">{{c.date | date : 'dd - MM - yyyy'}}</td>
                 <td ng-show="(##query.type## == 1 || ##query.type## == 2)">{{c.invoice_type.##session.lang##}}</td>
                 <td class="" ng-show="(##query.type## == 16 || ##query.type## == 2 || ##query.type## == 3 || ##query.type## == 4 || ##query.type## == 7 || ##query.type## == 8 || ##query.type## == 10) && !customer.id && target_account.id == 1">{{c.customer.name_##session.lang##}}
