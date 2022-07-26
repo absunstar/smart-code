@@ -60,7 +60,7 @@ site.get(
         );
       } else {
         res.render(
-          '0-default/index.html',
+          'herag/index.html',
           {},
           {
             parser: 'html css js',
