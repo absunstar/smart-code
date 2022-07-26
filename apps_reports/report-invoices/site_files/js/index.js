@@ -83,33 +83,16 @@ app.controller('report_invoices', function ($scope, $http, $timeout) {
         if (response.data.done && response.data.list.length > 0) {
           $scope.list = response.data.list;
           $scope.count = response.data.count;
-          $scope.remain_amount = 0;
-          $scope.net_value = 0;
-          $scope.total_tax = 0;
-          $scope.total_discount = 0;
-          $scope.cash = 0;
-          $scope.bank = 0;
-
-          $scope.list.forEach((_invoice) => {
-            _invoice.net_value = site.toNumber(_invoice.net_value);
-            _invoice.paid_up = site.toNumber(_invoice.paid_up);
-            _invoice.remain_amount = site.toNumber(_invoice.remain_amount);
-            _invoice.total_discount = site.toNumber(_invoice.total_discount);
-            _invoice.total_tax = site.toNumber(_invoice.total_tax);
-
-            $scope.remain_amount += site.toNumber(_invoice.remain_amount);
-            $scope.net_value += site.toNumber(_invoice.net_value);
-            $scope.total_tax += site.toNumber(_invoice.total_tax);
-            $scope.total_discount += site.toNumber(_invoice.total_discount);
-
-            if (_invoice.payment_method) {
-              if (_invoice.payment_method.id === 1) $scope.cash += site.toNumber(_invoice.paid_up);
-              else $scope.bank += site.toNumber(_invoice.paid_up);
-            }
-          });
-
+          $scope.remain_amount = response.data.remain_amount;
+          $scope.net_value = response.data.net_value;
+          $scope.total_tax = response.data.total_tax;
+          $scope.total_discount = response.data.total_discount;
+          $scope.total_value_added = response.data.total_value_added;
+          $scope.cash = response.data.cash;
+          $scope.bank = response.data.bank;
           $scope.remain_amount = site.toNumber($scope.remain_amount);
           $scope.net_value = site.toNumber($scope.net_value);
+          $scope.total_value_added = site.toNumber($scope.total_value_added);
           $scope.total_tax = site.toNumber($scope.total_tax);
           $scope.total_discount = site.toNumber($scope.total_discount);
 

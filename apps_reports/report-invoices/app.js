@@ -118,8 +118,37 @@ module.exports = function init(site) {
     }, (err, docs, count) => {
       if (!err) {
         response.done = true
+        response.remain_amount = 0
+        response.total_value_added = 0
+        response.net_value = 0
+        response.total_tax = 0
+        response.total_discount = 0
+        response.cash = 0
+        response.bank = 0
+        docs.forEach((_invoice) => {
+          _invoice.total = _invoice.net_value - _invoice.total_value_added;
+          _invoice.total = site.toNumber(_invoice.total);
+          _invoice.net_value = site.toNumber(_invoice.net_value);
+          _invoice.paid_up = site.toNumber(_invoice.paid_up);
+          _invoice.remain_amount = site.toNumber(_invoice.remain_amount);
+          _invoice.total_discount = site.toNumber(_invoice.total_discount);
+          _invoice.total_tax = site.toNumber(_invoice.total_tax);
+
+          response.remain_amount += site.toNumber(_invoice.remain_amount);
+          response.total_value_added += site.toNumber(_invoice.total_value_added);
+          response.net_value += site.toNumber(_invoice.net_value);
+          response.total_tax += site.toNumber(_invoice.total_tax);
+          response.total_discount += site.toNumber(_invoice.total_discount);
+
+          if (_invoice.payment_method) {
+            if (_invoice.payment_method.id === 1) response.cash += site.toNumber(_invoice.paid_up);
+            else response.bank += site.toNumber(_invoice.paid_up);
+          }
+        });
+
         response.list = docs
         response.count = count
+
       } else {
         response.error = err.message
       }

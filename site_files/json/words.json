@@ -670,7 +670,7 @@
   {
     "name": "vat",
     "en": "VAT.",
-    "ar": "القيمة الضريبية"
+    "ar": "القيمة المضافة"
   },
   {
     "name": "absence",
@@ -1389,7 +1389,7 @@
     "en": "Mobile number",
     "ar": "رقم الجوال"
   },
-  
+
   {
     "name": "advanced_search",
     "en": "Advanced Search",
@@ -1509,6 +1509,11 @@
     "name": "deadline_date",
     "en": "Deadline Date",
     "ar": "تاريخ النهاية "
+  },
+  {
+    "name": "type",
+    "en": "Type",
+    "ar": "النوع"
   },
   {
     "name": "not_found",
@@ -1724,7 +1729,7 @@
     "name": "account_statement",
     "en": "Account Statement",
     "ar": "كشف حساب"
-},
+  },
   {
     "name": "print",
     "en": "Print",
