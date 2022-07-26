@@ -20,6 +20,11 @@
         "ar": "تقرير الفواتير"
     },
     {
+        "name": "total_after_tax",
+        "en": "Total after tax",
+        "ar": "إجمالي بعد الضريبة"
+    },
+    {
         "name": "report_invoices_menus",
         "en": "Report Invoices Menu",
         "ar": "قائمة تقرير فاتورة"

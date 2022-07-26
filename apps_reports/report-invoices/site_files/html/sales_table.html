@@ -9,6 +9,7 @@
           <th>##word.customers##</th>
           <th>##word.total##</th>
           <th>##word.vat##</th>
+          <th>##word.total_items_discount##</th>
           <th>##word.net_value##</th>
           <th>##word.paid_up##</th>
           <th>##word.remain_amount##</th>
@@ -21,10 +22,11 @@
 
           <td class="">
             {{c.customer.name_##session.lang##}}
-            <p>{{c.customer.tax_card_number}}</p>
+            <p>{{c.customer.tax_regstration_number}}</p>
         </td>
           <td>{{c.total}}</td>
           <td>{{c.total_value_added}}</td>
+          <td>{{c.total_items_discount}}</td>
           <td>{{c.net_value | xmoney2}}</td>
 
           <td class="green">{{c.paid_up | xmoney2}}</td>

@@ -126,6 +126,14 @@ module.exports = function init(site) {
         response.cash = 0
         response.bank = 0
         docs.forEach((_invoice) => {
+          _invoice.total_items_discount = 0
+          _invoice.items.forEach(_item => {
+            
+            _item.total_discount = (_item.price - _item.b_price) * _item.count
+          _invoice.total_items_discount += _item.total_discount
+
+          });
+          _invoice.total_items_discount = site.toNumber(_invoice.total_items_discount);
           _invoice.total = _invoice.net_value - _invoice.total_value_added;
           _invoice.total = site.toNumber(_invoice.total);
           _invoice.net_value = site.toNumber(_invoice.net_value);

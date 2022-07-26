@@ -197,9 +197,10 @@
                 <th ng-show="##query.type## == 3">##word.services##</th>
                 <th ng-hide="##query.type## == 16">##word.net_value##</th>
                 <th ng-show="##query.type## == 16">##word.target_account##</th>
-                <th>##word.total##</th>
-                <th>##word.vat##</th>
-                <th>##word.paid_up##</th>
+                <th ng-hide="##query.type## == 16">##word.total##</th>
+                <th ng-hide="##query.type## == 16">##word.vat##</th>
+          <th ng-hide="##query.type## == 16">##word.total_items_discount##</th>
+          <th>##word.paid_up##</th>
                 <th ng-hide="##query.type## == 16">##word.remain_amount##</th>
                 <th ng-show="##query.type## == 15">##word.actions##</th>
               </tr>
@@ -212,11 +213,11 @@
                 <td class="brown">{{c.date | date : 'dd - MM - yyyy'}}</td>
                 <td ng-show="(##query.type## == 1 || ##query.type## == 2)">{{c.invoice_type.##session.lang##}}</td>
                 <td class="" ng-show="(##query.type## == 16 || ##query.type## == 2 || ##query.type## == 3 || ##query.type## == 4 || ##query.type## == 7 || ##query.type## == 8 || ##query.type## == 10) && !customer.id && target_account.id == 1">{{c.customer.name_##session.lang##}}
-                  <p>{{c.customer.tax_card_number}}</p>
+                  <p>{{c.customer.tax_regstration_number}}</p>
 
                 </td>
                 <td class="" ng-show="(##query.type## == 16 ||##query.type## == 1 || ##query.type## == 9)&& !vendor.id && target_account.id == 2">{{c.vendor.name_##session.lang##}}
-                  <p>{{c.vendor.tax_card_number}}</p>
+                  <p>{{c.vendor.tax_regstration_number}}</p>
                 </td>
            
                 <td ng-show="##query.type## == 3">{{c.order_invoices_type.##session.lang##}}</td>
@@ -232,14 +233,15 @@
                   <p ng-show="c.price_delivery_service">##word.price_delivery_service##</p>
                   <p ng-show="c.price_delivery_service">{{c.price_delivery_service}}</p>
                 </td>
-                <td ng-hide="##query.type## == 16">{{c.net_value | xmoney2}}</td>
+          <td ng-hide="##query.type## == 16">{{c.total_items_discount}}</td>
+          <td ng-hide="##query.type## == 16">{{c.net_value | xmoney2}}</td>
                 <td ng-show="##query.type## == 16">
                   {{c.target_account.##session.lang##}} -
                   <b class="blue" ng-show="c.op_balance_type == 'creditor'">##word.creditor##</b>
                   <b class="blue" ng-show="c.op_balance_type == 'debtor'">##word.debtor##</b>
                 </td>
-                <td>{{c.total}}</td>
-                <td>{{c.total_value_added}}</td>
+                <td ng-hide="##query.type## == 16"> {{c.total}}</td>
+                <td ng-hide="##query.type## == 16">{{c.total_value_added}}</td>
                 <td class="green">{{c.paid_up | xmoney2}}</td>
                 <td class="red" ng-hide="##query.type## == 16">{{c.remain_amount| xmoney2}}</td>
                 <td ng-show="##query.type## == 15">
