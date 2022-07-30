@@ -46,7 +46,7 @@
               </fieldset>
               <br />
   
-              <fieldset>
+              <fieldset ng-show="address.other_list.length > 0">
                 <legend>
                   ##word.other_addresses##
                 </legend>
@@ -63,7 +63,6 @@
                 <i-checkbox label="##word.select##" ng-model="address.select_new" ng-click="selectAddress(address,'new')"></i-checkbox>
               </fieldset>
             </div>
-            <i-button type="save" label="##word.save##" ng-click="saveUserChanges(manage_user)"> </i-button>
           </fieldset>
 
           <div class="row">

@@ -25,6 +25,10 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
           $scope.manage_user = response.data.doc;
           $scope.manage_user.$permissions_info;
           $scope.permissions_list = [];
+          $scope.address = {
+            main: $scope.manage_user.profile.main_address,
+            other_list: $scope.manage_user.profile.other_addresses_list,
+          };
           $scope.manage_user.$permissions_info.forEach((_p) => {
             $scope.permissions_list.push({
               name: _p.screen_name,
@@ -1115,7 +1119,6 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
 
     if (address.other_list && address.other_list.length > 0) {
       address.other_list.forEach((_other, i) => {
-        console.log(i, index);
         if (type == 'other') {
           if (i != index) {
             _other.$select_address = false;

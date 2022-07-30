@@ -98,7 +98,6 @@ app.controller('stores', function ($scope, $http, $timeout) {
       $scope.address.other_list = $scope.address.other_list || [];
       $scope.address.other_list.forEach((_other) => {
         if (_other.$select_address) {
-          console.log("Dddddddddddddddd");
           $scope.store.address = { ..._other };
         }
       });
