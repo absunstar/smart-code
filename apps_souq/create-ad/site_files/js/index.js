@@ -1,4 +1,4 @@
-app.controller('ads', function ($scope, $http, $timeout) {
+app.controller('create_ad', function ($scope, $http, $timeout) {
   $scope._search = {};
 
   $scope.ad = {};
@@ -8,7 +8,7 @@ app.controller('ads', function ($scope, $http, $timeout) {
     $scope.ad = {
       feedback_list: [],
       ad_rating: 0,
-      set_price : 'no',
+      set_price: 'no',
       number_views: 0,
       number_likes: 0,
       number_comments: 0,
@@ -50,8 +50,7 @@ app.controller('ads', function ($scope, $http, $timeout) {
       $scope.error = v.messages[0].ar;
       return;
     }
-    if($scope.ad.store){
-      
+    if ($scope.ad.store) {
       $scope.ad.address = $scope.ad.store.address;
     }
     $scope.busy = true;
@@ -76,112 +75,6 @@ app.controller('ads', function ($scope, $http, $timeout) {
           } else if (response.data.error.like('*must be specified in feed*')) {
             $scope.error = '##word.user_must_specified_in_feedbacks##';
           }
-        }
-      },
-      function (err) {
-        console.log(err);
-      }
-    );
-  };
-
-  $scope.displayUpdateAd = function (ad) {
-    $scope.error = '';
-    $scope.viewAd(ad);
-    $scope.ad = {};
-    site.showModal('#adUpdateModal');
-  };
-
-  $scope.updateAd = function () {
-    $scope.error = '';
-    const v = site.validated('#adUpdateModal');
-    if (!v.ok) {
-      $scope.error = v.messages[0].ar;
-      return;
-    }
-    $scope.ad.address = $scope.ad.store.address;
-    $scope.busy = true;
-    $http({
-      method: 'POST',
-      url: '/api/ads/update',
-      data: $scope.ad,
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          site.hideModal('#adUpdateModal');
-          $scope.getAdList();
-        } else {
-          $scope.error = 'Please Login First';
-          if (response.data.error.like('*store must specifi*')) {
-            $scope.error = '##word.store_must_specified##';
-          } else if (response.data.error.like('*must be specified in feed*')) {
-            $scope.error = '##word.user_must_specified_in_feedbacks##';
-          }
-        }
-      },
-      function (err) {
-        console.log(err);
-      }
-    );
-  };
-
-  $scope.displayDetailsAd = function (ad) {
-    $scope.error = '';
-    $scope.viewAd(ad);
-    $scope.ad = {};
-    site.showModal('#adViewModal');
-  };
-
-  $scope.viewAd = function (ad) {
-    $scope.busy = true;
-    $scope.error = '';
-    $http({
-      method: 'POST',
-      url: '/api/ads/view',
-      data: {
-        id: ad.id,
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.ad = response.data.doc;
-        } else {
-          $scope.error = response.data.error;
-        }
-      },
-      function (err) {
-        console.log(err);
-      }
-    );
-  };
-
-  $scope.displayDeleteAd = function (ad) {
-    $scope.error = '';
-
-    $scope.viewAd(ad);
-    $scope.ad = {};
-    site.showModal('#adDeleteModal');
-  };
-
-  $scope.deleteAd = function () {
-    $scope.busy = true;
-    $scope.error = '';
-
-    $http({
-      method: 'POST',
-      url: '/api/ads/delete',
-      data: {
-        id: $scope.ad.id,
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          site.hideModal('#adDeleteModal');
-          $scope.getAdList();
-        } else {
-          $scope.error = response.data.error;
         }
       },
       function (err) {
@@ -397,6 +290,29 @@ app.controller('ads', function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.getMyStoresList = function (where) {
+    $scope.busy = true;
+    $scope.myStoreslist = [];
+    $http({
+      method: 'POST',
+      url: '/api/stores/all',
+      data: {
+        where: { 'user.id': site.toNumber('##user.id##') },
+        select: { id: 1, code: 1, name_ar: 1, name_en: 1, user: 1, address: 1 },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.myStoreslist = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
   $scope.getUnitsList();
   $scope.getCurrenciesList();
   $scope.loadMainCategories();
@@ -404,4 +320,5 @@ app.controller('ads', function ($scope, $http, $timeout) {
   $scope.getAdsStatusList();
   $scope.getNumberingAuto();
   $scope.getDefaultSetting();
+  $scope.getMyStoresList();
 });

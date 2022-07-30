@@ -1,0 +1,122 @@
+<div class="form" id="adAddModal">
+  <fieldset>
+    <legend>##word.basic_information##</legend>
+    <div class="row">
+      <div class="col9">
+        <div class="row">
+          <i-control help-id="ad_name" v="r ll2" class="col7" label="##word.ad_name##" ng-model="ad.name"></i-control>
+
+          <i-list class="col3" v="r" ng-model="ad.store" items="myStoreslist" display="name_##session.lang##" ng-search="_search.$store" label="##word.store##"></i-list>
+        </div>
+        <br />
+
+        <div class="row">
+          <p class="col3 bold">##word.mobile_number_or_contact_method##</p>
+          : <i-checkbox class="col3" label="##word.hide_mobile_number##" ng-model="ad.hide_mobile"> </i-checkbox> :
+          <i-control class="col4" ng-hide="ad.hide_mobile" label="##word.cell_phone_number##" ng-model="ad.mobile"></i-control>
+        </div>
+
+        <!--           <i-address ng-show="defaultSettings.ads_settings.addresses_appear" ng-model="ad"></i-address>
+   -->
+        <i-category ng-model="ad.main_category" ng-label="##word.main_category##" ng-list="category_list"></i-category>
+        <br />
+
+        <div class="row" ng-show="ad.main_category.category_require_list.length > 0">
+          <fieldset>
+            <legend>##word.ad_require##</legend>
+            <div class="row" ng-repeat="c in ad.main_category.category_require_list">
+              <i-ad-require ng-model="c"></i-ad-require>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="row">
+          <i-textarea ng-model="ad.description" label="##word.description##"> </i-textarea>
+        </div>
+
+        <br />
+      </div>
+
+      <div class="col3">
+        <i-image help-id="ads_logo" ng-model="ad.image_url"></i-image>
+      </div>
+    </div>
+    <br />
+    <br />
+    <br />
+
+    <fieldset class="row" ng-show="defaultSettings.ads_settings.upload_multiple_photos">
+      <legend>
+        <i-button type="add default" ng-click="addImage()"></i-button>
+        ##word.ad_images##
+      </legend>
+      <div class="row" ng-repeat="a in ad.images_list">
+        <div class="row">
+          <div class="col6">
+            <i-textarea ng-model="a.description" label="##word.description##"> </i-textarea>
+          </div>
+          <div class="col1"></div>
+          <div class="col3">
+            <i-image help-id="ads_logo" ng-model="a.image_url"></i-image>
+          </div>
+          <div class="col1"></div>
+          <div class="col1">
+            <br />
+            <br />
+            <br />
+            <i-button type="delete" ng-click="ad.images_list.splice($index,1)"> </i-button>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+
+    <div class="row" ng-show="defaultSettings.ads_settings.quantities_can_be_used">
+      <h2>##word.Do_you_want_set_price##</h2>
+      <div class="col5">
+        <div class="row">
+          <i-radio class="col6" ng-model="ad.set_price" label="##word.no##" ng-value="no"> </i-radio>
+          <i-radio class="col6" ng-model="ad.set_price" label="##word.yes##" ng-value="yes"></i-radio>
+        </div>
+      </div>
+    </div>
+
+    <fieldset class="row" ng-show="ad.set_price == 'yes'">
+      <legend>
+        <i-button type="add default" ng-click="addQuantity()"></i-button>
+        ##word.quantities##
+      </legend>
+      <div class="row" ng-repeat="c in ad.quantity_list">
+        <div class="row">
+          <i-list ng-search="_search.$unit" class="col2" display="name_##session.lang##" ng-model="c.unit" label="##word.unit##" items="unitsList"> </i-list>
+          <i-control help-id="ad_available_quantity" type="number" class="col2" label="##word.available_quantity##" ng-model="c.available_quantity"></i-control>
+          <i-control help-id="ad_maximum_order" type="number" class="col2" label="##word.maximum_order##" ng-model="c.maximum_order"></i-control>
+          <i-control help-id="ad_minimum_order" type="number" class="col2" label="##word.minimum_order##" ng-model="c.minimum_order"></i-control>
+          <i-list ng-search="_search.$currency" class="col2" display="name_##session.lang##" ng-model="c.currency" label="##word.currency##" items="currenciesList"> </i-list>
+        </div>
+
+        <div class="row">
+          <i-control help-id="ad_price" ng-change="calcDiscount(c)" type="number" class="col2" label="##word.price##" ng-model="c.price"></i-control>
+          <i-control help-id="ad_discount" ng-change="calcDiscount(c)" type="number" class="col2" label="##word.discount##" ng-model="c.discount"></i-control>
+
+          <div class="col1">
+            <div class="row">
+              <i-radio ng-click="calcDiscount(c)" ng-model="c.discount_type" label="##word.amount##" ng-value="number"></i-radio>
+              <i-radio ng-click="calcDiscount(c)" ng-model="c.discount_type" label="##word.percent##" ng-value="percent"> </i-radio>
+            </div>
+          </div>
+
+          <i-control help-id="ad_required" type="number" disabled class="col2" label="##word.required##" ng-model="c.net_value"></i-control>
+          <div class="col3"></div>
+          <div class="col1">
+            <br />
+            <i-button type="delete" ng-click="ad.quantity_list.splice($index,1)"> </i-button>
+          </div>
+        </div>
+
+        <hr class="center" style="width: 70%; height: 5px; color: grey; background-color: rgb(10, 199, 0)" />
+      </div>
+      <br />
+    </fieldset>
+    <i-button type="add" label="##word.ads_add##" ng-click="addAd()"></i-button>
+  </fieldset>
+</div>

@@ -1556,6 +1556,11 @@
     "ar": "الطلبات"
   },
   {
+    "name": "new_address",
+    "en": "New Address",
+    "ar": "عنوان جديد"
+  },
+  {
     "name": "circle",
     "en": "Circle",
     "ar": "الدائرة"

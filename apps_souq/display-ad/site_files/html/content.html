@@ -6,12 +6,13 @@
       <div class="row">
         <h1>{{ad.store.user.profile.name}}</h1>
         <h1>{{ad.store.name_##session.lang##}}</h1>
-        <h1>{{ad.name_##session.lang##}}</h1>
+        <h1>{{ad.name}}</h1>
       </div>
       <br />
       <br />
-      <b>{{ad.country.name_##session.lang##}} {{ad.gov.name_##session.lang##}} {{ad.city.name_##session.lang##}} {{ad.area.name_##session.lang##}}</b>
-      <br />
+      <b>{{ad.address.country.name_##session.lang##}}  {{ad.address.gov.name_##session.lang##}}   {{ad.address.city.name_##session.lang##}}   {{ad.address.area.name_##session.lang##}}</b>
+      <p>{{ad.address.detailed_address}}</p>
+            <br />
       <br />
       <br />
       <div class="row">
@@ -29,7 +30,7 @@
     <br />
   </div>
 
-  <div class="row" ng-repeat="q in ad.quantity_list">
+  <div class="row" ng-show="ad.set_price == 'yes'" ng-repeat="q in ad.quantity_list">
     <b class="col4"><br /><b>{{q.unit.name_##session.lang##}} {{q.net_value}} {{q.currency.name_##session.lang##}}</b></b>
     <i-button class="col2" type="add" ng-hide="ad.store.user.id == user.id" label="##word.add_to_cart##" ng-click="bookList(ad,$index)"></i-button>
   </div>

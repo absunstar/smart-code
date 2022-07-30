@@ -7,9 +7,8 @@
           <div class="row">
             <i-control ng-hide="disabledCode" class="col2" label="##word.code##" ng-model="ad.code"> </i-control>
 
-            <i-control help-id="ad_name_ar" v="r ll2" class="col4" label="##word.ad_name##" ng-model="ad.name_ar"></i-control>
+            <i-control help-id="ad_name_ar" v="r ll2" class="col7" label="##word.ad_name##" ng-model="ad.name"></i-control>
 
-            <i-control help-id="ad_name_en" v="r" class="col4" label="##word.name_en##" ng-model="ad.name_en"></i-control>
 
             <i-store class="col3 padding_10" ng-model="ad.store"></i-store>
           </div>
@@ -28,8 +27,8 @@
             <i-control help-id="ad_number_reports" type="number" class="col3" label="##word.number_reports##" ng-model="ad.number_reports"></i-control>
           </div>
 
-          <i-address ng-model="ad"></i-address>
-
+<!--           <i-address ng-model="ad"></i-address>
+ -->
           <div class="row">
             <p class="col3 bold">##word.mobile_number_or_contact_method##</p> : 
             <i-checkbox class="col3" label="##word.hide_mobile_number##" ng-model="ad.hide_mobile"> </i-checkbox> :
@@ -89,7 +88,17 @@
         </div>
       </fieldset>
 
-      <fieldset class="row" ng-show="defaultSettings.ads_settings.quantities_can_be_used">
+      <div class="row" ng-show="defaultSettings.ads_settings.quantities_can_be_used">
+        <h2>##word.Do_you_want_set_price##</h2>
+        <div class="col5">
+          <div class="row">
+            <i-radio class="col6" ng-model="ad.set_price" label="##word.no##" ng-value="no"> </i-radio>
+            <i-radio class="col6" ng-model="ad.set_price" label="##word.yes##" ng-value="yes"></i-radio>
+          </div>
+        </div>
+      </div>
+
+      <fieldset class="row" ng-show="ad.set_price == 'yes'">
         <legend>
           <i-button type="add default" ng-click="addQuantity()"></i-button>
           ##word.quantities##

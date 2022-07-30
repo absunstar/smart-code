@@ -190,7 +190,7 @@
           <div class="row">
             <fieldset>
               <legend>##word.main_address##</legend>
-              <i-address ng-model="manage_user.profile.manin_address"></i-address>
+              <i-address ng-model="manage_user.profile.main_address"></i-address>
             </fieldset>
 
             <br />
@@ -431,7 +431,7 @@
 
               <tr ng-repeat="l in myAdslist">
                 <td ng-click="viewOrder(l)"><i-image view class="logo" ng-model="l.image_url"></i-image></td>
-                <td ng-click="viewOrder(l)">{{l.name_##session.lang##}}</td>
+                <td ng-click="viewOrder(l)">{{l.name}}</td>
                 <td ng-click="viewOrder(l)" class="blue">{{l.store.name_##session.lang##}}</td>
                 <td ng-click="viewOrder(l)" class="">{{l.ad_status.##session.lang##}}</td>
                 <td class="center not-print">
@@ -505,7 +505,7 @@
 
               <tr ng-repeat="l in likedAdslist" ng-click="displayAd(l.id)">
                 <td><i-image view class="logo" ng-model="l.image_url"></i-image></td>
-                <td>{{l.name_##session.lang##}}</td>
+                <td>{{l.name}}</td>
                 <td class="">{{l.store.user.profile.name}}</td>
                 <td class="blue">{{l.store.name_##session.lang##}}</td>
               </tr>
@@ -569,7 +569,7 @@
 
               <tr ng-repeat="f in favoriteAdslist" ng-click="displayAd(f.id)">
                 <td><i-image view class="logo" ng-model="f.image_url"></i-image></td>
-                <td>{{f.name_##session.lang##}}</td>
+                <td>{{f.name}}</td>
                 <td class="">{{f.store.user.profile.name}}</td>
                 <td class="blue">{{f.store.name_##session.lang##}}</td>
               </tr>

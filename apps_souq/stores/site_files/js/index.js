@@ -32,6 +32,18 @@ app.controller('stores', function ($scope, $http, $timeout) {
       $scope.error = v.messages[0].ar;
       return;
     }
+    if ($scope.address.select_main) {
+      $scope.store.address = $scope.address.main;
+    } else if ($scope.address.select_new) {
+      $scope.store.address = $scope.address.new;
+    } else {
+      $scope.address.other_list = $scope.address.other_list || [];
+      $scope.address.other_list.forEach((_other) => {
+        if (_other.$select_address) {
+          $scope.store.address = { ..._other };
+        }
+      });
+    }
 
     $scope.busy = true;
     $http({
@@ -42,6 +54,7 @@ app.controller('stores', function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
+          $scope.address = {};
           site.hideModal('#storeAddModal');
           $scope.getStoreList();
         } else {
@@ -77,6 +90,20 @@ app.controller('stores', function ($scope, $http, $timeout) {
       $scope.error = v.messages[0].ar;
       return;
     }
+    if ($scope.address.select_main) {
+      $scope.store.address = $scope.address.main;
+    } else if ($scope.address.select_new) {
+      $scope.store.address = $scope.address.new;
+    } else {
+      $scope.address.other_list = $scope.address.other_list || [];
+      $scope.address.other_list.forEach((_other) => {
+        if (_other.$select_address) {
+          console.log("Dddddddddddddddd");
+          $scope.store.address = { ..._other };
+        }
+      });
+    }
+    console.log($scope.store.address);
     $scope.busy = true;
     $http({
       method: 'POST',
@@ -86,6 +113,7 @@ app.controller('stores', function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
+          $scope.address = {};
           site.hideModal('#storeUpdateModal');
           $scope.getStoreList();
         } else {
@@ -314,6 +342,62 @@ app.controller('stores', function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.getUser = function () {
+    $scope.busy = true;
+    $http({
+      method: 'POST',
+      url: '/api/user/view',
+      data: {
+        id: '##user.id##',
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.user = response.data.doc;
+
+          $scope.address = {
+            main: $scope.user.profile.main_address,
+            other_list: $scope.user.profile.other_addresses_list,
+          };
+        } else {
+          $scope.error = response.data.error;
+        }
+      },
+      function (err) {}
+    );
+  };
+
+  $scope.selectAddress = function (address,type, index) {
+    $scope.error = '';
+    address = address || {};
+
+    if(type == 'main'){
+      address.select_new = false;
+
+    } else if(type =='other'){
+      address.select_new = false;
+      address.select_main = false;
+
+    } else if(type =='new'){
+      address.select_main = false;
+      
+    }
+  
+    if (address.other_list && address.other_list.length > 0) {
+      address.other_list.forEach((_other, i) => {
+        console.log(i,index);
+        if (type =='other') {
+          if(i != index ){
+            _other.$select_address = false;
+          }
+        } else {
+          _other.$select_address = false;
+        }
+      });
+    }
+  };
+
   $scope.addImage = function () {
     $scope.error = '';
     $scope.store.images_list = $scope.store.images_list || [];
@@ -324,6 +408,7 @@ app.controller('stores', function ($scope, $http, $timeout) {
   $scope.getNumberingAuto();
   $scope.getDefaultSettings();
   $scope.getCommentsTypesList();
+  $scope.getUser();
   $scope.getReportsTypesList();
   $scope.getStoresStatusList();
 });

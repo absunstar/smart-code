@@ -90,7 +90,7 @@ app.directive('iStore', [
                 where: {
                   search: search_stores,
                 },
-                select: { id: 1, code: 1, name_ar: 1, name_en: 1, user: 1 },
+                select: { id: 1, code: 1, name_ar: 1, name_en: 1, user: 1 ,address: 1},
               },
             }).then(
               function (response) {

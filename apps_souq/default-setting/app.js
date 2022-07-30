@@ -61,12 +61,20 @@ module.exports = function init(site) {
 
     let where = req.data.where || {};
 
-    if ( Object.keys(site.defaultSettingDoc).length === 0) {
+    if (site.defaultSettingDoc && site.defaultSettingDoc.ads_settings) {
       response.done = true;
       response.doc = site.defaultSettingDoc;
       res.json(response);
     } else {
-      let obj = {};
+      let obj = {
+        ads_settings: {
+          ad_status: {
+            id: 1,
+            en: 'Active',
+            ar: 'نشط',
+          },
+        },
+      };
       $default_setting.add(obj, (err, doc) => {
         if (!err && doc) {
           response.done = true;
@@ -79,8 +87,6 @@ module.exports = function init(site) {
         }
       });
     }
-
-   
   });
 
   site.getDefaultSetting = function (callback) {
@@ -127,7 +133,6 @@ module.exports = function init(site) {
     }
 
     let data = req.data;
-
     $default_setting.update(data, (err, result) => {
       if (!err) {
         response.done = true;

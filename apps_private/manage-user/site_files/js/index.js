@@ -23,7 +23,6 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.manage_user = response.data.doc;
-
           $scope.manage_user.$permissions_info;
           $scope.permissions_list = [];
           $scope.manage_user.$permissions_info.forEach((_p) => {
@@ -561,6 +560,19 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
       email: '##user.email##',
     };
 
+    if ($scope.address.select_main) {
+      $scope.store.address = $scope.address.main;
+    } else if ($scope.address.select_new) {
+      $scope.store.address = $scope.address.new;
+    } else {
+      $scope.address.other_list = $scope.address.other_list || [];
+      $scope.address.other_list.forEach((_other) => {
+        if (_other.$select_address) {
+          $scope.store.address = { ..._other };
+        }
+      });
+    }
+
     $scope.busy = true;
     $http({
       method: 'POST',
@@ -570,6 +582,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
+          $scope.address = {};
           site.hideModal('#storeAddModal');
           $scope.getStoreList();
         } else {
@@ -601,6 +614,20 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
       $scope.error = v.messages[0].ar;
       return;
     }
+
+    if ($scope.address.select_main) {
+      $scope.store.address = $scope.address.main;
+    } else if ($scope.address.select_new) {
+      $scope.store.address = $scope.address.new;
+    } else {
+      $scope.address.other_list = $scope.address.other_list || [];
+      $scope.address.other_list.forEach((_other) => {
+        if (_other.$select_address) {
+          $scope.store.address = { ..._other };
+        }
+      });
+    }
+
     $scope.busy = true;
     $http({
       method: 'POST',
@@ -610,6 +637,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
+          $scope.address = {};
           site.hideModal('#storeUpdateModal');
           $scope.getStoreList();
         } else {
@@ -718,6 +746,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
     $scope.ad = {
       mobile: $scope.manage_user.profile.mobile,
       feedback_list: [],
+      set_price: 'no',
       ad_rating: 0,
       number_views: 0,
       number_likes: 0,
@@ -765,7 +794,9 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
       $scope.error = v.messages[0].ar;
       return;
     }
-
+    if ($scope.ad.store) {
+      $scope.ad.address = $scope.ad.store.address;
+    }
     $scope.busy = true;
     $http({
       method: 'POST',
@@ -806,6 +837,10 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
       $scope.error = v.messages[0].ar;
       return;
     }
+    if ($scope.ad.store) {
+      $scope.ad.address = $scope.ad.store.address;
+    }
+
     $scope.busy = true;
     $http({
       method: 'POST',
@@ -1009,7 +1044,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
       url: '/api/stores/all',
       data: {
         where: { 'user.id': id },
-        select: { id: 1, code: 1, name_ar: 1, name_en: 1, user: 1 },
+        select: { id: 1, code: 1, name_ar: 1, name_en: 1, user: 1, address: 1 },
       },
     }).then(
       function (response) {
@@ -1063,6 +1098,33 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
         $scope.error = err;
       }
     );
+  };
+
+  $scope.selectAddress = function (address, type, index) {
+    $scope.error = '';
+    address = address || {};
+
+    if (type == 'main') {
+      address.select_new = false;
+    } else if (type == 'other') {
+      address.select_new = false;
+      address.select_main = false;
+    } else if (type == 'new') {
+      address.select_main = false;
+    }
+
+    if (address.other_list && address.other_list.length > 0) {
+      address.other_list.forEach((_other, i) => {
+        console.log(i, index);
+        if (type == 'other') {
+          if (i != index) {
+            _other.$select_address = false;
+          }
+        } else {
+          _other.$select_address = false;
+        }
+      });
+    }
   };
 
   $scope.loadManageUser();

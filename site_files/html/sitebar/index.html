@@ -2,7 +2,7 @@
   <div class="row loaded">
     <div class="inline title" help-id="brand_title">
       <a x-features="!souq" x-permission="login" href="#" onclick="showMenu()"> <i class="fa fa-bars"></i> </a>
-      <a x-features="souq" x-permission="login && (menu_ui || menu_manage)" href="#" onclick="showMenu()"> <i class="fa fa-bars"></i> </a>
+      <a x-features="souq" x-permissions="lmenu_ui || menu_manage" href="#" onclick="showMenu()"> <i class="fa fa-bars"></i> </a>
       <a x-features="protouch && !host.ttl" class="broTouchTitle" href="/"> ##word.protouch_title## <span> ##word.brand_tag##</span> </a>
       <a x-features="host.ttl" href="/"> ##word.ttl_title## <span> ##word.brand_tag##</span> </a>
       <a x-features="!protouch && !host.ttl" href="/"> ##word.brand_title## <span> ##word.brand_tag##</span> </a>
@@ -79,7 +79,7 @@
 
 <div class="links">
   <div x-permission="login" x-features="!souq" x-import="menu/index.html"></div>
-  <div x-permission="login" x-features="souq" x-permissions="menu_ui || menu_manage" x-import="menu/index.html"></div>
+  <div x-features="souq" x-permissions="menu_ui || menu_manage" x-import="menu/index.html"></div>
 </div>
 
 <script>

@@ -16,13 +16,17 @@
             <p><b class="black"> ##word.store_owner## : </b><b> {{a.user.profile.name}} </b></p>
             <p ng-repeat="q in a.quantity_list"><b>{{q.unit.name_##session.lang##}} {{q.net_value}} {{q.currency.name_##session.lang##}}</b></p>
           </div>
+          <br />
+          <b>{{a.address.country.name_##session.lang##}} {{a.address.gov.name_##session.lang##}} {{a.address.city.name_##session.lang##}} {{a.address.area.name_##session.lang##}}</b>
+          <p>{{a.address.detailed_address}}</p>
+          <br />
           <div class="row">
             <i-button fa="shopping-cart" ng-hide="a.user.id == user.id" label="##word.add_to_cart##" ng-click="bookList(a,0)"> </i-button>
             <i-checkbox label="##word.like##" ng-click="updateFeedback(a,'like')" ng-model="a.like"> </i-checkbox>
             <i-checkbox label="##word.favorite##" ng-click="updateFeedback(a,'favorite')" ng-model="a.favorite"> </i-checkbox>
           </div>
           <br />
-          <hr>
+          <hr />
           <br />
         </div>
       </fieldset>

@@ -6,24 +6,22 @@
         <div class="col9">
           <div class="row">
 
-            <i-control help-id="ad_name_ar" v="r ll2" class="col4" label="##word.ad_name##" ng-model="ad.name_ar"></i-control>
-
-            <i-control help-id="ad_name_en" v="r" class="col4" label="##word.name_en##" ng-model="ad.name_en"></i-control>
-
+            <i-control help-id="ad_name_ar" v="r ll2" class="col7" label="##word.ad_name##" ng-model="ad.name"></i-control>
             <i-list class="col3" v="r" ng-model="ad.store" items="storesList" display="name_##session.lang##" ng-search="_search.$store" label="##word.store##"></i-list>
 
           </div>
+
           <br />
 
           <div class="row">
             <p class="col3 bold">##word.mobile_number_or_contact_method##</p> : 
             <i-checkbox class="col3" label="##word.hide_mobile_number##" ng-model="ad.hide_mobile"> </i-checkbox> :
             <i-control class="col4" ng-hide="ad.hide_mobile" label="##word.cell_phone_number##" ng-model="ad.mobile"></i-control>
-            
+
           </div>
 
-          <i-address ng-show="defaultSettings.ads_settings.addresses_appear" ng-model="ad"></i-address>
-
+<!--           <i-address ng-show="defaultSettings.ads_settings.addresses_appear" ng-model="ad"></i-address>
+ -->
           <i-category ng-model="ad.main_category" ng-label="##word.main_category##" ng-list="category_list"></i-category>
           <br />
 
@@ -77,7 +75,17 @@
         </div>
       </fieldset>
 
-      <fieldset class="row" ng-show="defaultSettings.ads_settings.quantities_can_be_used">
+      <div class="row" ng-show="defaultSettings.ads_settings.quantities_can_be_used">
+        <h2>##word.Do_you_want_set_price##</h2>
+        <div class="col5">
+          <div class="row">
+            <i-radio class="col6" ng-model="ad.set_price" label="##word.no##" ng-value="no"> </i-radio>
+            <i-radio class="col6" ng-model="ad.set_price" label="##word.yes##" ng-value="yes"></i-radio>
+          </div>
+        </div>
+      </div>
+
+      <fieldset class="row" ng-show="ad.set_price == 'yes'">
         <legend>
           <i-button type="add default" ng-click="addQuantity()"></i-button>
           ##word.quantities##
@@ -114,7 +122,7 @@
         </div>
         <br />
       </fieldset>
-    
+
     </fieldset>
   </div>
 </div>

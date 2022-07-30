@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="##session.lang##" ng-app="myApp">
   <head x-server="x-import">
     <title x-features="!protouch &amp;&amp; !host.ttl">سمـارت كـود | سوق</title>
     <meta charset="UTF-8" />
@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/css/font6.css" />
   </head>
 
-  <body class="ar ng-scope" ng-controller="index_souq">
+  <body class="##session.lang## loaded" ng-controller="index_souq">
     <header>
       <div class="firstheader">
         <div></div>
@@ -49,7 +49,7 @@
                           <div class="modal-content">
                             <div class="modal-header">
                               <span class="close">×</span>
-                              <h2><span class="text-icon" style="color: #fff">بحث المستخدمين</span> <i class="fa fa-search"></i></h2>
+                              <h2><span class="text-icon" style="color: #fff">##word.users_search##</span> <i class="fa fa-search"></i></h2>
                             </div>
 
                             <div class="modal-body">
@@ -60,7 +60,7 @@
                                     <i-list ng-search="_search.$user" class="col6 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" display="profile.name" ng-model="ngModel" label="مستخدم" items="users_list">
                                       <div class="dropdown i-list">
                                         <div class="control">
-                                          <label class="ng-binding"> مستخدم </label>
+                                          <label class="ng-binding"> ##word.user## </label>
                                           <input ng-focus="focus()" class="full-width text dropdown-text ng-empty" ng-disabled="disabled" v="" readonly="" ng-model="ngModel.$display" x-input="true" />
                                         </div>
 
@@ -110,7 +110,7 @@
                           <div class="modal-content">
                             <div class="modal-header">
                               <span class="close">×</span>
-                              <h2><span class="text-icon" style="color: #fff">بحث المتاجر</span> <i class="fa fa-search"></i></h2>
+                              <h2><span class="text-icon" style="color: #fff">##word.stores_search##</span> <i class="fa fa-search"></i></h2>
                             </div>
 
                             <div class="modal-body">
@@ -121,7 +121,7 @@
                                     <i-list ng-search="_search.$store" class="col6 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" display="name_ar" display2="user.profile.name" space=" - " ng-model="ngModel" label="متجر" items="stores_list">
                                       <div class="dropdown i-list">
                                         <div class="control">
-                                          <label class="ng-binding"> متجر </label>
+                                          <label class="ng-binding"> ##word.store## </label>
                                           <input ng-focus="focus()" class="full-width text dropdown-text ng-empty" ng-disabled="disabled" v="" readonly="" ng-model="ngModel.$display" x-input="true" />
                                         </div>
 
@@ -271,23 +271,23 @@
             <h2 class="error ng-binding"></h2>
 
             <div class="modal-footer center">
-              <i-button type="search" label="بحـث" ng-click="searchAll(search)" class="ng-isolate-scope">
+              <i-button type="search" label="##word.search##" ng-click="searchAll(search)" class="ng-isolate-scope">
                 <a class="btn search">
-                  <span class="text-icon">بحـث</span>
+                  <span class="text-icon">##word.search##</span>
                   <i ng-show="fa" class="fa fa-search" aria-hidden="true"> </i>
                 </a>
               </i-button>
 
-              <i-button type="clear" label="تفريغ البحث" ng-click="search = {}" class="ng-isolate-scope">
+              <i-button type="clear" label="##word.empty_search##" ng-click="search = {}" class="ng-isolate-scope">
                 <a class="btn clear">
-                  تفريغ البحث
+                  ##word.empty_search##
                   <i ng-show="fa" class="fa fa- ng-hide" aria-hidden="true"></i>
                 </a>
               </i-button>
 
-              <i-button type="close" label="إغلاق" onclick="site.hideModal('#adAdvancedSearchModal')" class="ng-isolate-scope">
+              <i-button type="close" label="##word.close##" onclick="site.hideModal('#adAdvancedSearchModal')" class="ng-isolate-scope">
                 <a class="btn close">
-                  <span class="text-icon">إغلاق</span>
+                  <span class="text-icon">##word.close##</span>
                   <i ng-show="fa" class="fa fa-times" aria-hidden="true"></i>
                 </a>
               </i-button>
@@ -317,7 +317,7 @@
           <i class="close-menu fa-solid fa-xmark fa-lg"></i>
           <a class="notification" href="/cart" x-features="souq">
             <i class="cart fa-solid fa-cart-shopping"></i>
-            <span class="badge ng-binding">0</span>
+            <span class="badge ng-binding">{{user.cart.items.length || 0}}</span>
           </a>
           <div class="user-log">
             <div class="login pointer" href="/register">
@@ -473,23 +473,26 @@
               <span style="min-height: 22px">المفضلة</span>
             </a>
           </li>
-          <button class="add" type="submit"><img class="add-icon" src="../assets/add.png" alt="" width="18px" height="18px" /><a>أضف أعلانك</a></button>
+          <button class="add" type="submit"><img class="add-icon" src="../assets/add.png" alt="" width="18px" height="18px" /><a  href="/create_ad">أضف أعلانك</a></button>
           <li class="mobile-header">
             <a class="notification" href="/cart" x-features="souq">
               <i class="fa-solid fa-cart-shopping"></i>
               <span class="badge-mobile ng-binding">0</span>
-              <span style="min-height: 22px; font-size: 20px">العربة</span>
+              <span style="min-height: 22px; font-size: 20px">##word.cart##</span>
             </a>
           </li>
           <li class="mobile-header">
             <a class="tab_link" href="">
               <i class="fa-solid fa-envelope"></i>
-              <span style="min-height: 22px">الرسائل</span>
+              <span style="min-height: 22px">##word.messages##</span>
             </a>
           </li>
         </div>
         <div class="tags">
           <ul class="tag-list">
+            <li class="tag" ng-repeat="c in category_list">
+              <a class="tab_link" ng-click="loadSubCategory1(c)" href=""><img alt="car" loading="lazy" height="35" width="35" src="c.image_url" /><span style="min-height: 22px">{{c.name_##session.lang##}}</span></a>
+            </li>
             <li class="tag">
               <a class="tab_link" href=""><img alt="car" loading="lazy" height="35" width="35" src="../assets/car.svg" /><span style="min-height: 22px">السيارات</span></a>
             </li>
@@ -573,6 +576,22 @@
             </li>
           </ul>
         </div>
+        <div class="row" ng-repeat="c in sub_category_list1">
+          <b class="black bold" ng-click="loadSubCategory2(c)">{{c.name_##session.lang##}}</b>
+          <br />
+        </div>
+        <div class="row" ng-repeat="c in sub_category_list2">
+          <b class="black bold" ng-click="loadSubCategory3(c)">{{c.name_##session.lang##}}</b>
+          <br />
+        </div>
+        <div class="row" ng-repeat="c in sub_category_list3">
+          <b class="black bold" ng-click="loadSubCategory4(c)">{{c.name_##session.lang##}}</b>
+          <br />
+        </div>
+        <div class="row" ng-repeat="c in sub_category_list4">
+          <b class="black bold" ng-click="loadSubCategory5(c)">{{c.name_##session.lang##}}</b>
+          <br />
+        </div>
         <div></div>
       </div>
     </header>
@@ -604,213 +623,36 @@
       </div>
       <div class="row">
         <fieldset>
+          <fieldset>
+            <div ng-repeat="a in adsList">
+              <div class="row" ng-click="displayAd(a.id)">
+                <i-image view class="logo col2" ng-model="a.image_url"></i-image>
+                <b class="bold col4">{{a.name}}</b>
+              </div>
+              <div class="row" ng-click="displayAd(a.id)">
+                <p><b class="black"> ##word.ad_owner## : </b><b> {{a.store.user.profile.name}} </b></p>
+                <p><b class="black"> ##word.store## : </b><b> {{a.store.name_##session.lang##}} </b></p>
+                <p ng-show="a.set_price == 'yes'" ng-repeat="q in a.quantity_list"><b>{{q.unit.name_##session.lang##}} {{q.net_value}} {{q.currency.name_##session.lang##}}</b></p>
+              </div>
+              <b>{{a.address.country.name_##session.lang##}} {{a.address.gov.name_##session.lang##}} {{a.address.city.name_##session.lang##}} {{a.address.area.name_##session.lang##}}</b>
+              <p>{{a.address.detailed_address}}</p>
+              <div class="row">
+                <i-button fa="shopping-cart" ng-hide="a.store.user.id == user.id" label="##word.add_to_cart##" ng-click="bookList(a,0)"> </i-button>
+                <i-checkbox label="##word.like##" ng-click="updateFeedback(a,'like')" ng-model="a.like"> </i-checkbox>
+                <i-checkbox label="##word.favorite##" ng-click="updateFeedback(a,'favorite')" ng-model="a.favorite"> </i-checkbox>
+              </div>
+              <br />
+              <hr />
+              <br />
+            </div>
+          </fieldset>
           <!-- ngRepeat: a in adsList -->
         </fieldset>
       </div>
     </main>
-    <footer class="footer ng-scope" ng-controller="sitebottom" x-server="x-import">
-      <div class="container">
-        <div class="middleElements footer-app-download">
-          <a target="_blank" rel="noopener noreferrer" href="https://itunes.apple.com/sa/app/%D8%AD%D8%B1%D8%A7%D8%AC/id662557215?mt=8">
-            <picture>
-              <source type="image/webp" srcset="../assets/app-store-badge.webp, ../assets/app-store-badge@2x.webp 2x" />
-              <source type="image/png" srcset="../assets/app-store-badge.png, ../assets/app-store-badge@2x.png 2x" />
-              <img width="125" height="43" loading="lazy" class="app-store-badge" alt="Apple App Store Badge" src="../assets/app-store-badge.png" />
-            </picture>
-          </a>
-          <a target="_blank" rel="noopener noreferrer" href="https://play.google.com/store/apps/details?id=com.haraj.app">
-            <picture>
-              <source type="image/webp" srcset="https://betacdn.haraj.com.sa/assets/images/google-play-badge.webp, https://betacdn.haraj.com.sa/assets/images/google-play-badge@2x.webp 2x" />
-              <source type="image/png" srcset="https://betacdn.haraj.com.sa/assets/images/google-play-badge.png, https://betacdn.haraj.com.sa/assets/images/google-play-badge@2x.png 2x" />
-              <img width="155" height="60" loading="lazy" alt="Google Play Badge" class="play-store-badge" src="https://betacdn.haraj.com.sa/assets/images/google-play-badge.png" />
-            </picture> </a
-          ><a target="_blank" rel="noopener noreferrer" href="https://appgallery.huawei.com/#/app/C100650991">
-            <picture>
-              <source srcset="https://v8-cdn.haraj.com.sa/logos/huawei-badge-black.webp" type="image/webp" />
-              <source srcset="https://v8-cdn.haraj.com.sa/logos/huawei-badge-black.png" type="image/png" />
-              <img width="140" height="42" loading="lazy" src="https://v8-cdn.haraj.com.sa/logos/huawei-badge-black.png" alt="Huawei App Store Badge" />
-            </picture>
-          </a>
-        </div>
-        <hr />
-        <div class="contact-follow">
-          <div></div>
-          <div class="contact">
-            <div class="hotline">
-              <ul>
-                <li>
-                  <a target="_blank" href="https://www.youtube.com/channel/UCBnjZmeZQ-w1YWo0J9htqCQ"><i class="contact-icon fa-solid fa-phone"></i></a>
-                </li>
-                <li class="phone-support">
-                  <a class="contact">16945</a>
-                  <a>الدعم عبر الهاتف</a>
-                </li>
-              </ul>
-            </div>
-            <div class="email">
-              <ul>
-                <li>
-                  <a target="_blank" href="https://www.youtube.com/channel/UCBnjZmeZQ-w1YWo0J9htqCQ"><i class="contact-icon fa-solid fa-at"></i></a>
-                </li>
-                <li class="email-support">
-                  <a class="contact">Support@souq.com</a>
-                  <a>الدعم عبر البريد الألكتروني</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <hr class="cf" />
-          <div class="follow">
-            <a>تابعنا على </a>
-            <ul>
-              <li>
-                <a target="_blank" href="https://www.youtube.com/channel/UCBnjZmeZQ-w1YWo0J9htqCQ"><i class="social-icon fab fa-youtube fa-social"></i></a>
-              </li>
-
-              <li>
-                <a target="_blank" href="https://www.instagram.com" xlink="done"><i class="social-icon fab fa-instagram fa-social"></i></a>
-              </li>
-
-              <li>
-                <a target="_blank" href="https://www.twitter.com" xlink="done"><i class="social-icon fab fa-twitter fa-social"></i></a>
-              </li>
-
-              <li>
-                <a target="_blank" class="icon-facebook" href="https://www.facebook.com/SmartCodeCompany/" xlink="done"><i class="social-icon fab fa-facebook-f fa-social"></i></a>
-              </li>
-            </ul>
-          </div>
-          <div></div>
-        </div>
-        <hr />
-        <div class="midfooter">
-          <div></div>
-          <div class="mid">
-            <ul class="mid-mobile ul-no-bullets footer-links">
-              <li>
-                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="user-check" class="svg-inline--fa fa-user-check fa-w-20 fa-fw" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
-                  <path
-                    fill="currentColor"
-                    d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4zm323-128.4l-27.8-28.1c-4.6-4.7-12.1-4.7-16.8-.1l-104.8 104-45.5-45.8c-4.6-4.7-12.1-4.7-16.8-.1l-28.1 27.9c-4.7 4.6-4.7 12.1-.1 16.8l81.7 82.3c4.6 4.7 12.1 4.7 16.8.1l141.3-140.2c4.6-4.7 4.7-12.2.1-16.8z"
-                  ></path>
-                </svg>
-                <a href="/register">تسجيل</a>
-              </li>
-              <li>
-                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="money-bill-alt" class="svg-inline--fa fa-money-bill-alt fa-w-20 fa-fw" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
-                  <path
-                    fill="currentColor"
-                    d="M352 288h-16v-88c0-4.42-3.58-8-8-8h-13.58c-4.74 0-9.37 1.4-13.31 4.03l-15.33 10.22a7.994 7.994 0 0 0-2.22 11.09l8.88 13.31a7.994 7.994 0 0 0 11.09 2.22l.47-.31V288h-16c-4.42 0-8 3.58-8 8v16c0 4.42 3.58 8 8 8h64c4.42 0 8-3.58 8-8v-16c0-4.42-3.58-8-8-8zM608 64H32C14.33 64 0 78.33 0 96v320c0 17.67 14.33 32 32 32h576c17.67 0 32-14.33 32-32V96c0-17.67-14.33-32-32-32zM48 400v-64c35.35 0 64 28.65 64 64H48zm0-224v-64h64c0 35.35-28.65 64-64 64zm272 192c-53.02 0-96-50.15-96-112 0-61.86 42.98-112 96-112s96 50.14 96 112c0 61.87-43 112-96 112zm272 32h-64c0-35.35 28.65-64 64-64v64zm0-224c-35.35 0-64-28.65-64-64h64v64z"
-                  ></path></svg
-                ><a href="/commission.php">حساب و سداد عمولة الموقع</a>
-              </li>
-              <li>
-                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="svg-inline--fa fa-star fa-w-18 fa-fw" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                  <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path></svg
-                ><a href="/f.php">الإعلانات المميزة</a>
-              </li>
-              <li>
-                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="user-tie" class="svg-inline--fa fa-user-tie fa-w-14 fa-fw fa-1x" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                  <path fill="currentColor" d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm95.8 32.6L272 480l-32-136 32-56h-96l32 56-32 136-47.8-191.4C56.9 292 0 350.3 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-72.1-56.9-130.4-128.2-133.8z"></path></svg
-                ><a href="/services-membership">سداد رسوم السلع و الخدمات المكررة</a>
-              </li>
-              <li>
-                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="file-contract" class="svg-inline--fa fa-file-contract fa-w-12 fa-fw" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-                  <path
-                    fill="currentColor"
-                    d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zM64 72c0-4.42 3.58-8 8-8h80c4.42 0 8 3.58 8 8v16c0 4.42-3.58 8-8 8H72c-4.42 0-8-3.58-8-8V72zm0 64c0-4.42 3.58-8 8-8h80c4.42 0 8 3.58 8 8v16c0 4.42-3.58 8-8 8H72c-4.42 0-8-3.58-8-8v-16zm192.81 248H304c8.84 0 16 7.16 16 16s-7.16 16-16 16h-47.19c-16.45 0-31.27-9.14-38.64-23.86-2.95-5.92-8.09-6.52-10.17-6.52s-7.22.59-10.02 6.19l-7.67 15.34a15.986 15.986 0 0 1-14.31 8.84c-.38 0-.75-.02-1.14-.05-6.45-.45-12-4.75-14.03-10.89L144 354.59l-10.61 31.88c-5.89 17.66-22.38 29.53-41 29.53H80c-8.84 0-16-7.16-16-16s7.16-16 16-16h12.39c4.83 0 9.11-3.08 10.64-7.66l18.19-54.64c3.3-9.81 12.44-16.41 22.78-16.41s19.48 6.59 22.77 16.41l13.88 41.64c19.77-16.19 54.05-9.7 66 14.16 2.02 4.06 5.96 6.5 10.16 6.5zM377 105L279.1 7c-4.5-4.5-10.6-7-17-7H256v128h128v-6.1c0-6.3-2.5-12.4-7-16.9z"
-                  ></path></svg
-                ><a href="/mojaz/start">طلب تقرير سيارة</a>
-              </li>
-              <li>
-                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="file-contract" class="svg-inline--fa fa-file-contract fa-w-12 fa-fw" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-                  <path
-                    fill="currentColor"
-                    d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zM64 72c0-4.42 3.58-8 8-8h80c4.42 0 8 3.58 8 8v16c0 4.42-3.58 8-8 8H72c-4.42 0-8-3.58-8-8V72zm0 64c0-4.42 3.58-8 8-8h80c4.42 0 8 3.58 8 8v16c0 4.42-3.58 8-8 8H72c-4.42 0-8-3.58-8-8v-16zm192.81 248H304c8.84 0 16 7.16 16 16s-7.16 16-16 16h-47.19c-16.45 0-31.27-9.14-38.64-23.86-2.95-5.92-8.09-6.52-10.17-6.52s-7.22.59-10.02 6.19l-7.67 15.34a15.986 15.986 0 0 1-14.31 8.84c-.38 0-.75-.02-1.14-.05-6.45-.45-12-4.75-14.03-10.89L144 354.59l-10.61 31.88c-5.89 17.66-22.38 29.53-41 29.53H80c-8.84 0-16-7.16-16-16s7.16-16 16-16h12.39c4.83 0 9.11-3.08 10.64-7.66l18.19-54.64c3.3-9.81 12.44-16.41 22.78-16.41s19.48 6.59 22.77 16.41l13.88 41.64c19.77-16.19 54.05-9.7 66 14.16 2.02 4.06 5.96 6.5 10.16 6.5zM377 105L279.1 7c-4.5-4.5-10.6-7-17-7H256v128h128v-6.1c0-6.3-2.5-12.4-7-16.9z"
-                  ></path></svg
-                ><a href="/terms.php">اتفاقية الاستخدام</a>
-              </li>
-              <li>
-                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="id-card" class="svg-inline--fa fa-id-card fa-w-18 fa-fw" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                  <path
-                    fill="currentColor"
-                    d="M528 32H48C21.5 32 0 53.5 0 80v16h576V80c0-26.5-21.5-48-48-48zM0 432c0 26.5 21.5 48 48 48h480c26.5 0 48-21.5 48-48V128H0v304zm352-232c0-4.4 3.6-8 8-8h144c4.4 0 8 3.6 8 8v16c0 4.4-3.6 8-8 8H360c-4.4 0-8-3.6-8-8v-16zm0 64c0-4.4 3.6-8 8-8h144c4.4 0 8 3.6 8 8v16c0 4.4-3.6 8-8 8H360c-4.4 0-8-3.6-8-8v-16zm0 64c0-4.4 3.6-8 8-8h144c4.4 0 8 3.6 8 8v16c0 4.4-3.6 8-8 8H360c-4.4 0-8-3.6-8-8v-16zM176 192c35.3 0 64 28.7 64 64s-28.7 64-64 64-64-28.7-64-64 28.7-64 64-64zM67.1 396.2C75.5 370.5 99.6 352 128 352h8.2c12.3 5.1 25.7 8 39.8 8s27.6-2.9 39.8-8h8.2c28.4 0 52.5 18.5 60.9 44.2 3.2 9.9-5.2 19.8-15.6 19.8H82.7c-10.4 0-18.8-10-15.6-19.8z"
-                  ></path></svg
-                ><a href="/verify">توثيق العضوية و إضافة التراخيص</a>
-              </li>
-              <li>
-                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star-half-alt" class="svg-inline--fa fa-star-half-alt fa-w-17 fa-fw" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 536 512">
-                  <path
-                    fill="currentColor"
-                    d="M508.55 171.51L362.18 150.2 296.77 17.81C290.89 5.98 279.42 0 267.95 0c-11.4 0-22.79 5.9-28.69 17.81l-65.43 132.38-146.38 21.29c-26.25 3.8-36.77 36.09-17.74 54.59l105.89 103-25.06 145.48C86.98 495.33 103.57 512 122.15 512c4.93 0 10-1.17 14.87-3.75l130.95-68.68 130.94 68.7c4.86 2.55 9.92 3.71 14.83 3.71 18.6 0 35.22-16.61 31.66-37.4l-25.03-145.49 105.91-102.98c19.04-18.5 8.52-50.8-17.73-54.6zm-121.74 123.2l-18.12 17.62 4.28 24.88 19.52 113.45-102.13-53.59-22.38-11.74.03-317.19 51.03 103.29 11.18 22.63 25.01 3.64 114.23 16.63-82.65 80.38z"
-                  ></path></svg
-                ><a href="/rating.php">نظام التقييم</a>
-              </li>
-              <li>
-                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="money-bill-alt" class="svg-inline--fa fa-money-bill-alt fa-w-20 fa-fw" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
-                  <path
-                    fill="currentColor"
-                    d="M352 288h-16v-88c0-4.42-3.58-8-8-8h-13.58c-4.74 0-9.37 1.4-13.31 4.03l-15.33 10.22a7.994 7.994 0 0 0-2.22 11.09l8.88 13.31a7.994 7.994 0 0 0 11.09 2.22l.47-.31V288h-16c-4.42 0-8 3.58-8 8v16c0 4.42 3.58 8 8 8h64c4.42 0 8-3.58 8-8v-16c0-4.42-3.58-8-8-8zM608 64H32C14.33 64 0 78.33 0 96v320c0 17.67 14.33 32 32 32h576c17.67 0 32-14.33 32-32V96c0-17.67-14.33-32-32-32zM48 400v-64c35.35 0 64 28.65 64 64H48zm0-224v-64h64c0 35.35-28.65 64-64 64zm272 192c-53.02 0-96-50.15-96-112 0-61.86 42.98-112 96-112s96 50.14 96 112c0 61.87-43 112-96 112zm272 32h-64c0-35.35 28.65-64 64-64v64zm0-224c-35.35 0-64-28.65-64-64h64v64z"
-                  ></path></svg
-                ><a href="/discount.php">نظام الخصم</a>
-              </li>
-              <li>
-                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="ban" class="svg-inline--fa fa-ban fa-w-16 fa-fw" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                  <path fill="currentColor" d="M256 8C119.034 8 8 119.033 8 256s111.034 248 248 248 248-111.034 248-248S392.967 8 256 8zm130.108 117.892c65.448 65.448 70 165.481 20.677 235.637L150.47 105.216c70.204-49.356 170.226-44.735 235.638 20.676zM125.892 386.108c-65.448-65.448-70-165.481-20.677-235.637L361.53 406.784c-70.203 49.356-170.226 44.736-235.638-20.676z"></path></svg
-                ><a href="/checkacc.php">القائمة السوداء و إرشادات التعامل</a>
-              </li>
-              <li>
-                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="hand-paper" class="svg-inline--fa fa-hand-paper fa-w-14 fa-fw" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                  <path
-                    fill="currentColor"
-                    d="M408.781 128.007C386.356 127.578 368 146.36 368 168.79V256h-8V79.79c0-22.43-18.356-41.212-40.781-40.783C297.488 39.423 280 57.169 280 79v177h-8V40.79C272 18.36 253.644-.422 231.219.007 209.488.423 192 18.169 192 40v216h-8V80.79c0-22.43-18.356-41.212-40.781-40.783C121.488 40.423 104 58.169 104 80v235.992l-31.648-43.519c-12.993-17.866-38.009-21.817-55.877-8.823-17.865 12.994-21.815 38.01-8.822 55.877l125.601 172.705A48 48 0 0 0 172.073 512h197.59c22.274 0 41.622-15.324 46.724-37.006l26.508-112.66a192.011 192.011 0 0 0 5.104-43.975V168c.001-21.831-17.487-39.577-39.218-39.993z"
-                  ></path></svg
-                ><a href="/notallowed.php">قائمة السلع والإعلانات الممنوعة</a>
-              </li>
-              <li>
-                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="question-circle" class="svg-inline--fa fa-question-circle fa-w-16 fa-fw" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                  <path
-                    fill="currentColor"
-                    d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zM262.655 90c-54.497 0-89.255 22.957-116.549 63.758-3.536 5.286-2.353 12.415 2.715 16.258l34.699 26.31c5.205 3.947 12.621 3.008 16.665-2.122 17.864-22.658 30.113-35.797 57.303-35.797 20.429 0 45.698 13.148 45.698 32.958 0 14.976-12.363 22.667-32.534 33.976C247.128 238.528 216 254.941 216 296v4c0 6.627 5.373 12 12 12h56c6.627 0 12-5.373 12-12v-1.333c0-28.462 83.186-29.647 83.186-106.667 0-58.002-60.165-102-116.531-102zM256 338c-25.365 0-46 20.635-46 46 0 25.364 20.635 46 46 46s46-20.636 46-46c0-25.365-20.635-46-46-46z"
-                  ></path></svg
-                ><a href="/faq">الأسئلة الشائعة</a>
-              </li>
-              <li>
-                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="user-shield" class="svg-inline--fa fa-user-shield fa-w-20 fa-fw fa-1x" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
-                  <path
-                    fill="currentColor"
-                    d="M622.3 271.1l-115.2-45c-4.1-1.6-12.6-3.7-22.2 0l-115.2 45c-10.7 4.2-17.7 14-17.7 24.9 0 111.6 68.7 188.8 132.9 213.9 9.6 3.7 18 1.6 22.2 0C558.4 489.9 640 420.5 640 296c0-10.9-7-20.7-17.7-24.9zM496 462.4V273.3l95.5 37.3c-5.6 87.1-60.9 135.4-95.5 151.8zM224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm96 40c0-2.5.8-4.8 1.1-7.2-2.5-.1-4.9-.8-7.5-.8h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c6.8 0 13.3-1.5 19.2-4-54-42.9-99.2-116.7-99.2-212z"
-                  ></path></svg
-                ><a href="/member.php"> الإشتراك بعضوية معارض السيارات و مكاتب العقار</a>
-              </li>
-              <li>
-                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="envelope" class="svg-inline--fa fa-envelope fa-w-16 fa-fw" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                  <path
-                    fill="currentColor"
-                    d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"
-                  ></path></svg
-                ><a href="/contact.php">اتصل بنا</a>
-              </li>
-            </ul>
-          </div>
-          <div></div>
-        </div>
-      </div>
-      <div class="subfooter">
-        <div class="container">
-          <div class="footer_wrapper">
-            <div class="souq-data">
-              <p>مؤسسة موقع سوق للتسويق الإلكتروني</p>
-              8.2.9 , 7 23 - 6 - 22
-            </div>
-            <div class="souq-data">
-              <p>:الرقم الضريبي</p>
-              <a id="vat_link" href="https://v8-cdn.haraj.com.sa/documents/VAT-HARAJ.pdf" target="_blank" rel="noopener noreferrer"><span>300710482300003</span></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
+    <footer class="footer ng-scope" x-import="herag/footer.html" ng-controller="footer_herag"></footer>
+    <div x-import="herag/scripts.html"></div>
+    <script x-import="herag/index.js"></script>
     <script>
       const user = document.querySelector('.user');
       const burger_icon = document.querySelector('.burger-icon');

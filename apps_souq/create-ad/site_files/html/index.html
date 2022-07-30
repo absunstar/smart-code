@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html lang="en" data-ng-app="myApp" class="bg-white">
+  <head x-import="head.html"> </head>
+
+  <body style="background: white" class="##session.lang##" ng-controller="create_ad">
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar"></nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
+
+    <div id="main-layout" class="container loaded">
+
+      <div class="row">
+        <br />
+        <h1 class="center bold black">##word.create_ad##</h1>
+        <br />
+
+        <div x-import="create-ad/content.html"></div>
+      </div>
+    </div>
+    <div x-import="scripts.html"></div>
+    <script x-import="create-ad/index.js"></script>
+  </body>
+</html>

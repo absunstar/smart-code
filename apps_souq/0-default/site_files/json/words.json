@@ -241,6 +241,11 @@
     "ar": "إسم المحتوى"
   },
   {
+    "name": "Do_you_want_set_price",
+    "en": "Do you want to set the price?",
+    "ar": "هل ترغب بتحديد السعر ؟"
+  },
+  {
     "name": "report",
     "en": "Sub Categories",
     "ar": "أقسام فرعية"
@@ -248,7 +253,7 @@
   {
     "name": "cart",
     "en": "Cart",
-    "ar": "السلة"
+    "ar": "العربة"
   },
   {
     "name": "report",

@@ -64,7 +64,6 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
       function (err) {}
     );
   };
-
   $scope.bookList = function (ad, i) {
     $scope.error = '';
     $scope.user.cart.items = $scope.user.cart.items || [];
