@@ -84,6 +84,8 @@ setTimeout(() => {
 
 
 site.run()
+site.security.addKey('5e8edd851d2fdfbd7415232c67367cc3');
+site.security.addKey('0e849095ad8db45384a9cdd28d7d0e20');
 
 // site.on('zk attend', attend=>{
 //     console.log(attend)

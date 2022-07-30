@@ -533,7 +533,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
       active: true,
     };
     if ($scope.defaultSettings) {
-      if ($scope.defaultSettings.stores_settings.store_status) {
+      if ($scope.defaultSettings.stores_settings && $scope.defaultSettings.stores_settings.store_status) {
         $scope.store.store_status = $scope.defaultSettings.stores_settings.store_status;
       } else {
         $scope.store.store_status = {
