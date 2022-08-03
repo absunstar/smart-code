@@ -1,0 +1,31 @@
+<div id="categoriesViewModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>
+        ##word.view_categories##
+        <i class="fa fa-file"></i>
+      </h2>
+    </div>
+
+    <div class="modal-body">
+      <div class="row">
+        <i-treeview
+          display="name_##session.lang##"
+          class="col5"
+          label="##word.main_categories##"
+          ng-model="main_category"
+          ng-click="selectCategory(main_category)"
+          nodes="category_list"
+        >
+        </i-treeview>
+      </div>
+    </div>
+
+    <h2 class="error">{{error}}</h2>
+
+    <div class="modal-footer center">
+      <i-button type="save" label="##word.save##" onclick="site.hideModal('#categoriesViewModal')"></i-button>
+    </div>
+  </div>
+</div>

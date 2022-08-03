@@ -791,6 +791,18 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
     site.showModal('#adAddModal');
   };
 
+  $scope.viewCategories = function (c) {
+    $scope.category = c;
+    site.showModal('#categoriesViewModal');
+  };
+
+  $scope.selectCategory = function (c) {
+    $scope.ad.main_category = c;
+    if (c && !c.top_parent_id) {
+      $scope.ad.category_require_list = c.category_require_list;
+    }
+  };
+
   $scope.addAd = function () {
     $scope.error = '';
     const v = site.validated('#adAddModal');
@@ -798,6 +810,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
       $scope.error = v.messages[0].ar;
       return;
     }
+
     if ($scope.ad.store) {
       $scope.ad.address = $scope.ad.store.address;
     }
@@ -887,6 +900,11 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.ad = response.data.doc;
+          if ('##session.lang##' == 'ar') {
+            $scope.ad.name = $scope.ad.name_ar;
+          } else {
+            $scope.ad.name = $scope.ad.name_en;
+          }
         } else {
           $scope.error = response.data.error;
         }
@@ -940,7 +958,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
       url: '/api/main_categories/all',
       data: {
         where: {
-          active: true,
+          status: 'active',
         },
       },
     }).then(
@@ -948,13 +966,6 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.category_list = response.data.list;
-          $scope.category_list.forEach((l) => {
-            $scope.mainCategories.push({
-              id: l.id,
-              name_ar: l.name_ar,
-              idname_en: l.idname_en,
-            });
-          });
         }
       },
       function (err) {

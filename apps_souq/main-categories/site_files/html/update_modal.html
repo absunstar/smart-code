@@ -1,6 +1,5 @@
 <div id="mainCategoriesUpdateModal" class="modal" fixed>
-        
-    <div class="modal-content ">
+    <div class="modal-content">
         <div class="modal-header">
             <span class="close">&times;</span>
             <h2>
@@ -17,9 +16,9 @@
 
         <div class="modal-footer center">
             <h2 class="error"> {{error}} </h2>
-            <i-button type="edit" label="##word.edit##" ng-click="updateMainCategories(main_categories)"></i-button>
+            <i-button type="save" label="##word.save##" ng-click="updateMainCategories()"></i-button>
+
             <i-button type="close" label="##word.close##" onclick="site.hideModal( '#mainCategoriesUpdateModal')"></i-button>
         </div>
     </div>
-    
 </div>

@@ -1,54 +1,83 @@
 <div class="form">
-  <div id="basicInformation" class="">
-    <fieldset>
-      <legend>##word.basic_information##</legend>
-      <div class="row">
-        <div class="col9">
-          <div class="row">
-            <i-control ng-hide="disabledCode" class="col2" label="##word.code##" ng-model="main_categories.code"> </i-control>
+    <div id="mainCategoriesAddModal" class="tab-content">
+        <fieldset>
+            <legend> ##word.main_categories_informations## </legend>
+            <div class="col9">
+                <div class="row">
+                    <i-control ng-hide="disabledCode" class="col2" label="##word.main_categories_code##"
+                        ng-model="main_categories.code"></i-control>
+                    <i-control v="r" class="col4" label="##word.main_categories_name_ar##"
+                        ng-model="main_categories.name_ar"></i-control>
+                    <i-control v="r" class="col4" label="##word.main_categories_name_en##"
+                        ng-model="main_categories.name_en"></i-control>
+                    <i-control ng-show="disabledCode" type="number" class="col2" label="##word.length_level##"
+                        ng-model="main_categories.length_level"></i-control>
+                </div>
 
-            <i-control type="text" help-id="main_categories_name" v="r" class="col4" label="##word.main_categories_name##" ng-model="main_categories.name_ar"></i-control>
-
-            <i-control type="text" help-id="main_categories_name_en" v="r" class="col4" label="##word.name_en##" ng-model="main_categories.name_en"></i-control>
-
-            <i-checkbox help-id="main_categories_active" class="col2" label="##word.active##" ng-model="main_categories.active"></i-checkbox>
-          </div>
-
-          <div class="row">
-            <fieldset>
-              <legend>
-                ##word.add_categories##
-                <i-button type="add default" ng-click="addSubCategoryList(main_categories)"></i-button>
-              </legend>
-              <div class="row" ng-repeat="c in main_categories.sub_category_list">
-                <i-sub-category ng-model="c"></i-sub-category>
-                <i-button type="delete default" ng-click="main_categories.sub_category_list.splice($index,1)"> </i-button>
-              </div>
-            </fieldset>
-          </div>
-
-          <br>
-
-          <div class="row">
-            <fieldset>
-              <legend>
-                ##word.category_require##
-                <i-button type="add default" ng-click="addTypesCategoryRequireList(main_categories)"></i-button>
-              </legend>
-              <div class="row" ng-repeat="c in main_categories.category_require_list">
-                <i-category-require ng-model="c"></i-category-require>
                 <br>
-                <i-button type="delete default" ng-click="main_categories.category_require_list.splice($index,1)"> </i-button>
-              </div>
-            </fieldset>
-          </div>
+                <br>
+                <br>
 
-        </div>
+                <div class="row">
+                    <h2 class="brown col3">##word.main_categories_type## :</h2>
 
-        <div class="col3">
-          <i-image help-id="main_categories_logo" ng-model="main_categories.image_url"></i-image>
-        </div>
-      </div>
-    </fieldset>
-  </div>
+                    <div id=type_{{print.id}}>
+
+                        <i-radio class="col2" ng-value="primary" label="##word.main_categories_primary##"
+                            ng-model="main_categories.type">
+                        </i-radio>
+
+                        <i-radio class="col2" ng-value="detailed" label="##word.main_categories_detailed##"
+                            ng-model="main_categories.type">
+                        </i-radio>
+
+                    </div>
+                </div>
+                <br>
+                <br>
+                <br>
+                <div class="row">
+                    <h2 class="brown col3">##word.main_categories_status## :</h2>
+
+                    <div id=status_{{print.id}}>
+
+                        <i-radio class="col2" ng-value="active" label="##word.main_categories_active##"
+                            ng-model="main_categories.status">
+                        </i-radio>
+
+                        <i-radio class="col2" ng-value="disactive" label="##word.main_categories_disactive##"
+                            ng-model="main_categories.status">
+                        </i-radio>
+
+
+
+                    </div>
+
+                </div>
+
+                <br>
+                <br>
+
+                <div class="row" ng-show="!main_categories.top_parent_id">
+                    <fieldset>
+                      <legend>
+                        ##word.category_require##
+                        <i-button type="add default" ng-click="addTypesCategoryRequireList(main_categories)"></i-button>
+                      </legend>
+                      <div class="row" ng-repeat="c in main_categories.category_require_list">
+                        <i-category-require ng-model="c"></i-category-require>
+                        <br>
+                        <i-button type="delete default" ng-click="main_categories.category_require_list.splice($index,1)"> </i-button>
+                      </div>
+                    </fieldset>
+                  </div>
+
+
+            </div>
+            <div class="col3">
+                <i-image category="main_categories" ng-model="main_categories.image_url"></i-image>
+            </div>
+
+        </fieldset>
+    </div>
 </div>

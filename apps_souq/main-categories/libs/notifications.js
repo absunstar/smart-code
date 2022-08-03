@@ -2,21 +2,21 @@ module.exports = function init(site) {
   let collection_name = "main_categories";
 
   let source = {
-    en: "Main categories System",
-    ar: "نظام الأقسام الرئيسية",
+    en: "Main Categories System",
+    ar: "نظام الأقسام الرئيسية ",
   };
 
   let image_url = "/images/main_categories.png";
   let add_message = {
-    en: "New Main Category Added",
-    ar: "تم إضافة قسم رئيسي جديد",
+    en: "New Main Categories Added",
+    ar: "تم إضافة قسم رئيسي جديدة",
   };
   let update_message = {
-    en: " Main Category Updated",
+    en: " Main Categories Updated",
     ar: "تم تعديل قسم رئيسي",
   };
   let delete_message = {
-    en: " Main Category Deleted",
+    en: " Main Categories Deleted",
     ar: "تم حذف قسم رئيسي ",
   };
 

@@ -18,18 +18,19 @@
 
         <!--           <i-address ng-show="defaultSettings.ads_settings.addresses_appear" ng-model="ad"></i-address>
    -->
-        <i-category ng-model="ad.main_category" ng-label="##word.main_category##" ng-list="category_list"></i-category>
-        <br />
+        <div class="row">
+          <i-button type="add" class="col3" label="##word.view_categories##" ng-click="viewCategories(ad)"></i-button>
+          <p class="col3 bold">##word.category## : {{ad.main_category.name_##session.lang##}}</p>
+        </div>
 
-        <div class="row" ng-show="ad.main_category.category_require_list.length > 0">
+        <div class="row" ng-show="ad.category_require_list.length > 0">
           <fieldset>
             <legend>##word.ad_require##</legend>
-            <div class="row" ng-repeat="c in ad.main_category.category_require_list">
+            <div class="row" ng-repeat="c in ad.category_require_list">
               <i-ad-require ng-model="c"></i-ad-require>
             </div>
           </fieldset>
         </div>
-
         <div class="row">
           <i-textarea ng-model="ad.description" label="##word.description##"> </i-textarea>
         </div>

@@ -1,67 +1,1041 @@
 <!DOCTYPE html>
-<html lang="en" x-permissions="manage_users_ui || manage_users_manage" data-ng-app="myApp">
-  <head x-import="head.html"> </head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+    integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>ادارة الحساب</title>
+</head>
+<body>
 
-  <body class="##session.lang##"  ng-controller="manage_users">
-    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar"></nav>
+    <div class="main-menu" x-features="!atm">
+        <div id="main_tabs" class="tabs" style="display: block;">
+          <div class="tabs-header">
+            <a class="tab-link tooltip tooltip2" href="/default_setting" x-permissions="default_setting_ui || default_setting_manage">
+                <i class="fa-solid fa-sliders"></i>
+              <span> الإعدادات الإفتراضية </span>
+              <h6 class="tooltiptext">الإعدادات الإفتراضية</h6>
+            </a>
+      
+            <a class="tab-link tooltip tooltip2" href="/manage_users" x-permissions="manage_users_ui || manage_users_manage">
+                <i class="fa-solid fa-users"></i>
+              <span> إدارة المستخدمين </span>
+              <h6 class="tooltiptext">إدارة المستخدمين</h6>
+            </a>
+      
+            <a class="tab-link tooltip tooltip2" href="/numbering" x-permissions="numbering_manage">
+            <i class="fa-solid fa-list-ol"></i>
+              <span> شاشة الترقيم </span>
+              <h6 class="tooltiptext">شاشة الترقيم</h6>
+            </a>
+      
+            <!--       <a class="tab-link tooltip" href="/order_souq" x-permissions=" order_souq_ui || order_souq_manage">
+              <img src="/images/order_souq.png" />
+              <span>إنشاء طلب</span>
+              <h6 class="tooltiptext">إنشاء طلب</h6>
+            </a> -->
+      
+            <a class="tab-link tooltip tooltip2" href="/ads" x-permissions="ads_ui || ads_manage">
+            <i class="fa-solid fa-rectangle-ad"></i>
+              <span> الإعلانات </span>
+              <h6 class="tooltiptext">الإعلانات</h6>
+            </a>
+      
+            <a class="tab-link tooltip tooltip2" href="/stores" x-permissions="stores_ui || stores_manage">
+            <i class="fa-solid fa-store"></i>
+              <span> المتاجر </span>
+              <h6 class="tooltiptext">المتاجر</h6>
+            </a>
+      
+            <a class="tab-link tooltip tooltip2" href="/manage_order" x-permissions=" manage_order_ui || manage_order_manage">
+                <i class="fa-solid fa-cart-flatbed"></i>
+              <span>إدارة الطلبات</span>
+              <h6 class="tooltiptext">إدارة الطلبات</h6>
+            </a>
+      
+            <a class="tab-link tooltip tooltip2" href="/main_categories" x-permissions="main_categories_ui || main_categories_manage">
+                <i class="fa-solid fa-boxes-stacked"></i>
+              <span> الأقسام الرئيسية </span>
+              <h6 class="tooltiptext">الأقسام الرئيسية</h6>
+            </a>
+      
+            <a class="tab-link tooltip tooltip2" href="/currency" x-permissions="currency_ui || currency_manage">
+                <i class="fa-solid fa-money-bill-wave"></i>
+              <span>العملات</span>
+              <h6 class="tooltiptext">العملات</h6>
+            </a>
+      
+            <a class="tab-link tooltip tooltip2" href="/units" x-permissions="units_ui || units_manage">
+              <i class="fa-solid fa-infinity"></i>
+              <span>الوحدات</span>
+              <h6 class="tooltiptext">الوحدات</h6>
+            </a>
+      
+            <a class="tab-link tooltip tooltip2" href="/comments_types" x-permissions="comments_types_ui || comments_types_manage">
+            <i class="fa-solid fa-comments"></i>
+              <span>أنواع التعليقات</span>
+              <h6 class="tooltiptext">أنواع التعليقات</h6>
+            </a>
+      
+            <a class="tab-link tooltip tooltip2" href="/reports_types" x-permissions="reports_types_ui || reports_types_manage">
+              <i class="fa-solid fa-bug"></i>
+              <span>أنواع البلاغات</span>
+              <h6 class="tooltiptext">أنواع البلاغات</h6>
+            </a>
+      
+            <a class="tab-link tooltip tooltip2" href="/countries" x-permissions="countries_ui || countries_manage">
+                <i class="fa-solid fa-globe"></i>
+              <span> الدول </span>
+              <h6 class="tooltiptext">الدول</h6>
+            </a>
+      
+            <a class="tab-link tooltip tooltip2" href="/goves" x-permissions="goves_ui || goves_manage">
+                <i class="fa-solid fa-street-view"></i>
+              <span> المحافظات </span>
+              <h6 class="tooltiptext">قائمة المحافظات</h6>
+            </a>
+      
+            <a class="tab-link tooltip tooltip2" href="/city" x-permissions="city_ui || city_manage">
+              <i class="fa-solid fa-city"></i>
+              <span> المدن </span>
+              <h6 class="tooltiptext">قائمة المدن</h6>
+            </a>
+      
+            <a class="tab-link tooltip tooltip2" href="/area" x-permissions="area_ui || area_manage">
+              <i class="fa-solid fa-sign-hanging"></i>
+              <span> المناطق </span>
+              <h6 class="tooltiptext">قائمة المناطق</h6>
+            </a>
+          </div>
+        </div>
+    </div>
+    <!-- <script>
+        let menu = document.querySelector('.main-menu');
+        let burger_icon = document.querySelector('.toggle');
+        burger_icon.addEventListener("click", showMenu);
 
-    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
-
-    <div id="main-layout" class="container loaded">
-      <div class="row">
+        function showMenu(){
+            if(menu.classList.contains("main-menu")){
+                menu.classList.add('menu-show');
+            }
+            else{
+                menu.classList.remove('menu-show');
+            }
+        }
+    </script> -->
+    <div class="inline title toggle" help-id="brand_title">
+        <a x-features="souq" x-permissions="lmenu_ui || menu_manage" href="#" onclick="showMenu()"> <i class="fa fa-bars"></i> </a>
+    </div>
+    
+    <br>
+    <h1 class="center bold black">إدارة حسابك الشخصي</h1>
+    <br>
+    <div class="form" id="manage_user">
+        <div class="tabs inline-block user-tabs">
+          <div class="tabs-header">
+            <a class="tab-link active" onclick="site.showTabContent(event, '#personal_info')"> معلومات شخصية </a>
+            <a class="tab-link" x-features="ecommerce || souq" ng-click="showTab($event,'#my_addresses')"> عناويني </a>
+            <a class="tab-link" x-features="ecommerce || souq" ng-click="showTab($event,'#messages')"> الرسائل </a>
+            <a class="tab-link" x-features="ecommerce || souq" onclick="site.showTabContent(event, '#cart')"> العربة </a>
+            <a class="tab-link" x-features="ecommerce || souq" ng-click="showTab($event,'#my_orders')"> طلباتي </a>
+            <a class="tab-link" x-features="ecommerce || souq" ng-click="showTab($event,'#my_ads')"> إعلاناتي </a>
+            <a class="tab-link" x-features="ecommerce || souq" ng-click="showTab($event,'#my_stores')"> متاجري </a>
+            <a class="tab-link" x-features="ecommerce || souq" ng-click="showTab($event,'#liked_ads')"> إعلانات معجب بها </a>
+            <a class="tab-link" x-features="ecommerce || souq" ng-click="showTab($event,'#liked_stores')"> متاجر معجب بها </a>
+            <a class="tab-link" x-features="ecommerce || souq" ng-click="showTab($event,'#favorite_ads')"> إعلانات مفضلة </a>
+            <a class="tab-link" x-features="ecommerce || souq" ng-click="showTab($event,'#favorite_stores')"> متاجر مفضلة </a>
+          </div>
+          <div class="tabs-content">
+            <div id="personal_info" class="tab-content" style="display: inline-block;">
+              <fieldset>
+                <legend>معلومات أساسية</legend>
+                <div class="row">
+                  <table class="table loaded hover center bold" style="visibility: visible;">
+                    <tbody><tr>
+                      <td class="blue">
+                        <br>
+                        الصورة الشخصية
+                      </td>
+      
+                      <td>
+                        <i-image view="" class="logo ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty" ng-model="manage_user.profile.image_url">
+              <form class="form text-center pointer ng-pristine ng-valid">
+                  <input class="hidden" type="file" name="file">
+                  <img class="bg-white" ngclick="ngClick()" onerror="this.src='/herag/assets/car.svg'" ng-src="" src="/herag/assets/car.svg">
+                  <progress class="row" style="display: none;"></progress>
+              </form>
+              </i-image>
+                      </td>
+      
+                      <td>
+                        <i-button type="update" label="تعديل" ng-click="view('logo')" class="ng-isolate-scope">
+              <a class="btn update">
+              تعديل
+              <i ng-show="fa" class="fa fa-edit" aria-hidden="true"></i> </a>
+              </i-button>
+                      </td>
+                    </tr>
+      
+                    <tr>
+                      <td class="blue">
+                        <br>
+                        إسم المستخدم
+                      </td>
+      
+                      <td class="userPrint ng-binding">
+                        <br>
+                        admin@company.com
+                      </td>
+      
+                      <td>
+                        <i-button type="update" label="تعديل" ng-click="view('email')" class="ng-isolate-scope">
+              <a class="btn update">
+              تعديل
+              <i ng-show="fa" class="fa fa-edit" aria-hidden="true"></i> </a>
+              </i-button>
+                      </td>
+                    </tr>
+      
+                    <!-- <tr ng-hide="manage_user.is_company">
+                                      <td class="blue userPrint"> <br> birth_date </td>
+      
+                                      <td class="brown"> <br>
+                                          {{manage_user.profile.birth_date}}
+                                      </td>
+      
+                                      <td>
+                                          <i-button type="update" label="تعديل" ng-click="view('birth_date')">
+                                          </i-button>
+                                      </td>
+                                  </tr> -->
+      
+                    <tr>
+                      <td class="blue">
+                        <br>
+                        كلمة المرور
+                      </td>
+      
+                      <td>
+                        <i-control type="password" disabled="" ng-model="manage_user.password" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty">
+              <div class="control">
+                  <label class="ng-binding">  </label>
+                  <input id="" ng-disabled="disabled" autofocus="" v="" type="password" ng-model="ngModel" ng-change="ngChange()" ngkeydown="ngKeydown()" class="ng-pristine ng-untouched ng-valid ng-empty" disabled="disabled">
+              </div>
+              </i-control>
+                      </td>
+      
+                      <td>
+                        <i-button type="update" label="تعديل" ng-click="view('password')" class="ng-isolate-scope">
+              <a class="btn update">
+              تعديل
+              <i ng-show="fa" class="fa fa-edit" aria-hidden="true"></i> </a>
+              </i-button>
+                      </td>
+                    </tr>
+                  </tbody></table>
+                </div>
+              </fieldset>
+              <br>
+              <br>
+      
+              <fieldset>
+                <legend>معلومات الإتصال</legend>
+                <div class="row">
+                  <table class="table loaded hover center bold" style="visibility: visible;">
+                    <tbody>
+      
+                    <tr x-features="ecommerce || souq">
+                      <td class="blue">
+                        <br>
+                        الإسم
+                      </td>
+      
+                      <td class="userPrint ng-binding">
+                        <br>
+                         
+                      </td>
+      
+                      <td>
+                        <i-button type="update" label="تعديل" ng-click="view('first_name')" class="ng-isolate-scope">
+              <a class="btn update">
+              تعديل
+              <i ng-show="fa" class="fa fa-edit" aria-hidden="true"></i> </a>
+              </i-button>
+                      </td>
+                    </tr>
+      
+                    <tr ng-hide="manage_user.is_company" class="ng-hide">
+                      <td class="blue">
+                        <br>
+                        الجنس
+                      </td>
+      
+                      <td class="ng-binding">
+                        <br>
+                        
+                      </td>
+      
+                      <td>
+                        <i-button type="update" label="تعديل" ng-click="view('gender')" class="ng-isolate-scope">
+              <a class="btn update">
+              تعديل
+              <i ng-show="fa" class="fa fa-edit" aria-hidden="true"></i> </a>
+              </i-button>
+                      </td>
+                    </tr>
+      
+                    <tr>
+                      <td class="blue">
+                        <br>
+                        mobile
+                      </td>
+      
+                      <td class="userPrint">
+                        <br>
+                        <a href="tel:" class="ng-binding">
+                          
+                          <i class="fa fa-mobile"></i>
+                        </a>
+                      </td>
+      
+                      <td>
+                        <i-button type="update" label="تعديل" ng-click="view('mobile')" class="ng-isolate-scope">
+              <a class="btn update">
+              تعديل
+              <i ng-show="fa" class="fa fa-edit" aria-hidden="true"></i> </a>
+              </i-button>
+                      </td>
+                    </tr>
+      
+                    <tr>
+                      <td class="blue">
+                        <br>
+                        رقم التليفون
+                      </td>
+      
+                      <td class="userPrint">
+                        <br>
+                        <a href="tel:" class="ng-binding">
+                          
+                          <i class="fa fa-phone"></i>
+                        </a>
+                      </td>
+      
+                      <td>
+                        <i-button type="update" label="تعديل" ng-click="view('phone')" class="ng-isolate-scope">
+              <a class="btn update">
+              تعديل
+              <i ng-show="fa" class="fa fa-edit" aria-hidden="true"></i> </a>
+              </i-button>
+                      </td>
+                    </tr>
+                  </tbody></table>
+                </div>
+              </fieldset>
+      
+              <i-button type="default left" fa="2x fa-angle-double-left" onclick="document.querySelector('.tab-link.active + .tab-link').click();" class="ng-isolate-scope">
+              <a class="btn default left">
+              
+              <i ng-show="fa" class="fa fa-2x fa-angle-double-left" aria-hidden="true"></i> </a>
+              </i-button>
+            </div>
+      
+            <div id="my_addresses" class="tab-content" style="display: none;">
+              <fieldset>
+                <legend>عناويني</legend>
+                <div class="row">
+                  <fieldset>
+                    <legend>العنوان الرئيسي</legend>
+                    <i-address ng-model="manage_user.profile.main_address" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty"><div id="addresses_0_9722199178486262" class="row">
         <div class="row">
-          <div x-permissions="manage_users_update || manage_users_manage" x-import="manage-users/update_modal.html"></div>
-          <div x-permissions="manage_users_delete || manage_users_manage" x-import="manage-users/delete_modal.html"></div>
-          <div x-permissions="manage_users_view || manage_users_manage" x-import="manage-users/view_modal.html"></div>
-          <div x-permissions="manage_users_search || manage_users_manage" x-import="manage-users/search_all_modal.html"></div>
-
-          <div class="row">
-            <h1 class="bold text-center">##word.manage_users##</h1>
+          <i-list help-id="" class="col3 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" label="الدولة" ng-change="getGovesList(ngModel.country)" ng-model="ngModel.country" display="name_ar" items="countriesList" ng-search="_search.$city_country"><div class="dropdown i-list">
+          <div class="control">
+              <label class="ng-binding"> الدولة </label>
+              <input ng-focus="focus()" class="full-width text dropdown-text  ng-empty" ng-disabled="disabled" v="" readonly="" ng-model="ngModel.$display">
           </div>
-
-          <div class="top-actions">
-            <i-button x-permissions="manage_users_search || manage_users_manage" type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
-
-            <h3 class="bold text-center">##word.count## : {{count}}</h3>
-            <h3 class="bold text-center red">{{error}}</h3>
+      
+          <div class="dropdown-content">
+              <div class="row padding" ng-show="showSearch">
+                  <input class="full-width search ng-pristine ng-untouched ng-valid ng-empty" ng-model="ngSearch">
+                  <br>
+              </div>
+      
+              <!-- ngRepeat: item in items | filter:{ $display : ngSearch} --><div class="row padding dropdown-item center ng-scope" ng-repeat="item in items | filter:{ $display : ngSearch}" ng-click="updateModel(item)">
+                  <p class="ng-binding">دولة إفتراضية</p>
+                  <small class="ng-binding">  </small>
+              </div><!-- end ngRepeat: item in items | filter:{ $display : ngSearch} -->
+      
+              <div class="row center padding pointer">
+                  <a class="btn red" ng-click="updateModel({})"> <i class="fa fa-trash"></i> Clear </a>
+              </div>
           </div>
-
-          <table x-permissions="login" class="table hover bold loaded" id="t1">
-            <tr>
-              <th class="not-print">##word.logo##</th>
-              <th>##word.user_name##</th>
-              <th>##word.mobile_email##</th>
-              <th>##word.status##</th>
-              <th class="not-print">##word.actions##</th>
-            </tr>
-
-            <tr ng-repeat="c in manage_users_list">
-              <td class="center not-print">
-                <i-image view class="logo" ng-model="c.image_url"></i-image>
-              </td>
-              <td class="center title">{{c.profile.name}}</td>
-              <td class="center title">{{c.email}}</td>
-              <td class="center">
-                <p ng-show="c.active ==true" class="green">##word.active##</p>
-                <p ng-show="c.active ==false" class="red">##word.not_active##</p>
-              </td>
-
-              <td class="center not-print">
-                <i-button x-permissions="manage_users_view || manage_users_manage" type="view" label="##word.details##" ng-click="displayDetailsManageUsers(c)"></i-button>
-
-                <i-button x-permissions="manage_users_update || manage_users_manage" type="edit" label="##word.edit##" ng-click="displayUpdateManageUsers(c)"></i-button>
-
-                <i-button x-permissions="manage_users_delete || manage_users_manage" type="delete" label="##word.delete##" ng-click="displayDeleteManageUsers(c)"></i-button>
-              </td>
-            </tr>
-          </table>
-
-          <i-button x-permissions="manage_users_print || manage_users_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+      </div>
+      </i-list>
+      
+          <i-list class="col3 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" label="المحافظة" ng-model="ngModel.gov" items="govesList" ng-change="getCityList(ngModel.gov)" display="name_ar" ng-search="_search.$ngModel.$gov_search"><div class="dropdown i-list">
+          <div class="control">
+              <label class="ng-binding"> المحافظة </label>
+              <input ng-focus="focus()" class="full-width text dropdown-text  ng-empty" ng-disabled="disabled" v="" readonly="" ng-model="ngModel.$display">
+          </div>
+      
+          <div class="dropdown-content">
+              <div class="row padding" ng-show="showSearch">
+                  <input class="full-width search ng-pristine ng-untouched ng-valid ng-empty" ng-model="ngSearch">
+                  <br>
+              </div>
+      
+              <!-- ngRepeat: item in items | filter:{ $display : ngSearch} -->
+      
+              <div class="row center padding pointer">
+                  <a class="btn red" ng-click="updateModel({})"> <i class="fa fa-trash"></i> Clear </a>
+              </div>
+          </div>
+      </div>
+      </i-list>
+      
+          <i-list class="col3 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" ng-change="getAreaList(ngModel.city)" label="المدينة" ng-model="ngModel.city" items="cityList" display="name_ar" ng-search="_search.$ngModel.$city_search"><div class="dropdown i-list">
+          <div class="control">
+              <label class="ng-binding"> المدينة </label>
+              <input ng-focus="focus()" class="full-width text dropdown-text  ng-empty" ng-disabled="disabled" v="" readonly="" ng-model="ngModel.$display">
+          </div>
+      
+          <div class="dropdown-content">
+              <div class="row padding" ng-show="showSearch">
+                  <input class="full-width search ng-pristine ng-untouched ng-valid ng-empty" ng-model="ngSearch">
+                  <br>
+              </div>
+      
+              <!-- ngRepeat: item in items | filter:{ $display : ngSearch} -->
+      
+              <div class="row center padding pointer">
+                  <a class="btn red" ng-click="updateModel({})"> <i class="fa fa-trash"></i> Clear </a>
+              </div>
+          </div>
+      </div>
+      </i-list>
+      
+          <i-list class="col3 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" label="المنطقة" ng-model="ngModel.area" items="areaList" display="name_ar" ng-search="_search.$ngModel.$area_search"><div class="dropdown i-list">
+          <div class="control">
+              <label class="ng-binding"> المنطقة </label>
+              <input ng-focus="focus()" class="full-width text dropdown-text  ng-empty" ng-disabled="disabled" v="" readonly="" ng-model="ngModel.$display">
+          </div>
+      
+          <div class="dropdown-content">
+              <div class="row padding" ng-show="showSearch">
+                  <input class="full-width search ng-pristine ng-untouched ng-valid ng-empty" ng-model="ngSearch">
+                  <br>
+              </div>
+      
+              <!-- ngRepeat: item in items | filter:{ $display : ngSearch} -->
+      
+              <div class="row center padding pointer">
+                  <a class="btn red" ng-click="updateModel({})"> <i class="fa fa-trash"></i> Clear </a>
+              </div>
+          </div>
+      </div>
+      </i-list>
+        </div>
+        <div class="row">
+          <i-textarea class="col8 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" label="العنوان تفصيلي" ng-model="ngModel.detailed_address">
+              <div class="control">
+                  <label class="ng-binding"> العنوان تفصيلي </label>
+                  <textarea ng-disabled="disabled" rows="4" v="" ng-model="ngModel" ng-change="ngChange()" class="ng-pristine ng-untouched ng-valid ng-empty"></textarea>
+              </div>
+              </i-textarea>
         </div>
       </div>
-    </div>
-
-    <div x-import="scripts.html"></div>
-    <script x-import="manage-users/index.js"></script>
-  </body>
+      </i-address>
+                  </fieldset>
+      
+                  <br>
+                  <br>
+      
+                  <fieldset>
+                    <legend>
+                      عناوين أخرى
+                      <i-button type="add default" ng-click=" manage_user.profile.other_addresses_list.push({})" class="ng-isolate-scope">
+              <a class="btn add default">
+              
+              <i ng-show="fa" class="fa fa-plus-circle" aria-hidden="true"></i> </a>
+              </i-button>
+                    </legend>
+                    <!-- ngRepeat: o in manage_user.profile.other_addresses_list -->
+                  </fieldset>
+                </div>
+                <i-button type="save" label="حفظ" ng-click="saveUserChanges(manage_user)" class="ng-isolate-scope">
+              <a class="btn save">
+              حفظ
+              <i ng-show="fa" class="fa fa-save" aria-hidden="true"></i> </a>
+              </i-button>
+              </fieldset>
+            </div>
+      
+            <div id="companies_branches" class="tab-content" style="display: none;">
+              <fieldset>
+                <legend>الشركات و الفروع</legend>
+                <div class="row">
+                  <table class="table loaded hover center bold" style="visibility: visible;">
+                    <tbody><tr>
+                      <th class="not-print">الشعار</th>
+                      <th>إسم الشركة</th>
+                      <th>إسم الفرع</th>
+                    </tr>
+      
+                    <!-- ngRepeat: b in manage_user.branch_list --><tr ng-repeat="b in manage_user.branch_list" class="ng-scope">
+                      <td class="not-print">
+                        <i-image view="" class="logo ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty" ng-model="b.company.image_url">
+              <form class="form text-center pointer ng-pristine ng-valid">
+                  <input class="hidden" type="file" name="file">
+                  <img class="bg-white" ng-src="/imags/company.png" ngclick="ngClick()" onerror="this.src=''" src="">
+                  <progress class="row" style="display: none;"></progress>
+              </form>
+              </i-image>
+                      </td>
+                      <td class="ng-binding">
+                        <br>
+                        الشركة الرئيسية
+                      </td>
+                      <td class="ng-binding">
+                        <br>
+                        الفرع الرئيسى
+                      </td>
+                    </tr><!-- end ngRepeat: b in manage_user.branch_list -->
+                  </tbody></table>
+                </div>
+              </fieldset>
+            </div>
+      
+            <div id="screens_management" class="tab-content" style="display: none;">
+              <fieldset>
+                <legend>إدارة الشاشات</legend>
+                <div class="row">
+                  <table class="table loaded hover center bold" style="visibility: visible;">
+                    <tbody><tr>
+                      <th>الصلاحية بالعربي</th>
+                      <th>الصلاحية بالإنجليزي</th>
+                      <th>النوع</th>
+                    </tr>
+      
+                    <!-- ngRepeat: r in permissions_list | orderBy : 'module_name' --><tr ng-repeat="r in permissions_list | orderBy : 'module_name'" class="ng-scope">
+                      <td class="ng-binding">العملة</td>
+                      <td class="ng-binding">Currency</td>
+                      <td>
+                        <p ng-show="r.module_name === 'public'" class="ng-hide">عام</p>
+                        <p ng-show="r.module_name === 'hr'" class="ng-hide">الموارد البشرية</p>
+                        <p ng-show="r.module_name === 'inventory'" class="ng-hide">مخازن</p>
+                        <p ng-show="r.module_name === 'accounting'">حسابات</p>
+                        <p ng-show="r.module_name === 'report'" class="ng-hide">أقسام فرعية</p>
+                      </td>
+                    </tr><!-- end ngRepeat: r in permissions_list | orderBy : 'module_name' --><tr ng-repeat="r in permissions_list | orderBy : 'module_name'" class="ng-scope">
+                      <td class="ng-binding">القائمة</td>
+                      <td class="ng-binding">Menu</td>
+                      <td>
+                        <p ng-show="r.module_name === 'public'">عام</p>
+                        <p ng-show="r.module_name === 'hr'" class="ng-hide">الموارد البشرية</p>
+                        <p ng-show="r.module_name === 'inventory'" class="ng-hide">مخازن</p>
+                        <p ng-show="r.module_name === 'accounting'" class="ng-hide">حسابات</p>
+                        <p ng-show="r.module_name === 'report'" class="ng-hide">أقسام فرعية</p>
+                      </td>
+                    </tr><!-- end ngRepeat: r in permissions_list | orderBy : 'module_name' --><tr ng-repeat="r in permissions_list | orderBy : 'module_name'" class="ng-scope">
+                      <td class="ng-binding">إدارة الطلب</td>
+                      <td class="ng-binding">Manage Order</td>
+                      <td>
+                        <p ng-show="r.module_name === 'public'">عام</p>
+                        <p ng-show="r.module_name === 'hr'" class="ng-hide">الموارد البشرية</p>
+                        <p ng-show="r.module_name === 'inventory'" class="ng-hide">مخازن</p>
+                        <p ng-show="r.module_name === 'accounting'" class="ng-hide">حسابات</p>
+                        <p ng-show="r.module_name === 'report'" class="ng-hide">أقسام فرعية</p>
+                      </td>
+                    </tr><!-- end ngRepeat: r in permissions_list | orderBy : 'module_name' --><tr ng-repeat="r in permissions_list | orderBy : 'module_name'" class="ng-scope">
+                      <td class="ng-binding">الإعلانات</td>
+                      <td class="ng-binding">Ads</td>
+                      <td>
+                        <p ng-show="r.module_name === 'public'">عام</p>
+                        <p ng-show="r.module_name === 'hr'" class="ng-hide">الموارد البشرية</p>
+                        <p ng-show="r.module_name === 'inventory'" class="ng-hide">مخازن</p>
+                        <p ng-show="r.module_name === 'accounting'" class="ng-hide">حسابات</p>
+                        <p ng-show="r.module_name === 'report'" class="ng-hide">أقسام فرعية</p>
+                      </td>
+                    </tr><!-- end ngRepeat: r in permissions_list | orderBy : 'module_name' --><tr ng-repeat="r in permissions_list | orderBy : 'module_name'" class="ng-scope">
+                      <td class="ng-binding">الأقسام الرئيسية</td>
+                      <td class="ng-binding">Main categories</td>
+                      <td>
+                        <p ng-show="r.module_name === 'public'">عام</p>
+                        <p ng-show="r.module_name === 'hr'" class="ng-hide">الموارد البشرية</p>
+                        <p ng-show="r.module_name === 'inventory'" class="ng-hide">مخازن</p>
+                        <p ng-show="r.module_name === 'accounting'" class="ng-hide">حسابات</p>
+                        <p ng-show="r.module_name === 'report'" class="ng-hide">أقسام فرعية</p>
+                      </td>
+                    </tr><!-- end ngRepeat: r in permissions_list | orderBy : 'module_name' --><tr ng-repeat="r in permissions_list | orderBy : 'module_name'" class="ng-scope">
+                      <td class="ng-binding">أنواع التعليقات</td>
+                      <td class="ng-binding">Comments Types</td>
+                      <td>
+                        <p ng-show="r.module_name === 'public'">عام</p>
+                        <p ng-show="r.module_name === 'hr'" class="ng-hide">الموارد البشرية</p>
+                        <p ng-show="r.module_name === 'inventory'" class="ng-hide">مخازن</p>
+                        <p ng-show="r.module_name === 'accounting'" class="ng-hide">حسابات</p>
+                        <p ng-show="r.module_name === 'report'" class="ng-hide">أقسام فرعية</p>
+                      </td>
+                    </tr><!-- end ngRepeat: r in permissions_list | orderBy : 'module_name' --><tr ng-repeat="r in permissions_list | orderBy : 'module_name'" class="ng-scope">
+                      <td class="ng-binding">أنواع البلاغات</td>
+                      <td class="ng-binding">Reports Types</td>
+                      <td>
+                        <p ng-show="r.module_name === 'public'">عام</p>
+                        <p ng-show="r.module_name === 'hr'" class="ng-hide">الموارد البشرية</p>
+                        <p ng-show="r.module_name === 'inventory'" class="ng-hide">مخازن</p>
+                        <p ng-show="r.module_name === 'accounting'" class="ng-hide">حسابات</p>
+                        <p ng-show="r.module_name === 'report'" class="ng-hide">أقسام فرعية</p>
+                      </td>
+                    </tr><!-- end ngRepeat: r in permissions_list | orderBy : 'module_name' --><tr ng-repeat="r in permissions_list | orderBy : 'module_name'" class="ng-scope">
+                      <td class="ng-binding">إدارة المستخدمين</td>
+                      <td class="ng-binding">Manage Users</td>
+                      <td>
+                        <p ng-show="r.module_name === 'public'">عام</p>
+                        <p ng-show="r.module_name === 'hr'" class="ng-hide">الموارد البشرية</p>
+                        <p ng-show="r.module_name === 'inventory'" class="ng-hide">مخازن</p>
+                        <p ng-show="r.module_name === 'accounting'" class="ng-hide">حسابات</p>
+                        <p ng-show="r.module_name === 'report'" class="ng-hide">أقسام فرعية</p>
+                      </td>
+                    </tr><!-- end ngRepeat: r in permissions_list | orderBy : 'module_name' --><tr ng-repeat="r in permissions_list | orderBy : 'module_name'" class="ng-scope">
+                      <td class="ng-binding">المتاجر</td>
+                      <td class="ng-binding">Stores</td>
+                      <td>
+                        <p ng-show="r.module_name === 'public'">عام</p>
+                        <p ng-show="r.module_name === 'hr'" class="ng-hide">الموارد البشرية</p>
+                        <p ng-show="r.module_name === 'inventory'" class="ng-hide">مخازن</p>
+                        <p ng-show="r.module_name === 'accounting'" class="ng-hide">حسابات</p>
+                        <p ng-show="r.module_name === 'report'" class="ng-hide">أقسام فرعية</p>
+                      </td>
+                    </tr><!-- end ngRepeat: r in permissions_list | orderBy : 'module_name' --><tr ng-repeat="r in permissions_list | orderBy : 'module_name'" class="ng-scope">
+                      <td class="ng-binding">الدول</td>
+                      <td class="ng-binding">Countries</td>
+                      <td>
+                        <p ng-show="r.module_name === 'public'">عام</p>
+                        <p ng-show="r.module_name === 'hr'" class="ng-hide">الموارد البشرية</p>
+                        <p ng-show="r.module_name === 'inventory'" class="ng-hide">مخازن</p>
+                        <p ng-show="r.module_name === 'accounting'" class="ng-hide">حسابات</p>
+                        <p ng-show="r.module_name === 'report'" class="ng-hide">أقسام فرعية</p>
+                      </td>
+                    </tr><!-- end ngRepeat: r in permissions_list | orderBy : 'module_name' --><tr ng-repeat="r in permissions_list | orderBy : 'module_name'" class="ng-scope">
+                      <td class="ng-binding">شاشة الترقيم</td>
+                      <td class="ng-binding">Numbering Screen</td>
+                      <td>
+                        <p ng-show="r.module_name === 'public'">عام</p>
+                        <p ng-show="r.module_name === 'hr'" class="ng-hide">الموارد البشرية</p>
+                        <p ng-show="r.module_name === 'inventory'" class="ng-hide">مخازن</p>
+                        <p ng-show="r.module_name === 'accounting'" class="ng-hide">حسابات</p>
+                        <p ng-show="r.module_name === 'report'" class="ng-hide">أقسام فرعية</p>
+                      </td>
+                    </tr><!-- end ngRepeat: r in permissions_list | orderBy : 'module_name' --><tr ng-repeat="r in permissions_list | orderBy : 'module_name'" class="ng-scope">
+                      <td class="ng-binding">المنطقة</td>
+                      <td class="ng-binding">Area</td>
+                      <td>
+                        <p ng-show="r.module_name === 'public'">عام</p>
+                        <p ng-show="r.module_name === 'hr'" class="ng-hide">الموارد البشرية</p>
+                        <p ng-show="r.module_name === 'inventory'" class="ng-hide">مخازن</p>
+                        <p ng-show="r.module_name === 'accounting'" class="ng-hide">حسابات</p>
+                        <p ng-show="r.module_name === 'report'" class="ng-hide">أقسام فرعية</p>
+                      </td>
+                    </tr><!-- end ngRepeat: r in permissions_list | orderBy : 'module_name' --><tr ng-repeat="r in permissions_list | orderBy : 'module_name'" class="ng-scope">
+                      <td class="ng-binding">المدينة</td>
+                      <td class="ng-binding">City</td>
+                      <td>
+                        <p ng-show="r.module_name === 'public'">عام</p>
+                        <p ng-show="r.module_name === 'hr'" class="ng-hide">الموارد البشرية</p>
+                        <p ng-show="r.module_name === 'inventory'" class="ng-hide">مخازن</p>
+                        <p ng-show="r.module_name === 'accounting'" class="ng-hide">حسابات</p>
+                        <p ng-show="r.module_name === 'report'" class="ng-hide">أقسام فرعية</p>
+                      </td>
+                    </tr><!-- end ngRepeat: r in permissions_list | orderBy : 'module_name' --><tr ng-repeat="r in permissions_list | orderBy : 'module_name'" class="ng-scope">
+                      <td class="ng-binding">الإعدادات الإفتراضية</td>
+                      <td class="ng-binding">Default Setting</td>
+                      <td>
+                        <p ng-show="r.module_name === 'public'">عام</p>
+                        <p ng-show="r.module_name === 'hr'" class="ng-hide">الموارد البشرية</p>
+                        <p ng-show="r.module_name === 'inventory'" class="ng-hide">مخازن</p>
+                        <p ng-show="r.module_name === 'accounting'" class="ng-hide">حسابات</p>
+                        <p ng-show="r.module_name === 'report'" class="ng-hide">أقسام فرعية</p>
+                      </td>
+                    </tr><!-- end ngRepeat: r in permissions_list | orderBy : 'module_name' --><tr ng-repeat="r in permissions_list | orderBy : 'module_name'" class="ng-scope">
+                      <td class="ng-binding">الإعدادات الإفتراضية</td>
+                      <td class="ng-binding">Default Setting</td>
+                      <td>
+                        <p ng-show="r.module_name === 'public'">عام</p>
+                        <p ng-show="r.module_name === 'hr'" class="ng-hide">الموارد البشرية</p>
+                        <p ng-show="r.module_name === 'inventory'" class="ng-hide">مخازن</p>
+                        <p ng-show="r.module_name === 'accounting'" class="ng-hide">حسابات</p>
+                        <p ng-show="r.module_name === 'report'" class="ng-hide">أقسام فرعية</p>
+                      </td>
+                    </tr><!-- end ngRepeat: r in permissions_list | orderBy : 'module_name' --><tr ng-repeat="r in permissions_list | orderBy : 'module_name'" class="ng-scope">
+                      <td class="ng-binding">الإعدادات الإفتراضية</td>
+                      <td class="ng-binding">Default Setting</td>
+                      <td>
+                        <p ng-show="r.module_name === 'public'">عام</p>
+                        <p ng-show="r.module_name === 'hr'" class="ng-hide">الموارد البشرية</p>
+                        <p ng-show="r.module_name === 'inventory'" class="ng-hide">مخازن</p>
+                        <p ng-show="r.module_name === 'accounting'" class="ng-hide">حسابات</p>
+                        <p ng-show="r.module_name === 'report'" class="ng-hide">أقسام فرعية</p>
+                      </td>
+                    </tr><!-- end ngRepeat: r in permissions_list | orderBy : 'module_name' --><tr ng-repeat="r in permissions_list | orderBy : 'module_name'" class="ng-scope">
+                      <td class="ng-binding">المحافظات</td>
+                      <td class="ng-binding">Goves</td>
+                      <td>
+                        <p ng-show="r.module_name === 'public'">عام</p>
+                        <p ng-show="r.module_name === 'hr'" class="ng-hide">الموارد البشرية</p>
+                        <p ng-show="r.module_name === 'inventory'" class="ng-hide">مخازن</p>
+                        <p ng-show="r.module_name === 'accounting'" class="ng-hide">حسابات</p>
+                        <p ng-show="r.module_name === 'report'" class="ng-hide">أقسام فرعية</p>
+                      </td>
+                    </tr><!-- end ngRepeat: r in permissions_list | orderBy : 'module_name' --><tr ng-repeat="r in permissions_list | orderBy : 'module_name'" class="ng-scope">
+                      <td class="ng-binding">شاشة الترقيم</td>
+                      <td class="ng-binding">Numbering Screen</td>
+                      <td>
+                        <p ng-show="r.module_name === 'public'">عام</p>
+                        <p ng-show="r.module_name === 'hr'" class="ng-hide">الموارد البشرية</p>
+                        <p ng-show="r.module_name === 'inventory'" class="ng-hide">مخازن</p>
+                        <p ng-show="r.module_name === 'accounting'" class="ng-hide">حسابات</p>
+                        <p ng-show="r.module_name === 'report'" class="ng-hide">أقسام فرعية</p>
+                      </td>
+                    </tr><!-- end ngRepeat: r in permissions_list | orderBy : 'module_name' --><tr ng-repeat="r in permissions_list | orderBy : 'module_name'" class="ng-scope">
+                      <td class="ng-binding">المتاجر</td>
+                      <td class="ng-binding">Stores</td>
+                      <td>
+                        <p ng-show="r.module_name === 'public'">عام</p>
+                        <p ng-show="r.module_name === 'hr'" class="ng-hide">الموارد البشرية</p>
+                        <p ng-show="r.module_name === 'inventory'" class="ng-hide">مخازن</p>
+                        <p ng-show="r.module_name === 'accounting'" class="ng-hide">حسابات</p>
+                        <p ng-show="r.module_name === 'report'" class="ng-hide">أقسام فرعية</p>
+                      </td>
+                    </tr><!-- end ngRepeat: r in permissions_list | orderBy : 'module_name' --><tr ng-repeat="r in permissions_list | orderBy : 'module_name'" class="ng-scope">
+                      <td class="ng-binding">الوحدات</td>
+                      <td class="ng-binding">Units</td>
+                      <td>
+                        <p ng-show="r.module_name === 'public'">عام</p>
+                        <p ng-show="r.module_name === 'hr'" class="ng-hide">الموارد البشرية</p>
+                        <p ng-show="r.module_name === 'inventory'" class="ng-hide">مخازن</p>
+                        <p ng-show="r.module_name === 'accounting'" class="ng-hide">حسابات</p>
+                        <p ng-show="r.module_name === 'report'" class="ng-hide">أقسام فرعية</p>
+                      </td>
+                    </tr><!-- end ngRepeat: r in permissions_list | orderBy : 'module_name' --><tr ng-repeat="r in permissions_list | orderBy : 'module_name'" class="ng-scope">
+                      <td class="ng-binding">الشركات</td>
+                      <td class="ng-binding">Compaines</td>
+                      <td>
+                        <p ng-show="r.module_name === 'public'">عام</p>
+                        <p ng-show="r.module_name === 'hr'" class="ng-hide">الموارد البشرية</p>
+                        <p ng-show="r.module_name === 'inventory'" class="ng-hide">مخازن</p>
+                        <p ng-show="r.module_name === 'accounting'" class="ng-hide">حسابات</p>
+                        <p ng-show="r.module_name === 'report'" class="ng-hide">أقسام فرعية</p>
+                      </td>
+                    </tr><!-- end ngRepeat: r in permissions_list | orderBy : 'module_name' --><tr ng-repeat="r in permissions_list | orderBy : 'module_name'" class="ng-scope">
+                      <td class="ng-binding"></td>
+                      <td class="ng-binding"></td>
+                      <td>
+                        <p ng-show="r.module_name === 'public'" class="ng-hide">عام</p>
+                        <p ng-show="r.module_name === 'hr'" class="ng-hide">الموارد البشرية</p>
+                        <p ng-show="r.module_name === 'inventory'" class="ng-hide">مخازن</p>
+                        <p ng-show="r.module_name === 'accounting'" class="ng-hide">حسابات</p>
+                        <p ng-show="r.module_name === 'report'" class="ng-hide">أقسام فرعية</p>
+                      </td>
+                    </tr><!-- end ngRepeat: r in permissions_list | orderBy : 'module_name' -->
+                  </tbody></table>
+                </div>
+              </fieldset>
+            </div>
+      
+            <div id="messages" class="tab-content" style="display: none;">
+              <fieldset>
+                <legend>الرسائل</legend>
+                <br>
+                <div class="row" ng-hide="messagesList.length > 0">
+                  <br>
+                  <br>
+                  <h1 class="blue bold center">لا يوجد رسائل</h1>
+                  <br>
+                  <br>
+                </div>
+                <div class="row ng-hide" style="max-width: 1200px" ng-show="messagesList.length > 0">
+                  <div class="item-groups">
+                    <!-- ngRepeat: m in messagesList -->
+                  </div>
+                </div>
+                <br>
+                <div class="row">
+                  <fieldset>
+                    <legend>الرسالة</legend>
+      
+                    <br>
+                    <br>
+                    <div class="row">
+                      <div class="col10">
+                        <div class="row _scroll">
+                          <!-- ngRepeat: c in message.messages_list -->
+                        </div>
+                      </div>
+                    </div>
+      
+                    <br>
+                    <br>
+      
+                    <div class="row">
+                      <div class="col3"></div>
+                      <i-textarea class="col6 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" label="أكتب رسالتك هنا" ng-model="send_message">
+              <div class="control">
+                  <label class="ng-binding"> أكتب رسالتك هنا </label>
+                  <textarea ng-disabled="disabled" rows="4" v="" ng-model="ngModel" ng-change="ngChange()" class="ng-pristine ng-untouched ng-valid ng-empty"></textarea>
+              </div>
+              </i-textarea>
+                    </div>
+                    <div class="row center">
+                      <i-button type="add" label="إرسال" ng-click="sendMessage(message)" class="ng-isolate-scope">
+              <a class="btn add">
+              إرسال
+              <i ng-show="fa" class="fa fa-plus-circle" aria-hidden="true"></i> </a>
+              </i-button>
+                    </div>
+                  </fieldset>
+                </div>
+              </fieldset>
+            </div>
+      
+            <div id="cart" class="tab-content" style="display: none;">
+              <fieldset>
+                <legend>العربة</legend>
+                <br>
+                <br>
+                <div class="row" ng-hide="manage_user.cart.items.length > 0">
+                  <br>
+                  <br>
+                  <h1 class="blue bold center">لا يوجد منتجات في السلة</h1>
+                  <br>
+                  <br>
+                </div>
+                <div class="row ng-hide" ng-show="manage_user.cart.items.length > 0">
+                  <table x-permissions="login" class="table hover bold">
+                    <tbody><tr>
+                      <th class="not-print">الشعار</th>
+                      <th>إسم المنتج</th>
+                      <th>الوحدة</th>
+                      <th>عدد</th>
+                      <th>السعر</th>
+                      <th>العملة</th>
+                      <th>إجمالي</th>
+                    </tr>
+                    <!-- ngRepeat: p in manage_user.cart.items -->
+                  </tbody></table>
+                </div>
+                <div class="row">
+                  <div class="col5"></div>
+                  <i-control id="item_name" ng-show="manage_user.cart.items.length > 0" class="col2 r_green center ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty ng-hide" label="إجمالي سعر المشتريات" type="number" ng-model="manage_user.cart.net_value" disabled="">
+              <div class="control">
+                  <label class="ng-binding"> إجمالي سعر المشتريات </label>
+                  <input id="" ng-disabled="disabled" autofocus="" v="" type="number" ng-model="ngModel" ng-change="ngChange()" ngkeydown="ngKeydown()" class="ng-pristine ng-untouched ng-valid ng-empty" disabled="disabled">
+              </div>
+              </i-control>
+                </div>
+              </fieldset>
+            </div>
+      
+            <div id="my_orders" class="tab-content" style="display: none;">
+              <fieldset>
+                <legend>طلباتي</legend>
+                <br>
+      
+                <div class="row" ng-hide="orderslist.length > 0">
+                  <br>
+                  <br>
+                  <h1 class="blue bold center">لا يوجد إعلانات</h1>
+                  <br>
+                  <br>
+                </div>
+      
+                <div class="row ng-hide" ng-show="orderslist.length > 0">
+                  <table class="table loaded hover pointer center bold" style="visibility: visible;">
+                    <tbody><tr>
+                      <th>كود الطلب</th>
+                      <th>التاريخ</th>
+                      <th>طريقة الدفع</th>
+                      <th>نوع التوصيل</th>
+                      <th>المطلوب دفعه</th>
+                      <th>الحالة</th>
+                    </tr>
+      
+                    <!-- ngRepeat: o in orderslist -->
+                  </tbody></table>
+                </div>
+              </fieldset>
+            </div>
+      
+            <div id="my_ads" class="tab-content" style="display: none;">
+              <fieldset>
+                <legend>إعلاناتي</legend>
+                <br>
+      
+                <div class="top-actions">
+                  <i-button type="add" label="إعلان جديدة" ng-click="displayAddAd()" class="ng-isolate-scope">
+              <a class="btn add">
+              إعلان جديدة
+              <i ng-show="fa" class="fa fa-plus-circle" aria-hidden="true"></i> </a>
+              </i-button>
+                </div>
+                <div class="row">
+                  <table class="table loaded hover pointer center bold" style="visibility: visible;">
+                    <tbody><tr>
+                      <th>الشعار</th>
+                      <th>الإسم</th>
+                      <th>متجر</th>
+                      <th>الحالة</th>
+                      <th class="not-print">الإجراءات</th>
+                    </tr>
+      
+                    <!-- ngRepeat: l in myAdslist -->
+                  </tbody></table>
+                </div>
+              </fieldset>
+            </div>
+      
+            <div id="my_stores" class="tab-content" style="display: none;">
+              <fieldset>
+                <legend>متاجري</legend>
+                <br>
+      
+                <div class="top-actions">
+                  <i-button type="add" label="متجر جديدة" ng-click="displayAddStore()" class="ng-isolate-scope">
+              <a class="btn add">
+              متجر جديدة
+              <i ng-show="fa" class="fa fa-plus-circle" aria-hidden="true"></i> </a>
+              </i-button>
+                </div>
+                <div class="row">
+                  <table class="table loaded hover pointer center bold" style="visibility: visible;">
+                    <tbody><tr>
+                      <th>الشعار</th>
+                      <th>الإسم</th>
+                      <th>حالة المتجر</th>
+                      <th class="not-print">الإجراءات</th>
+                    </tr>
+      
+                    <!-- ngRepeat: l in myStoreslist -->
+                  </tbody></table>
+                </div>
+              </fieldset>
+            </div>
+      
+            <div id="liked_ads" class="tab-content" style="display: none;">
+              <fieldset>
+                <legend>إعلانات معجب بها</legend>
+                <br>
+      
+                <div class="row" ng-hide="likedAdslist.length > 0">
+                  <br>
+                  <br>
+                  <h1 class="blue bold center">لا يوجد إعلانات</h1>
+                  <br>
+                  <br>
+                </div>
+      
+                <div class="row ng-hide" ng-show="likedAdslist.length > 0">
+                  <table class="table loaded hover pointer center bold" style="visibility: visible;">
+                    <tbody><tr>
+                      <th>الشعار</th>
+                      <th>الإسم</th>
+                      <th>صاحب الإعلان</th>
+                      <th>متجر</th>
+                    </tr>
+      
+                    <!-- ngRepeat: l in likedAdslist -->
+                  </tbody></table>
+                </div>
+              </fieldset>
+            </div>
+      
+            <div id="liked_stores" class="tab-content" style="display: none;">
+              <fieldset>
+                <legend>متاجر معجب بها</legend>
+                <br>
+      
+                <div class="row" ng-hide="likedStoreslist.length > 0">
+                  <br>
+                  <br>
+                  <h1 class="blue bold center">لا يوجد متاجر</h1>
+                  <br>
+                  <br>
+                </div>
+      
+                <div class="row ng-hide" ng-show="likedStoreslist.length > 0">
+                  <table class="table loaded hover pointer center bold" style="visibility: visible;">
+                    <tbody><tr>
+                      <th>الشعار</th>
+                      <th>الإسم</th>
+                      <th>صاحب المتجر</th>
+                    </tr>
+      
+                    <!-- ngRepeat: l in likedStoreslist -->
+                  </tbody></table>
+                </div>
+              </fieldset>
+            </div>
+      
+            <div id="favorite_ads" class="tab-content" style="display: none;">
+              <fieldset>
+                <legend>إعلانات مفضلة</legend>
+                <br>
+      
+                <div class="row" ng-hide="favoriteAdslist.length > 0">
+                  <br>
+                  <br>
+                  <h1 class="blue bold center">لا يوجد إعلانات</h1>
+                  <br>
+                  <br>
+                </div>
+      
+                <div class="row ng-hide" ng-show="favoriteAdslist.length > 0">
+                  <table class="table loaded hover pointer center bold" style="visibility: visible;">
+                    <tbody><tr>
+                      <th>الشعار</th>
+                      <th>الإسم</th>
+                      <th>صاحب الإعلان</th>
+                      <th>متجر</th>
+                    </tr>
+      
+                    <!-- ngRepeat: f in favoriteAdslist -->
+                  </tbody></table>
+                </div>
+              </fieldset>
+            </div>
+      
+            <div id="favorite_stores" class="tab-content" style="display: none;">
+              <fieldset>
+                <legend>متاجر مفضلة</legend>
+                <br>
+      
+                <div class="row" ng-hide="favoriteStoreslist.length > 0">
+                  <br>
+                  <br>
+                  <h1 class="blue bold center">لا يوجد متاجر</h1>
+                  <br>
+                  <br>
+                </div>
+      
+                <div class="row ng-hide" ng-show="favoriteStoreslist.length > 0">
+                  <table class="table loaded hover pointer center bold" style="visibility: visible;">
+                    <tbody><tr>
+                      <th>الشعار</th>
+                      <th>الإسم</th>
+                      <th>صاحب المتجر</th>
+                    </tr>
+      
+                    <!-- ngRepeat: f in favoriteStoreslist -->
+                  </tbody></table>
+                </div>
+              </fieldset>
+            </div>
+          </div>
+        </div>
+      </div>
+    <script src="../js/script.js"></script>
+</body>
 </html>

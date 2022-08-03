@@ -3,37 +3,58 @@ app.controller("main_categories", function ($scope, $http, $timeout) {
 
   $scope.main_categories = {};
 
-  $scope.displayAddMainCategories = function () {
+  $scope.displayAddMainCategories = function (parent_main_category) {
+    $scope._search = {};
+
     $scope.error = '';
-    $scope.main_categories = {
-      image_url: '/images/main_categories.png',
-      sub_category_list : [{sub_category_list : []}],
-      category_require_list : [{}],
-      active: true/* ,
-      immediate : false */
+
+    if (parent_main_category && parent_main_category.type == 'detailed') {
+      return;
     };
+
+    $scope.main_categories = {
+      type: 'detailed',
+      status: 'active',
+      image_url: '/images/main_categories.png'
+    };
+
+    if (parent_main_category) {
+      $scope.main_categories.parent_id = parent_main_category.id;
+      $scope.main_categories.top_parent_id = parent_main_category.top_parent_id || parent_main_category.id;
+    };
+  
+
+    if ($scope.main_categories.top_parent_id) {
+
+      $scope.main_categories = {
+        code: parent_main_category.code,
+        type: 'detailed',
+        status: parent_main_category.status,
+        image_url: parent_main_category.image_url
+      };
+
+      $scope.main_categories.parent_id = parent_main_category.id;
+      $scope.main_categories.top_parent_id = parent_main_category.top_parent_id || parent_main_category.id;
+    };
+
+    if($scope.default_setting.site_settings && $scope.default_setting.site_settings.auto_generate_categories_code){
+      $scope.main_categories.length_level = $scope.default_setting.site_settings.length_level || 0;
+    };
+
     site.showModal('#mainCategoriesAddModal');
-
-  };
-
-  $scope.addSubCategoryList = function (m) {
-    m.sub_category_list = m.sub_category_list || [{sub_category_list : []}];
-    m.sub_category_list.push({sub_category_list : []});
-  };
-
-  $scope.addTypesCategoryRequireList = function (m) {
-    m.category_require_list = m.category_require_list || [];
-    m.category_require_list.push({});
   };
 
   $scope.addMainCategories = function () {
     $scope.error = '';
-    const v = site.validated('#mainCategoriesAddModal');
+    if ($scope.busy) {
+      return;
+    }
 
+    const v = site.validated('#mainCategoriesAddModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
-    };
+    }
 
     $scope.busy = true;
     $http({
@@ -44,12 +65,23 @@ app.controller("main_categories", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
+          $scope.main_categories = {
+            type: 'detailed',
+            status: 'active',
+            image_url: '/images/main_categories.jpg'
+          };
+
           site.hideModal('#mainCategoriesAddModal');
+
+          $scope.list.push(response.data.doc);
           $scope.getMainCategoriesList();
+
         } else {
           $scope.error = response.data.error;
-          if (response.data.error.like('*Must Enter Code*')) {
-            $scope.error = "##word.must_enter_code##"
+          if (response.data.error.like('*duplicate key*')) {
+            $scope.error = "##word.main_categories_code_err##";
+          } else if (response.data.error.like('*enter tree code*')) {
+            $scope.error = "##word.enter_code_tree##";
           }
         }
       },
@@ -60,19 +92,30 @@ app.controller("main_categories", function ($scope, $http, $timeout) {
   };
 
   $scope.displayUpdateMainCategories = function (main_categories) {
+    $scope._search = {};
+
     $scope.error = '';
     $scope.viewMainCategories(main_categories);
     $scope.main_categories = {};
+
     site.showModal('#mainCategoriesUpdateModal');
   };
 
   $scope.updateMainCategories = function () {
+
     $scope.error = '';
+    if ($scope.busy) {
+      return;
+    }
+
     const v = site.validated('#mainCategoriesUpdateModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
+      $scope.busy = false;
+      alert('validated error');
       return;
     }
+
     $scope.busy = true;
     $http({
       method: "POST",
@@ -83,9 +126,17 @@ app.controller("main_categories", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal('#mainCategoriesUpdateModal');
-          $scope.getMainCategoriesList();
+          $scope.list.forEach((b, i) => {
+            if (b.id == response.data.doc.id) {
+              $scope.list[i] = response.data.doc;
+            }
+            $scope.getMainCategoriesList();
+          });
         } else {
-          $scope.error = 'Please Login First';
+          $scope.error = response.data.error;
+          if (response.data.error.like('*Detailed Err*')) {
+            $scope.error = "##word.detailed_err##";
+          }
         }
       },
       function (err) {
@@ -94,16 +145,19 @@ app.controller("main_categories", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.displayDetailsMainCategories = function (main_categories) {
+  $scope.displayViewMainCategories = function (main_categories) {
+
     $scope.error = '';
     $scope.viewMainCategories(main_categories);
     $scope.main_categories = {};
-    site.showModal('#mainCategoriesViewModal');
+    site.showModal('#mainCategoriesDetailsModal');
   };
 
   $scope.viewMainCategories = function (main_categories) {
-    $scope.busy = true;
+
     $scope.error = '';
+    $scope.busy = true;
+
     $http({
       method: "POST",
       url: "/api/main_categories/view",
@@ -126,16 +180,21 @@ app.controller("main_categories", function ($scope, $http, $timeout) {
   };
 
   $scope.displayDeleteMainCategories = function (main_categories) {
+
     $scope.error = '';
     $scope.viewMainCategories(main_categories);
     $scope.main_categories = {};
     site.showModal('#mainCategoriesDeleteModal');
-
   };
 
   $scope.deleteMainCategories = function () {
-    $scope.busy = true;
+
     $scope.error = '';
+    if ($scope.busy) {
+      return
+    }
+
+    $scope.busy = true;
 
     $http({
       method: "POST",
@@ -147,10 +206,19 @@ app.controller("main_categories", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
+
           site.hideModal('#mainCategoriesDeleteModal');
-          $scope.getMainCategoriesList();
+          $scope.list.forEach((b, i) => {
+            if (b.id == response.data.doc.id) {
+              $scope.list.splice(i, 1);
+            }
+            $scope.getMainCategoriesList();
+          });
         } else {
           $scope.error = response.data.error;
+          if (response.data.error.like('*Delete Acc Err*')) {
+            $scope.error = "##word.cant_delete##";
+          }
         }
       },
       function (err) {
@@ -160,8 +228,11 @@ app.controller("main_categories", function ($scope, $http, $timeout) {
   };
 
   $scope.getMainCategoriesList = function (where) {
+
+    $scope.error = '';
     $scope.busy = true;
     $scope.list = [];
+
     $http({
       method: "POST",
       url: "/api/main_categories/all",
@@ -173,9 +244,10 @@ app.controller("main_categories", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
           $scope.list = response.data.list;
+          response.data.list.forEach(n => {
+            n.name2 = n.code + '-' + n.name_ar;
+          });
           $scope.count = response.data.count;
-          site.hideModal('#mainCategoriesSearchModal');
-          $scope.search = {};
         }
       },
       function (err) {
@@ -185,20 +257,34 @@ app.controller("main_categories", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getNumberingAuto = function () {
-    $scope.error = '';
+  $scope.addTypesCategoryRequireList = function (m) {
+    m.category_require_list = m.category_require_list || [];
+    m.category_require_list.push({});
+  };
+
+  $scope.searchAll = function () {
+    $scope._search = {};
+
+    $scope.getMainCategoriesList(where);
+
+    site.hideModal('#mainCategoriesSearchModal');
+    $scope.search = {}
+
+  };
+
+  $scope.getCodeType = function () {
     $scope.busy = true;
+
     $http({
       method: "POST",
-      url: "/api/numbering/get_automatic",
-      data: {
-        screen: "main_categories"
-      }
+      url: "/api/default_setting/get",
+      data: {}
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done) {
-          $scope.disabledCode = response.data.isAuto;
+        if (response.data) {
+          $scope.default_setting = response.data.doc;
+          $scope.disabledCode = response.data.doc.site_settings.auto_generate_categories_code == true ? true : false;
         }
       },
       function (err) {
@@ -208,20 +294,8 @@ app.controller("main_categories", function ($scope, $http, $timeout) {
     )
   };
 
- 
-  $scope.displaySearchModal = function () {
-    $scope.error = '';
-    site.showModal('#mainCategoriesSearchModal');
-
-  };
-
-  $scope.searchAll = function () { 
-    $scope.getMainCategoriesList($scope.search);
-    site.hideModal('#mainCategoriesSearchModal');
-    $scope.search = {};
-
-  };
+  $scope.getCodeType();
 
   $scope.getMainCategoriesList();
-  $scope.getNumberingAuto();
+
 });

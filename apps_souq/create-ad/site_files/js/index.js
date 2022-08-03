@@ -111,7 +111,7 @@ app.controller('create_ad', function ($scope, $http, $timeout) {
       url: '/api/main_categories/all',
       data: {
         where: {
-          active: true,
+          status: 'active',
         },
       },
     }).then(
@@ -119,13 +119,7 @@ app.controller('create_ad', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.category_list = response.data.list;
-          $scope.category_list.forEach((l) => {
-            $scope.mainCategories.push({
-              id: l.id,
-              name_ar: l.name_ar,
-              idname_en: l.idname_en,
-            });
-          });
+       
         }
       },
       function (err) {
@@ -313,6 +307,19 @@ app.controller('create_ad', function ($scope, $http, $timeout) {
       }
     );
   };
+
+  $scope.viewCategories = function (c) {
+    $scope.category = c;
+    site.showModal('#categoriesViewModal');
+  };
+
+  $scope.selectCategory = function (c) {
+    $scope.ad.main_category = c;
+    if (c && !c.top_parent_id) {
+      $scope.ad.category_require_list = c.category_require_list;
+    }
+  };
+  
   $scope.getUnitsList();
   $scope.getCurrenciesList();
   $scope.loadMainCategories();

@@ -182,23 +182,25 @@
 ></div>
 
 <script>
+  var isMenuShow = false;
 
-$(document).ready(() => {
-    if (!isMenuShow) {
-      $('.tooltip').addClass('tooltip2');
-    }
-  });
-  
-/*   $('.tooltip img').hover(
-    () => {
-      console.log('xxxxxxxxxxxxxxxx');
-      console.log($(this).parent('a'));
-      $(this).parent().addClass('tooltip2');
-      if (!isMenuShow) {
+  function showMenu() {
+    let menu = document.querySelector('.main-menu');
+    let body = document.querySelector('body');
+    if (isMenuShow) {
+      if (menu) {
+        menu.classList.remove('menu-show');
       }
-    },
-    () => {
-      $(this).parent().removeClass('tooltip2');
+      body.classList.remove('menu-show');
+      isMenuShow = false;
+      $('.tooltip').addClass('tooltip2');
+    } else {
+      $('.tooltip').removeClass('tooltip2');
+      if (menu) {
+        menu.classList.add('menu-show');
+      }
+      body.classList.add('menu-show');
+      isMenuShow = true;
     }
-  ); */
+  }
 </script>

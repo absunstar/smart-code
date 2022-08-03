@@ -431,7 +431,7 @@
 
               <tr ng-repeat="l in myAdslist">
                 <td ng-click="viewOrder(l)"><i-image view class="logo" ng-model="l.image_url"></i-image></td>
-                <td ng-click="viewOrder(l)">{{l.name}}</td>
+                <td ng-click="viewOrder(l)">{{l.name_##session.lang##}}</td>
                 <td ng-click="viewOrder(l)" class="blue">{{l.store.name_##session.lang##}}</td>
                 <td ng-click="viewOrder(l)" class="">{{l.ad_status.##session.lang##}}</td>
                 <td class="center not-print">

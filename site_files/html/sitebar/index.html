@@ -81,29 +81,3 @@
   <div x-permission="login" x-features="!souq" x-import="menu/index.html"></div>
   <div x-features="souq" x-permissions="menu_ui || menu_manage" x-import="menu/index.html"></div>
 </div>
-
-<script>
-  var isMenuShow = false;
-
-  function showMenu() {
-    let menu = document.querySelector('.main-menu');
-    let body = document.querySelector('body');
-    if (isMenuShow) {
-      if(menu){
-
-        menu.classList.remove('menu-show');
-      }
-      body.classList.remove('menu-show');
-      isMenuShow = false;
-      $('.tooltip').addClass('tooltip2');
-    } else {
-      $('.tooltip').removeClass('tooltip2');
-      if(menu){
-
-        menu.classList.add('menu-show');
-      }
-      body.classList.add('menu-show');
-      isMenuShow = true;
-    }
-  }
-</script>

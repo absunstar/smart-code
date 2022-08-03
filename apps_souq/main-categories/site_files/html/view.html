@@ -1,72 +1,79 @@
 <div ng-hide="busy" class="row">
-  <div id="basicInformation" class="">
     <fieldset>
-      <legend>##word.basic_information##</legend>
-      <div class="col9">
+        <legend> ##word.main_categories_informations## </legend>
         <div class="row">
-          <table id="basicInformationTable" class="table bold hover">
-            <tr>
-              <td class="title">##word.main_categories_number##</td>
-              <td class="center userPrint blue">{{main_categories.code}}</td>
-            </tr>
-            <tr>
-              <td class="title">##word.main_categories_name##</td>
-              <td class="center">{{main_categories.name_##session.lang##}}</td>
-            </tr>
+            <div class="col9">
 
-            <tr>
-              <td class="title">##word.status##</td>
-              <td ng-show="main_categories.active == true" class="green center">##word.active##</td>
-              <td ng-show="main_categories.active == false" class="red center">##word.not_active##</td>
-            </tr>
-          </table>
-        </div>
-        <br />
-        <br />
-        <div class="row">
-            <fieldset>
-                <legend>
-                  ##word.add_categories##
-                </legend>
-          <table class="table hover bold loaded">
-            <tr>
-              <th>##word.code##</th>
-              <th>##word.sub_category_name##</th>
-            </tr>
-            <tr ng-repeat="c in main_categories.sub_category_list">
-              <td class="center userPrint blue">{{c.id}}</td>
-              <td class="center">{{c.name_##session.lang##}}</td>
-            </tr>
-          </table>
-          </fieldset>
-        </div>
-        <br />
-        <br />
-        <div class="row">
-            <fieldset>
-                <legend>
-                  ##word.category_require##
-                </legend>
-            <table class="table hover bold loaded">
-              <tr>
-                <th>##word.code##</th>
-                <th>##word.sub_category_name##</th>
-                <th>##word.types_category_require##</th>
-              </tr>
-              <tr ng-repeat="c in main_categories.category_require_list">
-                <td class="center userPrint blue">{{c.id}}</td>
-                <td class="center">{{c.name_##session.lang##}}</td>
-                <td class="center">{{c.type.##session.lang##}}</td>
-              </tr>
-            </table>
-          </fieldset>
-        </div>
-      </div>
+                <div class="row">
 
-      <div class="col3">
-        <i-image view ng-model="main_categories.image_url"></i-image>
-      </div>
+                    <div class="row">
+                        <table id="mainCategoriesInformation" class="table hover bold">
+                            <tr>
+                                <td class="title"> ##word.main_categories_code## </td>
+                                <td class="center blue"> {{main_categories_view.code}} </td>
+                            </tr>
+
+                            <tr>
+                                <td class="title"> ##word.main_categories_name_ar## </td>
+                                <td class="center"> {{main_categories_view.name_ar}} </td>
+                            </tr>
+
+                            <tr>
+                                <td class="title"> ##word.main_categories_name_en## </td>
+                                <td class="center"> {{main_categories_view.name_en}} </td>
+                            </tr>
+
+                            <tr>
+                                <td class="title"> ##word.main_categories_type## </td>
+                                <td class="center" ng-show="main_categories_view.type=='primary'">##word.main_categories_primary##
+                                </td>
+                                <td class="center" ng-show="main_categories_view.type=='detailed'">##word.main_categories_detailed##</td>
+
+                            </tr>
+                            <tr>
+                                <td class="title"> ##word.main_categories_status## </td>
+                                <td class="center green" ng-show="main_categories_view.status=='active'">##word.active##
+                                </td>
+                                <td class="center red" ng-show="main_categories_view.status=='disactive'">##word.not_active##
+                                </td>
+                              
+                            </tr>
+                          
+                        </table>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row" ng-show="!main_categories_view.top_parent_id">
+                        <fieldset>
+                            <legend>
+                              ##word.category_require##
+                            </legend>
+                        <table class="table hover bold loaded">
+                          <tr>
+                            <th>##word.code##</th>
+                            <th>##word.content_name##</th>
+                            <th>##word.types_category_require##</th>
+                          </tr>
+                          <tr ng-repeat="c in main_categories.category_require_list">
+                            <td class="center userPrint blue">{{c.id}}</td>
+                            <td class="center">{{c.name_##session.lang##}}</td>
+                            <td class="center">{{c.type.##session.lang##}}</td>
+                          </tr>
+                        </table>
+                      </fieldset>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            <div class="col3">
+                <i-image view ng-model="main_categories_view.image_url"></i-image>
+            </div>
+            <i-button  type="print " onclick="site.print('#mainCategoriesDetailsModal #mainCategoriesInformation')"></i-button>
+
+        </div>
     </fieldset>
-  </div>
 </div>
 <div x-import="main-categories/action_info.html"></div>

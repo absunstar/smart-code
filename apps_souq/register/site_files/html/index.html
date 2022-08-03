@@ -1,57 +1,125 @@
-
 <!DOCTYPE html>
-<html lang="en" data-ng-app="myApp">
-  <head x-import="head.html"> </head>
+<html lang="en">
 
-  <body class="##session.lang##" ng-controller="register_souq">
-    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar"></nav>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+        integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>تسجيل حساب</title>
+    <style x-import="register/style.css">
 
-    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
+
+    </style>
+</head>
+
+<body ng-controller="register_souq">
     <div id="main-layout" class="container">
-      <div class="row" id="registersouqModal">
-        <div class="row" >
-          <div class="row">
-            <h1 class="bold text-center">##word.register##</h1>
-          </div>
-
-          <div class="row">
-            <h2 class="bold red ">{{error}}</h2>
-
-          </div>
-
-          <div class="row">
-            <i-image help-id="user_logo" ng-model="user.image_url"></i-image>
-          </div>
-
-
-          <div class="row">
-            <i-control class="col4" v="r" label="##word.first_name##" ng-model="user.first_name"> </i-control>
-            <i-control class="col4" v="r" label="##word.last_name##" ng-model="user.last_name"> </i-control>
-          </div>
-          <div class="row">
-            <i-control class="col4" v="r" label="##word.mobile_email##" ng-model="user.email"> </i-control>
-          </div>
-          <div class="row">
-            <i-control class="col4" label="##word.password##" type="password" v="r"  id="pass1" ng-model="user.password"> </i-control>
-          </div>
-          <div class="row">
-            <i-control class="col4" label="##word.retype_password##" type="password" v="r"  id="pass2" ng-model="user.re_password"> </i-control>
-          </div>
-          <div class="row">
-            <i-checkbox  class="col2" label="##word.show_password##" ng-change="showPass()"  ng-model="show_password"> </i-checkbox>
-          </div>
-
-          <i-button type="add" label="##word.register_now##" ng-click="registerSouq()" ></i-button>
-          <form >
-            <p class="font-18">##word.existing_user## <a href="/login">##word.login_now##</a></p>
-          </form>
-
-
+        <div class="row" id="registersouqModal">
+            <div class="row full-width">
+                <div class="row center">
+                    <h1 class="bold text-center">تسجيل</h1>
+                </div>
+                <div class="register-form">
+                    <div class="row">
+                        <h2 class="bold red ng-binding"></h2>
+                    </div>
+                    <div class="re-form">
+                        <div class="row user-image">
+                            <i-image help-id="user_logo" ng-model="user.image_url"
+                                class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty">
+                                <form class="form text-center pointer ng-pristine ng-valid">
+                                    <input class="hidden" type="file" name="file">
+                                    <img class="bg-white" ng-src="/images/user_logo.png" ngclick="ngClick()"
+                                        onerror="this.src='/images/no.png'" src="/images/user_logo.png">
+                                    <progress class="row" style="display: none;"></progress>
+                                </form>
+                            </i-image>
+                        </div>
+                        <div class="user-data">
+                            <div class="row">
+                                <i-control class="col4 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" v="r"
+                                    label="الإسم الأول" ng-model="user.first_name">
+                                    <div class="control">
+                                        <label class="ng-binding"> الإسم الأول </label>
+                                        <input id="" ng-disabled="disabled" autofocus="" v="r" type="text" ng-model="ngModel"
+                                            ng-change="ngChange()" ngkeydown="ngKeydown()"
+                                            class="ng-pristine ng-valid ng-empty ng-touched full-width">
+                                    </div>
+                                </i-control>
+                                <i-control class="col4 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" v="r"
+                                    label="الإسم الأخير" ng-model="user.last_name">
+                                    <div class="control">
+                                        <label class="ng-binding"> الإسم الأخير </label>
+                                        <input id="" ng-disabled="disabled" autofocus="" v="r" type="text" ng-model="ngModel"
+                                            ng-change="ngChange()" ngkeydown="ngKeydown()"
+                                            class="ng-pristine ng-untouched ng-valid ng-empty full-width">
+                                    </div>
+                                </i-control>
+                            </div>
+                            <div class="row">
+                                <i-control class="col4 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty" v="r"
+                                    label="الجوال / البريد الإلكتروني" ng-model="user.email">
+                                    <div class="control">
+                                        <label class="ng-binding"> الجوال / البريد الإلكتروني </label>
+                                        <input id="" ng-disabled="disabled" autofocus="" v="r" type="text" ng-model="ngModel"
+                                            ng-change="ngChange()" ngkeydown="ngKeydown()"
+                                            class="ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched full-width">
+                                    </div>
+                                </i-control>
+                            </div>
+                            <div class="row">
+                                <i-control class="col4 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty"
+                                    label="كلمة المرور" type="password" v="r" id="pass1" ng-model="user.password">
+                                    <div class="control">
+                                        <label class="ng-binding"> كلمة المرور </label>
+                                        <input id="" ng-disabled="disabled" autofocus="" v="r" type="password" ng-model="ngModel"
+                                            ng-change="ngChange()" ngkeydown="ngKeydown()"
+                                            class="ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched full-width">
+                                    </div>
+                                </i-control>
+                            </div>
+                            <div class="row">
+                                <i-control class="col4 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty"
+                                    label="إعادة كتابة كلمة السر" type="password" v="r" id="pass2" ng-model="user.re_password">
+                                    <div class="control">
+                                        <label class="ng-binding"> إعادة كتابة كلمة السر </label>
+                                        <input id="" ng-disabled="disabled" autofocus="" v="r" type="password" ng-model="ngModel"
+                                            ng-change="ngChange()" ngkeydown="ngKeydown()"
+                                            class="ng-pristine ng-untouched ng-valid ng-empty full-width">
+                                    </div>
+                                </i-control>
+                            </div>
+                            <div class="row">
+                                <i-checkbox class="col2 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty"
+                                    label="إظهار كلمة السر" ng-change="showPass()" ng-model="show_password">
+                                    <div class="selector ng-binding un-selected"
+                                        ng-class="{'selected' : ngModel , 'un-selected' : !ngModel  }"
+                                        ng-click="updateModal(ngModel);ngChange($event , ngModel)">
+                                        <i ng-show="!ngModel" class="fa fa-square"></i> <i ng-show="ngModel"
+                                            class="fa fa-check ng-hide"></i> إظهار كلمة السر
+                                    </div>
+                                </i-checkbox>
+                            </div>
+                        </div>
+                    </div>
+                    <i-button type="add" label="تسجيل الاّن" ng-click="registerSouq()" class="ng-isolate-scope center">
+                        <a class="btn add">
+                            تسجيل الاّن
+                            <i ng-show="fa" class="fa fa-plus-circle" aria-hidden="true"></i> </a>
+                    </i-button>
+                    <form class="ng-pristine ng-valid center">
+                        <p class="font-18">مستخدم موجود؟ <a href="/login">تسجيل الدخول الاّن</a></p>
+                    </form>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-
-    <div x-import="scripts.html"></div>
+    <div x-import="herag/scripts.html"></div>
     <script x-import="register/index.js"></script>
-  </body>
+</body>
+
 </html>

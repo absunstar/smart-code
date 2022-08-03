@@ -43,7 +43,11 @@ module.exports = function init(site) {
     let ads_doc = req.body;
     ads_doc.$req = req;
     ads_doc.$res = res;
-
+    if(ads_doc.name){
+      ads_doc.name_ar = ads_doc.name
+      ads_doc.name_en = ads_doc.name
+      delete ads_doc.name
+    }
     if (!ads_doc.store || !ads_doc.store.id) {
       response.error = 'Store must specified';
       res.json(response);
@@ -82,6 +86,13 @@ module.exports = function init(site) {
       res.json(response);
       return;
     }
+
+    if(ads_doc.name){
+      ads_doc.name_ar = ads_doc.name
+      ads_doc.name_en = ads_doc.name
+      delete ads_doc.name
+    }
+    
     foundUserFeedback = ads_doc.feedback_list.every((_f) => _f.user && _f.user.id);
     if (!foundUserFeedback) {
       response.error = 'User must be specified in feedbacks';

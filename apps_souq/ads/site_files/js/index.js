@@ -8,7 +8,7 @@ app.controller('ads', function ($scope, $http, $timeout) {
     $scope.ad = {
       feedback_list: [],
       ad_rating: 0,
-      set_price : 'no',
+      set_price: 'no',
       number_views: 0,
       number_likes: 0,
       number_comments: 0,
@@ -50,8 +50,7 @@ app.controller('ads', function ($scope, $http, $timeout) {
       $scope.error = v.messages[0].ar;
       return;
     }
-    if($scope.ad.store){
-      
+    if ($scope.ad.store) {
       $scope.ad.address = $scope.ad.store.address;
     }
     $scope.busy = true;
@@ -98,6 +97,7 @@ app.controller('ads', function ($scope, $http, $timeout) {
       $scope.error = v.messages[0].ar;
       return;
     }
+    console.log($scope.ad.main_category);
     $scope.ad.address = $scope.ad.store.address;
     $scope.busy = true;
     $http({
@@ -218,7 +218,7 @@ app.controller('ads', function ($scope, $http, $timeout) {
       url: '/api/main_categories/all',
       data: {
         where: {
-          active: true,
+          status: 'active',
         },
       },
     }).then(
@@ -226,13 +226,6 @@ app.controller('ads', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.category_list = response.data.list;
-          $scope.category_list.forEach((l) => {
-            $scope.mainCategories.push({
-              id: l.id,
-              name_ar: l.name_ar,
-              idname_en: l.idname_en,
-            });
-          });
         }
       },
       function (err) {
@@ -330,6 +323,18 @@ app.controller('ads', function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.ad.images_list = $scope.ad.images_list || [];
     $scope.ad.images_list.push({});
+  };
+
+  $scope.viewCategories = function (c) {
+    $scope.category = c;
+    site.showModal('#categoriesViewModal');
+  };
+
+  $scope.selectCategory = function (c) {
+    $scope.ad.main_category = c;
+    if (c && !c.top_parent_id) {
+      $scope.ad.category_require_list = c.category_require_list;
+    }
   };
 
   $scope.getCurrenciesList = function () {

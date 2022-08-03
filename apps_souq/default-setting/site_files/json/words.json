@@ -10,6 +10,11 @@
     "ar": "الإعدادات الإفتراضية"
   },
   {
+    "name": "auto_generate_categories_code",
+    "en": "Automatic generation of Categories code",
+    "ar": "توليد آلي لكود الأقسام"
+},
+  {
     "name": "user_design",
     "en": "User Design",
     "ar": "تصميم المستخدم"

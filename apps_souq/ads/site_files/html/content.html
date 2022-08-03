@@ -9,7 +9,6 @@
 
             <i-control help-id="ad_name_ar" v="r ll2" class="col7" label="##word.ad_name##" ng-model="ad.name"></i-control>
 
-
             <i-store class="col3 padding_10" ng-model="ad.store"></i-store>
           </div>
           <br />
@@ -27,22 +26,21 @@
             <i-control help-id="ad_number_reports" type="number" class="col3" label="##word.number_reports##" ng-model="ad.number_reports"></i-control>
           </div>
 
-<!--           <i-address ng-model="ad"></i-address>
- -->
           <div class="row">
-            <p class="col3 bold">##word.mobile_number_or_contact_method##</p> : 
-            <i-checkbox class="col3" label="##word.hide_mobile_number##" ng-model="ad.hide_mobile"> </i-checkbox> :
+            <p class="col3 bold">##word.mobile_number_or_contact_method##</p>
+            : <i-checkbox class="col3" label="##word.hide_mobile_number##" ng-model="ad.hide_mobile"> </i-checkbox> :
             <i-control class="col4" ng-hide="ad.hide_mobile" label="##word.cell_phone_number##" ng-model="ad.mobile"></i-control>
-            
+          </div>
+          <div class="row">
+            <i-button type="add" class="col3" label="##word.view_categories##" ng-click="viewCategories(ad)"></i-button>
+            <p class="col3 bold">##word.category## : {{ad.main_category.name_##session.lang##}}</p>
+
           </div>
 
-          <i-category ng-model="ad.main_category" ng-label="##word.main_category##" ng-list="category_list"></i-category>
-          <br />
-
-          <div class="row" ng-show="ad.main_category.category_require_list.length > 0">
+          <div class="row" ng-show="ad.category_require_list.length > 0">
             <fieldset>
               <legend>##word.ad_require##</legend>
-              <div class="row" ng-repeat="c in ad.main_category.category_require_list">
+              <div class="row" ng-repeat="c in ad.category_require_list">
                 <i-ad-require ng-model="c"></i-ad-require>
               </div>
             </fieldset>

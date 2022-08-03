@@ -143,7 +143,7 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
       url: '/api/main_categories/all',
       data: {
         where: {
-          active: true,
+          status: 'active',
         },
       },
     }).then(
@@ -151,12 +151,11 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.category_list = response.data.list;
-          $scope.category_list.forEach((l) => {
-            $scope.mainCategories.push({
-              id: l.id,
-              name_ar: l.name_ar,
-              idname_en: l.idname_en,
-            });
+          $scope.topParentCategoriesList = [];
+          $scope.category_list.forEach((_c) => {
+            if (!_c.top_parent_id) {
+              $scope.topParentCategoriesList.push(_c);
+            }
           });
         }
       },
@@ -167,54 +166,53 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.displayAdvancedSearch = function () {
+  $scope.loadSubCategory = function (c) {
     $scope.error = '';
-    site.showModal('#adAdvancedSearchModal');
+    $scope.subCategoriesList = [];
+    $scope.category_list.forEach((_c) => {
+      if (c.id == _c.parent_id) {
+        $scope.subCategoriesList.push(_c);
+      }
+    });
+    /* $scope.getAdsList({ which: 13 }, $scope.search); */
   };
 
-  $scope.loadSubCategory1 = function (c) {
-    $scope.error = '';
-    $scope.search.main_category = c;
-    if (c.sub_category_list && c.sub_category_list.length) {
-      $scope.sub_category_list1 = c.sub_category_list[0].sub_category_list;
-    }
-    $scope.getAdsList({ which: 13 }, $scope.search);
-  };
-
+  
   $scope.loadSubCategory2 = function (c) {
     $scope.error = '';
-    if (c.sub_category_list && c.sub_category_list.length) {
-      $scope.sub_category_list2 = c.sub_category_list[0].sub_category_list;
-    }
-    $scope.search.category2 = c;
-    $scope.getAdsList({ which: 13 }, $scope.search);
+    $scope.subCategoriesList2 = [];
+    $scope.category_list.forEach((_c) => {
+      if (c.id == _c.parent_id) {
+        $scope.subCategoriesList2.push(_c);
+      }
+    });
+    /* $scope.getAdsList({ which: 13 }, $scope.search); */
   };
 
   $scope.loadSubCategory3 = function (c) {
     $scope.error = '';
-    if (c.sub_category_list && c.sub_category_list.length) {
-      $scope.sub_category_list3 = c.sub_category_list[0].sub_category_list;
-    }
-    $scope.search.category3 = c;
-    $scope.getAdsList({ which: 13 }, $scope.search);
+    $scope.subCategoriesList3 = [];
+    $scope.category_list.forEach((_c) => {
+      if (c.id == _c.parent_id) {
+        $scope.subCategoriesList3.push(_c);
+      }
+    });
+    /* $scope.getAdsList({ which: 13 }, $scope.search); */
   };
 
   $scope.loadSubCategory4 = function (c) {
     $scope.error = '';
-    if (c.sub_category_list && c.sub_category_list.length) {
-      $scope.sub_category_list4 = c.sub_category_list[0].sub_category_list;
-    }
-    $scope.search.sub_category3 = c;
-    $scope.getAdsList({ which: 13 }, $scope.search);
+    $scope.subCategoriesList4 = [];
+    $scope.category_list.forEach((_c) => {
+      if (c.id == _c.parent_id) {
+        $scope.subCategoriesList4.push(_c);
+      }
+    });
+    /* $scope.getAdsList({ which: 13 }, $scope.search); */
   };
-
-  $scope.loadSubCategory5 = function (c) {
+  $scope.displayAdvancedSearch = function () {
     $scope.error = '';
-    if (c.sub_category_list && c.sub_category_list.length) {
-      $scope.sub_category_list5 = c.sub_category_list[0].sub_category_list;
-    }
-    $scope.search.sub_category4 = c;
-    $scope.getAdsList({ which: 13 }, $scope.search);
+    site.showModal('#adAdvancedSearchModal');
   };
 
   $scope.searchAll = function (search) {

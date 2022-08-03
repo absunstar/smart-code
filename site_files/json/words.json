@@ -443,6 +443,11 @@
     "ar": "يجب إدخال الكود"
   },
   {
+    "name": "main",
+    "en": "Main",
+    "ar": "الرئيسية"
+},
+  {
     "name": "length_level",
     "en": "Length level",
     "ar": "طول المستوى"

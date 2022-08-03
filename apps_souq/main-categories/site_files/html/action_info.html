@@ -1,21 +1,23 @@
+
 <div class="row">
     <table class="table hover border">
         <tr>
-            <th>##word.useradd_user_info##</th>
-            <th>##word.useredit_user_info## </th>
+            <th>##word.user_created##</th>
+            <th>##word.user_updated## </th>
         </tr>
         <tr>
-
-            <td class="center">
-                <p class="blue"> {{main_categories.add_user_info.name_##session.lang##}} </p>
-                <small class="green"> {{main_categories.add_user_info.date |date:"hh:mm"}} </small>
-                <small> {{main_categories.add_user_info.date |date:"dd - MM - yyyy"}} </small>
+            <td class="center ">
+               
+                <p class="blue bold"> {{main_categories_view.add_user_info.name_##session.lang##}} </p>
+                <small class="green"> {{main_categories_view.add_user_info.date |date:"hh:mm"}} </small>
+                <small> {{main_categories_view.add_user_info.date |date:"dd - MM - yyyy"}} </small>
             </td>
 
             <td class="center">
-                <p class="blue"> {{main_categories.edit_user_info.name_##session.lang##}} </p>
-                <small class="green"> {{main_categories.edit_user_info.date |date:"hh:mm"}} </small>
-                <small> {{main_categories.edit_user_info.date |date:"dd - MM - yyyy"}} </small>
+           
+                <p class="blue bold"> {{main_categories_view.edit_user_info.name_##session.lang##}} </p>
+                <small class="green"> {{main_categories_view.edit_user_info.date |date:"hh:mm"}} </small>
+                <small> {{main_categories_view.edit_user_info.date |date:"dd - MM - yyyy"}} </small>
             </td>
         </tr>
     </table>

@@ -2,12 +2,14 @@ app.controller('login_souq', function ($scope, $http, $timeout) {
   $scope.user = {};
   $scope.login = function () {
     $scope.error = '';
+    console.log("Ffffffffffffffffffffff");
     const v = site.validated('#loginSouqModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
     }
     $scope.busy = true;
+    console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 
     $http({
       method: 'POST',
@@ -23,6 +25,7 @@ app.controller('login_souq', function ($scope, $http, $timeout) {
           $scope.error = "##word.email_or_pass_error##";
           $scope.busy = false;
         }
+        console.log(response.data);
         if (response.data.done) {
           window.location.href = "/";
         }

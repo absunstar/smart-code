@@ -13,6 +13,12 @@ module.exports = function init(site) {
     compress: true,
   });
 
+  site.get({
+    name: 'css',
+    path: __dirname + '/site_files/css/'
+  })
+
+
   site.post('/api/register', (req, res) => {
     let response = {};
 
