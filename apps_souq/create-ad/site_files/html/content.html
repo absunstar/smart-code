@@ -2,6 +2,33 @@
   <fieldset>
     <legend>##word.basic_information##</legend>
     <div class="row">
+      <h3>» إتفاقية العمولة</h3>
+      <br />
+      <br />
+      <span>بسم الله الرحمن الرحيم</span>
+      <br />
+      <b>" وَأَوْفُواْ بِعَهْدِ اللهِ إِذَا عَاهَدتُّمْ وَلاَ تَنقُضُواْ الأَيْمَانَ بَعْدَ تَوْكِيدِهَا وَقَدْ جَعَلْتُمُ اللهَ عَلَيْكُمْ كَفِيلاً "</b>
+      <span>صدق الله العظيم</span>
+      <br />
+      <br />
+      <div class="row">
+        <i-checkbox ng-model="ad.swear"> </i-checkbox>
+        <b> * اتعهد واقسم بالله أنا المعلن أن أدفع عمولة الموقع وهي 1% من قيمة البيع سواء تم البيع عن طريق الموقع أو بسببه. </b>
+      </div>
+      <br />
+      <br />
+      <span style="padding-right: 17px"> * كما أتعهد بدفع العمولة خلال 10 أيام من استلام كامل مبلغ المبايعة.</span>
+      <br />
+      <br />
+      <br />
+      <div class="green">ملاحظة: عمولة الموقع هي على المعلن ولاتبرأ ذمة المعلن من العمولة إلا في حال دفعها.</div>
+      <br />
+      <br />
+      <br />
+      <hr />
+      <br />
+    </div>
+    <div class="row">
       <div class="col9">
         <div class="row">
           <i-control help-id="ad_name" v="r ll2" class="col7" label="##word.ad_name##" ng-model="ad.name"></i-control>
@@ -11,16 +38,16 @@
         <br />
 
         <div class="row">
-          <p class="col3 bold">##word.mobile_number_or_contact_method##</p>
-          : <i-checkbox class="col3" label="##word.hide_mobile_number##" ng-model="ad.hide_mobile"> </i-checkbox> :
           <i-control class="col4" ng-hide="ad.hide_mobile" label="##word.cell_phone_number##" ng-model="ad.mobile"></i-control>
+          <br />
+          <i-checkbox class="col3" label="##word.hide_mobile_number##" ng-model="ad.hide_mobile"> </i-checkbox> :
         </div>
 
         <!--           <i-address ng-show="defaultSettings.ads_settings.addresses_appear" ng-model="ad"></i-address>
    -->
         <div class="row">
           <i-button type="add" class="col3" label="##word.view_categories##" ng-click="viewCategories(ad)"></i-button>
-          <p class="col3 bold">##word.category## : {{ad.main_category.name_##session.lang##}}</p>
+          <p ng-show="ad.main_category.id" class="col3 bold">##word.category## : {{ad.main_category.name_##session.lang##}}</p>
         </div>
 
         <div class="row" ng-show="ad.category_require_list.length > 0">
@@ -76,7 +103,7 @@
       <div class="col5">
         <div class="row">
           <i-radio class="col6" ng-model="ad.set_price" label="##word.no##" ng-value="no"> </i-radio>
-          <i-radio class="col6" ng-model="ad.set_price" label="##word.yes##" ng-value="yes"></i-radio>
+          <i-radio class="col6" ng-model="ad.set_price" ng-click="ad.quantity_list = [{}]" label="##word.yes##" ng-value="yes"></i-radio>
         </div>
       </div>
     </div>

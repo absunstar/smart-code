@@ -41,6 +41,11 @@ module.exports = function init(site) {
     compress: true
   })
 
+  // site.get({
+  //   name: 'css',
+  //   path: __dirname + '/site_files/css/',
+  //   });
+
 
   site.on('[register][city][add]', doc => {
 

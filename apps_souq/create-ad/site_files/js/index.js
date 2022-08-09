@@ -21,6 +21,9 @@ app.controller('create_ad', function ($scope, $http, $timeout) {
       if ($scope.defaultSettings.ads_settings.ad_status) {
         $scope.ad.ad_status = $scope.defaultSettings.ads_settings.ad_status;
       }
+      if ($scope.defaultSettings.ads_settings.upload_multiple_photos) {
+        $scope.ad.images_list = [{}];
+      }
       if ($scope.defaultSettings.ads_settings.quantities_can_be_used) {
         $scope.ad.quantity_list = [
           {
@@ -40,9 +43,7 @@ app.controller('create_ad', function ($scope, $http, $timeout) {
 
       $scope.ad.image_url = $scope.defaultSettings.ads_settings.default_image_ad || '/images/ads.png';
     }
-    site.showModal('#adAddModal');
   };
-
   $scope.addAd = function () {
     $scope.error = '';
     const v = site.validated('#adAddModal');
@@ -62,8 +63,6 @@ app.controller('create_ad', function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#adAddModal');
-          $scope.getAdList();
         } else {
           $scope.error = response.data.error;
           if (response.data.error.like('*Must Enter Code*')) {
@@ -94,6 +93,8 @@ app.controller('create_ad', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.doc) {
           $scope.defaultSettings = response.data.doc;
+          $scope.displayAddAd();
+
         }
       },
       function (err) {
@@ -129,31 +130,6 @@ app.controller('create_ad', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getAdList = function (where) {
-    $scope.busy = true;
-    $scope.list = [];
-    $http({
-      method: 'POST',
-      url: '/api/ads/all',
-      data: {
-        where: where,
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.list = response.data.list;
-          $scope.count = response.data.count;
-          site.hideModal('#adSearchModal');
-          $scope.search = {};
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
 
   $scope.getNumberingAuto = function () {
     $scope.error = '';
@@ -177,18 +153,7 @@ app.controller('create_ad', function ($scope, $http, $timeout) {
       }
     );
   };
-
-  $scope.displaySearchModal = function () {
-    $scope.error = '';
-    site.showModal('#adSearchModal');
-  };
-
-  $scope.searchAll = function () {
-    $scope.getAdList($scope.search);
-    site.hideModal('#adSearchModal');
-    $scope.search = {};
-  };
-
+  
   $scope.calcDiscount = function (obj) {
     $scope.error = '';
     $timeout(() => {
@@ -319,13 +284,11 @@ app.controller('create_ad', function ($scope, $http, $timeout) {
       $scope.ad.category_require_list = c.category_require_list;
     }
   };
-  
   $scope.getUnitsList();
   $scope.getCurrenciesList();
   $scope.loadMainCategories();
-  $scope.getAdList();
   $scope.getAdsStatusList();
   $scope.getNumberingAuto();
-  $scope.getDefaultSetting();
   $scope.getMyStoresList();
+  $scope.getDefaultSetting();
 });

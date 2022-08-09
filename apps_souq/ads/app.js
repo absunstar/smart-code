@@ -43,10 +43,10 @@ module.exports = function init(site) {
     let ads_doc = req.body;
     ads_doc.$req = req;
     ads_doc.$res = res;
-    if(ads_doc.name){
-      ads_doc.name_ar = ads_doc.name
-      ads_doc.name_en = ads_doc.name
-      delete ads_doc.name
+    if (ads_doc.name) {
+      ads_doc.name_ar = ads_doc.name;
+      ads_doc.name_en = ads_doc.name;
+      delete ads_doc.name;
     }
     if (!ads_doc.store || !ads_doc.store.id) {
       response.error = 'Store must specified';
@@ -87,12 +87,12 @@ module.exports = function init(site) {
       return;
     }
 
-    if(ads_doc.name){
-      ads_doc.name_ar = ads_doc.name
-      ads_doc.name_en = ads_doc.name
-      delete ads_doc.name
+    if (ads_doc.name) {
+      ads_doc.name_ar = ads_doc.name;
+      ads_doc.name_en = ads_doc.name;
+      delete ads_doc.name;
     }
-    
+
     foundUserFeedback = ads_doc.feedback_list.every((_f) => _f.user && _f.user.id);
     if (!foundUserFeedback) {
       response.error = 'User must be specified in feedbacks';
@@ -307,33 +307,25 @@ module.exports = function init(site) {
     };
 
     let where = req.body.where || {};
-
-    if (where['name']) {
-      where['name'] = site.get_RegExp(where['name'], 'i');
-    }
     let skip = 0;
     let start = (req.data.page_number || 0) * (req.data.limit || 0);
     let end = start + (req.data.limit || 100);
     delete where['search_ads'];
 
     if (where['country']) {
-      where['country.id'] = where['country'].id;
+      where['address.country.id'] = where['country'].id;
       delete where['country'];
     }
     if (where['gov']) {
-      where['gov.id'] = where['gov'].id;
+      where['address.gov.id'] = where['gov'].id;
       delete where['gov'];
     }
     if (where['city']) {
-      where['city.id'] = where['city'].id;
+      where['address.city.id'] = where['city'].id;
       delete where['city'];
     }
     if (where['area']) {
-      where['area.id'] = where['area'].id;
-      delete where['area'];
-    }
-    if (where['area']) {
-      where['area.id'] = where['area'].id;
+      where['address.area.id'] = where['area'].id;
       delete where['area'];
     }
     if (where['store']) {
@@ -344,38 +336,22 @@ module.exports = function init(site) {
       where['store.user.id'] = where['user'].id;
       delete where['user'];
     }
-    if (where['main_category']) {
+
+
+    if (where['category_id']) {
+      where.$or = [
+        {'main_category.top_parent_id' : where['category_id']},
+        {'main_category.parent_list_id' : where['category_id']},
+        {'main_category.id' : where['category_id']},
+      ]
+      delete where['category_id'];
+    }
+
+    if (where['main_category'] && where['main_category'].id) {
       where['main_category.id'] = where['main_category'].id;
       delete where['main_category'];
     }
 
-    if (where['category2']) {
-      where['main_category.category2.0.id'] = where['category2'].id;
-      delete where['category2'];
-    }
-
-    if (where['category3']) {
-      where['main_category.category3.0.id'] = where['category3'].id;
-      delete where['category3'];
-    }
-
-    if (where['category4']) {
-      where['main_category.category4.0.id'] = where['category4'].id;
-      delete where['category4'];
-    }
-
-    if (where['category5']) {
-      where['main_category.category5.0.id'] = where['category5'].id;
-      delete where['category5'];
-    }
-
-
-    // if (true) {
-    //   response.done = true;
-    //   response.list = site.ad_list.filter((i) => !i.$delete).slice(start, end);
-    //   response.count = response.list.length;
-    //   res.json(response);
-    // } else {
     $ads.findMany(
       {
         sort: req.body.sort || {

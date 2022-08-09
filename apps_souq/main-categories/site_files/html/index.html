@@ -5,10 +5,9 @@
 
 </head>
 
-<body class="##session.lang##">
+<body class="##session.lang##" ng-controller="main_categories">
 
-    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
-
+    <nav x-import="herag/sitebar.html" class="sitebar" data-ng-controller="sitebar">
     </nav>
 
     <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
@@ -18,7 +17,7 @@
 
     <div id="main-layout" class="container loaded">
         <div class="row">
-            <div class="row" ng-controller="main_categories" x-permissions="login">
+            <div class="row"  x-permissions="login">
                 <div x-permissions="main_categories_add || main_categories_manage"
                     x-import="main-categories/add_modal.html"></div>
                 <div x-permissions="main_categories_edit || main_categories_manage"

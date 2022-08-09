@@ -170,7 +170,7 @@ h1, h2, h3, h4, h5 {
 }
 
 .control label {
-    text-align: var(--label-text-align);
+    text-align: var(--label-text-align) !important;
 }
 label {
     font-weight: var(--label-font-weight);
@@ -294,6 +294,7 @@ i-checkbox .selector.selected {
 .btn.add, .btn.new {
     color: var(--btn-add-color);
     background-color: var(--btn-add-background-color);
+    width: 185px;
 }
 
 .btn {
@@ -344,7 +345,7 @@ p {
 }
 
 .login-form {
-    width: 365px;
+    width: 309px;
     margin: 0 25%;
     padding: 2% 5%;
     display: grid;
@@ -354,6 +355,7 @@ p {
     border: var(--theme-color2) solid 2px;
     border-radius: 25px;
     box-shadow: 0 0 5px 0px rgb(0 0 0 / 50%);
+    height: 450px;
 }
 
 .full-width {
@@ -440,7 +442,7 @@ h1, h2, h3, h4, h5 {
 }
 
 .control label {
-    text-align: var(--label-text-align);
+    text-align: var(--label-text-align) !important;
 }
 label {
     font-weight: var(--label-font-weight);
@@ -636,4 +638,8 @@ h1.bold.text-center {
     color: white;
     font-size: 48px;
 }
+}
+
+.row .col2 {
+    width: inherit;
 }

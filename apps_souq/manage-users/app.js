@@ -9,7 +9,7 @@ module.exports = function init(site) {
     
   site.get({
     name: 'css',
-    path: __dirname + '/site_files/css/style.css'
+    path: __dirname + '/site_files/css/'
   })
 
   site.get({

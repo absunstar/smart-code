@@ -129,14 +129,14 @@ font-family: var(--font-family);
     }
 
     .container {
-        height: 100vh;
+        height: 103vh;
         display: flex;
         width: 100% !important;
         margin: 0 auto !important;
         padding: 10px !important;
         align-content: center;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         background-color: var(--theme-color);
         align-items: center;
     }
@@ -296,6 +296,7 @@ font-family: var(--font-family);
     .btn.add, .btn.new {
         color: var(--btn-add-color);
         background-color: var(--btn-add-background-color);
+        width: 150Px;
     }
 
     .btn {
@@ -346,7 +347,7 @@ font-family: var(--font-family);
     }
 
     .register-form {
-        width: 379px;
+        width: 314px;
         margin: 0px auto;
         padding: 2% 2%;
         display: flex;
@@ -360,12 +361,13 @@ font-family: var(--font-family);
     }
 
     .re-form {
-        display: flex;        flex-direction: column;
+        display: flex;        
+        flex-direction: column;
     }
 
     .full-width {
         float: none!important;
-        width:100vh;
+        background-color: var(--theme-color) !important;
     }
 
     h1.bold.text-center {
@@ -582,6 +584,7 @@ font-family: var(--font-family);
     .btn.add, .btn.new {
         color: var(--btn-add-color);
         background-color: var(--btn-add-background-color);
+        width: 220px;
     }
 
     .btn {
@@ -652,6 +655,8 @@ font-family: var(--font-family);
     .full-width {
         float: none!important;
         width:100vh;
+        background-color: var(--theme-color) !important;
+
     }
 
     h1.bold.text-center {
@@ -668,6 +673,15 @@ font-family: var(--font-family);
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+
+    .user-data {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .heading {
+        background-color: var(--theme-color);
     }
 
     /* div#main-layout {

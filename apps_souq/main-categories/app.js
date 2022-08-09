@@ -83,6 +83,21 @@ module.exports = function init(site) {
 
     let where = {};
     where['company.id'] = site.get_company(req).id;
+    if (main_categories_doc.top_parent_id) {
+      site.main_categories_list.forEach((a) => {
+        if (a.id === main_categories_doc.parent_id) {
+          if (a.parent_list_id) {
+            main_categories_doc.parent_list_id = [];
+            for (let i = 0; i < a.parent_list_id.length; i++) {
+              main_categories_doc.parent_list_id.push(a.parent_list_id[i]);
+            }
+            main_categories_doc.parent_list_id.push(main_categories_doc.parent_id);
+          } else {
+            main_categories_doc.parent_list_id = [main_categories_doc.parent_id];
+          }
+        }
+      });
+    }
 
     let exit = false;
     let code = 0;
@@ -268,11 +283,11 @@ module.exports = function init(site) {
       done: false,
     };
 
-    if (!req.session.user) {
-      response.error = 'Please Login First';
-      res.json(response);
-      return;
-    }
+    // if (!req.session.user) {
+    //   response.error = 'Please Login First';
+    //   res.json(response);
+    //   return;
+    // }
 
     let where = req.data.where || {};
     let search = req.body.search;

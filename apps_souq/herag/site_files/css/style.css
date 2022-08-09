@@ -470,6 +470,25 @@ a,span,button,p{
     .tag-list::-webkit-scrollbar-thumb:hover {
         background-color: var(--theme-color2);
     }
+    .tag-link::-webkit-scrollbar {
+        width: 40px;
+        height: 5px;
+    }
+
+    .tag-link::-webkit-scrollbar-track {
+        background-color: #f6f6f6;
+        box-shadow: 0 0 10px #ddd inset;
+        border-radius: 20px;
+    }
+
+    .tag-link::-webkit-scrollbar-thumb {
+        background-color: var(--theme-color2);
+        border-radius: 20px;
+    }
+
+    .tag-link::-webkit-scrollbar-thumb:hover {
+        background-color: var(--theme-color2);
+    }
 
     .tags {
         margin: 0 10px;
@@ -1192,12 +1211,19 @@ a,span,button,p{
         display: none;
     }
 
+    .action-map {
+        position: fixed;
+        top: 45%;
+        right: 0;
+        z-index: 1;
+    }
+
     .map svg path{
         fill: #00A884   !important;
         stroke: #ffffff  !important;
         stroke-width: .25   !important;
     }
-    .map svg path:hover{
+    .map svg path:hover, path:active{
         fill: #025f4b  !important;
         stroke-width: .75 !important ;
         transition: 0.6s  !important;
@@ -1210,6 +1236,137 @@ a,span,button,p{
         text-align: center;
     }
 
+    #kuwit path{
+        fill: #008d71 !important;
+    }
+  
+    #oman path{
+        fill: #054136 !important;
+    }
+
+    #uea path{
+        fill: #002923 !important;
+    }
+
+    #qatar path{
+        fill: #000e0c !important;
+    }
+
+    #bahran path{
+        fill: #08443b !important;
+    }
+
+    .tabuk{
+        fill: white; 
+        pointer-events: none;
+        font-size: 24px;
+        transform: translate(85px,234px);
+    }
+
+    .madinah{
+        fill: white;        
+        pointer-events: none;
+        font-size: 24px;
+        transform: translate(181px,424px);
+    }
+    .makkah{
+        fill: white;        
+        pointer-events: none;
+        font-size: 24px;
+        transform: translate(259px,569px);
+    }
+    .baha{
+        fill: white;        
+        pointer-events: none;
+        font-size: 24px;
+        transform: translate(296px,644px);
+    }
+    .asir{
+        fill: white;        
+        pointer-events: none;
+        font-size: 24px;
+        transform: translate(326px,688px);
+    }
+    .jazan{
+        fill: white;        
+        pointer-events: none;
+        font-size: 24px;
+        transform: translate(397px,797px) rotate(249deg);
+    }
+    .najran{
+        fill: white;        
+        pointer-events: none;
+        font-size: 24px;
+        transform: translate(474px,734px);
+    }
+    .eastern{
+        fill: white;        
+        pointer-events: none;
+        font-size: 24px;
+        transform: translate(679px,542px)
+    }
+    .northern{
+        fill: white;        
+        pointer-events: none;
+        font-size: 24px;
+        transform: translate(307px,170px);
+    }
+    .jouf{
+        fill: white;        
+        pointer-events: none;
+        font-size: 24px;
+        transform: translate(148px,144px);
+    }
+    .hail{
+        fill: white;        
+        pointer-events: none;
+        font-size: 24px;
+        transform: translate(275px,255px);
+    }
+    .qassim{
+        fill: white;        
+        pointer-events: none;
+        font-size: 24px;
+        transform: translate(346px,374px) rotate(327deg);
+    }
+    .riyadh{
+        fill: white;        
+        pointer-events: none;
+        font-size: 24px;
+        transform: translate(450px,487px);
+    }
+
+    .kuwit{
+        fill: white;        
+        pointer-events: none;
+        font-size: 20px;
+        transform: translate(593px,171px)rotate(307deg);
+    }
+    .oman{
+        fill: white;        
+        pointer-events: none;
+        font-size: 24px;
+        transform: translate(1037px,561px);
+    }
+    .uea{
+        fill: white;        
+        pointer-events: none;
+        font-size: 24px;
+        transform: translate(888px,469px);
+    }
+    .qatar{
+        fill: #08443B;
+        pointer-events: none;
+        font-size: 24px;
+        transform: translate(807px,364px);
+    }
+    .bahran{
+        fill: #000E0C;
+        pointer-events: none;
+        font-size: 24px;
+        transform: translate(767px,313px);
+    }
+
     svg#Layer_1 {
         width: 100%;
         height: 70vh;
@@ -1217,7 +1374,148 @@ a,span,button,p{
         position: relative;
         top: 50%;
         left: 50%;
-        transform: translate(-50%,2px);
+        transform: translate(-50%,-62px);
+    }
+
+    .hiddemap{
+        display: none !important;
+    }
+
+    .tagheader {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex-direction: column !important;
+    }
+
+    .category-1 {
+        display: grid;
+        grid-template-columns: 0% 100% 0%;
+        justify-items: center;
+        align-items: center;
+        justify-content: center;
+        height: 45px;
+        
+    }
+
+    .category-2 {
+        display: grid;
+        grid-template-columns: 0% 100% 0%;
+        justify-items: center;
+        align-items: center;
+        justify-content: center;
+        height: 15px;
+        
+    }
+
+    .category-3 {
+        display: grid;
+        grid-template-columns: 0% 100% 0%;
+        justify-items: center;
+        align-items: center;
+        justify-content: center;
+        height: 30px;
+        
+    }
+
+    .category-4 {
+        display: grid;
+        grid-template-columns: 0% 100% 0%;
+        justify-items: center;
+        align-items: center;
+        justify-content: center;
+        height: 15px;
+        
+    }
+
+    .category-list1:first-child {
+        justify-content: space-between;
+    }
+
+    .category-list1 {
+        display: flex;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        overflow-x: auto;
+        text-align: right;
+        max-width: 916px;
+        flex-direction: row-reverse;
+        border: none !important;
+        cursor: pointer;
+    }
+
+    .category-list2:first-child {
+        justify-content: space-between;
+    }
+
+    .category-list2 {
+        display: flex;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        overflow-x: auto;
+        text-align: right;
+        max-width: 916px;
+        flex-direction: row-reverse;
+        border: none !important;
+        cursor: pointer;
+    }
+
+    .category-list3:first-child {
+        justify-content: space-between;
+    }
+
+    .category-list3 {
+        display: flex;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        overflow-x: auto;
+        text-align: right;
+        max-width: 916px;
+        flex-direction: row-reverse;
+        border: none !important;
+        cursor: pointer;
+    }
+
+    .category-list4:first-child {
+        justify-content: space-between;
+    }
+
+    .category-list4 {
+        display: flex;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        overflow-x: auto;
+        text-align: right;
+        max-width: 916px;
+        flex-direction: row-reverse;
+        border: none !important;
+        cursor: pointer;
+    }
+
+    .tag-link{
+        text-align: center;
+        font-size: 1rem;
+        white-space: nowrap;
+        color: var(--theme-color);
+        padding: 0 15px;
+        border-left: solid 2px #00a88450;
+    }
+
+    
+    .ds-dv-dc{
+        display: none !important;
+    }
+
+    .ds-dv{
+        cursor: pointer;
     }
 
 
@@ -1343,7 +1641,7 @@ a,span,button,p{
     .searchgroup {
         width: 100%;
         display: grid;
-        grid-template-columns: 10% 55% 15% 20%;
+        grid-template-columns: 10% 50% 10% 10% 20%;
     }
 
     .searchicon {
@@ -1410,16 +1708,16 @@ a,span,button,p{
 
     .user-log {
         display: grid;
-        grid-template-columns: 40% 70%;
+        grid-template-columns: 40% 80% ;
     }
 
     .user-menu {
         opacity: 1;
-        position: fixed;
+        position: absolute;
         width: auto;
         min-width: 300px;
-        left: 50px;
-        top: 42px;
+        left: 195px;
+        top: 117px;
         bottom: auto;
         padding: 15px;
         text-align: center;
@@ -1429,6 +1727,23 @@ a,span,button,p{
         overflow: hidden;
         display: none;
         box-shadow: 1px 1px 8px 0px #000;
+        z-index: 99;
+    }
+
+    nav .info {
+        font-weight: bold;
+        display: inline-block;
+        font-size: 14px;
+        color: #ffffff;
+        margin-left: 50px;
+        margin-right: 50px;
+        float: left;
+    }
+
+    .info img {
+        height: 32px;
+        width: 32px;
+        box-shadow: 1px 1px 5px 2px #fff;
     }
     
     .mobilesection-head{
@@ -1461,6 +1776,12 @@ a,span,button,p{
 
     .ds-dv{
         display: none;
+    }
+
+    .ds-dv-dc{
+        display: block;
+        cursor: pointer;
+        color: var(--theme-color)
     }
 
     .mobile-filter {
@@ -2081,7 +2402,8 @@ a,span,button,p{
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        margin-top: 70px;
+        flex-direction: column !important;
+        margin-top: 55px;
     }
 
     .category-1 {
@@ -2090,7 +2412,37 @@ a,span,button,p{
         justify-items: center;
         align-items: center;
         justify-content: center;
+        margin-top: 14px;
     }
+
+    .category-2 {
+        display: grid;
+        grid-template-columns: 10% 80% 10%;
+        justify-items: center;
+        align-items: center;
+        justify-content: center;
+        
+    }
+
+    .category-3 {
+        display: grid;
+        grid-template-columns: 10% 80% 10%;
+        justify-items: center;
+        align-items: center;
+        justify-content: center;
+        
+    }
+
+    .category-4 {
+        display: grid;
+        grid-template-columns: 10% 80% 10%;
+        justify-items: center;
+        align-items: center;
+        justify-content: center;
+        
+    }
+
+
 
     .tab_link {
         text-align: center;
@@ -2141,6 +2493,62 @@ a,span,button,p{
         text-align: right;
         max-width: 916px;
         flex-direction: row-reverse;
+        cursor: pointer;
+        border: none;
+    }
+
+    .category-list2:first-child {
+        justify-content: space-between;
+    }
+
+    .category-list2 {
+        display: flex;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        overflow-x: auto;
+        text-align: right;
+        max-width: 916px;
+        flex-direction: row-reverse;
+        cursor: pointer;
+        border: none;
+    }
+
+    .category-list3:first-child {
+        justify-content: space-between;
+    }
+
+    .category-list3 {
+        display: flex;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        overflow-x: auto;
+        text-align: right;
+        max-width: 916px;
+        flex-direction: row-reverse;
+        cursor: pointer;
+        border: none;
+    }
+
+    .category-list4:first-child {
+        justify-content: space-between;
+    }
+
+    .category-list4 {
+        display: flex;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        overflow-x: auto;
+        text-align: right;
+        max-width: 916px;
+        flex-direction: row-reverse;
+        cursor: pointer;
+        border: none;
     }
 
 
@@ -2814,11 +3222,150 @@ a,span,button,p{
         transition: 0.6s  !important;
         cursor: pointer  !important;
     }
+
+    #ksa a.country-name{
+        color: rgb(0, 0, 0) !important;
+    }
+
+    #kuwit path{
+        fill: #008d71 !important;
+    }
+
+    #oman path{
+        fill: #054136 !important;
+    }
+
+    #uea path{
+        fill: #002923 !important;
+    }
+
+    #qatar path{
+        fill: #000e0c !important;
+    }
+
+    #bahran path{
+        fill: #08443b !important;
+    }
+
+    .tabuk{
+        fill: white;        
+        pointer-events: none;
+        font-size: 24px;
+        transform: translate(85px,234px);
+    }
+
+    .madinah{
+        fill: white;        
+        pointer-events: none;
+        font-size: 24px;
+        transform: translate(181px,424px);
+    }
+    .makkah{
+        fill: white;        
+        pointer-events: none;
+        font-size: 24px;
+        transform: translate(259px,569px);
+    }
+    .baha{
+        fill: white;        
+        pointer-events: none;
+        font-size: 24px;
+        transform: translate(296px,644px);
+    }
+    .asir{
+        fill: white;        
+        pointer-events: none;
+        font-size: 24px;
+        transform: translate(326px,688px);
+    }
+    .jazan{
+        fill: white;        
+        pointer-events: none;
+        font-size: 24px;
+        transform: translate(397px,797px) rotate(249deg);
+    }
+    .najran{
+        fill: white;        
+        pointer-events: none;
+        font-size: 24px;
+        transform: translate(474px,734px);
+    }
+    .eastern{
+        fill: white;        
+        pointer-events: none;
+        font-size: 24px;
+        transform: translate(679px,542px)
+    }
+    .northern{
+        fill: white;        
+        pointer-events: none;
+        font-size: 24px;
+        transform: translate(307px,170px);
+    }
+    .jouf{
+        fill: white;        
+        pointer-events: none;
+        font-size: 24px;
+        transform: translate(148px,144px);
+    }
+    .hail{
+        fill: white;        
+        pointer-events: none;
+        font-size: 24px;
+        transform: translate(275px,255px);
+    }
+    .qassim{
+        fill: white;        
+        pointer-events: none;
+        font-size: 24px;
+        transform: translate(346px,374px) rotate(327deg);
+    }
+    .riyadh{
+        fill: white;        
+        pointer-events: none;
+        font-size: 24px;
+        transform: translate(450px,487px);
+    }
+
+    .kuwit{
+        fill: white;        
+        pointer-events: none;
+        font-size: 20px;
+        transform: translate(593px,171px)rotate(307deg);
+    }
+    .oman{
+        fill: white;        
+        pointer-events: none;
+        font-size: 24px;
+        transform: translate(1037px,561px);
+    }
+    .uea{
+        fill: white;        
+        pointer-events: none;
+        font-size: 24px;
+        transform: translate(888px,469px);
+    }
+    .qatar{
+        fill: #08443B;
+        pointer-events: none;
+        font-size: 24px;
+        transform: translate(807px,364px);
+    }
+    .bahran{
+        fill: #000E0C;
+        pointer-events: none;
+        font-size: 24px;
+        transform: translate(767px,313px);
+    }
     
     .map{
         width: 100%;
         height: 100%;
         text-align: center;
+    }
+
+    .hiddemap{
+        display: none !important;
     }
 
     svg#Layer_1 {
@@ -2827,7 +3374,7 @@ a,span,button,p{
         position: relative;
         top: 50%;
         left: 50%;
-        transform: translate(-50%,90px);
+        transform: translate(-50%,15px);
     }
 
 }

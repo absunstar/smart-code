@@ -168,51 +168,77 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
 
   $scope.loadSubCategory = function (c) {
     $scope.error = '';
+    $scope.search.category_id = c.id;
+    $scope.searchAll($scope.search);
     $scope.subCategoriesList = [];
+    $scope.subCategoriesList2 = [];
+    $scope.subCategoriesList3 = [];
+    $scope.subCategoriesList4 = [];
     $scope.category_list.forEach((_c) => {
       if (c.id == _c.parent_id) {
         $scope.subCategoriesList.push(_c);
       }
     });
-    /* $scope.getAdsList({ which: 13 }, $scope.search); */
+    $scope.getAdsList({ which: 13 }, $scope.search);
   };
 
-  
   $scope.loadSubCategory2 = function (c) {
     $scope.error = '';
+    $scope.search.category_id = c.id;
+    $scope.searchAll($scope.search);
     $scope.subCategoriesList2 = [];
+    $scope.subCategoriesList3 = [];
+    $scope.subCategoriesList4 = [];
     $scope.category_list.forEach((_c) => {
       if (c.id == _c.parent_id) {
         $scope.subCategoriesList2.push(_c);
       }
     });
-    /* $scope.getAdsList({ which: 13 }, $scope.search); */
+    $scope.getAdsList({ which: 13 }, $scope.search);
   };
 
   $scope.loadSubCategory3 = function (c) {
     $scope.error = '';
+    $scope.search.category_id = c.id;
+    $scope.searchAll($scope.search);
     $scope.subCategoriesList3 = [];
+    $scope.subCategoriesList4 = [];
     $scope.category_list.forEach((_c) => {
       if (c.id == _c.parent_id) {
         $scope.subCategoriesList3.push(_c);
       }
     });
-    /* $scope.getAdsList({ which: 13 }, $scope.search); */
+    $scope.getAdsList({ which: 13 }, $scope.search);
   };
 
   $scope.loadSubCategory4 = function (c) {
     $scope.error = '';
+    $scope.search.category_id = c.id;
+
+    $scope.searchAll($scope.search);
     $scope.subCategoriesList4 = [];
     $scope.category_list.forEach((_c) => {
       if (c.id == _c.parent_id) {
         $scope.subCategoriesList4.push(_c);
       }
     });
-    /* $scope.getAdsList({ which: 13 }, $scope.search); */
+    $scope.getAdsList({ which: 13 }, $scope.search);
   };
   $scope.displayAdvancedSearch = function () {
     $scope.error = '';
     site.showModal('#adAdvancedSearchModal');
+  };
+
+  $scope.changeLang = function (lang) {
+    $http({
+      method: 'POST',
+      url: '/x-language/change',
+      data: { name: lang },
+    }).then(function (response) {
+      if (response.data.done) {
+        window.location.reload(true);
+      }
+    });
   };
 
   $scope.searchAll = function (search) {
@@ -222,5 +248,6 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
     $scope.getAdsList({ which: 13 }, search);
   };
   $scope.loadMainCategories();
+  $scope.getAdsList({ which: 13 }, {});
   $scope.getUser();
 });

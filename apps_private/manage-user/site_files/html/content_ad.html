@@ -12,16 +12,16 @@
           <br />
 
           <div class="row">
-            <p class="col3 bold">##word.mobile_number_or_contact_method##</p>
-            : <i-checkbox class="col3" label="##word.hide_mobile_number##" ng-model="ad.hide_mobile"> </i-checkbox> :
             <i-control class="col4" ng-hide="ad.hide_mobile" label="##word.cell_phone_number##" ng-model="ad.mobile"></i-control>
+            <br />
+            <i-checkbox class="col3" label="##word.hide_mobile_number##" ng-model="ad.hide_mobile"> </i-checkbox> :
           </div>
 
           <!--           <i-address ng-show="defaultSettings.ads_settings.addresses_appear" ng-model="ad"></i-address>
  -->
           <div class="row">
             <i-button type="add" class="col3" label="##word.view_categories##" ng-click="viewCategories(ad)"></i-button>
-            <p class="col3 bold">##word.category## : {{ad.main_category.name_##session.lang##}}</p>
+            <p ng-show="ad.main_category.id" class="col3 bold">##word.category## : {{ad.main_category.name_##session.lang##}}</p>
           </div>
 
           <div class="row" ng-show="ad.category_require_list.length > 0">
@@ -78,7 +78,7 @@
         <div class="col5">
           <div class="row">
             <i-radio class="col6" ng-model="ad.set_price" label="##word.no##" ng-value="no"> </i-radio>
-            <i-radio class="col6" ng-model="ad.set_price" label="##word.yes##" ng-value="yes"></i-radio>
+            <i-radio class="col6" ng-model="ad.set_price" ng-click="ad.quantity_list = [{}]" label="##word.yes##" ng-value="yes"></i-radio>
           </div>
         </div>
       </div>
