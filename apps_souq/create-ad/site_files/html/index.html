@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 
 <html lang="en" data-ng-app="myApp" class="bg-white">
-  <head x-import="head.html"> </head>
-
+  <head x-import="head.html">
+  <link rel="stylesheet" href="/site_files/css/souq_theme.css">  
+  </head>
   <body style="background: white" class="##session.lang##" ng-controller="create_ad">
-    <nav x-import="herag/sitebar.html" class="sitebar" data-ng-controller="sitebar">
-    </nav>
+    <!-- <nav x-import="herag/sitebar.html" class="sitebar" data-ng-controller="sitebar">
+    </nav> -->
 
     <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
 
@@ -13,9 +14,9 @@
       <div x-features="souq" x-import="ads/view_categories.html"></div>
 
       <div class="row">
-        <br />
+        <!-- <br />
         <h1 class="center bold black">##word.create_ad##</h1>
-        <br />
+        <br /> -->
 
         <div x-import="create-ad/content.html"></div>
       </div>
