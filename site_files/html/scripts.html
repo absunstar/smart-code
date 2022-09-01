@@ -11,17 +11,13 @@
 </script>
 
 <script>
+  site.getPrinters();
   var app = app || angular.module('myApp', []);
 </script>
 <script x-features="protouch">
   window.protouch = true;
 </script>
 
-<!-- <script x-features="ttl">
-  window.ttl = true;
-</script> -->
-
-<!-- <script src="/x-js/directive.js?v=##site.options.version##"></script> -->
 <script src="/js/sitebar.js?v=##site.options.version##"></script>
 <script src="/js/sitebottom.js?v=##site.options.version##"></script>
 <script src="/js/FileSaver.js?v=##site.options.version##"></script>
