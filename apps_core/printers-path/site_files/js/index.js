@@ -1,4 +1,4 @@
-app.controller("printers_path", function ($scope, $http, $timeout) {
+app.controller('printers_path', function ($scope, $http, $timeout) {
   $scope._search = {};
 
   $scope.printer_path = {};
@@ -7,23 +7,21 @@ app.controller("printers_path", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.printer_path = {
       image_url: '/images/printer_path.png',
-      ip_device :'127.0.0.1',
-      Port_device :'60080',
-      active: true
+      ip_device: '127.0.0.1',
+      Port_device: '60080',
+      active: true,
     };
     site.showModal('#printerPathAddModal');
   };
 
   $scope.getPrintersNamesList = function () {
     $scope.error = '';
-    let printersList = window.SOCIALBROWSER ? site.printerList : [];
+    let printersList = site.printerList;
     $scope.printersNamesList = [];
     printersList.forEach((_p, i) => {
       $scope.printersNamesList.push({ id: i + 1, name: _p.name });
     });
-
   };
-
 
   $scope.addPrinterPath = function () {
     $scope.error = '';
@@ -34,13 +32,13 @@ app.controller("printers_path", function ($scope, $http, $timeout) {
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
-    };
+    }
 
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/printers_path/add",
-      data: $scope.printer_path
+      method: 'POST',
+      url: '/api/printers_path/add',
+      data: $scope.printer_path,
     }).then(
       function (response) {
         $scope.busy = false;
@@ -51,14 +49,14 @@ app.controller("printers_path", function ($scope, $http, $timeout) {
         } else {
           $scope.error = response.data.error;
           if (response.data.error.like('*Must Enter Code*')) {
-            $scope.error = "##word.must_enter_code##"
+            $scope.error = '##word.must_enter_code##';
           }
         }
       },
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.displayUpdatePrinterPath = function (printer_path) {
@@ -81,9 +79,9 @@ app.controller("printers_path", function ($scope, $http, $timeout) {
     }
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/printers_path/update",
-      data: $scope.printer_path
+      method: 'POST',
+      url: '/api/printers_path/update',
+      data: $scope.printer_path,
     }).then(
       function (response) {
         $scope.busy = false;
@@ -101,7 +99,7 @@ app.controller("printers_path", function ($scope, $http, $timeout) {
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.displayDetailsPrinterPath = function (printer_path) {
@@ -115,11 +113,11 @@ app.controller("printers_path", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/printers_path/view",
+      method: 'POST',
+      url: '/api/printers_path/view',
       data: {
-        id: printer_path.id
-      }
+        id: printer_path.id,
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -133,7 +131,7 @@ app.controller("printers_path", function ($scope, $http, $timeout) {
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.displayDeletePrinterPath = function (printer_path) {
@@ -147,12 +145,11 @@ app.controller("printers_path", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/printers_path/delete",
+      method: 'POST',
+      url: '/api/printers_path/delete',
       data: {
-        id: $scope.printer_path.id
-
-      }
+        id: $scope.printer_path.id,
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -171,7 +168,7 @@ app.controller("printers_path", function ($scope, $http, $timeout) {
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.getPrinterPathList = function (where) {
@@ -180,11 +177,11 @@ app.controller("printers_path", function ($scope, $http, $timeout) {
     $scope.list = [];
     $scope.count = 0;
     $http({
-      method: "POST",
-      url: "/api/printers_path/all",
+      method: 'POST',
+      url: '/api/printers_path/all',
       data: {
-        where: where
-      }
+        where: where,
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -197,7 +194,7 @@ app.controller("printers_path", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.getPrinterTypeList = function () {
@@ -205,9 +202,8 @@ app.controller("printers_path", function ($scope, $http, $timeout) {
     $scope.busy = true;
     $scope.printerTypeList = [];
     $http({
-      method: "POST",
-      url: "/api/printer_type/all"
-
+      method: 'POST',
+      url: '/api/printer_type/all',
     }).then(
       function (response) {
         $scope.busy = false;
@@ -217,18 +213,18 @@ app.controller("printers_path", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.getNumberingAuto = function () {
     $scope.error = '';
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/numbering/get_automatic",
+      method: 'POST',
+      url: '/api/numbering/get_automatic',
       data: {
-        screen: "printers_path"
-      }
+        screen: 'printers_path',
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -240,18 +236,19 @@ app.controller("printers_path", function ($scope, $http, $timeout) {
         $scope.busy = false;
         $scope.error = err;
       }
-    )
+    );
   };
 
   $scope.searchAll = function () {
     $scope.getPrinterPathList($scope.search);
     site.hideModal('#printerPathSearchModal');
-    $scope.search = {}
-
+    $scope.search = {};
   };
 
   $scope.getPrinterPathList();
   $scope.getPrinterTypeList();
   $scope.getNumberingAuto();
-  $scope.getPrintersNamesList();
+  $timeout(() => {
+    $scope.getPrintersNamesList();
+  }, 1000 * 3);
 });
