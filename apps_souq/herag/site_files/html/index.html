@@ -1,449 +1,913 @@
 <!DOCTYPE html>
-<html lang="##session.lang##" class="loaded" ng-app="myApp">
-  <head x-server="x-import">
-    <title x-features="!protouch &amp;&amp; !host.ttl">سمـارت كـود | سوق</title>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  </head>
+<html lang="##session.lang##" ng-app="myApp">
 
-  <body class="##session.lang## " ng-controller="index_souq">
-    <header>
-      <div class="firstheader">
-        <div></div>
-        <ul class="nav1">
-          <li><a href="" class="nav-link">الرئيسية</a></li>
-          <li><a href="" class="nav-link">سوق السيارات</a></li>
-          <li><a href="" class="nav-link">أجهزة</a></li>
-          <li><a href="" class="nav-link">عقارات</a></li>
-          <li><a href="" class="nav-link">مواشي وحيوانات وطيور</a></li>
-          <li><a href="" class="nav-link">أثاث</a></li>
-          <li><a href="" class="nav-link">البحث</a></li>
-          <li><a href="" class="nav-link">خدمات</a></li>
-          <li><a href="" class="nav-link">أقسام أكثر</a></li>
-        </ul>
-        <div></div>
-      </div>
-      <div x-server="x-import">
-        <div id="adAdvancedSearchModal" class="modal" style="z-index: 10009; display: none">
-          <div class="modal-content">
-            <div class="modal-header">
-              <span class="close">×</span>
-              <h2><span class="text-icon">##word.search_all##</span><i class="fa fa-search"></i></h2>
-            </div>
+<head x-server="x-import">
+  <title x-features="!protouch &amp;&amp; !host.ttl">سمـارت كـود | سوق</title>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/x-css/fonts.css" />
+  <link rel="stylesheet" href="/css/font6.css" />
+</head>
 
-            <div class="modal-body">
-              <form class="form ng-pristine ng-valid">
-                <fieldset>
-                  <legend>##word.search_all##</legend>
-                  <div class="row">
-                    <div class="row form-filed form-filed-mobile">
-                      <i-user class="col3 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" ng-model="search.user">
-                        <b class="font-18 pointer blue ng-binding ng-hide" ng-show="ngModel.id" ng-click="showModal()"> </b>
-                        <b class="font-18 pointer" ng-click="showModal()" ng-show="!ngModel.id">##word.user## : </b>
-                        <b class="font-18 pointer blue" ng-show="!ngModel.id" ng-click="showModal()"> ##word.not_found##</b>
+<body class="##session.lang## loaded" ng-controller="index_souq">
+  <div class="map">
+    <div class="movemab" x-import="herag/map.html"></div>
+  </div>
+  <header>
+    <div class="firstheader">
+      <div></div>
+      <ul class="nav1">
+        <li><a href="" class="nav-link">الرئيسية</a></li>
+        <li><a href="" class="nav-link">سوق السيارات</a></li>
+        <li><a href="" class="nav-link">أجهزة</a></li>
+        <li><a href="" class="nav-link">عقارات</a></li>
+        <li><a href="" class="nav-link">مواشي وحيوانات وطيور</a></li>
+        <li><a href="" class="nav-link">أثاث</a></li>
+        <li><a href="" class="nav-link">البحث</a></li>
+        <li><a href="" class="nav-link">خدمات</a></li>
+        <li><a href="" class="nav-link">أقسام أكثر</a></li>
+      </ul>
+      <div></div>
+    </div>
+    <div x-server="x-import">
+      <div id="adAdvancedSearchModal" class="modal" style="z-index: 10009; display: none">
+        <div class="modal-content">
+          <div class="modal-header">
+            <span class="close">×</span>
+            <h2><span class="text-icon">##word.search_all##</span><i class="fa fa-search"></i></h2>
+          </div>
 
-                        <div id="userMoal_0_3570313354065242" class="modal small">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <span class="close">×</span>
-                              <h2><span class="text-icon" style="color: #fff">##word.users_search##</span> <i class="fa fa-search"></i></h2>
-                            </div>
+          <div class="modal-body">
+            <form class="form ng-pristine ng-valid">
+              <fieldset>
+                <legend>##word.search_all##</legend>
+                <div class="row">
+                  <div class="row form-filed form-filed-mobile">
+                    <i-user class="col3 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty"
+                      ng-model="search.user">
+                      <b class="font-18 pointer blue ng-binding ng-hide" ng-show="ngModel.id" ng-click="showModal()">
+                      </b>
+                      <b class="font-18 pointer" ng-click="showModal()" ng-show="!ngModel.id">##word.user## : </b>
+                      <b class="font-18 pointer blue" ng-show="!ngModel.id" ng-click="showModal()">
+                        ##word.not_found##</b>
 
-                            <div class="modal-body">
-                              <div class="row">
-                                <div class="col2"></div>
-                                <div class="col8">
-                                  <fieldset class="search-user">
-                                    <i-list ng-search="_search.$user" class="col6 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" display="profile.name" ng-model="ngModel" label="مستخدم" items="users_list">
-                                      <div class="dropdown i-list">
-                                        <div class="control">
-                                          <label class="ng-binding"> ##word.user## </label>
-                                          <input ng-focus="focus()" class="full-width text dropdown-text ng-empty" ng-disabled="disabled" v="" readonly="" ng-model="ngModel.$display" x-input="true" />
-                                        </div>
+                      <div id="userMoal_0_3570313354065242" class="modal small">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <span class="close">×</span>
+                            <h2><span class="text-icon" style="color: #fff">##word.users_search##</span> <i
+                                class="fa fa-search"></i></h2>
+                          </div>
 
-                                        <div class="dropdown-content-user store-search">
-                                          <div class="row padding" ng-show="showSearch">
-                                            <input class="full-width search ng-pristine ng-untouched ng-valid ng-empty" ng-model="ngSearch" x-input="true" />
-                                            <br />
-                                          </div>
-
-                                          <!-- ngRepeat: item in items | filter:{ $display : ngSearch} -->
-
-                                          <div class="row center padding pointer">
-                                            <a class="btn red" ng-click="updateModel({})"> <i class="fa fa-trash"></i> Clear </a>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </i-list>
-                                    <i-control ng-keydown="loadUsers($event,search_user)" class="co16 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" ng-model="search_user" label="بحـث" type="text">
+                          <div class="modal-body">
+                            <div class="row">
+                              <div class="col2"></div>
+                              <div class="col8">
+                                <fieldset class="search-user">
+                                  <i-list ng-search="_search.$user"
+                                    class="col6 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty"
+                                    display="profile.name" ng-model="ngModel" label="مستخدم" items="users_list">
+                                    <div class="dropdown i-list">
                                       <div class="control">
-                                        <label class="ng-binding"> ##word.search## </label>
-                                        <input id="" ng-disabled="disabled" autofocus="" v="" type="text" ng-model="ngModel" ng-change="ngChange()" ngkeydown="ngKeydown()" x-input="true" class="ng-pristine ng-untouched ng-valid ng-empty" />
+                                        <label class="ng-binding"> ##word.user## </label>
+                                        <input ng-focus="focus()" class="full-width text dropdown-text ng-empty"
+                                          ng-disabled="disabled" v="" readonly="" ng-model="ngModel.$display"
+                                          x-input="true" />
                                       </div>
-                                    </i-control>
-                                  </fieldset>
-                                </div>
-                              </div>
-                            </div>
 
-                            <div class="modal-footer center">
-                              <i-button type="save" label="##word.save##" ng-click="hideModal()" class="ng-isolate-scope">
-                                <a class="btn save">
-                                  <span class="text-icon" style="color: #fff">##word.save##</span>
-                                  <i ng-show="fa" class="fa fa-save" aria-hidden="true"></i>
-                                </a>
-                              </i-button>
+                                      <div class="dropdown-content-user store-search">
+                                        <div class="row padding" ng-show="showSearch">
+                                          <input class="full-width search ng-pristine ng-untouched ng-valid ng-empty"
+                                            ng-model="ngSearch" x-input="true" />
+                                          <br />
+                                        </div>
+
+                                        <!-- ngRepeat: item in items | filter:{ $display : ngSearch} -->
+
+                                        <div class="row center padding pointer">
+                                          <a class="btn red" ng-click="updateModel({})"> <i class="fa fa-trash"></i>
+                                            Clear </a>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </i-list>
+                                  <i-control ng-keydown="loadUsers($event,search_user)"
+                                    class="co16 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty"
+                                    ng-model="search_user" label="بحـث" type="text">
+                                    <div class="control">
+                                      <label class="ng-binding"> ##word.search## </label>
+                                      <input id="" ng-disabled="disabled" autofocus="" v="" type="text"
+                                        ng-model="ngModel" ng-change="ngChange()" ngkeydown="ngKeydown()" x-input="true"
+                                        class="ng-pristine ng-untouched ng-valid ng-empty" />
+                                    </div>
+                                  </i-control>
+                                </fieldset>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      </i-user>
-                      <i-store class="store-padding col3 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" ng-model="search.store">
-                        <b class="font-18 pointer blue ng-binding ng-hide" ng-show="ngModel.id" ng-click="showModal()"> </b>
-                        <b class="font-18 pointer green ng-binding ng-hide" ng-show="ngModel.id" ng-click="showModal()"> </b>
-                        <b class="font-18 pointer" ng-click="showModal()" ng-show="!ngModel.id">##word.store## : </b>
-                        <b class="font-18 pointer blue" ng-show="!ngModel.id" ng-click="showModal()"> ##word.not_found##</b>
 
-                        <div id="storeMoal_0_1392402119137337" class="modal small" style="z-index: 1000003; display: none">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <span class="close">×</span>
-                              <h2><span class="text-icon" style="color: #fff">##word.stores_search##</span> <i class="fa fa-search"></i></h2>
-                            </div>
-
-                            <div class="modal-body">
-                              <div class="row">
-                                <div class="col2"></div>
-                                <div class="col8">
-                                  <fieldset class="search-user">
-                                    <i-list ng-search="_search.$store" class="col6 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" display="name_ar" display2="user.profile.name" space=" - " ng-model="ngModel" label="##word.store##" items="stores_list">
-                                      <div class="dropdown i-list">
-                                        <div class="control">
-                                          <label class="ng-binding"> ##word.store## </label>
-                                          <input ng-focus="focus()" class="full-width text dropdown-text ng-empty" ng-disabled="disabled" v="" readonly="" ng-model="ngModel.$display" x-input="true" />
-                                        </div>
-
-                                        <div class="dropdown-content-store store-search" style="display: block">
-                                          <div class="row padding" ng-show="showSearch">
-                                            <input class="full-width search ng-pristine ng-untouched ng-valid ng-empty" ng-model="ngSearch" x-input="true" />
-                                            <br />
-                                          </div>
-
-                                          <!-- ngRepeat: item in items | filter:{ $display : ngSearch} -->
-
-                                          <div class="row center padding pointer">
-                                            <a class="btn red" ng-click="updateModel({})"> <i class="fa fa-trash"></i> Clear </a>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </i-list>
-                                    <i-control ng-keydown="loadStores($event,search_store)" class="col6 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" ng-model="search_store" label="##word.search##" type="text">
-                                      <div class="control">
-                                        <label class="ng-binding"> ##word.search## </label>
-                                        <input id="" ng-disabled="disabled" autofocus="" v="" type="text" ng-model="ngModel" ng-change="ngChange()" ngkeydown="ngKeydown()" x-input="true" class="ng-pristine ng-untouched ng-valid ng-empty" />
-                                      </div>
-                                    </i-control>
-                                  </fieldset>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="modal-footer center">
-                              <i-button type="save" label="##word.save##" ng-click="hideModal()" class="ng-isolate-scope">
-                                <a class="btn save">
-                                  <span class="text-icon" style="color: #fff">##word.save##</span>
-                                  <i ng-show="fa" class="fa fa-save" aria-hidden="true"></i>
-                                </a>
-                              </i-button>
-                            </div>
+                          <div class="modal-footer center">
+                            <i-button type="save" label="##word.save##" ng-click="hideModal()" class="ng-isolate-scope">
+                              <a class="btn save">
+                                <span class="text-icon" style="color: #fff">##word.save##</span>
+                                <i ng-show="fa" class="fa fa-save" aria-hidden="true"></i>
+                              </a>
+                            </i-button>
                           </div>
-                        </div>
-                      </i-store>
-                    </div>
-                    <i-address ng-model="search" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty">
-                      <div id="addresses_0_9222769238280331" class="row">
-                        <div class="row form-filed">
-                          <i-list help-id="" class="col3 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" label="الدولة" ng-change="getGovesList(ngModel.country)" ng-model="ngModel.country" display="name_ar" items="countriesList" ng-search="_search.$city_country">
-                            <div class="dropdown i-list">
-                              <div class="control">
-                                <label class="ng-binding"> الدولة </label>
-                                <input ng-focus="focus()" class="full-width text dropdown-text ng-empty" ng-disabled="disabled" v="" readonly="" ng-model="ngModel.$display" x-input="true" />
-                              </div>
-
-                              <div class="dropdown-content countre" style="display: none">
-                                <div class="row padding" ng-show="showSearch">
-                                  <input class="full-width search ng-pristine ng-untouched ng-valid ng-empty" ng-model="ngSearch" x-input="true" />
-                                  <br />
-                                </div>
-
-                                <!-- ngRepeat: item in items | filter:{ $display : ngSearch} -->
-
-                                <div class="row center padding pointer">
-                                  <a class="btn red" ng-click="updateModel({})"> <i class="fa fa-trash"></i> Clear </a>
-                                </div>
-                              </div>
-                            </div>
-                          </i-list>
-
-                          <i-list class="col3 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" label="المحافظة" ng-model="ngModel.gov" items="govesList" ng-change="getCityList(ngModel.gov)" display="name_ar" ng-search="_search.$ngModel.$gov_search">
-                            <div class="dropdown i-list">
-                              <div class="control">
-                                <label class="ng-binding"> المحافظة </label>
-                                <input ng-focus="focus()" class="full-width text dropdown-text ng-empty" ng-disabled="disabled" v="" readonly="" ng-model="ngModel.$display" x-input="true" />
-                              </div>
-
-                              <div class="dropdown-content governorate" style="display: none">
-                                <div class="row padding" ng-show="showSearch">
-                                  <input class="full-width search ng-pristine ng-untouched ng-valid ng-empty" ng-model="ngSearch" x-input="true" />
-                                  <br />
-                                </div>
-
-                                <!-- ngRepeat: item in items | filter:{ $display : ngSearch} -->
-
-                                <div class="row center padding pointer">
-                                  <a class="btn red" ng-click="updateModel({})"> <i class="fa fa-trash"></i> Clear </a>
-                                </div>
-                              </div>
-                            </div>
-                          </i-list>
-
-                          <i-list class="col3 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" ng-change="getAreaList(ngModel.city)" label="المدينة" ng-model="ngModel.city" items="cityList" display="name_ar" ng-search="_search.$ngModel.$city_search">
-                            <div class="dropdown i-list">
-                              <div class="control">
-                                <label class="ng-binding"> المدينة </label>
-                                <input ng-focus="focus()" class="full-width text dropdown-text ng-empty" ng-disabled="disabled" v="" readonly="" ng-model="ngModel.$display" x-input="true" />
-                              </div>
-
-                              <div class="dropdown-content city" style="display: none">
-                                <div class="row padding" ng-show="showSearch">
-                                  <input class="full-width search ng-pristine ng-untouched ng-valid ng-empty" ng-model="ngSearch" x-input="true" />
-                                  <br />
-                                </div>
-
-                                <!-- ngRepeat: item in items | filter:{ $display : ngSearch} -->
-
-                                <div class="row center padding pointer">
-                                  <a class="btn red" ng-click="updateModel({})"> <i class="fa fa-trash"></i> Clear </a>
-                                </div>
-                              </div>
-                            </div>
-                          </i-list>
-
-                          <i-list class="col3 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" label="المنطقة" ng-model="ngModel.area" items="areaList" display="name_ar" ng-search="_search.$ngModel.$area_search">
-                            <div class="dropdown i-list">
-                              <div class="control">
-                                <label class="ng-binding"> المنطقة </label>
-                                <input ng-focus="focus()" class="full-width text dropdown-text ng-empty" ng-disabled="disabled" v="" readonly="" ng-model="ngModel.$display" x-input="true" />
-                              </div>
-
-                              <div class="dropdown-content zone" style="display: none">
-                                <div class="row padding" ng-show="showSearch">
-                                  <input class="full-width search ng-pristine ng-untouched ng-valid ng-empty" ng-model="ngSearch" x-input="true" />
-                                  <br />
-                                </div>
-
-                                <!-- ngRepeat: item in items | filter:{ $display : ngSearch} -->
-
-                                <div class="row center padding pointer">
-                                  <a class="btn red" ng-click="updateModel({})"> <i class="fa fa-trash"></i> Clear </a>
-                                </div>
-                              </div>
-                            </div>
-                          </i-list>
-                        </div>
-                        <div class="row">
-                          <i-textarea class="col8 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" label="العنوان تفصيلي" ng-model="ngModel.detailed_address">
-                            <div class="control">
-                              <label class="ng-binding"> العنوان تفصيلي </label>
-                              <textarea ng-disabled="disabled" rows="4" v="" ng-model="ngModel" ng-change="ngChange()" class="ng-pristine ng-untouched ng-valid ng-empty"></textarea>
-                            </div>
-                          </i-textarea>
                         </div>
                       </div>
-                    </i-address>
+                    </i-user>
+                    <i-store class="store-padding col3 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty"
+                      ng-model="search.store">
+                      <b class="font-18 pointer blue ng-binding ng-hide" ng-show="ngModel.id" ng-click="showModal()">
+                      </b>
+                      <b class="font-18 pointer green ng-binding ng-hide" ng-show="ngModel.id" ng-click="showModal()">
+                      </b>
+                      <b class="font-18 pointer" ng-click="showModal()" ng-show="!ngModel.id">##word.store## : </b>
+                      <b class="font-18 pointer blue" ng-show="!ngModel.id" ng-click="showModal()">
+                        ##word.not_found##</b>
+
+                      <div id="storeMoal_0_1392402119137337" class="modal small"
+                        style="z-index: 1000003; display: none">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <span class="close">×</span>
+                            <h2><span class="text-icon" style="color: #fff">##word.stores_search##</span> <i
+                                class="fa fa-search"></i></h2>
+                          </div>
+
+                          <div class="modal-body">
+                            <div class="row">
+                              <div class="col2"></div>
+                              <div class="col8">
+                                <fieldset class="search-user">
+                                  <i-list ng-search="_search.$store"
+                                    class="col6 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty"
+                                    display="name_ar" display2="user.profile.name" space=" - " ng-model="ngModel"
+                                    label="##word.store##" items="stores_list">
+                                    <div class="dropdown i-list">
+                                      <div class="control">
+                                        <label class="ng-binding"> ##word.store## </label>
+                                        <input ng-focus="focus()" class="full-width text dropdown-text ng-empty"
+                                          ng-disabled="disabled" v="" readonly="" ng-model="ngModel.$display"
+                                          x-input="true" />
+                                      </div>
+
+                                      <div class="dropdown-content-store store-search" style="display: block">
+                                        <div class="row padding" ng-show="showSearch">
+                                          <input class="full-width search ng-pristine ng-untouched ng-valid ng-empty"
+                                            ng-model="ngSearch" x-input="true" />
+                                          <br />
+                                        </div>
+
+                                        <!-- ngRepeat: item in items | filter:{ $display : ngSearch} -->
+
+                                        <div class="row center padding pointer">
+                                          <a class="btn red" ng-click="updateModel({})"> <i class="fa fa-trash"></i>
+                                            Clear </a>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </i-list>
+                                  <i-control ng-keydown="loadStores($event,search_store)"
+                                    class="col6 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty"
+                                    ng-model="search_store" label="##word.search##" type="text">
+                                    <div class="control">
+                                      <label class="ng-binding"> ##word.search## </label>
+                                      <input id="" ng-disabled="disabled" autofocus="" v="" type="text"
+                                        ng-model="ngModel" ng-change="ngChange()" ngkeydown="ngKeydown()" x-input="true"
+                                        class="ng-pristine ng-untouched ng-valid ng-empty" />
+                                    </div>
+                                  </i-control>
+                                </fieldset>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="modal-footer center">
+                            <i-button type="save" label="##word.save##" ng-click="hideModal()" class="ng-isolate-scope">
+                              <a class="btn save">
+                                <span class="text-icon" style="color: #fff">##word.save##</span>
+                                <i ng-show="fa" class="fa fa-save" aria-hidden="true"></i>
+                              </a>
+                            </i-button>
+                          </div>
+                        </div>
+                      </div>
+                    </i-store>
                   </div>
-                </fieldset>
-              </form>
-            </div>
+                  <i-address ng-model="search" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty">
+                    <div id="addresses_0_9222769238280331" class="row">
+                      <div class="row form-filed">
+                        <i-list help-id="" class="col3 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty"
+                          label="الدولة" ng-change="getGovesList(ngModel.country)" ng-model="ngModel.country"
+                          display="name_ar" items="countriesList" ng-search="_search.$city_country">
+                          <div class="dropdown i-list">
+                            <div class="control">
+                              <label class="ng-binding"> الدولة </label>
+                              <input ng-focus="focus()" class="full-width text dropdown-text ng-empty"
+                                ng-disabled="disabled" v="" readonly="" ng-model="ngModel.$display" x-input="true" />
+                            </div>
 
-            <h2 class="error ng-binding"></h2>
+                            <div class="dropdown-content countre" style="display: none">
+                              <div class="row padding" ng-show="showSearch">
+                                <input class="full-width search ng-pristine ng-untouched ng-valid ng-empty"
+                                  ng-model="ngSearch" x-input="true" />
+                                <br />
+                              </div>
 
-            <div class="modal-footer center">
-              <i-button type="search" label="##word.search##" ng-click="searchAll(search)" class="ng-isolate-scope">
-                <a class="btn search">
-                  <span class="text-icon">##word.search##</span>
-                  <i ng-show="fa" class="fa fa-search" aria-hidden="true"> </i>
-                </a>
-              </i-button>
+                              <!-- ngRepeat: item in items | filter:{ $display : ngSearch} -->
 
-              <i-button type="clear" label="##word.empty_search##" ng-click="search = {}" class="ng-isolate-scope">
-                <a class="btn clear">
-                  ##word.empty_search##
-                  <i ng-show="fa" class="fa fa- ng-hide" aria-hidden="true"></i>
-                </a>
-              </i-button>
+                              <div class="row center padding pointer">
+                                <a class="btn red" ng-click="updateModel({})"> <i class="fa fa-trash"></i> Clear </a>
+                              </div>
+                            </div>
+                          </div>
+                        </i-list>
 
-              <i-button type="close" label="##word.close##" onclick="site.hideModal('#adAdvancedSearchModal')" class="ng-isolate-scope">
-                <a class="btn close">
-                  <span class="text-icon">##word.close##</span>
-                  <i ng-show="fa" class="fa fa-times" aria-hidden="true"></i>
-                </a>
-              </i-button>
-            </div>
-          </div>
-          <div class="col2"></div>
-        </div>
-      </div>
-      <div class="secondeheader">
-        <div></div>
-        <div class="logo" href="/">
-          <span>سوق</span>
-          <i class="burger-icon fa-solid fa-bars fa-sm"></i>
-        </div>
-        <form class="searchbar">
-          <div class="searchgroup">
-            <div class="searchicon">
-              <img src="../assets/search-svgrepo-com.svg" alt="" width="20px" height="20px" />
-            </div>
-            <input type="search" placeholder="ابحث هنا عن ما تريد" id ng-disabled="disabled" autofocus v ng-model="ngModel" ng-change="ngChange()" ngkeydown="ngKeydown()" x-input="true" />
-            <button id="map-toggle" class="action-map advanced-search" type="search" onclick="hsMap()"><a>##word.map_search## </a></button>
-            <button class="advanced-search" type="search" ng-click="displayAdvancedSearch()"><a>##word.advanced_search## </a></button>
-            <button class="search" type="submit" ng-click="getAdsList({which:13},search)"><a>##word.search##</a></button>
-          </div>
-        </form>
-        <div class="mobile-filter">
-          <i class="burger-icon fa-solid fa-arrow-down-wide-short fa-2xl"></i>
-        </div>
-        <div class="user">
-          <i class="close-menu fa-solid fa-xmark fa-lg"></i>
-          <a class="notification" href="/cart" x-features="souq">
-            <i class="cart fa-solid fa-cart-shopping"></i>
-            <span class="badge ng-binding">{{user.cart.items.length || 0}}</span>
-          </a>
-          <div class="user-log">
-            <div x-permission="!login" class="login pointer" href="/register">
-              <i class="fa-solid fa-user-plus"></i>
-              <a href="/register">##word.register##</a>
-            </div>
-            <div x-permission="!login" class="register pointer" href="/login">
-              <i class="fa-solid fa-right-to-bracket"></i>
-              <a href="/login">##word.login##</a>
-            </div>
-          </div>
-          <div class="info">
-            <a x-features="login" href="#" onclick="event.stopPropagation(); $('.user-menu').toggle()"> <img class="center" src="##user.profile.image_url##" alt="" /> </a>
-          </div>
-          <a x-lang="ar" ng-click="changeLang('en')" class="ds-dv-dc link left"> <i class="fa fa-globe"></i> ##word.en_lang## </a>
-          <a x-lang="en" ng-click="changeLang('ar')" class="ds-dv-dc link left"> <i class="fa fa-globe"></i> ##word.ar_lang## </a>
+                        <i-list class="col3 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty"
+                          label="المحافظة" ng-model="ngModel.gov" items="govesList" ng-change="getCityList(ngModel.gov)"
+                          display="name_ar" ng-search="_search.$ngModel.$gov_search">
+                          <div class="dropdown i-list">
+                            <div class="control">
+                              <label class="ng-binding"> المحافظة </label>
+                              <input ng-focus="focus()" class="full-width text dropdown-text ng-empty"
+                                ng-disabled="disabled" v="" readonly="" ng-model="ngModel.$display" x-input="true" />
+                            </div>
 
-          <div>
-            <div class="user-menu" style="display: none">
-              <div class="center profile">
-                <img class="center" src="##user.profile.image_url##" alt="" /> <br />
-                <span x-features="souq" class="user-name"> </span> <br />
+                            <div class="dropdown-content governorate" style="display: none">
+                              <div class="row padding" ng-show="showSearch">
+                                <input class="full-width search ng-pristine ng-untouched ng-valid ng-empty"
+                                  ng-model="ngSearch" x-input="true" />
+                                <br />
+                              </div>
 
-                <h5 class="grayDark userPrint center"></h5>
-                <br />
-                <div class="center">
-                  <a id="bord_edit" href="/manage_user">
-                    <span class="black">##word.manage_your_personal_account##</span>
-                  </a>
+                              <!-- ngRepeat: item in items | filter:{ $display : ngSearch} -->
+
+                              <div class="row center padding pointer">
+                                <a class="btn red" ng-click="updateModel({})"> <i class="fa fa-trash"></i> Clear </a>
+                              </div>
+                            </div>
+                          </div>
+                        </i-list>
+
+                        <i-list class="col3 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty"
+                          ng-change="getAreaList(ngModel.city)" label="المدينة" ng-model="ngModel.city" items="cityList"
+                          display="name_ar" ng-search="_search.$ngModel.$city_search">
+                          <div class="dropdown i-list">
+                            <div class="control">
+                              <label class="ng-binding"> المدينة </label>
+                              <input ng-focus="focus()" class="full-width text dropdown-text ng-empty"
+                                ng-disabled="disabled" v="" readonly="" ng-model="ngModel.$display" x-input="true" />
+                            </div>
+
+                            <div class="dropdown-content city" style="display: none">
+                              <div class="row padding" ng-show="showSearch">
+                                <input class="full-width search ng-pristine ng-untouched ng-valid ng-empty"
+                                  ng-model="ngSearch" x-input="true" />
+                                <br />
+                              </div>
+
+                              <!-- ngRepeat: item in items | filter:{ $display : ngSearch} -->
+
+                              <div class="row center padding pointer">
+                                <a class="btn red" ng-click="updateModel({})"> <i class="fa fa-trash"></i> Clear </a>
+                              </div>
+                            </div>
+                          </div>
+                        </i-list>
+
+                        <i-list class="col3 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" label="المنطقة"
+                          ng-model="ngModel.area" items="areaList" display="name_ar"
+                          ng-search="_search.$ngModel.$area_search">
+                          <div class="dropdown i-list">
+                            <div class="control">
+                              <label class="ng-binding"> المنطقة </label>
+                              <input ng-focus="focus()" class="full-width text dropdown-text ng-empty"
+                                ng-disabled="disabled" v="" readonly="" ng-model="ngModel.$display" x-input="true" />
+                            </div>
+
+                            <div class="dropdown-content zone" style="display: none">
+                              <div class="row padding" ng-show="showSearch">
+                                <input class="full-width search ng-pristine ng-untouched ng-valid ng-empty"
+                                  ng-model="ngSearch" x-input="true" />
+                                <br />
+                              </div>
+
+                              <!-- ngRepeat: item in items | filter:{ $display : ngSearch} -->
+
+                              <div class="row center padding pointer">
+                                <a class="btn red" ng-click="updateModel({})"> <i class="fa fa-trash"></i> Clear </a>
+                              </div>
+                            </div>
+                          </div>
+                        </i-list>
+                      </div>
+                      <div class="row">
+                        <i-textarea class="col8 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty"
+                          label="العنوان تفصيلي" ng-model="ngModel.detailed_address">
+                          <div class="control">
+                            <label class="ng-binding"> العنوان تفصيلي </label>
+                            <textarea ng-disabled="disabled" rows="4" v="" ng-model="ngModel" ng-change="ngChange()"
+                              class="ng-pristine ng-untouched ng-valid ng-empty"></textarea>
+                          </div>
+                        </i-textarea>
+                      </div>
+                    </div>
+                  </i-address>
                 </div>
+              </fieldset>
+            </form>
+          </div>
 
-                <br />
+          <h2 class="error ng-binding"></h2>
 
-                <div class="link" ng-click="logout()">##word.security_logout##</div>
+          <div class="modal-footer center">
+            <i-button type="search" label="##word.search##" ng-click="searchAll(search)" class="ng-isolate-scope">
+              <a class="btn search">
+                <span class="text-icon">##word.search##</span>
+                <i ng-show="fa" class="fa fa-search" aria-hidden="true"> </i>
+              </a>
+            </i-button>
+
+            <i-button type="clear" label="##word.empty_search##" ng-click="search = {}" class="ng-isolate-scope">
+              <a class="btn clear">
+                ##word.empty_search##
+                <i ng-show="fa" class="fa fa- ng-hide" aria-hidden="true"></i>
+              </a>
+            </i-button>
+
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#adAdvancedSearchModal')"
+              class="ng-isolate-scope">
+              <a class="btn close">
+                <span class="text-icon">##word.close##</span>
+                <i ng-show="fa" class="fa fa-times" aria-hidden="true"></i>
+              </a>
+            </i-button>
+          </div>
+        </div>
+        <div class="col2"></div>
+      </div>
+    </div>
+    <div class="secondeheader-b">
+    <div class="secondeheader">
+      <div></div>
+      <div class="logo" href="/">
+        <span>سوق</span>
+        <i class="burger-icon fa-solid fa-bars fa-sm"></i>
+      </div>
+      <form class="searchbar">
+        <div class="searchgroup">
+          <div class="searchicon">
+            <img src="../assets/search-svgrepo-com.svg" alt="" width="20px" height="20px" />
+          </div>
+          <input type="search" placeholder="ابحث هنا عن ما تريد" id ng-disabled="disabled" autofocus v
+            ng-model="ngModel" ng-change="ngChange()" ngkeydown="ngKeydown()" x-input="true" />
+          <button id="map-toggle" class="action-map advanced-search" type="search"
+            onclick="hsMap()"><a>##word.map_search## </a></button>
+          <button class="advanced-search" type="search" ng-click="displayAdvancedSearch()"><a>##word.advanced_search##
+            </a></button>
+          <button class="search" type="submit" ng-click="getAdsList({which:13},search)"><a>##word.search##</a></button>
+        </div>
+      </form>
+      <div class="mobile-filter">
+        <i class="burger-icon fa-solid fa-arrow-down-wide-short fa-2xl"></i>
+      </div>
+      <div class="user">
+        <i class="close-menu fa-solid fa-xmark fa-lg"></i>
+        <a class="notification" href="/cart" x-features="souq">
+          <i class="cart fa-solid fa-cart-shopping"></i>
+          <span class="badge ng-binding">{{user.cart.items.length || 0}}</span>
+        </a>
+        <div class="user-log">
+          <div x-permission="!login" class="login pointer" href="/register">
+            <i class="fa-solid fa-user-plus"></i>
+            <a href="/register">##word.register##</a>
+          </div>
+          <div x-permission="!login" class="register pointer" href="/login">
+            <i class="fa-solid fa-right-to-bracket"></i>
+            <a href="/login">##word.login##</a>
+          </div>
+        </div>
+        <div class="info">
+          <a x-features="login" href="#" onclick="event.stopPropagation(); $('.user-menu').toggle()"> <img
+              class="center" src="##user.profile.image_url##" onerror="this.src='/images/user.png'"  alt="" /> </a>
+        </div>
+        <a x-lang="ar" ng-click="changeLang('en')" class="ds-dv-dc link left"> <i class="fa fa-globe"></i>
+          ##word.en_lang## </a>
+        <a x-lang="en" ng-click="changeLang('ar')" class="ds-dv-dc link left"> <i class="fa fa-globe"></i>
+          ##word.ar_lang## </a>
+
+        <div>
+          <div class="user-menu" style="display: none">
+            <div class="center profile">
+              <img class="center" src="##user.profile.image_url##" onerror="this.src='/images/user.png'" alt="" /> <br />
+              <span x-features="souq" class="user-name"> </span> <br />
+
+              <h5 class="grayDark userPrint center"></h5>
+              <br />
+              <div class="center">
+                <a id="bord_edit" href="/manage_user">
+                  <span class="black">##word.manage_your_personal_account##</span>
+                </a>
               </div>
-            </div>
-            <div class="mobilesection-head"><a>روابط هامه</a></div>
-            <div class="midfooter-mobile">
-              <div></div>
-              <div class="mid">
-                <ul class="ul-no-bullets footer-links">
-                  <li>
-                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="envelope" class="mid-icon svg-inline--fa fa-envelope fa-w-16 fa-fw" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                      <path
-                        fill="currentColor"
-                        d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"
-                      ></path></svg
-                    ><a href="/contact.php">اتصل بنا</a>
-                  </li>
-                  <li>
-                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="file-contract" class="mid-icon svg-inline--fa fa-file-contract fa-w-12 fa-fw" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-                      <path
-                        fill="currentColor"
-                        d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zM64 72c0-4.42 3.58-8 8-8h80c4.42 0 8 3.58 8 8v16c0 4.42-3.58 8-8 8H72c-4.42 0-8-3.58-8-8V72zm0 64c0-4.42 3.58-8 8-8h80c4.42 0 8 3.58 8 8v16c0 4.42-3.58 8-8 8H72c-4.42 0-8-3.58-8-8v-16zm192.81 248H304c8.84 0 16 7.16 16 16s-7.16 16-16 16h-47.19c-16.45 0-31.27-9.14-38.64-23.86-2.95-5.92-8.09-6.52-10.17-6.52s-7.22.59-10.02 6.19l-7.67 15.34a15.986 15.986 0 0 1-14.31 8.84c-.38 0-.75-.02-1.14-.05-6.45-.45-12-4.75-14.03-10.89L144 354.59l-10.61 31.88c-5.89 17.66-22.38 29.53-41 29.53H80c-8.84 0-16-7.16-16-16s7.16-16 16-16h12.39c4.83 0 9.11-3.08 10.64-7.66l18.19-54.64c3.3-9.81 12.44-16.41 22.78-16.41s19.48 6.59 22.77 16.41l13.88 41.64c19.77-16.19 54.05-9.7 66 14.16 2.02 4.06 5.96 6.5 10.16 6.5zM377 105L279.1 7c-4.5-4.5-10.6-7-17-7H256v128h128v-6.1c0-6.3-2.5-12.4-7-16.9z"
-                      ></path></svg
-                    ><a href="/terms.php">اتفاقية الاستخدام</a>
-                  </li>
-                  <li>
-                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="money-bill-alt" class="mid-icon svg-inline--fa fa-money-bill-alt fa-w-20 fa-fw" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
-                      <path
-                        fill="currentColor"
-                        d="M352 288h-16v-88c0-4.42-3.58-8-8-8h-13.58c-4.74 0-9.37 1.4-13.31 4.03l-15.33 10.22a7.994 7.994 0 0 0-2.22 11.09l8.88 13.31a7.994 7.994 0 0 0 11.09 2.22l.47-.31V288h-16c-4.42 0-8 3.58-8 8v16c0 4.42 3.58 8 8 8h64c4.42 0 8-3.58 8-8v-16c0-4.42-3.58-8-8-8zM608 64H32C14.33 64 0 78.33 0 96v320c0 17.67 14.33 32 32 32h576c17.67 0 32-14.33 32-32V96c0-17.67-14.33-32-32-32zM48 400v-64c35.35 0 64 28.65 64 64H48zm0-224v-64h64c0 35.35-28.65 64-64 64zm272 192c-53.02 0-96-50.15-96-112 0-61.86 42.98-112 96-112s96 50.14 96 112c0 61.87-43 112-96 112zm272 32h-64c0-35.35 28.65-64 64-64v64zm0-224c-35.35 0-64-28.65-64-64h64v64z"
-                      ></path></svg
-                    ><a href="/discount.php">نظام الخصم</a>
-                  </li>
-                  <li>
-                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="ban" class="mid-icon svg-inline--fa fa-ban fa-w-16 fa-fw" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                      <path fill="currentColor" d="M256 8C119.034 8 8 119.033 8 256s111.034 248 248 248 248-111.034 248-248S392.967 8 256 8zm130.108 117.892c65.448 65.448 70 165.481 20.677 235.637L150.47 105.216c70.204-49.356 170.226-44.735 235.638 20.676zM125.892 386.108c-65.448-65.448-70-165.481-20.677-235.637L361.53 406.784c-70.203 49.356-170.226 44.736-235.638-20.676z"></path></svg
-                    ><a href="/checkacc.php">القائمة السوداء</a>
-                  </li>
-                  <li>
-                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="hand-paper" class="mid-icon svg-inline--fa fa-hand-paper fa-w-14 fa-fw" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                      <path
-                        fill="currentColor"
-                        d="M408.781 128.007C386.356 127.578 368 146.36 368 168.79V256h-8V79.79c0-22.43-18.356-41.212-40.781-40.783C297.488 39.423 280 57.169 280 79v177h-8V40.79C272 18.36 253.644-.422 231.219.007 209.488.423 192 18.169 192 40v216h-8V80.79c0-22.43-18.356-41.212-40.781-40.783C121.488 40.423 104 58.169 104 80v235.992l-31.648-43.519c-12.993-17.866-38.009-21.817-55.877-8.823-17.865 12.994-21.815 38.01-8.822 55.877l125.601 172.705A48 48 0 0 0 172.073 512h197.59c22.274 0 41.622-15.324 46.724-37.006l26.508-112.66a192.011 192.011 0 0 0 5.104-43.975V168c.001-21.831-17.487-39.577-39.218-39.993z"
-                      ></path></svg
-                    ><a href="/notallowed.php">قائمة السلع الممنوعة</a>
-                  </li>
-                </ul>
-              </div>
-              <div></div>
 
-              <div></div>
+              <br />
+
+              <div class="link" ng-click="logout()">##word.security_logout##</div>
             </div>
           </div>
-          <hr class="cf-mobile" />
-          <a x-lang="ar" ng-click="changeLang('en')" class="ds-dv link left"> <i class="fa fa-globe"></i> English </a>
+          <div class="mobilesection-head"><a>روابط هامه</a></div>
+          <div class="midfooter-mobile">
+            <div></div>
+            <div class="mid">
+              <ul class="ul-no-bullets footer-links">
+                <li>
+                  <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="envelope"
+                    class="mid-icon svg-inline--fa fa-envelope fa-w-16 fa-fw" role="img"
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <path fill="currentColor"
+                      d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z">
+                    </path>
+                  </svg><a href="/contact.php">اتصل بنا</a>
+                </li>
+                <li>
+                  <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="file-contract"
+                    class="mid-icon svg-inline--fa fa-file-contract fa-w-12 fa-fw" role="img"
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                    <path fill="currentColor"
+                      d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zM64 72c0-4.42 3.58-8 8-8h80c4.42 0 8 3.58 8 8v16c0 4.42-3.58 8-8 8H72c-4.42 0-8-3.58-8-8V72zm0 64c0-4.42 3.58-8 8-8h80c4.42 0 8 3.58 8 8v16c0 4.42-3.58 8-8 8H72c-4.42 0-8-3.58-8-8v-16zm192.81 248H304c8.84 0 16 7.16 16 16s-7.16 16-16 16h-47.19c-16.45 0-31.27-9.14-38.64-23.86-2.95-5.92-8.09-6.52-10.17-6.52s-7.22.59-10.02 6.19l-7.67 15.34a15.986 15.986 0 0 1-14.31 8.84c-.38 0-.75-.02-1.14-.05-6.45-.45-12-4.75-14.03-10.89L144 354.59l-10.61 31.88c-5.89 17.66-22.38 29.53-41 29.53H80c-8.84 0-16-7.16-16-16s7.16-16 16-16h12.39c4.83 0 9.11-3.08 10.64-7.66l18.19-54.64c3.3-9.81 12.44-16.41 22.78-16.41s19.48 6.59 22.77 16.41l13.88 41.64c19.77-16.19 54.05-9.7 66 14.16 2.02 4.06 5.96 6.5 10.16 6.5zM377 105L279.1 7c-4.5-4.5-10.6-7-17-7H256v128h128v-6.1c0-6.3-2.5-12.4-7-16.9z">
+                    </path>
+                  </svg><a href="/terms.php">اتفاقية الاستخدام</a>
+                </li>
+                <li>
+                  <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="money-bill-alt"
+                    class="mid-icon svg-inline--fa fa-money-bill-alt fa-w-20 fa-fw" role="img"
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+                    <path fill="currentColor"
+                      d="M352 288h-16v-88c0-4.42-3.58-8-8-8h-13.58c-4.74 0-9.37 1.4-13.31 4.03l-15.33 10.22a7.994 7.994 0 0 0-2.22 11.09l8.88 13.31a7.994 7.994 0 0 0 11.09 2.22l.47-.31V288h-16c-4.42 0-8 3.58-8 8v16c0 4.42 3.58 8 8 8h64c4.42 0 8-3.58 8-8v-16c0-4.42-3.58-8-8-8zM608 64H32C14.33 64 0 78.33 0 96v320c0 17.67 14.33 32 32 32h576c17.67 0 32-14.33 32-32V96c0-17.67-14.33-32-32-32zM48 400v-64c35.35 0 64 28.65 64 64H48zm0-224v-64h64c0 35.35-28.65 64-64 64zm272 192c-53.02 0-96-50.15-96-112 0-61.86 42.98-112 96-112s96 50.14 96 112c0 61.87-43 112-96 112zm272 32h-64c0-35.35 28.65-64 64-64v64zm0-224c-35.35 0-64-28.65-64-64h64v64z">
+                    </path>
+                  </svg><a href="/discount.php">نظام الخصم</a>
+                </li>
+                <li>
+                  <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="ban"
+                    class="mid-icon svg-inline--fa fa-ban fa-w-16 fa-fw" role="img" xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 512 512">
+                    <path fill="currentColor"
+                      d="M256 8C119.034 8 8 119.033 8 256s111.034 248 248 248 248-111.034 248-248S392.967 8 256 8zm130.108 117.892c65.448 65.448 70 165.481 20.677 235.637L150.47 105.216c70.204-49.356 170.226-44.735 235.638 20.676zM125.892 386.108c-65.448-65.448-70-165.481-20.677-235.637L361.53 406.784c-70.203 49.356-170.226 44.736-235.638-20.676z">
+                    </path>
+                  </svg><a href="/checkacc.php">القائمة السوداء</a>
+                </li>
+                <li>
+                  <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="hand-paper"
+                    class="mid-icon svg-inline--fa fa-hand-paper fa-w-14 fa-fw" role="img"
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                    <path fill="currentColor"
+                      d="M408.781 128.007C386.356 127.578 368 146.36 368 168.79V256h-8V79.79c0-22.43-18.356-41.212-40.781-40.783C297.488 39.423 280 57.169 280 79v177h-8V40.79C272 18.36 253.644-.422 231.219.007 209.488.423 192 18.169 192 40v216h-8V80.79c0-22.43-18.356-41.212-40.781-40.783C121.488 40.423 104 58.169 104 80v235.992l-31.648-43.519c-12.993-17.866-38.009-21.817-55.877-8.823-17.865 12.994-21.815 38.01-8.822 55.877l125.601 172.705A48 48 0 0 0 172.073 512h197.59c22.274 0 41.622-15.324 46.724-37.006l26.508-112.66a192.011 192.011 0 0 0 5.104-43.975V168c.001-21.831-17.487-39.577-39.218-39.993z">
+                    </path>
+                  </svg><a href="/notallowed.php">قائمة السلع الممنوعة</a>
+                </li>
+              </ul>
+            </div>
+            <div></div>
 
-          <div class="mobile-contact-follow">
-            <div class="follow-group">
-              <div class="follow">
-                <ul>
-                  <li>
-                    <a target="_blank" href="https://www.youtube.com/channel/UCBnjZmeZQ-w1YWo0J9htqCQ"><i class="social-icon fab fa-youtube fa-social"></i></a>
-                  </li>
+            <div></div>
+          </div>
+        </div>
+        <hr class="cf-mobile" />
+        <a x-lang="ar" ng-click="changeLang('en')" class="ds-dv link left"> <i class="fa fa-globe"></i> English </a>
 
-                  <li>
-                    <a target="_blank" href="https://www.instagram.com" xlink="done"><i class="social-icon fab fa-instagram fa-social"></i></a>
-                  </li>
+        <div class="mobile-contact-follow">
+          <div class="follow-group">
+            <div class="follow">
+              <ul>
+                <li>
+                  <a target="_blank" href="https://www.youtube.com/channel/UCBnjZmeZQ-w1YWo0J9htqCQ"><i
+                      class="social-icon fab fa-youtube fa-social"></i></a>
+                </li>
 
-                  <li>
-                    <a target="_blank" href="https://www.twitter.com" xlink="done"><i class="social-icon fab fa-twitter fa-social"></i></a>
-                  </li>
+                <li>
+                  <a target="_blank" href="https://www.instagram.com" xlink="done"><i
+                      class="social-icon fab fa-instagram fa-social"></i></a>
+                </li>
 
-                  <li>
-                    <a target="_blank" class="icon-facebook" href="https://www.facebook.com/SmartCodeCompany/" xlink="done"><i class="social-icon fab fa-facebook-f fa-social"></i></a>
-                  </li>
-                </ul>
+                <li>
+                  <a target="_blank" href="https://www.twitter.com" xlink="done"><i
+                      class="social-icon fab fa-twitter fa-social"></i></a>
+                </li>
+
+                <li>
+                  <a target="_blank" class="icon-facebook" href="https://www.facebook.com/SmartCodeCompany/"
+                    xlink="done"><i class="social-icon fab fa-facebook-f fa-social"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footer_wrapper_mobile">
+          <div class="souq-data">
+            <p>مؤسسة موقع سوق للتسويق الإلكتروني</p>
+            8.2.9 , 7 23 - 6 - 22
+          </div>
+          <div class="souq-data">
+            <p>:الرقم الضريبي</p>
+            <a id="vat_link" href="https://v8-cdn.haraj.com.sa/documents/VAT-HARAJ.pdf" target="_blank"
+              rel="noopener noreferrer"><span>300710482300003</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    <div class="user-side-header">
+      <div class="side-header">
+        <li class="deskside-header">
+          <a class="tab_link side-notification" href="">
+            <i class="fa-solid fa-envelope space"></i>
+            <span class="side-badge ng-binding">0</span>
+            <span style="min-height: 22px" id="notif1" class="notif-name" onmouseover="mouseoverbox1()">الرسائل</span>
+          </a>
+        </li>
+        <li class="deskside-header">
+          <a class="tab_link side-notification" href="">
+            <i class="fa-solid fa-bell space"></i>
+            <span class="side-badge ng-binding">0</span>
+            <span style="min-height: 22px" id="notif2" class="notif-name" onmouseover="mouseoverbox1()">الأشعارات</span>
+          </a>
+        </li>
+        <li class="deskside-header">
+          <a class="tab_link side-notification" href="">
+            <i class="fa-solid fa-heart space"></i>
+            <span class="side-badge ng-binding">0</span>
+            <span style="min-height: 22px" id="notif3" class="notif-name" onmouseover="mouseoverbox1()">المفضلة</span>
+          </a>
+        </li>
+        <li class="deskside-header">
+          <a class="tab_link side-notification" href="">
+            <i class="fa-solid fa-rss space"></i>
+            <span class="side-badge ng-binding">0</span>
+            <span style="min-height: 22px" id="notif4" class="notif-name" onmouseover="mouseoverbox1()">المتابعة</span>
+          </a>
+        </li>
+      </div>
+    </div>
+    <div class="map-side-header">
+      <div id="mapbtn" class="clickmap side-header-map side-header">
+        <li class="deskside-header">
+          <a class="tab_link" href="" id="map-toggle" class="action-map advanced-search" type="search"onclick="hsMap()">
+            <i class="fa-solid fa-map space"></i>
+            <span style="min-height: 22px" id="notif5" class="notif-name show-notif-name" onmouseover="mouseoverbox1()">اخفاء الخريطة</span>
+          </a>
+        </li>
+      </div>
+    </div>
+  </header>
+  <div class="content">
+    <aside class="tagSide">
+      <i class="close-filter fa-solid fa-xmark fa-lg"></i>
+      <div class="sideSearchHistory">
+        <a href="/tags/حراج العقار">حراج العقار</a>
+        <hr class="mobile-hr" />
+        <div class="smallText">
+          <svg aria-hidden="true" focusable="false" data-prefix="fal" data-icon="times-circle"
+            class="svg-inline--fa fa-times-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 512 512">
+            <path fill="currentColor"
+              d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 464c-118.7 0-216-96.1-216-216 0-118.7 96.1-216 216-216 118.7 0 216 96.1 216 216 0 118.7-96.1 216-216 216zm94.8-285.3L281.5 256l69.3 69.3c4.7 4.7 4.7 12.3 0 17l-8.5 8.5c-4.7 4.7-12.3 4.7-17 0L256 281.5l-69.3 69.3c-4.7 4.7-12.3 4.7-17 0l-8.5-8.5c-4.7-4.7-4.7-12.3 0-17l69.3-69.3-69.3-69.3c-4.7-4.7-4.7-12.3 0-17l8.5-8.5c4.7-4.7 12.3-4.7 17 0l69.3 69.3 69.3-69.3c4.7-4.7 12.3-4.7 17 0l8.5 8.5c4.6 4.7 4.6 12.3 0 17z">
+            </path>
+          </svg><span>مسح السجل</span>
+        </div>
+        <hr class="mobile-hr" />
+      </div>
+      <div id="sideBar_card" class="sc-gsDJrp kiyHpe">
+        <div class="tag_select_wrapper">
+          <div class="sc-furvIG lkLLxz">
+            <div class="sc-pVTma ojwev">
+              <div class="sc-jrQzUz kFqNHj"><span class="sc-kDThTU iGcJNF">الكل</span></div>
+              <div class="sc-iqsfdx fYdb"><span class="caret"></span></div>
+            </div>
+          </div>
+          <button type="submit" class="sc-bdvvaa AGAbw">
+            <svg aria-hidden="true" focusable="false" data-prefix="fal" data-icon="search"
+              class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512 512">
+              <path fill="currentColor"
+                d="M508.5 481.6l-129-129c-2.3-2.3-5.3-3.5-8.5-3.5h-10.3C395 312 416 262.5 416 208 416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c54.5 0 104-21 141.1-55.2V371c0 3.2 1.3 6.2 3.5 8.5l129 129c4.7 4.7 12.3 4.7 17 0l9.9-9.9c4.7-4.7 4.7-12.3 0-17zM208 384c-97.3 0-176-78.7-176-176S110.7 32 208 32s176 78.7 176 176-78.7 176-176 176z">
+              </path>
+            </svg>
+          </button>
+        </div>
+        <hr class="mobile-hr" />
+        <div class="FilterGroup__Wrapper-kok8t0-0 iGsYXQ">
+          <span class="FilterGroup__Label-kok8t0-1 bdSIGk">تصفية
+            <div class="xfilter-toggel">
+              <i class="fa-solid fa-plus" id="open" onclick="xtaghide()"></i>
+            </div>
+          </span>
+          <div class="FilterGroup__ContentWrapper-kok8t0-2 BJDme" id="xtags-filter">
+            <div>
+              <div class="tag-filters-extra">
+                <div class="FilterItem__Wrapper-sc-18vvs8g-0 feaUnB">
+                  <label class="FilterItem__Label-sc-18vvs8g-1 bSWGIJ"></label>
+                  <div class="FilterItem__ItemsWrapper-sc-18vvs8g-2 bpYvLN"></div>
+                </div>
+                <div class="FilterItem__Wrapper-sc-18vvs8g-0 feaUnB">
+                  <label class="FilterItem__Label-sc-18vvs8g-1 bSWGIJ"></label>
+                  <div class="FilterItem__ItemsWrapper-sc-18vvs8g-2 bpYvLN"></div>
+                  <div class="tag-filters__item checkbox-button"><input type="checkbox" id="orderByPostIdCheckbox" />
+                    <label for="orderByPostIdCheckbox">جديد فقط</label></div>
+                </div>
               </div>
             </div>
           </div>
-          <div class="footer_wrapper_mobile">
-            <div class="souq-data">
-              <p>مؤسسة موقع سوق للتسويق الإلكتروني</p>
-              8.2.9 , 7 23 - 6 - 22
+        </div>
+        <div class="FilterGroup__Wrapper-kok8t0-0 iGsYXQ">
+          <span class="FilterGroup__Label-kok8t0-1 bdSIGk">تنقل السريع
+            <div class="filter-toggel">
+              <i class="fa-solid fa-plus" id="open" onclick="taghide()"></i>
             </div>
-            <div class="souq-data">
-              <p>:الرقم الضريبي</p>
-              <a id="vat_link" href="https://v8-cdn.haraj.com.sa/documents/VAT-HARAJ.pdf" target="_blank" rel="noopener noreferrer"><span>300710482300003</span></a>
+          </span>
+          <div class="FilterGroup__ContentWrapper-kok8t0-2 eBJDme" id="tags-filter">
+            <div id="mark">
+              <br />
+              <div class="brand-logos">
+                <a title="سيارات تويوتا" class="brand-logos--svg" href="/tags/تويوتا"><img alt="toyota-logo"
+                    loading="lazy" height="60" width="60" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/toyota-logo.svg" /></a><a title="نسيان"
+                  class="brand-logos--svg" href="/tags/نيسان"><img alt="nissan-logo" loading="lazy" height="60"
+                    width="60" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/nissan-logo.svg" /></a><a title="سيارات فورد"
+                  class="brand-logos--svg" href="/tags/فورد"><img alt="ford-logo" loading="lazy" height="60" width="60"
+                    class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/ford-logo.svg" /></a><a
+                  title="لكزس" class="brand-logos--svg" href="/tags/لكزس"><img alt="lexus-icon" loading="lazy"
+                    height="60" width="60" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/lexus-icon.svg" /></a><a
+                  title="سيارات شفروليه للبيع" class="brand-logos--svg" href="/tags/شيفروليه"><img alt="chevrolet-logo"
+                    loading="lazy" height="60" width="60" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/chevrolet-logo.svg" /></a><a
+                  title="سيارات مرسيدس" class="brand-logos--svg" href="/tags/مرسيدس"><img alt="mercedes-logo"
+                    loading="lazy" height="60" width="60" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/mercedes-logo.svg" /></a><a title="جي ام سي"
+                  class="brand-logos--svg" href="/tags/جي ام سي"><img alt="gmc-logo" loading="lazy" height="60"
+                    width="60" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/gmc-logo.svg" /></a><a title="بي ام دبليو"
+                  class="brand-logos--svg" href="/tags/بي ام دبليو"><img alt="bmw-logo" loading="lazy" height="60"
+                    width="60" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/bmw-logo.svg" /></a><a title="سيارات دودج"
+                  class="brand-logos--svg" href="/tags/دودج"><img alt="dodge-logo" loading="lazy" height="60" width="60"
+                    class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/dodge-logo.svg" /></a><a
+                  title="سيارات همر" class="brand-logos--svg" href="/tags/همر"><img alt="hummer-icon" loading="lazy"
+                    height="60" width="60" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/hummer-icon.svg" /></a><a title="سيارات كاديلاك"
+                  class="brand-logos--svg" href="/tags/كاديلاك"><img alt="cadillac-logo-alt" loading="lazy" height="60"
+                    width="60" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/cadillac-logo-alt.svg" /></a><a title="اودي"
+                  class="brand-logos--svg" href="/tags/اودي"><img alt="audi-logo" loading="lazy" height="60" width="60"
+                    class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/audi-logo.svg" /></a><a
+                  title="هوندا" class="brand-logos--svg" href="/tags/هوندا"><img alt="honda-logo" loading="lazy"
+                    height="60" width="60" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/honda-logo.svg" /></a><a title="لاندروفر"
+                  class="brand-logos--svg" href="/tags/لاند روفر"><img alt="land-logo" loading="lazy" height="60"
+                    width="60" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/land-logo.svg" /></a><a title="فولكس واجن"
+                  class="brand-logos--svg" href="/tags/فولكس واجن"><img alt="volkswagen-logo" loading="lazy" height="60"
+                    width="60" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/volkswagen-logo.svg" /></a><a title="مازدا"
+                  class="brand-logos--svg" href="/tags/مازدا"><img alt="mazda-logo" loading="lazy" height="60"
+                    width="60" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/mazda-logo.svg" /></a><a title="ميتسوبيشي"
+                  class="brand-logos--svg" href="/tags/ميتسوبيشي"><img alt="mitsubishi-logo" loading="lazy" height="60"
+                    width="60" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/mitsubishi-logo.svg" /></a><a title="هونداي"
+                  class="brand-logos--svg" href="/tags/هونداي"><img alt="hyundai-icon" loading="lazy" height="60"
+                    width="60" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/hyundai-icon.svg" /></a><a title="جيب"
+                  class="brand-logos--svg" href="/tags/جيب"><img alt="jeep-icon" loading="lazy" height="60" width="60"
+                    class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/jeep-icon.svg" /></a><a
+                  title="انفنيتي" class="brand-logos--svg" href="/tags/انفنيتي"><img alt="infinity-icon" loading="lazy"
+                    height="60" width="60" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/infinity-icon.svg" /></a><a title="سوزوكي"
+                  class="brand-logos--svg" href="/tags/سوزوكي"><img alt="suzuki-logo" loading="lazy" height="60"
+                    width="60" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/suzuki-logo.svg" /></a><a title="كيا"
+                  class="brand-logos--svg" href="/tags/كيا"><img alt="kia-logo" loading="lazy" height="60" width="60"
+                    class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/kia-logo.svg" /></a><a
+                  title="كرايزلر" class="brand-logos--svg" href="/tags/كرايزلر"><img alt="chrysler-logo" loading="lazy"
+                    height="60" width="60" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/chrysler-logo.svg" /></a><a title="بورش"
+                  class="brand-logos--svg" href="/tags/بورش"><img alt="porsche-logo" loading="lazy" height="60"
+                    width="60" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/porsche-logo.svg" /></a><a title="استون مارتن"
+                  class="brand-logos--svg" href="/tags/استون مارتن"><img alt="astonmartin-logo" loading="lazy"
+                    height="60" width="60" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/astonmartin-logo.svg" /></a><a title="بيوك"
+                  class="brand-logos--svg" href="/tags/بيوك"><img alt="buick-logo" loading="lazy" height="60" width="60"
+                    class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/buick-logo.svg" /></a><a
+                  title="شانجان" class="brand-logos--svg" href="/tags/شانجان"><img alt="changan-logo" loading="lazy"
+                    height="60" width="60" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/changan-logo.svg" /></a><a title="تشيري"
+                  class="brand-logos--svg" href="/tags/تشيري"><img alt="cherry-logo" loading="lazy" height="60"
+                    width="60" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/cherry-logo.svg" /></a><a title="سيتروين"
+                  class="brand-logos--svg" href="/tags/سيتروين"><img alt="citroen-logo" loading="lazy" height="60"
+                    width="60" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/citroen-logo.svg" /></a><a title="دايو"
+                  class="brand-logos--svg" href="/tags/دايو"><img alt="daewoo-logo" loading="lazy" height="60"
+                    width="60" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/daewoo-logo.svg" /></a><a title="ديهاتسو"
+                  class="brand-logos--svg" href="/tags/ديهاتسو"><img alt="daihatsu-logo" loading="lazy" height="60"
+                    width="60" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/daihatsu-logo.svg" /></a><a title="فاو FAW"
+                  class="brand-logos--svg" href="/tags/فاو FAW"><img alt="faw-logo" loading="lazy" height="60"
+                    width="60" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/faw-logo.svg" /></a><a title="فيراري"
+                  class="brand-logos--svg" href="/tags/فيراري"><img alt="ferrari-logo" loading="lazy" height="60"
+                    width="60" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/ferrari-logo.svg" /></a><a title="فيات"
+                  class="brand-logos--svg" href="/tags/فيات"><img alt="fiat-logo" loading="lazy" height="60" width="60"
+                    class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/fiat-logo.svg" /></a><a
+                  title="جي ايه سي GAC" class="brand-logos--svg" href="/tags/جي ايه سي GAC"><img alt="GAC-logo"
+                    loading="lazy" height="60" width="60" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/GAC-logo.svg" /></a><a title="جيلي"
+                  class="brand-logos--svg" href="/tags/جيلي"><img alt="geely-logo" loading="lazy" height="60" width="60"
+                    class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/geely-logo.svg" /></a><a
+                  title="جريت وول Great Wall" class="brand-logos--svg" href="/tags/جريت وول Great Wall"><img
+                    alt="greatwall-logo" loading="lazy" height="60" width="60" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/greatwall-logo.svg" /></a><a title="هافال"
+                  class="brand-logos--svg" href="/tags/هافال"><img alt="haval-logo" loading="lazy" height="60"
+                    width="60" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/haval-logo.svg" /></a><a title="ايسوزو"
+                  class="brand-logos--svg" href="/tags/ايسوزو"><img alt="ISUZU-logo" loading="lazy" height="60"
+                    width="60" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/ISUZU-logo.svg" /></a><a title="جاكوار"
+                  class="brand-logos--svg" href="/tags/جاكوار"><img alt="jaguar-logo" loading="lazy" height="60"
+                    width="60" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/jaguar-logo.svg" /></a><a title="لامبورجيني"
+                  class="brand-logos--svg" href="/tags/لامبورجيني"><img alt="lamborghini-logo" loading="lazy"
+                    height="60" width="60" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/lamborghini-logo.svg" /></a><a title="ميركوري"
+                  class="brand-logos--svg" href="/tags/ميركوري"><img alt="mercury-logo" loading="lazy" height="60"
+                    width="60" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/mercury-logo.svg" /></a><a title="مازيراتي"
+                  class="brand-logos--svg" href="/tags/مازيراتي"><img alt="meserati-logo" loading="lazy" height="60"
+                    width="60" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/meserati-logo.svg" /></a><a title="MG"
+                  class="brand-logos--svg" href="/tags/MG"><img alt="MG-logo" loading="lazy" height="60" width="60"
+                    class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/MG-logo.svg" /></a><a
+                  title="اوبل" class="brand-logos--svg" href="/tags/اوبل"><img alt="opal-logo" loading="lazy"
+                    height="60" width="60" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/opal-logo.svg" /></a><a title="بيجو"
+                  class="brand-logos--svg" href="/tags/بيجو"><img alt="peugeot-logo" loading="lazy" height="60"
+                    width="60" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/peugeot-logo.svg" /></a><a title="بروتون"
+                  class="brand-logos--svg" href="/tags/بروتون"><img alt="proton-logo" loading="lazy" height="60"
+                    width="60" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/proton-logo.svg" /></a><a title="رينو"
+                  class="brand-logos--svg" href="/tags/رينو"><img alt="renault-logo" loading="lazy" height="60"
+                    width="60" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/renault-logo.svg" /></a><a title="رولز رويس"
+                  class="brand-logos--svg" href="/tags/رولز رويس"><img alt="rollsroyce-logo" loading="lazy" height="60"
+                    width="60" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/rollsroyce-logo.svg" /></a><a title="ساب"
+                  class="brand-logos--svg" href="/tags/ساب"><img alt="saab-logo" loading="lazy" height="60" width="60"
+                    class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/saab-logo.svg" /></a><a
+                  title="سيات" class="brand-logos--svg" href="/tags/سيات"><img alt="seat-logo" loading="lazy"
+                    height="60" width="60" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/seat-logo.svg" /></a><a title="سكودا"
+                  class="brand-logos--svg" href="/tags/سكودا"><img alt="skoda-logo" loading="lazy" height="60"
+                    width="60" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/skoda-logo.svg" /></a><a title="سانج يونج"
+                  class="brand-logos--svg" href="/tags/سانج يونج"><img alt="ssanyong-logo" loading="lazy" height="60"
+                    width="60" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/ssanyong-logo.svg" /></a><a title="سوبارو"
+                  class="brand-logos--svg" href="/tags/سوبارو"><img alt="subaru-logo" loading="lazy" height="60"
+                    width="60" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/subaru-logo.svg" /></a><a title="فولفو"
+                  class="brand-logos--svg" href="/tags/فولفو"><img alt="volvo-logo" loading="lazy" height="60"
+                    width="60" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/volvo-logo.svg" /></a><a title="ZXAUTO"
+                  class="brand-logos--svg" href="/tags/ZXAUTO"><img alt="ZXauto-logo" loading="lazy" height="60"
+                    width="60" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/ZXauto-logo.svg" /></a>
+              </div>
+              <br />
+              <hr />
+              <br />
+              <div class="brand-logos">
+                <a title="قطع غيار وملحقات" class="brand-logos--svg imgasicon" href="/tags/قطع غيار وملحقات"><img
+                    alt="parts" loading="lazy" height="60" width="60" class="svg-size-4x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/parts.svg" /><span class="text">قطع غيار
+                    وملحقات</span></a><a title="شاحنات ومعدات ثقيلة" class="brand-logos--svg imgasicon"
+                  href="/tags/شاحنات ومعدات ثقيلة"><img alt="truck" loading="lazy" height="60" width="60"
+                    class="svg-size-4x" src="https://betacdn.haraj.com.sa/assets/images/svg/truck.svg" /><span
+                    class="text">شاحنات ومعدات ثقيلة</span></a><a title="دبابات" class="brand-logos--svg imgasicon"
+                  href="/tags/دبابات"><img alt="quad-car" loading="lazy" height="60" width="60" class="svg-size-4x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/quad-car.svg" /><span
+                    class="text">دبابات</span></a><a title="سيارات%20تراثية" class="brand-logos--svg imgasicon"
+                  href="/tags/سيارات تراثية"><img alt="heritage-car" loading="lazy" height="60" width="60"
+                    class="svg-size-4x" src="https://betacdn.haraj.com.sa/assets/images/svg/heritage-car.svg" /><span
+                    class="text">سيارات تراثية</span></a><a title="سيارات مصدومه" class="brand-logos--svg imgasicon"
+                  href="/tags/حراج السيارات/filters/search-مصدوم مصدومة"><img alt="crash-car" loading="lazy" height="60"
+                    width="60" class="svg-size-4x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/crash-car.svg" /><span class="text">سيارات
+                    مصدومه</span></a><a title="سيارات للتنازل" class="brand-logos--svg imgasicon"
+                  href="/tags/حراج السيارات/filters/search-للتنازل تنازل"><img alt="car-loan" loading="lazy" height="60"
+                    width="60" class="svg-size-4x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/car-loan.svg" /><span class="text">سيارات
+                    للتنازل</span></a>
+              </div>
+            </div>
+            <div class="other_marks_">
+              <br />
+              <hr />
+              <br />
+              <div class="brand-logos">
+                <a class="brand-logos--svg imgasicon" href="/tags/ابل Apple"><img width="60" height="60" loading="lazy"
+                    alt="apple-icon 0" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/apple-icon.svg" /></a><a
+                  class="brand-logos--svg" href="/tags/سامسونج Samsung"><img width="60" height="60" loading="lazy"
+                    alt="samsung-icon 1" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/samsung-icon.svg" /></a><a
+                  class="brand-logos--svg" href="/tags/كانون Canon"><img width="60" height="60" loading="lazy"
+                    alt="canon-icon 2" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/canon-icon.svg" /></a><a
+                  class="brand-logos--svg" href="/tags/سوني Sony"><img width="60" height="60" loading="lazy"
+                    alt="sony-icon 3" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/sony-icon.svg" /></a><a class="brand-logos--svg"
+                  href="/tags/مايكروسوفت Microsoft"><img width="60" height="60" loading="lazy" alt="microsoft-logo 4"
+                    class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/microsoft-logo.svg" /></a><a
+                  class="brand-logos--svg" href="/tags/نوكيا Nokia"><img width="60" height="60" loading="lazy"
+                    alt="nokia-icon 5" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/nokia-icon.svg" /></a><a
+                  class="brand-logos--svg" href="/tags/ال جي LG"><img width="60" height="60" loading="lazy"
+                    alt="lg-logo 6" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/lg-logo.svg" /></a><a class="brand-logos--svg"
+                  href="/tags/أرقام مميزة">أرقام مميزة</a>
+              </div>
+            </div>
+            <div class="other_marks_">
+              <br />
+              <hr />
+              <br />
+              <div class="brand-logos">
+                <a title="غنم" class="brand-logos--svg imgasicon" href="/tags/غنم"><img width="60" height="60"
+                    loading="lazy" alt="sheep 0" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/sheep.svg" /></a><a title="ببغاء"
+                  class="brand-logos--svg imgasicon" href="/tags/ببغاء"><img width="60" height="60" loading="lazy"
+                    alt="parrot 1" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/parrot.svg" /></a><a title="حمام"
+                  class="brand-logos--svg imgasicon" href="/tags/حمام"><img width="60" height="60" loading="lazy"
+                    alt="birds 2" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/birds.svg" /></a><a title="قطط"
+                  class="brand-logos--svg imgasicon" href="/tags/قطط"><img width="60" height="60" loading="lazy"
+                    alt="cat 3" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/cat.svg" /></a><a title="دجاج"
+                  class="brand-logos--svg imgasicon" href="/tags/دجاج"><img width="60" height="60" loading="lazy"
+                    alt="chicken 4" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/chicken.svg" /></a><a title="ماعز"
+                  class="brand-logos--svg imgasicon" href="/tags/ماعز"><img width="60" height="60" loading="lazy"
+                    alt="goat 5" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/goat.svg" /></a><a title="أبل"
+                  class="brand-logos--svg imgasicon" href="/tags/أبل"><img width="60" height="60" loading="lazy"
+                    alt="camel 6" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/camel.svg" /></a><a title="خيل"
+                  class="brand-logos--svg imgasicon" href="/tags/خيل"><img width="60" height="60" loading="lazy"
+                    alt="horse 7" class="svg-size-5x"
+                    src="https://betacdn.haraj.com.sa/assets/images/svg/horse.svg" /></a><a title="كلاب"
+                  class="brand-logos--svg imgasicon" href="/tags/كلاب"><img width="60" height="60" loading="lazy"
+                    alt="dog 8" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/dog.svg" /></a>
+              </div>
+            </div>
+            <div>
+              <br />
+              <hr />
+              <br />
+              <div class="brand-logos">
+                <a title="اراضي للبيع" class="brand-logos--svg" href="/tags/اراضي للبيع">اراضي للبيع </a><a
+                  title="اراضي تجارية للبيع" class="brand-logos--svg" href="/tags/اراضي تجارية للبيع">اراضي تجارية للبيع
+                </a><a title="شقق للايجار" class="brand-logos--svg" href="/tags/شقق للايجار">شقق للايجار </a><a
+                  title="شقق للبيع" class="brand-logos--svg" href="/tags/شقق للبيع">شقق للبيع </a><a title="فلل للبيع"
+                  class="brand-logos--svg" href="/tags/فلل للبيع">فلل للبيع </a><a title="فلل للايجار"
+                  class="brand-logos--svg" href="/tags/فلل للايجار">فلل للايجار </a><a title="عماره للايجار"
+                  class="brand-logos--svg" href="/tags/عماره للايجار">عماره للايجار </a><a title="محلات للتقبيل"
+                  class="brand-logos--svg" href="/tags/محلات للتقبيل">محلات للتقبيل </a><a title="محلات للايجار"
+                  class="brand-logos--svg" href="/tags/محلات للايجار">محلات للايجار </a><a title="مزارع للبيع"
+                  class="brand-logos--svg" href="/tags/مزارع للبيع">مزارع للبيع </a><a title="استراحات للبيع"
+                  class="brand-logos--svg" href="/tags/استراحات للبيع">استراحات للبيع </a><a title="استراحات للايجار"
+                  class="brand-logos--svg" href="/tags/استراحات للايجار">استراحات للايجار </a><a title="بيوت للبيع"
+                  class="brand-logos--svg" href="/tags/بيوت للبيع">بيوت للبيع </a><a title="بيوت للايجار"
+                  class="brand-logos--svg" href="/tags/بيوت للايجار">بيوت للايجار </a><a title="ادوار للايجار"
+                  class="brand-logos--svg" href="/tags/ادوار للايجار">ادوار للايجار </a>
+              </div>
             </div>
           </div>
         </div>
       </div>
+    </aside>
+    <div class="main-content">
       <div class="thirdheader">
         <div></div>
         <div class="addads">
@@ -459,7 +923,8 @@
               <span style="min-height: 22px">المفضلة</span>
             </a>
           </li>
-          <button class="add" type="submit"><img class="add-icon" src="../assets/add.png" alt="" width="18px" height="18px" /><a href="/create_ad">أضف أعلانك</a></button>
+          <button class="add" type="submit"><img class="add-icon" src="../assets/add.png" alt="" width="18px"
+              height="18px" /><a href="/create_ad">أضف أعلانك</a></button>
           <li class="mobile-header">
             <a class="notification" href="/cart" x-features="souq">
               <i class="fa-solid fa-cart-shopping"></i>
@@ -477,307 +942,129 @@
         <div class="tags">
           <ul class="tag-list">
             <li class="tag" ng-repeat="c in topParentCategoriesList">
-              <a class="tab_link" ng-click="loadSubCategory(c)" href=""><img alt="car" loading="lazy" height="35" width="35" ng-src="{{c.image_url}}" /><span style="min-height: 22px">{{c.name_##session.lang##}}</span></a>
+              <a class="tab_link" ng-click="loadSubCategory(c)" href=""><img alt="car" loading="lazy" height="35"
+                  width="35" ng-src="{{c.image_url}}" /><span
+                  style="min-height: 22px">{{c.name_##session.lang##}}</span></a>
             </li>
           </ul>
         </div>
       </div>
-      <div class="tagheader">
-        <div class="tags category-1">
-          <div></div>
-          <ul class="tag-link category-list1">
-            <li class="row" ng-repeat="c in subCategoriesList">
-              <b class="tag-link black bold" ng-click="loadSubCategory2(c)">{{c.name_##session.lang##}}</b>
-            </li>
-          </ul>
-        </div>
+      <div class="all-category">
+        <div></div>
+        <div></div>
+        <div class="tagheader">
+          <div class="tags category-1">
+            <div></div>
+            <ul class="tag-link category-list1">
+              <div class="sub-category">
+              <li class="row" ng-repeat="c in subCategoriesList">
+                <button class="single tag-link black bold" ng-click="loadSubCategory2(c)">{{c.name_##session.lang##}}</button>
+              </li>
+              </div>
+            </ul>
+          </div>
 
-        <div class="tags category-2">
-          <div></div>
-          <ul class="tag-link category-list2">
-            <li class="row" ng-repeat="c2 in subCategoriesList2">
-              <b class="tag-link black bold" ng-click="loadSubCategory3(c2)">{{c2.name_##session.lang##}}</b>
-            </li>
-          </ul>
-          <div></div>
-        </div>
+          <div class="tags category-2">
+            <div></div>
+              <ul class="tag-link category-list2">
+                <div class="sub-category">
+                <li class="row" ng-repeat="c2 in subCategoriesList2">
+                  <button class="single tag-link black bold" ng-click="loadSubCategory3(c2)">{{c2.name_##session.lang##}}</button>
+                </li>
+              </div>
+              </ul>
+            <div></div>
+          </div>
 
-        <div class="tags category-3">
-          <div></div>
-          <ul class="tag-link category-list3">
-            <li class="row" ng-repeat="c3 in subCategoriesList3">
-              <b class="tag-link black bold" ng-click="loadSubCategory4(c3)">{{c3.name_##session.lang##}}</b>
-            </li>
-          </ul>
-          <div></div>
-        </div>
+          <div class="tags category-3">
+            <div></div>
+            <ul class="tag-link category-list3">
+              <div class="sub-category">
+                <li class="row" ng-repeat="c3 in subCategoriesList3">
+                  <button class="single tag-link black bold" ng-click="loadSubCategory4(c3)">{{c3.name_##session.lang##}}</button>
+                </li>
+              </div>
+            </ul>
+          </div>
 
-        <div class="tags category-4">
-          <div></div>
-          <ul class="tag-link category-list4">
-            <li class="row" ng-repeat="c4 in subCategoriesList4">
-              <b class="tag-link black bold" ng-click="loadSubCategory5(c4)">{{c4.name_##session.lang##}}</b>
-            </li>
-          </ul>
-          <div></div>
+          <div class="tags category-4">
+            <div></div>
+            <ul class="tag-link category-list4">
+              <div class="sub-category">
+                <li class="row" ng-repeat="c4 in subCategoriesList4">
+                  <button class="single tag-link black bold" ng-click="loadSubCategory5(c4)">{{c4.name_##session.lang##}}</button>
+                </li>
+              </div>
+            </ul>
+          </div>
         </div>
+        <div></div>
       </div>
-      <div class="user-side-header">
-        <div class="side-header">
-          <li class="deskside-header">
-            <a class="tab_link side-notification" href="">
-              <i class="fa-solid fa-envelope space"></i>
-              <span class="side-badge ng-binding">0</span>
-              <span style="min-height: 22px" id="notif1" class="notif-name" onmouseover="mouseoverbox1()">الرسائل</span>
-            </a>
-          </li>
-          <li class="deskside-header">
-            <a class="tab_link side-notification" href="">
-              <i class="fa-solid fa-bell space"></i>
-              <span class="side-badge ng-binding">0</span>
-              <span style="min-height: 22px" id="notif2" class="notif-name" onmouseover="mouseoverbox1()">الأشعارات</span>
-            </a>
-          </li>
-          <li class="deskside-header">
-            <a class="tab_link side-notification" href="">
-              <i class="fa-solid fa-heart space"></i>
-              <span class="side-badge ng-binding">0</span>
-              <span style="min-height: 22px" id="notif3" class="notif-name" onmouseover="mouseoverbox1()">المفضلة</span>
-            </a>
-          </li>
-          <li class="deskside-header">
-            <a class="tab_link side-notification" href="">
-              <i class="fa-solid fa-rss space"></i>
-              <span class="side-badge ng-binding">0</span>
-              <span style="min-height: 22px" id="notif4" class="notif-name" onmouseover="mouseoverbox1()">المتابعة</span>
-            </a>
-          </li>
-        </div>
-      </div>
-    </header>
 
-    <div class="map">
-      <div x-import="herag/map.html"></div>
-    </div>
-    <div class="content">
-      <aside class="tagSide">
-        <i class="close-filter fa-solid fa-xmark fa-lg"></i>
-        <div class="sideSearchHistory">
-          <a href="/tags/حراج العقار">حراج العقار</a>
-          <hr class="mobile-hr" />
-          <div class="smallText">
-            <svg aria-hidden="true" focusable="false" data-prefix="fal" data-icon="times-circle" class="svg-inline--fa fa-times-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-              <path
-                fill="currentColor"
-                d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 464c-118.7 0-216-96.1-216-216 0-118.7 96.1-216 216-216 118.7 0 216 96.1 216 216 0 118.7-96.1 216-216 216zm94.8-285.3L281.5 256l69.3 69.3c4.7 4.7 4.7 12.3 0 17l-8.5 8.5c-4.7 4.7-12.3 4.7-17 0L256 281.5l-69.3 69.3c-4.7 4.7-12.3 4.7-17 0l-8.5-8.5c-4.7-4.7-4.7-12.3 0-17l69.3-69.3-69.3-69.3c-4.7-4.7-4.7-12.3 0-17l8.5-8.5c4.7-4.7 12.3-4.7 17 0l69.3 69.3 69.3-69.3c4.7-4.7 12.3-4.7 17 0l8.5 8.5c4.6 4.7 4.6 12.3 0 17z"
-              ></path></svg
-            ><span>مسح السجل</span>
-          </div>
-          <hr class="mobile-hr" />
-        </div>
-        <div id="sideBar_card" class="sc-gsDJrp kiyHpe">
-          <div class="tag_select_wrapper">
-            <div class="sc-furvIG lkLLxz">
-              <div class="sc-pVTma ojwev">
-                <div class="sc-jrQzUz kFqNHj"><span class="sc-kDThTU iGcJNF">الكل</span></div>
-                <div class="sc-iqsfdx fYdb"><span class="caret"></span></div>
-              </div>
-            </div>
-            <button type="submit" class="sc-bdvvaa AGAbw">
-              <svg aria-hidden="true" focusable="false" data-prefix="fal" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                <path fill="currentColor" d="M508.5 481.6l-129-129c-2.3-2.3-5.3-3.5-8.5-3.5h-10.3C395 312 416 262.5 416 208 416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c54.5 0 104-21 141.1-55.2V371c0 3.2 1.3 6.2 3.5 8.5l129 129c4.7 4.7 12.3 4.7 17 0l9.9-9.9c4.7-4.7 4.7-12.3 0-17zM208 384c-97.3 0-176-78.7-176-176S110.7 32 208 32s176 78.7 176 176-78.7 176-176 176z"></path>
-              </svg>
-            </button>
-          </div>
-          <hr class="mobile-hr" />
-          <div class="FilterGroup__Wrapper-kok8t0-0 iGsYXQ">
-            <span class="FilterGroup__Label-kok8t0-1 bdSIGk"
-              >تصفية
-              <div class="xfilter-toggel">
-                <i class="fa-solid fa-plus" id="open" onclick="xtaghide()"></i>
-              </div>
-            </span>
-            <div class="FilterGroup__ContentWrapper-kok8t0-2 BJDme" id="xtags-filter">
-              <div>
-                <div class="tag-filters-extra">
-                  <div class="FilterItem__Wrapper-sc-18vvs8g-0 feaUnB">
-                    <label class="FilterItem__Label-sc-18vvs8g-1 bSWGIJ"></label>
-                    <div class="FilterItem__ItemsWrapper-sc-18vvs8g-2 bpYvLN"></div>
-                  </div>
-                  <div class="FilterItem__Wrapper-sc-18vvs8g-0 feaUnB">
-                    <label class="FilterItem__Label-sc-18vvs8g-1 bSWGIJ"></label>
-                    <div class="FilterItem__ItemsWrapper-sc-18vvs8g-2 bpYvLN"></div>
-                    <div class="tag-filters__item checkbox-button"><input type="checkbox" id="orderByPostIdCheckbox" /> <label for="orderByPostIdCheckbox">جديد فقط</label></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="FilterGroup__Wrapper-kok8t0-0 iGsYXQ">
-            <span class="FilterGroup__Label-kok8t0-1 bdSIGk"
-              >تنقل السريع
-              <div class="filter-toggel">
-                <i class="fa-solid fa-plus" id="open" onclick="taghide()"></i>
-              </div>
-            </span>
-            <div class="FilterGroup__ContentWrapper-kok8t0-2 eBJDme" id="tags-filter">
-              <div id="mark">
-                <br />
-                <div class="brand-logos">
-                  <a title="سيارات تويوتا" class="brand-logos--svg" href="/tags/تويوتا"><img alt="toyota-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/toyota-logo.svg" /></a
-                  ><a title="نسيان" class="brand-logos--svg" href="/tags/نيسان"><img alt="nissan-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/nissan-logo.svg" /></a
-                  ><a title="سيارات فورد" class="brand-logos--svg" href="/tags/فورد"><img alt="ford-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/ford-logo.svg" /></a
-                  ><a title="لكزس" class="brand-logos--svg" href="/tags/لكزس"><img alt="lexus-icon" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/lexus-icon.svg" /></a
-                  ><a title="سيارات شفروليه للبيع" class="brand-logos--svg" href="/tags/شيفروليه"><img alt="chevrolet-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/chevrolet-logo.svg" /></a
-                  ><a title="سيارات مرسيدس" class="brand-logos--svg" href="/tags/مرسيدس"><img alt="mercedes-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/mercedes-logo.svg" /></a
-                  ><a title="جي ام سي" class="brand-logos--svg" href="/tags/جي ام سي"><img alt="gmc-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/gmc-logo.svg" /></a
-                  ><a title="بي ام دبليو" class="brand-logos--svg" href="/tags/بي ام دبليو"><img alt="bmw-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/bmw-logo.svg" /></a
-                  ><a title="سيارات دودج" class="brand-logos--svg" href="/tags/دودج"><img alt="dodge-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/dodge-logo.svg" /></a
-                  ><a title="سيارات همر" class="brand-logos--svg" href="/tags/همر"><img alt="hummer-icon" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/hummer-icon.svg" /></a
-                  ><a title="سيارات كاديلاك" class="brand-logos--svg" href="/tags/كاديلاك"><img alt="cadillac-logo-alt" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/cadillac-logo-alt.svg" /></a
-                  ><a title="اودي" class="brand-logos--svg" href="/tags/اودي"><img alt="audi-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/audi-logo.svg" /></a
-                  ><a title="هوندا" class="brand-logos--svg" href="/tags/هوندا"><img alt="honda-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/honda-logo.svg" /></a
-                  ><a title="لاندروفر" class="brand-logos--svg" href="/tags/لاند روفر"><img alt="land-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/land-logo.svg" /></a
-                  ><a title="فولكس واجن" class="brand-logos--svg" href="/tags/فولكس واجن"><img alt="volkswagen-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/volkswagen-logo.svg" /></a
-                  ><a title="مازدا" class="brand-logos--svg" href="/tags/مازدا"><img alt="mazda-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/mazda-logo.svg" /></a
-                  ><a title="ميتسوبيشي" class="brand-logos--svg" href="/tags/ميتسوبيشي"><img alt="mitsubishi-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/mitsubishi-logo.svg" /></a
-                  ><a title="هونداي" class="brand-logos--svg" href="/tags/هونداي"><img alt="hyundai-icon" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/hyundai-icon.svg" /></a
-                  ><a title="جيب" class="brand-logos--svg" href="/tags/جيب"><img alt="jeep-icon" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/jeep-icon.svg" /></a
-                  ><a title="انفنيتي" class="brand-logos--svg" href="/tags/انفنيتي"><img alt="infinity-icon" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/infinity-icon.svg" /></a
-                  ><a title="سوزوكي" class="brand-logos--svg" href="/tags/سوزوكي"><img alt="suzuki-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/suzuki-logo.svg" /></a
-                  ><a title="كيا" class="brand-logos--svg" href="/tags/كيا"><img alt="kia-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/kia-logo.svg" /></a
-                  ><a title="كرايزلر" class="brand-logos--svg" href="/tags/كرايزلر"><img alt="chrysler-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/chrysler-logo.svg" /></a
-                  ><a title="بورش" class="brand-logos--svg" href="/tags/بورش"><img alt="porsche-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/porsche-logo.svg" /></a
-                  ><a title="استون مارتن" class="brand-logos--svg" href="/tags/استون مارتن"><img alt="astonmartin-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/astonmartin-logo.svg" /></a
-                  ><a title="بيوك" class="brand-logos--svg" href="/tags/بيوك"><img alt="buick-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/buick-logo.svg" /></a
-                  ><a title="شانجان" class="brand-logos--svg" href="/tags/شانجان"><img alt="changan-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/changan-logo.svg" /></a
-                  ><a title="تشيري" class="brand-logos--svg" href="/tags/تشيري"><img alt="cherry-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/cherry-logo.svg" /></a
-                  ><a title="سيتروين" class="brand-logos--svg" href="/tags/سيتروين"><img alt="citroen-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/citroen-logo.svg" /></a
-                  ><a title="دايو" class="brand-logos--svg" href="/tags/دايو"><img alt="daewoo-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/daewoo-logo.svg" /></a
-                  ><a title="ديهاتسو" class="brand-logos--svg" href="/tags/ديهاتسو"><img alt="daihatsu-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/daihatsu-logo.svg" /></a
-                  ><a title="فاو FAW" class="brand-logos--svg" href="/tags/فاو FAW"><img alt="faw-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/faw-logo.svg" /></a
-                  ><a title="فيراري" class="brand-logos--svg" href="/tags/فيراري"><img alt="ferrari-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/ferrari-logo.svg" /></a
-                  ><a title="فيات" class="brand-logos--svg" href="/tags/فيات"><img alt="fiat-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/fiat-logo.svg" /></a
-                  ><a title="جي ايه سي GAC" class="brand-logos--svg" href="/tags/جي ايه سي GAC"><img alt="GAC-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/GAC-logo.svg" /></a
-                  ><a title="جيلي" class="brand-logos--svg" href="/tags/جيلي"><img alt="geely-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/geely-logo.svg" /></a
-                  ><a title="جريت وول Great Wall" class="brand-logos--svg" href="/tags/جريت وول Great Wall"><img alt="greatwall-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/greatwall-logo.svg" /></a
-                  ><a title="هافال" class="brand-logos--svg" href="/tags/هافال"><img alt="haval-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/haval-logo.svg" /></a
-                  ><a title="ايسوزو" class="brand-logos--svg" href="/tags/ايسوزو"><img alt="ISUZU-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/ISUZU-logo.svg" /></a
-                  ><a title="جاكوار" class="brand-logos--svg" href="/tags/جاكوار"><img alt="jaguar-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/jaguar-logo.svg" /></a
-                  ><a title="لامبورجيني" class="brand-logos--svg" href="/tags/لامبورجيني"><img alt="lamborghini-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/lamborghini-logo.svg" /></a
-                  ><a title="ميركوري" class="brand-logos--svg" href="/tags/ميركوري"><img alt="mercury-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/mercury-logo.svg" /></a
-                  ><a title="مازيراتي" class="brand-logos--svg" href="/tags/مازيراتي"><img alt="meserati-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/meserati-logo.svg" /></a
-                  ><a title="MG" class="brand-logos--svg" href="/tags/MG"><img alt="MG-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/MG-logo.svg" /></a
-                  ><a title="اوبل" class="brand-logos--svg" href="/tags/اوبل"><img alt="opal-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/opal-logo.svg" /></a
-                  ><a title="بيجو" class="brand-logos--svg" href="/tags/بيجو"><img alt="peugeot-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/peugeot-logo.svg" /></a
-                  ><a title="بروتون" class="brand-logos--svg" href="/tags/بروتون"><img alt="proton-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/proton-logo.svg" /></a
-                  ><a title="رينو" class="brand-logos--svg" href="/tags/رينو"><img alt="renault-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/renault-logo.svg" /></a
-                  ><a title="رولز رويس" class="brand-logos--svg" href="/tags/رولز رويس"><img alt="rollsroyce-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/rollsroyce-logo.svg" /></a
-                  ><a title="ساب" class="brand-logos--svg" href="/tags/ساب"><img alt="saab-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/saab-logo.svg" /></a
-                  ><a title="سيات" class="brand-logos--svg" href="/tags/سيات"><img alt="seat-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/seat-logo.svg" /></a
-                  ><a title="سكودا" class="brand-logos--svg" href="/tags/سكودا"><img alt="skoda-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/skoda-logo.svg" /></a
-                  ><a title="سانج يونج" class="brand-logos--svg" href="/tags/سانج يونج"><img alt="ssanyong-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/ssanyong-logo.svg" /></a
-                  ><a title="سوبارو" class="brand-logos--svg" href="/tags/سوبارو"><img alt="subaru-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/subaru-logo.svg" /></a
-                  ><a title="فولفو" class="brand-logos--svg" href="/tags/فولفو"><img alt="volvo-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/volvo-logo.svg" /></a
-                  ><a title="ZXAUTO" class="brand-logos--svg" href="/tags/ZXAUTO"><img alt="ZXauto-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/ZXauto-logo.svg" /></a>
-                </div>
-                <br />
-                <hr />
-                <br />
-                <div class="brand-logos">
-                  <a title="قطع غيار وملحقات" class="brand-logos--svg imgasicon" href="/tags/قطع غيار وملحقات"><img alt="parts" loading="lazy" height="60" width="60" class="svg-size-4x" src="https://betacdn.haraj.com.sa/assets/images/svg/parts.svg" /><span class="text">قطع غيار وملحقات</span></a
-                  ><a title="شاحنات ومعدات ثقيلة" class="brand-logos--svg imgasicon" href="/tags/شاحنات ومعدات ثقيلة"><img alt="truck" loading="lazy" height="60" width="60" class="svg-size-4x" src="https://betacdn.haraj.com.sa/assets/images/svg/truck.svg" /><span class="text">شاحنات ومعدات ثقيلة</span></a
-                  ><a title="دبابات" class="brand-logos--svg imgasicon" href="/tags/دبابات"><img alt="quad-car" loading="lazy" height="60" width="60" class="svg-size-4x" src="https://betacdn.haraj.com.sa/assets/images/svg/quad-car.svg" /><span class="text">دبابات</span></a
-                  ><a title="سيارات%20تراثية" class="brand-logos--svg imgasicon" href="/tags/سيارات تراثية"><img alt="heritage-car" loading="lazy" height="60" width="60" class="svg-size-4x" src="https://betacdn.haraj.com.sa/assets/images/svg/heritage-car.svg" /><span class="text">سيارات تراثية</span></a
-                  ><a title="سيارات مصدومه" class="brand-logos--svg imgasicon" href="/tags/حراج السيارات/filters/search-مصدوم مصدومة"><img alt="crash-car" loading="lazy" height="60" width="60" class="svg-size-4x" src="https://betacdn.haraj.com.sa/assets/images/svg/crash-car.svg" /><span class="text">سيارات مصدومه</span></a
-                  ><a title="سيارات للتنازل" class="brand-logos--svg imgasicon" href="/tags/حراج السيارات/filters/search-للتنازل تنازل"><img alt="car-loan" loading="lazy" height="60" width="60" class="svg-size-4x" src="https://betacdn.haraj.com.sa/assets/images/svg/car-loan.svg" /><span class="text">سيارات للتنازل</span></a>
-                </div>
-              </div>
-              <div class="other_marks_">
-                <br />
-                <hr />
-                <br />
-                <div class="brand-logos">
-                  <a class="brand-logos--svg imgasicon" href="/tags/ابل Apple"><img width="60" height="60" loading="lazy" alt="apple-icon 0" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/apple-icon.svg" /></a
-                  ><a class="brand-logos--svg" href="/tags/سامسونج Samsung"><img width="60" height="60" loading="lazy" alt="samsung-icon 1" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/samsung-icon.svg" /></a
-                  ><a class="brand-logos--svg" href="/tags/كانون Canon"><img width="60" height="60" loading="lazy" alt="canon-icon 2" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/canon-icon.svg" /></a
-                  ><a class="brand-logos--svg" href="/tags/سوني Sony"><img width="60" height="60" loading="lazy" alt="sony-icon 3" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/sony-icon.svg" /></a
-                  ><a class="brand-logos--svg" href="/tags/مايكروسوفت Microsoft"><img width="60" height="60" loading="lazy" alt="microsoft-logo 4" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/microsoft-logo.svg" /></a
-                  ><a class="brand-logos--svg" href="/tags/نوكيا Nokia"><img width="60" height="60" loading="lazy" alt="nokia-icon 5" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/nokia-icon.svg" /></a
-                  ><a class="brand-logos--svg" href="/tags/ال جي LG"><img width="60" height="60" loading="lazy" alt="lg-logo 6" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/lg-logo.svg" /></a><a class="brand-logos--svg" href="/tags/أرقام مميزة">أرقام مميزة</a>
-                </div>
-              </div>
-              <div class="other_marks_">
-                <br />
-                <hr />
-                <br />
-                <div class="brand-logos">
-                  <a title="غنم" class="brand-logos--svg imgasicon" href="/tags/غنم"><img width="60" height="60" loading="lazy" alt="sheep 0" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/sheep.svg" /></a
-                  ><a title="ببغاء" class="brand-logos--svg imgasicon" href="/tags/ببغاء"><img width="60" height="60" loading="lazy" alt="parrot 1" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/parrot.svg" /></a
-                  ><a title="حمام" class="brand-logos--svg imgasicon" href="/tags/حمام"><img width="60" height="60" loading="lazy" alt="birds 2" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/birds.svg" /></a
-                  ><a title="قطط" class="brand-logos--svg imgasicon" href="/tags/قطط"><img width="60" height="60" loading="lazy" alt="cat 3" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/cat.svg" /></a
-                  ><a title="دجاج" class="brand-logos--svg imgasicon" href="/tags/دجاج"><img width="60" height="60" loading="lazy" alt="chicken 4" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/chicken.svg" /></a
-                  ><a title="ماعز" class="brand-logos--svg imgasicon" href="/tags/ماعز"><img width="60" height="60" loading="lazy" alt="goat 5" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/goat.svg" /></a
-                  ><a title="أبل" class="brand-logos--svg imgasicon" href="/tags/أبل"><img width="60" height="60" loading="lazy" alt="camel 6" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/camel.svg" /></a
-                  ><a title="خيل" class="brand-logos--svg imgasicon" href="/tags/خيل"><img width="60" height="60" loading="lazy" alt="horse 7" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/horse.svg" /></a
-                  ><a title="كلاب" class="brand-logos--svg imgasicon" href="/tags/كلاب"><img width="60" height="60" loading="lazy" alt="dog 8" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/dog.svg" /></a>
-                </div>
-              </div>
-              <div>
-                <br />
-                <hr />
-                <br />
-                <div class="brand-logos">
-                  <a title="اراضي للبيع" class="brand-logos--svg" href="/tags/اراضي للبيع">اراضي للبيع </a><a title="اراضي تجارية للبيع" class="brand-logos--svg" href="/tags/اراضي تجارية للبيع">اراضي تجارية للبيع </a><a title="شقق للايجار" class="brand-logos--svg" href="/tags/شقق للايجار">شقق للايجار </a><a title="شقق للبيع" class="brand-logos--svg" href="/tags/شقق للبيع">شقق للبيع </a
-                  ><a title="فلل للبيع" class="brand-logos--svg" href="/tags/فلل للبيع">فلل للبيع </a><a title="فلل للايجار" class="brand-logos--svg" href="/tags/فلل للايجار">فلل للايجار </a><a title="عماره للايجار" class="brand-logos--svg" href="/tags/عماره للايجار">عماره للايجار </a><a title="محلات للتقبيل" class="brand-logos--svg" href="/tags/محلات للتقبيل">محلات للتقبيل </a
-                  ><a title="محلات للايجار" class="brand-logos--svg" href="/tags/محلات للايجار">محلات للايجار </a><a title="مزارع للبيع" class="brand-logos--svg" href="/tags/مزارع للبيع">مزارع للبيع </a><a title="استراحات للبيع" class="brand-logos--svg" href="/tags/استراحات للبيع">استراحات للبيع </a
-                  ><a title="استراحات للايجار" class="brand-logos--svg" href="/tags/استراحات للايجار">استراحات للايجار </a><a title="بيوت للبيع" class="brand-logos--svg" href="/tags/بيوت للبيع">بيوت للبيع </a><a title="بيوت للايجار" class="brand-logos--svg" href="/tags/بيوت للايجار">بيوت للايجار </a><a title="ادوار للايجار" class="brand-logos--svg" href="/tags/ادوار للايجار">ادوار للايجار </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </aside>
       <main class="tagMain">
-       <!--  <div class="row">
-          <a class="green" target="_blank" href="/stores_view">المتاجر</a>
-        </div> -->
-
+        <!--  <div class="row">
+            <a class="green" target="_blank" href="/stores_view">المتاجر</a>
+          </div> -->
+          <div></div>
+          <div></div>
         <div class="row">
           <fieldset class="ads-section">
             <fieldset class="ads-section">
-              <div ng-repeat="a in adsList " class="ads-area">
+              <div ng-repeat="a in adsList " class="ads-area even">
                 <div class="ad-area">
                   <div class="ads-info">
-                    <b class="bold col4 ad-name">{{a.name}}</b>
-                    <div class="row" ng-click="displayAd(a.id)">
-                      <p class="ad-owner"><b class="black"> ##word.ad_owner## : </b><b> {{a.store.user.profile.name}} </b></p>
-                      <p ng-show="defaultSettings.stores_settings.activate_stores" class="store-name"><b class="black"> ##word.store## : </b><b> {{a.store.name}} </b></p>
-                      <p class="ad-price" ng-show="a.set_price == 'yes'" ng-repeat="q in a.quantity_list"><b>{{q.unit.name_##session.lang##}} {{q.net_value}} {{q.currency.name_##session.lang##}}</b></p>
+                    <b class="bold col4 ad-name">{{a.name_##session.lang##}}</b>
+                    <div class="info">
+                        <div class="row user-action">
+                          <i class="fa-solid fa-cart-shopping" ng-hide="a.store.user.id == user.id"
+                          label="##word.add_to_cart##" ng-click="bookList(a,0)"></i>
+                        <div class="u-action">
+                          <i class="u-a fa-solid fa-thumbs-up" label="##word.like##" ng-click="updateFeedback(a,'like')" ng-model="a.like"></i>
+                          <i class="fa-solid fa-heart" label="##word.favorite##" ng-click="updateFeedback(a,'favorite')"
+                          ng-model="a.favorite"></i>
+                          <!-- <i-button class="btn" fa="shopping-cart" ng-hide="a.store.user.id == user.id"
+                          label="##word.add_to_cart##" ng-click="bookList(a,0)"> </i-button> -->
+                          <!-- <i-checkbox label="##word.like##" ng-click="updateFeedback(a,'like')" ng-model="a.like">
+                          </i-checkbox> -->
+                          <!-- <i-checkbox label="##word.favorite##" ng-click="updateFeedback(a,'favorite')"
+                            ng-model="a.favorite"> </i-checkbox> -->
+                        </dive>
+                      </div>
+                        </div>
+                        <div class="time-publish">
+                        <i class="fa-solid fa-clock"></i>
+                        </div>
+                        <div class="ad-location">
+                          <i class="fa-solid fa-location-pin"></i>
+                          <div class="adress">
+                            <p class="location" ng-show="a.address.country">{{a.address.country.name_##session.lang##}} -
+                              {{a.address.gov.name_##session.lang##}} - {{a.address.city.name_##session.lang##}} -
+                              {{a.address.area.name_##session.lang##}}</p>
+                            <p class="location">{{a.address.detailed_address}}</p>
+                          </div>
+                        </div>
+                        <div class="row" ng-click="displayAd(a.id)">
+                          <p class="ad-owner">
+                            <i class="fa-solid fa-user"></i>
+                            <!-- <b class="black"> ##word.ad_owner## : </b> -->
+                            <b> {{a.store.user.profile.name}}</b>
+                          </p>
+                          <!-- <p class="store-name"><b class="black"> ##word.store## : </b><b> {{a.store.name_##session.lang##}} </b></p> -->
+                          <!-- <p class="ad-price" ng-show="a.set_price == 'yes'" ng-repeat="q in a.quantity_list"><b>{{q.unit.name_##session.lang##}} {{q.net_value}} {{q.currency.name_##session.lang##}}</b></p> -->
+                        </div>
                     </div>
-                    <p ng-show="a.address.country">{{a.address.country.name_##session.lang##}} - {{a.address.gov.name_##session.lang##}} - {{a.address.city.name_##session.lang##}} - {{a.address.area.name_##session.lang##}}</p>
-                    <p>{{a.address.detailed_address}}</p>
-                    <div class="row user-action">
-                      <i-button class="btn" fa="shopping-cart" ng-hide="a.store.user.id == user.id" label="##word.add_to_cart##" ng-click="bookList(a,0)"> </i-button>
-                      <dive class="u-action">
-                        <i-checkbox label="##word.like##" ng-click="updateFeedback(a,'like')" ng-model="a.like"> </i-checkbox>
-                        <i-checkbox label="##word.favorite##" ng-click="updateFeedback(a,'favorite')" ng-model="a.favorite"> </i-checkbox>
-                      </dive>
-                    </div>
-                  </div>
-                  <div class="row" ng-click="displayAd(a.id)">
-                    <i-image view="" class="logo col2 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty" ng-model="a.image_url">
-                      <form class="form text-center pointer ng-pristine ng-valid">
-                        <input class="hidden" type="file" name="file" />
-                        <img class="bg-white image-size" ng-src="" ngclick="ngClick()" onerror="this.src='/images/no.jpg'" src="" />
-                        <progress class="row" style="display: none"></progress>
-                      </form>
-                    </i-image>
-                  </div>
                 </div>
-                <br />
-                <hr />
-                <br />
+                <div class="row" ng-click="displayAd(a.id)">
+                  <i-image view="" class="logo col2 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty"
+                    ng-model="a.image_url">
+                    <form class="form text-center pointer ng-pristine ng-valid">
+                      <input class="hidden" type="file" name="file" />
+                      <img class="bg-white image-size" ng-src="" ngclick="ngClick()"
+                        onerror="this.src='/images/no.jpg'" src="" />
+                      <progress class="row" style="display: none"></progress>
+                    </form>
+                  </i-image>
+                </div>
               </div>
             </fieldset>
             <!-- ngRepeat: a in adsList -->
@@ -785,153 +1072,189 @@
         </div>
       </main>
     </div>
-    <footer class="footer ng-scope" x-import="herag/footer.html" ng-controller="footer_herag"></footer>
-    <div x-import="herag/scripts.html"></div>
-    <script x-import="herag/index.js"></script>
-    <script>
-      //start mobile menu click//
-      let user = document.querySelector('.user');
-      let burger_icon = document.querySelector('.burger-icon');
-      let close = document.querySelector('.close-menu');
+  </div>
+  <footer class="footer ng-scope" x-import="herag/footer.html" ng-controller="footer_herag"></footer>
+  <div x-import="herag/scripts.html"></div>
+  <script x-import="herag/index.js"></script>
+  <script>
+    //start mobile menu click//
+    let user = document.querySelector('.user');
+    let burger_icon = document.querySelector('.burger-icon');
+    let close = document.querySelector('.close-menu');
 
-      burger_icon.addEventListener('click', () => {
-        user.classList.add('open-menu');
-      });
+    burger_icon.addEventListener('click', () => {
+      user.classList.add('open-menu');
+    });
 
-      close.addEventListener('click', () => {
-        user.classList.remove('open-menu');
-      });
+    close.addEventListener('click', () => {
+      user.classList.remove('open-menu');
+    });
 
-      //end mobile menu click//
-      //////////////////
+    function mouseoverbox1(){
 
-      //start desktop filter click//
+    }
 
-      taghide();
+    //end mobile menu click//
+    //////////////////
 
-      function taghide() {
-        let plus = document.getElementById('open');
-        let tags = document.getElementById('tags-filter');
+    //start desktop filter click//
 
-        if (tags.style.display != 'none') {
-          tags.style.display = 'none';
-        } else {
-          tags.style.display = 'block';
-        }
+    taghide();
+
+    function taghide() {
+      let plus = document.getElementById('open');
+      let tags = document.getElementById('tags-filter');
+
+      if (tags.style.display != 'none') {
+        tags.style.display = 'none';
+      } else {
+        tags.style.display = 'block';
       }
+    }
 
-      xtaghide();
+    xtaghide();
 
-      function xtaghide() {
-        let plus = document.getElementById('open');
-        let tags = document.getElementById('xtags-filter');
+    function xtaghide() {
+      let plus = document.getElementById('open');
+      let tags = document.getElementById('xtags-filter');
 
-        if (tags.style.display != 'none') {
-          tags.style.display = 'none';
-        } else {
-          tags.style.display = 'block';
-        }
+      if (tags.style.display != 'none') {
+        tags.style.display = 'none';
+      } else {
+        tags.style.display = 'block';
       }
+    }
 
-      //end desktop filter click//
+    //end desktop filter click//
 
-      let xbtnFilter = document.querySelector('.xfilter-toggel');
-      let xicon = xbtnFilter.querySelector('.fa-plus');
+    let xbtnFilter = document.querySelector('.xfilter-toggel');
+    let xicon = xbtnFilter.querySelector('.fa-plus');
 
-      xbtnFilter.onclick = function () {
-        if (xicon.classList.contains('fa-plus')) {
-          xicon.classList.replace('fa-plus', 'fa-minus');
-        } else {
-          xicon.classList.replace('fa-minus', 'fa-plus');
-        }
-      };
-
-      let btnFilter = document.querySelector('.filter-toggel');
-      let icon = btnFilter.querySelector('.fa-plus');
-
-      btnFilter.onclick = function () {
-        if (icon.classList.contains('fa-plus')) {
-          icon.classList.replace('fa-plus', 'fa-minus');
-        } else {
-          icon.classList.replace('fa-minus', 'fa-plus');
-        }
-      };
-
-      //start filter menu click for mobile version//
-      let tagSide = document.querySelector('.tagSide');
-      let mobileFilter = document.querySelector('.mobile-filter');
-      let closeFilter = document.querySelector('.close-filter');
-
-      mobileFilter.addEventListener('click', () => {
-        tagSide.classList.add('open-filter');
-      });
-
-      closeFilter.addEventListener('click', () => {
-        tagSide.classList.remove('open-filter');
-      });
-
-      //end filter menu click for mobile version//
-
-      //start side-header menu //
-      let sideheader = document.querySelector('.user-side-header');
-      let notifname = document.getElementById('notif1');
-
-      sideheader.addEventListener('mouseenter', () => {
-        notifname.classList.add('show-notif-name');
-        notifname.classList.remove('notif-name');
-      });
-      sideheader.addEventListener('mouseleave', () => {
-        notifname.classList.remove('show-notif-name');
-        notifname.classList.add('notif-name');
-      });
-
-      let notifname2 = document.getElementById('notif2');
-
-      sideheader.addEventListener('mouseenter', () => {
-        notifname2.classList.add('show-notif-name');
-        notifname2.classList.remove('notif-name');
-      });
-      sideheader.addEventListener('mouseleave', () => {
-        notifname2.classList.remove('show-notif-name');
-        notifname2.classList.add('notif-name');
-      });
-      let notifname3 = document.getElementById('notif3');
-
-      sideheader.addEventListener('mouseenter', () => {
-        notifname3.classList.add('show-notif-name');
-        notifname3.classList.remove('notif-name');
-      });
-      sideheader.addEventListener('mouseleave', () => {
-        notifname3.classList.remove('show-notif-name');
-        notifname3.classList.add('notif-name');
-      });
-
-      let notifname4 = document.getElementById('notif4');
-
-      sideheader.addEventListener('mouseenter', () => {
-        notifname4.classList.add('show-notif-name');
-        notifname4.classList.remove('notif-name');
-      });
-      sideheader.addEventListener('mouseleave', () => {
-        notifname4.classList.remove('show-notif-name');
-        notifname4.classList.add('notif-name');
-      });
-
-      //end side-header menu //
-
-      //start show and hidden map//
-      const mapToggle = document.getElementById('map-toggle');
-      const map = document.querySelector('.map');
-
-      hsMap();
-      function hsMap() {
-        if (map.style.display === 'block') {
-          map.style.display = 'none';
-        } else {
-          map.style.display = 'block';
-        }
+    xbtnFilter.onclick = function () {
+      if (xicon.classList.contains('fa-plus')) {
+        xicon.classList.replace('fa-plus', 'fa-minus');
+      } else {
+        xicon.classList.replace('fa-minus', 'fa-plus');
       }
+    };
+
+    let btnFilter = document.querySelector('.filter-toggel');
+    let icon = btnFilter.querySelector('.fa-plus');
+
+    btnFilter.onclick = function () {
+      if (icon.classList.contains('fa-plus')) {
+        icon.classList.replace('fa-plus', 'fa-minus');
+      } else {
+        icon.classList.replace('fa-minus', 'fa-plus');
+      }
+    };
+
+    //start filter menu click for mobile version//
+    let tagSide = document.querySelector('.tagSide');
+    let mobileFilter = document.querySelector('.mobile-filter');
+    let closeFilter = document.querySelector('.close-filter');
+
+    mobileFilter.addEventListener('click', () => {
+      tagSide.classList.add('open-filter');
+    });
+
+    closeFilter.addEventListener('click', () => {
+      tagSide.classList.remove('open-filter');
+    });
+
+    //end filter menu click for mobile version//
+
+    //start side-header menu //
+    let sideheader = document.querySelector('.user-side-header');
+    let mapheader = document.querySelector('.map-side-header');
+    let notifname = document.getElementById('notif1');
+
+    sideheader.addEventListener('mouseenter', () => {
+      notifname.classList.add('show-notif-name');
+      notifname.classList.remove('notif-name');
+    });
+    sideheader.addEventListener('mouseleave', () => {
+      notifname.classList.remove('show-notif-name');
+      notifname.classList.add('notif-name');
+    });
+
+    let notifname2 = document.getElementById('notif2');
+
+    sideheader.addEventListener('mouseenter', () => {
+      notifname2.classList.add('show-notif-name');
+      notifname2.classList.remove('notif-name');
+    });
+    sideheader.addEventListener('mouseleave', () => {
+      notifname2.classList.remove('show-notif-name');
+      notifname2.classList.add('notif-name');
+    });
+    let notifname3 = document.getElementById('notif3');
+
+    sideheader.addEventListener('mouseenter', () => {
+      notifname3.classList.add('show-notif-name');
+      notifname3.classList.remove('notif-name');
+    });
+    sideheader.addEventListener('mouseleave', () => {
+      notifname3.classList.remove('show-notif-name');
+      notifname3.classList.add('notif-name');
+    });
+
+    let notifname4 = document.getElementById('notif4');
+
+    sideheader.addEventListener('mouseenter', () => {
+      notifname4.classList.add('show-notif-name');
+      notifname4.classList.remove('notif-name');
+    });
+    sideheader.addEventListener('mouseleave', () => {
+      notifname4.classList.remove('show-notif-name');
+      notifname4.classList.add('notif-name');
+    });
+
+    let notifname5 = document.getElementById('notif5');
+
+  mapheader.addEventListener('mouseenter', () => {
+    notifname5.classList.add('show-notif-name');
+    notifname5.classList.remove('notif-name');
+  });
+  mapheader.addEventListener('mouseleave', () => {
+    notifname5.classList.remove('show-notif-name');
+    notifname5.classList.add('notif-name');
+  });
+
+    //end side-header menu //
+
+    //start show and hidden map//
+    const mapToggle = document.getElementById('map-toggle');
+    const map = document.querySelector('.map');
+    let changename = document.getElementById('notif5');
+    let minmapbtn = document.getElementById('mapbtn');
+
+    function hsMap() {
+      if (map.style.display === 'block') {
+        map.style.display = 'none';
+        changename.innerText = "البحث بالخريطة";
+        minmapbtn.classList.remove('side-header-map');
+        mapheader.addEventListener('mouseenter', () => {
+          notifname5.classList.add('show-notif-name');
+          notifname5.classList.remove('notif-name');
+        });
+        mapheader.addEventListener('mouseleave', () => {
+          notifname5.classList.remove('show-notif-name');
+          notifname5.classList.add('notif-name');
+        });
+      } else {
+        map.style.display = 'block';
+        changename.innerText = "اخفاء الخريطة";
+        minmapbtn.classList.add('side-header-map');
+        mapheader.addEventListener('mouseleave', () => {
+        notifname5.classList.add('show-notif-name');
+        notifname5.classList.remove('notif-name');
+      });
+      }
+    }
       //end show and hidden map//
-    </script>
-  </body>
+      hsMap();
+  </script>
+</body>
+
 </html>

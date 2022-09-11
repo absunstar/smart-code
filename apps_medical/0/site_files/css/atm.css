@@ -1,5 +1,5 @@
 body{
-    font-family: 'Cairo', sans-serif;
+    font-family: 'Arabic', sans-serif;
     background: none ;
     
 
@@ -249,7 +249,7 @@ a.btn.fa.fa-pause{
     box-shadow: none !important;
     color: black !important;
     padding: 10px 15px;
-    font-family:  'Cairo', sans-serif;
+    font-family:  'Arabic', sans-serif;
     font-weight: bold;
     font-size: 12px !important;
 

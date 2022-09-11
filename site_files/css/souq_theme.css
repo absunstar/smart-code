@@ -27,7 +27,7 @@ margin: 0;
 padding: 0;
 --theme-color: #00A884;
 --theme-color2: #019777;
---font-family: 'Cairo', sans-serif;
+--font-family: 'Arabic', sans-serif;
 --tabs-color: #fff;
 --tabs-background-color: var(--theme-color);
 --tabs-background-color2: var(--theme-color);
@@ -1042,7 +1042,7 @@ margin: 0;
 padding: 0;
 --theme-color: #00A884;
 --theme-color2: #019777;
---font-family: 'Cairo', sans-serif;
+--font-family: 'Arabic', sans-serif;
 }
 
 a,span,button,p{
