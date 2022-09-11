@@ -29,6 +29,7 @@ module.exports = function init(site) {
       }
     });
   }, 1000 * 7);
+  
   site.get({
     name: 'images',
     path: __dirname + '/site_files/images/',
@@ -39,22 +40,6 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/html/index.html',
     parser: 'html',
     compress: true,
-  });
-
-  site.on('[company][created]', (doc) => {
-    $goves.add(
-      {
-        code: "1-Test",
-        name_ar: 'محافظة إفتراضية',
-        name_en: "Default Gov",
-        image_url: '/images/gov.png',
-       
-        active: true,
-      },
-      (err, doc1) => {
-        site.call('[register][city][add]', doc1);
-      },
-    );
   });
 
   site.post('/api/goves/add', (req, res) => {

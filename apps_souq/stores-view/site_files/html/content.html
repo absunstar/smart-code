@@ -6,24 +6,22 @@
     </div>
     <div class="row">
       <fieldset>
-        <div ng-repeat="a in storesList">
-          <div class="row" ng-click="displayStore(a.id)">
-            <i-image view class="logo col2" ng-model="a.image_url"></i-image>
-            <b class="bold col4">{{a.name_##session.lang##}}</b>
+        <div ng-repeat="s in storesList">
+          <div class="row" ng-click="displayStore(s.id)">
+            <i-image view class="logo col2" ng-model="s.image_url"></i-image>
+            <b class="bold col4">{{s.name}}</b>
           </div>
-          <div class="row" ng-click="displayStore(a.id)">
-            <p><b class="black"> ##word.store## : </b><b> {{a.name_##session.lang##}} </b></p>
-            <p><b class="black"> ##word.store_owner## : </b><b> {{a.user.profile.name}} </b></p>
-            <p ng-repeat="q in a.quantity_list"><b>{{q.unit.name_##session.lang##}} {{q.net_value}} {{q.currency.name_##session.lang##}}</b></p>
+          <div class="row" ng-click="displayStore(s.id)">
+            <p><b class="black"> ##word.store_owner## : </b><b> {{s.user.profile.name}} </b></p>
           </div>
           <br />
-          <b>{{a.address.country.name_##session.lang##}} {{a.address.gov.name_##session.lang##}} {{a.address.city.name_##session.lang##}} {{a.address.area.name_##session.lang##}}</b>
-          <p>{{a.address.detailed_address}}</p>
+          <b>{{s.address.country.name_##session.lang##}} {{s.address.gov.name_##session.lang##}} {{s.address.city.name_##session.lang##}} {{s.address.area.name_##session.lang##}}</b>
+          <p>{{s.address.detailed_address}}</p>
           <br />
           <div class="row">
-            <i-button fa="shopping-cart" ng-hide="a.user.id == user.id" label="##word.add_to_cart##" ng-click="bookList(a,0)"> </i-button>
-            <i-checkbox label="##word.like##" ng-click="updateFeedback(a,'like')" ng-model="a.like"> </i-checkbox>
-            <i-checkbox label="##word.favorite##" ng-click="updateFeedback(a,'favorite')" ng-model="a.favorite"> </i-checkbox>
+            <i-button fa="shopping-cart" ng-hide="s.user.id == user.id" label="##word.add_to_cart##" ng-click="bookList(s,0)"> </i-button>
+            <i-checkbox label="##word.like##" ng-click="updateFeedback(s,'like')" ng-model="s.like"> </i-checkbox>
+            <i-checkbox label="##word.favorite##" ng-click="updateFeedback(s,'favorite')" ng-model="s.favorite"> </i-checkbox>
           </div>
           <br />
           <hr />

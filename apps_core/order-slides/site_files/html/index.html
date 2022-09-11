@@ -5,7 +5,7 @@
 
 </head>
 
-<body class="##session.lang##">
+<body class="##session.lang## loaded">
 
     <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
     </nav>
@@ -13,7 +13,7 @@
     </nav>
 
 
-    <div id="main-layout" class="container loaded" x-permission="login">
+    <div id="main-layout" class="container" x-permission="login">
         <div class="row center">
             <div class="col" ng-controller="order_slides">
                 <div x-import="order-slides/add_modal.html"></div>

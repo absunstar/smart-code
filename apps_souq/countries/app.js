@@ -29,19 +29,7 @@ module.exports = function init(site) {
       }
     });
   }, 1000 * 7);
-  site.on('[company][created]', (doc) => {
-    $countries.add(
-      {
-        code: '1-Test',
-        name_ar: 'دولة إفتراضية',
-        name_en: 'Default Country',
-        image_url: '/images/countries.png',
 
-        active: true,
-      },
-      (err, doc) => {}
-    );
-  });
 
   site.get({
     name: 'images',
@@ -78,19 +66,6 @@ module.exports = function init(site) {
       countries_doc.active = true;
     }
 
-    let num_obj = {
-      screen: 'countries',
-      date: new Date(),
-    };
-
-    let cb = site.getNumbering(num_obj);
-    if (!countries_doc.code && !cb.auto) {
-      response.error = 'Must Enter Code';
-      res.json(response);
-      return;
-    } else if (cb.auto) {
-      countries_doc.code = cb.code;
-    }
 
     response.done = true;
     countries_doc.$add = true;

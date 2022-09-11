@@ -671,12 +671,12 @@ textarea {
     display: none;
 }
 
-.links .tabs {
+.links .tabs2 {
     display: none;
     transition: all 0.5s ease;
 }
 
-.tabs {
+.tabs2 {
     display: inline-block;
     padding: 5px;
     width: 100%;
@@ -687,11 +687,11 @@ textarea {
     transform: translate(256px, 0px);
 }
 
-.links .tabs .tabs-header {
+.links .tabs2 .tabs2-header {
     width: 100%;
 }
 
-.tabs .tabs-header {
+.tabs2 .tabs2-header {
     padding: 1px;
     width: var(--tabs-header-width);
     margin: 0px;
@@ -710,11 +710,11 @@ textarea {
     position: static !important;
 }
 
-.tabs .tabs-header .tab-link:hover {
+.tabs2 .tabs2-header .tab-link:hover {
     border-radius: 10px;
 }
 
-.tabs .tabs-header .tab-link:hover {
+.tabs2 .tabs2-header .tab-link:hover {
     background-color: var(--tabs-background-color2);
     color: var(--tabs-header-link-color2);
 }
@@ -740,13 +740,13 @@ textarea {
     z-index: 1;
 }
 
-.main-menu .tabs-header .tab-link {
+.main-menu .tabs2-header .tab-link {
     color: #000;
     /* border-radius: 0px !important; */
 }
 
 
-.tabs {
+.tabs2 {
     display: grid;
     grid-template-columns: 25% 75%;
     grid-template-areas: "tabs-header tabs-content tabs-content tabs-content";
@@ -755,7 +755,7 @@ textarea {
     transition: all 0.5s ease;
 }
 
-.tabs .tabs-header {
+.tabs2 .tabs2-header {
     padding: 1px;
     width: 100%;
     margin: 0px;
@@ -765,16 +765,16 @@ textarea {
     background: none;
 }
 
-.tabs .tabs-header .tab-link.active {
+.tabs2 .tabs2-header .tab-link.active {
     border-radius: 10px;
 }
 
-.tabs .tabs-header .tab-link.active {
+.tabs2 .tabs2-header .tab-link.active {
     background-color: var(--tabs-background-color);
     color: var(--tabs-color);
 }
 
-.tabs .tabs-header .tab-link {
+.tabs2 .tabs2-header .tab-link {
     border-radius: var(--tabs-header-link-radius);
     background: var(--tabs-header-link-background);
     border: var(--tabs-header-link-border);
@@ -791,7 +791,7 @@ textarea {
     text-decoration: none;
 }
 
-.tabs .tabs-content .tab-content {
+.tabs2 .tabs2-content .tab-content {
     display: none;
     padding: 6px 12px;
     width: 100%;

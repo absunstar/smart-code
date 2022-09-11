@@ -26,12 +26,6 @@
         width: 1200px;
       }
 
-      .img_qelada {
-        border-radius: 15px;
-        height: 270px;
-        width: 350px;
-      }
-
       .img_inout {
         border-radius: 15px;
         width: 330px;
@@ -215,7 +209,7 @@
     </style>
   </head>
 
-  <body class="##session.lang##">
+  <body class="##session.lang## loaded">
     <nav class="sitebar" x-import="sitebar/index.html" ng-controller="sitebar"></nav>
 
     <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
@@ -252,17 +246,7 @@
           </div>
         </div>
 
-        <div class="row qelada hidden">
-          <div class="center qelada">
-            <img class="img_qelada" ng-src="/images/qelada.png" />
-          </div>
-        </div>
-
-        <div class="row ethraa hidden">
-          <div class="center ethraa">
-            <img class="img_brand" ng-src="/images/ethraa.png" />
-          </div>
-        </div>
+     
       </div>
 
       <!--   <div class="footer" x-features="!login && !site.dynamic">
@@ -297,12 +281,6 @@
             <h2 class="center">##word.security_user_password## : <span> valley </span></h2>
           </div>
 
-          <div class="col5" x-feature="host.ethraa">
-            <h2 class="center blue bold">##word.try_application##</h2>
-            <br />
-            <h2 class="center">##word.security_user_email## : <span> ethraa </span></h2>
-            <h2 class="center">##word.security_user_password## : <span> ethraa </span></h2>
-          </div>
 
           <div class="col5" x-feature="host.free">
             <h2 class="center blue bold">##word.try_application##</h2>
@@ -342,7 +320,7 @@
 
       <div id="posts" class="center"></div>
 
-      <div class="price-info hidden" x-features="!host.ft && !host.elfgr && !host.qelada && !host.ethraa && !host.free && !host.inout && !host.valley && !protouch  && !host.ttl && !host.mt">
+      <div class="price-info hidden" x-features="!host.ft && !host.free && !host.inout && !host.valley && !protouch  && !host.ttl && !host.mt">
         <div class="row padding">
           <table class="table hover">
             <tr>
@@ -608,69 +586,6 @@
           </h2>
         </div>
 
-        <div class="row qelada hidden">
-          <h2 class="center">
-            <span>
-              <h2 class="center bold green" style="text-shadow: 3px 3px #b3b3ff; font-size: xxx-large">القلادة جروب</h2>
-              <br />
-
-              القاهرة : مدينة نصر <i class="fa fa-map-marker" aria-hidden="true"></i> <br />
-              35 عمارات العبور صلاح سالم <i class="fa fa-building"></i> <br />
-
-              <br />
-              <a href="tel:+201015680353"> +201015680353 <i class="fab fa-whatsapp-square" aria-hidden="true"></i> </a> <br />
-              <a href="tel:0220822434"> 0220822434 <i class="fa fa-phone" aria-hidden="true"></i> </a> <br />
-              <a href="mailto:infoaftgroup@gmail.com"> infoaftgroup@gmail.com <i class="fa fa-envelope" aria-hidden="true"></i> </a> <br />
-              <a href="http://www.alqelada.net" target="_blank"> www.alqelada.net <i class="fa fa-globe" aria-hidden="true"></i> </a>
-              <br />
-            </span>
-          </h2>
-        </div>
-
-        <div class="row ethraa hidden">
-          <h1 class="center bold green" style="text-shadow: 3px 3px #b3b3ff; font-size: xxx-large">إثراء المعرفة</h1>
-          <br />
-          <h1 class="center bold green" style="text-shadow: 3px 3px #b3b3ff; font-size: xxx-large">Ethraa-Almaerfia</h1>
-          <br />
-
-          <div class="row">
-            <div class="col5">
-              <i class="fas fa-road"></i>
-
-              <h2 class="center">
-                <span>
-                  K.S.A – Riyadh <i class="fa fa-map-marker" aria-hidden="true"></i> <br />
-                  Othman Bin Affan - Road Al-Wahah District <i class="fa fa-building"></i> <br />
-                  <br />
-                  <a href="tel:+966 553345112"> +966 553345112 <i class="fab fa-whatsapp-square" aria-hidden="true"></i> </a>
-                  <br />
-                  <a href="tel:+966 557759097"> +966 557759097 <i class="fa fa-phone" aria-hidden="true"></i> </a> <br />
-                </span>
-              </h2>
-            </div>
-            <div class="col2"></div>
-
-            <div class="col5">
-              <h2 class="center">
-                <span>
-                  K.S.A – Jeddah <i class="fa fa-map-marker" aria-hidden="true"></i> <br />
-                  Al-Salama Dist <br />
-                  Abdulrahman Bin Ahmed Alsudayrey St. <i class="fa fa-building"></i> <br />
-                  <br />
-
-                  <a href="tel:+966 12 2256256"> +966 12 2256256 <i class="fa fa-phone" aria-hidden="true"></i> </a>
-                  <br />
-                </span>
-              </h2>
-            </div>
-          </div>
-
-          <h2 class="center">
-            <a href="mailto:info@sm-sk.com"> info@sm-sk.com <i class="fa fa-globe" aria-hidden="true"></i> </a>
-            <br />
-          </h2>
-        </div>
-
         <br />
         <br />
       </div>
@@ -688,7 +603,7 @@
 
     <script
       id="pro-template"
-      x-features="!host.ft && !host.elfgr && !host.qelada && !host.ethraa && !host.free && !host.inout && !host.valley && !protouch  && !host.ttl && !host.mt"
+      x-features="!host.ft && !host.free && !host.inout && !host.valley && !protouch  && !host.ttl && !host.mt"
       type="x-tmpl-mustache"
     >
 
@@ -719,13 +634,7 @@
       } else if ('##req.headers.host##'.like('*protouch*')) {
         $('.protouch').removeClass('hidden');
         $('.price-info').removeClass('hidden');
-      } else if ('##req.headers.host##'.like('*qelada*')) {
-        $('.qelada').removeClass('hidden');
-        $('.price-info').removeClass('hidden');
-      } else if ('##req.headers.host##'.like('*ethraa*')) {
-        $('.ethraa').removeClass('hidden');
-        $('.price-info').removeClass('hidden');
-      } else if ('##req.headers.host##'.like('*free*')) {
+      }else if ('##req.headers.host##'.like('*free*')) {
         $('.free').removeClass('hidden');
         $('.price-info').removeClass('hidden');
       } else if ('##req.headers.host##'.like('*unqcode*')) {
@@ -870,10 +779,6 @@
                   post.link = `http://ft.${post.feature}.egytag.com`;
                 } else if ('##req.headers.host##'.like('*protouch*')) {
                   post.link = `http://protouch.${post.feature}.egytag.com`;
-                } else if ('##req.headers.host##'.like('*qelada*')) {
-                  post.link = `http://qelada.${post.feature}.egytag.com`;
-                } else if ('##req.headers.host##'.like('*ethraa*')) {
-                  post.link = `http://ethraa.${post.feature}.egytag.com`;
                 } else if ('##req.headers.host##'.like('*unqcode*')) {
                   post.link = `http://unqcode.${post.feature}.egytag.com`;
                 } else if ('##req.headers.host##'.like('*valley*')) {

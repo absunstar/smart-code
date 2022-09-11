@@ -10,10 +10,25 @@
     "ar": "الإعدادات الإفتراضية"
   },
   {
+    "name": "order_level_length",
+    "en": "Order level length",
+    "ar": "طول مستوى كود الطلبات"
+  },
+  {
+    "name": "categories_level_length",
+    "en": "Categories level length",
+    "ar": "طول مستوى كود الأقسام"
+  },
+  {
     "name": "auto_generate_categories_code",
     "en": "Automatic generation of Categories code",
     "ar": "توليد آلي لكود الأقسام"
-},
+  },
+  {
+    "name": "auto_generate_orders_code",
+    "en": "Automatic generation of Orders code",
+    "ar": "توليد آلي لكود الطلبات"
+  },
   {
     "name": "user_design",
     "en": "User Design",
@@ -430,8 +445,13 @@
     "ar": "إعدادات المتاجر"
   },
   {
-    "name": "Activate_stores_system",
-    "en": "Activate the store system",
+    "name": "activate_stores",
+    "en": "Activate the stores system",
     "ar": "تفعيل نظام المتاجر"
+  },
+  {
+    "name": "activate_orders",
+    "en": "Activate the Orders system",
+    "ar": "تفعيل نظام الطلبات"
   }
 ]

@@ -67,6 +67,9 @@ module.exports = function init(site) {
       res.json(response);
     } else {
       let obj = {
+        site_settings: {
+          length_order: 0,
+        },
         ads_settings: {
           ad_status: {
             id: 1,

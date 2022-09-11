@@ -3,5 +3,10 @@
     "name": "create_ad",
     "en": "Create Ad",
     "ar": "إضافة إعلان"
+  },
+  {
+    "name": "ad_added_successfully",
+    "en": "Ad Added Successfully",
+    "ar": "تم إضافة الإعلان بنجاح"
   }
 ]

@@ -5,7 +5,7 @@
 
 </head>
 
-<body class="##session.lang##">
+<body class="##session.lang## loaded">
 
     <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
     </nav>
@@ -13,7 +13,7 @@
     <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
     </nav>
 
-    <div id="main-layout" class="container loaded">
+    <div id="main-layout" class="container">
         <div class="row center">
             <div class="row" ng-controller="safes">
                 <div x-permissions="safes_add || safes_manage" x-import="accounting-safes/add_modal.html"></div>
@@ -35,7 +35,7 @@
 
                 </div>
 
-                <table class="table hover bold loaded" id="t1">
+                <table class="table hover bold" id="t1">
                     <tr>
                         <th class="not-print center">##word.safes_logo##</th>
                         <th class="center">##word.code##</th>

@@ -1,7 +1,0 @@
-[
-    { "module_name" : "public" , "screen_name" : "numbering" , "name":"numbering_manage" , "en":"Manage" , "ar":"إدارة"},
-    { "module_name" : "public" , "screen_name" : "numbering" , "name":"numbering_update" , "en":"Edit" , "ar":"تعديل"},
-    { "module_name" : "public" , "screen_name" : "numbering" , "name":"numbering_export" , "en":"Export" , "ar":"تصدير"},
-    { "module_name" : "public" , "screen_name" : "numbering" , "name":"numbering_print" , "en":"Print" , "ar":"طباعة"},
-    { "module_name" : "public" , "screen_name" : "numbering" , "name":"numbering_ui" , "en":"UI" , "ar":"الواجهة الرسومية"}
-]

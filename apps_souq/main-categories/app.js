@@ -31,16 +31,6 @@ module.exports = function init(site) {
     });
   }, 1000 * 3);
 
-  // $main_categories.deleteDuplicate({
-  //   code: 1,
-  //   'company.id': 1
-  // }, (err, result) => {
-  //   $main_categories.createUnique({
-  //     code: 1,
-  //     'company.id': 1
-  //   }, (err, result) => { })
-  // })
-
   site.get({
     name: 'main_categories',
     path: __dirname + '/site_files/html/index.html',
@@ -79,10 +69,8 @@ module.exports = function init(site) {
       $req: req,
       $res: res,
     });
-    main_categories_doc.company = site.get_company(req);
 
     let where = {};
-    where['company.id'] = site.get_company(req).id;
     if (main_categories_doc.top_parent_id) {
       site.main_categories_list.forEach((a) => {
         if (a.id === main_categories_doc.parent_id) {
@@ -102,63 +90,52 @@ module.exports = function init(site) {
     let exit = false;
     let code = 0;
     let l = 0;
-    site.getDefaultSetting((settingDoc) => {
-      if (settingDoc) {
-        l = main_categories_doc.length_level || 0;
-        $main_categories.findMany(
-          {
-            where: where,
-          },
-          (err, docs, count) => {
-            if (settingDoc.site_settings.auto_generate_categories_code == true) {
-              if (docs.length == 0) {
-                main_categories_doc.code = addZero(1, l);
-              } else {
-                docs.forEach((el) => {
-                  if (main_categories_doc.parent_id) {
-                    if (main_categories_doc.parent_id === el.id && main_categories_doc.parent_id != el.parent_id) {
-                      main_categories_doc.code = main_categories_doc.code + addZero(1, l);
-                    } else {
-                      exit = true;
-                    }
-                  } else if (!el.parent_id) {
-                    main_categories_doc.code = addZero(site.toNumber(el.code) + site.toNumber(1), l);
-                  }
-                });
-
-                if (exit) {
-                  let c = 0;
-                  let ss = '';
-                  docs.forEach((itm) => {
-                    if (itm.parent_id === main_categories_doc.parent_id) {
-                      c += 1;
-                    }
-                    if (itm.id === main_categories_doc.parent_id) {
-                      ss = itm.code;
-                    }
-                  });
-                  code = site.toNumber(c) + site.toNumber(1);
-                  main_categories_doc.code = ss + addZero(code, l);
-                }
-              }
-
-              response.done = true;
-              main_categories_doc.$add = true;
-              site.main_categories_list.push(main_categories_doc);
-              res.json(response);
-            } else if (settingDoc.site_settings.auto_generate_categories_code == false && !main_categories_doc.code) {
-              response.error = 'enter tree code';
-              res.json(response);
+    l = main_categories_doc.length_category || 0;
+    if (site.defaultSettingDoc.site_settings.auto_generate_categories_code) {
+      if (site.main_categories_list.length == 0) {
+        main_categories_doc.code = addZero(1, l);
+      } else {
+        site.main_categories_list.forEach((el) => {
+          if (main_categories_doc.parent_id) {
+            if (main_categories_doc.parent_id === el.id && main_categories_doc.parent_id != el.parent_id) {
+              main_categories_doc.code = main_categories_doc.code + addZero(1, l);
             } else {
-              response.done = true;
-              main_categories_doc.$add = true;
-              site.main_categories_list.push(main_categories_doc);
-              res.json(response);
+              exit = true;
             }
+          } else if (!el.parent_id) {
+            main_categories_doc.code = addZero(site.toNumber(el.code) + site.toNumber(1), l);
           }
-        );
+        });
+
+        if (exit) {
+          let c = 0;
+          let ss = '';
+          site.main_categories_list.forEach((itm) => {
+            if (itm.parent_id === main_categories_doc.parent_id) {
+              c += 1;
+            }
+            if (itm.id === main_categories_doc.parent_id) {
+              ss = itm.code;
+            }
+          });
+          code = site.toNumber(c) + site.toNumber(1);
+          main_categories_doc.code = ss + addZero(code, l);
+        }
       }
-    });
+
+      response.done = true;
+      main_categories_doc.$add = true;
+      site.main_categories_list.push(main_categories_doc);
+      res.json(response);
+    } else if (site.defaultSettingDoc.site_settings.auto_generate_categories_code == false && !main_categories_doc.code) {
+      response.error = 'enter tree code';
+      res.json(response);
+    } else {
+      response.done = true;
+      main_categories_doc.$add = true;
+      site.main_categories_list.push(main_categories_doc);
+      res.json(response);
+    }
   });
 
   site.post('/api/main_categories/update', (req, res) => {
@@ -172,7 +149,6 @@ module.exports = function init(site) {
       return;
     }
 
-    let id = req.body.id;
     let main_categories_doc = req.body;
 
     main_categories_doc.edit_user_info = site.security.getUserFinger({
@@ -180,29 +156,26 @@ module.exports = function init(site) {
       $res: res,
     });
 
-    if (main_categories_doc.id) {
-      $main_categories.findMany(
-        {
-          where: {
-            parent_id: id,
-          },
-        },
-        (err, docs, count) => {
-          if (count > 0 && main_categories_doc.type == 'detailed') {
-            response.error = 'Cant Change Detailed Err';
-            res.json(response);
-          } else {
-            response.done = true;
-            main_categories_doc.$update = true;
-            site.main_categories_list.forEach((a, i) => {
-              if (a.id === main_categories_doc.id) {
-                site.main_categories_list[i] = main_categories_doc;
-              }
-            });
-            res.json(response);
+    let category = null;
+    site.main_categories_list.forEach((c) => {
+      if (c.parent_id == main_categories_doc.id) {
+        category = c;
+      }
+    });
+    if (category) {
+      if (main_categories_doc.type == 'detailed') {
+        response.error = 'Cant Change Detailed Err';
+        res.json(response);
+      } else {
+        response.done = true;
+        main_categories_doc.$update = true;
+        site.main_categories_list.forEach((a, i) => {
+          if (a.id === main_categories_doc.id) {
+            site.main_categories_list[i] = main_categories_doc;
           }
-        }
-      );
+        });
+        res.json(response);
+      }
     } else {
       response.error = 'no id';
       res.json(response);
@@ -278,16 +251,10 @@ module.exports = function init(site) {
     }
   });
 
-  site.post('/api/main_categories/all', (req, res) => {
+  site.post({ name: '/api/main_categories/all', public: true }, (req, res) => {
     let response = {
       done: false,
     };
-
-    // if (!req.session.user) {
-    //   response.error = 'Please Login First';
-    //   res.json(response);
-    //   return;
-    // }
 
     let where = req.data.where || {};
     let search = req.body.search;
@@ -318,8 +285,6 @@ module.exports = function init(site) {
     if (where['address']) {
       where['address'] = new RegExp(where['address'], 'i');
     }
-
-    where['company.id'] = site.get_company(req).id;
 
     $main_categories.findMany(
       {

@@ -90,8 +90,6 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
         if (response.data.done) {
           $scope.busy = false;
           site.hideModal('#viewManageUserModal');
-
-          $scope.login(response.data.doc);
         } else {
           $scope.error = response.data.error;
           if (response.data.error.like('*Must Enter Code*')) {
@@ -128,25 +126,8 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
         $encript: '123',
         email: site.to123(u.email),
         password: site.to123(u.password),
-        company: site.to123({
-          id: u.company.id,
-          name_ar: u.company.name_ar,
-          name_en: u.company.name_en,
-          item: u.company.item,
-          store: u.company.store,
-          unit: u.company.unit,
-          currency: u.company.currency,
-          users_count: u.company.users_count,
-          customers_count: u.company.customers_count,
-          employees_count: u.company.employees_count,
-          host: u.company.host,
-          tax_number: u.company.tax_number,
-        }),
-        branch: site.to123({
-          code: u.branch.code,
-          name_ar: u.branch.name_ar,
-          name_en: u.branch.name_en,
-        }),
+      
+      
       },
     }).then(
       function (response) {
@@ -559,9 +540,9 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
     }
 
     $scope.store.user = {
-      id: site.toNumber('##user.id##'),
-      profile: '##user.profile##',
-      email: '##user.email##',
+      id: $scope.manage_user.id,
+      profile: $scope.manage_user,
+      email: $scope.manage_user.email,
     };
 
     if ($scope.address.select_main) {
@@ -632,6 +613,15 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
       });
     }
 
+    if ($scope.defaultSettings.stores_settings && $scope.defaultSettings.stores_settings.store_status) {
+      $scope.store.store_status = $scope.defaultSettings.stores_settings.store_status;
+    } else {
+      $scope.store.store_status = {
+        id: 2,
+        en: 'Under review',
+        ar: 'قيد المراجعة',
+      };
+    }
     $scope.busy = true;
     $http({
       method: 'POST',
@@ -811,9 +801,23 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
       return;
     }
 
-    if ($scope.ad.store) {
+    if (!$scope.defaultSettings.stores_settings.activate_stores) {
+      if ($scope.address.select_main) {
+        $scope.ad.address = $scope.address.main;
+      } else if ($scope.address.select_new) {
+        $scope.ad.address = $scope.address.new;
+      } else {
+        $scope.address.other_list = $scope.address.other_list || [];
+        $scope.address.other_list.forEach((_other) => {
+          if (_other.$select_address) {
+            $scope.ad.address = { ..._other };
+          }
+        });
+      }
+    } else if ($scope.ad.store) {
       $scope.ad.address = $scope.ad.store.address;
     }
+
     $scope.busy = true;
     $http({
       method: 'POST',
@@ -823,6 +827,9 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
+          if (!$scope.defaultSettings.stores_settings.activate_stores) {
+            $scope.address = {};
+          }
           site.hideModal('#adAddModal');
           $scope.getMyAdsList();
         } else {
@@ -856,6 +863,16 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
     }
     if ($scope.ad.store) {
       $scope.ad.address = $scope.ad.store.address;
+    }
+
+    if ($scope.defaultSettings.ads_settings.ad_status) {
+      $scope.ad.ad_status = $scope.defaultSettings.ads_settings.ad_status;
+    } else {
+      $scope.ad.ad_status = {
+        id: 2,
+        en: 'Under review',
+        ar: 'قيد المراجعة',
+      };
     }
 
     $scope.busy = true;
@@ -900,11 +917,6 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.ad = response.data.doc;
-          if ('##session.lang##' == 'ar') {
-            $scope.ad.name = $scope.ad.name_ar;
-          } else {
-            $scope.ad.name = $scope.ad.name_en;
-          }
         } else {
           $scope.error = response.data.error;
         }
@@ -1059,7 +1071,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
       url: '/api/stores/all',
       data: {
         where: { 'user.id': id },
-        select: { id: 1, code: 1, name_ar: 1, name_en: 1, user: 1, address: 1 },
+        select: { id: 1, code: 1, name: 1,  user: 1, address: 1 },
       },
     }).then(
       function (response) {

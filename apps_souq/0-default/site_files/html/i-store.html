@@ -2,7 +2,7 @@
 
 
 <b class="font-18 pointer" ng-click="showModal()" ng-show="ngModel.id">##word.the_store## : </b>
-<b class="font-18 pointer blue" ng-show="ngModel.id" ng-click="showModal()"> {{ngModel.name_##session.lang##}} </b>
+<b class="font-18 pointer blue" ng-show="ngModel.id" ng-click="showModal()"> {{ngModel.name}} </b>
 <b class="font-18 pointer" ng-click="showModal()" ng-show="ngModel.id"> - </b>
 
 <b class="font-18 pointer green" ng-show="ngModel.id" ng-click="showModal()"> {{ngModel.user.profile.name}} </b>
@@ -23,7 +23,7 @@
         <div class="col8">
           <fieldset>
             <i-control ng-keydown="loadStores($event,search_store)" class="col3" ng-model="search_store" label="##word.search##" type="text"></i-control>
-            <i-list ng-search="_search.$store" class="col6" display="name_##session.lang##" display2="user.profile.name" space=" - "  ng-model="ngModel" label="##word.store##" items="stores_list"> </i-list>
+            <i-list ng-search="_search.$store" class="col6" display="name" display2="user.profile.name" space=" - "  ng-model="ngModel" label="##word.store##" items="stores_list"> </i-list>
           </fieldset>
         </div>
       </div>

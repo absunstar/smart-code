@@ -59,11 +59,9 @@ app.controller('stores', function ($scope, $http, $timeout) {
           $scope.getStoreList();
         } else {
           $scope.error = response.data.error;
-          if (response.data.error.like('*Must Enter Code*')) {
-            $scope.error = '##word.must_enter_code##';
-          } else if (response.data.error.like('*maximum number of adds exceeded*')) {
+          if (response.data.error.like('*maximum number of adds exceeded*')) {
             $scope.error = '##word.err_maximum_adds##';
-          } else if (response.data.error.like('*ser must specifi*')) {
+          } else if (response.data.error.like('*user must specifi*')) {
             $scope.error = '##word.user_must_specified##';
           } else if (response.data.error.like('*must be specified in feed*')) {
             $scope.error = '##word.user_must_specified_in_feedbacks##';
@@ -102,7 +100,6 @@ app.controller('stores', function ($scope, $http, $timeout) {
         }
       });
     }
-    console.log($scope.store.address);
     $scope.busy = true;
     $http({
       method: 'POST',
@@ -116,7 +113,7 @@ app.controller('stores', function ($scope, $http, $timeout) {
           site.hideModal('#storeUpdateModal');
           $scope.getStoreList();
         } else {
-          $scope.error = 'Please Login First';
+          $scope.error = response.data.error;
           if (response.data.error.like('*ser must specifi*')) {
             $scope.error = '##word.user_must_specified##';
           } else if (response.data.error.like('*must be specified in feed*')) {
@@ -212,29 +209,6 @@ app.controller('stores', function ($scope, $http, $timeout) {
           $scope.count = response.data.count;
           site.hideModal('#storeSearchModal');
           $scope.search = {};
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
-  $scope.getNumberingAuto = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $http({
-      method: 'POST',
-      url: '/api/numbering/get_automatic',
-      data: {
-        screen: 'stores',
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.disabledCode = response.data.isAuto;
         }
       },
       function (err) {
@@ -367,27 +341,23 @@ app.controller('stores', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.selectAddress = function (address,type, index) {
+  $scope.selectAddress = function (address, type, index) {
     $scope.error = '';
     address = address || {};
 
-    if(type == 'main'){
+    if (type == 'main') {
       address.select_new = false;
-
-    } else if(type =='other'){
+    } else if (type == 'other') {
       address.select_new = false;
       address.select_main = false;
-
-    } else if(type =='new'){
+    } else if (type == 'new') {
       address.select_main = false;
-      
     }
-  
+
     if (address.other_list && address.other_list.length > 0) {
       address.other_list.forEach((_other, i) => {
-        console.log(i,index);
-        if (type =='other') {
-          if(i != index ){
+        if (type == 'other') {
+          if (i != index) {
             _other.$select_address = false;
           }
         } else {
@@ -404,7 +374,6 @@ app.controller('stores', function ($scope, $http, $timeout) {
   };
 
   $scope.getStoreList();
-  $scope.getNumberingAuto();
   $scope.getDefaultSettings();
   $scope.getCommentsTypesList();
   $scope.getUser();

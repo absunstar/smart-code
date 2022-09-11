@@ -2,11 +2,11 @@
 <html lang="en" x-permissions="items_group_ui || items_group_manage" data-ng-app="myApp">
   <head x-import="head.html"> </head>
 
-  <body class="##session.lang##">
+  <body class="##session.lang## loaded">
     <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar"></nav>
 
     <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
-    <div id="main-layout" class="container loaded">
+    <div id="main-layout" class="container">
       <div class="row">
         <div class="row" ng-controller="items_group">
           <div x-permissions="items_group_add || items_group_manage" x-import="inventory-items-group/add_modal.html"></div>
@@ -27,7 +27,7 @@
             <h3 class="bold text-center">##word.count## : {{count}}</h3>
           </div>
 
-          <table x-permissions="login" class="table hover bold loaded" id="t1">
+          <table x-permissions="login" class="table hover bold" id="t1">
             <tr>
               <th class="not-print">##word.logo##</th>
               <th>##word.items_group_code##</th>

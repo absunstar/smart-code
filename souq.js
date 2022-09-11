@@ -1,4 +1,4 @@
-const site = require('isite')({
+const site = require('../isite')({
   port: [80, 40007],
   lang: 'ar',
   version: '2021.12.14',
@@ -81,28 +81,10 @@ site.importApp(__dirname + '/apps_private/default_data');
 site.importApp(__dirname + '/apps_private/manage-user');
 site.importApps(__dirname + '/apps_souq');
 
+site.importApp(__dirname + '/apps_private/companies');
 site.addFeature('souq');
-setTimeout(() => {
-  site.importApp(__dirname + '/apps_private/companies');
-  site.importApp(__dirname + '/apps_private/zk-reader');
 
-  // site.zk.load_attendance( {
-  //     ip: '192.168.100.201',
-  //     port: 4370,
-  //     inport: 5200,
-  //     timeout: 5000,
-  //     attendanceParser: 'v6.60',
-  //     connectionType: 'udp',
-  //     auto: true,
-  //     auto_time: 1000 * 3
-  // }, (err, attendance_array) => {
-  //     console.log(attendance_array || err)
-  // })
-}, 1000);
-
-setTimeout(() => {
-  site.ready = true;
-}, 1000 * 2);
+site.ready = true;
 
 site.run();
 site.security.addKey('5e8edd851d2fdfbd7415232c67367cc3');

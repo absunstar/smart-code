@@ -6,7 +6,7 @@
         <div class="col9">
           <div class="row">
             <i-control help-id="ad" v="r ll2" class="col7" label="##word.ad_name##" ng-model="ad.name"></i-control>
-            <i-list class="col3" v="r" ng-model="ad.store" items="storesList" display="name_##session.lang##" ng-search="_search.$store" label="##word.store##"></i-list>
+            <i-list class="col3" ng-show="defaultSettings.stores_settings.activate_stores" ng-model="ad.store" items="storesList" display="name" ng-search="_search.$store" label="##word.store##"></i-list>
           </div>
 
           <br />
@@ -17,11 +17,10 @@
             <i-checkbox class="col3" label="##word.hide_mobile_number##" ng-model="ad.hide_mobile"> </i-checkbox> :
           </div>
 
-          <!--           <i-address ng-show="defaultSettings.ads_settings.addresses_appear" ng-model="ad"></i-address>
- -->
+
           <div class="row">
-            <i-button type="add" class="col3" label="##word.view_categories##" ng-click="viewCategories(ad)"></i-button>
-            <p ng-show="ad.main_category.id" class="col3 bold">##word.category## : {{ad.main_category.name_##session.lang##}}</p>
+            <i-button type="add" class="col2" label="##word.view_categories##" ng-click="viewCategories(ad)"></i-button>
+            <h2 ng-show="ad.main_category.id" class="col3 bold">##word.category## : {{ad.main_category.name_##session.lang##}}</h2>
           </div>
 
           <div class="row" ng-show="ad.category_require_list.length > 0">
@@ -72,6 +71,39 @@
           </div>
         </div>
       </fieldset>
+
+      <br />
+      <br />
+      <div class="row" ng-hide="defaultSettings.stores_settings.activate_stores">
+        <fieldset>
+          <legend>##word.my_addresses##</legend>
+          <div class="row">
+            <fieldset>
+              <legend>##word.main_address##</legend>
+              <i-address ng-model="address.main"></i-address>
+              <i-checkbox label="##word.select##" ng-model="address.select_main" ng-click="selectAddress(address,'main')"></i-checkbox>
+            </fieldset>
+            <br />
+
+            <fieldset ng-show="address.other_list.length > 0">
+              <legend>##word.other_addresses##</legend>
+              <div class="row border padding" ng-repeat="o in address.other_list">
+                <i-address ng-model="o"></i-address>
+                <i-checkbox label="##word.select##" ng-model="o.$select_address" ng-click="selectAddress(address,'other',$index)"></i-checkbox>
+              </div>
+            </fieldset>
+            <br />
+
+            <fieldset>
+              <legend>##word.new_address##</legend>
+              <i-address ng-model="address.new"></i-address>
+              <i-checkbox label="##word.select##" ng-model="address.select_new" ng-click="selectAddress(address,'new')"></i-checkbox>
+            </fieldset>
+          </div>
+        </fieldset>
+      </div>
+      <br />
+      <br />
 
       <div class="row" ng-show="defaultSettings.ads_settings.quantities_can_be_used">
         <h2>##word.Do_you_want_set_price##</h2>

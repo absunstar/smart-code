@@ -43,13 +43,6 @@ app.controller('cart', function ($scope, $http, $timeout) {
           $scope.updateUser($scope.user);
         } else {
           $scope.error = response.data.error;
-          if (response.data.error.like('*duplicate key error*')) {
-            $scope.error = '##word.code_exisit##';
-          } else if (response.data.error.like('*Please write code*')) {
-            $scope.error = '##word.enter_code_inventory##';
-          } else if (response.data.error.like('*Must Enter Code*')) {
-            $scope.error = '##word.must_enter_code##';
-          }
         }
       },
       function (err) {
@@ -100,8 +93,8 @@ app.controller('cart', function ($scope, $http, $timeout) {
     $scope.error = '';
     $timeout(() => {
       obj.cart.net_value = 0;
-      if (obj.cart.payment_method && obj.cart.payment_method.id == 1 && $scope.defaultSetting.order_settings) {
-        obj.cart.fee_upon_receipt = $scope.defaultSetting.order_settings.fee_upon_receipt;
+      if (obj.cart.payment_method && obj.cart.payment_method.id == 1 && $scope.defaultSettings.order_settings) {
+        obj.cart.fee_upon_receipt = $scope.defaultSettings.order_settings.fee_upon_receipt;
       } else {
         obj.cart.fee_upon_receipt = 0;
       }
@@ -216,8 +209,8 @@ app.controller('cart', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getCartSetting = function () {
-    $scope.error = '';
+
+  $scope.getDefaultSetting = function () {
     $scope.busy = true;
     $http({
       method: 'POST',
@@ -227,7 +220,7 @@ app.controller('cart', function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.doc) {
-          $scope.defaultSetting = response.data.doc;
+          $scope.defaultSettings = response.data.doc;
         }
       },
       function (err) {
@@ -236,10 +229,10 @@ app.controller('cart', function ($scope, $http, $timeout) {
       }
     );
   };
-
+  
   $scope.getUser();
   $scope.getCurrenciesList();
   $scope.loadCartPayment();
   $scope.loadCartDelivery();
-  $scope.getCartSetting();
+  $scope.getDefaultSetting();
 });

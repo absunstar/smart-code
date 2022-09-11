@@ -44,15 +44,15 @@ module.exports = function init(site) {
   });
 
   site.post('/api/messages/add', (req, res) => {
-    let response = {
-      done: true,
-    };
     if (!req.session.user) {
       response.error = 'Please Login First';
       res.json(response);
       return;
     }
-
+    
+    let response = {
+      done: true,
+    };
     let messages_doc = {
       users_list: [
         {

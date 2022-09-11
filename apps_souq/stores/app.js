@@ -76,19 +76,6 @@ module.exports = function init(site) {
       return;
     }
 
-    let num_obj = {
-      screen: 'stores',
-      date: new Date(),
-    };
-    let cb = site.getNumbering(num_obj);
-    if (!store_doc.code && !cb.auto) {
-      response.error = 'Must Enter Code';
-      res.json(response);
-      return;
-    } else if (cb.auto) {
-      store_doc.code = cb.code;
-    }
-
     let result = site.store_list.filter((store) => store.user.id == store_doc.user.id);
     if (result.length >= req.session.user.maximum_stores) {
       response.error = 'maximum stores to user';
@@ -209,7 +196,6 @@ module.exports = function init(site) {
         store.number_favorites = store.number_favorites - 1;
         req.session.user.feedback_list.splice(
           req.session.user.feedback_list.findIndex((c) => c.type && c.store && c.type.id == 2 && c.store.id == store.id),
-
           1
         );
         site.security.updateUser(req.session.user, (err, user_doc) => {});
@@ -369,18 +355,4 @@ module.exports = function init(site) {
     );
   });
 
-  site.getUnits = function (req, callback) {
-    callback = callback || {};
-    let where = {};
-    $stores.findMany(
-      {
-        where: where,
-        sort: { id: -1 },
-      },
-      (err, docs) => {
-        if (!err && docs) callback(docs);
-        else callback(false);
-      }
-    );
-  };
 };

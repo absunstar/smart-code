@@ -5,7 +5,7 @@
 
 </head>
 
-<body class="##session.lang##">
+<body class="##session.lang## loaded">
 
     <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
 
@@ -14,7 +14,7 @@
     <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
 
     </nav>
-    <div id="main-layout" class="container loaded">
+    <div id="main-layout" class="container">
         <div class="row">
             <div class="row" ng-controller="buildings">
                 <div x-permissions="buildings_add || buildings_manage" x-import="buildings/add_modal.html"></div>
@@ -40,7 +40,7 @@
 
                 </div>
 
-                <table x-permissions="login" class="table hover bold loaded" id="t1">
+                <table x-permissions="login" class="table hover bold" id="t1">
                     <tr>
                         <th class="not-print">##word.logo##</th>
                         <th>##word.code##</th>

@@ -15,9 +15,8 @@ module.exports = function init(site) {
 
   site.get({
     name: 'css',
-    path: __dirname + '/site_files/css/'
-  })
-
+    path: __dirname + '/site_files/css/',
+  });
 
   site.post('/api/register', (req, res) => {
     let response = {};
@@ -50,10 +49,39 @@ module.exports = function init(site) {
       $res: res,
     };
 
-    if (site.defaultSettingDoc && site.defaultSettingDoc.stores_settings && site.defaultSettingDoc.stores_settings.maximum_stores) {
-      user.maximum_stores = site.defaultSettingDoc.stores_settings.maximum_stores;
-    } else {
-      user.maximum_stores = 10;
+    if (site.defaultSettingDoc && site.defaultSettingDoc.stores_settings) {
+      if (!site.defaultSettingDoc.stores_settings.activate_stores) {
+        let store = {
+          image_url: '/images/stores.png',
+          feedback_list: [],
+          store_rating: 0,
+          number_views: 0,
+          number_likes: 0,
+          number_comments: 0,
+          number_favorites: 0,
+          number_reports: 0,
+          priority_level: 0,
+          active: true,
+          user: {
+            id: user.id,
+            profile: user.profile,
+            email: user.email,
+          },
+          store_status: {
+            id: 1,
+            en: 'Active',
+            ar: 'نشط',
+          },
+        };
+        store.$add = true;
+        site.store_list.push(store);
+      }
+
+      if (site.defaultSettingDoc.stores_settings.maximum_stores) {
+        user.maximum_stores = site.defaultSettingDoc.stores_settings.maximum_stores;
+      } else {
+        user.maximum_stores = 2;
+      }
     }
 
     site.security.register(user, function (err, doc) {

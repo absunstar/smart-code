@@ -46,30 +46,6 @@ module.exports = function init(site) {
   //   path: __dirname + '/site_files/css/',
   //   });
 
-
-  site.on('[register][city][add]', doc => {
-
-    $city.add({
-      gov: {
-        id: doc.id,
-        code: doc.code,
-        name_ar: doc.name_ar,
-        name_en: doc.name_en
-      },
-      name_ar: "مدينة إفتراضية",
-      name_en: "Default City",
-      code : '1-Test',
-      image_url: '/images/city.png',
-     
-      active: true
-    }, (err, doc1) => {
-      site.call('[register][area][add]', doc1)
-
-    })
-  })
-
-
-
   site.post("/api/city/add", (req, res) => {
     let response = {
       done: false
@@ -91,23 +67,6 @@ module.exports = function init(site) {
 
     if (typeof city_doc.active === 'undefined') {
       city_doc.active = true
-    }
-
-  
-
-    let num_obj = {
-      screen: 'city',
-      date: new Date()
-    };
-
-    let cb = site.getNumbering(num_obj);
-    if (!city_doc.code && !cb.auto) {
-      response.error = 'Must Enter Code';
-      res.json(response);
-      return;
-
-    } else if (cb.auto) {
-      city_doc.code = cb.code;
     }
 
     response.done = true;

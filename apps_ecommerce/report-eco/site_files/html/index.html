@@ -2,7 +2,7 @@
 <html lang="en" data-ng-app="myApp">
   <head x-import="head.html"> </head>
 
-  <body class="##session.lang##">
+  <body class="##session.lang## loaded">
     <nav
       x-import="sitebar/index.html"
       class="sitebar"
@@ -14,7 +14,7 @@
       x-import="sitebottom/index.html"
       ng-controller="sitebottom"
     ></nav>
-    <div id="main-layout" class="container loaded">
+    <div id="main-layout" class="container">
       <div class="row">
         <div class="row" ng-controller="report_eco" x-permissions="login">
           <div x-import="report-ecommerce/delivery_modal.html"></div>

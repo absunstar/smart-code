@@ -114,7 +114,7 @@
     </style>
 </head>
 
-<body class="##session.lang##">
+<body class="##session.lang## loaded">
 
     <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
 
@@ -124,7 +124,7 @@
 
     </nav>
 
-    <div id="main-layout" class="container loaded">
+    <div id="main-layout" class="container">
         <div class="row">
             <div class="row" ng-controller="order_customer">
                 <div x-import="order-customer/order_invoices_active.html">
@@ -325,7 +325,7 @@
                         </div>
                         <div class="row ">
 
-                            <table class="table hover bold loaded" id="t1">
+                            <table class="table hover bold" id="t1">
 
                                 <tr>
                                     <th>##word.stores_items_name##</th>

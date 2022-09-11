@@ -6,12 +6,6 @@ module.exports = function init(site) {
     compress: false,
   });
 
-    
-  site.get({
-    name: 'css',
-    path: __dirname + '/site_files/css/'
-  })
-
   site.get({
     name: '/images',
     path: __dirname + '/site_files/images',

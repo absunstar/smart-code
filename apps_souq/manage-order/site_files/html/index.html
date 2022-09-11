@@ -1,20 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" data-ng-app="myApp">
-  <head x-import="head.html"> </head>
+  <head x-import="head.html"></head>
 
-  <body class="##session.lang##" ng-controller="manage_order">
- 
-    <nav x-import="herag/sitebar.html" class="sitebar" data-ng-controller="sitebar">
-    </nav>
+  <body class="##session.lang## loaded" ng-controller="manage_order">
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar"></nav>
 
-    <nav
-      class="sitebottom"
-      x-import="sitebottom/index.html"
-      ng-controller="sitebottom"
-    ></nav>
-    <div id="main-layout" class="container loaded">
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
+    <div id="main-layout" class="container">
       <div class="row">
-        <div class="row"  x-permissions="login">
+        <div class="row" x-permissions="login">
           <div x-import="manage-order/delivery_modal.html"></div>
           <div x-import="manage-order/delete_modal.html"></div>
           <div x-import="manage-order/view_modal.html"></div>
@@ -25,12 +19,7 @@
           </div>
 
           <div class="top-actions">
-            <i-button
-              type="search"
-              x-permissions="manage_order_search || manage_order_manage"
-              label="##word.search_all##"
-              onclick="site.showModal('#manageOrderSearchModal')"
-            ></i-button>
+            <i-button type="search" x-permissions="manage_order_search || manage_order_manage" label="##word.search_all##" onclick="site.showModal('#manageOrderSearchModal')"></i-button>
 
             <span ng-show="busy">
               <span class="sr-only">Loading...</span>
@@ -52,51 +41,20 @@
             </tr>
 
             <tr ng-repeat="c in list">
-              <td ng-click="displayDetailsManageOrder(c)" class="indigoD">
-                {{c.code}}
-              </td>
-              <td ng-click="displayDetailsManageOrder(c)" class="brown">
-                {{c.date | date : 'yyyy - MM - dd'}}
-              </td>
-              <td ng-click="displayDetailsManageOrder(c)" class="">
-                {{c.user.profile.name}}
-              </td>
-              <td ng-click="displayDetailsManageOrder(c)">
-                {{c.payment_method.##session.lang##}}
-              </td>
-              <td ng-click="displayDetailsManageOrder(c)">
-                {{c.delivery_type.##session.lang##}}
-              </td>
-              <td ng-click="displayDetailsManageOrder(c)" class="green">
-                {{c.paid_require}}
-              </td>
-              <td ng-click="displayDetailsManageOrder(c)" class="blue">
-                {{c.status.##session.lang##}}
-              </td>
+              <td ng-click="displayDetailsManageOrder(c)" class="indigoD">{{c.code}}</td>
+              <td ng-click="displayDetailsManageOrder(c)" class="brown">{{c.date | date : 'yyyy - MM - dd'}}</td>
+              <td ng-click="displayDetailsManageOrder(c)" class="">{{c.user.profile.name}}</td>
+              <td ng-click="displayDetailsManageOrder(c)">{{c.payment_method.##session.lang##}}</td>
+              <td ng-click="displayDetailsManageOrder(c)">{{c.delivery_type.##session.lang##}}</td>
+              <td ng-click="displayDetailsManageOrder(c)" class="green">{{c.paid_require}}</td>
+              <td ng-click="displayDetailsManageOrder(c)" class="blue">{{c.status.##session.lang##}}</td>
               <td class="center not-print">
-                <i-button
-                  ng-show="c.status.id == 1"
-                  label="##word.order_approval##"
-                  ng-click="updateStatusOrder(c,2)"
-                ></i-button>
+                <i-button ng-show="c.status.id == 1" label="##word.order_approval##" ng-click="updateStatusOrder(c,2)"></i-button>
 
-                <i-button
-                  ng-show="c.status.id == 2 && c.conductor.id"
-                  label="##word.under_delivery##"
-                  ng-click="updateStatusOrder(c,3)"
-                ></i-button>
+                <i-button ng-show="c.status.id == 2 && c.conductor.id" label="##word.under_delivery##" ng-click="updateStatusOrder(c,3)"></i-button>
 
-                <i-button
-                  ng-show="c.status.id == 3"
-                  label="##word.done_delivery##"
-                  ng-click="updateStatusOrder(c,4)"
-                ></i-button>
-                <i-button
-                ng-show="c.status.id == 2"
-                type="update"
-                label="##word.delivery_agency_set##"
-                ng-click="displayDeleveryManageOrder(c)"
-              ></i-button>
+                <i-button ng-show="c.status.id == 3" label="##word.done_delivery##" ng-click="updateStatusOrder(c,4)"></i-button>
+                <i-button ng-show="c.status.id == 2" type="update" label="##word.delivery_agency_set##" ng-click="displayDeleveryManageOrder(c)"></i-button>
                 <!-- 
                 <i-button
                 type="update"
@@ -105,29 +63,18 @@
                 ng-click="displayUpdateManageOrder(c)"
               ></i-button> -->
 
-                <i-button
-                  type="delete"
-                  ng-hide="c.status.id == 4"
-                  x-permissions="manage_order_delete || manage_order_manage"
-                  label="##word.delete##"
-                  ng-click="displayDeleteManageOrder(c)"
-                ></i-button>
+                <i-button type="delete" ng-hide="c.status.id == 4" x-permissions="manage_order_delete || manage_order_manage" label="##word.delete##" ng-click="displayDeleteManageOrder(c)"></i-button>
               </td>
             </tr>
           </table>
 
           <div class="row">
-            <i-button
-              x-permissions="manage_order_print || manage_order_manage"
-              type="print"
-              label="##word.print##"
-              onclick="site.print('#t1')"
-            ></i-button>
+            <i-button x-permissions="manage_order_print || manage_order_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
           </div>
         </div>
       </div>
     </div>
-    <div x-import="scripts.html"></div>
+    <div x-import="herag/scripts.html"></div>
 
     <script x-permissions="login" x-import="manage-order/index.js"></script>
   </body>

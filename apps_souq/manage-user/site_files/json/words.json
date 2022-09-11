@@ -1,0 +1,143 @@
+[
+    {
+        "name": "personal_info",
+        "en": "Personal Info",
+        "ar": "معلومات شخصية"
+    },
+    {
+        "name": "current_password",
+        "en": "Current Password",
+        "ar": "كلمة المرور الحالية"
+    },
+    {
+        "name": "current_password_incorrect",
+        "en": "The current password is incorrect",
+        "ar": "كلمة المرور الحالية غير صحيحة"
+    },
+    {
+        "name": "there_no_products_cart",
+        "en": "There are no products in the cart",
+        "ar": "لا يوجد منتجات في السلة"
+    },
+    {
+        "name": "there_no_orders",
+        "en": "There are no Orders",
+        "ar": "لا يوجد طلبات"
+    },
+    {
+        "name": "there_no_messages",
+        "en": "There are no Messages",
+        "ar": "لا يوجد رسائل"
+    },
+    {
+        "name": "there_no_stores",
+        "en": "There are no Stores",
+        "ar": "لا يوجد متاجر"
+    },
+    {
+        "name": "there_no_ads",
+        "en": "There are no Ads",
+        "ar": "لا يوجد إعلانات"
+    },
+    {
+        "name": "liked_ads",
+        "en": "Liked Ads",
+        "ar": "إعلانات معجب بها"
+    },
+    {
+        "name": "favorite_ads",
+        "en": "Favorite Ads",
+        "ar": "إعلانات مفضلة"
+    },
+    {
+        "name": "liked_stores",
+        "en": "Liked Stores",
+        "ar": "متاجر معجب بها"
+    },
+    {
+        "name": "favorite_stores",
+        "en": "Favorite Stores",
+        "ar": "متاجر مفضلة"
+    },
+    {
+        "name": "my_ads",
+        "en": "My Ads",
+        "ar": "إعلاناتي"
+    },
+    {
+        "name": "my_stores",
+        "en": "My Stores",
+        "ar": "متاجري"
+    },
+    {
+        "name": "new_password",
+        "en": "New Password",
+        "ar": "كلمة المرور الجديدة"
+    },
+    {
+        "name": "basic_info",
+        "en": "Basic Info",
+        "ar": "معلومات أساسية"
+    },
+    {
+        "name": "companies_branches",
+        "en": "Companies and Branches",
+        "ar": "الشركات و الفروع"
+    },
+    {
+        "name": "contact_info",
+        "en": "Contact Info",
+        "ar": "معلومات الإتصال"
+    },
+    {
+        "name": "general_validity",
+        "en": "General Validity",
+        "ar": "صلاحيات عامة"
+    },
+    {
+        "name": "validity_ar",
+        "en": "Ar. Validity",
+        "ar": "الصلاحية بالعربي"
+    },
+    {
+        "name": "validity_en",
+        "en": "En. Validity",
+        "ar": "الصلاحية بالإنجليزي"
+    },
+    {
+        "name": "public",
+        "en": "Public",
+        "ar": "عام"
+    },
+    {
+        "name": "hr",
+        "en": "HR",
+        "ar": "شئون موظفين"
+    },
+    {
+        "name": "new_username",
+        "en": "New UserName",
+        "ar": "إسم المستخدم الجديد"
+    },
+    {
+        "name": "inventory",
+        "en": "Inventory",
+        "ar": "مخازن"
+    },
+    {
+        "name": "accounting",
+        "en": "Accounting",
+        "ar": "حسابات"
+    },
+    {
+        "name": "reports",
+        "en": "Reports",
+        "ar": "تقارير"
+    },
+   
+    {
+        "name": "screens_management",
+        "en": "Screens management",
+        "ar": "إدارة الشاشات"
+    }
+]

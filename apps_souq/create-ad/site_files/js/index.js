@@ -51,7 +51,21 @@ app.controller('create_ad', function ($scope, $http, $timeout) {
       $scope.error = v.messages[0].ar;
       return;
     }
-    if ($scope.ad.store) {
+
+    if (!$scope.defaultSettings.stores_settings.activate_stores) {
+      if ($scope.address.select_main) {
+        $scope.ad.address = $scope.address.main;
+      } else if ($scope.address.select_new) {
+        $scope.ad.address = $scope.address.new;
+      } else {
+        $scope.address.other_list = $scope.address.other_list || [];
+        $scope.address.other_list.forEach((_other) => {
+          if (_other.$select_address) {
+            $scope.ad.address = { ..._other };
+          }
+        });
+      }
+    } else if ($scope.ad.store) {
       $scope.ad.address = $scope.ad.store.address;
     }
     $scope.busy = true;
@@ -63,11 +77,18 @@ app.controller('create_ad', function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
+          if (!$scope.defaultSettings.stores_settings.activate_stores) {
+            $scope.address = {};
+          }
+          $scope.displayAddAd();
+          site.showModal("#alert");
+          $timeout(() => {
+            site.hideModal("#alert");
+
+          }, 1500);
         } else {
           $scope.error = response.data.error;
-          if (response.data.error.like('*Must Enter Code*')) {
-            $scope.error = '##word.must_enter_code##';
-          } else if (response.data.error.like('*maximum number of adds exceeded*')) {
+          if (response.data.error.like('*maximum number of adds exceeded*')) {
             $scope.error = '##word.err_maximum_adds##';
           } else if (response.data.error.like('*store must specifi*')) {
             $scope.error = '##word.store_must_specified##';
@@ -82,27 +103,6 @@ app.controller('create_ad', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getDefaultSetting = function () {
-    $scope.busy = true;
-    $http({
-      method: 'POST',
-      url: '/api/default_setting/get',
-      data: {},
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.doc) {
-          $scope.defaultSettings = response.data.doc;
-          $scope.displayAddAd();
-
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
   $scope.loadMainCategories = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -120,7 +120,6 @@ app.controller('create_ad', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.category_list = response.data.list;
-       
         }
       },
       function (err) {
@@ -130,30 +129,6 @@ app.controller('create_ad', function ($scope, $http, $timeout) {
     );
   };
 
-
-  $scope.getNumberingAuto = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $http({
-      method: 'POST',
-      url: '/api/numbering/get_automatic',
-      data: {
-        screen: 'ads',
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.disabledCode = response.data.isAuto;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-  
   $scope.calcDiscount = function (obj) {
     $scope.error = '';
     $timeout(() => {
@@ -249,6 +224,58 @@ app.controller('create_ad', function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.selectAddress = function (address, type, index) {
+    $scope.error = '';
+    address = address || {};
+
+    if (type == 'main') {
+      address.select_new = false;
+    } else if (type == 'other') {
+      address.select_new = false;
+      address.select_main = false;
+    } else if (type == 'new') {
+      address.select_main = false;
+    }
+
+    if (address.other_list && address.other_list.length > 0) {
+      address.other_list.forEach((_other, i) => {
+        if (type == 'other') {
+          if (i != index) {
+            _other.$select_address = false;
+          }
+        } else {
+          _other.$select_address = false;
+        }
+      });
+    }
+  };
+
+  $scope.getUser = function () {
+    $scope.busy = true;
+    $http({
+      method: 'POST',
+      url: '/api/user/view',
+      data: {
+        id: '##user.id##',
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.user = response.data.doc;
+
+          $scope.address = {
+            main: $scope.user.profile.main_address,
+            other_list: $scope.user.profile.other_addresses_list,
+          };
+        } else {
+          $scope.error = response.data.error;
+        }
+      },
+      function (err) {}
+    );
+  };
+
   $scope.getMyStoresList = function (where) {
     $scope.busy = true;
     $scope.myStoreslist = [];
@@ -257,7 +284,7 @@ app.controller('create_ad', function ($scope, $http, $timeout) {
       url: '/api/stores/all',
       data: {
         where: { 'user.id': site.toNumber('##user.id##') },
-        select: { id: 1, code: 1, name_ar: 1, name_en: 1, user: 1, address: 1 },
+        select: { id: 1, name: 1, user: 1, address: 1 },
       },
     }).then(
       function (response) {
@@ -284,11 +311,35 @@ app.controller('create_ad', function ($scope, $http, $timeout) {
       $scope.ad.category_require_list = c.category_require_list;
     }
   };
+
+  $scope.getDefaultSetting = function () {
+    $scope.busy = true;
+    $http({
+      method: 'POST',
+      url: '/api/default_setting/get',
+      data: {},
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.defaultSettings = response.data.doc;
+          $scope.displayAddAd();
+          if (!$scope.defaultSettings.stores_settings.activate_stores) {
+            $scope.getUser();
+          }
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.getUnitsList();
   $scope.getCurrenciesList();
   $scope.loadMainCategories();
   $scope.getAdsStatusList();
-  $scope.getNumberingAuto();
   $scope.getMyStoresList();
   $scope.getDefaultSetting();
 });

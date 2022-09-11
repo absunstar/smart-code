@@ -1,47 +1,24 @@
 <!DOCTYPE html>
 
-<html
-  lang="en"
-  data-ng-app="myApp"
-  class="bg-white"
-  x-permissions="default_setting_ui || default_setting_manage"
->
-  <head x-import="head.html"> </head>
+<html lang="en" data-ng-app="myApp" class="bg-white" x-permissions="default_setting_ui || default_setting_manage">
+  <head x-import="head.html"></head>
 
   <body style="background: white" class="##session.lang##" ng-controller="default_setting">
-    <nav x-import="herag/sitebar.html" class="sitebar" data-ng-controller="sitebar">
-    </nav>
-    
-    <nav
-      class="sitebottom"
-      x-import="sitebottom/index.html"
-      ng-controller="sitebottom"
-    ></nav>
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar"></nav>
 
-    <div
-      id="main-layout"
-      class="container loaded"
-      
-    >
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
+    <div id="main-layout" class="container">
       <div class="row">
         <br />
         <h1 class="center bold black">##word.default_settings##</h1>
         <br />
 
-        <div
-          x-permissions="default_setting_view || default_setting_manage"
-          x-import="default-setting/content.html"
-        ></div>
+        <div x-permissions="default_setting_view || default_setting_manage" x-import="default-setting/content.html"></div>
         <br />
         <br />
         <br />
 
-        <i-button
-          type="save"
-          label="##word.save##"
-          x-permissions="default_setting_edit || default_setting_manage"
-          ng-click="saveSetting()"
-        ></i-button>
+        <i-button type="save" label="##word.save##" x-permissions="default_setting_edit || default_setting_manage" ng-click="saveSetting()"></i-button>
       </div>
     </div>
 
@@ -53,7 +30,7 @@
       </div>
     </div>
 
-    <div x-import="scripts.html"></div>
+    <div x-import="herag/scripts.html"></div>
     <script x-import="default-setting/index.js"></script>
   </body>
 </html>

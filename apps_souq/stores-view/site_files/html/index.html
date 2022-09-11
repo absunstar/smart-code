@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 
-<html lang="en" data-ng-app="myApp" class="bg-white">
-  <head x-import="head.html"> </head>
+<html lang="en" data-ng-app="myApp" class="bg-white loaded">
+  <head x-import="head.html"></head>
 
   <body style="background: white" class="##session.lang##" ng-controller="stores_view">
-    <nav x-import="herag/sitebar.html" class="sitebar" data-ng-controller="sitebar">
-    </nav>
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar"></nav>
 
     <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
 
-    <div id="main-layout" class="container loaded">
+    <div id="main-layout" class="container">
     
 
       <div class="row">
@@ -20,7 +19,7 @@
         <div x-import="stores-view/content.html"></div>
       </div>
     </div>
-    <div x-import="scripts.html"></div>
+    <div x-import="herag/scripts.html"></div>
     <script x-import="stores-view/index.js"></script>
   </body>
 </html>

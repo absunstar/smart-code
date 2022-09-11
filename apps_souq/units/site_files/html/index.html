@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" x-permissions="units_ui || units_manage" data-ng-app="myApp">
-  <head x-import="head.html"> </head>
+  <head x-import="head.html"></head>
 
-  <body class="##session.lang##" ng-controller="units">
-    <nav x-import="herag/sitebar.html" class="sitebar" data-ng-controller="sitebar">
-    </nav>
+  <body class="##session.lang## loaded" ng-controller="units">
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar"></nav>
 
     <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
-    <div id="main-layout" class="container loaded">
+
+    <div id="main-layout" class="container">
       <div class="row">
         <div class="row" >
           <div x-permissions="units_add || units_manage" x-import="units/add_modal.html"></div>
@@ -28,10 +28,9 @@
             <h3 class="bold text-center">##word.count## : {{count}}</h3>
           </div>
 
-          <table x-permissions="login" class="table hover bold loaded" id="t1">
+          <table x-permissions="login" class="table hover bold" id="t1">
             <tr>
               <th class="not-print">##word.logo##</th>
-              <th>##word.code##</th>
               <th>##word.unit_name##</th>
               <th>##word.status##</th>
               <th class="not-print">##word.actions##</th>
@@ -40,7 +39,6 @@
               <td class="center not-print">
                 <i-image view class="logo" ng-model="c.image_url"></i-image>
               </td>
-              <td class="center userPrint blue">{{c.code}}</td>
               <td class="center title">{{c.name_##session.lang##}}</td>
               <td class="center">
                 <p ng-show="c.active == true" class="green">##word.active##</p>
@@ -62,7 +60,7 @@
       </div>
     </div>
 
-    <div x-import="scripts.html"></div>
+    <div x-import="herag/scripts.html"></div>
     <script x-import="units/index.js"></script>
   </body>
 </html>

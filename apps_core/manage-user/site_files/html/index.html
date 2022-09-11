@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="manage_users_ui || manage_users_manage" data-ng-app="myApp">
+  <head x-import="head.html"></head>
+
+  <body class="##session.lang## loaded" ng-controller="manage_user">
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar"></nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
+    <div x-import="manage-user/view_modal.html"></div>
+    <br />
+    <h1 class="center bold black">##word.manage_your_personal_account##</h1>
+    <br />
+    <div class="form" id="manage_user">
+      <div class="all-section tabs inline-block user-tabs">
+        <div class="tabs-header">
+          <a class="tab-link active" onclick="site.showTabContent(event, '#personal_info')"> ##word.personal_info## </a>
+          <a class="tab-link" onclick="site.showTabContent(event,'#my_addresses')">##word.my_addresses##</a>
+          <a class="tab-link" onclick="site.showTabContent(event,'#companies_branches')"> ##word.companies_branches## </a>
+        </div>
+        <div class="tabs-content">
+          <div id="personal_info" class="tab-content" style="display: inline-block">
+            <fieldset>
+              <legend>##word.basic_info##</legend>
+              <div class="row">
+                <table class="table loaded hover center bold">
+                  <tr>
+                    <td class="blue">
+                      <br />
+                      ##word.profile_photo##
+                    </td>
+
+                    <td>
+                      <i-image view class="logo" ng-model="manage_user.profile.image_url"></i-image>
+                    </td>
+
+                    <td>
+                      <i-button type="update" label="##word.update##" ng-click="view('logo')"> </i-button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="blue">
+                      <br />
+                      ##word.user_name##
+                    </td>
+
+                    <td class="userPrint">
+                      <br />
+                      {{manage_user.email}}
+                    </td>
+
+                    <td>
+                      <i-button type="update" label="##word.update##" ng-click="view('email')"> </i-button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="blue">
+                      <br />
+                      ##word.password##
+                    </td>
+
+                    <td>
+                      <i-control type="password" disabled ng-model="manage_user.password"></i-control>
+                    </td>
+
+                    <td>
+                      <i-button type="update" label="##word.update##" ng-click="view('password')"> </i-button>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </fieldset>
+            <br />
+            <br />
+
+            <fieldset>
+              <legend>##word.contact_info##</legend>
+              <div class="row">
+                <table class="table loaded hover center bold">
+                  <tr>
+                    <td class="blue">
+                      <br />
+                      ##word.the_name##
+                    </td>
+
+                    <td class="userPrint">
+                      <br />
+                      {{manage_user.profile.name_##session.lang##}}
+                    </td>
+
+                    <td>
+                      <i-button type="update" label="##word.update##" ng-click="view('name')"> </i-button>
+                    </td>
+                  </tr>
+
+                
+
+                  <tr ng-hide="manage_user.is_company">
+                    <td class="blue">
+                      <br />
+                      ##word.gender##
+                    </td>
+
+                    <td>
+                      <br />
+                      {{manage_user.gender.##session.lang##}}
+                    </td>
+
+                    <td>
+                      <i-button type="update" label="##word.update##" ng-click="view('gender')"> </i-button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="blue">
+                      <br />
+                      ##word.mobile##
+                    </td>
+
+                    <td class="userPrint">
+                      <br />
+                      <a href="tel:{{manage_user.profile.mobile}}">
+                        {{manage_user.profile.mobile}}
+                        <i class="fa fa-mobile"></i>
+                      </a>
+                    </td>
+
+                    <td>
+                      <i-button type="update" label="##word.update##" ng-click="view('mobile')"> </i-button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="blue">
+                      <br />
+                      ##word.phone##
+                    </td>
+
+                    <td class="userPrint">
+                      <br />
+                      <a href="tel:{{manage_user.profile.phone}}">
+                        {{manage_user.profile.phone}}
+                        <i class="fa fa-phone"></i>
+                      </a>
+                    </td>
+
+                    <td>
+                      <i-button type="update" label="##word.update##" ng-click="view('phone')"> </i-button>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </fieldset>
+
+            <i-button type="default left" fa="2x fa-angle-double-left" onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
+          </div>
+
+          <div id="my_addresses" class="tab-content">
+            <fieldset>
+              <legend>##word.my_addresses##</legend>
+              <div class="row">
+                <fieldset>
+                  <legend>##word.main_address##</legend>
+                  <i-address ng-model="manage_user.profile.main_address"></i-address>
+                </fieldset>
+
+                <br />
+                <br />
+
+                <fieldset>
+                  <legend>
+                    ##word.other_addresses##
+                    <i-button type="add default" ng-click=" manage_user.profile.other_addresses_list.push({})"></i-button>
+                  </legend>
+                  <div class="row border padding" ng-repeat="o in manage_user.profile.other_addresses_list">
+                    <i-address ng-model="o"></i-address>
+                    <i-button type="delete" ng-click="manage_user.profile.other_addresses_list.splice($index,1)"> </i-button>
+                  </div>
+                </fieldset>
+              </div>
+              <i-button type="save" label="##word.save##" ng-click="saveUserChanges(manage_user)"> </i-button>
+            </fieldset>
+          </div>
+
+          <div id="companies_branches" class="tab-content">
+            <fieldset>
+              <legend>##word.companies_branches##</legend>
+              <div class="row">
+                <table class="table loaded hover center bold">
+                  <tr>
+                    <th class="not-print">##word.logo##</th>
+                    <th>##word.company_name##</th>
+                    <th>##word.companies_branch_name##</th>
+                  </tr>
+
+                  <tr ng-repeat="b in manage_user.branch_list">
+                    <td class="not-print">
+                      <i-image view class="logo" ng-model="b.company.image_url"></i-image>
+                    </td>
+                    <td>
+                      <br />
+                      {{b.company.name_##session.lang##}}
+                    </td>
+                    <td>
+                      <br />
+                      {{b.branch.name_##session.lang##}}
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </fieldset>
+          </div>
+
+          <div id="screens_management" class="tab-content">
+            <fieldset>
+              <legend>##word.screens_management##</legend>
+              <div class="row">
+                <table class="table loaded hover center bold">
+                  <tr>
+                    <th>##word.validity_ar##</th>
+                    <th>##word.validity_en##</th>
+                    <th>##word.type##</th>
+                  </tr>
+
+                  <tr ng-repeat="r in permissions_list | orderBy : 'module_name'">
+                    <td>{{r.name_ar}}</td>
+                    <td>{{r.name_en}}</td>
+                    <td>
+                      <p ng-show="r.module_name === 'public'">##word.public##</p>
+                      <p ng-show="r.module_name === 'hr'">##word.hr##</p>
+                      <p ng-show="r.module_name === 'inventory'">##word.inventory##</p>
+                      <p ng-show="r.module_name === 'accounting'">##word.accounting##</p>
+                      <p ng-show="r.module_name === 'report'">##word.report##</p>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </fieldset>
+          </div>
+     
+        </div>
+      </div>
+    </div>
+    <!-- <script src="../js/script.js"></script> -->
+    <div x-import="scripts.html"></div>
+
+    <script x-import="manage-user/index.js"></script>
+  </body>
+</html>

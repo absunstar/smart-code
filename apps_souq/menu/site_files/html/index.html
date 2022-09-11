@@ -48,13 +48,14 @@
     border-style: solid;
     border-color: transparent transparent black transparent;
   }
+  
 
   .tooltip2:hover .tooltiptext {
     visibility: visible;
   }
 </style>
 
-<div class="main-menu" x-features="!atm">
+<div class="main-menu">
   <div id="main_tabs" class="tabs" style="display: block;">
     <div class="tabs-header">
       <a class="tab-link tooltip tooltip2" href="/default_setting" x-permissions="default_setting_ui || default_setting_manage">
@@ -69,12 +70,6 @@
         <h6 class="tooltiptext">إدارة المستخدمين</h6>
       </a>
 
-      <a class="tab-link tooltip tooltip2" href="/numbering" x-permissions="numbering_manage">
-      <i class="fa-solid fa-list-ol"></i>
-        <span> شاشة الترقيم </span>
-        <h6 class="tooltiptext">شاشة الترقيم</h6>
-      </a>
-
       <!--       <a class="tab-link tooltip" href="/order_souq" x-permissions=" order_souq_ui || order_souq_manage">
         <img src="/images/order_souq.png" />
         <span>إنشاء طلب</span>
@@ -87,13 +82,13 @@
         <h6 class="tooltiptext">الإعلانات</h6>
       </a>
 
-      <a class="tab-link tooltip tooltip2" href="/stores" x-permissions="stores_ui || stores_manage">
+      <a class="tab-link tooltip tooltip2" ng-show="defaultSettings.stores_settings.activate_stores" href="/stores" x-permissions="stores_ui || stores_manage">
       <i class="fa-solid fa-store"></i>
         <span> المتاجر </span>
         <h6 class="tooltiptext">المتاجر</h6>
       </a>
 
-      <a class="tab-link tooltip tooltip2" href="/manage_order" x-permissions=" manage_order_ui || manage_order_manage">
+      <a class="tab-link tooltip tooltip2" ng-show="defaultSettings.order_settings.activate_orders" href="/manage_order" x-permissions=" manage_order_ui || manage_order_manage">
           <i class="fa-solid fa-cart-flatbed"></i>
         <span>إدارة الطلبات</span>
         <h6 class="tooltiptext">إدارة الطلبات</h6>

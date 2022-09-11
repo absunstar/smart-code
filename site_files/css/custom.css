@@ -162,12 +162,7 @@ popup item:hover {
   right: 50px;
   left: auto;
 }
-.backColor {
-  background-color: #a6a7b852;
-}
-.broTouchTitle {
-  color : #cfcfcf !important;
-}
+
 .user-menu .link {
   background: var(--theme-color);
   color: #fff;
@@ -195,7 +190,12 @@ popup item:hover {
   width: 70px;
   border: 2px solid #fbfbfb;
 }
-
+.backColor {
+  background-color: #a6a7b852;
+}
+.broTouchTitle {
+  color : #cfcfcf !important;
+}
 .bg-purple {
   background-color: #610081 !important;
 }

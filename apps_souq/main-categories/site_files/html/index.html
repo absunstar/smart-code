@@ -1,56 +1,47 @@
 <!DOCTYPE html>
 <html lang="en" x-permissions="main_categories_ui || main_categories_manage" data-ng-app="myApp">
+  <head x-import="head.html"></head>
 
-<head x-import="head.html">
+  <body class="##session.lang## loaded" ng-controller="main_categories">
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar"></nav>
 
-</head>
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
+    <div id="main-layout" class="container">
+      <div class="row">
+        <div class="row" x-permissions="login">
+          <div x-permissions="main_categories_add || main_categories_manage" x-import="main-categories/add_modal.html"></div>
+          <div x-permissions="main_categories_edit || main_categories_manage" x-import="main-categories/update_modal.html"></div>
+          <div x-permissions="main_categories_delete || main_categories_manage" x-import="main-categories/delete_modal.html"></div>
+          <div x-permissions="main_categories_view || main_categories_manage" x-import="main-categories/view_modal.html"></div>
+          <div x-permissions="main_categories_search || main_categories_manage" x-import="main-categories/search_all_modal.html"></div>
 
-<body class="##session.lang##" ng-controller="main_categories">
+          <div class="row">
+            <h1 class="bold text-center">##word.main_categories##</h1>
+          </div>
 
-    <nav x-import="herag/sitebar.html" class="sitebar" data-ng-controller="sitebar">
-    </nav>
-
-    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
-
-    </nav>
-
-
-    <div id="main-layout" class="container loaded">
-        <div class="row">
-            <div class="row"  x-permissions="login">
-                <div x-permissions="main_categories_add || main_categories_manage"
-                    x-import="main-categories/add_modal.html"></div>
-                <div x-permissions="main_categories_edit || main_categories_manage"
-                    x-import="main-categories/update_modal.html"></div>
-                <div x-permissions="main_categories_delete || main_categories_manage"
-                    x-import="main-categories/delete_modal.html"></div>
-                <div x-permissions="main_categories_view || main_categories_manage"
-                    x-import="main-categories/view_modal.html"></div>
-                <div x-permissions="main_categories_search || main_categories_manage"
-                    x-import="main-categories/search_all_modal.html"></div>
-
-                <div class="row">
-                    <h1 class="bold text-center"> ##word.main_categories## </h1>
-                </div>
-
-                <div x-permissions="login" class="row">
-                    <i-treeview display="name_##session.lang##" class="col5" label="##word.main_categories##"
-                        ng-model="parent_main_category" ng-click="main_categories_view = parent_main_category"
-                        ng-node="displayAddMainCategories(null)" ng-add="displayAddMainCategories(parent_main_category)"
-                        ng-edit="displayUpdateMainCategories(parent_main_category)"
-                        ng-delete="displayDeleteMainCategories(parent_main_category)" nodes="list">
-                    </i-treeview>
-                    <div class="col1"></div>
-                    <div ng-show="parent_main_category" class="col6" x-import="main-categories/view.html"></div>
-                </div>
-
-            </div>
+          <div x-permissions="login" class="row">
+            <i-treeview
+              display="name_##session.lang##"
+              class="col5"
+              label="##word.main_categories##"
+              ng-model="parent_main_category"
+              ng-click="main_categories_view = parent_main_category"
+              ng-node="displayAddMainCategories(null)"
+              ng-add="displayAddMainCategories(parent_main_category)"
+              ng-edit="displayUpdateMainCategories(parent_main_category)"
+              ng-delete="displayDeleteMainCategories(parent_main_category)"
+              nodes="list"
+            >
+            </i-treeview>
+            <div class="col1"></div>
+            <div ng-show="parent_main_category" class="col6" x-import="main-categories/view.html"></div>
+          </div>
         </div>
+      </div>
     </div>
 
-    <div x-import="scripts.html"></div>
+    <div x-import="herag/scripts.html"></div>
 
     <script x-permission="login" x-import="main-categories/index.js"></script>
-</body>
-
+  </body>
 </html>

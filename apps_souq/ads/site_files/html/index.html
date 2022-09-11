@@ -2,12 +2,11 @@
 <html lang="en" x-permissions="ads_ui || ads_manage" data-ng-app="myApp">
   <head x-import="head.html"> </head>
 
-  <body class="##session.lang##"  ng-controller="ads">
-    <nav x-import="herag/sitebar.html" class="sitebar" data-ng-controller="sitebar">
-    </nav>
+  <body class="##session.lang## loaded"  ng-controller="ads">
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar"></nav>
 
     <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
-    <div id="main-layout" class="container loaded">
+    <div id="main-layout" class="container">
       <div class="row">
         <div class="row">
           <div x-permissions="ads_add || ads_manage" x-import="ads/add_modal.html"></div>
@@ -25,11 +24,10 @@
             <i-button x-permissions="ads_add || ads_manage" type="add" label="##word.ads_new##" ng-click="displayAddAd()"></i-button>
 
             <i-button x-permissions="ads_search || ads_manage" type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
-            <!-- <i-button label="تهيئة الشركة" ng-click="handelCompany()"> </i-button> -->
             <h3 class="bold text-center">##word.count## : {{count}}</h3>
           </div>
 
-          <table x-permissions="login" class="table hover bold loaded" id="t1">
+          <table x-permissions="login" class="table hover bold" id="t1">
             <tr>
               <th class="not-print">##word.logo##</th>
               <th>##word.ad_name##</th>
@@ -39,7 +37,7 @@
               <td class="center not-print">
                 <i-image view class="logo" ng-model="c.image_url"></i-image>
               </td>
-              <td class="center title">{{c.name_##session.lang##}}</td>
+              <td class="center title">{{c.name}}</td>
 
               <td class="center not-print">
                 <i-button x-permissions="ads_view || ads_manage" type="view" label="##word.details##" ng-click="displayDetailsAd(c)"></i-button>
@@ -56,7 +54,7 @@
       </div>
     </div>
 
-    <div x-import="scripts.html"></div>
+    <div x-import="herag/scripts.html"></div>
     <script x-import="ads/index.js"></script>
   </body>
 </html>

@@ -5,7 +5,7 @@
 
 </head>
 
-<body class="##session.lang##">
+<body class="##session.lang## loaded">
     <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
 
     </nav>
@@ -13,7 +13,7 @@
     <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
 
     </nav>
-    <div id="main-layout" class="container loaded">
+    <div id="main-layout" class="container">
         <div class="row">
             <div class="row" ng-controller="file_type" x-permissions="login">
                 <div x-permissions="file_type_add || file_type_manage" x-import="files-types/add_modal.html"></div>

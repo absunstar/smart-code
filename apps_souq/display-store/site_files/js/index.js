@@ -70,7 +70,6 @@ app.controller('display_store', function ($scope, $http, $timeout) {
             });
             $scope.activity.comment = '';
             $scope.store.number_comments += 1;
-
           } else if (type == 'report') {
             $scope.activity.report_type = {};
             $scope.activity.comment_report = '';
@@ -110,8 +109,8 @@ app.controller('display_store', function ($scope, $http, $timeout) {
           }
           $scope.activity.like = $scope.user.feedback_list.some((_l) => _l.type && _l.store && _l.type.id == 1 && _l.store.id == site.toNumber('##query.id##'));
           $scope.activity.favorite = $scope.user.feedback_list.some((_f) => _f.type && _f.store && _f.type.id == 2 && _f.store.id == site.toNumber('##query.id##'));
-          $scope.getAdsList({which:13});
-          } else {
+          $scope.getAdsList({ which: 13 });
+        } else {
           $scope.error = response.data.error;
         }
       },
@@ -183,7 +182,6 @@ app.controller('display_store', function ($scope, $http, $timeout) {
     if (!exist) {
       let obj = {
         id: ad.id,
-        code: ad.code,
         image_url: ad.image_url,
         name_ar: ad.name_ar,
         name_en: ad.name_en,
@@ -225,7 +223,7 @@ app.controller('display_store', function ($scope, $http, $timeout) {
         method: 'POST',
         url: '/api/ads/all',
         data: {
-          where: { 'store.id': site.toNumber('##query.id##') },
+          where: { 'store.id': site.toNumber('##query.id##'), 'ad_status.id': 1 },
         },
       }).then(
         function (response) {

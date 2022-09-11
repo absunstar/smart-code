@@ -36,9 +36,7 @@ app.controller("comments_types", function ($scope, $http, $timeout) {
           $scope.getCommentsTypesList();
         } else {
           $scope.error = response.data.error;
-          if (response.data.error.like('*Must Enter Code*')) {
-            $scope.error = "##word.must_enter_code##"
-          }
+     
         }
       },
       function (err) {
@@ -173,30 +171,6 @@ app.controller("comments_types", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.getNumberingAuto = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/numbering/get_automatic",
-      data: {
-        screen: "comments_types"
-      }
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.disabledCode = response.data.isAuto;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  };
-
- 
   $scope.displaySearchModal = function () {
     $scope.error = '';
     site.showModal('#commentsTypesSearchModal');
@@ -211,5 +185,4 @@ app.controller("comments_types", function ($scope, $http, $timeout) {
   };
 
   $scope.getCommentsTypesList();
-  $scope.getNumberingAuto();
 });

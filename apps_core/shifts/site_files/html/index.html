@@ -2,11 +2,11 @@
 <html lang="en" x-permissions="shifts_ui || shifts_manage" data-ng-app="myApp">
   <head x-import="head.html"> </head>
 
-  <body class="##session.lang##">
+  <body class="##session.lang## loaded">
     <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar"></nav>
 
     <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
-    <div id="main-layout" class="container loaded">
+    <div id="main-layout" class="container">
       <div class="row">
         <div class="row" ng-controller="shifts">
           <div x-permissions="shifts_add || shifts_manage" x-import="shifts/add_modal.html"></div>

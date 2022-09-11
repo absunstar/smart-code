@@ -32,7 +32,7 @@ module.exports = function init(site) {
 
   site.post('/api/ads/add', (req, res) => {
     let response = {
-      done: true,
+      done: false,
     };
     if (!req.session.user) {
       response.error = 'Please Login First';
@@ -43,16 +43,21 @@ module.exports = function init(site) {
     let ads_doc = req.body;
     ads_doc.$req = req;
     ads_doc.$res = res;
-    if (ads_doc.name) {
-      ads_doc.name_ar = ads_doc.name;
-      ads_doc.name_en = ads_doc.name;
-      delete ads_doc.name;
+
+    if (site.defaultSettingDoc.stores_settings.activate_stores) {
+      if (!ads_doc.store || (ads_doc.store && !ads_doc.store.id)) {
+        response.error = 'Store must specified';
+        res.json(response);
+        return;
+      }
+    } else {
+      let store = site.store_list.find((_store) => {
+        return _store.user.id === req.session.user.id;
+      });
+
+      ads_doc.store = { id: store.id, name: store.name, user: store.user, address: store.address };
     }
-    if (!ads_doc.store || !ads_doc.store.id) {
-      response.error = 'Store must specified';
-      res.json(response);
-      return;
-    }
+
     foundUserFeedback = ads_doc.feedback_list.every((_f) => _f.user && _f.user.id);
     if (!foundUserFeedback) {
       response.error = 'User must be specified in feedbacks';
@@ -64,6 +69,7 @@ module.exports = function init(site) {
       $req: req,
       $res: res,
     });
+    response.done = true;
     ads_doc.$add = true;
     site.ad_list.push(ads_doc);
     res.json(response);
@@ -85,12 +91,6 @@ module.exports = function init(site) {
       response.error = 'Store must specified';
       res.json(response);
       return;
-    }
-
-    if (ads_doc.name) {
-      ads_doc.name_ar = ads_doc.name;
-      ads_doc.name_en = ads_doc.name;
-      delete ads_doc.name;
     }
 
     foundUserFeedback = ads_doc.feedback_list.every((_f) => _f.user && _f.user.id);
@@ -149,20 +149,6 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/html/index.html',
     parser: 'html',
     compress: true,
-  });
-
-  site.on('[company][created]', (doc) => {
-    let y = new Date().getFullYear().toString();
-    $ads.add(
-      {
-        name_ar: 'إعلان إفتراضي',
-        name_en: 'Default Ad',
-        image_url: '/images/ads.png',
-        code: '1-Test',
-        active: true,
-      },
-      (err, doc) => {}
-    );
   });
 
   site.post('/api/ads/update_feedback', (req, res) => {
@@ -337,13 +323,8 @@ module.exports = function init(site) {
       delete where['user'];
     }
 
-
     if (where['category_id']) {
-      where.$or = [
-        {'main_category.top_parent_id' : where['category_id']},
-        {'main_category.parent_list_id' : where['category_id']},
-        {'main_category.id' : where['category_id']},
-      ]
+      where.$or = [{ 'main_category.top_parent_id': where['category_id'] }, { 'main_category.parent_list_id': where['category_id'] }, { 'main_category.id': where['category_id'] }];
       delete where['category_id'];
     }
 

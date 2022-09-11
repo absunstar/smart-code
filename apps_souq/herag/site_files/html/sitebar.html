@@ -1,7 +1,11 @@
 
 <div class="secondeheader">
-  <div></div>
+  <div>
+  <a  x-permission="login" href="#" onclick="showMenu()"> <i class="fa fa-bars"></i> </a>
+
+  </div>
   <div class="logo" href="/">
+    
     <span>سوق</span>
     <!-- <i class="burger-icon fa-solid fa-bars fa-sm"></i> -->
   </div>
@@ -10,6 +14,7 @@
   <div class="mobile-filter">
     <i class="burger-icon fa-solid fa-arrow-down-wide-short fa-2xl"></i>
   </div>
+
   <div class="user">
     <i class="close-menu fa-solid fa-xmark fa-lg"></i>
     <div class="info">
@@ -124,8 +129,6 @@
   </div>
 </div>
 
-
 <div class="links">
-  <div x-permission="login" x-features="!souq" x-import="menu/index.html"></div>
-  <div x-features="souq" x-permissions="menu_ui || menu_manage" x-import="menu/index.html"></div>
+  <div x-permissions="menu_ui || menu_manage" x-import="menu/index.html"></div>
 </div>

@@ -38,7 +38,7 @@ app.controller("main_categories", function ($scope, $http, $timeout) {
     };
 
     if($scope.default_setting.site_settings && $scope.default_setting.site_settings.auto_generate_categories_code){
-      $scope.main_categories.length_level = $scope.default_setting.site_settings.length_level || 0;
+      $scope.main_categories.length_category = $scope.default_setting.site_settings.length_category || 0;
     };
 
     site.showModal('#mainCategoriesAddModal');

@@ -1,6 +1,36 @@
 module.exports = function init(site) {
   const $order = site.connectCollection('order');
 
+  site.order_list = [];
+  $order.findMany({}, (err, docs) => {
+    if (!err && docs) {
+      site.order_list = [...site.order_list, ...docs];
+    }
+  });
+
+  setInterval(() => {
+    site.order_list.forEach((a, i) => {
+      if (a.$add) {
+        $order.add(a, (err, doc) => {
+          if (!err && doc) {
+            site.order_list[i] = doc;
+          }
+        });
+      } else if (a.$update) {
+        $order.edit({
+          where: {
+            id: a.id,
+          },
+          set: a,
+        });
+      } else if (a.$delete) {
+        $order.delete({
+          id: a.id,
+        });
+      }
+    });
+  }, 1000 * 7);
+
   site.get({
     name: 'cart',
     path: __dirname + '/site_files/html/index.html',
@@ -28,6 +58,14 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/images/',
   });
 
+  function addZero(code, number) {
+    let c = number - code.toString().length;
+    for (let i = 0; i < c; i++) {
+      code = '0' + code.toString();
+    }
+    return code;
+  }
+
   site.post('/api/order/add', (req, res) => {
     let response = {};
     response.done = false;
@@ -54,33 +92,23 @@ module.exports = function init(site) {
       ar: 'طلب جديد',
       en: 'New Order',
     };
-    let num_obj = {
-      company: site.get_company(req),
-      screen: 'order',
-      date: new Date(),
-    };
 
-    let cb = site.getNumbering(num_obj);
-    if (!order_doc.code && !cb.auto) {
-      response.error = 'Must Enter Code';
+    let lastOrder = site.order_list[site.order_list.length - 1];
+
+    if (site.defaultSettingDoc.site_settings.length_order) {
+      order_doc.code = order_doc.code = addZero(site.toNumber(lastOrder.code) + site.toNumber(1), site.defaultSettingDoc.site_settings.length_order);
+
+      response.done = true;
+      order_doc.$add = true;
+      site.order_list.push(order_doc);
       res.json(response);
-      return;
-    } else if (cb.auto) {
-      order_doc.code = cb.code;
+    } else {
+      order_doc.code = site.toNumber(lastOrder.code) + 1;
+      response.done = true;
+      order_doc.$add = true;
+      site.order_list.push(order_doc);
+      res.json(response);
     }
-
-    order_doc.company = site.get_company(req);
-    order_doc.branch = site.get_branch(req);
-
-    $order.add(order_doc, (err, doc) => {
-      if (!err) {
-        response.done = true;
-        response.doc = doc;
-      } else {
-        response.error = err.message;
-      }
-      res.json(response);
-    });
   });
 
   site.post('/api/order/update', (req, res) => {
@@ -99,31 +127,20 @@ module.exports = function init(site) {
       $req: req,
       $res: res,
     });
-    if (order_doc.id) {
-      $order.edit(
-        {
-          where: {
-            id: order_doc.id,
-          },
-          set: order_doc,
-          $req: req,
-          $req: req,
-          $res: res,
-        },
-        (err, result) => {
-          if (!err) {
-            response.done = true;
-            response.doc = result.doc;
-          } else {
-            response.error = err.message;
-          }
-          res.json(response);
-        }
-      );
-    } else {
-      response.error = 'no id';
+
+    if (!order_doc.id) {
+      response.error = 'No id';
       res.json(response);
+      return;
     }
+    response.done = true;
+    order_doc.$update = true;
+    site.order_list.forEach((a, i) => {
+      if (a.id === order_doc.id) {
+        site.order_list[i] = order_doc;
+      }
+    });
+    res.json(response);
   });
 
   site.post('/api/order/view', (req, res) => {
@@ -137,22 +154,21 @@ module.exports = function init(site) {
       return;
     }
 
-    $order.findOne(
-      {
-        where: {
-          id: req.body.id,
-        },
-      },
-      (err, doc) => {
-        if (!err) {
-          response.done = true;
-          response.doc = doc;
-        } else {
-          response.error = err.message;
-        }
-        res.json(response);
+    let ad = null;
+    site.order_list.forEach((a) => {
+      if (a.id == req.body.id) {
+        ad = a;
       }
-    );
+    });
+
+    if (ad) {
+      response.done = true;
+      response.doc = ad;
+      res.json(response);
+    } else {
+      response.error = 'no id';
+      res.json(response);
+    }
   });
 
   site.post('/api/order/delete', (req, res) => {
@@ -166,29 +182,19 @@ module.exports = function init(site) {
       return;
     }
 
-    let id = req.body.id;
-
-    if (id) {
-      $order.delete(
-        {
-          id: id,
-          $req: req,
-          $res: res,
-        },
-        (err, result) => {
-          if (!err) {
-            response.done = true;
-            response.doc = result.doc;
-          } else {
-            response.error = err.message;
-          }
-          res.json(response);
-        }
-      );
-    } else {
+    if (!req.body.id) {
       response.error = 'no id';
       res.json(response);
+      return;
     }
+
+    site.order_list.forEach((a) => {
+      if (req.body.id && a.id === req.body.id) {
+        a.$delete = true;
+      }
+    });
+    response.done = true;
+    res.json(response);
   });
 
   site.post('/api/order/all', (req, res) => {
@@ -203,10 +209,6 @@ module.exports = function init(site) {
     }
 
     let where = req.data.where || {};
-
-    if (where['code']) {
-      where['code'] = site.get_RegExp(where['code'], 'i');
-    }
 
     if (where['name_ar']) {
       where['name_ar'] = site.get_RegExp(where['name_ar'], 'i');
@@ -226,8 +228,6 @@ module.exports = function init(site) {
     // } else {
     //   delete where['active']
     // }
-
-    where['company.id'] = site.get_company(req).id;
 
     $order.findMany(
       {

@@ -5,7 +5,7 @@
 
 </head>
 
-<body class="##session.lang##">
+<body class="##session.lang## loaded">
 
     <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
 
@@ -14,7 +14,7 @@
     <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom">
 
     </nav>
-    <div id="main-layout" class="container loaded">
+    <div id="main-layout" class="container">
         <div class="row center">
             <div ng-controller="tax_types">
                 <div x-permissions="tax_types_add || tax_types_manage" x-import="accounting-tax-types/add_modal.html">
@@ -35,7 +35,7 @@
                 </div>
 
                 <div id="d1">
-                    <table class="table center hover bold loaded" id="t1">
+                    <table class="table center hover bold" id="t1">
                         <tr>
                             <th class="not-print">##word.tax_types_logo##</th>
                             <th>##word.code##</th>

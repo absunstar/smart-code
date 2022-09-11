@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" x-permissions="login" data-ng-app="myApp">
-  <head x-import="head.html">
+  <head x-import="head.html"></head>
     <link rel="stylesheet" href="/css/order_invoice.css?v=##site.options.version##" />
   </head>
 
-  <body class="##session.lang##" ng-controller="cart">
-    <  <nav x-import="herag/sitebar.html" class="sitebar" data-ng-controller="sitebar">
-    </nav>
+  <body class="##session.lang## loaded" ng-controller="cart">
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar"></nav>
 
     <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
 
-    <div id="main-layout" class="container loaded">
+    <div id="main-layout" class="container">
       <div class="row">
         <div class="row">
           <!--  <div class="row">
@@ -91,7 +90,7 @@
             </div>
             <br />
             <br />
-            <div class="row center">
+            <div class="row center" ng-show="defaultSettings.order_settings.activate_orders">
               <i-button type="fa fa-cart-plus saving" label="##word.create_order##" ng-click="createOrder()"> </i-button>
             </div>
           </div>
@@ -105,7 +104,7 @@
         </div>
       </div>
     </div>
-    <div x-import="scripts.html"></div>
+    <div x-import="herag/scripts.html"></div>
 
     <script x-permissions="login" x-import="cart/index.js"></script>
   </body>

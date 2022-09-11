@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="##session.lang##" ng-app="myApp">
+<html lang="##session.lang##" class="loaded" ng-app="myApp">
   <head x-server="x-import">
     <title x-features="!protouch &amp;&amp; !host.ttl">سمـارت كـود | سوق</title>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   </head>
 
-  <body class="##session.lang## loaded" ng-controller="index_souq">
+  <body class="##session.lang## " ng-controller="index_souq">
     <header>
       <div class="firstheader">
         <div></div>
@@ -749,10 +749,10 @@
               <div ng-repeat="a in adsList " class="ads-area">
                 <div class="ad-area">
                   <div class="ads-info">
-                    <b class="bold col4 ad-name">{{a.name_##session.lang##}}</b>
+                    <b class="bold col4 ad-name">{{a.name}}</b>
                     <div class="row" ng-click="displayAd(a.id)">
                       <p class="ad-owner"><b class="black"> ##word.ad_owner## : </b><b> {{a.store.user.profile.name}} </b></p>
-                      <p class="store-name"><b class="black"> ##word.store## : </b><b> {{a.store.name_##session.lang##}} </b></p>
+                      <p ng-show="defaultSettings.stores_settings.activate_stores" class="store-name"><b class="black"> ##word.store## : </b><b> {{a.store.name}} </b></p>
                       <p class="ad-price" ng-show="a.set_price == 'yes'" ng-repeat="q in a.quantity_list"><b>{{q.unit.name_##session.lang##}} {{q.net_value}} {{q.currency.name_##session.lang##}}</b></p>
                     </div>
                     <p ng-show="a.address.country">{{a.address.country.name_##session.lang##}} - {{a.address.gov.name_##session.lang##}} - {{a.address.city.name_##session.lang##}} - {{a.address.area.name_##session.lang##}}</p>

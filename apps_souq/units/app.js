@@ -41,19 +41,6 @@ module.exports = function init(site) {
     compress: true,
   });
 
-  site.on('[company][created]', (doc) => {
-    let y = new Date().getFullYear().toString();
-    $units.add(
-      {
-        name_ar: 'وحدة إفتراضية',
-        name_en: 'Default Unit',
-        image_url: '/images/unit.png',
-        code: '1-Test',
-        active: true,
-      },
-      (err, doc) => {}
-    );
-  });
 
   site.post('/api/units/add', (req, res) => {
     let response = {
@@ -76,20 +63,6 @@ module.exports = function init(site) {
 
     if (typeof units_doc.active === 'undefined') {
       units_doc.active = true;
-    }
-
-    let num_obj = {
-      screen: 'units',
-      date: new Date(),
-    };
-
-    let cb = site.getNumbering(num_obj);
-    if (!units_doc.code && !cb.auto) {
-      response.error = 'Must Enter Code';
-      res.json(response);
-      return;
-    } else if (cb.auto) {
-      units_doc.code = cb.code;
     }
     response.done = true;
     units_doc.$add = true;
@@ -225,18 +198,5 @@ module.exports = function init(site) {
     );
   });
 
-  site.getUnits = function (req, callback) {
-    callback = callback || {};
-    let where = {};
-    $units.findMany(
-      {
-        where: where,
-        sort: { id: -1 },
-      },
-      (err, docs) => {
-        if (!err && docs) callback(docs);
-        else callback(false);
-      }
-    );
-  };
+
 };

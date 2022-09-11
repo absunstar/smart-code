@@ -41,22 +41,6 @@ module.exports = function init(site) {
     compress: true,
   });
 
-  site.on('[company][created]', (doc) => {
-    $reports_types.add(
-      {
-        code: '1-Test',
-        name_ar: 'نوع بلاغ إفتراضي',
-        name_en: 'Default Report Type',
-        image_url: '/images/reports_types.png',
-
-        active: true,
-      },
-      (err, doc) => {
-        site.call('[register][tables][add]', doc);
-      }
-    );
-  });
-
   site.post('/api/reports_types/add', (req, res) => {
     let response = {
       done: false,
@@ -80,19 +64,6 @@ module.exports = function init(site) {
       reports_types_doc.active = true;
     }
 
-    let num_obj = {
-      screen: 'reports_types',
-      date: new Date(),
-    };
-
-    let cb = site.getNumbering(num_obj);
-    if (!reports_types_doc.code && !cb.auto) {
-      response.error = 'Must Enter Code';
-      res.json(response);
-      return;
-    } else if (cb.auto) {
-      reports_types_doc.code = cb.code;
-    }
 
     response.done = true;
     reports_types_doc.$add = true;
@@ -208,11 +179,6 @@ module.exports = function init(site) {
         name_en: site.get_RegExp(where['name'], 'i'),
       });
       delete where['name']
-    }
-
-
-    if (where['code']) {
-      where['code'] = site.get_RegExp(where['code'], 'i');
     }
 
     $reports_types.findMany(

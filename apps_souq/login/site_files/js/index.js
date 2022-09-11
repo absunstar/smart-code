@@ -2,14 +2,12 @@ app.controller('login_souq', function ($scope, $http, $timeout) {
   $scope.user = {};
   $scope.login = function () {
     $scope.error = '';
-    console.log("Ffffffffffffffffffffff");
     const v = site.validated('#loginSouqModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
     }
     $scope.busy = true;
-    console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 
     $http({
       method: 'POST',

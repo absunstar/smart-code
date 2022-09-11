@@ -33,10 +33,7 @@ app.controller("messages", function ($scope, $http, $timeout) {
           $scope.getMessageList();
         } else {
           $scope.error = response.data.error;
-          if (response.data.error.like('*Must Enter Code*')) {
-            $scope.error = "##word.must_enter_code##"
-
-          } else if (response.data.error.like('*maximum number of adds exceeded*')) {
+        if (response.data.error.like('*maximum number of adds exceeded*')) {
             $scope.error = "##word.err_maximum_adds##"
           }
         }
@@ -187,25 +184,6 @@ app.controller("messages", function ($scope, $http, $timeout) {
     site.hideModal('#messageSearchModal');
     $scope.search = {};
   };
-
-/*   $scope.handelCompany = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $http({
-      method: "POST",
-      url: "/api/messages/handel_company"
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    )
-  }; */
 
   $scope.getMessageList();
 });

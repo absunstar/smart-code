@@ -6,7 +6,7 @@
       <div class="col8 store-info">
         <div class="row store-name">
           <h1>{{store.store.user.profile.name}}</h1>
-          <h1>{{store.store.name_##session.lang##}}</h1>
+          <h1>{{store.store.name}}</h1>
           <h1>{{store.name_##session.lang##}}</h1>
         </div>
         <br />
@@ -26,8 +26,8 @@
           <h2 class="pre_text">{{store.description}}</h2>
         </div>
         <div class="row flv-number">
-          <b> ##word.number_favorites## : {{store.number_favorites}}</b>
           <b> ##word.number_likes## : {{store.number_likes}}</b>
+          <b> ##word.number_favorites## : {{store.number_favorites}}</b>
           <b> ##word.number_views## : {{store.number_views}}</b>
         </div>
         <div class="row lfr-section">
@@ -55,9 +55,7 @@
               </div>
               <div class="ad-detials">
                 <div class="row ad-info" ng-click="displayAd(a.id)">
-                  <b class="ad-name bold col4">{{a.name_##session.lang##}}</b>
-                  <p><b class="black"> ##word.ad_owner## : </b><b> {{a.store.user.profile.name}} </b></p>
-                  <p><b class="black"> ##word.store## : </b><b> {{a.store.name_##session.lang##}} </b></p>
+                  <b class="ad-name bold col4">{{a.name}}</b>
                   <p ng-repeat="q in a.quantity_list"><b>{{q.unit.name_##session.lang##}} {{q.net_value}} {{q.currency.name_##session.lang##}}</b></p>
                 </div>
                 <div class="row lf-action">

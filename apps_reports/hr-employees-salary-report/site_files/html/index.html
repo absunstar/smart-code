@@ -5,7 +5,7 @@
 
 </head>
 
-<body class="##session.lang##">
+<body class="##session.lang## loaded">
     <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar">
 
     </nav>
@@ -14,7 +14,7 @@
 
     </nav>
 
-    <div id="main-layout" class="container loaded">
+    <div id="main-layout" class="container">
         <div class="row center">
 
             <div class="row" ng-controller="employees_salary_report">
@@ -225,7 +225,7 @@
                         <h2 id="t1" class="center bold green"> ##word.employees_salary_report_offers##<p> (
                                 {{employee_salary_report.employeeOfferList.length}} ) </p>
                         </h2>
-                        <table class="table hover bold loaded" id="t1">
+                        <table class="table hover bold" id="t1">
                             <tr>
                                 <th class="pointer" ng-click="sortBy('date')"> ##word.employees_salary_report_date##
                                 </th>
@@ -251,7 +251,7 @@
                         <h2 id="t1" class="center bold red"> ##word.employees_salary_report_discount##<p> (
                                 {{employee_salary_report.employeeDiscountList.length}} ) </p>
                         </h2>
-                        <table class="table hover bold loaded" id="t1">
+                        <table class="table hover bold" id="t1">
                             <tr>
                                 <th class="pointer" ng-click="sortBy('date')"> ##word.employees_salary_report_date##
                                 </th>
