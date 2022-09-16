@@ -1,0 +1,27 @@
+[
+  {
+    "name": "members_you_follow",
+    "en": "Members you follow",
+    "ar": "أعضاء تتابعهم"
+  },
+  {
+    "name": "products_must_added_basket",
+    "en": "Products must be added to the basket",
+    "ar": "يجب إضافة منتجات إلى السلة"
+  },
+  {
+    "name": "conversation",
+    "en": "Conversation",
+    "ar": "محادثة"
+  },
+  {
+    "name": "no_follow_up",
+    "en": "No follow up",
+    "ar": "لا يوجد متابعات"
+  },
+  {
+    "name": "follow_ups",
+    "en": "Follow-ups",
+    "ar": "المتابعات"
+  }
+]

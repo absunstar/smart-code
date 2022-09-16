@@ -1,6 +1,7 @@
 app.controller('display_ad', function ($scope, $http, $timeout) {
   $scope.activity = {};
   $scope.ad = {};
+
   $scope.dissplayAd = function () {
     $scope.busy = true;
     $scope.error = '';
@@ -16,16 +17,15 @@ app.controller('display_ad', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.ad = response.data.doc;
-          /* $scope.ad.comments_activities = $scope.ad.comments_activities || [];
+          $scope.ad.$number_favorites = $scope.ad.number_favorites;
+          $scope.ad.comments_activities = $scope.ad.comments_activities || [];
           $scope.ad.comments_activities.forEach((_c) => {
             if (_c.user && _c.user.id === site.toNumber('##user.id##')) {
-              if (_c.comment_activity && _c.comment_activity.id == 1) {
-                $scope.activity.like = true;
-              } else if (_c.comment_activity && _c.comment_activity.id == 2) {
+              if (_c.comment_activity && _c.comment_activity.id == 2) {
                 $scope.activity.favorite = true;
               }
             }
-          }); */
+          });
         } else {
           $scope.error = response.data.error;
         }
@@ -58,6 +58,7 @@ app.controller('display_ad', function ($scope, $http, $timeout) {
       }
     );
   };
+
   $scope.showCommunication = function (obj) {
     $scope.main_obj = obj;
     site.showModal('#communicationModal');
@@ -88,8 +89,13 @@ app.controller('display_ad', function ($scope, $http, $timeout) {
             $scope.activity.report_type = {};
             $scope.activity.comment_report = '';
             site.hideModal('#reportModal');
+          } else if (type == 'favorite') {
+            if ($scope.activity.favorite) {
+              $scope.ad.$number_favorites += 1;
+            } else {
+              $scope.ad.$number_favorites -= 1;
+            }
           }
-
         } else {
           $scope.error = 'Please Login First';
         }
@@ -123,7 +129,6 @@ app.controller('display_ad', function ($scope, $http, $timeout) {
             };
           }
 
-          $scope.activity.like = $scope.user.feedback_list.some((_l) => _l.type && _l.ad && _l.type.id == 1 && _l.ad.id == site.toNumber('##query.id##'));
           $scope.activity.favorite = $scope.user.feedback_list.some((_f) => _f.type && _f.ad && _f.type.id == 2 && _f.ad.id == site.toNumber('##query.id##'));
         } else {
           $scope.error = response.data.error;

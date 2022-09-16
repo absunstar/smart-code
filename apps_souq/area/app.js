@@ -91,20 +91,6 @@ module.exports = function init(site) {
       area_doc.active = true;
     }
 
-    let num_obj = {
-      screen: 'area',
-      date: new Date(),
-    };
-    let cb = site.getNumbering(num_obj);
-
-    if (!area_doc.code && !cb.auto) {
-      response.error = 'Must Enter Code';
-      res.json(response);
-      return;
-    } else if (cb.auto) {
-      area_doc.code = cb.code;
-    }
-
     response.done = true;
     area_doc.$add = true;
     site.area_list.push(area_doc);

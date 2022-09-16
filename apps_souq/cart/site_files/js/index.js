@@ -122,7 +122,7 @@ app.controller('cart', function ($scope, $http, $timeout) {
           _p.total = _p.select_quantity.price * _p.count;
           _p.total = site.toNumber(_p.total);
           let total = _p.total * _p.select_quantity.currency.ex_rate;
-          obj.cart.net_value +=  (total / ex_rate);
+          obj.cart.net_value += total / ex_rate;
           obj.cart.net_value = site.toNumber(obj.cart.net_value);
         });
       }
@@ -140,7 +140,7 @@ app.controller('cart', function ($scope, $http, $timeout) {
       method: 'POST',
       url: '/api/user/view',
       data: {
-        id: '##user.id##',
+        id: site.toNumber('##user.id##'),
       },
     }).then(
       function (response) {
@@ -209,7 +209,6 @@ app.controller('cart', function ($scope, $http, $timeout) {
     );
   };
 
-
   $scope.getDefaultSetting = function () {
     $scope.busy = true;
     $http({
@@ -229,7 +228,7 @@ app.controller('cart', function ($scope, $http, $timeout) {
       }
     );
   };
-  
+
   $scope.getUser();
   $scope.getCurrenciesList();
   $scope.loadCartPayment();

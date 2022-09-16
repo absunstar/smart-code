@@ -35,6 +35,7 @@ module.exports = function init(site) {
       email: req.body.email,
       password: req.body.password,
       feedback_list: [],
+      follow_list : [],
       other_addresses_list: [],
       ip: req.ip,
       permissions: ['user'],
@@ -48,9 +49,21 @@ module.exports = function init(site) {
       $req: req,
       $res: res,
     };
-
+ 
     if (site.defaultSettingDoc && site.defaultSettingDoc.stores_settings) {
-      if (!site.defaultSettingDoc.stores_settings.activate_stores) {
+
+      if (site.defaultSettingDoc.stores_settings.maximum_stores) {
+        user.maximum_stores = site.defaultSettingDoc.stores_settings.maximum_stores;
+      } else {
+        user.maximum_stores = 2;
+      }
+    }
+
+    site.security.register(user, function (err, doc) {
+      if (!err) {
+        let store_name = req.session.lang== 'ar'? 'متجر' : 'Store';
+        response.user = doc;
+        response.done = true;
         let store = {
           image_url: '/images/stores.png',
           feedback_list: [],
@@ -63,31 +76,20 @@ module.exports = function init(site) {
           priority_level: 0,
           active: true,
           user: {
-            id: user.id,
-            profile: user.profile,
-            email: user.email,
+            id: doc.id,
+            profile: doc.profile,
+            email: doc.email,
           },
           store_status: {
             id: 1,
             en: 'Active',
             ar: 'نشط',
           },
+          name : store_name + doc.profile.name ,
         };
+        
         store.$add = true;
         site.store_list.push(store);
-      }
-
-      if (site.defaultSettingDoc.stores_settings.maximum_stores) {
-        user.maximum_stores = site.defaultSettingDoc.stores_settings.maximum_stores;
-      } else {
-        user.maximum_stores = 2;
-      }
-    }
-
-    site.security.register(user, function (err, doc) {
-      if (!err) {
-        response.user = doc;
-        response.done = true;
       } else {
         response.error = err.message;
       }

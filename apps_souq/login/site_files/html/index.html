@@ -1,61 +1,44 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="myApp">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>تسجيل دخول</title>
-    <style x-import="login/style.css"></style>
-  </head>
+<html lang="en" data-ng-app="myApp">
+  <head x-import="head.html"> </head>
 
-  <body ng-controller="login_souq">
-    <div id="main-layout" class="container">
+  <body class="##session.lang## loaded" ng-controller="login_souq">
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar"></nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
+    <div id="main-layout" class="container" id="loginSouqModal">
       <div class="row">
-        <div id="loginSouqModal" class="row center">
+        <div class="row" >
           <div class="row">
-            <h1 class="bold text-center">تسجيل دخول</h1>
+            <h1 class="bold text-center">##word.login##</h1>
+          </div>
+
+          <div class="row">
+            <h2 class="bold red ">{{error}}</h2>
+
+          </div>
+        
+          <div class="row">
+            <i-control class="col4" v="r" label="##word.mobile_email##" ng-model="user.email"> </i-control>
           </div>
           <div class="row">
-            <h2 class="bold red ng-binding"></h2>
+            <i-control class="col4 pass" label="##word.password##" type="password" v="r"  ng-model="user.password"> </i-control>
           </div>
-          <div class="login-form">
-            <div class="row">
-              <i-control class="col4 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty full-width" v="r" label="الجوال / البريد الإلكتروني" ng-model="user.email">
-                <div class="control">
-                  <label class="ng-binding"> الجوال / البريد الإلكتروني </label>
-                  <input id="" ng-disabled="disabled" autofocus="" v="r" type="text" ng-model="ngModel" ng-change="ngChange()" ngkeydown="ngKeydown()" class="ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched" />
-                </div>
-              </i-control>
-            </div>
-            <div class="row">
-              <i-control class="col4 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty full-width" label="كلمة المرور" type="password" v="r" value="FakePSW" id="pass" ng-model="user.password">
-                <div class="control">
-                  <label class="ng-binding"> كلمة المرور </label>
-                  <input id="" ng-disabled="disabled" autofocus="" v="r" type="password" ng-model="ngModel" ng-change="ngChange()" ngkeydown="ngKeydown()" class="ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched" />
-                </div>
-              </i-control>
-            </div>
-            <div class="row">
-              <i-checkbox class="col2 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" label="إظهار كلمة السر" ng-click="showPass()" ng-model="show_password">
-                <div class="selector ng-binding un-selected" ng-class="{'selected' : ngModel , 'un-selected' : !ngModel  }" ng-click="updateModal(ngModel);ngChange($event , ngModel)"><i ng-show="!ngModel" class="fa fa-square"></i> <i ng-show="ngModel" class="fa fa-check ng-hide"></i> إظهار كلمة السر</div>
-              </i-checkbox>
-            </div>
-            <i-button type="add" label="تسجيل الدخول الاّن" ng-click="login()" class="ng-isolate-scope center">
-              <a class="btn add">
-                تسجيل الدخول الاّن
-                <i ng-show="fa" class="fa fa-plus-circle" aria-hidden="true"></i>
-              </a>
-            </i-button>
-            <form class="ng-pristine ng-valid center">
-              <p class="font-18">غير مسجل؟ <a href="/register">أنشئ حساب</a></p>
-            </form>
+          <div class="row">
+            <i-checkbox  class="col2" label="##word.show_password##" ng-click="showPassword()"  ng-model="show_password"> </i-checkbox>
           </div>
+          <i-button type="add" label="##word.login_now##" ng-click="login()" ></i-button>
+
+          <form >
+            <p class="font-18">##word.not_registered## <a href="/register">##word.create_account##</a></p>
+          </form>
+
+
         </div>
       </div>
     </div>
-    <div x-import="herag/scripts.html"></div>
+
+    <div x-import="scripts.html"></div>
     <script x-import="login/index.js"></script>
   </body>
 </html>

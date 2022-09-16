@@ -10,7 +10,6 @@ app.controller('stores', function ($scope, $http, $timeout) {
       feedback_list: [],
       store_rating: 0,
       number_views: 0,
-      number_likes: 0,
       number_comments: 0,
       number_favorites: 0,
       number_reports: 0,

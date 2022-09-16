@@ -15,7 +15,6 @@ app.controller('stores_view', function ($scope, $http, $timeout) {
           if (response.data.done && response.data.list.length > 0) {
             $scope.storesList = response.data.list;
             $scope.storesList.forEach((store) => {
-              store.like = $scope.user.feedback_list.some((_l) => _l.type && _l.store && _l.type.id == 1 && _l.store.id == store.id);
               store.favorite = $scope.user.feedback_list.some((_f) => _f.type && _f.store && _f.type.id == 2 && _f.store.id == store.id);
             });
           }
@@ -65,7 +64,7 @@ app.controller('stores_view', function ($scope, $http, $timeout) {
   };
 
   $scope.updateFeedback = function (store, type) {
-    let data = { id: store.id, feedback: { like: store.like, favorite: store.favorite, type: type } };
+    let data = { id: store.id, feedback: { favorite: store.favorite, type: type } };
 
     $http({
       method: 'POST',

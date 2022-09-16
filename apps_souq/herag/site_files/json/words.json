@@ -5,8 +5,33 @@
     "ar": "السلة"
   },
   {
+    "name": "hide_map",
+    "en": "Hide Map",
+    "ar": "إخفاء الخريطة"
+  },
+  {
     "name": "map_search",
-    "en": "Map",
-    "ar": "الخريطة"
+    "en": "Map search",
+    "ar": "البحث بالخريطة"
+  },
+  {
+    "name": "facebook_account",
+    "en": "Facebook Account",
+    "ar": "حساب الفيس بوك"
+  },
+  {
+    "name": "instagram_accouunt",
+    "en": "Instagram Account",
+    "ar": "حساب إنستجرام"
+  },
+  {
+    "name": "you_tube_accouunt",
+    "en": "You Tube Instagram Account",
+    "ar": "حساب يوتيوب"
+  },
+  {
+    "name": "twitter_accouunt",
+    "en": "Twitter Instagram Account",
+    "ar": "حساب تويتر"
   }
 ]

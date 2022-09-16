@@ -16,6 +16,7 @@ app.controller('display_store', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.store = response.data.doc;
+          $scope.store.$number_favorites =  $scope.store.number_favorites;
         } else {
           $scope.error = response.data.error;
         }
@@ -74,6 +75,12 @@ app.controller('display_store', function ($scope, $http, $timeout) {
             $scope.activity.report_type = {};
             $scope.activity.comment_report = '';
             site.hideModal('#reportModal');
+          } else if (type == 'favorite') {
+            if ($scope.activity.favorite) {
+              $scope.store.$number_favorites += 1;
+            } else {
+              $scope.store.$number_favorites -= 1;
+            }
           }
         } else {
           $scope.error = 'Please Login First';
@@ -107,7 +114,6 @@ app.controller('display_store', function ($scope, $http, $timeout) {
               items: [],
             };
           }
-          $scope.activity.like = $scope.user.feedback_list.some((_l) => _l.type && _l.store && _l.type.id == 1 && _l.store.id == site.toNumber('##query.id##'));
           $scope.activity.favorite = $scope.user.feedback_list.some((_f) => _f.type && _f.store && _f.type.id == 2 && _f.store.id == site.toNumber('##query.id##'));
           $scope.getAdsList({ which: 13 });
         } else {
@@ -124,7 +130,7 @@ app.controller('display_store', function ($scope, $http, $timeout) {
   };
 
   $scope.updateFeedbackAd = function (ad, type) {
-    let data = { id: ad.id, feedback: { like: ad.like, favorite: ad.favorite, type: type } };
+    let data = { id: ad.id, feedback: { favorite: ad.favorite, type: type } };
 
     $http({
       method: 'POST',
@@ -134,6 +140,7 @@ app.controller('display_store', function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
+          $scope.getAdsList({ which: 13 });
         } else {
           $scope.error = 'Please Login First';
         }
@@ -205,12 +212,12 @@ app.controller('display_store', function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
+          $scope.getUser();
         } else {
           $scope.error = response.data.error;
         }
       },
       function (err) {
-        $scope.getUser();
       }
     );
   };
@@ -231,7 +238,6 @@ app.controller('display_store', function ($scope, $http, $timeout) {
           if (response.data.done && response.data.list.length > 0) {
             $scope.adsList = response.data.list;
             $scope.adsList.forEach((ad) => {
-              ad.like = $scope.user.feedback_list.some((_l) => _l.type && _l.ad && _l.type.id == 1 && _l.ad.id == ad.id);
               ad.favorite = $scope.user.feedback_list.some((_f) => _f.type && _f.ad && _f.type.id == 2 && _f.ad.id == ad.id);
             });
           }

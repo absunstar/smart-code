@@ -20,7 +20,6 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
             $scope.adsList = response.data.list;
             if($scope.user){
               $scope.adsList.forEach((ad) => {
-                ad.like = $scope.user.feedback_list.some((_l) => _l.type && _l.ad && _l.type.id == 1 && _l.ad.id == ad.id);
                 ad.favorite = $scope.user.feedback_list.some((_f) => _f.type && _f.ad && _f.type.id == 2 && _f.ad.id == ad.id);
               });
             }
@@ -118,7 +117,7 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
   };
 
   $scope.updateFeedback = function (ad, type) {
-    let data = { id: ad.id, feedback: { like: ad.like, favorite: ad.favorite, type: type } };
+    let data = { id: ad.id, feedback: { favorite: ad.favorite, type: type } };
 
     $http({
       method: 'POST',
@@ -161,7 +160,6 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
               $scope.topParentCategoriesList.push(_c);
             }
           });
-          console.log($scope.topParentCategoriesList);
         }
       },
       function (err) {

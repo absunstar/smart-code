@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" x-permissions="manage_users_ui || manage_users_manage" data-ng-app="myApp">
+<html lang="en" x-permissions="login" data-ng-app="myApp">
   <head x-import="head.html"></head>
 
   <body class="##session.lang## loaded" ng-controller="manage_user">
@@ -7,33 +7,31 @@
 
     <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
     <div x-import="manage-user/view_modal.html"></div>
-      <div x-import="manage-user/order_modal.html"></div>
-      <div x-import="manage-user/add_modal_ad.html"></div>
-      <div x-import="manage-user/delete_modal_ad.html"></div>
-      <div x-import="manage-user/update_modal_ad.html"></div>
-      <div x-import="manage-user/view_modal_ad.html"></div>
-      
-      <div x-import="manage-user/add_modal_store.html"></div>
-      <div x-import="manage-user/delete_modal_store.html"></div>
-      <div x-import="manage-user/update_modal_store.html"></div>
-      <div x-import="manage-user/view_modal_store.html"></div>
-      
-      <div x-import="ads/view_categories.html"></div>
-      <br />
+    <div x-import="manage-user/order_modal.html"></div>
+    <div x-import="manage-user/add_modal_ad.html"></div>
+    <div x-import="manage-user/delete_modal_ad.html"></div>
+    <div x-import="manage-user/update_modal_ad.html"></div>
+    <div x-import="manage-user/view_modal_ad.html"></div>
+
+    <div x-import="manage-user/add_modal_store.html"></div>
+    <div x-import="manage-user/delete_modal_store.html"></div>
+    <div x-import="manage-user/update_modal_store.html"></div>
+    <div x-import="manage-user/view_modal_store.html"></div>
+
+    <div x-import="ads/view_categories.html"></div>
+    <br />
     <h1 class="center bold black">##word.manage_your_personal_account##</h1>
     <br />
     <div class="form" id="manage_user">
       <div class="all-section tabs inline-block user-tabs">
         <div class="tabs-header">
           <a class="tab-link" onclick="site.showTabContent(event, '#personal_info')"> ##word.personal_info## </a>
-          <a class="tab-link" ng-click="showTab($event,'#my_addresses')"> ##word.my_addresses## </a>    
+          <a class="tab-link" ng-click="showTab($event,'#my_addresses')"> ##word.my_addresses## </a>
           <a class="tab-link" ng-click="showTab($event,'#messages')"> ##word.messages## </a>
           <a class="tab-link" onclick="site.showTabContent(event, '#cart')"> ##word.cart## </a>
           <a class="tab-link" ng-click="showTab($event,'#my_orders')" ng-show="defaultSettings.order_settings.activate_orders"> ##word.my_orders## </a>
           <a class="tab-link" ng-click="showTab($event,'#my_ads')"> ##word.my_ads## </a>
           <a class="tab-link" ng-click="showTab($event,'#my_stores')" ng-show="defaultSettings.stores_settings.activate_stores"> ##word.my_stores## </a>
-          <a class="tab-link" ng-click="showTab($event,'#liked_ads')"> ##word.liked_ads## </a>
-          <a class="tab-link" ng-click="showTab($event,'#liked_stores')" ng-show="defaultSettings.stores_settings.activate_stores"> ##word.liked_stores## </a>
           <a class="tab-link" ng-click="showTab($event,'#favorite_ads')"> ##word.favorite_ads## </a>
           <a class="tab-link" ng-click="showTab($event,'#favorite_stores')" ng-show="defaultSettings.stores_settings.activate_stores"> ##word.favorite_stores## </a>
         </div>
@@ -98,7 +96,6 @@
               <legend>##word.contact_info##</legend>
               <div class="row">
                 <table class="table loaded hover center bold">
-
                   <tr>
                     <td class="blue">
                       <br />
@@ -222,7 +219,7 @@
                 </div>
               </div>
               <br />
-              <div class="row">
+              <div class="row" ng-show="message.id">
                 <fieldset>
                   <legend>##word.the_message##</legend>
 
@@ -238,8 +235,7 @@
                           <h3 class="bold pre_text msg_right" ng-show="c.user_id == manage_user.id">{{c.message}}</h3>
                           <h3 class="bold pre_text msg_left" ng-show="c.user_id != manage_user.id">{{c.message}}</h3>
 
-                          <i-image view class="logo right" ng-show="c.user_id == manage_user.id" ng-model="c.image_url"></i-image>
-                          <i-image view class="logo left" ng-show="c.user_id != manage_user.id" ng-model="c.image_url"></i-image>
+                          <i-image view class="logo" ng-model="c.image_url"></i-image>
                           <h5 class="brown msg_right" ng-show="c.user_id == manage_user.id">{{c.date | date : 'hh:mm | dd - MM - yyyy'}}</h5>
                           <h5 class="brown msg_left" ng-show="c.user_id != manage_user.id">{{c.date | date : 'hh:mm | dd - MM - yyyy'}}</h5>
 
@@ -253,7 +249,6 @@
 
                   <br />
                   <br />
-
                   <div class="row">
                     <div class="col3"></div>
                     <i-textarea class="col6" label="##word.write_your_message_here##" ng-model="send_message"> </i-textarea>
@@ -416,70 +411,8 @@
             </fieldset>
           </div>
 
-          <div id="liked_ads" class="tab-content">
-            <fieldset>
-              <legend>##word.liked_ads##</legend>
-              <br />
-
-              <div class="row" ng-hide="likedAdslist.length > 0">
-                <br />
-                <br />
-                <h1 class="blue bold center">##word.there_no_ads##</h1>
-                <br />
-                <br />
-              </div>
-
-              <div class="row" ng-show="likedAdslist.length > 0">
-                <table class="table loaded hover pointer center bold">
-                  <tr>
-                    <th>##word.logo##</th>
-                    <th>##word.name##</th>
-                    <th>##word.ad_owner##</th>
-                    <th>##word.store##</th>
-                  </tr>
-
-                  <tr ng-repeat="l in likedAdslist" ng-click="displayAd(l.id)">
-                    <td><i-image view class="logo" ng-model="l.image_url"></i-image></td>
-                    <td>{{l.name}}</td>
-                    <td class="">{{l.store.user.profile.name}}</td>
-                    <td class="blue">{{l.store.name}}</td>
-                  </tr>
-                </table>
-              </div>
-            </fieldset>
-          </div>
-
-          <div id="liked_stores" ng-show="defaultSettings.stores_settings.activate_stores" class="tab-content">
-            <fieldset>
-              <legend>##word.liked_stores##</legend>
-              <br />
-
-              <div class="row" ng-hide="likedStoreslist.length > 0">
-                <br />
-                <br />
-                <h1 class="blue bold center">##word.there_no_stores##</h1>
-                <br />
-                <br />
-              </div>
-
-              <div class="row" ng-show="likedStoreslist.length > 0">
-                <table class="table loaded hover pointer center bold">
-                  <tr>
-                    <th>##word.logo##</th>
-                    <th>##word.name##</th>
-                    <th>##word.store_owner##</th>
-                  </tr>
-
-                  <tr ng-repeat="l in likedStoreslist" ng-click="displayStore(l.id)">
-                    <td><i-image view class="logo" ng-model="l.image_url"></i-image></td>
-                    <td>{{l.name}}</td>
-                    <td class="">{{l.user.profile.name}}</td>
-                  </tr>
-                </table>
-              </div>
-            </fieldset>
-          </div>
-
+        
+        
           <div id="favorite_ads" class="tab-content">
             <fieldset>
               <legend>##word.favorite_ads##</legend>
