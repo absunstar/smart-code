@@ -220,7 +220,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
       message: $scope.send_message,
       user_id: $scope.manage_user.id,
       user_name: $scope.manage_user.profile.name,
-      image_url: $scope.manage_user.image_url,
+      image_url: $scope.manage_user.profile.image_url,
       show: false,
     });
 
@@ -283,12 +283,8 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
       $scope.getUnitsList();
       $scope.getStoresList($scope.manage_user.id);
       $scope.getCurrenciesList();
-    } else if (selector == '#liked_ads') {
-      $scope.getLikedAdsList();
     } else if (selector == '#favorite_ads') {
       $scope.getFavoriteAdsList();
-    } else if (selector == '#liked_stores') {
-      $scope.getLikedStoresList();
     } else if (selector == '#favorite_stores') {
       $scope.getFavoriteStoresList();
     } else if (selector == '#my_stores') {
@@ -362,75 +358,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getLikedAdsList = function (where) {
-    $scope.busy = true;
-    $scope.likedAdslist = [];
-    $http({
-      method: 'POST',
-      url: '/api/ads/all',
-      data: {
-        where: {
-          $and: [
-            {
-              'feedback_list.user.id': $scope.manage_user.id,
-            },
-            {
-              'feedback_list.type.id': 1,
-            },
-            {
-              'ad_status.id': { $ne: 3 },
-            },
-          ],
-        },
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.likedAdslist = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
 
-  $scope.getLikedStoresList = function (where) {
-    $scope.busy = true;
-    $scope.likedStoreslist = [];
-    $http({
-      method: 'POST',
-      url: '/api/stores/all',
-      data: {
-        where: {
-          $and: [
-            {
-              'feedback_list.user.id': $scope.manage_user.id,
-            },
-            {
-              'feedback_list.type.id': 1,
-            },
-            {
-              'store_status.id': { $ne: 3 },
-            },
-          ],
-        },
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.likedStoreslist = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
 
   $scope.getFavoriteAdsList = function (where) {
     $scope.busy = true;
@@ -510,7 +438,6 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
       feedback_list: [],
       store_rating: 0,
       number_views: 0,
-      number_likes: 0,
       number_comments: 0,
       number_favorites: 0,
       number_reports: 0,
@@ -743,7 +670,6 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
       set_price: 'no',
       ad_rating: 0,
       number_views: 0,
-      number_likes: 0,
       number_comments: 0,
       number_favorites: 0,
       number_reports: 0,

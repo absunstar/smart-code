@@ -34,12 +34,11 @@ app.controller('login_souq', function ($scope, $http, $timeout) {
       }
     );
   };
-  $scope.showPass = function () {
-    let x = document.getElementById("pass");
-    if (x.type === "password") {
-      x.type = "text";
-    } else {
-      x.type = "password";
-    }
-  }
+  $scope.showPassword = function () {
+    $timeout(() => {
+      document.querySelectorAll('.pass input').forEach((p) => {
+        p.setAttribute('type', $scope.show_password ? 'text' : 'password');
+      });
+    }, 100);
+  };
 });

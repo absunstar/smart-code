@@ -474,6 +474,15 @@ a.pro-template .description {
   color: white;
 }
 
+.badge_message {
+  top: -3px;
+  right: -9px;
+  /* font-size: x-large; */
+  padding: 0px 6px;
+  border-radius: 50%;
+  background-color: green;
+}
+
 @media screen and (max-width: 768px) {
   body {
     margin-right: 0px;
@@ -528,7 +537,7 @@ a.pro-template .description {
  
 /* Handle */
 ._scroll::-webkit-scrollbar-thumb {
-  background: green; 
+  background: #00A884; 
   border-radius: 10px;
 }
 

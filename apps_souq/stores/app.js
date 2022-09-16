@@ -159,30 +159,7 @@ module.exports = function init(site) {
     }
     // store.feedback_list
     store.feedback_list = store.feedback_list || [];
-    if (user_store.feedback.type == 'like') {
-      if (user_store.feedback.like === true) {
-        store.number_likes = store.number_likes + 1;
-        req.session.user.feedback_list = req.session.user.feedback_list || [];
-        req.session.user.feedback_list.push({ type: { id: 1 }, store: { id: user_store.id } });
-        site.security.updateUser(req.session.user, (err, user_doc) => {});
-        store.feedback_list.push({
-          date: new Date(),
-          user: user,
-          type: { id: 1, en: 'Like', ar: 'إعجاب' },
-        });
-      } else {
-        store.number_likes = store.number_likes - 1;
-        req.session.user.feedback_list.splice(
-          req.session.user.feedback_list.findIndex((c) => c.type && c.store && c.type.id == 1 && c.store.id == store.id),
-          1
-        );
-        site.security.updateUser(req.session.user, (err, user_doc) => {});
-        store.feedback_list.splice(
-          store.feedback_list.findIndex((c) => c.type.id == 1 && c.user.id == req.session.user.id),
-          1
-        );
-      }
-    } else if (user_store.feedback.type == 'favorite') {
+   if (user_store.feedback.type == 'favorite') {
       if (user_store.feedback.favorite === true) {
         store.number_favorites = store.number_favorites + 1;
         req.session.user.feedback_list.push({ type: { id: 2 }, store: { id: user_store.id } });

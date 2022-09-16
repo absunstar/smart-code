@@ -6,7 +6,7 @@
     {
         "name": "area_new",
         "en": "New Area",
-        "ar": "منطقة  جديد"
+        "ar": "منطقة جديدة"
     },
     {
         "name": "area",
@@ -18,7 +18,6 @@
         "en": "Price Delivery Service",
         "ar": "سعر خدمة التوصيل"
     },
-
     {
         "name": "area_add",
         "en": "Add Area",
@@ -44,8 +43,4 @@
         "en": "Area Name",
         "ar": "إسم المنطقة "
     }
-
-
-
-
 ]

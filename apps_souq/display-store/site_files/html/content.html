@@ -5,9 +5,9 @@
     <div class="ro store-details">
       <div class="col8 store-info">
         <div class="row store-name">
-          <h1>{{store.store.user.profile.name}}</h1>
-          <h1>{{store.store.name}}</h1>
-          <h1>{{store.name_##session.lang##}}</h1>
+          <a class="user-name-stlye" href="/profile?id=store.user.id"> {{store.user.profile.name}}</a>
+
+          <h1>{{store.name}}</h1>
         </div>
         <br />
         <div class="store-loction">
@@ -26,12 +26,10 @@
           <h2 class="pre_text">{{store.description}}</h2>
         </div>
         <div class="row flv-number">
-          <b> ##word.number_likes## : {{store.number_likes}}</b>
-          <b> ##word.number_favorites## : {{store.number_favorites}}</b>
+          <b> ##word.number_favorites## : {{store.$number_favorites}}</b>
           <b> ##word.number_views## : {{store.number_views}}</b>
         </div>
         <div class="row lfr-section">
-          <i-checkbox class="col2 like" label="##word.like##" ng-click="updateFeedback('like')" ng-model="activity.like"> </i-checkbox>
           <i-checkbox class="col2 favorite" label="##word.favorite##" ng-click="updateFeedback('favorite')" ng-model="activity.favorite"> </i-checkbox>
           <i-button fa="flag" label="##word.submit_report##" onclick="site.showModal('#reportModal')"></i-button>
           <i-button fa="envelope" label="##word.message##" ng-hide="store.user.id == user.id" onclick="site.showModal('#messageModal')"></i-button>
@@ -60,7 +58,6 @@
                 </div>
                 <div class="row lf-action">
                   <i-button fa="shopping-cart" ng-hide="a.store.user.id == user.id" label="##word.add_to_cart##" ng-click="bookList(a,0)"> </i-button>
-                  <i-checkbox class="ad-like" label="##word.like##" ng-click="updateFeedbackAd(a,'like')" ng-model="a.like"> </i-checkbox>
                   <i-checkbox label="##word.favorite##" ng-click="updateFeedbackAd(a,'favorite')" ng-model="a.favorite"> </i-checkbox>
                 </div>
               </div>

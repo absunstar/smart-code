@@ -10,6 +10,26 @@
     "ar": "TTL"
   },
   {
+    "name": "notifications",
+    "en": "Notifications",
+    "ar": "الإشعارات"
+  },
+  {
+    "name": "favorite",
+    "en": "Favorite",
+    "ar": "المفضلة"
+  },
+  {
+    "name": "follow",
+    "en": "Follow",
+    "ar": "المتابعة"
+  },
+  {
+    "name": "unfollow",
+    "en": "Unfollow",
+    "ar": "إلغاء المتابعة"
+  },
+  {
     "name": "arabic",
     "en": "Arabic",
     "ar": "عربي"
@@ -1243,6 +1263,16 @@
     "name": "select",
     "en": "Select",
     "ar": "تحديد"
+  },
+  {
+    "name": "select",
+    "en": "Select",
+    "ar": "تحديد"
+  },
+  {
+    "name": "commercial_registration_no",
+    "en": "Commercial Registration No",
+    "ar": "رقم السجل التجاري"
   },
   {
     "name": "tax_number",

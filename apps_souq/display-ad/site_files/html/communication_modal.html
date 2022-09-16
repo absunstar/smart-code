@@ -11,6 +11,7 @@
           {{main_obj.mobile}}
           <i class="fa fa-mobile" aria-hidden="true"></i>
         </a>
+
         <i-button class="row" fa="envelope" label="##word.message##" ng-hide="main_obj.store.user.id == user.id || main_obj.user.id == user.id" onclick="site.showModal('#messageModal');site.hideModal('#communicationModal')"></i-button>
       </div>
       <h2 class="error center bold">{{error}}</h2>

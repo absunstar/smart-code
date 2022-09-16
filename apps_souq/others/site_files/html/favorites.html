@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="login" data-ng-app="myApp">
+  <head x-import="head.html">
+    <link rel="stylesheet" href="/css/order_invoice.css?v=##site.options.version##" />
+  </head>
+
+  <body class="##session.lang## loaded" ng-controller="favorites">
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar"></nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
+
+    <div id="main-layout" class="container">
+      <div class="row">
+
+        <div class="row" ng-hide="favoriteAdslist.length > 0">
+          <br />
+          <br />
+          <h1 class="blue bold center">##word.there_no_ads##</h1>
+       
+        </div>
+        <fieldset class="ads-section" ng-show="favoriteAdslist.length > 0">
+          <div ng-repeat="a in favoriteAdslist " class="ads-area even">
+            <div class="ad-area">
+              <div class="ads-info">
+                <b class="bold col4 ad-name">{{a.name}}</b>
+                <div class="info">
+                  <div class="row user-action">
+                    <div class="u-action">
+                      <i-checkbox label="##word.favorite##" ng-click="updateFeedback(a,'favorite')" ng-model="a.favorite"> </i-checkbox>
+                    </div>
+                  </div>
+                </div>
+                <div class="time-publish">
+                  <i class="fa-solid fa-clock"></i>
+                </div>
+                <div class="ad-location">
+                  <i class="fa-solid fa-location-pin"></i>
+                  <div class="adress">
+                    <p class="location" ng-show="a.address.country">{{a.address.country.name_##session.lang##}} - {{a.address.gov.name_##session.lang##}} - {{a.address.city.name_##session.lang##}} - {{a.address.area.name_##session.lang##}}</p>
+                    <p class="location">{{a.address.detailed_address}}</p>
+                  </div>
+                </div>
+                <div class="row" ng-click="displayAd(a.id)">
+                  <p class="ad-owner">
+                    <i class="fa-solid fa-user"></i>
+                    <b> {{a.store.user.profile.name}}</b>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="row" ng-click="displayAd(a.id)">
+              <i-image view="" class="logo col2 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty" ng-model="a.image_url">
+                <form class="form text-center pointer ng-pristine ng-valid">
+                  <input class="hidden" type="file" name="file" />
+                  <img class="bg-white image-size" ng-src="" ngclick="ngClick()" onerror="this.src='/images/no.jpg'" src="" />
+                  <progress class="row" style="display: none"></progress>
+                </form>
+              </i-image>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+    <div x-import="herag/scripts.html"></div>
+
+    <script x-permissions="login" x-import="others/favorites.js"></script>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="login" data-ng-app="myApp">
+  <head x-import="head.html">
+    <link rel="stylesheet" href="/css/order_invoice.css?v=##site.options.version##" />
+  </head>
+
+  <body class="##session.lang## loaded" ng-controller="follow">
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar"></nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
+
+    <div id="main-layout" class="container">
+
+      <div class="row">
+        <h1 class="bold text-center">##word.follow_ups##</h1>
+      </div>
+
+      <div class="row">
+        <div class="row" ng-hide="users_list.length > 0">
+          <br />
+          <br />
+          <h1 class="blue bold center">##word.no_follow_up##</h1>
+        </div>
+        <fieldset class="ads-section" ng-show="users_list.length > 0">
+          <legend>##word.members_you_follow##</legend>
+          <div ng-repeat="u in users_list " class="ads-area even">
+            <div class="ad-area">
+              <div class="ads-info">
+                <b class="bold col4 ad-name">{{u.profile.name}} {{u.profile.last_name}}</b>
+              </div>
+              <i-button label="##word.unfollow##" ng-click="updateFollow(u,false)"></i-button>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+    <div x-import="herag/scripts.html"></div>
+
+    <script x-permissions="login" x-import="others/follow.js"></script>
+  </body>
+</html>

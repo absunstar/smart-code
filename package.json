@@ -22,7 +22,12 @@
   "dependencies": {
     "agora-access-token": "^2.0.4",
     "axios": "^0.24.0",
+<<<<<<< HEAD
     "isite": "^2022.9.16",
+=======
+    "isite": "^2022.8.7",
+    "prettier": "^2.7.1",
+>>>>>>> 9fe0e568a5a7af500d111ab516b9f47ca4722920
     "uuid": "^8.3.2",
     "xlsx": "^0.17.4",
     "zklib": "^0.2.11"

@@ -177,30 +177,7 @@ module.exports = function init(site) {
     }
     // ad.feedback_list
     ad.feedback_list = ad.feedback_list || [];
-    if (user_ad.feedback.type == 'like') {
-      if (user_ad.feedback.like === true) {
-        ad.number_likes = ad.number_likes + 1;
-        req.session.user.feedback_list = req.session.user.feedback_list || [];
-        req.session.user.feedback_list.push({ type: { id: 1 }, ad: { id: user_ad.id } });
-        site.security.updateUser(req.session.user, (err, user_doc) => {});
-        ad.feedback_list.push({
-          date: new Date(),
-          user: user,
-          type: { id: 1, en: 'Like', ar: 'إعجاب' },
-        });
-      } else {
-        ad.number_likes = ad.number_likes - 1;
-        req.session.user.feedback_list.splice(
-          req.session.user.feedback_list.findIndex((c) => c.type && c.ad && c.type.id == 1 && c.ad.id == ad.id),
-          1
-        );
-        site.security.updateUser(req.session.user, (err, user_doc) => {});
-        ad.feedback_list.splice(
-          ad.feedback_list.findIndex((c) => c.type.id == 1 && c.user.id == req.session.user.id),
-          1
-        );
-      }
-    } else if (user_ad.feedback.type == 'favorite') {
+     if (user_ad.feedback.type == 'favorite') {
       if (user_ad.feedback.favorite === true) {
         ad.number_favorites = ad.number_favorites + 1;
         req.session.user.feedback_list.push({ type: { id: 2 }, ad: { id: user_ad.id } });
@@ -223,6 +200,12 @@ module.exports = function init(site) {
           1
         );
       }
+      req.session.user.feedback_list.forEach(_fl => {
+        if(_fl.ad && _fl.ad.id && _fl.type && _fl.type.id == 2) {
+          
+        }
+      });
+
     } else if (user_ad.feedback.type == 'report') {
       ad.number_reports = ad.number_reports + 1;
       ad.feedback_list.push({
@@ -255,16 +238,10 @@ module.exports = function init(site) {
     res.json(response);
   });
 
-  site.post('/api/ads/view', (req, res) => {
+  site.post({name : '/api/ads/view',public : true}, (req, res) => {
     let response = {
       done: false,
     };
-
-    if (!req.session.user) {
-      response.error = 'Please Login First';
-      res.json(response);
-      return;
-    }
 
     let ad = null;
     site.ad_list.forEach((a) => {
@@ -287,11 +264,10 @@ module.exports = function init(site) {
     }
   });
 
-  site.post('/api/ads/all', (req, res) => {
+  site.post( {name : '/api/ads/all',public : true}, (req, res) => {
     let response = {
       done: false,
     };
-
     let where = req.body.where || {};
     let skip = 0;
     let start = (req.data.page_number || 0) * (req.data.limit || 0);

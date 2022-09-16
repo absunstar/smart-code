@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="login" data-ng-app="myApp">
+
+  <head x-import="head.html">
+    <link rel="stylesheet" href="/css/order_invoice.css?v=##site.options.version##" />
+  </head>
+
+  <body class="##session.lang## loaded" ng-controller="profile">
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar"></nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
+
+    <div id="main-layout" class="container">
+      <div x-import="others/message_modal.html"></div>
+      <div class="row">
+        <div class="ad-user">
+          <i class="fa-solid fa-user fa-style"></i>
+          <h1 class="user-name-stlye">{{user.profile.name}}</h1>
+        </div>
+        <h2 class="user-name-stlye">{{user.email}}</h2>
+        <i-button label="##word.follow##" ng-hide="user.$is_follow && '##user.email##' == user.email" ng-click="updateFollow(user,true)"></i-button>
+        <i-button label="##word.unfollow##" ng-show="user.$is_follow && '##user.email##' != user.email" ng-click="updateFollow(user,false)"></i-button>
+        <i-button fa="envelope" label="##word.conversation##" onclick="site.showModal('#messageModal')"></i-button>
+        <a class="row" ng-show="user.mobile" href="tel:{{user.mobile}}">
+          {{user.mobile}}
+          <i class="fa fa-mobile" aria-hidden="true"></i>
+        </a>
+
+        <a class="row" ng-show="user.phone" href="tel:{{user.phone}}">
+          {{user.phone}}
+          <i class="fa fa-phone" aria-hidden="true"></i>
+        </a>
+        <br />
+        <br />
+        <div class="row" ng-hide="adslist.length > 0">
+          <br />
+          <br />
+          <h1 class="blue bold center">##word.there_no_ads##</h1>
+        </div>
+        <fieldset class="ads-section" ng-show="adslist.length > 0">
+          <div ng-repeat="a in adslist" class="ads-area even">
+            <div class="ad-area">
+              <div class="ads-info">
+                <b class="bold col4 ad-name">{{a.name}}</b>
+
+                <div class="time-publish">
+                  <i class="fa-solid fa-clock"></i>
+                </div>
+                <div class="ad-location">
+                  <i class="fa-solid fa-location-pin"></i>
+                  <div class="adress">
+                    <p class="location" ng-show="a.address.country">{{a.address.country.name_##session.lang##}} - {{a.address.gov.name_##session.lang##}} - {{a.address.city.name_##session.lang##}} - {{a.address.area.name_##session.lang##}}</p>
+                    <p class="location">{{a.address.detailed_address}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row" ng-click="displayAd(a.id)">
+              <i-image view class="logo" ng-model="a.image_url">
+              </i-image>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+    <div x-import="herag/scripts.html"></div>
+
+    <script x-permissions="login" x-import="others/profile.js"></script>
+  </body>
+</html>

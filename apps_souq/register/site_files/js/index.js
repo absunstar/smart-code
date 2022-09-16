@@ -43,15 +43,11 @@ app.controller('register_souq', function ($scope, $http, $timeout) {
     }
   };
 
-  $scope.showPass = function () {
-    let x = document.querySelector('#pass1 input');
-    let z = document.querySelector('#pass2 input');
-    if (x.type === 'password' && z.type === 'password') {
-      x.type = 'text';
-      z.type = 'text';
-    } else {
-      x.type = 'password';
-      z.type = 'password';
-    }
+    $scope.showPassword = function () {
+    $timeout(() => {
+      document.querySelectorAll('.pass input').forEach((p) => {
+        p.setAttribute('type', $scope.show_password ? 'text' : 'password');
+      });
+    }, 100);
   };
 });

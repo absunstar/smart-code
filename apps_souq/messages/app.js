@@ -29,7 +29,7 @@ module.exports = function init(site) {
         });
       }
     });
-  }, 1000 * 7);
+  }, 1000 * 3);
 
   site.get({
     name: 'images',
@@ -72,7 +72,7 @@ module.exports = function init(site) {
           message: req.body.message,
           user_id: req.session.user.id,
           user_name: req.session.user.profile.name,
-          image_url: req.session.user.image_url,
+          image_url: req.session.user.profile.image_url,
           show: false,
         },
       ],
@@ -123,7 +123,7 @@ module.exports = function init(site) {
           message: req.body.message,
           user_id: req.session.user.id,
           user_name: req.session.user.profile.name,
-          image_url: req.session.user.image_url,
+          image_url: req.session.user.profile.image_url,
           show: false,
         });
         message.$update = true;
@@ -164,6 +164,40 @@ module.exports = function init(site) {
         }
       });
     }
+    response.done = true;
+    res.json(response);
+  });
+
+  site.post('/api/messages/show', (req, res) => {
+    let response = {
+      done: false,
+    };
+
+    if (!req.session.user) {
+      response.error = 'Please Login First';
+      res.json(response);
+      return;
+    }
+
+    let messages_doc = req.body;
+
+      
+      site.message_list.forEach((a, i) => {
+        if (a.id === messages_doc.id) {
+          let found_update = false;
+          site.message_list[i].messages_list.forEach(_m => {
+            if(_m.user_id == req.session.user.id) {
+              _m.show = true;
+              found_update = true;
+            }
+          });
+          if(found_update){
+            site.message_list[i].$update = true;
+          }
+          response.doc = site.message_list[i];
+        }
+      });
+    
     response.done = true;
     res.json(response);
   });
@@ -238,6 +272,13 @@ module.exports = function init(site) {
       (err, docs, count) => {
         if (!err) {
           response.done = true;
+          docs.forEach(_doc => {
+            _doc.messages_list.forEach(_m => {
+              if(_m.user_id == req.session.user.id && !_m.show) {
+                _doc.$new = true;
+              }
+            });
+          });
           response.list = docs;
           response.count = count;
         } else {

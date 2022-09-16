@@ -10,7 +10,6 @@ app.controller('create_ad', function ($scope, $http, $timeout) {
       ad_rating: 0,
       set_price: 'no',
       number_views: 0,
-      number_likes: 0,
       number_comments: 0,
       number_favorites: 0,
       number_reports: 0,

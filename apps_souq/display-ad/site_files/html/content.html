@@ -10,16 +10,16 @@
               <h1 class="ad-name">{{ad.name}}</h1>
               <div class="store-name" ng-show="defaultSettings.stores_settings.activate_stores">
                 <i class="fa-solid fa-store fa-style"></i>
-                <h1  class="store-name-stlye"> {{ad.store.name}}</h1>
+                <h1 class="store-name-stlye">{{ad.store.name}}</h1>
               </div>
               <div class="ad-user">
-              <i class="fa-solid fa-user fa-style"></i>
-                <h1 class="user-name-stlye">{{ad.store.user.profile.name}}</h1>
+                <i class="fa-solid fa-user fa-style"></i>
+                <a class="user-name-stlye" href="/profile?id={{ad.store.user.id}}"> {{ad.store.user.profile.name}}</a>
               </div>
             </div>
             <br />
             <br />
-            <b>{{ad.address.country.name_##session.lang##}}  {{ad.address.gov.name_##session.lang##}}   {{ad.address.city.name_##session.lang##}}   {{ad.address.area.name_##session.lang##}}</b>
+            <b>{{ad.address.country.name_##session.lang##}} {{ad.address.gov.name_##session.lang##}} {{ad.address.city.name_##session.lang##}} {{ad.address.area.name_##session.lang##}}</b>
             <p>{{ad.address.detailed_address}}</p>
             <br />
             <br />
@@ -29,7 +29,6 @@
                 <br />
                 <b>{{q.unit.name_##session.lang##}} {{q.net_value}} {{q.currency.name_##session.lang##}}</b>
               </b>
-
             </div>
             <div class="row ad-description">
               <h2 class="ad-descr pre_text">{{ad.description}}</h2>
@@ -37,39 +36,47 @@
           </div>
           <div class="user-action">
             <div class="take-action">
-              <i-button class="add-cart col2" type="add" ng-hide="ad.store.user.id == user.id" label="##word.add_to_cart##"
-              ng-click="bookList(ad,$index)">
-              </i-button>
-              <i-button fa="envelope" ng-hide="ad.hide_mobile" label="##word.communication##" ng-click="showCommunication(ad)">
-              </i-button>
+              <i-button class="add-cart col2" type="add" ng-hide="ad.store.user.id == user.id" label="##word.add_to_cart##" ng-click="bookList(ad,$index)"> </i-button>
+              <i-button fa="envelope" ng-hide="ad.hide_mobile" label="##word.communication##" ng-click="showCommunication(ad)"> </i-button>
             </div>
             <div class="row lfr-user">
-              <i-checkbox class="col2 like" label="##word.like##" ng-click="updateFeedback('like')" ng-model="activity.like"> </i-checkbox>
               <i-checkbox class="col2 favorite" label="##word.favorite##" ng-click="updateFeedback('favorite')" ng-model="activity.favorite"> </i-checkbox>
               <i-button fa="flag" label="##word.submit_report##" onclick="site.showModal('#reportModal')"></i-button>
               <i-button fa="envelope" label="##word.message##" ng-hide="ad.store.user.id == user.id" onclick="site.showModal('#messageModal')"></i-button>
             </div>
             <div class="row">
-              <b> ##word.number_likes## : {{ad.number_likes}}</b>
-              <b> ##word.number_favorites## : {{ad.number_favorites}}</b>
+              <b> ##word.number_favorites## : {{ad.$number_favorites}}</b>
               <b> ##word.number_views## : {{ad.number_views}}</b>
             </div>
-      
           </div>
         </div>
       </div>
       <div class="product-image">
+
         <div class="col4 main-image">
           <img class="main-image-product" src="{{ad.image_url}}" alt="Girl in a jacket" width="350" height="450" />
         </div>
+
         <div class="row center p-image" ng-repeat="i in ad.images_list">
           <img src="{{i.image_url}}" alt="Girl in a jacket" width="500" height="600" />
           <h2 class="pre_text center">{{i.description}}</h2>
           <br />
           <br />
         </div>
+
+        <div class="row center p-image" ng-repeat="c in ad.category_require_list">
+          <h2 class="pre_text center">{{c.name_##session.lang##}}</h2>
+          <img ng-show="c.type.id == 1" src="{{c.image_url}}" alt="Girl in a jacket" width="500" height="600" />
+          <h3 ng-show="c.type.id == 2">{{c.text}}</h3>
+          <h3 class="pre_text" ng-show="c.type.id == 3">{{c.text}}</h3>
+          <i-files view ng-show="c.type.id == 4" ng-model="c.files"></i-files>
+          <h3 ng-show="c.type.id == 5">{{c.date |date:"dd - MM - yyyy"}}</h3>
+          <br />
+          <br />
+        </div>
       </div>
     </div>
+
     <div class="comment">
       <div class="row">
         <h1>##word.comments## :</h1>
@@ -80,11 +87,7 @@
         <i-button type="add" label="##word.add_comment##" ng-click="updateFeedback('comment')"></i-button>
       </div>
     </div>
-
   </div>
-
-
-
 
   <br />
   <br />
