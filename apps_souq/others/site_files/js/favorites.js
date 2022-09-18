@@ -38,6 +38,10 @@ app.controller('favorites', function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.displayAd = function (id) {
+    window.open(`/display_ad?id=${id}`, '_blank');
+  };
+
   $scope.getUser = function () {
     $scope.busy = true;
     $http({

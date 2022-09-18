@@ -40,21 +40,18 @@
                     <p class="location">{{a.address.detailed_address}}</p>
                   </div>
                 </div>
-                <div class="row" ng-click="displayAd(a.id)">
+                <div class="row" >
                   <p class="ad-owner">
                     <i class="fa-solid fa-user"></i>
-                    <b> {{a.store.user.profile.name}}</b>
+                    <a href="/profile?id={{a.store.user.id}}"> {{a.store.user.profile.name}}</a>
+
                   </p>
                 </div>
               </div>
             </div>
             <div class="row" ng-click="displayAd(a.id)">
-              <i-image view="" class="logo col2 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty" ng-model="a.image_url">
-                <form class="form text-center pointer ng-pristine ng-valid">
-                  <input class="hidden" type="file" name="file" />
-                  <img class="bg-white image-size" ng-src="" ngclick="ngClick()" onerror="this.src='/images/no.jpg'" src="" />
-                  <progress class="row" style="display: none"></progress>
-                </form>
+              <i-image view="" class="logo col2" ng-model="a.image_url">
+                
               </i-image>
             </div>
           </div>
