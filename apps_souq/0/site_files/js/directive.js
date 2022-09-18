@@ -51,7 +51,7 @@ app.directive('iUser', [
           }
         };
       },
-      template: `/*##0-default/i-user.html*/`,
+      template: `/*##0/i-user.html*/`,
     };
   },
 ]);
@@ -108,7 +108,7 @@ app.directive('iStore', [
           }
         };
       },
-      template: `/*##0-default/i-store.html*/`,
+      template: `/*##0/i-store.html*/`,
     };
   },
 ]);
@@ -135,7 +135,7 @@ app.directive('iCategory', [
           console.log(msg);
         };
       },
-      template: `/*##0-default/i-category.html*/`,
+      template: `/*##0/i-category.html*/`,
     };
   },
 ]);
@@ -264,7 +264,7 @@ app.directive('iFeedback', [
         $scope.getReportsTypesList();
         $scope.getFeedbackTypeList();
       },
-      template: `/*##0-default/i-feedback.html*/`,
+      template: `/*##0/i-feedback.html*/`,
     };
   },
 ]);
@@ -403,7 +403,7 @@ app.directive('iAddress', [
         };
         $scope.getCountriesList();
       },
-      template: `/*##0-default/i-address.html*/`,
+      template: `/*##0/i-address.html*/`,
     };
   },
 ]);
@@ -446,7 +446,7 @@ app.directive('iCategoryRequire', [
 
         $scope.getTypesCategoryRequireList();
       },
-      template: `/*##0-default/i-category-require.html*/`,
+      template: `/*##0/i-category-require.html*/`,
     };
   },
 ]);
@@ -468,7 +468,7 @@ app.directive('iAdRequire', [
           $scope.id2 = Math.random().toString().replace('.', '_');
         }
       },
-      template: `/*##0-default/i-ad-require.html*/`,
+      template: `/*##0/i-ad-require.html*/`,
     };
   },
 ]);
@@ -529,7 +529,7 @@ app.directive('iSubCategory', [
           }
         };
       },
-      template: `/*##0-default/i-sub-category.html*/`,
+      template: `/*##0/i-sub-category.html*/`,
     };
   },
 ]);

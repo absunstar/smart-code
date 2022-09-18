@@ -44,7 +44,7 @@ site.get(
       data.site_settings.user_design = data.site_settings.user_design || { id: 5 };
       if (data.site_settings.user_design.id == 1) {
         res.render(
-          '0-default/index.html',
+          '0/index.html',
           {},
           {
             parser: 'html css js',
@@ -52,7 +52,7 @@ site.get(
         );
       } else if (data.site_settings.user_design.id == 2) {
         res.render(
-          '0-default/index.html',
+          '0/index.html',
           {},
           {
             parser: 'html css js',
