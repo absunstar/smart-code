@@ -98,7 +98,7 @@ app.controller('display_store', function ($scope, $http, $timeout) {
       method: 'POST',
       url: '/api/user/view',
       data: {
-        id: '##user.id##',
+        id: site.toNumber('##user.id##'),
       },
     }).then(
       function (response) {
@@ -134,7 +134,7 @@ app.controller('display_store', function ($scope, $http, $timeout) {
 
     $http({
       method: 'POST',
-      url: '/api/ads/update_feedback',
+      url: '/api/contents/update_feedback',
       data: data,
     }).then(
       function (response) {
@@ -228,7 +228,7 @@ app.controller('display_store', function ($scope, $http, $timeout) {
     if (ev.which === 13) {
       $http({
         method: 'POST',
-        url: '/api/ads/all',
+        url: '/api/contents/all',
         data: {
           where: { 'store.id': site.toNumber('##query.id##'), 'ad_status.id': 1 },
         },

@@ -7,7 +7,7 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
     if (ev.which === 13) {
       $http({
         method: 'POST',
-        url: '/api/ads/all',
+        url: '/api/contents/all',
         data: {
           where: where,
         },
@@ -40,7 +40,7 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
       method: 'POST',
       url: '/api/user/view',
       data: {
-        id: '##user.id##',
+        id: site.toNumber('##user.id##'),
       },
     }).then(
       function (response) {
@@ -119,7 +119,7 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
 
     $http({
       method: 'POST',
-      url: '/api/ads/update_feedback',
+      url: '/api/contents/update_feedback',
       data: data,
     }).then(
       function (response) {

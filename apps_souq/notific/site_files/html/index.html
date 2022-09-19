@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="login" data-ng-app="myApp">
+  <head x-import="head.html">
+    <link rel="stylesheet" href="/css/order_invoice.css?v=##site.options.version##" />
+  </head>
+
+  <body class="##session.lang## loaded" ng-controller="notific">
+    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar"></nav>
+
+    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
+
+    <div id="main-layout" class="container">
+      <div x-import="notific/notific_setting.html"></div>
+
+      <div class="row">
+        <h1 class="bold text-center">##word.notifications##</h1>
+      </div>
+
+      <div class="row">
+        <i-button type="view" label=" ##word.setting##" onclick="site.showModal('#notificSettingModal')"></i-button>
+        <i-button type="delete" label="##word.delete_notifications##" ng-click="deleteNotific()"></i-button>
+
+      </div>
+
+      <div class="row">
+        <div class="row" ng-hide="notific_list.length > 0">
+          <br />
+          <br />
+          <h1 class="blue bold center">##word.no_notifications##</h1>
+        </div>
+        <fieldset class="ads-section" ng-show="notific_list.length > 0">
+          <div ng-repeat="n in notific_list" class="ads-area even padding border">
+            <div class="ad-area">
+              <div class="ads-info">
+                <h2 ng-show="n.type == 'comments_my_ads'">##word.there_new_response_ad##</h2>
+                <h3 class="pointer" ng-show="n.type == 'comments_my_ads'" ng-click="displayAd(n.ad.id)">##word.new_comment_on## {{n.ad.name}}</h3>
+                <a href="/profile?id={{n.user_action.id}}"> {{n.user_action.profile.name}}</a>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+    <div x-import="herag/scripts.html"></div>
+
+    <script x-permissions="login" x-import="notific/index.js"></script>
+  </body>
+</html>

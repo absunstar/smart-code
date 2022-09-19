@@ -7,7 +7,7 @@ app.controller('display_ad', function ($scope, $http, $timeout) {
     $scope.error = '';
     $http({
       method: 'POST',
-      url: '/api/ads/view',
+      url: '/api/contents/view',
       data: {
         id: site.toNumber('##query.id##'),
         display: true,
@@ -69,7 +69,7 @@ app.controller('display_ad', function ($scope, $http, $timeout) {
 
     $http({
       method: 'POST',
-      url: '/api/ads/update_feedback',
+      url: '/api/contents/update_feedback',
       data: data,
     }).then(
       function (response) {
@@ -112,7 +112,7 @@ app.controller('display_ad', function ($scope, $http, $timeout) {
       method: 'POST',
       url: '/api/user/view',
       data: {
-        id: '##user.id##',
+        id: site.toNumber('##user.id##'),
       },
     }).then(
       function (response) {

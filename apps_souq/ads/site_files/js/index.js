@@ -1,4 +1,4 @@
-app.controller('ads', function ($scope, $http, $timeout) {
+app.controller('contents', function ($scope, $http, $timeout) {
   $scope._search = {};
 
   $scope.ad = {};
@@ -69,7 +69,7 @@ app.controller('ads', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/ads/add',
+      url: '/api/contents/add',
       data: $scope.ad,
     }).then(
       function (response) {
@@ -115,7 +115,7 @@ app.controller('ads', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/ads/update',
+      url: '/api/contents/update',
       data: $scope.ad,
     }).then(
       function (response) {
@@ -150,7 +150,7 @@ app.controller('ads', function ($scope, $http, $timeout) {
     $scope.error = '';
     $http({
       method: 'POST',
-      url: '/api/ads/view',
+      url: '/api/contents/view',
       data: {
         id: ad.id,
       },
@@ -183,7 +183,7 @@ app.controller('ads', function ($scope, $http, $timeout) {
 
     $http({
       method: 'POST',
-      url: '/api/ads/delete',
+      url: '/api/contents/delete',
       data: {
         id: $scope.ad.id,
       },
@@ -257,7 +257,7 @@ app.controller('ads', function ($scope, $http, $timeout) {
     $scope.list = [];
     $http({
       method: 'POST',
-      url: '/api/ads/all',
+      url: '/api/contents/all',
       data: {
         where: where,
       },
@@ -428,7 +428,7 @@ app.controller('ads', function ($scope, $http, $timeout) {
       method: 'POST',
       url: '/api/user/view',
       data: {
-        id: '##user.id##',
+        id: site.toNumber('##user.id##'),
       },
     }).then(
       function (response) {

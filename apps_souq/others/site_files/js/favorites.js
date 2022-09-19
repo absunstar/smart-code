@@ -5,7 +5,7 @@ app.controller('favorites', function ($scope, $http, $timeout) {
     $scope.favoriteAdslist = [];
     $http({
       method: 'POST',
-      url: '/api/ads/all',
+      url: '/api/contents/all',
       data: {
         where: {
           $and: [
@@ -73,7 +73,7 @@ app.controller('favorites', function ($scope, $http, $timeout) {
 
     $http({
       method: 'POST',
-      url: '/api/ads/update_feedback',
+      url: '/api/contents/update_feedback',
       data: data,
     }).then(
       function (response) {

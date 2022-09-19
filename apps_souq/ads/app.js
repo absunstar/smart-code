@@ -1,5 +1,19 @@
 module.exports = function init(site) {
   const $ads = site.connectCollection('ads');
+
+  site.get({
+    name: 'images',
+    path: __dirname + '/site_files/images/',
+  });
+
+  site.get({
+    name: 'contents',
+    path: __dirname + '/site_files/html/index.html',
+    parser: 'html',
+    compress: true,
+  });
+
+
   site.ad_list = [];
   $ads.findMany({}, (err, docs) => {
     if (!err && docs) {
@@ -30,7 +44,7 @@ module.exports = function init(site) {
     });
   }, 1000 * 7);
 
-  site.post('/api/ads/add', (req, res) => {
+  site.post('/api/contents/add', (req, res) => {
     let response = {
       done: false,
     };
@@ -75,7 +89,7 @@ module.exports = function init(site) {
     res.json(response);
   });
 
-  site.post('/api/ads/update', (req, res) => {
+  site.post('/api/contents/update', (req, res) => {
     let response = {
       done: false,
     };
@@ -119,7 +133,7 @@ module.exports = function init(site) {
     res.json(response);
   });
 
-  site.post('/api/ads/delete', (req, res) => {
+  site.post('/api/contents/delete', (req, res) => {
     let response = {
       done: false,
     };
@@ -139,19 +153,8 @@ module.exports = function init(site) {
     res.json(response);
   });
 
-  site.get({
-    name: 'images',
-    path: __dirname + '/site_files/images/',
-  });
 
-  site.get({
-    name: 'ads',
-    path: __dirname + '/site_files/html/index.html',
-    parser: 'html',
-    compress: true,
-  });
-
-  site.post('/api/ads/update_feedback', (req, res) => {
+  site.post('/api/contents/update_feedback', (req, res) => {
     let response = {
       done: false,
     };
@@ -217,13 +220,25 @@ module.exports = function init(site) {
       });
     } else if (user_ad.feedback.type == 'comment') {
       ad.number_comments = ad.number_comments + 1;
-      ad.feedback_list.push({
+      let comment = {
         user: user,
         type: { id: 4, en: 'Comment', ar: 'تعليق' },
         comment_type: user_ad.feedback.comment_type,
         comment: user_ad.feedback.comment,
         date: new Date(),
+      }
+      ad.feedback_list.push(comment);
+
+      site.call('[notific][comments_my_ads]', 
+      {
+        user_ad : ad.store.user,
+        user_comment : req.session.user,
+        ad : {
+          id : ad.id,
+          name : ad.name,
+        }
       });
+     
     }
 
     ad.$update = true;
@@ -238,7 +253,7 @@ module.exports = function init(site) {
     res.json(response);
   });
 
-  site.post({name : '/api/ads/view',public : true}, (req, res) => {
+  site.post({name : '/api/contents/view',public : true}, (req, res) => {
     let response = {
       done: false,
     };
@@ -264,7 +279,7 @@ module.exports = function init(site) {
     }
   });
 
-  site.post( {name : '/api/ads/all',public : true}, (req, res) => {
+  site.post( {name : '/api/contents/all',public : true}, (req, res) => {
     let response = {
       done: false,
     };

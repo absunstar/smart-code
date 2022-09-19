@@ -429,7 +429,7 @@ app.controller('shifts', function ($scope, $http, $timeout) {
       method: 'POST',
       url: '/api/user/view',
       data: {
-        id: '##user.id##',
+        id: site.toNumber('##user.id##'),
       },
     }).then(
       function (response) {

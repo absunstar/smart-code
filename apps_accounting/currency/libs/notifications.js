@@ -3,21 +3,21 @@ module.exports = function init(site) {
   let collection_name = 'currency'
 
   let source = {
-    en: 'Disease System',
+    en: 'Currencies System',
     ar: 'نظام العملات'
   }
 
   let image_url = '/images/currency.png'
   let add_message = {
-    en: 'New Disease Added',
+    en: 'New Currency Added',
     ar: 'تم إضافة عملة جديد'
   }
   let update_message = {
-    en: ' Disease Updated',
+    en: ' Currency Updated',
     ar: 'تم تعديل عملة'
   }
   let delete_message = {
-    en: ' Disease Deleted',
+    en: ' Currency Deleted',
     ar: 'تم حذف عملة '
   }
 

@@ -1,11 +1,10 @@
 app.controller('profile', function ($scope, $http, $timeout) {
-
   $scope.getAdsList = function (where) {
     $scope.busy = true;
     $scope.adslist = [];
     $http({
       method: 'POST',
-      url: '/api/ads/all',
+      url: '/api/contents/all',
       data: {
         where: {
           $and: [
@@ -23,7 +22,6 @@ app.controller('profile', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
           $scope.adslist = response.data.list;
-     
         }
       },
       function (err) {
@@ -60,19 +58,19 @@ app.controller('profile', function ($scope, $http, $timeout) {
       }
     );
   };
-  
+
   $scope.displayAd = function (id) {
     window.open(`/display_ad?id=${id}`, '_blank');
   };
 
-  $scope.updateFollow = function (user,follow) {
-    $scope.error = "";
+  $scope.updateFollow = function (user, follow) {
+    $scope.error = '';
 
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/user/update_follow",
-      data: {id : user.id , follow : follow},
+      method: 'POST',
+      url: '/api/user/update_follow',
+      data: { id: user.id, follow: follow },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -99,8 +97,11 @@ app.controller('profile', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.user = response.data.doc;
-          $scope.user.follow_list.forEach(_f => {
-            if(_f ==  site.toNumber('##user.id##')){
+          if ($scope.user.email == '##user.email##') {
+            $scope.user.$same_email = true;
+          }
+          $scope.user.follow_list.forEach((_f) => {
+            if (_f == site.toNumber('##user.id##')) {
               $scope.user.$is_follow = true;
             }
           });
@@ -114,7 +115,6 @@ app.controller('profile', function ($scope, $http, $timeout) {
       }
     );
   };
-
 
   $scope.getAdsList();
   $scope.getUser();

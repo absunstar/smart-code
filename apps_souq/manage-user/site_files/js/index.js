@@ -305,7 +305,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
     $scope.myAdslist = [];
     $http({
       method: 'POST',
-      url: '/api/ads/all',
+      url: '/api/contents/all',
       data: {
         where: {
           $and: [
@@ -365,7 +365,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
     $scope.favoriteAdslist = [];
     $http({
       method: 'POST',
-      url: '/api/ads/all',
+      url: '/api/contents/all',
       data: {
         where: {
           $and: [
@@ -747,7 +747,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/ads/add',
+      url: '/api/contents/add',
       data: $scope.ad,
     }).then(
       function (response) {
@@ -804,7 +804,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/ads/update',
+      url: '/api/contents/update',
       data: $scope.ad,
     }).then(
       function (response) {
@@ -834,7 +834,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
     $scope.error = '';
     $http({
       method: 'POST',
-      url: '/api/ads/view',
+      url: '/api/contents/view',
       data: {
         id: ad.id,
       },
@@ -867,7 +867,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
 
     $http({
       method: 'POST',
-      url: '/api/ads/delete',
+      url: '/api/contents/delete',
       data: {
         id: $scope.ad.id,
       },

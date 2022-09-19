@@ -70,7 +70,7 @@ app.controller('create_ad', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/ads/add',
+      url: '/api/contents/add',
       data: $scope.ad,
     }).then(
       function (response) {
@@ -255,7 +255,7 @@ app.controller('create_ad', function ($scope, $http, $timeout) {
       method: 'POST',
       url: '/api/user/view',
       data: {
-        id: '##user.id##',
+        id: site.toNumber('##user.id##'),
       },
     }).then(
       function (response) {
