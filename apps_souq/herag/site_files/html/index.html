@@ -928,46 +928,46 @@
       let mapheader = document.querySelector('.map-side-header');
       let notifname = document.getElementById('notif1');
 
-      sideheader.addEventListener('mouseenter', () => {
-        notifname.classList.add('show-notif-name');
-        notifname.classList.remove('notif-name');
-      });
-      sideheader.addEventListener('mouseleave', () => {
-        notifname.classList.remove('show-notif-name');
-        notifname.classList.add('notif-name');
-      });
+      if (sideheader) {
+        sideheader.addEventListener('mouseenter', () => {
+          notifname.classList.add('show-notif-name');
+          notifname.classList.remove('notif-name');
+        });
+        sideheader.addEventListener('mouseleave', () => {
+          notifname.classList.remove('show-notif-name');
+          notifname.classList.add('notif-name');
+        });
+        let notifname2 = document.getElementById('notif2');
 
-      let notifname2 = document.getElementById('notif2');
+        sideheader.addEventListener('mouseenter', () => {
+          notifname2.classList.add('show-notif-name');
+          notifname2.classList.remove('notif-name');
+        });
+        sideheader.addEventListener('mouseleave', () => {
+          notifname2.classList.remove('show-notif-name');
+          notifname2.classList.add('notif-name');
+        });
+        let notifname3 = document.getElementById('notif3');
 
-      sideheader.addEventListener('mouseenter', () => {
-        notifname2.classList.add('show-notif-name');
-        notifname2.classList.remove('notif-name');
-      });
-      sideheader.addEventListener('mouseleave', () => {
-        notifname2.classList.remove('show-notif-name');
-        notifname2.classList.add('notif-name');
-      });
-      let notifname3 = document.getElementById('notif3');
+        sideheader.addEventListener('mouseenter', () => {
+          notifname3.classList.add('show-notif-name');
+          notifname3.classList.remove('notif-name');
+        });
+        sideheader.addEventListener('mouseleave', () => {
+          notifname3.classList.remove('show-notif-name');
+          notifname3.classList.add('notif-name');
+        });
+        let notifname4 = document.getElementById('notif4');
 
-      sideheader.addEventListener('mouseenter', () => {
-        notifname3.classList.add('show-notif-name');
-        notifname3.classList.remove('notif-name');
-      });
-      sideheader.addEventListener('mouseleave', () => {
-        notifname3.classList.remove('show-notif-name');
-        notifname3.classList.add('notif-name');
-      });
-
-      let notifname4 = document.getElementById('notif4');
-
-      sideheader.addEventListener('mouseenter', () => {
-        notifname4.classList.add('show-notif-name');
-        notifname4.classList.remove('notif-name');
-      });
-      sideheader.addEventListener('mouseleave', () => {
-        notifname4.classList.remove('show-notif-name');
-        notifname4.classList.add('notif-name');
-      });
+        sideheader.addEventListener('mouseenter', () => {
+          notifname4.classList.add('show-notif-name');
+          notifname4.classList.remove('notif-name');
+        });
+        sideheader.addEventListener('mouseleave', () => {
+          notifname4.classList.remove('show-notif-name');
+          notifname4.classList.add('notif-name');
+        });
+      }
 
       let notifname5 = document.getElementById('notif5');
 
@@ -1011,7 +1011,6 @@
         }
       }
       //end show and hidden map//
-     
     </script>
   </body>
 </html>
