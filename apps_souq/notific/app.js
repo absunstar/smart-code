@@ -41,34 +41,123 @@ module.exports = function init(site) {
     compress: true,
   });
 
+  site.on('[notific][ads_members_follow]', (obj) => {
+    site.security.getUsers(
+      {
+        where: {
+          id: { $in: obj.user.followers_list },
+        },
+      },
+      (err, docs) => {
+        if (!err) {
+          docs.forEach((_doc) => {
+            if (_doc.notific_setting && _doc.notific_setting.ads_members_follow) {
+              site.notific_list.push({
+                $add: true,
+                action: obj.action,
+                show: false,
+                user_action: {
+                  id: obj.user.id,
+                  email: obj.user.email,
+                  profile: obj.user.profile,
+                },
+                user: {
+                  id: _doc.id,
+                  email: _doc.email,
+                  profile: _doc.profile,
+                },
+                type: 'ads_members_follow',
+                date: new Date(),
+              });
+            }
+          });
+        }
+      }
+    );
+  });
+
+  site.on('[notific][replies_ads_followed]', (obj) => {
+    site.security.getUser(
+      {
+        'feedback_list.type.id': 2,
+        'feedback_list.ad.id': obj.action.id,
+      },
+      (err, doc) => {
+        if (!err && doc) {
+          if (doc.notific_setting && doc.notific_setting.replies_ads_followed && doc.id != obj.user_action.id) {
+            site.notific_list.push({
+              $add: true,
+              action: obj.action,
+              show: false,
+              user_action: {
+                id: obj.user_action.id,
+                email: obj.user_action.email,
+                profile: obj.user_action.profile,
+              },
+              user: {
+                id: doc.id,
+                email: doc.email,
+                profile: doc.profile,
+              },
+              type: 'replies_ads_followed',
+              date: new Date(),
+            });
+          }
+        }
+      }
+    );
+  });
+
   site.on('[notific][comments_my_ads]', (obj) => {
     site.security.getUser(
       {
-        id: obj.user_ad.id,
+        id: obj.user_action.id,
       },
       (err, doc) => {
         if (!err) {
-          if (doc.notific_setting && doc.notific_setting.comments_my_ads && obj.user_ad.id != obj.user_comment.id) {
+          if (doc.notific_setting && doc.notific_setting.comments_my_ads && doc.id != obj.user_action.id) {
             site.notific_list.push({
               $add: true,
-              ad: obj.ad,
+              action: obj.action,
               show: false,
               user_action: {
-                id: obj.user_comment.id,
-                email: obj.user_comment.email,
-                profile: obj.user_comment.profile,
+                id: obj.user_action.id,
+                email: obj.user_action.email,
+                profile: obj.user_action.profile,
               },
               user: {
-                id: obj.user_ad.id,
-                email: obj.user_ad.email,
-                profile: obj.user_ad.profile,
+                id: doc.id,
+                email: doc.email,
+                profile: doc.profile,
               },
               type: 'comments_my_ads',
               date: new Date(),
             });
           }
-        } else {
-          response.error = err.message;
+        }
+      }
+    );
+  });
+
+  site.on('[notific][private_messages]', (obj) => {
+    site.security.getUser(
+      {
+        id: obj.user.id,
+      },
+      (err, doc) => {
+
+        if (!err && doc) {
+          if (doc.notific_setting && doc.notific_setting.private_messages && doc.id == obj.user.id) {
+            site.notific_list.push({
+              $add: true,
+              action: obj.action,
+              show: false,
+              user_action: obj.user_action,
+              user: obj.user,
+              type: 'private_messages',
+              date: new Date(),
+            });
+          }
         }
       }
     );
@@ -200,8 +289,6 @@ module.exports = function init(site) {
       res.json(response);
       return;
     }
-
-
 
     site.notific_list.forEach((a) => {
       if (a.user.id === req.session.user.id) {

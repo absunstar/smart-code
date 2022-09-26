@@ -18,7 +18,7 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
           $scope.busy = false;
           if (response.data.done && response.data.list.length > 0) {
             $scope.adsList = response.data.list;
-            if($scope.user){
+            if ($scope.user) {
               $scope.adsList.forEach((ad) => {
                 ad.favorite = $scope.user.feedback_list.some((_f) => _f.type && _f.ad && _f.type.id == 2 && _f.ad.id == ad.id);
               });
@@ -173,19 +173,21 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.busy = true;
 
-    $http.post('/api/user/logout').then(function (response) {
-       
+    $http.post('/api/user/logout').then(
+      function (response) {
         if (response.data.done) {
-            window.location.href = '/';
-        }else{
-            $scope.error = response.data.error;
-            $scope.busy = false;
+          window.location.href = '/';
+        } else {
+          $scope.error = response.data.error;
+          $scope.busy = false;
         }
-    }, function (error) {
+      },
+      function (error) {
         $scope.busy = false;
         $scope.error = error;
-    });
-};
+      }
+    );
+  };
 
   $scope.loadSubCategory = function (c) {
     $scope.error = '';
@@ -201,6 +203,12 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
       }
     });
     $scope.getAdsList({ which: 13 }, $scope.search);
+    $scope.category = c;
+    $scope.user.follow_category_list.forEach((_f) => {
+      if (c.id == _f) {
+        $scope.category.follow = true;
+      }
+    });
   };
 
   $scope.loadSubCategory2 = function (c) {
@@ -216,6 +224,12 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
       }
     });
     $scope.getAdsList({ which: 13 }, $scope.search);
+    $scope.category = c;
+    $scope.user.follow_category_list.forEach((_f) => {
+      if (c.id == _f) {
+        $scope.category.follow = true;
+      }
+    });
   };
 
   $scope.loadSubCategory3 = function (c) {
@@ -230,6 +244,12 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
       }
     });
     $scope.getAdsList({ which: 13 }, $scope.search);
+    $scope.category = c;
+    $scope.user.follow_category_list.forEach((_f) => {
+      if (c.id == _f) {
+        $scope.category.follow = true;
+      }
+    });
   };
 
   $scope.loadSubCategory4 = function (c) {
@@ -244,7 +264,34 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
       }
     });
     $scope.getAdsList({ which: 13 }, $scope.search);
+    $scope.category = c;
+    $scope.user.follow_category_list.forEach((_f) => {
+      if (c.id == _f) {
+        $scope.category.follow = true;
+      }
+    });
   };
+
+  $scope.updateFollowCategory = function (categoryId, follow) {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: 'POST',
+      url: '/api/user/follow_category',
+      data: { follow: follow, id: categoryId },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.displayAdvancedSearch = function () {
     $scope.error = '';
     site.showModal('#adAdvancedSearchModal');

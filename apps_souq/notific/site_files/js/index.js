@@ -6,7 +6,9 @@ app.controller('notific', function ($scope, $http, $timeout) {
       method: 'POST',
       url: '/api/notific/all',
       data: {
-        'user.id': site.toNumber('##user.id##'),
+        where: {
+          'user.id': site.toNumber('##user.id##'),
+        },
       },
     }).then(
       function (response) {
@@ -23,6 +25,10 @@ app.controller('notific', function ($scope, $http, $timeout) {
 
   $scope.displayAd = function (id) {
     window.open(`/display_ad?id=${id}`, '_blank');
+  };
+
+  $scope.displayMessage = function (id) {
+    window.open(`/messages?id=${id}`, '_blank');
   };
 
   $scope.getUser = function () {

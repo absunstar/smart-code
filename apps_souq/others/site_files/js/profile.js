@@ -37,24 +37,42 @@ app.controller('profile', function ($scope, $http, $timeout) {
   };
 
   $scope.sendMessage = function () {
-    let data = { user: $scope.user, message: $scope.message };
+    $scope.busy = true;
 
+    if (!$scope.send_message) {
+      $scope.error = '##word.must_write_message##';
+      return;
+    }
+    let message_obj = {
+      date: new Date(),
+      message: $scope.send_message,
+      res_user : {
+        id: $scope.user.id,
+        name: $scope.user.profile.name,
+        last_name: $scope.user.profile.last_name,
+        email: $scope.user.email,
+        image_url: $scope.user.profile.image_url,
+      },
+      show: false,
+    };
     $http({
       method: 'POST',
       url: '/api/messages/update',
-      data: data,
+      data: message_obj,
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $scope.message = '';
+          $scope.send_message = undefined;
           site.hideModal('#messageModal');
+          $scope.busy = false;
         } else {
-          $scope.error = 'Please Login First';
+          $scope.error = response.data.error;
         }
       },
       function (err) {
-        console.log(err);
+        $scope.busy = false;
+        $scope.error = err;
       }
     );
   };
@@ -100,7 +118,7 @@ app.controller('profile', function ($scope, $http, $timeout) {
           if ($scope.user.email == '##user.email##') {
             $scope.user.$same_email = true;
           }
-          $scope.user.follow_list.forEach((_f) => {
+          $scope.user.followers_list.forEach((_f) => {
             if (_f == site.toNumber('##user.id##')) {
               $scope.user.$is_follow = true;
             }

@@ -1,3 +1,5 @@
+const email = require('isite/lib/email');
+
 module.exports = function init(site) {
   const $ads = site.connectCollection('ads');
 
@@ -13,7 +15,6 @@ module.exports = function init(site) {
     compress: true,
   });
 
-
   site.ad_list = [];
   $ads.findMany({}, (err, docs) => {
     if (!err && docs) {
@@ -24,18 +25,42 @@ module.exports = function init(site) {
   setInterval(() => {
     site.ad_list.forEach((a, i) => {
       if (a.$add) {
+        let user = a.$user;
         $ads.add(a, (err, doc) => {
           if (!err && doc) {
             site.ad_list[i] = doc;
+            if (doc.ad_status.id == 1) {
+              site.call('[notific][ads_members_follow]', {
+                user: { id: user.id, email: user.email, profile: user.profile, followers_list: user.followers_list },
+                action: {
+                  id: doc.id,
+                  name: doc.name,
+                },
+              });
+            }
           }
         });
       } else if (a.$update) {
-        $ads.edit({
-          where: {
-            id: a.id,
+        let user = a.$user;
+        $ads.edit(
+          {
+            where: {
+              id: a.id,
+            },
+            set: a,
           },
-          set: a,
-        });
+          (err, result) => {
+            if (result.old_doc && result.old_doc.ad_status.id != result.doc.ad_status.id && result.doc.ad_status.id == 1) {
+              site.call('[notific][ads_members_follow]', {
+                user: { id: user.id, email: user.email, profile: user.profile, followers_list: user.followers_list },
+                action: {
+                  id: result.doc.id,
+                  name: result.doc.name,
+                },
+              });
+            }
+          }
+        );
       } else if (a.$delete) {
         $ads.delete({
           id: a.id,
@@ -85,7 +110,22 @@ module.exports = function init(site) {
     });
     response.done = true;
     ads_doc.$add = true;
-    site.ad_list.push(ads_doc);
+
+    site.security.getUser(
+      {
+        id: ads_doc.store.user.id,
+      },
+      (err, user_doc) => {
+        if (!err && user_doc) {
+          ads_doc.$user = user_doc;
+
+          site.ad_list.push(ads_doc);
+
+          res.json(response);
+        }
+      }
+    );
+
     res.json(response);
   });
 
@@ -125,12 +165,23 @@ module.exports = function init(site) {
     }
     response.done = true;
     ads_doc.$update = true;
-    site.ad_list.forEach((a, i) => {
-      if (a.id === ads_doc.id) {
-        site.ad_list[i] = ads_doc;
+
+    site.security.getUser(
+      {
+        id: ads_doc.store.user.id,
+      },
+      (err, user_doc) => {
+        if (!err && user_doc) {
+          ads_doc.$user = user_doc;
+          site.ad_list.forEach((a, i) => {
+            if (a.id === ads_doc.id) {
+              site.ad_list[i] = ads_doc;
+            }
+          });
+          res.json(response);
+        }
       }
-    });
-    res.json(response);
+    );
   });
 
   site.post('/api/contents/delete', (req, res) => {
@@ -152,7 +203,6 @@ module.exports = function init(site) {
     response.done = true;
     res.json(response);
   });
-
 
   site.post('/api/contents/update_feedback', (req, res) => {
     let response = {
@@ -180,7 +230,7 @@ module.exports = function init(site) {
     }
     // ad.feedback_list
     ad.feedback_list = ad.feedback_list || [];
-     if (user_ad.feedback.type == 'favorite') {
+    if (user_ad.feedback.type == 'favorite') {
       if (user_ad.feedback.favorite === true) {
         ad.number_favorites = ad.number_favorites + 1;
         req.session.user.feedback_list.push({ type: { id: 2 }, ad: { id: user_ad.id } });
@@ -190,7 +240,7 @@ module.exports = function init(site) {
           type: { id: 2, en: 'Favorite', ar: 'تفضيل' },
           date: new Date(),
         });
-      } else {
+      } else if (user_ad.feedback.favorite === false) {
         ad.number_favorites = ad.number_favorites - 1;
         req.session.user.feedback_list.splice(
           req.session.user.feedback_list.findIndex((c) => c.type && c.ad && c.type.id == 2 && c.ad.id == ad.id),
@@ -203,12 +253,10 @@ module.exports = function init(site) {
           1
         );
       }
-      req.session.user.feedback_list.forEach(_fl => {
-        if(_fl.ad && _fl.ad.id && _fl.type && _fl.type.id == 2) {
-          
+      req.session.user.feedback_list.forEach((_fl) => {
+        if (_fl.ad && _fl.ad.id && _fl.type && _fl.type.id == 2) {
         }
       });
-
     } else if (user_ad.feedback.type == 'report') {
       ad.number_reports = ad.number_reports + 1;
       ad.feedback_list.push({
@@ -226,19 +274,25 @@ module.exports = function init(site) {
         comment_type: user_ad.feedback.comment_type,
         comment: user_ad.feedback.comment,
         date: new Date(),
-      }
-      ad.feedback_list.push(comment);
+      };
 
-      site.call('[notific][comments_my_ads]', 
-      {
-        user_ad : ad.store.user,
-        user_comment : req.session.user,
-        ad : {
-          id : ad.id,
-          name : ad.name,
-        }
+      ad.feedback_list.push(comment);
+      site.call('[notific][replies_ads_followed]', {
+        user: ad.store.user,
+        user_action: req.session.user,
+        action: {
+          id: ad.id,
+          name: ad.name,
+        },
       });
-     
+      site.call('[notific][comments_my_ads]', {
+        user: ad.store.user,
+        user_action: req.session.user,
+        action: {
+          id: ad.id,
+          name: ad.name,
+        },
+      });
     }
 
     ad.$update = true;
@@ -253,7 +307,7 @@ module.exports = function init(site) {
     res.json(response);
   });
 
-  site.post({name : '/api/contents/view',public : true}, (req, res) => {
+  site.post({ name: '/api/contents/view', public: true }, (req, res) => {
     let response = {
       done: false,
     };
@@ -279,7 +333,7 @@ module.exports = function init(site) {
     }
   });
 
-  site.post( {name : '/api/contents/all',public : true}, (req, res) => {
+  site.post({ name: '/api/contents/all', public: true }, (req, res) => {
     let response = {
       done: false,
     };

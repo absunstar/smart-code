@@ -126,8 +126,6 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
         $encript: '123',
         email: site.to123(u.email),
         password: site.to123(u.password),
-      
-      
       },
     }).then(
       function (response) {
@@ -202,80 +200,10 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.showMessage = function (m) {
-    $scope.message = m;
-  };
-
-  $scope.sendMessage = function (message) {
-    $scope.busy = true;
-
-    if (!$scope.send_message) {
-      $scope.error = '##word.must_write_message##';
-      return;
-    }
-
-    message.messages_list = message.messages_list || [];
-    message.messages_list.push({
-      date: new Date(),
-      message: $scope.send_message,
-      user_id: $scope.manage_user.id,
-      user_name: $scope.manage_user.profile.name,
-      image_url: $scope.manage_user.profile.image_url,
-      show: false,
-    });
-
-    $http({
-      method: 'POST',
-      url: '/api/messages/update',
-      data: message,
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.send_message = undefined;
-          $scope.busy = false;
-        } else {
-          $scope.error = response.data.error;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
-  $scope.geMessagesList = function (where) {
-    $scope.busy = true;
-    $scope.messagesList = [];
-    $http({
-      method: 'POST',
-      url: '/api/messages/all',
-      data: {
-        where: {
-          'users_list.id': $scope.manage_user.id,
-        },
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.messagesList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
   $scope.showTab = function (event, selector) {
     site.showTabContent(event, selector);
 
-    if (selector == '#messages') {
-      $scope.geMessagesList();
-    } else if (selector == '#my_orders') {
+    if (selector == '#my_orders') {
       $scope.getOrdersList();
     } else if (selector == '#my_ads') {
       $scope.getMyAdsList();
@@ -357,8 +285,6 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
       }
     );
   };
-
-
 
   $scope.getFavoriteAdsList = function (where) {
     $scope.busy = true;
@@ -997,7 +923,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
       url: '/api/stores/all',
       data: {
         where: { 'user.id': id },
-        select: { id: 1, code: 1, name: 1,  user: 1, address: 1 },
+        select: { id: 1, code: 1, name: 1, user: 1, address: 1 },
       },
     }).then(
       function (response) {

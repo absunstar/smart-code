@@ -454,7 +454,7 @@
       <div class="user-side-header" x-permissions="login">
         <div class="side-header">
           <li class="deskside-header">
-            <a class="tab_link side-notification" href="/user_messages">
+            <a class="tab_link side-notification" href="/messages">
               <i class="fa-solid fa-envelope space"></i>
               <span class="side-badge ng-binding">0</span>
               <span style="min-height: 22px" id="notif1" class="notif-name" onmouseover="mouseoverbox1()">##word.messages##</span>
@@ -761,15 +761,15 @@
               </ul>
             </div>
           </div>
-          <div></div>
         </div>
 
         <main class="tagMain">
+          <div class="row">
+            <i-checkbox class="center" ng-show="subCategoriesList.length > 0" ng-click="updateFollowCategory(category.id ,category.follow )" label="##word.follow## {{category.name_##session.lang##}}" ng-model="category.follow"> </i-checkbox>
+          </div>
           <!--  <div class="row">
             <a class="green" target="_blank" href="/stores_view">المتاجر</a>
           </div> -->
-          <div></div>
-          <div></div>
           <div class="row">
             <fieldset class="ads-section">
               <div ng-repeat="a in adsList " class="ads-area even">

@@ -11,6 +11,50 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/images',
   });
 
+  site.post('/api/user/follow_category', (req, res) => {
+    let response = {
+      done: false,
+    };
+
+    if (!req.session.user) {
+      response.error = 'You Are Not Login';
+      res.json(response);
+      return;
+    }
+
+    let obj = req.body;
+    site.security.getUser(
+      {
+        id: req.session.user.id,
+      },
+      (err, doc) => {
+        if (!err && doc) {
+          let foundId = doc.follow_category_list.some((_f) => _f === obj.id);
+
+          if (obj.follow && !foundId) {
+            doc.follow_category_list.push(obj.id);
+          } else if (!obj.follow && foundId) {
+            doc.follow_category_list.splice(
+              doc.follow_category_list.findIndex((c) => c == obj.id),
+              1
+            );
+          }
+
+          site.security.updateUser(doc, (err) => {
+            if (!err) {
+              response.done = true;
+            } else {
+              response.error = err.message;
+            }
+            res.json(response);
+          });
+        } else {
+          response.error = err.message;
+          res.json(response);
+        }
+      }
+    );
+  });
 
   site.post('/api/manage_user/view', (req, res) => {
     let response = {

@@ -72,9 +72,11 @@ module.exports = function init(site) {
     }
 
     let where = req.body.where || {};
+    if(!site.feature('souq')){
 
-    where['company.id'] = site.get_company(req).id;
-    where['branch.code'] = site.get_branch(req).code;
+      where['company.id'] = site.get_company(req).id;
+      where['branch.code'] = site.get_branch(req).code;
+    }
 
     if (where['search']) {
       where.$or = [];
@@ -101,7 +103,7 @@ module.exports = function init(site) {
       },
       (err, docs, count) => {
         if (!err) {
-          response.done = true;
+    response.done = true;
           for (let i = 0; i < docs.length; i++) {
             let u = docs[i];
             u.profile = u.profile || {};
