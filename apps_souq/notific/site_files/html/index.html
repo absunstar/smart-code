@@ -32,9 +32,26 @@
           <div ng-repeat="n in notific_list" class="ads-area even padding border">
             <div class="ad-area">
               <div class="ads-info">
-                <h2 ng-show="n.type == 'comments_my_ads'">##word.there_new_response_ad##</h2>
-                <h3 class="pointer" ng-show="n.type == 'comments_my_ads'" ng-click="displayAd(n.ad.id)">##word.new_comment_on## {{n.ad.name}}</h3>
-                <a href="/profile?id={{n.user_action.id}}"> {{n.user_action.profile.name}}</a>
+                <div ng-show="n.type == 'comments_my_ads'">
+                  <h2>##word.there_new_response_ad##</h2>
+                  <h3 class="pointer" ng-click="displayAd(n.action.id)">##word.new_comment_on## {{n.action.name}}</h3>
+                </div>
+                <div ng-show="n.type == 'ads_members_follow'">
+                  <h2>##word.there_is_new_ad##</h2>
+                  <h3 class="pointer" ng-click="displayAd(n.action.id)">{{n.action.name}}</h3>
+                </div>
+                <div ng-show="n.type == 'replies_ads_followed'">
+                  <h2>##word.there_new_response_ad##</h2>
+                  <h3 class="pointer" ng-click="displayAd(n.action.id)">##word.new_comment_on## {{n.action.name}}</h3>
+                </div>
+
+                <div ng-show="n.type == 'private_messages'">
+                  <h2>##word.there_new_private_message##</h2>
+                  <h3 class="pointer" ng-click="displayMessage(n.action.id)">##word.new_private_message_from## {{n.user_action.name}}</h3>
+                  <h4 class="pointer bold pre_text" ng-click="displayMessage(n.action.id)"> {{n.action.name}}</h4>
+                </div>
+
+                <a href="/profile?id={{n.user_action.id}}"> {{n.user_action.name}}</a>
               </div>
             </div>
           </div>

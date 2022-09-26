@@ -11,12 +11,39 @@ module.exports = function init(site) {
   setInterval(() => {
     site.message_list.forEach((m, i) => {
       if (m.$add) {
+        let message = m.$message;
         $messages.add(m, (err, doc) => {
           if (!err && doc) {
-            site.message_list[i] = doc;
+            site.call('[notific][private_messages]', {
+              user: doc.users_list[1],
+              user_action: doc.users_list[0],
+              action: {
+                id: doc.id,
+                name: message,
+              },
+            });
           }
         });
       } else if (m.$update) {
+        let message = m.$message;
+        if (!m.$show) {
+          let obj = {
+            action: {
+              id: m.id,
+              name: message,
+            },
+          };
+          
+          m.users_list.forEach((_u) => {
+            if (m.$user_id == _u.id) {
+              obj.user_action = _u;
+            } else {
+              obj.user = _u;
+            }
+          });
+          site.call('[notific][private_messages]', obj);
+        }
+
         $messages.edit({
           where: {
             id: m.id,
@@ -49,7 +76,7 @@ module.exports = function init(site) {
       res.json(response);
       return;
     }
-    
+
     let response = {
       done: true,
     };
@@ -77,6 +104,7 @@ module.exports = function init(site) {
         },
       ],
     };
+    messages_doc.$message = req.body.message;
     messages_doc.$req = req;
     messages_doc.$res = res;
     messages_doc.$add = true;
@@ -103,67 +131,68 @@ module.exports = function init(site) {
       $res: res,
     });
 
-    if (messages_doc.user) {
-      let found = false;
-      let index = 0;
-      site.message_list.forEach((m, i) => {
-        if (m.users_list.some((u) => u.id === messages_doc.user.id) && m.users_list.some((u) => u.id === req.session.user.id)) {
-          found = true;
-          index = i;
-        }
+    messages_doc.req_user = {
+      id: req.session.user.id,
+      name: req.session.user.profile.name,
+      last_name: req.session.user.profile.last_name,
+      email: req.session.user.email,
+      image_url: req.session.user.profile.image_url,
+    };
+    let found = false;
+    let index = 0;
+    site.message_list.forEach((m, i) => {
+      if (m.users_list.some((u) => u.id === messages_doc.req_user.id) && m.users_list.some((u) => u.id === messages_doc.res_user.id)) {
+        found = true;
+        index = i;
+      }
+    });
+
+    if (found) {
+      let message = site.message_list.find((_msg, i) => {
+        return index === i;
       });
 
-      if (found) {
-        let message = site.message_list.find((_msg, i) => {
-          return index === i;
-        });
-        
-        message.messages_list.push({
-          date: new Date(),
-          message: req.body.message,
-          user_id: req.session.user.id,
-          user_name: req.session.user.profile.name,
-          image_url: req.session.user.profile.image_url,
-          show: false,
-        });
-        message.$update = true;
-        site.message_list[index] = message;
-      } else {
-        let msg_doc = {
-          users_list: [
-            {
-              id: req.session.user.id,
-              profile: req.session.user.profile,
-              email: req.session.user.email,
-            },
-            {
-              id: req.body.user.id,
-              profile: req.body.user.profile,
-              email: req.body.user.email,
-            },
-          ],
-          messages_list: [
-            {
-              date: new Date(),
-              message: req.body.message,
-              user_id: req.session.user.id,
-              user_name: req.session.user.profile.name,
-              image_url: req.session.user.image_url,
-              show: false,
-            },
-          ],
-        };
-        msg_doc.$add = true;
-        site.message_list.push(msg_doc);
-      }
-    } else {
-      messages_doc.$update = true;
-      site.message_list.forEach((a, i) => {
-        if (a.id === messages_doc.id) {
-          site.message_list[i] = messages_doc;
-        }
+      message.messages_list.push({
+        date: new Date(),
+        message: req.body.message,
+        user_id: messages_doc.req_user.id,
+        user_name: messages_doc.req_user.name,
+        image_url: messages_doc.req_user.image_url,
+        show: false,
       });
+      message.$update = true;
+      message.$message = req.body.message;
+      message.$user_id = req.session.user.id;
+      site.message_list[index] = message;
+      response.doc = site.message_list[index];
+    } else {
+      let msg_doc = {
+        users_list: [messages_doc.req_user, messages_doc.res_user],
+        messages_list: [
+          {
+            date: new Date(),
+            message: req.body.message,
+            user_id: messages_doc.req_user.id,
+            name: messages_doc.req_user.name,
+            last_name: messages_doc.req_user.last_name,
+            image_url: messages_doc.req_user.image_url,
+            show: false,
+          },
+        ],
+      };
+      msg_doc.$add = true;
+      msg_doc.$message = req.body.message;
+      site.message_list.push(msg_doc);
     }
+    // } else {
+    //   messages_doc.$update = true;
+    //   messages_doc.$message = req.body.message;
+    //   site.message_list.forEach((a, i) => {
+    //     if (a.id === messages_doc.id) {
+    //       site.message_list[i] = messages_doc;
+    //     }
+    //   });
+    // }
     response.done = true;
     res.json(response);
   });
@@ -180,24 +209,23 @@ module.exports = function init(site) {
     }
 
     let messages_doc = req.body;
-
-      
-      site.message_list.forEach((a, i) => {
-        if (a.id === messages_doc.id) {
-          let found_update = false;
-          site.message_list[i].messages_list.forEach(_m => {
-            if(_m.user_id == req.session.user.id) {
-              _m.show = true;
-              found_update = true;
-            }
-          });
-          if(found_update){
-            site.message_list[i].$update = true;
+    site.message_list.forEach((a, i) => {
+      if (a.id === messages_doc.id) {
+        let found_update = false;
+        site.message_list[i].messages_list.forEach((_m) => {
+          if (_m.user_id != req.session.user.id) {
+            _m.show = true;
+            found_update = true;
           }
-          response.doc = site.message_list[i];
+        });
+        if (found_update) {
+          site.message_list[i].$show = true;
+          site.message_list[i].$update = true;
         }
-      });
-    
+        response.doc = site.message_list[i];
+      }
+    });
+
     response.done = true;
     res.json(response);
   });
@@ -272,9 +300,9 @@ module.exports = function init(site) {
       (err, docs, count) => {
         if (!err) {
           response.done = true;
-          docs.forEach(_doc => {
-            _doc.messages_list.forEach(_m => {
-              if(_m.user_id == req.session.user.id && !_m.show) {
+          docs.forEach((_doc) => {
+            _doc.messages_list.forEach((_m) => {
+              if (_m.user_id != req.session.user.id && !_m.show) {
                 _doc.$new = true;
               }
             });
