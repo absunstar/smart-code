@@ -33,6 +33,125 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
     }
   };
 
+  $scope.getCountriesList = function (where) {
+    $scope.busy = true;
+    $http({
+      method: 'POST',
+      url: '/api/countries/all',
+      data: {
+        where: {
+          active: true,
+        },
+        select: {
+          id: 1,
+          name_ar: 1,
+          name_en: 1,
+        },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.countriesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+
+  $scope.getGovesList = function (country) {
+    $scope.busy = true;
+    $scope.govesList = [];
+    $scope.cityList = [];
+    $scope.areaList = [];
+    $http({
+      method: 'POST',
+      url: '/api/goves/all',
+      data: {
+        where: {
+          'country.id': country.id,
+          active: true,
+        },
+        select: {
+          id: 1,
+          name_ar: 1,
+          name_en: 1,
+        },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.govesList = response.data.list;
+          $scope.searchAll($scope.search);
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.getCityList = function (gov) {
+    $scope.busy = true;
+    $scope.cityList = [];
+    $scope.areaList = [];
+    $http({
+      method: 'POST',
+      url: '/api/city/all',
+      data: {
+        where: {
+          'gov.id': gov.id,
+          active: true,
+        },
+        select: { id: 1, name_ar: 1, name_en: 1 },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.cityList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.getAreaList = function (city) {
+    $scope.busy = true;
+    $scope.areaList = [];
+    $http({
+      method: 'POST',
+      url: '/api/area/all',
+      data: {
+        where: {
+          'city.id': city.id,
+          active: true,
+        },
+        select: { id: 1, name_ar: 1, name_en: 1 },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.areaList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.displayAd = function (id) {
     window.open(`/display_ad?id=${id}`, '_blank');
   };
@@ -340,4 +459,6 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
   $scope.getAdsList({ which: 13 }, {});
   $scope.getUser();
   $scope.getDefaultSetting();
+  $scope.getCountriesList();
+
 });

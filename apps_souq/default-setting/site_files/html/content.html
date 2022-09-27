@@ -11,13 +11,21 @@
       <div id="site_settings" class="tab-content">
         <fieldset>
           <legend>##word.site_settings##</legend>
-
           <div class="row">
-            <i-list class="col4" ng-model="default_setting.site_settings.user_design" items="userDesignList" display="##session.lang##" ng-search="_search.$search_user_design" label="##word.user_design##"></i-list>
+            <div class="col8">
+              <div class="row">
+                <i-list class="col7" ng-model="default_setting.site_settings.user_design" items="userDesignList" display="##session.lang##" ng-search="_search.$search_user_design" label="##word.user_design##"></i-list>
+              </div>
+              <div class="row">
+                <i-control class="col6" label="##word.order_level_length##" type="number" ng-model="default_setting.site_settings.length_order"> </i-control>
+              </div>
+            </div>
+            <div class="col1"></div>
+            <div class="col3">
+              <i-image ng-model="default_setting.site_settings.logo"></i-image>
+            </div>
           </div>
-          <div class="row">
-            <i-control class="col3" label="##word.order_level_length##" type="number" ng-model="default_setting.site_settings.length_order"> </i-control>
-          </div>
+         
           <div class="row">
             <div class="col2">
               <br />

@@ -777,9 +777,18 @@
         </div>
 
         <main class="tagMain">
-   
           <div class="row">
-            <i-checkbox class="center" ng-show="subCategoriesList.length > 0" ng-click="updateFollowCategory(category.id ,category.follow )" label="##word.follow## {{category.name_##session.lang##}}" ng-model="category.follow"> </i-checkbox>
+            <i-list class="col3" label="##word.country##" ng-change="getGovesList(search.country)" ng-model="search.country" display="name_##session.lang##" items="countriesList" ng-search="_search.$city_country"></i-list>
+
+            <i-list class="col3" label="##word.gov##" ng-model="search.gov" items="govesList" ng-change="getCityList(search.gov)" display="name_##session.lang##" ng-search="_search.$search.$gov_search"> </i-list>
+
+            <i-list class="col3" ng-change="getAreaList(search.city)" label="##word.city##" ng-model="search.city" items="cityList" display="name_##session.lang##" ng-search="_search.$search.$city_search"> </i-list>
+
+            <i-list class="col3" label="##word.area##" ng-model="search.area" items="areaList" display="name_##session.lang##" ng-search="_search.$search.$area_search"> </i-list>
+          </div>
+
+          <div class="row">
+            <i-checkbox class="center" x-permissions="login" ng-show="subCategoriesList.length > 0" ng-click="updateFollowCategory(category.id ,category.follow )" label="##word.follow## {{category.name_##session.lang##}}" ng-model="category.follow"> </i-checkbox>
           </div>
 
           <div class="row">
