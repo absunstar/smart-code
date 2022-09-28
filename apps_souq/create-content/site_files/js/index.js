@@ -16,14 +16,14 @@ app.controller('create_ad', function ($scope, $http, $timeout) {
       priority_level: 0,
       active: true,
     };
-    if ($scope.defaultSettings.ads_settings) {
-      if ($scope.defaultSettings.ads_settings.ad_status) {
-        $scope.ad.ad_status = $scope.defaultSettings.ads_settings.ad_status;
+    if ($scope.defaultSettings.content) {
+      if ($scope.defaultSettings.content.status) {
+        $scope.ad.ad_status = $scope.defaultSettings.content.status;
       }
-      if ($scope.defaultSettings.ads_settings.upload_multiple_photos) {
+      if ($scope.defaultSettings.content.upload_multiple_photos) {
         $scope.ad.images_list = [{}];
       }
-      if ($scope.defaultSettings.ads_settings.quantities_can_be_used) {
+      if ($scope.defaultSettings.content.quantities_can_be_used) {
         $scope.ad.quantity_list = [
           {
             price: 0,
@@ -36,11 +36,11 @@ app.controller('create_ad', function ($scope, $http, $timeout) {
           },
         ];
       }
-      if ($scope.defaultSettings.ads_settings.upload_multiple_photos) {
+      if ($scope.defaultSettings.content.upload_multiple_photos) {
         $scope.ad.images_list = [{}];
       }
 
-      $scope.ad.image_url = $scope.defaultSettings.ads_settings.default_image_ad || '/images/ads.png';
+      $scope.ad.image_url = $scope.defaultSettings.content.default_image_ad || '/images/content.png';
     }
   };
   $scope.addAd = function () {
@@ -187,11 +187,11 @@ app.controller('create_ad', function ($scope, $http, $timeout) {
     $scope.aStatusList = [];
     $http({
       method: 'POST',
-      url: '/api/ads_status/all',
+      url: '/api/content_status/all',
     }).then(
       function (response) {
         $scope.busy = false;
-        $scope.adStatusList = response.data;
+        $scope.contentStatusList = response.data;
       },
       function (err) {
         $scope.busy = false;

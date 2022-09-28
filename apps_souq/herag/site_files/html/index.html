@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/x-css/fonts.css" />
+    <link rel="stylesheet" href="/x-css/font-cairo.css" />
     <link rel="stylesheet" href="/css/font6.css" />
   </head>
 
@@ -487,17 +487,17 @@
         </div>
       </div>
       <div class="map-side-header">
-        <div id="mapbtn" class="clickmap side-header-map side-header">
+        <div id="mapbtn" class="clickmap side-header">
           <li class="deskside-header">
             <a class="tab_link" href="" id="map-toggle" class="action-map advanced-search" type="search" onclick="hsMap()">
               <i class="fa-solid fa-map space"></i>
-              <span style="min-height: 22px" id="notif5" class="notif-name show-notif-name" onmouseover="mouseoverbox1()">##word.hide_map##</span>
+              <span style="min-height: 22px" id="notif5" class="notif-name " onmouseover="mouseoverbox1()">##word.map_search##</span>
             </a>
           </li>
         </div>
       </div>
     </header>
-    <div class="content">
+    <div class="content loaded">
       <aside class="tagSide">
         <i class="close-filter fa-solid fa-xmark fa-lg"></i>
         <div class="sideSearchHistory">
@@ -776,7 +776,7 @@
           </div>
         </div>
 
-        <main class="tagMain">
+        <main class="tagMain hidden">
           <div class="row">
             <i-list class="col3" label="##word.country##" ng-change="getGovesList(search.country)" ng-model="search.country" display="name_##session.lang##" items="countriesList" ng-search="_search.$city_country"></i-list>
 

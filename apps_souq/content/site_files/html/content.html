@@ -11,7 +11,7 @@
           </div>
           <br />
           <div class="row">
-            <i-list class="col3" v="r" ng-model="ad.ad_status" items="adStatusList" display="##session.lang##" ng-search="_search.$search_ad_status" label="##word.ad_status##"></i-list>
+            <i-list class="col3" v="r" ng-model="ad.ad_status" items="contentStatusList" display="##session.lang##" ng-search="_search.$search_ad_status" label="##word.ad_status##"></i-list>
             <i-control help-id="ad_rating" type="number" class="col3" label="##word.ad_rating##" ng-model="ad.ad_rating"></i-control>
             <i-control help-id="ad_number_views" type="number" class="col3" label="##word.number_views##" ng-model="ad.number_views"></i-control>
           </div>
@@ -57,7 +57,7 @@
       <br />
       <br />
 
-      <fieldset class="row" ng-show="defaultSettings.ads_settings.upload_multiple_photos">
+      <fieldset class="row" ng-show="defaultSettings.content.upload_multiple_photos">
         <legend>
           <i-button type="add default" ng-click="addImage()"></i-button>
           ##word.ad_images##
@@ -113,7 +113,7 @@
       </div>
       <br />
       <br />
-      <div class="row" ng-show="defaultSettings.ads_settings.quantities_can_be_used">
+      <div class="row" ng-show="defaultSettings.content.quantities_can_be_used">
         <h2>##word.Do_you_want_set_price##</h2>
         <div class="col5">
           <div class="row">

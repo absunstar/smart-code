@@ -14,44 +14,44 @@
           <div class="row">
             <div class="col8">
               <div class="row">
-                <i-list class="col7" ng-model="default_setting.site_settings.user_design" items="userDesignList" display="##session.lang##" ng-search="_search.$search_user_design" label="##word.user_design##"></i-list>
+                <i-list class="col7" ng-model="default_setting.user_design" items="userDesignList" display="##session.lang##" ng-search="_search.$search_user_design" label="##word.user_design##"></i-list>
               </div>
               <div class="row">
-                <i-control class="col6" label="##word.order_level_length##" type="number" ng-model="default_setting.site_settings.length_order"> </i-control>
+                <i-control class="col6" label="##word.order_level_length##" type="number" ng-model="default_setting.length_order"> </i-control>
               </div>
             </div>
             <div class="col1"></div>
             <div class="col3">
-              <i-image ng-model="default_setting.site_settings.logo"></i-image>
+              <i-image ng-model="default_setting.logo"></i-image>
             </div>
           </div>
          
           <div class="row">
             <div class="col2">
               <br />
-              <i-checkbox label="##word.auto_generate_categories_code##" ng-model="default_setting.site_settings.auto_generate_categories_code"> </i-checkbox>
+              <i-checkbox label="##word.auto_generate_categories_code##" ng-model="default_setting.auto_generate_categories_code"> </i-checkbox>
             </div>
-            <i-control ng-show="default_setting.site_settings.auto_generate_categories_code" class="col3" label="##word.categories_level_length##" type="number" ng-model="default_setting.site_settings.length_category"> </i-control>
+            <i-control ng-show="default_setting.auto_generate_categories_code" class="col3" label="##word.categories_level_length##" type="number" ng-model="default_setting.length_category"> </i-control>
           </div>
 
           <div class="row">
-            <i-control class="col6" label="##word.facebook_account##" ng-model="default_setting.site_settings.facebook_account"> </i-control>
-            <i-control class="col6" label="##word.instagram_accouunt##" ng-model="default_setting.site_settings.instagram_accouunt"> </i-control>
+            <i-control class="col6" label="##word.facebook_account##" ng-model="default_setting.facebook_account"> </i-control>
+            <i-control class="col6" label="##word.instagram_accouunt##" ng-model="default_setting.instagram_accouunt"> </i-control>
           </div>
 
           <div class="row">
-            <i-control class="col6" label="##word.you_tube_accouunt##" ng-model="default_setting.site_settings.you_tube_accouunt"> </i-control>
-            <i-control class="col6" label="##word.twitter_accouunt##" ng-model="default_setting.site_settings.twitter_accouunt"> </i-control>
+            <i-control class="col6" label="##word.you_tube_accouunt##" ng-model="default_setting.you_tube_accouunt"> </i-control>
+            <i-control class="col6" label="##word.twitter_accouunt##" ng-model="default_setting.twitter_accouunt"> </i-control>
           </div>
 
           <div class="row">
-            <i-control class="col6" label="##word.email##" ng-model="default_setting.site_settings.email"> </i-control>
-            <i-control class="col6" label="##word.phone##" ng-model="default_setting.site_settings.phone"> </i-control>
+            <i-control class="col6" label="##word.email##" ng-model="default_setting.email"> </i-control>
+            <i-control class="col6" label="##word.phone##" ng-model="default_setting.phone"> </i-control>
           </div>
 
           <div class="row">
-            <i-control class="col6" label="##word.tax_number##" ng-model="default_setting.site_settings.tax_number"> </i-control>
-            <i-control class="col6" label="##word.commercial_registration_no##" ng-model="default_setting.site_settings.commercial_registration_no"> </i-control>
+            <i-control class="col6" label="##word.tax_number##" ng-model="default_setting.tax_number"> </i-control>
+            <i-control class="col6" label="##word.commercial_registration_no##" ng-model="default_setting.commercial_registration_no"> </i-control>
           </div>
 
         </fieldset>
@@ -78,32 +78,32 @@
           <div class="row">
             <div class="col8">
               <div class="row">
-                <i-list class="col4" ng-model="default_setting.ads_settings.ad_status" items="adStatusList" display="##session.lang##" ng-search="_search.$search_ad_status" label="##word.ad_status##"></i-list>
-                <i-control label="##word.maximum_ads##" type="number" class="col3" ng-model="default_setting.ads_settings.maximum_ads"></i-control>
+                <i-list class="col4" ng-model="default_setting.content.status" items="contentStatusList" display="##session.lang##" ng-search="_search.$search_ad_status" label="##word.ad_status##"></i-list>
+                <i-control label="##word.maximum_ads##" type="number" class="col3" ng-model="default_setting.content.maximum_ads"></i-control>
               </div>
 
               <div class="row">
-                <i-list class="col4" ng-model="default_setting.ads_settings.publishing_system" items="publishingSystemList" display="##session.lang##" ng-search="_search.$search_publishing_system" label="##word.publishing_system##"></i-list>
-                <i-date2 class="col5" ng-show="default_setting.ads_settings.publishing_system.id == 2" ng-model="default_setting.ads_settings.publishing_date" label="##word.publishing_date##"></i-date2>
+                <i-list class="col4" ng-model="default_setting.content.publishing_system" items="publishingSystemList" display="##session.lang##" ng-search="_search.$search_publishing_system" label="##word.publishing_system##"></i-list>
+                <i-date2 class="col5" ng-show="default_setting.content.publishing_system.id == 2" ng-model="default_setting.content.publishing_date" label="##word.publishing_date##"></i-date2>
               </div>
               <div class="row">
-                <i-list class="col4" ng-model="default_setting.ads_settings.closing_system" items="closingSystemList" display="##session.lang##" ng-search="_search.$search_closing_system" label="##word.closing_system##"></i-list>
+                <i-list class="col4" ng-model="default_setting.content.closing_system" items="closingSystemList" display="##session.lang##" ng-search="_search.$search_closing_system" label="##word.closing_system##"></i-list>
 
-                <i-control ng-show="default_setting.ads_settings.closing_system.id == 2" label="##word.duration##" type="number" class="col3" ng-model="default_setting.ads_settings.duration"></i-control>
-                <i-list class="col3" ng-model="default_setting.ads_settings.duration_type" items="durationExpiryList" ng-show="default_setting.ads_settings.closing_system.id == 2" display="##session.lang##" ng-search="_search.$search_duration_type" label="##word.duration_type##"></i-list>
-                <i-date2 class="col5" ng-show="default_setting.ads_settings.closing_system.id == 1" ng-model="default_setting.ads_settings.expiry_date" label="##word.expiry_date##"></i-date2>
+                <i-control ng-show="default_setting.content.closing_system.id == 2" label="##word.duration##" type="number" class="col3" ng-model="default_setting.content.duration"></i-control>
+                <i-list class="col3" ng-model="default_setting.content.duration_type" items="durationExpiryList" ng-show="default_setting.content.closing_system.id == 2" display="##session.lang##" ng-search="_search.$search_duration_type" label="##word.duration_type##"></i-list>
+                <i-date2 class="col5" ng-show="default_setting.content.closing_system.id == 1" ng-model="default_setting.content.expiry_date" label="##word.expiry_date##"></i-date2>
               </div>
             </div>
             <div class="col4">
               <h2 class="black center">##word.default_image_for_ad##</h2>
-              <i-image help-id="units_logo" ng-model="default_setting.ads_settings.default_image_ad"> </i-image>
+              <i-image help-id="units_logo" ng-model="default_setting.content.default_image_ad"> </i-image>
             </div>
           </div>
 
           <div class="row">
-            <i-checkbox class="row" label="##word.addresses_appear##" ng-model="default_setting.ads_settings.addresses_appear"></i-checkbox>
-            <i-checkbox class="row" label="##word.quantities_can_be_used##" ng-model="default_setting.ads_settings.quantities_can_be_used"></i-checkbox>
-            <i-checkbox class="row" label="##word.upload_multiple_photos##" ng-model="default_setting.ads_settings.upload_multiple_photos"></i-checkbox>
+            <i-checkbox class="row" label="##word.addresses_appear##" ng-model="default_setting.content.addresses_appear"></i-checkbox>
+            <i-checkbox class="row" label="##word.quantities_can_be_used##" ng-model="default_setting.content.quantities_can_be_used"></i-checkbox>
+            <i-checkbox class="row" label="##word.upload_multiple_photos##" ng-model="default_setting.content.upload_multiple_photos"></i-checkbox>
           </div>
         </fieldset>
 
@@ -120,7 +120,7 @@
           <div class="row" ng-show="default_setting.stores_settings.activate_stores">
             <div class="col8">
               <div class="row">
-                <i-list class="col4" ng-model="default_setting.stores_settings.store_status" items="adStatusList" display="##session.lang##" ng-search="_search.$search_store_status" label="##word.store_status##"></i-list>
+                <i-list class="col4" ng-model="default_setting.stores_settings.store_status" items="contentStatusList" display="##session.lang##" ng-search="_search.$search_store_status" label="##word.store_status##"></i-list>
                 <i-control label="##word.maximum_stores##" type="number" class="col3" ng-model="default_setting.stores_settings.maximum_stores"></i-control>
                 <i-control label="##word.maximum_ads_for_store##" type="number" class="col4" ng-model="default_setting.stores_settings.maximum_ads_for_store"></i-control>
               </div>

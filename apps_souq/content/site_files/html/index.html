@@ -9,12 +9,12 @@
     <div id="main-layout" class="container">
       <div class="row">
         <div class="row">
-          <div x-permissions="ads_add || ads_manage" x-import="ads/add_modal.html"></div>
-          <div x-permissions="ads_update || ads_manage" x-import="ads/update_modal.html"></div>
-          <div x-permissions="ads_delete || ads_manage" x-import="ads/delete_modal.html"></div>
-          <div x-permissions="ads_view || ads_manage" x-import="ads/view_modal.html"></div>
-          <div x-permissions="ads_search || ads_manage" x-import="ads/search_all_modal.html"></div>
-          <div x-import="ads/view_categories.html"></div>
+          <div x-permissions="ads_add || ads_manage" x-import="content/add_modal.html"></div>
+          <div x-permissions="ads_update || ads_manage" x-import="content/update_modal.html"></div>
+          <div x-permissions="ads_delete || ads_manage" x-import="content/delete_modal.html"></div>
+          <div x-permissions="ads_view || ads_manage" x-import="content/view_modal.html"></div>
+          <div x-permissions="ads_search || ads_manage" x-import="content/search_all_modal.html"></div>
+          <div x-import="content/view_categories.html"></div>
           
           <div class="row">
             <h1 class="bold text-center">##word.ads##</h1>
@@ -55,6 +55,6 @@
     </div>
 
     <div x-import="herag/scripts.html"></div>
-    <script x-import="ads/index.js"></script>
+    <script x-import="content/index.js"></script>
   </body>
 </html>

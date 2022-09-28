@@ -234,17 +234,17 @@ app.directive('iFeedback', [
           );
         };
 
-        $scope.getAdStatusList = function () {
+        $scope.getContentStatusList = function () {
           $scope.error = '';
           $scope.busy = true;
-          $scope.adStatusList = [];
+          $scope.contentStatusList = [];
           $http({
             method: 'POST',
-            url: '/api/ads_status/all',
+            url: '/api/content_status/all',
           }).then(
             function (response) {
               $scope.busy = false;
-              $scope.adStatusList = response.data;
+              $scope.contentStatusList = response.data;
             },
             function (err) {
               $scope.busy = false;
@@ -259,7 +259,7 @@ app.directive('iFeedback', [
           $scope.ngModel.feedback_list.push({ date: new Date() });
         };
 
-        $scope.getAdStatusList();
+        $scope.getContentStatusList();
         $scope.getCommentsTypesList();
         $scope.getReportsTypesList();
         $scope.getFeedbackTypeList();

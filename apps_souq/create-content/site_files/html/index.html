@@ -12,7 +12,7 @@
 
 
     <div id="main-layout" class="container">
-      <div x-features="souq" x-import="ads/view_categories.html"></div>
+      <div x-features="souq" x-import="content/view_categories.html"></div>
       <h2 class="error"> {{error}} </h2>
 
       <div class="row">
@@ -20,7 +20,7 @@
         <h1 class="center bold black">##word.create_ad##</h1>
         <br /> -->
 
-        <div x-import="create-ad/content.html"></div>
+        <div x-import="create-content/content.html"></div>
       </div>
       <div id="alert" class="modal alert small">
         <div class="modal-content">
@@ -31,6 +31,6 @@
       </div>
     </div>
     <div x-import="herag/scripts.html"></div>
-    <script x-import="create-ad/index.js"></script>
+    <script x-import="create-content/index.js"></script>
   </body>
 </html>

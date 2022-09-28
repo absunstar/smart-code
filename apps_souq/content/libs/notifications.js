@@ -1,6 +1,6 @@
 module.exports = function init(site) {
 
-  let collection_name = 'ads'
+  let collection_name = 'content'
 
 
   let source = {

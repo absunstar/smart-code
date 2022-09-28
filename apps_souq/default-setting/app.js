@@ -1,11 +1,32 @@
 module.exports = function init(site) {
   const $default_setting = site.connectCollection('default_setting');
-  site.defaultSettingDoc = {};
+  site.defaultSettingDoc = {
+    length_order: 0,
+    user_design: { id: 5 },
+    content: {
+      status: {
+        id: 1,
+        en: 'Active',
+        ar: 'نشط',
+      },
+    },
+  };
+  site.setting = { ...site.setting, ...site.defaultSettingDoc };
+
   $default_setting.findOne({}, (err, doc) => {
     if (!err && doc) {
       site.defaultSettingDoc = doc;
+      site.setting = { ...site.setting, ...site.defaultSettingDoc };
+    } else {
+      $default_setting.add(site.defaultSettingDoc, (err, doc) => {
+        if (!err && doc) {
+          site.defaultSettingDoc = doc;
+          site.setting = { ...site.setting, ...site.defaultSettingDoc };
+        }
+      });
     }
   });
+
   site.get({
     name: 'default_setting',
     path: __dirname + '/site_files/html/index.html',
@@ -39,90 +60,23 @@ module.exports = function init(site) {
   });
 
   site.post({
-    name: '/api/ads_status/all',
-    path: __dirname + '/site_files/json/ads_status.json',
+    name: '/api/content_status/all',
+    path: __dirname + '/site_files/json/content_status.json',
   });
-
-  // site.post({
-  //   name: "/api/discount_method/all",
-  //   path: __dirname + "/site_files/json/discount_method.json"
-  // })
 
   site.post('/api/default_setting/get', (req, res) => {
     let response = {
-      done: false,
+      doc: site.defaultSettingDoc,
+      done: true,
     };
-
-    // if (!req.session.user) {
-    //   response.error = 'Please Login First'
-    //   res.json(response)
-    //   return
-    // };
-
-    let where = req.data.where || {};
-
-    if (site.defaultSettingDoc && site.defaultSettingDoc.ads_settings) {
-      response.done = true;
-      response.doc = site.defaultSettingDoc;
-      res.json(response);
-    } else {
-      let obj = {
-        site_settings: {
-          length_order: 0,
-        },
-        ads_settings: {
-          ad_status: {
-            id: 1,
-            en: 'Active',
-            ar: 'نشط',
-          },
-        },
-      };
-      $default_setting.add(obj, (err, doc) => {
-        if (!err && doc) {
-          response.done = true;
-          response.doc = doc;
-          site.defaultSettingDoc = response.doc;
-          res.json(response);
-        } else {
-          response.error = err.message;
-          res.json(response);
-        }
-      });
-    }
+    res.json(response);
   });
 
   site.getDefaultSetting = function (callback) {
     callback = callback || function () {};
-    if (site.defaultSettingDoc) {
-      callback(site.defaultSettingDoc);
-      return site.defaultSettingDoc;
-    }
-
-    // let where = {};
-    // $default_setting.findOne(
-    //   {
-    //     where: where,
-    //   },
-    //   (err, doc) => {
-    //     if (!err && doc) {
-    //       site.defaultSettingDoc = doc;
-    //       callback(site.defaultSettingDoc);
-    //     } else {
-    //       callback(null);
-    //     }
-    //   }
-    // );
+    callback(site.defaultSettingDoc);
+    return site.defaultSettingDoc;
   };
-
-  //   site.getDefaultSetting = function (callback) {
-  //    $default_setting.get({
-  //    }, (err, doc) => {
-  //      if (!err && doc) {
-  //        return callback(err, doc)
-  //      }
-  //    })
-  //  }
 
   site.post('/api/default_setting/save', (req, res) => {
     let response = {
@@ -140,6 +94,7 @@ module.exports = function init(site) {
       if (!err) {
         response.done = true;
         site.defaultSettingDoc = data;
+        site.setting = { ...site.setting, ...site.defaultSettingDoc };
       } else {
         response.error = err.message;
       }

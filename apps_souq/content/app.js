@@ -1,7 +1,5 @@
-const email = require('isite/lib/email');
-
 module.exports = function init(site) {
-  const $ads = site.connectCollection('ads');
+  const $content = site.connectCollection('content');
 
   site.get({
     name: 'images',
@@ -15,20 +13,20 @@ module.exports = function init(site) {
     compress: true,
   });
 
-  site.ad_list = [];
-  $ads.findMany({}, (err, docs) => {
+  site.content_list = [];
+  $content.findMany({}, (err, docs) => {
     if (!err && docs) {
-      site.ad_list = [...site.ad_list, ...docs];
+      site.content_list = [...site.content_list, ...docs];
     }
   });
 
   setInterval(() => {
-    site.ad_list.forEach((a, i) => {
+    site.content_list.forEach((a, i) => {
       if (a.$add) {
         let user = a.$user;
-        $ads.add(a, (err, doc) => {
+        $content.add(a, (err, doc) => {
           if (!err && doc) {
-            site.ad_list[i] = doc;
+            site.content_list[i] = doc;
             if (doc.ad_status.id == 1) {
               site.call('[notific][ads_members_follow]', {
                 user: { id: user.id, email: user.email, profile: user.profile, followers_list: user.followers_list },
@@ -42,7 +40,7 @@ module.exports = function init(site) {
         });
       } else if (a.$update) {
         let user = a.$user;
-        $ads.edit(
+        $content.edit(
           {
             where: {
               id: a.id,
@@ -62,7 +60,7 @@ module.exports = function init(site) {
           }
         );
       } else if (a.$delete) {
-        $ads.delete({
+        $content.delete({
           id: a.id,
         });
       }
@@ -119,7 +117,7 @@ module.exports = function init(site) {
         if (!err && user_doc) {
           ads_doc.$user = user_doc;
 
-          site.ad_list.push(ads_doc);
+          site.content_list.push(ads_doc);
 
           res.json(response);
         }
@@ -173,9 +171,9 @@ module.exports = function init(site) {
       (err, user_doc) => {
         if (!err && user_doc) {
           ads_doc.$user = user_doc;
-          site.ad_list.forEach((a, i) => {
+          site.content_list.forEach((a, i) => {
             if (a.id === ads_doc.id) {
-              site.ad_list[i] = ads_doc;
+              site.content_list[i] = ads_doc;
             }
           });
           res.json(response);
@@ -195,7 +193,7 @@ module.exports = function init(site) {
       return;
     }
 
-    site.ad_list.forEach((a) => {
+    site.content_list.forEach((a) => {
       if (req.body.id && a.id === req.body.id) {
         a.$delete = true;
       }
@@ -220,7 +218,7 @@ module.exports = function init(site) {
       profile: req.session.user.profile,
     };
     let user_ad = req.body;
-    let ad = site.ad_list.find((_ad) => {
+    let ad = site.content_list.find((_ad) => {
       return _ad.id === user_ad.id;
     });
     if (!ad) {
@@ -296,9 +294,9 @@ module.exports = function init(site) {
     }
 
     ad.$update = true;
-    site.ad_list.forEach((a, i) => {
+    site.content_list.forEach((a, i) => {
       if (a.id === ad.id) {
-        site.ad_list[i] = ad;
+        site.content_list[i] = ad;
       }
     });
 
@@ -313,7 +311,7 @@ module.exports = function init(site) {
     };
 
     let ad = null;
-    site.ad_list.forEach((a) => {
+    site.content_list.forEach((a) => {
       if (a.id == req.body.id) {
         ad = a;
         if (req.body.display) {
@@ -378,7 +376,7 @@ module.exports = function init(site) {
       delete where['main_category'];
     }
 
-    $ads.findMany(
+    $content.findMany(
       {
         sort: req.body.sort || {
           id: -1,
@@ -405,7 +403,7 @@ module.exports = function init(site) {
   site.getAd = function (id, callback) {
     callback = callback || {};
     let where = {};
-    $ads.findOne(
+    $content.findOne(
       {
         where: { id: id },
         sort: { id: -1 },

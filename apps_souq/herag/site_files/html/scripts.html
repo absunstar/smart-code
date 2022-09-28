@@ -27,13 +27,14 @@
 <script src="/js/FileSaver.js?v=##site.options.version##"></script>
 <script src="/js/xlsx.full.min.js?v=##site.options.version##"></script>
 
-
 <div x-feature="help" x-import="ui-help/index.html"></div>
 <script x-import="ui-print/index.js"></script>
 <script x-import="herag/sitebar.js"></script>
 <script x-import="herag/footer_herag.js"></script>
 <script x-feature="souq" x-import="0/directive.js"></script>
 <script>
+
+
   $(document).on('keydown', 'input,select', function (e) {
     if (e.which == 13 || e.keyCode == 13) {
       e.preventDefault();
@@ -82,7 +83,7 @@
   }
 </script>
 
-<script x-features="!host.elfgr && *egytag.com*">
+<script x-features="host.egytag">
   function add_script(info) {
     console.log('Adding Script : ' + info.src);
     var script = document.createElement('script');
@@ -99,7 +100,7 @@
     async: true,
   });
   add_script({
-    src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js',
+    src: 'https://pagead2.googlesyndication.com/pagead/js/contentbygoogle.js',
     id: 'googlesyndication',
     'data-ad-client': 'ca-pub-3372007384613151',
     async: true,
@@ -114,31 +115,15 @@
 </script>
 
 <!-- apps.egytag.com -->
-<ins
-  x-features="!host.elfgr && *egytag.com*"
-  class="adsbygoogle"
-  style="display: block"
-  data-ad-client="ca-pub-3372007384613151"
-  data-ad-slot="7771021498"
-  data-ad-format="auto"
-  data-full-width-responsive="true"
-></ins>
-<script x-features="!host.elfgr && *egytag.com*">
+<ins x-features="host.egytag" class="adsbygoogle" style="display: block" data-ad-client="ca-pub-3372007384613151" data-ad-slot="7771021498" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script x-features="host.egytag.com">
   (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 
 <!-- Load Facebook SDK for JavaScript -->
-<div x-features="!host.elfgr && *egytag.com*" id="fb-root"></div>
-<script x-features="!host.elfgr && *egytag.com*">
-  if (
-    !site.features.like('*host.elfgr*') &&
-    !site.features.like('*host.icc*') &&
-    !site.features.like('*host.ft*') &&
-    !site.features.like('*unqcode.net*') &&
-    !site.features.like('*host.valley*') &&
-    !site.features.like('*host.ttl*') &&
-    !site.features.like('*host.mt*')
-  ) {
+<div x-features="host.egytag" id="fb-root"></div>
+<script x-features="host.egytag.com">
+  if (!site.features.like('*host.elfgr*') && !site.features.like('*host.icc*') && !site.features.like('*host.ft*') && !site.features.like('*unqcode.net*') && !site.features.like('*host.valley*') && !site.features.like('*host.ttl*') && !site.features.like('*host.mt*')) {
     window.fbAsyncInit = function () {
       FB.init({
         xfbml: true,
@@ -169,14 +154,7 @@
 </script>
 
 <!-- Your Chat Plugin code -->
-<div
-  x-features="!host.elfgr && *egytag.com*"
-  class="fb-customerchat"
-  attribution="setup_tool"
-  page_id="545115802193198"
-  logged_in_greeting="شركة سمارت كود ترحب بك - أكتب رسالتك وسنتواصل معك فى أقرب وقت"
-  logged_out_greeting="شركة سمارت كود ترحب بك - أكتب رسالتك وسنتواصل معك فى أقرب وقت"
-></div>
+<div x-features="host.egytag" class="fb-customerchat" attribution="setup_tool" page_id="545115802193198" logged_in_greeting="شركة سمارت كود ترحب بك - أكتب رسالتك وسنتواصل معك فى أقرب وقت" logged_out_greeting="شركة سمارت كود ترحب بك - أكتب رسالتك وسنتواصل معك فى أقرب وقت"></div>
 <script>
   var isMenuShow = false;
 
@@ -200,4 +178,3 @@
     }
   }
 </script>
-

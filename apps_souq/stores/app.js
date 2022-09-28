@@ -202,9 +202,9 @@ module.exports = function init(site) {
     }
 
     store.$update = true;
-    site.ad_list.forEach((a, i) => {
+    site.content_list.forEach((a, i) => {
       if (a.id === store.id) {
-        site.ad_list[i] = store;
+        site.content_list[i] = store;
       }
     });
 

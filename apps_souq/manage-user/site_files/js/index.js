@@ -602,9 +602,9 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
       priority_level: 0,
       active: true,
     };
-    if ($scope.defaultSettings.ads_settings) {
-      if ($scope.defaultSettings.ads_settings.ad_status) {
-        $scope.ad.ad_status = $scope.defaultSettings.ads_settings.ad_status;
+    if ($scope.defaultSettings.content) {
+      if ($scope.defaultSettings.content.status) {
+        $scope.ad.ad_status = $scope.defaultSettings.content.status;
       } else {
         $scope.ad.ad_status = {
           id: 2,
@@ -612,7 +612,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
           ar: 'قيد المراجعة',
         };
       }
-      if ($scope.defaultSettings.ads_settings.quantities_can_be_used) {
+      if ($scope.defaultSettings.content.quantities_can_be_used) {
         $scope.ad.quantity_list = [
           {
             price: 0,
@@ -625,10 +625,10 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
           },
         ];
       }
-      if ($scope.defaultSettings.ads_settings.upload_multiple_photos) {
+      if ($scope.defaultSettings.content.upload_multiple_photos) {
         $scope.ad.images_list = [{}];
       }
-      $scope.ad.image_url = $scope.defaultSettings.ads_settings.default_image_ad || '/images/ads.png';
+      $scope.ad.image_url = $scope.defaultSettings.content.default_image_ad || '/images/content.png';
     }
     site.showModal('#adAddModal');
   };
@@ -717,8 +717,8 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
       $scope.ad.address = $scope.ad.store.address;
     }
 
-    if ($scope.defaultSettings.ads_settings.ad_status) {
-      $scope.ad.ad_status = $scope.defaultSettings.ads_settings.ad_status;
+    if ($scope.defaultSettings.content.status) {
+      $scope.ad.ad_status = $scope.defaultSettings.content.status;
     } else {
       $scope.ad.ad_status = {
         id: 2,

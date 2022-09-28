@@ -1,16 +1,15 @@
-<div id="adDeleteModal" class="modal">
-    
+<div id="adViewModal" class="modal">
     <div class="modal-content">
         <div class="modal-header">
             <span class="close">&times;</span>
             <h2>
-                ##word.inventory_ads_delete##
-                <i class="fa fa-trash"></i>
+                ##word.ads_details##
+                <i class="fa fa-file"></i>
             </h2>
         </div>
 
         <div class="modal-body">
-               <div x-import="ads/view.html"></div>
+            <div x-import="content/view.html"></div>
 
         </div>
 
@@ -19,11 +18,7 @@
         <div class="modal-footer center">
             <i-button type="print" label="##word.print##" onclick="site.print('#v1')"></i-button>
 
-            <i-button type="delete" label="##word.delete##" ng-click="deleteAd(ad)"> </i-button>
-
-            <i-button type="close" label="##word.close##" onclick="site.hideModal('#adDeleteModal')"> </i-button>
-
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#adViewModal')"></i-button>
         </div>
     </div>
-    
 </div>
