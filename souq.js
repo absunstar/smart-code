@@ -24,8 +24,8 @@ const site = require('../isite')({
 });
 
 if (site.hasFeature('herag')) {
-  site.words.addList(__dirname + '/site_files/json/words-sa.json');
 }
+site.words.addList(__dirname + '/site_files/json/words-sa.json');
 
 site.get({
   name: '/',
