@@ -11,7 +11,7 @@ const site = require('../isite')({
   },
   theme: 'theme_paper',
   mongodb: {
-    db: 'smart_code_souq',
+    db: 'smart_code_souq_2022',
     limit: 100000,
     events: true,
     identity: {
