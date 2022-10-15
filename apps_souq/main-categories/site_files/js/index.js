@@ -37,8 +37,8 @@ app.controller("main_categories", function ($scope, $http, $timeout) {
       $scope.main_categories.top_parent_id = parent_main_category.top_parent_id || parent_main_category.id;
     };
 
-    if($scope.default_setting.site_settings && $scope.default_setting.site_settings.auto_generate_categories_code){
-      $scope.main_categories.length_category = $scope.default_setting.site_settings.length_category || 0;
+    if($scope.default_setting.auto_generate_categories_code){
+      $scope.main_categories.length_category = $scope.default_setting.length_category || 0;
     };
 
     site.showModal('#mainCategoriesAddModal');
@@ -284,7 +284,7 @@ app.controller("main_categories", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data) {
           $scope.default_setting = response.data.doc;
-          $scope.disabledCode = response.data.doc.site_settings.auto_generate_categories_code == true ? true : false;
+          $scope.disabledCode = response.data.doc.auto_generate_categories_code == true ? true : false;
         }
       },
       function (err) {

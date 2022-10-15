@@ -18,8 +18,8 @@
           <h1 class="user-name-stlye">{{user.profile.name}}</h1>
         </div>
         <h2 class="user-name-stlye">{{user.email}}</h2>
-        <i-button label="##word.follow##" ng-hide="user.$is_follow && '##user.email##' == user.email" ng-click="updateFollow(user,true)"></i-button>
-        <i-button label="##word.unfollow##" ng-show="user.$is_follow && '##user.email##' != user.email" ng-click="updateFollow(user,false)"></i-button>
+        <i-button label="##word.follow##" ng-show="!user.$is_follow && !user.$same_email" ng-click="updateFollow(user,true)"></i-button>
+        <i-button label="##word.unfollow##" ng-show="user.$is_follow && !user.$same_email" ng-click="updateFollow(user,false)"></i-button>
         <i-button fa="envelope" label="##word.conversation##" onclick="site.showModal('#messageModal')"></i-button>
         <a class="row" ng-show="user.mobile" href="tel:{{user.mobile}}">
           {{user.mobile}}

@@ -20,8 +20,63 @@
     "ar": "لا يوجد متابعات"
   },
   {
+    "name": "no_notifications",
+    "en": "No Notifications",
+    "ar": "لا يوجد إشعارات"
+  },
+  {
     "name": "follow_ups",
     "en": "Follow-ups",
     "ar": "المتابعات"
+  },
+  {
+    "name": "instant_alerts",
+    "en": "Instant Alerts",
+    "ar": "التنبيهات الفورية"
+  },
+  {
+    "name": "ads_members_follow",
+    "en": "Ads of members you follow",
+    "ar": "إعلانات أعضاء قمت بمتابعتهم"
+  },
+  {
+    "name": "ads_sections_followed",
+    "en": "Ads for sections I followed",
+    "ar": "إعلانات أقسام قمت بمتابعتها"
+  },
+  {
+    "name": "ads_searches_followed",
+    "en": "Ads for searches you followed",
+    "ar": "إعلانات عمليات بحث قمت بمتابعتها"
+  },
+  {
+    "name": "replies_ads_followed",
+    "en": "Replies to ads you followed",
+    "ar": "ردود على إعلانات قمت بمتابعتها"
+  },
+  {
+    "name": "comments_my_ads",
+    "en": "Comments on my ads",
+    "ar": "تعليقات على إعلاناتي"
+  },
+  {
+    "name": "private_messages",
+    "en": "Private messages",
+    "ar": "الرسائل الخاصة"
+  },
+  {
+    "name": "harag_recommendations",
+    "en": "Harag Recommendations",
+    "ar": "توصيات حراج"
+  },
+  {
+    "name": "notific_setting",
+    "en": "Notifications Setting",
+    "ar": "إعدادات الإشعارات"
+  },
+  {
+    "name": "delete_notifications",
+    "en": "Delete notifications",
+    "ar": "حذف الإشعارات"
   }
 ]

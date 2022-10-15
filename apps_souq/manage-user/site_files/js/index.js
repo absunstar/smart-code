@@ -126,8 +126,6 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
         $encript: '123',
         email: site.to123(u.email),
         password: site.to123(u.password),
-      
-      
       },
     }).then(
       function (response) {
@@ -202,80 +200,10 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.showMessage = function (m) {
-    $scope.message = m;
-  };
-
-  $scope.sendMessage = function (message) {
-    $scope.busy = true;
-
-    if (!$scope.send_message) {
-      $scope.error = '##word.must_write_message##';
-      return;
-    }
-
-    message.messages_list = message.messages_list || [];
-    message.messages_list.push({
-      date: new Date(),
-      message: $scope.send_message,
-      user_id: $scope.manage_user.id,
-      user_name: $scope.manage_user.profile.name,
-      image_url: $scope.manage_user.profile.image_url,
-      show: false,
-    });
-
-    $http({
-      method: 'POST',
-      url: '/api/messages/update',
-      data: message,
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.send_message = undefined;
-          $scope.busy = false;
-        } else {
-          $scope.error = response.data.error;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
-  $scope.geMessagesList = function (where) {
-    $scope.busy = true;
-    $scope.messagesList = [];
-    $http({
-      method: 'POST',
-      url: '/api/messages/all',
-      data: {
-        where: {
-          'users_list.id': $scope.manage_user.id,
-        },
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.messagesList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
   $scope.showTab = function (event, selector) {
     site.showTabContent(event, selector);
 
-    if (selector == '#messages') {
-      $scope.geMessagesList();
-    } else if (selector == '#my_orders') {
+    if (selector == '#my_orders') {
       $scope.getOrdersList();
     } else if (selector == '#my_ads') {
       $scope.getMyAdsList();
@@ -305,7 +233,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
     $scope.myAdslist = [];
     $http({
       method: 'POST',
-      url: '/api/ads/all',
+      url: '/api/contents/all',
       data: {
         where: {
           $and: [
@@ -358,14 +286,12 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
     );
   };
 
-
-
   $scope.getFavoriteAdsList = function (where) {
     $scope.busy = true;
     $scope.favoriteAdslist = [];
     $http({
       method: 'POST',
-      url: '/api/ads/all',
+      url: '/api/contents/all',
       data: {
         where: {
           $and: [
@@ -676,9 +602,9 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
       priority_level: 0,
       active: true,
     };
-    if ($scope.defaultSettings.ads_settings) {
-      if ($scope.defaultSettings.ads_settings.ad_status) {
-        $scope.ad.ad_status = $scope.defaultSettings.ads_settings.ad_status;
+    if ($scope.defaultSettings.content) {
+      if ($scope.defaultSettings.content.status) {
+        $scope.ad.ad_status = $scope.defaultSettings.content.status;
       } else {
         $scope.ad.ad_status = {
           id: 2,
@@ -686,7 +612,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
           ar: 'قيد المراجعة',
         };
       }
-      if ($scope.defaultSettings.ads_settings.quantities_can_be_used) {
+      if ($scope.defaultSettings.content.quantities_can_be_used) {
         $scope.ad.quantity_list = [
           {
             price: 0,
@@ -699,10 +625,10 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
           },
         ];
       }
-      if ($scope.defaultSettings.ads_settings.upload_multiple_photos) {
+      if ($scope.defaultSettings.content.upload_multiple_photos) {
         $scope.ad.images_list = [{}];
       }
-      $scope.ad.image_url = $scope.defaultSettings.ads_settings.default_image_ad || '/images/ads.png';
+      $scope.ad.image_url = $scope.defaultSettings.content.default_image_ad || '/images/content.png';
     }
     site.showModal('#adAddModal');
   };
@@ -747,7 +673,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/ads/add',
+      url: '/api/contents/add',
       data: $scope.ad,
     }).then(
       function (response) {
@@ -791,8 +717,8 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
       $scope.ad.address = $scope.ad.store.address;
     }
 
-    if ($scope.defaultSettings.ads_settings.ad_status) {
-      $scope.ad.ad_status = $scope.defaultSettings.ads_settings.ad_status;
+    if ($scope.defaultSettings.content.status) {
+      $scope.ad.ad_status = $scope.defaultSettings.content.status;
     } else {
       $scope.ad.ad_status = {
         id: 2,
@@ -804,7 +730,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/ads/update',
+      url: '/api/contents/update',
       data: $scope.ad,
     }).then(
       function (response) {
@@ -834,7 +760,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
     $scope.error = '';
     $http({
       method: 'POST',
-      url: '/api/ads/view',
+      url: '/api/contents/view',
       data: {
         id: ad.id,
       },
@@ -867,7 +793,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
 
     $http({
       method: 'POST',
-      url: '/api/ads/delete',
+      url: '/api/contents/delete',
       data: {
         id: $scope.ad.id,
       },
@@ -997,7 +923,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
       url: '/api/stores/all',
       data: {
         where: { 'user.id': id },
-        select: { id: 1, code: 1, name: 1,  user: 1, address: 1 },
+        select: { id: 1, code: 1, name: 1, user: 1, address: 1 },
       },
     }).then(
       function (response) {

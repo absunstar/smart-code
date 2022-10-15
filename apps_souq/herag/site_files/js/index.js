@@ -9,7 +9,7 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
     if (ev.which === 13) {
       $http({
         method: 'POST',
-        url: '/api/ads/all',
+        url: '/api/contents/all',
         data: {
           where: where,
         },
@@ -18,7 +18,7 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
           $scope.busy = false;
           if (response.data.done && response.data.list.length > 0) {
             $scope.adsList = response.data.list;
-            if($scope.user){
+            if ($scope.user) {
               $scope.adsList.forEach((ad) => {
                 ad.favorite = $scope.user.feedback_list.some((_f) => _f.type && _f.ad && _f.type.id == 2 && _f.ad.id == ad.id);
               });
@@ -33,6 +33,125 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
     }
   };
 
+  $scope.getCountriesList = function (where) {
+    $scope.busy = true;
+    $http({
+      method: 'POST',
+      url: '/api/countries/all',
+      data: {
+        where: {
+          active: true,
+        },
+        select: {
+          id: 1,
+          name_ar: 1,
+          name_en: 1,
+        },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.countriesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+
+  $scope.getGovesList = function (country) {
+    $scope.busy = true;
+    $scope.govesList = [];
+    $scope.cityList = [];
+    $scope.areaList = [];
+    $http({
+      method: 'POST',
+      url: '/api/goves/all',
+      data: {
+        where: {
+          'country.id': country.id,
+          active: true,
+        },
+        select: {
+          id: 1,
+          name_ar: 1,
+          name_en: 1,
+        },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.govesList = response.data.list;
+          $scope.searchAll($scope.search);
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.getCityList = function (gov) {
+    $scope.busy = true;
+    $scope.cityList = [];
+    $scope.areaList = [];
+    $http({
+      method: 'POST',
+      url: '/api/city/all',
+      data: {
+        where: {
+          'gov.id': gov.id,
+          active: true,
+        },
+        select: { id: 1, name_ar: 1, name_en: 1 },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.cityList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.getAreaList = function (city) {
+    $scope.busy = true;
+    $scope.areaList = [];
+    $http({
+      method: 'POST',
+      url: '/api/area/all',
+      data: {
+        where: {
+          'city.id': city.id,
+          active: true,
+        },
+        select: { id: 1, name_ar: 1, name_en: 1 },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.areaList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.displayAd = function (id) {
     window.open(`/display_ad?id=${id}`, '_blank');
   };
@@ -43,7 +162,7 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
       method: 'POST',
       url: '/api/user/view',
       data: {
-        id: '##user.id##',
+        id: site.toNumber('##user.id##'),
       },
     }).then(
       function (response) {
@@ -121,7 +240,7 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
 
     $http({
       method: 'POST',
-      url: '/api/ads/update_feedback',
+      url: '/api/contents/update_feedback',
       data: data,
     }).then(
       function (response) {
@@ -173,19 +292,21 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.busy = true;
 
-    $http.post('/api/user/logout').then(function (response) {
-       
+    $http.post('/api/user/logout').then(
+      function (response) {
         if (response.data.done) {
-            window.location.href = '/';
-        }else{
-            $scope.error = response.data.error;
-            $scope.busy = false;
+          window.location.href = '/';
+        } else {
+          $scope.error = response.data.error;
+          $scope.busy = false;
         }
-    }, function (error) {
+      },
+      function (error) {
         $scope.busy = false;
         $scope.error = error;
-    });
-};
+      }
+    );
+  };
 
   $scope.loadSubCategory = function (c) {
     $scope.error = '';
@@ -201,6 +322,12 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
       }
     });
     $scope.getAdsList({ which: 13 }, $scope.search);
+    $scope.category = c;
+    $scope.user.follow_category_list.forEach((_f) => {
+      if (c.id == _f) {
+        $scope.category.follow = true;
+      }
+    });
   };
 
   $scope.loadSubCategory2 = function (c) {
@@ -216,6 +343,12 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
       }
     });
     $scope.getAdsList({ which: 13 }, $scope.search);
+    $scope.category = c;
+    $scope.user.follow_category_list.forEach((_f) => {
+      if (c.id == _f) {
+        $scope.category.follow = true;
+      }
+    });
   };
 
   $scope.loadSubCategory3 = function (c) {
@@ -230,6 +363,12 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
       }
     });
     $scope.getAdsList({ which: 13 }, $scope.search);
+    $scope.category = c;
+    $scope.user.follow_category_list.forEach((_f) => {
+      if (c.id == _f) {
+        $scope.category.follow = true;
+      }
+    });
   };
 
   $scope.loadSubCategory4 = function (c) {
@@ -244,7 +383,34 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
       }
     });
     $scope.getAdsList({ which: 13 }, $scope.search);
+    $scope.category = c;
+    $scope.user.follow_category_list.forEach((_f) => {
+      if (c.id == _f) {
+        $scope.category.follow = true;
+      }
+    });
   };
+
+  $scope.updateFollowCategory = function (categoryId, follow) {
+    $scope.error = '';
+    $scope.busy = true;
+    $http({
+      method: 'POST',
+      url: '/api/user/follow_category',
+      data: { follow: follow, id: categoryId },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.displayAdvancedSearch = function () {
     $scope.error = '';
     site.showModal('#adAdvancedSearchModal');
@@ -293,4 +459,6 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
   $scope.getAdsList({ which: 13 }, {});
   $scope.getUser();
   $scope.getDefaultSetting();
+  $scope.getCountriesList();
+
 });

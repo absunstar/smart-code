@@ -11,7 +11,7 @@
 <div ng-repeat="st_o in invList">
   <div class="border page-a4">
     <div class="row">
-      <div class="col5 center">
+      <div class="col-5 center">
         <br />
         <div class="row">
           <h2 class="center bold">##session.company.name_ar##</h2>
@@ -24,12 +24,12 @@
         </div>
       </div>
 
-      <div class="col2 center">
+      <div class="col-2 center">
         <br />
         <img ng-show="invoice_logo" class="logoPrint" ng-src="{{invoice_logo}}" />
       </div>
 
-      <div class="col5 center">
+      <div class="col-5 center">
         <br />
         <div class="row">
           <h2 class="center bold">##session.company.name_en##</h2>
@@ -247,59 +247,59 @@
 
     <div class="footer">
       <div class="row padding" x-permissions="stores_out_details_values || stores_out_manage" ng-show="($index+1) == invList.length">
-        <div class="col8">
+        <div class="col-8">
           <div class="row">
-            <div class="col8">
+            <div class="col-8">
               <p class="txt18 bold black">الإجمالي قبل ضريبة القيمة المضافة / Total B.Tax</p>
             </div>
-            <div class="col1"></div>
-            <div class="col3">
+            <div class="col-1"></div>
+            <div class="col-3">
               <p class="txt18 bold black">{{st_o.before_value_added | xmoney2}}</p>
             </div>
           </div>
           <div class="row">
-            <div class="col8">
+            <div class="col-8">
               <p class="txt18 bold black">ضريبة القيمة المضافة / VAT {{defaultSettings.inventory.value_added | xmoney2}}%</p>
             </div>
-            <div class="col1"></div>
-            <div class="col3">
+            <div class="col-1"></div>
+            <div class="col-3">
               <p class="txt18 bold black">{{st_o.total_value_added  | xmoney2}}</p>
             </div>
           </div>
           <div class="row">
-            <div class="col8">
+            <div class="col-8">
               <p class="txt18 bold black">الإجمالي بعد ضريبة القيمة المضافة / Total A.Tax</p>
             </div>
-            <div class="col1"></div>
-            <div class="col3">
+            <div class="col-1"></div>
+            <div class="col-3">
               <p class="txt18 bold black">{{st_o.total_value | xmoney2}}</p>
             </div>
           </div>
           <div class="row">
-            <div class="col8">
+            <div class="col-8">
               <p class="txt18 bold black">الخصم النقدي / Discount Cash</p>
             </div>
-            <div class="col1"></div>
-            <div class="col3">
+            <div class="col-1"></div>
+            <div class="col-3">
               <p class="txt18 bold black">{{st_o.total_discount | xmoney2}}</p>
             </div>
           </div>
           <div class="row">
-            <div class="col8">
+            <div class="col-8">
               <p class="txt18 bold black">الصافي / Net.</p>
             </div>
-            <div class="col1"></div>
-            <div class="col3">
+            <div class="col-1"></div>
+            <div class="col-3">
               <p class="txt18 bold black">{{st_o.net_value | xmoney2}}</p>
             </div>
           </div>
           <div class="row" ng-show="defaultSettings.printer_program.Print_written_amount">
-            <div class="col1"></div>
+            <div class="col-1"></div>
             <p ng-show="'##session.lang##' == 'ar'" class="num_str bold center black">{{st_o.net_txt}} {{defaultSettings.accounting.end_num_to_str || ''}}</p>
             <p ng-show="'##session.lang##' == 'en'" class="num_str bold center black">{{st_o.net_txt}} {{defaultSettings.accounting.end_num_to_str_en || ''}}</p>
           </div>
         </div>
-        <div class="col4 center">
+        <div class="col-4 center">
           <div class="qrcode-a4 center"></div>
         </div>
         <div class="row">
@@ -310,16 +310,16 @@
       </div>
 
       <div class="row">
-        <div class="col1"></div>
-        <div class="col4 bold">
+        <div class="col-1"></div>
+        <div class="col-4 bold">
           <p class="font-12 black center">المستلم / Receiver</p>
           <p class="black">الإسم / Name :</p>
           <p class="black">التوقيع / Signature :</p>
         </div>
 
-        <div class="col2"></div>
+        <div class="col-2"></div>
 
-        <div class="col4 bold">
+        <div class="col-4 bold">
           <p class="font-12 black center">المندوب / Sales man</p>
           <b class="black">الإسم / Name : </b>
           <p class="black">التوقيع / Signature :</p>

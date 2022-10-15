@@ -480,7 +480,7 @@ a.pro-template .description {
   /* font-size: x-large; */
   padding: 0px 6px;
   border-radius: 50%;
-  background-color: green;
+  background-color: green !important;
 }
 
 @media screen and (max-width: 768px) {

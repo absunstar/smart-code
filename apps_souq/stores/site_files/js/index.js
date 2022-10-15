@@ -257,7 +257,7 @@ app.controller('stores', function ($scope, $http, $timeout) {
     $scope.storeStatusList = [];
     $http({
       method: 'POST',
-      url: '/api/ads_status/all',
+      url: '/api/content_status/all',
     }).then(
       function (response) {
         $scope.busy = false;
@@ -320,7 +320,7 @@ app.controller('stores', function ($scope, $http, $timeout) {
       method: 'POST',
       url: '/api/user/view',
       data: {
-        id: '##user.id##',
+        id: site.toNumber('##user.id##'),
       },
     }).then(
       function (response) {

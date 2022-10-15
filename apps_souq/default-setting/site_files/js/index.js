@@ -75,17 +75,17 @@ app.controller("default_setting", function ($scope, $http,$timeout) {
     );
   };
 
-  $scope.getAdStatusList = function () {
+  $scope.getContentStatusList = function () {
     $scope.error = "";
     $scope.busy = true;
-    $scope.adStatusList = [];
+    $scope.contentStatusList = [];
     $http({
       method: "POST",
-      url: "/api/ads_status/all",
+      url: "/api/content_status/all",
     }).then(
       function (response) {
         $scope.busy = false;
-        $scope.adStatusList = response.data;
+        $scope.contentStatusList = response.data;
       },
       function (err) {
         $scope.busy = false;
@@ -240,7 +240,7 @@ app.controller("default_setting", function ($scope, $http,$timeout) {
   $scope.loadSetting();
   $scope.getUserDesignList();
   $scope.getPublishingSystemsList();
-  $scope.getAdStatusList();
+  $scope.getContentStatusList();
   $scope.getClosingSystemList();
   $scope.getDurationExpiryList();
 });

@@ -91,7 +91,7 @@ module.exports = function init(site) {
     let code = 0;
     let l = 0;
     l = main_categories_doc.length_category || 0;
-    if (site.defaultSettingDoc.site_settings.auto_generate_categories_code) {
+    if (site.setting.auto_generate_categories_code) {
       if (site.main_categories_list.length == 0) {
         main_categories_doc.code = addZero(1, l);
       } else {
@@ -127,7 +127,7 @@ module.exports = function init(site) {
       main_categories_doc.$add = true;
       site.main_categories_list.push(main_categories_doc);
       res.json(response);
-    } else if (site.defaultSettingDoc.site_settings.auto_generate_categories_code == false && !main_categories_doc.code) {
+    } else if (site.setting.auto_generate_categories_code == false && !main_categories_doc.code) {
       response.error = 'enter tree code';
       res.json(response);
     } else {

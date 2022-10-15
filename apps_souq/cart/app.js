@@ -95,8 +95,8 @@ module.exports = function init(site) {
 
     let lastOrder = site.order_list[site.order_list.length - 1];
 
-    if (site.defaultSettingDoc.site_settings.length_order) {
-      order_doc.code = order_doc.code = addZero(site.toNumber(lastOrder.code) + site.toNumber(1), site.defaultSettingDoc.site_settings.length_order);
+    if (site.setting.length_order) {
+      order_doc.code = order_doc.code = addZero(site.toNumber(lastOrder.code) + site.toNumber(1), site.setting.length_order);
 
       response.done = true;
       order_doc.$add = true;

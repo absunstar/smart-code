@@ -28,14 +28,13 @@ app.controller('follow', function ($scope, $http, $timeout) {
       method: 'POST',
       url: '/api/users/all',
       data: {
-        where:{'follow_list' : site.toNumber('##user.id##')},
+        where:{'followers_list' : site.toNumber('##user.id##')},
       },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.users_list = response.data.users;
-          console.log($scope.users_list.length);
         } else {
           $scope.error = response.data.error;
         }
@@ -46,6 +45,5 @@ app.controller('follow', function ($scope, $http, $timeout) {
       }
     );
   };
-
   $scope.getUsers();
 });

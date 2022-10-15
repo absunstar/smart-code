@@ -1,10 +1,5 @@
 module.exports = function init(site) {
-  site.get({
-    name: 'user_messages',
-    path: __dirname + '/site_files/html/messages.html',
-    parser: 'html',
-    compress: true,
-  });
+
 
   site.get({
     name: 'favorites',
@@ -50,12 +45,12 @@ module.exports = function init(site) {
       (err, doc) => {
         if (!err && doc) {
           if (req.body.follow) {
-            doc.follow_list.push(req.session.user.id);
+            doc.followers_list.push(req.session.user.id);
           } else {
-          let follow_list =  doc.follow_list.filter(x => {
+          let followers_list =  doc.followers_list.filter(x => {
               return x != req.session.user.id;
             })
-            doc.follow_list = follow_list
+            doc.followers_list = followers_list
           }
           site.security.updateUser(doc, (err) => {
             if (!err) {

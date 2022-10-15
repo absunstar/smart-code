@@ -2601,7 +2601,7 @@ app.controller('order_invoice', function ($scope, $http, $timeout, $interval) {
       method: 'POST',
       url: '/api/user/view',
       data: {
-        id: '##user.id##',
+        id: site.toNumber('##user.id##'),
       },
     }).then(
       function (response) {

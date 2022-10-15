@@ -1,7 +1,5 @@
-const { date } = require('xlsx/jszip');
 
 module.exports = function init(site) {
-    site.XLSX = require('xlsx');
     site.get({
         name: 'db',
         path: __dirname + '/site_files/html/index.html',

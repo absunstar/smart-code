@@ -1,0 +1,27 @@
+[
+  {
+    "name": "there_new_response_ad",
+    "en": "There is a new response to the ad",
+    "ar": "يوجد رد جديد على الإعلان"
+  },
+  {
+    "name": "new_comment_on",
+    "en": "New comment on",
+    "ar": "تعليق جديد على"
+  },
+  {
+    "name": "there_is_new_ad",
+    "en": "There is a new ad",
+    "ar": "يوجد إعلان جديد"
+  },
+  {
+    "name": "there_new_private_message",
+    "en": "There is a new private message",
+    "ar": "يوجد رسالة خاصة جديدة"
+  },
+  {
+    "name": "new_private_message_from",
+    "en": "New private message from",
+    "ar": "رسالة خاصة جديدة من"
+  }
+]

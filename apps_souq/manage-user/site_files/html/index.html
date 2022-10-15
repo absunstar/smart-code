@@ -18,7 +18,7 @@
     <div x-import="manage-user/update_modal_store.html"></div>
     <div x-import="manage-user/view_modal_store.html"></div>
 
-    <div x-import="ads/view_categories.html"></div>
+    <div x-import="content/view_categories.html"></div>
     <br />
     <h1 class="center bold black">##word.manage_your_personal_account##</h1>
     <br />
@@ -27,7 +27,6 @@
         <div class="tabs-header">
           <a class="tab-link" onclick="site.showTabContent(event, '#personal_info')"> ##word.personal_info## </a>
           <a class="tab-link" ng-click="showTab($event,'#my_addresses')"> ##word.my_addresses## </a>
-          <a class="tab-link" ng-click="showTab($event,'#messages')"> ##word.messages## </a>
           <a class="tab-link" onclick="site.showTabContent(event, '#cart')"> ##word.cart## </a>
           <a class="tab-link" ng-click="showTab($event,'#my_orders')" ng-show="defaultSettings.order_settings.activate_orders"> ##word.my_orders## </a>
           <a class="tab-link" ng-click="showTab($event,'#my_ads')"> ##word.my_ads## </a>
@@ -196,68 +195,6 @@
                 </fieldset>
               </div>
               <i-button type="save" label="##word.save##" ng-click="saveUserChanges(manage_user)"> </i-button>
-            </fieldset>
-          </div>
-
-          <div id="messages" class="tab-content">
-            <fieldset>
-              <legend>##word.messages##</legend>
-              <br />
-              <div class="row" ng-hide="messagesList.length > 0">
-                <br />
-                <br />
-                <h1 class="blue bold center">##word.there_no_messages##</h1>
-                <br />
-                <br />
-              </div>
-              <div class="row" style="max-width: 1200px" ng-show="messagesList.length > 0">
-                <div class="item-groups">
-                  <a class="item pointer" ng-repeat="m in messagesList" ng-click="showMessage(m)" help-id="menu_monitor">
-                    <b ng-repeat="u in m.users_list" class="center" ng-show="u.id != manage_user.id">{{u.profile.name}}</b>
-                    <img ng-src="{{m.image_url}}" />
-                  </a>
-                </div>
-              </div>
-              <br />
-              <div class="row" ng-show="message.id">
-                <fieldset>
-                  <legend>##word.the_message##</legend>
-
-                  <br />
-                  <br />
-                  <div class="row">
-                    <div class="col10">
-                      <div class="row _scroll">
-                        <div ng-repeat="c in message.messages_list">
-                          <h2 class="bold pre_text msg_right" ng-show="c.user_id == manage_user.id">{{c.user_name}}</h2>
-                          <h2 class="bold pre_text msg_left" ng-show="c.user_id != manage_user.id">{{c.user_name}}</h2>
-
-                          <h3 class="bold pre_text msg_right" ng-show="c.user_id == manage_user.id">{{c.message}}</h3>
-                          <h3 class="bold pre_text msg_left" ng-show="c.user_id != manage_user.id">{{c.message}}</h3>
-
-                          <i-image view class="logo" ng-model="c.image_url"></i-image>
-                          <h5 class="brown msg_right" ng-show="c.user_id == manage_user.id">{{c.date | date : 'hh:mm | dd - MM - yyyy'}}</h5>
-                          <h5 class="brown msg_left" ng-show="c.user_id != manage_user.id">{{c.date | date : 'hh:mm | dd - MM - yyyy'}}</h5>
-
-                          <!--   <i-button type="delete default"
-                                          ng-click="report_orders.messages.splice($index,1);deleteMessage(report_orders)">
-                                      </i-button> -->
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <br />
-                  <br />
-                  <div class="row">
-                    <div class="col3"></div>
-                    <i-textarea class="col6" label="##word.write_your_message_here##" ng-model="send_message"> </i-textarea>
-                  </div>
-                  <div class="row center">
-                    <i-button type="add" label="##word.send##" ng-click="sendMessage(message)"> </i-button>
-                  </div>
-                </fieldset>
-              </div>
             </fieldset>
           </div>
 

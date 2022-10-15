@@ -31,7 +31,7 @@
 
 <div x-feature="help" x-import="ui-help/index.html"></div>
 <script x-import="ui-print/index.js"></script>
-<script x-feature="souq" x-import="0-default/directive.js"></script>
+<script x-feature="souq" x-import="0/directive.js"></script>
 <script>
   $(document).on('keydown', 'input,select', function (e) {
     if (e.which == 13 || e.keyCode == 13) {
@@ -81,7 +81,7 @@
   }
 </script>
 
-<script x-features="!host.elfgr && *egytag.com*">
+<script x-features="host.egytag">
   function add_script(info) {
     console.log('Adding Script : ' + info.src);
     var script = document.createElement('script');
@@ -112,9 +112,8 @@
   gtag('config', 'UA-59220588-1');
 </script>
 
-<!-- apps.egytag.com -->
 <ins
-  x-features="!host.elfgr && *egytag.com*"
+  x-features="host.egytag"
   class="adsbygoogle"
   style="display: block"
   data-ad-client="ca-pub-3372007384613151"
@@ -122,13 +121,13 @@
   data-ad-format="auto"
   data-full-width-responsive="true"
 ></ins>
-<script x-features="!host.elfgr && *egytag.com*">
+<script x-features="host.egytag">
   (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 
 <!-- Load Facebook SDK for JavaScript -->
-<div x-features="!host.elfgr && *egytag.com*" id="fb-root"></div>
-<script x-features="!host.elfgr && *egytag.com*">
+<div x-features="host.egytag" id="fb-root"></div>
+<script x-features="host.egytag">
   if (
     !site.features.like('*host.elfgr*') &&
     !site.features.like('*host.icc*') &&
@@ -169,7 +168,7 @@
 
 <!-- Your Chat Plugin code -->
 <div
-  x-features="!host.elfgr && *egytag.com*"
+  x-features="host.egytag"
   class="fb-customerchat"
   attribution="setup_tool"
   page_id="545115802193198"

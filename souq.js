@@ -38,36 +38,31 @@ site.get(
     name: '/',
   },
   (req, res) => {
-    site.getDefaultSetting((data) => {
-      data = data || {}
-      data.site_settings = data.site_settings || {};
-      data.site_settings.user_design = data.site_settings.user_design || { id: 5 };
-      if (data.site_settings.user_design.id == 1) {
-        res.render(
-          '0-default/index.html',
-          {},
-          {
-            parser: 'html css js',
-          }
-        );
-      } else if (data.site_settings.user_design.id == 2) {
-        res.render(
-          '0-default/index.html',
-          {},
-          {
-            parser: 'html css js',
-          }
-        );
-      } else {
-        res.render(
-          'herag/index.html',
-          {},
-          {
-            parser: 'html css js',
-          }
-        );
-      }
-    });
+    if (site.setting.user_design.id == 1) {
+      res.render(
+        '0/index.html',
+        {},
+        {
+          parser: 'html css js',
+        }
+      );
+    } else if (site.setting.user_design.id == 2) {
+      res.render(
+        '0/index.html',
+        {},
+        {
+          parser: 'html css js',
+        }
+      );
+    } else {
+      res.render(
+        'herag/index.html',
+        {},
+        {
+          parser: 'html css js',
+        }
+      );
+    }
   }
 );
 
