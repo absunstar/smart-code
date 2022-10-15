@@ -1,12 +1,17 @@
 app.controller('index_souq', function ($scope, $http, $timeout) {
   $scope._search = {};
   $scope.search = {};
-  $scope.getAdsList = function (ev, where) {
+  $scope.getContentList = function (ev, where) {
     $scope.busy = true;
-    $scope.adsList = [];
+    $scope.contentList = [];
     where = where || {};
     where['ad_status.id'] = 1;
+
     if (ev.which === 13) {
+      if (where['country_code'] || where['gov_code']) {
+        hsMap();
+      };
+
       $http({
         method: 'POST',
         url: '/api/contents/all',
@@ -17,9 +22,9 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
         function (response) {
           $scope.busy = false;
           if (response.data.done && response.data.list.length > 0) {
-            $scope.adsList = response.data.list;
+            $scope.contentList = response.data.list;
             if ($scope.user) {
-              $scope.adsList.forEach((ad) => {
+              $scope.contentList.forEach((ad) => {
                 ad.favorite = $scope.user.feedback_list.some((_f) => _f.type && _f.ad && _f.type.id == 2 && _f.ad.id == ad.id);
               });
             }
@@ -46,6 +51,7 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
           id: 1,
           name_ar: 1,
           name_en: 1,
+          code : 1,
         },
       },
     }).then(
@@ -61,7 +67,6 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
       }
     );
   };
-
 
   $scope.getGovesList = function (country) {
     $scope.busy = true;
@@ -80,6 +85,7 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
           id: 1,
           name_ar: 1,
           name_en: 1,
+          code : 1,
         },
       },
     }).then(
@@ -87,7 +93,6 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
           $scope.govesList = response.data.list;
-          $scope.searchAll($scope.search);
         }
       },
       function (err) {
@@ -321,7 +326,7 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
         $scope.subCategoriesList.push(_c);
       }
     });
-    $scope.getAdsList({ which: 13 }, $scope.search);
+    $scope.getContentList({ which: 13 }, $scope.search);
     $scope.category = c;
     $scope.user.follow_category_list.forEach((_f) => {
       if (c.id == _f) {
@@ -342,7 +347,7 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
         $scope.subCategoriesList2.push(_c);
       }
     });
-    $scope.getAdsList({ which: 13 }, $scope.search);
+    $scope.getContentList({ which: 13 }, $scope.search);
     $scope.category = c;
     $scope.user.follow_category_list.forEach((_f) => {
       if (c.id == _f) {
@@ -362,7 +367,7 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
         $scope.subCategoriesList3.push(_c);
       }
     });
-    $scope.getAdsList({ which: 13 }, $scope.search);
+    $scope.getContentList({ which: 13 }, $scope.search);
     $scope.category = c;
     $scope.user.follow_category_list.forEach((_f) => {
       if (c.id == _f) {
@@ -382,7 +387,7 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
         $scope.subCategoriesList4.push(_c);
       }
     });
-    $scope.getAdsList({ which: 13 }, $scope.search);
+    $scope.getContentList({ which: 13 }, $scope.search);
     $scope.category = c;
     $scope.user.follow_category_list.forEach((_f) => {
       if (c.id == _f) {
@@ -452,13 +457,12 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
     $scope.error = '';
 
     site.hideModal('#adAdvancedSearchModal');
-    $scope.getAdsList({ which: 13 }, search);
+    $scope.getContentList({ which: 13 }, search);
   };
 
   $scope.loadMainCategories();
-  $scope.getAdsList({ which: 13 }, {});
+  $scope.getContentList({ which: 13 }, {});
   $scope.getUser();
   $scope.getDefaultSetting();
   $scope.getCountriesList();
-
 });

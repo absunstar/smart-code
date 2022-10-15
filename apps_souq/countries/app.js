@@ -30,6 +30,261 @@ module.exports = function init(site) {
     });
   }, 1000 * 7);
 
+  site.on('[country][add]', (obj) => {
+    $countries.insertMany(
+      [
+        {
+          name_ar: 'السعودية',
+          name_en: 'Saudi',
+          image_url: '/images/countries.png',
+          code: 'ksa',
+          active: true,
+        },
+        {
+          name_ar: 'الأردن',
+          name_en: 'Jordan',
+          image_url: '/images/countries.png',
+          code: 'jor',
+          active: true,
+        },
+        {
+          name_ar: 'العراق',
+          name_en: 'Iraq',
+          image_url: '/images/countries.png',
+          code: 'irq',
+          active: true,
+        },
+        {
+          name_ar: 'الكويت',
+          name_en: 'Kuwait',
+          image_url: '/images/countries.png',
+          code: 'kwt',
+          active: true,
+        },
+        {
+          name_ar: 'البحرين',
+          name_en: 'Bahrain',
+          image_url: '/images/countries.png',
+          code: 'bah',
+          active: true,
+        },
+        {
+          name_ar: 'قطر',
+          name_en: 'Qatar',
+          image_url: '/images/countries.png',
+          code: 'qtr',
+          active: true,
+        },
+        {
+          name_ar: 'الإمارات',
+          name_en: 'UAE',
+          image_url: '/images/countries.png',
+          code: 'uae',
+          active: true,
+        },
+        {
+          name_ar: 'عمان',
+          name_en: 'Oman',
+          image_url: '/images/countries.png',
+          code: 'oman',
+          active: true,
+        },
+        {
+          name_ar: 'اليمن',
+          name_en: 'Yemen',
+          image_url: '/images/countries.png',
+          code: 'ymn',
+          active: true,
+        },
+      ],
+      (err, docs1) => {
+        site.gov_list.push(
+          {
+            $add: true,
+            name_ar: 'المنطقة الشرقية',
+            name_en: 'Eastern Province',
+            image_url: '/images/gov.png',
+            code: 'ep',
+            active: true,
+            country: {
+              id: docs1[0].id,
+              name_ar: docs1[0].name_ar,
+              name_en: docs1[0].name_en,
+              code: docs1[0].code,
+            },
+          },
+          {
+            $add: true,
+            name_ar: 'نجران',
+            name_en: 'Najran',
+            image_url: '/images/gov.png',
+            code: 'ng',
+            active: true,
+            country: {
+              id: docs1[0].id,
+              name_ar: docs1[0].name_ar,
+              name_en: docs1[0].name_en,
+              code: docs1[0].code,
+            },
+          },
+          {
+            $add: true,
+            name_ar: 'جازان',
+            name_en: 'Jazan',
+            image_url: '/images/gov.png',
+            code: 'jz',
+            active: true,
+            country: {
+              id: docs1[0].id,
+              name_ar: docs1[0].name_ar,
+              name_en: docs1[0].name_en,
+              code: docs1[0].code,
+            },
+          },
+          {
+            $add: true,
+            name_ar: 'العسير',
+            name_en: 'Aseer',
+            image_url: '/images/gov.png',
+            code: 'as',
+            active: true,
+            country: {
+              id: docs1[0].id,
+              name_ar: docs1[0].name_ar,
+              name_en: docs1[0].name_en,
+              code: docs1[0].code,
+            },
+          },
+          {
+            $add: true,
+            name_ar: 'الباحة',
+            name_en: 'Al-Baha',
+            image_url: '/images/gov.png',
+            code: 'bh',
+            active: true,
+            country: {
+              id: docs1[0].id,
+              name_ar: docs1[0].name_ar,
+              name_en: docs1[0].name_en,
+              code: docs1[0].code,
+            },
+          },
+          {
+            $add: true,
+            name_ar: 'مكة المكرمة',
+            name_en: 'Makkah',
+            image_url: '/images/gov.png',
+            code: 'mk',
+            active: true,
+            country: {
+              id: docs1[0].id,
+              name_ar: docs1[0].name_ar,
+              name_en: docs1[0].name_en,
+              code: docs1[0].code,
+            },
+          },
+          {
+            $add: true,
+            name_ar: 'المدينة المنورة',
+            name_en: 'Al-Medina',
+            image_url: '/images/gov.png',
+            code: 'md',
+            active: true,
+            country: {
+              id: docs1[0].id,
+              name_ar: docs1[0].name_ar,
+              name_en: docs1[0].name_en,
+              code: docs1[0].code,
+            },
+          },
+          {
+            $add: true,
+            name_ar: 'الرياض',
+            name_en: 'Riyadh',
+            image_url: '/images/gov.png',
+            code: 'rd',
+            active: true,
+            country: {
+              id: docs1[0].id,
+              name_ar: docs1[0].name_ar,
+              name_en: docs1[0].name_en,
+              code: docs1[0].code,
+            },
+          },
+          {
+            $add: true,
+            name_ar: 'القصيم',
+            name_en: 'Qassim',
+            image_url: '/images/gov.png',
+            code: 'qs',
+            active: true,
+            country: {
+              id: docs1[0].id,
+              name_ar: docs1[0].name_ar,
+              name_en: docs1[0].name_en,
+              code: docs1[0].code,
+            },
+          },
+          {
+            $add: true,
+            name_ar: 'الحائل',
+            name_en: 'Al-Hail',
+            image_url: '/images/gov.png',
+            code: 'hl',
+            active: true,
+            country: {
+              id: docs1[0].id,
+              name_ar: docs1[0].name_ar,
+              name_en: docs1[0].name_en,
+              code: docs1[0].code,
+            },
+          },
+          {
+            $add: true,
+            name_ar: 'الحدود الشمالية',
+            name_en: 'Northern borders',
+            image_url: '/images/gov.png',
+            code: 'nb',
+            active: true,
+            country: {
+              id: docs1[0].id,
+              name_ar: docs1[0].name_ar,
+              name_en: docs1[0].name_en,
+              code: docs1[0].code,
+            },
+          },
+          {
+            $add: true,
+            name_ar: 'الجوف',
+            name_en: 'Al-Jouf',
+            image_url: '/images/gov.png',
+            code: 'jf',
+            active: true,
+            country: {
+              id: docs1[0].id,
+              name_ar: docs1[0].name_ar,
+              name_en: docs1[0].name_en,
+              code: docs1[0].code,
+            },
+          },
+          {
+            $add: true,
+            name_ar: 'تبوك',
+            name_en: 'Tabouk',
+            image_url: '/images/gov.png',
+            code: 'tk',
+            active: true,
+            country: {
+              id: docs1[0].id,
+              name_ar: docs1[0].name_ar,
+              name_en: docs1[0].name_en,
+              code: docs1[0].code,
+            },
+          }
+        );
+      }
+    );
+  });
 
   site.get({
     name: 'images',
@@ -65,7 +320,6 @@ module.exports = function init(site) {
     if (typeof countries_doc.active === 'undefined') {
       countries_doc.active = true;
     }
-
 
     response.done = true;
     countries_doc.$add = true;
@@ -129,7 +383,7 @@ module.exports = function init(site) {
       response.doc = ad;
       res.json(response);
     } else {
-      response.error = 'no id'
+      response.error = 'no id';
       res.json(response);
     }
   });
@@ -181,7 +435,7 @@ module.exports = function init(site) {
       where.$or.push({
         name_en: site.get_RegExp(where['name'], 'i'),
       });
-      delete where['name']
+      delete where['name'];
     }
 
     $countries.findMany(

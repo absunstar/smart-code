@@ -3,7 +3,7 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
   $scope.search = {};
   $scope.getAdsList = function (ev, where) {
     $scope.busy = true;
-    $scope.adsList = [];
+    $scope.contentList = [];
     if (ev.which === 13) {
       $http({
         method: 'POST',
@@ -15,8 +15,8 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
         function (response) {
           $scope.busy = false;
           if (response.data.done && response.data.list.length > 0) {
-            $scope.adsList = response.data.list;
-            $scope.adsList.forEach((ad) => {
+            $scope.contentList = response.data.list;
+            $scope.contentList.forEach((ad) => {
               ad.like = $scope.user.feedback_list.some((_l) => _l.type && _l.ad && _l.type.id == 1 && _l.ad.id == ad.id);
               ad.favorite = $scope.user.feedback_list.some((_f) => _f.type && _f.ad && _f.type.id == 2 && _f.ad.id == ad.id);
             });

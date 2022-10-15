@@ -32,13 +32,13 @@
         </a>
         <br />
         <br />
-        <div class="row" ng-hide="adslist.length > 0">
+        <div class="row" ng-hide="contentList.length > 0">
           <br />
           <br />
           <h1 class="blue bold center">##word.there_no_ads##</h1>
         </div>
-        <fieldset class="ads-section" ng-show="adslist.length > 0">
-          <div ng-repeat="a in adslist" class="ads-area even">
+        <fieldset class="ads-section" ng-show="contentList.length > 0">
+          <div ng-repeat="a in contentList" class="ads-area even">
             <div class="ad-area">
               <div class="ads-info">
                 <b class="bold col4 ad-name">{{a.name}}</b>

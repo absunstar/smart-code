@@ -345,6 +345,17 @@ module.exports = function init(site) {
       where['address.country.id'] = where['country'].id;
       delete where['country'];
     }
+
+    if (where['country_code']) {
+      where['address.country.code'] = where['country_code'];
+      delete where['country_code'];
+    }
+
+    if (where['gov_code']) {
+      where['address.gov.code'] = where['gov_code'];
+      delete where['gov_code'];
+    }
+
     if (where['gov']) {
       where['address.gov.id'] = where['gov'].id;
       delete where['gov'];
@@ -367,7 +378,10 @@ module.exports = function init(site) {
     }
 
     if (where['category_id']) {
-      where.$or = [{ 'main_category.top_parent_id': where['category_id'] }, { 'main_category.parent_list_id': where['category_id'] }, { 'main_category.id': where['category_id'] }];
+      where.$or = [];
+      where.$or.push({ 'main_category.top_parent_id': where['category_id'] });
+      where.$or.push({ 'main_category.parent_list_id': where['category_id'] });
+      where.$or.push({ 'main_category.id': where['category_id'] });
       delete where['category_id'];
     }
 
@@ -376,6 +390,22 @@ module.exports = function init(site) {
       delete where['main_category'];
     }
 
+    if (where['near']) {
+      where.$or = where.$or || [];
+
+      if (req.session.user) {
+        if (req.session.user.profile.main_address) {
+          if (req.session.user.profile.main_address.country && req.session.user.profile.main_address.country.id) {
+            where.$or.push({ 'address.country.id': req.session.user.profile.main_address.country.id });
+          }
+          if (req.session.user.profile.main_address.gov && req.session.user.profile.main_address.gov.id) {
+            where.$or.push({ 'address.gov.id': req.session.user.profile.main_address.gov.id });
+          }
+
+        }
+      }
+    }
+    delete where['near']
     $content.findMany(
       {
         sort: req.body.sort || {

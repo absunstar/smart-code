@@ -183,7 +183,6 @@ module.exports = function init(site) {
       delete where['name']
     }
 
-
     $goves.findMany(
       {
         select: req.body.select || {},

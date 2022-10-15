@@ -298,6 +298,7 @@ app.directive('iAddress', [
                 id: 1,
                 name_ar: 1,
                 name_en: 1,
+                code : 1,
               },
             },
           }).then(
@@ -331,6 +332,7 @@ app.directive('iAddress', [
                 id: 1,
                 name_ar: 1,
                 name_en: 1,
+                code : 1,
               },
             },
           }).then(

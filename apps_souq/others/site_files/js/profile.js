@@ -1,7 +1,7 @@
 app.controller('profile', function ($scope, $http, $timeout) {
   $scope.getAdsList = function (where) {
     $scope.busy = true;
-    $scope.adslist = [];
+    $scope.contentList = [];
     $http({
       method: 'POST',
       url: '/api/contents/all',
@@ -21,7 +21,7 @@ app.controller('profile', function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
-          $scope.adslist = response.data.list;
+          $scope.contentList = response.data.list;
         }
       },
       function (err) {

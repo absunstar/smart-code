@@ -100,11 +100,7 @@
         "en": "Accept",
         "ar": "تأكيد"
     },
-    {
-        "name": "services",
-        "en": "Services",
-        "ar": "الخدمات"
-    },
+
     {
         "name": "date_from",
         "en": "Date From",

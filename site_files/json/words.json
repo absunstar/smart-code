@@ -458,6 +458,11 @@
     "ar": "الإسم"
   },
   {
+    "name": "selected",
+    "en": "Selected",
+    "ar": "تحديد"
+  },
+  {
     "name": "must_enter_code",
     "en": "Must Enter Code",
     "ar": "يجب إدخال الكود"
@@ -466,7 +471,12 @@
     "name": "main",
     "en": "Main",
     "ar": "الرئيسية"
-},
+  },
+  {
+    "name": "services",
+    "en": "Services",
+    "ar": "الخدمات"
+  },
   {
     "name": "length_level",
     "en": "Length level",

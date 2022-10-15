@@ -46,7 +46,7 @@
           <i-button type="search" label="##word.search##" ng-click="getAdsList({which:13},search_ads)"> </i-button>
         </div>
         <div class="all-store-ads">
-          <div class="all-store-ad" ng-repeat="a in adsList">
+          <div class="all-store-ad" ng-repeat="a in contentList">
             <div class="ad">
               <div class="row image-ad" ng-click="displayAd(a.id)">
                 <i-image view class="logo" ng-model="a.image_url"></i-image>

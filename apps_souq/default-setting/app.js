@@ -10,6 +10,7 @@ module.exports = function init(site) {
         ar: 'نشط',
       },
     },
+    stores_settings : {},
   };
   site.setting = { ...site.setting, ...site.defaultSettingDoc };
 
@@ -20,6 +21,7 @@ module.exports = function init(site) {
     } else {
       $default_setting.add(site.defaultSettingDoc, (err, doc) => {
         if (!err && doc) {
+          site.call('[country][add]', {});
           site.defaultSettingDoc = doc;
           site.setting = { ...site.setting, ...site.defaultSettingDoc };
         }

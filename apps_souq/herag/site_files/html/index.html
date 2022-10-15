@@ -18,287 +18,17 @@
       <div class="firstheader">
         <div></div>
         <ul class="nav1">
-          <li><a href="" class="nav-link">الرئيسية</a></li>
-          <li><a href="" class="nav-link">سوق السيارات</a></li>
-          <li><a href="" class="nav-link">أجهزة</a></li>
-          <li><a href="" class="nav-link">عقارات</a></li>
-          <li><a href="" class="nav-link">مواشي وحيوانات وطيور</a></li>
-          <li><a href="" class="nav-link">أثاث</a></li>
-          <li><a href="" class="nav-link">البحث</a></li>
-          <li><a href="" class="nav-link">خدمات</a></li>
-          <li><a href="" class="nav-link">أقسام أكثر</a></li>
+          <li><a href="" class="nav-link">##word.main##</a></li>
+          <li><a href="" class="nav-link">{{topParentCategoriesList[0].name_##session.lang##}}</a></li>
+          <li><a href="" class="nav-link">{{topParentCategoriesList[1].name_##session.lang##}}</a></li>
+          <li><a href="" class="nav-link">{{topParentCategoriesList[2].name_##session.lang##}}</a></li>
+          <li><a href="" class="nav-link">{{topParentCategoriesList[3].name_##session.lang##}}</a></li>
+          <li><a href="" class="nav-link">{{topParentCategoriesList[4].name_##session.lang##}}</a></li>
+          <li><a href="" class="nav-link">##word.search##</a></li>
+          <li><a href="" class="nav-link">##word.services##</a></li>
+          <li><a href="" class="nav-link">##word.more_categories##</a></li>
         </ul>
         <div></div>
-      </div>
-      <div x-server="x-import">
-        <div id="adAdvancedSearchModal" class="modal" style="z-index: 10009; display: none">
-          <div class="modal-content">
-            <div class="modal-header">
-              <span class="close">×</span>
-              <h2><span class="text-icon">##word.search_all##</span><i class="fa fa-search"></i></h2>
-            </div>
-
-            <div class="modal-body">
-              <form class="form ng-pristine ng-valid">
-                <fieldset>
-                  <legend>##word.search_all##</legend>
-                  <div class="row">
-                    <div class="row form-filed form-filed-mobile">
-                      <i-user class="col3 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" ng-model="search.user">
-                        <b class="font-18 pointer blue ng-binding ng-hide" ng-show="ngModel.id" ng-click="showModal()"> </b>
-                        <b class="font-18 pointer" ng-click="showModal()" ng-show="!ngModel.id">##word.user## : </b>
-                        <b class="font-18 pointer blue" ng-show="!ngModel.id" ng-click="showModal()"> ##word.not_found##</b>
-
-                        <div id="userMoal_0_3570313354065242" class="modal small">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <span class="close">×</span>
-                              <h2><span class="text-icon" style="color: #fff">##word.users_search##</span> <i class="fa fa-search"></i></h2>
-                            </div>
-
-                            <div class="modal-body">
-                              <div class="row">
-                                <div class="col2"></div>
-                                <div class="col8">
-                                  <fieldset class="search-user">
-                                    <i-list ng-search="_search.$user" class="col6 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" display="profile.name" ng-model="ngModel" label="مستخدم" items="users_list">
-                                      <div class="dropdown i-list">
-                                        <div class="control">
-                                          <label class="ng-binding"> ##word.user## </label>
-                                          <input ng-focus="focus()" class="full-width text dropdown-text ng-empty" ng-disabled="disabled" v="" readonly="" ng-model="ngModel.$display" x-input="true" />
-                                        </div>
-
-                                        <div class="dropdown-content-user store-search">
-                                          <div class="row padding" ng-show="showSearch">
-                                            <input class="full-width search ng-pristine ng-untouched ng-valid ng-empty" ng-model="ngSearch" x-input="true" />
-                                            <br />
-                                          </div>
-
-                                          <!-- ngRepeat: item in items | filter:{ $display : ngSearch} -->
-
-                                          <div class="row center padding pointer">
-                                            <a class="btn red" ng-click="updateModel({})"> <i class="fa fa-trash"></i> Clear </a>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </i-list>
-                                    <i-control ng-keydown="loadUsers($event,search_user)" class="co16 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" ng-model="search_user" label="بحـث" type="text">
-                                      <div class="control">
-                                        <label class="ng-binding"> ##word.search## </label>
-                                        <input id="" ng-disabled="disabled" autofocus="" v="" type="text" ng-model="ngModel" ng-change="ngChange()" ngkeydown="ngKeydown()" x-input="true" class="ng-pristine ng-untouched ng-valid ng-empty" />
-                                      </div>
-                                    </i-control>
-                                  </fieldset>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="modal-footer center">
-                              <i-button type="save" label="##word.save##" ng-click="hideModal()" class="ng-isolate-scope">
-                                <a class="btn save">
-                                  <span class="text-icon" style="color: #fff">##word.save##</span>
-                                  <i ng-show="fa" class="fa fa-save" aria-hidden="true"></i>
-                                </a>
-                              </i-button>
-                            </div>
-                          </div>
-                        </div>
-                      </i-user>
-                      <i-store class="store-padding col3 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" ng-model="search.store">
-                        <b class="font-18 pointer blue ng-binding ng-hide" ng-show="ngModel.id" ng-click="showModal()"> </b>
-                        <b class="font-18 pointer green ng-binding ng-hide" ng-show="ngModel.id" ng-click="showModal()"> </b>
-                        <b class="font-18 pointer" ng-click="showModal()" ng-show="!ngModel.id">##word.store## : </b>
-                        <b class="font-18 pointer blue" ng-show="!ngModel.id" ng-click="showModal()"> ##word.not_found##</b>
-
-                        <div id="storeMoal_0_1392402119137337" class="modal small" style="z-index: 1000003; display: none">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <span class="close">×</span>
-                              <h2><span class="text-icon" style="color: #fff">##word.stores_search##</span> <i class="fa fa-search"></i></h2>
-                            </div>
-
-                            <div class="modal-body">
-                              <div class="row">
-                                <div class="col2"></div>
-                                <div class="col8">
-                                  <fieldset class="search-user">
-                                    <i-list ng-search="_search.$store" class="col6 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" display="name_ar" display2="user.profile.name" space=" - " ng-model="ngModel" label="##word.store##" items="stores_list">
-                                      <div class="dropdown i-list">
-                                        <div class="control">
-                                          <label class="ng-binding"> ##word.store## </label>
-                                          <input ng-focus="focus()" class="full-width text dropdown-text ng-empty" ng-disabled="disabled" v="" readonly="" ng-model="ngModel.$display" x-input="true" />
-                                        </div>
-
-                                        <div class="dropdown-content-store store-search" style="display: block">
-                                          <div class="row padding" ng-show="showSearch">
-                                            <input class="full-width search ng-pristine ng-untouched ng-valid ng-empty" ng-model="ngSearch" x-input="true" />
-                                            <br />
-                                          </div>
-
-                                          <!-- ngRepeat: item in items | filter:{ $display : ngSearch} -->
-
-                                          <div class="row center padding pointer">
-                                            <a class="btn red" ng-click="updateModel({})"> <i class="fa fa-trash"></i> Clear </a>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </i-list>
-                                    <i-control ng-keydown="loadStores($event,search_store)" class="col6 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" ng-model="search_store" label="##word.search##" type="text">
-                                      <div class="control">
-                                        <label class="ng-binding"> ##word.search## </label>
-                                        <input id="" ng-disabled="disabled" autofocus="" v="" type="text" ng-model="ngModel" ng-change="ngChange()" ngkeydown="ngKeydown()" x-input="true" class="ng-pristine ng-untouched ng-valid ng-empty" />
-                                      </div>
-                                    </i-control>
-                                  </fieldset>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="modal-footer center">
-                              <i-button type="save" label="##word.save##" ng-click="hideModal()" class="ng-isolate-scope">
-                                <a class="btn save">
-                                  <span class="text-icon" style="color: #fff">##word.save##</span>
-                                  <i ng-show="fa" class="fa fa-save" aria-hidden="true"></i>
-                                </a>
-                              </i-button>
-                            </div>
-                          </div>
-                        </div>
-                      </i-store>
-                    </div>
-                    <i-address ng-model="search" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty">
-                      <div id="addresses_0_9222769238280331" class="row">
-                        <div class="row form-filed">
-                          <i-list help-id="" class="col3 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" label="الدولة" ng-change="getGovesList(ngModel.country)" ng-model="ngModel.country" display="name_ar" items="countriesList" ng-search="_search.$city_country">
-                            <div class="dropdown i-list">
-                              <div class="control">
-                                <label class="ng-binding"> الدولة </label>
-                                <input ng-focus="focus()" class="full-width text dropdown-text ng-empty" ng-disabled="disabled" v="" readonly="" ng-model="ngModel.$display" x-input="true" />
-                              </div>
-
-                              <div class="dropdown-content countre" style="display: none">
-                                <div class="row padding" ng-show="showSearch">
-                                  <input class="full-width search ng-pristine ng-untouched ng-valid ng-empty" ng-model="ngSearch" x-input="true" />
-                                  <br />
-                                </div>
-
-                                <!-- ngRepeat: item in items | filter:{ $display : ngSearch} -->
-
-                                <div class="row center padding pointer">
-                                  <a class="btn red" ng-click="updateModel({})"> <i class="fa fa-trash"></i> Clear </a>
-                                </div>
-                              </div>
-                            </div>
-                          </i-list>
-
-                          <i-list class="col3 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" label="المحافظة" ng-model="ngModel.gov" items="govesList" ng-change="getCityList(ngModel.gov)" display="name_ar" ng-search="_search.$ngModel.$gov_search">
-                            <div class="dropdown i-list">
-                              <div class="control">
-                                <label class="ng-binding"> المحافظة </label>
-                                <input ng-focus="focus()" class="full-width text dropdown-text ng-empty" ng-disabled="disabled" v="" readonly="" ng-model="ngModel.$display" x-input="true" />
-                              </div>
-
-                              <div class="dropdown-content governorate" style="display: none">
-                                <div class="row padding" ng-show="showSearch">
-                                  <input class="full-width search ng-pristine ng-untouched ng-valid ng-empty" ng-model="ngSearch" x-input="true" />
-                                  <br />
-                                </div>
-
-                                <!-- ngRepeat: item in items | filter:{ $display : ngSearch} -->
-
-                                <div class="row center padding pointer">
-                                  <a class="btn red" ng-click="updateModel({})"> <i class="fa fa-trash"></i> Clear </a>
-                                </div>
-                              </div>
-                            </div>
-                          </i-list>
-
-                          <i-list class="col3 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" ng-change="getAreaList(ngModel.city)" label="المدينة" ng-model="ngModel.city" items="cityList" display="name_ar" ng-search="_search.$ngModel.$city_search">
-                            <div class="dropdown i-list">
-                              <div class="control">
-                                <label class="ng-binding"> المدينة </label>
-                                <input ng-focus="focus()" class="full-width text dropdown-text ng-empty" ng-disabled="disabled" v="" readonly="" ng-model="ngModel.$display" x-input="true" />
-                              </div>
-
-                              <div class="dropdown-content city" style="display: none">
-                                <div class="row padding" ng-show="showSearch">
-                                  <input class="full-width search ng-pristine ng-untouched ng-valid ng-empty" ng-model="ngSearch" x-input="true" />
-                                  <br />
-                                </div>
-
-                                <!-- ngRepeat: item in items | filter:{ $display : ngSearch} -->
-
-                                <div class="row center padding pointer">
-                                  <a class="btn red" ng-click="updateModel({})"> <i class="fa fa-trash"></i> Clear </a>
-                                </div>
-                              </div>
-                            </div>
-                          </i-list>
-
-                          <i-list class="col3 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" label="المنطقة" ng-model="ngModel.area" items="areaList" display="name_ar" ng-search="_search.$ngModel.$area_search">
-                            <div class="dropdown i-list">
-                              <div class="control">
-                                <label class="ng-binding"> المنطقة </label>
-                                <input ng-focus="focus()" class="full-width text dropdown-text ng-empty" ng-disabled="disabled" v="" readonly="" ng-model="ngModel.$display" x-input="true" />
-                              </div>
-
-                              <div class="dropdown-content zone" style="display: none">
-                                <div class="row padding" ng-show="showSearch">
-                                  <input class="full-width search ng-pristine ng-untouched ng-valid ng-empty" ng-model="ngSearch" x-input="true" />
-                                  <br />
-                                </div>
-
-                                <!-- ngRepeat: item in items | filter:{ $display : ngSearch} -->
-
-                                <div class="row center padding pointer">
-                                  <a class="btn red" ng-click="updateModel({})"> <i class="fa fa-trash"></i> Clear </a>
-                                </div>
-                              </div>
-                            </div>
-                          </i-list>
-                        </div>
-                        <div class="row">
-                          <i-textarea class="col8 ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" label="العنوان تفصيلي" ng-model="ngModel.detailed_address">
-                            <div class="control">
-                              <label class="ng-binding"> العنوان تفصيلي </label>
-                              <textarea ng-disabled="disabled" rows="4" v="" ng-model="ngModel" ng-change="ngChange()" class="ng-pristine ng-untouched ng-valid ng-empty"></textarea>
-                            </div>
-                          </i-textarea>
-                        </div>
-                      </div>
-                    </i-address>
-                  </div>
-                </fieldset>
-              </form>
-            </div>
-
-            <h2 class="error ng-binding"></h2>
-
-            <div class="modal-footer center">
-              <i-button type="search" label="##word.search##" ng-click="searchAll(search)" class="ng-isolate-scope">
-                <a class="btn search">
-                  <span class="text-icon">##word.search##</span>
-                  <i ng-show="fa" class="fa fa-search" aria-hidden="true"> </i>
-                </a>
-              </i-button>
-
-              <i-button type="clear" label="##word.empty_search##" ng-click="search = {}" class="ng-isolate-scope">
-                <a class="btn clear">
-                  ##word.empty_search##
-                  <i ng-show="fa" class="fa fa- ng-hide" aria-hidden="true"></i>
-                </a>
-              </i-button>
-
-              <i-button type="close" label="##word.close##" onclick="site.hideModal('#adAdvancedSearchModal')" class="ng-isolate-scope">
-                <a class="btn close">
-                  <span class="text-icon">##word.close##</span>
-                  <i ng-show="fa" class="fa fa-times" aria-hidden="true"></i>
-                </a>
-              </i-button>
-            </div>
-          </div>
-          <div class="col2"></div>
-        </div>
       </div>
       <div class="secondeheader-b">
         <div class="secondeheader">
@@ -312,10 +42,10 @@
               <div class="searchicon">
                 <img src="../assets/search-svgrepo-com.svg" alt="" width="20px" height="20px" />
               </div>
-              <input type="search" placeholder="ابحث هنا عن ما تريد" id ng-disabled="disabled" autofocus v ng-model="ngModel" ng-change="ngChange()" ngkeydown="ngKeydown()" x-input="true" />
-              <button id="map-toggle" class="action-map advanced-search" type="search" onclick="hsMap()"><a>##word.map_search## </a></button>
+              <input type="search" placeholder="##word.search_here_for_what_you_want##" id ng-disabled="disabled" autofocus v ng-model="ngModel" ng-change="ngChange()" ngkeydown="ngKeydown()" x-input="true" />
+<!--               <button id="map-toggle" class="action-map advanced-search" type="search" onclick="hsMap()"><a>##word.map_search## </a></button>
               <button class="advanced-search" type="search" ng-click="displayAdvancedSearch()"><a>##word.advanced_search## </a></button>
-              <button class="search" type="submit" ng-click="getAdsList({which:13},search)"><a>##word.search##</a></button>
+              <button class="search" type="submit" ng-click="getAdsList({which:13},search)"><a>##word.search##</a></button> -->
             </div>
           </form>
           <div class="mobile-filter">
@@ -393,10 +123,7 @@
                     </li>
                     <li>
                       <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="ban" class="mid-icon svg-inline--fa fa-ban fa-w-16 fa-fw" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                        <path
-                          fill="currentColor"
-                          d="M256 8C119.034 8 8 119.033 8 256s111.034 248 248 248 248-111.034 248-248S392.967 8 256 8zm130.108 117.892c65.448 65.448 70 165.481 20.677 235.637L150.47 105.216c70.204-49.356 170.226-44.735 235.638 20.676zM125.892 386.108c-65.448-65.448-70-165.481-20.677-235.637L361.53 406.784c-70.203 49.356-170.226 44.736-235.638-20.676z"
-                        ></path></svg
+                        <path fill="currentColor" d="M256 8C119.034 8 8 119.033 8 256s111.034 248 248 248 248-111.034 248-248S392.967 8 256 8zm130.108 117.892c65.448 65.448 70 165.481 20.677 235.637L150.47 105.216c70.204-49.356 170.226-44.735 235.638 20.676zM125.892 386.108c-65.448-65.448-70-165.481-20.677-235.637L361.53 406.784c-70.203 49.356-170.226 44.736-235.638-20.676z"></path></svg
                       ><a href="/checkacc.php">القائمة السوداء</a>
                     </li>
                     <li>
@@ -491,7 +218,7 @@
           <li class="deskside-header">
             <a class="tab_link" href="" id="map-toggle" class="action-map advanced-search" type="search" onclick="hsMap()">
               <i class="fa-solid fa-map space"></i>
-              <span style="min-height: 22px" id="notif5" class="notif-name " onmouseover="mouseoverbox1()">##word.map_search##</span>
+              <span style="min-height: 22px" id="notif5" class="notif-name" onmouseover="mouseoverbox1()">##word.map_search##</span>
             </a>
           </li>
         </div>
@@ -511,10 +238,10 @@
               ></path></svg
             ><span>مسح السجل</span>
           </div>
-          <hr class="mobile-hr" />
+        <!--   <hr class="mobile-hr" /> -->
         </div>
         <div id="sideBar_card" class="sc-gsDJrp kiyHpe">
-          <div class="tag_select_wrapper">
+        <!--   <div class="tag_select_wrapper">
             <div class="sc-furvIG lkLLxz">
               <div class="sc-pVTma ojwev">
                 <div class="sc-jrQzUz kFqNHj"><span class="sc-kDThTU iGcJNF">الكل</span></div>
@@ -523,17 +250,14 @@
             </div>
             <button type="submit" class="sc-bdvvaa AGAbw">
               <svg aria-hidden="true" focusable="false" data-prefix="fal" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                <path
-                  fill="currentColor"
-                  d="M508.5 481.6l-129-129c-2.3-2.3-5.3-3.5-8.5-3.5h-10.3C395 312 416 262.5 416 208 416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c54.5 0 104-21 141.1-55.2V371c0 3.2 1.3 6.2 3.5 8.5l129 129c4.7 4.7 12.3 4.7 17 0l9.9-9.9c4.7-4.7 4.7-12.3 0-17zM208 384c-97.3 0-176-78.7-176-176S110.7 32 208 32s176 78.7 176 176-78.7 176-176 176z"
-                ></path>
+                <path fill="currentColor" d="M508.5 481.6l-129-129c-2.3-2.3-5.3-3.5-8.5-3.5h-10.3C395 312 416 262.5 416 208 416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c54.5 0 104-21 141.1-55.2V371c0 3.2 1.3 6.2 3.5 8.5l129 129c4.7 4.7 12.3 4.7 17 0l9.9-9.9c4.7-4.7 4.7-12.3 0-17zM208 384c-97.3 0-176-78.7-176-176S110.7 32 208 32s176 78.7 176 176-78.7 176-176 176z"></path>
               </svg>
             </button>
-          </div>
+          </div> -->
           <hr class="mobile-hr" />
           <div class="FilterGroup__Wrapper-kok8t0-0 iGsYXQ">
             <span class="FilterGroup__Label-kok8t0-1 bdSIGk"
-              >تصفية
+              >##word.filtering##
               <div class="xfilter-toggel">
                 <i class="fa-solid fa-plus" id="open" onclick="xtaghide()"></i>
               </div>
@@ -556,7 +280,7 @@
           </div>
           <div class="FilterGroup__Wrapper-kok8t0-0 iGsYXQ">
             <span class="FilterGroup__Label-kok8t0-1 bdSIGk"
-              >تنقل السريع
+              >##word.quick_navigate##
               <div class="filter-toggel">
                 <i class="fa-solid fa-plus" id="open" onclick="taghide()"></i>
               </div>
@@ -627,16 +351,11 @@
                 <br />
                 <div class="brand-logos">
                   <a title="قطع غيار وملحقات" class="brand-logos--svg imgasicon" href="/tags/قطع غيار وملحقات"><img alt="parts" loading="lazy" height="60" width="60" class="svg-size-4x" src="https://betacdn.haraj.com.sa/assets/images/svg/parts.svg" /><span class="text">قطع غيار وملحقات</span></a
-                  ><a title="شاحنات ومعدات ثقيلة" class="brand-logos--svg imgasicon" href="/tags/شاحنات ومعدات ثقيلة"
-                    ><img alt="truck" loading="lazy" height="60" width="60" class="svg-size-4x" src="https://betacdn.haraj.com.sa/assets/images/svg/truck.svg" /><span class="text">شاحنات ومعدات ثقيلة</span></a
+                  ><a title="شاحنات ومعدات ثقيلة" class="brand-logos--svg imgasicon" href="/tags/شاحنات ومعدات ثقيلة"><img alt="truck" loading="lazy" height="60" width="60" class="svg-size-4x" src="https://betacdn.haraj.com.sa/assets/images/svg/truck.svg" /><span class="text">شاحنات ومعدات ثقيلة</span></a
                   ><a title="دبابات" class="brand-logos--svg imgasicon" href="/tags/دبابات"><img alt="quad-car" loading="lazy" height="60" width="60" class="svg-size-4x" src="https://betacdn.haraj.com.sa/assets/images/svg/quad-car.svg" /><span class="text">دبابات</span></a
-                  ><a title="سيارات%20تراثية" class="brand-logos--svg imgasicon" href="/tags/سيارات تراثية"
-                    ><img alt="heritage-car" loading="lazy" height="60" width="60" class="svg-size-4x" src="https://betacdn.haraj.com.sa/assets/images/svg/heritage-car.svg" /><span class="text">سيارات تراثية</span></a
-                  ><a title="سيارات مصدومه" class="brand-logos--svg imgasicon" href="/tags/حراج السيارات/filters/search-مصدوم مصدومة"
-                    ><img alt="crash-car" loading="lazy" height="60" width="60" class="svg-size-4x" src="https://betacdn.haraj.com.sa/assets/images/svg/crash-car.svg" /><span class="text">سيارات مصدومه</span></a
-                  ><a title="سيارات للتنازل" class="brand-logos--svg imgasicon" href="/tags/حراج السيارات/filters/search-للتنازل تنازل"
-                    ><img alt="car-loan" loading="lazy" height="60" width="60" class="svg-size-4x" src="https://betacdn.haraj.com.sa/assets/images/svg/car-loan.svg" /><span class="text">سيارات للتنازل</span></a
-                  >
+                  ><a title="سيارات%20تراثية" class="brand-logos--svg imgasicon" href="/tags/سيارات تراثية"><img alt="heritage-car" loading="lazy" height="60" width="60" class="svg-size-4x" src="https://betacdn.haraj.com.sa/assets/images/svg/heritage-car.svg" /><span class="text">سيارات تراثية</span></a
+                  ><a title="سيارات مصدومه" class="brand-logos--svg imgasicon" href="/tags/حراج السيارات/filters/search-مصدوم مصدومة"><img alt="crash-car" loading="lazy" height="60" width="60" class="svg-size-4x" src="https://betacdn.haraj.com.sa/assets/images/svg/crash-car.svg" /><span class="text">سيارات مصدومه</span></a
+                  ><a title="سيارات للتنازل" class="brand-logos--svg imgasicon" href="/tags/حراج السيارات/filters/search-للتنازل تنازل"><img alt="car-loan" loading="lazy" height="60" width="60" class="svg-size-4x" src="https://betacdn.haraj.com.sa/assets/images/svg/car-loan.svg" /><span class="text">سيارات للتنازل</span></a>
                 </div>
               </div>
               <div class="other_marks_">
@@ -674,12 +393,10 @@
                 <hr />
                 <br />
                 <div class="brand-logos">
-                  <a title="اراضي للبيع" class="brand-logos--svg" href="/tags/اراضي للبيع">اراضي للبيع </a><a title="اراضي تجارية للبيع" class="brand-logos--svg" href="/tags/اراضي تجارية للبيع">اراضي تجارية للبيع </a
-                  ><a title="شقق للايجار" class="brand-logos--svg" href="/tags/شقق للايجار">شقق للايجار </a><a title="شقق للبيع" class="brand-logos--svg" href="/tags/شقق للبيع">شقق للبيع </a><a title="فلل للبيع" class="brand-logos--svg" href="/tags/فلل للبيع">فلل للبيع </a
-                  ><a title="فلل للايجار" class="brand-logos--svg" href="/tags/فلل للايجار">فلل للايجار </a><a title="عماره للايجار" class="brand-logos--svg" href="/tags/عماره للايجار">عماره للايجار </a><a title="محلات للتقبيل" class="brand-logos--svg" href="/tags/محلات للتقبيل">محلات للتقبيل </a
+                  <a title="اراضي للبيع" class="brand-logos--svg" href="/tags/اراضي للبيع">اراضي للبيع </a><a title="اراضي تجارية للبيع" class="brand-logos--svg" href="/tags/اراضي تجارية للبيع">اراضي تجارية للبيع </a><a title="شقق للايجار" class="brand-logos--svg" href="/tags/شقق للايجار">شقق للايجار </a><a title="شقق للبيع" class="brand-logos--svg" href="/tags/شقق للبيع">شقق للبيع </a
+                  ><a title="فلل للبيع" class="brand-logos--svg" href="/tags/فلل للبيع">فلل للبيع </a><a title="فلل للايجار" class="brand-logos--svg" href="/tags/فلل للايجار">فلل للايجار </a><a title="عماره للايجار" class="brand-logos--svg" href="/tags/عماره للايجار">عماره للايجار </a><a title="محلات للتقبيل" class="brand-logos--svg" href="/tags/محلات للتقبيل">محلات للتقبيل </a
                   ><a title="محلات للايجار" class="brand-logos--svg" href="/tags/محلات للايجار">محلات للايجار </a><a title="مزارع للبيع" class="brand-logos--svg" href="/tags/مزارع للبيع">مزارع للبيع </a><a title="استراحات للبيع" class="brand-logos--svg" href="/tags/استراحات للبيع">استراحات للبيع </a
-                  ><a title="استراحات للايجار" class="brand-logos--svg" href="/tags/استراحات للايجار">استراحات للايجار </a><a title="بيوت للبيع" class="brand-logos--svg" href="/tags/بيوت للبيع">بيوت للبيع </a><a title="بيوت للايجار" class="brand-logos--svg" href="/tags/بيوت للايجار">بيوت للايجار </a
-                  ><a title="ادوار للايجار" class="brand-logos--svg" href="/tags/ادوار للايجار">ادوار للايجار </a>
+                  ><a title="استراحات للايجار" class="brand-logos--svg" href="/tags/استراحات للايجار">استراحات للايجار </a><a title="بيوت للبيع" class="brand-logos--svg" href="/tags/بيوت للبيع">بيوت للبيع </a><a title="بيوت للايجار" class="brand-logos--svg" href="/tags/بيوت للايجار">بيوت للايجار </a><a title="ادوار للايجار" class="brand-logos--svg" href="/tags/ادوار للايجار">ادوار للايجار </a>
                 </div>
               </div>
             </div>
@@ -699,10 +416,10 @@
             <li class="mobile-header">
               <a class="tab_link" href="">
                 <i class="fa-solid fa-heart"></i>
-                <span style="min-height: 22px">المفضلة</span>
+                <span style="min-height: 22px">##word.favorite##</span>
               </a>
             </li>
-            <button class="add" type="submit"><img class="add-icon" src="../assets/add.png" alt="" width="18px" height="18px" /><a href="/create_ad">أضف أعلانك</a></button>
+            <button class="add" type="submit"><img class="add-icon" src="../assets/add.png" alt="" width="18px" height="18px" /><a href="/create_ad">##word.add_your_ad##</a></button>
             <li class="mobile-header">
               <a class="notification" href="/cart" x-features="souq">
                 <i class="fa-solid fa-cart-shopping"></i>
@@ -776,15 +493,25 @@
           </div>
         </div>
 
-        <main class="tagMain hidden">
+        <main class="tagMain">
           <div class="row">
-            <i-list class="col3" label="##word.country##" ng-change="getGovesList(search.country)" ng-model="search.country" display="name_##session.lang##" items="countriesList" ng-search="_search.$city_country"></i-list>
+            <select class="form-select col" ng-model="search.country" ng-change="getGovesList(search.country);searchAll(search)" ng-options="s as (s.name_##session.lang##)   for s in countriesList">
+              <option value="" selected>##word.selected## (##word.country##)</option>
+            </select>
 
-            <i-list class="col3" label="##word.gov##" ng-model="search.gov" items="govesList" ng-change="getCityList(search.gov)" display="name_##session.lang##" ng-search="_search.$search.$gov_search"> </i-list>
+            <select class="form-select col" ng-model="search.gov" ng-change="getCityList(search.gov);searchAll(search)" ng-options="s as (s.name_##session.lang##)   for s in govesList">
+              <option value="" selected>##word.selected## (##word.gov##)</option>
+            </select>
 
-            <i-list class="col3" ng-change="getAreaList(search.city)" label="##word.city##" ng-model="search.city" items="cityList" display="name_##session.lang##" ng-search="_search.$search.$city_search"> </i-list>
+            <select class="form-select col" ng-model="search.city" ng-change="getAreaList(search.city);searchAll(search)" ng-options="s as (s.name_##session.lang##)   for s in cityList">
+              <option value="" selected>##word.selected## (##word.city##)</option>
+            </select>
 
-            <i-list class="col3" label="##word.area##" ng-model="search.area" items="areaList" display="name_##session.lang##" ng-search="_search.$search.$area_search"> </i-list>
+            <select class="form-select col" ng-model="search.area" ng-change="searchAll(search)" ng-options="s as (s.name_##session.lang##)   for s in areaList">
+              <option value="" selected>##word.selected## (##word.area##)</option>
+            </select>
+
+            <i-checkbox label="##word.nearby_ads##" ng-click="searchAll(search)" ng-model="search.near"> </i-checkbox>
           </div>
 
           <div class="row">
@@ -793,10 +520,10 @@
 
           <div class="row">
             <fieldset class="ads-section">
-              <div ng-repeat="a in adsList " class="ads-area even">
+              <div ng-repeat="a in contentList" class="ads-area even">
                 <div class="ad-area">
                   <div class="ads-info">
-                    <b class="bold col4 ad-name">{{a.name}}</b>
+                    <b class="bold col4 ad-name" ng-click="displayAd(a.id)">{{a.name}}</b>
                     <div class="info">
                       <div class="row user-action">
                         <!-- <i class="fa-solid fa-cart-shopping" ng-hide="a.store.user.id == user.id"
@@ -805,7 +532,10 @@
                           <!-- 
                           <i class="fa-solid fa-heart" label="##word.favorite##" ng-click="updateFeedback(a,'favorite')"
                           ng-model="a.favorite"></i> -->
-                          <i-button class="btn" fa="shopping-cart" ng-hide="a.store.user.id == user.id" ng-click="bookList(a,0)"> </i-button>
+
+                          <a class="btn" ng-hide="a.store.user.id == user.id" ng-click="bookList(a,0)">
+                            <i class="fa fa-shopping-cart"></i>
+                          </a>
 
                           <i-checkbox label="##word.favorite##" ng-click="updateFeedback(a,'favorite')" ng-model="a.favorite"> </i-checkbox>
                         </div>
@@ -836,7 +566,7 @@
                   </div>
                 </div>
               </div>
-              <!-- ngRepeat: a in adsList -->
+              <!-- ngRepeat: a in contentList -->
             </fieldset>
           </div>
         </main>
