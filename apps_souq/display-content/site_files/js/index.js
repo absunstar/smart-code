@@ -1,4 +1,4 @@
-app.controller('display_ad', function ($scope, $http, $timeout) {
+app.controller('display_content', function ($scope, $http, $timeout) {
   $scope.activity = {};
   $scope.ad = {};
 
@@ -19,6 +19,7 @@ app.controller('display_ad', function ($scope, $http, $timeout) {
           $scope.ad = response.data.doc;
           $scope.ad.$number_favorites = $scope.ad.number_favorites;
           $scope.ad.comments_activities = $scope.ad.comments_activities || [];
+          $scope.ad.$time = xtime($scope.ad.date);
           $scope.ad.comments_activities.forEach((_c) => {
             if (_c.user && _c.user.id === site.toNumber('##user.id##')) {
               if (_c.comment_activity && _c.comment_activity.id == 2) {

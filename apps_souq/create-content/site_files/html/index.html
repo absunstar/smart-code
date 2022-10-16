@@ -11,9 +11,8 @@
     </nav> -->
 
 
-    <div id="main-layout" class="container">
-      <div x-features="souq" x-import="content/view_categories.html"></div>
-      <h2 class="error"> {{error}} </h2>
+    <div id="main-layout" class="container loaded">
+      <div x-features="souq" x-import="content/selection_categories.html"></div>
 
       <div class="row">
         <!-- <br />
@@ -21,6 +20,7 @@
         <br /> -->
 
         <div x-import="create-content/content.html"></div>
+        <h1 class="center red"> {{error}} </h1>
       </div>
       <div id="alert" class="modal alert small">
         <div class="modal-content">

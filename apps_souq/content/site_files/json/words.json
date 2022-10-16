@@ -10,9 +10,14 @@
     "ar": "الإعلان"
   },
   {
-    "name": "view_categories",
-    "en": "View Categories",
-    "ar": "عرض الأقسام"
+    "name": "today_date_greater_than_date_publication",
+    "en": "Today's date is greater than the date of publication",
+    "ar": "تاريخ اليوم أكبر من تاريخ النشر"
+  },
+  {
+    "name": "selection_categories",
+    "en": "Selection Categories",
+    "ar": "إختيار الأقسام"
   },
   {
     "name": "ads_new",

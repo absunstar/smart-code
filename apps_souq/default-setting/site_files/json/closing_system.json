@@ -1,17 +1,12 @@
 [
   {
     "id": 1,
-    "en": "Specific date",
-    "ar": "تاريخ معين"
+    "en": "After a specified period",
+    "ar": "بعد مدة محددة"
   },
   {
     "id": 2,
-    "en": "Specific duration",
-    "ar": "مدة معينة"
-  },
-  {
-    "id": 3,
-    "en": "Undefined",
-    "ar": "غير محدد"
+    "en": "By User",
+    "ar": "بواسطة المستخدم"
   }
 ]

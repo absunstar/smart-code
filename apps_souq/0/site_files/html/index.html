@@ -56,11 +56,11 @@
         <div class="row">
           <fieldset>
             <div ng-repeat="a in contentList">
-              <div class="row" ng-click="displayAd(a.id)">
+              <div class="row" ng-click="displayContent(a.id)">
                 <i-image view class="logo col2" ng-model="a.image_url"></i-image>
                 <b class="bold col4">{{a.name_##session.lang##}}</b>
               </div>
-              <div class="row" ng-click="displayAd(a.id)">
+              <div class="row" ng-click="displayContent(a.id)">
                 <p><b class="black"> ##word.ad_owner## : </b><b> {{a.store.user.profile.name}} </b></p>
                 <p><b class="black"> ##word.store## : </b><b> {{a.store.name_##session.lang##}} </b></p>
                 <p ng-repeat="q in a.quantity_list"><b>{{q.unit.name_##session.lang##}} {{q.net_value}} {{q.currency.name_##session.lang##}}</b></p>

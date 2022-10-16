@@ -10,7 +10,7 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
     if (ev.which === 13) {
       if (where['country_code'] || where['gov_code']) {
         hsMap();
-      };
+      }
 
       $http({
         method: 'POST',
@@ -25,6 +25,7 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
             $scope.contentList = response.data.list;
             if ($scope.user) {
               $scope.contentList.forEach((ad) => {
+                ad.$time = xtime(ad.date);
                 ad.favorite = $scope.user.feedback_list.some((_f) => _f.type && _f.ad && _f.type.id == 2 && _f.ad.id == ad.id);
               });
             }
@@ -51,7 +52,7 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
           id: 1,
           name_ar: 1,
           name_en: 1,
-          code : 1,
+          code: 1,
         },
       },
     }).then(
@@ -85,7 +86,7 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
           id: 1,
           name_ar: 1,
           name_en: 1,
-          code : 1,
+          code: 1,
         },
       },
     }).then(
@@ -157,8 +158,8 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.displayAd = function (id) {
-    window.open(`/display_ad?id=${id}`, '_blank');
+  $scope.displayContent = function (id) {
+    window.open(`/display_content?id=${id}`, '_blank');
   };
 
   $scope.getUser = function () {

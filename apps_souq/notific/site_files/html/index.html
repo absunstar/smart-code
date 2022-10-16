@@ -34,15 +34,15 @@
               <div class="ads-info">
                 <div ng-show="n.type == 'comments_my_ads'">
                   <h2>##word.there_new_response_ad##</h2>
-                  <h3 class="pointer" ng-click="displayAd(n.action.id)">##word.new_comment_on## {{n.action.name}}</h3>
+                  <h3 class="pointer" ng-click="displayContent(n.action.id)">##word.new_comment_on## {{n.action.name}}</h3>
                 </div>
                 <div ng-show="n.type == 'ads_members_follow'">
                   <h2>##word.there_is_new_ad##</h2>
-                  <h3 class="pointer" ng-click="displayAd(n.action.id)">{{n.action.name}}</h3>
+                  <h3 class="pointer" ng-click="displayContent(n.action.id)">{{n.action.name}}</h3>
                 </div>
                 <div ng-show="n.type == 'replies_ads_followed'">
                   <h2>##word.there_new_response_ad##</h2>
-                  <h3 class="pointer" ng-click="displayAd(n.action.id)">##word.new_comment_on## {{n.action.name}}</h3>
+                  <h3 class="pointer" ng-click="displayContent(n.action.id)">##word.new_comment_on## {{n.action.name}}</h3>
                 </div>
 
                 <div ng-show="n.type == 'private_messages'">

@@ -23,8 +23,8 @@ app.controller('notific', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.displayAd = function (id) {
-    window.open(`/display_ad?id=${id}`, '_blank');
+  $scope.displayContent = function (id) {
+    window.open(`/display_content?id=${id}`, '_blank');
   };
 
   $scope.displayMessage = function (id) {

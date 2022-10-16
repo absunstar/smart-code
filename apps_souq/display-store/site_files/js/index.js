@@ -238,6 +238,7 @@ app.controller('display_store', function ($scope, $http, $timeout) {
           if (response.data.done && response.data.list.length > 0) {
             $scope.contentList = response.data.list;
             $scope.contentList.forEach((ad) => {
+              ad.$time = xtime(ad.date);
               ad.favorite = $scope.user.feedback_list.some((_f) => _f.type && _f.ad && _f.type.id == 2 && _f.ad.id == ad.id);
             });
           }
@@ -250,8 +251,8 @@ app.controller('display_store', function ($scope, $http, $timeout) {
     }
   };
 
-  $scope.displayAd = function (id) {
-    window.open(`/display_ad?id=${id}`, '_blank');
+  $scope.displayContent = function (id) {
+    window.open(`/display_content?id=${id}`, '_blank');
   };
 
   $scope.getReportsTypesList();

@@ -34,7 +34,7 @@
         <div class="secondeheader">
           <div></div>
           <div class="logo" href="/">
-            <span>سوق</span>
+            <span>##setting.site_name##</span>
             <i class="burger-icon fa-solid fa-bars fa-sm"></i>
           </div>
           <form class="searchbar">
@@ -410,7 +410,7 @@
             <li class="mobile-header">
               <a class="tab_link" href="">
                 <i class="fa-solid fa-house"></i>
-                <span style="min-height: 22px">سوق</span>
+                <span style="min-height: 22px">##setting.site_name##</span>
               </a>
             </li>
             <li class="mobile-header">
@@ -523,7 +523,7 @@
               <div ng-repeat="a in contentList" class="ads-area even">
                 <div class="ad-area">
                   <div class="ads-info">
-                    <b class="bold col4 ad-name" ng-click="displayAd(a.id)">{{a.name}}</b>
+                    <b class="bold col4 ad-name" ng-click="displayContent(a.id)">{{a.name}}</b>
                     <div class="info">
                       <div class="row user-action">
                         <!-- <i class="fa-solid fa-cart-shopping" ng-hide="a.store.user.id == user.id"
@@ -536,7 +536,7 @@
                           <a class="btn" ng-hide="a.store.user.id == user.id" ng-click="bookList(a,0)">
                             <i class="fa fa-shopping-cart"></i>
                           </a>
-
+                          <h2>{{a.$time}}</h2>
                           <i-checkbox label="##word.favorite##" ng-click="updateFeedback(a,'favorite')" ng-model="a.favorite"> </i-checkbox>
                         </div>
                       </div>
@@ -561,7 +561,7 @@
                       <!-- <p class="ad-price" ng-show="a.set_price == 'yes'" ng-repeat="q in a.quantity_list"><b>{{q.unit.name_##session.lang##}} {{q.net_value}} {{q.currency.name_##session.lang##}}</b></p> -->
                     </div>
                   </div>
-                  <div class="row" ng-click="displayAd(a.id)">
+                  <div class="row" ng-click="displayContent(a.id)">
                     <i-image view class="logo col2" ng-model="a.image_url"></i-image>
                   </div>
                 </div>

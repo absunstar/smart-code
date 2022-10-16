@@ -17,7 +17,7 @@
   {
     "name": "favorite",
     "en": "Favorite",
-    "ar": "المفضلة"
+    "ar": "مفضلة"
   },
   {
     "name": "follow",
@@ -456,6 +456,11 @@
     "name": "name",
     "en": "Name",
     "ar": "الإسم"
+  },
+  {
+    "name": "contact_us",
+    "en": "Contact us",
+    "ar": "إتصل بنا"
   },
   {
     "name": "selected",
@@ -1643,7 +1648,12 @@
   {
     "name": "company_name",
     "en": "Company Name",
-    "ar": "إسم الشركة"
+    "ar": "إسم المؤسسة"
+  },
+  {
+    "name": "site_name",
+    "en": "Site Name",
+    "ar": "إسم الموقع"
   },
   {
     "name": "personal_information",

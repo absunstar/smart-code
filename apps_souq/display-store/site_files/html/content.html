@@ -48,11 +48,12 @@
         <div class="all-store-ads">
           <div class="all-store-ad" ng-repeat="a in contentList">
             <div class="ad">
-              <div class="row image-ad" ng-click="displayAd(a.id)">
+              <div class="row image-ad" ng-click="displayContent(a.id)">
                 <i-image view class="logo" ng-model="a.image_url"></i-image>
               </div>
               <div class="ad-detials">
-                <div class="row ad-info" ng-click="displayAd(a.id)">
+                <div class="row ad-info" ng-click="displayContent(a.id)">
+                  <h2>{{a.$time}}</h2>
                   <b class="ad-name bold col4">{{a.name}}</b>
                   <p ng-repeat="q in a.quantity_list"><b>{{q.unit.name_##session.lang##}} {{q.net_value}} {{q.currency.name_##session.lang##}}</b></p>
                 </div>

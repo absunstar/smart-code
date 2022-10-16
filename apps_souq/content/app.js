@@ -80,6 +80,12 @@ module.exports = function init(site) {
     let ads_doc = req.body;
     ads_doc.$req = req;
     ads_doc.$res = res;
+    let date = new Date();
+    if (new Date(ads_doc.date) < date.setHours(0, 0, 0, 0)) {
+      response.error = "Today's date is greater than the date of publication";
+      res.json(response);
+      return;
+    }
 
     if (site.defaultSettingDoc.stores_settings.activate_stores) {
       if (!ads_doc.store || (ads_doc.store && !ads_doc.store.id)) {
@@ -116,7 +122,6 @@ module.exports = function init(site) {
       (err, user_doc) => {
         if (!err && user_doc) {
           ads_doc.$user = user_doc;
-
           site.content_list.push(ads_doc);
 
           res.json(response);
@@ -346,6 +351,17 @@ module.exports = function init(site) {
       delete where['country'];
     }
 
+    let d1 = site.toDate(new Date())
+    let d2 = site.toDate(new Date())
+    d2.setDate(d2.getDate() + 1);
+    where.date = {
+      '$lte': d2,
+    }
+
+    where.expiry_date = {
+      '$gte': d1,
+    };
+
     if (where['country_code']) {
       where['address.country.code'] = where['country_code'];
       delete where['country_code'];
@@ -372,6 +388,7 @@ module.exports = function init(site) {
       where['store.id'] = where['store'].id;
       delete where['store'];
     }
+
     if (where['user']) {
       where['store.user.id'] = where['user'].id;
       delete where['user'];
@@ -401,11 +418,12 @@ module.exports = function init(site) {
           if (req.session.user.profile.main_address.gov && req.session.user.profile.main_address.gov.id) {
             where.$or.push({ 'address.gov.id': req.session.user.profile.main_address.gov.id });
           }
-
         }
       }
     }
-    delete where['near']
+
+    delete where['near'];
+
     $content.findMany(
       {
         sort: req.body.sort || {

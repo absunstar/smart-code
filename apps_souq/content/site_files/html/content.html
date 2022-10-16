@@ -10,6 +10,12 @@
             <i-store ng-show="defaultSettings.stores_settings.activate_stores" class="col3 padding_10" ng-model="ad.store"></i-store>
           </div>
           <br />
+
+          <div class="row">
+            <i-date2 class="col6" ng-show="defaultSettings.content.publishing_system.id == 2" ng-model="ad.date" label="##word.publishing_date##"></i-date2>
+            <i-date2 class="col6" ng-show="defaultSettings.content.closing_system.id == 2" ng-model="ad.expiry_date" label="##word.expiry_date##"></i-date2>
+          </div>
+
           <div class="row">
             <i-list class="col3" v="r" ng-model="ad.ad_status" items="contentStatusList" display="##session.lang##" ng-search="_search.$search_ad_status" label="##word.ad_status##"></i-list>
             <i-control help-id="ad_rating" type="number" class="col3" label="##word.ad_rating##" ng-model="ad.ad_rating"></i-control>
@@ -29,7 +35,7 @@
             <i-checkbox class="col3" label="##word.hide_mobile_number##" ng-model="ad.hide_mobile"> </i-checkbox> :
           </div>
           <div class="row">
-            <i-button type="add" class="col2" label="##word.view_categories##" ng-click="viewCategories(ad)"></i-button>
+            <i-button type="add" class="col2" label="##word.selection_categories##" ng-click="viewCategories(ad)"></i-button>
             <h2 ng-show="ad.main_category.id" class="col3 bold">##word.category## : {{ad.main_category.name_##session.lang##}} ( {{ad.main_category.v_display}})</h2>
           </div>
 

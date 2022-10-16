@@ -220,8 +220,8 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
     }
   };
 
-  $scope.displayAd = function (id) {
-    window.open(`/display_ad?id=${id}`, '_blank');
+  $scope.displayContent = function (id) {
+    window.open(`/display_content?id=${id}`, '_blank');
   };
 
   $scope.displayStore = function (id) {
@@ -587,8 +587,10 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
       }
     );
   };
-
   $scope.displayAddAd = function () {
+    window.open(`/create_ad`,'_top');
+  };
+  /*  $scope.displayAddAd = function () {
     $scope.error = '';
     $scope.ad = {
       mobile: $scope.manage_user.profile.mobile,
@@ -631,7 +633,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
       $scope.ad.image_url = $scope.defaultSettings.content.default_image_ad || '/images/content.png';
     }
     site.showModal('#adAddModal');
-  };
+  }; */
 
   $scope.viewCategories = function (c) {
     $scope.category = c;

@@ -18,7 +18,7 @@
     <div x-import="manage-user/update_modal_store.html"></div>
     <div x-import="manage-user/view_modal_store.html"></div>
 
-    <div x-import="content/view_categories.html"></div>
+    <div x-import="content/selection_categories.html"></div>
     <br />
     <h1 class="center bold black">##word.manage_your_personal_account##</h1>
     <br />
@@ -284,6 +284,7 @@
               <br />
 
               <div class="top-actions">
+                
                 <i-button type="add" label="##word.ads_new##" ng-click="displayAddAd()"></i-button>
               </div>
               <div class="row">
@@ -372,7 +373,7 @@
                     <th>##word.store##</th>
                   </tr>
 
-                  <tr ng-repeat="f in favoriteAdslist" ng-click="displayAd(f.id)">
+                  <tr ng-repeat="f in favoriteAdslist" ng-click="displayContent(f.id)">
                     <td><i-image view class="logo" ng-model="f.image_url"></i-image></td>
                     <td>{{f.name}}</td>
                     <td class="">{{f.store.user.profile.name}}</td>

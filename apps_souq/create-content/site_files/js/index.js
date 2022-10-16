@@ -8,6 +8,7 @@ app.controller('create_ad', function ($scope, $http, $timeout) {
     $scope.ad = {
       feedback_list: [],
       ad_rating: 0,
+      date : new Date(),
       set_price: 'no',
       number_views: 0,
       number_comments: 0,
@@ -16,7 +17,16 @@ app.controller('create_ad', function ($scope, $http, $timeout) {
       priority_level: 0,
       active: true,
     };
+
+ 
     if ($scope.defaultSettings.content) {
+      if($scope.defaultSettings.content.closing_system) {
+        if($scope.defaultSettings.content.closing_system.id == 2) {
+          $scope.ad.expiry_date = new Date();
+          $scope.ad.expiry_date.setDate($scope.ad.expiry_date.getDate() + 7);
+        }
+      }
+
       if ($scope.defaultSettings.content.status) {
         $scope.ad.ad_status = $scope.defaultSettings.content.status;
       }
@@ -93,6 +103,8 @@ app.controller('create_ad', function ($scope, $http, $timeout) {
             $scope.error = '##word.store_must_specified##';
           } else if (response.data.error.like('*must be specified in feed*')) {
             $scope.error = '##word.user_must_specified_in_feedbacks##';
+          }else if (response.data.error.like('*date is greater than the date of public*')) {
+            $scope.error = '##word.today_date_greater_than_date_publication##';
           }
         }
       },

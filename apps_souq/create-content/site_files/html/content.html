@@ -11,13 +11,18 @@
         <br />
 
         <div class="row">
-          <p class="col3 bold">##word.mobile_number_or_contact_method##</p>
-          : <i-checkbox class="col3" label="##word.hide_mobile_number##" ng-model="ad.hide_mobile"> </i-checkbox> :
+          <i-date2 class="col6" ng-show="defaultSettings.content.publishing_system.id == 2" ng-model="ad.date" label="##word.publishing_date##"></i-date2>
+          <i-date2 class="col6" ng-show="defaultSettings.content.closing_system.id == 2" ng-model="ad.expiry_date" label="##word.expiry_date##"></i-date2>
+        </div>
+
+        <div class="row">
+          <!-- <p class="col3 bold">##word.mobile_number_or_contact_method##</p> : -->
+           <i-checkbox label="##word.hide_mobile_number##" ng-model="ad.hide_mobile"> </i-checkbox> :
           <i-control class="col4" ng-hide="ad.hide_mobile" label="##word.cell_phone_number##" ng-model="ad.mobile"></i-control>
         </div>
 
         <div class="row">
-          <i-button type="add" class="col2" label="##word.view_categories##" ng-click="viewCategories(ad)"></i-button>
+          <i-button type="add" class="col2" label="##word.selection_categories##" ng-click="viewCategories(ad)"></i-button>
           <h2 ng-show="ad.main_category.id" class="col3 bold">##word.category## : {{ad.main_category.name_##session.lang##}} ( {{ad.main_category.v_display}})</h2>
         </div>
 
