@@ -18,7 +18,7 @@
 }
 body {
   background-color: #bbb;
-  filter: drop-shadow(2px 4px 6px black);
+  filter: drop-shadow(2px 4px 6px black) !important;
   background-image: url(/assets/palm.svg);
   background-repeat: repeat;
 }
@@ -97,7 +97,7 @@ p {
     width: 25px;
     height: 60%;
     padding-left: 18px;
-    margin: 17% 50% 0 5px;
+    margin: 10% 50% 0 5px;
     border-left: 2px solid var(--theme-color);
   }
 
@@ -1889,7 +1889,7 @@ p {
     width: 25px;
     height: 60%;
     padding-left: 18px;
-    margin: 17% 50% 0 5px;
+    margin: 10% 50% 0 5px;
     border-left: 2px solid var(--theme-color);
   }
 
@@ -3761,7 +3761,7 @@ p {
   .secondeheader {
     height: 65px;
     display: grid;
-    grid-template-columns: 20% 10% 30% 20% 20%;
+    grid-template-columns: 20% 50% auto;
     direction: rtl;
     margin: auto;
     max-width: 1920px;

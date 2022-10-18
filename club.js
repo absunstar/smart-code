@@ -1,7 +1,7 @@
 const site = require('isite')({
     port: [80 , 40006],
     lang: 'ar',
-    version : '',
+    version: '2022.10.18',
     name: 'club',
     savingTime: 5,
     log: true,
