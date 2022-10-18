@@ -3,9 +3,9 @@
   <head x-import="head.html"></head>
 
   <body class="##session.lang## loaded" ng-controller="currency">
-    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar"></nav>
+    <nav x-import="herag/sitebar.html" class="sitebar" data-ng-controller="sitebar"></nav>
 
-    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
+    <nav class="sitebottom" x-import="herag/sitebottom.html" ng-controller="sitebottom"></nav>
 
     <div id="main-layout" class="container">
       <div class="row">
@@ -31,7 +31,6 @@
           <table x-permissions="login" class="table hover bold" id="t1">
             <tr>
               <th class="not-print">##word.logo##</th>
-              <th>##word.code##</th>
               <th>##word.currency_name##</th>
               <th>##word.minor_currency##</th>
               <th>##word.ex_rate##</th>
@@ -42,7 +41,6 @@
               <td class="center not-print">
                 <i-image view class="logo" ng-model="c.image_url"></i-image>
               </td>
-              <td class="center userPrint blue">{{c.code}}</td>
               <td class="center title">{{c.name_##session.lang##}}</td>
               <td class="center title">{{c.minor_currency_##session.lang##}}</td>
               <td class="center blue">{{c.ex_rate}}</td>

@@ -7,28 +7,6 @@ module.exports = function init(site) {
     }
   });
 
-  setInterval(() => {
-    site.city_list.forEach((a, i) => {
-      if (a.$add) {
-        $city.add(a, (err, doc) => {
-          if (!err && doc) {
-            site.city_list[i] = doc;
-          }
-        });
-      } else if (a.$update) {
-        $city.edit({
-          where: {
-            id: a.id,
-          },
-          set: a,
-        });
-      } else if (a.$delete) {
-        $city.delete({
-          id: a.id,
-        });
-      }
-    });
-  }, 1000 * 7);
   site.get({
     name: 'images',
     path: __dirname + '/site_files/images/'
@@ -69,10 +47,16 @@ module.exports = function init(site) {
       city_doc.active = true
     }
 
-    response.done = true;
-    city_doc.$add = true;
-    site.city_list.push(city_doc);
-    res.json(response);
+    $city.add(city_doc, (err, doc) => {
+      if (!err) {
+        response.done = true;
+        response.doc = doc;
+        site.city_list.push(doc);
+      } else {
+        response.error = err.message;
+      }
+      res.json(response);
+    });
 
   })
 
@@ -98,14 +82,31 @@ module.exports = function init(site) {
       res.json(response);
       return;
     }
-    response.done = true;
-    city_doc.$update = true;
-    site.city_list.forEach((a, i) => {
-      if (a.id === city_doc.id) {
-        site.city_list[i] = city_doc;
+
+    $city.edit(
+      {
+        where: {
+          id: city_doc.id,
+        },
+        set: city_doc,
+        $req: req,
+        $res: res,
+      },
+      (err, result) => {
+        if (!err && result) {
+          response.done = true;
+          site.city_list.forEach((a, i) => {
+            if (a.id === result.doc.id) {
+              site.city_list[i] = result.doc;
+            }
+          });
+        } else {
+          response.error = 'Code Already Exist';
+        }
+        res.json(response);
       }
-    });
-    res.json(response);
+    );
+
   })
 
   site.post("/api/city/view", (req, res) => {
@@ -152,13 +153,26 @@ module.exports = function init(site) {
       return;
     }
 
-    site.city_list.forEach((a) => {
-      if (req.body.id && a.id === req.body.id) {
-        a.$delete = true;
+    $city.delete(
+      {
+        id: req.body.id,
+        $req: req,
+        $res: res,
+      },
+      (err, result) => {
+        if (!err) {
+          response.done = true;
+          site.city_list.splice(
+            site.city_list.findIndex((a) => a.id === req.body.id),
+            1
+          );
+        } else {
+          response.error = err.message;
+        }
+        res.json(response);
       }
-    });
-    response.done = true;
-    res.json(response);
+    );
+
   })
 
   site.post("/api/city/all", (req, res) => {

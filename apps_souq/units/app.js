@@ -7,28 +7,6 @@ module.exports = function init(site) {
     }
   });
 
-  setInterval(() => {
-    site.unit_list.forEach((a, i) => {
-      if (a.$add) {
-        $units.add(a, (err, doc) => {
-          if (!err && doc) {
-            site.unit_list[i] = doc;
-          }
-        });
-      } else if (a.$update) {
-        $units.edit({
-          where: {
-            id: a.id,
-          },
-          set: a,
-        });
-      } else if (a.$delete) {
-        $units.delete({
-          id: a.id,
-        });
-      }
-    });
-  }, 1000 * 7);
   site.get({
     name: 'images',
     path: __dirname + '/site_files/images/',
@@ -64,10 +42,18 @@ module.exports = function init(site) {
     if (typeof units_doc.active === 'undefined') {
       units_doc.active = true;
     }
-    response.done = true;
-    units_doc.$add = true;
-    site.unit_list.push(units_doc);
-    res.json(response);
+
+    $units.add(units_doc, (err, doc) => {
+      if (!err) {
+        response.done = true;
+        response.doc = doc;
+        site.unit_list.push(doc);
+      } else {
+        response.error = err.message;
+      }
+      res.json(response);
+    });
+
   });
 
   site.post('/api/units/update', (req, res) => {
@@ -93,14 +79,31 @@ module.exports = function init(site) {
       res.json(response);
       return;
     }
-    response.done = true;
-    units_doc.$update = true;
-    site.unit_list.forEach((a, i) => {
-      if (a.id === units_doc.id) {
-        site.unit_list[i] = units_doc;
+
+    $units.edit(
+      {
+        where: {
+          id: units_doc.id,
+        },
+        set: units_doc,
+        $req: req,
+        $res: res,
+      },
+      (err, result) => {
+        if (!err && result) {
+          response.done = true;
+          site.unit_list.forEach((a, i) => {
+            if (a.id === result.doc.id) {
+              site.unit_list[i] = result.doc;
+            }
+          });
+        } else {
+          response.error = 'Code Already Exist';
+        }
+        res.json(response);
       }
-    });
-    res.json(response);
+    );
+
   });
 
   site.post('/api/units/view', (req, res) => {
@@ -149,13 +152,27 @@ module.exports = function init(site) {
       return;
     }
 
-    site.unit_list.forEach((a) => {
-      if (req.body.id && a.id === req.body.id) {
-        a.$delete = true;
+    $units.delete(
+      {
+        id: req.body.id,
+        $req: req,
+        $res: res,
+      },
+      (err, result) => {
+        if (!err) {
+          response.done = true;
+          site.unit_list.splice(
+            site.unit_list.findIndex((a) => a.id === req.body.id),
+            1
+          );
+        } else {
+          response.error = err.message;
+        }
+        res.json(response);
       }
-    });
-    response.done = true;
-    res.json(response);
+    );
+
+  
   });
 
   site.post('/api/units/all', (req, res) => {

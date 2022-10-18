@@ -18,7 +18,7 @@
   { "name": "main_categories_type", "en": "Main Categories Type", "ar": "نوع القسم" },
   { "name": "cost_center", "en": "Main Category", "ar": "القسم" },
   { "name": "main_categories_primary", "en": "primary", "ar": "رئيسي" },
-  { "name": "main_categories_detailed", "en": "Detailed", "ar": "تفصيلي" },
+  { "name": "main_categories_final", "en": "Final", "ar": "نهائي" },
 
   { "name": "main_categories_status", "en": "Category status", "ar": "حالة القسم" },
   { "name": "main_categories_active", "en": "Active", "ar": "نشط" },

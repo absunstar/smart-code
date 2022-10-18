@@ -8,29 +8,6 @@ module.exports = function init(site) {
     }
   });
 
-  setInterval(() => {
-    site.main_categories_list.forEach((a, i) => {
-      if (a.$add) {
-        $main_categories.add(a, (err, doc) => {
-          if (!err && doc) {
-            site.main_categories_list[i] = doc;
-          }
-        });
-      } else if (a.$update) {
-        $main_categories.edit({
-          where: {
-            id: a.id,
-          },
-          set: a,
-        });
-      } else if (a.$delete) {
-        $main_categories.delete({
-          id: a.id,
-        });
-      }
-    });
-  }, 1000 * 3);
-
   site.get({
     name: 'main_categories',
     path: __dirname + '/site_files/html/index.html',
@@ -123,18 +100,30 @@ module.exports = function init(site) {
         }
       }
 
-      response.done = true;
-      main_categories_doc.$add = true;
-      site.main_categories_list.push(main_categories_doc);
-      res.json(response);
+      $main_categories.add(main_categories_doc, (err, doc) => {
+        if (!err) {
+          response.done = true;
+          response.doc = doc;
+          site.main_categories_list.push(doc);
+        } else {
+          response.error = err.message;
+        }
+        res.json(response);
+      });
     } else if (site.setting.auto_generate_categories_code == false && !main_categories_doc.code) {
       response.error = 'enter tree code';
       res.json(response);
     } else {
-      response.done = true;
-      main_categories_doc.$add = true;
-      site.main_categories_list.push(main_categories_doc);
-      res.json(response);
+      $main_categories.add(main_categories_doc, (err, doc) => {
+        if (!err) {
+          response.done = true;
+          response.doc = doc;
+          site.main_categories_list.push(doc);
+        } else {
+          response.error = err.message;
+        }
+        res.json(response);
+      });
     }
   });
 
@@ -167,14 +156,29 @@ module.exports = function init(site) {
         response.error = 'Cant Change Detailed Err';
         res.json(response);
       } else {
-        response.done = true;
-        main_categories_doc.$update = true;
-        site.main_categories_list.forEach((a, i) => {
-          if (a.id === main_categories_doc.id) {
-            site.main_categories_list[i] = main_categories_doc;
+        $main_categories.edit(
+          {
+            where: {
+              id: main_categories_doc.id,
+            },
+            set: main_categories_doc,
+            $req: req,
+            $res: res,
+          },
+          (err, result) => {
+            if (!err && result) {
+              response.done = true;
+              site.main_categories_list.forEach((a, i) => {
+                if (a.id === result.doc.id) {
+                  site.main_categories_list[i] = result.doc;
+                }
+              });
+            } else {
+              response.error = 'Code Already Exist';
+            }
+            res.json(response);
           }
-        });
-        res.json(response);
+        );
       }
     } else {
       response.error = 'no id';
@@ -235,13 +239,25 @@ module.exports = function init(site) {
             response.error = 'Cant Delete Acc Err';
             res.json(response);
           } else {
-            site.main_categories_list.forEach((a) => {
-              if (req.body.id && a.id === req.body.id) {
-                a.$delete = true;
+            $main_categories.delete(
+              {
+                id: req.body.id,
+                $req: req,
+                $res: res,
+              },
+              (err, result) => {
+                if (!err) {
+                  response.done = true;
+                  site.main_categories_list.splice(
+                    site.main_categories_list.findIndex((a) => a.id === req.body.id),
+                    1
+                  );
+                } else {
+                  response.error = err.message;
+                }
+                res.json(response);
               }
-            });
-            response.done = true;
-            res.json(response);
+            );
           }
         }
       );

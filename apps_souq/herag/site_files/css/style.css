@@ -6,14 +6,31 @@
   --theme-color2: #019777;
   --font-family: 'Arabic', sans-serif;
 }
-
+.harag_logo {
+  height: 60px;
+  border-radius: 5px;
+}
 .loaded {
   display: none;
 }
 .hidden {
   display: none;
 }
-
+body {
+  background-color: #bbb;
+  filter: drop-shadow(2px 4px 6px black);
+  background-image: url(/assets/palm.svg);
+  background-repeat: repeat;
+}
+.tagSide {
+  background-color: #fff;
+}
+.main-content {
+  background-color: #fff;
+}
+.main-content i-checkbox {
+  display: inline-flex;
+}
 a,
 span,
 button,
@@ -1623,7 +1640,7 @@ p {
     flex-direction: row-reverse;
     cursor: pointer;
     border: none;
-    height: 54px;
+    height: auto;
     align-items: center;
   }
 
@@ -1637,7 +1654,7 @@ p {
     max-width: 916px;
     flex-direction: row-reverse;
     cursor: pointer;
-    height: 54px;
+    height: auto;
     align-items: center;
   }
 
@@ -2477,7 +2494,7 @@ p {
 
   .thirdheader {
     display: grid;
-    grid-template-columns: 0% 30% 75%;
+    grid-template-columns: 0% 25% 75%;
     height: 65px;
     direction: ltr;
   }
@@ -2690,7 +2707,7 @@ p {
     flex-direction: row-reverse;
     cursor: pointer;
     border: none;
-    height: 54px;
+    height: auto;
     align-items: center;
   }
 
@@ -2981,7 +2998,7 @@ p {
   }
 
   .tagMain {
-    margin: -150px 0 0 0;
+    display: contents;
     transform: translate(5%, 15px);
   }
 
@@ -3088,12 +3105,12 @@ p {
     width: 140px;
   }
   .ads-section {
-    margin: 0 !important;
+    margin: 10px !important;
     padding: 0 !important;
-    border: none !important;
     border-radius: 8px !important;
     box-shadow: none !important;
     padding-top: 5px !important;
+    margin-top: 30px !important;
   }
   .ad-area {
     display: grid;
@@ -3683,7 +3700,7 @@ p {
 
   .all-category {
     display: grid;
-    grid-template-columns: 10% 20% 75%;
+    grid-template-columns: 10% 20% 70%;
     direction: ltr;
   }
 
@@ -3704,7 +3721,7 @@ p {
     max-width: 916px;
     flex-direction: row-reverse;
     cursor: pointer;
-    height: 54px;
+    height: auto;
     align-items: center;
   }
 

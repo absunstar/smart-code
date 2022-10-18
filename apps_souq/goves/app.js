@@ -7,29 +7,196 @@ module.exports = function init(site) {
     }
   });
 
-  setInterval(() => {
-    site.gov_list.forEach((a, i) => {
-      if (a.$add) {
-        $goves.add(a, (err, doc) => {
-          if (!err && doc) {
-            site.gov_list[i] = doc;
-          }
-        });
-      } else if (a.$update) {
-        $goves.edit({
-          where: {
-            id: a.id,
+  site.on('[goves][add]', (obj) => {
+    $goves.insertMany(
+      [
+        {
+          $add: true,
+          name_ar: 'المنطقة الشرقية',
+          name_en: 'Eastern Province',
+          image_url: '/images/gov.png',
+          code: 'ep',
+          active: true,
+          country: {
+            id: obj[0].id,
+            name_ar: obj[0].name_ar,
+            name_en: obj[0].name_en,
+            code: obj[0].code,
           },
-          set: a,
-        });
-      } else if (a.$delete) {
-        $goves.delete({
-          id: a.id,
-        });
-      }
-    });
-  }, 1000 * 7);
-  
+        },
+        {
+          $add: true,
+          name_ar: 'نجران',
+          name_en: 'Najran',
+          image_url: '/images/gov.png',
+          code: 'ng',
+          active: true,
+          country: {
+            id: obj[0].id,
+            name_ar: obj[0].name_ar,
+            name_en: obj[0].name_en,
+            code: obj[0].code,
+          },
+        },
+        {
+          $add: true,
+          name_ar: 'جازان',
+          name_en: 'Jazan',
+          image_url: '/images/gov.png',
+          code: 'jz',
+          active: true,
+          country: {
+            id: obj[0].id,
+            name_ar: obj[0].name_ar,
+            name_en: obj[0].name_en,
+            code: obj[0].code,
+          },
+        },
+        {
+          $add: true,
+          name_ar: 'العسير',
+          name_en: 'Aseer',
+          image_url: '/images/gov.png',
+          code: 'as',
+          active: true,
+          country: {
+            id: obj[0].id,
+            name_ar: obj[0].name_ar,
+            name_en: obj[0].name_en,
+            code: obj[0].code,
+          },
+        },
+        {
+          $add: true,
+          name_ar: 'الباحة',
+          name_en: 'Al-Baha',
+          image_url: '/images/gov.png',
+          code: 'bh',
+          active: true,
+          country: {
+            id: obj[0].id,
+            name_ar: obj[0].name_ar,
+            name_en: obj[0].name_en,
+            code: obj[0].code,
+          },
+        },
+        {
+          $add: true,
+          name_ar: 'مكة المكرمة',
+          name_en: 'Makkah',
+          image_url: '/images/gov.png',
+          code: 'mk',
+          active: true,
+          country: {
+            id: obj[0].id,
+            name_ar: obj[0].name_ar,
+            name_en: obj[0].name_en,
+            code: obj[0].code,
+          },
+        },
+        {
+          $add: true,
+          name_ar: 'المدينة المنورة',
+          name_en: 'Al-Medina',
+          image_url: '/images/gov.png',
+          code: 'md',
+          active: true,
+          country: {
+            id: obj[0].id,
+            name_ar: obj[0].name_ar,
+            name_en: obj[0].name_en,
+            code: obj[0].code,
+          },
+        },
+        {
+          $add: true,
+          name_ar: 'الرياض',
+          name_en: 'Riyadh',
+          image_url: '/images/gov.png',
+          code: 'rd',
+          active: true,
+          country: {
+            id: obj[0].id,
+            name_ar: obj[0].name_ar,
+            name_en: obj[0].name_en,
+            code: obj[0].code,
+          },
+        },
+        {
+          $add: true,
+          name_ar: 'القصيم',
+          name_en: 'Qassim',
+          image_url: '/images/gov.png',
+          code: 'qs',
+          active: true,
+          country: {
+            id: obj[0].id,
+            name_ar: obj[0].name_ar,
+            name_en: obj[0].name_en,
+            code: obj[0].code,
+          },
+        },
+        {
+          $add: true,
+          name_ar: 'الحائل',
+          name_en: 'Al-Hail',
+          image_url: '/images/gov.png',
+          code: 'hl',
+          active: true,
+          country: {
+            id: obj[0].id,
+            name_ar: obj[0].name_ar,
+            name_en: obj[0].name_en,
+            code: obj[0].code,
+          },
+        },
+        {
+          $add: true,
+          name_ar: 'الحدود الشمالية',
+          name_en: 'Northern borders',
+          image_url: '/images/gov.png',
+          code: 'nb',
+          active: true,
+          country: {
+            id: obj[0].id,
+            name_ar: obj[0].name_ar,
+            name_en: obj[0].name_en,
+            code: obj[0].code,
+          },
+        },
+        {
+          $add: true,
+          name_ar: 'الجوف',
+          name_en: 'Al-Jouf',
+          image_url: '/images/gov.png',
+          code: 'jf',
+          active: true,
+          country: {
+            id: obj[0].id,
+            name_ar: obj[0].name_ar,
+            name_en: obj[0].name_en,
+            code: obj[0].code,
+          },
+        },
+        {
+          $add: true,
+          name_ar: 'تبوك',
+          name_en: 'Tabouk',
+          image_url: '/images/gov.png',
+          code: 'tk',
+          active: true,
+          country: {
+            id: obj[0].id,
+            name_ar: obj[0].name_ar,
+            name_en: obj[0].name_en,
+            code: obj[0].code,
+          },
+        },
+      ],
+      (err, obj) => {}
+    );
+  });
+
   site.get({
     name: 'images',
     path: __dirname + '/site_files/images/',
@@ -66,10 +233,16 @@ module.exports = function init(site) {
       goves_doc.active = true;
     }
 
-    response.done = true;
-    goves_doc.$add = true;
-    site.gov_list.push(goves_doc);
-    res.json(response);
+    $goves.add(goves_doc, (err, doc) => {
+      if (!err) {
+        response.done = true;
+        response.doc = doc;
+        site.gov_list.push(doc);
+      } else {
+        response.error = err.message;
+      }
+      res.json(response);
+    });
   });
 
   site.post('/api/goves/update', (req, res) => {
@@ -95,14 +268,30 @@ module.exports = function init(site) {
       res.json(response);
       return;
     }
-    response.done = true;
-    goves_doc.$update = true;
-    site.gov_list.forEach((a, i) => {
-      if (a.id === goves_doc.id) {
-        site.gov_list[i] = goves_doc;
+
+    $goves.edit(
+      {
+        where: {
+          id: goves_doc.id,
+        },
+        set: goves_doc,
+        $req: req,
+        $res: res,
+      },
+      (err, result) => {
+        if (!err && result) {
+          response.done = true;
+          site.gov_list.forEach((a, i) => {
+            if (a.id === result.doc.id) {
+              site.gov_list[i] = result.doc;
+            }
+          });
+        } else {
+          response.error = 'Code Already Exist';
+        }
+        res.json(response);
       }
-    });
-    res.json(response);
+    );
   });
 
   site.post('/api/goves/view', (req, res) => {
@@ -128,7 +317,7 @@ module.exports = function init(site) {
       response.doc = ad;
       res.json(response);
     } else {
-      response.error = 'no id'
+      response.error = 'no id';
       res.json(response);
     }
   });
@@ -144,20 +333,31 @@ module.exports = function init(site) {
       return;
     }
 
-   
     if (!req.body.id) {
       response.error = 'no id';
       res.json(response);
       return;
     }
 
-    site.gov_list.forEach((a) => {
-      if (req.body.id && a.id === req.body.id) {
-        a.$delete = true;
+    $goves.delete(
+      {
+        id: req.body.id,
+        $req: req,
+        $res: res,
+      },
+      (err, result) => {
+        if (!err) {
+          response.done = true;
+          site.gov_list.splice(
+            site.gov_list.findIndex((a) => a.id === req.body.id),
+            1
+          );
+        } else {
+          response.error = err.message;
+        }
+        res.json(response);
       }
-    });
-    response.done = true;
-    res.json(response);
+    );
   });
 
   site.post('/api/goves/all', (req, res) => {
@@ -180,7 +380,7 @@ module.exports = function init(site) {
       where.$or.push({
         name_en: site.get_RegExp(where['name'], 'i'),
       });
-      delete where['name']
+      delete where['name'];
     }
 
     $goves.findMany(
@@ -201,7 +401,7 @@ module.exports = function init(site) {
           response.error = err.message;
         }
         res.json(response);
-      },
+      }
     );
   });
 };

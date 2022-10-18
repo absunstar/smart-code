@@ -27,7 +27,7 @@
                                 <td class="title"> ##word.main_categories_type## </td>
                                 <td class="center" ng-show="main_categories_view.type=='primary'">##word.main_categories_primary##
                                 </td>
-                                <td class="center" ng-show="main_categories_view.type=='detailed'">##word.main_categories_detailed##</td>
+                                <td class="center" ng-show="main_categories_view.type=='detailed'">##word.main_categories_final##</td>
 
                             </tr>
                             <tr>
@@ -54,7 +54,7 @@
                             <th>##word.content_name##</th>
                             <th>##word.types_category_require##</th>
                           </tr>
-                          <tr ng-repeat="c in main_categories.category_require_list">
+                          <tr ng-repeat="c in main_categories_view.category_require_list">
                             <td class="center userPrint blue">{{c.id}}</td>
                             <td class="center">{{c.name_##session.lang##}}</td>
                             <td class="center">{{c.type.##session.lang##}}</td>

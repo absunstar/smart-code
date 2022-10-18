@@ -7,28 +7,6 @@ module.exports = function init(site) {
     }
   });
 
-  setInterval(() => {
-    site.area_list.forEach((a, i) => {
-      if (a.$add) {
-        $area.add(a, (err, doc) => {
-          if (!err && doc) {
-            site.area_list[i] = doc;
-          }
-        });
-      } else if (a.$update) {
-        $area.edit({
-          where: {
-            id: a.id,
-          },
-          set: a,
-        });
-      } else if (a.$delete) {
-        $area.delete({
-          id: a.id,
-        });
-      }
-    });
-  }, 1000 * 7);
   site.get({
     name: 'images',
     path: __dirname + '/site_files/images/',
@@ -39,33 +17,6 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/html/index.html',
     parser: 'html',
     compress: true,
-  });
-
-  site.on('[register][area][add]', (doc) => {
-    $area.add(
-      {
-        gov: {
-          id: doc.gov.id,
-          code: doc.gov.code,
-          name_ar: doc.gov.name_ar,
-          name_en: doc.gov.name_en,
-        },
-        city: {
-          id: doc.id,
-          code: doc.code,
-          name_ar: doc.name_ar,
-          name_en: doc.name_en,
-        },
-        name_ar: 'منطقة إفتراضية',
-        name_en: 'Default Area',
-        code: '1-Test',
-        price_delivery_service: 0,
-        image_url: '/images/area.png',
-
-        active: true,
-      },
-      (err, doc) => {}
-    );
   });
 
   site.post('/api/area/add', (req, res) => {
@@ -91,10 +42,16 @@ module.exports = function init(site) {
       area_doc.active = true;
     }
 
-    response.done = true;
-    area_doc.$add = true;
-    site.area_list.push(area_doc);
-    res.json(response);
+    $area.add(area_doc, (err, doc) => {
+      if (!err) {
+        response.done = true;
+        response.doc = doc;
+        site.area_list.push(doc);
+      } else {
+        response.error = err.message;
+      }
+      res.json(response);
+    });
   });
 
   site.post('/api/area/update', (req, res) => {
@@ -119,14 +76,30 @@ module.exports = function init(site) {
       res.json(response);
       return;
     }
-    response.done = true;
-    area_doc.$update = true;
-    site.area_list.forEach((a, i) => {
-      if (a.id === area_doc.id) {
-        site.area_list[i] = area_doc;
+
+    $area.edit(
+      {
+        where: {
+          id: area_doc.id,
+        },
+        set: area_doc,
+        $req: req,
+        $res: res,
+      },
+      (err, result) => {
+        if (!err && result) {
+          response.done = true;
+          site.area_list.forEach((a, i) => {
+            if (a.id === result.doc.id) {
+              site.area_list[i] = result.doc;
+            }
+          });
+        } else {
+          response.error = 'Code Already Exist';
+        }
+        res.json(response);
       }
-    });
-    res.json(response);
+    );
   });
 
   site.post('/api/area/view', (req, res) => {
@@ -167,42 +140,33 @@ module.exports = function init(site) {
       res.json(response);
       return;
     }
+
     if (!req.body.id) {
       response.error = 'no id';
       res.json(response);
       return;
     }
 
-    site.area_list.forEach((a) => {
-      if (req.body.id && a.id === req.body.id) {
-        a.$delete = true;
-      }
-    });
-    response.done = true;
-    res.json(response);
-  });
-
-  site.post('/api/area/getAreaByCity/:cityId', (req, res) => {
-    let response = {
-      done: false,
-    };
-    $area.findMany(
+    $area.delete(
       {
-        where: {
-          'city._id': String(req.params.cityId),
-        },
+        id: req.body.id,
+        $req: req,
+        $res: res,
       },
-      (err, doc) => {
-        if (!err && doc.length > 0) {
-          response.doc = doc;
+      (err, result) => {
+        if (!err) {
           response.done = true;
-        }
-        if (!doc || doc.length == 0) {
-          response.done = false;
+          site.area_list.splice(
+            site.area_list.findIndex((a) => a.id === req.body.id),
+            1
+          );
+        } else {
+          response.error = err.message;
         }
         res.json(response);
       }
     );
+
   });
 
   site.post('/api/area/all', (req, res) => {
@@ -238,7 +202,7 @@ module.exports = function init(site) {
       where.$or.push({
         name_en: site.get_RegExp(where['name'], 'i'),
       });
-      delete where['name']
+      delete where['name'];
     }
 
     $area.findMany(

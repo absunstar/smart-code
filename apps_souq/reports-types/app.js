@@ -7,28 +7,6 @@ module.exports = function init(site) {
     }
   });
 
-  setInterval(() => {
-    site.report_type_list.forEach((a, i) => {
-      if (a.$add) {
-        $reports_types.add(a, (err, doc) => {
-          if (!err && doc) {
-            site.report_type_list[i] = doc;
-          }
-        });
-      } else if (a.$update) {
-        $reports_types.edit({
-          where: {
-            id: a.id,
-          },
-          set: a,
-        });
-      } else if (a.$delete) {
-        $reports_types.delete({
-          id: a.id,
-        });
-      }
-    });
-  }, 1000 * 7);
   site.get({
     name: 'images',
     path: __dirname + '/site_files/images/',
@@ -64,11 +42,17 @@ module.exports = function init(site) {
       reports_types_doc.active = true;
     }
 
+    $reports_types.add(reports_types_doc, (err, doc) => {
+      if (!err) {
+        response.done = true;
+        response.doc = doc;
+        site.report_type_list.push(doc);
+      } else {
+        response.error = err.message;
+      }
+      res.json(response);
+    });
 
-    response.done = true;
-    reports_types_doc.$add = true;
-    site.report_type_list.push(reports_types_doc);
-    res.json(response);
   });
 
   site.post('/api/reports_types/update', (req, res) => {
@@ -94,14 +78,29 @@ module.exports = function init(site) {
       res.json(response);
       return;
     }
-    response.done = true;
-    reports_types_doc.$update = true;
-    site.report_type_list.forEach((a, i) => {
-      if (a.id === reports_types_doc.id) {
-        site.report_type_list[i] = reports_types_doc;
+    $reports_types.edit(
+      {
+        where: {
+          id: reports_types_doc.id,
+        },
+        set: reports_types_doc,
+        $req: req,
+        $res: res,
+      },
+      (err, result) => {
+        if (!err && result) {
+          response.done = true;
+          site.report_type_list.forEach((a, i) => {
+            if (a.id === result.doc.id) {
+              site.report_type_list[i] = result.doc;
+            }
+          });
+        } else {
+          response.error = 'Code Already Exist';
+        }
+        res.json(response);
       }
-    });
-    res.json(response);
+    );
   });
 
   site.post('/api/reports_types/view', (req, res) => {
@@ -149,13 +148,25 @@ module.exports = function init(site) {
       return;
     }
 
-    site.report_type_list.forEach((a) => {
-      if (req.body.id && a.id === req.body.id) {
-        a.$delete = true;
+    $reports_types.delete(
+      {
+        id: req.body.id,
+        $req: req,
+        $res: res,
+      },
+      (err, result) => {
+        if (!err) {
+          response.done = true;
+          site.report_type_list.splice(
+            site.report_type_list.findIndex((a) => a.id === req.body.id),
+            1
+          );
+        } else {
+          response.error = err.message;
+        }
+        res.json(response);
       }
-    });
-    response.done = true;
-    res.json(response);
+    );
   });
 
   site.post('/api/reports_types/all', (req, res) => {
