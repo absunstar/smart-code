@@ -11,7 +11,7 @@ const site = require('../isite')({
   },
   theme: 'theme_paper',
   mongodb: {
-    db: 'smart_code_souq',
+    db: 'smart_code_souq_2022',
     limit: 100000,
     events: true,
     identity: {
@@ -23,7 +23,7 @@ const site = require('../isite')({
   },
 });
 
-if (site.hasFeature('herag')) {
+if (site.hasFeature('haraj')) {
 }
 site.words.addList(__dirname + '/site_files/json/words-sa.json');
 
@@ -56,7 +56,7 @@ site.get(
       );
     } else {
       res.render(
-        'herag/index.html',
+        'haraj/index.html',
         {},
         {
           parser: 'html css js',
