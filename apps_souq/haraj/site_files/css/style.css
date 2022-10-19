@@ -46,7 +46,7 @@ p {
     background-color: #f1f1f1;
     height: 65px;
     display: grid;
-    grid-template-columns: 1% 15% 69% 15%;
+    grid-template-columns: 20% 40% auto;
     direction: rtl;
     padding: 0px 10px;
   }
@@ -1842,7 +1842,7 @@ p {
   .secondeheader {
     height: 65px;
     display: grid;
-    grid-template-columns: 5% 20% 40% 30% 5%;
+    grid-template-columns:20% 40% auto;
     direction: rtl;
   }
 

@@ -156,7 +156,7 @@ a,span,button,p{
     background-color: #F1F1F1;
     height: 65px;
     display: grid;
-    grid-template-columns: 10% 20% 40% 20% 10%;
+    grid-template-columns: 20% 40% auto;
     direction: rtl;
     padding-left: 3%;
 }
