@@ -100,10 +100,10 @@
     }
   }
 
-  $(document).on('keydown', 'input,select', function (e) {
+  $(document).on('keydown', 'select', function (e) {
     if (e.which == 13 || e.keyCode == 13) {
       e.preventDefault();
-      var $canfocus = $('input,select');
+      var $canfocus = $('select');
       var index = $canfocus.index(document.activeElement) + 1;
       if (index >= $canfocus.length) index = 0;
       $canfocus.eq(index).focus();

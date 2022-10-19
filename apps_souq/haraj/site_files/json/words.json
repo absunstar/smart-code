@@ -5,6 +5,21 @@
     "ar": "القريب"
   },
   {
+    "name": "lowest_price",
+    "en": "Lowest price",
+    "ar": "الأقل سعر"
+  },
+  {
+    "name": "highest_price",
+    "en": "Highest price",
+    "ar": "الأعلى سعر"
+  },
+  {
+    "name": "only_new",
+    "en": "Only New",
+    "ar": "جديد فقط"
+  },
+  {
     "name": "nearby_ads",
     "en": "Nearby ads",
     "ar": "إعلانات قريبة"
@@ -53,6 +68,21 @@
     "name": "add_your_ad",
     "en": "Add your ad",
     "ar": "أضف إعلانك"
+  },
+  {
+    "name": "only_with_photos",
+    "en": "Only with photos",
+    "ar": "الإعلانات المُرفقة بصور فقط"
+  },
+  {
+    "name": "no_content_1",
+    "en": "Sorry... we didn't find anything matching this search",
+    "ar": "عفوًا ... لم نعثر على أي شيء مطابق لهذا البحث"
+  },
+  {
+    "name": "no_content_2",
+    "en": "Try looking for something more general, change the filters or check for spelling errors",
+    "ar": "حاول البحث عن شيء أكثر عمومية، قم بتغيير عوامل التصفية أو تحقق من الأخطاء الإملائية"
   },
   {
     "name": "more_categories",

@@ -1,13 +1,13 @@
 app.controller('index_souq', function ($scope, $http, $timeout) {
   $scope._search = {};
-  $scope.search = {};
+  $scope.search = {price_from : 0, price_to : 100000000};
   $scope.getContentList = function (ev, where) {
     $scope.busy = true;
-    $scope.contentList = [];
-    where = where || {};
-    where['ad_status.id'] = 1;
-
     if (ev.which === 13) {
+      $scope.contentList = [];
+      where = where || {};
+      where['ad_status.id'] = 1;
+
       if (where['country_code'] || where['gov_code']) {
         hsMap();
       }

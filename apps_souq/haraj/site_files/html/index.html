@@ -30,7 +30,6 @@
       </div>
       <div class="secondeheader-b">
         <div class="secondeheader">
-         
           <div class="logo" href="/">
             <img class="center harag_logo" src="##setting.logo##" onerror="this.src='/images/user.png'" alt="" />
             <span>##setting.site_name##</span>
@@ -41,11 +40,13 @@
               <div class="searchicon">
                 <img src="../assets/search-svgrepo-com.svg" alt="" width="20px" height="20px" />
               </div>
-              <input type="search" placeholder="##word.search_here_for_what_you_want##" id ng-disabled="disabled" autofocus v ng-model="ngModel" ng-change="ngChange()" ngkeydown="ngKeydown()" x-input="true" />
+              <input type="search" placeholder="##word.search_here_for_what_you_want##" ng-keydown="getContentList($event,search)" ng-model="search.text_search" id ng-disabled="disabled" autofocus v ng-model="ngModel" ng-change="ngChange()" ngkeydown="ngKeydown()" x-input="true" />
+
               <!--               <button id="map-toggle" class="action-map advanced-search" type="search" onclick="hsMap()"><a>##word.map_search## </a></button>
-              <button class="advanced-search" type="search" ng-click="displayAdvancedSearch()"><a>##word.advanced_search## </a></button>
-              <button class="search" type="submit" ng-click="getAdsList({which:13},search)"><a>##word.search##</a></button> -->
+                <button class="advanced-search" type="search" ng-click="displayAdvancedSearch()"><a>##word.advanced_search## </a></button>
+                <button class="search" type="submit" ng-click="getAdsList({which:13},search)"><a>##word.search##</a></button> -->
             </div>
+            <button ng-click="searchAll(search)" class="add" type="search"><img class="add-icon" src="../assets/search.png" alt="" width="18px" height="18px" /><a>##word.search##</a></button>
           </form>
           <div class="mobile-filter">
             <i class="burger-icon fa-solid fa-arrow-down-wide-short fa-2xl"></i>
@@ -226,7 +227,7 @@
     <div class="content loaded">
       <aside class="tagSide">
         <i class="close-filter fa-solid fa-xmark fa-lg"></i>
-        <div class="sideSearchHistory">
+        <!-- <div class="sideSearchHistory">
           <a href="/tags/حراج العقار">حراج العقار</a>
           <hr class="mobile-hr" />
           <div class="smallText">
@@ -237,8 +238,8 @@
               ></path></svg
             ><span>مسح السجل</span>
           </div>
-          <!--   <hr class="mobile-hr" /> -->
-        </div>
+            <hr class="mobile-hr" /> 
+        </div> -->
         <div id="sideBar_card" class="sc-gsDJrp kiyHpe">
           <!--   <div class="tag_select_wrapper">
             <div class="sc-furvIG lkLLxz">
@@ -263,15 +264,46 @@
             </span>
             <div class="FilterGroup__ContentWrapper-kok8t0-2 BJDme" id="xtags-filter">
               <div>
+                <div class="row">
+                  <i-checkbox label="##word.only_new##" ng-click="searchAll(search)" ng-model="search.new"></i-checkbox>
+                  <i-checkbox class="col" label="##word.nearby_ads##" ng-click="searchAll(search)" ng-model="search.near"> </i-checkbox>
+                  <i-checkbox label="##word.only_with_photos##" ng-click="searchAll(search)" ng-model="search.with_photos"></i-checkbox>
+
+                  <div class="row">
+                    <table>
+                      <tr>
+                        <td>
+                          <input type="radio" id="lowest" ng-click="searchAll(search)" ng-model="search.price" name="price" value="lowest" />
+                          <label for="lowest">##word.lowest_price##</label><br />
+                        </td>
+                        <td>
+                          <input type="radio" id="highest" ng-click="searchAll(search)" ng-model="search.price" name="price" value="highest" />
+                          <label for="highest">##word.highest_price##</label><br />
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+
+                  <br />
+                  <h3>##word.price##</h3>
+                  <br />
+                  <div class="row">
+                    <table>
+                      <tr>
+                        <td>
+                          <i-control type="number" ng-keydown="getContentList($event,search)" ng-model="search.price_from"></i-control>
+                        </td>
+                        <td>
+                          <i-control type="number" ng-keydown="getContentList($event,search)" ng-model="search.price_to"></i-control>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
                 <div class="tag-filters-extra">
                   <div class="FilterItem__Wrapper-sc-18vvs8g-0 feaUnB">
                     <label class="FilterItem__Label-sc-18vvs8g-1 bSWGIJ"></label>
                     <div class="FilterItem__ItemsWrapper-sc-18vvs8g-2 bpYvLN"></div>
-                  </div>
-                  <div class="FilterItem__Wrapper-sc-18vvs8g-0 feaUnB">
-                    <label class="FilterItem__Label-sc-18vvs8g-1 bSWGIJ"></label>
-                    <div class="FilterItem__ItemsWrapper-sc-18vvs8g-2 bpYvLN"></div>
-                    <div class="tag-filters__item checkbox-button"><input type="checkbox" id="orderByPostIdCheckbox" /> <label for="orderByPostIdCheckbox">جديد فقط</label></div>
                   </div>
                 </div>
               </div>
@@ -288,114 +320,9 @@
               <div id="mark">
                 <br />
                 <div class="brand-logos">
-                  <a title="سيارات تويوتا" class="brand-logos--svg" href="/tags/تويوتا"><img alt="toyota-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/toyota-logo.svg" /></a
-                  ><a title="نسيان" class="brand-logos--svg" href="/tags/نيسان"><img alt="nissan-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/nissan-logo.svg" /></a
-                  ><a title="سيارات فورد" class="brand-logos--svg" href="/tags/فورد"><img alt="ford-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/ford-logo.svg" /></a
-                  ><a title="لكزس" class="brand-logos--svg" href="/tags/لكزس"><img alt="lexus-icon" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/lexus-icon.svg" /></a
-                  ><a title="سيارات شفروليه للبيع" class="brand-logos--svg" href="/tags/شيفروليه"><img alt="chevrolet-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/chevrolet-logo.svg" /></a
-                  ><a title="سيارات مرسيدس" class="brand-logos--svg" href="/tags/مرسيدس"><img alt="mercedes-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/mercedes-logo.svg" /></a
-                  ><a title="جي ام سي" class="brand-logos--svg" href="/tags/جي ام سي"><img alt="gmc-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/gmc-logo.svg" /></a
-                  ><a title="بي ام دبليو" class="brand-logos--svg" href="/tags/بي ام دبليو"><img alt="bmw-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/bmw-logo.svg" /></a
-                  ><a title="سيارات دودج" class="brand-logos--svg" href="/tags/دودج"><img alt="dodge-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/dodge-logo.svg" /></a
-                  ><a title="سيارات همر" class="brand-logos--svg" href="/tags/همر"><img alt="hummer-icon" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/hummer-icon.svg" /></a
-                  ><a title="سيارات كاديلاك" class="brand-logos--svg" href="/tags/كاديلاك"><img alt="cadillac-logo-alt" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/cadillac-logo-alt.svg" /></a
-                  ><a title="اودي" class="brand-logos--svg" href="/tags/اودي"><img alt="audi-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/audi-logo.svg" /></a
-                  ><a title="هوندا" class="brand-logos--svg" href="/tags/هوندا"><img alt="honda-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/honda-logo.svg" /></a
-                  ><a title="لاندروفر" class="brand-logos--svg" href="/tags/لاند روفر"><img alt="land-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/land-logo.svg" /></a
-                  ><a title="فولكس واجن" class="brand-logos--svg" href="/tags/فولكس واجن"><img alt="volkswagen-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/volkswagen-logo.svg" /></a
-                  ><a title="مازدا" class="brand-logos--svg" href="/tags/مازدا"><img alt="mazda-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/mazda-logo.svg" /></a
-                  ><a title="ميتسوبيشي" class="brand-logos--svg" href="/tags/ميتسوبيشي"><img alt="mitsubishi-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/mitsubishi-logo.svg" /></a
-                  ><a title="هونداي" class="brand-logos--svg" href="/tags/هونداي"><img alt="hyundai-icon" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/hyundai-icon.svg" /></a
-                  ><a title="جيب" class="brand-logos--svg" href="/tags/جيب"><img alt="jeep-icon" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/jeep-icon.svg" /></a
-                  ><a title="انفنيتي" class="brand-logos--svg" href="/tags/انفنيتي"><img alt="infinity-icon" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/infinity-icon.svg" /></a
-                  ><a title="سوزوكي" class="brand-logos--svg" href="/tags/سوزوكي"><img alt="suzuki-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/suzuki-logo.svg" /></a
-                  ><a title="كيا" class="brand-logos--svg" href="/tags/كيا"><img alt="kia-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/kia-logo.svg" /></a
-                  ><a title="كرايزلر" class="brand-logos--svg" href="/tags/كرايزلر"><img alt="chrysler-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/chrysler-logo.svg" /></a
-                  ><a title="بورش" class="brand-logos--svg" href="/tags/بورش"><img alt="porsche-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/porsche-logo.svg" /></a
-                  ><a title="استون مارتن" class="brand-logos--svg" href="/tags/استون مارتن"><img alt="astonmartin-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/astonmartin-logo.svg" /></a
-                  ><a title="بيوك" class="brand-logos--svg" href="/tags/بيوك"><img alt="buick-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/buick-logo.svg" /></a
-                  ><a title="شانجان" class="brand-logos--svg" href="/tags/شانجان"><img alt="changan-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/changan-logo.svg" /></a
-                  ><a title="تشيري" class="brand-logos--svg" href="/tags/تشيري"><img alt="cherry-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/cherry-logo.svg" /></a
-                  ><a title="سيتروين" class="brand-logos--svg" href="/tags/سيتروين"><img alt="citroen-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/citroen-logo.svg" /></a
-                  ><a title="دايو" class="brand-logos--svg" href="/tags/دايو"><img alt="daewoo-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/daewoo-logo.svg" /></a
-                  ><a title="ديهاتسو" class="brand-logos--svg" href="/tags/ديهاتسو"><img alt="daihatsu-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/daihatsu-logo.svg" /></a
-                  ><a title="فاو FAW" class="brand-logos--svg" href="/tags/فاو FAW"><img alt="faw-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/faw-logo.svg" /></a
-                  ><a title="فيراري" class="brand-logos--svg" href="/tags/فيراري"><img alt="ferrari-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/ferrari-logo.svg" /></a
-                  ><a title="فيات" class="brand-logos--svg" href="/tags/فيات"><img alt="fiat-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/fiat-logo.svg" /></a
-                  ><a title="جي ايه سي GAC" class="brand-logos--svg" href="/tags/جي ايه سي GAC"><img alt="GAC-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/GAC-logo.svg" /></a
-                  ><a title="جيلي" class="brand-logos--svg" href="/tags/جيلي"><img alt="geely-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/geely-logo.svg" /></a
-                  ><a title="جريت وول Great Wall" class="brand-logos--svg" href="/tags/جريت وول Great Wall"><img alt="greatwall-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/greatwall-logo.svg" /></a
-                  ><a title="هافال" class="brand-logos--svg" href="/tags/هافال"><img alt="haval-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/haval-logo.svg" /></a
-                  ><a title="ايسوزو" class="brand-logos--svg" href="/tags/ايسوزو"><img alt="ISUZU-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/ISUZU-logo.svg" /></a
-                  ><a title="جاكوار" class="brand-logos--svg" href="/tags/جاكوار"><img alt="jaguar-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/jaguar-logo.svg" /></a
-                  ><a title="لامبورجيني" class="brand-logos--svg" href="/tags/لامبورجيني"><img alt="lamborghini-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/lamborghini-logo.svg" /></a
-                  ><a title="ميركوري" class="brand-logos--svg" href="/tags/ميركوري"><img alt="mercury-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/mercury-logo.svg" /></a
-                  ><a title="مازيراتي" class="brand-logos--svg" href="/tags/مازيراتي"><img alt="meserati-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/meserati-logo.svg" /></a
-                  ><a title="MG" class="brand-logos--svg" href="/tags/MG"><img alt="MG-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/MG-logo.svg" /></a
-                  ><a title="اوبل" class="brand-logos--svg" href="/tags/اوبل"><img alt="opal-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/opal-logo.svg" /></a
-                  ><a title="بيجو" class="brand-logos--svg" href="/tags/بيجو"><img alt="peugeot-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/peugeot-logo.svg" /></a
-                  ><a title="بروتون" class="brand-logos--svg" href="/tags/بروتون"><img alt="proton-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/proton-logo.svg" /></a
-                  ><a title="رينو" class="brand-logos--svg" href="/tags/رينو"><img alt="renault-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/renault-logo.svg" /></a
-                  ><a title="رولز رويس" class="brand-logos--svg" href="/tags/رولز رويس"><img alt="rollsroyce-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/rollsroyce-logo.svg" /></a
-                  ><a title="ساب" class="brand-logos--svg" href="/tags/ساب"><img alt="saab-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/saab-logo.svg" /></a
-                  ><a title="سيات" class="brand-logos--svg" href="/tags/سيات"><img alt="seat-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/seat-logo.svg" /></a
-                  ><a title="سكودا" class="brand-logos--svg" href="/tags/سكودا"><img alt="skoda-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/skoda-logo.svg" /></a
-                  ><a title="سانج يونج" class="brand-logos--svg" href="/tags/سانج يونج"><img alt="ssanyong-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/ssanyong-logo.svg" /></a
-                  ><a title="سوبارو" class="brand-logos--svg" href="/tags/سوبارو"><img alt="subaru-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/subaru-logo.svg" /></a
-                  ><a title="فولفو" class="brand-logos--svg" href="/tags/فولفو"><img alt="volvo-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/volvo-logo.svg" /></a
-                  ><a title="ZXAUTO" class="brand-logos--svg" href="/tags/ZXAUTO"><img alt="ZXauto-logo" loading="lazy" height="60" width="60" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/ZXauto-logo.svg" /></a>
-                </div>
-                <br />
-                <hr />
-                <br />
-                <div class="brand-logos">
-                  <a title="قطع غيار وملحقات" class="brand-logos--svg imgasicon" href="/tags/قطع غيار وملحقات"><img alt="parts" loading="lazy" height="60" width="60" class="svg-size-4x" src="https://betacdn.haraj.com.sa/assets/images/svg/parts.svg" /><span class="text">قطع غيار وملحقات</span></a
-                  ><a title="شاحنات ومعدات ثقيلة" class="brand-logos--svg imgasicon" href="/tags/شاحنات ومعدات ثقيلة"><img alt="truck" loading="lazy" height="60" width="60" class="svg-size-4x" src="https://betacdn.haraj.com.sa/assets/images/svg/truck.svg" /><span class="text">شاحنات ومعدات ثقيلة</span></a
-                  ><a title="دبابات" class="brand-logos--svg imgasicon" href="/tags/دبابات"><img alt="quad-car" loading="lazy" height="60" width="60" class="svg-size-4x" src="https://betacdn.haraj.com.sa/assets/images/svg/quad-car.svg" /><span class="text">دبابات</span></a
-                  ><a title="سيارات%20تراثية" class="brand-logos--svg imgasicon" href="/tags/سيارات تراثية"><img alt="heritage-car" loading="lazy" height="60" width="60" class="svg-size-4x" src="https://betacdn.haraj.com.sa/assets/images/svg/heritage-car.svg" /><span class="text">سيارات تراثية</span></a
-                  ><a title="سيارات مصدومه" class="brand-logos--svg imgasicon" href="/tags/حراج السيارات/filters/search-مصدوم مصدومة"><img alt="crash-car" loading="lazy" height="60" width="60" class="svg-size-4x" src="https://betacdn.haraj.com.sa/assets/images/svg/crash-car.svg" /><span class="text">سيارات مصدومه</span></a
-                  ><a title="سيارات للتنازل" class="brand-logos--svg imgasicon" href="/tags/حراج السيارات/filters/search-للتنازل تنازل"><img alt="car-loan" loading="lazy" height="60" width="60" class="svg-size-4x" src="https://betacdn.haraj.com.sa/assets/images/svg/car-loan.svg" /><span class="text">سيارات للتنازل</span></a>
-                </div>
-              </div>
-              <div class="other_marks_">
-                <br />
-                <hr />
-                <br />
-                <div class="brand-logos">
-                  <a class="brand-logos--svg imgasicon" href="/tags/ابل Apple"><img width="60" height="60" loading="lazy" alt="apple-icon 0" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/apple-icon.svg" /></a
-                  ><a class="brand-logos--svg" href="/tags/سامسونج Samsung"><img width="60" height="60" loading="lazy" alt="samsung-icon 1" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/samsung-icon.svg" /></a
-                  ><a class="brand-logos--svg" href="/tags/كانون Canon"><img width="60" height="60" loading="lazy" alt="canon-icon 2" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/canon-icon.svg" /></a
-                  ><a class="brand-logos--svg" href="/tags/سوني Sony"><img width="60" height="60" loading="lazy" alt="sony-icon 3" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/sony-icon.svg" /></a
-                  ><a class="brand-logos--svg" href="/tags/مايكروسوفت Microsoft"><img width="60" height="60" loading="lazy" alt="microsoft-logo 4" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/microsoft-logo.svg" /></a
-                  ><a class="brand-logos--svg" href="/tags/نوكيا Nokia"><img width="60" height="60" loading="lazy" alt="nokia-icon 5" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/nokia-icon.svg" /></a
-                  ><a class="brand-logos--svg" href="/tags/ال جي LG"><img width="60" height="60" loading="lazy" alt="lg-logo 6" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/lg-logo.svg" /></a><a class="brand-logos--svg" href="/tags/أرقام مميزة">أرقام مميزة</a>
-                </div>
-              </div>
-              <div class="other_marks_">
-                <br />
-                <hr />
-                <br />
-                <div class="brand-logos">
-                  <a title="غنم" class="brand-logos--svg imgasicon" href="/tags/غنم"><img width="60" height="60" loading="lazy" alt="sheep 0" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/sheep.svg" /></a
-                  ><a title="ببغاء" class="brand-logos--svg imgasicon" href="/tags/ببغاء"><img width="60" height="60" loading="lazy" alt="parrot 1" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/parrot.svg" /></a
-                  ><a title="حمام" class="brand-logos--svg imgasicon" href="/tags/حمام"><img width="60" height="60" loading="lazy" alt="birds 2" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/birds.svg" /></a
-                  ><a title="قطط" class="brand-logos--svg imgasicon" href="/tags/قطط"><img width="60" height="60" loading="lazy" alt="cat 3" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/cat.svg" /></a
-                  ><a title="دجاج" class="brand-logos--svg imgasicon" href="/tags/دجاج"><img width="60" height="60" loading="lazy" alt="chicken 4" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/chicken.svg" /></a
-                  ><a title="ماعز" class="brand-logos--svg imgasicon" href="/tags/ماعز"><img width="60" height="60" loading="lazy" alt="goat 5" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/goat.svg" /></a
-                  ><a title="أبل" class="brand-logos--svg imgasicon" href="/tags/أبل"><img width="60" height="60" loading="lazy" alt="camel 6" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/camel.svg" /></a
-                  ><a title="خيل" class="brand-logos--svg imgasicon" href="/tags/خيل"><img width="60" height="60" loading="lazy" alt="horse 7" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/horse.svg" /></a
-                  ><a title="كلاب" class="brand-logos--svg imgasicon" href="/tags/كلاب"><img width="60" height="60" loading="lazy" alt="dog 8" class="svg-size-5x" src="https://betacdn.haraj.com.sa/assets/images/svg/dog.svg" /></a>
-                </div>
-              </div>
-              <div>
-                <br />
-                <hr />
-                <br />
-                <div class="brand-logos">
-                  <a title="اراضي للبيع" class="brand-logos--svg" href="/tags/اراضي للبيع">اراضي للبيع </a><a title="اراضي تجارية للبيع" class="brand-logos--svg" href="/tags/اراضي تجارية للبيع">اراضي تجارية للبيع </a><a title="شقق للايجار" class="brand-logos--svg" href="/tags/شقق للايجار">شقق للايجار </a><a title="شقق للبيع" class="brand-logos--svg" href="/tags/شقق للبيع">شقق للبيع </a
-                  ><a title="فلل للبيع" class="brand-logos--svg" href="/tags/فلل للبيع">فلل للبيع </a><a title="فلل للايجار" class="brand-logos--svg" href="/tags/فلل للايجار">فلل للايجار </a><a title="عماره للايجار" class="brand-logos--svg" href="/tags/عماره للايجار">عماره للايجار </a><a title="محلات للتقبيل" class="brand-logos--svg" href="/tags/محلات للتقبيل">محلات للتقبيل </a
-                  ><a title="محلات للايجار" class="brand-logos--svg" href="/tags/محلات للايجار">محلات للايجار </a><a title="مزارع للبيع" class="brand-logos--svg" href="/tags/مزارع للبيع">مزارع للبيع </a><a title="استراحات للبيع" class="brand-logos--svg" href="/tags/استراحات للبيع">استراحات للبيع </a
-                  ><a title="استراحات للايجار" class="brand-logos--svg" href="/tags/استراحات للايجار">استراحات للايجار </a><a title="بيوت للبيع" class="brand-logos--svg" href="/tags/بيوت للبيع">بيوت للبيع </a><a title="بيوت للايجار" class="brand-logos--svg" href="/tags/بيوت للايجار">بيوت للايجار </a><a title="ادوار للايجار" class="brand-logos--svg" href="/tags/ادوار للايجار">ادوار للايجار </a>
+                  <div ng-repeat="c in subCategoriesList">
+                    <a title="{{c.name_##session.lang##}}" class="brand-logos--svg tag-link" ng-click="loadSubCategory2(c)"><img loading="lazy" height="60" width="60" class="svg-size-5x" ng-src="{{c.image_url}}" /></a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -509,7 +436,6 @@
             <option value="" selected>##word.selected## (##word.area##)</option>
           </select>
 
-          <i-checkbox class="col" label="##word.nearby_ads##" ng-click="searchAll(search)" ng-model="search.near"> </i-checkbox>
           <i-checkbox class="col" x-permissions="login" ng-show="subCategoriesList" ng-click="updateFollowCategory(category.id ,category.follow )" label="##word.follow## {{category.name_##session.lang##}}" ng-model="category.follow"> </i-checkbox>
 
           <div class="row">
@@ -559,6 +485,11 @@
                     <i-image view class="logo col2" ng-model="a.image_url"></i-image>
                   </div>
                 </div>
+              </div>
+              <div class="row center" ng-show="contentList.length < 1 && contentList.length">
+                <h2>##word.no_content_1##</h2>
+                <h3>##word.no_content_2##</h3>
+                <img src="../assets/sad_search.png" alt="" />
               </div>
               <!-- ngRepeat: a in contentList -->
             </fieldset>

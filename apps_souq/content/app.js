@@ -122,6 +122,17 @@ module.exports = function init(site) {
       (err, user_doc) => {
         if (!err && user_doc) {
           ads_doc.$user = user_doc;
+          if(!ads_doc.quantity_list || ads_doc.quantity_list.length < 1) {
+            ads_doc.quantity_list = [{
+              price : 0,
+              discount : 0,
+              discount_type : 'number',
+              net_value : 0,
+              available_quantity : 0,
+              maximum_order : 0,
+              minimum_order : 0,
+            }]
+          }
           site.content_list.push(ads_doc);
 
           res.json(response);
@@ -341,6 +352,7 @@ module.exports = function init(site) {
       done: false,
     };
     let where = req.body.where || {};
+    let sort = {};
     let skip = 0;
     let start = (req.data.page_number || 0) * (req.data.limit || 0);
     let end = start + (req.data.limit || 100);
@@ -351,16 +363,47 @@ module.exports = function init(site) {
       delete where['country'];
     }
 
-    let d1 = site.toDate(new Date())
-    let d2 = site.toDate(new Date())
+    let d1 = site.toDate(new Date());
+    let d2 = site.toDate(new Date());
     d2.setDate(d2.getDate() + 1);
-    where.date = {
-      '$lte': d2,
+    // where.date = {
+    //   $lte: d2,
+    // };
+
+    // where.expiry_date = {
+    //   $gte: d1,
+    // };
+
+    if (where['new']) {
+      sort['date'] = -1;
     }
 
-    where.expiry_date = {
-      '$gte': d1,
-    };
+    if (where['price'] == 'lowest') {
+      sort['quantity_list.price'] = -1;
+      delete where['price']
+    } else if (where['price'] == 'highest') {
+      sort['quantity_list.price'] = 1;
+      delete where['price']
+    }
+
+    where['quantity_list.net_value'] = {$gte: where['price_from'],$lte: where['price_to']};
+    
+    if (where['with_photos']) {
+      where['images_list'] = { $exists: true };
+    }
+
+    if (where['text_search']) {
+      where.$or = where.$or || [];
+      where.$or.push({
+        name: site.get_RegExp(where['text_search'], 'i'),
+      });
+      where.$or.push({
+        'main_category.name_ar': site.get_RegExp(where['text_search'], 'i'),
+      });
+      where.$or.push({
+        'main_category.name_en': site.get_RegExp(where['text_search'], 'i'),
+      });
+    }
 
     if (where['country_code']) {
       where['address.country.code'] = where['country_code'];
@@ -395,7 +438,7 @@ module.exports = function init(site) {
     }
 
     if (where['category_id']) {
-      where.$or = [];
+      where.$or = where.$or || [];
       where.$or.push({ 'main_category.top_parent_id': where['category_id'] });
       where.$or.push({ 'main_category.parent_list_id': where['category_id'] });
       where.$or.push({ 'main_category.id': where['category_id'] });
@@ -423,10 +466,16 @@ module.exports = function init(site) {
     }
 
     delete where['near'];
-
+    delete where['new'];
+    delete where['text_search'];
+    delete where['with_photos'];
+    delete where['price_from']
+    delete where['price_to']
+    console.log(where);
+    console.log(sort);
     $content.findMany(
       {
-        sort: req.body.sort || {
+        sort: sort || {
           id: -1,
         },
         select: req.body.select || {},
