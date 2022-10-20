@@ -377,6 +377,7 @@ module.exports = function init(site) {
     if (where['new']) {
       sort['date'] = -1;
     }
+    where['quantity_list.net_value'] = {$gte: where['price_from'],$lte: where['price_to']};
 
     if (where['price'] == 'lowest') {
       sort['quantity_list.price'] = -1;
@@ -386,7 +387,6 @@ module.exports = function init(site) {
       delete where['price']
     }
 
-     where['quantity_list.net_value'] = {$gte: where['price_from'],$lte: where['price_to']};
     
     if (where['with_photos']) {
       where['images_list'] = { $exists: true };
@@ -477,7 +477,7 @@ module.exports = function init(site) {
           id: -1,
         },
         select: req.body.select || {},
-        limit: req.data.limit || 20,
+        limit: req.data.limit || 100,
         where: where,
         skip: skip,
       },

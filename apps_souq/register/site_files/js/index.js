@@ -21,6 +21,7 @@ app.controller('register_souq', function ($scope, $http, $timeout) {
             password: site.to123($scope.user.password),
             first_name: $scope.user.first_name,
             last_name: $scope.user.last_name,
+            image_url: $scope.user.image_url,
           },
         }).then(
           function (response) {

@@ -10,7 +10,7 @@ app.controller('display_content', function ($scope, $http, $timeout) {
       where['main_category.id'] = ad.main_category.id;
       where['id'] = {$ne : ad.id};
 
-      if(ad.address){
+     /*  if(ad.address){
         if(ad.address.country && ad.address.country.id){
           where['address.country.id'] = ad.address.country.id;
         }
@@ -20,7 +20,7 @@ app.controller('display_content', function ($scope, $http, $timeout) {
         if(ad.address.gov && ad.address.gov.id){
           where['address.gov.id'] = ad.address.gov.id;
         }
-      }
+      } */
 
       $http({
         method: 'POST',

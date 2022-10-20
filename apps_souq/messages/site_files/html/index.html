@@ -17,47 +17,49 @@
           <br />
           <br />
         </div>
-        <div class="row"  ng-show="messagesList.length > 0">
-            <a class="message-icon pointer" ng-repeat="m in messagesList" ng-click="showMessage(m)" help-id="menu_monitor">
-              <b ng-repeat="u in m.users_list" class="center" ng-show="u.email != '##user.email##'">{{u.name}}
-                <span ng-show="m.$new" class="badge_message "></span>
+        <div class="row">
+          <div class="col3" ng-show="messagesList.length > 0">
+            <a class="message-icon pointer display-block" ng-repeat="m in messagesList" ng-click="showMessage(m)" help-id="menu_monitor">
+              <b ng-repeat="u in m.users_list" class="center" ng-show="u.email != '##user.email##'"
+                >{{u.name}}
+                <span ng-show="m.$new" class="badge_message"></span>
+                <i-image view class="logo" ng-model="u.image_url"></i-image>
               </b>
-              <img ng-src="{{m.image_url}}" />
             </a>
-        </div>
-        <br />
-        <div class="row" ng-show="message.id">
-          <fieldset>
-            <legend>##word.the_message##</legend>
+          </div>
+          <div class="col9" ng-show="message.id">
+            <fieldset>
+              <legend>##word.the_message##</legend>
 
-            <br />
-            <br />
-            <div class="row">
-              <div class="col10">
-                <div class="row _scroll">
-                  <div class="row" ng-repeat="c in message.messages_list">
-                    <h2 class="bold pre_text" >{{c.name}}</h2>
+              <br />
+              <br />
+              <div class="row">
+                <div class="col10">
+                  <div class="row _scroll">
+                    <div class="row" ng-repeat="c in message.messages_list">
+                      <h2 class="bold pre_text">{{c.name}}</h2>
 
-                    <h3 class="bold pre_text" >{{c.message}}</h3>
+                      <h3 class="bold pre_text">{{c.message}}</h3>
 
-                    <i-image view class="logo" ng-model="c.image_url"></i-image>
-                    <h5 >{{c.date | date : 'hh:mm | dd - MM - yyyy'}}</h5>
+                      <i-image view class="logo" ng-model="c.image_url"></i-image>
+                      <h5>{{c.date | date : 'hh:mm | dd - MM - yyyy'}}</h5>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <br />
-            <br />
+              <br />
+              <br />
 
-            <div class="row">
-              <div class="col3"></div>
-              <i-textarea class="col6" label="##word.write_your_message_here##" ng-model="send_message"> </i-textarea>
-            </div>
-            <div class="row center">
-              <i-button type="add" label="##word.send##" ng-click="sendMessage(message)"> </i-button>
-            </div>
-          </fieldset>
+              <div class="row">
+                <div class="col3"></div>
+                <i-textarea class="col6" label="##word.write_your_message_here##" ng-model="send_message"> </i-textarea>
+              </div>
+              <div class="row center">
+                <i-button type="add" label="##word.send##" ng-click="sendMessage(message)"> </i-button>
+              </div>
+            </fieldset>
+          </div>
         </div>
       </fieldset>
     </div>
