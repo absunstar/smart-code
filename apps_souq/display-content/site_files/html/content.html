@@ -49,11 +49,23 @@
               <b> ##word.number_favorites## : {{ad.$number_favorites}}</b>
               <b> ##word.number_views## : {{ad.number_views}}</b>
             </div>
+            <div class="row">
+              <b> {{ad.main_category.v_display}}</b>
+            </div>
           </div>
         </div>
       </div>
+      <fieldset>
+        <legend>##word.similar_ads##</legend>
+        <div class="row item-list">
+          <a class="item col4 pointer" ng-repeat="i in contentList" href="/display_content?id={{i.id}}">
+            <div class="row">
+              <img ng-src="{{i.image_url}}" title="{{i.name}}" onerror="this.src='##setting.logo##'" />
+            </div>
+          </a>
+        </div>
+      </fieldset>
       <div class="product-image">
-
         <div class="col4 main-image">
           <i-image view ng-model="ad.image_url"></i-image>
         </div>
@@ -100,6 +112,4 @@
       <br />
     </div>
   </div>
-
- 
 </div>

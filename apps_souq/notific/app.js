@@ -173,22 +173,22 @@ module.exports = function init(site) {
       return;
     }
 
-    let currency_doc = req.body;
-    currency_doc.$req = req;
-    currency_doc.$res = res;
+    let notific_doc = req.body;
+    notific_doc.$req = req;
+    notific_doc.$res = res;
 
-    currency_doc.add_user_info = site.security.getUserFinger({
+    notific_doc.add_user_info = site.security.getUserFinger({
       $req: req,
       $res: res,
     });
 
-    if (typeof currency_doc.active === 'undefined') {
-      currency_doc.active = true;
+    if (typeof notific_doc.active === 'undefined') {
+      notific_doc.active = true;
     }
 
     response.done = true;
-    currency_doc.$add = true;
-    site.notific_list.push(currency_doc);
+    notific_doc.$add = true;
+    site.notific_list.push(notific_doc);
     res.json(response);
   });
 
@@ -203,23 +203,24 @@ module.exports = function init(site) {
       return;
     }
 
-    let currency_doc = req.body;
+    let notific_doc = req.body;
 
-    currency_doc.edit_user_info = site.security.getUserFinger({
+    notific_doc.edit_user_info = site.security.getUserFinger({
       $req: req,
       $res: res,
     });
 
-    if (!currency_doc.id) {
+    if (!notific_doc.id) {
       response.error = 'No id';
       res.json(response);
       return;
     }
     response.done = true;
-    currency_doc.$update = true;
+    notific_doc.$update = true;
+    console.log(notific_doc);
     site.notific_list.forEach((a, i) => {
-      if (a.id === currency_doc.id) {
-        site.notific_list[i] = currency_doc;
+      if (a.id === notific_doc.id) {
+        site.notific_list[i] = notific_doc;
       }
     });
     res.json(response);

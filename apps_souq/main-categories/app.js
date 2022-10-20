@@ -151,8 +151,7 @@ module.exports = function init(site) {
         category = c;
       }
     });
-    if (category) {
-      if (main_categories_doc.type == 'detailed') {
+      if (category && main_categories_doc.type == 'detailed') {
         response.error = 'Cant Change Detailed Err';
         res.json(response);
       } else {
@@ -180,10 +179,7 @@ module.exports = function init(site) {
           }
         );
       }
-    } else {
-      response.error = 'no id';
-      res.json(response);
-    }
+   
   });
 
   site.post('/api/main_categories/view', (req, res) => {

@@ -434,3 +434,21 @@ font-family: var(--font-family);
     }
 
 }
+
+.item-list .item {
+    border: 2px solid #ddd;
+    text-align: center;
+    height: 103px;
+    padding: 5px;
+}
+ 
+  .item-list .item:hover img {
+    border-radius: 20px;
+  }
+  .item-list .item img {
+    padding: 0px;
+    width: 90px;
+    height: 90px;
+    background-color: #ffffff;
+  }
+

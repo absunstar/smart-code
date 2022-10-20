@@ -5,6 +5,11 @@
     "ar": "عرض الإعلان"
   },
   {
+    "name": "similar_ads",
+    "en": "Similar ads",
+    "ar": "إعلانات مشابهة"
+  },
+  {
     "name": "add_comment",
     "en": "Add a comment",
     "ar": "إضافة تعليق"

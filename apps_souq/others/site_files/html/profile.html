@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" x-permissions="login" data-ng-app="myApp">
+<html lang="en" data-ng-app="myApp">
 
-  <head x-import="head.html">
-    <link rel="stylesheet" href="/css/order_invoice.css?v=##site.options.version##" />
+  <head x-import="haraj/head.html">
   </head>
 
   <body class="##session.lang## loaded" ng-controller="profile">
@@ -18,9 +17,9 @@
           <h1 class="user-name-stlye">{{user.profile.name}}</h1>
         </div>
         <h2 class="user-name-stlye">{{user.email}}</h2>
-        <i-button label="##word.follow##" ng-show="!user.$is_follow && !user.$same_email" ng-click="updateFollow(user,true)"></i-button>
-        <i-button label="##word.unfollow##" ng-show="user.$is_follow && !user.$same_email" ng-click="updateFollow(user,false)"></i-button>
-        <i-button fa="envelope" label="##word.conversation##" onclick="site.showModal('#messageModal')"></i-button>
+        <i-button x-permissions="login" label="##word.follow##" ng-show="!user.$is_follow && !user.$same_email" ng-click="updateFollow(user,true)"></i-button>
+        <i-button x-permissions="login" label="##word.unfollow##" ng-show="user.$is_follow && !user.$same_email" ng-click="updateFollow(user,false)"></i-button>
+        <i-button fa="envelope" x-permissions="login" label="##word.conversation##" onclick="site.showModal('#messageModal')"></i-button>
         <a class="row" ng-show="user.mobile" href="tel:{{user.mobile}}">
           {{user.mobile}}
           <i class="fa fa-mobile" aria-hidden="true"></i>

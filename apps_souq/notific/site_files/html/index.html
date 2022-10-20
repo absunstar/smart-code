@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" x-permissions="login" data-ng-app="myApp">
-  <head x-import="head.html">
-    <link rel="stylesheet" href="/css/order_invoice.css?v=##site.options.version##" />
+  <head x-import="haraj/head.html">
   </head>
 
   <body class="##session.lang## loaded" ng-controller="notific">
@@ -32,23 +31,26 @@
           <div ng-repeat="n in notific_list" class="ads-area even padding border">
             <div class="ad-area">
               <div class="ads-info">
-                <div ng-show="n.type == 'comments_my_ads'">
-                  <h2>##word.there_new_response_ad##</h2>
-                  <h3 class="pointer" ng-click="displayContent(n.action.id)">##word.new_comment_on## {{n.action.name}}</h3>
-                </div>
-                <div ng-show="n.type == 'ads_members_follow'">
-                  <h2>##word.there_is_new_ad##</h2>
-                  <h3 class="pointer" ng-click="displayContent(n.action.id)">{{n.action.name}}</h3>
-                </div>
-                <div ng-show="n.type == 'replies_ads_followed'">
-                  <h2>##word.there_new_response_ad##</h2>
-                  <h3 class="pointer" ng-click="displayContent(n.action.id)">##word.new_comment_on## {{n.action.name}}</h3>
+                <div ng-click="displayContent(n)">
+
+                  <div ng-show="n.type == 'comments_my_ads'">
+                    <h2>##word.there_new_response_ad##</h2>
+                    <h3 class="pointer">##word.new_comment_on## {{n.action.name}}</h3>
+                  </div>
+                  <div ng-show="n.type == 'ads_members_follow'">
+                    <h2>##word.there_is_new_ad##</h2>
+                    <h3 class="pointer">{{n.action.name}}</h3>
+                  </div>
+                  <div ng-show="n.type == 'replies_ads_followed'">
+                    <h2>##word.there_new_response_ad##</h2>
+                    <h3 class="pointer">##word.new_comment_on## {{n.action.name}}</h3>
+                  </div>
                 </div>
 
-                <div ng-show="n.type == 'private_messages'">
+                <div ng-click="displayMessage(n)" ng-show="n.type == 'private_messages'">
                   <h2>##word.there_new_private_message##</h2>
-                  <h3 class="pointer" ng-click="displayMessage(n.action.id)">##word.new_private_message_from## {{n.user_action.name}}</h3>
-                  <h4 class="pointer bold pre_text" ng-click="displayMessage(n.action.id)"> {{n.action.name}}</h4>
+                  <h3 class="pointer" >##word.new_private_message_from## {{n.user_action.name}}</h3>
+                  <h4 class="pointer bold pre_text" > {{n.action.name}}</h4>
                 </div>
 
                 <a href="/profile?id={{n.user_action.id}}"> {{n.user_action.name}}</a>

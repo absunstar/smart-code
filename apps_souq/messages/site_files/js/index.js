@@ -28,7 +28,7 @@ app.controller('messages', function ($scope, $http, $timeout) {
     if (!$scope.send_message) {
       $scope.error = '##word.must_write_message##';
       return;
-    }
+    };
 
     let user = {};
     $scope.message.users_list.forEach((_u) => {
@@ -40,7 +40,7 @@ app.controller('messages', function ($scope, $http, $timeout) {
     let message_obj = {
       date: new Date(),
       message: $scope.send_message,
-      res_user: {
+      receiver: {
         id: user.id,
         name: user.name,
         last_name: user.last_name,

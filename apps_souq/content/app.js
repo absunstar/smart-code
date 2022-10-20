@@ -352,7 +352,7 @@ module.exports = function init(site) {
       done: false,
     };
     let where = req.body.where || {};
-    let sort = {};
+    let sort = {id: -1};
     let skip = 0;
     let start = (req.data.page_number || 0) * (req.data.limit || 0);
     let end = start + (req.data.limit || 100);
@@ -366,13 +366,13 @@ module.exports = function init(site) {
     let d1 = site.toDate(new Date());
     let d2 = site.toDate(new Date());
     d2.setDate(d2.getDate() + 1);
-    // where.date = {
-    //   $lte: d2,
-    // };
+    where.date = {
+      $lte: d2,
+    };
 
-    // where.expiry_date = {
-    //   $gte: d1,
-    // };
+    where.expiry_date = {
+      $gte: d1,
+    };
 
     if (where['new']) {
       sort['date'] = -1;
@@ -386,7 +386,7 @@ module.exports = function init(site) {
       delete where['price']
     }
 
-    where['quantity_list.net_value'] = {$gte: where['price_from'],$lte: where['price_to']};
+     where['quantity_list.net_value'] = {$gte: where['price_from'],$lte: where['price_to']};
     
     if (where['with_photos']) {
       where['images_list'] = { $exists: true };
@@ -471,8 +471,6 @@ module.exports = function init(site) {
     delete where['with_photos'];
     delete where['price_from']
     delete where['price_to']
-    console.log(where);
-    console.log(sort);
     $content.findMany(
       {
         sort: sort || {

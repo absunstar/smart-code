@@ -46,7 +46,7 @@ app.controller('profile', function ($scope, $http, $timeout) {
     let message_obj = {
       date: new Date(),
       message: $scope.send_message,
-      res_user : {
+      receiver : {
         id: $scope.user.id,
         name: $scope.user.profile.name,
         last_name: $scope.user.profile.last_name,

@@ -46,9 +46,6 @@ app.controller('create_ad', function ($scope, $http, $timeout) {
           },
         ];
       }
-      if ($scope.defaultSettings.content.upload_multiple_photos) {
-        $scope.ad.images_list = [{}];
-      }
 
       $scope.ad.image_url = $scope.defaultSettings.content.default_image_ad || '/images/content.png';
     }
@@ -89,7 +86,7 @@ app.controller('create_ad', function ($scope, $http, $timeout) {
           if (!$scope.defaultSettings.stores_settings.activate_stores) {
             $scope.address = {};
           }
-          $scope.displayAddAd();
+          $scope.getDefaultSetting();
           site.showModal("#alert");
           $timeout(() => {
             site.hideModal("#alert");
@@ -125,6 +122,7 @@ app.controller('create_ad', function ($scope, $http, $timeout) {
         where: {
           status: 'active',
         },
+        select: { id: 1 ,name_ar: 1,name_en: 1, parent_list_id: 1 ,top_parent_id: 1,parent_id : 1},
       },
     }).then(
       function (response) {

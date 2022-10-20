@@ -477,7 +477,7 @@ a.pro-template .description {
 .badge_message {
   top: -3px;
   right: -9px;
-  /* font-size: x-large; */
+   font-size:xx-small; 
   padding: 0px 6px;
   border-radius: 50%;
   background-color: green !important;

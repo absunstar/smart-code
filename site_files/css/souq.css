@@ -14,3 +14,22 @@
   .post p {
     background : #25D366 !important;
   }
+
+  fieldset {
+ 
+    border: 1px solid #019777 !important;
+  
+  }
+
+  i-image img:hover {
+    box-shadow: 0 0 2px 1px #019777 !important;
+  }
+  .message-icon {
+    margin: 15px;
+    font-size: 25px;
+    border: solid 1px;
+    border-radius: 5px;
+  }
+  .message-icon :hover {
+    background-color: beige;
+  }

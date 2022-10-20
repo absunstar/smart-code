@@ -131,7 +131,7 @@ module.exports = function init(site) {
       $res: res,
     });
 
-    messages_doc.req_user = {
+    messages_doc.sender = {
       id: req.session.user.id,
       name: req.session.user.profile.name,
       last_name: req.session.user.profile.last_name,
@@ -141,7 +141,7 @@ module.exports = function init(site) {
     let found = false;
     let index = 0;
     site.message_list.forEach((m, i) => {
-      if (m.users_list.some((u) => u.id === messages_doc.req_user.id) && m.users_list.some((u) => u.id === messages_doc.res_user.id)) {
+      if (m.users_list.some((u) => u.id === messages_doc.sender.id) && m.users_list.some((u) => u.id === messages_doc.receiver.id)) {
         found = true;
         index = i;
       }
@@ -155,9 +155,9 @@ module.exports = function init(site) {
       message.messages_list.push({
         date: new Date(),
         message: req.body.message,
-        user_id: messages_doc.req_user.id,
-        user_name: messages_doc.req_user.name,
-        image_url: messages_doc.req_user.image_url,
+        user_id: messages_doc.sender.id,
+        user_name: messages_doc.sender.name,
+        image_url: messages_doc.sender.image_url,
         show: false,
       });
       message.$update = true;
@@ -167,15 +167,15 @@ module.exports = function init(site) {
       response.doc = site.message_list[index];
     } else {
       let msg_doc = {
-        users_list: [messages_doc.req_user, messages_doc.res_user],
+        users_list: [messages_doc.sender, messages_doc.receiver],
         messages_list: [
           {
             date: new Date(),
             message: req.body.message,
-            user_id: messages_doc.req_user.id,
-            name: messages_doc.req_user.name,
-            last_name: messages_doc.req_user.last_name,
-            image_url: messages_doc.req_user.image_url,
+            user_id: messages_doc.sender.id,
+            name: messages_doc.sender.name,
+            last_name: messages_doc.sender.last_name,
+            image_url: messages_doc.sender.image_url,
             show: false,
           },
         ],

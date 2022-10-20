@@ -92,7 +92,7 @@ app.controller('main_categories', function ($scope, $http, $timeout) {
     $scope._search = {};
 
     $scope.error = '';
-    $scope.viewMainCategories(main_categories);
+    $scope.viewMainCategories(main_categories ,'update');
     $scope.main_categories = {};
 
     site.showModal('#mainCategoriesUpdateModal');
@@ -122,12 +122,8 @@ app.controller('main_categories', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           site.hideModal('#mainCategoriesUpdateModal');
-          $scope.list.forEach((b, i) => {
-            if (b.id == response.data.doc.id) {
-              $scope.list[i] = response.data.doc;
-            }
-            $scope.getMainCategoriesList();
-          });
+      
+          $scope.getMainCategoriesList();
         } else {
           $scope.error = response.data.error;
           if (response.data.error.like('*Detailed Err*')) {
@@ -163,6 +159,7 @@ app.controller('main_categories', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           if (type == 'update') {
+            console.log("Dddddddddddddddddddd");
             $scope.main_categories = response.data.doc;
           } else {
             $scope.main_categories_view = response.data.doc;

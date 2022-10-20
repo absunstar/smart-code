@@ -23,12 +23,13 @@ app.controller('notific', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.displayContent = function (id) {
-    window.open(`/display_content?id=${id}`, '_blank');
+  $scope.displayContent = function (notific) {
+    $scope.updateNotific(notific,'display_content');
+    
   };
 
-  $scope.displayMessage = function (id) {
-    window.open(`/messages?id=${id}`, '_blank');
+  $scope.displayMessage = function (notific) {
+    $scope.updateNotific(notific,'messages');
   };
 
   $scope.getUser = function () {
@@ -51,6 +52,32 @@ app.controller('notific', function ($scope, $http, $timeout) {
       function (err) {}
     );
   };
+
+  $scope.updateNotific = function (notific,type) {
+    $scope.busy = true;
+  
+    notific.show = true;
+    $http({
+      method: 'POST',
+      url: '/api/notific/update',
+      data: notific
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          if(type == 'display_content'){
+            window.open(`/${type}?id=${notific.action.id}`, '_blank');
+          } else if(type == 'messages'){
+            window.open(`/${type}?id=${notific.action.id}`, '_blank');
+          }
+        } else {
+          $scope.error = response.data.error;
+        }
+      },
+      function (err) {}
+    );
+  };
+
 
   $scope.deleteNotific = function () {
     $scope.busy = true;

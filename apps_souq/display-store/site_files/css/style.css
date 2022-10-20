@@ -179,12 +179,6 @@ font-family: var(--font-family);
         align-content: flex-start;
     }
 
-    fieldset {
-        padding: 1% 1% !important;
-        border: 1px solid var(--theme-color) !important;
-        border-radius: 8px !important;
-        margin: 2% 0 !important;
-    }
 
     i-checkbox .selector.un-selected {
         background: rgb(255, 255, 255);

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" x-permissions="login" data-ng-app="myApp">
-  <head x-import="head.html"></head>
+  <head x-import="haraj/head.html"></head>
 
   <body class="##session.lang## loaded" ng-controller="messages">
-    <nav x-import="sitebar/index.html" class="sitebar" data-ng-controller="sitebar"></nav>
+    <nav x-import="haraj/sitebar.html" class="sitebar" data-ng-controller="sitebar"></nav>
 
-    <nav class="sitebottom" x-import="sitebottom/index.html" ng-controller="sitebottom"></nav>
+    <nav class="sitebottom" x-import="haraj/sitebottom.html" ng-controller="sitebottom"></nav>
     <div id="main-layout" class="container">
       <fieldset>
         <legend>##word.messages##</legend>
@@ -17,15 +17,13 @@
           <br />
           <br />
         </div>
-        <div class="row" style="max-width: 1200px" ng-show="messagesList.length > 0">
-          <div class="item-groups">
-            <a class="item pointer" ng-repeat="m in messagesList" ng-click="showMessage(m)" help-id="menu_monitor">
+        <div class="row"  ng-show="messagesList.length > 0">
+            <a class="message-icon pointer" ng-repeat="m in messagesList" ng-click="showMessage(m)" help-id="menu_monitor">
               <b ng-repeat="u in m.users_list" class="center" ng-show="u.email != '##user.email##'">{{u.name}}
-                <span ng-show="m.$new" class="badge_message ng-binding"></span>
+                <span ng-show="m.$new" class="badge_message "></span>
               </b>
               <img ng-src="{{m.image_url}}" />
             </a>
-          </div>
         </div>
         <br />
         <div class="row" ng-show="message.id">

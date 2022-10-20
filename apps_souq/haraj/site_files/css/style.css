@@ -2578,7 +2578,10 @@ p {
     border: 1px solid var(--theme-color);
     font-size: 18px;
   }
-
+.select-style {
+  width:16%;
+  margin: 4px;
+}
   .add a {
     color: #fff;
   }
@@ -2748,9 +2751,10 @@ p {
   }
 
   .content {
-    width: calc(100% - 270px);
+    width: calc(100% - 160px);
+    padding-left: 40px;
     margin: 1em auto;
-    padding: 0 15px;
+    /* padding: 0 15px; */
     display: grid;
     min-height: 100vh;
     grid-area: content;
@@ -3739,6 +3743,10 @@ p {
     background-color: #f7fbfa;
   }
 }
+
+
+
+
 
 @media screen and (min-width: 1921px) {
   .nav1 {

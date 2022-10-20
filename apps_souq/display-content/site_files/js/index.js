@@ -2,6 +2,47 @@ app.controller('display_content', function ($scope, $http, $timeout) {
   $scope.activity = {};
   $scope.ad = {};
 
+  $scope.getContentList = function (ad) {
+    $scope.busy = true;
+      $scope.contentList = [];
+      where = {};
+      where['ad_status.id'] = 1;
+      where['main_category.id'] = ad.main_category.id;
+      where['id'] = {$ne : ad.id};
+
+      if(ad.address){
+        if(ad.address.country && ad.address.country.id){
+          where['address.country.id'] = ad.address.country.id;
+        }
+      }
+
+      if(ad.address){
+        if(ad.address.gov && ad.address.gov.id){
+          where['address.gov.id'] = ad.address.gov.id;
+        }
+      }
+
+      $http({
+        method: 'POST',
+        url: '/api/contents/all',
+        data: {
+          where: where,
+        },
+      }).then(
+        function (response) {
+          $scope.busy = false;
+          if (response.data.done && response.data.list.length > 0) {
+            $scope.contentList = response.data.list;
+          }
+        },
+        function (err) {
+          $scope.busy = false;
+          $scope.error = err;
+        }
+      );
+    
+  };
+
   $scope.dissplayAd = function () {
     $scope.busy = true;
     $scope.error = '';
@@ -17,6 +58,7 @@ app.controller('display_content', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.ad = response.data.doc;
+          $scope.getContentList($scope.ad);
           $scope.ad.$number_favorites = $scope.ad.number_favorites;
           $scope.ad.comments_activities = $scope.ad.comments_activities || [];
           $scope.ad.$time = xtime($scope.ad.date);
