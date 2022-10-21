@@ -4,13 +4,13 @@ app.controller('display_content', function ($scope, $http, $timeout) {
 
   $scope.getContentList = function (ad) {
     $scope.busy = true;
-      $scope.contentList = [];
-      where = {};
-      where['ad_status.id'] = 1;
-      where['main_category.id'] = ad.main_category.id;
-      where['id'] = {$ne : ad.id};
+    $scope.contentList = [];
+    where = {};
+    where['ad_status.id'] = 1;
+    where['main_category.id'] = ad.main_category.id;
+    where['id'] = { $ne: ad.id };
 
-     /*  if(ad.address){
+    /*  if(ad.address){
         if(ad.address.country && ad.address.country.id){
           where['address.country.id'] = ad.address.country.id;
         }
@@ -22,26 +22,25 @@ app.controller('display_content', function ($scope, $http, $timeout) {
         }
       } */
 
-      $http({
-        method: 'POST',
-        url: '/api/contents/all',
-        data: {
-          where: where,
-          post : true,
-        },
-      }).then(
-        function (response) {
-          $scope.busy = false;
-          if (response.data.done && response.data.list.length > 0) {
-            $scope.contentList = response.data.list;
-          }
-        },
-        function (err) {
-          $scope.busy = false;
-          $scope.error = err;
+    $http({
+      method: 'POST',
+      url: '/api/contents/all',
+      data: {
+        where: where,
+        post: true,
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.contentList = response.data.list;
         }
-      );
-    
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
   };
 
   $scope.dissplayAd = function () {
@@ -63,6 +62,11 @@ app.controller('display_content', function ($scope, $http, $timeout) {
           $scope.ad.$number_favorites = $scope.ad.number_favorites;
           $scope.ad.comments_activities = $scope.ad.comments_activities || [];
           $scope.ad.$time = xtime($scope.ad.date);
+          $scope.ad.videos_list.forEach((v) => {
+            if (v.link.contains('watch')) {
+              v.link = 'https://www.youtube.com/embed/' + v.link.split('=')[1];
+            }
+          });
           $scope.ad.comments_activities.forEach((_c) => {
             if (_c.user && _c.user.id === site.toNumber('##user.id##')) {
               if (_c.comment_activity && _c.comment_activity.id == 2) {

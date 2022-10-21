@@ -66,9 +66,8 @@
         </div>
 
         <div class="row center border padding" ng-repeat="i in ad.videos_list">
-          <iframe width="600" height="350" src="{{i.link}}">
-          </iframe>
-     
+          <iframe width="560" height="315" src="{{i.link}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
           <h2 class="pre_text center">{{i.description}}</h2>
         </div>
 
