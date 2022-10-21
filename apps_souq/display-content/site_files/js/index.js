@@ -27,6 +27,7 @@ app.controller('display_content', function ($scope, $http, $timeout) {
         url: '/api/contents/all',
         data: {
           where: where,
+          post : true,
         },
       }).then(
         function (response) {

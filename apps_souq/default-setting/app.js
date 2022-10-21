@@ -10,20 +10,20 @@ module.exports = function init(site) {
         ar: 'نشط',
       },
     },
-    stores_settings : {},
+    stores_settings: {},
   };
-  site.setting = { ...site.setting, ...site.defaultSettingDoc };
+  site.setting = { ...site.defaultSettingDoc };
 
   $default_setting.findOne({}, (err, doc) => {
     if (!err && doc) {
       site.defaultSettingDoc = doc;
-      site.setting = { ...site.setting, ...site.defaultSettingDoc };
+      site.setting = { ...site.defaultSettingDoc };
     } else {
       $default_setting.add(site.defaultSettingDoc, (err, doc) => {
         if (!err && doc) {
           site.call('[country][add]', {});
           site.defaultSettingDoc = doc;
-          site.setting = { ...site.setting, ...site.defaultSettingDoc };
+          site.setting = { ...site.defaultSettingDoc };
         }
       });
     }
@@ -96,7 +96,7 @@ module.exports = function init(site) {
       if (!err) {
         response.done = true;
         site.defaultSettingDoc = data;
-        site.setting = { ...site.setting, ...site.defaultSettingDoc };
+        site.setting = { ...site.defaultSettingDoc };
       } else {
         response.error = err.message;
       }

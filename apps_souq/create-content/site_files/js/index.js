@@ -1,4 +1,4 @@
-app.controller('create_ad', function ($scope, $http, $timeout) {
+app.controller('create_content', function ($scope, $http, $timeout) {
   $scope._search = {};
 
   $scope.ad = {};
@@ -18,7 +18,6 @@ app.controller('create_ad', function ($scope, $http, $timeout) {
       active: true,
     };
 
- 
     if ($scope.defaultSettings.content) {
       if($scope.defaultSettings.content.closing_system) {
         if($scope.defaultSettings.content.closing_system.id == 2) {
@@ -30,9 +29,15 @@ app.controller('create_ad', function ($scope, $http, $timeout) {
       if ($scope.defaultSettings.content.status) {
         $scope.ad.ad_status = $scope.defaultSettings.content.status;
       }
-      if ($scope.defaultSettings.content.upload_multiple_photos) {
+
+      if ($scope.defaultSettings.content.upload_photos) {
         $scope.ad.images_list = [{}];
       }
+
+      if ($scope.defaultSettings.content.upload_video) {
+        $scope.ad.videos_list = [{}];
+      }
+
       if ($scope.defaultSettings.content.quantities_can_be_used) {
         $scope.ad.quantity_list = [
           {
@@ -166,6 +171,12 @@ app.controller('create_ad', function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.ad.images_list = $scope.ad.images_list || [];
     $scope.ad.images_list.push({});
+  };
+
+  $scope.addVideos = function () {
+    $scope.error = '';
+    $scope.ad.videos_list = $scope.ad.videos_list || [];
+    $scope.ad.videos_list.push({});
   };
 
   $scope.getCurrenciesList = function () {

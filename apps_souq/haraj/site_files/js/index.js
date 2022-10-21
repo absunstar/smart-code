@@ -1,5 +1,4 @@
 app.controller('index_souq', function ($scope, $http, $timeout) {
-  $scope._search = {};
   $scope.search = { price_from: 0, price_to: 100000000 };
   $scope.getContentList = function (ev, where) {
     $scope.busy = true;
@@ -17,6 +16,7 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
         url: '/api/contents/all',
         data: {
           where: where,
+          post : true,
         },
       }).then(
         function (response) {

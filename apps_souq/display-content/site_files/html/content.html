@@ -65,6 +65,13 @@
           <h2 class="pre_text center">{{i.description}}</h2>
         </div>
 
+        <div class="row center border padding" ng-repeat="i in ad.videos_list">
+          <iframe width="600" height="350" src="{{i.link}}">
+          </iframe>
+     
+          <h2 class="pre_text center">{{i.description}}</h2>
+        </div>
+
         <div class="row padding border" ng-repeat="c in ad.category_require_list">
           <div class="col4">
             <p class="bold blue">{{c.name_##session.lang##}}</p>

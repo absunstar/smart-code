@@ -29,17 +29,21 @@
 
           <table x-permissions="login" class="table hover bold" id="t1">
             <tr>
-              <th class="not-print">##word.logo##</th>
               <th>##word.ad_name##</th>
+              <th>##word.store##</th>
+              <th>##word.ad_owner##</th>
+              <th>##word.ad_status##</th>
               <th class="not-print">##word.actions##</th>
             </tr>
             <tr ng-repeat="c in list">
-              <td class="center not-print">
-                <i-image view class="logo" ng-model="c.image_url"></i-image>
-              </td>
+            
               <td class="center title">{{c.name}}</td>
+              <td class="center title">{{c.store.name}}</td>
+              <td class="center title">{{c.store.user.profile.name}} {{c.store.user.profile.last_name}}</td>
+              <td class="center title">{{c.ad_status.##session.lang##}}</td>
 
               <td class="center not-print">
+                <i-button type="view" ng-show="c.ad_status.id != 1" label="##word.publishing##" ng-click="publishingAd(c)"></i-button>
                 <i-button x-permissions="ads_view || ads_manage" type="view" label="##word.details##" ng-click="displayDetailsAd(c)"></i-button>
 
                 <i-button x-permissions="ads_update || ads_manage" type="edit" label="##word.edit##" ng-click="displayUpdateAd(c)"></i-button>

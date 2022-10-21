@@ -231,6 +231,8 @@ app.controller('display_store', function ($scope, $http, $timeout) {
         url: '/api/contents/all',
         data: {
           where: { 'store.id': site.toNumber('##query.id##'), 'ad_status.id': 1 },
+          post : true,
+
         },
       }).then(
         function (response) {

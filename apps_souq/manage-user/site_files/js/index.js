@@ -588,7 +588,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
     );
   };
   $scope.displayAddAd = function () {
-    window.open(`/create_ad`,'_top');
+    window.open(`/create_content`,'_top');
   };
   /*  $scope.displayAddAd = function () {
     $scope.error = '';
@@ -627,7 +627,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
           },
         ];
       }
-      if ($scope.defaultSettings.content.upload_multiple_photos) {
+      if ($scope.defaultSettings.content.upload_photos) {
         $scope.ad.images_list = [{}];
       }
       $scope.ad.image_url = $scope.defaultSettings.content.default_image_ad || '/images/content.png';

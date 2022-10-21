@@ -1,7 +1,7 @@
 module.exports = function init(site) {
 
   site.get({
-    name: 'create_ad',
+    name: 'create_content',
     path: __dirname + '/site_files/html/index.html',
     parser: 'html',
     compress: false,

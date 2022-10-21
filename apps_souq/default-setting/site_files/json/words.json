@@ -5,6 +5,21 @@
     "ar": "بحث"
   },
   {
+    "name": "allowed_number",
+    "en": "Allowed number",
+    "ar": "العدد المسموح به"
+  },
+  {
+    "name": "upload_video",
+    "en": "Upload video",
+    "ar": "رفع مقاطع فيديو"
+  },
+  {
+    "name": "allow_video_more_upload",
+    "en": "Allow uploading more than one video",
+    "ar": "السماح برفع أكثر من فيديو"
+  },
+  {
     "name": "default_setting",
     "en": "Default Setting",
     "ar": "الإعدادات الإفتراضية"
@@ -405,9 +420,9 @@
     "ar": "إمكانية إستخدام الكميات"
   },
   {
-    "name": "upload_multiple_photos",
-    "en": "Upload multiple photos",
-    "ar": "رفع صور متعددة"
+    "name": "upload_photos",
+    "en": "Upload photos",
+    "ar": "رفع صور"
   },
   {
     "name": "maximum_ads",

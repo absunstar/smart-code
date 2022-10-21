@@ -60,6 +60,16 @@
     "ar": "صور الإعلان"
   },
   {
+    "name": "ad_videos",
+    "en": "Ad Videos",
+    "ar": "مقاطع فيديو الإعلان"
+  },
+  {
+    "name": "please_put_link_video_from_youtube",
+    "en": "Please put a link to the video from YouTube",
+    "ar": "يرجى وضع لينك الفيديو من موقع يوتيوب"
+  },
+  {
     "name": "available_quantity",
     "en": "Available Qty.",
     "ar": "الكمية المتاحة"

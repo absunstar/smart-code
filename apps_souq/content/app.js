@@ -122,17 +122,42 @@ module.exports = function init(site) {
       (err, user_doc) => {
         if (!err && user_doc) {
           ads_doc.$user = user_doc;
-          if(!ads_doc.quantity_list || ads_doc.quantity_list.length < 1) {
-            ads_doc.quantity_list = [{
-              price : 0,
-              discount : 0,
-              discount_type : 'number',
-              net_value : 0,
-              available_quantity : 0,
-              maximum_order : 0,
-              minimum_order : 0,
-            }]
+          if (!ads_doc.quantity_list || ads_doc.quantity_list.length < 1) {
+            ads_doc.quantity_list = [
+              {
+                price: 0,
+                discount: 0,
+                discount_type: 'number',
+                net_value: 0,
+                available_quantity: 0,
+                maximum_order: 0,
+                minimum_order: 0,
+              },
+            ];
           }
+
+          if (ads_doc.videos_list && ads_doc.videos_list.length > 0) {
+            let stringHtt = 'https://';
+            ads_doc.videos_list.forEach((_v) => {
+              if (!_v.link.like('*https://*')) {
+                _v.link = stringHtt.concat(_v.link);
+              }
+            });
+          }
+
+          if(site.setting.content.closing_system && site.setting.content.closing_system.id == 1) {
+            ads_doc.expiry_date = new Date(ads_doc.date);
+            if(site.setting.content.duration_type){
+              if(site.setting.content.duration_type.id == 1){
+                ads_doc.expiry_date.setTime(ads_doc.expiry_date.getTime() + site.setting.content.duration * 60 * 60 * 1000);
+              } else if(site.setting.content.duration_type.id == 2){
+                ads_doc.expiry_date.setDate(ads_doc.expiry_date.getDate() + site.setting.content.duration);
+              } else if(site.setting.content.duration_type.id == 3){
+                ads_doc.expiry_date.setMonth(ads_doc.expiry_date.getMonth() + site.setting.content.duration);
+              }
+            }
+          }
+
           site.content_list.push(ads_doc);
 
           res.json(response);
@@ -180,6 +205,14 @@ module.exports = function init(site) {
     response.done = true;
     ads_doc.$update = true;
 
+    if (ads_doc.videos_list && ads_doc.videos_list.length > 0) {
+      let stringHtt = 'https://';
+      ads_doc.videos_list.forEach((_v) => {
+        if (!_v.link.like('*https://*')) {
+          _v.link = stringHtt.concat(_v.link);
+        }
+      });
+    }
     site.security.getUser(
       {
         id: ads_doc.store.user.id,
@@ -189,6 +222,22 @@ module.exports = function init(site) {
           ads_doc.$user = user_doc;
           site.content_list.forEach((a, i) => {
             if (a.id === ads_doc.id) {
+
+              if(site.content_list[i].ad_status.id != 1 && ads_doc.ad_status.id == 1) {
+                if(site.setting.content.closing_system && site.setting.content.closing_system.id == 1) {
+                  ads_doc.expiry_date = new Date(ads_doc.date);
+                  if(site.setting.content.duration_type){
+                    if(site.setting.content.duration_type.id == 1){
+                      ads_doc.expiry_date.setTime(ads_doc.expiry_date.getTime() + site.setting.content.duration * 60 * 60 * 1000);
+                    } else if(site.setting.content.duration_type.id == 2){
+                      ads_doc.expiry_date.setDate(ads_doc.expiry_date.getDate() + site.setting.content.duration);
+                    } else if(site.setting.content.duration_type.id == 3){
+                      ads_doc.expiry_date.setMonth(ads_doc.expiry_date.getMonth() + site.setting.content.duration);
+                    }
+                  }
+                }
+              }
+
               site.content_list[i] = ads_doc;
             }
           });
@@ -352,7 +401,7 @@ module.exports = function init(site) {
       done: false,
     };
     let where = req.body.where || {};
-    let sort = {id: -1};
+    let sort = { id: -1 };
     let skip = 0;
     let start = (req.data.page_number || 0) * (req.data.limit || 0);
     let end = start + (req.data.limit || 100);
@@ -366,28 +415,30 @@ module.exports = function init(site) {
     let d1 = site.toDate(new Date());
     let d2 = site.toDate(new Date());
     d2.setDate(d2.getDate() + 1);
-    where.date = {
-      $lte: d2,
-    };
+    if(req.body.post) {
 
-    where.expiry_date = {
-      $gte: d1,
-    };
+      where.date = {
+        $lte: d2,
+      };
 
+      where.expiry_date = {
+        $gte: d1,
+      };
+      
+      where['quantity_list.net_value'] = { $gte: where['price_from'] || 0, $lte: where['price_to'] || 100000000 };
+    }
     if (where['new']) {
       sort['date'] = -1;
     }
-    where['quantity_list.net_value'] = {$gte: where['price_from'],$lte: where['price_to']};
 
     if (where['price'] == 'lowest') {
       sort['quantity_list.price'] = -1;
-      delete where['price']
+      delete where['price'];
     } else if (where['price'] == 'highest') {
       sort['quantity_list.price'] = 1;
-      delete where['price']
+      delete where['price'];
     }
 
-    
     if (where['with_photos']) {
       where['images_list'] = { $exists: true };
     }
@@ -464,13 +515,12 @@ module.exports = function init(site) {
         }
       }
     }
-
     delete where['near'];
     delete where['new'];
     delete where['text_search'];
     delete where['with_photos'];
-    delete where['price_from']
-    delete where['price_to']
+    delete where['price_from'];
+    delete where['price_to'];
     $content.findMany(
       {
         sort: sort || {

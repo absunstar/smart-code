@@ -35,7 +35,7 @@
           </div>
           <div class="row">
             <i-button type="add" class="col2" label="##word.selection_categories##" ng-click="viewCategories(ad)"></i-button>
-            <h2 ng-show="ad.main_category.id" class="col3 bold">##word.category## : {{ad.main_category.name_##session.lang##}} ( {{ad.main_category.v_display}})</h2>
+            <h2 ng-show="ad.main_category.id" class="col8 bold">##word.category## : {{ad.main_category.name_##session.lang##}} ( {{ad.main_category.v_display}})</h2>
           </div>
 
           <div class="row" ng-show="ad.category_require_list.length > 0">
@@ -60,21 +60,20 @@
       </div>
       <br />
       <br />
-      <br />
-
-      <fieldset class="row" ng-show="defaultSettings.content.upload_multiple_photos">
+    
+      <fieldset class="row" ng-show="defaultSettings.content.upload_photos">
         <legend>
-          <i-button type="add default" ng-click="addImage()"></i-button>
+          <i-button type="add default" ng-hide="ad.images_list.length >= defaultSettings.content.allowed_number_photo" ng-click="addImage()"></i-button>
           ##word.ad_images##
         </legend>
         <div class="row" ng-repeat="a in ad.images_list">
           <div class="row">
-            <div class="col6">
-              <i-textarea ng-model="a.description" label="##word.description##"> </i-textarea>
-            </div>
-            <div class="col1"></div>
             <div class="col3">
               <i-image help-id="ads_logo" ng-model="a.image_url"></i-image>
+            </div>
+            <div class="col1"></div>
+            <div class="col6">
+              <i-textarea ng-model="a.description" label="##word.description##"> </i-textarea>
             </div>
             <div class="col1"></div>
             <div class="col1">
@@ -82,6 +81,33 @@
               <br />
               <br />
               <i-button type="delete" ng-click="ad.images_list.splice($index,1)"> </i-button>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+      <br />
+      <br />
+      <fieldset class="row" ng-show="defaultSettings.content.upload_video">
+        <legend>
+          <i-button type="add default" ng-hide="ad.videos_list.length >= defaultSettings.content.allowed_number_video" ng-click="addVideos()"></i-button>
+          ##word.ad_videos##
+        </legend>
+        <p class="red font-18">##word.please_put_link_video_from_youtube##</p>
+        <br />
+        <div class="row" ng-repeat="a in ad.videos_list">
+          <div class="row">
+            <div class="col4">
+              <i-control help-id="ads_logo" label="##word.link##" ng-model="a.link"></i-control>
+            </div>
+            <div class="col6">
+              <i-textarea ng-model="a.description" label="##word.description##"> </i-textarea>
+            </div>
+            <div class="col1"></div>
+            <div class="col1">
+              <br />
+              <br />
+              <br />
+              <i-button type="delete" ng-click="ad.videos_list.splice($index,1)"> </i-button>
             </div>
           </div>
         </div>

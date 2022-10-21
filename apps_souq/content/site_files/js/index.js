@@ -9,6 +9,7 @@ app.controller('contents', function ($scope, $http, $timeout) {
       feedback_list: [],
       ad_rating: 0,
       set_price: 'no',
+      date : new Date(),
       number_views: 0,
       number_comments: 0,
       number_favorites: 0,
@@ -39,9 +40,14 @@ app.controller('contents', function ($scope, $http, $timeout) {
           },
         ];
       }
-      if ($scope.defaultSettings.content.upload_multiple_photos) {
+      if ($scope.defaultSettings.content.upload_photos) {
         $scope.ad.images_list = [{}];
       }
+
+      if ($scope.defaultSettings.content.upload_video) {
+        $scope.ad.videos_list = [{}];
+      }
+
 
       $scope.ad.image_url = $scope.defaultSettings.content.default_image_ad || '/images/content.png';
     }
@@ -154,6 +160,29 @@ app.controller('contents', function ($scope, $http, $timeout) {
           } else if (response.data.error.like('*must be specified in feed*')) {
             $scope.error = '##word.user_must_specified_in_feedbacks##';
           }
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    );
+  };
+
+  $scope.publishingAd = function (ad) {
+    $scope.error = '';
+    $scope.busy = true;
+    ad.ad_status = $scope.contentStatusList[0];
+    $http({
+      method: 'POST',
+      url: '/api/contents/update',
+      data: ad,
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+        } else {
+          $scope.error = 'Please Login First';
+      
         }
       },
       function (err) {
@@ -337,10 +366,17 @@ app.controller('contents', function ($scope, $http, $timeout) {
     };
     $scope.ad.quantity_list.push(obj);
   };
+
   $scope.addImage = function () {
     $scope.error = '';
     $scope.ad.images_list = $scope.ad.images_list || [];
     $scope.ad.images_list.push({});
+  };
+
+  $scope.addVideos = function () {
+    $scope.error = '';
+    $scope.ad.videos_list = $scope.ad.videos_list || [];
+    $scope.ad.videos_list.push({});
   };
 
   $scope.viewCategories = function (c) {

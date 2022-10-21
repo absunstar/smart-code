@@ -15,6 +15,16 @@
     "ar": "الإشعارات"
   },
   {
+    "name": "publishing",
+    "en": "Publishing",
+    "ar": "نشر"
+  },
+  {
+    "name": "link",
+    "en": "Link",
+    "ar": "الرابط"
+  },
+  {
     "name": "favorite",
     "en": "Favorite",
     "ar": "مفضلة"
