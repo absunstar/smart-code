@@ -6,9 +6,12 @@
   --theme-color2: #019777;
   --font-family: 'Arabic', sans-serif;
 }
-.harag_logo {
+.haraj_logo {
   height: 60px;
   border-radius: 5px;
+}
+.haraj_name {
+padding-left: 10px;
 }
 .loaded {
   display: none;
@@ -46,7 +49,7 @@ p {
     background-color: #f1f1f1;
     height: 65px;
     display: grid;
-    grid-template-columns: 20% 40% auto;
+    grid-template-columns: 30% 40% auto;
     direction: rtl;
     padding: 0px 10px;
   }
@@ -67,7 +70,7 @@ p {
     align-items: center;
     font-size: 34px;
     color: var(--theme-color);
-    padding-left: 30%;
+    padding-left: 0;
   }
 
   i.burger-icon {
@@ -1842,7 +1845,7 @@ p {
   .secondeheader {
     height: 65px;
     display: grid;
-    grid-template-columns:20% 40% auto;
+    grid-template-columns:30% 40% auto;
     direction: rtl;
   }
 
@@ -1863,7 +1866,7 @@ p {
     align-items: center;
     font-size: 34px;
     color: var(--theme-color);
-    padding-left: 30%;
+    padding-left: 0;
   }
 
   .searchbar {
@@ -3769,7 +3772,7 @@ p {
   .secondeheader {
     height: 65px;
     display: grid;
-    grid-template-columns: 20% 50% auto;
+    grid-template-columns: 30% 50% auto;
     direction: rtl;
     margin: auto;
     max-width: 1920px;

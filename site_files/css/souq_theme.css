@@ -156,7 +156,7 @@ a,span,button,p{
     background-color: #F1F1F1;
     height: 65px;
     display: grid;
-    grid-template-columns: 20% 40% auto;
+    grid-template-columns: 30% 40% auto;
     direction: rtl;
     padding-left: 3%;
 }
@@ -174,7 +174,7 @@ a,span,button,p{
     align-items: center;
     font-size: 34px;
     color: var(--theme-color);
-    padding-left: 30%;
+    padding-left: 0;
 }
 
 .logo span {

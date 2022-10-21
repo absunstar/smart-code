@@ -31,8 +31,8 @@
       <div class="secondeheader-b">
         <div class="secondeheader">
           <div class="logo" href="/">
-            <img class="center harag_logo" src="##setting.logo##" onerror="this.src='/images/user.png'" alt="" />
-            <span>##setting.site_name##</span>
+            <img class="center haraj_logo" src="##setting.logo##" onerror="this.src='/images/user.png'" alt="" />
+            <span class="haraj_name">##setting.site_name##</span>
             <i class="burger-icon fa-solid fa-bars fa-sm"></i>
           </div>
           <form class="searchbar">
@@ -454,7 +454,7 @@
                           <i class="fa-solid fa-heart" label="##word.favorite##" ng-click="updateFeedback(a,'favorite')"
                           ng-model="a.favorite"></i> -->
 
-                          <a class="btn" ng-hide="a.store.user.id == user.id" ng-click="bookList(a,0)">
+                          <a class="btn" x-permission="login" ng-hide="a.store.user.id == user.id" ng-click="bookList(a,0)">
                             <i class="fa fa-shopping-cart"></i>
                           </a>
                           <h2>{{a.$time}}</h2>

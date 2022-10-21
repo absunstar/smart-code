@@ -1,6 +1,6 @@
 app.controller('index_souq', function ($scope, $http, $timeout) {
   $scope._search = {};
-  $scope.search = {price_from : 0, price_to : 100000000};
+  $scope.search = { price_from: 0, price_to: 100000000 };
   $scope.getContentList = function (ev, where) {
     $scope.busy = true;
     if (ev.which === 13) {
@@ -329,11 +329,13 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
     });
     $scope.getContentList({ which: 13 }, $scope.search);
     $scope.category = c;
-    $scope.user.follow_category_list.forEach((_f) => {
-      if (c.id == _f) {
-        $scope.category.follow = true;
-      }
-    });
+    if ($scope.user) {
+      $scope.user.follow_category_list.forEach((_f) => {
+        if (c.id == _f) {
+          $scope.category.follow = true;
+        }
+      });
+    }
   };
 
   $scope.loadSubCategory2 = function (c) {
@@ -350,12 +352,15 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
     });
     $scope.getContentList({ which: 13 }, $scope.search);
     $scope.category = c;
+    if ($scope.user) {
+
     $scope.user.follow_category_list.forEach((_f) => {
       if (c.id == _f) {
         $scope.category.follow = true;
       }
     });
   };
+};
 
   $scope.loadSubCategory3 = function (c) {
     $scope.error = '';
@@ -370,12 +375,14 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
     });
     $scope.getContentList({ which: 13 }, $scope.search);
     $scope.category = c;
-    $scope.user.follow_category_list.forEach((_f) => {
+    if ($scope.user) {
+      $scope.user.follow_category_list.forEach((_f) => {
       if (c.id == _f) {
         $scope.category.follow = true;
       }
     });
   };
+};
 
   $scope.loadSubCategory4 = function (c) {
     $scope.error = '';
@@ -390,12 +397,14 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
     });
     $scope.getContentList({ which: 13 }, $scope.search);
     $scope.category = c;
-    $scope.user.follow_category_list.forEach((_f) => {
+    if ($scope.user) {
+      $scope.user.follow_category_list.forEach((_f) => {
       if (c.id == _f) {
         $scope.category.follow = true;
       }
     });
-  };
+  }
+};
 
   $scope.updateFollowCategory = function (categoryId, follow) {
     $scope.error = '';
