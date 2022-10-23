@@ -21,9 +21,11 @@ padding-left: 10px;
 }
 body {
   background-color: #bbb;
-  filter: drop-shadow(2px 4px 6px black) !important;
   background-image: url(/assets/palm.svg);
   background-repeat: repeat;
+}
+header , footer{
+  filter: drop-shadow(2px 4px 6px black) !important;
 }
 .tagSide {
   background-color: #fff;
@@ -71,6 +73,9 @@ p {
     font-size: 34px;
     color: var(--theme-color);
     padding-left: 0;
+    width: auto !important;
+    height: auto !important;
+    border-radius: 0 !important;
   }
 
   i.burger-icon {
@@ -1867,6 +1872,9 @@ p {
     font-size: 34px;
     color: var(--theme-color);
     padding-left: 0;
+    width: auto !important;
+    height: auto !important;
+    border-radius: 0 !important;
   }
 
   .searchbar {
