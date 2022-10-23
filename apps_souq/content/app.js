@@ -139,7 +139,7 @@ module.exports = function init(site) {
           if (ads_doc.videos_list && ads_doc.videos_list.length > 0) {
             let stringHtt = 'https://';
             ads_doc.videos_list.forEach((_v) => {
-              if (!_v.link.like('*https://*')) {
+              if (_v.link && !_v.link.like('*https://*')) {
                 _v.link = stringHtt.concat(_v.link);
               }
             });
@@ -402,10 +402,11 @@ module.exports = function init(site) {
     };
     let where = req.body.where || {};
     let sort = { id: -1 };
-    let skip = 0;
-    let start = (req.data.page_number || 0) * (req.data.limit || 0);
-    let end = start + (req.data.limit || 100);
-    delete where['search_ads'];
+   
+    let page_limit = req.data.page_limit || 20
+    let page_number = req.data.page_number || 0
+    let skip = page_number * page_limit;
+ 
 
     if (where['country']) {
       where['address.country.id'] = where['country'].id;
@@ -415,18 +416,18 @@ module.exports = function init(site) {
     let d1 = site.toDate(new Date());
     let d2 = site.toDate(new Date());
     d2.setDate(d2.getDate() + 1);
-    if(req.body.post) {
+    // if(req.body.post) {
 
-      where.date = {
-        $lte: d2,
-      };
+    //   where.date = {
+    //     $lte: d2,
+    //   };
 
-      where.expiry_date = {
-        $gte: d1,
-      };
+    //   where.expiry_date = {
+    //     $gte: d1,
+    //   };
       
-      where['quantity_list.net_value'] = { $gte: where['price_from'] || 0, $lte: where['price_to'] || 100000000 };
-    }
+    //   where['quantity_list.net_value'] = { $gte: where['price_from'] || 0, $lte: where['price_to'] || 100000000 };
+    // }
     if (where['new']) {
       sort['date'] = -1;
     }
@@ -521,18 +522,20 @@ module.exports = function init(site) {
     delete where['with_photos'];
     delete where['price_from'];
     delete where['price_to'];
+    delete where['search_ads'];
     $content.findMany(
       {
         sort: sort || {
           id: -1,
         },
         select: req.body.select || {},
-        limit: req.data.limit || 100,
         where: where,
         skip: skip,
+        limit: page_limit,
       },
       (err, docs, count) => {
         if (!err) {
+     
           response.done = true;
           response.list = docs;
           response.count = count;

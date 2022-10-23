@@ -1,9 +1,12 @@
 app.controller('index_souq', function ($scope, $http, $timeout) {
   $scope.search = { price_from: 0, price_to: 100000000 };
   $scope.getContentList = function (ev, where) {
-    $scope.busy = true;
+    if ($scope.ContentBusy) {
+      return;
+    }
+    $scope.ContentBusy = true;
     if (ev.which === 13) {
-      $scope.contentList = [];
+      $scope.contentList = $scope.contentList || [];
       where = where || {};
       where['ad_status.id'] = 1;
 
@@ -11,31 +14,54 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
         hsMap();
       }
 
+      window.page_limit = window.page_limit || 20;
+      window.page_number = window.page_number || 0;
+
+      if (where['pages']) {
+        window.page_number++;
+        delete where['pages'];
+      }
+
       $http({
         method: 'POST',
         url: '/api/contents/all',
         data: {
           where: where,
-          post : true,
+          page_limit: window.page_limit,
+          page_number: window.page_number,
+          post: true,
         },
       }).then(
         function (response) {
-          $scope.busy = false;
+          $scope.ContentBusy = false;
           if (response.data.done && response.data.list.length > 0) {
-            $scope.contentList = response.data.list;
-            if ($scope.user) {
-              $scope.contentList.forEach((ad) => {
-                ad.$time = xtime(ad.date);
+            response.data.list.forEach((ad) => {
+              ad.$time = xtime(ad.date);
+              if ($scope.user) {
                 ad.favorite = $scope.user.feedback_list.some((_f) => _f.type && _f.ad && _f.type.id == 2 && _f.ad.id == ad.id);
-              });
-            }
+              }
+              $scope.contentList.push(ad);
+            });
           }
         },
         function (err) {
-          $scope.busy = false;
+          $scope.ContentBusy = false;
           $scope.error = err;
         }
       );
+    }
+  };
+
+  window.onscroll = function () {
+    if (window.stop_loading_posts) {
+      return;
+    }
+
+    var y = document.documentElement.offsetHeight;
+    var yy = window.pageYOffset + window.innerHeight;
+
+    if (y - 6000 <= yy) {
+      $scope.getContentList({ which: 13 }, { pages: true });
     }
   };
 
@@ -353,14 +379,13 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
     $scope.getContentList({ which: 13 }, $scope.search);
     $scope.category = c;
     if ($scope.user) {
-
-    $scope.user.follow_category_list.forEach((_f) => {
-      if (c.id == _f) {
-        $scope.category.follow = true;
-      }
-    });
+      $scope.user.follow_category_list.forEach((_f) => {
+        if (c.id == _f) {
+          $scope.category.follow = true;
+        }
+      });
+    }
   };
-};
 
   $scope.loadSubCategory3 = function (c) {
     $scope.error = '';
@@ -377,12 +402,12 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
     $scope.category = c;
     if ($scope.user) {
       $scope.user.follow_category_list.forEach((_f) => {
-      if (c.id == _f) {
-        $scope.category.follow = true;
-      }
-    });
+        if (c.id == _f) {
+          $scope.category.follow = true;
+        }
+      });
+    }
   };
-};
 
   $scope.loadSubCategory4 = function (c) {
     $scope.error = '';
@@ -399,12 +424,12 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
     $scope.category = c;
     if ($scope.user) {
       $scope.user.follow_category_list.forEach((_f) => {
-      if (c.id == _f) {
-        $scope.category.follow = true;
-      }
-    });
-  }
-};
+        if (c.id == _f) {
+          $scope.category.follow = true;
+        }
+      });
+    }
+  };
 
   $scope.updateFollowCategory = function (categoryId, follow) {
     $scope.error = '';

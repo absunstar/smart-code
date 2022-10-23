@@ -193,6 +193,8 @@ module.exports = function init(site) {
       delete where['name']
     }
 
+    // site.unit_list.filter(u => u.name.contains(where['name']))
+
     $units.findMany(
       {
         select: req.body.select || {},

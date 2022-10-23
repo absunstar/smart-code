@@ -59,19 +59,19 @@
           <i-image class="content-img" view ng-model="ad.image_url"></i-image>
         </div>
 
-        <div class="row center border padding" ng-repeat="i in ad.images_list">
-          <i-image class="content-img" view ng-model="i.image_url"></i-image>
+        <div ng-show="ad.images_list.length > 0" class="row center padding" ng-repeat="i in ad.images_list">
+          <i-image class="content-img" ng-show="i.image_url" view ng-model="i.image_url"></i-image>
 
           <h2 class="pre_text center">{{i.description}}</h2>
         </div>
 
-        <div class="row center border padding" ng-repeat="i in ad.videos_list">
-          <iframe width="560" height="315" src="{{i.link}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div ng-show="ad.videos_list.length > 0" class="row center padding" ng-repeat="i in ad.videos_list">
+          <iframe width="560" height="315" ng-show="i.link" src="{{i.link}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
           <h2 class="pre_text center">{{i.description}}</h2>
         </div>
 
-        <div class="row padding border" ng-repeat="c in ad.category_require_list">
+        <div  class="row padding" ng-repeat="c in ad.category_require_list">
           <div class="col4">
             <p class="bold blue">{{c.name_##session.lang##}}</p>
           </div>
@@ -90,7 +90,7 @@
         <div class="row item-list">
           <a class="item col4 pointer" ng-repeat="i in contentList" href="/display_content?id={{i.id}}">
             <div class="row">
-              <img ng-src="{{i.image_url}}" title="{{i.name}}" onerror="this.src='##setting.logo##'" />
+              <img ng-src="{{i.image_url}}" title="{{i.name}}"   />
             </div>
           </a>
         </div>

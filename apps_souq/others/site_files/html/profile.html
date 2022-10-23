@@ -5,9 +5,6 @@
   </head>
 
   <body class="##session.lang## loaded" ng-controller="profile">
-    <nav x-import="haraj/sitebar.html" class="sitebar" data-ng-controller="sitebar"></nav>
-
-    <nav class="sitebottom" x-import="haraj/sitebottom.html" ng-controller="sitebottom"></nav>
 
     <div id="main-layout" class="container">
       <div x-import="others/message_modal.html"></div>
@@ -19,7 +16,7 @@
         <h2 class="user-name-stlye">{{user.email}}</h2>
         <i-button x-permissions="login" label="##word.follow##" ng-show="!user.$is_follow && !user.$same_email" ng-click="updateFollow(user,true)"></i-button>
         <i-button x-permissions="login" label="##word.unfollow##" ng-show="user.$is_follow && !user.$same_email" ng-click="updateFollow(user,false)"></i-button>
-        <i-button fa="envelope" x-permissions="login" label="##word.conversation##" onclick="site.showModal('#messageModal')"></i-button>
+        <i-button fa="envelope" x-permissions="login" ng-show="!user.$same_email" label="##word.conversation##" onclick="site.showModal('#messageModal')"></i-button>
         <a class="row" ng-show="user.mobile" href="tel:{{user.mobile}}">
           {{user.mobile}}
           <i class="fa fa-mobile" aria-hidden="true"></i>
