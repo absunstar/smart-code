@@ -1,28 +1,59 @@
 <!DOCTYPE html>
-<html lang="en" x-permissions="login" data-ng-app="myApp">
-  <head x-import="haraj/head.html">
+<html lang="ar" x-permissions="login" data-ng-app="myApp">
+  <head>
+    <title>##word.brand_title##</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/font6.css" />
+    <link rel="stylesheet" href="/x-css/all.css" />
+    <link rel="stylesheet" href="/x-css/font-cairo.css" />
+    <style>
+      * {
+        max-width: initial;
+      }
+      :root {
+        --body-margin-top: 0px;
+        --body-margin-bottom: 0px;
+        --zoom: 100%;
+        --fieldset-border: none;
+        --fieldset-background: #fff;
+      }
+      body {
+        background-color: #bbb !important;
+        background-image: url(/assets/palm.svg) !important;
+        background-repeat: repeat !important;
+      }
+    </style>
+    <style x-lang="ar">
+      :root {
+        --direction: rtl;
+        --text-align: right;
+        --float: right;
+      }
+    </style>
   </head>
 
   <body class="##session.lang## loaded" ng-controller="follow">
+    <div x-import="haraj/header.html"></div>
 
     <div id="main-layout" class="container">
-
       <div class="row">
         <h1 class="bold text-center">##word.follow_ups##</h1>
       </div>
 
       <div class="row">
-        <div class="row" ng-hide="users_list.length > 0">
-          <br />
-          <br />
-          <h1 class="blue bold center">##word.no_follow_up##</h1>
-        </div>
-        <fieldset class="ads-section" ng-show="users_list.length > 0">
+        <fieldset class="ads-section" >
+          <div class="row" ng-hide="users_list.length > 0">
+            <h1 class="blue bold center">##word.no_follow_up##</h1>
+          </div>
           <legend>##word.members_you_follow##</legend>
-          <div ng-repeat="u in users_list " class="ads-area even">
+          <div ng-repeat="u in users_list " class="ads-area even" ng-show="users_list.length > 0">
             <div class="ad-area">
               <div class="ads-info">
-                <b class="bold col4 ad-name">{{u.profile.name}} {{u.profile.last_name}}</b>
+                <a href="/profile?id={{u.id}}"> {{u.profile.name}} {{u.profile.last_name}}</a>
+
               </div>
               <i-button label="##word.unfollow##" ng-click="updateFollow(u,false)"></i-button>
             </div>
@@ -30,6 +61,7 @@
         </fieldset>
       </div>
     </div>
+    <footer class="footer ng-scope" x-import="haraj/footer.html" ng-controller="footer_herag"></footer>
     <div x-import="haraj/scripts.html"></div>
 
     <script x-permissions="login" x-import="others/follow.js"></script>

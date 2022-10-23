@@ -2,18 +2,6 @@ var app = app || angular.module('myApp', []);
 
 app.controller('footer_herag' , ($scope , $http)=>{
 
-    $scope.register = function(){
-        site.showModal('#registerModal');
-    };
-
-    $scope.login = function(){
-        site.showModal('#loginModal');
-    };
-
-    $scope.logout = function(){
-        site.showModal('#logOutModal');
-    };
-
     $scope.changeLang = function(lang){
         $http({
             method: 'POST',

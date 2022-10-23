@@ -33,7 +33,7 @@ module.exports = function init(site) {
               name: message,
             },
           };
-          
+
           m.users_list.forEach((_u) => {
             if (m.$user_id == _u.id) {
               obj.user_action = _u;
@@ -98,8 +98,6 @@ module.exports = function init(site) {
           date: new Date(),
           message: req.body.message,
           user_id: req.session.user.id,
-          user_name: req.session.user.profile.name,
-          image_url: req.session.user.profile.image_url,
           show: false,
         },
       ],
@@ -156,8 +154,6 @@ module.exports = function init(site) {
         date: new Date(),
         message: req.body.message,
         user_id: messages_doc.sender.id,
-        user_name: messages_doc.sender.name,
-        image_url: messages_doc.sender.image_url,
         show: false,
       });
       message.$update = true;
@@ -173,9 +169,6 @@ module.exports = function init(site) {
             date: new Date(),
             message: req.body.message,
             user_id: messages_doc.sender.id,
-            name: messages_doc.sender.name,
-            last_name: messages_doc.sender.last_name,
-            image_url: messages_doc.sender.image_url,
             show: false,
           },
         ],
@@ -193,6 +186,38 @@ module.exports = function init(site) {
     //     }
     //   });
     // }
+    response.done = true;
+    res.json(response);
+  });
+
+  site.post('/api/messages/user_data', (req, res) => {
+    let response = {
+      done: false,
+    };
+
+    if (!req.session.user) {
+      response.error = 'Please Login First';
+      res.json(response);
+      return;
+    }
+
+    let id = req.body.id;
+    site.message_list.forEach((m) => {
+      let found = false;
+      m.users_list.forEach((_u, i) => {
+        if (_u.id == req.session.user.id) {
+          _u.name = req.session.user.profile.name;
+          _u.last_name = req.session.user.profile.last_name;
+          _u.email = req.session.user.email;
+          _u.image_url = req.session.user.profile.image_url;
+          found = true;
+        }
+      });
+      if (found) {
+        m.$update;
+      }
+    });
+
     response.done = true;
     res.json(response);
   });

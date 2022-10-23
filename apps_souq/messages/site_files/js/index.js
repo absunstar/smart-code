@@ -1,5 +1,5 @@
 app.controller('messages', function ($scope, $http, $timeout) {
-
+  $scope.userId = site.toNumber('##user.id##');
   $scope.showMessage = function (m) {
     $http({
       method: 'POST',
@@ -80,7 +80,7 @@ app.controller('messages', function ($scope, $http, $timeout) {
       url: '/api/messages/all',
       data: {
         where: {
-          'users_list.id': site.toNumber('##user.id##'),
+          'users_list.id': $scope.userId,
         },
       },
     }).then(
@@ -105,5 +105,26 @@ app.controller('messages', function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.changeMessageUserData = function () {
+    $scope.busy = true;
+    $scope.messagesList = [];
+    $http({
+      method: 'POST',
+      url: '/api/messages/user_data',
+      data: {
+        id: $scope.userId
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.geMessagesList();
+  $scope.changeMessageUserData();
 });

@@ -7,7 +7,7 @@
   
     <div class="inline text-center desktop">
       <div class="info bord" x-features="login">
-        <a class="notification" href="/cart" >
+        <a class="notification" href="/cart" ng-show="##setting.order_settings.activate_orders##">
           <i class="fa fa-shopping-basket" aria-hidden="true"></i>
           <span class="badge">{{user.cart.items.length || 0}}</span>
         </a>

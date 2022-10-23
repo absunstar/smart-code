@@ -1,0 +1,37 @@
+<div id="ratingModal" class="modal small">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>##word.add_rating## <i class="fa fa-star"></i></h2>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <i-textarea v="r ll100" label="##word.how_was_your_experience##" ng-model="rating.notes"></i-textarea>
+      </div>
+
+      <br />
+      <div class="row">
+        <h2>##word.do_recommend_dealing_with_him##</h2>
+        <i-radio ng-model="rating.recommend" ng-value="yes" group="recommend" label="##word.recommend_dealing_with_him##"></i-radio>
+
+        <i-radio ng-model="rating.recommend" group="recommend" ng-value="no" label="##word.do_not_recommend_dealing_with_him##"> </i-radio>
+      </div>
+      <br />
+      <div class="row">
+        <h2>##word.did_you_buy_from_the_member##</h2>
+        <i-radio ng-model="rating.buy" ng-value="yes" group="buy" label="##word.yes##"></i-radio>
+
+        <i-radio ng-model="rating.buy" group="buy" ng-value="no" label="##word.no##"> </i-radio>
+      </div>
+    </div>
+
+    <div class="row">
+      <h2 class="blue center">##word.details_evaluation_must_be_mentioned_along_with_typeof_merchandise##</h2>
+    </div>
+    <h2 class="error center bold">{{error}}</h2>
+    <div class="modal-footer center">
+      <i-button type="add" label="##word.send##" ng-click="addRating(rating)"></i-button>
+      <i-button type="close" label=" ##word.close##" onclick="site.hideModal('#ratingModal')"></i-button>
+    </div>
+  </div>
+</div>

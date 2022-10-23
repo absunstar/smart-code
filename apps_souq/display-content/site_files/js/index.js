@@ -7,8 +7,8 @@ app.controller('display_content', function ($scope, $http, $timeout) {
     $scope.contentList = [];
     where = {};
     where['ad_status.id'] = 1;
-    where['main_category.id'] = ad.main_category.id;
-    where['id'] = { $ne: ad.id };
+  /*   where['main_category.id'] = ad.main_category.id;
+    where['id'] = { $ne: ad.id }; */
 
     /*  if(ad.address){
         if(ad.address.country && ad.address.country.id){
@@ -58,22 +58,10 @@ app.controller('display_content', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.ad = response.data.doc;
-          $scope.getContentList($scope.ad);
           $scope.ad.$number_favorites = $scope.ad.number_favorites;
-          $scope.ad.comments_activities = $scope.ad.comments_activities || [];
-          $scope.ad.$time = xtime($scope.ad.date);
-          $scope.ad.videos_list.forEach((v) => {
-            if (v.link.contains('watch')) {
-              v.link = 'https://www.youtube.com/embed/' + v.link.split('=')[1];
-            }
-          });
-          $scope.ad.comments_activities.forEach((_c) => {
-            if (_c.user && _c.user.id === site.toNumber('##user.id##')) {
-              if (_c.comment_activity && _c.comment_activity.id == 2) {
-                $scope.activity.favorite = true;
-              }
-            }
-          });
+          $scope.activity.favorite = $scope.ad.$favorite;
+          $scope.getContentList($scope.ad);
+       
         } else {
           $scope.error = response.data.error;
         }

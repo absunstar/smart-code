@@ -145,19 +145,19 @@ module.exports = function init(site) {
             });
           }
 
-          if(site.setting.content.closing_system && site.setting.content.closing_system.id == 1) {
+          if (site.setting.content.closing_system && site.setting.content.closing_system.id == 1) {
             ads_doc.expiry_date = new Date(ads_doc.date);
-            if(site.setting.content.duration_type){
-              if(site.setting.content.duration_type.id == 1){
+            if (site.setting.content.duration_type) {
+              if (site.setting.content.duration_type.id == 1) {
                 ads_doc.expiry_date.setTime(ads_doc.expiry_date.getTime() + site.setting.content.duration * 60 * 60 * 1000);
-              } else if(site.setting.content.duration_type.id == 2){
+              } else if (site.setting.content.duration_type.id == 2) {
                 ads_doc.expiry_date.setDate(ads_doc.expiry_date.getDate() + site.setting.content.duration);
-              } else if(site.setting.content.duration_type.id == 3){
+              } else if (site.setting.content.duration_type.id == 3) {
                 ads_doc.expiry_date.setMonth(ads_doc.expiry_date.getMonth() + site.setting.content.duration);
               }
             }
           }
-
+          ads_doc.feedback_list = ads_doc.feedback_list || [];
           site.content_list.push(ads_doc);
 
           res.json(response);
@@ -222,16 +222,15 @@ module.exports = function init(site) {
           ads_doc.$user = user_doc;
           site.content_list.forEach((a, i) => {
             if (a.id === ads_doc.id) {
-
-              if(site.content_list[i].ad_status.id != 1 && ads_doc.ad_status.id == 1) {
-                if(site.setting.content.closing_system && site.setting.content.closing_system.id == 1) {
+              if (site.content_list[i].ad_status.id != 1 && ads_doc.ad_status.id == 1) {
+                if (site.setting.content.closing_system && site.setting.content.closing_system.id == 1) {
                   ads_doc.expiry_date = new Date(ads_doc.date);
-                  if(site.setting.content.duration_type){
-                    if(site.setting.content.duration_type.id == 1){
+                  if (site.setting.content.duration_type) {
+                    if (site.setting.content.duration_type.id == 1) {
                       ads_doc.expiry_date.setTime(ads_doc.expiry_date.getTime() + site.setting.content.duration * 60 * 60 * 1000);
-                    } else if(site.setting.content.duration_type.id == 2){
+                    } else if (site.setting.content.duration_type.id == 2) {
                       ads_doc.expiry_date.setDate(ads_doc.expiry_date.getDate() + site.setting.content.duration);
-                    } else if(site.setting.content.duration_type.id == 3){
+                    } else if (site.setting.content.duration_type.id == 3) {
                       ads_doc.expiry_date.setMonth(ads_doc.expiry_date.getMonth() + site.setting.content.duration);
                     }
                   }
@@ -378,11 +377,29 @@ module.exports = function init(site) {
     let ad = null;
     site.content_list.forEach((a) => {
       if (a.id == req.body.id) {
-        ad = a;
         if (req.body.display) {
           a.$update = true;
           a.number_views += 1;
+          a.comments_activities = a.comments_activities || [];
+          a.$time = site.xtime(a.date, req.session.lang);
+          if (a.videos_list && a.videos_list.length > 0) {
+            a.videos_list.forEach((v) => {
+              v.$link = v.link;
+              if (v.link && v.link.contains('watch')) {
+                v.$link = 'https://www.youtube.com/embed/' + v.link.split('=')[1];
+              }
+            });
+          }
+
+          a.feedback_list.forEach((_c) => {
+            if (_c.type && _c.type.id === 4) {
+              _c.$time = site.xtime(_c.date, req.session.lang);
+            } else if (_c.type && _c.type.id === 2 && _c.user && _c.user.id === req.session.user) {
+              a.$favorite = true;
+            }
+          });
         }
+        ad = a;
       }
     });
 
@@ -402,11 +419,10 @@ module.exports = function init(site) {
     };
     let where = req.body.where || {};
     let sort = { id: -1 };
-   
-    let page_limit = req.data.page_limit || 20
-    let page_number = req.data.page_number || 0
+
+    let page_limit = req.data.page_limit || 20;
+    let page_number = req.data.page_number || 0;
     let skip = page_number * page_limit;
- 
 
     if (where['country']) {
       where['address.country.id'] = where['country'].id;
@@ -425,7 +441,7 @@ module.exports = function init(site) {
     //   where.expiry_date = {
     //     $gte: d1,
     //   };
-      
+
     //   where['quantity_list.net_value'] = { $gte: where['price_from'] || 0, $lte: where['price_to'] || 100000000 };
     // }
     if (where['new']) {
@@ -534,8 +550,15 @@ module.exports = function init(site) {
         limit: page_limit,
       },
       (err, docs, count) => {
-        if (!err) {
-     
+        if (!err && docs) {
+          if (req.body.post) {
+            docs.forEach((_d) => {
+              if (req.session.user) {
+                _d.$favorite = req.session.user.feedback_list.some((_f) => _f.type && _f.ad && _f.type.id == 2 && _f.ad.id == _d.id);
+              }
+              _d.$time = site.xtime(_d.date, req.session.lang);
+            });
+          }
           response.done = true;
           response.list = docs;
           response.count = count;
@@ -547,6 +570,73 @@ module.exports = function init(site) {
     );
     // }
   });
+
+  site.xtime = function (_time, lang) {
+    let since_few = ' Since few ';
+    let before = ' Ago ';
+    let second = ' Second ';
+    let minute = ' Minute ';
+    let hour = ' Hour ';
+    let day = ' Day ';
+    let month = ' Month ';
+    let year = ' Year ';
+
+    if (lang == 'ar') {
+      since_few = ' منذ قليل ';
+      before = ' منذ ';
+      second = ' ثانية ';
+      minute = ' دقيقة ';
+      hour = ' ساعة ';
+      day = ' يوم ';
+      month = ' شهر ';
+      year = ' سنة ';
+    }
+
+    if (typeof _time == 'undefined' || !_time) {
+      return since_few;
+    }
+    _time = new Date().getTime() - new Date(_time).getTime();
+
+    let _type = null;
+
+    let _time_2 = null;
+    let _type_2 = null;
+
+    let times = [1, 1000, 60, 60, 24, 30, 12];
+    let times_type = ['x', second, minute, hour, day, month, year];
+
+    let offset = new Date().getTimezoneOffset();
+    if (false && offset < 0) {
+      let diff = Math.abs(offset) * 60 * 1000;
+      _time = _time + diff;
+    }
+
+    if (_time <= 10000) {
+      return since_few;
+    }
+
+    for (let i = 0; i < times.length; i++) {
+      if (_time < times[i]) {
+        break;
+      } else {
+        _type = times_type[i];
+        if (i > 0) {
+          _time_2 = _time % times[i];
+          _type_2 = times_type[i - 1];
+        }
+        _time = _time / times[i];
+      }
+    }
+
+    _time = Math.floor(_time);
+    _time_2 = Math.floor(_time_2);
+
+    if (_time_2 == 0 || _type_2 == null || _type_2 == 'x') {
+      return [before, _time, _type].join(' ');
+    } else {
+      return [before, _time, _type, _time_2, _type_2].join(' ');
+    }
+  };
 
   site.getAd = function (id, callback) {
     callback = callback || {};

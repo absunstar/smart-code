@@ -25,6 +25,11 @@
     "ar": "إضافة بلاغ"
   },
   {
+    "name": "related_ads",
+    "en": "Related ads",
+    "ar": "الإعلانات ذات الصلة"
+  },
+  {
     "name": "communicate_with_advertiser",
     "en": "Communicate with the advertiser",
     "ar": "التواصل مع المعلن"

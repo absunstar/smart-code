@@ -803,6 +803,16 @@
     "ar": "توقيع المستلم"
   },
   {
+    "name": "undefined",
+    "en": "Undefined",
+    "ar": "غير محدد"
+  },
+  {
+    "name": "sender",
+    "en": "Sender",
+    "ar": "المرسل"
+  },
+  {
     "name": "receiver",
     "en": "Receiver",
     "ar": "المستلم"

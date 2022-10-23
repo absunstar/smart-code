@@ -1,9 +1,46 @@
 <!DOCTYPE html>
-<html lang="en" x-permissions="login" data-ng-app="myApp">
-  <head x-import="haraj/head.html">
+<html lang="ar" x-permissions="login" data-ng-app="myApp">
+  <head>
+    <title>##word.brand_title##</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/font6.css" />
+    <link rel="stylesheet" href="/x-css/all.css" />
+    <link rel="stylesheet" href="/x-css/font-cairo.css" />
+    <style>
+      * {
+        max-width: initial;
+      }
+      .bg_notific,
+      .bg_notific {
+        background-color: #00b38d94  !important;
+      }
+      :root {
+        --body-margin-top: 0px;
+        --body-margin-bottom: 0px;
+        --zoom: 100%;
+        --fieldset-border: none;
+        --fieldset-background: #fff;
+      }
+      body {
+        background-color: #bbb !important;
+        background-image: url(/assets/palm.svg) !important;
+        background-repeat: repeat !important;
+      }
+    </style>
+    <style x-lang="ar">
+      :root {
+        --direction: rtl;
+        --text-align: right;
+        --float: right;
+      }
+    </style>
   </head>
 
   <body class="##session.lang## loaded" ng-controller="notific">
+    <div x-import="haraj/header.html"></div>
 
     <div id="main-layout" class="container">
       <div x-import="notific/notific_setting.html"></div>
@@ -15,21 +52,25 @@
       <div class="row">
         <i-button type="view" label=" ##word.setting##" onclick="site.showModal('#notificSettingModal')"></i-button>
         <i-button type="delete" label="##word.delete_notifications##" ng-click="deleteNotific()"></i-button>
-
       </div>
 
       <div class="row">
-        <div class="row" ng-hide="notific_list.length > 0">
-          <br />
-          <br />
+        <fieldset  ng-hide="notific_list.length > 0">
+      
           <h1 class="blue bold center">##word.no_notifications##</h1>
-        </div>
+        </fieldset>
         <fieldset class="ads-section" ng-show="notific_list.length > 0">
-          <div ng-repeat="n in notific_list" class="ads-area even padding border">
+          <div
+            ng-repeat="n in notific_list"
+            class="ads-area even padding border"
+            ng-class="{
+              bg_notific : !n.show,
+          
+            }"
+          >
             <div class="ad-area">
               <div class="ads-info">
                 <div ng-click="displayContent(n)">
-
                   <div ng-show="n.type == 'comments_my_ads'">
                     <h2>##word.there_new_response_ad##</h2>
                     <h3 class="pointer">##word.new_comment_on## {{n.action.name}}</h3>
@@ -46,8 +87,8 @@
 
                 <div ng-click="displayMessage(n)" ng-show="n.type == 'private_messages'">
                   <h2>##word.there_new_private_message##</h2>
-                  <h3 class="pointer" >##word.new_private_message_from## {{n.user_action.name}}</h3>
-                  <h4 class="pointer bold pre_text" > {{n.action.name}}</h4>
+                  <h3 class="pointer">##word.new_private_message_from## {{n.user_action.name}}</h3>
+                  <h4 class="pointer bold pre_text">{{n.action.name}}</h4>
                 </div>
 
                 <a href="/profile?id={{n.user_action.id}}"> {{n.user_action.name}}</a>
@@ -57,6 +98,7 @@
         </fieldset>
       </div>
     </div>
+    <footer class="footer ng-scope" x-import="haraj/footer.html" ng-controller="footer_herag"></footer>
     <div x-import="haraj/scripts.html"></div>
 
     <script x-permissions="login" x-import="notific/index.js"></script>

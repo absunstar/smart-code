@@ -181,7 +181,7 @@
             </li>
             <button class="add" type="submit"><img class="add-icon" src="../assets/add.png" alt="" width="18px" height="18px" /><a href="/create_content">##word.add_your_ad##</a></button>
             <li class="mobile-header">
-              <a class="notification" href="/cart">
+              <a class="notification" ng-show="##setting.order_settings.activate_orders##" href="/cart">
                 <i class="fa-solid fa-cart-shopping"></i>
                 <span class="badge-mobile ng-binding">0</span>
                 <span style="min-height: 22px; font-size: 20px">##word.cart##</span>
@@ -289,16 +289,15 @@
                           <i class="fa-solid fa-heart" label="##word.favorite##" ng-click="updateFeedback(a,'favorite')"
                           ng-model="a.favorite"></i> -->
 
-                          <a class="btn" x-permission="login" ng-hide="a.store.user.id == user.id" ng-click="bookList(a,0)">
+                          <a class="btn" ng-show="##setting.order_settings.activate_orders## && a.store.user.id != user.id" x-permission="login" ng-click="bookList(a,0)">
                             <i class="fa fa-shopping-cart"></i>
                           </a>
-                          <h2>{{a.$time}}</h2>
-                          <i-checkbox label="##word.favorite##" ng-click="updateFeedback(a,'favorite')" ng-model="a.favorite"> </i-checkbox>
+                          <i-checkbox label="##word.favorite##" ng-click="updateFeedback(a,'favorite')" ng-model="a.$favorite"> </i-checkbox>
                         </div>
                       </div>
                     </div>
                     <div class="time-publish">
-                      <i class="fa-solid fa-clock"></i>
+                      <i class="fa-solid fa-clock"> {{a.$time}} </i>
                     </div>
                     <div class="ad-location">
                       <i class="fa-solid fa-location-pin"></i>
@@ -313,11 +312,9 @@
                     <div class="row">
                       <p class="ad-owner">
                         <i class="fa-solid fa-user"></i>
-                        <!-- <b class="black"> ##word.ad_owner## : </b> -->
                         <a href="/profile?id={{a.store.user.id}}"> {{a.store.user.profile.name}}</a>
                       </p>
-                      <!-- <p class="store-name"><b class="black"> ##word.store## : </b><b> {{a.store.name_##session.lang##}} </b></p> -->
-                      <!-- <p class="ad-price" ng-show="a.set_price == 'yes'" ng-repeat="q in a.quantity_list"><b>{{q.unit.name_##session.lang##}} {{q.net_value}} {{q.currency.name_##session.lang##}}</b></p> -->
+                       <p class="ad-price" ng-show="a.set_price == 'yes'" ng-repeat="q in a.quantity_list"><b>{{q.unit.name_##session.lang##}} {{q.net_value}} {{q.currency.name_##session.lang##}}</b></p>
                     </div>
                   </div>
                   <div class="row" ng-click="displayContent(a.id)">

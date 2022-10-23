@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="myApp">
+  <head>
+    <title>##word.brand_title##</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/font6.css" />
+    <link rel="stylesheet" href="/x-css/all.css" />
+    <link rel="stylesheet" href="/x-css/font-cairo.css" />
+    <style>
+      * {
+        max-width: initial;
+      }
+      :root {
+        --body-margin-top: 0px;
+        --body-margin-bottom: 0px;
+        --zoom: 100%;
+        --fieldset-border: none;
+        --fieldset-background: #fff;
+      }
+      body {
+        background-color: #bbb !important;
+        background-image: url(/assets/palm.svg) !important;
+        background-repeat: repeat !important;
+      }
+
+    </style>
+    <style x-lang="ar">
+      :root {
+        --direction: rtl;
+        --text-align: right;
+        --float: right;
+      }
+    </style>
+  </head>
+
+  <body class="##session.lang## loaded" ng-controller="profile">
+    <div x-import="haraj/header.html"></div>
+
+    <div id="main-layout" class="container">
+      <div x-import="profile/rating_modal.html"></div>
+      <div x-import="profile/message_modal.html"></div>
+      <div class="row">
+        <fieldset>
+          <div class="center">
+            <i-image help-id="currency_logo" class="border-circle center" view ng-model="user.profile.image_url"></i-image>
+            <div class="ad-user center">
+              <i class="fa-solid fa-user fa-style"></i>
+              <h1 class="user-name-stlye center">{{user.profile.name}} {{user.profile.last_name}}</h1>
+            </div>
+            <h2 class="user-name-stlye center">{{user.email}}</h2>
+            <i-button x-permissions="login" label="##word.follow##" ng-show="!user.$is_follow && !user.$same_email" ng-click="updateFollow(user,true)"></i-button>
+            <i-button x-permissions="login" label="##word.unfollow##" ng-show="user.$is_follow && !user.$same_email" ng-click="updateFollow(user,false)"></i-button>
+            <i-button fa="envelope" x-permissions="login" ng-show="!user.$same_email" label="##word.conversation##" onclick="site.showModal('#messageModal')"></i-button>
+            <a class="row" ng-show="user.mobile" href="tel:{{user.mobile}}">
+              {{user.mobile}}
+              <i class="fa fa-mobile" aria-hidden="true"></i>
+            </a>
+
+            <a class="row" ng-show="user.phone" href="tel:{{user.phone}}">
+              {{user.phone}}
+              <i class="fa fa-phone" aria-hidden="true"></i>
+            </a>
+          </div>
+          <i-button x-permissions="login" label="##word.add_rating##" onclick="site.showModal('#ratingModal')"></i-button>
+        </fieldset>
+
+        <br />
+        <br />
+        <div class="row" ng-show="contentList.length < 1 && contentList">
+          <br />
+          <br />
+          <h1 class="blue bold center">##word.there_no_ads##</h1>
+        </div>
+        <fieldset class="ads-section" ng-show="contentList.length > 0">
+          <div ng-repeat="a in contentList" class="ads-area even">
+            <div class="ad-area">
+              <div class="ads-info">
+                <b class="bold col4 ad-name" ng-click="displayContent(a.id)">{{a.name}}</b>
+
+                <div class="time-publish">
+                  <i class="fa-solid fa-clock">{{a.$time}} </i>
+                  
+                </div>
+                <div class="ad-location">
+                  <i class="fa-solid fa-location-pin"></i>
+                  <div class="adress">
+                    <p class="location" ng-show="a.address.country">{{a.address.country.name_##session.lang##}} - {{a.address.gov.name_##session.lang##}} - {{a.address.city.name_##session.lang##}} - {{a.address.area.name_##session.lang##}}</p>
+                    <p class="location">{{a.address.detailed_address}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row" ng-click="displayContent(a.id)">
+              <i-image view class="logo" ng-model="a.image_url"> </i-image>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+    <footer class="footer ng-scope" x-import="haraj/footer.html" ng-controller="footer_herag"></footer>
+    <div x-import="haraj/scripts.html"></div>
+
+    <script x-permissions="login" x-import="profile/index.js"></script>
+  </body>
+</html>

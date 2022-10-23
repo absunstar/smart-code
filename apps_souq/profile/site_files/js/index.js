@@ -1,4 +1,38 @@
 app.controller('profile', function ($scope, $http, $timeout) {
+
+  $scope.addRating = function (rating) {
+    $scope.error = '';
+    const v = site.validated('#ratingModal');
+    if (!v.ok) {
+      $scope.error = v.messages[0].ar;
+      return;
+    }
+    rating.receiver = {
+      id : $scope.user.id,
+      email : $scope.user.email,
+    };
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/ratings/add",
+      data: rating
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.rating = {};
+          site.hideModal('#ratingModal');
+        } else {
+          $scope.error = response.data.error;
+      
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    )
+  };
+
   $scope.getAdsList = function (where) {
     $scope.busy = true;
     $scope.contentList = [];
@@ -16,6 +50,7 @@ app.controller('profile', function ($scope, $http, $timeout) {
             },
           ],
         },
+        post : true,
       },
     }).then(
       function (response) {

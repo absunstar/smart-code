@@ -1,12 +1,43 @@
 <!DOCTYPE html>
 
-<html lang="en" data-ng-app="myApp" class="bg-white loaded">
-  <head x-import="haraj/head.html">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<html lang="en" data-ng-app="myApp" >
+  <head>
+    <title>##word.brand_title##</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/font6.css" />
+    <link rel="stylesheet" href="/x-css/all.css" />
+    <link rel="stylesheet" href="/x-css/font-cairo.css" />
+    <style>
+      * {
+        max-width: initial;
+      }
+      :root {
+        --body-margin-top: 0px;
+        --body-margin-bottom: 0px;
+        --zoom: 100%;
+        --fieldset-border: none;
+        --fieldset-background: #fff;
+      }
+      body {
+        background-color: #bbb !important;
+        background-image: url(/assets/palm.svg) !important;
+        background-repeat: repeat !important;
+      }
+    </style>
+    <style x-lang="ar">
+      :root {
+        --direction: rtl;
+        --text-align: right;
+        --float: right;
+      }
+    </style>
     <style x-import="display-content/style.css"></style>
   </head>
-
-  <body style="background: #b3dbd287; margin: 0 !important" class="##session.lang## " ng-controller="display_content">
+  <body class="##session.lang## loaded" ng-controller="display_content">
+    <div x-import="haraj/header.html"></div>
 
     <div id="main-layout" class="container">
       <div x-import="display-content/report_modal.html"></div>
@@ -14,14 +45,11 @@
       <div x-import="display-content/communication_modal.html"></div>
 
       <div class="row">
-        <!--  <br />
-        <h1 class="center bold black">##word.display_content##</h1>
-        <br />
- -->
-
         <div x-import="display-content/content.html"></div>
       </div>
     </div>
+
+    <footer class="footer ng-scope" x-import="haraj/footer.html" ng-controller="footer_herag"></footer>
     <div x-import="haraj/scripts.html"></div>
     <script x-import="display-content/index.js"></script>
   </body>

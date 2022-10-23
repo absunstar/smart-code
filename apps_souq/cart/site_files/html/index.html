@@ -1,9 +1,47 @@
 <!DOCTYPE html>
 <html lang="en" x-permissions="login" data-ng-app="myApp">
-  <head x-import="haraj/head.html">
+
+  <head>
+    <title>##word.brand_title##</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/font6.css" />
+    <link rel="stylesheet" href="/x-css/all.css" />
+    <link rel="stylesheet" href="/x-css/font-cairo.css" />
+    <style>
+      * {
+        max-width: initial;
+      }
+      .bg_notific,
+      .bg_notific {
+        background-color: #00b38d94  !important;
+      }
+      :root {
+        --body-margin-top: 0px;
+        --body-margin-bottom: 0px;
+        --zoom: 100%;
+        --fieldset-border: none;
+        --fieldset-background: #fff;
+      }
+      body {
+        background-color: #bbb !important;
+        background-image: url(/assets/palm.svg) !important;
+        background-repeat: repeat !important;
+      }
+    </style>
+    <style x-lang="ar">
+      :root {
+        --direction: rtl;
+        --text-align: right;
+        --float: right;
+      }
+    </style>
   </head>
 
   <body class="##session.lang## loaded" ng-controller="cart">
+    <div x-import="haraj/header.html"></div>
 
     <div id="main-layout" class="container">
       <div class="row">
@@ -100,6 +138,7 @@
         </div>
       </div>
     </div>
+    <footer class="footer ng-scope" x-import="haraj/footer.html" ng-controller="footer_herag"></footer>
     <div x-import="haraj/scripts.html"></div>
 
     <script x-permissions="login" x-import="cart/index.js"></script>

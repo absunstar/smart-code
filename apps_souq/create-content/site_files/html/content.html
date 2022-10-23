@@ -16,7 +16,7 @@
 
         <div class="row">
           <!-- <p class="col3 bold">##word.mobile_number_or_contact_method##</p> : -->
-          <i-checkbox label="##word.hide_mobile_number##" ng-model="ad.hide_mobile"> </i-checkbox> :
+          <i-checkbox label="##word.hide_mobile_number##" ng-model="ad.hide_mobile"> </i-checkbox>
           <i-control class="col4" ng-hide="ad.hide_mobile" label="##word.cell_phone_number##" ng-model="ad.mobile"></i-control>
         </div>
 
@@ -46,7 +46,7 @@
     </div>
     <br />
     <br />
-  
+
     <fieldset class="row" ng-show="defaultSettings.content.upload_photos">
       <legend>
         <i-button type="add default" ng-hide="ad.images_list.length >= defaultSettings.content.allowed_number_photo" ng-click="addImage()"></i-button>

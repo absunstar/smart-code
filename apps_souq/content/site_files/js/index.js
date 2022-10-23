@@ -305,20 +305,43 @@ app.controller('contents', function ($scope, $http, $timeout) {
     );
   };
 
+  window.onscroll = function () {
+    if (window.stop_loading_posts) {
+      return;
+    }
+
+    var y = document.documentElement.offsetHeight;
+    var yy = window.pageYOffset + window.innerHeight;
+
+    if (y - 6000 <= yy) {
+      $scope.getAdList({ pages: true });
+    }
+  };
+
   $scope.getAdList = function (where) {
     $scope.busy = true;
-    $scope.list = [];
+    $scope.list = $scope.list || [];
+    window.page_limit = window.page_limit || 20;
+    window.page_number = window.page_number || 0;
+    where = where || {};
+    if (where['pages']) {
+      window.page_number++;
+      delete where['pages'];
+    }
     $http({
       method: 'POST',
       url: '/api/contents/all',
       data: {
         where: where,
+        page_limit: window.page_limit,
+        page_number: window.page_number,
       },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
-          $scope.list = response.data.list;
+          $scope.list = [...$scope.list, ...response.data.list];
+
           $scope.count = response.data.count;
           site.hideModal('#adSearchModal');
           $scope.search = {};

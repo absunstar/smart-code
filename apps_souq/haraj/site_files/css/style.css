@@ -6,6 +6,35 @@
   --theme-color2: #019777;
   --font-family: 'Arabic', sans-serif;
 }
+.pre_text {
+  white-space: pre;
+}
+:root {
+  --theme-color: #00A884 !important;
+--theme-color2: #019777 !important;
+--font-family: 'Arabic', sans-serif;
+}
+.img__description {
+  background : #2BB741 !important;
+}
+
+.post h2{
+  background : #25D366 !important;
+}
+
+.post p {
+  background : #25D366 !important;
+}
+
+fieldset {
+
+  border: 1px solid #019777 !important;
+
+}
+
+i-image img:hover {
+  box-shadow: 0 0 2px 1px #019777 !important;
+}
 .haraj_logo {
   height: 60px;
   border-radius: 5px;
@@ -28,6 +57,8 @@ header , footer{
   filter: drop-shadow(2px 4px 6px black) !important;
 }
 .tagSide {
+  border-radius: 10px;
+  height: fit-content;
   background-color: #fff;
 }
 .main-content {
@@ -46,6 +77,9 @@ p {
 @media screen and (max-width: 1007px) {
   .firstheader {
     display: none;
+  }
+  .border-circle {
+    border-radius: 100px !important;
   }
   .secondeheader {
     background-color: #f1f1f1;
@@ -431,7 +465,7 @@ p {
     width: 50px;
     height: 50px;
     padding: 0;
-    margin: 0;
+    margin: -6px;
     border-radius: 50px;
     border: 1px solid var(--theme-color);
     font-size: 18px;
@@ -855,8 +889,9 @@ p {
   }
 
   legend {
+    border-radius :5px !important;
     margin-top: -20px;
-    padding: 2px 4px;
+    padding: 2px 10px !important;
     color: var(--theme-color2);
     font-size: var(--legend-font-size);
     text-shadow: var(--legend-text-shadow);
@@ -1761,6 +1796,10 @@ p {
   }
 }
 
+.border-circle img {
+  border-radius: 100px !important;
+}
+
 /*desktop version*/
 @media screen and (min-width: 1008px) {
   body {
@@ -1992,6 +2031,11 @@ p {
     float: left;
   }
 
+  .border-circle {
+    border-radius: 100px !important;
+
+  }
+
   .info img {
     height: 32px;
     width: 32px;
@@ -2078,7 +2122,7 @@ p {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: #f9f9f9;
+    background-color: #5df200;
     overflow: auto;
   }
 
@@ -2150,8 +2194,10 @@ p {
   }
 
   legend {
+    border-radius :5px !important;
+
     margin-top: -20px;
-    padding: 2px 4px;
+    padding: 2px 10px !important;
     color: var(--theme-color2);
     font-size: var(--legend-font-size);
     text-shadow: var(--legend-text-shadow);
@@ -2584,7 +2630,7 @@ p {
     width: 150px;
     height: 43px;
     padding: 0;
-    margin: 0;
+    margin: -6px;
     border-radius: 50px;
     border: 1px solid var(--theme-color);
     font-size: 18px;
@@ -3710,6 +3756,7 @@ p {
   }
 
   .main-content {
+    border-radius: 10px;
     grid-area: main-content;
   }
 
@@ -3771,7 +3818,9 @@ p {
     max-width: 1920px;
     justify-content: center;
   }
-
+  .border-circle {
+    border-radius: 100px !important;
+  }
   .nav1 li {
     font-size: 20px;
     padding: 0 25px;

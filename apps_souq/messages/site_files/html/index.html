@@ -1,8 +1,42 @@
 <!DOCTYPE html>
 <html lang="en" x-permissions="login" data-ng-app="myApp">
-  <head x-import="haraj/head.html"></head>
+  <head>
+    <title>##word.brand_title##</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/font6.css" />
+    <link rel="stylesheet" href="/x-css/all.css" />
+    <link rel="stylesheet" href="/x-css/font-cairo.css" />
+    <style>
+      * {
+        max-width: initial;
+      }
+      :root {
+        --body-margin-top: 0px;
+        --body-margin-bottom: 0px;
+        --zoom: 100%;
+        --fieldset-border: none;
+        --fieldset-background: #fff;
+      }
+      body {
+        background-color: #bbb !important;
+        background-image: url(/assets/palm.svg) !important;
+        background-repeat: repeat !important;
+      }
+    </style>
+    <style x-lang="ar">
+      :root {
+        --direction: rtl;
+        --text-align: right;
+        --float: right;
+      }
+    </style>
+  </head>
 
   <body class="##session.lang## loaded" ng-controller="messages">
+    <div x-import="haraj/header.html"></div>
 
     <div id="main-layout" class="container">
       <fieldset>
@@ -34,13 +68,16 @@
               <div class="row">
                 <div class="col10">
                   <div class="row _scroll">
-                    <div class="row" ng-repeat="c in message.messages_list">
-                      <h2 class="bold pre_text">{{c.name}}</h2>
+                    <div class="row border padding" ng-repeat="m in message.messages_list">
+                      <div ng-repeat="u in message.users_list" ng-show="m.user_id == u.id">
+                        <h2 class="bold pre_text">{{u.name}}</h2>
+                        <i-image view class="logo" ng-model="u.image_url"></i-image>
 
-                      <h3 class="bold pre_text">{{c.message}}</h3>
+                      </div>
 
-                      <i-image view class="logo" ng-model="c.image_url"></i-image>
-                      <h5>{{c.date | date : 'hh:mm | dd - MM - yyyy'}}</h5>
+                      
+                      <h3 class="bold pre_text">{{m.message}}</h3>
+                      <h5>{{m.date | date : 'hh:mm | dd - MM - yyyy'}}</h5>
                     </div>
                   </div>
                 </div>
@@ -61,6 +98,7 @@
         </div>
       </fieldset>
     </div>
+    <footer class="footer ng-scope" x-import="haraj/footer.html" ng-controller="footer_herag"></footer>
     <div x-import="haraj/scripts.html"></div>
     <script x-import="messages/index.js"></script>
   </body>

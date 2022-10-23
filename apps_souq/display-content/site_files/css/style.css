@@ -447,7 +447,12 @@
   padding: 10%;
 }
 
+.content-main-img img{
+  width: 100% !important;
+  height: auto !important;
+}
+
 .content-img img{
-    width: 100% !important;
+    width: 900px !important;
     height: auto !important;
 }

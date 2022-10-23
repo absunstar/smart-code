@@ -35,13 +35,14 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
         function (response) {
           $scope.ContentBusy = false;
           if (response.data.done && response.data.list.length > 0) {
-            response.data.list.forEach((ad) => {
+            $scope.contentList = [...$scope.contentList, ...response.data.list];
+    /*         response.data.list.forEach((ad) => {
               ad.$time = xtime(ad.date);
               if ($scope.user) {
-                ad.favorite = $scope.user.feedback_list.some((_f) => _f.type && _f.ad && _f.type.id == 2 && _f.ad.id == ad.id);
+                ad.$favorite = $scope.user.feedback_list.some((_f) => _f.type && _f.ad && _f.type.id == 2 && _f.ad.id == ad.id);
               }
               $scope.contentList.push(ad);
-            });
+            }); */
           }
         },
         function (err) {
