@@ -20,15 +20,16 @@ app.controller('favorites', function ($scope, $http, $timeout) {
             },
           ],
         },
+        post : true
       },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
           $scope.favoriteAdslist = response.data.list;
-          $scope.favoriteAdslist.forEach((ad) => {
+        /*   $scope.favoriteAdslist.forEach((ad) => {
             ad.favorite = $scope.user.feedback_list.some((_f) => _f.type && _f.ad && _f.type.id == 2 && _f.ad.id == ad.id);
-          });
+          }); */
         }
       },
       function (err) {
@@ -69,7 +70,7 @@ app.controller('favorites', function ($scope, $http, $timeout) {
 
   $scope.updateFeedback = function (ad, type) {
 
-    let data = { id: ad.id, feedback: { favorite: ad.favorite, type: type } };
+    let data = { id: ad.id, feedback: { favorite: ad.$favorite, type: type } };
 
     $http({
       method: 'POST',

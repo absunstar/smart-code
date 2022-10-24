@@ -293,11 +293,11 @@ module.exports = function init(site) {
       done: false,
     };
 
-    if (!req.session.user) {
-      response.error = 'You Are Not Login';
-      res.json(response);
-      return;
-    }
+    // if (!req.session.user) {
+    //   response.error = 'You Are Not Login';
+    //   res.json(response);
+    //   return;
+    // }
 
     site.security.getUser(
       {

@@ -16,6 +16,37 @@ app.controller('sitebar', ($scope, $http) => {
     site.showModal('#registerModal');
   };
 
+  $scope.loadMainCategories = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.mainCategories = [];
+    $http({
+      method: 'POST',
+      url: '/api/main_categories/all',
+      data: {
+        where: {
+          status: 'active', 
+          top_parent_id: { $exists: false }
+        },
+        select : {
+          id : 1, name_ar : 1 , name_en : 1 , image_url : 1
+        },
+        limit : 8
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.category_header_list = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.showRegisterModal = function () {
     $scope.customer = {
       image_url: '/images/customer.png',
@@ -35,6 +66,11 @@ app.controller('sitebar', ($scope, $http) => {
 
     site.showModal('#customerRegisterModal');
   };
+
+  $scope.selectCategoryHeader = function (id) {
+    window.location.href = `/?id=${id}`;
+  };
+
 
   $scope.login = function () {
     site.showModal('#loginModal');
@@ -102,4 +138,5 @@ app.controller('sitebar', ($scope, $http) => {
     );
   };
   $scope.getDefaultSetting();
+  $scope.loadMainCategories();
 });

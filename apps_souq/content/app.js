@@ -418,7 +418,7 @@ module.exports = function init(site) {
       done: false,
     };
     let where = req.body.where || {};
-    let sort = { id: -1 };
+    
 
     let page_limit = req.data.page_limit || 20;
     let page_number = req.data.page_number || 0;
@@ -444,15 +444,17 @@ module.exports = function init(site) {
 
     //   where['quantity_list.net_value'] = { $gte: where['price_from'] || 0, $lte: where['price_to'] || 100000000 };
     // }
-    if (where['new']) {
-      sort['date'] = -1;
-    }
+ 
 
     if (where['price'] == 'lowest') {
-      sort['quantity_list.price'] = -1;
+     
+      req.body.sort = req.body.sort || {};
+      req.body.sort['quantity_list.price'] = -1;
       delete where['price'];
     } else if (where['price'] == 'highest') {
-      sort['quantity_list.price'] = 1;
+      req.body.sort = req.body.sort || {};
+     
+      req.body.sort['quantity_list.price'] = 1;
       delete where['price'];
     }
 
@@ -487,14 +489,17 @@ module.exports = function init(site) {
       where['address.gov.id'] = where['gov'].id;
       delete where['gov'];
     }
+
     if (where['city']) {
       where['address.city.id'] = where['city'].id;
       delete where['city'];
     }
+
     if (where['area']) {
       where['address.area.id'] = where['area'].id;
       delete where['area'];
     }
+
     if (where['store']) {
       where['store.id'] = where['store'].id;
       delete where['store'];
@@ -532,6 +537,12 @@ module.exports = function init(site) {
         }
       }
     }
+
+    if (where['new']) {
+      req.body.sort = req.body.sort || {};
+      req.body.sort['date'] = -1;
+    }
+
     delete where['near'];
     delete where['new'];
     delete where['text_search'];
@@ -541,7 +552,7 @@ module.exports = function init(site) {
     delete where['search_ads'];
     $content.findMany(
       {
-        sort: sort || {
+        sort: req.body.sort || {
           id: -1,
         },
         select: req.body.select || {},

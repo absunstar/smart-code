@@ -1,8 +1,28 @@
 [
    
     {
-        "name": "message_n",
-        "en": "Message",
-        "ar": "llk"
+        "name": "contents",
+        "en": "Ads",
+        "ar": "الإعلانات"
+    },
+    {
+        "name": "positive_rating",
+        "en": "Positive rating",
+        "ar": "تقييم إيجابي"
+    },
+    {
+        "name": "negative_rating",
+        "en": "Negative rating",
+        "ar": "تقييم سلبي"
+    },
+    {
+        "name": "number_of_ratings",
+        "en": "Number of ratings",
+        "ar": "عدد التقييمات"
+    },
+    {
+        "name": "there_no_ratings",
+        "en": "There are no Ratings",
+        "ar": "لا يوجد تقيييمات"
     }
 ]

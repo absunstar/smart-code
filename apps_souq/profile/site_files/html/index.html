@@ -13,6 +13,9 @@
       * {
         max-width: initial;
       }
+      .dimgray {
+        color: dimgray;
+      }
       :root {
         --body-margin-top: 0px;
         --body-margin-bottom: 0px;
@@ -25,9 +28,19 @@
         background-image: url(/assets/palm.svg) !important;
         background-repeat: repeat !important;
       }
+      .tabs .tabs-header .tab-link.active {
+        border-radius: 5px;
 
+      }
+      .tabs .tabs-header .tab-link {
+        border-radius: 5px;
+      }
     </style>
     <style x-lang="ar">
+      .nav1 {
+        flex-direction: initial;
+        padding: 7px;
+      }
       :root {
         --direction: rtl;
         --text-align: right;
@@ -44,7 +57,17 @@
       <div x-import="profile/message_modal.html"></div>
       <div class="row">
         <fieldset>
-          <div class="center">
+          <div class="col3">
+            <div class="tabs" style="
+            width:1400px;
+        ">
+              <div class="tabs-header">
+                <a class="tab-link" onclick="site.showTabContent(event, '#user_contents')"> ##word.contents## </a>
+                <a class="tab-link" onclick="site.showTabContent(event, '#ratings')"> ##word.ratings## </a>
+              </div>
+            </div>
+          </div>
+          <div class="center col6">
             <i-image help-id="currency_logo" class="border-circle center" view ng-model="user.profile.image_url"></i-image>
             <div class="ad-user center">
               <i class="fa-solid fa-user fa-style"></i>
@@ -64,45 +87,15 @@
               <i class="fa fa-phone" aria-hidden="true"></i>
             </a>
           </div>
-          <i-button x-permissions="login" label="##word.add_rating##" onclick="site.showModal('#ratingModal')"></i-button>
-        </fieldset>
-
-        <br />
-        <br />
-        <div class="row" ng-show="contentList.length < 1 && contentList">
-          <br />
-          <br />
-          <h1 class="blue bold center">##word.there_no_ads##</h1>
-        </div>
-        <fieldset class="ads-section" ng-show="contentList.length > 0">
-          <div ng-repeat="a in contentList" class="ads-area even">
-            <div class="ad-area">
-              <div class="ads-info">
-                <b class="bold col4 ad-name" ng-click="displayContent(a.id)">{{a.name}}</b>
-
-                <div class="time-publish">
-                  <i class="fa-solid fa-clock">{{a.$time}} </i>
-                  
-                </div>
-                <div class="ad-location">
-                  <i class="fa-solid fa-location-pin"></i>
-                  <div class="adress">
-                    <p class="location" ng-show="a.address.country">{{a.address.country.name_##session.lang##}} - {{a.address.gov.name_##session.lang##}} - {{a.address.city.name_##session.lang##}} - {{a.address.area.name_##session.lang##}}</p>
-                    <p class="location">{{a.address.detailed_address}}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row" ng-click="displayContent(a.id)">
-              <i-image view class="logo" ng-model="a.image_url"> </i-image>
-            </div>
-          </div>
         </fieldset>
       </div>
+      <div  x-import="profile/tabs_content.html"></div>
+
+    
     </div>
     <footer class="footer ng-scope" x-import="haraj/footer.html" ng-controller="footer_herag"></footer>
     <div x-import="haraj/scripts.html"></div>
 
-    <script x-permissions="login" x-import="profile/index.js"></script>
+    <script x-import="profile/index.js"></script>
   </body>
 </html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="##session.lang##" class="loaded" ng-app="myApp">
   <head x-server="x-import">
-    <title x-features="&amp;&amp; !host.ttl">##word.brand_title##</title>
+    <title>##setting.site_name##</title>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -314,12 +314,10 @@
                         <i class="fa-solid fa-user"></i>
                         <a href="/profile?id={{a.store.user.id}}"> {{a.store.user.profile.name}}</a>
                       </p>
-                       <p class="ad-price" ng-show="a.set_price == 'yes'" ng-repeat="q in a.quantity_list"><b>{{q.unit.name_##session.lang##}} {{q.net_value}} {{q.currency.name_##session.lang##}}</b></p>
+                      <p class="ad-price" ng-show="a.set_price == 'yes'" ng-repeat="q in a.quantity_list"><b>{{q.unit.name_##session.lang##}} {{q.net_value}} {{q.currency.name_##session.lang##}}</b></p>
                     </div>
                   </div>
-                  <div class="row" ng-click="displayContent(a.id)">
-                    <i-image view class="logo col2" ng-model="a.image_url"></i-image>
-                  </div>
+                  <img loading="lazy" ng-click="displayContent(a.id)" height="100" width="100" class="svg-size-5x" ng-src="{{a.image_url}}" />
                 </div>
               </div>
               <div class="row center" ng-show="contentList.length < 1 && contentList.length">
@@ -337,6 +335,5 @@
     <div x-import="haraj/scripts.html"></div>
     <script x-import="haraj/index.js"></script>
     <script x-import="haraj/index2.js"></script>
-    
   </body>
 </html>

@@ -37,7 +37,7 @@ module.exports = function init(site) {
       id: req.session.user.id,
       email: req.session.user.email,
     };
-    ratings_doc.approve = null;
+    ratings_doc.approval = null;
     $ratings.add(ratings_doc, (err, doc) => {
       if (!err) {
         response.done = true;
@@ -196,6 +196,23 @@ module.exports = function init(site) {
         if (!err) {
           response.done = true;
           response.list = docs;
+          if (req.body.display) {
+            response.positive = 0;
+            response.negative = 0;
+            response.exist_user = false;
+            docs.forEach((_d) => {
+              if (req.session.user && req.session.user.id == _d.sender.id) {
+                if (_d.approval == null || _d.approval) {
+                  response.exist_user = true;
+                }
+              }
+              if (_d.recommend == 'yes') {
+                response.positive += 1;
+              } else if (_d.recommend == 'no') {
+                response.negative += 1;
+              }
+            });
+          }
           response.count = count;
         } else {
           response.error = err.message;

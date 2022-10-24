@@ -10,26 +10,24 @@
   white-space: pre;
 }
 :root {
-  --theme-color: #00A884 !important;
---theme-color2: #019777 !important;
---font-family: 'Arabic', sans-serif;
+  --theme-color: #00a884 !important;
+  --theme-color2: #019777 !important;
+  --font-family: 'Arabic', sans-serif;
 }
 .img__description {
-  background : #2BB741 !important;
+  background: #2bb741 !important;
 }
 
-.post h2{
-  background : #25D366 !important;
+.post h2 {
+  background: #25d366 !important;
 }
 
 .post p {
-  background : #25D366 !important;
+  background: #25d366 !important;
 }
 
 fieldset {
-
   border: 1px solid #019777 !important;
-
 }
 
 i-image img:hover {
@@ -40,7 +38,7 @@ i-image img:hover {
   border-radius: 5px;
 }
 .haraj_name {
-padding-left: 10px;
+  padding-left: 10px;
 }
 .loaded {
   display: none;
@@ -53,7 +51,8 @@ body {
   background-image: url(/assets/palm.svg);
   background-repeat: repeat;
 }
-header , footer{
+header,
+footer {
   filter: drop-shadow(2px 4px 6px black) !important;
 }
 .tagSide {
@@ -78,8 +77,8 @@ p {
   .firstheader {
     display: none;
   }
-  .border-circle {
-    border-radius: 100px !important;
+  .border-img {
+    border-radius: 5px !important;
   }
   .secondeheader {
     background-color: #f1f1f1;
@@ -889,7 +888,7 @@ p {
   }
 
   legend {
-    border-radius :5px !important;
+    border-radius: 5px !important;
     margin-top: -20px;
     padding: 2px 10px !important;
     color: var(--theme-color2);
@@ -1442,138 +1441,138 @@ p {
   }
 
   #iraq path {
-    fill: #000e0c !important;
+    fill: #007d6b  !important;
   }
 
   .tabuk {
     fill: white;
     pointer-events: none;
-    font-size: 24px;
+    font-size: x-large;
     transform: translate(85px, 234px);
   }
 
   .madinah {
     fill: white;
     pointer-events: none;
-    font-size: 24px;
+    font-size: x-large;
     transform: translate(181px, 424px);
   }
   .makkah {
     fill: white;
     pointer-events: none;
-    font-size: 24px;
+    font-size: x-large;
     transform: translate(259px, 569px);
   }
   .baha {
     fill: white;
     pointer-events: none;
-    font-size: 24px;
+    font-size: x-large;
     transform: translate(296px, 644px);
   }
   .asir {
     fill: white;
     pointer-events: none;
-    font-size: 24px;
+    font-size: x-large;
     transform: translate(326px, 688px);
   }
   .jazan {
     fill: white;
     pointer-events: none;
-    font-size: 24px;
+    font-size: x-large;
     transform: translate(397px, 797px) rotate(249deg);
   }
   .najran {
     fill: white;
     pointer-events: none;
-    font-size: 24px;
+    font-size: x-large;
     transform: translate(474px, 734px);
   }
   .eastern {
     fill: white;
     pointer-events: none;
-    font-size: 24px;
+    font-size: x-large;
     transform: translate(679px, 542px);
   }
   .northern {
     fill: white;
     pointer-events: none;
-    font-size: 24px;
+    font-size: x-large;
     transform: translate(307px, 170px);
   }
   .jouf {
     fill: white;
     pointer-events: none;
-    font-size: 24px;
+    font-size: x-large;
     transform: translate(148px, 144px);
   }
   .hail {
     fill: white;
     pointer-events: none;
-    font-size: 24px;
+    font-size: x-large;
     transform: translate(275px, 255px);
   }
   .qassim {
     fill: white;
     pointer-events: none;
-    font-size: 24px;
+    font-size: x-large;
     transform: translate(346px, 374px) rotate(327deg);
   }
   .riyadh {
     fill: white;
     pointer-events: none;
-    font-size: 24px;
+    font-size: x-large;
     transform: translate(450px, 487px);
   }
 
   .kuwit {
     fill: white;
     pointer-events: none;
-    font-size: 20px;
+    font-size: x-large;
     transform: translate(593px, 171px) rotate(307deg);
   }
   .oman {
     fill: white;
     pointer-events: none;
-    font-size: 24px;
+    font-size: x-large;
     transform: translate(1037px, 561px);
   }
   .uae {
     fill: white;
     pointer-events: none;
-    font-size: 24px;
+    font-size: x-large;
     transform: translate(888px, 469px);
   }
   .qatar {
     fill: white;
     pointer-events: none;
-    font-size: 24px;
+    font-size: x-large;
     transform: translate(807px, 364px);
   }
   .bahran {
     fill: white;
     pointer-events: none;
-    font-size: 24px;
+    font-size: x-large;
     transform: translate(767px, 313px);
   }
 
   .yeman {
     fill: #ffffff;
     pointer-events: none;
-    font-size: 24px;
+    font-size: x-large;
     transform: translate(604px, 875px);
   }
 
   .jordan {
     fill: #ffffff;
     pointer-events: none;
-    font-size: 24px;
+    font-size: x-large;
     transform: translate(56px, 92px);
   }
 
   .iraq {
     fill: #ffffff;
     pointer-events: none;
-    font-size: 24px;
+    font-size: x-large;
     transform: translate(384px, -63px);
   }
 
@@ -1796,8 +1795,8 @@ p {
   }
 }
 
-.border-circle img {
-  border-radius: 100px !important;
+.border-img img {
+  border-radius: 5px !important;
 }
 
 /*desktop version*/
@@ -1889,7 +1888,7 @@ p {
   .secondeheader {
     height: 65px;
     display: grid;
-    grid-template-columns:30% 40% auto;
+    grid-template-columns: 30% 40% auto;
     direction: rtl;
   }
 
@@ -2031,9 +2030,8 @@ p {
     float: left;
   }
 
-  .border-circle {
-    border-radius: 100px !important;
-
+  .border-img {
+    border-radius: 5px !important;
   }
 
   .info img {
@@ -2194,7 +2192,7 @@ p {
   }
 
   legend {
-    border-radius :5px !important;
+    border-radius: 5px !important;
 
     margin-top: -20px;
     padding: 2px 10px !important;
@@ -2635,10 +2633,10 @@ p {
     border: 1px solid var(--theme-color);
     font-size: 18px;
   }
-.select-style {
-  width:16%;
-  margin: 4px;
-}
+  .select-style {
+    width: 16%;
+    margin: 4px;
+  }
   .add a {
     color: #fff;
   }
@@ -3528,138 +3526,138 @@ p {
   }
 
   #iraq path {
-    fill: #000e0c !important;
+    fill: #007d6b   !important;
   }
 
   .tabuk {
     fill: white;
     pointer-events: none;
-    font-size: 24px;
+    font-size: x-large;
     transform: translate(85px, 234px);
   }
 
   .madinah {
     fill: white;
     pointer-events: none;
-    font-size: 24px;
+    font-size: x-large;
     transform: translate(181px, 424px);
   }
   .makkah {
     fill: white;
     pointer-events: none;
-    font-size: 24px;
+    font-size: x-large;
     transform: translate(259px, 569px);
   }
   .baha {
     fill: white;
     pointer-events: none;
-    font-size: 24px;
+    font-size: x-large;
     transform: translate(296px, 644px);
   }
   .asir {
     fill: white;
     pointer-events: none;
-    font-size: 24px;
+    font-size: x-large;
     transform: translate(326px, 688px);
   }
   .jazan {
     fill: white;
     pointer-events: none;
-    font-size: 24px;
+    font-size: x-large;
     transform: translate(397px, 797px) rotate(249deg);
   }
   .najran {
     fill: white;
     pointer-events: none;
-    font-size: 24px;
+    font-size: x-large;
     transform: translate(474px, 734px);
   }
   .eastern {
     fill: white;
     pointer-events: none;
-    font-size: 24px;
+    font-size: x-large;
     transform: translate(679px, 542px);
   }
   .northern {
     fill: white;
     pointer-events: none;
-    font-size: 24px;
+    font-size: x-large;
     transform: translate(307px, 170px);
   }
   .jouf {
     fill: white;
     pointer-events: none;
-    font-size: 24px;
+    font-size: x-large;
     transform: translate(148px, 144px);
   }
   .hail {
     fill: white;
     pointer-events: none;
-    font-size: 24px;
+    font-size: x-large;
     transform: translate(275px, 255px);
   }
   .qassim {
     fill: white;
     pointer-events: none;
-    font-size: 24px;
+    font-size: x-large;
     transform: translate(346px, 374px) rotate(327deg);
   }
   .riyadh {
     fill: white;
     pointer-events: none;
-    font-size: 24px;
+    font-size: x-large;
     transform: translate(450px, 487px);
   }
 
   .kuwit {
     fill: white;
     pointer-events: none;
-    font-size: 20px;
+    font-size: x-large;
     transform: translate(593px, 171px) rotate(307deg);
   }
   .oman {
     fill: white;
     pointer-events: none;
-    font-size: 24px;
+    font-size: x-large;
     transform: translate(1037px, 561px);
   }
   .uae {
     fill: white;
     pointer-events: none;
-    font-size: 24px;
+    font-size: x-large;
     transform: translate(888px, 469px);
   }
   .qatar {
     fill: #ffffff;
     pointer-events: none;
-    font-size: 24px;
+    font-size: x-large;
     transform: translate(807px, 364px);
   }
   .bahran {
     fill: #ffffff;
     pointer-events: none;
-    font-size: 24px;
+    font-size: x-large;
     transform: translate(767px, 313px);
   }
 
   .yeman {
     fill: #ffffff;
     pointer-events: none;
-    font-size: 24px;
+    font-size: x-large;
     transform: translate(604px, 875px);
   }
 
   .jordan {
     fill: #ffffff;
     pointer-events: none;
-    font-size: 24px;
+    font-size: x-large;
     transform: translate(56px, 92px);
   }
 
   .iraq {
     fill: #ffffff;
     pointer-events: none;
-    font-size: 24px;
+    font-size: x-large;
     transform: translate(384px, -63px);
   }
 
@@ -3746,7 +3744,7 @@ p {
   }
 
   svg#Layer_1 {
-    width: 41%;
+    width: 50%;
     height: 100vh;
     display: block;
     position: absolute;
@@ -3802,10 +3800,6 @@ p {
   }
 }
 
-
-
-
-
 @media screen and (min-width: 1921px) {
   .nav1 {
     color: white;
@@ -3818,8 +3812,8 @@ p {
     max-width: 1920px;
     justify-content: center;
   }
-  .border-circle {
-    border-radius: 100px !important;
+  .border-img {
+    border-radius: 5px !important;
   }
   .nav1 li {
     font-size: 20px;

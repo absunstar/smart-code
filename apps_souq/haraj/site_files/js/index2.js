@@ -132,8 +132,8 @@ const mapToggle = document.getElementById('map-toggle');
 const map = document.querySelector('.map');
 let changename = document.getElementById('notif5');
 let minmapbtn = document.getElementById('mapbtn');
-function hsMap() {
-  if (map.style.display === 'block') {
+function hsMap(type) {
+  if (map.style.display === 'block' || type == 'hide') {
     map.style.display = 'none';
     changename.innerText = '##word.map_search##';
     minmapbtn.classList.remove('side-header-map');

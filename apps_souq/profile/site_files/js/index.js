@@ -1,5 +1,12 @@
-app.controller('profile', function ($scope, $http, $timeout) {
+let btn1 = document.querySelector("#user_contents .tab-link");
+if (btn1) {
+  console.log("ffffffffffffffffffffffffff");
+  btn1.click();
+}
 
+app.controller('profile', function ($scope, $http, $timeout) {
+  $scope.userId = site.toNumber('##user.id##');
+  
   $scope.addRating = function (rating) {
     $scope.error = '';
     const v = site.validated('#ratingModal');
@@ -8,14 +15,14 @@ app.controller('profile', function ($scope, $http, $timeout) {
       return;
     }
     rating.receiver = {
-      id : $scope.user.id,
-      email : $scope.user.email,
+      id: $scope.user.id,
+      email: $scope.user.email,
     };
     $scope.busy = true;
     $http({
-      method: "POST",
-      url: "/api/ratings/add",
-      data: rating
+      method: 'POST',
+      url: '/api/ratings/add',
+      data: rating,
     }).then(
       function (response) {
         $scope.busy = false;
@@ -24,13 +31,12 @@ app.controller('profile', function ($scope, $http, $timeout) {
           site.hideModal('#ratingModal');
         } else {
           $scope.error = response.data.error;
-      
         }
       },
       function (err) {
         console.log(err);
       }
-    )
+    );
   };
 
   $scope.getAdsList = function (where) {
@@ -50,13 +56,44 @@ app.controller('profile', function ($scope, $http, $timeout) {
             },
           ],
         },
-        post : true,
+        post: true,
       },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
           $scope.contentList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.getRatingList = function () {
+    $scope.busy = true;
+    $scope.ratingList = [];
+    $http({
+      method: 'POST',
+      url: '/api/ratings/all',
+      data: {
+        where: {
+          'receiver.id': site.toNumber('##query.id##'),
+          approval: true,
+        },
+        display: true,
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.ratingList = response.data.list;
+          $scope.positive = response.data.positive;
+          $scope.negative = response.data.negative;
+          $scope.exist_user = response.data.exist_user;
+          $scope.count = response.data.count;
         }
       },
       function (err) {
@@ -81,7 +118,7 @@ app.controller('profile', function ($scope, $http, $timeout) {
     let message_obj = {
       date: new Date(),
       message: $scope.send_message,
-      receiver : {
+      receiver: {
         id: $scope.user.id,
         name: $scope.user.profile.name,
         last_name: $scope.user.profile.last_name,
@@ -169,6 +206,7 @@ app.controller('profile', function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.getRatingList();
   $scope.getAdsList();
   $scope.getUser();
 });

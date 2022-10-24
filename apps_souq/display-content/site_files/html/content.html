@@ -77,11 +77,11 @@
 
       <div class="row user-action">
         <div>
-          <i-checkbox class="favorite" label="##word.favorite##" ng-click="updateFeedback('favorite')" ng-model="activity.favorite"> </i-checkbox>
-          <i-button class="add-cart" type="add" ng-hide="ad.store.user.id == user.id" label="##word.add_to_cart##" ng-click="bookList(ad,$index)"> </i-button>
-          <i-button fa="envelope" ng-hide="ad.hide_mobile" label="##word.communication##" ng-click="showCommunication(ad)"> </i-button>
-          <i-button fa="flag" label="##word.submit_report##" onclick="site.showModal('#reportModal')"></i-button>
-          <i-button fa="envelope" label="##word.message##" ng-hide="ad.store.user.id == user.id" onclick="site.showModal('#messageModal')"></i-button>
+          <i-checkbox class="favorite" x-permissions="login" label="##word.favorite##" ng-click="updateFeedback('favorite')" ng-model="activity.favorite"> </i-checkbox>
+          <i-button class="add-cart" x-permissions="login" type="add" ng-hide="ad.store.user.id == user.id || !##setting.order_settings.activate_orders##" label="##word.add_to_cart##" ng-click="bookList(ad,$index)"> </i-button>
+          <i-button fa="phone" ng-hide="ad.hide_mobile" label="##word.communication##" ng-click="showCommunication(ad)"> </i-button>
+          <i-button fa="flag" x-permissions="login"  label="##word.submit_report##" onclick="site.showModal('#reportModal')"></i-button>
+          <i-button fa="envelope" x-permissions="login"  label="##word.message##" ng-hide="ad.store.user.id == user.id" onclick="site.showModal('#messageModal')"></i-button>
         </div>
         <div class="row lfr-user">
         </div>
@@ -99,7 +99,7 @@
           <h1>##word.comments## :</h1>
           <b> ##word.number_comments## : {{ad.number_comments}}</b>
         </div>
-        <div class="row">
+        <div class="row" x-permissions="login">
           <i-textarea class="col7" ng-model="activity.comment"> </i-textarea>
           <i-button type="add" label="##word.add_comment##" ng-click="updateFeedback('comment')"></i-button>
         </div>

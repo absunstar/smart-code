@@ -6,22 +6,29 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
     }
     $scope.ContentBusy = true;
     if (ev.which === 13) {
-      $scope.contentList = $scope.contentList || [];
       where = where || {};
       where['ad_status.id'] = 1;
 
       if (where['country_code'] || where['gov_code']) {
-        hsMap();
+        hsMap('hide');
+        if (where['country_code']) {
+          delete where['gov_code'];
+        } else if (where['gov_code']) {
+          delete where['country_code'];
+        }
       }
 
       window.page_limit = window.page_limit || 20;
       window.page_number = window.page_number || 0;
 
       if (where['pages']) {
+        $scope.contentList = $scope.contentList || [];
+
         window.page_number++;
         delete where['pages'];
+      } else {
+        $scope.contentList = [];
       }
-
       $http({
         method: 'POST',
         url: '/api/contents/all',
@@ -35,14 +42,8 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
         function (response) {
           $scope.ContentBusy = false;
           if (response.data.done && response.data.list.length > 0) {
-            $scope.contentList = [...$scope.contentList, ...response.data.list];
-    /*         response.data.list.forEach((ad) => {
-              ad.$time = xtime(ad.date);
-              if ($scope.user) {
-                ad.$favorite = $scope.user.feedback_list.some((_f) => _f.type && _f.ad && _f.type.id == 2 && _f.ad.id == ad.id);
-              }
-              $scope.contentList.push(ad);
-            }); */
+            /*  $scope.contentList = [...$scope.contentList, ...response.data.list]; */
+            $scope.contentList = response.data.list;
           }
         },
         function (err) {
@@ -53,7 +54,8 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
     }
   };
 
-  window.onscroll = function () {
+  /* 
+   window.onscroll = function () {
     if (window.stop_loading_posts) {
       return;
     }
@@ -62,9 +64,10 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
     var yy = window.pageYOffset + window.innerHeight;
 
     if (y - 6000 <= yy) {
-      $scope.getContentList({ which: 13 }, { pages: true });
+      $scope.search['pages'] = true;
+      $scope.getContentList({ which: 13 }, $scope.search);
     }
-  };
+  };  */
 
   $scope.getCountriesList = function (where) {
     $scope.busy = true;
@@ -269,7 +272,7 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
   };
 
   $scope.updateFeedback = function (ad, type) {
-    let data = { id: ad.id, feedback: { favorite: ad.favorite, type: type } };
+    let data = { id: ad.id, feedback: { favorite: ad.$favorite, type: type } };
 
     $http({
       method: 'POST',
@@ -310,6 +313,9 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
           $scope.category_list.forEach((_c) => {
             if (!_c.top_parent_id) {
               $scope.topParentCategoriesList.push(_c);
+              if (site.toNumber('##query.id##') == _c.id) {
+                $scope.loadSubCategory(_c);
+              }
             }
           });
         }
@@ -492,12 +498,20 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
   $scope.searchAll = function (search) {
     $scope.error = '';
 
-    site.hideModal('#adAdvancedSearchModal');
+    $scope.getContentList({ which: 13 }, search);
+  };
+
+  $scope.mapSearch = function () {
+    $scope.error = '';
+
     $scope.getContentList({ which: 13 }, search);
   };
 
   $scope.loadMainCategories();
-  $scope.getContentList({ which: 13 }, {});
+
+  if ('##query.id##' == 'undefined') {
+    $scope.getContentList({ which: 13 }, {});
+  }
   $scope.getUser();
   $scope.getDefaultSetting();
   $scope.getCountriesList();

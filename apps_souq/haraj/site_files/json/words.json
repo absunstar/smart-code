@@ -35,6 +35,11 @@
     "ar": "السلة"
   },
   {
+    "name": "tmor",
+    "en": "Dates",
+    "ar": "تمور"
+  },
+  {
     "name": "hide_map",
     "en": "Hide Map",
     "ar": "إخفاء الخريطة"
@@ -167,12 +172,12 @@
   {
     "name": "makkah",
     "en": "Makkah",
-    "ar": "مكة المكرمة"
+    "ar": "مكة"
   },
   {
     "name": "medina",
     "en": "Al-Medina",
-    "ar": "المدينة المنورة"
+    "ar": "المدينة"
   },
   {
     "name": "riyadh",
