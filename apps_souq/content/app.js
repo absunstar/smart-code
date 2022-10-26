@@ -328,6 +328,18 @@ module.exports = function init(site) {
         comment_report: user_ad.feedback.comment_report,
         date: new Date(),
       });
+    } else if (user_ad.feedback.type == 'report_comment') {
+      ad.feedback_list.forEach((_f, i) => {
+        if (_f.type.id == 4 && user_ad.feedback.comment_index == i) {
+          _f.report_list = _f.report_list || [];
+          _f.report_list.push({
+            user: user,
+            report_type: user_ad.feedback.report_type,
+            comment_report: user_ad.feedback.comment_report,
+            date: new Date(),
+          });
+        }
+      });
     } else if (user_ad.feedback.type == 'comment') {
       ad.number_comments = ad.number_comments + 1;
       let comment = {
@@ -418,7 +430,6 @@ module.exports = function init(site) {
       done: false,
     };
     let where = req.body.where || {};
-    
 
     let page_limit = req.data.page_limit || 20;
     let page_number = req.data.page_number || 0;
@@ -444,16 +455,14 @@ module.exports = function init(site) {
 
     //   where['quantity_list.net_value'] = { $gte: where['price_from'] || 0, $lte: where['price_to'] || 100000000 };
     // }
- 
 
     if (where['price'] == 'lowest') {
-     
       req.body.sort = req.body.sort || {};
       req.body.sort['quantity_list.price'] = -1;
       delete where['price'];
     } else if (where['price'] == 'highest') {
       req.body.sort = req.body.sort || {};
-     
+
       req.body.sort['quantity_list.price'] = 1;
       delete where['price'];
     }

@@ -4,6 +4,7 @@ module.exports = function init(site) {
     length_order: 0,
     user_design: { id: 5 },
     content: {
+      warning_message_ad_list : [],
       status: {
         id: 1,
         en: 'Active',
@@ -92,6 +93,9 @@ module.exports = function init(site) {
     }
 
     let data = req.data;
+    if(!data.content.warning_message_ad_list) {
+      data.content.warning_message_ad_list = [];
+    }
     $default_setting.update(data, (err, result) => {
       if (!err) {
         response.done = true;

@@ -4,7 +4,7 @@
             <legend> ##word.basic_information##</legend>
             <div class="col9">
                 <table id="basicInformationTable" class="table bold hover">
-     
+
                     <tr>
                         <td class="title">##word.reports_types_name##</td>
                         <td class="center">{{reports_types.name_##session.lang##}}</td>
@@ -13,6 +13,11 @@
                         <td class="title">##word.status##</td>
                         <td ng-show="reports_types.active == true" class="green center"> ##word.active## </td>
                         <td ng-show="reports_types.active == false" class="red center"> ##word.not_active## </td>
+                    </tr>
+                    <tr>
+                        <td class="title">##word.report_comments##</td>
+                        <td ng-show="reports_types.report_comments == true" class="green center"> ##word.yes## </td>
+                        <td ng-show="reports_types.report_comments == false" class="red center"> ##word.no## </td>
                     </tr>
                 </table>
             </div>

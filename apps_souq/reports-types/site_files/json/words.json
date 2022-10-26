@@ -10,6 +10,16 @@
     "ar": "نوع البلاغ"
   },
   {
+    "name": "report_comments",
+    "en": "Report for comments",
+    "ar": "بلاغ للتعليقات"
+  },
+  {
+    "name": "reports_comment",
+    "en": "Reports for comment",
+    "ar": "بلاغات التعليق"
+  },
+  {
     "name": "reports_types_new",
     "en": "New Reports Type",
     "ar": "نوع بلاغ جديد"

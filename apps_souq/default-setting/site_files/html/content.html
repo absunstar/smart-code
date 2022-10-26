@@ -122,6 +122,22 @@
             <i-checkbox class="row" label="##word.addresses_appear##" ng-model="default_setting.content.addresses_appear"></i-checkbox>
             <i-checkbox class="row" label="##word.quantities_can_be_used##" ng-model="default_setting.content.quantities_can_be_used"></i-checkbox>
           </div>
+
+          <div class="row">
+            <h2 class="black">
+              ##word.warning_message_inside_ad##
+              <i-button type="add default" ng-click="default_setting.content.warning_message_ad_list.push({})"> </i-button>
+            </h2>
+
+            <div ng-repeat="f in default_setting.content.warning_message_ad_list track by $index" class="row">
+              <i-image help-id="units_logo" class="col3" ng-model="f.image_url"> </i-image>
+
+              <i-textarea class="col8" ng-model="f.name"></i-textarea>
+
+              <i-button class="col1" type="delete default" ng-click="default_setting.content.warning_message_ad_list.length ==1 || default_setting.printer_program.warning_message_ad_list.splice($index,1)"> </i-button>
+            </div>
+          </div>
+
         </fieldset>
 
         <i-button type="default left" fa="2x fa-angle-double-left" onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>

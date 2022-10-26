@@ -1,19 +1,18 @@
 <div id="reportModal" class="modal small">
   <div class="modal-content">
     <div class="modal-header">
-      <span class="close">&times;</span>
       <h2>##word.submit_report## <i class="fa fa-flag"></i></h2>
     </div>
     <div class="modal-body">
       <div class="row">
-        <i-list ng-search="_search.$report_type" class="col4" display="name_##session.lang##" ng-model="activity.report_type" label="##word.report_type##" items="reportsTypesList"> </i-list>
-        <i-textarea class="col7" ng-model="activity.comment_report" label="##word.comment_on_report##"> </i-textarea>
+        <i-list ng-search="_search.$report_type" v="r" class="col4" display="name_##session.lang##" ng-model="activity.report_type" label="##word.report_type##" items="reportAdList"> </i-list>
+        <i-textarea class="col7" v="r ll50" ng-model="activity.comment_report" label="##word.comment_on_report##"> </i-textarea>
       </div>
     </div>
     <h2 class="error center bold">{{error}}</h2>
     <div class="modal-footer center">
       <i-button type="add" label="##word.add_report##" ng-click="updateFeedback('report')"></i-button>
-      <i-button type="close" label=" ##word.close##" onclick="site.hideModal('#reportModal')"></i-button>
+      <i-button type="close" label=" ##word.close##" onclick="site.hideModal('#reportModal') ; activity.report_type = {} ; activity.comment_report =''"></i-button>
     </div>
   </div>
 </div>

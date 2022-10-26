@@ -204,7 +204,13 @@ module.exports = function init(site) {
       (err, docs, count) => {
         if (!err) {
           response.done = true;
-          response.list = docs;
+          if(req.body.post) {
+
+            response.report_ad_list = docs.filter(_d => !_d.report_comments);
+            response.report_comment_list = docs.filter(_d => _d.report_comments);
+          } else {
+            response.list = docs;
+          }
           response.count = count;
         } else {
           response.error = err.message;

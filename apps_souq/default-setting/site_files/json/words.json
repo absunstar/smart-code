@@ -5,9 +5,14 @@
     "ar": "بحث"
   },
   {
-    "name": "allowed_number",
-    "en": "Allowed number",
-    "ar": "العدد المسموح به"
+    "name": "default_setting_tenant_search",
+    "en": "Search",
+    "ar": "بحث"
+  },
+  {
+    "name": "warning_message_inside_ad",
+    "en": "Warning message inside the ad",
+    "ar": "رسالة تحذيرية داخل الإعلان"
   },
   {
     "name": "upload_video",

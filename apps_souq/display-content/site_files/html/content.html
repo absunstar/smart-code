@@ -46,18 +46,18 @@
         <h2 class="ad-descr pre_text">{{ad.description}}</h2>
       </div>
 
-         <div class="row padding" ng-repeat="c in ad.category_require_list">
-          <div class="row center">
-            <p class="bold blue font-18">{{c.name_##session.lang##}}</p>
-          </div>
-          <div class="row center">
-            <i-image class="content-img" view ng-show="c.type.id == 1" ng-model="c.image_url"></i-image>
-            <p ng-show="c.type.id == 2">{{c.text}}</p>
-            <p class="pre_text" ng-show="c.type.id == 3">{{c.text}}</p>
-            <i-files view ng-show="c.type.id == 4" ng-model="c.files"></i-files>
-            <p ng-show="c.type.id == 5">{{c.date |date:"dd - MM - yyyy"}}</p>
-          </div>
+      <div class="row padding" ng-repeat="c in ad.category_require_list">
+        <div class="row center">
+          <p class="bold blue font-18">{{c.name_##session.lang##}}</p>
         </div>
+        <div class="row center">
+          <i-image class="content-img" view ng-show="c.type.id == 1" ng-model="c.image_url"></i-image>
+          <p ng-show="c.type.id == 2">{{c.text}}</p>
+          <p class="pre_text" ng-show="c.type.id == 3">{{c.text}}</p>
+          <i-files view ng-show="c.type.id == 4" ng-model="c.files"></i-files>
+          <p ng-show="c.type.id == 5">{{c.date |date:"dd - MM - yyyy"}}</p>
+        </div>
+      </div>
 
       <div class="row product-image">
         <div ng-show="ad.images_list.length > 0" class="row center padding" ng-repeat="i in ad.images_list">
@@ -71,8 +71,6 @@
 
           <h2 class="pre_text center">{{i.description}}</h2>
         </div>
-
-     
       </div>
 
       <div class="row user-action">
@@ -80,11 +78,10 @@
           <i-checkbox class="favorite" x-permissions="login" label="##word.favorite##" ng-click="updateFeedback('favorite')" ng-model="activity.favorite"> </i-checkbox>
           <i-button class="add-cart" x-permissions="login" type="add" ng-hide="ad.store.user.id == user.id || !##setting.order_settings.activate_orders##" label="##word.add_to_cart##" ng-click="bookList(ad,$index)"> </i-button>
           <i-button fa="phone" ng-hide="ad.hide_mobile" label="##word.communication##" ng-click="showCommunication(ad)"> </i-button>
-          <i-button fa="flag" x-permissions="login"  label="##word.submit_report##" onclick="site.showModal('#reportModal')"></i-button>
-          <i-button fa="envelope" x-permissions="login"  label="##word.message##" ng-hide="ad.store.user.id == user.id" onclick="site.showModal('#messageModal')"></i-button>
+          <i-button fa="flag" x-permissions="login" label="##word.submit_report##" onclick="site.showModal('#reportModal')"></i-button>
+          <i-button fa="envelope" x-permissions="login" label="##word.message##" ng-hide="ad.store.user.id == user.id" ng-click="showMessage(ad.store.user)"></i-button>
         </div>
-        <div class="row lfr-user">
-        </div>
+        <div class="row lfr-user"></div>
         <div class="row">
           <b> ##word.number_favorites## : {{ad.$number_favorites}}</b>
           <b> ##word.number_views## : {{ad.number_views}}</b>
@@ -94,33 +91,48 @@
         </div>
       </div>
 
+      <div class="row border warning_message" ng-show="defaultSettings.content.warning_message_ad_list.length > 0">
+        <img class="warning_img" ng-src="{{ad.$warning_message.image_url}}" />
+        <b>{{ad.$warning_message.name}}</b>
+      </div>
+
       <div class="comment">
         <div class="row">
           <h1>##word.comments## :</h1>
           <b> ##word.number_comments## : {{ad.number_comments}}</b>
         </div>
         <div class="row" x-permissions="login">
-          <i-textarea class="col7" ng-model="activity.comment"> </i-textarea>
-          <i-button type="add" label="##word.add_comment##" ng-click="updateFeedback('comment')"></i-button>
+          <i-textarea class="col9" ng-model="activity.comment"> </i-textarea>
+          <i-button class="row" type="add" label="##word.add_comment##" ng-click="updateFeedback('comment')"></i-button>
         </div>
         <br />
         <br />
-        <div class="row" ng-repeat="c in ad.feedback_list" ng-show="c.user && c.type.id == 4 && c.comment">
+        <div class="row" ng-repeat="c in ad.feedback_list track by $index" ng-show="c.user && c.type.id == 4 && c.comment">
           <a class="user-name-stlye" href="/profile?id={{c.user.id}}"> {{c.user.profile.name}}</a>
 
           <p class="font-18 pre_text">{{c.comment}}</p>
           <small>{{c.$time}}</small>
+          <a x-permission="login" ng-click="showReportComment($index)"> <i class="fa fa-bars"></i> </a>
           <!-- <b class="brown"> {{c.date |date:"dd - MM - yyyy"}} </b>
           <b class="green"> {{c.date |date:"hh:mm"}} </b> -->
+          <i-button fa="envelope" x-permissions="login" label="##word.message##" ng-hide="ad.store.user.id == c.user.id" ng-click="showMessage(c.user)"></i-button>
+
           <br />
           <br />
         </div>
+       
       </div>
     </fieldset>
   </div>
   <div class="col3">
     <fieldset>
       <legend>##word.related_ads##</legend>
+      <div class="row">
+        <b ng-show="ad.address.country.id" class="pointer border address-ad" ng-click="getContentList(ad,'country')"> {{ad.main_category.name_##session.lang##}} ##word.in## {{ad.address.country.name_##session.lang##}} </b>
+        <b ng-show="ad.address.gov.id" class="pointer border address-ad" ng-click="getContentList(ad,'gov')"> {{ad.address.gov.name_##session.lang##}} </b>
+        <b ng-show="ad.address.city.id" class="pointer border address-ad" ng-click="getContentList(ad,'city')"> {{ad.address.city.name_##session.lang##}} </b>
+        <b ng-show="ad.address.area.id" class="pointer border address-ad" ng-click="getContentList(ad,'area')"> {{ad.address.area.name_##session.lang##}} </b>
+      </div>
       <div class="row item-list">
         <a class="item col4 pointer" ng-repeat="i in contentList" href="/display_content?id={{i.id}}">
           <div class="row">
@@ -130,4 +142,6 @@
       </div>
     </fieldset>
   </div>
+
+ 
 </div>

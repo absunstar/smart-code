@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en" data-ng-app="myApp" >
+<html lang="en" data-ng-app="myApp">
   <head>
     <title>##word.brand_title##</title>
     <meta charset="UTF-8" />
@@ -13,6 +13,13 @@
     <style>
       * {
         max-width: initial;
+      }
+      .warning_message {
+        font-size: 25px;
+        background: #cfffed;
+        color: #00784a;
+        border-radius: 8px;
+        padding: 12px !important;
       }
       :root {
         --body-margin-top: 0px;
@@ -28,7 +35,7 @@
       }
     </style>
     <style x-lang="ar">
-      .nav1{
+      .nav1 {
         flex-direction: initial;
         padding: 7px;
       }
@@ -45,6 +52,7 @@
 
     <div id="main-layout" class="container">
       <div x-import="display-content/report_modal.html"></div>
+      <div x-import="display-content/report_comment_modal.html"></div>
       <div x-import="display-content/message_modal.html"></div>
       <div x-import="display-content/communication_modal.html"></div>
 

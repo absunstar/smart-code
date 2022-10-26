@@ -3,10 +3,6 @@
     <legend>
       ##word.feedbacks##
       <i-button type="add default" ng-click="addFeedback()"></i-button>
-     <!--  <i-checkbox ng-click="filterComments('like')" label="##word.like##" ng-model="filter.like"> </i-checkbox>
-      <i-checkbox ng-click="filterComments('favorite')" label="##word.favorite##" ng-model="filter.favorite"> </i-checkbox>
-      <i-checkbox ng-click="filterComments('report')" label="##word.report##" ng-model="filter.report"> </i-checkbox>
-      <i-checkbox ng-click="filterComments('comment')" label="##word.comment##" ng-model="filter.comment"> </i-checkbox> -->
     </legend>
     <div class="row" ng-repeat="c in ngModel.feedback_list">
       <div class="row">
@@ -27,7 +23,7 @@
         >
         </i-list>
         <i-textarea class="col5" ng-show="c.type.id == 3" ng-model="c.comment_report" label="##word.comment_on_report##"> </i-textarea>
-        <i-list
+      <!--   <i-list
           ng-search="_search.$comment_type"
           ng-show="c.type.id == 4"
           class="col2"
@@ -36,16 +32,48 @@
           label="##word.comment_type##"
           items="commentsTypesList"
         >
-        </i-list>
+        </i-list> -->
         <i-textarea class="col5" ng-show="c.type.id == 4" ng-model="c.comment" label="##word.comment##"> </i-textarea>
+        <i-button type="view" class="col2" label="##word.reports_comment##" ng-show="c.report_list.length > 0" ng-click="showModal(c)"> </i-button>
+
         <div class="col1 center">
           <br />
           <i-button type="delete default" ng-click="ngModel.feedback_list.splice($index,1)"> </i-button>
         </div>
 
-        <hr class="center" style="width: 70%; height: 5px; color: grey; background-color: rgb(76, 199, 0)" />
       </div>
     </div>
     <br />
   </fieldset>
+  
 </div>
+
+<div id="reportCommentModal_{{id2}}" class="modal small">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>##word.submit_report## <i class="fa fa-flag"></i></h2>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <table x-permissions="login" class="table hover bold">
+          <tr>
+            <th>##word.user_name##</th>
+            <th>##word.report_type##</th>
+            <th>##word.comment##</th>
+          </tr>
+          <tr ng-repeat="c in comment.report_list">
+            <td class="center blue">{{c.user.profile.name}} {{c.user.profile.last_name}}</td>
+            <td class="center title">{{c.report_type.name_##session.lang##}}</td>
+            <td class="center pre_text title">{{c.comment_report}}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="modal-footer center">
+      <i-button type="close" label=" ##word.close##" ng-click="hideModal()"></i-button>
+    </div>
+  </div>
+</div>
+
+

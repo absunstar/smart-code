@@ -90,7 +90,7 @@ app.directive('iStore', [
                 where: {
                   search: search_stores,
                 },
-                select: { id: 1 ,name: 1, user: 1 ,address: 1},
+                select: { id: 1, name: 1, user: 1, address: 1 },
               },
             }).then(
               function (response) {
@@ -156,6 +156,7 @@ app.directive('iFeedback', [
         if (!$scope.id2) {
           $scope.id2 = Math.random().toString().replace('.', '_');
         }
+
         $scope.filter = {
           like: true,
           favorite: true,
@@ -187,6 +188,14 @@ app.directive('iFeedback', [
             }
           );
         };
+        $scope.showModal = function (comment) {
+          $scope.comment = comment;
+          site.showModal('#reportCommentModal_' + $scope.id2);
+        };
+        $scope.hideModal = function (params) {
+          site.hideModal('#reportCommentModal_' + $scope.id2);
+        };
+        
 
         $scope.getCommentsTypesList = function (where) {
           $scope.busy = true;
@@ -219,12 +228,14 @@ app.directive('iFeedback', [
             url: '/api/reports_types/all',
             data: {
               where: { active: true },
+              post : true,
+              select : {id : 1, name_ar : 1, name_en : 1 }
             },
           }).then(
             function (response) {
               $scope.busy = false;
-              if (response.data.done && response.data.list.length > 0) {
-                $scope.reportsTypesList = response.data.list;
+              if (response.data.done) {
+                $scope.reportsTypesList = response.data.report_ad_list;
               }
             },
             function (err) {
@@ -298,7 +309,7 @@ app.directive('iAddress', [
                 id: 1,
                 name_ar: 1,
                 name_en: 1,
-                code : 1,
+                code: 1,
               },
             },
           }).then(
@@ -332,7 +343,7 @@ app.directive('iAddress', [
                 id: 1,
                 name_ar: 1,
                 name_en: 1,
-                code : 1,
+                code: 1,
               },
             },
           }).then(
