@@ -8,7 +8,7 @@ app.controller('create_content', function ($scope, $http, $timeout) {
     $scope.ad = {
       feedback_list: [],
       ad_rating: 0,
-      date : new Date(),
+      date: new Date(),
       set_price: 'no',
       number_views: 0,
       number_comments: 0,
@@ -19,8 +19,8 @@ app.controller('create_content', function ($scope, $http, $timeout) {
     };
 
     if ($scope.defaultSettings.content) {
-      if($scope.defaultSettings.content.closing_system) {
-        if($scope.defaultSettings.content.closing_system.id == 2) {
+      if ($scope.defaultSettings.content.closing_system) {
+        if ($scope.defaultSettings.content.closing_system.id == 2) {
           $scope.ad.expiry_date = new Date();
           $scope.ad.expiry_date.setDate($scope.ad.expiry_date.getDate() + 7);
         }
@@ -92,10 +92,9 @@ app.controller('create_content', function ($scope, $http, $timeout) {
             $scope.address = {};
           }
           $scope.getDefaultSetting();
-          site.showModal("#alert");
+          site.showModal('#alert');
           $timeout(() => {
-            site.hideModal("#alert");
-
+            site.hideModal('#alert');
           }, 1500);
         } else {
           $scope.error = response.data.error;
@@ -105,7 +104,7 @@ app.controller('create_content', function ($scope, $http, $timeout) {
             $scope.error = '##word.store_must_specified##';
           } else if (response.data.error.like('*must be specified in feed*')) {
             $scope.error = '##word.user_must_specified_in_feedbacks##';
-          }else if (response.data.error.like('*date is greater than the date of public*')) {
+          } else if (response.data.error.like('*date is greater than the date of public*')) {
             $scope.error = '##word.today_date_greater_than_date_publication##';
           }
         }
@@ -127,7 +126,7 @@ app.controller('create_content', function ($scope, $http, $timeout) {
         where: {
           status: 'active',
         },
-        select: { id: 1 ,name_ar: 1,name_en: 1, parent_list_id: 1 ,top_parent_id: 1,parent_id : 1},
+        select: { id: 1, name_ar: 1, name_en: 1, parent_list_id: 1, top_parent_id: 1, parent_id: 1 },
       },
     }).then(
       function (response) {
@@ -283,11 +282,13 @@ app.controller('create_content', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.user = response.data.doc;
-
-          $scope.address = {
-            main: $scope.user.profile.main_address,
-            other_list: $scope.user.profile.other_addresses_list,
-          };
+          if ($scope.user) {
+            $scope.ad.mobile = $scope.user.mobile;
+            $scope.address = {
+              main: $scope.user.profile.main_address,
+              other_list: $scope.user.profile.other_addresses_list,
+            };
+          }
         } else {
           $scope.error = response.data.error;
         }

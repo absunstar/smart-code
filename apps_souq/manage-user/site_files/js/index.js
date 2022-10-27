@@ -360,7 +360,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.store = {
       image_url: '/images/stores.png',
-      mobile: $scope.manage_user.profile.mobile,
+      mobile: $scope.manage_user.mobile,
       feedback_list: [],
       store_rating: 0,
       number_views: 0,
@@ -593,7 +593,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
   /*  $scope.displayAddAd = function () {
     $scope.error = '';
     $scope.ad = {
-      mobile: $scope.manage_user.profile.mobile,
+      mobile: $scope.manage_user.mobile,
       feedback_list: [],
       set_price: 'no',
       ad_rating: 0,

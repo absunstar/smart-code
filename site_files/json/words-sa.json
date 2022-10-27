@@ -5,6 +5,16 @@
     "ar": "ريال"
   },
   {
+    "name": "register_with_mobile_number",
+    "en": "Register with a mobile number",
+    "ar": "التسجيل برقم الجوال"
+  },
+  {
+    "name": "mobile_number_already_exists",
+    "en": "The mobile number already exists",
+    "ar": "رقم الجوال موجود من قبل"
+  },
+  {
     "name": "mobile",
     "en": "Mobile",
     "ar": "رقم الجوال"

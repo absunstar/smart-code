@@ -54,7 +54,7 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
     }
   };
 
-  /* 
+  
    window.onscroll = function () {
     if (window.stop_loading_posts) {
       return;
@@ -63,11 +63,11 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
     var y = document.documentElement.offsetHeight;
     var yy = window.pageYOffset + window.innerHeight;
 
-    if (y - 6000 <= yy) {
+    if (y - 1000 <= yy) {
       $scope.search['pages'] = true;
       $scope.getContentList({ which: 13 }, $scope.search);
     }
-  };  */
+  }; 
 
   $scope.getCountriesList = function (where) {
     $scope.busy = true;
@@ -206,7 +206,7 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
         if (response.data.done) {
           $scope.user = response.data.doc;
 
-          if (!$scope.user.cart) {
+          if ($scope.user && !$scope.user.cart) {
             $scope.user.cart = {
               total: 0,
               fee_upon_receipt: 0,

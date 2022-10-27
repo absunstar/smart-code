@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/css/font6.css" />
     <link rel="stylesheet" href="/x-css/all.css" />
     <link rel="stylesheet" href="/x-css/font-cairo.css" />
+    <link rel="icon" type="image/x-icon" href="##setting.logo##" />
     <style>
       * {
         max-width: initial;
@@ -27,7 +28,7 @@
       }
     </style>
     <style x-lang="ar">
-      .nav1{
+      .nav1 {
         flex-direction: initial;
         padding: 7px;
       }
@@ -48,7 +49,7 @@
       </div>
 
       <div class="row">
-        <fieldset class="ads-section" >
+        <fieldset class="ads-section">
           <div class="row" ng-hide="users_list.length > 0">
             <h1 class="blue bold center">##word.no_follow_up##</h1>
           </div>
@@ -57,7 +58,6 @@
             <div class="ad-area">
               <div class="ads-info">
                 <a href="/profile?id={{u.id}}"> {{u.profile.name}} {{u.profile.last_name}}</a>
-
               </div>
               <i-button label="##word.unfollow##" ng-click="updateFollow(u,false)"></i-button>
             </div>

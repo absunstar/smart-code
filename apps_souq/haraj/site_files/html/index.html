@@ -5,9 +5,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="##setting.logo##">
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/x-css/font-cairo.css" />
     <link rel="stylesheet" href="/css/font6.css" />
+
   </head>
 
   <body class="##session.lang##" ng-controller="index_souq">
@@ -179,9 +181,9 @@
                 <span style="min-height: 22px">##word.favorite##</span>
               </a>
             </li>
-            <button class="add" type="submit"><img class="add-icon" src="../assets/add.png" alt="" width="18px" height="18px" /><a href="/create_content">##word.add_your_ad##</a></button>
+            <button class="add" x-permissions="login" type="submit"><img class="add-icon" src="../assets/add.png" alt="" width="18px" height="18px" /><a href="/create_content">##word.add_your_ad##</a></button>
             <li class="mobile-header">
-              <a class="notification" ng-show="##setting.order_settings.activate_orders##" href="/cart">
+              <a class="notification"  ng-show="##setting.order_settings.activate_orders##" href="/cart">
                 <i class="fa-solid fa-cart-shopping"></i>
                 <span class="badge-mobile ng-binding">0</span>
                 <span style="min-height: 22px; font-size: 20px">##word.cart##</span>

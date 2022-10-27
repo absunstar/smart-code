@@ -16,6 +16,7 @@ app.controller('login_souq', function ($scope, $http, $timeout) {
         $encript: '123',
         email: site.to123($scope.user.email),
         password: site.to123($scope.user.password),
+        mobile_login : true,
       },
     }).then(
       function (response) {
@@ -23,7 +24,6 @@ app.controller('login_souq', function ($scope, $http, $timeout) {
           $scope.error = "##word.email_or_pass_error##";
           $scope.busy = false;
         }
-        console.log(response.data);
         if (response.data.done) {
           window.location.href = "/";
         }

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/css/font6.css" />
     <link rel="stylesheet" href="/x-css/all.css" />
     <link rel="stylesheet" href="/x-css/font-cairo.css" />
+    <link rel="icon" type="image/x-icon" href="##setting.logo##" />
     <style>
       * {
         max-width: initial;
@@ -27,7 +28,7 @@
       }
     </style>
     <style x-lang="ar">
-      .nav1{
+      .nav1 {
         flex-direction: initial;
         padding: 7px;
       }
@@ -39,19 +40,15 @@
     </style>
   </head>
 
-
   <body class="##session.lang## loaded" ng-controller="favorites">
     <div x-import="haraj/header.html"></div>
 
-
     <div id="main-layout" class="container">
       <div class="row">
-
         <div class="row" ng-show="favoriteAdslist.length < 1 && favoriteAdslist">
           <br />
           <br />
           <h1 class="blue bold center">##word.there_no_ads##</h1>
-       
         </div>
         <fieldset class="ads-section" ng-show="favoriteAdslist.length > 0">
           <div ng-repeat="a in favoriteAdslist " class="ads-area even">
@@ -59,9 +56,7 @@
               <div class="ads-info">
                 <b ng-click="displayContent(a.id)" class="bold col4 ad-name">{{a.name}}</b>
                 <div class="row" ng-click="displayContent(a.id)">
-                  <i-image view="" class="logo col2" ng-model="a.image_url">
-                    
-                  </i-image>
+                  <i-image view="" class="logo col2" ng-model="a.image_url"> </i-image>
                 </div>
                 <div class="info">
                   <div class="row user-action">
@@ -80,16 +75,14 @@
                     <p class="location">{{a.address.detailed_address}}</p>
                   </div>
                 </div>
-                <div class="row" >
+                <div class="row">
                   <p class="ad-owner">
                     <i class="fa-solid fa-user"></i>
                     <a href="/profile?id={{a.store.user.id}}"> {{a.store.user.profile.name}}</a>
-
                   </p>
                 </div>
               </div>
             </div>
-            
           </div>
         </fieldset>
       </div>

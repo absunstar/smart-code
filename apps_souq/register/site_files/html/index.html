@@ -1,54 +1,84 @@
 <!DOCTYPE html>
 <html lang="en" data-ng-app="myApp">
-  <head x-import="haraj/head.html"></head>
+  <head x-import="haraj/head.html">
+    <link rel="icon" type="image/x-icon" href="##setting.logo##" />
+  </head>
 
   <body class="##session.lang## loaded" ng-controller="register_souq">
-  
-    <div id="main-layout" class="container">
-      <div class="row" id="registersouqModal">
-        <div class="row" >
-          <div class="row">
-            <h1 class="bold text-center">##word.register##</h1>
-          </div>
+    <div class="row">
+      <h1 class="bold text-center">##word.register##</h1>
+    </div>
 
-          <div class="row">
-            <h2 class="bold red ">{{error}}</h2>
+    <div class="tabs inline-block">
+      <div class="tabs-header">
+        <a class="tab-link" onclick="site.showTabContent(event, '#register_with_mobile_number')"> ##word.register_with_mobile_number## </a>
+        <a class="tab-link" ng-show="##setting.allow_registration_email##" onclick="site.showTabContent(event, '#register_with_email')"> ##word.register_with_email## </a>
+      </div>
 
-          </div>
+      <div class="tabs-content">
+        <div id="register_with_mobile_number" class="tab-content">
+          <fieldset>
+            <legend>##word.register_with_mobile_number##</legend>
+            <div class="row" id="mobile_mailer">
+              <div class="col5">
+                <i-list class="row" v="r" label="##word.country##" ng-model="mailer.country" display="name_##session.lang##" items="countriesList" ng-search="mailer.$countries"></i-list>
+                <i-control class="row" v="r" label="##word.mobile_phone_number##" ng-model="mailer.mobile"> </i-control>
+              </div>
+              <div class="row">
+                <i-button label="##word.continuation##" ng-click="registerMailer(mailer,'mobile')"></i-button>
+              </div>
+            </div>
 
-          <div class="row">
-            <i-image help-id="user_logo" ng-model="user.image_url"></i-image>
-          </div>
+            <div class="row" id="mobile_confirm">
+              <div class="col5">
+                <i-control class="row" v="r" label="##word.secret_code_sent_phone##" ng-model="secret_code"> </i-control>
+              </div>
+              <div class="row">
+                <i-button label="##word.continuation##" ng-click="checkSecretCode(secret_code)"></i-button>
+                <i-button label="##word.resend_code##" ng-click="resendCode(mailer.id,'mobile')"></i-button>
+              </div>
+            </div>
+            <div class="row" id="mobile_data">
+              <div class="row">
+                <i-image help-id="user_logo" ng-model="user.image_url"></i-image>
+              </div>
 
+              <div class="row">
+                <i-control class="col4" label="##word.first_name##" ng-model="user.first_name"> </i-control>
+                <i-control class="col4" label="##word.last_name##" ng-model="user.last_name"> </i-control>
+              </div>
+              <div class="row">
+                <i-control v="r e" class="col4" label="##word.email##" ng-model="user.email"> </i-control>
+              </div>
+              <div class="row">
+                <i-control class="col4 pass" label="##word.password##" type="password" id="pass1" ng-model="user.password"> </i-control>
+              </div>
+              <div class="row">
+                <i-control class="col4 pass" label="##word.retype_password##" type="password" id="pass2" ng-model="user.re_password"> </i-control>
+              </div>
+              <div class="row">
+                <i-checkbox class="col2" label="##word.show_password##" ng-change="showPassword()" ng-model="show_password"> </i-checkbox>
+              </div>
 
-          <div class="row">
-            <i-control class="col4" v="r" label="##word.first_name##" ng-model="user.first_name"> </i-control>
-            <i-control class="col4" v="r" label="##word.last_name##" ng-model="user.last_name"> </i-control>
-          </div>
-          <div class="row">
-            <i-control class="col4" v="r" label="##word.mobile_email##" ng-model="user.email"> </i-control>
-          </div>
-          <div class="row">
-            <i-control class="col4 pass" label="##word.password##" type="password" v="r"  id="pass1" ng-model="user.password"> </i-control>
-          </div>
-          <div class="row">
-            <i-control class="col4 pass" label="##word.retype_password##" type="password" v="r"  id="pass2" ng-model="user.re_password"> </i-control>
-          </div>
-          <div class="row">
-            <i-checkbox  class="col2" label="##word.show_password##" ng-change="showPassword()"  ng-model="show_password"> </i-checkbox>
-          </div>
-
-          <i-button type="add" label="##word.register_now##" ng-click="registerSouq()" ></i-button>
-          <form >
-            <p class="font-18">##word.existing_user## <a href="/login">##word.login_now##</a></p>
-          </form>
-
-
+              <i-button type="add" label="##word.register_now##" ng-click="registerByMobile(user,'mobile')"></i-button>
+            </div>
+          </fieldset>
+          <h2 class="bold center red">{{error}}</h2>
         </div>
       </div>
     </div>
 
-    <div x-import="scripts.html"></div>
+    <div class="row">
+      <form>
+        <p class="font-18 center">##word.existing_user## <a href="/login">##word.login_now##</a></p>
+      </form>
+    </div>
+
+    <div id="main-layout" class="container">
+      <div class="row" id="registersouqModal"></div>
+    </div>
+
+    <div x-import="haraj/scripts.html"></div>
     <script x-import="register/index.js"></script>
   </body>
 </html>

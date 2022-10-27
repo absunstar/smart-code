@@ -69,12 +69,12 @@ site.get(
 site.ready = false;
 site.loadLocalApp('client-side');
 site.loadLocalApp('ui-print');
+site.importApps(__dirname + '/apps_souq');
 site.importApp(__dirname + '/apps_private/cloud_security', 'security');
 site.importApp(__dirname + '/apps_private/ui-help');
 site.importApp(__dirname + '/apps_private/notifications');
 site.importApp(__dirname + '/apps_private/default_data');
 site.importApp(__dirname + '/apps_private/manage-user');
-site.importApps(__dirname + '/apps_souq');
 
 site.importApp(__dirname + '/apps_private/companies');
 site.addFeature('souq');

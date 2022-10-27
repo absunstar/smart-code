@@ -10,6 +10,11 @@
     "ar": "بحث"
   },
   {
+    "name": "allow_registration_through_email",
+    "en": "Allow registration through email",
+    "ar": "السماح بالتسجيل من خلال البريد الإلكتروني"
+  },
+  {
     "name": "warning_message_inside_ad",
     "en": "Warning message inside the ad",
     "ar": "رسالة تحذيرية داخل الإعلان"

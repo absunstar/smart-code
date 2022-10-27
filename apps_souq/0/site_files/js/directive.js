@@ -32,7 +32,7 @@ app.directive('iUser', [
                 where: {
                   search: search_user,
                 },
-                select: { id: 1, email: 1, profile: 1 },
+                select: { id: 1, email: 1, mobile: 1, profile: 1 },
               },
             }).then(
               function (response) {
@@ -523,7 +523,7 @@ app.directive('iSubCategory', [
                 where: {
                   search: search_user,
                 },
-                select: { id: 1, email: 1, profile: 1 },
+                select: { id: 1, email: 1,mobile: 1, profile: 1 },
               },
             }).then(
               function (response) {

@@ -72,8 +72,7 @@ module.exports = function init(site) {
     }
 
     let where = req.body.where || {};
-    if(!site.feature('souq')){
-
+    if (!site.feature('souq')) {
       where['company.id'] = site.get_company(req).id;
       where['branch.code'] = site.get_branch(req).code;
     }
@@ -103,7 +102,7 @@ module.exports = function init(site) {
       },
       (err, docs, count) => {
         if (!err) {
-    response.done = true;
+          response.done = true;
           for (let i = 0; i < docs.length; i++) {
             let u = docs[i];
             u.profile = u.profile || {};
@@ -372,6 +371,23 @@ module.exports = function init(site) {
       }
     }
 
+    let obj_where = {
+      password: req.body.password,
+      company: req.body.company,
+      branch: req.body.branch,
+      $req: req,
+      $res: res,
+    };
+    if ((req.body.mobile_login = true)) {
+      if (req.body.email.contains('@')) {
+        obj_where.email = req.body.email;
+      } else {
+        obj_where.mobile = req.body.email;
+      }
+    } else {
+      obj_where.email = req.body.email;
+    }
+
     // if (site.security.isUserLogin(req, res)) {
     //   response.error = "Login Error , You Are Loged "
     //   response.done = true
@@ -379,48 +395,37 @@ module.exports = function init(site) {
     //   return
     // }
 
-    site.security.login(
-      {
-        email: req.body.email,
-        password: req.body.password,
-        company: req.body.company,
-        branch: req.body.branch,
-        $req: req,
-        $res: res,
-      },
-      function (err, user) {
-        if (!err) {
-          req.session.user = user;
-          req.session.company = req.body.company;
-          req.session.branch = req.body.branch;
-          site.saveSession(req.session);
+    site.security.login(obj_where, function (err, user) {
+      if (!err) {
+        req.session.user = user;
+        req.session.company = req.body.company;
+        req.session.branch = req.body.branch;
+        site.saveSession(req.session);
 
-          // console.log(req.session)
-          //   site.call('[session][update]', {
-          //       accessToken: req.session.accessToken,
-          //       company: req.body.company,
-          //       branch: req.body.branch,
-          //   });
+        // console.log(req.session)
+        //   site.call('[session][update]', {
+        //       accessToken: req.session.accessToken,
+        //       company: req.body.company,
+        //       branch: req.body.branch,
+        //   });
 
-          response.user = {
-            id: user.id,
-            _id: user._id,
-            email: user.email,
-            targetId: user.ref_info ? user.ref_info.id : null,
-            type: user.type,
-            permissions: user.permissions,
-            company: req.body.company,
-            branch: req.body.branch,
-          };
-
-          response.done = true;
-        } else {
-          response.error = err.message;
-        }
-
-        res.json(response);
+        response.user = {
+          id: user.id,
+          _id: user._id,
+          email: user.email,
+          targetId: user.ref_info ? user.ref_info.id : null,
+          type: user.type,
+          permissions: user.permissions,
+          company: req.body.company,
+          branch: req.body.branch,
+        };
+        response.done = true;
+      } else {
+        response.error = err.message;
       }
-    );
+
+      res.json(response);
+    });
   });
 
   site.post('/api/user/logout', function (req, res) {
