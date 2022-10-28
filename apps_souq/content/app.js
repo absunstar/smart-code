@@ -443,18 +443,19 @@ module.exports = function init(site) {
     let d1 = site.toDate(new Date());
     let d2 = site.toDate(new Date());
     d2.setDate(d2.getDate() + 1);
-    // if(req.body.post) {
 
-    //   where.date = {
-    //     $lte: d2,
-    //   };
+    if(req.body.post) {
 
-    //   where.expiry_date = {
-    //     $gte: d1,
-    //   };
+      where.date = {
+        $lte: d2,
+      };
 
-    //   where['quantity_list.net_value'] = { $gte: where['price_from'] || 0, $lte: where['price_to'] || 100000000 };
-    // }
+      where.expiry_date = {
+        $gte: d1,
+      };
+
+      where['quantity_list.net_value'] = { $gte: where['price_from'] || 0, $lte: where['price_to'] || 100000000 };
+    }
 
     if (where['price'] == 'lowest') {
       req.body.sort = req.body.sort || {};

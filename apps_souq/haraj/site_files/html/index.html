@@ -5,11 +5,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/x-icon" href="##setting.logo##">
+    <link rel="icon" type="image/x-icon" href="##setting.logo##" />
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/x-css/font-cairo.css" />
+    <link rel="stylesheet" href="/x-css/layout.css" />
+    <link rel="stylesheet" href="/x-css/effect.css" />
     <link rel="stylesheet" href="/css/font6.css" />
-
   </head>
 
   <body class="##session.lang##" ng-controller="index_souq">
@@ -181,9 +182,11 @@
                 <span style="min-height: 22px">##word.favorite##</span>
               </a>
             </li>
-            <button class="add" x-permissions="login" type="submit"><img class="add-icon" src="../assets/add.png" alt="" width="18px" height="18px" /><a href="/create_content">##word.add_your_ad##</a></button>
+            <button class="add" x-permissions="login" type="submit">
+              <a class="add-icon-ads" href="/create_content"><img class="add-icon" src="../assets/add.png" alt="" width="18px" height="18px" /></a><a href="/create_content">##word.add_your_ad##</a>
+            </button>
             <li class="mobile-header">
-              <a class="notification"  ng-show="##setting.order_settings.activate_orders##" href="/cart">
+              <a class="notification" ng-show="##setting.order_settings.activate_orders##" href="/cart">
                 <i class="fa-solid fa-cart-shopping"></i>
                 <span class="badge-mobile ng-binding">0</span>
                 <span style="min-height: 22px; font-size: 20px">##word.cart##</span>
@@ -277,49 +280,53 @@
           </div>
 
           <div class="row">
-            <fieldset class="ads-section">
+            <div class="ads-section">
               <div ng-repeat="a in contentList" class="ads-area even">
-                <div class="ad-area">
-                  <div class="ads-info">
-                    <b class="bold col4 ad-name" ng-click="displayContent(a.id)">{{a.name}}</b>
-                    <div class="info">
-                      <div class="row user-action">
-                        <!-- <i class="fa-solid fa-cart-shopping" ng-hide="a.store.user.id == user.id"
+                <div class="ad-area  padding box-shadow">
+                  <div class="row center padding">
+                    <img loading="lazy" ng-click="displayContent(a.id)" class="svg-size-5x" ng-src="{{a.image_url}}" />
+                  </div>
+                  <div class="row padding">
+                    <div class="ads-info">
+                      <b class="bold col4 ad-name" ng-click="displayContent(a.id)">{{a.name}}</b>
+                      <div class="info">
+                        <div class="row user-action">
+                          <!-- <i class="fa-solid fa-cart-shopping" ng-hide="a.store.user.id == user.id"
                           label="##word.add_to_cart##" ng-click="bookList(a,0)"></i> -->
-                        <div class="u-action">
-                          <!-- 
+                          <div class="u-action">
+                            <!-- 
                           <i class="fa-solid fa-heart" label="##word.favorite##" ng-click="updateFeedback(a,'favorite')"
                           ng-model="a.favorite"></i> -->
 
-                          <a class="btn" ng-show="##setting.order_settings.activate_orders## && a.store.user.id != user.id" x-permission="login" ng-click="bookList(a,0)">
-                            <i class="fa fa-shopping-cart"></i>
-                          </a>
-                          <i-checkbox label="##word.favorite##" ng-click="updateFeedback(a,'favorite')" ng-model="a.$favorite"> </i-checkbox>
+                            <a class="btn" ng-show="##setting.order_settings.activate_orders## && a.store.user.id != user.id" x-permission="login" ng-click="bookList(a,0)">
+                              <i class="fa fa-shopping-cart"></i>
+                            </a>
+                            <i-checkbox label="##word.favorite##" ng-click="updateFeedback(a,'favorite')" ng-model="a.$favorite"> </i-checkbox>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div class="time-publish">
-                      <i class="fa-solid fa-clock"> {{a.$time}} </i>
-                    </div>
-                    <div class="ad-location">
-                      <i class="fa-solid fa-location-pin"></i>
-                      <div class="adress">
-                        <b class="location" ng-show="a.address.country"> {{a.address.country.name_##session.lang##}} </b>
-                        <b class="location" ng-show="a.address.gov"> - {{a.address.gov.name_##session.lang##}} </b>
-                        <b class="location" ng-show="a.address.city"> - {{a.address.city.name_##session.lang##}} </b>
-                        <b class="location" ng-show="a.address.area"> - {{a.address.area.name_##session.lang##}} </b>
-                        <p class="location">{{a.address.detailed_address}}</p>
+                      <div class="time-publish">
+                        <i class="fa-solid fa-clock"> {{a.$time}} </i>
+                      </div>
+                      <div class="ad-location">
+                        <i class="fa-solid fa-location-pin"></i>
+                        <div class="adress">
+                          <b class="location" ng-show="a.address.country"> {{a.address.country.name_##session.lang##}} </b>
+                          <b class="location" ng-show="a.address.gov"> - {{a.address.gov.name_##session.lang##}} </b>
+                          <b class="location" ng-show="a.address.city"> - {{a.address.city.name_##session.lang##}} </b>
+                          <b class="location" ng-show="a.address.area"> - {{a.address.area.name_##session.lang##}} </b>
+                          <p class="location">{{a.address.detailed_address}}</p>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <p class="ad-owner">
+                          <i class="fa-solid fa-user"></i>
+                          <a href="/profile?id={{a.store.user.id}}"> {{a.store.user.profile.name}}</a>
+                        </p>
+                        <p class="ad-price" ng-show="a.set_price == 'yes'" ng-repeat="q in a.quantity_list"><b>{{q.unit.name_##session.lang##}} {{q.net_value}} {{q.currency.name_##session.lang##}}</b></p>
                       </div>
                     </div>
-                    <div class="row">
-                      <p class="ad-owner">
-                        <i class="fa-solid fa-user"></i>
-                        <a href="/profile?id={{a.store.user.id}}"> {{a.store.user.profile.name}}</a>
-                      </p>
-                      <p class="ad-price" ng-show="a.set_price == 'yes'" ng-repeat="q in a.quantity_list"><b>{{q.unit.name_##session.lang##}} {{q.net_value}} {{q.currency.name_##session.lang##}}</b></p>
-                    </div>
                   </div>
-                  <img loading="lazy" ng-click="displayContent(a.id)" height="100" width="100" class="svg-size-5x" ng-src="{{a.image_url}}" />
                 </div>
               </div>
               <div class="row center" ng-show="contentList.length < 1 && contentList.length">

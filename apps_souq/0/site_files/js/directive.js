@@ -192,7 +192,7 @@ app.directive('iFeedback', [
           $scope.comment = comment;
           site.showModal('#reportCommentModal_' + $scope.id2);
         };
-        $scope.hideModal = function (params) {
+        $scope.hideReportModal = function (params) {
           site.hideModal('#reportCommentModal_' + $scope.id2);
         };
         

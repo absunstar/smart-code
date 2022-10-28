@@ -25,8 +25,9 @@
             <img src="../assets/search-svgrepo-com.svg" alt="" width="20px" height="20px" />
           </div>
           <input type="search" placeholder="##word.search_here_for_what_you_want##" ng-keydown="getContentList($event,search)" ng-model="search.text_search" id ng-disabled="disabled" autofocus v ng-model="ngModel" ng-change="ngChange()" ngkeydown="ngKeydown()" x-input="true" />
+          <button ng-click="searchAll(search)" class="add" type="search"><img class="add-icon" src="../assets/search.png" alt="" width="25px" height="25px" /><a>##word.search##</a></button>
         </div>
-        <button ng-click="searchAll(search)" class="add" type="search"><img class="add-icon" src="../assets/search.png" alt="" width="18px" height="18px" /><a>##word.search##</a></button>
+
       </form>
       <div class="mobile-filter">
         <i class="burger-icon fa-solid fa-arrow-down-wide-short fa-2xl"></i>

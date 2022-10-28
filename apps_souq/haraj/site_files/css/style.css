@@ -6,6 +6,26 @@
   --theme-color2: #019777;
   --font-family: 'Arabic', sans-serif;
 }
+.font-26 {
+  font-size: 26px !important;
+}
+.font-27 {
+  font-size: 27px !important;
+}
+.font-28 {
+  font-size: 28px !important;
+}
+.font-29 {
+  font-size: 29px !important;
+}
+.font-30 {
+  font-size: 30px !important;
+}
+
+
+img{
+  max-width: initial;
+}
 .pre_text {
   white-space: pre;
 }
@@ -73,6 +93,10 @@ p {
   font-family: var(--font-family);
   text-decoration: none;
 }
+.ad-area img{
+  max-width: 90%;
+  height: 200px;
+}
 @media screen and (max-width: 1007px) {
   .firstheader {
     display: none;
@@ -82,11 +106,10 @@ p {
   }
   .secondeheader {
     background-color: #f1f1f1;
-    height: 65px;
+    height: auto;
     display: grid;
-    grid-template-columns: 30% 40% auto;
-    direction: rtl;
-    padding: 0px 10px;
+    grid-template-columns: 30% 60% 10%;
+    direction: rtl;  
   }
   .thirdheader {
     direction: ltr;
@@ -128,7 +151,8 @@ p {
   .searchgroup {
     width: 100%;
     display: grid;
-    grid-template-columns: 10% 55% 15% 20%;
+    grid-template-columns: 19% 60% 24%;
+    align-items: center;
   }
 
   .searchicon {
@@ -240,6 +264,7 @@ p {
   }
 
   .user {
+    display: none;
     background-color: #f1f1f1;
     width: 70%;
     height: 100vh;
@@ -436,7 +461,9 @@ p {
   }
 
   .open-menu {
+    display: block;
     transform: translateX(0%);
+    transition: transform 0.5s ease-in-out;
   }
 
   .user-side-header {
@@ -464,10 +491,13 @@ p {
     width: 50px;
     height: 50px;
     padding: 0;
-    margin: -6px;
     border-radius: 50px;
     border: 1px solid var(--theme-color);
     font-size: 18px;
+  }
+
+  a.add-icon-ads{
+    display: flex !important;
   }
 
   .add a {
@@ -1284,9 +1314,8 @@ p {
   .ad-area {
     display: grid;
     width: auto;
-    grid-template-columns: 70% 30%;
-    border-bottom: dotted 2px gray;
-    justify-items: end;
+    grid-template-columns: 30% 70%;
+    justify-items: start;
     padding-bottom: 5%;
   }
 
@@ -1886,7 +1915,7 @@ p {
   }
 
   .secondeheader {
-    height: 65px;
+    height: auto;
     display: grid;
     grid-template-columns: 30% 40% auto;
     direction: rtl;
@@ -1928,7 +1957,7 @@ p {
   .searchgroup {
     width: 100%;
     display: grid;
-    grid-template-columns: 10% 50% 10% 10% 20%;
+    grid-template-columns: 10.26% 70% 20%;
   }
 
   .searchicon {
@@ -2550,7 +2579,7 @@ p {
   .thirdheader {
     display: grid;
     grid-template-columns: 0% 25% 75%;
-    height: 65px;
+    height: auto;
     direction: ltr;
   }
 
@@ -2615,8 +2644,11 @@ p {
     align-items: center;
   }
 
+
   .add-icon {
     margin-right: 5px;
+    width: 25px;
+    height: 25px;
   }
 
   .add {
@@ -2628,15 +2660,22 @@ p {
     width: 150px;
     height: 43px;
     padding: 0;
-    margin: -6px;
     border-radius: 50px;
     border: 1px solid var(--theme-color);
     font-size: 18px;
+    gap: 5px;
   }
   .select-style {
     width: 16%;
     margin: 4px;
   }
+
+  a.add-icon-ads {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
   .add a {
     color: #fff;
   }
@@ -3172,10 +3211,10 @@ p {
     margin-top: 30px !important;
   }
   .ad-area {
-    display: grid;
+    display: grid !important;
     width: 100%;
-    grid-template-columns: 75% 25%;
-    border-bottom: dotted 0.5px gray;
+    grid-template-columns: 25% 75%;
+    justify-items: start;
     padding: 0 0 10px 0;
   }
 
@@ -3821,7 +3860,7 @@ p {
   }
 
   .secondeheader {
-    height: 65px;
+    height: auto;
     display: grid;
     grid-template-columns: 30% 50% auto;
     direction: rtl;

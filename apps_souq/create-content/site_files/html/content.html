@@ -25,6 +25,31 @@
           <h2 ng-show="ad.main_category.id" class="col8 bold">##word.category## : {{ad.main_category.name_##session.lang##}} ( {{ad.main_category.v_display}})</h2>
         </div>
 
+        <div class="row border padding">
+          <p class="bold deal_1 font-29"> » إتفاقية العمولة </p>
+          <br>
+          <br>
+          <hr>
+          <br>
+          <p class="deal_1 font-23"> بسم الله الرحمن الرحيم </p>
+          <br>
+          <p class="deal_1 font-23"> قال الله تعالى : <b class="bold">" وَأَوْفُواْ بِعَهْدِ اللهِ إِذَا عَاهَدتُّمْ وَلاَ تَنقُضُواْ الأَيْمَانَ بَعْدَ تَوْكِيدِهَا وَقَدْ جَعَلْتُمُ اللهَ عَلَيْكُمْ كَفِيلاً "</b> صدق الله العظيم</p>
+          <br>
+          <div class="row">
+            <div class="col1">
+              <i-checkbox ng-model="ad.$accept_deal"> </i-checkbox>
+            </div>
+            <div class="col10">
+              <p class="bold deal_1 font-23">  * اتعهد واقسم بالله أنا المعلن أن أدفع عمولة الموقع وهي 1% من قيمة البيع سواء تم البيع عن طريق الموقع أو بسببه.</p>
+              <br>
+              <p class="bold deal_1 font-23"> * كما أتعهد بدفع العمولة خلال 10 أيام من استلام كامل مبلغ المبايعة. </p>
+            </div>
+          </div>
+          <br>
+          <br>
+          <p class="green font-22"> ملاحظة :  عمولة الموقع هي على المعلن ولا تبرأ ذمة المعلن من العمولة إلا في حال دفعها. </p>
+        </div>
+
         <div class="row" ng-show="ad.category_require_list.length > 0">
           <fieldset>
             <legend>##word.ad_require##</legend>

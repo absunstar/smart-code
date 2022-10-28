@@ -30,16 +30,16 @@
           <table x-permissions="login" class="table hover bold" id="t1">
             <tr>
               <th>##word.ad_name##</th>
-              <th>##word.store##</th>
+              <th ng-show="defaultSettings.stores_settings.activate_stores">##word.store##</th>
               <th>##word.ad_owner##</th>
               <th>##word.ad_status##</th>
               <th class="not-print">##word.actions##</th>
             </tr>
             <tr ng-repeat="c in list">
-            
+
               <td class="center title">{{c.name}}</td>
               <td class="center title">{{c.store.name}}</td>
-              <td class="center title">{{c.store.user.profile.name}} {{c.store.user.profile.last_name}}</td>
+              <td class="center title" ng-show="defaultSettings.stores_settings.activate_stores">{{c.store.user.profile.name}} {{c.store.user.profile.last_name}}</td>
               <td class="center title">{{c.ad_status.##session.lang##}}</td>
 
               <td class="center not-print">
