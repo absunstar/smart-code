@@ -299,6 +299,10 @@ p {
     user-select: all;
   }
 
+  #bord_edit:hover {
+    background-color: rgb(245, 245, 245) !important;
+  }
+
   .user-menu .link {
     background: var(--theme-color);
     color: #fff;

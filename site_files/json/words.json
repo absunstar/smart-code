@@ -20,6 +20,11 @@
     "ar": "نشر"
   },
   {
+    "name": "dashboard",
+    "en": "Dashboard",
+    "ar": "لوحة التحكم"
+  },
+  {
     "name": "link",
     "en": "Link",
     "ar": "الرابط"
