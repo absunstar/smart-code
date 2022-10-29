@@ -1,207 +1,213 @@
-<div class="form" id="adAddModal">
-  <fieldset>
+<div class="" id="adAddModal">
+  <fieldset class="row border padding" id="adDeal">
+    <p class="bold deal_1 font-29">» إتفاقية العمولة</p>
+    <br />
+    <br />
+    <hr />
+    <br />
+    <p class="deal_1 font-23">بسم الله الرحمن الرحيم</p>
+    <br />
+    <p class="deal_1 font-23">
+      قال الله تعالى : <b class="bold">" وَأَوْفُواْ بِعَهْدِ اللهِ إِذَا عَاهَدتُّمْ وَلاَ تَنقُضُواْ الأَيْمَانَ بَعْدَ تَوْكِيدِهَا وَقَدْ جَعَلْتُمُ اللهَ عَلَيْكُمْ كَفِيلاً "</b> صدق الله العظيم
+    </p>
+    <br />
     <div class="row">
-      <div class="col9">
-        <div class="row">
-          <i-control help-id="ad_name" v="r ll2" class="col7" label="##word.ad_name##" ng-model="ad.name"></i-control>
-
-          <i-list ng-show="defaultSettings.stores_settings.activate_stores" class="col3" ng-model="ad.store" items="myStoreslist" display="name" ng-search="_search.$store" label="##word.store##"></i-list>
-        </div>
-        <br />
-
-        <div class="row">
-          <i-date2 class="col6" ng-show="defaultSettings.content.publishing_system.id == 2" ng-model="ad.date" label="##word.publishing_date##"></i-date2>
-          <i-date2 class="col6" ng-show="defaultSettings.content.closing_system.id == 2" ng-model="ad.expiry_date" label="##word.expiry_date##"></i-date2>
-        </div>
-
-        <div class="row">
-          <!-- <p class="col3 bold">##word.mobile_number_or_contact_method##</p> : -->
-          <i-checkbox label="##word.hide_mobile_number##" ng-model="ad.hide_mobile"> </i-checkbox>
-          <i-control class="col4" ng-hide="ad.hide_mobile" label="##word.cell_phone_number##" ng-model="ad.mobile"></i-control>
-        </div>
-
-        <div class="row">
-          <i-button type="add" class="col2" label="##word.selection_categories##" ng-click="viewCategories(ad)"></i-button>
-          <h2 ng-show="ad.main_category.id" class="col8 bold">##word.category## : {{ad.main_category.name_##session.lang##}} ( {{ad.main_category.v_display}})</h2>
-        </div>
-
-        <div class="row border padding">
-          <p class="bold deal_1 font-29"> » إتفاقية العمولة </p>
-          <br>
-          <br>
-          <hr>
-          <br>
-          <p class="deal_1 font-23"> بسم الله الرحمن الرحيم </p>
-          <br>
-          <p class="deal_1 font-23"> قال الله تعالى : <b class="bold">" وَأَوْفُواْ بِعَهْدِ اللهِ إِذَا عَاهَدتُّمْ وَلاَ تَنقُضُواْ الأَيْمَانَ بَعْدَ تَوْكِيدِهَا وَقَدْ جَعَلْتُمُ اللهَ عَلَيْكُمْ كَفِيلاً "</b> صدق الله العظيم</p>
-          <br>
-          <div class="row">
-            <div class="col1">
-              <i-checkbox ng-model="ad.$accept_deal"> </i-checkbox>
-            </div>
-            <div class="col10">
-              <p class="bold deal_1 font-23">  * اتعهد واقسم بالله أنا المعلن أن أدفع عمولة الموقع وهي 1% من قيمة البيع سواء تم البيع عن طريق الموقع أو بسببه.</p>
-              <br>
-              <p class="bold deal_1 font-23"> * كما أتعهد بدفع العمولة خلال 10 أيام من استلام كامل مبلغ المبايعة. </p>
-            </div>
-          </div>
-          <br>
-          <br>
-          <p class="green font-22"> ملاحظة :  عمولة الموقع هي على المعلن ولا تبرأ ذمة المعلن من العمولة إلا في حال دفعها. </p>
-        </div>
-
-        <div class="row" ng-show="ad.category_require_list.length > 0">
-          <fieldset>
-            <legend>##word.ad_require##</legend>
-            <div class="row" ng-repeat="c in ad.category_require_list">
-              <i-ad-require ng-model="c"></i-ad-require>
-            </div>
-          </fieldset>
-        </div>
-        <div class="row">
-          <i-textarea ng-model="ad.description" label="##word.description##"> </i-textarea>
-        </div>
-
-        <br />
-      </div>
-
-      <div class="col3">
-        <i-image help-id="ads_logo" ng-model="ad.image_url"></i-image>
-      </div>
-    </div>
-    <br />
-    <br />
-
-    <fieldset class="row" ng-show="defaultSettings.content.upload_photos">
-      <legend>
-        <i-button type="add default" ng-hide="ad.images_list.length >= defaultSettings.content.allowed_number_photo" ng-click="addImage()"></i-button>
-        ##word.ad_images##
-      </legend>
-      <div class="row" ng-repeat="a in ad.images_list">
-        <div class="row">
-          <div class="col3">
-            <i-image help-id="ads_logo" ng-model="a.image_url"></i-image>
-          </div>
-          <div class="col1"></div>
-          <div class="col6">
-            <i-textarea ng-model="a.description" label="##word.description##"> </i-textarea>
-          </div>
-          <div class="col1"></div>
-          <div class="col1">
-            <br />
-            <br />
-            <br />
-            <i-button type="delete" ng-click="ad.images_list.splice($index,1)"> </i-button>
-          </div>
-        </div>
-      </div>
-    </fieldset>
-    <br />
-    <br />
-    <fieldset class="row" ng-show="defaultSettings.content.upload_video">
-      <legend>
-        <i-button type="add default" ng-hide="ad.videos_list.length >= defaultSettings.content.allowed_number_video" ng-click="addVideos()"></i-button>
-        ##word.ad_videos##
-      </legend>
-      <p class="red font-18">##word.please_put_link_video_from_youtube##</p>
+      <p class="bold deal_1 font-23">* اتعهد واقسم بالله أنا المعلن أن أدفع عمولة الموقع وهي 1% من قيمة البيع سواء تم البيع عن طريق الموقع أو بسببه.</p>
       <br />
-      <div class="row" ng-repeat="a in ad.videos_list">
-        <div class="row">
-          <div class="col4">
-            <i-control help-id="ads_logo" label="##word.link##" ng-model="a.link"></i-control>
-          </div>
-          <div class="col6">
-            <i-textarea ng-model="a.description" label="##word.description##"> </i-textarea>
-          </div>
-          <div class="col1"></div>
-          <div class="col1">
-            <br />
-            <br />
-            <br />
-            <i-button type="delete" ng-click="ad.videos_list.splice($index,1)"> </i-button>
-          </div>
-        </div>
-      </div>
-    </fieldset>
-    <br />
-    <br />
-    <div class="row" ng-hide="defaultSettings.stores_settings.activate_stores">
-      <fieldset>
-        <legend>##word.my_addresses##</legend>
-        <div class="row">
-          <fieldset>
-            <legend>##word.main_address##</legend>
-            <i-address ng-model="address.main"></i-address>
-            <i-checkbox label="##word.select##" ng-model="address.select_main" ng-click="selectAddress(address,'main')"></i-checkbox>
-          </fieldset>
-          <br />
-
-          <fieldset ng-show="address.other_list.length > 0">
-            <legend>##word.other_addresses##</legend>
-            <div class="row border padding" ng-repeat="o in address.other_list">
-              <i-address ng-model="o"></i-address>
-              <i-checkbox label="##word.select##" ng-model="o.$select_address" ng-click="selectAddress(address,'other',$index)"></i-checkbox>
-            </div>
-          </fieldset>
-          <br />
-
-          <fieldset>
-            <legend>##word.new_address##</legend>
-            <i-address ng-model="address.new"></i-address>
-            <i-checkbox label="##word.select##" ng-model="address.select_new" ng-click="selectAddress(address,'new')"></i-checkbox>
-          </fieldset>
-        </div>
-      </fieldset>
+      <p class="bold deal_1 font-23">* كما أتعهد بدفع العمولة خلال 10 أيام من استلام كامل مبلغ المبايعة.</p>
     </div>
     <br />
     <br />
-    <div class="row" ng-show="defaultSettings.content.quantities_can_be_used">
-      <h2>##word.Do_you_want_set_price##</h2>
-      <div class="col5">
-        <div class="row">
-          <i-radio class="col6" ng-model="ad.set_price" label="##word.no##" ng-value="no"> </i-radio>
-          <i-radio class="col6" ng-model="ad.set_price" label="##word.yes##" ng-value="yes"></i-radio>
-        </div>
-      </div>
+    <p class="green font-22">ملاحظة : عمولة الموقع هي على المعلن ولا تبرأ ذمة المعلن من العمولة إلا في حال دفعها.</p>
+    <div class="row center">
+      <i-button ng-click="acceptDeal(ad)" label="موافق"> </i-button>
     </div>
-
-    <fieldset class="row" ng-show="ad.set_price == 'yes'">
-      <legend>
-        <i-button type="add default" ng-click="addQuantity()"></i-button>
-        ##word.quantities##
-      </legend>
-      <div class="row" ng-repeat="c in ad.quantity_list">
-        <div class="row">
-          <i-list ng-search="_search.$unit" class="col2" display="name_##session.lang##" ng-model="c.unit" label="##word.unit##" items="unitsList"> </i-list>
-          <i-control help-id="ad_available_quantity" type="number" class="col2" label="##word.available_quantity##" ng-model="c.available_quantity"></i-control>
-          <i-control help-id="ad_maximum_order" type="number" class="col2" label="##word.maximum_order##" ng-model="c.maximum_order"></i-control>
-          <i-control help-id="ad_minimum_order" type="number" class="col2" label="##word.minimum_order##" ng-model="c.minimum_order"></i-control>
-          <i-list ng-search="_search.$currency" class="col2" display="name_##session.lang##" ng-model="c.currency" label="##word.currency##" items="currenciesList"> </i-list>
-        </div>
-
-        <div class="row">
-          <i-control help-id="ad_price" ng-change="calcDiscount(c)" type="number" class="col2" label="##word.price##" ng-model="c.price"></i-control>
-          <i-control help-id="ad_discount" ng-change="calcDiscount(c)" type="number" class="col2" label="##word.discount##" ng-model="c.discount"></i-control>
-
-          <div class="col1">
-            <div class="row">
-              <i-radio ng-click="calcDiscount(c)" ng-model="c.discount_type" label="##word.amount##" ng-value="number"></i-radio>
-              <i-radio ng-click="calcDiscount(c)" ng-model="c.discount_type" label="##word.percent##" ng-value="percent"> </i-radio>
-            </div>
-          </div>
-
-          <i-control help-id="ad_required" type="number" disabled class="col2" label="##word.required##" ng-model="c.net_value"></i-control>
-          <div class="col3"></div>
-          <div class="col1">
-            <br />
-            <i-button type="delete" ng-click="ad.quantity_list.splice($index,1)"> </i-button>
-          </div>
-        </div>
-      </div>
-      <br />
-    </fieldset>
   </fieldset>
-  <br />
-  <br />
+
+  <fieldset id="adCategory">
+    <div class="row category-list">
+      <div class="col2 category" ng-repeat="cat in v_category_list" ng-click="acceptCategory(ad ,  cat)">
+        <img ng-src="{{cat.image_url}}" alt="" />
+        <p>{{cat.name_##session.lang##}}</p>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset id="adContent">
+    <div class="col9">
+      <div class="row">
+        <i-control help-id="ad_name" v="r ll2" class="col7" label="##word.ad_name##" ng-model="ad.name"></i-control>
+
+        <i-list
+          ng-show="defaultSettings.stores_settings.activate_stores"
+          class="col3"
+          ng-model="ad.store"
+          items="myStoreslist"
+          display="name"
+          ng-search="_search.$store"
+          label="##word.store##"
+        ></i-list>
+      </div>
+      <br />
+
+      <h2 ng-show="ad.main_category.id" class="col8 bold">##word.category## : {{ad.main_category.name_##session.lang##}} ( {{ad.main_category.v_display}})</h2>
+
+      <div class="row">
+        <i-date2 class="col6" ng-show="defaultSettings.content.publishing_system.id == 2" ng-model="ad.date" label="##word.publishing_date##"></i-date2>
+        <i-date2 class="col6" ng-show="defaultSettings.content.closing_system.id == 2" ng-model="ad.expiry_date" label="##word.expiry_date##"></i-date2>
+      </div>
+
+      <div class="row">
+        <!-- <p class="col3 bold">##word.mobile_number_or_contact_method##</p> : -->
+        <i-checkbox label="##word.hide_mobile_number##" ng-model="ad.hide_mobile"> </i-checkbox>
+        <i-control class="col4" ng-hide="ad.hide_mobile" label="##word.cell_phone_number##" ng-model="ad.mobile"></i-control>
+      </div>
+
+      <div class="row" ng-show="ad.category_require_list.length > 0">
+        <fieldset>
+          <legend>##word.ad_require##</legend>
+          <div class="row" ng-repeat="c in ad.category_require_list">
+            <i-ad-require ng-model="c"></i-ad-require>
+          </div>
+        </fieldset>
+      </div>
+      <div class="row">
+        <i-textarea ng-model="ad.description" label="##word.description##"> </i-textarea>
+      </div>
+
+      <br />
+    </div>
+
+    <div class="col3">
+      <i-image help-id="ads_logo" ng-model="ad.image_url"></i-image>
+    </div>
+  </fieldset>
+
+  <fieldset class="row" ng-show="defaultSettings.content.upload_photos">
+    <legend>
+      <i-button type="add default" ng-hide="ad.images_list.length >= defaultSettings.content.allowed_number_photo" ng-click="addImage()"></i-button>
+      ##word.ad_images##
+    </legend>
+    <div class="row" ng-repeat="a in ad.images_list">
+      <div class="row">
+        <div class="col3">
+          <i-image help-id="ads_logo" ng-model="a.image_url"></i-image>
+        </div>
+        <div class="col1"></div>
+        <div class="col6">
+          <i-textarea ng-model="a.description" label="##word.description##"> </i-textarea>
+        </div>
+        <div class="col1"></div>
+        <div class="col1">
+          <br />
+          <br />
+          <br />
+          <i-button type="delete" ng-click="ad.images_list.splice($index,1)"> </i-button>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset class="row" ng-show="defaultSettings.content.upload_video">
+    <legend>
+      <i-button type="add default" ng-hide="ad.videos_list.length >= defaultSettings.content.allowed_number_video" ng-click="addVideos()"></i-button>
+      ##word.ad_videos##
+    </legend>
+    <p class="red font-18">##word.please_put_link_video_from_youtube##</p>
+    <br />
+    <div class="row" ng-repeat="a in ad.videos_list">
+      <div class="row">
+        <div class="col4">
+          <i-control help-id="ads_logo" label="##word.link##" ng-model="a.link"></i-control>
+        </div>
+        <div class="col6">
+          <i-textarea ng-model="a.description" label="##word.description##"> </i-textarea>
+        </div>
+        <div class="col1"></div>
+        <div class="col1">
+          <br />
+          <br />
+          <br />
+          <i-button type="delete" ng-click="ad.videos_list.splice($index,1)"> </i-button>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+
+  <div class="row" ng-hide="defaultSettings.stores_settings.activate_stores">
+    <fieldset>
+      <legend>##word.my_addresses##</legend>
+      <div class="row">
+        <fieldset>
+          <legend>##word.main_address##</legend>
+          <i-address ng-model="address.main"></i-address>
+          <i-checkbox label="##word.select##" ng-model="address.select_main" ng-click="selectAddress(address,'main')"></i-checkbox>
+        </fieldset>
+        <br />
+
+        <fieldset ng-show="address.other_list.length > 0">
+          <legend>##word.other_addresses##</legend>
+          <div class="row border padding" ng-repeat="o in address.other_list">
+            <i-address ng-model="o"></i-address>
+            <i-checkbox label="##word.select##" ng-model="o.$select_address" ng-click="selectAddress(address,'other',$index)"></i-checkbox>
+          </div>
+        </fieldset>
+        <br />
+
+        <fieldset>
+          <legend>##word.new_address##</legend>
+          <i-address ng-model="address.new"></i-address>
+          <i-checkbox label="##word.select##" ng-model="address.select_new" ng-click="selectAddress(address,'new')"></i-checkbox>
+        </fieldset>
+      </div>
+    </fieldset>
+  </div>
+
+  <div class="row" ng-show="defaultSettings.content.quantities_can_be_used">
+    <h2>##word.Do_you_want_set_price##</h2>
+    <div class="col5">
+      <div class="row">
+        <i-radio class="col6" ng-model="ad.set_price" label="##word.no##" ng-value="no"> </i-radio>
+        <i-radio class="col6" ng-model="ad.set_price" label="##word.yes##" ng-value="yes"></i-radio>
+      </div>
+    </div>
+  </div>
+
+  <fieldset class="row" ng-show="ad.set_price == 'yes'">
+    <legend>
+      <i-button type="add default" ng-click="addQuantity()"></i-button>
+      ##word.quantities##
+    </legend>
+    <div class="row" ng-repeat="c in ad.quantity_list">
+      <div class="row">
+        <i-list ng-search="_search.$unit" class="col2" display="name_##session.lang##" ng-model="c.unit" label="##word.unit##" items="unitsList"> </i-list>
+        <i-control help-id="ad_available_quantity" type="number" class="col2" label="##word.available_quantity##" ng-model="c.available_quantity"></i-control>
+        <i-control help-id="ad_maximum_order" type="number" class="col2" label="##word.maximum_order##" ng-model="c.maximum_order"></i-control>
+        <i-control help-id="ad_minimum_order" type="number" class="col2" label="##word.minimum_order##" ng-model="c.minimum_order"></i-control>
+        <i-list ng-search="_search.$currency" class="col2" display="name_##session.lang##" ng-model="c.currency" label="##word.currency##" items="currenciesList"> </i-list>
+      </div>
+
+      <div class="row">
+        <i-control help-id="ad_price" ng-change="calcDiscount(c)" type="number" class="col2" label="##word.price##" ng-model="c.price"></i-control>
+        <i-control help-id="ad_discount" ng-change="calcDiscount(c)" type="number" class="col2" label="##word.discount##" ng-model="c.discount"></i-control>
+
+        <div class="col1">
+          <div class="row">
+            <i-radio ng-click="calcDiscount(c)" ng-model="c.discount_type" label="##word.amount##" ng-value="number"></i-radio>
+            <i-radio ng-click="calcDiscount(c)" ng-model="c.discount_type" label="##word.percent##" ng-value="percent"> </i-radio>
+          </div>
+        </div>
+
+        <i-control help-id="ad_required" type="number" disabled class="col2" label="##word.required##" ng-model="c.net_value"></i-control>
+        <div class="col3"></div>
+        <div class="col1">
+          <br />
+          <i-button type="delete" ng-click="ad.quantity_list.splice($index,1)"> </i-button>
+        </div>
+      </div>
+    </div>
+    <br />
+  </fieldset>
+
   <i-button type="add" label="##word.ads_add##" ng-click="addAd()"></i-button>
 </div>

@@ -117,6 +117,20 @@ app.controller('create_content', function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.acceptDeal = function (ad) {
+    ad.$accept_deal = true;
+    $('#adDeal').hide();
+    $('#adCategory').show('slow');
+  };
+
+  $scope.acceptCategory = function (ad, cat) {
+    ad.main_category = cat;
+    if (cat.type == 'primary') {
+      $('#adCategory').hide();
+      $('#adContent').show('slow');
+    }
+  };
+
   $scope.loadMainCategories = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -128,13 +142,14 @@ app.controller('create_content', function ($scope, $http, $timeout) {
         where: {
           status: 'active',
         },
-        select: { id: 1, name_ar: 1, name_en: 1, parent_list_id: 1, top_parent_id: 1, parent_id: 1 },
+        select: { id: 1, name_ar: 1, name_en: 1, parent_list_id: 1, top_parent_id: 1, parent_id: 1, image_url: 1, type: 1 },
       },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.category_list = response.data.list;
+          $scope.v_category_list = response.data.list;
         }
       },
       function (err) {
