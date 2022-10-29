@@ -461,7 +461,7 @@ module.exports = function init(site) {
         select: req.body.select || {},
         where: where,
         sort: req.body.sort || {
-          id: -1,
+          id: 1,
         },
         limit: req.body.limit,
       },

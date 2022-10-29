@@ -14,6 +14,13 @@ module.exports = function init(site) {
   });
 
   site.get({
+    name: 'mailer',
+    path: __dirname + '/site_files/html/mailer.html',
+    parser: 'html',
+    compress: true,
+  });
+
+  site.get({
     name: 'css',
     path: __dirname + '/site_files/css/',
   });
@@ -300,5 +307,35 @@ module.exports = function init(site) {
       }
       res.json(response);
     });
+  });
+
+  site.post('/api/mailer/all', (req, res) => {
+    let response = {
+      done: false,
+    };
+
+    let where = req.body.where || {};
+ 
+
+    $mailer.findMany(
+      {
+        select: req.body.select || {},
+        where: where,
+        sort: req.body.sort || {
+          id: -1,
+        },
+        limit: req.body.limit,
+      },
+      (err, docs, count) => {
+        if (!err) {
+          response.done = true;
+          response.list = docs;
+          response.count = count;
+        } else {
+          response.error = err.message;
+        }
+        res.json(response);
+      }
+    );
   });
 };

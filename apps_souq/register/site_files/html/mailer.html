@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ar" x-permissions="login" x-feature="host.test" data-ng-app="myApp">
+  <head>
+    <title>##word.brand_title##</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/font6.css" />
+    <link rel="stylesheet" href="/x-css/all.css" />
+    <link rel="stylesheet" href="/x-css/font-cairo.css" />
+    <link rel="icon" type="image/x-icon" href="##setting.logo##" />
+    <style>
+      * {
+        max-width: initial;
+      }
+      :root {
+        --body-margin-top: 0px;
+        --body-margin-bottom: 0px;
+        --zoom: 100%;
+        --fieldset-border: none;
+        --fieldset-background: #fff;
+      }
+      body {
+        background-color: #bbb !important;
+        background-image: url(/assets/palm.svg) !important;
+        background-repeat: repeat !important;
+      }
+    </style>
+    <style x-lang="ar">
+      .nav1 {
+        flex-direction: initial;
+        padding: 7px;
+      }
+      :root {
+        --direction: rtl;
+        --text-align: right;
+        --float: right;
+      }
+    </style>
+  </head>
+
+  <body class="##session.lang## loaded" ng-controller="mailer">
+    <div x-import="haraj/header.html"></div>
+
+    <div id="main-layout" class="container">
+      <div class="row">
+        <h1 class="bold text-center">##word.mailer##</h1>
+      </div>
+
+      <div class="row">
+        <table x-permissions="login" class="table hover bold" >
+          <tr>
+            <th>##word.name##</th>
+            <th>##word.code##</th>
+            <th>##word.type##</th>
+          </tr>
+          <tr ng-repeat="c in list">
+
+            <td class="center title">{{c.mobile || c.email}}</td>
+            <td class="center userPrint title">{{c.code}}</td>
+            <td class="center">
+              {{c.type}}
+            </td>
+
+          </tr>
+        </table>
+      </div>
+    </div>
+    <footer class="footer ng-scope" x-import="haraj/footer.html" ng-controller="footer_herag"></footer>
+    <div x-import="haraj/scripts.html"></div>
+
+    <script x-permissions="login" x-import="register/mailer.js"></script>
+  </body>
+</html>

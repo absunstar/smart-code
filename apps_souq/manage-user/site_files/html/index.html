@@ -1,11 +1,56 @@
 <!DOCTYPE html>
 <html lang="en" x-permissions="login" data-ng-app="myApp">
-  <head x-import="haraj/head.html"></head>
+  <head>
+    <title>##word.brand_title##</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/font6.css" />
+    <link rel="stylesheet" href="/x-css/all.css" />
+    <link rel="stylesheet" href="/x-css/font-cairo.css" />
+    <style>
+      * {
+        max-width: initial;
+      }
+      .dimgray {
+        color: dimgray;
+      }
+      :root {
+        --body-margin-top: 0px;
+        --body-margin-bottom: 0px;
+        --zoom: 100%;
+        --fieldset-border: none;
+        --fieldset-background: #fff;
+      }
+      body {
+        background-color: #bbb !important;
+        background-image: url(/assets/palm.svg) !important;
+        background-repeat: repeat !important;
+      }
+      .tabs .tabs-header .tab-link.active {
+        border-radius: 5px;
+
+      }
+      .tabs .tabs-header .tab-link {
+        border-radius: 5px;
+      }
+    </style>
+    <style x-lang="ar">
+      .nav1 {
+        flex-direction: initial;
+        padding: 7px;
+      }
+      :root {
+        --direction: rtl;
+        --text-align: right;
+        --float: right;
+      }
+    </style>
+  </head>
 
   <body class="##session.lang## loaded" ng-controller="manage_user">
-    <nav x-import="haraj/sitebar.html" class="sitebar" data-ng-controller="sitebar"></nav>
-
-    <nav class="sitebottom" x-import="haraj/sitebottom.html" ng-controller="sitebottom"></nav>
+  
     <div x-import="manage-user/view_modal.html"></div>
     <div x-import="manage-user/order_modal.html"></div>
     <div x-import="manage-user/add_modal_ad.html"></div>
@@ -27,7 +72,7 @@
         <div class="tabs-header">
           <a class="tab-link" onclick="site.showTabContent(event, '#personal_info')"> ##word.personal_info## </a>
           <a class="tab-link" ng-click="showTab($event,'#my_addresses')"> ##word.my_addresses## </a>
-          <a class="tab-link" onclick="site.showTabContent(event, '#cart')"> ##word.cart## </a>
+          <a class="tab-link" onclick="site.showTabContent(event, '#cart')" ng-show="defaultSettings.order_settings.activate_orders"> ##word.cart## </a>
           <a class="tab-link" ng-click="showTab($event,'#my_orders')" ng-show="defaultSettings.order_settings.activate_orders"> ##word.my_orders## </a>
           <a class="tab-link" ng-click="showTab($event,'#my_ads')"> ##word.my_ads## </a>
           <a class="tab-link" ng-click="showTab($event,'#my_stores')" ng-show="defaultSettings.stores_settings.activate_stores"> ##word.my_stores## </a>
@@ -198,7 +243,7 @@
             </fieldset>
           </div>
 
-          <div id="cart" class="tab-content">
+          <div id="cart" ng-show="defaultSettings.order_settings.activate_orders" class="tab-content">
             <fieldset>
               <legend>##word.cart##</legend>
               <br />
@@ -418,6 +463,8 @@
       </div>
     </div>
     <!-- <script src="../js/script.js"></script> -->
+    <footer class="footer ng-scope" x-import="haraj/footer.html" ng-controller="footer_herag"></footer>
+
     <div x-import="haraj/scripts.html"></div>
 
     <script x-import="manage-user/index.js"></script>
