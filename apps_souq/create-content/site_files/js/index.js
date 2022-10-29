@@ -64,17 +64,19 @@ app.controller('create_content', function ($scope, $http, $timeout) {
     }
 
     if (!$scope.defaultSettings.stores_settings.activate_stores) {
-      if ($scope.address.select_main) {
-        $scope.ad.address = $scope.address.main;
-      } else if ($scope.address.select_new) {
-        $scope.ad.address = $scope.address.new;
-      } else {
-        $scope.address.other_list = $scope.address.other_list || [];
-        $scope.address.other_list.forEach((_other) => {
-          if (_other.$select_address) {
-            $scope.ad.address = { ..._other };
-          }
-        });
+      if ($scope.address) {
+        if ($scope.address.select_main) {
+          $scope.ad.address = $scope.address.main;
+        } else if ($scope.address.select_new) {
+          $scope.ad.address = $scope.address.new;
+        } else {
+          $scope.address.other_list = $scope.address.other_list || [];
+          $scope.address.other_list.forEach((_other) => {
+            if (_other.$select_address) {
+              $scope.ad.address = { ..._other };
+            }
+          });
+        }
       }
     } else if ($scope.ad.store) {
       $scope.ad.address = $scope.ad.store.address;

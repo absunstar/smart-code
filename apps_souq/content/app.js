@@ -97,8 +97,9 @@ module.exports = function init(site) {
       let store = site.store_list.find((_store) => {
         return _store.user.id === req.session.user.id;
       });
-
-      ads_doc.store = { id: store.id, name: store.name, user: store.user, address: store.address };
+      if (store) {
+        ads_doc.store = { id: store.id, name: store.name, user: store.user, address: store.address };
+      }
     }
 
     foundUserFeedback = ads_doc.feedback_list.every((_f) => _f.user && _f.user.id);
@@ -444,8 +445,7 @@ module.exports = function init(site) {
     let d2 = site.toDate(new Date());
     d2.setDate(d2.getDate() + 1);
 
-    if(req.body.post) {
-
+    if (req.body.post) {
       where.date = {
         $lte: d2,
       };
