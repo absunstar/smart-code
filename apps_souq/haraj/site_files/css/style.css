@@ -6,6 +6,14 @@
   --theme-color2: #019777;
   --font-family: 'Arabic', sans-serif;
 }
+.border-radius5 {
+  border-radius: 5px;
+}
+.margin5 {
+  margin : 5px !important
+}
+
+.pointer {cursor: pointer;}
 .font-26 {
   font-size: 26px !important;
 }

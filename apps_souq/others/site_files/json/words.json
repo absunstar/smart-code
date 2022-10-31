@@ -30,6 +30,11 @@
     "ar": "المتابعات"
   },
   {
+    "name": "follower",
+    "en": "Follower",
+    "ar": "متابع"
+  },
+  {
     "name": "instant_alerts",
     "en": "Instant Alerts",
     "ar": "التنبيهات الفورية"

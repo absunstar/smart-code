@@ -103,6 +103,21 @@
                   <tr>
                     <td class="blue">
                       <br />
+                      ##word.cover_photo##
+                    </td>
+
+                    <td>
+                      <i-image view class="logo" ng-model="manage_user.profile.cover"></i-image>
+                    </td>
+
+                    <td>
+                      <i-button type="update" label="##word.update##" ng-click="view('cover')"> </i-button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="blue">
+                      <br />
                       ##word.user_name##
                     </td>
 
@@ -228,7 +243,7 @@
                 <br />
                 <br />
 
-                <fieldset>
+                <fieldset ng-show="##setting.content.other_addresses_appear##">
                   <legend>
                     ##word.other_addresses##
                     <i-button type="add default" ng-click=" manage_user.profile.other_addresses_list.push({})"></i-button>

@@ -257,7 +257,7 @@
         <main class="tagMain">
           <div class="row">
             <select class="select-style form-select col" ng-model="search.country" ng-change="getGovesList(search.country);searchAll(search)" ng-options="s as (s.name_##session.lang##)   for s in countriesList">
-              <option value="" selected>(##word.country##)</option>
+              <option value=""  selected> <img loading="lazy" height="30" width="30" ng-src="{{s.image_url}}" /> (##word.country##)</option>
             </select>
 
             <select class="select-style form-select col" ng-show="search.country.id" ng-model="search.gov" ng-change="getCityList(search.gov);searchAll(search)" ng-options="s as (s.name_##session.lang##)   for s in govesList">
@@ -280,11 +280,11 @@
               <div ng-repeat="a in contentList" class="ads-area even">
                 <div class="ad-area  padding box-shadow">
                   <div class="row center padding">
-                    <img loading="lazy" ng-click="displayContent(a.id)" class="svg-size-5x" ng-src="{{a.image_url}}" />
+                    <img loading="lazy" ng-click="displayContent(a.id)" class="svg-size-5x pointer" ng-src="{{a.image_url}}" />
                   </div>
                   <div class="row padding">
                     <div class="ads-info">
-                      <b class="bold col4 ad-name" ng-click="displayContent(a.id)">{{a.name}}</b>
+                      <b class="bold col4 ad-name pointer" ng-click="displayContent(a.id)">{{a.name}}</b>
                       <div class="info">
                         <div class="row user-action">
                           <!-- <i class="fa-solid fa-cart-shopping" ng-hide="a.store.user.id == user.id"
@@ -297,7 +297,7 @@
                             <a class="btn" ng-show="##setting.order_settings.activate_orders## && a.store.user.id != user.id" x-permission="login" ng-click="bookList(a,0)">
                               <i class="fa fa-shopping-cart"></i>
                             </a>
-                            <i-checkbox label="##word.favorite##" ng-click="updateFeedback(a,'favorite')" ng-model="a.$favorite"> </i-checkbox>
+                            <i-checkbox label="##word.favorite##" class="pointer" ng-click="updateFeedback(a,'favorite')" ng-model="a.$favorite"> </i-checkbox>
                           </div>
                         </div>
                       </div>

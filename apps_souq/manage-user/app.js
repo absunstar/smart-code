@@ -142,7 +142,7 @@ module.exports = function init(site) {
             } else {
               _user.password = req.body.user.new_password;
             }
-          } else if (type === 'first_name' || type === 'name' || type === 'logo' || type === 'birth_date' || type === 'gender' || type === 'name' || type === 'phone' || type === 'mobile') {
+          } else if (type === 'first_name' || type === 'name'  || type === 'cover' || type === 'logo' || type === 'birth_date' || type === 'gender' || type === 'name' || type === 'phone' || type === 'mobile') {
             _user.profile = req.body.user.profile;
           }
 

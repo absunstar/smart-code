@@ -310,16 +310,16 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
         where: {
           status: 'active',
         },
+        top : true,
       },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.category_list = response.data.list;
-          $scope.topParentCategoriesList = [];
+          $scope.topParentCategoriesList = response.data.top_list;
           $scope.category_list.forEach((_c) => {
             if (!_c.top_parent_id) {
-              $scope.topParentCategoriesList.push(_c);
               if (site.toNumber('##query.id##') == _c.id) {
                 $scope.loadSubCategory(_c);
               }

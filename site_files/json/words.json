@@ -9,6 +9,13 @@
     "en": "TTL",
     "ar": "TTL"
   },
+  {"name" : "details" , "en":"Details" , "ar" : "التفاصيل"},
+
+  {
+    "name": "cover_photo",
+    "en": "Cover Photo",
+    "ar": "صورة الغلاف"
+  },
   {
     "name": "notifications",
     "en": "Notifications",

@@ -110,9 +110,9 @@
     "ar": "إلى تاريخ"
   },
   {
-    "name": "addresses_appear",
-    "en": "Addresses appear",
-    "ar": "ظهور العناوين"
+    "name": "other_addresses_appear",
+    "en": "Other addresses appear",
+    "ar": "ظهور العناوين الأخرى"
   },
   {
     "name": "order_settings",
@@ -380,6 +380,11 @@
     "ar": "المدفوع"
   },
   {
+    "name": "allowed_number",
+    "en": "Allowed Number",
+    "ar": "العدد المسموح"
+  },
+  {
     "name": "default_setting_tenant_date",
     "en": "Offer Date",
     "ar": "التاريخ"
@@ -387,7 +392,7 @@
   {
     "name": "ads_settings",
     "en": "Ads settings",
-    "ar": "إعدادات الإعلاانات"
+    "ar": "إعدادات الإعلانات"
   },
   {
     "name": "default_image_for_ad",
@@ -428,6 +433,11 @@
     "name": "quantities_can_be_used",
     "en": "Quantities can be used",
     "ar": "إمكانية إستخدام الكميات"
+  },
+  {
+    "name": "currencies_can_be_used",
+    "en": "Currencies can be used",
+    "ar": "إمكانية إستخدام العملات"
   },
   {
     "name": "upload_photos",

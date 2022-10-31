@@ -309,6 +309,15 @@ module.exports = function init(site) {
         if (!err) {
           response.done = true;
           response.list = docs;
+          response.top_list = [];
+          if(req.body.top) {
+            docs.forEach(_doc => {
+              if(!_doc.top_parent_id) {
+                response.top_list.push(_doc)
+              }
+            });
+
+          }
           response.count = count;
         } else {
           response.error = err.message;

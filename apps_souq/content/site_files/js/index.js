@@ -27,7 +27,6 @@ app.controller('contents', function ($scope, $http, $timeout) {
       if ($scope.defaultSettings.content.status) {
         $scope.ad.ad_status = $scope.defaultSettings.content.status;
       }
-      if ($scope.defaultSettings.content.quantities_can_be_used) {
         $scope.ad.quantity_list = [
           {
             price: 0,
@@ -39,7 +38,7 @@ app.controller('contents', function ($scope, $http, $timeout) {
             minimum_order: 0,
           },
         ];
-      }
+      
       if ($scope.defaultSettings.content.upload_photos) {
         $scope.ad.images_list = [{}];
       }

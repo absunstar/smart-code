@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/font6.css" />
+    <link rel="stylesheet" href="/css/haraj.css" />
     <link rel="stylesheet" href="/x-css/all.css" />
     <link rel="stylesheet" href="/x-css/font-cairo.css" />
     <style>
@@ -57,36 +57,47 @@
       <div x-import="profile/message_modal.html"></div>
       <div class="row">
         <fieldset>
+
           <div class="col3">
-            <div class="tabs" style="
-            width:1400px;
-        ">
+            <div class="tabs" style="width:1400px;">
               <div class="tabs-header">
                 <a class="tab-link" onclick="site.showTabContent(event, '#user_contents')"> ##word.contents## </a>
                 <a class="tab-link" onclick="site.showTabContent(event, '#ratings')"> ##word.ratings## </a>
               </div>
             </div>
           </div>
-          <div class="center col6">
-            <i-image help-id="currency_logo" class="border-circle center" view ng-model="user.profile.image_url"></i-image>
-            <div class="ad-user center">
-              <i class="fa-solid fa-user fa-style"></i>
-              <h1 class="user-name-stlye center">{{user.profile.name}} {{user.profile.last_name}}</h1>
-            </div>
-            <h2 class="user-name-stlye center">{{user.email}}</h2>
-            <i-button x-permissions="login" label="##word.follow##" ng-show="!user.$is_follow && !user.$same_email" ng-click="updateFollow(user,true)"></i-button>
-            <i-button x-permissions="login" label="##word.unfollow##" ng-show="user.$is_follow && !user.$same_email" ng-click="updateFollow(user,false)"></i-button>
-            <i-button fa="envelope" x-permissions="login" ng-show="!user.$same_email" label="##word.conversation##" onclick="site.showModal('#messageModal')"></i-button>
-            <a class="row" ng-show="user.mobile" href="tel:{{user.mobile}}">
-              {{user.mobile}}
-              <i class="fa fa-mobile" aria-hidden="true"></i>
-            </a>
-
-            <a class="row" ng-show="user.phone" href="tel:{{user.phone}}">
-              {{user.phone}}
-              <i class="fa fa-phone" aria-hidden="true"></i>
-            </a>
+          <div class="center col9" style="
+          padding: 25px;
+          border-radius: 5px;
+          background: url({{user.profile.cover}});
+          background-repeat: no-repeat;
+          background-size: 100% 80%;
+        "> 
+         <div class="center">
+   
+          <i-image style="border-radius: 5px;" class="border-circle center" view ng-model="user.profile.image_url"></i-image>
+          <div class="ad-user center">
+            <h1 class="user-name-stlye center">{{user.profile.name}} {{user.profile.last_name}}</h1>
           </div>
+          <h2 class="user-name-stlye center">{{user.email}}</h2>
+          <i-button x-permissions="login" label="##word.follow##" ng-show="!user.$is_follow && !user.$same_email" ng-click="updateFollow(user,true)"></i-button>
+          <i-button x-permissions="login" label="##word.unfollow##" ng-show="user.$is_follow && !user.$same_email" ng-click="updateFollow(user,false)"></i-button>
+          <i-button fa="envelope" x-permissions="login" ng-show="!user.$same_email" label="##word.conversation##" onclick="site.showModal('#messageModal')"></i-button>
+          <a class="row" ng-show="user.mobile" href="tel:{{user.mobile}}">
+            {{user.mobile}}
+            <i class="fa fa-mobile" aria-hidden="true"></i>
+          </a>
+
+          <a class="row center" ng-show="user.phone" href="tel:{{user.phone}}">
+            {{user.phone}}
+            <i class="fa fa-phone" aria-hidden="true"></i>
+          </a>
+          <h2 class="center">{{user.followers_list.length}} ##word.follower##</h2>
+        </div>
+           
+          </div>
+        </div>
+
         </fieldset>
       </div>
       <div  x-import="profile/tabs_content.html"></div>

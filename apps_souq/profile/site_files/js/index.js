@@ -1,6 +1,5 @@
 let btn1 = document.querySelector("#user_contents .tab-link");
 if (btn1) {
-  console.log("ffffffffffffffffffffffffff");
   btn1.click();
 }
 
