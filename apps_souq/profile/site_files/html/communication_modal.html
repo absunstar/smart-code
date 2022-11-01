@@ -7,12 +7,11 @@
     <div class="modal-body">
       <div class="row">
         <p>##word.communicate_with_advertiser##</p>
-        <a class="row" ng-show="main_obj.mobile" href="tel:{{main_obj.mobile}}">
-          {{main_obj.mobile}}
+        <a class="row" ng-show="user.mobile" href="tel:{{user.mobile}}">
+          {{user.mobile}}
           <i class="fa fa-mobile" aria-hidden="true"></i>
         </a>
 
-        <i-button class="row" fa="envelope" label="##word.message##" ng-hide="main_obj.store.user.id == user.id || main_obj.user.id == user.id" onclick="site.showModal('#messageModal');site.hideModal('#communicationModal')"></i-button>
       </div>
       <h2 class="error center bold">{{error}}</h2>
       <div class="modal-footer center">

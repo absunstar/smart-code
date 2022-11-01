@@ -47,6 +47,7 @@
     margin: 10px 0px 10px 0px;
     border: 1px solid currentColor;
     border-radius: 50px;
+    height: 40px;
   }
 
   .searchgroup {
@@ -387,14 +388,14 @@
     z-index: 998;
   }
 
-  .add {
+  .add-button {
     display: flex;
     justify-content: center;
     align-items: center;
     color: white;
     background-color: var(--theme-color);
-    width: 50px;
-    height: 50px;
+    width: 90px;
+    height: 40px;
     padding: 0;
     border-radius: 50px;
     border: 1px solid var(--theme-color);
@@ -405,7 +406,7 @@
     display: flex !important;
   }
 
-  .add a {
+  .add-button a {
     display: none;
   }
 
@@ -1094,7 +1095,7 @@
 
   .brand-logos--svg {
     border: 1px solid #f3f3f3;
-    padding: 8px;
+    padding: 3px;
     color: #a1a1a1;
     display: flex;
     justify-content: center;
@@ -1103,8 +1104,8 @@
     flex-direction: column;
     text-align: center;
     overflow: hidden;
-    height: 78px;
-    width: 78px;
+    height: 65px;
+    width: 65px;
     font-weight: 500;
     text-decoration: none;
     box-sizing: border-box;
@@ -1164,8 +1165,8 @@
   }
 
   i-button .btn {
-    background-color: var(--theme-color);
-    color: #fff;
+   /*  background-color: var(--theme-color);
+    color: #fff; */
     padding: 8px 8px;
     border-radius: 25px;
   }
@@ -1217,7 +1218,7 @@
     padding-top: 5px !important;
   }
   .ad-area {
-    display: grid;
+    display: block;
     width: auto;
     grid-template-columns: 30% 70%;
     justify-items: start;
@@ -1719,7 +1720,7 @@
   }
 
   .info {
-    display: grid;
+    display: block;
     grid-template-columns: 60% 40%;
     grid-template-rows: 50% 50%;
   }

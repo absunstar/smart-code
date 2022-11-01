@@ -1,91 +1,126 @@
-<div class="tabs inline-block">
-  <div class="tabs-content">
-    <div id="user_contents" class="tab-content">
-      <fieldset class="ads-section">
-        <div class="row" ng-show="contentList.length < 1 && contentList">
-          <h1 class="blue bold center">##word.there_no_ads##</h1>
-        </div>
-        <div ng-repeat="a in contentList" ng-show="contentList.length > 0" class="ads-area even">
-          <div class="ad-area">
+<div class="row ">
+  <a class="btn" onclick="$('#user_contents').show()"> ##word.contents## </a>
+  <a class="btn" onclick="$('#ratings').show()"> ##word.ratings## </a>
+  <div id="user_contents" class="">
+    <fieldset class="ads-section">
+      <div class="row" ng-show="contentList.length < 1 && contentList">
+        <h1 class="blue bold center">##word.there_no_ads##</h1>
+      </div>
+
+
+      <div ng-repeat="a in contentList" class="ads-area even">
+        <div class="ad-area  padding box-shadow">
+          <div class="row center padding">
+            <img loading="lazy" ng-click="displayContent(a.id)" class="svg-size-5x pointer" ng-src="{{a.image_url}}" />
+          </div>
+          <div class="row padding">
             <div class="ads-info">
-              <b class="bold col4 ad-name" ng-click="displayContent(a.id)">{{a.name}}</b>
-              <img loading="lazy" ng-click="displayContent(a.id)" height="100" width="100" class="svg-size-5x" ng-src="{{a.image_url}}" />
+              <b class="bold col4 ad-name pointer" ng-click="displayContent(a.id)">{{a.name}}</b>
+              <div class="info">
+                <div class="row user-action">
+
+                  <div class="u-action">
+
+                    <a class="btn" ng-show="##setting.order_settings.activate_orders## && a.store.user.id != user.id"
+                      x-permission="login" ng-click="bookList(a,0)">
+                      <i class="fa fa-shopping-cart"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
               <div class="time-publish">
-                <i class="fa-solid fa-clock">{{a.$time}} </i>
+                <i class="fa-solid fa-clock"> {{a.$time}} </i>
               </div>
               <div class="ad-location">
                 <i class="fa-solid fa-location-pin"></i>
                 <div class="adress">
-                  <p class="location" ng-show="a.address.country">{{a.address.country.name_##session.lang##}} - {{a.address.gov.name_##session.lang##}} - {{a.address.city.name_##session.lang##}} - {{a.address.area.name_##session.lang##}}</p>
+                  <b class="location" ng-show="a.address.country"> {{a.address.country.name_##session.lang##}} </b>
+                  <b class="location" ng-show="a.address.gov"> - {{a.address.gov.name_##session.lang##}} </b>
+                  <b class="location" ng-show="a.address.city"> - {{a.address.city.name_##session.lang##}} </b>
+                  <b class="location" ng-show="a.address.area"> - {{a.address.area.name_##session.lang##}} </b>
                   <p class="location">{{a.address.detailed_address}}</p>
                 </div>
               </div>
+              <div class="row">
+                <p class="ad-owner">
+                  <i class="fa-solid fa-user"></i>
+                  <a href="/profile?id={{a.store.user.id}}"> {{a.store.user.profile.name}}</a>
+                </p>
+                <p class="ad-price" ng-show="a.set_price == 'yes'" ng-repeat="q in a.quantity_list">
+                  <b>{{q.unit.name_##session.lang##}} {{q.net_value}} {{q.currency.name_##session.lang##}}</b>
+                </p>
+              </div>
             </div>
           </div>
         </div>
-      </fieldset>
-      <i-button type="default left" fa="2x fa-angle-double-left" onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
-    </div>
+      </div>
+    </fieldset>
+    <i-button type="default left" fa="2x fa-angle-double-left"
+      onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
+  </div>
 
-    <div id="ratings" class="tab-content">
-      <fieldset class="ads-section">
-        <div class="row" ng-show="ratingList.length < 1 && ratingList">
-          <br />
-          <br />
-          <h1 class="blue bold center">##word.there_no_ratings##</h1>
+  <div id="ratings" class="">
+    <fieldset class="ads-section">
+      <div class="row" ng-show="ratingList.length < 1 && ratingList">
+        <br />
+        <br />
+        <h1 class="blue bold center">##word.there_no_ratings##</h1>
+      </div>
+      <div class="row">
+        <div class="col3"></div>
+        <div class="col5">
+          <table ng-show="ratingList.length > 0" class="table hover bold">
+            <tr>
+              <th>##word.number_of_ratings##</th>
+              <th>##word.positive_rating##</th>
+              <th>##word.negative_rating##</th>
+            </tr>
+            <tr>
+              <td class="center title">{{count}}</td>
+              <td class="center green">
+                {{positive}}
+                <button disabled type="button"><i class="fa fa-thumbs-up" aria-hidden="true"></i></button>
+              </td>
+              <td class="center red">
+                {{negative}}
+                <button disabled type="button"><i class="fa fa-thumbs-down" aria-hidden="true"></i></button>
+              </td>
+            </tr>
+          </table>
         </div>
+        <div class="col2">
+          <i-button x-permissions="login" ng-hide="exist_user || userId == user.id" label="##word.add_rating##"
+            onclick="site.showModal('#ratingModal')"></i-button>
+
+        </div>
+      </div>
+
+      <div ng-repeat="r in ratingList" class="ads-area even padding border">
         <div class="row">
-          <div class="col3"></div>
-          <div class="col5">
-            <table ng-show="ratingList.length > 0" class="table hover bold">
-              <tr>
-                <th>##word.number_of_ratings##</th>
-                <th>##word.positive_rating##</th>
-                <th>##word.negative_rating##</th>
-              </tr>
-              <tr>
-                <td class="center title">{{count}}</td>
-                <td class="center green">
-                  {{positive}}
-                  <button disabled type="button"><i class="fa fa-thumbs-up" aria-hidden="true"></i></button>
-                </td>
-                <td class="center red">
-                  {{negative}}
-                  <button disabled type="button"><i class="fa fa-thumbs-down" aria-hidden="true"></i></button>
-                </td>
-              </tr>
-            </table>
+          <div class="col3">
+            <div class="time-publish">
+              <i class="fa-solid fa-clock">{{r.date |date:"dd - MM - yyyy"}} </i>
+            </div>
+            <p class="ad-owner">
+              <i class="fa-solid fa-user"></i>
+              <a href="/profile?id={{r.sender.id}}"> {{r.sender.email}}</a>
+            </p>
           </div>
           <div class="col2">
-          <i-button x-permissions="login" ng-hide="exist_user || userId == user.id" label="##word.add_rating##" onclick="site.showModal('#ratingModal')"></i-button>
-
+            <button disabled class="like center" ng-show="r.recommend == 'yes'" type="button"><i class="fa fa-thumbs-up"
+                aria-hidden="true"></i></button>
+            <button disabled class="like center" ng-show="r.recommend == 'no'" type="button"><i
+                class="fa fa-thumbs-down" aria-hidden="true"></i></button>
           </div>
         </div>
-
-        <div ng-repeat="r in ratingList" class="ads-area even padding border">
-          <div class="row">
-            <div class="col3">
-              <div class="time-publish">
-                <i class="fa-solid fa-clock">{{r.date |date:"dd - MM - yyyy"}} </i>
-              </div>
-              <p class="ad-owner">
-                <i class="fa-solid fa-user"></i>
-                <a href="/profile?id={{r.sender.id}}"> {{r.sender.email}}</a>
-              </p>
-            </div>
-            <div class="col2">
-              <button disabled ng-show="r.recommend == 'yes'" type="button"><i class="fa fa-thumbs-up" aria-hidden="true"></i></button>
-              <button disabled ng-show="r.recommend == 'no'" type="button"><i class="fa fa-thumbs-down" aria-hidden="true"></i></button>
-            </div>
-          </div>
-          <div class="row">
-            <div class="ads-info">
-              <b class="bold dimgray pre_text" ng-click="displayContent(a.id)">{{r.notes}}</b>
-            </div>
+        <div class="row">
+          <div class="ads-info">
+            <b class="bold dimgray pre_text" ng-click="displayContent(a.id)">{{r.notes}}</b>
           </div>
         </div>
-      </fieldset>
-      <i-button type="default left" fa="2x fa-angle-double-left" onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
-    </div>
+      </div>
+    </fieldset>
+    <i-button type="default left" fa="2x fa-angle-double-left"
+      onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
   </div>
 </div>

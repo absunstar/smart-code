@@ -179,10 +179,13 @@ popup item:hover {
 .user-menu hr {
   margin: 10px;
 }
-
+.border-circle {
+  border-radius: 50%;
+}
 .info img {
-  height: 32px;
-  width: 32px;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
   box-shadow: 1px 1px 5px 2px #fff;
 }
 .profile img {

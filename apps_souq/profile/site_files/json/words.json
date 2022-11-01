@@ -6,6 +6,21 @@
         "ar": "الإعلانات"
     },
     {
+        "name": "no_rating",
+        "en": "No rating",
+        "ar": "لا يوجد تقييم"
+    },
+    {
+        "name": "rating",
+        "en": "rating",
+        "ar": "تقييم"
+    },
+    {
+        "name": "no_followers",
+        "en": "No Followers",
+        "ar": "لا يوجد متابعين"
+    },
+    {
         "name": "positive_rating",
         "en": "Positive rating",
         "ar": "تقييم إيجابي"

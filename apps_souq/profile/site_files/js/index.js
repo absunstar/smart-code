@@ -1,4 +1,4 @@
-let btn1 = document.querySelector("#user_contents .tab-link");
+let btn1 = document.querySelector(".tab-link");
 if (btn1) {
   btn1.click();
 }
@@ -150,6 +150,10 @@ app.controller('profile', function ($scope, $http, $timeout) {
 
   $scope.displayContent = function (id) {
     window.open(`/display_content?id=${id}`, '_blank');
+  };
+
+  $scope.displayManagePersonalAccount = function () {
+    window.open(`/manage_user`, '_blank');
   };
 
   $scope.updateFollow = function (user, follow) {

@@ -1,112 +1,257 @@
 <!DOCTYPE html>
 <html lang="en" data-ng-app="myApp">
-  <head>
-    <title>##word.brand_title##</title>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/haraj.css" />
-    <link rel="stylesheet" href="/x-css/all.css" />
-    <link rel="stylesheet" href="/x-css/font-cairo.css" />
-    <style>
-      * {
-        max-width: initial;
+
+<head>
+  <title>##word.brand_title##</title>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/css/haraj.css" />
+  <link rel="stylesheet" href="/x-css/all.css" />
+  <style>
+    .popup {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    .like {
+      height: 30px !important;
+      width: 30px;
+      margin-top: 8px !important;
+    }
+
+    /* The actual popup */
+    .popup .popuptext {
+      visibility: hidden;
+      width: 160px;
+      background-color: #555;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 8px 0;
+      position: absolute;
+      z-index: 1;
+      bottom: 125%;
+      left: 50%;
+      margin-left: -80px;
+    }
+
+    /* Popup arrow */
+    .popup .popuptext::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: #555 transparent transparent transparent;
+    }
+
+    .popup .show {
+      visibility: visible;
+      -webkit-animation: fadeIn 1s;
+      animation: fadeIn 1s;
+    }
+
+    /* Add animation (fade in the popup) */
+    @-webkit-keyframes fadeIn {
+      from {
+        opacity: 0;
       }
-      .dimgray {
-        color: dimgray;
+
+      to {
+        opacity: 1;
       }
-      :root {
-        --body-margin-top: 0px;
-        --body-margin-bottom: 0px;
-        --zoom: 100%;
-        --fieldset-border: none;
-        --fieldset-background: #fff;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
       }
-      body {
-        background-color: #bbb !important;
-        background-image: url(/assets/palm.svg) !important;
-        background-repeat: repeat !important;
+
+      to {
+        opacity: 1;
       }
-      .tabs .tabs-header .tab-link.active {
+    }
+
+    * {
+      max-width: initial;
+    }
+
+    .dimgray {
+      color: dimgray;
+    }
+
+    .darkgreen {
+      color: #00a884;
+    }
+
+    :root {
+      --body-margin-top: 0px;
+      --body-margin-bottom: 0px;
+      --zoom: 100%;
+      --fieldset-border: none;
+      --fieldset-background: #fff;
+    }
+
+    body {
+      background-color: #bbb !important;
+      background-image: url(/assets/palm.svg) !important;
+      background-repeat: repeat !important;
+    }
+
+    .tabs .tabs-header .tab-link.active {
+      border-radius: 5px;
+
+    }
+
+    .tabs .tabs-header .tab-link {
+      border-radius: 5px;
+    }
+
+    .user-background {
+      display: block;
+      width: 100% !important;
+      height: 300px !important;
+    }
+
+    .user-background img {
+      width: 100%;
+      height: 400px;
+    }
+
+    .user-cover {
+      width: 256px !important;
+      height: 256px !important;
+      border: none;
+      border-radius: 5px;
+      background: #ca353500;
+      z-index: 9999;
+      margin-top: -50px;
+      margin-right: 40%;
+      display: block;
+    }
+
+    @media screen and (max-width: 600px) {
+      .user-cover {
+        width: 256px !important;
+        height: 256px !important;
+        border: none;
         border-radius: 5px;
-
+        background: #ca353500;
+        z-index: 9999;
+        margin-top: 0px;
+        margin-right: 10%;
+        display: block;
       }
-      .tabs .tabs-header .tab-link {
-        border-radius: 5px;
-      }
-    </style>
-    <style x-lang="ar">
-      .nav1 {
-        flex-direction: initial;
-        padding: 7px;
-      }
-      :root {
-        --direction: rtl;
-        --text-align: right;
-        --float: right;
-      }
-    </style>
-  </head>
+    }
 
-  <body class="##session.lang## loaded" ng-controller="profile">
-    <div x-import="haraj/header.html"></div>
+    .user-cover img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      margin-right: 40px;
+    }
 
-    <div id="main-layout" class="container">
-      <div x-import="profile/rating_modal.html"></div>
-      <div x-import="profile/message_modal.html"></div>
-      <div class="row">
-        <fieldset>
+    .darkgray {
+      color: #7d7d7d;
+    }
+  </style>
+  <style x-lang="ar">
+    .nav1 {
+      flex-direction: initial;
+      padding: 7px;
+    }
 
-          <div class="col3">
-            <div class="tabs" style="width:1400px;">
-              <div class="tabs-header">
-                <a class="tab-link" onclick="site.showTabContent(event, '#user_contents')"> ##word.contents## </a>
-                <a class="tab-link" onclick="site.showTabContent(event, '#ratings')"> ##word.ratings## </a>
-              </div>
+    :root {
+      --direction: rtl;
+      --text-align: right;
+      --float: right;
+    }
+  </style>
+</head>
+
+<body class="##session.lang## loaded" ng-controller="profile">
+  <div x-import="haraj/header.html"></div>
+
+  <div id="main-layout" class="container">
+    <div x-import="profile/rating_modal.html"></div>
+    <div x-import="profile/message_modal.html"></div>
+    <div x-import="profile/communication_modal.html"></div>
+    <div class="row bg-white">
+      
+
+        <div class="row">
+          <i-image class="user-background" view ng-model="user.profile.cover"></i-image>
+          <i-image class="user-cover" view logo ng-model="user.profile.image_url"></i-image>
+        </div>
+        <div class="row">
+          <div class="col2 center">
+
+            <i-button class="center" x-permissions="login" label="##word.follow##"
+              ng-show="!user.$is_follow && !user.$same_email" ng-click="updateFollow(user,true)"></i-button>
+            <i-button class="center" x-permissions="login" label="##word.unfollow##"
+              ng-show="user.$is_follow && !user.$same_email" ng-click="updateFollow(user,false)"></i-button>
+            <h3 class="darkgray center" ng-show="user.followers_list.length > 0">{{user.followers_list.length}}
+              ##word.follower##</h3>
+            <h3 class="darkgray center" ng-show="user.followers_list.length < 1"> ##word.no_followers##</h3>
+          </div>
+
+          <div class="col8">
+            <div class="ad-user center">
+
+              <h1 class="user-name-stlye center">
+                {{user.profile.name}} {{user.profile.last_name}}
+              </h1>
+
             </div>
+            <h2 class="user-name-stlye darkgray userPrint center">{{user.email}}</h2>
           </div>
-          <div class="center col9" style="
-          padding: 25px;
-          border-radius: 5px;
-          background: url({{user.profile.cover}});
-          background-repeat: no-repeat;
-          background-size: 100% 80%;
-        "> 
-         <div class="center">
-   
-          <i-image style="border-radius: 5px;" class="border-circle center" view ng-model="user.profile.image_url"></i-image>
-          <div class="ad-user center">
-            <h1 class="user-name-stlye center">{{user.profile.name}} {{user.profile.last_name}}</h1>
-          </div>
-          <h2 class="user-name-stlye center">{{user.email}}</h2>
-          <i-button x-permissions="login" label="##word.follow##" ng-show="!user.$is_follow && !user.$same_email" ng-click="updateFollow(user,true)"></i-button>
-          <i-button x-permissions="login" label="##word.unfollow##" ng-show="user.$is_follow && !user.$same_email" ng-click="updateFollow(user,false)"></i-button>
-          <i-button fa="envelope" x-permissions="login" ng-show="!user.$same_email" label="##word.conversation##" onclick="site.showModal('#messageModal')"></i-button>
-          <a class="row" ng-show="user.mobile" href="tel:{{user.mobile}}">
-            {{user.mobile}}
-            <i class="fa fa-mobile" aria-hidden="true"></i>
-          </a>
-
-          <a class="row center" ng-show="user.phone" href="tel:{{user.phone}}">
-            {{user.phone}}
-            <i class="fa fa-phone" aria-hidden="true"></i>
-          </a>
-          <h2 class="center">{{user.followers_list.length}} ##word.follower##</h2>
-        </div>
-           
+          <div class="col2 center">
+            <h2 class="darkgreen center" ng-show="ratingList.length > 0">{{ratingList.length}} ##word.rating##</h2>
+            <h2 class="darkgreen center" ng-show="ratingList.length < 1"> ##word.no_rating##</h2>
           </div>
         </div>
+        <div class="row center">
 
-        </fieldset>
-      </div>
-      <div  x-import="profile/tabs_content.html"></div>
+          <i-button fa="phone" label="##word.communication##" ng-show="!user.$same_email"
+            ng-click="showCommunication()"> </i-button>
+          <i-button fa="sliders" label="##word.manage_your_personal_account##" ng-show="user.$same_email"
+            ng-click="displayManagePersonalAccount()"> </i-button>
 
-    
+          <i-button fa="comments" x-permissions="login" ng-show="!user.$same_email" label="##word.conversation##"
+            onclick="site.showModal('#messageModal')"></i-button>
+
+        </div>
+        <div x-import="profile/tabs_content.html"></div>
+
+     
+
     </div>
-    <footer class="footer ng-scope" x-import="haraj/footer.html" ng-controller="footer_herag"></footer>
-    <div x-import="haraj/scripts.html"></div>
+  </div>
 
-    <script x-import="profile/index.js"></script>
-  </body>
+
+
+
+
+
+
+
+  <footer class="footer ng-scope" x-import="haraj/footer.html" ng-controller="footer_herag"></footer>
+  <div x-import="haraj/scripts.html"></div>
+
+  <script x-import="profile/index.js"></script>
+  <script>
+    $('#user_contents').hide();
+    $('#ratings').hide();
+
+  </script>
+</body>
+
 </html>

@@ -178,7 +178,7 @@
                 <span style="min-height: 22px">##word.favorite##</span>
               </a>
             </li>
-            <button class="add" x-permissions="login" type="submit">
+            <button class="add-button" x-permissions="login" type="submit">
               <a class="add-icon-ads" href="/create_content"><img class="add-icon" src="../assets/add.png" alt="" width="18px" height="18px" /></a><a href="/create_content">##word.add_your_ad##</a>
             </button>
             <li class="mobile-header">
@@ -198,7 +198,7 @@
           <div class="tags">
             <ul class="tag-list">
               <li class="tag" ng-repeat="c in topParentCategoriesList">
-                <a class="tab_link" ng-click="loadSubCategory(c)" href=""><img alt="car" loading="lazy" height="35" width="35" ng-src="{{c.image_url}}" /><span style="min-height: 22px">{{c.name_##session.lang##}}</span></a>
+                <a class="tab_link " ng-click="loadSubCategory(c)" href=""><img alt="car" loading="lazy" height="35" width="35" ng-src="{{c.image_url}}" /><span style="min-height: 22px">{{c.name_##session.lang##}}</span></a>
               </li>
             </ul>
           </div>
@@ -281,6 +281,7 @@
                 <div class="ad-area  padding box-shadow">
                   <div class="row center padding">
                     <img loading="lazy" ng-click="displayContent(a.id)" class="svg-size-5x pointer" ng-src="{{a.image_url}}" />
+                    
                   </div>
                   <div class="row padding">
                     <div class="ads-info">

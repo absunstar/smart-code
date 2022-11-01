@@ -379,7 +379,7 @@ module.exports = function init(site) {
       $res: res,
     };
     if ((req.body.mobile_login = true)) {
-      if (req.body.email.contains('@')) {
+      if (req.body.email.contains('@') || req.body.email.contains('.')) {
         obj_where.email = req.body.email;
       } else {
         obj_where.mobile = req.body.email;

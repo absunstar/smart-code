@@ -255,7 +255,7 @@ app.controller('create_content', function ($scope, $http, $timeout) {
       description :$scope.ad.$image.desc,
     });
   };
-    $scope.ad.$image = {};
+    $scope.ad.$image = {image_url : '/images/no.jpg'};
   };
 
   $scope.addVideos = function () {

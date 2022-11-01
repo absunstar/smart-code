@@ -1,110 +1,129 @@
 <!DOCTYPE html>
 <html lang="en" x-permissions="login" data-ng-app="myApp">
-  <head>
-    <title>##setting.site_name##</title>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/font6.css" />
-    <link rel="stylesheet" href="/x-css/all.css" />
-    <link rel="stylesheet" href="/x-css/font-cairo.css" />
-    <link rel="icon" type="image/x-icon" href="##setting.logo##" />
-    <style>
-      * {
-        max-width: initial;
-      }
-      :root {
-        --body-margin-top: 0px;
-        --body-margin-bottom: 0px;
-        --zoom: 100%;
-        --fieldset-border: none;
-        --fieldset-background: #fff;
-      }
-      body {
-        background-color: #bbb !important;
-        background-image: url(/assets/palm.svg) !important;
-        background-repeat: repeat !important;
-      }
-    </style>
-    <style x-lang="ar">
-     .nav1{
-        flex-direction: initial;
-        padding: 7px;
-      }
-      :root {
-        --direction: rtl;
-        --text-align: right;
-        --float: right;
-      }
-    </style>
-  </head>
 
-  <body class="##session.lang## loaded" ng-controller="messages">
-    <div x-import="haraj/header.html"></div>
+<head>
+  <title>##setting.site_name##</title>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/haraj.css" />
+  <link rel="stylesheet" href="/x-css/all.css" />
+  <link rel="stylesheet" href="/x-css/font-cairo.css" />
+  <link rel="icon" type="image/x-icon" href="##setting.logo##" />
+  <style>
+    * {
+      max-width: initial;
+    }
 
-    <div id="main-layout" class="container">
-      <fieldset>
-        <legend>##word.messages##</legend>
+    .border-circle img{
+      border-radius: 50% !important;
+    }
+
+    .radius5{
+      border-radius: 5% !important;
+    }
+
+    .darkgray {
+      color: #7d7d7d;
+    }
+
+    :root {
+      --body-margin-top: 0px;
+      --body-margin-bottom: 0px;
+      --zoom: 100%;
+      --fieldset-border: none;
+      --fieldset-background: #fff;
+    }
+
+    .bg-msglist {
+      background: #05c28099;
+    }
+
+    body {
+      background-color: #bbb !important;
+      background-image: url(/assets/palm.svg) !important;
+      background-repeat: repeat !important;
+    }
+  </style>
+  <style x-lang="ar">
+    .nav1 {
+      flex-direction: initial;
+      padding: 7px;
+    }
+
+    :root {
+      --direction: rtl;
+      --text-align: right;
+      --float: right;
+    }
+  </style>
+</head>
+
+<body class="##session.lang## loaded" ng-controller="messages">
+  <div x-import="haraj/header.html"></div>
+
+  <div id="main-layout" class="container">
+    <fieldset>
+      <div class="row" ng-show="messagesList.length < 1 && messagesList">
         <br />
-        <div class="row" ng-hide="messagesList.length > 0">
-          <br />
-          <br />
-          <h1 class="blue bold center">##word.there_no_messages##</h1>
-          <br />
-          <br />
+        <br />
+        <h1 class="blue bold center">##word.there_no_messages##</h1>
+        <br />
+        <br />
+      </div>
+      <div class="row">
+        <div class="col3" ng-show="messagesList.length > 0">
+          <a class="message-icon pointer display-block border padding" ng-repeat="m in messagesList" ng-click="showMessage(m,$event)"
+            help-id="menu_monitor">
+            <b ng-repeat="u in m.users_list" class="center" ng-show="u.id != userId">{{u.name}}
+              <i-image view class="logo border-circle" ng-model="u.image_url"></i-image>
+              <span ng-show="m.$new" class="badge_message"></span>
+            </b>
+          </a>
         </div>
-        <div class="row">
-          <div class="col3" ng-show="messagesList.length > 0">
-            <a class="message-icon pointer display-block" ng-repeat="m in messagesList" ng-click="showMessage(m)" help-id="menu_monitor">
-              <b ng-repeat="u in m.users_list" class="center" ng-show="u.email != '##user.email##'"
-                >{{u.name}}
-                <span ng-show="m.$new" class="badge_message"></span>
-                <i-image view class="logo" ng-model="u.image_url"></i-image>
-              </b>
-            </a>
-          </div>
-          <div class="col9" ng-show="message.id">
-            <fieldset>
-              <legend>##word.the_message##</legend>
+        <div class="col9" ng-show="message.id">
+          <fieldset>
+            <legend>##word.the_message##</legend>
 
-              <br />
-              <br />
-              <div class="row">
-                <div class="col10">
-                  <div class="row _scroll">
-                    <div class="row border padding" ng-repeat="m in message.messages_list">
-                      <div ng-repeat="u in message.users_list" ng-show="m.user_id == u.id">
-                        <h2 class="bold pre_text">{{u.name}}</h2>
-                        <i-image view class="logo" ng-model="u.image_url"></i-image>
+            <br />
+            <br />
+            <div class="row">
+                <div class="col9 _scroll">
+                  <div class="padding box-shadow" ng-repeat="m in message.messages_list">
+                    <div ng-repeat="u in message.users_list" ng-show="m.user_id == u.id">
+                      <h2 class="bold pre_text">{{u.name}}</h2>
+                      <i-image view class="logo" ng-model="u.image_url"></i-image>
 
-                      </div>
+                    </div>
 
-                      
-                      <h3 class="bold pre_text">{{m.message}}</h3>
-                      <h5>{{m.date | date : 'hh:mm | dd - MM - yyyy'}}</h5>
+
+                    <h3 class="bold pre_text darkgray">{{m.message}}</h3>
+                    <div class="time-publish">
+                      <i class="fa-solid fa-clock"> {{m.date | date : 'dd/MM/yyyy - hh:mm'}} </i>
                     </div>
                   </div>
                 </div>
-              </div>
+            </div>
 
-              <br />
-              <br />
+            <br />
+            <br />
 
-              <div class="row">
-                <div class="col3"></div>
-                <i-textarea class="col6" label="##word.write_your_message_here##" ng-model="send_message"> </i-textarea>
-              </div>
-              <div class="row center">
-                <i-button type="add" label="##word.send##" ng-click="sendMessage(message)"> </i-button>
-              </div>
-            </fieldset>
-          </div>
+            <div class="row">
+              <div class="col3"></div>
+              <i-textarea class="col6" label="##word.write_your_message_here##" ng-model="send_message"> </i-textarea>
+            </div>
+            <div class="row center">
+              <i-button type="add" label="##word.send##" ng-click="sendMessage(message)"> </i-button>
+            </div>
+          </fieldset>
         </div>
-      </fieldset>
-    </div>
-    <footer class="footer ng-scope" x-import="haraj/footer.html" ng-controller="footer_herag"></footer>
-    <div x-import="haraj/scripts.html"></div>
-    <script x-import="messages/index.js"></script>
-  </body>
+      </div>
+    </fieldset>
+  </div>
+  <footer class="footer ng-scope" x-import="haraj/footer.html" ng-controller="footer_herag"></footer>
+  <div x-import="haraj/scripts.html"></div>
+  <script x-import="messages/index.js"></script>
+</body>
+
 </html>

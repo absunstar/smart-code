@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/haraj.css" />
     <link rel="stylesheet" href="/x-css/all.css" />
+    <link rel="stylesheet" href="/x-css/font-cairo.css" />
     <link rel="icon" type="image/x-icon" href="##setting.logo##" />
     <style>
       * {
@@ -54,7 +55,10 @@
           <div ng-repeat="u in users_list " class="ads-area even" ng-show="users_list.length > 0">
             <div class="ad-area">
               <div class="ads-info">
-                <a href="/profile?id={{u.id}}"> {{u.profile.name}} {{u.profile.last_name}}</a>
+                
+                <a href="/profile?id={{u.id}}">
+                  <img class="center border-circle" style="width: 40px ;height:40px" ng-src="{{u.profile.image_url}}" onerror="this.src='/images/user.png'" alt="" />
+                   {{u.profile.name}} {{u.profile.last_name}}</a>
               </div>
               <i-button label="##word.unfollow##" ng-click="updateFollow(u,false)"></i-button>
             </div>

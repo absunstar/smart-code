@@ -41,8 +41,8 @@
             </td>
 
             <td class="center not-print">
-              <i-button x-permissions="ratings_view || ratings_manage" type="view" label="##word.details##" ng-click="displayDetailsRatings(c)"></i-button>
-              <i-button x-permissions="ratings_update || ratings_manage" label="##word.approval##" ng-hide="c.approval" ng-click="updateApproval(c,true)"></i-button>
+<!--               <i-button x-permissions="ratings_view || ratings_manage" type="view" label="##word.details##" ng-click="displayDetailsRatings(c)"></i-button>
+ -->              <i-button x-permissions="ratings_update || ratings_manage" label="##word.approval##" ng-hide="c.approval" ng-click="updateApproval(c,true)"></i-button>
               <i-button x-permissions="ratings_update || ratings_manage" label="##word.reject##" ng-hide="c.approval == false" ng-click="updateApproval(c,false)"></i-button>
 
               <i-button x-permissions="ratings_delete || ratings_manage" type="delete" label="##word.delete##" ng-click="displayDeleteRatings(c)"></i-button>

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/haraj.css" />
     <link rel="stylesheet" href="/x-css/all.css" />
+    <link rel="stylesheet" href="/x-css/font-cairo.css" />
     <link rel="icon" type="image/x-icon" href="##setting.logo##" />
     <style>
       * {
@@ -50,35 +51,52 @@
             <h1 class="blue bold center">##word.there_no_ads##</h1>
           </div>
           <legend>##word.favorite_ads##</legend>
-          <div ng-repeat="a in favoriteAdslist " ng-show="favoriteAdslist.length > 0" class="ads-area even">
-            <div class="ad-area">
-              <div class="ads-info">
-                <b ng-click="displayContent(a.id)" class="bold col4 ad-name">{{a.name}}</b>
-                <div class="row" ng-click="displayContent(a.id)">
-                  <i-image view="" class="logo col2" ng-model="a.image_url"> </i-image>
-                </div>
-                <div class="info">
-                  <div class="row user-action">
-                    <div class="u-action">
-                      <i-checkbox label="##word.favorite##" ng-click="updateFeedback(a,'favorite')" ng-model="a.$favorite"> </i-checkbox>
+        
+          <div ng-repeat="a in favoriteAdslist" class="ads-area even" ng-show="favoriteAdslist.length > 0">
+            <div class="ad-area  padding box-shadow">
+              <div class="row center padding">
+                <img loading="lazy" ng-click="displayContent(a.id)" class="svg-size-5x pointer" ng-src="{{a.image_url}}" />
+                
+              </div>
+              <div class="row padding">
+                <div class="ads-info">
+                  <b class="bold col4 ad-name pointer" ng-click="displayContent(a.id)">{{a.name}}</b>
+                  <div class="info">
+                    <div class="row user-action">
+                      <!-- <i class="fa-solid fa-cart-shopping" ng-hide="a.store.user.id == user.id"
+                      label="##word.add_to_cart##" ng-click="bookList(a,0)"></i> -->
+                      <div class="u-action">
+                        <!-- 
+                      <i class="fa-solid fa-heart" label="##word.favorite##" ng-click="updateFeedback(a,'favorite')"
+                      ng-model="a.favorite"></i> -->
+
+                        <a class="btn" ng-show="##setting.order_settings.activate_orders## && a.store.user.id != user.id" x-permission="login" ng-click="bookList(a,0)">
+                          <i class="fa fa-shopping-cart"></i>
+                        </a>
+                        <i-checkbox label="##word.favorite##" class="pointer" ng-click="updateFeedback(a,'favorite')" ng-model="a.$favorite"> </i-checkbox>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="time-publish">
-                  <i class="fa-solid fa-clock"></i>
-                </div>
-                <div class="ad-location">
-                  <i class="fa-solid fa-location-pin"></i>
-                  <div class="adress">
-                    <p class="location" ng-show="a.address.country">{{a.address.country.name_##session.lang##}} - {{a.address.gov.name_##session.lang##}} - {{a.address.city.name_##session.lang##}} - {{a.address.area.name_##session.lang##}}</p>
-                    <p class="location">{{a.address.detailed_address}}</p>
+                  <div class="time-publish">
+                    <i class="fa-solid fa-clock"> {{a.$time}} </i>
                   </div>
-                </div>
-                <div class="row">
-                  <p class="ad-owner">
-                    <i class="fa-solid fa-user"></i>
-                    <a href="/profile?id={{a.store.user.id}}"> {{a.store.user.profile.name}}</a>
-                  </p>
+                  <div class="ad-location">
+                    <i class="fa-solid fa-location-pin"></i>
+                    <div class="adress">
+                      <b class="location" ng-show="a.address.country"> {{a.address.country.name_##session.lang##}} </b>
+                      <b class="location" ng-show="a.address.gov"> - {{a.address.gov.name_##session.lang##}} </b>
+                      <b class="location" ng-show="a.address.city"> - {{a.address.city.name_##session.lang##}} </b>
+                      <b class="location" ng-show="a.address.area"> - {{a.address.area.name_##session.lang##}} </b>
+                      <p class="location">{{a.address.detailed_address}}</p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <p class="ad-owner">
+                      <i class="fa-solid fa-user"></i>
+                      <a href="/profile?id={{a.store.user.id}}"> {{a.store.user.profile.name}}</a>
+                    </p>
+                    <p class="ad-price" ng-show="a.set_price == 'yes'" ng-repeat="q in a.quantity_list"><b>{{q.unit.name_##session.lang##}} {{q.net_value}} {{q.currency.name_##session.lang##}}</b></p>
+                  </div>
                 </div>
               </div>
             </div>

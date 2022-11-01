@@ -93,16 +93,20 @@ footer {
 .main-content i-checkbox {
   display: inline-flex;
 }
+.border-circle {
+  border-radius: 50%;
+}
 a,
 span,
 button,
+
 p {
   font-family: var(--font-family);
   text-decoration: none;
 }
 .ad-area img {
   max-width: 90%;
-  height: 200px;
+  height: 180px;
 }
 
 .border-img img {

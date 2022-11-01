@@ -121,6 +121,7 @@
     margin: 10px 0px 10px 0px;
     border: 1px solid currentColor;
     border-radius: 50px;
+    height: 40px;
   }
 
   .searchgroup {
@@ -231,10 +232,13 @@
   .border-img {
     border-radius: 5px !important;
   }
-
+  .border-circle {
+    border-radius: 50%;
+  }
   .info img {
-    height: 32px;
-    width: 32px;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
     box-shadow: 1px 1px 5px 2px #fff;
   }
 
@@ -819,7 +823,7 @@
     height: 25px;
   }
 
-  .add {
+  .add-button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -844,7 +848,7 @@
     align-items: center;
   }
 
-  .add a {
+  .add-button a {
     color: #fff;
   }
 
@@ -1236,7 +1240,7 @@
 
   .brand-logos--svg {
     border: 1px solid #f3f3f3;
-    padding: 8px;
+    padding: 3px;
     color: #a1a1a1;
     display: flex;
     justify-content: center;
@@ -1245,8 +1249,8 @@
     flex-direction: column;
     text-align: center;
     overflow: hidden;
-    height: 78px;
-    width: 78px;
+    height: 65px;
+    width: 65px;
     font-weight: 500;
     text-decoration: none;
     box-sizing: border-box;
@@ -1318,8 +1322,8 @@
   }
 
   i-button .btn {
-    background-color: var(--theme-color);
-    color: #fff;
+   /*  background-color: var(--theme-color);
+    color: #fff; */
     padding: 8px 8px;
     border-radius: 25px;
   }

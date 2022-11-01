@@ -20,7 +20,7 @@
     <br />
     <p class="green font-22">ملاحظة : عمولة الموقع هي على المعلن ولا تبرأ ذمة المعلن من العمولة إلا في حال دفعها.</p>
     <div class="row center">
-      <i-button ng-click="acceptDeal(ad)" label="موافق"> </i-button>
+      <i-button ng-click="acceptDeal(ad)" fa="check-circle" label="##word.ok##"> </i-button>
     </div>
   </fieldset>
 
@@ -53,7 +53,7 @@
       </div>
     </div>
     <br>
-    <i-button label="##word.continuation##" ng-click="continuationNotSelectAddress()"></i-button>
+    <i-button label="##word.continuation##" fa="arrow-righ" ng-click="continuationNotSelectAddress()"></i-button>
 
   </fieldset>
 
@@ -86,7 +86,7 @@
       <i-image class="col3"  help-id="ads_logo" ng-model="ad.$image.image_url"></i-image>
       <i-textarea class="col6" label="##word.description##" ng-model="ad.$image.desc"></i-textarea>
       <div class="col1"></div>
-      <i-button class="col2" type="add" label="##word.add_photo##" ng-hide="ad.images_list.length >= defaultSettings.content.allowed_number_photo" ng-click="addImage()"></i-button>
+      <i-button class="col3" type="add" label="##word.add_photo##" ng-hide="ad.images_list.length >= defaultSettings.content.allowed_number_photo" ng-click="addImage()"></i-button>
 
     </div>
 
@@ -123,7 +123,7 @@
       <i-control class="col4"  label="##word.link##" ng-model="ad.$video.link"></i-control>
       <i-textarea class="col5" label="##word.description##" ng-model="ad.$video.desc"></i-textarea>
       <div class="col1"></div>
-      <i-button class="col2" type="add" label="##word.add_video##" ng-hide="ad.videos_list.length >= defaultSettings.content.allowed_number_video" ng-click="addVideos()"></i-button>
+      <i-button class="col3" type="add" label="##word.add_video##" ng-hide="ad.videos_list.length >= defaultSettings.content.allowed_number_video" ng-click="addVideos()"></i-button>
 
     </div>
 

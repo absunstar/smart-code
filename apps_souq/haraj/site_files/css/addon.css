@@ -71,10 +71,13 @@
   .user-menu hr {
     margin: 10px;
   }
-  
+  .border-circle {
+    border-radius: 50%;
+  }
   .info img {
-    height: 32px;
-    width: 32px;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
     box-shadow: 1px 1px 5px 2px #fff;
   }
   .profile img {
@@ -118,6 +121,7 @@
     margin: 10px 0px 10px 0px;
     border: none !important;
     border-radius: 0 !important;
+    height: 40px;
 }
 
 .searchgroup {
@@ -147,10 +151,13 @@ i.close-filter{
     display: grid;
     grid-template-columns: 40% 80% ;
 }
-
+.border-circle {
+  border-radius: 50%;
+}
 .info img {
-    height: 32px;
-    width: 32px;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
     box-shadow: 1px 1px 5px 2px #fff;
 }
 

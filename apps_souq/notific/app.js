@@ -217,7 +217,6 @@ module.exports = function init(site) {
     }
     response.done = true;
     notific_doc.$update = true;
-    console.log(notific_doc);
     site.notific_list.forEach((a, i) => {
       if (a.id === notific_doc.id) {
         site.notific_list[i] = notific_doc;
@@ -342,6 +341,11 @@ module.exports = function init(site) {
       (err, docs, count) => {
         if (!err) {
           response.done = true;
+          if(docs){
+            docs.forEach(_d => {
+              _d.$time = site.xtime(_d.date, req.session.lang);
+            });
+          }
           response.list = docs;
           response.count = count;
         } else {
