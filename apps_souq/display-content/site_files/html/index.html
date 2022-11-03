@@ -1,69 +1,72 @@
 <!DOCTYPE html>
 
 <html lang="en" data-ng-app="myApp">
-  <head>
-    <title>##word.brand_title##</title>
-    <link rel="icon" type="image/x-icon" href="##setting.logo##">
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/haraj.css" />
-    <link rel="stylesheet" href="/x-css/all.css" />
-    <link rel="stylesheet" href="/x-css/font-cairo.css" />
-    <style>
-      * {
-        max-width: initial;
-      }
-      .warning_message {
-        font-size: 25px;
-        background: #cfffed;
-        color: #00784a;
-        border-radius: 8px;
-        padding: 12px !important;
-      }
-      :root {
-        --body-margin-top: 0px;
-        --body-margin-bottom: 0px;
-        --zoom: 100%;
-        --fieldset-border: none;
-        --fieldset-background: #fff;
-      }
-      body {
-        background-color: #bbb !important;
-        background-image: url(/assets/palm.svg) !important;
-        background-repeat: repeat !important;
-      }
-    </style>
-    <style x-lang="ar">
-      .nav1 {
-        flex-direction: initial;
-        padding: 7px;
-      }
-      :root {
-        --direction: rtl;
-        --text-align: right;
-        --float: right;
-      }
-    </style>
-    <style x-import="display-content/style.css"></style>
-  </head>
-  <body class="##session.lang## loaded" ng-controller="display_content">
-    <div x-import="haraj/header.html"></div>
 
-    <div id="main-layout" class="container">
-      <div x-import="display-content/report_modal.html"></div>
-      <div x-import="display-content/report_comment_modal.html"></div>
-      <div x-import="display-content/message_modal.html"></div>
-      <div x-import="display-content/communication_modal.html"></div>
+<head>
+  <title>##word.brand_title##</title>
+  <link rel="icon" type="image/x-icon" href="##setting.logo##">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/haraj.css" />
+  <link rel="stylesheet" href="/x-css/all.css" />
+  <link rel="stylesheet" href="/x-css/font-cairo.css" />
+  <style>
+    * {
+      max-width: initial;
+    }
 
-      <div class="row">
-        <div x-import="display-content/content.html"></div>
-      </div>
+
+
+
+
+    :root {
+      --body-margin-top: 0px;
+      --body-margin-bottom: 0px;
+      --zoom: 100%;
+      --fieldset-border: none;
+      --fieldset-background: #fff;
+    }
+
+    body {
+      background-color: #bbb !important;
+      background-image: url(/assets/palm.svg) !important;
+      background-repeat: repeat !important;
+    }
+  </style>
+  <style x-lang="ar">
+    .nav1 {
+      flex-direction: initial;
+      padding: 7px;
+    }
+
+    :root {
+      --direction: rtl;
+      --text-align: right;
+      --float: right;
+    }
+  </style>
+  <style x-import="display-content/style.css"></style>
+</head>
+
+<body class="##session.lang## loaded" ng-controller="display_content">
+  <div x-import="haraj/header.html"></div>
+
+  <div id="main-layout" class="container">
+    <div x-import="display-content/report_modal.html"></div>
+    <div x-import="display-content/report_comment_modal.html"></div>
+    <div x-import="display-content/message_modal.html"></div>
+    <div x-import="display-content/communication_modal.html"></div>
+
+    <div class="row">
+      <div x-import="display-content/content.html"></div>
     </div>
+  </div>
 
-    <footer class="footer ng-scope" x-import="haraj/footer.html" ng-controller="footer_herag"></footer>
-    <div x-import="haraj/scripts.html"></div>
-    <script x-import="display-content/index.js"></script>
-  </body>
+  <footer class="footer ng-scope" x-import="haraj/footer.html" ng-controller="footer_herag"></footer>
+  <div x-import="haraj/scripts.html"></div>
+  <script x-import="display-content/index.js"></script>
+</body>
+
 </html>

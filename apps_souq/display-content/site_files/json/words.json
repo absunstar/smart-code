@@ -20,6 +20,21 @@
     "ar": "تقديم بلاغ"
   },
   {
+    "name": "submit_report",
+    "en": "Submit a report",
+    "ar": "تقديم بلاغ"
+  },
+  {
+    "name": "share",
+    "en": "Share",
+    "ar": "مشاركة"
+  },
+  {
+    "name": "Write_your_question_advertiser_here",
+    "en": "Write your question to the advertiser here",
+    "ar": "أكتب سؤالك للمعلن هنا"
+  },
+  {
     "name": "add_report",
     "en": "Add a report",
     "ar": "إضافة بلاغ"

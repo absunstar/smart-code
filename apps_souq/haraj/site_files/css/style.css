@@ -34,7 +34,7 @@ img {
   max-width: initial;
 }
 .pre_text {
-  white-space: pre;
+  white-space: pre-wrap !important;
 }
 :root {
   --theme-color: #00a884 !important;
@@ -104,9 +104,16 @@ p {
   font-family: var(--font-family);
   text-decoration: none;
 }
-.ad-area img {
+/* .ad-area img {
   max-width: 90%;
   height: 180px;
+} */
+.red {
+  color: red;
+}
+.adarea-image {
+  max-width: 90% !important;
+  height: 150px !important;
 }
 
 .border-img img {

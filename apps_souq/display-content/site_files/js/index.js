@@ -1,15 +1,16 @@
 app.controller('display_content', function ($scope, $http, $timeout) {
   $scope.activity = {};
   $scope.ad = {};
+  $scope.userId = site.toNumber('##user.id##');
 
   $scope.getContentList = function (ad, type) {
     $scope.busy = true;
     $scope.contentList = [];
     where = {};
     where['ad_status.id'] = 1;
-    where['main_category.id'] = ad.main_category.id;
-    where['id'] = { $ne: ad.id };
-    if(type) {
+      where['main_category.id'] = ad.main_category.id;
+      where['id'] = { $ne: ad.id };
+    if (type) {
 
       if (ad.address.country && ad.address.country.id && type == 'country') {
         where['address.country.id'] = ad.address.country.id;
@@ -27,6 +28,7 @@ app.controller('display_content', function ($scope, $http, $timeout) {
       url: '/api/contents/all',
       data: {
         where: where,
+        page_limit: 18,
         post: true,
       },
     }).then(
@@ -42,6 +44,10 @@ app.controller('display_content', function ($scope, $http, $timeout) {
       }
     );
   };
+  
+  $scope.selectCategoryHeader = function (id) {
+    window.location.href = `/?id=${id}`;
+  };
 
   $scope.getDefaultSetting = function () {
     $scope.busy = true;
@@ -56,7 +62,6 @@ app.controller('display_content', function ($scope, $http, $timeout) {
           $scope.defaultSettings = response.data.doc;
           if ($scope.defaultSettings.content.warning_message_ad_list && $scope.defaultSettings.content.warning_message_ad_list.length > 0) {
             $scope.ad.$warning_message = $scope.defaultSettings.content.warning_message_ad_list[Math.floor(Math.random() * $scope.defaultSettings.content.warning_message_ad_list.length)];
-            console.log($scope.ad.$warning_message);
           }
         }
       },
@@ -67,7 +72,39 @@ app.controller('display_content', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.dissplayAd = function () {
+  $scope.loadMainCategories = function (main_category) {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.category_list = [];
+
+    $http({
+      method: 'POST',
+      url: '/api/main_categories/all',
+      data: {
+        where: {
+          status: 'active',
+          $or: [
+            { id: main_category.id },
+            { id: { $in: main_category.parent_list_id } }
+          ]
+        },
+        select: { id: 1, name_ar: 1, name_en: 1, image_url: 1 },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.category_list = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.displayAd = function () {
     $scope.busy = true;
     $scope.error = '';
     $http({
@@ -85,6 +122,8 @@ app.controller('display_content', function ($scope, $http, $timeout) {
           $scope.ad.$number_favorites = $scope.ad.number_favorites;
           $scope.activity.favorite = $scope.ad.$favorite;
           $scope.getContentList($scope.ad);
+          $scope.getUserAd($scope.ad.store.user.id);
+          $scope.loadMainCategories($scope.ad.main_category);
           $scope.getDefaultSetting();
         } else {
           $scope.error = response.data.error;
@@ -137,10 +176,14 @@ app.controller('display_content', function ($scope, $http, $timeout) {
 
 
 
-  $scope.updateFeedback = function (type) {
+  $scope.updateFeedback = function (type, status) {
+    if (type == 'favorite') {
+      $scope.activity.favorite = status;
+    }
+
     let data = { id: $scope.ad.id, feedback: { ...$scope.activity, type: type } };
 
-    if(type == 'report') {
+    if (type == 'report') {
       let v = site.validated('#reportModal');
 
       if (!v.ok) {
@@ -148,7 +191,7 @@ app.controller('display_content', function ($scope, $http, $timeout) {
         return;
       };
 
-    } else if(type == 'report_comment') {
+    } else if (type == 'report_comment') {
       let v = site.validated('#reportCommentModal');
 
       if (!v.ok) {
@@ -200,6 +243,28 @@ app.controller('display_content', function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.getUserAd = function (id) {
+    $scope.busy = true;
+    $http({
+      method: 'POST',
+      url: '/api/user/view',
+      data: {
+        id: id,
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.userAd = response.data.doc;
+
+        } else {
+          $scope.error = response.data.error;
+        }
+      },
+      function (err) { }
+    );
+  };
+
   $scope.getUser = function () {
     $scope.busy = true;
     $http({
@@ -211,7 +276,7 @@ app.controller('display_content', function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
-        if (response.data.done) {
+        if (response.data.done && response.data.doc && response.data.doc.id) {
           $scope.user = response.data.doc;
           if (!$scope.user.cart) {
             $scope.user.cart = {
@@ -228,7 +293,7 @@ app.controller('display_content', function ($scope, $http, $timeout) {
           $scope.error = response.data.error;
         }
       },
-      function (err) {}
+      function (err) { }
     );
   };
 
@@ -290,8 +355,8 @@ app.controller('display_content', function ($scope, $http, $timeout) {
       url: '/api/reports_types/all',
       data: {
         where: { active: true },
-        post : true,
-        select : {id : 1, name_ar : 1, name_en : 1 }
+        post: true,
+        select: { id: 1, name_ar: 1, name_en: 1, report_comments: 1 }
       },
     }).then(
       function (response) {
@@ -308,6 +373,6 @@ app.controller('display_content', function ($scope, $http, $timeout) {
     );
   };
   $scope.getReportsTypesList();
-  $scope.dissplayAd();
+  $scope.displayAd();
   $scope.getUser();
 });

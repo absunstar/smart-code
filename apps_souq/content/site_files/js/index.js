@@ -9,7 +9,7 @@ app.controller('contents', function ($scope, $http, $timeout) {
       feedback_list: [],
       ad_rating: 0,
       set_price: 'no',
-      date : new Date(),
+      date: new Date(),
       number_views: 0,
       number_comments: 0,
       number_favorites: 0,
@@ -18,8 +18,8 @@ app.controller('contents', function ($scope, $http, $timeout) {
       active: true,
     };
     if ($scope.defaultSettings.content) {
-      if($scope.defaultSettings.content.closing_system) {
-        if($scope.defaultSettings.content.closing_system.id == 2) {
+      if ($scope.defaultSettings.content.closing_system) {
+        if ($scope.defaultSettings.content.closing_system.id == 2) {
           $scope.ad.expiry_date = new Date();
           $scope.ad.expiry_date.setDate($scope.ad.expiry_date.getDate() + 7);
         }
@@ -27,18 +27,18 @@ app.controller('contents', function ($scope, $http, $timeout) {
       if ($scope.defaultSettings.content.status) {
         $scope.ad.ad_status = $scope.defaultSettings.content.status;
       }
-        $scope.ad.quantity_list = [
-          {
-            price: 0,
-            discount: 0,
-            discount_type: 'number',
-            net_value: 0,
-            available_quantity: 0,
-            maximum_order: 0,
-            minimum_order: 0,
-          },
-        ];
-      
+      $scope.ad.quantity_list = [
+        {
+          price: 0,
+          discount: 0,
+          discount_type: 'number',
+          net_value: 0,
+          available_quantity: 0,
+          maximum_order: 0,
+          minimum_order: 0,
+        },
+      ];
+
       if ($scope.defaultSettings.content.upload_photos) {
         $scope.ad.images_list = [{}];
       }
@@ -124,7 +124,7 @@ app.controller('contents', function ($scope, $http, $timeout) {
       $scope.error = v.messages[0].ar;
       return;
     }
-    
+
     if (!$scope.defaultSettings.stores_settings.activate_stores) {
       if ($scope.address.select_main) {
         $scope.ad.address = $scope.address.main;
@@ -181,7 +181,7 @@ app.controller('contents', function ($scope, $http, $timeout) {
         if (response.data.done) {
         } else {
           $scope.error = 'Please Login First';
-      
+
         }
       },
       function (err) {
@@ -288,7 +288,7 @@ app.controller('contents', function ($scope, $http, $timeout) {
         where: {
           status: 'active',
         },
-        select: { id: 1 ,name_ar: 1,name_en: 1, parent_list_id: 1 ,top_parent_id: 1,parent_id : 1},
+        select: { id: 1, name_ar: 1, name_en: 1, parent_list_id: 1, top_parent_id: 1, parent_id: 1 },
       },
     }).then(
       function (response) {
@@ -305,27 +305,35 @@ app.controller('contents', function ($scope, $http, $timeout) {
   };
 
   window.onscroll = function () {
-    if (window.stop_loading_posts) {
+    if (!window.autoLoadingPosts) {
       return;
     }
+    window.autoLoadingPosts = false;
 
     var y = document.documentElement.offsetHeight;
     var yy = window.pageYOffset + window.innerHeight;
 
-    if (y - 6000 <= yy) {
-      $scope.getAdList({ pages: true });
+    if (y - 1000 <= yy) {
+      $scope.search = $scope.search || {};
+      $scope.search['pages'] = true;
+      $scope.getAdList($scope.search);
     }
   };
 
+
   $scope.getAdList = function (where) {
     $scope.busy = true;
-    $scope.list = $scope.list || [];
     window.page_limit = window.page_limit || 20;
     window.page_number = window.page_number || 0;
     where = where || {};
+
     if (where['pages']) {
+      $scope.list = $scope.list || [];
       window.page_number++;
       delete where['pages'];
+    } else {
+      $scope.list = [];
+      window.page_number = 0;
     }
     $http({
       method: 'POST',
@@ -339,7 +347,9 @@ app.controller('contents', function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
-          $scope.list = [...$scope.list, ...response.data.list];
+          response.data.list.forEach(p => {
+            $scope.list.push(p);
+          });
 
           $scope.count = response.data.count;
           site.hideModal('#adSearchModal');
@@ -526,14 +536,14 @@ app.controller('contents', function ($scope, $http, $timeout) {
           $scope.error = response.data.error;
         }
       },
-      function (err) {}
+      function (err) { }
     );
   };
 
   $scope.getUnitsList();
   $scope.getCurrenciesList();
   $scope.loadMainCategories();
-  $scope.getAdList();
+  $scope.getAdList({});
   $scope.getAdsStatusList();
   $scope.getDefaultSetting();
 });

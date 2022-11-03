@@ -5,37 +5,54 @@
       <div class="row">
         <div class="col9">
           <div class="row">
-            <i-control help-id="ad_name_ar" v="r ll2" class="col8" label="##word.ad_title##" ng-model="ad.name"></i-control>
+            <i-control help-id="ad_name_ar" v="r ll2" class="col8" label="##word.ad_title##" ng-model="ad.name">
+            </i-control>
 
-            <i-store ng-show="defaultSettings.stores_settings.activate_stores" class="col3 padding_10" ng-model="ad.store"></i-store>
+            <i-store ng-show="defaultSettings.stores_settings.activate_stores" class="col3 padding_10"
+              ng-model="ad.store"></i-store>
           </div>
           <br />
 
           <div class="row">
-            <i-date2 class="col6" ng-show="defaultSettings.content.publishing_system.id == 2" ng-model="ad.date" label="##word.publishing_date##"></i-date2>
-            <i-date2 class="col6" ng-show="defaultSettings.content.closing_system.id == 2" ng-model="ad.expiry_date" label="##word.expiry_date##"></i-date2>
+            <i-date2 class="col6" ng-model="ad.date" label="##word.publishing_date##"></i-date2>
+            <i-date2 class="col6" ng-model="ad.expiry_date" label="##word.expiry_date##"></i-date2>
           </div>
 
           <div class="row">
-            <i-list class="col3" v="r" ng-model="ad.ad_status" items="contentStatusList" display="##session.lang##" ng-search="_search.$search_ad_status" label="##word.ad_status##"></i-list>
-            <i-control help-id="ad_rating" type="number" class="col3" label="##word.ad_rating##" ng-model="ad.ad_rating"></i-control>
-            <i-control help-id="ad_number_views" type="number" class="col3" label="##word.number_views##" ng-model="ad.number_views"></i-control>
+            <i-checkbox label="##word.disable_replies_feature##" ng-model="ad.disable_replies_feature"> </i-checkbox>
+
           </div>
 
           <div class="row">
-            <i-control help-id="ad_priority_level" type="number" class="col3" label="##word.priority_level##" ng-model="ad.priority_level"></i-control>
-            <i-control help-id="ad_number_comments" type="number" class="col3" label="##word.number_comments##" ng-model="ad.number_comments"></i-control>
-            <i-control help-id="ad_number_favorites" type="number" class="col3" label="##word.number_favorites##" ng-model="ad.number_favorites"></i-control>
-            <i-control help-id="ad_number_reports" type="number" class="col3" label="##word.number_reports##" ng-model="ad.number_reports"></i-control>
+            <i-list class="col3" v="r" ng-model="ad.ad_status" items="contentStatusList" display="##session.lang##"
+              ng-search="_search.$search_ad_status" label="##word.ad_status##"></i-list>
+            <i-control help-id="ad_rating" type="number" class="col3" label="##word.ad_rating##"
+              ng-model="ad.ad_rating"></i-control>
+            <i-control help-id="ad_number_views" type="number" class="col3" label="##word.number_views##"
+              ng-model="ad.number_views"></i-control>
+          </div>
+
+          <div class="row">
+            <i-control help-id="ad_priority_level" type="number" class="col3" label="##word.priority_level##"
+              ng-model="ad.priority_level"></i-control>
+            <i-control help-id="ad_number_comments" type="number" class="col3" label="##word.number_comments##"
+              ng-model="ad.number_comments"></i-control>
+            <i-control help-id="ad_number_favorites" type="number" class="col3" label="##word.number_favorites##"
+              ng-model="ad.number_favorites"></i-control>
+            <i-control help-id="ad_number_reports" type="number" class="col3" label="##word.number_reports##"
+              ng-model="ad.number_reports"></i-control>
           </div>
 
           <div class="row">
             <i-checkbox label="##word.hide_mobile_number##" ng-model="ad.hide_mobile"> </i-checkbox> :
-            <i-control class="col4" ng-hide="ad.hide_mobile" label="##word.cell_phone_number##" ng-model="ad.mobile"></i-control>
+            <i-control class="col4" label="##word.cell_phone_number##" ng-model="ad.mobile">
+            </i-control>
           </div>
           <div class="row">
-            <i-button type="add" class="col2" label="##word.selection_categories##" ng-click="viewCategories(ad)"></i-button>
-            <h2 ng-show="ad.main_category.id" class="col8 bold">##word.category## : {{ad.main_category.name_##session.lang##}} ( {{ad.main_category.v_display}})</h2>
+            <i-button type="add" class="col2" label="##word.selection_categories##" ng-click="viewCategories(ad)">
+            </i-button>
+            <h2 ng-show="ad.main_category.id" class="col8 bold">##word.category## :
+              {{ad.main_category.name_##session.lang##}} ( {{ad.main_category.v_display}})</h2>
           </div>
 
           <div class="row" ng-show="ad.category_require_list.length > 0">
@@ -60,10 +77,11 @@
       </div>
       <br />
       <br />
-    
+
       <fieldset class="row" ng-show="defaultSettings.content.upload_photos">
         <legend>
-          <i-button type="add default" ng-hide="ad.images_list.length >= defaultSettings.content.allowed_number_photo" ng-click="addImage()"></i-button>
+          <i-button type="add default" ng-hide="ad.images_list.length >= defaultSettings.content.allowed_number_photo"
+            ng-click="addImage()"></i-button>
           ##word.ad_images##
         </legend>
         <div class="row" ng-repeat="a in ad.images_list">
@@ -89,7 +107,8 @@
       <br />
       <fieldset class="row" ng-show="defaultSettings.content.upload_video">
         <legend>
-          <i-button type="add default" ng-hide="ad.videos_list.length >= defaultSettings.content.allowed_number_video" ng-click="addVideos()"></i-button>
+          <i-button type="add default" ng-hide="ad.videos_list.length >= defaultSettings.content.allowed_number_video"
+            ng-click="addVideos()"></i-button>
           ##word.ad_videos##
         </legend>
         <p class="red font-18">##word.please_put_link_video_from_youtube##</p>
@@ -121,7 +140,8 @@
             <fieldset>
               <legend>##word.main_address##</legend>
               <i-address ng-model="address.main"></i-address>
-              <i-checkbox label="##word.select##" ng-model="address.select_main" ng-click="selectAddress(address,'main')"></i-checkbox>
+              <i-checkbox label="##word.select##" ng-model="address.select_main"
+                ng-click="selectAddress(address,'main')"></i-checkbox>
             </fieldset>
             <br />
 
@@ -129,7 +149,8 @@
               <legend>##word.other_addresses##</legend>
               <div class="row border padding" ng-repeat="o in address.other_list">
                 <i-address ng-model="o"></i-address>
-                <i-checkbox label="##word.select##" ng-model="o.$select_address" ng-click="selectAddress(address,'other',$index)"></i-checkbox>
+                <i-checkbox label="##word.select##" ng-model="o.$select_address"
+                  ng-click="selectAddress(address,'other',$index)"></i-checkbox>
               </div>
             </fieldset>
             <br />
@@ -137,49 +158,63 @@
             <fieldset>
               <legend>##word.new_address##</legend>
               <i-address ng-model="address.new"></i-address>
-              <i-checkbox label="##word.select##" ng-model="address.select_new" ng-click="selectAddress(address,'new')"></i-checkbox>
+              <i-checkbox label="##word.select##" ng-model="address.select_new" ng-click="selectAddress(address,'new')">
+              </i-checkbox>
             </fieldset>
           </div>
         </fieldset>
       </div>
       <br />
       <br />
-      <div class="row" >
+      <div class="row">
         <h2>##word.Do_you_want_set_price##</h2>
         <div class="col5">
           <div class="row">
             <i-radio class="col6" ng-model="ad.set_price" label="##word.no##" ng-value="no"> </i-radio>
-            <i-radio class="col6" ng-model="ad.set_price" ng-click="ad.quantity_list = [{}]" label="##word.yes##" ng-value="yes"></i-radio>
+            <i-radio class="col6" ng-model="ad.set_price" ng-click="ad.quantity_list = [{}]" label="##word.yes##"
+              ng-value="yes"></i-radio>
           </div>
         </div>
       </div>
 
       <fieldset class="row" ng-show="ad.set_price == 'yes'">
         <legend>
-          <i-button ng-show="defaultSettings.content.quantities_can_be_used" type="add default" ng-click="addQuantity()"></i-button>
+          <i-button ng-show="defaultSettings.content.quantities_can_be_used" type="add default"
+            ng-click="addQuantity()"></i-button>
           ##word.quantities##
         </legend>
         <div class="row" ng-repeat="c in ad.quantity_list">
           <div class="row">
-            <i-list ng-show="defaultSettings.content.quantities_can_be_used" ng-search="_search.$unit" class="col2" display="name_##session.lang##" ng-model="c.unit" label="##word.unit##" items="unitsList"> </i-list>
-            <i-control help-id="ad_available_quantity" type="number" class="col2" label="##word.available_quantity##" ng-model="c.available_quantity"></i-control>
-            <i-control help-id="ad_maximum_order" type="number" class="col2" label="##word.maximum_order##" ng-model="c.maximum_order"></i-control>
-            <i-control help-id="ad_minimum_order" type="number" class="col2" label="##word.minimum_order##" ng-model="c.minimum_order"></i-control>
-            <i-list ng-show="defaultSettings.content.currency_can_be_used" ng-search="_search.$currency" class="col2" display="name_##session.lang##" ng-model="c.currency" label="##word.currency##" items="currenciesList"> </i-list>
+            <i-list ng-show="defaultSettings.content.quantities_can_be_used" ng-search="_search.$unit" class="col2"
+              display="name_##session.lang##" ng-model="c.unit" label="##word.unit##" items="unitsList"> </i-list>
+            <i-control help-id="ad_available_quantity" type="number" class="col2" label="##word.available_quantity##"
+              ng-model="c.available_quantity"></i-control>
+            <i-control help-id="ad_maximum_order" type="number" class="col2" label="##word.maximum_order##"
+              ng-model="c.maximum_order"></i-control>
+            <i-control help-id="ad_minimum_order" type="number" class="col2" label="##word.minimum_order##"
+              ng-model="c.minimum_order"></i-control>
+            <i-list ng-show="defaultSettings.content.currency_can_be_used" ng-search="_search.$currency" class="col2"
+              display="name_##session.lang##" ng-model="c.currency" label="##word.currency##" items="currenciesList">
+            </i-list>
           </div>
 
           <div class="row">
-            <i-control help-id="ad_price" ng-change="calcDiscount(c)" type="number" class="col2" label="##word.price##" ng-model="c.price"></i-control>
-            <i-control help-id="ad_discount" ng-change="calcDiscount(c)" type="number" class="col2" label="##word.discount##" ng-model="c.discount"></i-control>
+            <i-control help-id="ad_price" ng-change="calcDiscount(c)" type="number" class="col2" label="##word.price##"
+              ng-model="c.price"></i-control>
+            <i-control help-id="ad_discount" ng-change="calcDiscount(c)" type="number" class="col2"
+              label="##word.discount##" ng-model="c.discount"></i-control>
 
             <div class="col1">
               <div class="row">
-                <i-radio ng-click="calcDiscount(c)" ng-model="c.discount_type" label="##word.amount##" ng-value="number"></i-radio>
-                <i-radio ng-click="calcDiscount(c)" ng-model="c.discount_type" label="##word.percent##" ng-value="percent"> </i-radio>
+                <i-radio ng-click="calcDiscount(c)" ng-model="c.discount_type" label="##word.amount##"
+                  ng-value="number"></i-radio>
+                <i-radio ng-click="calcDiscount(c)" ng-model="c.discount_type" label="##word.percent##"
+                  ng-value="percent"> </i-radio>
               </div>
             </div>
 
-            <i-control help-id="ad_required" type="number" disabled class="col2" label="##word.required##" ng-model="c.net_value"></i-control>
+            <i-control help-id="ad_required" type="number" disabled class="col2" label="##word.required##"
+              ng-model="c.net_value"></i-control>
             <div class="col3"></div>
             <div class="col1">
               <br />

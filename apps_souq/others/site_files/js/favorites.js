@@ -68,8 +68,10 @@ app.controller('favorites', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.updateFeedback = function (ad, type) {
-
+  $scope.updateFeedback = function (ad, type,status) {
+    if(type == 'favorite') {
+      ad.$favorite = status;
+    }
     let data = { id: ad.id, feedback: { favorite: ad.$favorite, type: type } };
 
     $http({

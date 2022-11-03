@@ -48,7 +48,7 @@ module.exports = function init(site) {
             set: a,
           },
           (err, result) => {
-            if (result.old_doc && result.old_doc.ad_status.id != result.doc.ad_status.id && result.doc.ad_status.id == 1) {
+            if (result && result.old_doc && result.old_doc.ad_status && result.old_doc.ad_status.id != result.doc.ad_status.id && result.doc.ad_status.id == 1) {
               site.call('[notific][ads_members_follow]', {
                 user: { id: user.id, email: user.email, profile: user.profile, followers_list: user.followers_list },
                 action: {
@@ -393,7 +393,6 @@ module.exports = function init(site) {
         if (req.body.display) {
           a.$update = true;
           a.number_views += 1;
-          a.comments_activities = a.comments_activities || [];
           a.$time = site.xtime(a.date, req.session.lang);
           if (a.videos_list && a.videos_list.length > 0) {
             a.videos_list.forEach((v) => {
@@ -455,6 +454,19 @@ module.exports = function init(site) {
       };
 
       where['quantity_list.net_value'] = { $gte: where['price_from'] || 0, $lte: where['price_to'] || 100000000 };
+
+      req.body.select = {
+        id : 1,
+        date :1,
+        number_views :1,
+        image_url :1,
+        mobile :1,
+        name :1,
+        store :1,
+        quantity_list :1,
+        address :1,
+      }
+
     }
 
     if (where['price'] == 'lowest') {
@@ -471,7 +483,6 @@ module.exports = function init(site) {
     if (where['with_photos']) {
       where['images_list'] = { $exists: true };
     }
-
     if (where['text_search']) {
       where.$or = where.$or || [];
       where.$or.push({

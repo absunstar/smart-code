@@ -5,7 +5,9 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
       return;
     }
     $scope.ContentBusy = true;
+
     if (ev.which === 13) {
+
       where = where || {};
       where['ad_status.id'] = 1;
 
@@ -29,6 +31,7 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
         $scope.contentList = [];
         window.page_number = 0;
       }
+
       $http({
         method: 'POST',
         url: '/api/contents/all',
@@ -278,7 +281,10 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.updateFeedback = function (ad, type) {
+  $scope.updateFeedback = function (ad, type ,status) {
+    if(type == 'favorite') {
+      ad.$favorite = status;
+    }
     let data = { id: ad.id, feedback: { favorite: ad.$favorite, type: type } };
 
     $http({
@@ -330,26 +336,6 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
       function (err) {
         $scope.busy = false;
         $scope.error = err;
-      }
-    );
-  };
-
-  $scope.logout = function () {
-    $scope.error = '';
-    $scope.busy = true;
-
-    $http.post('/api/user/logout').then(
-      function (response) {
-        if (response.data.done) {
-          window.location.href = '/';
-        } else {
-          $scope.error = response.data.error;
-          $scope.busy = false;
-        }
-      },
-      function (error) {
-        $scope.busy = false;
-        $scope.error = error;
       }
     );
   };
@@ -504,7 +490,6 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
 
   $scope.searchAll = function (search) {
     $scope.error = '';
-
     $scope.getContentList({ which: 13 }, search);
   };
 

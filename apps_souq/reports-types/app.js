@@ -208,6 +208,7 @@ module.exports = function init(site) {
 
             response.report_ad_list = docs.filter(_d => !_d.report_comments);
             response.report_comment_list = docs.filter(_d => _d.report_comments);
+         
           } else {
             response.list = docs;
           }

@@ -234,12 +234,14 @@
 
       <h2 ng-show="ad.main_category.id" class="col8 bold">##word.category## : {{ad.main_category.name_##session.lang##}} ( {{ad.main_category.v_display}})</h2>
 
-     
+      <div class="row">
+        <i-checkbox label="##word.disable_replies_feature##" ng-model="ad.disable_replies_feature"> </i-checkbox>
+      </div>
 
       <div class="row">
         <!-- <p class="col3 bold">##word.mobile_number_or_contact_method##</p> : -->
         <i-checkbox label="##word.hide_mobile_number##" ng-model="ad.hide_mobile"> </i-checkbox>
-        <i-control class="col4" ng-hide="ad.hide_mobile" label="##word.cell_phone_number##" ng-model="ad.mobile"></i-control>
+        <i-control class="col4" label="##word.cell_phone_number##" ng-model="ad.mobile"></i-control>
       </div>
 
       <div class="row" ng-show="ad.category_require_list.length > 0">

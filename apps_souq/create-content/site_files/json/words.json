@@ -15,6 +15,16 @@
     "ar": "موافق"
   },
   {
+    "name": "disable_replies_feature",
+    "en": "Disable the replies feature",
+    "ar": "تعطيل ميزة الردود"
+  },
+  {
+    "name": "advertiser_disabled_replies_feature",
+    "en": "The advertiser has disabled the replies feature.",
+    "ar": "قام المعلن بتعطيل ميزة الردود."
+  },
+  {
     "name": "main_ad_image",
     "en": "Main ad image",
     "ar": "صورةالإعلان الرئيسية"

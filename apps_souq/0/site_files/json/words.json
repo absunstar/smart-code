@@ -246,11 +246,6 @@
     "ar": "هل ترغب بتحديد السعر ؟"
   },
   {
-    "name": "report",
-    "en": "Sub Categories",
-    "ar": "أقسام فرعية"
-  },
-  {
     "name": "cart",
     "en": "Cart",
     "ar": "العربة"
@@ -258,7 +253,7 @@
   {
     "name": "report",
     "en": "Report",
-    "ar": "إبلاغ"
+    "ar": "بلاغ"
   },
   {
     "name": "add_to_cart",

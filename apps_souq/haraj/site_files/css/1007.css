@@ -1,3 +1,29 @@
+.userad-logo {
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+  margin: -5px 10px -5px 0px !important
+}
+
+.store-name-stlye,
+.user-name-stlye {
+  color: green;
+  font-size: large;
+}
+
+.user-name-stlye:hover {
+  text-decoration: underline;
+}
+tr:nth-child(even) {
+  background-color: #f7fbfa;
+}
+
+.adarea-image img {
+  max-width: 90% !important;
+  height: 180px !important;
+}
+
+
 @media screen and (max-width: 1007px) {
   .firstheader {
     display: none;
@@ -393,6 +419,7 @@
     justify-content: center;
     align-items: center;
     color: white;
+    cursor: pointer;
     background-color: var(--theme-color);
     width: 90px;
     height: 40px;

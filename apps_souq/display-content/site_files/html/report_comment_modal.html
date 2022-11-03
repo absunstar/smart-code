@@ -6,13 +6,13 @@
     <div class="modal-body">
       <div class="row">
         <i-list ng-search="_search.$report_type" v="r" class="col4" display="name_##session.lang##" ng-model="activity.report_type" label="##word.report_type##" items="reportCommentList"> </i-list>
-        <i-textarea class="col7" v="r ll50" ng-model="activity.comment_report" label="##word.comment_on_report##"> </i-textarea>
+        <i-textarea v="r ll50" class="col7 radius-textarea" ng-model="activity.comment_report" label="##word.comment_on_report##"> </i-textarea>
       </div>
     </div>
     <h2 class="error center bold">{{error}}</h2>
     <div class="modal-footer center">
       <i-button type="add" label="##word.add_report##" ng-click="updateFeedback('report_comment')"></i-button>
-      <i-button type="close" label=" ##word.close##" onclick="site.hideModal('#reportCommentModal'); activity.report_type = {} ; activity.comment_report =''"></i-button>
+      <i-button type="close" label=" ##word.close##" onclick="site.hideModal('#reportCommentModal')" ng-click="activity.report_type = {} ; activity.comment_report =''"></i-button>
     </div>
   </div>
 </div>

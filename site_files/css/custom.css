@@ -637,7 +637,7 @@ i-checkbox .selector {
 }
 
 .pre_text {
-  white-space: pre;
+  white-space: pre-wrap !important;
 }
 
 /* .main-menu .tabs-header .tab-link .tabs .tab-link.active {

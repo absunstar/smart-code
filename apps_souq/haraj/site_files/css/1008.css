@@ -828,6 +828,7 @@
     justify-content: center;
     align-items: center;
     color: white;
+    cursor: pointer;
     background-color: var(--theme-color);
     width: 150px;
     height: 43px;

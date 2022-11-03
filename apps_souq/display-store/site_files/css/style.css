@@ -171,12 +171,8 @@ font-family: var(--font-family);
         box-shadow: 0 0 8px #00000059;
     }
     .pre_text {
-        display: flex;
         white-space: pre-wrap !important;
-        flex-wrap: wrap;
-        flex-direction: column;
-        align-items: flex-start;
-        align-content: flex-start;
+       
     }
 
 
@@ -329,12 +325,8 @@ font-family: var(--font-family);
         box-shadow: 0 0 8px #00000059;
     }
     .pre_text {
-        display: flex;
         white-space: pre-wrap !important;
-        flex-wrap: wrap;
-        flex-direction: column;
-        align-items: flex-start;
-        align-content: flex-start;
+      
     }
 
     fieldset {

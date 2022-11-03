@@ -226,7 +226,7 @@
             ng-click="displayManagePersonalAccount()"> </i-button>
 
           <i-button fa="comments" x-permissions="login" ng-show="!user.$same_email" label="##word.conversation##"
-            onclick="site.showModal('#messageModal')"></i-button>
+            onclick="site.showModal('#messageModal');"></i-button>
 
         </div>
         <div x-import="profile/tabs_content.html"></div>
@@ -248,7 +248,7 @@
 
   <script x-import="profile/index.js"></script>
   <script>
-    $('#user_contents').hide();
+    $('#user_contents').show();
     $('#ratings').hide();
 
   </script>
