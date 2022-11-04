@@ -25,8 +25,6 @@ function taghide() {
   }
 }
 
-xtaghide();
-
 function xtaghide() {
   let plus = document.getElementById('open');
   let tags = document.getElementById('xtags-filter');
@@ -37,6 +35,7 @@ function xtaghide() {
     tags.style.display = 'block';
   }
 }
+xtaghide();
 
 let xbtnFilter = document.querySelector('.xfilter-toggel');
 let xicon = xbtnFilter.querySelector('.fa-plus');
@@ -155,3 +154,10 @@ function hsMap(type) {
     });
   }
 }
+
+site.onLoad(() => {
+  setTimeout(() => {
+    xbtnFilter.click();
+    xtaghide();
+  }, 1000);
+});

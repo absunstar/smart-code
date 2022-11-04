@@ -1,44 +1,73 @@
 <!DOCTYPE html>
 <html lang="en" data-ng-app="myApp">
-  <head x-import="haraj/head.html">
-<link rel="icon" type="image/x-icon" href="##setting.logo##">
-
+  <head>
+    <title>##word.brand_title##</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/haraj.css" />
+    <link rel="stylesheet" href="/x-css/all.css" />
+    <link rel="stylesheet" href="/x-css/font-cairo.css" />
+    <link rel="icon" type="image/x-icon" href="##setting.logo##" />
+    <style>
+      :root {
+        --body-margin-top: 0px;
+        --body-margin-bottom: 0px;
+        --zoom: 100%;
+        --fieldset-border: none;
+        --fieldset-background: #fff;
+      }
+      * {
+        max-width: initial;
+      }
+    </style>
+    <style x-lang="ar">
+      .nav1 {
+        flex-direction: initial;
+        padding: 7px;
+      }
+      :root {
+        --direction: rtl;
+        --text-align: right;
+        --float: right;
+      }
+    </style>
   </head>
 
   <body class="##session.lang## loaded" ng-controller="login_souq">
-
+    <div x-import="haraj/header.html"></div>
     <div id="main-layout" class="container" id="loginSouqModal">
       <div class="row">
-        <div class="row" >
+        <div class="row center">
           <div class="row">
             <h1 class="bold text-center">##word.login##</h1>
           </div>
 
           <div class="row">
-            <h2 class="bold red ">{{error}}</h2>
+            <h2 class="bold red">{{error}}</h2>
+          </div>
 
+          <div class="row center">
+            <div class="col3"></div>
+            <div class="col6">
+              <div class="col10"></div>
+              <i-control class="col10" v="r" label="##word.mobile_email##" ng-model="user.email"> </i-control>
+              <i-control class="col10 pass" label="##word.password##" type="password" v="r" ng-model="user.password"> </i-control>
+              <i-checkbox class="col6" label="##word.show_password##" ng-click="showPassword()" ng-model="show_password"> </i-checkbox>
+              <div class="row10">
+                <i-button type="add" label="##word.login_now##" ng-click="login()"></i-button>
+              </div>
+            </div>
           </div>
-        
-          <div class="row">
-            <i-control class="col4" v="r" label="##word.mobile_email##" ng-model="user.email"> </i-control>
-          </div>
-          <div class="row">
-            <i-control class="col4 pass" label="##word.password##" type="password" v="r"  ng-model="user.password"> </i-control>
-          </div>
-          <div class="row">
-            <i-checkbox  class="col2" label="##word.show_password##" ng-click="showPassword()"  ng-model="show_password"> </i-checkbox>
-          </div>
-          <i-button type="add" label="##word.login_now##" ng-click="login()" ></i-button>
 
-          <form >
+          <form>
             <p class="font-18">##word.not_registered## <a href="/register">##word.create_account##</a></p>
           </form>
-
-
         </div>
       </div>
     </div>
-
+    <footer class="footer ng-scope" x-import="haraj/footer.html" ng-controller="footer_herag"></footer>
     <div x-import="haraj/scripts.html"></div>
     <script x-import="login/index.js"></script>
   </body>

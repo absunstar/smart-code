@@ -1047,7 +1047,7 @@ tr:nth-child(even) {
   #xtags-filter {
     display: none;
     max-height: 1000px;
-    overflow-y: hidden;
+    overflow-y: visible;
     transition: all 0.15s ease-out 0s;
   }
 

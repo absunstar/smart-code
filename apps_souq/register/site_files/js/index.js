@@ -1,4 +1,4 @@
-let btn1 = document.querySelector('#register_with_mobile_number .tab-link');
+let btn1 = document.querySelector('.tab-link');
 if (btn1) {
   btn1.click();
 }

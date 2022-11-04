@@ -585,7 +585,7 @@ module.exports = function init(site) {
         if (!err && docs) {
           if (req.body.post) {
             docs.forEach((_d) => {
-              if (req.session.user) {
+              if (req.session.user && req.session.user.feedback_list) {
                 _d.$favorite = req.session.user.feedback_list.some((_f) => _f.type && _f.ad && _f.type.id == 2 && _f.ad.id == _d.id);
               }
               _d.$time = site.xtime(_d.date, req.session.lang);
