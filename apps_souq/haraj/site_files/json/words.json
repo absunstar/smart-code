@@ -100,6 +100,11 @@
     "ar": "تصفية"
   },
   {
+    "name": "more",
+    "en": "More",
+    "ar": "المزيد"
+  },
+  {
     "name": "quick_navigate",
     "en": "Quick Navigate",
     "ar": "تنقل سريع"

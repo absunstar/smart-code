@@ -68,6 +68,10 @@ app.controller('register_souq', function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.showDeal = function (params) {
+    site.showModal('#dealModal');
+  };
+
   $scope.registerMailer = function (mailer, type) {
     $scope.error = '';
     if (type == 'mobile') {
@@ -95,6 +99,7 @@ app.controller('register_souq', function ($scope, $http, $timeout) {
           $scope.mailer = response.data.doc;
           document.getElementById('mobile_mailer').style.display = 'none';
           document.getElementById('mobile_confirm').style.display = 'block';
+         /*  site.hideModal('#dealModal'); */
         }
         $scope.busy = false;
       },

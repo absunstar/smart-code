@@ -338,7 +338,7 @@ module.exports = function init(site) {
       res.json(response);
       return;
     }
-
+    
     $countries.edit(
       {
         where: {

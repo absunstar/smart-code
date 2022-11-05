@@ -10,6 +10,21 @@
     "ar": "التالي"
   },
   {
+    "name": "enter",
+    "en": "Enter",
+    "ar": "دخول"
+  },
+  {
+    "name": "agree",
+    "en": "Agree",
+    "ar": "أوافق"
+  },
+  {
+    "name": "disagree",
+    "en": "Disagree",
+    "ar": "لا أوافق"
+  },
+  {
     "name": "mobile_number_already_exists",
     "en": "The mobile number already exists",
     "ar": "رقم الموبايل موجود من قبل"

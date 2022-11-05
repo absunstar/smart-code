@@ -397,7 +397,9 @@
               </tr>
             </table>
             <div class="row padding center">
-              <a ng-click="loadMore()" ng-hide="ContentBusy" class="more-btn"> Load More </a>
+              <a ng-click="loadMore()" ng-hide="ContentBusy" class="more-btn"> ##word.more## 
+                <i class="fa fa-caret-down" aria-hidden="true"></i>
+              </a>
               <img class="more-loading" src="/images/loading.gif" ng-show="ContentBusy" >
             </div>
             <div class="row center" ng-show="contentList.length < 1 && contentList.length">
