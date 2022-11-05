@@ -212,7 +212,7 @@ app.controller("area", function ($scope, $http, $timeout) {
           name_ar: 1,
           name_en: 1,
           code: 1,
-          mobile_code: 1,
+          country_code: 1,
           },
       },
     }).then(
