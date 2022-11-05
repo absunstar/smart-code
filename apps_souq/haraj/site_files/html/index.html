@@ -396,7 +396,10 @@
                 </td>
               </tr>
             </table>
-
+            <div class="row padding center">
+              <a ng-click="loadMore()" ng-hide="ContentBusy" class="more-btn"> Load More </a>
+              <img class="more-loading" src="/images/loading.gif" ng-show="ContentBusy" >
+            </div>
             <div class="row center" ng-show="contentList.length < 1 && contentList.length">
               <h2>##word.no_content_1##</h2>
               <h3>##word.no_content_2##</h3>

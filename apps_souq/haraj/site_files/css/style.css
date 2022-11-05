@@ -6,14 +6,40 @@
   --theme-color2: #019777;
   --font-family: 'Arabic', sans-serif;
 }
+.more-btn {
+  background: green;
+  color: white;
+  padding: 7px 9px;
+  margin: 10px;
+  display: inline-block;
+  border-radius: 5px;
+  min-width: 200px;
+  border: 1px solid #000;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+.more-btn:hover {
+  transform: scale(1.1);
+}
+img.more-loading {
+  width: 128px;
+  height: 128px;
+}
+i-country img {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+}
 .border-radius5 {
   border-radius: 5px;
 }
 .margin5 {
-  margin : 5px !important
+  margin: 5px !important;
 }
 
-.pointer {cursor: pointer;}
+.pointer {
+  cursor: pointer;
+}
 .font-26 {
   font-size: 26px !important;
 }
@@ -99,7 +125,6 @@ footer {
 a,
 span,
 button,
-
 p {
   font-family: var(--font-family);
   text-decoration: none;

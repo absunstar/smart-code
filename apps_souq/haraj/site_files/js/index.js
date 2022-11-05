@@ -7,7 +7,6 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
     $scope.ContentBusy = true;
 
     if (ev.which === 13) {
-
       where = where || {};
       where['ad_status.id'] = 1;
 
@@ -45,9 +44,9 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
         function (response) {
           $scope.ContentBusy = false;
           if (response.data.done && response.data.list.length > 0) {
-            response.data.list.forEach(p=>{
+            response.data.list.forEach((p) => {
               $scope.contentList.push(p);
-            })
+            });
           }
           $timeout(() => {
             window.autoLoadingPosts = true;
@@ -64,19 +63,14 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
     }
   };
 
-  window.onscroll = function () {
+  $scope.loadMore = function () {
     if (!window.autoLoadingPosts) {
       return;
     }
     window.autoLoadingPosts = false;
 
-    var y = document.documentElement.offsetHeight;
-    var yy = window.pageYOffset + window.innerHeight;
-
-    if (y - 1000 <= yy) {
-      $scope.search['pages'] = true;
-      $scope.getContentList({ which: 13 }, $scope.search);
-    }
+    $scope.search['pages'] = true;
+    $scope.getContentList({ which: 13 }, $scope.search);
   };
 
   $scope.getCountriesList = function (where) {
@@ -204,11 +198,9 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
   };
 
   $scope.createContent = function () {
-    if('##user.id##') {
+    if ('##user.id##') {
       window.open(`/create_content`);
-
     } else {
-      
       window.open(`/login`);
     }
   };
@@ -292,8 +284,8 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.updateFeedback = function (ad, type ,status) {
-    if(type == 'favorite') {
+  $scope.updateFeedback = function (ad, type, status) {
+    if (type == 'favorite') {
       ad.$favorite = status;
     }
     let data = { id: ad.id, feedback: { favorite: ad.$favorite, type: type } };
@@ -327,7 +319,7 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
         where: {
           status: 'active',
         },
-        top : true,
+        top: true,
       },
     }).then(
       function (response) {
