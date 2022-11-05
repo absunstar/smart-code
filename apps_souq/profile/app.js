@@ -7,7 +7,7 @@ module.exports = function init(site) {
   });
 
   site.get({
-    name: 'profile',
+    name: ['profile','profile/:id/:name/:last_name'],
     path: __dirname + '/site_files/html/index.html',
     parser: 'html',
     compress: true,

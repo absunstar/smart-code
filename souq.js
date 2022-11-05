@@ -15,7 +15,7 @@ const site = require('../isite')({
     limit: 100000,
     events: true,
     identity: {
-      enabled: !0,z
+      enabled: !0,
     },
   },
   security: {

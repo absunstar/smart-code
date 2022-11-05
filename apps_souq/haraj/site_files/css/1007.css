@@ -23,6 +23,9 @@ tr:nth-child(even) {
   height: 180px !important;
 }
 
+.underline-hover:hover {
+  text-decoration: revert;
+}
 
 
 .radius13 {
@@ -39,6 +42,16 @@ img {
   color: black;
   border: solid 1px #00a884;
   border-radius: 10px !important;
+}
+.save-money {
+  background: red;
+  margin: 5px;
+  color: white;
+  padding: 1px 7px 1px 7px;
+    border-radius: 13px;
+}
+.line-through {
+  text-decoration: line-through;
 }
 
 .input-style textarea:focus {

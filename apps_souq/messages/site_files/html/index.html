@@ -27,9 +27,11 @@
     .txt-message {
       color: #7d7d7d;
       white-space: pre-wrap !important;
-      font-size: 19px;
-      padding: 10px;
+      font-size: 16px;
+      padding: 3px !important;
       margin: 10px;
+      line-height: 0.2;
+      min-width: 200px;
       font-weight: bold;
     }
 
@@ -53,7 +55,60 @@
     }
 
     .user-selected {
-      background: blue;
+      background: aquamarine;
+      border-radius: 13px;
+    }
+
+    .sender-msg {
+      border-top-left-radius: 0;
+      background: #00a884;
+      color: #fff;
+      border-radius: 15px;
+      position: relative;
+    }
+
+    .radius13 {
+
+      border-radius: 13px;
+    }
+
+    .reciever-msg {
+      background: #fff;
+      box-shadow: 0 1px 4px 0 rgb(0 0 0 / 20%);
+      border-top-right-radius: 0;
+      color: #454444;
+      border-radius: 15px;
+    }
+
+    ._scroll {
+      max-height: 50vh;
+      overflow: hidden;
+      overflow-y: auto;
+
+    }
+
+    .messages {
+      border-radius: 13px;
+      background-image: linear-gradient(to right, #e9e9e9, #7fffd4);
+    }
+
+    ._scroll::-webkit-scrollbar-thumb {
+      background-color: rgb(0 168 132);
+    }
+
+    ._scroll::-webkit-scrollbar-track {
+      background-color: #f6f6f6;
+      box-shadow: 0 0 10px #ddd inset;
+      border-radius: 20px;
+    }
+
+    ._scroll100 {
+      max-height: 80vh;
+      overflow: hidden;
+    }
+
+    .msg-parent {
+      padding: 15px !important;
     }
 
     body {
@@ -68,6 +123,13 @@
       padding: 7px;
     }
 
+    .reciever {
+      max-width: fit-content;
+      float: right;
+      margin-right: -3px !important;
+      padding: 0px !important;
+    }
+
     :root {
       --direction: rtl;
       --text-align: right;
@@ -75,14 +137,29 @@
     }
 
     .sender {
+      max-width: fit-content;
       float: left;
-      text-align: left;
+      color: #fff;
+      margin-right: -3px !important;
+      padding: 0px !important;
     }
   </style>
 
   <style x-lang="en">
+    .reciever {
+      max-width: fit-content;
+      float: left;
+      margin-left: -3px !important;
+      padding: 0px !important;
+
+    }
+
     .sender {
-      text-align: right;
+      max-width: fit-content;
+      float: right;
+      color: #fff;
+      margin-right: -3px !important;
+      padding: 0px !important;
     }
   </style>
 
@@ -102,13 +179,16 @@
       </div>
       <div class="row">
         <div class="col3" ng-show="messagesList.length > 0">
-          <div class="ad-user row padding margin" ng-class="{'user-selected' : m.$isSelected == true}" ng-repeat="m in messagesList">
-            <a class="message-icon pointer display-block border padding" ng-repeat="u in m.users_list" class="center"
+          <div class="ad-user row  padding margin" ng-repeat="m in messagesList">
+            <a class="message-icon pointer radius13 display-block border padding"
+              ng-class="{'user-selected' : m.$isSelected == true}" ng-repeat="u in m.users_list" class="center"
               ng-show="u.id != userId" ng-click="showMessage(m,$event)">
               <img class="center userad-logo" ng-src="{{u.image_url}}" onerror="this.src='/images/user.png'" alt="" />
               <b class="user-name-stlye">{{u.name}} {{u.last_name}}
                 <span ng-show="m.$new" class="badge_message"></span>
               </b>
+
+              <p class="padding">{{m.messages_list[0].message}}</p>
             </a>
           </div>
           <!--  <a class="message-icon pointer display-block border padding" ng-repeat="m in messagesList"
@@ -125,41 +205,36 @@
 
             <br />
             <br />
-            <div class="row">
-                <div class="row _scroll">
-                  <div class="row padding margin" ng-repeat="m in message.messages_list">
-                    <div ng-repeat="u in message.users_list" ng-class="{'sender' : m.user_id != userId}"
-                      ng-show="m.user_id == u.id">
-                      <div class="ad-user">
-                        <a>
-                          <img class="center userad-logo" ng-src="{{u.image_url}}" onerror="this.src='/images/user.png'"
-                            alt="" />
-                          <b class="user-name-stlye">{{u.name}} {{u.last_name}}</b>
-                        </a>
-                      </div>
-                    </div>
+            <div class="row _scroll100">
+              <div class="row _scroll messages">
+                <div class="row padding msg-parent margin" ng-repeat="m in message.messages_list">
+                  <div class="row" ng-class="{'reciever-msg' : m.user_id == userId,'sender-msg' : m.user_id != userId , 'sender' : m.user_id != userId
+                    , 'reciever' : m.user_id == userId}">
+
                     <div class="row">
 
                       <h3 ng-class="{'sender' : m.user_id != userId}" class="txt-message">{{m.message}}</h3>
                     </div>
-                    <div ng-class="{'sender' : m.user_id != userId}" class="row time-publish">
+                    <div ng-class="{'sender' : m.user_id != userId}" class="row padding margin time-publish">
+                      <i ng-show="m.show && m.user_id == userId" class="fa fa-eye" aria-hidden="true"></i>
                       <i class="fa-solid fa-clock"> {{m.date | date : 'dd/MM/yyyy - hh:mm'}} </i>
+
                     </div>
                   </div>
                 </div>
 
-            </div>
+              </div>
 
-            <br />
-            <br />
 
-            <div class="row">
-              <div class="col3"></div>
-              <i-textarea class="col6" label="##word.write_your_message_here##" ng-model="send_message"> </i-textarea>
-            </div>
-            <div class="row center">
-              <i-button type="add" label="##word.send##" ng-click="sendMessage(message)"> </i-button>
-            </div>
+
+              <div class="row">
+                <div class="col2"></div>
+                <i-textarea class="col8 input-style" label="##word.write_your_message_here##" ng-model="send_message">
+                </i-textarea>
+              </div>
+              <div class="row center">
+                <i-button fa="paper-plane" label="##word.send##" ng-click="sendMessage(message)"> </i-button>
+              </div>
           </fieldset>
         </div>
       </div>

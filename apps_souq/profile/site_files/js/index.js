@@ -48,7 +48,7 @@ app.controller('profile', function ($scope, $http, $timeout) {
         where: {
           $and: [
             {
-              'store.user.id': site.toNumber('##query.id##'),
+              'store.user.id': site.toNumber('##params.id##'),
             },
             {
               'ad_status.id': 1,
@@ -79,7 +79,7 @@ app.controller('profile', function ($scope, $http, $timeout) {
       url: '/api/ratings/all',
       data: {
         where: {
-          'receiver.id': site.toNumber('##query.id##'),
+          'receiver.id': site.toNumber('##params.id##'),
           approval: true,
         },
         display: true,
@@ -183,7 +183,7 @@ app.controller('profile', function ($scope, $http, $timeout) {
       method: 'POST',
       url: '/api/user/view',
       data: {
-        id: site.toNumber('##query.id##'),
+        id: site.toNumber('##params.id##'),
       },
     }).then(
       function (response) {

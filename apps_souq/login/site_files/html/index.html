@@ -52,8 +52,8 @@
             <div class="col3"></div>
             <div class="col6">
               <div class="col10"></div>
-              <i-control class="col10" v="r" label="##word.mobile_email##" ng-model="user.email"> </i-control>
-              <i-control class="col10 pass" label="##word.password##" type="password" v="r" ng-model="user.password"> </i-control>
+              <i-control class="col10 input-style" v="r" label="##word.mobile_email##" ng-model="user.email"> </i-control>
+              <i-control class="col10 input-style pass" label="##word.password##" type="password" v="r" ng-model="user.password"> </i-control>
               <i-checkbox class="col6" label="##word.show_password##" ng-click="showPassword()" ng-model="show_password"> </i-checkbox>
               <div class="row10">
                 <i-button type="add" label="##word.login_now##" ng-click="login()"></i-button>
@@ -62,7 +62,7 @@
           </div>
 
           <form>
-            <p class="font-18">##word.not_registered## <a href="/register">##word.create_account##</a></p>
+            <p class="font-18">##word.not_registered## <a href="/register" class="underline-hover">##word.create_account##</a></p>
           </form>
         </div>
       </div>

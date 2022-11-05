@@ -15,6 +15,11 @@
     "ar": "إضافة تعليق"
   },
   {
+    "name": "save_money",
+    "en": "Save",
+    "ar": "وفر"
+  },
+  {
     "name": "submit_report",
     "en": "Submit a report",
     "ar": "تقديم بلاغ"

@@ -53,8 +53,8 @@
             <legend>##word.register_with_mobile_number##</legend>
             <div class="row" id="mobile_mailer">
               <div class="col5">
-                <i-list class="row" v="r" label="##word.country##" ng-model="mailer.country" display="name_##session.lang##" items="countriesList" ng-search="mailer.$countries"></i-list>
-                <i-control class="row" v="r" label="##word.mobile_phone_number##" ng-model="mailer.mobile"> </i-control>
+                <i-list class="row input-style" v="r" label="##word.country##" ng-model="mailer.country" display="name_##session.lang##" items="countriesList" ng-search="mailer.$countries"></i-list>
+                <i-control class="row input-style" v="r" label="##word.mobile_phone_number##" ng-model="mailer.mobile"> </i-control>
               </div>
               <div class="row">
                 <i-button label="##word.continuation##" ng-click="registerMailer(mailer,'mobile')"></i-button>
@@ -63,11 +63,11 @@
 
             <div class="row" id="mobile_confirm">
               <div class="col5">
-                <i-control class="row" v="r" label="##word.secret_code_sent_phone##" ng-model="secret_code"> </i-control>
+                <i-control class="row input-style" v="r" label="##word.secret_code_sent_phone##" ng-model="secret_code"> </i-control>
               </div>
               <div class="row">
                 <i-button label="##word.continuation##" ng-click="checkSecretCode(secret_code)"></i-button>
-                <i-button label="##word.resend_code##" ng-click="resendCode(mailer.id,'mobile')"></i-button>
+                <i-button label="##word.resend_code##" fa="retweet" ng-click="resendCode(mailer.id,'mobile')"></i-button>
               </div>
             </div>
             <div class="row" id="mobile_data">
@@ -76,17 +76,17 @@
               </div>
 
               <div class="row">
-                <i-control class="col4" label="##word.first_name##" ng-model="user.first_name"> </i-control>
-                <i-control class="col4" label="##word.last_name##" ng-model="user.last_name"> </i-control>
+                <i-control class="col4 input-style" label="##word.first_name##" ng-model="user.first_name"> </i-control>
+                <i-control class="col4 input-style" label="##word.last_name##" ng-model="user.last_name"> </i-control>
               </div>
               <div class="row">
-                <i-control v="r e" class="col4" label="##word.email##" ng-model="user.email"> </i-control>
+                <i-control v="r e" class="col4 input-style" label="##word.email##" ng-model="user.email"> </i-control>
               </div>
               <div class="row">
-                <i-control class="col4 pass" label="##word.password##" type="password" id="pass1" ng-model="user.password"> </i-control>
+                <i-control class="col4 pass input-style" label="##word.password##" type="password" id="pass1" ng-model="user.password"> </i-control>
               </div>
               <div class="row">
-                <i-control class="col4 pass" label="##word.retype_password##" type="password" id="pass2" ng-model="user.re_password"> </i-control>
+                <i-control class="col4 pass input-style" label="##word.retype_password##" type="password" id="pass2" ng-model="user.re_password"> </i-control>
               </div>
               <div class="row">
                 <i-checkbox class="col2" label="##word.show_password##" ng-change="showPassword()" ng-model="show_password"> </i-checkbox>
@@ -102,7 +102,7 @@
 
     <div class="row">
       <form>
-        <p class="font-18 center">##word.existing_user## <a href="/login">##word.login_now##</a></p>
+        <p class="font-18 center">##word.existing_user## <a href="/login" class="underline-hover">##word.login_now##</a></p>
       </form>
     </div>
 

@@ -119,7 +119,7 @@
     <legend>
       ##word.ad_images##
     </legend>
-    <a ng-click="adBack('adImages', 'adAddressSelect')">
+    <a ng-click="adBack('adImages', 'adAddressType')">
       <i class="fa fa-arrow-circle-right fa-4x back-style" aria-hidden="true"></i>
     </a>
     <div class="row">
@@ -284,7 +284,7 @@
         <div class="row">
           <!-- <p class="col3 bold">##word.mobile_number_or_contact_method##</p> : -->
           <i-checkbox label="##word.hide_mobile_number##" ng-model="ad.hide_mobile"> </i-checkbox>
-          <i-control class="col4" label="##word.cell_phone_number##" ng-model="ad.mobile"></i-control>
+          <i-control class="col4 input-style" label="##word.cell_phone_number##" ng-model="ad.mobile"></i-control>
         </div>
 
 
@@ -312,24 +312,24 @@
           </div>
           <div class="row border padding border-radius5 margin5" ng-repeat="c in ad.quantity_list">
             <div class="row ">
-              <i-list ng-show="defaultSettings.content.quantities_can_be_used" ng-search="_search.$unit" class="col2"
+              <i-list ng-show="defaultSettings.content.quantities_can_be_used" ng-search="_search.$unit" class="col2 input-style"
                 display="name_##session.lang##" ng-model="c.unit" label="##word.unit##" items="unitsList"> </i-list>
-              <i-control help-id="ad_available_quantity" type="number" class="col2" label="##word.available_quantity##"
+              <i-control help-id="ad_available_quantity" type="number" class="col2 input-style" label="##word.available_quantity##"
                 ng-model="c.available_quantity"></i-control>
-              <i-control help-id="ad_maximum_order" type="number" class="col2" label="##word.maximum_order##"
+              <i-control help-id="ad_maximum_order" type="number" class="col2 input-style" label="##word.maximum_order##"
                 ng-model="c.maximum_order"></i-control>
-              <i-control help-id="ad_minimum_order" type="number" class="col2" label="##word.minimum_order##"
+              <i-control help-id="ad_minimum_order" type="number" class="col2 input-style" label="##word.minimum_order##"
                 ng-model="c.minimum_order"></i-control>
               <i-list ng-show="defaultSettings.content.currencies_can_be_used" ng-search="_search.$currency"
-                class="col2" display="name_##session.lang##" ng-model="c.currency" label="##word.currency##"
+                class="col2 input-style" display="name_##session.lang##" ng-model="c.currency" label="##word.currency##"
                 items="currenciesList">
               </i-list>
             </div>
 
             <div class="row">
-              <i-control help-id="ad_price" ng-change="calcDiscount(c)" type="number" class="col2"
+              <i-control help-id="ad_price" ng-change="calcDiscount(c)" type="number" class="col2 input-style"
                 label="##word.price##" ng-model="c.price"></i-control>
-              <i-control help-id="ad_discount" ng-change="calcDiscount(c)" type="number" class="col2"
+              <i-control help-id="ad_discount" ng-change="calcDiscount(c)" type="number" class="col2 input-style"
                 label="##word.discount##" ng-model="c.discount"></i-control>
 
               <div class="col1">
@@ -341,7 +341,7 @@
                 </div>
               </div>
 
-              <i-control help-id="ad_required" type="number" disabled class="col2" label="##word.required##"
+              <i-control help-id="ad_required" type="number" disabled class="col2 input-style" label="##word.required##"
                 ng-model="c.net_value"></i-control>
               <div class="col3"></div>
               <div class="col1">

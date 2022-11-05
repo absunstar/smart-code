@@ -297,7 +297,7 @@ module.exports = function init(site) {
       if (user_ad.feedback.favorite === true) {
         ad.number_favorites = ad.number_favorites + 1;
         req.session.user.feedback_list.push({ type: { id: 2 }, ad: { id: user_ad.id } });
-        site.security.updateUser(req.session.user, (err, user_doc) => {});
+        site.security.updateUser(req.session.user, (err, user_doc) => { });
         ad.feedback_list.push({
           user: user,
           type: { id: 2, en: 'Favorite', ar: 'تفضيل' },
@@ -310,7 +310,7 @@ module.exports = function init(site) {
 
           1
         );
-        site.security.updateUser(req.session.user, (err, user_doc) => {});
+        site.security.updateUser(req.session.user, (err, user_doc) => { });
         ad.feedback_list.splice(
           ad.feedback_list.findIndex((c) => c.type.id == 2 && c.user.id == req.session.user.id),
           1
@@ -456,15 +456,16 @@ module.exports = function init(site) {
       where['quantity_list.net_value'] = { $gte: where['price_from'] || 0, $lte: where['price_to'] || 100000000 };
 
       req.body.select = {
-        id : 1,
-        date :1,
-        number_views :1,
-        image_url :1,
-        mobile :1,
-        name :1,
-        store :1,
-        quantity_list :1,
-        address :1,
+        id: 1,
+        date: 1,
+        number_views: 1,
+        image_url: 1,
+        mobile: 1,
+        name: 1,
+        store: 1,
+        quantity_list: 1,
+        address: 1,
+        set_price: 1
       }
 
     }

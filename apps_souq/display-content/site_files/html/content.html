@@ -12,7 +12,7 @@
             </div>
 
             <div class="ad-user">
-              <a class="" href="/profile?id={{userAd.id}}">
+              <a class="" href="/profile/{{userAd.id}}/{{userAd.profile.name}}/{{userAd.profile.last_name}}">
                 <img class="center userad-logo" ng-src="{{userAd.profile.image_url}}"
                   onerror="this.src='/images/user.png'" alt="" />
                 <b class="user-name-stlye">{{userAd.profile.name}} {{userAd.profile.last_name}}</b>
@@ -39,9 +39,11 @@
           <br />
 
           <div class="row" ng-show="ad.set_price == 'yes'" ng-repeat="q in ad.quantity_list">
-            <b class="col4 p-price">
+            <b class="col4 price">
               <br />
-              <b>{{q.unit.name_##session.lang##}} {{q.net_value}} {{q.currency.name_##session.lang##}}</b>
+              <small>{{q.unit.name_##session.lang##}} {{q.net_value}} {{q.currency.name_##session.lang##}}</small>
+              <small ng-show="q.discount > 0" class="line-through red">{{q.price}} {{q.currency.name_##session.lang##}}</small>
+              <small class="save-money" ng-show="q.discount > 0"> ##word.save_money## {{q.discount}} <span ng-show="q.discount_type == 'percent'"> % </span> <span ng-show="q.discount_type == 'number'"> $ </span> </small>
             </b>
           </div>
         </div>
@@ -56,15 +58,15 @@
         <p class="text-comment gray-desc">{{ad.description}}</p>
       </div>
 
-      <div class="row padding" ng-repeat="c in ad.category_require_list">
+      <div class="row padding " ng-repeat="c in ad.category_require_list">
 
-        <div class="row category center" ng-show="c.type.id == 1">
+        <div class="row category bg-ad center" ng-show="c.type.id == 1">
           <b class="bold blue center font-18"> {{c.name_##session.lang##}} </b>
           <i-image class="content-img" view ng-model="c.image_url"></i-image>
         </div>
 
 
-        <div class="row padding border category" ng-show="c.type.id != 1">
+        <div class="row bg-ad padding category" ng-show="c.type.id != 1">
           <div class="col4">
             <b class="bold font-18 blue"> {{c.name_##session.lang##}} </b>
           </div>
@@ -74,9 +76,9 @@
                 ##word.download## : {{link}} 
               </b>
             </a>
-            <p ng-show="c.type.id == 5" class="brown">{{c.date |date:"dd - MM - yyyy"}}</p>
-            <p ng-show="c.type.id == 2" class="text-comment">{{c.text}}</p>
-            <p class="text-comment" ng-show="c.type.id == 3">{{c.text}}</p>
+            <p ng-show="c.type.id == 5" class="brown bold font-20">{{c.date |date:"dd - MM - yyyy"}}</p>
+            <p ng-show="c.type.id == 2" class="text-comment bold">{{c.text}}</p>
+            <p class="text-comment bold" ng-show="c.type.id == 3">{{c.text}}</p>
           </div>
         </div>
 
@@ -145,7 +147,7 @@
     <div class="row bg-white content-ad" ng-hide="ad.disable_replies_feature"
       ng-repeat="c in ad.feedback_list track by $index" ng-show="c.user && c.type.id == 4 && c.comment">
       <div class="row">
-        <a href="/profile?id={{c.user.id}}">
+        <a href="/profile/{{c.user.id}}/{{c.user.profile.name}}/{{c.user.profile.last_name}}">
           <img class="center userad-logo" ng-src="{{c.user.profile.image_url}}" onerror="this.src='/images/user.png'"
             alt="" />
           <b class="user-name-stlye">{{c.user.profile.name}} {{c.user.profile.last_name}}</b>
