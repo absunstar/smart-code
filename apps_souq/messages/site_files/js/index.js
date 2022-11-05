@@ -2,22 +2,10 @@ app.controller('messages', function ($scope, $http, $timeout) {
   $scope.userId = site.toNumber('##user.id##');
 
   $scope.showMessage = function (m,e) {
-/* 
-    document.querySelectorAll("a").forEach((a) => {
-      a.classList.remove("bg-msglist");
+    $scope.messagesList.forEach(_m => {
+      _m.$isSelected = false;
     });
-
-    if(e && e.target.tagName == 'IMG'){
-      console.log(e.target.parentNode.parentNode);
-      e.target.parentNode.parentNode.classList.add("bg-msglist");
-    } else if(e && e.target.tagName == 'A'){
-      e.target.parentNode.classList.add("bg-msglist");
-    } else if(e && e.target.tagName == 'B'){
-      e.target.parentNode.classList.add("bg-msglist");
-    } else {
-      return;
-    } */
-
+    m.$isSelected = true;
 
     $http({
       method: 'POST',

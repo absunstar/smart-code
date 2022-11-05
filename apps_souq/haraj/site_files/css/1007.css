@@ -24,6 +24,44 @@ tr:nth-child(even) {
 }
 
 
+
+.radius13 {
+  border-radius: 13px;
+}
+
+.radius-textarea textarea {
+  border-radius: 13px;
+}
+img {
+  border-radius: 10px;
+}
+.input-style textarea {
+  color: black;
+  border: solid 1px #00a884;
+  border-radius: 10px !important;
+}
+
+.input-style textarea:focus {
+  box-shadow: 1px 1px 5px 0px #00a66c !important;
+
+}
+
+.input-style input {
+  color: black;
+  border: solid 1px #00a884;
+  border-radius: 10px !important;
+}
+
+.input-style input:focus {
+  box-shadow: 1px 1px 5px 0px #00a66c !important;
+
+}
+
+.fms_title small {
+  font-size: .7em;
+  color: #929aaa;
+}
+
 @media screen and (max-width: 1007px) {
   .firstheader {
     display: none;
@@ -883,6 +921,8 @@ tr:nth-child(even) {
     border-radius: 10px !important;
     justify-content: center;
   }
+
+
 
   .btn.search {
     color: black;

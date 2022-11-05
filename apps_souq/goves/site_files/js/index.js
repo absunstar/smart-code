@@ -190,7 +190,9 @@ app.controller("goves", function ($scope, $http, $timeout) {
           active: true
         },
         select: {
-          id: 1, name_ar: 1, name_en: 1
+          id: 1, name_ar: 1, name_en: 1 ,
+          code: 1, mobile_code: 1,
+
         }
       }
     }).then(

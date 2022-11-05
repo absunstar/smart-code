@@ -127,11 +127,15 @@ app.controller('create_content', function ($scope, $http, $timeout) {
 
 
   $scope.acceptCategory = function (ad, cat) {
- 
+
     $scope.loadSubCategory2(cat);
     if (cat.type == 'primary') {
       $('#adCategory').hide();
-      $('#adAddressType').show('slow');
+      if(cat.category_require_list && cat.category_require_list.length > 0){
+        $('#adCategoryRequire').show('slow');
+      } else {
+        $('#adAddressType').show('slow');
+      }
     }
   };
 
@@ -146,7 +150,7 @@ app.controller('create_content', function ($scope, $http, $timeout) {
         where: {
           status: 'active',
         },
-        select: { id: 1, name_ar: 1, name_en: 1, parent_list_id: 1, top_parent_id: 1, parent_id: 1, image_url: 1, type: 1 },
+        select: { id: 1, name_ar: 1, name_en: 1, parent_list_id: 1, top_parent_id: 1,category_require_list : 1, parent_id: 1, image_url: 1, type: 1 },
         top : true,
       },
     }).then(
@@ -167,6 +171,7 @@ app.controller('create_content', function ($scope, $http, $timeout) {
   $scope.loadSubCategory2 = function (c) {
     $scope.error = '';
     $scope.ad.main_category = c;
+    $scope.ad.category_require_list = c.category_require_list;
     $scope.ad.$category1 = $scope.ad.main_category;
     $scope.subCategoriesList2 = [];
     $scope.subCategoriesList3 = [];
@@ -372,10 +377,19 @@ app.controller('create_content', function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.adBack = function (id1,id2) {
+    $(`#${id1}`).hide();
+    $(`#${id2}`).show('slow');
+  };
 
   $scope.continuationNotSelectAddress = function () {
     $('#adAddressType').hide();
     $('#adImages').show('slow');
+  };
+
+  $scope.continuationToSelectAddress = function () {
+    $('#adCategoryRequire').hide();
+    $('#adAddressType').show('slow');
   };
 
   $scope.showAddress = function (ad,type) {

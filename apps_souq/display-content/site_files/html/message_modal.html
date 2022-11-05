@@ -6,16 +6,16 @@
     </div>
     <div class="modal-body">
       <div class="row center">
-        <p>##word.quick_message_to##</p>
-        <p class="font-18 black bold">{{ad.store.user.profile.name}}</p>
+        <small class="fms_title">##word.quick_message_to##</small>
+        <p class="user-name-stlye">{{activity.user_message.profile.name}} {{activity.user_message.profile.last_name}}</p>
       </div>
       <div class="row center">
-        <i-textarea ng-model="activity.message" class="radius-textarea" label="##word.write_your_message_here##"> </i-textarea>
+        <i-textarea ng-model="activity.message" class="input-style" label="##word.write_your_message_here##"> </i-textarea>
       </div>
     </div>
     <h2 class="error center bold">{{error}}</h2>
     <div class="modal-footer center">
-      <i-button type="add" label="##word.send##" ng-click="sendMessage()"></i-button>
+      <i-button fa="paper-plane" class="btn-style" label="##word.send##" ng-click="sendMessage()"></i-button>
       <i-button type="close" label=" ##word.close##" onclick="site.hideModal('#messageModal')"></i-button>
     </div>
   </div>

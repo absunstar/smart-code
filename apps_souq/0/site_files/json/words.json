@@ -251,6 +251,11 @@
     "ar": "العربة"
   },
   {
+    "name": "the_report",
+    "en": "The report",
+    "ar": "البلاغ"
+  },
+  {
     "name": "report",
     "en": "Report",
     "ar": "بلاغ"

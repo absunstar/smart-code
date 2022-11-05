@@ -5,13 +5,13 @@
     </div>
     <div class="modal-body">
       <div class="row">
-        <i-list ng-search="_search.$report_type" v="r" class="col4" display="name_##session.lang##" ng-model="activity.report_type" label="##word.report_type##" items="reportAdList"> </i-list>
-        <i-textarea v="r ll50" class="col7 radius-textarea" ng-model="activity.comment_report" label="##word.comment_on_report##"> </i-textarea>
+        <i-list ng-search="_search.$report_type" v="r" class="col4 input-style" display="name_##session.lang##" ng-model="activity.report_type" label="##word.report_type##" items="reportAdList"> </i-list>
+        <i-textarea v="r ll50" class="col7 input-style" ng-model="activity.comment_report" label="##word.desc## ##word.the_report##"> </i-textarea>
       </div>
     </div>
     <h2 class="error center bold">{{error}}</h2>
     <div class="modal-footer center">
-      <i-button type="add" label="##word.add_report##" ng-click="updateFeedback('report')"></i-button>
+      <i-button fa="flag" class="btn-style" label="##word.add_report##" ng-click="updateFeedback('report')"></i-button>
       <i-button type="close" label=" ##word.close##" onclick="site.hideModal('#reportModal')" ng-click="activity.report_type = {} ; activity.comment_report =''"></i-button>
     </div>
   </div>

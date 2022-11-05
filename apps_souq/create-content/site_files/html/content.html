@@ -3,16 +3,19 @@
     <p class="bold deal_1 font-29">» إتفاقية العمولة</p>
     <br />
     <br />
+    
     <hr />
     <br />
     <p class="deal_1 font-23">بسم الله الرحمن الرحيم</p>
     <br />
     <p class="deal_1 font-23">
-      قال الله تعالى : <b class="bold">" وَأَوْفُواْ بِعَهْدِ اللهِ إِذَا عَاهَدتُّمْ وَلاَ تَنقُضُواْ الأَيْمَانَ بَعْدَ تَوْكِيدِهَا وَقَدْ جَعَلْتُمُ اللهَ عَلَيْكُمْ كَفِيلاً "</b> صدق الله العظيم
+      قال الله تعالى : <b class="bold">" وَأَوْفُواْ بِعَهْدِ اللهِ إِذَا عَاهَدتُّمْ وَلاَ تَنقُضُواْ الأَيْمَانَ
+        بَعْدَ تَوْكِيدِهَا وَقَدْ جَعَلْتُمُ اللهَ عَلَيْكُمْ كَفِيلاً "</b> صدق الله العظيم
     </p>
     <br />
     <div class="row">
-      <p class="bold deal_1 font-23">* اتعهد واقسم بالله أنا المعلن أن أدفع عمولة الموقع وهي 1% من قيمة البيع سواء تم البيع عن طريق الموقع أو بسببه.</p>
+      <p class="bold deal_1 font-23">* اتعهد واقسم بالله أنا المعلن أن أدفع عمولة الموقع وهي 1% من قيمة البيع سواء تم
+        البيع عن طريق الموقع أو بسببه.</p>
       <br />
       <p class="bold deal_1 font-23">* كما أتعهد بدفع العمولة خلال 10 أيام من استلام كامل مبلغ المبايعة.</p>
     </div>
@@ -20,7 +23,7 @@
     <br />
     <p class="green font-22">ملاحظة : عمولة الموقع هي على المعلن ولا تبرأ ذمة المعلن من العمولة إلا في حال دفعها.</p>
     <div class="row center">
-      <i-button ng-click="acceptDeal(ad)" fa="check-circle" label="##word.ok##"> </i-button>
+      <i-button ng-click="acceptDeal(ad)" class="btn-ad" fa="check-circle" label="##word.ok##"> </i-button>
     </div>
   </fieldset>
 
@@ -33,27 +36,57 @@
     </div>
   </fieldset>
 
+  <fieldset id="adCategoryRequire">
+ 
+    <legend>
+      ##word.ad_require##
+    </legend>
+
+    <a ng-click="adBack('adCategoryRequire', 'adCategory')">
+      <i class="fa fa-arrow-circle-right fa-4x back-style" aria-hidden="true"></i>
+    </a>
+
+    <div class="row radius13 padding border" ng-show="ad.category_require_list.length > 0">
+
+      <div class="row center padding margin " ng-repeat="c in ad.category_require_list">
+        <i-ad-require ng-model="c"></i-ad-require>
+      </div>
+    </div>
+    <i-button label="##word.continuation##" class="btn-ad" fa="battery-empty" ng-click="continuationToSelectAddress()">
+    </i-button>
+  </fieldset>
+
 
   <fieldset id="adAddressType">
     <legend>
       ##word.choose_address_ad##
     </legend>
+
+    <a ng-show="ad.category_require_list.length > 0" ng-click="adBack('adAddressType', 'adCategoryRequire')">
+      <i class="fa fa-arrow-circle-right fa-4x back-style" aria-hidden="true"></i>
+    </a>
+
+    <a ng-show="ad.category_require_list.length < 1" ng-click="adBack('adAddressType', 'adCategory')">
+      <i class="fa fa-arrow-circle-right fa-4x back-style" aria-hidden="true"></i>
+    </a>
     <div class="row category-list h-bg-green">
       <div class="col3 category" ng-click="showAddress(ad,'main')">
 
         <p>##word.my_current_address##</p>
       </div>
-      <div  class="col3 category" ng-show="##setting.content.other_addresses_appear## && address.other_list.length > 0" ng-click="showAddress(ad,'other')">
+      <div class="col3 category" ng-show="##setting.content.other_addresses_appear## && address.other_list.length > 0"
+        ng-click="showAddress(ad,'other')">
 
         <p>##word.my_other_addresses##</p>
       </div>
       <div class="col3 category" ng-click="showAddress(ad,'new')">
-        
+
         <p>##word.new_address##</p>
       </div>
     </div>
     <br>
-    <i-button label="##word.continuation##" fa="arrow-righ" ng-click="continuationNotSelectAddress()"></i-button>
+    <i-button label="##word.continuation##" class="btn-ad" fa="battery-quarter"
+      ng-click="continuationNotSelectAddress()"></i-button>
 
   </fieldset>
 
@@ -61,18 +94,23 @@
     <legend>
       ##word.choose_address_ad##
     </legend>
-    
+    <a ng-click="adBack('adAddressSelect', 'adAddressType')">
+      <i class="fa fa-arrow-circle-right fa-4x back-style" aria-hidden="true"></i>
+    </a>
     <i-address ng-model="address.main" ng-show="ad.$address_type == 'main'"></i-address>
-  
+
     <div class="row border padding" ng-show="ad.$address_type == 'other'" ng-repeat="o in address.other_list">
       <i-address ng-model="o"></i-address>
-      <i-button label="##word.continuation##" ng-model="o.$select_address" ng-click="selectAddress($index)"></i-button>
+      <i-button label="##word.continuation##" class="btn-ad" fa="battery-quarter" ng-model="o.$select_address"
+        ng-click="selectAddress($index)"></i-button>
     </div>
 
     <i-address ng-show="ad.$address_type == 'new'" ng-model="address.new"></i-address>
-    
+
     <div class="row">
-      <i-button label="##word.continuation##" ng-hide="ad.$address_type == 'other'" ng-click="selectAddress()"></i-button>
+      <i-button label="##word.continuation##" class="btn-ad" fa="battery-half" ng-hide="ad.$address_type == 'other'"
+        ng-click="selectAddress()">
+      </i-button>
     </div>
 
   </fieldset>
@@ -81,36 +119,44 @@
     <legend>
       ##word.ad_images##
     </legend>
-
+    <a ng-click="adBack('adImages', 'adAddressSelect')">
+      <i class="fa fa-arrow-circle-right fa-4x back-style" aria-hidden="true"></i>
+    </a>
     <div class="row">
-      <i-image class="col3"  help-id="ads_logo" ng-model="ad.$image.image_url"></i-image>
-      <i-textarea class="col6" label="##word.description##" ng-model="ad.$image.desc"></i-textarea>
+      <i-image class="col3 img-style" help-id="ads_logo" ng-model="ad.$image.image_url"></i-image>
+      <i-textarea class="col6 input-style" label="##word.description##" ng-model="ad.$image.desc"></i-textarea>
       <div class="col1"></div>
-      <i-button class="col3" type="add" label="##word.add_photo##" ng-hide="ad.images_list.length >= defaultSettings.content.allowed_number_photo" ng-click="addImage()"></i-button>
+      <i-button class="col3" type="add" label="##word.add_photo##"
+        ng-hide="ad.images_list.length >= defaultSettings.content.allowed_number_photo" ng-click="addImage()">
+      </i-button>
 
     </div>
 
     <div class="row" ng-repeat="a in ad.images_list track by $index">
       <div class="row border border-radius5 padding">
         <div class="col4">
-          <img src="{{a.image_url}}" alt="" class="ad-img" />
+          <img class="img-style" src="{{a.image_url}}" alt="" class="ad-img" />
         </div>
         <div class="col1"></div>
         <div class="col5">
-          <i-textarea ng-model="a.description" label="##word.description##"> </i-textarea>
+          <i-textarea class="input-style" ng-model="a.description" label="##word.description##"> </i-textarea>
         </div>
         <div class="col1">
           <br />
           <div class="center">
-            <button type="button" class="center" style="width:25px;" ng-click="upDownList(ad.images_list, 'up',$index)" ng-hide="$index == 0"><i class=" fa fa-arrow-up" aria-hidden="true"></i></button>
-            <button type="button" class="center" style="width:25px;" ng-click="upDownList(ad.images_list, 'down',$index)" ng-hide="$index == (ad.images_list.length - 1) "><i class=" fa fa-arrow-down" aria-hidden="true"></i></button>
+            <button type="button" class="center" style="width:25px;" ng-click="upDownList(ad.images_list, 'up',$index)"
+              ng-hide="$index == 0"><i class=" fa fa-arrow-up" aria-hidden="true"></i></button>
+            <button type="button" class="center" style="width:25px;"
+              ng-click="upDownList(ad.images_list, 'down',$index)" ng-hide="$index == (ad.images_list.length - 1) "><i
+                class=" fa fa-arrow-down" aria-hidden="true"></i></button>
           </div>
-          <i-button type="delete" ng-click="ad.images_list.splice($index,1)" > </i-button>
+          <i-button type="delete" ng-click="ad.images_list.splice($index,1)"> </i-button>
         </div>
       </div>
     </div>
 
-    <i-button label="##word.continuation##" ng-click="doneSelectImages()"></i-button>
+    <i-button label="##word.continuation##" class="btn-ad" fa="battery-three-quarters" ng-click="doneSelectImages()">
+    </i-button>
 
   </fieldset>
 
@@ -119,11 +165,17 @@
       ##word.ad_videos##
     </legend>
 
+    <a ng-click="adBack('adVideo', 'adImages')">
+      <i class="fa fa-arrow-circle-right fa-4x back-style" aria-hidden="true"></i>
+    </a>
+
     <div class="row">
-      <i-control class="col4"  label="##word.link##" ng-model="ad.$video.link"></i-control>
-      <i-textarea class="col5" label="##word.description##" ng-model="ad.$video.desc"></i-textarea>
+      <i-control class="col4 input-style" label="##word.link##" ng-model="ad.$video.link"></i-control>
+      <i-textarea class="col5 input-style" label="##word.description##" ng-model="ad.$video.desc"></i-textarea>
       <div class="col1"></div>
-      <i-button class="col3" type="add" label="##word.add_video##" ng-hide="ad.videos_list.length >= defaultSettings.content.allowed_number_video" ng-click="addVideos()"></i-button>
+      <i-button class="col3" type="add" label="##word.add_video##"
+        ng-hide="ad.videos_list.length >= defaultSettings.content.allowed_number_video" ng-click="addVideos()">
+      </i-button>
 
     </div>
 
@@ -133,189 +185,187 @@
           <i-control label="##word.link##" ng-model="a.link"></i-control>
         </div>
         <div class="col5">
-          <i-textarea ng-model="a.description" label="##word.description##"> </i-textarea>
+          <i-textarea class="input-style" ng-model="a.description" label="##word.description##"> </i-textarea>
         </div>
         <div class="col1"></div>
         <div class="col1">
           <br />
           <div class="center">
-            <button type="button" class="center" style="width:25px;" ng-click="upDownList(ad.videos_list, 'up',$index)" ng-hide="$index == 0"><i class=" fa fa-arrow-up" aria-hidden="true"></i></button>
-            <button type="button" class="center" style="width:25px;" ng-click="upDownList(ad.videos_list, 'down',$index)" ng-hide="$index == (ad.videos_list.length - 1) "><i class=" fa fa-arrow-down" aria-hidden="true"></i></button>
+            <button type="button" class="center" style="width:25px;" ng-click="upDownList(ad.videos_list, 'up',$index)"
+              ng-hide="$index == 0"><i class=" fa fa-arrow-up" aria-hidden="true"></i></button>
+            <button type="button" class="center" style="width:25px;"
+              ng-click="upDownList(ad.videos_list, 'down',$index)" ng-hide="$index == (ad.videos_list.length - 1) "><i
+                class=" fa fa-arrow-down" aria-hidden="true"></i></button>
           </div>
-          <i-button type="delete" ng-click="ad.videos_list.splice($index,1)" > </i-button>
+          <i-button type="delete" ng-click="ad.videos_list.splice($index,1)"> </i-button>
         </div>
       </div>
     </div>
 
-    <i-button label="##word.continuation##" ng-click="doneSelectVideos()"></i-button>
+    <i-button label="##word.continuation##" class="btn-ad" fa="battery-three-quarters" ng-click="doneSelectVideos()">
+    </i-button>
 
   </fieldset>
 
 
   <fieldset id="adContent">
-    <div class="col9">
-      <div class="row">
-        <i-control help-id="ad_title" v="r ll2" class="col7" label="##word.ad_title##" ng-model="ad.name"></i-control>
 
-        <i-list
-          ng-show="defaultSettings.stores_settings.activate_stores"
-          class="col3"
-          ng-model="ad.store"
-          items="myStoreslist"
-          display="name"
-          ng-search="_search.$store"
-          label="##word.store##"
-        ></i-list>
-      </div>
-      <br />
+    <a ng-show="!defaultSettings.content.upload_video" ng-click="adBack('adContent', 'adImages')">
+      <i class="fa fa-arrow-circle-right fa-4x back-style" aria-hidden="true"></i>
+    </a>
 
-      <div class="row">
-        <i-date2 class="col6" ng-show="defaultSettings.content.publishing_system.id == 2" ng-model="ad.date" label="##word.publishing_date##"></i-date2>
-        <i-date2 class="col6" ng-show="defaultSettings.content.closing_system.id == 2" ng-model="ad.expiry_date" label="##word.expiry_date##"></i-date2>
-      </div>
+    <a ng-show="defaultSettings.content.upload_video" ng-click="adBack('adContent', 'adVideo')">
+      <i class="fa fa-arrow-circle-right fa-4x back-style" aria-hidden="true"></i>
+    </a>
 
-      <br>
+    <div class="row">
 
-      <div class="row">
-        <div class="col6">
+      <div class="col9">
+        <div class="row">
+          <i-control help-id="ad_title" v="r ll2" class="col9 input-style" label="##word.ad_title##" ng-model="ad.name"></i-control>
 
-          <i-list
-          class="row"
-          ng-model="ad.$category1"
-          ng-click="loadSubCategory2(ad.$category1)"
-          items="top_category_list"
-          display="name_##session.lang##"
-          ng-search="ad.$category1_search"
-          ></i-list>
-
-          <i-list
-          class="row"
-          ng-model="ad.$category2"
-          ng-click="loadSubCategory3(ad.$category2)"
-          items="subCategoriesList2"
-          ng-show="subCategoriesList2.length > 0 && ad.$category1"
-          display="name_##session.lang##"
-          ng-search="ad.$category2_search"
-          ></i-list>
-
-          <i-list
-          class="row"
-          ng-model="ad.$category3"
-          ng-click="loadSubCategory4(ad.$category3)"
-          items="subCategoriesList3"
-          ng-show="subCategoriesList3.length > 0 && ad.$category2"
-          display="name_##session.lang##"
-          ng-search="ad.$category3_search"
-          ></i-list>
-
-          <i-list
-          class="row"
-          ng-model="ad.$category4"
-          ng-click="loadSubCategory5(ad.$category4)"
-          items="subCategoriesList4"
-          ng-show="subCategoriesList4.length > 0 && ad.$category3"
-          display="name_##session.lang##"
-          ng-search="ad.$category4_search"
-          ></i-list>
-
-
-          <i-list
-          class="row"
-          ng-model="ad.$category5"
-          ng-click="loadSubCategory6(ad.$category5)"
-          items="subCategoriesList4"
-          ng-show="subCategoriesList5.length > 0 && ad.$category4"
-          display="name_##session.lang##"
-          ng-search="ad.$category5_search"
-          ></i-list>
-
-        </div>
-      </div>
-
-      <h2 ng-show="ad.main_category.id" class="col8 bold">##word.category## : {{ad.main_category.name_##session.lang##}} ( {{ad.main_category.v_display}})</h2>
-
-      <div class="row">
-        <i-checkbox label="##word.disable_replies_feature##" ng-model="ad.disable_replies_feature"> </i-checkbox>
-      </div>
-
-      <div class="row">
-        <!-- <p class="col3 bold">##word.mobile_number_or_contact_method##</p> : -->
-        <i-checkbox label="##word.hide_mobile_number##" ng-model="ad.hide_mobile"> </i-checkbox>
-        <i-control class="col4" label="##word.cell_phone_number##" ng-model="ad.mobile"></i-control>
-      </div>
-
-      <div class="row" ng-show="ad.category_require_list.length > 0">
-        <fieldset>
-          <legend>##word.ad_require##</legend>
-          <div class="row" ng-repeat="c in ad.category_require_list">
-            <i-ad-require ng-model="c"></i-ad-require>
-          </div>
-        </fieldset>
-      </div>
-      <div class="row">
-        <i-textarea ng-model="ad.description" label="##word.ad_description##"> </i-textarea>
-      </div>
-
-      <br />
-
-      <div class="row">
-        <h2>##word.Do_you_want_set_price##</h2>
-        <div class="col5">
-          <div class="row">
-            <i-radio class="col6" ng-model="ad.set_price" label="##word.no##" ng-value="no"> </i-radio>
-            <i-radio class="col6" ng-model="ad.set_price" label="##word.yes##" ng-value="yes"></i-radio>
-          </div>
-        </div>
-      </div>
-
-      <div id="adContent" class="row" ng-show="ad.set_price == 'yes'">
-        <div class="col5" ng-show="defaultSettings.content.quantities_can_be_used">
-
-          <h2 class="bold border padding border-radius5 margin5">
-            ##word.quantities##
-            <i-button   type="add" ng-click="addQuantity()"></i-button>
-          </h2>
-        </div>
-        <div class="row border padding border-radius5 margin5" ng-repeat="c in ad.quantity_list">
-          <div class="row ">
-            <i-list  ng-show="defaultSettings.content.quantities_can_be_used" ng-search="_search.$unit" class="col2" display="name_##session.lang##" ng-model="c.unit" label="##word.unit##" items="unitsList"> </i-list>
-            <i-control help-id="ad_available_quantity" type="number" class="col2" label="##word.available_quantity##" ng-model="c.available_quantity"></i-control>
-            <i-control help-id="ad_maximum_order" type="number" class="col2" label="##word.maximum_order##" ng-model="c.maximum_order"></i-control>
-            <i-control help-id="ad_minimum_order" type="number" class="col2" label="##word.minimum_order##" ng-model="c.minimum_order"></i-control>
-            <i-list ng-show="defaultSettings.content.currencies_can_be_used" ng-search="_search.$currency" class="col2" display="name_##session.lang##" ng-model="c.currency" label="##word.currency##" items="currenciesList"> </i-list>
-          </div>
-    
-          <div class="row">
-            <i-control help-id="ad_price" ng-change="calcDiscount(c)" type="number" class="col2" label="##word.price##" ng-model="c.price"></i-control>
-            <i-control help-id="ad_discount" ng-change="calcDiscount(c)" type="number" class="col2" label="##word.discount##" ng-model="c.discount"></i-control>
-    
-            <div class="col1">
-              <div class="row">
-                <i-radio ng-click="calcDiscount(c)" ng-model="c.discount_type" label="##word.amount##" ng-value="number"></i-radio>
-                <i-radio ng-click="calcDiscount(c)" ng-model="c.discount_type" label="##word.percent##" ng-value="percent"> </i-radio>
-              </div>
-            </div>
-    
-            <i-control help-id="ad_required" type="number" disabled class="col2" label="##word.required##" ng-model="c.net_value"></i-control>
-            <div class="col3"></div>
-            <div class="col1">
-              <br />
-              <i-button type="delete" ng-click="ad.quantity_list.splice($index,1)"> </i-button>
-            </div>
-          </div>
+          <i-list ng-show="defaultSettings.stores_settings.activate_stores" class="col3 input-style" ng-model="ad.store"
+            items="myStoreslist" display="name" ng-search="_search.$store" label="##word.store##"></i-list>
         </div>
         <br />
+
+        <div class="row">
+          <i-date2 class="col6 input-style" ng-show="defaultSettings.content.publishing_system.id == 2" ng-model="ad.date"
+            label="##word.publishing_date##"></i-date2>
+          <i-date2 class="col6 input-style" ng-show="defaultSettings.content.closing_system.id == 2" ng-model="ad.expiry_date"
+            label="##word.expiry_date##"></i-date2>
+        </div>
+
+        <br>
+
+        <div class="row">
+          <div class="col6">
+
+            <i-list class="row input-style" label="##word.main_category##" ng-model="ad.$category1" ng-click="loadSubCategory2(ad.$category1)"
+              items="top_category_list" display="name_##session.lang##" ng-search="ad.$category1_search"></i-list>
+
+            <i-list class="row input-style" label="##word.categories## {{ad.$category1.name_##session.lang##}}" ng-model="ad.$category2" ng-click="loadSubCategory3(ad.$category2)"
+              items="subCategoriesList2" ng-show="subCategoriesList2.length > 0 && ad.$category1"
+              display="name_##session.lang##" ng-search="ad.$category2_search"></i-list>
+
+            <i-list class="row input-style" label="##word.categories## {{ad.$category2.name_##session.lang##}}" ng-model="ad.$category3" ng-click="loadSubCategory4(ad.$category3)"
+              items="subCategoriesList3" ng-show="subCategoriesList3.length > 0 && ad.$category2"
+              display="name_##session.lang##" ng-search="ad.$category3_search"></i-list>
+
+            <i-list class="row input-style" label="##word.categories## {{ad.$category3.name_##session.lang##}}" ng-model="ad.$category4" ng-click="loadSubCategory5(ad.$category4)"
+              items="subCategoriesList4" ng-show="subCategoriesList4.length > 0 && ad.$category3"
+              display="name_##session.lang##" ng-search="ad.$category4_search"></i-list>
+
+            <i-list class="row input-style" label="##word.categories## {{ad.$category4.name_##session.lang##}}" ng-model="ad.$category5" ng-click="loadSubCategory6(ad.$category5)"
+              items="subCategoriesList5" ng-show="subCategoriesList5.length > 0 && ad.$category4"
+              display="name_##session.lang##" ng-search="ad.$category5_search"></i-list>
+
+          </div>
+        </div>
+        <div class="row">
+
+          <h2 ng-show="ad.main_category.id" class="col8 bold">##word.category## :
+            {{ad.main_category.name_##session.lang##}} ( {{ad.main_category.v_display}})</h2>
+        </div>
+        <br>
+        <br>
+        <div class="row radius13 padding border" ng-show="ad.category_require_list.length > 0">
+
+          <b class="title-require border">##word.ad_require##</b>
+          <div class="row center padding margin " ng-repeat="c in ad.category_require_list">
+            <i-ad-require ng-model="c"></i-ad-require>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <i-checkbox label="##word.disable_replies_feature##" ng-model="ad.disable_replies_feature"> </i-checkbox>
+        </div>
+
+        <div class="row">
+          <!-- <p class="col3 bold">##word.mobile_number_or_contact_method##</p> : -->
+          <i-checkbox label="##word.hide_mobile_number##" ng-model="ad.hide_mobile"> </i-checkbox>
+          <i-control class="col4" label="##word.cell_phone_number##" ng-model="ad.mobile"></i-control>
+        </div>
+
+
+        <div class="row">
+          <i-textarea class="input-style" ng-model="ad.description" label="##word.ad_description##"> </i-textarea>
+        </div>
+
+        <br />
+
+        <div class="row">
+          <h2>##word.Do_you_want_set_price##</h2>
+          <div class="col5">
+            <div class="row">
+              <i-radio class="col6" ng-model="ad.set_price" label="##word.no##" ng-value="no"> </i-radio>
+              <i-radio class="col6" ng-model="ad.set_price" label="##word.yes##" ng-value="yes"></i-radio>
+            </div>
+          </div>
+        </div>
+
+        <div id="adContent" class="row" ng-show="ad.set_price == 'yes'">
+          <div class="col5" ng-show="defaultSettings.content.quantities_can_be_used">
+
+              
+              <i-button type="add" label="##word.add## ##word.quantities##" ng-click="addQuantity()"></i-button>
+          </div>
+          <div class="row border padding border-radius5 margin5" ng-repeat="c in ad.quantity_list">
+            <div class="row ">
+              <i-list ng-show="defaultSettings.content.quantities_can_be_used" ng-search="_search.$unit" class="col2"
+                display="name_##session.lang##" ng-model="c.unit" label="##word.unit##" items="unitsList"> </i-list>
+              <i-control help-id="ad_available_quantity" type="number" class="col2" label="##word.available_quantity##"
+                ng-model="c.available_quantity"></i-control>
+              <i-control help-id="ad_maximum_order" type="number" class="col2" label="##word.maximum_order##"
+                ng-model="c.maximum_order"></i-control>
+              <i-control help-id="ad_minimum_order" type="number" class="col2" label="##word.minimum_order##"
+                ng-model="c.minimum_order"></i-control>
+              <i-list ng-show="defaultSettings.content.currencies_can_be_used" ng-search="_search.$currency"
+                class="col2" display="name_##session.lang##" ng-model="c.currency" label="##word.currency##"
+                items="currenciesList">
+              </i-list>
+            </div>
+
+            <div class="row">
+              <i-control help-id="ad_price" ng-change="calcDiscount(c)" type="number" class="col2"
+                label="##word.price##" ng-model="c.price"></i-control>
+              <i-control help-id="ad_discount" ng-change="calcDiscount(c)" type="number" class="col2"
+                label="##word.discount##" ng-model="c.discount"></i-control>
+
+              <div class="col1">
+                <div class="row">
+                  <i-radio ng-click="calcDiscount(c)" ng-model="c.discount_type" label="##word.amount##"
+                    ng-value="number"></i-radio>
+                  <i-radio ng-click="calcDiscount(c)" ng-model="c.discount_type" label="##word.percent##"
+                    ng-value="percent"> </i-radio>
+                </div>
+              </div>
+
+              <i-control help-id="ad_required" type="number" disabled class="col2" label="##word.required##"
+                ng-model="c.net_value"></i-control>
+              <div class="col3"></div>
+              <div class="col1">
+                <br />
+                <i-button type="delete" ng-click="ad.quantity_list.splice($index,1)"> </i-button>
+              </div>
+            </div>
+          </div>
+          <br />
+        </div>
+        <br>
+        <i-button fa="battery-full" class="btn-ad" label="##word.publishing## ##word.ad## " ng-click="addAd()">
+        </i-button>
+
       </div>
-      <br>
-    <i-button type="add" label="##word.ads_add##" ng-click="addAd()"></i-button>
 
+      <div class="col3 center">
+        <i-image help-id="ads_logo" label="##word.main_ad_image##" ng-model="ad.image_url"></i-image>
+        <b class="font-18">##word.select## ##word.main_ad_image##</b>
+      </div>
     </div>
 
-    <div class="col3">
-      <i-image help-id="ads_logo"  label="##word.main_ad_image##"  ng-model="ad.image_url"></i-image>
-      <h3>##word.select## ##word.main_ad_image##</h3>
-    </div>
-    
+    <h1 class="center red">{{error}}</h1>
+
   </fieldset>
 
 </div>

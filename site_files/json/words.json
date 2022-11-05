@@ -1498,6 +1498,11 @@
     "ar": "الوصف"
   },
   {
+    "name": "desc",
+    "en": "Description",
+    "ar": "وصف"
+  },
+  {
     "name": "payment_method",
     "en": "Payment Method",
     "ar": "طريقة الدفع"
@@ -1956,6 +1961,11 @@
     "name": "loading",
     "en": "Loading",
     "ar": "جارى التحميل"
+  },
+  {
+    "name": "download",
+    "en": "Download",
+    "ar": "تحميل"
   },
   {
     "name": "day",

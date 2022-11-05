@@ -13,7 +13,12 @@
     "name": "message",
     "en": "Message",
     "ar": "مراسلة"
-},
+  },
+  {
+    "name": "code",
+    "en": "code",
+    "ar": "الرمز"
+  },
   {
     "name": "mobile_number_already_exists",
     "en": "The mobile number already exists",

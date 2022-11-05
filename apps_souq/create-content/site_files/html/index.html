@@ -1,119 +1,175 @@
 <!DOCTYPE html>
 
 <html lang="en" data-ng-app="myApp">
-  <head>
-    <title>##word.brand_title##</title>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="/css/style.css" />
+
+<head>
+  <title>##word.brand_title##</title>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="/css/haraj.css" />
   <link rel="stylesheet" href="/x-css/all.css" />
   <link rel="stylesheet" href="/x-css/font-cairo.css" />
-    <link rel="icon" type="image/x-icon" href="##setting.logo##" />
-    <style>
-      * {
-        max-width: initial;
-      }
-      .deal_1 {
-        color: #4f4f4f !important;
-      }
-      .deal_2 {
-        color: #858585 !important;
-      }
-      :root {
-        --body-margin-top: 0px;
-        --body-margin-bottom: 0px;
-        --zoom: 100%;
-        --fieldset-border: none;
-        --fieldset-background: #fff;
-      }
-      body {
-        background-color: #bbb !important;
-        background-image: url(/assets/palm.svg) !important;
-        background-repeat: repeat !important;
-      }
-      .ad-content {
-        margin: 20px;
-      }
-      .category-list {
-        padding: 50px !important;
-      }
-      .border-radius5 {
-        border-radius: 5px;
-      }
-      .margin5 {
-        margin : 5px !important
-      }
-      .ad-img {
-        max-width: 350px;
+  <link rel="icon" type="image/x-icon" href="##setting.logo##" />
+  <style>
+    .btn-ad .btn {
+      padding: 11px 11px;
+      border-radius: 13px;
+      color: ivory;
+      font-size: 20px;
+      background: #00a884;
+    }
+
+    .files {
+      border-radius: 13px;
+      border: solid;
+      border-color: #00a884;
+    }
+
+    .img-style img {
+      border-radius: 13px;
+      border: solid;
+      border-color: #00a884;
+    }
+
+    .title-require {
+      font-size: 30px;
+      color: #009936;
+      padding: 4px 5px 3px;
+      border-radius: 13px !important;
+      background: #f1fff8;
+      margin: -6px
+    }
+
+    * {
+      max-width: initial;
+    }
+
+    .deal_1 {
+      color: #4f4f4f !important;
+    }
+
+    .deal_2 {
+      color: #858585 !important;
+    }
+
+    :root {
+      --body-margin-top: 0px;
+      --body-margin-bottom: 0px;
+      --zoom: 100%;
+      --fieldset-border: none;
+      --fieldset-background: #fff;
+    }
+
+    body {
+      background-color: #bbb !important;
+      background-image: url(/assets/palm.svg) !important;
+      background-repeat: repeat !important;
+    }
+
+    .ad-content {
+      margin: 20px;
+    }
+
+    .category-list {
+      padding: 50px !important;
+    }
+
+    .border-radius5 {
+      border-radius: 5px;
+    }
+
+    .margin5 {
+      margin: 5px !important
+    }
+
+    .ad-img {
+      max-width: 350px;
       max-height: 400px;
-      }
-      .category {
-        border: 1px solid #ddd;
-        text-align: center;
-        padding: 20px;
-        border-radius: 5px;
-        background: #f4f4f4;
-        margin: 10px;
-        cursor: pointer;
-        transition: all 0.2s ease;
-      }
-      .h-bg-green :hover {
-        background: radial-gradient(#00a884, #2f6c44);
-        color : white;
-      }
-      .category img {
-        width: 128px;
-        height: 128px;
-      }
-      .category p {
-        text-align: center;
-        font-size: 20px;
-      }
-      .category:hover {
-        transform: scale(1.1);
-      }
-    </style>
-    <style x-lang="ar">
-      .nav1 {
-        flex-direction: initial;
-        padding: 7px;
-      }
-      :root {
-        --direction: rtl;
-        --text-align: right;
-        --float: right;
-      }
-    </style>
-  </head>
+    }
 
-  <body style="background: white" class="##session.lang## loaded" ng-controller="create_content">
-    <div x-import="haraj/header.html"></div>
+    .back-style {
+      color: #00a884;
+      margin: 4px;
+      cursor: pointer;
+    }
 
-    <div id="main-layout" class="loaded">
-      <div x-features="souq" x-import="content/selection_categories.html"></div>
+    .dropdown-content .dropdown-item:hover {
+      border-radius: 10px !important;
+    }
 
-      <div class="ad-content">
-        <div x-import="create-content/content.html"></div>
-        <h1 class="center red">{{error}}</h1>
-      </div>
-      <div id="alert" class="modal alert small">
-        <div class="modal-content">
-          <div class="modal-body">
-            <h1 class="green center">##word.ad_added_successfully##</h1>
-          </div>
+
+
+    .category {
+      border: 1px solid #ddd;
+      text-align: center;
+      padding: 20px;
+      border-radius: 5px;
+      background: #f4f4f4;
+      margin: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .h-bg-green :hover {
+      background: radial-gradient(#00a884, #2f6c44);
+      color: white;
+    }
+
+    .category img {
+      width: 128px;
+      height: 128px;
+    }
+
+    .category p {
+      text-align: center;
+      font-size: 20px;
+    }
+
+    .category:hover {
+      transform: scale(1.1);
+    }
+  </style>
+  <style x-lang="ar">
+    .nav1 {
+      flex-direction: initial;
+      padding: 7px;
+    }
+
+    :root {
+      --direction: rtl;
+      --text-align: right;
+      --float: right;
+    }
+  </style>
+</head>
+
+<body style="background: white" class="##session.lang## loaded" ng-controller="create_content">
+  <div x-import="haraj/header.html"></div>
+
+  <div id="main-layout" class="loaded">
+    <div x-features="souq" x-import="content/selection_categories.html"></div>
+
+    <div class="ad-content">
+      <div x-import="create-content/content.html"></div>
+    </div>
+    <div id="alert" class="modal alert small">
+      <div class="modal-content">
+        <div class="modal-body">
+          <h1 class="green center">##word.ad_added_successfully##</h1>
         </div>
       </div>
     </div>
-    <footer class="footer ng-scope" x-import="haraj/footer.html" ng-controller="footer_herag"></footer>
-    <div x-import="haraj/scripts.html"></div>
-    <script x-import="create-content/index.js"></script>
-    <script>
-      $('fieldset').hide();
-      site.onLoad(() => {
-        $('#adDeal').show('slow');
-      });
-    </script>
-  </body>
+  </div>
+  <footer class="footer ng-scope" x-import="haraj/footer.html" ng-controller="footer_herag"></footer>
+  <div x-import="haraj/scripts.html"></div>
+  <script x-import="create-content/index.js"></script>
+  <script>
+    $('fieldset').hide();
+    site.onLoad(() => {
+      $('#adDeal').show('slow');
+    });
+  </script>
+</body>
+
 </html>

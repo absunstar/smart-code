@@ -20,6 +20,7 @@
 
           <div class="row">
             <i-checkbox label="##word.disable_replies_feature##" ng-model="ad.disable_replies_feature"> </i-checkbox>
+            <i-button label="##word.feedbacks##" fa="star" onclick="site.showModal('#adFeedbackModal')"> </i-button>
 
           </div>
 
@@ -226,13 +227,7 @@
         </div>
         <br />
       </fieldset>
-      <br />
-      <br />
-      <br />
-      <i-feedback class="padding_10" ng-model="ad"></i-feedback>
-      <br />
-      <br />
-      <br />
+  
     </fieldset>
   </div>
 </div>

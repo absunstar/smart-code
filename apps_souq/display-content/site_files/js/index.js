@@ -8,8 +8,8 @@ app.controller('display_content', function ($scope, $http, $timeout) {
     $scope.contentList = [];
     where = {};
     where['ad_status.id'] = 1;
-      where['main_category.id'] = ad.main_category.id;
-      where['id'] = { $ne: ad.id };
+     /*  where['main_category.id'] = ad.main_category.id;
+      where['id'] = { $ne: ad.id }; */
     if (type) {
 
       if (ad.address.country && ad.address.country.id && type == 'country') {
@@ -111,7 +111,7 @@ app.controller('display_content', function ($scope, $http, $timeout) {
       method: 'POST',
       url: '/api/contents/view',
       data: {
-        id: site.toNumber('##query.id##'),
+        id: site.toNumber('##params.id##'),
         display: true,
       },
     }).then(
@@ -288,7 +288,7 @@ app.controller('display_content', function ($scope, $http, $timeout) {
             };
           }
 
-          $scope.activity.favorite = $scope.user.feedback_list.some((_f) => _f.type && _f.ad && _f.type.id == 2 && _f.ad.id == site.toNumber('##query.id##'));
+          $scope.activity.favorite = $scope.user.feedback_list.some((_f) => _f.type && _f.ad && _f.type.id == 2 && _f.ad.id == site.toNumber('##params.id##'));
         } else {
           $scope.error = response.data.error;
         }

@@ -13,7 +13,8 @@
 
             <div class="ad-user">
               <a class="" href="/profile?id={{userAd.id}}">
-                <img class="center userad-logo" ng-src="{{userAd.profile.image_url}}" onerror="this.src='/images/user.png'" alt="" />
+                <img class="center userad-logo" ng-src="{{userAd.profile.image_url}}"
+                  onerror="this.src='/images/user.png'" alt="" />
                 <b class="user-name-stlye">{{userAd.profile.name}} {{userAd.profile.last_name}}</b>
               </a>
             </div>
@@ -27,7 +28,8 @@
             <div class="ad-location margin padding">
               <i class="fa-solid fa-location-pin"></i>
               <div class="adress">
-                <b>{{ad.address.country.name_##session.lang##}} {{ad.address.gov.name_##session.lang##}} {{ad.address.city.name_##session.lang##}} {{ad.address.area.name_##session.lang##}}</b>
+                <b>{{ad.address.country.name_##session.lang##}} {{ad.address.gov.name_##session.lang##}}
+                  {{ad.address.city.name_##session.lang##}} {{ad.address.area.name_##session.lang##}}</b>
                 <p>{{ad.address.detailed_address}}</p>
               </div>
             </div>
@@ -55,16 +57,29 @@
       </div>
 
       <div class="row padding" ng-repeat="c in ad.category_require_list">
-        <div class="row center">
-          <p class="bold blue font-18">{{c.name_##session.lang##}}</p>
+
+        <div class="row category center" ng-show="c.type.id == 1">
+          <b class="bold blue center font-18"> {{c.name_##session.lang##}} </b>
+          <i-image class="content-img" view ng-model="c.image_url"></i-image>
         </div>
-        <div class="row center">
-          <i-image class="content-img" view ng-show="c.type.id == 1" ng-model="c.image_url"></i-image>
-          <p ng-show="c.type.id == 2" class="text-comment">{{c.text}}</p>
-          <p class="text-comment" ng-show="c.type.id == 3">{{c.text}}</p>
-          <i-files view ng-show="c.type.id == 4" ng-model="c.files"></i-files>
-          <p ng-show="c.type.id == 5">{{c.date |date:"dd - MM - yyyy"}}</p>
+
+
+        <div class="row padding border category" ng-show="c.type.id != 1">
+          <div class="col4">
+            <b class="bold font-18 blue"> {{c.name_##session.lang##}} </b>
+          </div>
+          <div class="col8">
+            <a ng-show="c.type.id == 4" ng-repeat="link in c.files" href="{{link}}"> 
+              <b>
+                ##word.download## : {{link}} 
+              </b>
+            </a>
+            <p ng-show="c.type.id == 5" class="brown">{{c.date |date:"dd - MM - yyyy"}}</p>
+            <p ng-show="c.type.id == 2" class="text-comment">{{c.text}}</p>
+            <p class="text-comment" ng-show="c.type.id == 3">{{c.text}}</p>
+          </div>
         </div>
+
       </div>
 
       <div class="row product-image">
@@ -75,17 +90,10 @@
         </div>
 
         <div ng-show="ad.videos_list.length > 0" class="row center padding" ng-repeat="i in ad.videos_list">
-          <iframe
-            class="row"
-            width="560"
-            height="315"
-            ng-show="i.$link"
-            src="{{i.$link}}"
-            title="YouTube video player"
+          <iframe class="row" width="560" height="315" ng-show="i.$link" src="{{i.$link}}" title="YouTube video player"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-          ></iframe>
+            allowfullscreen></iframe>
 
           <p class="pre_text font-18 center">{{i.description}}</p>
         </div>
@@ -94,22 +102,30 @@
 
     <div class="row" ng-hide="ad.store.user.id == user.id">
       <div class="btn_group">
-        <button class="center" ng-click="updateFeedback('favorite',true)" ng-show="!activity.favorite"><i class="fa fa-heart"></i> ##word.favorite##</button>
-        <button class="center" ng-click="updateFeedback('favorite',false)" ng-show="activity.favorite"><i class="fa fa-heart red"></i>##word.favorite##</button>
+        <button class="center" ng-click="updateFeedback('favorite',true)" ng-show="!activity.favorite"><i
+            class="fa fa-heart"></i> ##word.favorite##</button>
+        <button class="center" ng-click="updateFeedback('favorite',false)" ng-show="activity.favorite"><i
+            class="fa fa-heart red"></i>##word.favorite##</button>
         <button class="center"><i class="fa fa-share-alt" aria-hidden="true"> </i> ##word.share##</button>
-        <button class="center" ng-click="showMessage(ad.store.user)"><i class="fa fa-envelope"></i> ##word.message##</button>
-        <button class="center" onclick="site.showModal('#reportModal')"><i class="fa fa-flag"></i> ##word.report##</button>
+        <button class="center" ng-click="showMessage(ad.store.user)"><i class="fa fa-envelope"></i>
+          ##word.message##</button>
+        <button class="center" onclick="site.showModal('#reportModal')"><i class="fa fa-flag"></i>
+          ##word.report##</button>
       </div>
     </div>
 
     <div class="row user-action category bg-white">
-      <b class="col3 center post-statistics"> <i class="fa fa-heart"></i> ##word.number_favorites## {{ad.$number_favorites || 0}}</b>
-      <b class="col3 center post-statistics"> <i class="fa fa-eye" aria-hidden="true"></i> ##word.number_views## {{ad.number_views || 0}}</b>
-      <b class="col3 center post-statistics"> <i class="fa fa-comment" aria-hidden="true"></i> ##word.number_comments## {{ad.number_comments || 0}}</b>
+      <b class="col3 center post-statistics"> <i class="fa fa-heart"></i> ##word.number_favorites##
+        {{ad.$number_favorites || 0}}</b>
+      <b class="col3 center post-statistics"> <i class="fa fa-eye" aria-hidden="true"></i> ##word.number_views##
+        {{ad.number_views || 0}}</b>
+      <b class="col3 center post-statistics"> <i class="fa fa-comment" aria-hidden="true"></i> ##word.number_comments##
+        {{ad.number_comments || 0}}</b>
     </div>
 
     <div class="row category bg-white">
-      <button ng-repeat="m in category_list" ng-click="selectCategoryHeader(m.id)" class="center bold pointer post-statistics">
+      <button ng-repeat="m in category_list" ng-click="selectCategoryHeader(m.id)"
+        class="center bold pointer post-statistics">
         <img class="center userad-logo" ng-src="{{m.image_url}}" onerror="this.src='/images/user.png'" alt="" />
         {{m.name_##session.lang##}}
       </button>
@@ -126,13 +142,16 @@
       </div>
     </div>
 
-    <div class="row bg-white content-ad" ng-hide="ad.disable_replies_feature" ng-repeat="c in ad.feedback_list track by $index" ng-show="c.user && c.type.id == 4 && c.comment">
+    <div class="row bg-white content-ad" ng-hide="ad.disable_replies_feature"
+      ng-repeat="c in ad.feedback_list track by $index" ng-show="c.user && c.type.id == 4 && c.comment">
       <div class="row">
         <a href="/profile?id={{c.user.id}}">
-          <img class="center userad-logo" ng-src="{{c.user.profile.image_url}}" onerror="this.src='/images/user.png'" alt="" />
+          <img class="center userad-logo" ng-src="{{c.user.profile.image_url}}" onerror="this.src='/images/user.png'"
+            alt="" />
           <b class="user-name-stlye">{{c.user.profile.name}} {{c.user.profile.last_name}}</b>
         </a>
-        <i-button fa="envelope" x-permissions="login" type="default" ng-hide="ad.store.user.id == c.user.id" ng-click="showMessage(c.user)"></i-button>
+        <i-button fa="envelope" x-permissions="login" type="default" ng-hide="ad.store.user.id == c.user.id"
+          ng-click="showMessage(c.user)"></i-button>
         <span class="left comment-count">{{$index + 1}}</span>
         <div class="time-publish margin padding">
           <i class="fa-solid fa-clock"> {{c.$time}} </i>
@@ -145,26 +164,34 @@
     </div>
 
     <div class="row bg-white content-ad" x-permissions="login" ng-hide="ad.disable_replies_feature">
-      <i-textarea label="##word.Write_your_question_advertiser_here##" class="radius-textarea" ng-model="activity.comment"> </i-textarea>
+      <i-textarea label="##word.Write_your_question_advertiser_here##" class="input-style"
+        ng-model="activity.comment"> </i-textarea>
       <i-button class="row" fa="paper-plane" label="##word.send##" ng-click="updateFeedback('comment')"></i-button>
     </div>
   </div>
-  <div class="col3 padding bg-white content-ad">
-    <fieldset>
-      <legend>##word.related_ads##</legend>
-      <div class="row">
-        <b ng-show="ad.address.country.id" class="pointer border address-ad" ng-click="getContentList(ad,'country')">
-          {{ad.main_category.name_##session.lang##}} ##word.in## {{ad.address.country.name_##session.lang##}}
-        </b>
-        <b ng-show="ad.address.gov.id" class="pointer border address-ad" ng-click="getContentList(ad,'gov')"> {{ad.address.gov.name_##session.lang##}} </b>
-        <b ng-show="ad.address.city.id" class="pointer border address-ad" ng-click="getContentList(ad,'city')"> {{ad.address.city.name_##session.lang##}} </b>
-        <b ng-show="ad.address.area.id" class="pointer border address-ad" ng-click="getContentList(ad,'area')"> {{ad.address.area.name_##session.lang##}} </b>
-      </div>
-      <div class="row item-list">
-        <a class="item col-3 pointer" ng-repeat="i in contentList" href="/display_content?id={{i.id}}">
-          <img ng-src="{{i.image_url}}" title="{{i.name}}" />
-        </a>
-      </div>
-    </fieldset>
+  <div class="col3 padding">
+    <div class="row bg-white content-ad">
+
+      <fieldset>
+        <legend>##word.related_ads##</legend>
+        <div class="row">
+          <b ng-show="ad.address.country.id" class="pointer border address-ad" ng-click="getContentList(ad,'country')">
+            {{ad.main_category.name_##session.lang##}} ##word.in## {{ad.address.country.name_##session.lang##}}
+          </b>
+          <b ng-show="ad.address.gov.id" class="pointer border address-ad" ng-click="getContentList(ad,'gov')">
+            {{ad.address.gov.name_##session.lang##}} </b>
+          <b ng-show="ad.address.city.id" class="pointer border address-ad" ng-click="getContentList(ad,'city')">
+            {{ad.address.city.name_##session.lang##}} </b>
+          <b ng-show="ad.address.area.id" class="pointer border address-ad" ng-click="getContentList(ad,'area')">
+            {{ad.address.area.name_##session.lang##}} </b>
+        </div>
+        <div class="row item-list">
+          <a class="item col-4 pointer" ng-repeat="i in contentList" href="/display_content?id={{i.id}}">
+            <img ng-src="{{i.image_url}}" title="{{i.name}}" />
+          </a>
+        </div>
+      </fieldset>
+    </div>
+
   </div>
 </div>

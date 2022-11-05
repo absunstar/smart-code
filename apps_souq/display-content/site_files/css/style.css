@@ -11,12 +11,33 @@
   color: #464545;
   background: #e9e9e9;
   border-radius: 5px;
+  display: inline-block;
+  padding-right: 5px;
+  padding-left: 5px;
   margin: 4px;
   padding: 2px;
 }
 
 .address-ad:hover {
   text-decoration: underline;
+}
+
+.fms_title small {
+  font-size: .7em;
+  color: #929aaa;
+}
+
+.btn-style a {
+  color: black;
+  background-color: white;
+  display: flex;
+  margin:5px;
+  flex-direction: row-reverse;
+  align-items: center;
+  padding: 5px 10px;
+  border: 2px solid var(--theme-color2) !important;
+  border-radius: 10px !important;
+  justify-content: center;
 }
 
 .btn_group button {
@@ -58,6 +79,7 @@
   border-color: #00a884 !important;
   background: #e6e6e6;
   padding: 15px;
+  max-width: 95%;
   margin: 10px !important;
   color: #2c7171;
   font-size: 17px;
@@ -198,9 +220,11 @@
     width: 10px;
     height: 10px;
   }
+
   .btn_group button {
     width: 25%;
   }
+
   ::-webkit-scrollbar-track {
     background-color: #f6f6f6;
     box-shadow: 0 0 10px #ddd inset;
