@@ -15,10 +15,10 @@ app.controller('create_content', function ($scope, $http, $timeout) {
       number_favorites: 0,
       number_reports: 0,
       priority_level: 0,
-      description : '##word.details##',
+      description: '##word.details##',
       active: true,
     };
-    
+
 
     if ($scope.defaultSettings.content) {
       if ($scope.defaultSettings.content.closing_system) {
@@ -40,17 +40,17 @@ app.controller('create_content', function ($scope, $http, $timeout) {
         $scope.ad.videos_list = [];
       }
 
-        $scope.ad.quantity_list = [
-          {
-            price: 0,
-            discount: 0,
-            discount_type: 'number',
-            net_value: 0,
-            available_quantity: 0,
-            maximum_order: 0,
-            minimum_order: 0,
-          },
-        ];
+      $scope.ad.quantity_list = [
+        {
+          price: 0,
+          discount: 0,
+          discount_type: 'number',
+          net_value: 0,
+          available_quantity: 0,
+          maximum_order: 0,
+          minimum_order: 0,
+        },
+      ];
 
       $scope.ad.image_url = $scope.defaultSettings.content.default_image_ad || '/images/content.png';
     }
@@ -64,20 +64,20 @@ app.controller('create_content', function ($scope, $http, $timeout) {
     }
 
     if (!$scope.defaultSettings.stores_settings.activate_stores) {
-      if ($scope.address) {
-        if ($scope.ad.$address_type == 'main') {
-          $scope.ad.address = $scope.address.main;
-        } else if ($scope.ad.$address_type == 'new') {
-          $scope.ad.address = $scope.address.new;
-        } else if ($scope.ad.$address_type == 'other') {
-          $scope.address.other_list = $scope.address.other_list || [];
-          $scope.address.other_list.forEach((_other) => {
-            if (_other.$select_address) {
-              $scope.ad.address = { ..._other };
-            }
-          });
-        }
-      }
+      /*  if ($scope.address) {
+         if ($scope.ad.$address_type == 'main') {
+           $scope.ad.address = $scope.address.main;
+         } else if ($scope.ad.$address_type == 'new') {
+           $scope.ad.address = $scope.address.new;
+         } else if ($scope.ad.$address_type == 'other') {
+           $scope.address.other_list = $scope.address.other_list || [];
+           $scope.address.other_list.forEach((_other) => {
+             if (_other.$select_address) {
+               $scope.ad.address = { ..._other };
+             }
+           });
+         }
+       } */
     } else if ($scope.ad.store) {
       $scope.ad.address = $scope.ad.store.address;
     }
@@ -131,7 +131,7 @@ app.controller('create_content', function ($scope, $http, $timeout) {
     $scope.loadSubCategory2(cat);
     if (cat.type == 'primary') {
       $('#adCategory').hide();
-      if(cat.category_require_list && cat.category_require_list.length > 0){
+      if (cat.category_require_list && cat.category_require_list.length > 0) {
         $('#adCategoryRequire').show('slow');
       } else {
         $('#adAddressType').show('slow');
@@ -150,8 +150,8 @@ app.controller('create_content', function ($scope, $http, $timeout) {
         where: {
           status: 'active',
         },
-        select: { id: 1, name_ar: 1, name_en: 1, parent_list_id: 1, top_parent_id: 1,category_require_list : 1, parent_id: 1, image_url: 1, type: 1 },
-        top : true,
+        select: { id: 1, name_ar: 1, name_en: 1, parent_list_id: 1, top_parent_id: 1, category_require_list: 1, parent_id: 1, image_url: 1, type: 1 },
+        top: true,
       },
     }).then(
       function (response) {
@@ -254,23 +254,23 @@ app.controller('create_content', function ($scope, $http, $timeout) {
   $scope.addImage = function () {
     $scope.error = '';
     $scope.ad.images_list = $scope.ad.images_list || [];
-    if($scope.ad.$image && $scope.ad.$image.image_url){
+    if ($scope.ad.$image && $scope.ad.$image.image_url) {
       $scope.ad.images_list.push({
-      image_url : $scope.ad.$image.image_url,
-      description :$scope.ad.$image.desc,
-    });
-  };
-    $scope.ad.$image = {image_url : '/images/no.jpg'};
+        image_url: $scope.ad.$image.image_url,
+        description: $scope.ad.$image.desc,
+      });
+    };
+    $scope.ad.$image = { image_url: '/images/no.jpg' };
   };
 
   $scope.addVideos = function () {
     $scope.error = '';
     $scope.ad.videos_list = $scope.ad.videos_list || [];
-    if($scope.ad.$video && $scope.ad.$video.link){
+    if ($scope.ad.$video && $scope.ad.$video.link) {
 
       $scope.ad.videos_list.push({
-        link : $scope.ad.$video.link,
-        description : $scope.ad.$video.desc,
+        link: $scope.ad.$video.link,
+        description: $scope.ad.$video.desc,
       });
     }
     $scope.ad.$video = {};
@@ -278,38 +278,38 @@ app.controller('create_content', function ($scope, $http, $timeout) {
 
   $scope.doneSelectImages = function () {
     $scope.error = '';
-   if($scope.defaultSettings.content.upload_video){
-    $('#adImages').hide();
-    $('#adVideo').show('slow');
-   } else {
-    $('#adImages').hide();
-    $('#adContent').show('slow');
-   }
+    if ($scope.defaultSettings.content.upload_video) {
+      $('#adImages').hide();
+      $('#adVideo').show('slow');
+    } else {
+      $('#adImages').hide();
+      $('#adContent').show('slow');
+    }
   };
 
   $scope.doneSelectVideos = function () {
     $scope.error = '';
- 
+
     $('#adVideo').hide();
     $('#adContent').show('slow');
-   
+
   };
 
-  $scope.upDownList = function (list,type,index) {
+  $scope.upDownList = function (list, type, index) {
 
     let element = list[index];
     let toIndex = index;
 
-    if(type == 'up') {
+    if (type == 'up') {
       toIndex = index - 1
-    } else if(type == 'down') {
+    } else if (type == 'down') {
       toIndex = index + 1
     }
 
     list.splice(index, 1);
     list.splice(toIndex, 0, element);
 
-  }; 
+  };
 
 
   $scope.getCurrenciesList = function () {
@@ -377,7 +377,7 @@ app.controller('create_content', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.adBack = function (id1,id2) {
+  $scope.adBack = function (id1, id2) {
     $(`#${id1}`).hide();
     $(`#${id2}`).show('slow');
   };
@@ -392,7 +392,7 @@ app.controller('create_content', function ($scope, $http, $timeout) {
     $('#adAddressType').show('slow');
   };
 
-  $scope.showAddress = function (ad,type) {
+  $scope.showAddress = function (ad, type) {
     ad.$address_type = type;
     $('#adAddressType').hide();
     $('#adAddressSelect').show('slow');
@@ -402,25 +402,20 @@ app.controller('create_content', function ($scope, $http, $timeout) {
     $scope.error = '';
 
     if ($scope.ad.$address_type == 'main') {
-      $scope.address.select_new = false;
+      $scope.ad.address = $scope.address.main;
     } else if ($scope.ad.$address_type == 'other') {
-      $scope.address.select_new = false;
-      $scope.address.select_main = false;
-    } else if ($scope.ad.$address_type == 'new') {
-      $scope.address.select_main = false;
-    }
-
-    if ($scope.address.other_list && $scope.address.other_list.length > 0 && $scope.ad.$address_type == 'other') {
+      $scope.address.other_list = $scope.address.other_list || [];
       $scope.address.other_list.forEach((_other, i) => {
-          if (i == index) {
-            _other.$select_address = true;
-          } else {
-            _other.$select_address = false;
+        if (i == index) {
+          $scope.ad.address = { ..._other };
+        }
 
-          }
-        
       });
+    } else if ($scope.ad.$address_type == 'new') {
+      $scope.ad.address = $scope.address.new;
+
     }
+
     $('#adAddressSelect').hide();
     $('#adImages').show('slow');
   };
@@ -449,7 +444,7 @@ app.controller('create_content', function ($scope, $http, $timeout) {
           $scope.error = response.data.error;
         }
       },
-      function (err) {}
+      function (err) { }
     );
   };
 

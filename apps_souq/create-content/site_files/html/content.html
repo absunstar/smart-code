@@ -3,7 +3,7 @@
     <p class="bold deal_1 font-29">» إتفاقية العمولة</p>
     <br />
     <br />
-    
+
     <hr />
     <br />
     <p class="deal_1 font-23">بسم الله الرحمن الرحيم</p>
@@ -37,7 +37,7 @@
   </fieldset>
 
   <fieldset id="adCategoryRequire">
- 
+
     <legend>
       ##word.ad_require##
     </legend>
@@ -46,7 +46,7 @@
       <i class="fa fa-arrow-circle-right fa-4x back-style" aria-hidden="true"></i>
     </a>
 
-    <div class="row radius13 padding border" ng-show="ad.category_require_list.length > 0">
+    <div class="row radius13 padding" ng-show="ad.category_require_list.length > 0">
 
       <div class="row center padding margin " ng-repeat="c in ad.category_require_list">
         <i-ad-require ng-model="c"></i-ad-require>
@@ -99,10 +99,11 @@
     </a>
     <i-address ng-model="address.main" ng-show="ad.$address_type == 'main'"></i-address>
 
-    <div class="row border padding" ng-show="ad.$address_type == 'other'" ng-repeat="o in address.other_list">
+    <div class="row padding" ng-show="ad.$address_type == 'other'" ng-repeat="o in address.other_list">
       <i-address ng-model="o"></i-address>
       <i-button label="##word.continuation##" class="btn-ad" fa="battery-quarter" ng-model="o.$select_address"
         ng-click="selectAddress($index)"></i-button>
+      <hr>
     </div>
 
     <i-address ng-show="ad.$address_type == 'new'" ng-model="address.new"></i-address>
@@ -131,11 +132,12 @@
       </i-button>
 
     </div>
+    <hr>
 
     <div class="row" ng-repeat="a in ad.images_list track by $index">
-      <div class="row border border-radius5 padding">
+      <div class="row border-radius5 padding">
         <div class="col4">
-          <img class="img-style" src="{{a.image_url}}" alt="" class="ad-img" />
+          <img src="{{a.image_url}}" alt="" class="ad-img" />
         </div>
         <div class="col1"></div>
         <div class="col5">
@@ -178,9 +180,9 @@
       </i-button>
 
     </div>
-
+    <hr>
     <div class="row" ng-repeat="a in ad.videos_list track by $index">
-      <div class="row border border-radius5 padding">
+      <div class="row border-radius5 padding">
         <div class="col5">
           <i-control label="##word.link##" ng-model="a.link"></i-control>
         </div>
@@ -220,148 +222,171 @@
 
     <div class="row">
 
-      <div class="col9">
-        <div class="row">
-          <i-control help-id="ad_title" v="r ll2" class="col9 input-style" label="##word.ad_title##" ng-model="ad.name"></i-control>
+      <div class="row">
+        <div class="col9">
+          <div class="row">
 
-          <i-list ng-show="defaultSettings.stores_settings.activate_stores" class="col3 input-style" ng-model="ad.store"
-            items="myStoreslist" display="name" ng-search="_search.$store" label="##word.store##"></i-list>
-        </div>
-        <br />
+            <i-control help-id="ad_title" v="r ll2" class="col9 input-style" label="##word.ad_title##"
+              ng-model="ad.name">
+            </i-control>
 
-        <div class="row">
-          <i-date2 class="col6 input-style" ng-show="defaultSettings.content.publishing_system.id == 2" ng-model="ad.date"
-            label="##word.publishing_date##"></i-date2>
-          <i-date2 class="col6 input-style" ng-show="defaultSettings.content.closing_system.id == 2" ng-model="ad.expiry_date"
-            label="##word.expiry_date##"></i-date2>
-        </div>
-
-        <br>
-
-        <div class="row">
-          <div class="col6">
-
-            <i-list class="row input-style" label="##word.main_category##" ng-model="ad.$category1" ng-click="loadSubCategory2(ad.$category1)"
-              items="top_category_list" display="name_##session.lang##" ng-search="ad.$category1_search"></i-list>
-
-            <i-list class="row input-style" label="##word.categories## {{ad.$category1.name_##session.lang##}}" ng-model="ad.$category2" ng-click="loadSubCategory3(ad.$category2)"
-              items="subCategoriesList2" ng-show="subCategoriesList2.length > 0 && ad.$category1"
-              display="name_##session.lang##" ng-search="ad.$category2_search"></i-list>
-
-            <i-list class="row input-style" label="##word.categories## {{ad.$category2.name_##session.lang##}}" ng-model="ad.$category3" ng-click="loadSubCategory4(ad.$category3)"
-              items="subCategoriesList3" ng-show="subCategoriesList3.length > 0 && ad.$category2"
-              display="name_##session.lang##" ng-search="ad.$category3_search"></i-list>
-
-            <i-list class="row input-style" label="##word.categories## {{ad.$category3.name_##session.lang##}}" ng-model="ad.$category4" ng-click="loadSubCategory5(ad.$category4)"
-              items="subCategoriesList4" ng-show="subCategoriesList4.length > 0 && ad.$category3"
-              display="name_##session.lang##" ng-search="ad.$category4_search"></i-list>
-
-            <i-list class="row input-style" label="##word.categories## {{ad.$category4.name_##session.lang##}}" ng-model="ad.$category5" ng-click="loadSubCategory6(ad.$category5)"
-              items="subCategoriesList5" ng-show="subCategoriesList5.length > 0 && ad.$category4"
-              display="name_##session.lang##" ng-search="ad.$category5_search"></i-list>
-
-          </div>
-        </div>
-        <div class="row">
-
-          <h2 ng-show="ad.main_category.id" class="col8 bold">##word.category## :
-            {{ad.main_category.name_##session.lang##}} ( {{ad.main_category.v_display}})</h2>
-        </div>
-        <br>
-        <br>
-        <div class="row radius13 padding border" ng-show="ad.category_require_list.length > 0">
-
-          <b class="title-require border">##word.ad_require##</b>
-          <div class="row center padding margin " ng-repeat="c in ad.category_require_list">
-            <i-ad-require ng-model="c"></i-ad-require>
-          </div>
-        </div>
-        <br>
-        <div class="row">
-          <i-checkbox label="##word.disable_replies_feature##" ng-model="ad.disable_replies_feature"> </i-checkbox>
-        </div>
-
-        <div class="row">
-          <!-- <p class="col3 bold">##word.mobile_number_or_contact_method##</p> : -->
-          <i-checkbox label="##word.hide_mobile_number##" ng-model="ad.hide_mobile"> </i-checkbox>
-          <i-control class="col4 input-style" label="##word.cell_phone_number##" ng-model="ad.mobile"></i-control>
-        </div>
-
-
-        <div class="row">
-          <i-textarea class="input-style" ng-model="ad.description" label="##word.ad_description##"> </i-textarea>
-        </div>
-
-        <br />
-
-        <div class="row">
-          <h2>##word.Do_you_want_set_price##</h2>
-          <div class="col5">
-            <div class="row">
-              <i-radio class="col6" ng-model="ad.set_price" label="##word.no##" ng-value="no"> </i-radio>
-              <i-radio class="col6" ng-model="ad.set_price" label="##word.yes##" ng-value="yes"></i-radio>
-            </div>
-          </div>
-        </div>
-
-        <div id="adContent" class="row" ng-show="ad.set_price == 'yes'">
-          <div class="col5" ng-show="defaultSettings.content.quantities_can_be_used">
-
-              
-              <i-button type="add" label="##word.add## ##word.quantities##" ng-click="addQuantity()"></i-button>
-          </div>
-          <div class="row border padding border-radius5 margin5" ng-repeat="c in ad.quantity_list">
-            <div class="row ">
-              <i-list ng-show="defaultSettings.content.quantities_can_be_used" ng-search="_search.$unit" class="col2 input-style"
-                display="name_##session.lang##" ng-model="c.unit" label="##word.unit##" items="unitsList"> </i-list>
-              <i-control help-id="ad_available_quantity" type="number" class="col2 input-style" label="##word.available_quantity##"
-                ng-model="c.available_quantity"></i-control>
-              <i-control help-id="ad_maximum_order" type="number" class="col2 input-style" label="##word.maximum_order##"
-                ng-model="c.maximum_order"></i-control>
-              <i-control help-id="ad_minimum_order" type="number" class="col2 input-style" label="##word.minimum_order##"
-                ng-model="c.minimum_order"></i-control>
-              <i-list ng-show="defaultSettings.content.currencies_can_be_used" ng-search="_search.$currency"
-                class="col2 input-style" display="name_##session.lang##" ng-model="c.currency" label="##word.currency##"
-                items="currenciesList">
-              </i-list>
-            </div>
-
-            <div class="row">
-              <i-control help-id="ad_price" ng-change="calcDiscount(c)" type="number" class="col2 input-style"
-                label="##word.price##" ng-model="c.price"></i-control>
-              <i-control help-id="ad_discount" ng-change="calcDiscount(c)" type="number" class="col2 input-style"
-                label="##word.discount##" ng-model="c.discount"></i-control>
-
-              <div class="col1">
-                <div class="row">
-                  <i-radio ng-click="calcDiscount(c)" ng-model="c.discount_type" label="##word.amount##"
-                    ng-value="number"></i-radio>
-                  <i-radio ng-click="calcDiscount(c)" ng-model="c.discount_type" label="##word.percent##"
-                    ng-value="percent"> </i-radio>
-                </div>
-              </div>
-
-              <i-control help-id="ad_required" type="number" disabled class="col2 input-style" label="##word.required##"
-                ng-model="c.net_value"></i-control>
-              <div class="col3"></div>
-              <div class="col1">
-                <br />
-                <i-button type="delete" ng-click="ad.quantity_list.splice($index,1)"> </i-button>
-              </div>
-            </div>
+            <i-list ng-show="defaultSettings.stores_settings.activate_stores" class="col3 input-style"
+              ng-model="ad.store" items="myStoreslist" display="name" ng-search="_search.$store" label="##word.store##">
+            </i-list>
           </div>
           <br />
+
+          <div class="row">
+            <i-date2 class="col6 input-style" ng-show="defaultSettings.content.publishing_system.id == 2"
+              ng-model="ad.date" label="##word.publishing_date##"></i-date2>
+            <i-date2 class="col6 input-style" ng-show="defaultSettings.content.closing_system.id == 2"
+              ng-model="ad.expiry_date" label="##word.expiry_date##"></i-date2>
+          </div>
         </div>
-        <br>
-        <i-button fa="battery-full" class="btn-ad" label="##word.publishing## ##word.ad## " ng-click="addAd()">
-        </i-button>
+        <div class="col3 center">
+          <i-image help-id="ads_logo" label="##word.main_ad_image##" ng-model="ad.image_url"></i-image>
+          <b class="font-18">##word.select## ##word.main_ad_image##</b>
+        </div>
+      </div>
+      <hr>
 
+      <br>
+
+      <div class="row radius13 padding">
+
+        <b class="title-require border">##word.address##</b>
+        <i-address ng-model="ad.address"></i-address>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col6">
+
+          <i-list class="row input-style" label="##word.main_category##" ng-model="ad.$category1"
+            ng-click="loadSubCategory2(ad.$category1)" items="top_category_list" display="name_##session.lang##"
+            ng-search="ad.$category1_search"></i-list>
+
+          <i-list class="row input-style" label="##word.categories## {{ad.$category1.name_##session.lang##}}"
+            ng-model="ad.$category2" ng-click="loadSubCategory3(ad.$category2)" items="subCategoriesList2"
+            ng-show="subCategoriesList2.length > 0 && ad.$category1" display="name_##session.lang##"
+            ng-search="ad.$category2_search"></i-list>
+
+          <i-list class="row input-style" label="##word.categories## {{ad.$category2.name_##session.lang##}}"
+            ng-model="ad.$category3" ng-click="loadSubCategory4(ad.$category3)" items="subCategoriesList3"
+            ng-show="subCategoriesList3.length > 0 && ad.$category2" display="name_##session.lang##"
+            ng-search="ad.$category3_search"></i-list>
+
+          <i-list class="row input-style" label="##word.categories## {{ad.$category3.name_##session.lang##}}"
+            ng-model="ad.$category4" ng-click="loadSubCategory5(ad.$category4)" items="subCategoriesList4"
+            ng-show="subCategoriesList4.length > 0 && ad.$category3" display="name_##session.lang##"
+            ng-search="ad.$category4_search"></i-list>
+
+          <i-list class="row input-style" label="##word.categories## {{ad.$category4.name_##session.lang##}}"
+            ng-model="ad.$category5" ng-click="loadSubCategory6(ad.$category5)" items="subCategoriesList5"
+            ng-show="subCategoriesList5.length > 0 && ad.$category4" display="name_##session.lang##"
+            ng-search="ad.$category5_search"></i-list>
+
+        </div>
       </div>
 
-      <div class="col3 center">
-        <i-image help-id="ads_logo" label="##word.main_ad_image##" ng-model="ad.image_url"></i-image>
-        <b class="font-18">##word.select## ##word.main_ad_image##</b>
+      <div class="row">
+
+        <h2 ng-show="ad.main_category.id" class="col8 bold">##word.category## :
+          {{ad.main_category.name_##session.lang##}} ( {{ad.main_category.v_display}})</h2>
       </div>
+      <br>
+      <br>
+      <div class="row radius13 padding " ng-show="ad.category_require_list.length > 0">
+
+        <b class="title-require border">##word.ad_require##</b>
+        <div class="row center padding margin " ng-repeat="c in ad.category_require_list">
+          <i-ad-require ng-model="c"></i-ad-require>
+        </div>
+      </div>
+      <br>
+      <hr>
+
+      <div class="row">
+        <i-checkbox label="##word.disable_replies_feature##" ng-model="ad.disable_replies_feature"> </i-checkbox>
+      </div>
+
+      <div class="row">
+        <!-- <p class="col3 bold">##word.mobile_number_or_contact_method##</p> : -->
+        <i-checkbox label="##word.hide_mobile_number##" ng-model="ad.hide_mobile"> </i-checkbox>
+        <i-control class="col4 input-style" label="##word.cell_phone_number##" ng-model="ad.mobile"></i-control>
+      </div>
+
+      <div class="row">
+        <i-textarea class="input-style" ng-model="ad.description" label="##word.ad_description##"> </i-textarea>
+      </div>
+
+      <br />
+      <hr>
+
+      <div class="row">
+        <h2>##word.Do_you_want_set_price##</h2>
+        <div class="col5">
+          <div class="row">
+            <i-radio class="col6" ng-model="ad.set_price" label="##word.no##" ng-value="no"> </i-radio>
+            <i-radio class="col6" ng-model="ad.set_price" label="##word.yes##" ng-value="yes"></i-radio>
+          </div>
+        </div>
+      </div>
+
+      <div id="adContent" class="row" ng-show="ad.set_price == 'yes'">
+        <div class="col5" ng-show="defaultSettings.content.quantities_can_be_used">
+
+
+          <i-button type="add" label="##word.add## ##word.quantities##" ng-click="addQuantity()"></i-button>
+        </div>
+        <div class="row border padding border-radius5 margin5" ng-repeat="c in ad.quantity_list">
+          <div class="row ">
+            <i-list ng-show="defaultSettings.content.quantities_can_be_used" ng-search="_search.$unit"
+              class="col2 input-style" display="name_##session.lang##" ng-model="c.unit" label="##word.unit##"
+              items="unitsList"> </i-list>
+            <i-control help-id="ad_available_quantity" type="number" class="col2 input-style"
+              label="##word.available_quantity##" ng-model="c.available_quantity"></i-control>
+            <i-control help-id="ad_maximum_order" type="number" class="col2 input-style" label="##word.maximum_order##"
+              ng-model="c.maximum_order"></i-control>
+            <i-control help-id="ad_minimum_order" type="number" class="col2 input-style" label="##word.minimum_order##"
+              ng-model="c.minimum_order"></i-control>
+            <i-list ng-show="defaultSettings.content.currencies_can_be_used" ng-search="_search.$currency"
+              class="col2 input-style" display="name_##session.lang##" ng-model="c.currency" label="##word.currency##"
+              items="currenciesList">
+            </i-list>
+          </div>
+
+          <div class="row">
+            <i-control help-id="ad_price" ng-change="calcDiscount(c)" type="number" class="col2 input-style"
+              label="##word.price##" ng-model="c.price"></i-control>
+            <i-control help-id="ad_discount" ng-change="calcDiscount(c)" type="number" class="col2 input-style"
+              label="##word.discount##" ng-model="c.discount"></i-control>
+
+            <div class="col1">
+              <div class="row">
+                <i-radio ng-click="calcDiscount(c)" ng-model="c.discount_type" label="##word.amount##"
+                  ng-value="number"></i-radio>
+                <i-radio ng-click="calcDiscount(c)" ng-model="c.discount_type" label="##word.percent##"
+                  ng-value="percent"> </i-radio>
+              </div>
+            </div>
+
+            <i-control help-id="ad_required" type="number" disabled class="col2 input-style" label="##word.required##"
+              ng-model="c.net_value"></i-control>
+            <div class="col3"></div>
+            <div class="col1">
+              <br />
+              <i-button type="delete" ng-click="ad.quantity_list.splice($index,1)"> </i-button>
+            </div>
+          </div>
+        </div>
+        <br />
+      </div>
+      <br>
+      <i-button fa="battery-full" class="btn-ad" label="##word.publishing## ##word.ad## " ng-click="addAd()">
+      </i-button>
+
+
+
     </div>
 
     <h1 class="center red">{{error}}</h1>

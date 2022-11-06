@@ -10,8 +10,8 @@
       <br />
     </div>
 
-    <div class="row padding dropdown-item center" ng-repeat="item in items | filter:{ $display : ngSearch}" ng-click="updateModel(item)">
-      <p><img ng-src="{{item.image_url}}" /><span class="bold"> ( {{item.country_code}} ) </span>{{getValue(item)}}</p>
+    <div class="row padding dropdown-item " ng-repeat="item in items | filter:{ $display : ngSearch}" ng-click="updateModel(item)">
+      <img ng-src="{{item.image_url}}" /> <b class="country-b"><span class="bold"> ( {{item.country_code}} ) </span>{{getValue(item)}}</b>
     </div>
 
     <div class="row center padding pointer">

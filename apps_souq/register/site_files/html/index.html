@@ -19,9 +19,17 @@
       --fieldset-border: none;
       --fieldset-background: #fff;
     }
+
     .darkGray {
       color: #919191;
     }
+
+    .img-country img {
+      width: 44px;
+      height: 40px;
+      display: inline-block;
+    }
+
     * {
       max-width: initial;
     }
@@ -61,21 +69,24 @@
       <div class="col3"></div>
       <div class="col6">
         <i-country class="row center input-style" v="r" label="##word.country##" ng-model="mailer.country"
-          display="name_##session.lang##" items="countriesList" ng-search="mailer.$countries"></i-country>
+          display="name_##session.lang##" items="countriesList" display2="country_code" ng-search="mailer.$countries"></i-country>
         <i-control class="row center input-style" v="r" label="##word.mobile_phone_number##" ng-model="mailer.mobile">
         </i-control>
       </div>
       <div class="row center">
-        <i-button class="center" fa="arrow-left" label="##word.enter##" ng-click="registerMailer(mailer,'mobile')"></i-button>
+        <i-button class="center" fa="arrow-left" label="##word.enter##" ng-click="registerMailer(mailer,'mobile')">
+        </i-button>
       </div>
     </div>
 
     <div class="row" id="mobile_confirm">
-      <div class="col5">
-        <i-control class="row input-style" v="r" label="##word.secret_code_sent_phone##" ng-model="secret_code">
+      <div class="col3"></div>
+
+      <div class="col6">
+        <i-control class="row center input-style" v="r" label="##word.secret_code_sent_phone##" ng-model="secret_code">
         </i-control>
       </div>
-      <div class="row">
+      <div class="row center">
         <i-button label="##word.continuation##" ng-click="checkSecretCode(secret_code)"></i-button>
         <i-button label="##word.resend_code##" fa="retweet" ng-click="resendCode(mailer.id,'mobile')"></i-button>
       </div>

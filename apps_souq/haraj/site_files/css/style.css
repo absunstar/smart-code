@@ -6,6 +6,7 @@
   --theme-color2: #019777;
   --font-family: 'Arabic', sans-serif;
 }
+
 .more-btn {
   background: #006d56;
   color: white;
@@ -18,21 +19,35 @@
   transition: all 0.2s ease;
   cursor: pointer;
 }
+
 .more-btn:hover {
   transform: scale(1.1);
 }
+
 img.more-loading {
   width: 128px;
   height: 128px;
 }
+
+i-checkbox .selector.un-selected {
+  border-radius: 10px;
+}
+
 i-country img {
-  width: 16px;
-  height: 16px;
+  width: 38px;
+  height: 35px;
   display: inline-block;
 }
+
+.country-b {
+  padding: 10px;
+  font-size: 17px;
+}
+
 .border-radius5 {
   border-radius: 5px;
 }
+
 .margin5 {
   margin: 5px !important;
 }
@@ -40,18 +55,23 @@ i-country img {
 .pointer {
   cursor: pointer;
 }
+
 .font-26 {
   font-size: 26px !important;
 }
+
 .font-27 {
   font-size: 27px !important;
 }
+
 .font-28 {
   font-size: 28px !important;
 }
+
 .font-29 {
   font-size: 29px !important;
 }
+
 .font-30 {
   font-size: 30px !important;
 }
@@ -59,14 +79,17 @@ i-country img {
 img {
   max-width: initial;
 }
+
 .pre_text {
   white-space: pre-wrap !important;
 }
+
 :root {
   --theme-color: #00a884 !important;
   --theme-color2: #019777 !important;
   --font-family: 'Arabic', sans-serif;
 }
+
 .img__description {
   background: #2bb741 !important;
 }
@@ -86,42 +109,53 @@ fieldset {
 i-image img:hover {
   box-shadow: 0 0 2px 1px #019777 !important;
 }
+
 .haraj_logo {
   height: 60px;
   border-radius: 5px;
 }
+
 .haraj_name {
   padding-left: 10px;
 }
+
 .loaded {
   display: none;
 }
+
 .hidden {
   display: none;
 }
+
 body {
   background-color: #bbb;
   background-image: url(/assets/palm.svg);
   background-repeat: repeat;
 }
+
 header,
 footer {
   filter: drop-shadow(2px 4px 6px black) !important;
 }
+
 .tagSide {
   border-radius: 10px;
   height: fit-content;
   background-color: #fff;
 }
+
 .main-content {
   background-color: #fff;
 }
+
 .main-content i-checkbox {
   display: inline-flex;
 }
+
 .border-circle {
   border-radius: 50%;
 }
+
 a,
 span,
 button,
@@ -129,6 +163,7 @@ p {
   font-family: var(--font-family);
   text-decoration: none;
 }
+
 /* .ad-area img {
   max-width: 90%;
   height: 180px;
@@ -136,6 +171,7 @@ p {
 .red {
   color: red;
 }
+
 .adarea-image {
   max-width: 90% !important;
   height: 150px !important;
