@@ -212,7 +212,7 @@
         <div class="tags">
           <ul class="tag-list">
             <li class="tag" ng-repeat="c in topParentCategoriesList">
-              <a class="tab_link" ng-click="loadSubCategory(c)" href=""><img alt="car" loading="lazy" height="35"
+              <a class="tab_link" ng-class="{'category-selected' : c.$isSelected == true}" ng-click="loadSubCategory(c)" href=""><img alt="car" loading="lazy" height="35"
                   width="35" ng-src="{{c.image_url}}" /><span
                   style="min-height: 22px">{{c.name_##session.lang##}}</span></a>
             </li>

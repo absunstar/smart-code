@@ -54,6 +54,11 @@ img {
   text-decoration: line-through;
 }
 
+.category-selected {
+  background: #70e5ce;
+  border-radius: 13px;
+}
+
 .input-style textarea:focus {
   box-shadow: 1px 1px 5px 0px #00a66c !important;
 
@@ -783,6 +788,8 @@ img {
     align-items: center;
     flex-direction: row-reverse;
   }
+
+  
 
   i-button.ng-isolate-scope {
     padding: 0px;

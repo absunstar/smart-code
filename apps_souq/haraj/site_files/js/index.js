@@ -344,6 +344,11 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
   };
 
   $scope.loadSubCategory = function (c) {
+    $scope.topParentCategoriesList.forEach(_c => {
+      _c.$isSelected = false;
+    });
+    c.$isSelected = true;
+
     $scope.error = '';
     $scope.search.category_id = c.id;
     $scope.searchAll($scope.search);
