@@ -16,9 +16,17 @@
       max-width: initial;
     }
 
-    .bg_notific,
     .bg_notific {
-      background-color: #00b38d94 !important;
+      background-color: aquamarine !important;
+    }
+
+    .title-notific {
+      color: #007e63;
+    }
+
+    .return-img {
+      margin-top: 50% !important;
+      height: 50px;
     }
 
     :root {
@@ -28,6 +36,7 @@
       --fieldset-border: none;
       --fieldset-background: #fff;
     }
+
     .userad-logo {
       border-radius: 50%;
       height: 25px;
@@ -72,52 +81,72 @@
 
     <div class="row">
       <fieldset ng-hide="notific_list.length > 0 && notific_list">
-
         <h1 class="blue bold center">##word.no_notifications##</h1>
       </fieldset>
-      <fieldset class="ads-section" ng-show="notific_list.length > 0">
-        <div ng-repeat="n in notific_list" class="ads-area even padding " ng-class="{
-              bg_notific : !n.show,
-          
-            }">
-          <div class="ad-area padding radius13 box-shadow">
-            <div class="ads-info pointer">
-              <div ng-click="displayContent(n)">
-                <div ng-show="n.type == 'comments_my_ads'">
-                  <h2>##word.there_new_response_ad##</h2>
-                  <h3 class="pointer">##word.new_comment_on## {{n.action.name}}</h3>
+      <div class="col2"></div>
+      <div class="col8">
+        <fieldset class="ads-section" ng-show="notific_list.length > 0">
+
+          <div ng-repeat="n in notific_list" class=" even padding margin">
+            <div class="radius13 box-shadow" ng-class="{
+            bg_notific : !n.show,
+        
+          }">
+              <div class="ads-info pointer">
+                <div class="row">
+
+                  <div class="row margin padding">
+                    <div ng-click="displayContent(n)" ng-show="n.type == 'comments_my_ads'">
+                      <h2 class="underline-hover title-notific bold">##word.there_new_response_ad##</h2>
+                    </div>
+                    <div ng-click="displayContent(n)" ng-show="n.type == 'ads_members_follow'">
+                      <h2 class="underline-hover title-notific bold">##word.there_is_new_ad##</h2>
+                    </div>
+                    <div ng-click="displayContent(n)" ng-show="n.type == 'replies_ads_followed'">
+                      <h2 class="underline-hover title-notific bold">##word.there_new_response_ad##</h2>
+                    </div>
+                    <div ng-click="displayMessage(n)" ng-show="n.type == 'private_messages'">
+                      <h2 class="underline-hover title-notific bold">##word.there_new_private_message##</h2>
+  
+                    </div>
+                  </div>
+
+                 
+
+                  <div class="row margin padding">
+                    <div class="col9 ">
+                      <h3 ng-show="n.type == 'comments_my_ads'" class="pointer">##word.new_comment_on##
+                        {{n.action.name}}</h3>
+                      <h3 ng-show="n.type == 'ads_members_follow'" class="pointer">{{n.action.name}}</h3>
+                      <h3 ng-show="n.type == 'replies_ads_followed'" class=" pointer">##word.new_comment_on##
+                        {{n.action.name}}</h3>
+                      <h3 ng-show="n.type == 'private_messages'" class="pointer">##word.new_private_message_from##
+                        {{n.user_action.name}}</h3>
+                      <h4 ng-show="n.type == 'private_messages'" class="pointer bold pre_text">{{n.action.name}}</h4>
+                    </div>
+                    <div class="col3">
+                      <a
+                        href="/profile/{{n.user_action.id}}/{{n.user_action.profile.name}}/{{n.user_action.profile.last_name}}">
+                        <img class="center userad-logo" ng-src="{{n.user_action.profile.image_url}}"
+                          onerror="this.src='/images/user.png'" alt="" />
+                        <b class="user-name-stlye">{{n.user_action.profile.name}}
+                          {{n.user_action.profile.last_name}}</b>
+                      </a>
+
+                      <div class="time-publish padding margin">
+                        <i class="fa-solid fa-clock"> {{n.$time}} </i>
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
-                <div ng-show="n.type == 'ads_members_follow'">
-                  <h2>##word.there_is_new_ad##</h2>
-                  <h3 class="pointer">{{n.action.name}}</h3>
-                </div>
-                <div ng-show="n.type == 'replies_ads_followed'">
-                  <h2>##word.there_new_response_ad##</h2>
-                  <h3 class="pointer">##word.new_comment_on## {{n.action.name}}</h3>
-                </div>
+
               </div>
-
-              <div ng-click="displayMessage(n)" ng-show="n.type == 'private_messages'">
-                <h2>##word.there_new_private_message##</h2>
-                <h3 class="pointer">##word.new_private_message_from## {{n.user_action.name}}</h3>
-                <h4 class="pointer bold pre_text">{{n.action.name}}</h4>
-              </div>
-
-
-              <a href="/profile/{{n.user_action.id}}/{{n.user_action.profile.name}}/{{n.user_action.profile.last_name}}">
-                <img class="center userad-logo" ng-src="{{n.user_action.profile.image_url}}" onerror="this.src='/images/user.png'"
-                  alt="" />
-                <b class="user-name-stlye">{{n.user_action.profile.name}} {{n.user_action.profile.last_name}}</b>
-              </a>
-
-              <div class="time-publish">
-                <i class="fa-solid fa-clock"> {{n.$time}} </i>
-              </div>
-
             </div>
           </div>
-        </div>
-      </fieldset>
+        </fieldset>
+      </div>
+
     </div>
   </div>
   <footer class="footer ng-scope" x-import="haraj/footer.html" ng-controller="footer_herag"></footer>

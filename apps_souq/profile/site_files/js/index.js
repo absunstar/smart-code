@@ -90,9 +90,9 @@ app.controller('profile', function ($scope, $http, $timeout) {
         if (response.data.done && response.data.list.length > 0) {
           $scope.ratingList = response.data.list;
           $scope.positive = response.data.positive;
+          $scope.rate = $scope.positive / $scope.ratingList.length * 100;
           $scope.negative = response.data.negative;
           $scope.exist_user = response.data.exist_user;
-          $scope.count = response.data.count;
         }
       },
       function (err) {
@@ -105,6 +105,11 @@ app.controller('profile', function ($scope, $http, $timeout) {
   $scope.showCommunication = function (obj) {
     $scope.main_obj = obj;
     site.showModal('#communicationModal');
+  };
+
+  $scope.returnAds = function () {
+    site.showModal('#ratings');
+    site.showModal('#ratings');
   };
 
   $scope.sendMessage = function () {

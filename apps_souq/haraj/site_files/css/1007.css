@@ -24,7 +24,7 @@ tr:nth-child(even) {
 }
 
 .underline-hover:hover {
-  text-decoration: revert;
+  text-decoration: underline;
 }
 
 
@@ -60,7 +60,10 @@ img {
 }
 
 .input-style textarea:focus {
-  box-shadow: 1px 1px 5px 0px #00a66c !important;
+border-width: 2px;
+}
+.input-style input:focus {
+  border-width: 2px;
 
 }
 
@@ -70,10 +73,6 @@ img {
   border-radius: 10px !important;
 }
 
-.input-style input:focus {
-  box-shadow: 1px 1px 5px 0px #00a66c !important;
-
-}
 
 .fms_title small {
   font-size: .7em;

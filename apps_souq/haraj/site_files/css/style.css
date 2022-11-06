@@ -32,17 +32,22 @@ img.more-loading {
 i-checkbox .selector.un-selected {
   border-radius: 10px;
 }
-
+i-checkbox .selector.selected {
+  border-radius: 10px;
+}
 i-country img {
-  width: 38px;
-  height: 35px;
+  width: 40px;
+  height: 27px;
+  border-radius: 0px;
   display: inline-block;
 }
-
-.country-b {
+i-country span{
+  vertical-align: top;
   padding: 10px;
   font-size: 17px;
 }
+
+
 
 .border-radius5 {
   border-radius: 5px;

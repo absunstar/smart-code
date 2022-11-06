@@ -1,0 +1,57 @@
+[
+  {
+    "name": "pages_implement",
+    "en": "pages Implement",
+    "ar": "تنفيذ الصفحات"
+  },
+  {
+    "name": "page_implement",
+    "en": "Comment Type",
+    "ar": "تنفيذ صفحة"
+  },
+  {
+    "name": "page_implement_new",
+    "en": "New Page Implement",
+    "ar": "تنفيذ صفحة جديدة"
+  },
+  {
+    "name": "page_implement_add",
+    "en": "Add Page Implement",
+    "ar": "إضافة تنفيذ صفحة"
+  },
+  {
+    "name": "page_implement_edit",
+    "en": "Edit Page Implement",
+    "ar": "تعديل تنفيذ صفحة"
+  },
+  {
+    "name": "page_implement_details",
+    "en": "Page Implement Details",
+    "ar": "تفاصيل تنفيذ صفحة"
+  },
+  {
+    "name": "page_implement_delete",
+    "en": "Delete first subsections",
+    "ar": "حذف تنفيذ صفحة"
+  },
+  {
+    "name": "page_implement_number",
+    "en": "Page Implement Number",
+    "ar": "رقم تنفيذ صفحة"
+  },
+  {
+    "name": "page_implement_name",
+    "en": "Page Name",
+    "ar": "إسم الصفحة"
+  },
+  {
+    "name": "url",
+    "en": "URL",
+    "ar": "عنوان URL"
+  },
+  {
+    "name": "content",
+    "en": "Content",
+    "ar": "المحتوى"
+  }
+]

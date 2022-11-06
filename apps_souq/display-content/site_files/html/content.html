@@ -188,7 +188,8 @@
             {{ad.address.area.name_##session.lang##}} </b>
         </div>
         <div class="row item-list">
-          <a class="item col-4 pointer" ng-repeat="i in contentList" href="/display_content?id={{i.id}}">
+          <a class="item col-4 pointer" ng-repeat="i in contentList" 
+          href="/display_content/{{i.id}}/{{i.name}}/{{i.store.name}}">
             <img ng-src="{{i.image_url}}" title="{{i.name}}" />
           </a>
         </div>

@@ -15,6 +15,7 @@ module.exports = function init(site) {
           name_en: 'Saudi',
           image_url: '/images/countries.png',
           code: 'ksa',
+          country_code : '966',
           active: true,
         },
         {
@@ -22,6 +23,7 @@ module.exports = function init(site) {
           name_en: 'Jordan',
           image_url: '/images/countries.png',
           code: 'jor',
+          country_code : '962',
           active: true,
         },
         {
@@ -29,6 +31,7 @@ module.exports = function init(site) {
           name_en: 'Iraq',
           image_url: '/images/countries.png',
           code: 'irq',
+          country_code : '964',
           active: true,
         },
         {
@@ -36,6 +39,7 @@ module.exports = function init(site) {
           name_en: 'Kuwait',
           image_url: '/images/countries.png',
           code: 'kwt',
+          country_code : '965',
           active: true,
         },
         {
@@ -43,6 +47,7 @@ module.exports = function init(site) {
           name_en: 'Bahrain',
           image_url: '/images/countries.png',
           code: 'bah',
+          country_code : '973',
           active: true,
         },
         {
@@ -50,6 +55,7 @@ module.exports = function init(site) {
           name_en: 'Qatar',
           image_url: '/images/countries.png',
           code: 'qtr',
+          country_code : '974',
           active: true,
         },
         {
@@ -57,6 +63,7 @@ module.exports = function init(site) {
           name_en: 'UAE',
           image_url: '/images/countries.png',
           code: 'uae',
+          country_code : '971',
           active: true,
         },
         {
@@ -64,6 +71,7 @@ module.exports = function init(site) {
           name_en: 'Oman',
           image_url: '/images/countries.png',
           code: 'oman',
+          country_code : '968',
           active: true,
         },
         {
@@ -71,6 +79,7 @@ module.exports = function init(site) {
           name_en: 'Yemen',
           image_url: '/images/countries.png',
           code: 'ymn',
+          country_code : '967',
           active: true,
         },
       ],

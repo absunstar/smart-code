@@ -3,6 +3,8 @@ app.controller('display_content', function ($scope, $http, $timeout) {
   $scope.ad = {};
   $scope.userId = site.toNumber('##user.id##');
 
+
+
   $scope.getContentList = function (ad, type) {
     $scope.busy = true;
     $scope.contentList = [];
@@ -105,6 +107,9 @@ app.controller('display_content', function ($scope, $http, $timeout) {
   };
 
   $scope.displayAd = function () {
+   /*  $scope.ad = JSON.parse('###data.*##');
+    console.log($scope.ad);
+    return; */
     $scope.busy = true;
     $scope.error = '';
     $http({
@@ -215,6 +220,7 @@ app.controller('display_content', function ($scope, $http, $timeout) {
               comment_type: $scope.activity.comment_type,
               comment: $scope.activity.comment,
               date: new Date(),
+              $time : xtime(new Date()),
             });
             $scope.activity.comment = '';
             $scope.ad.number_comments += 1;

@@ -418,6 +418,7 @@ module.exports = function init(site) {
     if (ad) {
       response.done = true;
       response.doc = ad;
+      
       res.json(response);
     } else {
       response.error = 'no id';

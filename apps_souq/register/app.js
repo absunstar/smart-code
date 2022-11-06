@@ -30,7 +30,7 @@ module.exports = function init(site) {
       {
         id: id,
       },
-      (err, result) => {}
+      (err, result) => { }
     );
   });
 
@@ -57,6 +57,8 @@ module.exports = function init(site) {
           return;
         }
       }
+
+      mailer_doc.mobile = '+' + mailer_doc.country.country_code + mailer_doc.mobile
     }
     $mailer.findOne(
       {
@@ -88,16 +90,20 @@ module.exports = function init(site) {
               if (!err) {
                 response.done = true;
                 response.doc = result.doc;
-                delete response.doc.code;
-
-                if (result.doc.type == 'email') {
-                  site.sendEmail({
-                    from: 'absunstar@gmail.com',
+                if (result.doc.type == 'mobile') {
+                  site.sendMobileMessage({
+                    to: result.doc.mobile,
+                    message: `Your Code : ${result.doc.code}`,
+                  });
+                } else if (result.doc.type == 'email') {
+                  site.sendMailMessage({
                     to: result.doc.email,
                     subject: 'Smart Code .. Forget Password',
                     message: `Your Code : ${result.doc.code}`,
                   });
                 }
+                delete response.doc.code;
+
               } else {
                 response.error = err.message;
               }
@@ -121,16 +127,21 @@ module.exports = function init(site) {
                   if (!err) {
                     response.done = true;
                     response.doc = result;
-                    delete response.doc.code;
-
-                    if (mailer_doc.type == 'email') {
-                      site.sendEmail({
-                        from: 'absunstar@gmail.com',
+                    if (result.type == 'mobile') {
+                      site.sendMobileMessage({
+                        to: result.mobile,
+                        message: `Your Code : ${result.code}`,
+                      });
+                    } else if (result.type == 'email') {
+                      site.sendMailMessage({
                         to: result.email,
                         subject: 'Smart Code .. Forget Password',
                         message: `Your Code : ${result.code}`,
                       });
                     }
+                    delete response.code;
+
+
                   } else {
                     response.error = err.message;
                   }
@@ -315,7 +326,7 @@ module.exports = function init(site) {
     };
 
     let where = req.body.where || {};
- 
+
 
     $mailer.findMany(
       {

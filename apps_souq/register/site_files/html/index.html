@@ -68,13 +68,16 @@
     <div class="row" id="mobile_mailer">
       <div class="col3"></div>
       <div class="col6">
-        <i-country class="row center input-style" v="r" label="##word.country##" ng-model="mailer.country"
-          display="name_##session.lang##" items="countriesList" display2="country_code" ng-search="mailer.$countries"></i-country>
-        <i-control class="row center input-style" v="r" label="##word.mobile_phone_number##" ng-model="mailer.mobile">
-        </i-control>
+        <div class="row padding">
+          <i-control class="col9 center input-style" v="r" label="##word.mobile_phone_number##" ng-model="mailer.mobile">
+          </i-control>
+           <i-country class="col3 center input-style" v="r" label="##word.country##" ng-model="mailer.country"
+           items="countriesList" display="name_##session.lang##" ng-search="mailer.$countries"></i-country>
+        </div>
+       
       </div>
       <div class="row center">
-        <i-button class="center" fa="arrow-left" label="##word.enter##" ng-click="registerMailer(mailer,'mobile')">
+        <i-button class="center" fa="arrow-left" label="##word.continuation##" ng-click="registerMailer(mailer,'mobile')">
         </i-button>
       </div>
     </div>

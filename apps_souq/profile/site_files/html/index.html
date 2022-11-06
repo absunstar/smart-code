@@ -19,10 +19,21 @@
       user-select: none;
     }
 
+    .radius13 {
+      border-radius: 13px;
+    }
+
+    .star {
+      font-size: 25px;
+      color: #929aaa;
+    }
+
     .like {
       height: 30px !important;
-      width: 30px;
-      margin-top: 8px !important;
+      width: 70px;
+      border-radius: 15px;
+      background: white;
+      padding-top: 5px;
     }
 
     /* The actual popup */
@@ -84,8 +95,38 @@
       max-width: initial;
     }
 
+    .table {
+      border-collapse: unset;
+      border: unset;
+    }
+
+    .bg-unlike {
+      background-color: rgb(209 48 48 / 20%);
+    }
+
+    .bg-like {
+      background-color: rgba(48, 209, 88, .2);
+    }
+
+    .rate-box {
+      margin: 15px;
+      padding: 15px;
+    }
+
+    .table td {
+      border: unset;
+    }
+
+    .table th {
+      border-radius: 10px;
+    }
+
     .dimgray {
       color: dimgray;
+    }
+
+    .green-color {
+      color: #30d158;
     }
 
     .darkgreen {
@@ -123,7 +164,7 @@
 
     .user-background img {
       width: 100%;
-      height: 400px;
+      height: 200px;
     }
 
     .user-cover {
@@ -162,6 +203,7 @@
     .darkgray {
       color: #7d7d7d;
     }
+
     .userad-logo {
       border-radius: 50%;
       height: 25px;
@@ -191,53 +233,60 @@
     <div x-import="profile/message_modal.html"></div>
     <div x-import="profile/communication_modal.html"></div>
     <div class="row bg-white">
-      
 
-        <div class="row">
-          <i-image class="user-background" view ng-model="user.profile.cover"></i-image>
-          <i-image class="user-cover" view logo ng-model="user.profile.image_url"></i-image>
+
+      <div class="row">
+        <i-image class="user-background" view ng-model="user.profile.cover"></i-image>
+        <i-image class="user-cover" view logo ng-model="user.profile.image_url"></i-image>
+      </div>
+      <div class="row">
+        <div class="col2 center">
+
+          <i-button class="center" x-permissions="login" label="##word.follow##"
+            ng-show="!user.$is_follow && !user.$same_email" ng-click="updateFollow(user,true)"></i-button>
+          <i-button class="center" x-permissions="login" label="##word.unfollow##"
+            ng-show="user.$is_follow && !user.$same_email" ng-click="updateFollow(user,false)"></i-button>
+          <h3 class="darkgray center" ng-show="user.followers_list.length > 0">{{user.followers_list.length}}
+            ##word.follower##</h3>
+          <h3 class="darkgray center" ng-show="user.followers_list.length < 1"> ##word.no_followers##</h3>
         </div>
-        <div class="row">
-          <div class="col2 center">
 
-            <i-button class="center" x-permissions="login" label="##word.follow##"
-              ng-show="!user.$is_follow && !user.$same_email" ng-click="updateFollow(user,true)"></i-button>
-            <i-button class="center" x-permissions="login" label="##word.unfollow##"
-              ng-show="user.$is_follow && !user.$same_email" ng-click="updateFollow(user,false)"></i-button>
-            <h3 class="darkgray center" ng-show="user.followers_list.length > 0">{{user.followers_list.length}}
-              ##word.follower##</h3>
-            <h3 class="darkgray center" ng-show="user.followers_list.length < 1"> ##word.no_followers##</h3>
+        <div class="col8">
+          <div class="ad-user center">
+
+            <h1 class="user-name-stlye center">
+              {{user.profile.name}} {{user.profile.last_name}}
+            </h1>
+
           </div>
-
-          <div class="col8">
-            <div class="ad-user center">
-
-              <h1 class="user-name-stlye center">
-                {{user.profile.name}} {{user.profile.last_name}}
-              </h1>
-
-            </div>
-            <h2 class="user-name-stlye darkgray userPrint center">{{user.email}}</h2>
-          </div>
-          <div class="col2 center">
-            <h2 class="darkgreen center" ng-show="ratingList.length > 0">{{ratingList.length}} ##word.rating##</h2>
-            <h2 class="darkgreen center" ng-show="ratingList.length < 1"> ##word.no_rating##</h2>
-          </div>
+          <h2 class="user-name-stlye darkgray userPrint center">{{user.email}}</h2>
         </div>
-        <div class="row center">
-
-          <i-button fa="phone" label="##word.communication##" ng-show="!user.$same_email"
-            ng-click="showCommunication()"> </i-button>
-          <i-button fa="sliders" label="##word.manage_your_personal_account##" ng-show="user.$same_email"
-            ng-click="displayManagePersonalAccount()"> </i-button>
-
-          <i-button fa="comments" x-permissions="login" ng-show="!user.$same_email" label="##word.conversation##"
-            onclick="site.showModal('#messageModal');"></i-button>
-
+        <div class="col2 center">
+          <i ng-class="{'yellow' : rate > 90}" class="fa-solid fa-star star"> </i>
+          <i ng-class="{'yellow' : rate > 70}" class="fa-solid fa-star star"> </i>
+          <i ng-class="{'yellow' : rate > 50}" class="fa-solid fa-star star"> </i>
+          <i ng-class="{'yellow' : rate > 30}" class="fa-solid fa-star star"> </i>
+          <i ng-class="{'yellow' : rate > 10}" class="fa-solid fa-star star"> </i>
+          <a href="" class="underline-hover" onclick="$('#ratings').show();$('#user_contents').hide()">
+            <h2 class="darkgreen bold center" ng-show="ratingList.length > 0">{{ratingList.length}} ##word.rating##</h2>
+            <h2 class="darkgreen bold center" ng-show="ratingList.length < 1"> ##word.no_rating##</h2>
+          </a>
         </div>
-        <div x-import="profile/tabs_content.html"></div>
+      </div>
+      <div class="row center">
 
-     
+        <i-button fa="phone" label="##word.communication##" ng-show="!user.$same_email" ng-click="showCommunication()">
+        </i-button>
+        <i-button fa="sliders" label="##word.manage_your_personal_account##" ng-show="user.$same_email"
+          ng-click="displayManagePersonalAccount()"> </i-button>
+
+        <i-button fa="comments" x-permissions="login" ng-show="!user.$same_email" label="##word.conversation##"
+          onclick="site.showModal('#messageModal');"></i-button>
+
+      </div>
+      <div x-import="profile/tabs_content.html"></div>
+
+
 
     </div>
   </div>

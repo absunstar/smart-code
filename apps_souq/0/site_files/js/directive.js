@@ -195,7 +195,7 @@ app.directive('iFeedback', [
         $scope.hideReportModal = function (params) {
           site.hideModal('#reportCommentModal_' + $scope.id2);
         };
-        
+
 
         $scope.getCommentsTypesList = function (where) {
           $scope.busy = true;
@@ -228,8 +228,8 @@ app.directive('iFeedback', [
             url: '/api/reports_types/all',
             data: {
               where: { active: true },
-              post : true,
-              select : {id : 1, name_ar : 1, name_en : 1 }
+              post: true,
+              select: { id: 1, name_ar: 1, name_en: 1 }
             },
           }).then(
             function (response) {
@@ -524,7 +524,7 @@ app.directive('iSubCategory', [
                 where: {
                   search: search_user,
                 },
-                select: { id: 1, email: 1,mobile: 1, profile: 1 },
+                select: { id: 1, email: 1, mobile: 1, profile: 1 },
               },
             }).then(
               function (response) {
@@ -658,7 +658,7 @@ app.directive('iCountry', [
 
           if (items) {
             items.forEach((item) => {
-              item.$display = $scope.getValue(item) + attrs.space + $scope.getValue2(item);
+              item.$display = item.country_code + ' + ' + ' ' + $scope.getValue(item);
             });
           }
 
@@ -666,7 +666,7 @@ app.directive('iCountry', [
             items.forEach((item) => {
               if (isite.getValue(item, $scope.primary) == isite.getValue($scope.ngModel, $scope.primary)) {
                 $scope.ngModel = item;
-                item.$display = $scope.getValue(item) + attrs.space + $scope.getValue2(item);
+                item.$display = item.country_code + ' + ' + ' ' + $scope.getValue(item);
                 input.val(item.$display);
               }
             });
@@ -679,7 +679,7 @@ app.directive('iCountry', [
           $scope.ngModel = ngModel;
 
           if (ngModel) {
-            input.val(' ' + $scope.getNgModelValue(ngModel) + attrs.space + $scope.getNgModelValue2(ngModel));
+            input.val(ngModel.country_code + ' + ' + ' ' + $scope.getNgModelValue(ngModel));
           }
         });
 

@@ -1,0 +1,11 @@
+[
+    { "module_name" : "public" , "screen_name" : "page-implement" , "name":"page_implement_manage" , "en":"Manage" , "ar":"إدارة"},
+    { "module_name" : "public" , "screen_name" : "page-implement" , "name":"page_implement_add" , "en":"Add" , "ar":"إضافة"},
+    { "module_name" : "public" , "screen_name" : "page-implement" , "name":"page_implement_update" , "en":"Edit" , "ar":"تعديل"},
+    { "module_name" : "public" , "screen_name" : "page-implement" , "name":"page_implement_delete" , "en":"Delete" , "ar":"حذف"},
+    { "module_name" : "public" , "screen_name" : "page-implement" , "name":"page_implement_view" , "en":"View" , "ar":"عرض"},
+    { "module_name" : "public" , "screen_name" : "page-implement" , "name":"page_implement_search" , "en":"Search" , "ar":"بحث"},
+    { "module_name" : "public" , "screen_name" : "page-implement" , "name":"page_implement_export" , "en":"Export" , "ar":"تصدير"},
+    { "module_name" : "public" , "screen_name" : "page-implement" , "name":"page_implement_print" , "en":"Print" , "ar":"طباعة"},
+    { "module_name" : "public" , "screen_name" : "page-implement" , "name":"page_implement_ui" , "en":"UI" , "ar":"الواجهة الرسومية"}
+]

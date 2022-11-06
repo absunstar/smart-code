@@ -1,58 +1,73 @@
 <div class="row ">
-  <a class="btn" onclick="$('#user_contents').show();$('#ratings').hide()"> ##word.contents## </a>
-  <a class="btn" onclick="$('#ratings').show();$('#user_contents').hide()"> ##word.ratings## </a>
+  <!--  <a class="btn" onclick="$('#user_contents').show();$('#ratings').hide()"> ##word.contents## </a>
+  <a class="btn" onclick="$('#ratings').show();$('#user_contents').hide()"> ##word.ratings## </a> -->
   <div id="user_contents" class="">
     <fieldset class="ads-section">
       <div class="row" ng-show="contentList.length < 1 && contentList">
         <h1 class="blue bold center">##word.there_no_ads##</h1>
       </div>
 
-
-      <div ng-repeat="a in contentList" class="ads-area even">
-        <div class="ad-area  padding box-shadow">
+      <div ng-repeat="a in contentList" class="ads-area  even">
+        <div class="ad-area margin padding box-shadow radius13">
           <div class="row center padding">
             <img loading="lazy" ng-click="displayContent(a.id)" class="svg-size-5x pointer adarea-image"
               ng-src="{{a.image_url}}" />
           </div>
           <div class="row padding">
             <div class="ads-info">
-              <b class="bold col4 ad-name pointer" ng-click="displayContent(a.id)">{{a.name}}</b>
-              <div class="info">
-                <div class="row user-action">
+              <b class="bold ad-name pointer" ng-click="displayContent(a.id)">{{a.name}}</b>
+              <div class="col6">
 
-                  <div class="u-action">
+                <div class="info">
+                  <div class="row user-action">
 
-                    <a class="btn" ng-show="##setting.order_settings.activate_orders## && a.store.user.id != user.id"
-                      x-permission="login" ng-click="bookList(a,0)">
-                      <i class="fa fa-shopping-cart"></i>
+                    <div class="u-action">
+
+                      <a class="btn" ng-show="##setting.order_settings.activate_orders## && a.store.user.id != user.id"
+                        x-permission="login" ng-click="bookList(a,0)">
+                        <i class="fa fa-shopping-cart"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="ad-location margin padding">
+                  <i class="fa-solid fa-location-pin"></i>
+                  <div class="adress">
+                    <b class="location" ng-show="a.address.country"> {{a.address.country.name_##session.lang##}} </b>
+                    <b class="location" ng-show="a.address.gov"> - {{a.address.gov.name_##session.lang##}} </b>
+                    <b class="location" ng-show="a.address.city"> - {{a.address.city.name_##session.lang##}} </b>
+                    <b class="location" ng-show="a.address.area"> - {{a.address.area.name_##session.lang##}} </b>
+                    <p class="location">{{a.address.detailed_address}}</p>
+                  </div>
+                </div>
+
+
+              </div>
+              <div class="col5">
+                <div class="time-publish margin padding">
+                  <i class="fa-solid fa-clock"> {{a.$time}} </i>
+                </div>
+                <div class="row">
+                  <div class="ad-user">
+                    <a class="">
+                      <img class="center userad-logo" ng-src="{{a.store.user.profile.image_url}}"
+                        onerror="this.src='/images/user.png'" alt="" />
+                      <b class="user-name-stlye">{{a.store.user.profile.name}} {{a.store.user.profile.last_name}}</b>
                     </a>
                   </div>
                 </div>
-              </div>
-              <div class="time-publish margin padding">
-                <i class="fa-solid fa-clock"> {{a.$time}} </i>
-              </div>
-              <div class="ad-location margin padding">
-                <i class="fa-solid fa-location-pin"></i>
-                <div class="adress">
-                  <b class="location" ng-show="a.address.country"> {{a.address.country.name_##session.lang##}} </b>
-                  <b class="location" ng-show="a.address.gov"> - {{a.address.gov.name_##session.lang##}} </b>
-                  <b class="location" ng-show="a.address.city"> - {{a.address.city.name_##session.lang##}} </b>
-                  <b class="location" ng-show="a.address.area"> - {{a.address.area.name_##session.lang##}} </b>
-                  <p class="location">{{a.address.detailed_address}}</p>
+                <div class="row margin" ng-show="a.set_price == 'yes'" ng-repeat="q in a.quantity_list">
+                  <b class="price">
+                    <small>{{q.unit.name_##session.lang##}} {{q.net_value}}
+                      {{q.currency.name_##session.lang##}}</small>
+                    <small ng-show="q.discount > 0" class="line-through red">{{q.price}}
+                      {{q.currency.name_##session.lang##}}</small>
+                    <small class="save-money" ng-show="q.discount > 0"> ##word.save_money## {{q.discount}}
+                      <span ng-show="q.discount_type == 'percent'"> % </span> <span
+                        ng-show="q.discount_type == 'number'"> $ </span> </small>
+                  </b>
                 </div>
-              </div>
-
-              <div class="row">
-                <div class="ad-user">
-                  <a class="">
-                    <img class="center userad-logo" ng-src="{{a.store.user.profile.image_url}}"
-                      onerror="this.src='/images/user.png'" alt="" />
-                    <b class="user-name-stlye">{{a.store.user.profile.name}} {{a.store.user.profile.last_name}}</b>
-                  </a>
-                </div>
-                <p class="ad-price" ng-show="a.set_price == 'yes'" ng-repeat="q in a.quantity_list">
-                  <b>{{q.unit.name_##session.lang##}} {{q.net_value}} {{q.currency.name_##session.lang##}}</b></p>
               </div>
 
             </div>
@@ -69,11 +84,18 @@
       <div class="row" ng-show="ratingList.length < 1 && ratingList">
         <br />
         <br />
-        <h1 class="blue bold center">##word.there_no_ratings##</h1>
+        <h1 class="like bold center">##word.there_no_ratings##</h1>
       </div>
       <div class="row">
-        <div class="col3"></div>
-        <div class="col5">
+        <div class="col3">
+
+          <a class="pointer padding margin" onclick="$('#user_contents').show();$('#ratings').hide()">
+            <i class="fa fa-arrow-circle-right darkgray fa-3x back-style" aria-hidden="true">
+              ##word.contents##
+            </i>
+          </a>
+        </div>
+        <div class="col6">
           <table ng-show="ratingList.length > 0" class="table hover bold">
             <tr>
               <th>##word.number_of_ratings##</th>
@@ -81,14 +103,19 @@
               <th>##word.negative_rating##</th>
             </tr>
             <tr>
-              <td class="center title">{{count}}</td>
-              <td class="center green">
-                {{positive}}
-                <button disabled type="button"><i class="fa fa-thumbs-up blue" aria-hidden="true"></i></button>
+              <td class="center title">
+                <button disabled class="like center" type="button"><i class="fa fa-star yellow" aria-hidden="true">
+                    {{ratingList.length}} </i></button>
               </td>
-              <td class="center red">
-                {{negative}}
-                <button disabled type="button"><i class="fa fa-thumbs-down red" aria-hidden="true"></i></button>
+              <td class="center">
+
+                <button disabled class="like bg-like center" type="button"><i class="fa fa-thumbs-up green-color"
+                    aria-hidden="true"> {{positive}} </i></button>
+              </td>
+              <td class="center">
+
+                <button disabled class="like bg-unlike center" type="button"><i class="fa fa-thumbs-down red"
+                    aria-hidden="true"> {{negative}} </i></button>
               </td>
             </tr>
           </table>
@@ -100,15 +127,15 @@
         </div>
       </div>
 
-      <div ng-repeat="r in ratingList" class="ads-area even padding border">
+      <div ng-repeat="r in ratingList" class="ads-area even rate-box">
         <div class="ad-user">
           <a class="" href="/profile/{{r.sender.id}}/{{r.sender.name}}/{{r.sender.last_name}}">
             <img class="center userad-logo" ng-src="{{r.sender.image_url}}" onerror="this.src='/images/user.png'"
-            alt="" />
+              alt="" />
             <b class="user-name-stlye">{{r.sender.name}} {{r.sender.last_name}}</b>
           </a>
         </div>
-        
+
         <div class="row">
           <div class="col3">
             <div class="time-publish">
@@ -118,15 +145,16 @@
 
           </div>
           <div class="col2">
-            <button disabled class="like center" ng-show="r.recommend == 'yes'" type="button"><i
-                class="fa fa-thumbs-up blue" aria-hidden="true"></i></button>
-            <button disabled class="like center" ng-show="r.recommend == 'no'" type="button"><i
+
+            <button disabled class="like bg-like center" ng-show="r.recommend == 'yes'" type="button"><i
+                class="fa fa-thumbs-up green-color" aria-hidden="true"></i></button>
+            <button disabled class="like bg-unlike center" ng-show="r.recommend == 'no'" type="button"><i
                 class="fa fa-thumbs-down red" aria-hidden="true"></i></button>
           </div>
         </div>
         <div class="row">
           <div class="ads-info">
-            <b class="bold dimgray pre_text" ng-click="displayContent(a.id)">{{r.notes}}</b>
+            <b class="bold dimgray font-16 pre_text" ng-click="displayContent(a.id)">{{r.notes}}</b>
           </div>
         </div>
       </div>
