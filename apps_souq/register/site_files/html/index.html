@@ -23,7 +23,14 @@
     .darkGray {
       color: #919191;
     }
+    .input-style input {
+      text-align: center;
+    }
 
+    .signin {
+  background-color: #f1f1f1;
+  text-align: center;
+}
     .img-country img {
       width: 44px;
       height: 40px;
@@ -48,7 +55,7 @@
   </style>
 </head>
 
-<body class="##session.lang## loaded" ng-controller="register_souq">
+<body class="##session.lang## loaded" style="background-image: linear-gradient(to right, #e9e9e9, #7fffd4);" ng-controller="register_souq">
   <div x-import="haraj/header.html"></div>
   <div x-import="register/deal.html"></div>
   <div class="row">
@@ -63,21 +70,23 @@
 
       <div class="tabs-content">
         <div id="register_with_mobile_number" class="tab-content"> -->
-  <fieldset>
+  <fieldset style="background-image: linear-gradient(to right, #e9e9e9, #7fffd4);">
     <legend>##word.register_with_mobile_number##</legend>
     <div class="row" id="mobile_mailer">
       <div class="col3"></div>
       <div class="col6">
         <div class="row padding">
-          <i-control class="col9 center input-style" v="r" label="##word.mobile_phone_number##" ng-model="mailer.mobile">
+          <i-country class="col3 center input-style" v="r" label="##word.country##" ng-model="mailer.country"
+            items="countriesList" display="name_##session.lang##" ng-search="mailer.$countries"></i-country>
+          <i-control type="number" class="col9 center input-style" v="r" label="##word.mobile_phone_number##"
+            ng-model="mailer.mobile">
           </i-control>
-           <i-country class="col3 center input-style" v="r" label="##word.country##" ng-model="mailer.country"
-           items="countriesList" display="name_##session.lang##" ng-search="mailer.$countries"></i-country>
         </div>
-       
+
       </div>
       <div class="row center">
-        <i-button class="center" fa="arrow-left" label="##word.continuation##" ng-click="registerMailer(mailer,'mobile')">
+        <i-button class="center" fa="arrow-left" label="##word.continuation##"
+          ng-click="validMobile(mailer)">
         </i-button>
       </div>
     </div>
@@ -128,7 +137,7 @@
   <!--  </div> -->
 
   <div class="row">
-    <form>
+    <form class="signin">
       <p class="font-18 center">##word.existing_user## <a href="/login" class="underline-hover">##word.login_now##</a>
       </p>
     </form>

@@ -55,9 +55,14 @@
     "ar": "التالي"
   },
   {
+    "name": "please_enter_valid_mobile_number",
+    "en": "Please enter a valid mobile number",
+    "ar": "برجاء إدخال رقم موبايل صحيح"
+  },
+  {
     "name": "mobile_phone_number",
-    "en": "Mobile Phone Number",
-    "ar": "رقم الهاتف المحمول"
+    "en": "Mobile Number",
+    "ar": "رقم الموبايل"
   },
   {
     "name": "register_with_email",

@@ -9,6 +9,11 @@
         "ar": "الدول"
     },
     {
+        "name": "length_of_mobile_number",
+        "en": "Length of mobile number",
+        "ar": "طول رقم الموبايل"
+    },
+    {
         "name": "country_new",
         "en": "New Country",
         "ar": "دولة جديد"

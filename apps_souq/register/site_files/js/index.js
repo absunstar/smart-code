@@ -11,6 +11,7 @@ app.controller('register_souq', function ($scope, $http, $timeout) {
 
   $scope.resendCode = function (mailer_id, type) {
     $scope.error = '';
+  
     $scope.busy = true;
     $http({
       method: 'POST',
@@ -23,6 +24,41 @@ app.controller('register_souq', function ($scope, $http, $timeout) {
           $scope.busy = false;
         } else if (response.data.done) {
           $scope.mailer = response.data.doc;
+
+          $scope.busy = false;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.validMobile = function (obj) {
+    $scope.error = '';
+    const v = site.validated('#mobile_mailer');
+
+    if (!v.ok) {
+      $scope.error = v.messages[0].ar;
+      return;
+    }
+    $scope.busy = true;
+    $http({
+      method: 'POST',
+      url: '/api/register/validate_mobile',
+      data: obj,
+    }).then(
+      function (response) {
+        console.log(response.data);
+        if (response.data.error) {
+          $scope.error = response.data.error;
+          if (response.data.error.like('*enter a valid mobile*')) {
+            $scope.error = '##word.please_enter_valid_mobile_number##';
+          }
+          $scope.busy = false;
+        } else if (response.data.done) {
+          site.showModal('#dealModal');
 
           $scope.busy = false;
         }
@@ -99,7 +135,7 @@ app.controller('register_souq', function ($scope, $http, $timeout) {
           $scope.mailer = response.data.doc;
           document.getElementById('mobile_mailer').style.display = 'none';
           document.getElementById('mobile_confirm').style.display = 'block';
-         /*  site.hideModal('#dealModal'); */
+          /*  site.hideModal('#dealModal'); */
         }
         $scope.busy = false;
       },
@@ -170,8 +206,9 @@ app.controller('register_souq', function ($scope, $http, $timeout) {
           name_ar: 1,
           name_en: 1,
           code: 1,
-          image_url : 1,
+          image_url: 1,
           country_code: 1,
+          length_mobile: 1
         },
       },
     }).then(

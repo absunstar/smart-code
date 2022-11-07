@@ -15,6 +15,21 @@
     "ar": "مراسلة"
   },
   {
+    "name": "length_of_mobile_number",
+    "en": "length of mobile number",
+    "ar": "طول رقم الجوال"
+  },
+  {
+    "name": "please_enter_valid_mobile_number",
+    "en": "Please enter a valid mobile number",
+    "ar": "برجاء إدخال رقم جوال صحيح"
+  },
+  {
+    "name": "mobile_phone_number",
+    "en": "Mobile Number",
+    "ar": "رقم الجوال"
+  },
+  {
     "name": "code",
     "en": "code",
     "ar": "الرمز"

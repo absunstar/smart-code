@@ -658,7 +658,7 @@ app.directive('iCountry', [
 
           if (items) {
             items.forEach((item) => {
-              item.$display = item.country_code + ' + ' + ' ' + $scope.getValue(item);
+              item.$display = $scope.getValue(item) + ' ' + item.country_code + ' + ';
             });
           }
 
@@ -666,7 +666,7 @@ app.directive('iCountry', [
             items.forEach((item) => {
               if (isite.getValue(item, $scope.primary) == isite.getValue($scope.ngModel, $scope.primary)) {
                 $scope.ngModel = item;
-                item.$display = item.country_code + ' + ' + ' ' + $scope.getValue(item);
+                item.$display = $scope.getValue(item) + ' ' + item.country_code + ' + ';
                 input.val(item.$display);
               }
             });
@@ -679,7 +679,7 @@ app.directive('iCountry', [
           $scope.ngModel = ngModel;
 
           if (ngModel) {
-            input.val(ngModel.country_code + ' + ' + ' ' + $scope.getNgModelValue(ngModel));
+            input.val($scope.getNgModelValue(ngModel) + ' ' + ngModel.country_code + ' + ');
           }
         });
 

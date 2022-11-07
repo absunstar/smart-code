@@ -73,6 +73,9 @@ border-width: 2px;
   border-radius: 10px !important;
 }
 
+.dropdown-content {
+  border-radius: 13px;
+}
 
 .fms_title small {
   font-size: .7em;

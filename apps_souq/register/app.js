@@ -155,6 +155,24 @@ module.exports = function init(site) {
     );
   });
 
+  site.post('/api/register/validate_mobile', (req, res) => {
+    let response = {
+      done: false,
+    };
+    let body = req.body;
+    if (body.country && body.country.length_mobile) {
+      if (body.mobile.toString().length == body.country.length_mobile) {
+        response.done = true;
+      } else {
+        response.error = 'Please enter a valid mobile number';
+      }
+    } else {
+      response.error = 'Please enter a valid mobile number';
+    }
+    res.json(response);
+
+  });
+
   site.post('/api/mailer/resend', (req, res) => {
     let response = {
       done: false,
