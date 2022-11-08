@@ -1,22 +1,47 @@
 <div id="communicationModal" class="modal small">
   <div class="modal-content">
-    <div class="modal-header">
+    <i class="fa fa-times-circle close-fa" onclick="site.hideModal('#communicationModal')" aria-hidden="true"></i>
+   <!--  <div class="modal-header">
       <span class="close">&times;</span>
       <h2>##word.communication## <i class="fa fa-flag"></i></h2>
-    </div>
+    </div> -->
     <div class="modal-body">
-      <div class="row">
-        <p>##word.communicate_with_advertiser##</p>
-        <a class="row" ng-show="main_obj.mobile" href="tel:{{main_obj.mobile}}">
-          {{main_obj.mobile}}
-          <i class="fa fa-mobile" aria-hidden="true"></i>
-        </a>
-
-        <i-button class="row" fa="envelope" label="##word.message##" ng-hide="main_obj.store.user.id == user.id || main_obj.user.id == user.id" onclick="site.showModal('#messageModal');site.hideModal('#communicationModal')"></i-button>
+      <br>
+      <div class="row center">
+        <b class="advertiser-txt">##word.communicate_with_advertiser##</b>
       </div>
+      <br>
+      <br>
+      <div class="row pointer" ng-click="showMessage(ad.store.user,'communicationModal')">
+        <a class="contact-ad">
+
+          <i class="fa fa-envelope padding"></i>
+          <b class="underline-hover margin-10"> ##word.private_messages## </b>
+        </a>
+      </div>
+    
+      <hr>
+      <div class="row pointer">
+        <a class="contact-ad" href="tel:{{main_obj.mobile}}">
+
+          <i class="fa fa-phone padding"></i>
+          <b class="underline-hover margin-10"> {{main_obj.mobile}} </b>
+        </a>
+      </div>
+    
+      <hr>
+      <div class="row pointer">
+        <a class="contact-ad" onclick="site.showModal('#whatsappWarning');site.hideModal('#communicationModal')">
+          <i class="fab fa-whatsapp font-25 padding"></i>
+          <b class="underline-hover margin-10"> ##word.message_via_whatsApp## </b>
+        </a>
+      </div>
+      <br>
+      <br>
+   
       <h2 class="error center bold">{{error}}</h2>
       <div class="modal-footer center">
-        <i-button type="close" label=" ##word.close##" onclick="site.hideModal('#communicationModal')"></i-button>
+        <!-- <i-button type="close" label=" ##word.close##" onclick="site.hideModal('#communicationModal')"></i-button> -->
       </div>
     </div>
   </div>

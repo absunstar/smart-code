@@ -10,8 +10,8 @@ app.controller('display_content', function ($scope, $http, $timeout) {
     $scope.contentList = [];
     where = {};
     where['ad_status.id'] = 1;
-     /*  where['main_category.id'] = ad.main_category.id;
-      where['id'] = { $ne: ad.id }; */
+     where['main_category.id'] = ad.main_category.id;
+     where['id'] = { $ne: ad.id };
     if (type) {
 
       if (ad.address.country && ad.address.country.id && type == 'country') {
@@ -46,7 +46,7 @@ app.controller('display_content', function ($scope, $http, $timeout) {
       }
     );
   };
-  
+
   $scope.selectCategoryHeader = function (id) {
     window.location.href = `/?id=${id}`;
   };
@@ -107,9 +107,6 @@ app.controller('display_content', function ($scope, $http, $timeout) {
   };
 
   $scope.displayAd = function () {
-   /*  $scope.ad = JSON.parse('###data.*##');
-    console.log($scope.ad);
-    return; */
     $scope.busy = true;
     $scope.error = '';
     $http({
@@ -140,13 +137,22 @@ app.controller('display_content', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.showMessage = function (user) {
+  $scope.showMessage = function (user,id) {
     $scope.error = '';
     $scope.activity.user_message = user;
     site.showModal('#messageModal');
+    if(id) {
+    site.hideModal(`#${id}`);
+
+    }
   };
 
   $scope.sendMessage = function () {
+    const v = site.validated('#messageModal');
+    if (!v.ok) {
+      $scope.error = v.messages[0].ar;
+      return;
+    }
     let data = { receiver: $scope.activity.user_message, message: $scope.activity.message };
 
     $http({
@@ -215,12 +221,12 @@ app.controller('display_content', function ($scope, $http, $timeout) {
         if (response.data.done) {
           if (type == 'comment') {
             $scope.ad.feedback_list.push({
-              user: { profile: { name: '##user.profile.name##' } },
+              user: { profile: { name: '##user.profile.name##', image_url: '##user.profile.image_url##' } },
               type: { id: 4, en: 'Comment', ar: 'تعليق' },
               comment_type: $scope.activity.comment_type,
               comment: $scope.activity.comment,
               date: new Date(),
-              $time : xtime(new Date()),
+              $time: xtime(new Date()),
             });
             $scope.activity.comment = '';
             $scope.ad.number_comments += 1;

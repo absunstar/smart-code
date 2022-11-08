@@ -28,9 +28,9 @@
       color: #7d7d7d;
       white-space: pre-wrap !important;
       font-size: 16px;
-      padding: 3px !important;
-      margin: 10px;
-      line-height: 0.2;
+      padding: 5px !important;
+      /*  margin: 10px; */
+      line-height: initial;
       min-width: 200px;
       font-weight: bold;
     }
@@ -56,6 +56,7 @@
 
     .user-selected {
       background: aquamarine;
+      padding: 5px;
       border-radius: 13px;
     }
 
@@ -107,6 +108,14 @@
       overflow: hidden;
     }
 
+    .first-msg {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 325px;
+      padding: 2px;
+    }
+
     .msg-parent {
       padding: 15px !important;
     }
@@ -124,10 +133,10 @@
     }
 
     .reciever {
-      max-width: fit-content;
+      max-width: max-content;
       float: right;
-      margin-right: -3px !important;
-      padding: 0px !important;
+      margin-right: -14px !important;
+      /* padding: 0px !important; */
     }
 
     :root {
@@ -137,29 +146,30 @@
     }
 
     .sender {
-      max-width: fit-content;
+      max-width: max-content;
       float: left;
+      text-align: left;
       color: #fff;
-      margin-right: -3px !important;
-      padding: 0px !important;
+      /*  margin-right: -14px !important; */
+      /*  padding: 0px !important; */
     }
   </style>
 
   <style x-lang="en">
     .reciever {
-      max-width: fit-content;
+      max-width: max-content;
       float: left;
-      margin-left: -3px !important;
-      padding: 0px !important;
+      margin-left: -14px !important;
+      /*  padding: 0px !important; */
 
     }
 
     .sender {
-      max-width: fit-content;
+      max-width: max-content;
       float: right;
       color: #fff;
-      margin-right: -3px !important;
-      padding: 0px !important;
+      /* margin-right: -14px !important; */
+      /*  padding: 0px !important; */
     }
   </style>
 
@@ -178,33 +188,24 @@
         <br />
       </div>
       <div class="row">
-        <div class="col3" ng-show="messagesList.length > 0">
-          <div class="ad-user row  padding margin" ng-repeat="m in messagesList">
-            <a class="message-icon pointer radius13 display-block border padding"
-              ng-class="{'user-selected' : m.$isSelected == true}" ng-repeat="u in m.users_list" class="center"
-              ng-show="u.id != userId" ng-click="showMessage(m,$event)">
+        <div class="col3 scroll-headmsg" ng-show="messagesList.length > 0">
+          <div class="ad-user row  margin" ng-repeat="m in messagesList">
+            <a class="message-icon pointer radius13 display-block" ng-class="{'user-selected' : m.$isSelected == true}"
+              ng-repeat="u in m.users_list" class="center" ng-show="u.id != userId" ng-click="showMessage(m,$event)">
               <img class="center userad-logo" ng-src="{{u.image_url}}" onerror="this.src='/images/user.png'" alt="" />
               <b class="user-name-stlye">{{u.name}} {{u.last_name}}
                 <span ng-show="m.$new" class="badge_message"></span>
               </b>
 
-              <p class="padding">{{m.messages_list[0].message}}</p>
+              <p class="first-msg">{{m.messages_list[m.messages_list.length -1].message}}</p>
             </a>
           </div>
-          <!--  <a class="message-icon pointer display-block border padding" ng-repeat="m in messagesList"
-            ng-click="showMessage(m,$event)" help-id="menu_monitor">
-            <b ng-repeat="u in m.users_list" class="center" ng-show="u.id != userId">{{u.name}}
-              <i-image view class="logo border-circle" ng-model="u.image_url"></i-image>
-              <span ng-show="m.$new" class="badge_message"></span>
-            </b>
-          </a> -->
+
         </div>
         <div class="col9" ng-show="message.id">
           <fieldset>
-            <legend>##word.the_message##</legend>
+            <legend>##word.messages##</legend>
 
-            <br />
-            <br />
             <div class="row _scroll100">
               <div class="row _scroll messages">
                 <div class="row padding msg-parent margin" ng-repeat="m in message.messages_list">
@@ -233,7 +234,11 @@
                 </i-textarea>
               </div>
               <div class="row center">
-                <i-button fa="paper-plane" label="##word.send##" ng-click="sendMessage(message)"> </i-button>
+                <button class="send-btn" ng-click="sendMessage(message)">
+                  <i class="fa fa-paper-plane"></i>
+                  ##word.send##
+                </button>
+
               </div>
           </fieldset>
         </div>

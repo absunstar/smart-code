@@ -10,6 +10,21 @@
     "ar": "بحث"
   },
   {
+    "name": "huawei_store",
+    "en": "HUAWEI Store",
+    "ar": "متجر هواوي"
+  },
+  {
+    "name": "apple_store",
+    "en": "APPLE Store",
+    "ar": "متجر أبل"
+  },
+  {
+    "name": "google_store",
+    "en": "GOOGLE Store",
+    "ar": "متجر جوجل"
+  },
+  {
     "name": "allow_registration_through_email",
     "en": "Allow registration through email",
     "ar": "السماح بالتسجيل من خلال البريد الإلكتروني"

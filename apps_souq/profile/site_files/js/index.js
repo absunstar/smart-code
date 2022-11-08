@@ -30,6 +30,9 @@ app.controller('profile', function ($scope, $http, $timeout) {
           site.hideModal('#ratingModal');
         } else {
           $scope.error = response.data.error;
+          if (response.data.error.like('*complete the rating correctly*')) {
+            $scope.error = "##word.please_complete_rating_correctly##"
+          }
         }
       },
       function (err) {
@@ -37,6 +40,7 @@ app.controller('profile', function ($scope, $http, $timeout) {
       }
     );
   };
+
 
   $scope.getAdsList = function (where) {
     $scope.busy = true;
@@ -109,12 +113,15 @@ app.controller('profile', function ($scope, $http, $timeout) {
 
   $scope.returnAds = function () {
     site.showModal('#ratings');
-    site.showModal('#ratings');
   };
 
   $scope.sendMessage = function () {
     $scope.busy = true;
-
+    const v = site.validated('#messageModal');
+    if (!v.ok) {
+      $scope.error = v.messages[0].ar;
+      return;
+    }
     if (!$scope.send_message) {
       $scope.error = '##word.must_write_message##';
       return;

@@ -11,6 +11,12 @@
     display: none;
   }
 
+  .scroll-headmsg {
+    max-height: 100vh;
+    overflow: hidden;
+    overflow-y: auto;
+  }
+
   ::-webkit-scrollbar {
     width: 10px;
     height: 10px;
@@ -1574,7 +1580,7 @@
   }
 
   hr {
-    width: 80%;
+    width: 90%;
     display: block;
     unicode-bidi: isolate;
     margin-block-start: 0.5em;
@@ -1582,7 +1588,7 @@
     margin-inline-start: auto;
     margin-inline-end: auto;
     overflow: hidden;
-    border-style: inset;
+    border-style: inherit;
     border-width: 1px;
   }
 

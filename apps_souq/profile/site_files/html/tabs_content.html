@@ -2,13 +2,14 @@
   <!--  <a class="btn" onclick="$('#user_contents').show();$('#ratings').hide()"> ##word.contents## </a>
   <a class="btn" onclick="$('#ratings').show();$('#user_contents').hide()"> ##word.ratings## </a> -->
   <div id="user_contents" class="">
-    <fieldset class="ads-section">
-      <div class="row" ng-show="contentList.length < 1 && contentList">
+    <fieldset class="ads-section" ng-show="contentList.length < 1 && contentList">
+      <div class="row" >
         <h1 class="blue bold center">##word.there_no_ads##</h1>
       </div>
+    </fieldset>
 
-      <div ng-repeat="a in contentList" class="ads-area  even">
-        <div class="ad-area margin padding box-shadow radius13">
+      <div ng-repeat="a in contentList" class="ads-area ">
+        <div class="ad-area margin padding box-shadow even radius13">
           <div class="row center padding">
             <img loading="lazy" ng-click="displayContent(a.id)" class="svg-size-5x pointer adarea-image"
               ng-src="{{a.image_url}}" />
@@ -74,9 +75,7 @@
           </div>
         </div>
       </div>
-    </fieldset>
-    <i-button type="default left" fa="2x fa-angle-double-left"
-      onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
+  
   </div>
 
   <div id="ratings" class="">
@@ -121,7 +120,7 @@
           </table>
         </div>
         <div class="col2">
-          <i-button x-permissions="login" ng-hide="exist_user || userId == user.id" label="##word.add_rating##"
+          <i-button fa="star" x-permissions="login" ng-hide=" userId == user.id" label="##word.add_rating##"
             onclick="site.showModal('#ratingModal')"></i-button>
 
         </div>
@@ -137,13 +136,13 @@
         </div>
 
         <div class="row">
+
           <div class="col3">
             <div class="time-publish">
               <i class="fa-solid fa-clock">{{r.date |date:"dd - MM - yyyy"}} </i>
             </div>
-
-
           </div>
+
           <div class="col2">
 
             <button disabled class="like bg-like center" ng-show="r.recommend == 'yes'" type="button"><i
@@ -159,7 +158,6 @@
         </div>
       </div>
     </fieldset>
-    <i-button type="default left" fa="2x fa-angle-double-left"
-      onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
+
   </div>
 </div>

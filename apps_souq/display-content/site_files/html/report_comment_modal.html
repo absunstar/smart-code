@@ -1,18 +1,31 @@
 <div id="reportCommentModal" class="modal small">
   <div class="modal-content">
-    <div class="modal-header">
-      <h2>##word.submit_report## <i class="fa fa-flag"></i></h2>
+    <div class="row">
+      <div class="col2">
+        <i class="fa fa-times-circle close-fa" onclick="site.hideModal('#reportCommentModal')" ng-click="activity.report_type = {} ; activity.comment_report =''" aria-hidden="true"></i>
+
+      </div>
+      <div class="col8 center">
+
+        <b class="font-17">##word.submit_report## <i class="fa fa-flag"></i></b>
+      </div>
     </div>
+    <!--   <div class="modal-header">
+      <h2>##word.submit_report## <i class="fa fa-flag"></i></h2>
+    </div> -->
     <div class="modal-body">
       <div class="row">
-        <i-list ng-search="_search.$report_type" v="r" class="col4 input-style" display="name_##session.lang##" ng-model="activity.report_type" label="##word.report_type##" items="reportCommentList"> </i-list>
-        <i-textarea v="r ll50" class="col7 input-style" ng-model="activity.comment_report" label="##word.desc## ##word.the_report##"> </i-textarea>
+        <i-list ng-search="_search.$report_type" v="r" class="input-style" display="name_##session.lang##" ng-model="activity.report_type" label="##word.report_type##" items="reportCommentList"> </i-list>
+        <i-textarea v="r ll50" class="input-style" ng-model="activity.comment_report" label="##word.desc## ##word.the_report##"> </i-textarea>
       </div>
     </div>
     <h2 class="error center bold">{{error}}</h2>
     <div class="modal-footer center">
-      <i-button fa="flag" class="btn-style" label="##word.add_report##" ng-click="updateFeedback('report_comment')"></i-button>
-      <i-button type="close" label=" ##word.close##" onclick="site.hideModal('#reportCommentModal')" ng-click="activity.report_type = {} ; activity.comment_report =''"></i-button>
+      <button class="send-btn" ng-click="updateFeedback('report_comment')">
+        <i class="fa fa-flag"></i>
+        ##word.add_report##
+      </button>
+      <!-- <i-button type="close" label=" ##word.close##" onclick="site.hideModal('#reportCommentModal')" ng-click="activity.report_type = {} ; activity.comment_report =''"></i-button> -->
     </div>
   </div>
 </div>

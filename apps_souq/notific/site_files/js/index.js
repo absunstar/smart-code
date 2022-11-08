@@ -65,9 +65,7 @@ app.controller('notific', function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          if(type == 'display_content'){
-            window.open(`/${type}?id=${notific.action.id}`, '_blank');
-          } else if(type == 'messages'){
+         if(type == 'messages'){
             window.open(`/${type}?id=${notific.action.id}`, '_blank');
           }
         } else {

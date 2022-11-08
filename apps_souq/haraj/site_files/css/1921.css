@@ -17,6 +17,12 @@
     font-size: 20px;
     padding: 0 25px;
   }
+  
+  .scroll-headmsg {
+    max-height: 100vh;
+    overflow: hidden;
+    overflow-y: auto;
+  }
 
   .secondeheader {
     height: auto;

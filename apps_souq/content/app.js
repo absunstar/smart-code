@@ -30,6 +30,7 @@ module.exports = function init(site) {
             if (doc.ad_status.id == 1) {
               site.call('[notific][ads_members_follow]', {
                 user: { id: user.id, email: user.email, profile: user.profile, followers_list: user.followers_list },
+                store_name: doc.store.name,
                 action: {
                   id: doc.id,
                   name: doc.name,
@@ -51,6 +52,7 @@ module.exports = function init(site) {
             if (result && result.old_doc && result.old_doc.ad_status && result.old_doc.ad_status.id != result.doc.ad_status.id && result.doc.ad_status.id == 1) {
               site.call('[notific][ads_members_follow]', {
                 user: { id: user.id, email: user.email, profile: user.profile, followers_list: user.followers_list },
+                store_name: result.doc.store.name,
                 action: {
                   id: result.doc.id,
                   name: result.doc.name,
@@ -354,6 +356,7 @@ module.exports = function init(site) {
       ad.feedback_list.push(comment);
       site.call('[notific][replies_ads_followed]', {
         user: ad.store.user,
+        store_name: ad.store.name,
         user_action: req.session.user,
         action: {
           id: ad.id,
@@ -362,6 +365,7 @@ module.exports = function init(site) {
       });
       site.call('[notific][comments_my_ads]', {
         user: ad.store.user,
+        store_name: ad.store.name,
         user_action: req.session.user,
         action: {
           id: ad.id,
@@ -418,7 +422,7 @@ module.exports = function init(site) {
     if (ad) {
       response.done = true;
       response.doc = ad;
-      
+
       res.json(response);
     } else {
       response.error = 'no id';

@@ -22,23 +22,6 @@
   text-decoration: underline;
 }
 
-.fms_title small {
-  font-size: .7em;
-  color: #929aaa;
-}
-
-.btn-style a {
-  color: black;
-  background-color: white;
-  display: flex;
-  margin:5px;
-  flex-direction: row-reverse;
-  align-items: center;
-  padding: 5px 10px;
-  border: 2px solid var(--theme-color2) !important;
-  border-radius: 10px !important;
-  justify-content: center;
-}
 
 .btn_group button {
   background-color: white;
@@ -53,7 +36,80 @@
   cursor: pointer;
 }
 
+.advertiser-txt {
+  margin: 10px;
+  padding: 5px;
+  font-size: 25px;
+  color: #008045;
+}
 
+.margin-10 {
+  margin: 10px;
+}
+
+.m-bottom15 {
+
+  margin-bottom: 15px !important;
+}
+
+.privatemsg-button:hover {
+  border: 3px solid #007265;
+  background: #007e97;
+
+}
+
+.whatsapp-button:hover {
+  border: 3px solid #128c7e;
+  background: #00975d;
+
+}
+
+.privatemsg-button {
+  margin: 13px;
+  padding: 7px 10px 7px 10px;
+  border: 1px solid #007265;
+  border-radius: 10px;
+  background: #007e97c9;
+  color: white;
+  font-size: large;
+  font-family: fangsong;
+}
+
+.whatsapp-button {
+  margin: 13px;
+  padding: 7px 10px 7px 10px;
+  border: 1px solid #128c7e;
+  border-radius: 10px;
+  background: #00975dc9;
+  color: white;
+  font-size: large;
+  font-family: fangsong;
+}
+
+.main-whatsappwarning {
+  color: #525762;
+  font-weight: bold;
+  font-size: 23px;
+  margin: 16px !important;
+}
+
+.sub-whatsappwarning {
+  color: #525762;
+  font-size: 21px;
+  margin: 16px !important;
+}
+
+.contact-ad {
+  cursor: pointer;
+  color: #007f45;
+  margin: 10px;
+  padding: 3px;
+  font-size: 19px;
+}
+
+.contact-ad:hover {
+  color: #979797;
+}
 
 /* Clear floats (clearfix hack) */
 .btn_group:after {
@@ -75,7 +131,7 @@
 
 .post-statistics {
   border-radius: 13px;
-  border: 1px solid;
+  
   border-color: #00a884 !important;
   background: #e6e6e6;
   padding: 15px;
@@ -98,8 +154,24 @@
 }
 
 .category {
-  margin-top: 15px !important;
+  /* margin-top: 15px !important; */
   border-radius: 13px;
+}
+.statistics:hover {
+  border: 2px solid;
+  background: #dbe4ed;
+  padding: 18px;
+
+}
+.statistics {
+  margin: 20px !important;
+  background: aliceblue;
+  border-radius: 13px;
+  padding: 20px;
+  border: unset;
+  width: 15%;
+  color: #2c7171;
+  font-size: 17px;
 }
 
 .warning_message {

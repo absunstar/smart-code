@@ -32,6 +32,13 @@ module.exports = function init(site) {
     let ratings_doc = req.body;
     ratings_doc.$req = req;
     ratings_doc.$res = res;
+
+    if(!ratings_doc.notes || !ratings_doc.recommend || !ratings_doc.buy) {
+      response.error = 'Please complete the rating correctly';
+      res.json(response);
+      return;
+    }
+
     ratings_doc.date = new Date();
     ratings_doc.sender = {
       id: req.session.user.id,

@@ -56,15 +56,20 @@ module.exports = function init(site) {
                 $add: true,
                 action: obj.action,
                 show: false,
+                store_name: obj.store_name,
                 user_action: {
                   id: obj.user.id,
                   email: obj.user.email,
-                  profile: obj.user.profile,
+                  name: obj.user.profile.name,
+                  last_name: obj.user.profile.last_name,
+                  image_url: obj.user.profile.image_url,
                 },
                 user: {
                   id: _doc.id,
                   email: _doc.email,
-                  profile: _doc.profile,
+                  name: _doc.profile.name,
+                  last_name: _doc.profile.last_name,
+                  image_url: _doc.profile.image_url,
                 },
                 type: 'ads_members_follow',
                 date: new Date(),
@@ -89,15 +94,21 @@ module.exports = function init(site) {
               $add: true,
               action: obj.action,
               show: false,
+              store_name: obj.store_name,
               user_action: {
                 id: obj.user_action.id,
                 email: obj.user_action.email,
-                profile: obj.user_action.profile,
+                name: obj.user_action.profile.name,
+                last_name: obj.user_action.profile.last_name,
+                image_url: obj.user_action.profile.image_url,
               },
               user: {
                 id: doc.id,
                 email: doc.email,
-                profile: doc.profile,
+                name: doc.profile.name,
+                last_name: doc.profile.last_name,
+                image_url: doc.profile.image_url,
+
               },
               type: 'replies_ads_followed',
               date: new Date(),
@@ -119,16 +130,21 @@ module.exports = function init(site) {
             site.notific_list.push({
               $add: true,
               action: obj.action,
+              store_name: obj.store_name,
               show: false,
               user_action: {
                 id: obj.user_action.id,
                 email: obj.user_action.email,
-                profile: obj.user_action.profile,
+                name: obj.user_action.profile.name,
+                last_name: obj.user_action.profile.last_name,
+                image_url: obj.user_action.profile.image_url,
               },
               user: {
                 id: doc.id,
                 email: doc.email,
-                profile: doc.profile,
+                name: doc.profile.name,
+                last_name: doc.profile.last_name,
+                image_url: doc.profile.image_url,
               },
               type: 'comments_my_ads',
               date: new Date(),
@@ -341,7 +357,7 @@ module.exports = function init(site) {
       (err, docs, count) => {
         if (!err) {
           response.done = true;
-          if(docs){
+          if (docs) {
             docs.forEach(_d => {
               _d.$time = site.xtime(_d.date, req.session.lang);
             });

@@ -1,7 +1,7 @@
 app.controller('messages', function ($scope, $http, $timeout) {
   $scope.userId = site.toNumber('##user.id##');
 
-  $scope.showMessage = function (m,e) {
+  $scope.showMessage = function (m, e) {
     $scope.messagesList.forEach(_m => {
       _m.$isSelected = false;
     });
@@ -80,7 +80,6 @@ app.controller('messages', function ($scope, $http, $timeout) {
 
   $scope.geMessagesList = function (where) {
     $scope.busy = true;
-    $scope.messagesList = [];
     $http({
       method: 'POST',
       url: '/api/messages/all',
@@ -92,17 +91,22 @@ app.controller('messages', function ($scope, $http, $timeout) {
     }).then(
       function (response) {
         $scope.busy = false;
+
         if (response.data.done && response.data.list.length > 0) {
           $scope.messagesList = response.data.list;
-          if('##query.id##' != 'undefined'){
+          if ('##query.id##' != 'undefined') {
             $scope.messagesList.forEach(_m => {
-              if(_m.id == site.toNumber('##query.id##')) {
+              if (_m.id == site.toNumber('##query.id##')) {
                 $scope.showMessage(_m);
 
               }
             });
+          } else {
+            $scope.showMessage($scope.messagesList[0]);
           }
         }
+        $scope.messagesList = $scope.messagesList  || [];
+
       },
       function (err) {
         $scope.busy = false;

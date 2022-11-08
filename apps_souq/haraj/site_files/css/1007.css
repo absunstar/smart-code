@@ -11,9 +11,54 @@
   font-size: large;
 }
 
+.contact-button {
+  padding: 7px 20px 7px 20px;
+  margin: 0px 20px 4px 1px;
+  border-radius: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  border: 2px solid green;
+  color: #fbfbfb;
+  background: #009373c4;
+}
+.contact-button:hover {
+  border: 3px solid green;
+  background: #009373;
+  padding: 6px 20px 6px 20px;
+}
+
+.fms_title {
+  font-size: 1.1em;
+  color: #929aaa;
+}
+
+.btn-style a {
+  color: black;
+  background-color: white;
+  display: flex;
+  margin: 5px;
+  flex-direction: row-reverse;
+  align-items: center;
+  padding: 5px 10px;
+  border: 2px solid var(--theme-color2) !important;
+  border-radius: 10px !important;
+  justify-content: center;
+}
+
+.scroll-headmsg::-webkit-scrollbar-thumb {
+  background-color: rgb(0 168 132);
+}
+
+.scroll-headmsg::-webkit-scrollbar-track {
+  background-color: #f6f6f6;
+  box-shadow: 0 0 10px #ddd inset;
+  border-radius: 20px;
+}
+
 .user-name-stlye:hover {
   text-decoration: underline;
 }
+
 tr:nth-child(even) {
   background-color: #f7fbfa;
 }
@@ -35,23 +80,51 @@ tr:nth-child(even) {
 .radius-textarea textarea {
   border-radius: 13px;
 }
+
 img {
   border-radius: 10px;
 }
+
 .input-style textarea {
   color: black;
   border: solid 1px #00a884;
   border-radius: 10px !important;
 }
+
 .save-money {
   background: red;
   margin: 5px;
   color: white;
   padding: 1px 7px 1px 7px;
-    border-radius: 13px;
+  border-radius: 13px;
 }
+
 .line-through {
   text-decoration: line-through;
+}
+.close-fa {
+  font-size: 23px;
+  margin: 6px;
+  color: #8e8e8e;
+  cursor: pointer;
+}
+
+.send-btn {
+  padding: 7px 20px 7px 20px;
+    margin: 0px 20px 4px 1px;
+    border-radius: 10px;
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+    cursor: pointer;
+    border: 2px solid #00802d;
+    color: #fbfbfb;
+    background: #019e7c;
+}
+.send-btn:hover {
+  background: #00765c;
+  border: 3px solid #00802d;
+
 }
 
 .category-selected {
@@ -60,8 +133,9 @@ img {
 }
 
 .input-style textarea:focus {
-border-width: 2px;
+  border-width: 2px;
 }
+
 .input-style input:focus {
   border-width: 2px;
 
@@ -77,18 +151,22 @@ border-width: 2px;
   border-radius: 13px;
 }
 
-.fms_title small {
-  font-size: .7em;
-  color: #929aaa;
-}
 
 @media screen and (max-width: 1007px) {
   .firstheader {
     display: none;
   }
+
+  .scroll-headmsg {
+    max-height: 33vh;
+    overflow: hidden;
+    overflow-y: auto;
+  }
+
   .border-img {
     border-radius: 5px !important;
   }
+
   .secondeheader {
     background-color: #f1f1f1;
     height: auto;
@@ -96,6 +174,7 @@ border-width: 2px;
     grid-template-columns: 30% 60% 10%;
     direction: rtl;
   }
+
   .thirdheader {
     direction: ltr;
   }
@@ -446,6 +525,7 @@ border-width: 2px;
     bottom: 0;
     width: 100%;
   }
+
   .footer_wrapper {
     width: 100%;
   }
@@ -781,6 +861,7 @@ border-width: 2px;
   .fa-search:before {
     content: '\f002';
   }
+
   .modal-footer {
     padding: 7px 16px;
     color: white;
@@ -791,7 +872,7 @@ border-width: 2px;
     flex-direction: row-reverse;
   }
 
-  
+
 
   i-button.ng-isolate-scope {
     padding: 0px;
@@ -899,6 +980,7 @@ border-width: 2px;
     position: absolute;
     top: 271px !important;
   }
+
   .zone {
     position: absolute;
     top: 329px !important;
@@ -968,6 +1050,7 @@ border-width: 2px;
     border-radius: 10px !important;
     justify-content: center;
   }
+
   .center,
   .center p,
   .center span,
@@ -1141,7 +1224,7 @@ border-width: 2px;
     align-items: center;
   }
 
-  .bpYvLN > * {
+  .bpYvLN>* {
     flex: 1 1 0%;
   }
 
@@ -1156,7 +1239,7 @@ border-width: 2px;
     padding: 0;
   }
 
-  .checkbox-button input + label {
+  .checkbox-button input+label {
     height: 50px;
     min-width: 50px;
     color: #fff;
@@ -1254,7 +1337,7 @@ border-width: 2px;
   }
 
   i-button .btn {
-   /*  background-color: var(--theme-color);
+    /*  background-color: var(--theme-color);
     color: #fff; */
     padding: 8px 8px;
     border-radius: 25px;
@@ -1298,6 +1381,7 @@ border-width: 2px;
     display: flex;
     width: 100px;
   }
+
   .ads-section {
     margin: 0 0 10% 0 !important;
     padding: 0 !important;
@@ -1306,6 +1390,7 @@ border-width: 2px;
     box-shadow: none !important;
     padding-top: 5px !important;
   }
+
   .ad-area {
     display: block;
     width: auto;
@@ -1324,6 +1409,7 @@ border-width: 2px;
     color: #fff;
     background-color: var(--theme-color);
   }
+
   svg.svg-inline--fa.fa-times-circle.fa-w-16 {
     width: 16px;
     padding-left: 2px;
@@ -1358,10 +1444,11 @@ border-width: 2px;
     stroke: #ffffff !important;
     stroke-width: 0.25 !important;
   }
+
   .map svg path:hover,
   path:active {
     fill: #025f4b !important;
-    stroke-width: 0.75 !important ;
+    stroke-width: 0.75 !important;
     transition: 0.6s !important;
     cursor: pointer !important;
   }
@@ -1404,6 +1491,7 @@ border-width: 2px;
   .clickmap span {
     color: white !important;
   }
+
   .clickmap i {
     color: white !important;
   }
@@ -1457,7 +1545,7 @@ border-width: 2px;
   #yeman path {
     fill: gray !important;
     cursor: default !important;
-    stroke-width: initial !important ;
+    stroke-width: initial !important;
   }
 
   #jordan path {
@@ -1481,66 +1569,77 @@ border-width: 2px;
     font-size: x-large;
     transform: translate(181px, 424px);
   }
+
   .makkah {
     fill: white;
     pointer-events: none;
     font-size: x-large;
     transform: translate(259px, 569px);
   }
+
   .baha {
     fill: white;
     pointer-events: none;
     font-size: x-large;
     transform: translate(296px, 644px);
   }
+
   .asir {
     fill: white;
     pointer-events: none;
     font-size: x-large;
     transform: translate(326px, 688px);
   }
+
   .jazan {
     fill: white;
     pointer-events: none;
     font-size: x-large;
     transform: translate(397px, 797px) rotate(249deg);
   }
+
   .najran {
     fill: white;
     pointer-events: none;
     font-size: x-large;
     transform: translate(474px, 734px);
   }
+
   .eastern {
     fill: white;
     pointer-events: none;
     font-size: x-large;
     transform: translate(679px, 542px);
   }
+
   .northern {
     fill: white;
     pointer-events: none;
     font-size: x-large;
     transform: translate(307px, 170px);
   }
+
   .jouf {
     fill: white;
     pointer-events: none;
     font-size: x-large;
     transform: translate(148px, 144px);
   }
+
   .hail {
     fill: white;
     pointer-events: none;
     font-size: x-large;
     transform: translate(275px, 255px);
   }
+
   .qassim {
     fill: white;
     pointer-events: none;
     font-size: x-large;
     transform: translate(346px, 374px) rotate(327deg);
   }
+
   .riyadh {
     fill: white;
     pointer-events: none;
@@ -1554,24 +1653,28 @@ border-width: 2px;
     font-size: x-large;
     transform: translate(593px, 171px) rotate(307deg);
   }
+
   .oman {
     fill: white;
     pointer-events: none;
     font-size: x-large;
     transform: translate(1037px, 561px);
   }
+
   .uae {
     fill: white;
     pointer-events: none;
     font-size: x-large;
     transform: translate(888px, 469px);
   }
+
   .qatar {
     fill: white;
     pointer-events: none;
     font-size: x-large;
     transform: translate(807px, 364px);
   }
+
   .bahran {
     fill: white;
     pointer-events: none;

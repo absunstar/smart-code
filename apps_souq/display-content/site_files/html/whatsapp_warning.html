@@ -1,0 +1,32 @@
+<div id="whatsappWarning" class="modal small">
+  <div class="modal-content">
+
+    <div class="modal-body">
+      <br>
+      <br>
+      <div class="row center">
+
+        <p class="main-whatsappwarning">##word.messaging_in## ##setting.site_name## :</p>
+        <div class="row center">
+          <div class="col3"></div>
+          <div class="col5">
+
+            <ul class="center sub-whatsappwarning">
+              <li class="m-bottom15">##word.more_private_and_secure##</li>
+              <li class="m-bottom15">##word.supports_sending_pictures_and_audio##</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="modal-footer center">
+
+      <a fa="paper-plane" class="whatsapp-button" target="_blank" href="https://wa.me/{{main_obj.mobile}}">
+        <i class="fab fa-whatsapp padding"></i> ##word.whatsApp## </a>
+      <a class="privatemsg-button" ng-click="showMessage(ad.store.user,'whatsappWarning')" fa="paper-plane" href="">
+        <i class="fa fa-envelope padding"></i> ##word.private_message##
+      </a>
+    </div>
+  </div>
+</div>

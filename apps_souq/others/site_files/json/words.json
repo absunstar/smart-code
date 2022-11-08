@@ -65,6 +65,11 @@
     "ar": "تعليقات على إعلاناتي"
   },
   {
+    "name": "private_message",
+    "en": "Private message",
+    "ar": "رسالة خاصة"
+  },
+  {
     "name": "private_messages",
     "en": "Private messages",
     "ar": "الرسائل الخاصة"

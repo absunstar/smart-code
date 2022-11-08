@@ -16,6 +16,11 @@
         "ar": "تقييم"
     },
     {
+        "name": "please_complete_rating_correctly",
+        "en": "Please complete the rating correctly",
+        "ar": "الرجاء إكمال التقييم بشكل صحيح"
+    },
+    {
         "name": "no_followers",
         "en": "No Followers",
         "ar": "لا يوجد متابعين"

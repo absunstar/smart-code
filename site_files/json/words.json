@@ -420,6 +420,11 @@
     "ar": "التواصل"
   },
   {
+    "name": "whatsApp",
+    "en": "WhatsApp",
+    "ar": "واتساب"
+  },
+  {
     "name": "contact_information",
     "en": "Contact Information",
     "ar": "بيانات الاتصال"

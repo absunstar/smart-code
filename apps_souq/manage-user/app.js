@@ -142,8 +142,11 @@ module.exports = function init(site) {
             } else {
               _user.password = req.body.user.new_password;
             }
-          } else if (type === 'first_name' || type === 'name'  || type === 'cover' || type === 'logo' || type === 'birth_date' || type === 'gender' || type === 'name' || type === 'phone' || type === 'mobile') {
+          } else if (type === 'first_name' || type === 'name'  || type === 'cover' || type === 'logo' || type === 'birth_date' || type === 'gender' || type === 'name' || type === 'phone') {
             _user.profile = req.body.user.profile;
+          } else if (type === 'mobile'){
+            _user.mobile = req.body.user.mobile;
+
           }
 
           site.security.isUserExists(_user, function (err, user_found) {

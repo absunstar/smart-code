@@ -1,6 +1,9 @@
 module.exports = function init(site) {
   const $mailer = site.connectCollection('mailer');
 
+  site.mobile_list = [];
+  site.email_list = [];
+
   site.get({
     name: 'images',
     path: __dirname + '/site_files/images/',
@@ -42,24 +45,24 @@ module.exports = function init(site) {
     let mailer_doc = req.body;
     mailer_doc.$req = req;
     mailer_doc.$res = res;
-    if (mailer_doc.type == 'mobile' && mailer_doc.country) {
-      if (mailer_doc.country.code == 'ksa') {
-        let ksa_keys = '050053054055056057058059';
-        let ksa_key = mailer_doc.mobile.slice(0, 3);
-
-        if (mailer_doc.mobile.length != 12 || !ksa_keys.contains(ksa_key)) {
-          if (req.session.lang == 'ar') {
-            response.error = `يرجى إدخال رقم صحيح في دولة ${mailer_doc.country.name_ar}`;
-          } else {
-            response.error = `Please enter a valid number in the State of ${mailer_doc.country.name_ar}`;
+    /*   if (mailer_doc.type == 'mobile' && mailer_doc.country) {
+        if (mailer_doc.country.code == 'ksa') {
+          let ksa_keys = '050053054055056057058059';
+          let ksa_key = mailer_doc.mobile.slice(0, 3);
+  
+          if (mailer_doc.mobile.length != 12 || !ksa_keys.contains(ksa_key)) {
+            if (req.session.lang == 'ar') {
+              response.error = `يرجى إدخال رقم صحيح في دولة ${mailer_doc.country.name_ar}`;
+            } else {
+              response.error = `Please enter a valid number in the State of ${mailer_doc.country.name_ar}`;
+            }
+            res.json(response);
+            return;
           }
-          res.json(response);
-          return;
         }
-      }
-
-      mailer_doc.mobile = '+' + mailer_doc.country.country_code + mailer_doc.mobile
-    }
+  
+        mailer_doc.mobile = '+' + mailer_doc.country.country_code + mailer_doc.mobile
+      } */
     $mailer.findOne(
       {
         where: {
@@ -88,13 +91,33 @@ module.exports = function init(site) {
             },
             (err, result) => {
               if (!err) {
-                response.done = true;
-                response.doc = result.doc;
+
                 if (result.doc.type == 'mobile') {
-                  site.sendMobileMessage({
-                    to: result.doc.mobile,
-                    message: `Your Code : ${result.doc.code}`,
-                  });
+                  let mailer_mobile = site.mobile_list.find((_m) => _m.mobile == result.doc.mobile);
+                  if (mailer_mobile) {
+                    let mailer_date = new Date(mailer_mobile.date);
+                    mailer_date.setMinutes(mailer_date.getMinutes() + 1);
+                    if (new Date() > mailer_date) {
+                      mailer_mobile.date = new Date();
+                      site.sendMobileMessage({
+                        to: result.doc.mobile,
+                        message: `Your Code : ${result.doc.code}`,
+                      });
+                    } else {
+                      response.error = 'have to wait mobile';
+                      res.json(response);
+                      return
+                    }
+                  } else {
+                    site.mobile_list.push({
+                      mobile: result.doc.mobile,
+                      date: new Date(),
+                    })
+                    site.sendMobileMessage({
+                      to: result.doc.mobile,
+                      message: `Your Code : ${result.doc.code}`,
+                    });
+                  }
                 } else if (result.doc.type == 'email') {
                   site.sendMailMessage({
                     to: result.doc.email,
@@ -102,6 +125,8 @@ module.exports = function init(site) {
                     message: `Your Code : ${result.doc.code}`,
                   });
                 }
+                response.done = true;
+                response.doc = result.doc;
                 delete response.doc.code;
 
               } else {
@@ -111,7 +136,14 @@ module.exports = function init(site) {
             }
           );
         } else {
-          site.security.getUser({ email: mailer_doc.email, mobile: mailer_doc.mobile }, (err, user_doc, count) => {
+
+          let where = {};
+          if (mailer_doc.type == 'email') {
+            where.email = mailer_doc.email
+          } else if (mailer_doc.type == 'mobile') {
+            where.mobile = mailer_doc.mobile
+          }
+          site.security.getUser(where, (err, user_doc) => {
             if (!err) {
               if (user_doc) {
                 if (mailer_doc.type == 'email') {
@@ -128,11 +160,19 @@ module.exports = function init(site) {
                     response.done = true;
                     response.doc = result;
                     if (result.type == 'mobile') {
+                      site.mobile_list.push({
+                        mobile: result.mobile,
+                        date: new Date(),
+                      })
                       site.sendMobileMessage({
                         to: result.mobile,
                         message: `Your Code : ${result.code}`,
                       });
                     } else if (result.type == 'email') {
+                      site.mobile_list.push({
+                        mobile: result.mobile,
+                        date: new Date(),
+                      })
                       site.sendMailMessage({
                         to: result.email,
                         subject: 'Smart Code .. Forget Password',
@@ -160,7 +200,10 @@ module.exports = function init(site) {
       done: false,
     };
     let body = req.body;
-    if (body.country && body.country.length_mobile) {
+
+    let regex = /^\d*(\.\d+)?$/;
+
+    if (body.country && body.country.length_mobile && body.mobile.match(regex)) {
       if (body.mobile.toString().length == body.country.length_mobile) {
         response.done = true;
       } else {
@@ -189,7 +232,6 @@ module.exports = function init(site) {
       (err, doc) => {
         if (!err && doc) {
           doc.code = doc.id + Math.floor(Math.random() * 10000) + 90000;
-
           $mailer.edit(
             {
               where: {
@@ -201,9 +243,7 @@ module.exports = function init(site) {
             },
             (err, result) => {
               if (!err) {
-                response.done = true;
-                response.doc = result.doc;
-                delete response.doc.code;
+
                 if (result.doc.type == 'email') {
                   site.sendEmail({
                     from: 'absunstar@gmail.com',
@@ -211,7 +251,37 @@ module.exports = function init(site) {
                     subject: 'Smart Code .. Forget Password',
                     message: `Your Code : ${result.doc.code}`,
                   });
+                } else if (result.doc.type == 'mobile') {
+                  let mailer_mobile = site.mobile_list.find((_m) => _m.mobile == result.doc.mobile);
+                  if (mailer_mobile) {
+                    let mailer_date = new Date(mailer_mobile.date);
+                    mailer_date.setMinutes(mailer_date.getMinutes() + 1);
+                    if (new Date() > mailer_date) {
+                      mailer_mobile.date = new Date();
+                      site.sendMobileMessage({
+                        to: result.doc.mobile,
+                        message: `Your Code : ${result.doc.code}`,
+                      });
+                    } else {
+                      response.error = 'have to wait mobile';
+                      res.json(response);
+                      return
+                    }
+                  } else {
+                    site.mobile_list.push({
+                      mobile: result.mobile,
+                      date: new Date(),
+                    })
+                    site.sendMobileMessage({
+                      to: result.doc.mobile,
+                      message: `Your Code : ${result.doc.code}`,
+                    });
+                  }
+
                 }
+                response.done = true;
+                response.doc = result.doc;
+                delete response.doc.code;
               } else {
                 response.error = err.message;
               }
