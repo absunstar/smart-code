@@ -87,6 +87,7 @@ site.security.addKey('0e849095ad8db45384a9cdd28d7d0e20');
 
 
 site.sendMobileMessage = function (options) {
+  console.log(options);
   const accountSid = 'ACf8c465f2b02b59f743c837eafe19a1a9';
   const authToken = '046e313826666f9ffe41fc96b4964530';
   const client = require('twilio')(accountSid, authToken);
@@ -99,6 +100,8 @@ site.sendMobileMessage = function (options) {
     })
     .then(message => console.log(message.sid))
     .done();
+
+    
 }
 site.sendMailMessage = function (options) {
   console.log(options);
