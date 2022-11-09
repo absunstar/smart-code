@@ -25,6 +25,7 @@ module.exports = function init(site) {
       __dirname + '/site_files/css/1007.css',
       __dirname + '/site_files/css/1008.css',
       __dirname + '/site_files/css/1921.css',
+      __dirname + '/site_files/css/mobile.css',
     ],
   });
 };

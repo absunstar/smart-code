@@ -1,0 +1,48 @@
+@media screen and (max-width: 480px) {
+
+    ._scroll100 {
+        max-height: none !important;
+    }
+
+    .add-button {
+        width: auto;
+
+    }
+
+    .secondeheader {
+        background-color: #f1f1f1;
+        height: auto;
+        display: grid;
+        grid-template-columns: 20% 60% 20%;
+        direction: rtl;
+    }
+
+    .logo img {
+        width: 32px;
+        height: 32px;
+    }
+
+    .scroll-headmsg {
+        max-width: 90vw !important;
+    }
+
+    .ad-name {
+        display: block !important;
+        font-size: 15px !important;
+    }
+
+    .adarea-image {
+        width: 85% !important;
+        border-radius: unset;
+        height: 75px !important;
+    }
+
+    .usermenu-btn {
+        border: 1px solid #006d56;
+        padding: 4px;
+        border-radius: 10px;
+        background: #ffffff;
+        display: block;
+        max-width: 90%;
+    }
+}

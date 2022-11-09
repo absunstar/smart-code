@@ -15,6 +15,10 @@ app.controller('sitebar', ($scope, $http) => {
   $scope.register = function () {
     site.showModal('#registerModal');
   };
+  $scope.indexLocation = function () {
+    window.location.href = '/';
+
+  };
 
   $scope.loadMainCategories = function () {
     $scope.error = '';

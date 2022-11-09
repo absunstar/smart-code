@@ -45,24 +45,7 @@ module.exports = function init(site) {
     let mailer_doc = req.body;
     mailer_doc.$req = req;
     mailer_doc.$res = res;
-    /*   if (mailer_doc.type == 'mobile' && mailer_doc.country) {
-        if (mailer_doc.country.code == 'ksa') {
-          let ksa_keys = '050053054055056057058059';
-          let ksa_key = mailer_doc.mobile.slice(0, 3);
-  
-          if (mailer_doc.mobile.length != 12 || !ksa_keys.contains(ksa_key)) {
-            if (req.session.lang == 'ar') {
-              response.error = `يرجى إدخال رقم صحيح في دولة ${mailer_doc.country.name_ar}`;
-            } else {
-              response.error = `Please enter a valid number in the State of ${mailer_doc.country.name_ar}`;
-            }
-            res.json(response);
-            return;
-          }
-        }
-  
-        mailer_doc.mobile = '+' + mailer_doc.country.country_code + mailer_doc.mobile
-      } */
+
     $mailer.findOne(
       {
         where: {
@@ -100,8 +83,8 @@ module.exports = function init(site) {
                     if (new Date() > mailer_date) {
                       mailer_mobile.date = new Date();
                       site.sendMobileMessage({
-                        to: result.doc.mobile,
-                        message: `Your Code : ${result.doc.code}`,
+                        to: result.doc.country.country_code + result.doc.mobile,
+                        message: `code : ${result.doc.code}`,
                       });
                     } else {
                       response.error = 'have to wait mobile';
@@ -114,15 +97,15 @@ module.exports = function init(site) {
                       date: new Date(),
                     })
                     site.sendMobileMessage({
-                      to: result.doc.mobile,
-                      message: `Your Code : ${result.doc.code}`,
+                      to: result.doc.country.country_code + result.doc.mobile,
+                      message: `code : ${result.doc.code}`,
                     });
                   }
                 } else if (result.doc.type == 'email') {
                   site.sendMailMessage({
                     to: result.doc.email,
                     subject: 'Smart Code .. Forget Password',
-                    message: `Your Code : ${result.doc.code}`,
+                    message: `code : ${result.doc.code}`,
                   });
                 }
                 response.done = true;
@@ -165,8 +148,8 @@ module.exports = function init(site) {
                         date: new Date(),
                       })
                       site.sendMobileMessage({
-                        to: result.mobile,
-                        message: `Your Code : ${result.code}`,
+                        to: result.country.country_code + result.mobile,
+                        message: `code : ${result.code}`,
                       });
                     } else if (result.type == 'email') {
                       site.mobile_list.push({
@@ -176,7 +159,7 @@ module.exports = function init(site) {
                       site.sendMailMessage({
                         to: result.email,
                         subject: 'Smart Code .. Forget Password',
-                        message: `Your Code : ${result.code}`,
+                        message: `code : ${result.code}`,
                       });
                     }
                     delete response.code;
@@ -249,7 +232,7 @@ module.exports = function init(site) {
                     from: 'absunstar@gmail.com',
                     to: result.doc.email,
                     subject: 'Smart Code .. Forget Password',
-                    message: `Your Code : ${result.doc.code}`,
+                    message: `code : ${result.doc.code}`,
                   });
                 } else if (result.doc.type == 'mobile') {
                   let mailer_mobile = site.mobile_list.find((_m) => _m.mobile == result.doc.mobile);
@@ -259,8 +242,8 @@ module.exports = function init(site) {
                     if (new Date() > mailer_date) {
                       mailer_mobile.date = new Date();
                       site.sendMobileMessage({
-                        to: result.doc.mobile,
-                        message: `Your Code : ${result.doc.code}`,
+                        to: result.doc.country.country_code + result.doc.mobile,
+                        message: `code : ${result.doc.code}`,
                       });
                     } else {
                       response.error = 'have to wait mobile';
@@ -273,8 +256,8 @@ module.exports = function init(site) {
                       date: new Date(),
                     })
                     site.sendMobileMessage({
-                      to: result.doc.mobile,
-                      message: `Your Code : ${result.doc.code}`,
+                      to: result.doc.country.country_code + result.doc.mobile,
+                      message: `code : ${result.doc.code}`,
                     });
                   }
 

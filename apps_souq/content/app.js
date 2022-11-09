@@ -590,7 +590,28 @@ module.exports = function init(site) {
       (err, docs, count) => {
         if (!err && docs) {
           if (req.body.post) {
-            docs.forEach((_d) => {
+            let lang = 'name_ar';
+            if(req.session.lang == 'en') {
+              lang = 'name_en';
+            }
+            docs.forEach((_d) => 
+         
+            {
+              if(_d.address) {
+                _d.address.text = '';
+                if(_d.address.country && _d.address.country.id) {
+                  _d.address.text = _d.address.country[lang];
+                }   
+                if(_d.address.gov && _d.address.gov.id) {
+                  _d.address.text = _d.address.text + ' ' +  _d.address.gov[lang];
+                }
+                if(_d.address.city && _d.address.city.id) {
+                  _d.address.text = _d.address.text + ' ' +  _d.address.city[lang];
+                }
+                if(_d.address.area && _d.address.area.id) {
+                  _d.address.text = _d.address.text + ' ' +  _d.address.area[lang];
+                }
+              }
               if (req.session.user && req.session.user.feedback_list) {
                 _d.$favorite = req.session.user.feedback_list.some((_f) => _f.type && _f.ad && _f.type.id == 2 && _f.ad.id == _d.id);
               }

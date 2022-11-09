@@ -199,9 +199,11 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
 
   $scope.createContent = function () {
     if ('##user.id##') {
-      window.open(`/create_content`);
+      window.location.href = '/create_content';
+
     } else {
-      window.open(`/login`);
+      window.location.href = '/login';
+
     }
   };
 
@@ -232,7 +234,7 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
           $scope.error = response.data.error;
         }
       },
-      function (err) {}
+      function (err) { }
     );
   };
   $scope.bookList = function (ad, i) {
@@ -342,34 +344,71 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
       }
     );
   };
+  $scope.moveCategory = function (type) {
+
+    let index = $scope.topParentCategoriesList.findIndex(_c => {
+      return _c.$isSelected == true;
+    });
+    if (type == 'next') {
+
+      if (index < 0) {
+        $scope.loadSubCategory($scope.topParentCategoriesList[0]);
+        if (el = document.querySelector('#cat_' + $scope.topParentCategoriesList[0].id)) {
+          el.scrollIntoView()
+        }
+      } else if (index +1 != $scope.topParentCategoriesList.length) {
+        $scope.loadSubCategory($scope.topParentCategoriesList[index + 1])
+        if (el = document.querySelector('#cat_' + $scope.topParentCategoriesList[index + 1].id)) {
+          el.scrollIntoView();
+          document.querySelector('.tag-list').scrollLeft = el.offsetLeft;
+        }
+      }
+
+    } else if (type == 'previous') {
+      if (index > 0) {
+
+        $scope.loadSubCategory($scope.topParentCategoriesList[index - 1])
+        if (el = document.querySelector('#cat_' + $scope.topParentCategoriesList[index - 1].id)) {
+          el.scrollIntoView()
+          document.querySelector('.tag-list').scrollLeft += 50;
+        }
+      }
+    }
+  };
+
+
 
   $scope.loadSubCategory = function (c) {
-    $scope.topParentCategoriesList.forEach(_c => {
-      _c.$isSelected = false;
-    });
-    c.$isSelected = true;
+    if (c && c.id) {
 
-    $scope.error = '';
-    $scope.search.category_id = c.id;
-    $scope.searchAll($scope.search);
-    $scope.subCategoriesList = [];
-    $scope.subCategoriesList2 = [];
-    $scope.subCategoriesList3 = [];
-    $scope.subCategoriesList4 = [];
-    $scope.category_list.forEach((_c) => {
-      if (c.id == _c.parent_id) {
-        $scope.subCategoriesList.push(_c);
-      }
-    });
-    $scope.getContentList({ which: 13 }, $scope.search);
-    $scope.category = c;
-    if ($scope.user) {
-      $scope.user.follow_category_list.forEach((_f) => {
-        if (c.id == _f) {
-          $scope.category.follow = true;
+      $scope.topParentCategoriesList.forEach(_c => {
+        _c.$isSelected = false;
+      });
+      c.$isSelected = true;
+
+      $scope.error = '';
+      $scope.search.category_id = c.id;
+      $scope.searchAll($scope.search);
+      $scope.subCategoriesList = [];
+      $scope.subCategoriesList2 = [];
+      $scope.subCategoriesList3 = [];
+      $scope.subCategoriesList4 = [];
+      $scope.category_list.forEach((_c) => {
+        if (c.id == _c.parent_id) {
+          $scope.subCategoriesList.push(_c);
         }
       });
+      $scope.getContentList({ which: 13 }, $scope.search);
+      $scope.category = c;
+      if ($scope.user) {
+        $scope.user.follow_category_list.forEach((_f) => {
+          if (c.id == _f) {
+            $scope.category.follow = true;
+          }
+        });
+      }
     }
+
   };
 
   $scope.loadSubCategory2 = function (c) {

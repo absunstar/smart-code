@@ -1,78 +1,88 @@
 <!DOCTYPE html>
 <html lang="en" data-ng-app="myApp">
-  <head>
-    <title>##word.brand_title##</title>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/haraj.css" />
-    <link rel="stylesheet" href="/x-css/all.css" />
-    <link rel="stylesheet" href="/x-css/font-cairo.css" />
-    <link rel="icon" type="image/x-icon" href="##setting.logo##" />
-    <style>
-      :root {
-        --body-margin-top: 0px;
-        --body-margin-bottom: 0px;
-        --zoom: 100%;
-        --fieldset-border: none;
-        --fieldset-background: #fff;
-      }
-      .signin {
-            background-color: #f1f1f1;
-            text-align: center;
-          }
-      * {
-        max-width: initial;
-      }
-    </style>
-    <style x-lang="ar">
-      .nav1 {
-        flex-direction: initial;
-        padding: 7px;
-      }
-      :root {
-        --direction: rtl;
-        --text-align: right;
-        --float: right;
-      }
-    </style>
-  </head>
 
-  <body class="##session.lang## loaded" style="background-image: linear-gradient(to right, #e9e9e9, #7fffd4);" ng-controller="login_souq">
-    <div x-import="haraj/header.html"></div>
-    <div id="main-layout" class="container" id="loginSouqModal">
-      <div class="row">
+<head>
+  <title>##word.brand_title##</title>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/css/haraj.css" />
+  <link rel="stylesheet" href="/x-css/all.css" />
+  <link rel="stylesheet" href="/x-css/font-cairo.css" />
+  <link rel="icon" type="image/x-icon" href="##setting.logo##" />
+  <style>
+    :root {
+      --body-margin-top: 0px;
+      --body-margin-bottom: 0px;
+      --zoom: 100%;
+      --fieldset-border: none;
+      --fieldset-background: #fff;
+    }
+
+    .signin {
+      background-color: #f1f1f1;
+      text-align: center;
+    }
+
+    * {
+      max-width: initial;
+    }
+  </style>
+  <style x-lang="ar">
+    .nav1 {
+      flex-direction: initial;
+      padding: 7px;
+    }
+
+    :root {
+      --direction: rtl;
+      --text-align: right;
+      --float: right;
+    }
+  </style>
+</head>
+
+<body class="##session.lang## loaded" style="background-image: linear-gradient(to right, #e9e9e9, #7fffd4);"
+  ng-controller="login_souq">
+  <div x-import="haraj/header.html"></div>
+  <div id="main-layout" class="container" id="loginSouqModal">
+    <div class="row">
+      <div class="row center">
+        <div class="row">
+          <h1 class="bold text-center">##word.login##</h1>
+        </div>
+
+        <div class="row">
+          <h2 class="bold red">{{error}}</h2>
+        </div>
+
         <div class="row center">
-          <div class="row">
-            <h1 class="bold text-center">##word.login##</h1>
-          </div>
-
-          <div class="row">
-            <h2 class="bold red">{{error}}</h2>
-          </div>
-
-          <div class="row center">
-            <div class="col3"></div>
-            <div class="col6">
-              <div class="col10"></div>
-              <i-control class="input-style" v="r" label="##word.mobile_email##" ng-model="user.email"> </i-control>
-              <i-control class="input-style pass" label="##word.password##" type="password" v="r" ng-model="user.password"> </i-control>
-              <i-checkbox class="center" label="##word.show_password##" ng-click="showPassword()" ng-model="show_password"> </i-checkbox>
-              <div class="center">
-                <i-button type="add" label="##word.login_now##" ng-click="login()"></i-button>
-              </div>
+          <div class="col3"></div>
+          <div class="col6">
+            <div class="col10"></div>
+            <i-control class="input-style" v="r" label="##word.mobile_email##" ng-model="user.email"> </i-control>
+            <i-control class="input-style pass" label="##word.password##" type="password" v="r"
+              ng-model="user.password"> </i-control>
+            <i-checkbox class="center" label="##word.show_password##" ng-click="showPassword()"
+              ng-model="show_password"> </i-checkbox>
+            <div class="center">
+              <i-button fa="fa-solid fa-right-to-bracket" label="##word.login_now##" ng-click="login()"></i-button>
             </div>
           </div>
-
-          <form class="signin">
-            <p class="font-18">##word.not_registered## <a href="/register" class="underline-hover">##word.create_account##</a></p>
-          </form>
         </div>
+
+        <form class="signin">
+          <p class="font-18">##word.not_registered## <a href="/register"
+              class="underline-hover">##word.create_account##</a></p>
+        </form>
       </div>
     </div>
-    <footer class="footer ng-scope" x-import="haraj/footer.html" ng-controller="footer_herag"></footer>
-    <div x-import="haraj/scripts.html"></div>
-    <script x-import="login/index.js"></script>
-  </body>
+  </div>
+  <footer class="footer ng-scope" x-import="haraj/footer.html" ng-controller="footer_herag"></footer>
+  <div x-import="haraj/scripts.html"></div>
+  <script x-import="login/index.js"></script>
+  <script x-import="haraj/index2.js"></script>
+
+</body>
+
 </html>

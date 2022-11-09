@@ -65,7 +65,7 @@
       background: #00a884;
       color: #fff;
       border-radius: 15px;
-      position: relative;
+      position: initial;
     }
 
     .radius13 {
@@ -102,18 +102,12 @@
       box-shadow: 0 0 10px #ddd inset;
       border-radius: 20px;
     }
-
+    .send-btn {
+      width: 90% !important;
+    }
     ._scroll100 {
       max-height: 80vh;
       overflow: hidden;
-    }
-
-    .first-msg {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 325px;
-      padding: 2px;
     }
 
     .msg-parent {
@@ -121,8 +115,9 @@
     }
 
     body {
-      background-color: #bbb !important;
-      background-image: url(/assets/palm.svg) !important;
+      /* background-color: #bbb !important;
+      background-image: url(/assets/palm.svg) !important; */
+      background-color: #ecf9f6;
       background-repeat: repeat !important;
     }
   </style>
@@ -197,7 +192,7 @@
                 <span ng-show="m.$new" class="badge_message"></span>
               </b>
 
-              <p class="first-msg">{{m.messages_list[m.messages_list.length -1].message}}</p>
+              <p class="ellipsis-txt dimgrey bold">{{m.messages_list[m.messages_list.length -1].message}}</p>
             </a>
           </div>
 
@@ -227,7 +222,6 @@
               </div>
 
 
-
               <div class="row">
                 <div class="col2"></div>
                 <i-textarea class="col8 input-style" label="##word.write_your_message_here##" ng-model="send_message">
@@ -248,6 +242,8 @@
   <footer class="footer ng-scope" x-import="haraj/footer.html" ng-controller="footer_herag"></footer>
   <div x-import="haraj/scripts.html"></div>
   <script x-import="messages/index.js"></script>
+  <script x-import="haraj/index2.js"></script>
+
 </body>
 
 </html>

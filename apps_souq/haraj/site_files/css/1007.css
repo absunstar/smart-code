@@ -4,13 +4,23 @@
   width: 25px;
   margin: -5px 10px -5px 0px !important
 }
-
+.min-hight-100 {
+  min-height: 100vh;
+}
 .store-name-stlye,
 .user-name-stlye {
   color: green;
   font-size: large;
 }
+.ellipsis-txt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.tagheader {
+  margin-top: 20px;
 
+}
 .contact-button {
   padding: 7px 20px 7px 20px;
   margin: 0px 20px 4px 1px;
@@ -32,6 +42,33 @@
   color: #929aaa;
 }
 
+.user-menu {
+  border-radius: 10px !important;
+}
+.lang-btn {
+  border: 1px solid #00322b;
+  border-radius: 5px;
+  background: #009469;
+  color: white;
+  padding: 5px;
+  margin: 5px;
+}
+.logout-btn {
+  border: 1px solid gray;
+  background: #545454 !important;
+  color: white !important;
+  font-size: larger;
+  width: 55%;
+  padding: 3px !important;
+  border-radius: 5px !important;
+}
+.logout-btn:hover {
+  background: #a80000 !important;
+}
+.move-category {
+  margin-top: 50px;
+  color: #00a884;
+}
 .btn-style a {
   color: black;
   background-color: white;
@@ -60,18 +97,48 @@
 }
 
 tr:nth-child(even) {
-  background-color: #f7fbfa;
+  background-color: #ebfaf6;
 }
-
+.dimgrey {
+  color: dimgrey;
+}
 .adarea-image img {
   max-width: 90% !important;
+  border-radius: unset;
   height: 180px !important;
 }
-
+.usermenu-btn {
+  border: 1px solid #006d56;
+  padding: 4px;
+  border-radius: 10px;
+  width: 70%;
+  background: #ececec;
+  display: block;
+  text-align: center;
+}
+.usermenu-btn:hover {
+  border: 3px solid #006d56;
+  padding: 2px;
+  background: #dcedec;
+}
 .underline-hover:hover {
   text-decoration: underline;
 }
+.is-invalid{
+  border: 1px solid red !important;
+}
+.margin-left-5 {
+  margin-left: 5px;
+}
 
+.info img {
+  height: 45px !important;
+  width: 45px !important;
+}
+
+.user-menu {
+  left: 20px !important;
+}
 
 .radius13 {
   border-radius: 13px;
@@ -97,6 +164,7 @@ img {
   color: white;
   padding: 1px 7px 1px 7px;
   border-radius: 13px;
+  display: inline-block;
 }
 
 .line-through {
@@ -337,6 +405,7 @@ img {
     top: 0%;
     right: 0%;
     z-index: 999;
+    overflow-y: auto;
     transform: translateX(100%);
     transition: transform 0.5s ease-in-out;
   }
@@ -521,7 +590,6 @@ img {
   .footer_wrapper_mobile {
     text-align: center;
     background-color: #2d2d2d !important;
-    position: fixed;
     bottom: 0;
     width: 100%;
   }
@@ -715,7 +783,7 @@ img {
 
   .tab_link {
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 1rem;
     white-space: nowrap;
   }
 
@@ -1884,6 +1952,7 @@ img {
   .all-category {
     direction: ltr;
   }
+
 
   b.black {
     padding: 5px;

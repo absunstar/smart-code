@@ -47,6 +47,14 @@ i-country span{
   font-size: 17px;
 }
 
+.info img {
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  box-shadow: 1px 1px 5px 2px #fff;
+  margin: -5px 10px -5px 0px !important
+
+}
 
 
 .border-radius5 {
@@ -133,8 +141,9 @@ i-image img:hover {
 }
 
 body {
-  background-color: #bbb;
-  background-image: url(/assets/palm.svg);
+  background-color: #ecf9f6;
+  
+  /* background-image: url(/assets/palm.svg); */
   background-repeat: repeat;
 }
 
@@ -176,12 +185,21 @@ p {
 .red {
   color: red;
 }
-
+.adarea-link{
+  position: absolute;
+  width: 100px;
+  height: 100px;
+}
 .adarea-image {
-  max-width: 90% !important;
-  height: 150px !important;
+  width: 100% !important;
+  border-radius: unset;
+  height: 85% !important;
+  position: relative;
 }
 
 .border-img img {
   border-radius: 5px !important;
+}
+.is-invalid{
+  border: 1px solid red;
 }

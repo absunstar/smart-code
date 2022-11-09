@@ -676,3 +676,11 @@
   width: 90% !important;
   height: auto !important;
 }
+
+@media screen and (max-width: 480px) {
+  .statistics {
+  
+    width: 30%;
+  
+  }
+}
