@@ -15,6 +15,36 @@
     "ar": "دخول"
   },
   {
+    "name": "please_wait_to_send_mobile_code_again",
+    "en": "Please wait less than a minute before resending the code again",
+    "ar": "برجاء الإنتظار أقل من دقيقة قبل إعادة إرسال الرمز مرة أخرى"
+  },
+  {
+    "name": "recovery",
+    "en": "Recovery",
+    "ar": "إستعادة"
+  },
+  {
+    "name": "wrong_mail_or_phone",
+    "en": "Wrong mail or phone",
+    "ar": "البريد أو الموبايل خاطئ"
+  },
+  {
+    "name": "enter_your_mobile_or_email",
+    "en": "Enter your mobile phone or email",
+    "ar": "إدخل موبايلك أو بريدك"
+  },
+  {
+    "name": "restore_password",
+    "en": "Restore password",
+    "ar": "إستعادة كلمة المرور"
+  },
+  {
+    "name": "the_new_code_has_been_sent_to_your_phone",
+    "en": "The new code has been sent to your phone",
+    "ar": "تم إرسال الرمز الجديد إلى هاتفك"
+  },
+  {
     "name": "agree",
     "en": "Agree",
     "ar": "أوافق"
@@ -25,9 +55,9 @@
     "ar": "لا أوافق"
   },
   {
-    "name": "mobile_number_already_exists",
-    "en": "The mobile number already exists",
-    "ar": "رقم الموبايل موجود من قبل"
+    "name": "mobile_number_already_used",
+    "en": "The mobile number already used",
+    "ar": "رقم الموبايل مستخدم من قبل"
   },
   {
     "name": "continuation",
@@ -48,6 +78,11 @@
     "name": "secret_code_sent_phone",
     "en": "Secret code sent to your phone",
     "ar": "الرمز السري المرسل لهاتفك"
+  },
+  {
+    "name": "secret_code_sent_email",
+    "en": "Secret code sent to your email",
+    "ar": "الرمز السري المرسل لبريدك"
   },
   {
     "name": "next",

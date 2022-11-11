@@ -1,14 +1,13 @@
 <div class="row">
   <div class="col9 padding">
     <div class="row bg-white content-ad">
-      <div class="row bg-ad">
+      <div class="row">
         <b class="ad-name">{{ad.name}}</b>
-        <div class="col6">
+        <div class="col6 bg-ad">
           <div class="row">
             <div class="store-name" ng-show="defaultSettings.stores_settings.activate_stores">
               <i class="fa-solid fa-store fa-style"></i>
               <h1 class="store-name-stlye">{{ad.store.name}}</h1>
-              <br />
             </div>
 
             <div class="ad-user">
@@ -18,12 +17,9 @@
                 <b class="user-name-stlye">{{userAd.profile.name}} {{userAd.profile.last_name}}</b>
               </a>
             </div>
-            <br />
             <div class="time-publish margin padding">
               <i class="fa-solid fa-clock"> {{ad.$time}} </i>
             </div>
-
-            <br />
 
             <div class="ad-location margin padding">
               <i class="fa-solid fa-location-pin"></i>
@@ -35,12 +31,10 @@
             </div>
           </div>
 
-          <br />
-          <br />
+       
 
           <div class="row" ng-show="ad.set_price == 'yes'" ng-repeat="q in ad.quantity_list">
             <b class="col4 price">
-              <br />
               <small>{{q.unit.name_##session.lang##}} {{q.net_value}} {{q.currency.name_##session.lang##}}</small>
               <small ng-show="q.discount > 0" class="line-through red">{{q.price}}
                 {{q.currency.name_##session.lang##}}</small>

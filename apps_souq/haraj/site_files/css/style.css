@@ -6,7 +6,26 @@
   --theme-color2: #019777;
   --font-family: 'Arabic', sans-serif;
 }
+svg#Layer_1 {
+  width: 100% !important;
+}
 
+.create-btn{
+  position: fixed;
+  bottom: 8%;
+  left: 1%;
+  background: #00a884;
+  color: #fff !important;
+  padding: 10px 20px;
+  border-radius: 50px;
+  z-index: 99999999;
+  cursor: pointer;
+  transition: all .2s ease;
+  box-shadow: 1px 1px 10px 0px #000;
+}
+.create-btn:hover{
+  transform: scale(1.1);
+}
 .more-btn {
   background: #006d56;
   color: white;

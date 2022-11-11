@@ -20,6 +20,16 @@
     "ar": "طول رقم الجوال"
   },
   {
+    "name": "wrong_mail_or_phone",
+    "en": "Wrong mail or phone",
+    "ar": "البريد أو الجوال خاطئ"
+  },
+  {
+    "name": "enter_your_mobile_or_email",
+    "en": "Enter your mobile phone or email",
+    "ar": "إدخل جوالك أو بريدك"
+  },
+  {
     "name": "please_enter_valid_mobile_number",
     "en": "Please enter a valid mobile number",
     "ar": "برجاء إدخال رقم جوال صحيح"
@@ -35,9 +45,9 @@
     "ar": "الرمز"
   },
   {
-    "name": "mobile_number_already_exists",
-    "en": "The mobile number already exists",
-    "ar": "رقم الجوال موجود من قبل"
+    "name": "mobile_number_already_used",
+    "en": "The mobile number already used",
+    "ar": "رقم الجوال مستخدم من قبل"
   },
   {
     "name": "mobile",

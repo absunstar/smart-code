@@ -1,3 +1,34 @@
+<a class="tab_link create-btn" ng-click="createContent()" >
+  <i class="fa-solid fa-plus-circle"></i>
+   <span style="min-height: 22px">##word.add_your_ad##</span> 
+</a>
+<div class="user-menu" style="display: none">
+  <div class="center profile" x-permission="login">
+    <a class="pointer" href="/profile/##user.id##/##user.profile.name##/##user.profile.last_name##">
+
+      <img class="center border-circle" src="##user.profile.image_url##" onerror="this.src='/images/user.png'"
+        alt="" /> <br />
+    </a>
+    <span class="user-name"> </span> <br />
+
+    <span class="user-name"> ##user.profile.name## ##user.profile.last_name## </span> <br />
+    <h5 class="grayDark userPrint center">##user.email##</h5>
+    <br />
+    <div class="center">
+      <a id="bord_edit" class="usermenu-btn center" href="/manage_user">
+        <span class="black">##word.manage_your_personal_account##</span>
+      </a>
+      <br>
+      <a id="bord_edit" class="usermenu-btn center" x-permissions="menus" href="/countries">
+        <span class="black">##word.dashboard##</span>
+      </a>
+    </div>
+
+    <br />
+
+    <div class="link logout-btn center"  ng-click="logout()">##word.security_logout##</div>
+  </div>
+</div>
 <header ng-controller="sitebar">
   <div class="firstheader">
     <ul class="nav1">
@@ -69,7 +100,7 @@
           <a x-features="login" class="desktop" href="#" onclick="event.stopPropagation(); $('.user-menu').toggle()">
             <img class="center border-circle" src="##user.profile.image_url##" onerror="this.src='/images/user.png'"
               alt="" /> </a>
-          <div class="center profile mobile">
+          <div class="center profile mobile" x-permission="login">
             <a class="pointer" href="/profile/##user.id##/##user.profile.name##/##user.profile.last_name##">
 
               <img class="center border-circle" src="##user.profile.image_url##" onerror="this.src='/images/user.png'"
@@ -92,38 +123,12 @@
 
             <br />
 
-            <div class="link logout-btn center" ng-click="logout()">##word.security_logout##</div>
+            <div class="link logout-btn center" x-permission="login"  ng-click="logout()">##word.security_logout##</div>
           </div>
         </div>
       
         <div>
-          <div class="user-menu" style="display: none">
-            <div class="center profile">
-              <a class="pointer" href="/profile/##user.id##/##user.profile.name##/##user.profile.last_name##">
-
-                <img class="center border-circle" src="##user.profile.image_url##" onerror="this.src='/images/user.png'"
-                  alt="" /> <br />
-              </a>
-              <span class="user-name"> </span> <br />
-
-              <span class="user-name"> ##user.profile.name## ##user.profile.last_name## </span> <br />
-              <h5 class="grayDark userPrint center">##user.email##</h5>
-              <br />
-              <div class="center">
-                <a id="bord_edit" class="usermenu-btn center" href="/manage_user">
-                  <span class="black">##word.manage_your_personal_account##</span>
-                </a>
-                <br>
-                <a id="bord_edit" class="usermenu-btn center" x-permissions="menus" href="/countries">
-                  <span class="black">##word.dashboard##</span>
-                </a>
-              </div>
-
-              <br />
-
-              <div class="link logout-btn center" ng-click="logout()">##word.security_logout##</div>
-            </div>
-          </div>
+         
           <div class="mobilesection-head hidden"><a>روابط هامه</a></div>
           <div class="follow mobile">
             <a>تابعنا على </a>
@@ -275,33 +280,33 @@
     </a>
   </li>
 
-  <li class="mobile-header">
+  <li class="mobile-header" x-permission="login">
     <a class="tab_link" href="/messages">
       <i class="fa-solid fa-envelope"></i>
       <!--  <span style="min-height: 22px">##word.messages##</span> -->
     </a>
   </li>
-  <li class="mobile-header">
+  <li class="mobile-header" x-permission="login">
     <a class="tab_link" href="/notific">
       <i class="fa-solid fa-bell space"></i>
       <!-- <span style="min-height: 22px">##word.favorite##</span> -->
     </a>
   </li>
-  <li class="mobile-header">
+  <li class="mobile-header" x-permission="login">
     <a class="tab_link" href="/follow">
       <i class="fa-solid fa-rss space"></i>
       <!-- <span style="min-height: 22px">##word.favorite##</span> -->
     </a>
   </li>
 
-  <li class="mobile-header">
+  <li class="mobile-header" x-permission="login">
     <a class="tab_link" href="/favorites">
       <i class="fa-solid fa-heart"></i>
       <!-- <span style="min-height: 22px">##word.favorite##</span> -->
     </a>
   </li>
 
-  <li class="mobile-header" ng-show="##setting.order_settings.activate_orders##">
+  <li class="mobile-header" x-permission="login" ng-show="##setting.order_settings.activate_orders##">
     <a class="notification" href="/cart">
       <i class="fa-solid fa-cart-shopping"></i>
       <span class="badge-mobile ng-binding">0</span>
@@ -311,12 +316,9 @@
 
 
 
-  <li class="mobile-header">
-    <a class="tab_link" ng-click="createContent()" href="">
-      <i class="fa-solid fa-plus-circle"></i>
-      <!-- <span style="min-height: 22px">##word.add_your_ad##</span> -->
-    </a>
-  </li>
+<!--   <li class="mobile-header" x-permission="login">
+   
+  </li> -->
 </div>
 
 <script>

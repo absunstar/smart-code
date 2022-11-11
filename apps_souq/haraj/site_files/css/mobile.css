@@ -36,7 +36,9 @@
         border-radius: unset;
         height: 75px !important;
     }
-
+    .move-category-margin {
+        margin-left: -10px;
+    }
     .usermenu-btn {
         border: 1px solid #006d56;
         padding: 4px;
@@ -44,5 +46,15 @@
         background: #ffffff;
         display: block;
         max-width: 90%;
+    }
+    .ad-name {
+        font-size: 25px !important;
+    }
+    .open-menu {
+        display: block;
+        position: relative;
+        transform: translateX(0%);
+        transition: transform 0.5s ease-in-out;
+        width: max-content;
     }
 }

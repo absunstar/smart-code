@@ -1738,14 +1738,14 @@ img {
 
   .qatar {
     fill: white;
-    pointer-events: none;
+    /* pointer-events: none; */
     font-size: x-large;
     transform: translate(807px, 364px);
   }
 
   .bahran {
     fill: white;
-    pointer-events: none;
+   /*  pointer-events: none; */
     font-size: x-large;
     transform: translate(767px, 313px);
   }

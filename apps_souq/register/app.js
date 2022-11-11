@@ -1,9 +1,6 @@
 module.exports = function init(site) {
   const $mailer = site.connectCollection('mailer');
 
-  site.mobile_list = [];
-  site.email_list = [];
-
   site.get({
     name: 'images',
     path: __dirname + '/site_files/images/',
@@ -15,6 +12,7 @@ module.exports = function init(site) {
     parser: 'html',
     compress: true,
   });
+
 
   site.get({
     name: 'mailer',
@@ -61,8 +59,20 @@ module.exports = function init(site) {
       },
       (err, doc) => {
         if (!err && doc) {
-          doc.code = doc.id + Math.floor(Math.random() * 10000) + 90000;
+          if (mailer_doc.mobile) {
+            let date = new Date(doc.date);
+            date.setMinutes(date.getMinutes() + 1);
+            if (new Date() > date) {
+              doc.code = doc.id + Math.floor(Math.random() * 10000) + 90000;
+              doc.date = new Date();
+            } else {
+              response.error = 'have to wait mobile';
+              res.json(response);
+              return
+            }
+          } else if (mailer_doc.email) {
 
+          }
           $mailer.edit(
             {
               where: {
@@ -76,37 +86,18 @@ module.exports = function init(site) {
               if (!err) {
 
                 if (result.doc.type == 'mobile') {
-                  let mailer_mobile = site.mobile_list.find((_m) => _m.mobile == result.doc.mobile);
-                  if (mailer_mobile) {
-                    let mailer_date = new Date(mailer_mobile.date);
-                    mailer_date.setMinutes(mailer_date.getMinutes() + 1);
-                    if (new Date() > mailer_date) {
-                      mailer_mobile.date = new Date();
-                      site.sendMobileMessage({
-                        to: result.doc.country.country_code + result.doc.mobile,
-                        message: `code : ${result.doc.code}`,
-                      });
-                    } else {
-                      response.error = 'have to wait mobile';
-                      res.json(response);
-                      return
-                    }
-                  } else {
-                    site.mobile_list.push({
-                      mobile: result.doc.mobile,
-                      date: new Date(),
-                    })
-                    site.sendMobileMessage({
-                      to: result.doc.country.country_code + result.doc.mobile,
-                      message: `code : ${result.doc.code}`,
-                    });
-                  }
+                  site.sendMobileMessage({
+                    to: result.doc.country.country_code + result.doc.mobile,
+                    message: `code : ${result.doc.code}`,
+                  });
+                  response.done_send_mobile = true;
                 } else if (result.doc.type == 'email') {
                   site.sendMailMessage({
                     to: result.doc.email,
                     subject: 'Smart Code .. Forget Password',
                     message: `code : ${result.doc.code}`,
                   });
+                  response.done_send_email = true;
                 }
                 response.done = true;
                 response.doc = result.doc;
@@ -138,29 +129,26 @@ module.exports = function init(site) {
                 return;
               } else {
                 mailer_doc.code = Math.floor(Math.random() * 10000) + 90000;
+                mailer_doc.date = new Date();
                 $mailer.add(mailer_doc, (err, result) => {
                   if (!err) {
                     response.done = true;
                     response.doc = result;
                     if (result.type == 'mobile') {
-                      site.mobile_list.push({
-                        mobile: result.mobile,
-                        date: new Date(),
-                      })
+                 
                       site.sendMobileMessage({
                         to: result.country.country_code + result.mobile,
                         message: `code : ${result.code}`,
                       });
+                      response.done_send_mobile = true;
                     } else if (result.type == 'email') {
-                      site.mobile_list.push({
-                        mobile: result.mobile,
-                        date: new Date(),
-                      })
+
                       site.sendMailMessage({
                         to: result.email,
                         subject: 'Smart Code .. Forget Password',
                         message: `code : ${result.code}`,
                       });
+                      response.done_send_email = true;
                     }
                     delete response.code;
 
@@ -199,83 +187,6 @@ module.exports = function init(site) {
 
   });
 
-  site.post('/api/mailer/resend', (req, res) => {
-    let response = {
-      done: false,
-    };
-
-    let id = req.body.id;
-
-    $mailer.findOne(
-      {
-        where: {
-          id: id,
-        },
-      },
-      (err, doc) => {
-        if (!err && doc) {
-          doc.code = doc.id + Math.floor(Math.random() * 10000) + 90000;
-          $mailer.edit(
-            {
-              where: {
-                id: doc.id,
-              },
-              set: doc,
-              $req: req,
-              $res: res,
-            },
-            (err, result) => {
-              if (!err) {
-
-                if (result.doc.type == 'email') {
-                  site.sendEmail({
-                    from: 'absunstar@gmail.com',
-                    to: result.doc.email,
-                    subject: 'Smart Code .. Forget Password',
-                    message: `code : ${result.doc.code}`,
-                  });
-                } else if (result.doc.type == 'mobile') {
-                  let mailer_mobile = site.mobile_list.find((_m) => _m.mobile == result.doc.mobile);
-                  if (mailer_mobile) {
-                    let mailer_date = new Date(mailer_mobile.date);
-                    mailer_date.setMinutes(mailer_date.getMinutes() + 1);
-                    if (new Date() > mailer_date) {
-                      mailer_mobile.date = new Date();
-                      site.sendMobileMessage({
-                        to: result.doc.country.country_code + result.doc.mobile,
-                        message: `code : ${result.doc.code}`,
-                      });
-                    } else {
-                      response.error = 'have to wait mobile';
-                      res.json(response);
-                      return
-                    }
-                  } else {
-                    site.mobile_list.push({
-                      mobile: result.mobile,
-                      date: new Date(),
-                    })
-                    site.sendMobileMessage({
-                      to: result.doc.country.country_code + result.doc.mobile,
-                      message: `code : ${result.doc.code}`,
-                    });
-                  }
-
-                }
-                response.done = true;
-                response.doc = result.doc;
-                delete response.doc.code;
-              } else {
-                response.error = err.message;
-              }
-              res.json(response);
-            }
-          );
-        }
-      }
-    );
-  });
-
   site.post('/api/mailer/check_code', (req, res) => {
     let response = {
       done: false,
@@ -298,6 +209,7 @@ module.exports = function init(site) {
             delete response.doc.code;
           } else {
             response.error = 'Incorrect code entered';
+            res.json(response);
             return;
           }
         } else {
@@ -329,6 +241,7 @@ module.exports = function init(site) {
       followers_list: [],
       follow_category_list: [],
       ip: req.ip,
+      country_code: req.body.country_code,
       permissions: ['user'],
       active: true,
       profile: {
@@ -420,4 +333,7 @@ module.exports = function init(site) {
       }
     );
   });
+
+
+
 };

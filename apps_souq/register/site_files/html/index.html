@@ -100,7 +100,7 @@
       </div>
       <div class="row center">
         <i-button label="##word.continuation##" ng-click="checkSecretCode(secret_code)"></i-button>
-        <i-button label="##word.resend_code##" fa="retweet" ng-click="resendCode(mailer.id,'mobile')"></i-button>
+        <i-button label="##word.resend_code##" fa="retweet" ng-click="resendCode(mailer.mobile,'mobile')"></i-button>
       </div>
     </div>
     <div class="row" id="mobile_data">
@@ -131,6 +131,7 @@
       <i-button type="add" label="##word.register_now##" ng-click="registerByMobile(user,'mobile')"></i-button>
     </div>
   </fieldset>
+  <h2 class="bold center green">{{sent_new_code}}</h2>
   <h2 class="bold center red">{{error}}</h2>
   </div>
   </div>

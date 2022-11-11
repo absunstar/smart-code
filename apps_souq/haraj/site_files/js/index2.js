@@ -10,67 +10,80 @@ close.addEventListener('click', () => {
   user.classList.remove('open-menu');
 });
 
-function mouseoverbox1() {}
+function mouseoverbox1() { }
 
 taghide();
 
 function taghide() {
   let plus = document.getElementById('open');
   let tags = document.getElementById('tags-filter');
+  if (tags) {
 
-  if (tags.style.display != 'none') {
-    tags.style.display = 'none';
-  } else {
-    tags.style.display = 'block';
+    if (tags.style.display != 'none') {
+      tags.style.display = 'none';
+    } else {
+      tags.style.display = 'block';
+    }
   }
 }
 
 function xtaghide() {
   let plus = document.getElementById('open');
   let tags = document.getElementById('xtags-filter');
+  if (tags) {
 
-  if (tags.style.display != 'none') {
-    tags.style.display = 'none';
-  } else {
-    tags.style.display = 'block';
+    if (tags.style.display != 'none') {
+      tags.style.display = 'none';
+    } else {
+      tags.style.display = 'block';
+    }
   }
 }
 xtaghide();
 
 let xbtnFilter = document.querySelector('.xfilter-toggel');
-let xicon = xbtnFilter.querySelector('.fa-plus');
+if (xbtnFilter) {
 
-xbtnFilter.onclick = function () {
-  if (xicon.classList.contains('fa-plus')) {
-    xicon.classList.replace('fa-plus', 'fa-minus');
-  } else {
-    xicon.classList.replace('fa-minus', 'fa-plus');
-  }
-};
+  let xicon = xbtnFilter.querySelector('.fa-plus');
+
+  xbtnFilter.onclick = function () {
+    if (xicon.classList.contains('fa-plus')) {
+      xicon.classList.replace('fa-plus', 'fa-minus');
+    } else {
+      xicon.classList.replace('fa-minus', 'fa-plus');
+    }
+  };
+}
 
 let btnFilter = document.querySelector('.filter-toggel');
-let icon = btnFilter.querySelector('.fa-plus');
+if (btnFilter) {
 
-btnFilter.onclick = function () {
-  if (icon.classList.contains('fa-plus')) {
-    icon.classList.replace('fa-plus', 'fa-minus');
-  } else {
-    icon.classList.replace('fa-minus', 'fa-plus');
+  let icon = btnFilter.querySelector('.fa-plus');
+
+  btnFilter.onclick = function () {
+    if (icon.classList.contains('fa-plus')) {
+      icon.classList.replace('fa-plus', 'fa-minus');
+    } else {
+      icon.classList.replace('fa-minus', 'fa-plus');
+    }
   }
 };
 
 let tagSide = document.querySelector('.tagSide');
 let mobileFilter = document.querySelector('.mobile-filter');
 let closeFilter = document.querySelector('.close-filter');
+if (mobileFilter) {
 
-mobileFilter.addEventListener('click', () => {
-  tagSide.classList.add('open-filter');
-});
+  mobileFilter.addEventListener('click', () => {
+    tagSide.classList.add('open-filter');
+  });
+}
+if (closeFilter) {
 
-closeFilter.addEventListener('click', () => {
-  tagSide.classList.remove('open-filter');
-});
-
+  closeFilter.addEventListener('click', () => {
+    tagSide.classList.remove('open-filter');
+  });
+}
 let sideheader = document.querySelector('.user-side-header');
 let mapheader = document.querySelector('.map-side-header');
 let notifname = document.getElementById('notif1');
@@ -128,15 +141,17 @@ if (sideheader) {
 }
 
 let notifname5 = document.getElementById('notif5');
+if (mapheader) {
 
-mapheader.addEventListener('mouseenter', () => {
-  notifname5.classList.add('show-notif-name');
-  notifname5.classList.remove('notif-name');
-});
-mapheader.addEventListener('mouseleave', () => {
-  notifname5.classList.remove('show-notif-name');
-  notifname5.classList.add('notif-name');
-});
+  mapheader.addEventListener('mouseenter', () => {
+    notifname5.classList.add('show-notif-name');
+    notifname5.classList.remove('notif-name');
+  });
+  mapheader.addEventListener('mouseleave', () => {
+    notifname5.classList.remove('show-notif-name');
+    notifname5.classList.add('notif-name');
+  });
+}
 
 const mapToggle = document.getElementById('map-toggle');
 const map = document.querySelector('.map');
@@ -168,7 +183,10 @@ function hsMap(type) {
 
 site.onLoad(() => {
   setTimeout(() => {
-    xbtnFilter.click();
+    if (xbtnFilter) {
+
+      xbtnFilter.click();
+    }
     xtaghide();
   }, 1000);
 });

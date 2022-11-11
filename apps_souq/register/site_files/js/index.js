@@ -9,21 +9,30 @@ app.controller('register_souq', function ($scope, $http, $timeout) {
   document.getElementById('mobile_confirm').style.display = 'none';
   document.getElementById('mobile_data').style.display = 'none';
 
-  $scope.resendCode = function (mailer_id, type) {
+  $scope.resendCode = function (mobile, type) {
     $scope.error = '';
+    $scope.sent_new_code = '';
 
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/mailer/resend',
-      data: { id: mailer_id, type: type },
+      url: '/api/mailer/add',
+      data: { mobile: mobile, type: type },
     }).then(
       function (response) {
         if (response.data.error) {
           $scope.error = response.data.error;
+          if (response.data.error.like('*wait mobile*')) {
+            $scope.error = '##word.please_wait_to_send_mobile_code_again##';
+            return;
+          }
           $scope.busy = false;
         } else if (response.data.done) {
           $scope.mailer = response.data.doc;
+          if(response.data.done_send_mobile) {
+
+            $scope.sent_new_code = '##word.the_new_code_has_been_sent_to_your_phone##';
+          }
 
           $scope.busy = false;
         }
@@ -37,6 +46,7 @@ app.controller('register_souq', function ($scope, $http, $timeout) {
 
   $scope.validMobile = function (obj) {
     $scope.error = '';
+    $scope.sent_new_code = '';
     const v = site.validated('#mobile_mailer');
 
     if (!v.ok) {
@@ -71,6 +81,7 @@ app.controller('register_souq', function ($scope, $http, $timeout) {
 
   $scope.checkSecretCode = function (secret_code) {
     $scope.error = '';
+    $scope.sent_new_code = '';
     const v = site.validated('#mobile_confirm');
 
     if (!v.ok) {
@@ -109,6 +120,7 @@ app.controller('register_souq', function ($scope, $http, $timeout) {
 
   $scope.registerMailer = function (mailer, type) {
     $scope.error = '';
+    $scope.sent_new_code = '';
     if (type == 'mobile') {
       let v = site.validated('#mobile_mailer');
       if (!v.ok) {
@@ -127,7 +139,12 @@ app.controller('register_souq', function ($scope, $http, $timeout) {
         if (response.data.error) {
           $scope.error = response.data.error;
           if (response.data.error.like('*Mobile Exists*')) {
-            $scope.error = '##word.mobile_number_already_exists##';
+            $scope.error = '##word.mobile_number_already_used##';
+            site.hideModal('#dealModal');
+            return;
+          } else if (response.data.error.like('*wait mobile*')) {
+            $scope.error = '##word.please_wait_to_send_mobile_code_again##';
+            site.hideModal('#dealModal');
             return;
           }
         } else if (response.data.done) {
@@ -147,6 +164,7 @@ app.controller('register_souq', function ($scope, $http, $timeout) {
 
   $scope.registerByMobile = function (user, type) {
     $scope.error = '';
+    $scope.sent_new_code = '';
     const v = site.validated('#mobile_data');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
@@ -169,6 +187,7 @@ app.controller('register_souq', function ($scope, $http, $timeout) {
             last_name: user.last_name,
             image_url: user.image_url,
             mailer_id: $scope.mailer.id,
+            country_code: $scope.mailer.country.country_code,
           },
         }).then(
           function (response) {
