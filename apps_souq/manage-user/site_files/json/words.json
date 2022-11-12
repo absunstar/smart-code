@@ -70,6 +70,11 @@
         "ar": "متاجري"
     },
     {
+        "name": "brief_about_me",
+        "en": "Brief about me",
+        "ar": "نبذة عني"
+    },
+    {
         "name": "new_password",
         "en": "New Password",
         "ar": "كلمة المرور الجديدة"

@@ -127,8 +127,8 @@ tr:nth-child(even) {
 .is-invalid{
   border: 1px solid red !important;
 }
-.margin-left-5 {
-  margin-left: 5px;
+.margin-left-move {
+  margin-left: 20px;
 }
 
 .info img {

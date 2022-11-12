@@ -130,6 +130,11 @@
     "ar": "ظهور العناوين الأخرى"
   },
   {
+    "name": "new_address_appear",
+    "en": "New address appear",
+    "ar": "ظهور عنون جديد"
+  },
+  {
     "name": "order_settings",
     "en": "Order settings",
     "ar": "إعدادات الطلب"

@@ -10,9 +10,49 @@
     "ar": "إضافة الصورة"
   },
   {
+    "name": "add_another_photo",
+    "en": "Add Another photo",
+    "ar": "إضافة صورة اخرى"
+  },
+  {
+    "name": "photo_description",
+    "en": "Photo description",
+    "ar": "وصف الصورة"
+  },
+  {
+    "name": "video_description",
+    "en": "Video description",
+    "ar": "وصف الفيديو"
+  },
+  {
+    "name": "additional_photos_ad",
+    "en": "Additional photos for ad",
+    "ar": "صور إضافية للإعلان"
+  },
+  {
+    "name": "delete_photo",
+    "en": "Delete photo",
+    "ar": "حذف الصور"
+  },
+  {
+    "name": "delete_video",
+    "en": "Delete video",
+    "ar": "حذف الفيديو"
+  },
+  {
     "name": "ok",
     "en": "Ok",
     "ar": "موافق"
+  },
+  {
+    "name": "add_to_photos",
+    "en": "Add To Photos",
+    "ar": "إضافة إلى الصورة"
+  },
+  {
+    "name": "add_to_videos",
+    "en": "Add To videos",
+    "ar": "إضافة إلى الفيديوهات"
   },
   {
     "name": "disable_replies_feature",

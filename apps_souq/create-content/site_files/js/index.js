@@ -19,7 +19,6 @@ app.controller('create_content', function ($scope, $http, $timeout) {
       active: true,
     };
 
-
     if ($scope.defaultSettings.content) {
       if ($scope.defaultSettings.content.closing_system) {
         if ($scope.defaultSettings.content.closing_system.id == 2) {
@@ -133,8 +132,10 @@ app.controller('create_content', function ($scope, $http, $timeout) {
       $('#adCategory').hide();
       if (cat.category_require_list && cat.category_require_list.length > 0) {
         $('#adCategoryRequire').show('slow');
-      } else {
+      } else if ($scope.defaultSettings.content.new_address_appear) {
         $('#adAddressType').show('slow');
+      } else {
+        $scope.showAddress(ad,'main');
       }
     }
   };
@@ -276,13 +277,20 @@ app.controller('create_content', function ($scope, $http, $timeout) {
     $scope.ad.$video = {};
   };
 
+  $scope.doneSelectMainImage = function () {
+    $scope.error = '';
+      $('#adMainImage').hide();
+      $('#adAnotherImages').show('slow');
+
+  };
+
   $scope.doneSelectImages = function () {
     $scope.error = '';
     if ($scope.defaultSettings.content.upload_video) {
-      $('#adImages').hide();
+      $('#adAnotherImages').hide();
       $('#adVideo').show('slow');
     } else {
-      $('#adImages').hide();
+      $('#adAnotherImages').hide();
       $('#adContent').show('slow');
     }
   };
@@ -384,12 +392,18 @@ app.controller('create_content', function ($scope, $http, $timeout) {
 
   $scope.continuationNotSelectAddress = function () {
     $('#adAddressType').hide();
-    $('#adImages').show('slow');
+    $('#adMainImage').show('slow');
   };
 
   $scope.continuationToSelectAddress = function () {
     $('#adCategoryRequire').hide();
-    $('#adAddressType').show('slow');
+    if($scope.defaultSettings.content.new_address_appear) {
+
+      $('#adAddressType').show('slow');
+    } else {
+      $scope.showAddress($scope.ad,'main');
+
+    }
   };
 
   $scope.showAddress = function (ad, type) {
@@ -417,7 +431,7 @@ app.controller('create_content', function ($scope, $http, $timeout) {
     }
 
     $('#adAddressSelect').hide();
-    $('#adImages').show('slow');
+    $('#adMainImage').show('slow');
   };
 
   $scope.getUser = function () {

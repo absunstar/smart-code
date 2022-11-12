@@ -48,7 +48,10 @@
         max-width: 90%;
     }
     .ad-name {
-        font-size: 25px !important;
+        font-size: 15px !important;
+    }
+    .margin-left-move {
+        margin-left: 3px !important;
     }
     .open-menu {
         display: block;

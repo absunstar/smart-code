@@ -66,7 +66,8 @@
       <i class="fa fa-arrow-circle-right fa-4x back-style" aria-hidden="true"></i>
     </a>
 
-    <a ng-show="ad.category_require_list.length < 1" ng-click="adBack('adAddressType', 'adCategory')">
+    <a ng-show="!ad.category_require_list.length || ad.category_require_list.length < 1"
+      ng-click="adBack('adAddressType', 'adCategory')">
       <i class="fa fa-arrow-circle-right fa-4x back-style" aria-hidden="true"></i>
     </a>
     <div class="row category-list h-bg-green">
@@ -94,9 +95,20 @@
     <legend>
       ##word.choose_address_ad##
     </legend>
-    <a ng-click="adBack('adAddressSelect', 'adAddressType')">
+    <a ng-show="defaultSettings.content.new_address_appear" ng-click="adBack('adAddressSelect', 'adAddressType')">
       <i class="fa fa-arrow-circle-right fa-4x back-style" aria-hidden="true"></i>
     </a>
+
+    <a ng-show="!defaultSettings.content.new_address_appear && !ad.category_require_list.length"
+      ng-click="adBack('adAddressSelect', 'adCategory')">
+      <i class="fa fa-arrow-circle-right fa-4x back-style" aria-hidden="true"></i>
+    </a>
+
+    <a ng-show="!defaultSettings.content.new_address_appear && ad.category_require_list.length > 0"
+      ng-click="adBack('adAddressSelect', 'adCategoryRequire')">
+      <i class="fa fa-arrow-circle-right fa-4x back-style" aria-hidden="true"></i>
+    </a>
+
     <i-address ng-model="address.main" ng-show="ad.$address_type == 'main'"></i-address>
 
     <div class="row padding" ng-show="ad.$address_type == 'other'" ng-repeat="o in address.other_list">
@@ -116,18 +128,44 @@
 
   </fieldset>
 
-  <fieldset id="adImages" class="row" ng-show="defaultSettings.content.upload_photos">
+  <fieldset id="adMainImage" class="row">
     <legend>
-      ##word.ad_images##
+      ##word.main_ad_image##
     </legend>
-    <a ng-click="adBack('adImages', 'adAddressType')">
+    <a ng-show="defaultSettings.content.new_address_appear" ng-click="adBack('adMainImage', 'adAddressType')">
       <i class="fa fa-arrow-circle-right fa-4x back-style" aria-hidden="true"></i>
     </a>
+
+    <a ng-show="!defaultSettings.content.new_address_appear" ng-click="adBack('adMainImage', 'adAddressSelect')">
+      <i class="fa fa-arrow-circle-right fa-4x back-style" aria-hidden="true"></i>
+    </a>
+
+    <div class="row">
+
+      <i-image class="col3 img-style" help-id="ads_logo" ng-model="ad.image_url"></i-image>
+
+    </div>
+
+    <i-button label="##word.continuation##" class="btn-ad" fa="battery-three-quarters" ng-click="doneSelectMainImage()">
+    </i-button>
+
+  </fieldset>
+
+  <fieldset id="adAnotherImages" class="row" ng-show="defaultSettings.content.upload_photos">
+    <legend>
+      ##word.additional_photos_ad##
+    </legend>
+
+
+    <a ng-click="adBack('adAnotherImages', 'adMainImage')">
+      <i class="fa fa-arrow-circle-right fa-4x back-style" aria-hidden="true"></i>
+    </a>
+
     <div class="row">
       <i-image class="col3 img-style" help-id="ads_logo" ng-model="ad.$image.image_url"></i-image>
-      <i-textarea class="col6 input-style" label="##word.description##" ng-model="ad.$image.desc"></i-textarea>
+      <i-textarea class="col6 input-style" label="##word.photo_description##" ng-model="ad.$image.desc"></i-textarea>
       <div class="col1"></div>
-      <i-button class="col3" type="add" label="##word.add_photo##"
+      <i-button class="col3" type="add" label="##word.add_to_photos##"
         ng-hide="ad.images_list.length >= defaultSettings.content.allowed_number_photo" ng-click="addImage()">
       </i-button>
 
@@ -141,20 +179,25 @@
         </div>
         <div class="col1"></div>
         <div class="col5">
-          <i-textarea class="input-style" ng-model="a.description" label="##word.description##"> </i-textarea>
+          <i-textarea class="input-style" ng-model="a.description" label="##word.photo_description##"> </i-textarea>
         </div>
         <div class="col1">
           <br />
           <div class="center">
-            <button type="button" class="center" style="width:25px;" ng-click="upDownList(ad.images_list, 'up',$index)"
-              ng-hide="$index == 0"><i class=" fa fa-arrow-up" aria-hidden="true"></i></button>
-            <button type="button" class="center" style="width:25px;"
-              ng-click="upDownList(ad.images_list, 'down',$index)" ng-hide="$index == (ad.images_list.length - 1) "><i
-                class=" fa fa-arrow-down" aria-hidden="true"></i></button>
+            <button type="button" class="center move-btn" ng-click="upDownList(ad.images_list, 'up',$index)"
+              ng-hide="$index == 0"><i class=" fa fa-arrow-up" aria-hidden="true"> ##word.up## </i></button>
+            <button type="button" class="center move-btn" ng-click="upDownList(ad.images_list, 'down',$index)"
+              ng-hide="$index == (ad.images_list.length - 1) "><i class=" fa fa-arrow-down" aria-hidden="true">
+                ##word.down## </i></button>
           </div>
-          <i-button type="delete" ng-click="ad.images_list.splice($index,1)"> </i-button>
+          <div class="center">
+            <i-button type="delete" label="##word.delete_photo##" ng-click="ad.images_list.splice($index,1)">
+            </i-button>
+          </div>
         </div>
       </div>
+    <hr>
+
     </div>
 
     <i-button label="##word.continuation##" class="btn-ad" fa="battery-three-quarters" ng-click="doneSelectImages()">
@@ -167,15 +210,15 @@
       ##word.ad_videos##
     </legend>
 
-    <a ng-click="adBack('adVideo', 'adImages')">
+    <a ng-click="adBack('adVideo', 'adAnotherImages')">
       <i class="fa fa-arrow-circle-right fa-4x back-style" aria-hidden="true"></i>
     </a>
 
     <div class="row">
       <i-control class="col4 input-style" label="##word.link##" ng-model="ad.$video.link"></i-control>
-      <i-textarea class="col5 input-style" label="##word.description##" ng-model="ad.$video.desc"></i-textarea>
+      <i-textarea class="col5 input-style" label="##word.video_description##" ng-model="ad.$video.desc"></i-textarea>
       <div class="col1"></div>
-      <i-button class="col3" type="add" label="##word.add_video##"
+      <i-button class="col3" type="add" label="##word.add_to_videos##"
         ng-hide="ad.videos_list.length >= defaultSettings.content.allowed_number_video" ng-click="addVideos()">
       </i-button>
 
@@ -187,21 +230,25 @@
           <i-control label="##word.link##" ng-model="a.link"></i-control>
         </div>
         <div class="col5">
-          <i-textarea class="input-style" ng-model="a.description" label="##word.description##"> </i-textarea>
+          <i-textarea class="input-style" ng-model="a.description" label="##word.video_description##"> </i-textarea>
         </div>
         <div class="col1"></div>
         <div class="col1">
           <br />
           <div class="center">
-            <button type="button" class="center" style="width:25px;" ng-click="upDownList(ad.videos_list, 'up',$index)"
-              ng-hide="$index == 0"><i class=" fa fa-arrow-up" aria-hidden="true"></i></button>
-            <button type="button" class="center" style="width:25px;"
-              ng-click="upDownList(ad.videos_list, 'down',$index)" ng-hide="$index == (ad.videos_list.length - 1) "><i
-                class=" fa fa-arrow-down" aria-hidden="true"></i></button>
+            <button type="button" class="center move-btn" ng-click="upDownList(ad.videos_list, 'up',$index)"
+              ng-hide="$index == 0"><i class=" fa fa-arrow-up" aria-hidden="true"> ##word.up## </i></button>
+            <button type="button" class="center move-btn" ng-click="upDownList(ad.videos_list, 'down',$index)"
+              ng-hide="$index == (ad.videos_list.length - 1) "><i class=" fa fa-arrow-down" aria-hidden="true">
+                ##word.down## </i></button>
           </div>
-          <i-button type="delete" ng-click="ad.videos_list.splice($index,1)"> </i-button>
+          <div class="center">
+            <i-button type="delete" label="##word.delete_video##" ng-click="ad.videos_list.splice($index,1)">
+            </i-button>
+          </div>
         </div>
       </div>
+      <hr>
     </div>
 
     <i-button label="##word.continuation##" class="btn-ad" fa="battery-three-quarters" ng-click="doneSelectVideos()">
@@ -212,7 +259,7 @@
 
   <fieldset id="adContent">
 
-    <a ng-show="!defaultSettings.content.upload_video" ng-click="adBack('adContent', 'adImages')">
+    <a ng-show="!defaultSettings.content.upload_video" ng-click="adBack('adContent', 'adMainImage')">
       <i class="fa fa-arrow-circle-right fa-4x back-style" aria-hidden="true"></i>
     </a>
 
@@ -252,12 +299,6 @@
 
       <br>
 
-      <div class="row radius13 padding">
-
-        <b class="title-require border">##word.address##</b>
-        <i-address ng-model="ad.address"></i-address>
-      </div>
-      <hr>
       <div class="row">
         <div class="col6">
 

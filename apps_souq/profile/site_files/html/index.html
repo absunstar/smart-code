@@ -138,7 +138,11 @@
     .table td {
       border: unset;
     }
-
+    .about-me {
+    white-space: pre-wrap;
+    font-size: 18px;
+    color: #535353;
+}
     .table th {
       border-radius: 10px;
     }
@@ -293,10 +297,13 @@
         <div class="col8">
           <div class="ad-user center">
 
-            <h1 class="user-name-stlye center">
+            <h1 class="user-name-stlye font-22 center">
               {{user.profile.name}} {{user.profile.last_name}}
             </h1>
-
+            <div class="row">
+              <div class="col1"></div>
+              <p class="center col10 about-me">{{user.profile.about_me}}</p>
+            </div>
           </div>
           <h2 class="user-name-stlye darkgray userPrint center">{{user.email}}</h2>
         </div>

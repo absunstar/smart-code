@@ -14,6 +14,10 @@
   <div class="map">
     <div class="movemab" x-import="haraj/map.html"></div>
   </div>
+  <a class="tab_link create-btn" ng-click="createContent()" >
+    <i class="fa-solid fa-plus-circle"></i>
+     <span style="min-height: 22px">##word.add_your_ad##</span> 
+  </a>
   <div x-import="haraj/header.html">
     <div class="map-side-header">
       <div id="mapbtn" class="clickmap side-header">
@@ -180,7 +184,7 @@
       <div class="thirdheader">
         <div class="row">
           <div class="col-1">
-            <i class="fa fa-arrow-circle-left margin-left-5 pointer move-category fa-2x" ng-click="moveCategory('next')" aria-hidden="true"></i>
+            <i class="fa fa-arrow-circle-left margin-left-move pointer move-category fa-2x" ng-click="moveCategory('next')" aria-hidden="true"></i>
           </div>
           <div class="col-10">
             <div class="tags">

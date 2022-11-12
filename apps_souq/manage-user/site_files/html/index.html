@@ -212,19 +212,16 @@
                   <tr>
                     <td class="blue">
                       <br />
-                      ##word.phone##
+                      ##word.brief_about_me##
                     </td>
 
                     <td class="userPrint">
                       <br />
-                      <a href="tel:{{manage_user.profile.phone}}">
-                        {{manage_user.profile.phone}}
-                        <i class="fa fa-phone"></i>
-                      </a>
+                      {{manage_user.profile.about_me}}
                     </td>
 
                     <td>
-                      <i-button type="update" label="##word.update##" ng-click="view('phone')"> </i-button>
+                      <i-button type="update" label="##word.update##" ng-click="view('about_me')"> </i-button>
                     </td>
                   </tr>
                 </table>
