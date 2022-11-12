@@ -802,7 +802,6 @@
   .side-badge {
     position: absolute;
     top: -7px;
-    left: 5px;
     font-size: 11px;
     border-radius: 100%;
     background-color: red;

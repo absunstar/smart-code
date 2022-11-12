@@ -300,7 +300,9 @@ app.controller('create_content', function ($scope, $http, $timeout) {
 
     $('#adVideo').hide();
     $('#adContent').show('slow');
-
+    console.log($scope.ad.address);
+    console.log($scope.ad.$address_type);
+   
   };
 
   $scope.upDownList = function (list, type, index) {

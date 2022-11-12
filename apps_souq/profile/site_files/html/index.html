@@ -300,12 +300,12 @@
             <h1 class="user-name-stlye font-22 center">
               {{user.profile.name}} {{user.profile.last_name}}
             </h1>
-            <div class="row">
-              <div class="col1"></div>
-              <p class="center col10 about-me">{{user.profile.about_me}}</p>
-            </div>
+          
           </div>
           <h2 class="user-name-stlye darkgray userPrint center">{{user.email}}</h2>
+          <div class="row margin padding">
+            <p class="center about-me">{{user.profile.about_me}}</p>
+          </div>
         </div>
         <div class="col2 center pointer" onclick="$('#ratings').show();$('#user_contents').hide()">
           <i ng-class="{'yellow' : rate > 90}" class="fa-solid fa-star star"> </i>

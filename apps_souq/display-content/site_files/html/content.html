@@ -156,7 +156,7 @@
         </a>
         <i-button fa="envelope" x-permissions="login" type="default" ng-hide="ad.store.user.id == c.user.id"
           ng-click="showMessage(c.user)"></i-button>
-        <span class="left comment-count">{{$index + 1}}</span>
+        <span class="left comment-count">  {{$index + 1}} <span ng-show="10 > $index + 1">0</span></span>
         <div class="time-publish margin padding">
           <i class="fa-solid fa-clock"> {{c.$time}} </i>
         </div>
@@ -167,10 +167,13 @@
       <a x-permission="login" class="left pointer" ng-click="showReportComment($index)"> <i class="fa fa-bars"></i> </a>
     </div>
 
-    <div class="row bg-white content-ad" x-permissions="login" ng-hide="ad.disable_replies_feature">
+    <div class="row content-ad" x-permissions="login" ng-hide="ad.disable_replies_feature">
       <i-textarea label="##word.Write_your_question_advertiser_here##" class="input-style" ng-model="activity.comment">
       </i-textarea>
-      <i-button class="row" fa="paper-plane" label="##word.send##" ng-click="updateFeedback('comment')"></i-button>
+      <button class="send-btn center" ng-click="updateFeedback('comment')">
+        <i class="fa fa-paper-plane"></i>
+        ##word.send##
+      </button>
     </div>
   </div>
   <div class="col3 padding">
@@ -189,6 +192,9 @@
           <b ng-show="ad.address.area.id" class="pointer border address-ad" ng-click="getContentList(ad,'area')">
             {{ad.address.area.name_##session.lang##}} </b>
         </div>
+         <div>
+          <p ng-show="contentList.length < 1" class="center font-18 bold red padding margin">##word.there_are_no_related_ads##</p>
+         </div>
         <div class="row item-list">
           <a class="item col-4 pointer" ng-repeat="i in contentList"
             href="/display_content/{{i.id}}/{{i.name}}/{{i.store.name}}">

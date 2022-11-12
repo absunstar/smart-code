@@ -15,7 +15,12 @@ module.exports = function init(site) {
     compress: true,
   });
 
-
+  site.get({
+    name: 'more_categories',
+    path: __dirname + '/site_files/html/more_categories.html',
+    parser: 'html',
+    compress: true,
+  });
 
   site.get({
     name: 'images',

@@ -40,6 +40,11 @@
     "ar": "حذف الفيديو"
   },
   {
+    "name": "please_put_link_from_youtube",
+    "en": "Please put the link from YouTube",
+    "ar": "برجاء وضع اللينك من موقع يوتيوب"
+  },
+  {
     "name": "ok",
     "en": "Ok",
     "ar": "موافق"
@@ -83,6 +88,16 @@
     "name": "ad_title",
     "en": "Ad Title",
     "ar": "عنوان الإعلان"
+  },
+  {
+    "name": "ad_location",
+    "en": "Ad location",
+    "ar": "موقع الإعلان"
+  },
+  {
+    "name": "change_ad_location",
+    "en": "Change Ad location",
+    "ar": "تغيير موقع الإعلان"
   },
   {
     "name": "my_current_address",

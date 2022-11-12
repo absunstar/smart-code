@@ -151,35 +151,35 @@ module.exports = function init(site) {
         category = c;
       }
     });
-      if (category && main_categories_doc.type == 'detailed') {
-        response.error = 'Cant Change Detailed Err';
-        res.json(response);
-      } else {
-        $main_categories.edit(
-          {
-            where: {
-              id: main_categories_doc.id,
-            },
-            set: main_categories_doc,
-            $req: req,
-            $res: res,
+    if (category && main_categories_doc.type == 'detailed') {
+      response.error = 'Cant Change Detailed Err';
+      res.json(response);
+    } else {
+      $main_categories.edit(
+        {
+          where: {
+            id: main_categories_doc.id,
           },
-          (err, result) => {
-            if (!err && result) {
-              response.done = true;
-              site.main_categories_list.forEach((a, i) => {
-                if (a.id === result.doc.id) {
-                  site.main_categories_list[i] = result.doc;
-                }
-              });
-            } else {
-              response.error = 'Code Already Exist';
-            }
-            res.json(response);
+          set: main_categories_doc,
+          $req: req,
+          $res: res,
+        },
+        (err, result) => {
+          if (!err && result) {
+            response.done = true;
+            site.main_categories_list.forEach((a, i) => {
+              if (a.id === result.doc.id) {
+                site.main_categories_list[i] = result.doc;
+              }
+            });
+          } else {
+            response.error = 'Code Already Exist';
           }
-        );
-      }
-   
+          res.json(response);
+        }
+      );
+    }
+
   });
 
   site.post('/api/main_categories/view', (req, res) => {
@@ -309,15 +309,34 @@ module.exports = function init(site) {
         if (!err) {
           response.done = true;
           response.list = docs;
-          response.top_list = [];
-          if(req.body.top) {
+          if (req.body.top) {
+            response.top_list = [];
             docs.forEach(_doc => {
-              if(!_doc.top_parent_id) {
+              if (!_doc.top_parent_id) {
                 response.top_list.push(_doc)
               }
             });
 
           }
+          if (req.body.more) {
+            let category_list = []
+            docs.forEach(_doc => {
+              if (!_doc.top_parent_id) {
+                _doc.list = []
+                category_list.push(_doc)
+              }
+            });
+            category_list.forEach(_c => {
+              docs.forEach(_doc => {
+                if(_doc.top_parent_id == _c.id) {
+                  _doc.level = 'level-' + (_doc.parent_list_id.length + 1)
+                  _c.list.push(_doc)
+                }
+              })
+            });
+            response.category_list = category_list
+          }
+
           response.count = count;
         } else {
           response.error = err.message;

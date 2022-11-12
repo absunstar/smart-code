@@ -1,3 +1,4 @@
+
 .userad-logo {
   border-radius: 50%;
   height: 25px;
@@ -116,6 +117,7 @@ tr:nth-child(even) {
   display: block;
   text-align: center;
 }
+
 .usermenu-btn:hover {
   border: 3px solid #006d56;
   padding: 2px;
@@ -191,7 +193,7 @@ img {
 }
 .send-btn:hover {
   background: #00765c;
-  border: 3px solid #00802d;
+  border: 2px solid #00802d;
 
 }
 

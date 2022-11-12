@@ -213,7 +213,9 @@
     <a ng-click="adBack('adVideo', 'adAnotherImages')">
       <i class="fa fa-arrow-circle-right fa-4x back-style" aria-hidden="true"></i>
     </a>
-
+    <div class="row">
+      <p class="font-18 blue margin padding bold">##word.please_put_link_from_youtube##</p>
+    </div>
     <div class="row">
       <i-control class="col4 input-style" label="##word.link##" ng-model="ad.$video.link"></i-control>
       <i-textarea class="col5 input-style" label="##word.video_description##" ng-model="ad.$video.desc"></i-textarea>
@@ -290,15 +292,27 @@
               ng-model="ad.expiry_date" label="##word.expiry_date##"></i-date2>
           </div>
         </div>
-        <div class="col3 center">
+      <!--   <div class="col3 center">
           <i-image help-id="ads_logo" label="##word.main_ad_image##" ng-model="ad.image_url"></i-image>
           <b class="font-18">##word.select## ##word.main_ad_image##</b>
-        </div>
+        </div> -->
       </div>
       <hr>
 
       <br>
+      <div class="row" ng-show="ad.address">
+        <p class="bold margin blue padding font-20">##word.ad_location##</p>
+        <p class=" margin padding font-18">
+          <b ng-show="ad.address.country.id">  {{ad.address.country.name_##session.lang##}} , </b>
+          <b ng-show="ad.address.gov.id">  {{ad.address.gov.name_##session.lang##}} , </b>
+          <b ng-show="ad.address.city.id">  {{ad.address.city.name_##session.lang##}} , </b>
+          <b ng-show="ad.address.area.id">  {{ad.address.area.name_##session.lang##}} , </b>
+          <a class="blue pointer underline-hover" ng-click="adBack('adContent', 'adAddressSelect')"> ##word.change_ad_location## </a>
+        </p>
+      </div>
+      <hr>
 
+      <br>
       <div class="row">
         <div class="col6">
 

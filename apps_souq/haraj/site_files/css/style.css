@@ -9,7 +9,13 @@
 svg#Layer_1 {
   width: 100% !important;
 }
+.user-side-header {
+  direction: ltr;
 
+}
+.side-header {
+  
+}
 .create-btn{
   position: fixed;
   bottom: 8%;
