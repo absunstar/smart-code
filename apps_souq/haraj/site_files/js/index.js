@@ -194,7 +194,7 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
   };
 
   $scope.displayContent = function (id) {
-    window.open(`/display_content?id=${id}`, '_blank');
+    window.open(`/display-content?id=${id}`, '_blank');
   };
 
   $scope.createContent = function () {

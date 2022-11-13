@@ -254,7 +254,7 @@ app.controller('display_store', function ($scope, $http, $timeout) {
   };
 
   $scope.displayContent = function (id) {
-    window.open(`/display_content?id=${id}`, '_blank');
+    window.open(`/display-content?id=${id}`, '_blank');
   };
 
   $scope.getReportsTypesList();

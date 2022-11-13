@@ -65,7 +65,10 @@
 <header ng-controller="sitebar">
   <div class="firstheader">
     <ul class="nav1">
-      <li><a href="/" class="nav-link underline-hover">##word.main##</a></li>
+      <li><a href="/" class="nav-link underline-hover">
+          <i class="fa-solid fa-house"></i>
+          ##word.main##</a>
+      </li>
       <li><a href="" ng-click="selectCategoryHeader(category_header_list[0].id)"
           class="nav-link underline-hover">{{category_header_list[0].name_##session.lang##}}</a></li>
       <li><a href="" ng-click="selectCategoryHeader(category_header_list[1].id)"
@@ -81,7 +84,7 @@
       <li><a href="" ng-click="selectCategoryHeader(category_header_list[6].id)"
           class="nav-link underline-hover">{{category_header_list[6].name_##session.lang##}}</a></li>
       <li><a href="/more_categories" class="nav-link underline-hover">
-          <img class="" src="/images/more_categories.svg" alt="" width="27px" height="27px" />
+          <i class="fa-solid fa-sitemap"></i>
           ##word.more_categories##
         </a></li>
     </ul>

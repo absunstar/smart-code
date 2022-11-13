@@ -20,12 +20,16 @@ module.exports = function init(site) {
   });
 
   site.onGET('/pages/:url', (req, res) => {
+    let exists = false
     site.page_implement_list.forEach(page => {
       if (page.url == req.params.url) {
+        exists = true
         res.render('page-implement/page.html', page);
       }
     })
-
+    if(!exists){
+      res.render('page-implement/page.html', {});
+    }
   })
 
   site.post('/api/page_implement/add', (req, res) => {

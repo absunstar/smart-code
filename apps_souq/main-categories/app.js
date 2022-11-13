@@ -318,24 +318,7 @@ module.exports = function init(site) {
             });
 
           }
-          if (req.body.more) {
-            let category_list = []
-            docs.forEach(_doc => {
-              if (!_doc.top_parent_id) {
-                _doc.list = []
-                category_list.push(_doc)
-              }
-            });
-            category_list.forEach(_c => {
-              docs.forEach(_doc => {
-                if(_doc.top_parent_id == _c.id) {
-                  _doc.level = 'level-' + (_doc.parent_list_id.length + 1)
-                  _c.list.push(_doc)
-                }
-              })
-            });
-            response.category_list = category_list
-          }
+
 
           response.count = count;
         } else {

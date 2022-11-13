@@ -35,10 +35,23 @@ module.exports = function init(site) {
     );
   });
 
+  site.ipList = [];
+
   site.post('/api/mailer/add', (req, res) => {
     let response = {
       done: false,
     };
+
+    if(site.ipList.find(info => info.ip == req.ip)){
+      response.error = 'Can NOt Reqister More One From Same IP'
+      res.json(response)
+      return
+    }
+
+    site.ipList.push({
+      ip : req.ip,
+      time : new Date().getTime()
+    })
 
     let mailer_doc = req.body;
     mailer_doc.$req = req;

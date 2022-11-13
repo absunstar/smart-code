@@ -226,18 +226,92 @@ p {
 }
 .level-1 {
   padding: 10px 20px;
+  background: white;
+  border-radius: 5px;
   border: 1px solid #bbb;
   display: inline-block;
-
+  min-width: 15%;
   vertical-align: top;
   margin: 10px;
 }
 .level-1 > p {
   font-weight: bold;
-  font-size: 22px;
-
+  color: #004f3e;
+  font-size: 23px;
+  text-align: center;
   cursor: pointer;
 }
 .level-1 > p:hover {
+  text-decoration: underline;
+}
+
+
+.level-2 {
+  background: white;
+  border-radius: 5px;
+  display: block;
+  vertical-align: top;
+}
+.level-2 > p {
+  font-weight: bold;
+  color: #007a60;
+  font-size: 20px;
+  cursor: pointer;
+}
+.level-2 > p:hover {
+  text-decoration: underline;
+}
+
+
+.level-3 {
+  background: white;
+  display: block;
+  padding: 0px 10px;
+  margin: 5px;
+  vertical-align: top;
+}
+.level-3 > p {
+  font-weight: bold;
+  color: rgb(0 33 161);
+  font-size: 18px;
+  cursor: pointer;
+}
+.level-3 > p:hover {
+  text-decoration: underline;
+}
+
+.level-4 {
+  background: white;
+  
+  display: block;
+  padding: 0px 10px;
+  margin: 10px;
+  vertical-align: top;
+}
+.level-4 > p {
+  font-weight: bold;
+  color: rgb(0 51 209);
+  font-size: 15px;
+  cursor: pointer;
+}
+.level-4 > p:hover {
+  text-decoration: underline;
+}
+
+.level-5 {
+  background: white;
+ 
+  display: block;
+  padding: 0px 10px;
+  margin: 10px;
+  vertical-align: top;
+}
+.level-5 > p {
+  font-weight: bold;
+  color: rgb(145, 0, 85);
+  font-size: 15px;
+  cursor: pointer;
+}
+.level-5 > p:hover {
   text-decoration: underline;
 }

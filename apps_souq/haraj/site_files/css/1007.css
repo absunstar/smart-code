@@ -198,8 +198,8 @@ img {
 }
 
 .category-selected {
-  background: #70e5ce;
-  border-radius: 13px;
+  background: #ecf9f6;
+  border-radius: 10px;
 }
 
 .input-style textarea:focus {

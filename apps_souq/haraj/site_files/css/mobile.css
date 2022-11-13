@@ -60,4 +60,7 @@
         transition: transform 0.5s ease-in-out;
         width: max-content;
     }
+    .level-1 {
+        width: 94%;
+    }
 }

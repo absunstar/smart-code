@@ -12,7 +12,6 @@ app.controller('more_categories', function ($scope, $http, $timeout) {
           status: 'active',
         },
         select: { id: 1, name_ar: 1, name_en: 1, top_parent_id: 1, parent_id: 1 ,parent_list_id : 1},
-        more : true
       },
     }).then(
       function (response) {
