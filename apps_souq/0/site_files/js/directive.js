@@ -196,7 +196,6 @@ app.directive('iFeedback', [
           site.hideModal('#reportCommentModal_' + $scope.id2);
         };
 
-
         $scope.getCommentsTypesList = function (where) {
           $scope.busy = true;
           $scope.commentsTypesList = [];
@@ -229,7 +228,7 @@ app.directive('iFeedback', [
             data: {
               where: { active: true },
               post: true,
-              select: { id: 1, name_ar: 1, name_en: 1 }
+              select: { id: 1, name_ar: 1, name_en: 1 },
             },
           }).then(
             function (response) {
@@ -731,7 +730,7 @@ app.directive('iTreeview2', [
 
         $scope.source = {};
 
-        $scope.setNodes = function (v_node) {
+        $scope.setNodes = function (v_node, level) {
           v_node.nodes.forEach((v_node2) => {
             v_node2.nodes = v_node2.nodes || [];
             $scope.nodes.forEach((node) => {
@@ -746,11 +745,12 @@ app.directive('iTreeview2', [
                   }
                 });
                 if (!exist) {
+                  node.level = 'level-' + level;
                   v_node2.nodes.push(node);
                 }
               }
             });
-            $scope.setNodes(v_node2);
+            $scope.setNodes(v_node2, level + 1);
           });
         };
 
@@ -778,6 +778,7 @@ app.directive('iTreeview2', [
                   }
                 });
                 if (!exist) {
+                  node.level = 'level-1';
                   $scope.v_nodes.push(node);
                 }
               }
@@ -799,38 +800,23 @@ app.directive('iTreeview2', [
                     }
                   });
                   if (!exist) {
+                    node.level = 'level-2';
                     v_node.nodes.push(node);
                   }
                 }
               });
 
-              $scope.setNodes(v_node);
+              $scope.setNodes(v_node, 3);
             });
           }
         });
       },
-      template: `
-        <div class="treeview">
-        <ul >
-            <li class="first-category" ng-dblclick="$event.preventDefault();$event.stopPropagation();source.$actions = !0" ng-mouseleave="source.$actions = !1">
-           
-            <i ng-hide="openTree" class="fa fa-folder"></i>  <i ng-show="openTree" class="fa fa-folder"></i> 
-           
-
-            <span ng-click="openTree = !openTree" class="title"> {{label}} <small class="display"> [ {{ngModel.v_display}} ] </small>  </span>
-                <div class="actions" ng-show="source.$actions === !0">
-                    <i-button type="add default" ng-click="ngClick($event , ngModel);ngNode($event , ngModel)"></i-button>
-                </div>
-                <i-treenode2 display="{{display}}" ng-click="ngClick($event)" ng-add="ngAdd()" ng-edit="ngEdit()" ng-delete="ngDelete()" ng-show="openTree" ng-model="ngModel" nodes="v_nodes" ></i-treenode>
-            </li>
-        </ul>
-        </div>
-        `,
+      template: `/*##0/i-categories-view.html*/`,
     };
   },
 ]);
 
-app.directive('iTreenode2', [
+app.directive('iCategoryView', [
   '$interval',
   '$timeout',
   'isite',
@@ -930,30 +916,7 @@ app.directive('iTreenode2', [
           node.$selected = !0;
         };
       },
-      template: `
-        <div class="treenode"> 
-        <ul >
-            <li  ng-repeat="node in nodes" >
-            <div class="row" ng-dblclick="$event.preventDefault();$event.stopPropagation();node.$actions = !0;source.$actions = !1" ng-mouseleave="node.$actions = !1">
-            <span ng-show="node.nodes.length > 0" ng-click="node.$expand = !node.$expand;">
-                    <i ng-hide="node.$expand" class="fa fa-caret-left"></i>  <i ng-show="node.$expand" class="fa fa-caret-down"></i> 
-            </span>
-            <span ng-hide="node.nodes.length > 0" >
-                    <i class="fa fa-file"></i>
-            </span>
-
-                <span class="text" ng-class="{'selected' : node.$selected == !0}" ng-click="ngClick($event , node);node.$expand = !node.$expand;selected(node);updateModal(node)"   > {{node[display]}} </span>
-                <div class="actions" ng-show="node.$actions === !0">
-                    <i-button type="add default" ng-click="ngAdd(node)"></i-button>
-                    <i-button type="edit default" ng-click="ngEdit(node)"></i-button>
-                    <i-button type="delete default" ng-click="ngDelete(node)"></i-button>
-                </div>
-            </div>   
-                <i-treenode2 display="{{display}}" ng-click="ngClick($event)" ng-add="ngAdd()" ng-edit="ngEdit()" ng-delete="ngDelete()" ng-show="node.$expand" ng-model="ngModel" nodes="node.nodes" nodes="node.nodes"></i-treenode2>
-            </li>
-        </ul>
-        </div>
-        `,
+      template: `/*##0/i-category-view.html*/`,
     };
   },
 ]);

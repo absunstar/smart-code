@@ -1,0 +1,4 @@
+<div class="category-view {{node.level}}"ng-repeat="node in nodes">
+  <p>{{node[display]}}</p>
+  <i-category-view display="{{display}}" ng-click="ngClick($event)" ng-model="ngModel" nodes="node.nodes" nodes="node.nodes"></i-category-view>
+</div>

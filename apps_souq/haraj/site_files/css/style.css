@@ -11,12 +11,10 @@ svg#Layer_1 {
 }
 .user-side-header {
   direction: ltr;
-
 }
 .side-header {
-  
 }
-.create-btn{
+.create-btn {
   position: fixed;
   bottom: 8%;
   left: 1%;
@@ -26,10 +24,10 @@ svg#Layer_1 {
   border-radius: 50px;
   z-index: 99999999;
   cursor: pointer;
-  transition: all .2s ease;
+  transition: all 0.2s ease;
   box-shadow: 1px 1px 10px 0px #000;
 }
-.create-btn:hover{
+.create-btn:hover {
   transform: scale(1.1);
 }
 .more-btn {
@@ -66,7 +64,7 @@ i-country img {
   border-radius: 0px;
   display: inline-block;
 }
-i-country span{
+i-country span {
   vertical-align: top;
   padding: 10px;
   font-size: 17px;
@@ -77,10 +75,8 @@ i-country span{
   width: 45px;
   border-radius: 50%;
   box-shadow: 1px 1px 5px 2px #fff;
-  margin: -5px 10px -5px 0px !important
-
+  margin: -5px 10px -5px 0px !important;
 }
-
 
 .border-radius5 {
   border-radius: 5px;
@@ -167,7 +163,7 @@ i-image img:hover {
 
 body {
   background-color: #ecf9f6;
-  
+
   /* background-image: url(/assets/palm.svg); */
   background-repeat: repeat;
 }
@@ -210,7 +206,7 @@ p {
 .red {
   color: red;
 }
-.adarea-link{
+.adarea-link {
   position: absolute;
   width: 100px;
   height: 100px;
@@ -225,6 +221,23 @@ p {
 .border-img img {
   border-radius: 5px !important;
 }
-.is-invalid{
+.is-invalid {
   border: 1px solid red;
+}
+.level-1 {
+  padding: 10px 20px;
+  border: 1px solid #bbb;
+  display: inline-block;
+
+  vertical-align: top;
+  margin: 10px;
+}
+.level-1 > p {
+  font-weight: bold;
+  font-size: 22px;
+
+  cursor: pointer;
+}
+.level-1 > p:hover {
+  text-decoration: underline;
 }

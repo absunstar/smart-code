@@ -223,6 +223,7 @@ img {
 
 
 @media screen and (max-width: 1007px) {
+
   .firstheader {
     display: none;
   }
