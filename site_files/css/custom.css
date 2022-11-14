@@ -502,11 +502,13 @@ a.pro-template .description {
   }
   .tabs .tabs-header .tab-link.active,
   .tabs .tabs-header .tab-link:hover {
-    background-color: #5369e0;
+    background-color: var(--theme-color);
     padding: 5px;
     margin: 1px;
   }
-
+  .tabs .tabs-content {
+    width: 100% !important;
+  }
   .tab-link span {
     padding: 1px;
   }

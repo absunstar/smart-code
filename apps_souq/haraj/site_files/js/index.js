@@ -1,4 +1,4 @@
-app.controller('index_souq', function ($scope, $http, $timeout) {
+app.controller('haraj', function ($scope, $http, $timeout) {
   $scope.search = { price_from: 0, price_to: 100000000 };
   $scope.getContentList = function (ev, where) {
     if ($scope.ContentBusy) {
@@ -8,7 +8,16 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
 
     if (ev.which === 13) {
       where = where || {};
+
       where['ad_status.id'] = 1;
+      if (where['category_id']) {
+
+        window.history.pushState(null, null, '/category/' + where['category_id'] + '/' + where['category_name_en'] + '-' + where['category_name_ar']);
+
+        delete where['category_name_ar'];
+        delete where['category_name_en'];
+
+      }
 
       if (where['country_code'] || where['gov_code']) {
         hsMap('hide');
@@ -63,6 +72,26 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
     }
   };
 
+  $scope.logout = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $http.post('/api/user/logout').then(
+      function (response) {
+        if (response.data.done) {
+          window.location.href = '/';
+        } else {
+          $scope.error = response.data.error;
+          $scope.busy = false;
+        }
+      },
+      function (error) {
+        $scope.busy = false;
+        $scope.error = error;
+      },
+    );
+  };
+
+  
   $scope.loadMore = function () {
     if (!window.autoLoadingPosts) {
       return;
@@ -331,7 +360,7 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
           $scope.topParentCategoriesList = response.data.top_list;
           $scope.category_list.forEach((_c) => {
             if (!_c.top_parent_id) {
-              if (site.toNumber('##query.id##') == _c.id) {
+              if (site.toNumber('##params.id##') == _c.id) {
                 $scope.loadSubCategory(_c);
               }
             }
@@ -356,7 +385,7 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
         if (el = document.querySelector('#cat_' + $scope.topParentCategoriesList[0].id)) {
           el.scrollIntoView()
         }
-      } else if (index +1 != $scope.topParentCategoriesList.length) {
+      } else if (index + 1 != $scope.topParentCategoriesList.length) {
         $scope.loadSubCategory($scope.topParentCategoriesList[index + 1])
         if (el = document.querySelector('#cat_' + $scope.topParentCategoriesList[index + 1].id)) {
           el.scrollIntoView();
@@ -388,6 +417,8 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
 
       $scope.error = '';
       $scope.search.category_id = c.id;
+      $scope.search.category_name_ar = c.name_ar;
+      $scope.search.category_name_en = c.name_en;
       $scope.searchAll($scope.search);
       $scope.subCategoriesList = [];
       $scope.subCategoriesList2 = [];
@@ -414,6 +445,8 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
   $scope.loadSubCategory2 = function (c) {
     $scope.error = '';
     $scope.search.category_id = c.id;
+    $scope.search.category_name_ar = c.name_ar;
+    $scope.search.category_name_en = c.name_en;
     $scope.searchAll($scope.search);
     $scope.subCategoriesList2 = [];
     $scope.subCategoriesList3 = [];
@@ -548,7 +581,7 @@ app.controller('index_souq', function ($scope, $http, $timeout) {
 
   $scope.loadMainCategories();
 
-  if ('##query.id##' == 'undefined') {
+  if ('##params.id##' == 'undefined') {
     $scope.getContentList({ which: 13 }, {});
   }
   $scope.getUser();

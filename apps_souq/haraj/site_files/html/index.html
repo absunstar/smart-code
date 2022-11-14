@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="/css/haraj.css" />
 </head>
 
-<body class="##session.lang##" ng-controller="index_souq">
+<body class="##session.lang##" ng-controller="haraj">
   <div class="map">
     <div class="movemab" x-import="haraj/map.html"></div>
   </div>
@@ -73,11 +73,12 @@
           <div class="FilterGroup__ContentWrapper-kok8t0-2 BJDme" id="xtags-filter">
             <div>
               <div class="row">
-                <i-checkbox label="##word.only_new##" ng-click="searchAll(search)" ng-model="search.new"></i-checkbox>
-                <i-checkbox class="col" label="##word.nearby_ads##" ng-click="searchAll(search)" ng-model="search.near">
+                <i-checkbox label="##word.only_new##" class="pointer" ng-click="searchAll(search)" ng-model="search.new"></i-checkbox>
+                <i-checkbox class="pointer" label="##word.nearby_ads##" ng-click="searchAll(search)" ng-model="search.near">
                 </i-checkbox>
-                <i-checkbox label="##word.only_with_photos##" ng-click="searchAll(search)"
+                <i-checkbox label="##word.only_with_photos##" class="pointer" ng-click="searchAll(search)"
                   ng-model="search.with_photos"></i-checkbox>
+                  <hr>
 
                 <div class="row">
                   <table>
@@ -97,8 +98,8 @@
                 </div>
 
                 <br />
+                <hr>
                 <h3>##word.price##</h3>
-                <br />
                 <div class="row">
                   <table>
                     <tr>
@@ -264,7 +265,7 @@
             <table style="width: 100%">
               <tr ng-repeat="a in contentList" class="">
                 <td>
-                  <div class="row">
+                  <div class="row margin">
                     <div class="col-9">
                       <a href="/display-content/{{a.id}}/{{a.name}}/{{a.store.name}}">
                         <p class="bold underline-hover ad-name pointer ellipsis-txt">{{a.name}}</p>

@@ -22,7 +22,7 @@
   {
     "name": "ads_new",
     "en": "New Ad",
-    "ar": "إعلان جديدة"
+    "ar": "إعلان جديد"
   },
   {
     "name": "ads_add",
@@ -32,7 +32,7 @@
   {
     "name": "ads_edit",
     "en": "Edit Ad",
-    "ar": "تعديل إعلان "
+    "ar": "تعديل الإعلان "
   },
   {
     "name": "ads_details",
@@ -42,7 +42,7 @@
   {
     "name": "ads_delete",
     "en": "Delete Ad",
-    "ar": "حذف إعلان "
+    "ar": "حذف الإعلان "
   },
   {
     "name": "ad_name",
@@ -179,7 +179,7 @@
   {
     "name": "hide_mobile_number",
     "en": "Hide mobile number",
-    "ar": "إخفاء رقم الجوال"
+    "ar": "إخفاء رقم الموبايل"
   },
   {
     "name": "mobile_number_or_contact_method",

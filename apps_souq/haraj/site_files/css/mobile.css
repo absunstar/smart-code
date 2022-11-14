@@ -36,9 +36,16 @@
         border-radius: unset;
         height: 75px !important;
     }
+
+    nav .info {
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+    }
+
     .move-category-margin {
         margin-left: -10px;
     }
+
     .usermenu-btn {
         border: 1px solid #006d56;
         padding: 4px;
@@ -47,12 +54,15 @@
         display: block;
         max-width: 90%;
     }
+
     .ad-name {
         font-size: 15px !important;
     }
+
     .margin-left-move {
         margin-left: 3px !important;
     }
+
     .open-menu {
         display: block;
         position: relative;
@@ -60,6 +70,7 @@
         transition: transform 0.5s ease-in-out;
         width: max-content;
     }
+
     .level-1 {
         width: 94%;
     }

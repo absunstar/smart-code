@@ -1,4 +1,4 @@
-app.controller('index_souq', function ($scope, $http, $timeout) {
+app.controller('haraj', function ($scope, $http, $timeout) {
   $scope._search = {};
   $scope.search = {};
   $scope.getAdsList = function (ev, where) {

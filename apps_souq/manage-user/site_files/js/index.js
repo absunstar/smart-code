@@ -55,7 +55,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
                 });
               }
             },
-            function (err) {}
+            function (err) { }
           );
         } else {
           $scope.manage_user = {};
@@ -208,16 +208,16 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
     } else if (selector == '#my_ads') {
       $scope.getMyAdsList();
       $scope.loadMainCategories();
-      $scope.getUnitsList();
       $scope.getStoresList($scope.manage_user.id);
-      $scope.getCurrenciesList();
-    } else if (selector == '#favorite_ads') {
-      $scope.getFavoriteAdsList();
     } else if (selector == '#favorite_stores') {
       $scope.getFavoriteStoresList();
     } else if (selector == '#my_stores') {
       $scope.getMyStoresList();
     }
+  };
+
+  $scope.editContent = function (id) {
+    window.location.href = `/create_content?id=${id}`;
   };
 
   $scope.displayContent = function (id) {
@@ -226,6 +226,15 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
 
   $scope.displayStore = function (id) {
     window.open(`/display_store?id=${id}`, '_blank');
+  };
+
+  $scope.addMobileList = function () {
+    $scope.manage_user.mobile_list = $scope.manage_user.mobile_list || [];
+    if ($scope.manage_user.$mobile) {
+
+      $scope.manage_user.mobile_list.push($scope.manage_user.$mobile)
+    }
+    $scope.manage_user.$mobile = '';
   };
 
   $scope.getMyAdsList = function (where) {
@@ -242,6 +251,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
             },
           ],
         },
+        post: true,
       },
     }).then(
       function (response) {
@@ -286,40 +296,6 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getFavoriteAdsList = function (where) {
-    $scope.busy = true;
-    $scope.favoriteAdslist = [];
-    $http({
-      method: 'POST',
-      url: '/api/contents/all',
-      data: {
-        where: {
-          $and: [
-            {
-              'feedback_list.user.id': $scope.manage_user.id,
-            },
-            {
-              'feedback_list.type.id': 2,
-            },
-            {
-              'ad_status.id': { $ne: 3 },
-            },
-          ],
-        },
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.favoriteAdslist = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
 
   $scope.getFavoriteStoresList = function (where) {
     $scope.busy = true;
@@ -588,7 +564,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
     );
   };
   $scope.displayAddAd = function () {
-    window.open(`/create_content`,'_top');
+    window.open(`/create_content`, '_top');
   };
   /*  $scope.displayAddAd = function () {
     $scope.error = '';
@@ -871,52 +847,6 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
     $scope.ad.images_list.push({});
   };
 
-  $scope.getUnitsList = function () {
-    $scope.busy = true;
-    $scope.unitsList = [];
-    $http({
-      method: 'POST',
-      url: '/api/units/all',
-      data: {
-        where: { active: true },
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.unitsList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
-  $scope.getCurrenciesList = function () {
-    $scope.busy = true;
-    $scope.currenciesList = [];
-    $http({
-      method: 'POST',
-      url: '/api/currency/all',
-      data: {
-        where: { active: true },
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.currenciesList = response.data.list;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
   $scope.getStoresList = function (id) {
     $scope.busy = true;
     $scope.storesList = [];
@@ -957,7 +887,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
           $scope.error = response.data.error;
         }
       },
-      function (err) {}
+      function (err) { }
     );
   };
 

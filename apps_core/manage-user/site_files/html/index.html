@@ -11,14 +11,14 @@
     <h1 class="center bold black">##word.manage_your_personal_account##</h1>
     <br />
     <div class="form" id="manage_user">
-      <div class="all-section tabs inline-block user-tabs">
+      <div class="all-section tabs user-tabs">
         <div class="tabs-header">
           <a class="tab-link active" onclick="site.showTabContent(event, '#personal_info')"> ##word.personal_info## </a>
           <a class="tab-link" onclick="site.showTabContent(event,'#my_addresses')">##word.my_addresses##</a>
           <a class="tab-link" onclick="site.showTabContent(event,'#companies_branches')"> ##word.companies_branches## </a>
         </div>
         <div class="tabs-content">
-          <div id="personal_info" class="tab-content" style="display: inline-block">
+          <div id="personal_info" class="tab-content" s>
             <fieldset>
               <legend>##word.basic_info##</legend>
               <div class="row">
@@ -122,7 +122,7 @@
                       <br />
                       <a href="tel:{{manage_user.mobile}}">
                         {{manage_user.mobile}}
-                        <i class="fa fa-mobile"></i>
+                        <i class="fa-solid fa-mobile-screen-button"></i>
                       </a>
                     </td>
 

@@ -31,17 +31,20 @@
             </div>
           </div>
 
-       
+
 
           <div class="row" ng-show="ad.set_price == 'yes'" ng-repeat="q in ad.quantity_list">
-            <b class="col4 price">
-              <small>{{q.unit.name_##session.lang##}} {{q.net_value}} {{q.currency.name_##session.lang##}}</small>
-              <small ng-show="q.discount > 0" class="line-through red">{{q.price}}
-                {{q.currency.name_##session.lang##}}</small>
-              <small class="save-money" ng-show="q.discount > 0"> ##word.save_money## {{q.discount}} <span
+            <p class="col4 price">
+              ##word.price## <span class="green"> {{q.net_value}} </span> {{q.currency.name_##session.lang##}}
+
+              <span ng-show="q.discount > 0" class="line-through red">{{q.price}}
+                {{q.currency.name_##session.lang##}}</span>
+              <span ng-show="q.unit.id"> / {{q.unit.name_##session.lang##}} </span>
+
+              <span class="save-money" ng-show="q.discount > 0"> ##word.save_money## {{q.discount}} <span
                   ng-show="q.discount_type == 'percent'"> % </span> <span ng-show="q.discount_type == 'number'"> $
-                </span> </small>
-            </b>
+                </span> </span>
+            </p>
           </div>
         </div>
 
@@ -112,9 +115,9 @@
             class="fa fa-heart red"></i> ##word.favorite## </button>
         <button class="center"><i class="fa fa-share-alt" aria-hidden="true"> </i> ##word.share## </button>
         <button class="center" ng-click="showMessage(ad.store.user)"><i class="fa fa-envelope"></i>
-           ##word.message## </button>
+          ##word.message## </button>
         <button class="center" onclick="site.showModal('#reportModal')"><i class="fa fa-flag"></i>
-           ##word.report## </button>
+          ##word.report## </button>
       </div>
     </div>
 
@@ -123,7 +126,7 @@
         {{ad.$number_favorites || 0}}</b>
       <b class="col3 center post-statistics"> <i class="fa fa-eye" aria-hidden="true"></i> ##word.number_views##
         {{ad.number_views || 0}}</b>
-      <b class="col3 center post-statistics"> <i class="fa fa-comment" aria-hidden="true"></i> ##word.number_comments##
+      <b class="col3 center post-statistics"> <i class="fa-solid fa-comments"></i> ##word.number_comments##
         {{ad.number_comments || 0}}</b>
     </div>
 
@@ -156,7 +159,7 @@
         </a>
         <i-button fa="envelope" x-permissions="login" type="default" ng-hide="ad.store.user.id == c.user.id"
           ng-click="showMessage(c.user)"></i-button>
-        <span class="left comment-count">  {{$index + 1}} <span ng-show="10 > $index + 1">0</span></span>
+        <span class="left comment-count"> {{$index + 1}} <span ng-show="10 > $index + 1">0</span></span>
         <div class="time-publish margin padding">
           <i class="fa-solid fa-clock"> {{c.$time}} </i>
         </div>
@@ -192,9 +195,10 @@
           <b ng-show="ad.address.area.id" class="pointer border address-ad" ng-click="getContentList(ad,'area')">
             {{ad.address.area.name_##session.lang##}} </b>
         </div>
-         <div>
-          <p ng-show="contentList.length < 1" class="center font-18 bold red padding margin">##word.there_are_no_related_ads##</p>
-         </div>
+        <div>
+          <p ng-show="contentList.length < 1" class="center font-18 bold red padding margin">
+            ##word.there_are_no_related_ads##</p>
+        </div>
         <div class="row item-list">
           <a class="item col-4 pointer" ng-repeat="i in contentList"
             href="/display-content/{{i.id}}/{{i.name}}/{{i.store.name}}">

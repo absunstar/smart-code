@@ -1,36 +1,52 @@
 <!DOCTYPE html>
 
 <html lang="en" data-ng-app="myApp" class="bg-white" x-permissions="default_setting_ui || default_setting_manage">
-  <head x-import="haraj/head.html"></head>
 
-  <body style="background: white" class="##session.lang##" ng-controller="default_setting">
-    <nav x-import="haraj/sitebar.html" class="sitebar" data-ng-controller="sitebar"></nav>
+<head x-import="haraj/head.html">
+  <style>
+    .tabs .tabs-header .tab-link.active {
+      border-radius: 5px;
 
-    <nav class="sitebottom" x-import="haraj/sitebottom.html" ng-controller="sitebottom"></nav>
-    <div id="main-layout" class="container">
-      <div class="row">
-        <br />
-        <h1 class="center bold black">##word.default_settings##</h1>
-        <br />
+    }
+.inline-block {
 
-        <div x-permissions="default_setting_view || default_setting_manage" x-import="default-setting/content.html"></div>
-        <br />
-        <br />
-        <br />
+  display: inline-block !important;
+}
 
-        <i-button type="save" label="##word.save##" x-permissions="default_setting_edit || default_setting_manage" ng-click="saveSetting()"></i-button>
+
+  </style>
+</head>
+
+<body style="background: white" class="##session.lang##" ng-controller="default_setting">
+  <nav x-import="haraj/sitebar.html" class="sitebar" data-ng-controller="sitebar"></nav>
+
+  <nav class="sitebottom" x-import="haraj/sitebottom.html" ng-controller="sitebottom"></nav>
+  <div id="main-layout" class="container">
+    <div class="row">
+      <br />
+      <h1 class="center bold black">##word.default_settings##</h1>
+      <br />
+
+      <div x-permissions="default_setting_view || default_setting_manage" x-import="default-setting/content.html"></div>
+      <br />
+      <br />
+      <br />
+
+      <i-button type="save" label="##word.save##" x-permissions="default_setting_edit || default_setting_manage"
+        ng-click="saveSetting()"></i-button>
+    </div>
+  </div>
+
+  <div id="alert" class="modal alert small">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h1 class="blue center">##word.settings_saved##</h1>
       </div>
     </div>
+  </div>
 
-    <div id="alert" class="modal alert small">
-      <div class="modal-content">
-        <div class="modal-body">
-          <h1 class="blue center">##word.settings_saved##</h1>
-        </div>
-      </div>
-    </div>
+  <div x-import="haraj/scripts.html"></div>
+  <script x-import="default-setting/index.js"></script>
+</body>
 
-    <div x-import="haraj/scripts.html"></div>
-    <script x-import="default-setting/index.js"></script>
-  </body>
 </html>

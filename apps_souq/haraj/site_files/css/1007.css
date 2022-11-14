@@ -1,4 +1,79 @@
+div.scrollmenu {
+  background-color: #00a884;
+  overflow: auto;
+  direction: rtl;
+  white-space: nowrap;
+}
 
+div.scrollmenu a {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 7px;
+  text-decoration: none;
+}
+.tabs .tabs-content {
+  width: 100% !important;
+}
+div.scrollmenu a:hover {
+  background-color: #026a54;
+  text-decoration: underline;
+}
+.inline-block {
+
+  display: inline-block !important;
+}
+.tabs .tabs-header .tab-link.active {
+  border-radius: 5px !important;
+}
+::-webkit-scrollbar {
+  height: 7px !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #00624d !important ;
+}
+.page-nav {
+  direction: ltr;
+  margin: 20px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+.page-nav a {
+  background: #ffffff;
+  color: #272727 !important;
+  font-size: 20px;
+  font-weight: bold;
+  width: 200px !important;
+  margin-right: 20px;
+  transition: all 0.2s ease;
+  border-radius: 15px;
+  padding: 5px;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid #dee2e6;
+}
+.page-nav a:hover {
+  transform: scale(1.1);
+}
+.page-footer {
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  left: 0px;
+  width: 100%;
+  background: #272727;
+  min-height: 50px;
+  padding: 5px;
+  color: #fff;
+}
+.page-footer a {
+  color: #fff !important;
+  background: #0d6efd;
+  padding: 7px 9px;
+  border-radius: 5px;
+}
 .userad-logo {
   border-radius: 50%;
   height: 25px;
@@ -809,12 +884,12 @@ img {
     flex-direction: row-reverse;
   }
 
-  .green {
+/*   .green {
     direction: rtl;
     display: block;
     padding-top: 15px;
     padding-right: 15px;
-  }
+  } */
 
   fieldset {
     margin: 15px 15px 15px 15px;

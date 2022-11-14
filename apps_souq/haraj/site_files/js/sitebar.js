@@ -91,7 +91,6 @@ app.controller('sitebar', ($scope, $http) => {
   $scope.logout = function () {
     $scope.error = '';
     $scope.busy = true;
-
     $http.post('/api/user/logout').then(
       function (response) {
         if (response.data.done) {

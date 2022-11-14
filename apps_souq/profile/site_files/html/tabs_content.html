@@ -13,7 +13,7 @@
         <table style="width: 100%">
           <tr ng-repeat="a in contentList" class="">
             <td>
-              <div class="row">
+              <div class="row margin">
                 <div class="col-9">
                   <a href="/display-content/{{a.id}}/{{a.name}}/{{a.store.name}}">
                     <p class="underline-hover bold ad-name pointer ellipsis-txt">{{a.name}}</p>
@@ -83,9 +83,9 @@
         <h1 class="blue bold center">##word.there_no_ratings##</h1>
       </div>
       <div class="row">
-        <div class="col3">
+        <div class="col3 padding margin">
 
-          <a class="pointer padding margin" onclick="$('#user_contents').show();$('#ratings').hide()">
+          <a class="pointer" onclick="$('#user_contents').show();$('#ratings').hide()">
             <i class="fa fa-arrow-circle-right darkgray fa-3x back-style" aria-hidden="true">
               ##word.contents##
             </i>

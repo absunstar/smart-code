@@ -437,10 +437,11 @@
         <br />
       </div>
       <br>
-      <i-button fa="battery-full" class="btn-ad" label="##word.publishing## ##word.ad## " ng-click="addAd()">
+      <i-button fa="battery-full" class="btn-ad" ng-show="'##query.id##' == 'undefined'" label="##word.publishing## ##word.ad## " ng-click="addAd()">
       </i-button>
 
-
+      <i-button fa="pen-to-square" class="btn-ad bg-edit" ng-show="'##query.id##' != 'undefined'" label="##word.ads_edit##" ng-click="updateAd(ad)">
+      </i-button>
 
     </div>
 

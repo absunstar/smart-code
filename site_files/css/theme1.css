@@ -9,7 +9,7 @@
 .tabs .tabs-content .tab-content {
   display: none;
   padding: 6px 12px;
-  width: 100%;
+  width: 100% !important;
   -webkit-animation-name: var(--tab-animation-name);
   -webkit-animation-duration: var(--tab-animation-duration);
   animation-name: var(--tab-animation-name);
@@ -197,12 +197,12 @@ fieldset > legend + * {
 }
 
 .tabs .tabs-header .tab-link.active {
-  background-color: #5369e0;
+  background-color: var(--theme-color);
   padding-right: 30px;
 }
 
 .tabs .tabs-header .tab-link:hover {
-  background-color: #5369e0;
+  background-color: var(--theme-color);
   padding-right: 30px;
 }
 

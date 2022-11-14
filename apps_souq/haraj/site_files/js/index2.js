@@ -130,14 +130,19 @@ if (sideheader) {
 
   let notifname6 = document.getElementById('notif6');
 
-  sideheader.addEventListener('mouseenter', () => {
-    notifname6.classList.add('show-notif-name');
-    notifname6.classList.remove('notif-name');
-  });
-  sideheader.addEventListener('mouseleave', () => {
-    notifname6.classList.remove('show-notif-name');
-    notifname6.classList.add('notif-name');
-  });
+  if (notifname6) {
+    sideheader.addEventListener('mouseenter', () => {
+
+      notifname6.classList.add('show-notif-name');
+      notifname6.classList.remove('notif-name');
+
+    });
+    sideheader.addEventListener('mouseleave', () => {
+
+      notifname6.classList.remove('show-notif-name');
+      notifname6.classList.add('notif-name');
+    });
+  }
 }
 
 let notifname5 = document.getElementById('notif5');

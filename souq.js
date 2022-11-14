@@ -35,7 +35,7 @@ site.get({
 
 site.get(
   {
-    name: '/',
+    name: ['/','/category/:id'],
   },
   (req, res) => {
     if (site.setting.user_design.id == 1) {

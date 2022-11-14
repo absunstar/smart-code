@@ -146,6 +146,8 @@ module.exports = function init(site) {
             _user.profile = req.body.user.profile;
           } else if (type === 'mobile'){
             _user.mobile = req.body.user.mobile;
+            _user.hide_mobile = req.body.user.hide_mobile;
+            _user.mobile_list = req.body.user.mobile_list;
 
           }
 

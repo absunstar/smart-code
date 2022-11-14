@@ -18,6 +18,7 @@ module.exports = function init(site) {
     compress: !0,
     path: [
       'client-side/layout.css',
+      'client-side/checkbox.css',
       'client-side/effect.css',
       'client-side/font-cairo.css',
       __dirname + '/site_files/css/font6.css',

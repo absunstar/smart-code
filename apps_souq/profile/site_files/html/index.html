@@ -18,7 +18,13 @@
       -ms-user-select: none;
       user-select: none;
     }
-
+    i-radio .selector.selected {
+      width: 83%;
+      margin-right: 20px;
+    }
+    i-radio .selector.un-selected {
+      width: 90%;
+    }
     .radius13 {
       border-radius: 13px;
     }
@@ -36,6 +42,7 @@
       font-size: 22px;
       color: #929aaa;
       padding: 10px;
+      margin-bottom: 5px !important;
       background-color: #ddd;
       border-radius: 10px;
     }
@@ -141,7 +148,7 @@
     .about-me {
     white-space: pre-wrap;
     font-size: 18px;
-    color: #535353;
+    color: #676565;
 }
     .table th {
       border-radius: 10px;
@@ -172,15 +179,6 @@
       background-image: url(/assets/palm.svg) !important; */
       background-color: #ecf9f6;
       background-repeat: repeat !important;
-    }
-
-    .tabs .tabs-header .tab-link.active {
-      border-radius: 5px;
-
-    }
-
-    .tabs .tabs-header .tab-link {
-      border-radius: 5px;
     }
 
     .user-background {
@@ -321,7 +319,7 @@
       </div>
       <div class="row center">
 
-        <i-button fa="phone" label="##word.communication##" ng-show="!user.$same_email" ng-click="showCommunication()">
+        <i-button fa="phone" label="##word.communication##" ng-show="!user.$same_email && !user.hide_mobile" ng-click="showCommunication()">
         </i-button>
         <i-button fa="sliders" label="##word.manage_your_personal_account##" ng-show="user.$same_email"
           ng-click="displayManagePersonalAccount()"> </i-button>

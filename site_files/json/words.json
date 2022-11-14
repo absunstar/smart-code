@@ -1069,6 +1069,7 @@
     "en": "Price",
     "ar": "السعر"
   },
+  
   {
     "name": "sessions",
     "en": "Sessions",
@@ -1737,6 +1738,16 @@
     "en": "User Updated",
     "ar": "معلومات التعديل"
   },
+  {
+    "name": "go_back",
+    "en": "Back",
+    "ar": "الصفحة السابقة"
+},
+{
+    "name": "go_forward",
+    "en": "Forward",
+    "ar": "الصفحة التالية"
+},
   {
     "name": "phone",
     "en": "Phone Number",

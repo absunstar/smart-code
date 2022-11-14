@@ -15,6 +15,26 @@
     "ar": "مراسلة"
   },
   {
+    "name": "other_mobile_numbers",
+    "en": "Other mobile numbers",
+    "ar": "أرقام جوالات أخرى"
+  },
+  {
+    "name": "hide_mobile_number",
+    "en": "Hide mobile number",
+    "ar": "إخفاء رقم الجوال"
+  },
+  {
+    "name": "add_new_mobile_number",
+    "en": "Add new mobile number",
+    "ar": "إضافة رقم جوال جديد"
+  },
+  {
+    "name": "delete_mobile_number",
+    "en": "delete mobile number",
+    "ar": "حذف رقم الجوال"
+  },
+  {
     "name": "length_of_mobile_number",
     "en": "length of mobile number",
     "ar": "طول رقم الجوال"

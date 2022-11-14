@@ -20,6 +20,19 @@
       background: #00a884;
     }
 
+    .btn-ad .btn {
+      padding: 11px 11px;
+      border-radius: 13px;
+      color: ivory;
+      font-size: 20px;
+      background: #00a884;
+    }
+
+    .bg-edit .btn {
+ 
+    background: #9e9e00 !important;
+}
+
     .files {
       border-radius: 13px;
       border: solid;
@@ -177,7 +190,15 @@
   <script>
     $('fieldset').hide();
     site.onLoad(() => {
-      $('#adDeal').show('slow');
+      if ('##query.id##' == 'undefined'){
+
+        $('#adDeal').show('slow');
+
+      } else {
+
+        $('#adContent').show('slow');
+
+      }
     });
   </script>
 </body>

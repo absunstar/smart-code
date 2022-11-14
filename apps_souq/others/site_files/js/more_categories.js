@@ -26,5 +26,8 @@ app.controller('more_categories', function ($scope, $http, $timeout) {
       }
     );
   };
+  $scope.displayCategory = function (category) {
+    console.log(category);
+  };
   $scope.loadMainCategories();
 });

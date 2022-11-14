@@ -135,7 +135,7 @@ app.controller('create_content', function ($scope, $http, $timeout) {
       } else if ($scope.defaultSettings.content.new_address_appear) {
         $('#adAddressType').show('slow');
       } else {
-        $scope.showAddress(ad,'main');
+        $scope.showAddress(ad, 'main');
       }
     }
   };
@@ -160,6 +160,9 @@ app.controller('create_content', function ($scope, $http, $timeout) {
         if (response.data.done) {
           $scope.category_list = response.data.list;
           $scope.top_category_list = response.data.top_list;
+          if ('##query.id##' != 'undefined') {
+            $scope.displayAd();
+          }
         }
       },
       function (err) {
@@ -279,8 +282,8 @@ app.controller('create_content', function ($scope, $http, $timeout) {
 
   $scope.doneSelectMainImage = function () {
     $scope.error = '';
-      $('#adMainImage').hide();
-      $('#adAnotherImages').show('slow');
+    $('#adMainImage').hide();
+    $('#adAnotherImages').show('slow');
 
   };
 
@@ -302,7 +305,7 @@ app.controller('create_content', function ($scope, $http, $timeout) {
     $('#adContent').show('slow');
     console.log($scope.ad.address);
     console.log($scope.ad.$address_type);
-   
+
   };
 
   $scope.upDownList = function (list, type, index) {
@@ -399,11 +402,11 @@ app.controller('create_content', function ($scope, $http, $timeout) {
 
   $scope.continuationToSelectAddress = function () {
     $('#adCategoryRequire').hide();
-    if($scope.defaultSettings.content.new_address_appear) {
+    if ($scope.defaultSettings.content.new_address_appear) {
 
       $('#adAddressType').show('slow');
     } else {
-      $scope.showAddress($scope.ad,'main');
+      $scope.showAddress($scope.ad, 'main');
 
     }
   };
@@ -500,6 +503,44 @@ app.controller('create_content', function ($scope, $http, $timeout) {
     }
   };
 
+  $scope.displayAd = function () {
+    $scope.busy = true;
+    $scope.error = '';
+    $http({
+      method: 'POST',
+      url: '/api/contents/view',
+      data: {
+        id: site.toNumber('##query.id##'),
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.ad = response.data.doc;
+          if (!$scope.ad.main_category.parent_list_id || $scope.ad.main_category.parent_list_id && $scope.ad.main_category.parent_list_id.length < 1) {
+            $scope.ad.$category1 = $scope.ad.main_category;
+          } else {
+            let category_str = '$category';
+            let subCategories = 'subCategoriesList';
+            $scope.ad.main_category.parent_list_id.forEach((_m, i) => {
+              $scope.ad[category_str + (i + 1)] = $scope.category_list.find(_c => { return _c.id == _m });
+              $scope[subCategories + (i + 2)] = $scope.category_list.filter(_c => { return _c.parent_id == _m })
+            });
+            $scope.ad[category_str + ($scope.ad.main_category.parent_list_id.length + 1)] = $scope.ad.main_category;
+            $scope[subCategories + ($scope.ad.main_category.parent_list_id.length + 2)] = $scope.category_list.filter(_c => { return _c.parent_id == $scope.ad.main_category })
+
+          }
+        } else {
+          $scope.error = response.data.error;
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    );
+  };
+
+
   $scope.getDefaultSetting = function () {
     $scope.busy = true;
     $http({
@@ -511,7 +552,10 @@ app.controller('create_content', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.doc) {
           $scope.defaultSettings = response.data.doc;
-          $scope.displayAddAd();
+          if ('##query.id##' == 'undefined') {
+
+            $scope.displayAddAd();
+          }
           if (!$scope.defaultSettings.stores_settings.activate_stores) {
             $scope.getUser();
           }
@@ -524,10 +568,36 @@ app.controller('create_content', function ($scope, $http, $timeout) {
     );
   };
 
+
+  $scope.updateAd = function (ad) {
+    $scope.error = '';
+    $scope.busy = true;
+    ad.ad_status = $scope.defaultSettings.content.status;
+    $http({
+      method: 'POST',
+      url: '/api/contents/update',
+      data: ad,
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          window.location.href = `/manage_user`;
+        } else {
+          $scope.error = 'Please Login First';
+
+        }
+      },
+      function (err) {
+        console.log(err);
+      }
+    );
+  };
+
   $scope.getUnitsList();
   $scope.getCurrenciesList();
   $scope.loadMainCategories();
   $scope.getAdsStatusList();
   $scope.getMyStoresList();
   $scope.getDefaultSetting();
+
 });

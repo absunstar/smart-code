@@ -16,6 +16,11 @@
         "ar": "تقييم"
     },
     {
+        "name": "contact_number",
+        "en": "Contact number",
+        "ar": "رقم التواصل"
+    },
+    {
         "name": "please_complete_rating_correctly",
         "en": "Please complete the rating correctly",
         "ar": "الرجاء إكمال التقييم بشكل صحيح"

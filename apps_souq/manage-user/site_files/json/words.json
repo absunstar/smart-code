@@ -65,6 +65,26 @@
         "ar": "إعلاناتي"
     },
     {
+        "name": "my_ads",
+        "en": "My Ads",
+        "ar": "إعلاناتي"
+    },
+    {
+        "name": "other_mobile_numbers",
+        "en": "Other mobile numbers",
+        "ar": "أرقام موبايلات أخرى"
+    },
+    {
+        "name": "add_new_mobile_number",
+        "en": "Add new mobile number",
+        "ar": "إضافة رقم موبايل جديد"
+    },
+    {
+        "name": "delete_mobile_number",
+        "en": "delete mobile number",
+        "ar": "حذف رقم الموبايل"
+    },
+    {
         "name": "my_stores",
         "en": "My Stores",
         "ar": "متاجري"
