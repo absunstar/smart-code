@@ -1,5 +1,5 @@
 div.scrollmenu {
-  background-color: #00a884;
+  background-color: #009688;
   overflow: auto;
   direction: rtl;
   white-space: nowrap;
@@ -231,7 +231,7 @@ img {
 
 .input-style textarea {
   color: black;
-  border: solid 1px #00a884;
+  border: solid 1px #009688;
   border-radius: 10px !important;
 }
 
@@ -290,7 +290,7 @@ img {
 
 .input-style input {
   color: black;
-  border: solid 1px #00a884;
+  border: solid 1px #009688;
   border-radius: 10px !important;
 }
 
@@ -1588,7 +1588,7 @@ img {
   }
 
   .map svg path {
-    fill: #00a884 !important;
+    fill: #009688 !important;
     stroke: #ffffff !important;
     stroke-width: 0.25 !important;
   }
@@ -1999,7 +1999,7 @@ img {
     padding: 0 15px;
     padding: 0 10px;
     background-color: white;
-    border: solid 1px #00a884;
+    border: solid 1px #009688;
     margin: 4px !important;
     height: auto;
     border-radius: 5px;
@@ -2010,7 +2010,7 @@ img {
     font-size: 1rem;
     white-space: nowrap;
     color: white;
-    border: solid 1px #00a884;
+    border: solid 1px #009688;
     background-color: var(--theme-color);
     margin: 4px !important;
     height: auto;
@@ -2022,7 +2022,7 @@ img {
     font-size: 1rem;
     white-space: nowrap;
     color: white;
-    border: solid 1px #00a884;
+    border: solid 1px #009688;
     background-color: var(--theme-color);
     margin: 4px !important;
     height: auto;

@@ -132,7 +132,7 @@
 .post-statistics {
   border-radius: 13px;
   
-  border-color: #00a884 !important;
+  border-color: #009688 !important;
   background: #e6e6e6;
   padding: 15px;
   max-width: 95%;
@@ -200,7 +200,7 @@
   margin: 0;
   padding: 0;
   font-family: var(--font-family);
-  --theme-color: #00a884;
+  --theme-color: #009688;
   --theme-color2: #019777;
   --font-color-theme: #fff;
   --font-family: 'Arabic', sans-serif;

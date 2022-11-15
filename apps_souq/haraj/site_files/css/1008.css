@@ -762,7 +762,7 @@
     grid-template-columns: 100%;
     height: auto;
     direction: ltr;
-    background: #006d56;
+    background: #009688;
   }
 
   .side-header {
@@ -915,7 +915,7 @@
     white-space: nowrap;
     color: var(--theme-color);
     padding: 0 10px;
-    border: solid 1px #00a884;
+    border: solid 1px #009688;
     margin: 4px !important;
     height: 40px;
     border-radius: 5px;
@@ -928,7 +928,7 @@
     font-size: 1rem;
     white-space: nowrap;
     color: white;
-    border: solid 1px #00a884;
+    border: solid 1px #009688;
     background-color: var(--theme-color);
     margin: 4px !important;
     height: 40px;
@@ -940,7 +940,7 @@
     font-size: 1rem;
     white-space: nowrap;
     color: white;
-    border: solid 1px #00a884;
+    border: solid 1px #009688;
     background-color: var(--theme-color);
     margin: 4px !important;
     height: 40px;
@@ -1700,7 +1700,7 @@
   }
 
   .map svg path {
-    fill: #00a884 !important;
+    fill: #009688 !important;
     stroke: #ffffff !important;
     stroke-width: 0.25 !important;
   }

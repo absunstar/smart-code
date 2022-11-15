@@ -2,7 +2,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  --theme-color: #00a884;
+  --theme-color: #009688;
   --theme-color2: #019777;
   --font-family: 'Arabic', sans-serif;
 }
@@ -18,7 +18,7 @@ svg#Layer_1 {
   position: fixed;
   bottom: 8%;
   right: -15px;
-  background: #00a884;
+  background: #009688;
   color: #fff !important;
   padding: 10px 20px;
   z-index: 99999999;
@@ -124,7 +124,7 @@ img {
 }
 
 :root {
-  --theme-color: #00a884 !important;
+  --theme-color: #009688 !important;
   --theme-color2: #019777 !important;
   --font-family: 'Arabic', sans-serif;
 }

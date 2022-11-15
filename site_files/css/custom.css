@@ -543,7 +543,7 @@ a.pro-template .description {
  
 /* Handle */
 ._scroll::-webkit-scrollbar-thumb {
-  background: #00A884; 
+  background: #009688; 
   border-radius: 10px;
 }
 
