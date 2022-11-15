@@ -1,77 +1,77 @@
 @media screen and (max-width: 480px) {
+  ._scroll100 {
+    max-height: none !important;
+  }
 
-    ._scroll100 {
-        max-height: none !important;
-    }
+  .add-button {
+    width: auto;
+  }
+  .footer {
+    margin-bottom: 50px;
+  }
+  .secondeheader {
+    background-color: #f1f1f1;
+    height: auto;
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+    direction: rtl;
+  }
 
-    .add-button {
-        width: auto;
+  .logo img {
+    width: 32px;
+    height: 32px;
+  }
 
-    }
+  .scroll-headmsg {
+    max-width: 90vw !important;
+  }
 
-    .secondeheader {
-        background-color: #f1f1f1;
-        height: auto;
-        display: grid;
-        grid-template-columns: 20% 60% 20%;
-        direction: rtl;
-    }
+  .ad-name {
+    display: block !important;
+    font-size: 15px !important;
+  }
 
-    .logo img {
-        width: 32px;
-        height: 32px;
-    }
+  .adarea-image {
+    width: 85% !important;
+    border-radius: unset;
+    height: 75px !important;
+  }
 
-    .scroll-headmsg {
-        max-width: 90vw !important;
-    }
+  nav .info {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+  }
 
-    .ad-name {
-        display: block !important;
-        font-size: 15px !important;
-    }
+  .move-category-margin {
+    margin-left: -10px;
+  }
 
-    .adarea-image {
-        width: 85% !important;
-        border-radius: unset;
-        height: 75px !important;
-    }
+  .usermenu-btn {
+    border: 1px solid #006d56;
+    padding: 4px;
+    border-radius: 10px;
+    background: #ffffff;
+    display: block;
+    max-width: 90%;
+  }
 
-    nav .info {
-        margin-left: 0px !important;
-        margin-right: 0px !important;
-    }
+  .ad-name {
+    font-size: 15px !important;
+  }
 
-    .move-category-margin {
-        margin-left: -10px;
-    }
+  .margin-left-move {
+    margin-left: 3px !important;
+  }
 
-    .usermenu-btn {
-        border: 1px solid #006d56;
-        padding: 4px;
-        border-radius: 10px;
-        background: #ffffff;
-        display: block;
-        max-width: 90%;
-    }
+  .open-menu {
+    display: block;
+    position: relative;
+    transform: translateX(0%);
+    transition: transform 0.5s ease-in-out;
+    width: max-content;
+  }
 
-    .ad-name {
-        font-size: 15px !important;
-    }
-
-    .margin-left-move {
-        margin-left: 3px !important;
-    }
-
-    .open-menu {
-        display: block;
-        position: relative;
-        transform: translateX(0%);
-        transition: transform 0.5s ease-in-out;
-        width: max-content;
-    }
-
-    .level-1 {
-        width: 94%;
-    }
+  .level-1 {
+    width: 94%;
+  }
 }

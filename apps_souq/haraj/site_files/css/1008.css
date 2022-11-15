@@ -762,6 +762,7 @@
     grid-template-columns: 100%;
     height: auto;
     direction: ltr;
+    background: #006d56;
   }
 
   .side-header {
@@ -864,11 +865,11 @@
     flex: 1;
     text-align: center;
     border-radius: 5px;
-    margin: 0 0 0 3px;
+    margin: 5px;
   }
 
   .tag a {
-    padding: 10px;
+    padding: 0px;
     display: block;
     text-decoration: none;
   }
@@ -876,7 +877,7 @@
   .tag span {
     display: block;
     font-size: 16px;
-    color: var(--theme-color);
+    color: #fff;
   }
 
   .tagheader {

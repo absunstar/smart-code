@@ -143,7 +143,7 @@ div.scrollmenu a:hover {
 }
 .move-category {
   margin-top: 50px;
-  color: #00a884;
+  color: #fff;
 }
 .btn-style a {
   color: black;
@@ -172,7 +172,7 @@ div.scrollmenu a:hover {
   text-decoration: underline;
 }
 
-tr:nth-child(even) {
+.ads-section tr:nth-child(odd) {
   background-color: #ebfaf6;
 }
 .dimgrey {
@@ -276,7 +276,9 @@ img {
   background: #ecf9f6;
   border-radius: 10px;
 }
-
+.category-selected span{
+  color: #000 !important;
+}
 .input-style textarea:focus {
   border-width: 2px;
 }

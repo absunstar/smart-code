@@ -6,29 +6,34 @@
   --theme-color2: #019777;
   --font-family: 'Arabic', sans-serif;
 }
+
 svg#Layer_1 {
   width: 100% !important;
 }
 .user-side-header {
   direction: ltr;
 }
-.side-header {
-}
+
 .create-btn {
   position: fixed;
   bottom: 8%;
-  left: 1%;
+  right: -15px;
   background: #00a884;
   color: #fff !important;
   padding: 10px 20px;
-  border-radius: 50px;
   z-index: 99999999;
   cursor: pointer;
   transition: all 0.2s ease;
   box-shadow: 1px 1px 10px 0px #000;
 }
 .create-btn:hover {
-  transform: scale(1.1);
+  transform: scale(1.2);
+}
+.create-btn > span {
+  margin-right: 10px;
+}
+.create-btn > i {
+  margin-right: 10px;
 }
 .more-btn {
   background: #006d56;
@@ -245,7 +250,6 @@ p {
   text-decoration: underline;
 }
 
-
 .level-2 {
   background: white;
   border-radius: 5px;
@@ -295,7 +299,7 @@ i.fa.fa-check {
 
 .level-4 {
   background: white;
-  
+
   display: block;
   padding: 0px 10px;
   margin: 10px;
@@ -313,7 +317,7 @@ i.fa.fa-check {
 
 .level-5 {
   background: white;
- 
+
   display: block;
   padding: 0px 10px;
   margin: 10px;

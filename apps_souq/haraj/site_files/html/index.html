@@ -14,9 +14,9 @@
   <div class="map">
     <div class="movemab" x-import="haraj/map.html"></div>
   </div>
-  <a class="tab_link create-btn" ng-click="createContent()" >
+  <a class="create-btn" ng-click="createContent()" >
     <i class="fa-solid fa-plus-circle"></i>
-     <span style="min-height: 22px">##word.add_your_ad##</span> 
+    <span style="min-height: 22px">##word.add_your_ad##</span> 
   </a>
   <div x-import="haraj/header.html">
     <div class="map-side-header">
@@ -148,21 +148,21 @@
     <div class="main-content">
       <div class="thirdheader">
         <div class="row">
-          <div class="col-1">
+          <div class="col-1 text-center">
             <i class="fa fa-arrow-circle-left margin-left-move pointer move-category fa-2x" ng-click="moveCategory('next')" aria-hidden="true"></i>
           </div>
           <div class="col-10">
             <div class="tags">
               <ul class="tag-list">
-                <li id="cat_{{c.id}}" class="tag" ng-repeat="c in topParentCategoriesList">
-                  <a   class="tab_link" ng-class="{'category-selected' : c.$isSelected == true}" ng-click="loadSubCategory(c)"
+                <li id="cat_{{c.id}}" class="tag" ng-class="{'category-selected' : c.$isSelected == true}" ng-repeat="c in topParentCategoriesList">
+                  <a   class="tab_link"  ng-click="loadSubCategory(c)"
                     href=""><img alt="car" loading="lazy" height="35" width="35" ng-src="{{c.image_url}}" /><span
                       style="min-height: 22px">{{c.name_##session.lang##}}</span></a>
                 </li>
               </ul>
             </div>
           </div>
-          <div class="col-1">
+          <div class="col-1 text-center">
             <i class="fa fa-arrow-circle-right pointer move-category-margin move-category fa-2x" ng-click="moveCategory('previous')" aria-hidden="true"></i>
           </div>
         </div>
