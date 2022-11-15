@@ -1,157 +1,140 @@
 <!DOCTYPE html>
 <html lang="en" data-ng-app="myApp">
+  <head>
+    <title>##word.brand_title##</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/haraj.css" />
+    <link rel="stylesheet" href="/x-css/all.css" />
+    <link rel="stylesheet" href="/x-css/font-cairo.css" />
+    <link rel="icon" type="image/x-icon" href="##setting.logo##" />
+    <style>
+      :root {
+        --body-margin-top: 0px;
+        --body-margin-bottom: 0px;
+        --zoom: 100%;
+        --fieldset-border: none;
+        --fieldset-background: #fff;
+      }
 
-<head>
-  <title>##word.brand_title##</title>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="/css/style.css" />
-  <link rel="stylesheet" href="/css/haraj.css" />
-  <link rel="stylesheet" href="/x-css/all.css" />
-  <link rel="stylesheet" href="/x-css/font-cairo.css" />
-  <link rel="icon" type="image/x-icon" href="##setting.logo##" />
-  <style>
-    :root {
-      --body-margin-top: 0px;
-      --body-margin-bottom: 0px;
-      --zoom: 100%;
-      --fieldset-border: none;
-      --fieldset-background: #fff;
-    }
+      .darkGray {
+        color: #919191;
+      }
+      .input-style input {
+        text-align: center;
+      }
 
-    .darkGray {
-      color: #919191;
-    }
-    .input-style input {
-      text-align: center;
-    }
+      .signin {
+        background-color: #fff;
+        text-align: center;
+      }
+      .img-country img {
+        width: 44px;
+        height: 40px;
+        display: inline-block;
+      }
 
-    .signin {
-  background-color: #f1f1f1;
-  text-align: center;
-}
-    .img-country img {
-      width: 44px;
-      height: 40px;
-      display: inline-block;
-    }
+      * {
+        max-width: initial;
+      }
+    </style>
+    <style x-lang="ar">
+      .nav1 {
+        flex-direction: initial;
+        padding: 7px;
+      }
 
-    * {
-      max-width: initial;
-    }
-  </style>
-  <style x-lang="ar">
-    .nav1 {
-      flex-direction: initial;
-      padding: 7px;
-    }
+      :root {
+        --direction: rtl;
+        --text-align: right;
+        --float: right;
+      }
+    </style>
+  </head>
 
-    :root {
-      --direction: rtl;
-      --text-align: right;
-      --float: right;
-    }
-  </style>
-</head>
+  <body class="##session.lang## loaded" ng-controller="register_souq">
+    <div x-import="haraj/header.html"></div>
+    <div x-import="register/deal.html"></div>
+    <div class="row">
+      <h1 class="bold text-center">##word.register##</h1>
+    </div>
 
-<body class="##session.lang## loaded" style="background-image: linear-gradient(to right, #e9e9e9, #7fffd4);" ng-controller="register_souq">
-  <div x-import="haraj/header.html"></div>
-  <div x-import="register/deal.html"></div>
-  <div class="row">
-    <h1 class="bold text-center">##word.register##</h1>
-  </div>
-  <!-- 
-    <div class="tabs inline-block">
-      <div class="tabs-header">
-        <a class="tab-link" onclick="site.showTabContent(event, '#register_with_mobile_number')"> ##word.register_with_mobile_number## </a>
-        <a class="tab-link" ng-show="##setting.allow_registration_email##" onclick="site.showTabContent(event, '#register_with_email')"> ##word.register_with_email## </a>
+    <fieldset>
+      <legend>##word.register_with_mobile_number##</legend>
+      <div class="row" id="mobile_mailer">
+        <div class="col3"></div>
+        <div class="col6">
+          <div class="row padding">
+            <i-country
+              class="col3 center input-style"
+              v="r"
+              label="##word.country##"
+              ng-model="mailer.country"
+              items="countriesList"
+              display="name_##session.lang##"
+              ng-search="mailer.$countries"
+            ></i-country>
+            <i-control class="col9 center input-style" v="r" label="##word.mobile_phone_number##" type="tel" ng-model="mailer.mobile"> </i-control>
+          </div>
+        </div>
+        <div class="row center">
+          <i-button class="center" fa="arrow-left" label="##word.continuation##" ng-click="validMobile(mailer)"> </i-button>
+        </div>
       </div>
 
-      <div class="tabs-content">
-        <div id="register_with_mobile_number" class="tab-content"> -->
-  <fieldset style="background-image: linear-gradient(to right, #e9e9e9, #7fffd4);">
-    <legend>##word.register_with_mobile_number##</legend>
-    <div class="row" id="mobile_mailer">
-      <div class="col3"></div>
-      <div class="col6">
-        <div class="row padding">
-          <i-country class="col3 center input-style" v="r" label="##word.country##" ng-model="mailer.country"
-            items="countriesList" display="name_##session.lang##" ng-search="mailer.$countries"></i-country>
-          <i-control class="col9 center input-style" v="r" label="##word.mobile_phone_number##"
-           type="tel" ng-model="mailer.mobile">
-          </i-control>
+      <div class="row" id="mobile_confirm">
+        <div class="col3"></div>
+
+        <div class="col6">
+          <i-control class="row center input-style" v="r" label="##word.secret_code_sent_phone##" ng-model="secret_code"> </i-control>
+        </div>
+        <div class="row center">
+          <i-button label="##word.continuation##" ng-click="checkSecretCode(secret_code)"></i-button>
+          <i-button label="##word.resend_code##" fa="retweet" ng-click="resendCode(mailer.mobile,'mobile')"></i-button>
+        </div>
+      </div>
+      <div class="row" id="mobile_data">
+        <div class="row">
+          <i-image help-id="user_logo" ng-model="user.image_url"></i-image>
         </div>
 
+        <div class="row">
+          <i-control class="col4 input-style" label="##word.first_name##" ng-model="user.first_name"> </i-control>
+          <i-control class="col4 input-style" label="##word.last_name##" ng-model="user.last_name"> </i-control>
+        </div>
+        <div class="row">
+          <i-control v="r e" class="col4 input-style" label="##word.email##" ng-model="user.email"> </i-control>
+        </div>
+        <div class="row">
+          <i-control class="col4 pass input-style" label="##word.password##" type="password" id="pass1" ng-model="user.password"> </i-control>
+        </div>
+        <div class="row">
+          <i-control class="col4 pass input-style" label="##word.retype_password##" type="password" id="pass2" ng-model="user.re_password"> </i-control>
+        </div>
+        <div class="row">
+          <i-checkbox class="col2" label="##word.show_password##" ng-change="showPassword()" ng-model="show_password"> </i-checkbox>
+        </div>
+
+        <i-button fa="user-plus" label="##word.register_now##" ng-click="registerByMobile(user,'mobile')"></i-button>
       </div>
-      <div class="row center">
-        <i-button class="center" fa="arrow-left" label="##word.continuation##"
-          ng-click="validMobile(mailer)">
-        </i-button>
-      </div>
+    </fieldset>
+    <h2 class="bold center green">{{sent_new_code}}</h2>
+    <h2 class="bold center red">{{error}}</h2>
+
+    <div class="row">
+      <form class="signin">
+        <p class="font-18 center">##word.existing_user## <a href="/login" class="underline-hover">##word.login_now##</a></p>
+      </form>
     </div>
 
-    <div class="row" id="mobile_confirm">
-      <div class="col3"></div>
-
-      <div class="col6">
-        <i-control class="row center input-style" v="r" label="##word.secret_code_sent_phone##" ng-model="secret_code">
-        </i-control>
-      </div>
-      <div class="row center">
-        <i-button label="##word.continuation##" ng-click="checkSecretCode(secret_code)"></i-button>
-        <i-button label="##word.resend_code##" fa="retweet" ng-click="resendCode(mailer.mobile,'mobile')"></i-button>
-      </div>
+    <div id="main-layout" class="container">
+      <div class="row" id="registersouqModal"></div>
     </div>
-    <div class="row" id="mobile_data">
-      <div class="row">
-        <i-image help-id="user_logo" ng-model="user.image_url"></i-image>
-      </div>
-
-      <div class="row">
-        <i-control class="col4 input-style" label="##word.first_name##" ng-model="user.first_name"> </i-control>
-        <i-control class="col4 input-style" label="##word.last_name##" ng-model="user.last_name"> </i-control>
-      </div>
-      <div class="row">
-        <i-control v="r e" class="col4 input-style" label="##word.email##" ng-model="user.email"> </i-control>
-      </div>
-      <div class="row">
-        <i-control class="col4 pass input-style" label="##word.password##" type="password" id="pass1"
-          ng-model="user.password"> </i-control>
-      </div>
-      <div class="row">
-        <i-control class="col4 pass input-style" label="##word.retype_password##" type="password" id="pass2"
-          ng-model="user.re_password"> </i-control>
-      </div>
-      <div class="row">
-        <i-checkbox class="col2" label="##word.show_password##" ng-change="showPassword()" ng-model="show_password">
-        </i-checkbox>
-      </div>
-
-      <i-button fa="user-plus" label="##word.register_now##" ng-click="registerByMobile(user,'mobile')"></i-button>
-    </div>
-  </fieldset>
-  <h2 class="bold center green">{{sent_new_code}}</h2>
-  <h2 class="bold center red">{{error}}</h2>
-  </div>
-  </div>
-  <!--  </div> -->
-
-  <div class="row">
-    <form class="signin">
-      <p class="font-18 center">##word.existing_user## <a href="/login" class="underline-hover">##word.login_now##</a>
-      </p>
-    </form>
-  </div>
-
-  <div id="main-layout" class="container">
-    <div class="row" id="registersouqModal"></div>
-  </div>
-  <footer class="footer ng-scope" x-import="haraj/footer.html" ng-controller="footer_herag"></footer>
-  <div x-import="haraj/scripts.html"></div>
-  <script x-import="register/index.js"></script>
-  <script x-import="haraj/index2.js"></script>
-
-</body>
-
+    <footer class="footer ng-scope" x-import="haraj/footer.html" ng-controller="footer_herag"></footer>
+    <div x-import="haraj/scripts.html"></div>
+    <script x-import="register/index.js"></script>
+    <script x-import="haraj/index2.js"></script>
+  </body>
 </html>
