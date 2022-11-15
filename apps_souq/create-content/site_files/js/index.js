@@ -92,7 +92,6 @@ app.controller('create_content', function ($scope, $http, $timeout) {
           if (!$scope.defaultSettings.stores_settings.activate_stores) {
             $scope.address = {};
           }
-          $scope.getDefaultSetting();
           site.showModal('#alert');
           $timeout(() => {
             site.hideModal('#alert');
@@ -122,8 +121,6 @@ app.controller('create_content', function ($scope, $http, $timeout) {
     $('#adDeal').hide();
     $('#adCategory').show('slow');
   };
-
-
 
   $scope.acceptCategory = function (ad, cat) {
 
@@ -530,6 +527,7 @@ app.controller('create_content', function ($scope, $http, $timeout) {
             $scope[subCategories + ($scope.ad.main_category.parent_list_id.length + 2)] = $scope.category_list.filter(_c => { return _c.parent_id == $scope.ad.main_category })
 
           }
+          $scope.ad.$address_type = 'main';
         } else {
           $scope.error = response.data.error;
         }

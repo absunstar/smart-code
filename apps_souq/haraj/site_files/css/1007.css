@@ -33,20 +33,24 @@ div.scrollmenu a:hover {
 ::-webkit-scrollbar-thumb {
   background-color: #00624d !important ;
 }
+
 .page-nav {
-  direction: ltr;
-  margin: 20px;
-  padding: 10px;
+ /*  margin: 20px;
+  padding: 10px; */
   display: flex;
   justify-content: center;
+}
+.zoom-nav {
+  width: 70px !important;
+
 }
 .page-nav a {
   background: #ffffff;
   color: #272727 !important;
   font-size: 20px;
   font-weight: bold;
-  width: 200px !important;
-  margin-right: 20px;
+  width: 200px;
+  margin: 20px;
   transition: all 0.2s ease;
   border-radius: 15px;
   padding: 5px;
@@ -205,7 +209,7 @@ div.scrollmenu a:hover {
   border: 1px solid red !important;
 }
 .margin-left-move {
-  margin-left: 20px;
+  margin-left: -10px;
 }
 
 .info img {
@@ -838,7 +842,7 @@ img {
 
   .tags {
     margin: 0 10px;
-    display: flex;
+    display: -webkit-box;
     justify-content: flex-end;
   }
 
@@ -883,7 +887,7 @@ img {
     overflow-x: auto;
     text-align: right;
     max-width: 1010px;
-    flex-direction: row-reverse;
+    /* flex-direction: row-reverse; */
   }
 
 /*   .green {
@@ -1537,6 +1541,7 @@ img {
     border-radius: 8px !important;
     box-shadow: none !important;
     padding-top: 5px !important;
+    max-width: 90vw !important;
   }
 
   .ad-area {
@@ -1648,6 +1653,7 @@ img {
     list-style-type: none;
     background-color: var(--theme-color);
     position: fixed;
+    left: 0;
     width: 39px;
     height: 250px;
     display: flex;
@@ -1954,7 +1960,7 @@ img {
     width: auto;
     overflow-x: auto;
     max-width: 916px;
-    flex-direction: row-reverse;
+    /* flex-direction: row-reverse; */
     cursor: pointer;
     border: none;
     height: auto;
@@ -1969,7 +1975,7 @@ img {
     width: auto;
     overflow-x: auto;
     max-width: 916px;
-    flex-direction: row-reverse;
+    /* flex-direction: row-reverse; */
     cursor: pointer;
     height: auto;
     align-items: center;

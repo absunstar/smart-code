@@ -386,8 +386,9 @@
   .price {
     width: 100% !important;
     padding: 0;
-    margin: 0;
-    font-size: 18px;
+    margin-right: 5px;
+    font-size: 17px;
+    font-weight: bold;
   }
 
   .add-cart {
@@ -556,8 +557,9 @@
   .price {
     width: 100% !important;
     padding: 0;
-    margin: 0;
-    font-size: 18px;
+    margin-right: 5px;
+    font-size: 14px;
+    font-weight: bold;
   }
 
   .add-cart {

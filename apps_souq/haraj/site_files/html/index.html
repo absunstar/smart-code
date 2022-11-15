@@ -1,22 +1,61 @@
 <!DOCTYPE html>
 <html lang="##session.lang##" class="loaded" ng-app="myApp">
 
-<head x-server="x-import">
-  <title>##setting.site_name##</title>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/x-icon" href="##setting.logo##" />
-  <link rel="stylesheet" href="/css/haraj.css" />
-</head>
+  <head>
+    <title>##word.brand_title##</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/haraj.css" />
+    <link rel="icon" type="image/x-icon" href="##setting.logo##" />
+    <style>
+      * {
+        max-width: initial;
+      }
+  
+      .userad-logo {
+        border-radius: 50%;
+        height: 25px;
+        width: 25px;
+        margin: -5px 10px -5px 0px !important
+      }
+  
+      :root {
+        --body-margin-top: 0px;
+        --body-margin-bottom: 0px;
+        --zoom: 100%;
+        --fieldset-border: none;
+        --fieldset-background: #fff;
+      }
+  
+      body {
+        /* background-color: #bbb !important;
+        background-image: url(/assets/palm.svg) !important; */
+        background-color: #ecf9f6;
+        background-repeat: repeat !important;
+      }
+    </style>
+    <style x-lang="ar">
+      .nav1 {
+        flex-direction: initial;
+        padding: 7px;
+      }
+  
+      :root {
+        --direction: rtl;
+        --text-align: right;
+        --float: right;
+      }
+    </style>
+  </head>
 
 <body class="##session.lang##" ng-controller="haraj">
   <div class="map">
     <div class="movemab" x-import="haraj/map.html"></div>
   </div>
   <a class="create-btn" ng-click="createContent()" >
-    <i class="fa-solid fa-plus-circle"></i>
     <span style="min-height: 22px">##word.add_your_ad##</span> 
+    <i class="fa-solid fa-plus-circle"></i>
   </a>
   <div x-import="haraj/header.html">
     <div class="map-side-header">
@@ -149,7 +188,7 @@
       <div class="thirdheader">
         <div class="row">
           <div class="col-1 text-center">
-            <i class="fa fa-arrow-circle-left margin-left-move pointer move-category fa-2x" ng-click="moveCategory('next')" aria-hidden="true"></i>
+            <i class="fa fa-arrow-circle-right margin-left-move pointer move-category fa-2x" ng-click="moveCategory('previous')" aria-hidden="true"></i>
           </div>
           <div class="col-10">
             <div class="tags">
@@ -163,7 +202,7 @@
             </div>
           </div>
           <div class="col-1 text-center">
-            <i class="fa fa-arrow-circle-right pointer move-category-margin move-category fa-2x" ng-click="moveCategory('previous')" aria-hidden="true"></i>
+            <i class="fa fa-arrow-circle-left pointer move-category-margin move-category fa-2x" ng-click="moveCategory('next')" aria-hidden="true"></i>
           </div>
         </div>
         
