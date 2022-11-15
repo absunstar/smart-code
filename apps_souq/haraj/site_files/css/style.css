@@ -237,15 +237,15 @@ p {
   display: inline-block;
   min-width: 15%;
   vertical-align: top;
-  margin: 10px;
+  margin: 10px !important;
 }
 .level-1 > a {
   font-weight: bold;
   color: #004f3e;
-  font-size: 23px;
-  text-align: center;
+  font-size: 29px;
   cursor: pointer;
 }
+
 .level-1 > a:hover {
   text-decoration: underline;
 }

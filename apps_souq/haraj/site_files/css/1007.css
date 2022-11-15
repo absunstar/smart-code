@@ -1621,14 +1621,14 @@ img {
     width: 100%;
   }
 
-  svg#Layer_1 {
+/*   svg#Layer_1 {
     width: 50%;
     display: block;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, 20vh);
-  }
+  } */
 
   .side-header:hover {
     width: auto;
@@ -1714,147 +1714,147 @@ img {
     fill: white;
     pointer-events: none;
     font-size: x-large;
-    transform: translate(85px, 234px);
+    transform: translate(166px, 234px);
   }
 
   .madinah {
     fill: white;
     pointer-events: none;
     font-size: x-large;
-    transform: translate(181px, 424px);
+    transform: translate(306px, 424px);
   }
 
   .makkah {
     fill: white;
     pointer-events: none;
     font-size: x-large;
-    transform: translate(259px, 569px);
+    transform: translate(351px, 569px);
   }
 
   .baha {
     fill: white;
     pointer-events: none;
     font-size: x-large;
-    transform: translate(296px, 644px);
+    transform: translate(352px, 644px);
   }
 
   .asir {
     fill: white;
     pointer-events: none;
     font-size: x-large;
-    transform: translate(326px, 688px);
+    transform: translate(460px, 693px);
   }
 
   .jazan {
     fill: white;
     pointer-events: none;
     font-size: x-large;
-    transform: translate(397px, 797px) rotate(249deg);
+    transform:translate(402px, 788px) rotate(357deg);
   }
 
   .najran {
     fill: white;
     pointer-events: none;
     font-size: x-large;
-    transform: translate(474px, 734px);
+    transform: translate(575px, 734px);
   }
 
   .eastern {
     fill: white;
     pointer-events: none;
     font-size: x-large;
-    transform: translate(679px, 542px);
+    transform: translate(954px, 598px);
   }
 
   .northern {
     fill: white;
     pointer-events: none;
     font-size: x-large;
-    transform: translate(307px, 170px);
+    transform: translate(513px, 209px) rotate(376deg);
   }
 
   .jouf {
     fill: white;
     pointer-events: none;
     font-size: x-large;
-    transform: translate(148px, 144px);
+    transform: translate(281px, 144px);
   }
 
   .hail {
     fill: white;
     pointer-events: none;
     font-size: x-large;
-    transform: translate(275px, 255px);
+    transform: translate(394px, 255px);
   }
 
   .qassim {
     fill: white;
     pointer-events: none;
     font-size: x-large;
-    transform: translate(346px, 374px) rotate(327deg);
+    transform: translate(484px, 290px) rotate(327deg);
   }
 
   .riyadh {
     fill: white;
     pointer-events: none;
     font-size: x-large;
-    transform: translate(450px, 487px);
+    transform: translate(571px, 487px);
   }
 
   .kuwit {
     fill: white;
     pointer-events: none;
     font-size: x-large;
-    transform: translate(593px, 171px) rotate(307deg);
+    transform: translate(684px, 176px) rotate(375deg);
   }
 
   .oman {
     fill: white;
     pointer-events: none;
     font-size: x-large;
-    transform: translate(1037px, 561px);
+    transform: translate(1145px, 561px);
   }
 
   .uae {
     fill: white;
     pointer-events: none;
     font-size: x-large;
-    transform: translate(888px, 469px);
+    transform: translate(994px, 469px);
   }
 
   .qatar {
     fill: white;
     /* pointer-events: none; */
     font-size: x-large;
-    transform: translate(807px, 364px);
+    transform: translate(930px, 364px);
   }
 
   .bahran {
     fill: white;
    /*  pointer-events: none; */
     font-size: x-large;
-    transform: translate(767px, 313px);
+    transform: translate(933px, 313px);
   }
 
   .yeman {
     fill: #ffffff;
     pointer-events: none;
     font-size: x-large;
-    transform: translate(604px, 875px);
+    transform: translate(651px, 850px);
   }
 
   .jordan {
     fill: #ffffff;
     pointer-events: none;
     font-size: x-large;
-    transform: translate(56px, 92px);
+    transform: translate(141px, 92px);
   }
 
   .iraq {
     fill: #ffffff;
     pointer-events: none;
     font-size: x-large;
-    transform: translate(384px, -63px);
+    transform: translate(538px, 13px);
   }
 
   #palmtree {
@@ -1915,7 +1915,7 @@ img {
 
   svg#Layer_1 {
     width: 90%;
-    height: 106vh;
+    height: 75vh;
     display: block;
     position: relative;
     top: 50%;

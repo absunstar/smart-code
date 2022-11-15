@@ -115,10 +115,10 @@
           href="/category/{{category_header_list[5].id}}/{{category_header_list[5].name_en}}-{{category_header_list[5].name_ar}}">{{category_header_list[5].name_##session.lang##}}</a>
         <a
           href="/category/{{category_header_list[6].id}}/{{category_header_list[6].name_en}}-{{category_header_list[6].name_ar}}">{{category_header_list[6].name_##session.lang##}}</a>
-        <a href="/more_categories">
+       <!--  <a href="/more_categories">
           <i class="fa-solid fa-sitemap"></i>
           ##word.more_categories##
-        </a>
+        </a> -->
       </div>
 
       <!-- <ul class="nav1">
@@ -374,7 +374,7 @@
         <!-- <span style="min-height: 22px">##setting.site_name##</span> -->
       </a>
     </li>
-
+  
     <li class="mobile-header" x-permission="login">
       <a class="tab_link" href="/messages">
         <i class="fa-solid fa-envelope"></i>
@@ -399,7 +399,12 @@
       </a>
     </li>
 
-
+    <li class="mobile-header" x-permission="login">
+      <a class="tab_link" href="/more_categories">
+        <i class="fa-solid fa-sitemap"></i>
+      </a>
+    </li>
+  
     <li class="mobile-header" x-permission="login" ng-show="##setting.order_settings.activate_orders##">
       <a class="notification" href="/cart">
         <i class="fa-solid fa-cart-shopping"></i>

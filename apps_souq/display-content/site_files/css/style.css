@@ -679,10 +679,21 @@
   height: auto !important;
 }
 
+.display-ad-name {
+  font-size: 34px;
+  font-weight: bold;
+  color: #009688;
+  margin: 5px;
+}
+
 @media screen and (max-width: 480px) {
   .statistics {
   
     width: 30%;
   
+  }
+  .display-ad-name {
+  font-size: 29px !important;
+
   }
 }
