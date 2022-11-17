@@ -13,7 +13,12 @@
           <div x-permissions="ads_update || ads_manage" x-import="content/update_modal.html"></div>
           <div x-permissions="ads_delete || ads_manage" x-import="content/delete_modal.html"></div>
           <div x-permissions="ads_view || ads_manage" x-import="content/view_modal.html"></div>
-          <div x-permissions="ads_view || ads_manage" x-import="content/feedback.html"></div>
+          <div x-permissions="ads_view || ads_manage" x-import="content/report_ad_modal.html"></div>
+          <div x-permissions="ads_view || ads_manage" x-import="content/favorite_ad_modal.html"></div>
+          <div x-permissions="ads_view || ads_manage" x-import="content/comment_ad_modal.html"></div>
+          <div x-permissions="ads_view || ads_manage" x-import="content/report_comment_modal.html"></div>
+          <div x-permissions="ads_view || ads_manage" x-import="content/report_reply_modal.html"></div>
+          <div x-permissions="ads_view || ads_manage" x-import="content/comment_reply_modal.html"></div>
           <div x-permissions="ads_search || ads_manage" x-import="content/search_all_modal.html"></div>
           <div x-import="content/selection_categories.html"></div>
 
@@ -23,7 +28,6 @@
 
           <div class="top-actions">
             <i-button x-permissions="ads_add || ads_manage" type="add" label="##word.ads_new##" ng-click="displayAddAd()"></i-button>
-
             <i-button x-permissions="ads_search || ads_manage" type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
             <h3 class="bold text-center">##word.count## : {{count}}</h3>
           </div>

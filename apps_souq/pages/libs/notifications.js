@@ -1,12 +1,12 @@
 module.exports = function init(site) {
-  let collection_name = "page_implement";
+  let collection_name = "pages";
 
   let source = {
     en: "Page Implement System",
     ar: "نظام تنفيذ الصفحات",
   };
 
-  let image_url = "/images/page_implement.png";
+  let image_url = "/images/pages.png";
   let add_message = {
     en: "New Page Implement Added",
     ar: "تم إضافة تنفيذ صفحة جديدة",

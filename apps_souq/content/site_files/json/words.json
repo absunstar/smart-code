@@ -126,6 +126,16 @@
     "ar": "عدد التفضيلات"
   },
   {
+    "name": "favorites",
+    "en": "FavoriteS",
+    "ar": "التفضيلات"
+  },
+  {
+    "name": "replies",
+    "en": "Replies",
+    "ar": "الردود"
+  },
+  {
     "name": "priority_level",
     "en": "Priority Level",
     "ar": "درجة الأهمية"
@@ -134,6 +144,16 @@
     "name": "number_reports",
     "en": "Number of Reports",
     "ar": "عدد البلاغات"
+  },
+  {
+    "name": "ad_reports",
+    "en": "Ad report",
+    "ar": "بلاغات الإعلان"
+  },
+  {
+    "name": "the_reports",
+    "en": "The report",
+    "ar": "البلاغات"
   },
   {
     "name": "quantities",

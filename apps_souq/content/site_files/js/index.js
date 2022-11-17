@@ -110,6 +110,25 @@ app.controller('contents', function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.showCommentReport = function (comment) {
+    $scope.error = '';
+    $scope.comment = comment;
+    site.showModal('#reportCommentModal');
+  };
+
+  
+  $scope.showReplyReport = function (reply) {
+    $scope.error = '';
+    $scope.reply = reply;
+    site.showModal('#reportReplyModal');
+  };
+
+  $scope.showCommentReplies = function (comment) {
+    $scope.error = '';
+    $scope.comment = comment;
+    site.showModal('#commentReplyModal');
+  };
+
   $scope.displayUpdateAd = function (ad) {
     $scope.error = '';
     $scope.viewAd(ad);

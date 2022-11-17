@@ -1,12 +1,12 @@
-app.controller("page_implement", function ($scope, $http, $timeout) {
+app.controller("pages", function ($scope, $http, $timeout) {
   $scope._search = {};
 
-  $scope.page_implement = {};
+  $scope.pages = {};
 
   $scope.displayAddPageImplement = function () {
     $scope.error = '';
-    $scope.page_implement = {
-      image_url: '/images/page_implement.png',
+    $scope.pages = {
+      image_url: '/images/pages.png',
       active: true/* ,
       immediate : false */
     };
@@ -22,12 +22,12 @@ app.controller("page_implement", function ($scope, $http, $timeout) {
       $scope.error = v.messages[0].ar;
       return;
     };
-    $scope.page_implement.content =  window.addEditor.getContents();
+    $scope.pages.content =  window.addEditor.getContents();
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/page_implement/add",
-      data: $scope.page_implement
+      url: "/api/pages/add",
+      data: $scope.pages
     }).then(
       function (response) {
         $scope.busy = false;
@@ -45,10 +45,10 @@ app.controller("page_implement", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.displayUpdatePageImplement = function (page_implement) {
+  $scope.displayUpdatePageImplement = function (pages) {
     $scope.error = '';
-    $scope.viewPageImplement(page_implement);
-    $scope.page_implement = {};
+    $scope.viewPageImplement(pages);
+    $scope.pages = {};
     site.showModal('#pageImplementUpdateModal');
   };
 
@@ -59,12 +59,12 @@ app.controller("page_implement", function ($scope, $http, $timeout) {
       $scope.error = v.messages[0].ar;
       return;
     }
-    $scope.page_implement.content =  window.editEditor.getContents();
+    $scope.pages.content =  window.editEditor.getContents();
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/page_implement/update",
-      data: $scope.page_implement
+      url: "/api/pages/update",
+      data: $scope.pages
     }).then(
       function (response) {
         $scope.busy = false;
@@ -81,28 +81,28 @@ app.controller("page_implement", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.displayDetailsPageImplement = function (page_implement) {
+  $scope.displayDetailsPageImplement = function (pages) {
     $scope.error = '';
-    $scope.viewPageImplement(page_implement);
-    $scope.page_implement = {};
+    $scope.viewPageImplement(pages);
+    $scope.pages = {};
     site.showModal('#pageImplementViewModal');
   };
 
-  $scope.viewPageImplement = function (page_implement) {
+  $scope.viewPageImplement = function (pages) {
     $scope.busy = true;
     $scope.error = '';
     $http({
       method: "POST",
-      url: "/api/page_implement/view",
+      url: "/api/pages/view",
       data: {
-        id: page_implement.id
+        id: pages.id
       }
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $scope.page_implement = response.data.doc;
-          window.editEditor.setContents($scope.page_implement.content);
+          $scope.pages = response.data.doc;
+          window.editEditor.setContents($scope.pages.content);
         } else {
           $scope.error = response.data.error;
         }
@@ -113,10 +113,10 @@ app.controller("page_implement", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.displayDeletePageImplement = function (page_implement) {
+  $scope.displayDeletePageImplement = function (pages) {
     $scope.error = '';
-    $scope.viewPageImplement(page_implement);
-    $scope.page_implement = {};
+    $scope.viewPageImplement(pages);
+    $scope.pages = {};
     site.showModal('#pageImplementDeleteModal');
 
   };
@@ -127,9 +127,9 @@ app.controller("page_implement", function ($scope, $http, $timeout) {
 
     $http({
       method: "POST",
-      url: "/api/page_implement/delete",
+      url: "/api/pages/delete",
       data: {
-        id: $scope.page_implement.id
+        id: $scope.pages.id
       }
     }).then(
       function (response) {
@@ -152,7 +152,7 @@ app.controller("page_implement", function ($scope, $http, $timeout) {
     $scope.list = [];
     $http({
       method: "POST",
-      url: "/api/page_implement/all",
+      url: "/api/pages/all",
       data: {
         where: where
       }

@@ -19,8 +19,11 @@
           </div>
 
           <div class="row">
+            <!-- <i-button label="##word.feedbacks##" fa="star" onclick="site.showModal('#adFeedbackModal')"> </i-button> -->
+            <i-button label="##word.the_reports##" fa="flag" onclick="site.showModal('#reportAdModal')"> </i-button>
+            <i-button label="##word.favorites##" fa="heart" onclick="site.showModal('#favoriteAdModal')"> </i-button>
+            <i-button label="##word.comments##" fa="comments" onclick="site.showModal('#commentAdModal')"> </i-button>
             <i-checkbox label="##word.disable_replies_feature##" ng-model="ad.disable_replies_feature"> </i-checkbox>
-            <i-button label="##word.feedbacks##" fa="star" onclick="site.showModal('#adFeedbackModal')"> </i-button>
 
           </div>
 
@@ -146,7 +149,7 @@
             </fieldset>
             <br />
 
-            <fieldset ng-show="address.other_list.length > 0">
+            <fieldset ng-show="address.other_list.length > 0 && defaultSettings.content.other_addresses_appear">
               <legend>##word.other_addresses##</legend>
               <div class="row border padding" ng-repeat="o in address.other_list">
                 <i-address ng-model="o"></i-address>
@@ -156,7 +159,7 @@
             </fieldset>
             <br />
 
-            <fieldset>
+            <fieldset ng-show="defaultSettings.content.new_address_appear">
               <legend>##word.new_address##</legend>
               <i-address ng-model="address.new"></i-address>
               <i-checkbox label="##word.select##" ng-model="address.select_new" ng-click="selectAddress(address,'new')">
@@ -227,7 +230,7 @@
         </div>
         <br />
       </fieldset>
-  
+
     </fieldset>
   </div>
 </div>

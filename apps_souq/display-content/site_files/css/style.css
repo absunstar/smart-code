@@ -126,7 +126,6 @@
 /* Add a background color on hover */
 .btn_group button:hover {
   background-color: #edf9ff;
-  border-radius: 13px;
 }
 
 .post-statistics {

@@ -28,7 +28,7 @@
         <div class="col1"></div>
 
         <div class="col4 center pointer recommend" ng-click="rating.recommend = 'no'"
-          ng-class="{'recommend-selected' : rating.recommend == 'no'}">
+          ng-class="{'recommend-notselected' : rating.recommend == 'no'}">
           <i class="fa fa-thumbs-down center" aria-hidden="true"></i>
           <p class="center">##word.do_not_recommend_dealing_with_him##</p>
 
@@ -56,8 +56,8 @@
 
     <h2 class="error red center bold">{{error}}</h2>
     <div class="modal-footer center">
-      <i-button fa="star" label="##word.rate##" ng-click="addRating(rating)"></i-button>
       <i-button type="close" label=" ##word.close##" onclick="site.hideModal('#ratingModal')"></i-button>
+      <i-button fa="star" label="##word.rate##" ng-click="addRating(rating)"></i-button>
     </div>
   </div>
 </div>

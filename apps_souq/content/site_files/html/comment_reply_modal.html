@@ -1,0 +1,44 @@
+<div id="commentReplyModal" class="modal">
+
+  <div class="modal-content">
+      <div class="modal-header">
+          <span class="close">&times;</span>
+          <h2>
+              ##word.comments##
+              <i class="fa fa-comments"></i>
+          </h2>
+      </div>
+
+      <div class="modal-body">
+          <table x-permissions="login" class="table hover bold">
+              <tr>
+                <th>##word.user_name##</th>
+                <th>##word.comment##</th>
+                <th>##word.date##</th>
+                <th class="not-print">##word.actions##</th>
+              </tr>
+              <tr ng-repeat="c in comment.reply_list">
+  
+                <td class="center title">{{c.user.name}} {{c.user.last_name}}</td>
+                <td class="center title pre_text">{{c.comment}}</td>
+                <td class="center title">
+                  <p class="brown">{{c.date |date:"dd - MM - yyyy"}}</p>
+                  <p class="green">{{c.date |date:"hh - mm"}}</p>
+                </td>
+                <td class="center not-print">
+                  <i-button label="##word.the_reports##" fa="flag" ng-click="showReplyReport(c)"> </i-button>
+                  <i-button type="delete" label="##word.delete##" ng-click="comment.reply_list.splice($index,1)"></i-button>
+                </td>
+              </tr>
+            </table>
+
+      </div>
+
+      <div class="modal-footer center">
+
+          <i-button type="close" label="##word.close##" onclick="site.hideModal('#commentReplyModal')"> </i-button>
+
+      </div>
+  </div>
+
+</div>

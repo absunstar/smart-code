@@ -282,7 +282,9 @@ module.exports = function init(site) {
     let user = {
       id: req.session.user.id,
       email: req.session.user.email,
-      profile: req.session.user.profile,
+      name: req.session.user.profile.name,
+      last_name: req.session.user.profile.last_name,
+      image_url: req.session.user.profile.image_url,
     };
     let user_ad = req.body;
     let ad = site.content_list.find((_ad) => {
@@ -300,21 +302,20 @@ module.exports = function init(site) {
         ad.number_favorites = ad.number_favorites + 1;
         req.session.user.feedback_list.push({ type: { id: 2 }, ad: { id: user_ad.id } });
         site.security.updateUser(req.session.user, (err, user_doc) => { });
-        ad.feedback_list.push({
+        ad.favorite_list = ad.favorite_list || [];
+        ad.favorite_list.push({
           user: user,
-          type: { id: 2, en: 'Favorite', ar: 'تفضيل' },
           date: new Date(),
         });
       } else if (user_ad.feedback.favorite === false) {
         ad.number_favorites = ad.number_favorites - 1;
         req.session.user.feedback_list.splice(
           req.session.user.feedback_list.findIndex((c) => c.type && c.ad && c.type.id == 2 && c.ad.id == ad.id),
-
           1
         );
         site.security.updateUser(req.session.user, (err, user_doc) => { });
-        ad.feedback_list.splice(
-          ad.feedback_list.findIndex((c) => c.type.id == 2 && c.user.id == req.session.user.id),
+        ad.favorite_list.splice(
+          ad.favorite_list.findIndex((c) => c.user.id == req.session.user.id),
           1
         );
       }
@@ -324,18 +325,19 @@ module.exports = function init(site) {
       });
     } else if (user_ad.feedback.type == 'report') {
       ad.number_reports = ad.number_reports + 1;
-      ad.feedback_list.push({
+      ad.report_list = ad.report_list || [];
+      ad.report_list.push({
         user: user,
-        type: { id: 3, en: 'Report', ar: 'إبلاغ' },
         report_type: user_ad.feedback.report_type,
         comment_report: user_ad.feedback.comment_report,
         date: new Date(),
       });
+
     } else if (user_ad.feedback.type == 'report_comment') {
-      ad.feedback_list.forEach((_f, i) => {
-        if (_f.type.id == 4 && user_ad.feedback.comment_index == i) {
-          _f.report_list = _f.report_list || [];
-          _f.report_list.push({
+      ad.comment_list.forEach((_c, i) => {
+        if (user_ad.feedback.comment_code == _c.code) {
+          _c.report_list = _c.report_list || [];
+          _c.report_list.push({
             user: user,
             report_type: user_ad.feedback.report_type,
             comment_report: user_ad.feedback.comment_report,
@@ -343,17 +345,70 @@ module.exports = function init(site) {
           });
         }
       });
+
+    } else if (user_ad.feedback.type == 'report_reply') {
+      ad.comment_list.forEach((_c, i) => {
+        _c.reply_list = _c.reply_list || [];
+        _c.reply_list.forEach(_r => {
+          _r.report_list = _r.report_list || []
+          if (user_ad.feedback.comment_code == _r.code) {
+
+            _r.report_list.push({
+              user: user,
+              report_type: user_ad.feedback.report_type,
+              comment_report: user_ad.feedback.comment_report,
+              date: new Date(),
+            });
+          }
+        });
+
+      });
+
     } else if (user_ad.feedback.type == 'comment') {
       ad.number_comments = ad.number_comments + 1;
+      ad.comment_list = ad.comment_list || [];
       let comment = {
         user: user,
-        type: { id: 4, en: 'Comment', ar: 'تعليق' },
         comment_type: user_ad.feedback.comment_type,
         comment: user_ad.feedback.comment,
         date: new Date(),
+        code: ad.number_comments + Math.floor(Math.random() * 1000),
       };
-
-      ad.feedback_list.push(comment);
+      ad.comment_list.push(comment);
+      site.call('[notific][replies_ads_followed]', {
+        user: ad.store.user,
+        store_name: ad.store.name,
+        user_action: req.session.user,
+        action: {
+          id: ad.id,
+          name: ad.name,
+        },
+      });
+      site.call('[notific][comments_my_ads]', {
+        user: ad.store.user,
+        store_name: ad.store.name,
+        user_action: req.session.user,
+        action: {
+          id: ad.id,
+          name: ad.name,
+        },
+      });
+    } else if (user_ad.feedback.type == 'reply_comment') {
+      ad.number_comments = ad.number_comments + 1;
+      let comment = {
+        user: user,
+        comment_type: user_ad.feedback.comment_type,
+        comment: user_ad.feedback.$comment,
+        date: new Date(),
+      };
+      ad.comment_list = ad.comment_list || [];
+      ad.comment_list.forEach((_c, i) => {
+        if (user_ad.feedback.comment_code == _c.code) {
+          _c.reply_list = _c.reply_list || [];
+          comment.code = (i + 1) + Math.floor(Math.random() * 1000)
+          _c.reply_list.push(comment);
+        }
+      });
       site.call('[notific][replies_ads_followed]', {
         user: ad.store.user,
         store_name: ad.store.name,
@@ -407,13 +462,19 @@ module.exports = function init(site) {
             });
           }
 
-          a.feedback_list.forEach((_c) => {
-            if (_c.type && _c.type.id === 4) {
-              _c.$time = site.xtime(_c.date, req.session.lang);
-            } else if (_c.type && _c.type.id === 2 && _c.user && _c.user.id === req.session.user) {
-              a.$favorite = true;
+
+          a.favorite_list = a.favorite_list || []
+          a.favorite_list.find(_f => { return _f.user.id === req.session.user })
+          a.comment_list = a.comment_list || []
+          a.comment_list.forEach(_c => {
+            _c.$time = site.xtime(_c.date, req.session.lang);
+            if (_c.reply_list && _c.reply_list.length > 0) {
+              _c.reply_list.forEach(_r => {
+                _r.$time = site.xtime(_r.date, req.session.lang);
+
+              })
             }
-          });
+          })
         }
         ad = a;
       }
@@ -591,25 +652,23 @@ module.exports = function init(site) {
         if (!err && docs) {
           if (req.body.post) {
             let lang = 'name_ar';
-            if(req.session.lang == 'en') {
+            if (req.session.lang == 'en') {
               lang = 'name_en';
             }
-            docs.forEach((_d) => 
-         
-            {
-              if(_d.address) {
+            docs.forEach((_d) => {
+              if (_d.address) {
                 _d.address.text = '';
-                if(_d.address.country && _d.address.country.id) {
+                if (_d.address.country && _d.address.country.id) {
                   _d.address.text = _d.address.country[lang];
-                }   
-                if(_d.address.gov && _d.address.gov.id) {
-                  _d.address.text = _d.address.text + ' ' +  _d.address.gov[lang];
                 }
-                if(_d.address.city && _d.address.city.id) {
-                  _d.address.text = _d.address.text + ' ' +  _d.address.city[lang];
+                if (_d.address.gov && _d.address.gov.id) {
+                  _d.address.text = _d.address.text + ' ' + _d.address.gov[lang];
                 }
-                if(_d.address.area && _d.address.area.id) {
-                  _d.address.text = _d.address.text + ' ' +  _d.address.area[lang];
+                if (_d.address.city && _d.address.city.id) {
+                  _d.address.text = _d.address.text + ' ' + _d.address.city[lang];
+                }
+                if (_d.address.area && _d.address.area.id) {
+                  _d.address.text = _d.address.text + ' ' + _d.address.area[lang];
                 }
               }
               if (req.session.user && req.session.user.feedback_list) {

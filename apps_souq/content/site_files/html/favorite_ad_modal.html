@@ -1,0 +1,36 @@
+<div id="favoriteAdModal" class="modal">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.favorites##
+                <i class="fa fa-heart"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+            <table x-permissions="login" class="table hover bold">
+                <tr>
+                  <th>##word.user_name##</th>
+                  <th class="not-print">##word.actions##</th>
+                </tr>
+                <tr ng-repeat="c in ad.favorite_list">
+    
+                  <td class="center title">{{c.user.name}} {{c.user.last_name}}</td>
+                  <td class="center not-print">
+                    <i-button type="delete" label="##word.delete##" ng-click="ad.favorite_list.splice($index,1)"></i-button>
+                  </td>
+                </tr>
+              </table>
+
+        </div>
+
+        <div class="modal-footer center">
+
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#favoriteAdModal')"> </i-button>
+
+        </div>
+    </div>
+
+</div>

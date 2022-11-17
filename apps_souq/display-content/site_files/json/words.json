@@ -15,6 +15,16 @@
     "ar": "إضافة تعليق"
   },
   {
+    "name": "reply",
+    "en": "Reply",
+    "ar": "الرد"
+  },
+  {
+    "name": "must_select_report_type",
+    "en": "You must elect report type",
+    "ar": "يجب تحديد نوع البلاغ"
+  },
+  {
     "name": "save_money",
     "en": "Save",
     "ar": "وفر"

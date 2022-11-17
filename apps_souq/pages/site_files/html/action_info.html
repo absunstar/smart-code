@@ -1,0 +1,22 @@
+<div class="row">
+    <table class="table hover border">
+        <tr>
+            <th>##word.useradd_user_info##</th>
+            <th>##word.useredit_user_info## </th>
+        </tr>
+        <tr>
+
+            <td class="center">
+                <p class="blue"> {{pages.add_user_info.name_##session.lang##}} </p>
+                <small class="green"> {{pages.add_user_info.date |date:"hh:mm"}} </small>
+                <small> {{pages.add_user_info.date |date:"dd - MM - yyyy"}} </small>
+            </td>
+
+            <td class="center">
+                <p class="blue"> {{pages.edit_user_info.name_##session.lang##}} </p>
+                <small class="green"> {{pages.edit_user_info.date |date:"hh:mm"}} </small>
+                <small> {{pages.edit_user_info.date |date:"dd - MM - yyyy"}} </small>
+            </td>
+        </tr>
+    </table>
+</div>

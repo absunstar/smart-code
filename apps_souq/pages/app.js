@@ -1,7 +1,7 @@
 module.exports = function init(site) {
-  const $page_implement = site.connectCollection('page_implement');
+  const $pages = site.connectCollection('pages');
   site.page_implement_list = [];
-  $page_implement.findMany({}, (err, docs) => {
+  $pages.findMany({}, (err, docs) => {
     if (!err && docs) {
       site.page_implement_list = [...site.page_implement_list, ...docs];
     }
@@ -13,26 +13,26 @@ module.exports = function init(site) {
   });
 
   site.get({
-    name: 'page_implement',
+    name: 'pages',
     path: __dirname + '/site_files/html/index.html',
     parser: 'html',
     compress: true,
   });
 
-  site.onGET('/pages/:url', (req, res) => {
+  site.onGET('/page/:url', (req, res) => {
     let exists = false
     site.page_implement_list.forEach(page => {
       if (page.url == req.params.url) {
         exists = true
-        res.render('page-implement/page.html', page);
+        res.render('pages/page.html', page);
       }
     })
     if(!exists){
-      res.render('page-implement/page.html', {});
+      res.render('pages/page.html', {});
     }
   })
 
-  site.post('/api/page_implement/add', (req, res) => {
+  site.post('/api/pages/add', (req, res) => {
     let response = {
       done: false,
     };
@@ -51,7 +51,7 @@ module.exports = function init(site) {
       $res: res,
     });
 
-    $page_implement.add(page_implement_doc, (err, doc) => {
+    $pages.add(page_implement_doc, (err, doc) => {
       if (!err) {
         response.done = true;
         response.doc = doc;
@@ -63,7 +63,7 @@ module.exports = function init(site) {
     });
   });
 
-  site.post('/api/page_implement/update', (req, res) => {
+  site.post('/api/pages/update', (req, res) => {
     let response = {
       done: false,
     };
@@ -88,7 +88,7 @@ module.exports = function init(site) {
     }
 
 
-    $page_implement.edit({
+    $pages.edit({
       where: {
         id: page_implement_doc.id
       },
@@ -111,7 +111,7 @@ module.exports = function init(site) {
 
   });
 
-  site.post('/api/page_implement/view', (req, res) => {
+  site.post('/api/pages/view', (req, res) => {
     let response = {
       done: false,
     };
@@ -139,7 +139,7 @@ module.exports = function init(site) {
     }
   });
 
-  site.post('/api/page_implement/delete', (req, res) => {
+  site.post('/api/pages/delete', (req, res) => {
     let response = {
       done: false,
     };
@@ -156,7 +156,7 @@ module.exports = function init(site) {
       return;
     }
 
-    $page_implement.delete({
+    $pages.delete({
       id: req.body.id,
       $req: req,
       $res: res
@@ -172,7 +172,7 @@ module.exports = function init(site) {
 
   });
 
-  site.post('/api/page_implement/all', (req, res) => {
+  site.post('/api/pages/all', (req, res) => {
     let response = {
       done: false,
     };
@@ -195,7 +195,7 @@ module.exports = function init(site) {
       delete where['name'];
     }
 
-    $page_implement.findMany(
+    $pages.findMany(
       {
         select: req.body.select || {},
         where: where,

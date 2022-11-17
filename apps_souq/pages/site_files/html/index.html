@@ -6,22 +6,22 @@
 
 </head>
 
-<body class="##session.lang## loaded" ng-controller="page_implement">
+<body class="##session.lang## loaded" ng-controller="pages">
   <nav x-import="haraj/sitebar.html" class="sitebar" data-ng-controller="sitebar"></nav>
 
   <nav class="sitebottom" x-import="haraj/sitebottom.html" ng-controller="sitebottom"></nav>
   <div id="main-layout" class="container">
     <div class="row">
       <div class="row">
-        <div x-permissions="page_implement_add || page_implement_manage" x-import="page-implement/add_modal.html"></div>
-        <div x-permissions="page_implement_update || page_implement_manage" x-import="page-implement/update_modal.html">
+        <div x-permissions="page_implement_add || page_implement_manage" x-import="pages/add_modal.html"></div>
+        <div x-permissions="page_implement_update || page_implement_manage" x-import="pages/update_modal.html">
         </div>
-        <div x-permissions="page_implement_delete || page_implement_manage" x-import="page-implement/delete_modal.html">
+        <div x-permissions="page_implement_delete || page_implement_manage" x-import="pages/delete_modal.html">
         </div>
-        <div x-permissions="page_implement_view || page_implement_manage" x-import="page-implement/view_modal.html">
+        <div x-permissions="page_implement_view || page_implement_manage" x-import="pages/view_modal.html">
         </div>
         <div x-permissions="page_implement_search || page_implement_manage"
-          x-import="page-implement/search_all_modal.html"></div>
+          x-import="pages/search_all_modal.html"></div>
 
         <div class="row">
           <h1 class="bold text-center">##word.pages_implement##</h1>
@@ -72,7 +72,7 @@
 
   <div x-import="haraj/scripts.html"></div>
   <script x-import="haraj/editor.js"></script>
-  <script x-import="page-implement/index.js"></script>
+  <script x-import="pages/index.js"></script>
   <script>
    window.addEditor =  WebShareEditor.create('content_area', {
       toolbarItem: [

@@ -10,8 +10,8 @@ app.controller('display_content', function ($scope, $http, $timeout) {
     $scope.contentList = [];
     where = {};
     where['ad_status.id'] = 1;
-     where['main_category.id'] = ad.main_category.id;
-     where['id'] = { $ne: ad.id };
+    where['main_category.id'] = ad.main_category.id;
+    where['id'] = { $ne: ad.id };
     if (type) {
 
       if (ad.address.country && ad.address.country.id && type == 'country') {
@@ -137,12 +137,12 @@ app.controller('display_content', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.showMessage = function (user,id) {
+  $scope.showMessage = function (user, id) {
     $scope.error = '';
     $scope.activity.user_message = user;
     site.showModal('#messageModal');
-    if(id) {
-    site.hideModal(`#${id}`);
+    if (id) {
+      site.hideModal(`#${id}`);
 
     }
   };
@@ -176,31 +176,65 @@ app.controller('display_content', function ($scope, $http, $timeout) {
   };
 
   $scope.showCommunication = function (obj) {
+    $scope.error = '';
     $scope.main_obj = obj;
     site.showModal('#communicationModal');
   };
 
-  $scope.showReportComment = function (i) {
-    $scope.activity.comment_index = i;
+  $scope.showReportComment = function (code) {
+    $scope.error = '';
+    $scope.activity.comment_code = code;
     site.showModal('#reportCommentModal');
   };
 
+  $scope.showReportReply = function (code) {
+    $scope.error = '';
+    $scope.activity.comment_code = code;
+    site.showModal('#reportReplyModal');
+  };
 
+  $scope.showReplyComment = function (code) {
+    $scope.error = '';
 
-  $scope.updateFeedback = function (type, status) {
-    if (type == 'favorite') {
-      $scope.activity.favorite = status;
+    let reply = document.querySelector(`#reply_${code}`);
+    if (reply) {
+      if (reply.style.display === "block") {
+        reply.style.display = "none";
+      } else {
+        reply.style.display = "block";
+      }
     }
+  };
 
-    let data = { id: $scope.ad.id, feedback: { ...$scope.activity, type: type } };
+  $scope.updateFeedback = function (type, other, comment) {
 
-    if (type == 'report') {
+    $scope.error = '';
+
+    if (type == 'favorite') {
+      $scope.activity.favorite = other;
+
+    } else if (type == 'reply_comment') {
+      let v = site.validated(`#reply_${comment.code}`);
+
+      if (!v.ok) {
+        $scope.error = v.messages[0].ar;
+        return;
+      };
+      $scope.activity.comment_code = other;
+      $scope.activity.$comment = comment.$reply_comment;
+      comment.$reply_comment = '';
+
+    } else if (type == 'report') {
       let v = site.validated('#reportModal');
 
       if (!v.ok) {
         $scope.error = v.messages[0].ar;
         return;
       };
+      if(!$scope.activity.report_type || !$scope.activity.report_type.id) {
+        $scope.error = '##word.must_select_report_type##';
+        return;
+      }
 
     } else if (type == 'report_comment') {
       let v = site.validated('#reportCommentModal');
@@ -209,7 +243,24 @@ app.controller('display_content', function ($scope, $http, $timeout) {
         $scope.error = v.messages[0].ar;
         return;
       };
+      if(!$scope.activity.report_type || !$scope.activity.report_type.id) {
+        $scope.error = '##word.must_select_report_type##';
+        return;
+      }
+    } else if (type == 'report_reply') {
+      let v = site.validated('#reportReplyModal');
+
+      if (!v.ok) {
+        $scope.error = v.messages[0].ar;
+        return;
+      };
+      if(!$scope.activity.report_type || !$scope.activity.report_type.id) {
+        $scope.error = '##word.must_select_report_type##';
+        return;
+      }
     }
+
+    let data = { id: $scope.ad.id, feedback: { ...$scope.activity, type: type } };
 
     $http({
       method: 'POST',
@@ -220,9 +271,8 @@ app.controller('display_content', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           if (type == 'comment') {
-            $scope.ad.feedback_list.push({
-              user: { profile: { name: '##user.profile.name##', image_url: '##user.profile.image_url##' } },
-              type: { id: 4, en: 'Comment', ar: 'تعليق' },
+            $scope.ad.comment_list.push({
+              user: { name: '##user.profile.name##', last_name: '##user.profile.last_name##', image_url: '##user.profile.image_url##' },
               comment_type: $scope.activity.comment_type,
               comment: $scope.activity.comment,
               date: new Date(),
@@ -230,14 +280,37 @@ app.controller('display_content', function ($scope, $http, $timeout) {
             });
             $scope.activity.comment = '';
             $scope.ad.number_comments += 1;
+          } else if (type == 'reply_comment') {
+            $scope.ad.comment_list.forEach((_c, indx) => {
+              if ($scope.activity.comment_code == _c.code) {
+                _c.reply_list = _c.reply_list || [];
+                _c.reply_list.push({
+                  user: { name: '##user.profile.name##', last_name: '##user.profile.last_name##', image_url: '##user.profile.image_url##' },
+                  comment_type: $scope.activity.comment_type,
+                  comment: $scope.activity.$comment,
+                  date: new Date(),
+                  $time: xtime(new Date()),
+                });
+              }
+            });
+
+            $scope.activity.$comment = '';
+            $scope.ad.number_comments += 1;
           } else if (type == 'report') {
             $scope.activity.report_type = {};
             $scope.activity.comment_report = '';
+            $scope.getReportsTypesList();
             site.hideModal('#reportModal');
           } else if (type == 'report_comment') {
             $scope.activity.report_type = {};
             $scope.activity.comment_report = '';
+            $scope.getReportsTypesList();
             site.hideModal('#reportCommentModal');
+          } else if (type == 'report_reply') {
+            $scope.activity.report_type = {};
+            $scope.activity.comment_report = '';
+            $scope.getReportsTypesList();
+            site.hideModal('#reportReplyModal');
           } else if (type == 'favorite') {
             if ($scope.activity.favorite) {
               $scope.ad.$number_favorites += 1;
@@ -254,6 +327,16 @@ app.controller('display_content', function ($scope, $http, $timeout) {
       }
     );
   };
+
+  $scope.selectReportAd = function (report) {
+    $scope.error = '';
+    $scope.reportAdList.forEach(_r => {
+      _r.$isSelected = false;
+    });
+    report.$isSelected = true;
+    $scope.activity.report_type = report;
+  };
+
 
   $scope.getUserAd = function (id) {
     $scope.busy = true;
