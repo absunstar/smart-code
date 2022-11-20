@@ -189,7 +189,6 @@ function hsMap(type) {
 site.onLoad(() => {
   setTimeout(() => {
     if (xbtnFilter) {
-
       xbtnFilter.click();
     }
     xtaghide();

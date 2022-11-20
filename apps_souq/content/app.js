@@ -19,11 +19,37 @@ module.exports = function init(site) {
       site.content_list = [...site.content_list, ...docs];
     }
   });
+  function addZero(code, number) {
+    let c = number - code.toString().length
+    for (let i = 0; i < c; i++) {
+      code = '0' + code.toString()
+    }
+    return code
+  }
+
+  $content.newCode = function (user_id) {
+    user_id = user_id || 'x'
+    let y = new Date().getFullYear().toString().substr(2, 2)
+    let m = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'][new Date().getMonth()].toString()
+    let d = new Date().getDate()
+    let lastCode = site.storage('content_last_code_' + user_id) || 0
+    let lastMonth = site.storage('content_last_month_' + user_id) || m
+    if (lastMonth != m) {
+      lastMonth = m
+      lastCode = 0
+    }
+    lastCode++
+    site.storage('content_last_code_' + user_id, lastCode)
+    site.storage('content_last_month_' + user_id, lastMonth)
+    return user_id + '.' + y + lastMonth + addZero(d, 2) + addZero(lastCode, 4)
+  }
 
   setInterval(() => {
     site.content_list.forEach((a, i) => {
       if (a.$add) {
         let user = a.$user;
+        a.code = $content.newCode(user.id);
+
         $content.add(a, (err, doc) => {
           if (!err && doc) {
             site.content_list[i] = doc;

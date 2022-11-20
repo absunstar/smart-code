@@ -294,7 +294,11 @@ module.exports = function init(site) {
           user: {
             id: doc.id,
             mobile: doc.mobile,
-            profile: doc.profile,
+            profile: {
+              name : doc.profile.name,
+              last_name : doc.profile.last_name,
+              image_url : doc.profile.image_url,
+            },
             email: doc.email,
           },
           store_status: {

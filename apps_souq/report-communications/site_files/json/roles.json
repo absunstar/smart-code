@@ -1,0 +1,7 @@
+[{
+    "module_name" : "report" ,
+    "name": "report_communications_admin",
+    "en": "Account Statement Customers  Admin",
+    "ar": "كشف حساب العملاء",
+    "permissions": ["report_communications_manage"]
+}]

@@ -486,7 +486,12 @@ a.pro-template .description {
   border-radius: 50%;
   background-color: green !important;
 }
-
+.tabs .tabs-content {
+  width: 100% !important;
+}
+.tabs .full .tab-link {
+  border-radius: 5px;
+}
 @media screen and (max-width: 768px) {
   body {
     margin-right: 0px;
@@ -506,9 +511,7 @@ a.pro-template .description {
     padding: 5px;
     margin: 1px;
   }
-  .tabs .tabs-content {
-    width: 100% !important;
-  }
+
   .tab-link span {
     padding: 1px;
   }

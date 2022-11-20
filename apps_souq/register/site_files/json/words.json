@@ -5,6 +5,11 @@
     "ar": "التسجيل برقم الموبايل"
   },
   {
+    "name": "register_with_email",
+    "en": "Register with an Email",
+    "ar": "التسجيل بالبريد الإلكتروني"
+  },
+  {
     "name": "next",
     "en": "Next",
     "ar": "التالي"
@@ -98,11 +103,6 @@
     "name": "mobile_phone_number",
     "en": "Mobile Number",
     "ar": "رقم الموبايل"
-  },
-  {
-    "name": "register_with_email",
-    "en": "Register with an email",
-    "ar": "التسجيل بالبريد الإلكتروني"
   },
   {
     "name": "email_or_pass_error",

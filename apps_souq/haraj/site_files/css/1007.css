@@ -26,6 +26,11 @@ div.scrollmenu a:hover {
 .tabs .tabs-header .tab-link.active {
   border-radius: 5px !important;
 }
+
+.tabs .full .tab-link {
+  border-radius: 5px !important;
+}
+
 ::-webkit-scrollbar {
   height: 7px !important;
 }

@@ -1,13 +1,18 @@
-let btn1 = document.querySelector('.tab-link');
-if (btn1) {
-  btn1.click();
-}
-
 app.controller('register_souq', function ($scope, $http, $timeout) {
   $scope.user = { image_url: '/images/user_logo.png' };
-  document.getElementById('mobile_mailer').style.display = 'block';
+  document.getElementById('mobile_mailer').style.display = 'none';
   document.getElementById('mobile_confirm').style.display = 'none';
   document.getElementById('mobile_data').style.display = 'none';
+
+  $scope.showTab = function (event, selector) {
+    if (selector == '#register_mobile') {
+      site.showTabContent(event, selector);
+      document.getElementById('mobile_mailer').style.display = 'block';
+
+    } else if (selector == '#register_email') {
+      site.showTabContent(event, selector);
+    } 
+  };
 
   $scope.resendCode = function (mobile, type) {
     $scope.error = '';
@@ -251,4 +256,14 @@ app.controller('register_souq', function ($scope, $http, $timeout) {
     }, 100);
   };
   $scope.getCountriesList();
+});
+
+site.onLoad(() => {
+  setTimeout(() => {
+    let btn1 = document.querySelector('#register_souq .tab-link');
+    if (btn1) {
+      btn1.click();
+    }
+  }, 500);
+
 });

@@ -10,6 +10,14 @@ module.exports = function init(site) {
     name: '/images',
     path: __dirname + '/site_files/images',
   });
+  site.get('/api/user/update-visit-date', (req, res) => {
+    req.session.user.visit_date = new Date();
+    
+    site.security.updateUser(req.session.user, (err, result) => {
+      console.log(err,result);
+    })
+    res.json({done : true})
+  });
 
   site.post('/api/user/follow_category', (req, res) => {
     let response = {

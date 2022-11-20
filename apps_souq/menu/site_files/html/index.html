@@ -7,6 +7,7 @@
     border-radius: 25px;
     margin: 0px;
   }
+
   .tooltip {
     position: static !important;
   }
@@ -48,7 +49,7 @@
     border-style: solid;
     border-color: transparent transparent black transparent;
   }
-  
+
 
   .tooltip2:hover .tooltiptext {
     visibility: visible;
@@ -58,14 +59,15 @@
 <div class="main-menu">
   <div id="main_tabs" class="tabs" style="display: block;">
     <div class="tabs-header">
-      <a class="tab-link tooltip tooltip2" href="/default_setting" x-permissions="default_setting_ui || default_setting_manage">
-          <i class="fa-solid fa-sliders"></i>
+      <a class="tab-link tooltip tooltip2" href="/default_setting"
+        x-permissions="default_setting_ui || default_setting_manage">
+        <i class="fa-solid fa-sliders"></i>
         <span> ##word.default_setting## </span>
         <h6 class="tooltiptext">##word.default_setting## </h6>
       </a>
 
       <a class="tab-link tooltip tooltip2" href="/manage_users" x-permissions="manage_users_ui || manage_users_manage">
-          <i class="fa-solid fa-users"></i>
+        <i class="fa-solid fa-users"></i>
         <span> ##word.manage_users## </span>
         <h6 class="tooltiptext">##word.manage_users##</h6>
       </a>
@@ -77,25 +79,28 @@
       </a> -->
 
       <a class="tab-link tooltip tooltip2" href="/contents" x-permissions="ads_ui || ads_manage">
-      <i class="fa-solid fa-rectangle-ad"></i>
+        <i class="fa-solid fa-rectangle-ad"></i>
         <span> ##word.ads## </span>
         <h6 class="tooltiptext">##word.ads##</h6>
       </a>
 
-      <a class="tab-link tooltip tooltip2" ng-show="defaultSettings.stores_settings.activate_stores" href="/stores" x-permissions="stores_ui || stores_manage">
-      <i class="fa-solid fa-store"></i>
+      <a class="tab-link tooltip tooltip2" ng-show="defaultSettings.stores_settings.activate_stores" href="/stores"
+        x-permissions="stores_ui || stores_manage">
+        <i class="fa-solid fa-store"></i>
         <span> ##word.stores## </span>
         <h6 class="tooltiptext">##word.stores##</h6>
       </a>
 
-      <a class="tab-link tooltip tooltip2" ng-show="defaultSettings.order_settings.activate_orders" href="/manage_order" x-permissions=" manage_order_ui || manage_order_manage">
-          <i class="fa-solid fa-cart-flatbed"></i>
+      <a class="tab-link tooltip tooltip2" ng-show="defaultSettings.order_settings.activate_orders" href="/manage_order"
+        x-permissions=" manage_order_ui || manage_order_manage">
+        <i class="fa-solid fa-cart-flatbed"></i>
         <span>##word.order_management##</span>
         <h6 class="tooltiptext">##word.order_management##</h6>
       </a>
 
-      <a class="tab-link tooltip tooltip2" href="/main_categories" x-permissions="main_categories_ui || main_categories_manage">
-          <i class="fa-solid fa-boxes-stacked"></i>
+      <a class="tab-link tooltip tooltip2" href="/main_categories"
+        x-permissions="main_categories_ui || main_categories_manage">
+        <i class="fa-solid fa-boxes-stacked"></i>
         <span> ##word.main_categories## </span>
         <h6 class="tooltiptext">##word.main_categories##</h6>
       </a>
@@ -113,7 +118,7 @@
       </a>
 
       <a class="tab-link tooltip tooltip2" href="/currency" x-permissions="currency_ui || currency_manage">
-          <i class="fa-solid fa-money-bill-wave"></i>
+        <i class="fa-solid fa-money-bill-wave"></i>
         <span>##word.currencies##</span>
         <h6 class="tooltiptext">##word.currencies##</h6>
       </a>
@@ -124,26 +129,34 @@
         <h6 class="tooltiptext">##word.units##</h6>
       </a>
 
-      <a class="tab-link tooltip tooltip2" href="/comments_types" x-permissions="comments_types_ui || comments_types_manage">
-      <i class="fa-solid fa-comments"></i>
+      <a class="tab-link tooltip tooltip2" href="/comments_types"
+        x-permissions="comments_types_ui || comments_types_manage">
+        <i class="fa-solid fa-comments"></i>
         <span>##word.comments_types##</span>
         <h6 class="tooltiptext">##word.comments_types##</h6>
       </a>
 
-      <a class="tab-link tooltip tooltip2" href="/reports_types" x-permissions="reports_types_ui || reports_types_manage">
+      <a class="tab-link tooltip tooltip2" href="/reports_types"
+        x-permissions="reports_types_ui || reports_types_manage">
         <i class="fa-solid fa-bug"></i>
         <span>##word.reports_types##</span>
         <h6 class="tooltiptext">##word.reports_types##</h6>
       </a>
+      <a class="tab-link tooltip tooltip2" href="/report-communications"
+        x-permissions="report_communications_ui || report_communications_manage">
+        <i class="fa-solid fa-flag"></i>
+        <span>##word.report_communications##</span>
+        <h6 class="tooltiptext">##word.report_communications##</h6>
+      </a>
 
       <a class="tab-link tooltip tooltip2" href="/countries" x-permissions="countries_ui || countries_manage">
-          <i class="fa-solid fa-globe"></i>
+        <i class="fa-solid fa-globe"></i>
         <span> ##word.countries## </span>
         <h6 class="tooltiptext">##word.countries##</h6>
       </a>
 
       <a class="tab-link tooltip tooltip2" href="/goves" x-permissions="goves_ui || goves_manage">
-          <i class="fa-solid fa-street-view"></i>
+        <i class="fa-solid fa-street-view"></i>
         <span> ##word.goves## </span>
         <h6 class="tooltiptext">##word.goves## </h6>
       </a>
