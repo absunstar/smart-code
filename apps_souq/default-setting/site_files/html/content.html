@@ -1,4 +1,5 @@
 <div class="form" id="setting_default">
+
   <div class="tabs">
     <div class="tabs-header full">
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#site_settings')"> ##word.site_settings## </a>
@@ -25,18 +26,8 @@
               <i-image ng-model="default_setting.logo"></i-image>
             </div>
           </div>
-          <div class="row">
-            <i-checkbox label="##word.allow_registration_through_email##" ng-model="default_setting.allow_registration_email"> </i-checkbox>
-          </div>
-          <div class="row">
-         
-            <div class="col2">
-              <br />
-              <i-checkbox label="##word.auto_generate_categories_code##" ng-model="default_setting.auto_generate_categories_code"> </i-checkbox>
-            </div>
-            <i-control ng-show="default_setting.auto_generate_categories_code" class="col3" label="##word.categories_level_length##" type="number" ng-model="default_setting.length_category"> </i-control>
-          </div>
-
+        
+ 
           <div class="row">
             <i-control class="col6" label="##word.company_name##" ng-model="default_setting.company_name"> </i-control>
             <i-control class="col6" label="##word.site_name##" ng-model="default_setting.site_name"> </i-control>
@@ -63,11 +54,34 @@
           </div>
 
           <div class="row">
-            <i-control class="col6" label="##word.google_store##" ng-model="default_setting.google_store"> </i-control>
-            <i-control class="col6" label="##word.apple_store##" ng-model="default_setting.apple_store"> </i-control>
+            <i-control class="col6" label="##word.link## ##word.google_store##" ng-model="default_setting.google_store"> </i-control>
+            <i-control class="col6" label="##word.link## ##word.apple_store##" ng-model="default_setting.apple_store"> </i-control>
+          </div>
+          <!-- <div class="row">
+            <i-control class="col6" label="##word.link## ##word.huawei_store##" ng-model="default_setting.huawei_store"> </i-control>
+          </div> -->
+          <div class="row">
+            <i-control class="col6" label="##word.auth_token_mobile##" ng-model="default_setting.auth_token_mobile"> </i-control>
+            <i-control class="col6" label="##word.account_id_mobile##" ng-model="default_setting.account_id_mobile"> </i-control>
           </div>
           <div class="row">
-            <i-control class="col6" label="##word.huawei_store##" ng-model="default_setting.huawei_store"> </i-control>
+            <i-control class="col6" label="##word.messaging_services_id_mobile##" ng-model="default_setting.messaging_services_id_mobile"> </i-control>
+          </div>
+
+          <div class="row">
+         
+            <div class="col2">
+              <br />
+              <i-checkbox label="##word.auto_generate_categories_code##" ng-model="default_setting.auto_generate_categories_code"> </i-checkbox>
+            </div>
+            <i-control ng-show="default_setting.auto_generate_categories_code" class="col3" label="##word.categories_level_length##" type="number" ng-model="default_setting.length_category"> </i-control>
+          </div>
+          <div class="row">
+            <i-checkbox class="row" label="##word.tax_number_show##" ng-model="default_setting.tax_number_show"> </i-checkbox>
+            <i-checkbox class="row" label="##word.commercial_registration_no_show##" ng-model="default_setting.commercial_registration_no_show"> </i-checkbox>
+            <i-checkbox class="row" label="##word.enable_sending_messages_mobile##" ng-model="default_setting.enable_sending_messages_mobile"> </i-checkbox>
+            <i-checkbox class="row" label="##word.enable_sending_messages_email##" ng-model="default_setting.enable_sending_messages_email"> </i-checkbox>
+            <i-checkbox class="row" label="##word.allow_registration_through_email##" ng-model="default_setting.allow_registration_email"> </i-checkbox>
           </div>
         </fieldset>
         <i-button type="default left" fa="2x fa-angle-double-left" onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
@@ -100,13 +114,16 @@
               <div class="row">
                 <i-list class="col4" ng-model="default_setting.content.publishing_system" items="publishingSystemList" display="##session.lang##" ng-search="_search.$search_publishing_system" label="##word.publishing_system##"></i-list>
               </div>
+
               <div class="row">
                 <i-list class="col4" ng-model="default_setting.content.closing_system" items="closingSystemList" display="##session.lang##" ng-search="_search.$search_closing_system" label="##word.closing_system##"></i-list>
 
                 <i-control ng-show="default_setting.content.closing_system.id == 1" label="##word.duration##" type="number" class="col3" ng-model="default_setting.content.duration"></i-control>
                 <i-list class="col3" ng-model="default_setting.content.duration_type" items="durationExpiryList" ng-show="default_setting.content.closing_system.id == 1" display="##session.lang##" ng-search="_search.$search_duration_type" label="##word.duration_type##"></i-list>
               </div>
+
             </div>
+
             <div class="col4">
               <h2 class="black center">##word.default_image_for_ad##</h2>
               <i-image help-id="units_logo" ng-model="default_setting.content.default_image_ad"> </i-image>

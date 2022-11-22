@@ -774,7 +774,7 @@
     background-color: var(--theme-color);
     position: fixed;
     left: 0;
-    width: 39px;
+    width: 45px;
     height: 250px;
     display: flex;
     flex-direction: column;

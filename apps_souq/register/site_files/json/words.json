@@ -25,6 +25,11 @@
     "ar": "برجاء الإنتظار أقل من دقيقة قبل إعادة إرسال الرمز مرة أخرى"
   },
   {
+    "name": "please_wait_to_send_email_code_again",
+    "en": "Please wait less than a five minutes before resending the code again",
+    "ar": "برجاء الإنتظار أقل من خمس دقائق قبل إعادة إرسال الرمز مرة أخرى"
+  },
+  {
     "name": "recovery",
     "en": "Recovery",
     "ar": "إستعادة"
@@ -50,6 +55,11 @@
     "ar": "تم إرسال الرمز الجديد إلى هاتفك"
   },
   {
+    "name": "the_new_code_has_been_sent_to_your_email",
+    "en": "The new code has been sent to your email",
+    "ar": "تم إرسال الرمز الجديد إلى بريدك الإلكتروني"
+  },
+  {
     "name": "agree",
     "en": "Agree",
     "ar": "أوافق"
@@ -63,6 +73,11 @@
     "name": "mobile_number_already_used",
     "en": "The mobile number already used",
     "ar": "رقم الموبايل مستخدم من قبل"
+  },
+  {
+    "name": "email_already_used",
+    "en": "The email already used",
+    "ar": "البريد الإلكتروني مستخدم من قبل"
   },
   {
     "name": "continuation",

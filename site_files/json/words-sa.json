@@ -70,6 +70,11 @@
     "ar": "رقم الجوال مستخدم من قبل"
   },
   {
+    "name": "enable_sending_messages_mobile",
+    "en": "Enable sending messages to the mobile",
+    "ar": "تفعيل إرسال الرسائل للجوال"
+  },
+  {
     "name": "mobile",
     "en": "Mobile",
     "ar": "رقم الجوال"

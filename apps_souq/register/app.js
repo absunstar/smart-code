@@ -42,15 +42,15 @@ module.exports = function init(site) {
       done: false,
     };
 
-    if(site.ipList.find(info => info.ip == req.ip)){
-      response.error = 'Can NOt Reqister More One From Same IP'
-      res.json(response)
-      return
-    }
+    // if(site.ipList.find(info => info.ip == req.ip)){
+    //   response.error = 'Can NOt Reqister More One From Same IP'
+    //   res.json(response)
+    //   return
+    // }
 
     site.ipList.push({
-      ip : req.ip,
-      time : new Date().getTime()
+      ip: req.ip,
+      time: new Date().getTime()
     })
 
     let mailer_doc = req.body;
@@ -84,7 +84,16 @@ module.exports = function init(site) {
               return
             }
           } else if (mailer_doc.email) {
-
+            let date = new Date(doc.date);
+            date.setMinutes(date.getMinutes() + 1);
+            if (new Date() > date) {
+              doc.code = doc.id + Math.floor(Math.random() * 10000) + 90000;
+              doc.date = new Date();
+            } else {
+              response.error = 'have to wait email';
+              res.json(response);
+              return
+            }
           }
           $mailer.edit(
             {
@@ -98,13 +107,13 @@ module.exports = function init(site) {
             (err, result) => {
               if (!err) {
 
-                if (result.doc.type == 'mobile') {
+                if (result.doc.type == 'mobile' && site.setting.enable_sending_messages_mobile) {
                   site.sendMobileMessage({
                     to: result.doc.country.country_code + result.doc.mobile,
                     message: `code : ${result.doc.code}`,
                   });
                   response.done_send_mobile = true;
-                } else if (result.doc.type == 'email') {
+                } else if (result.doc.type == 'email' && site.setting.enable_sending_messages_email) {
                   site.sendMailMessage({
                     to: result.doc.email,
                     subject: 'Smart Code .. Forget Password',
@@ -147,14 +156,14 @@ module.exports = function init(site) {
                   if (!err) {
                     response.done = true;
                     response.doc = result;
-                    if (result.type == 'mobile') {
-                 
+                    if (result.type == 'mobile' && site.setting.enable_sending_messages_mobile) {
+
                       site.sendMobileMessage({
                         to: result.country.country_code + result.mobile,
                         message: `code : ${result.code}`,
                       });
                       response.done_send_mobile = true;
-                    } else if (result.type == 'email') {
+                    } else if (result.type == 'email'  && site.setting.enable_sending_messages_email) {
 
                       site.sendMailMessage({
                         to: result.email,
@@ -164,8 +173,6 @@ module.exports = function init(site) {
                       response.done_send_email = true;
                     }
                     delete response.code;
-
-
                   } else {
                     response.error = err.message;
                   }
@@ -234,7 +241,8 @@ module.exports = function init(site) {
   });
 
   site.post('/api/register', (req, res) => {
-    let response = {};
+    let response = { done: false };
+
 
     if (req.body.$encript) {
       if (req.body.$encript === '64') {
@@ -244,6 +252,22 @@ module.exports = function init(site) {
         req.body.email = site.from123(req.body.email);
         req.body.password = site.from123(req.body.password);
       }
+    }
+
+    let regex = /^\d*(\.\d+)?$/;
+
+    if (req.body.length_mobile && req.body.mobile.match(regex)) {
+      if (req.body.mobile.toString().length == req.body.length_mobile) {
+        response.done = true;
+      } else {
+        response.error = 'Please enter a valid mobile number';
+        res.json(response);
+        return;
+      }
+    } else {
+      response.error = 'Please enter a valid mobile number';
+      res.json(response);
+      return;
     }
 
     let user = {
@@ -295,9 +319,9 @@ module.exports = function init(site) {
             id: doc.id,
             mobile: doc.mobile,
             profile: {
-              name : doc.profile.name,
-              last_name : doc.profile.last_name,
-              image_url : doc.profile.image_url,
+              name: doc.profile.name,
+              last_name: doc.profile.last_name,
+              image_url: doc.profile.image_url,
             },
             email: doc.email,
           },

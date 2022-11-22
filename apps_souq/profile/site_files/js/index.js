@@ -196,20 +196,17 @@ app.controller('profile', function ($scope, $http, $timeout) {
       url: '/api/user/view',
       data: {
         id: site.toNumber('##params.id##'),
+        profile : true,
       },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.user = response.data.doc;
-          if ($scope.user.email == '##user.email##') {
+          if ($scope.user.id == site.toNumber('##user.id##')) {
             $scope.user.$same_email = true;
           }
-          $scope.user.followers_list.forEach((_f) => {
-            if (_f == site.toNumber('##user.id##')) {
-              $scope.user.$is_follow = true;
-            }
-          });
+          $scope.user.$is_follow = response.data.follow;
         } else {
           $scope.error = response.data.error;
         }

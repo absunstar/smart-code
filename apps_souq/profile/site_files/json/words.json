@@ -16,6 +16,11 @@
         "ar": "تقييم"
     },
     {
+        "name": "last_seen",
+        "en": "Last seen",
+        "ar": "آخر ظهور"
+    },
+    {
         "name": "contact_number",
         "en": "Contact number",
         "ar": "رقم التواصل"

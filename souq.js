@@ -88,21 +88,21 @@ site.security.addKey('0e849095ad8db45384a9cdd28d7d0e20');
 
 site.sendMobileMessage = function (options) {
   console.log(options);
-  const accountSid = 'ACf8c465f2b02b59f743c837eafe19a1a9';
-  const authToken = '046e313826666f9ffe41fc96b4964530';
-  const client = require('twilio')(accountSid, authToken);
+  // const accountSid = 'ACf8c465f2b02b59f743c837eafe19a1a9';
+  // const authToken = '046e313826666f9ffe41fc96b4964530';
+  const client = require('twilio')(site.setting.account_id_mobile, site.setting.auth_token_mobile);
 
   client.messages
     .create({
       body: options.message,
-      messagingServiceSid: 'MGcb99dc085ff2f4b21d3c6b36460275ab',
+      messagingServiceSid: site.setting.messaging_services_id_mobile,
       to: '+' + options.to
     })
     .then(message => console.log(message.sid))
     .done();
 
-    
 }
+
 site.sendMailMessage = function (options) {
   console.log(options);
 }

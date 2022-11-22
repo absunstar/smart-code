@@ -90,6 +90,9 @@ i-country span {
   box-shadow: 1px 1px 5px 2px #fff;
   margin: -5px 10px -5px 0px !important;
 }
+.color-theme {
+  color: #009688;
+}
 
 .border-radius5 {
   border-radius: 5px;
@@ -101,6 +104,42 @@ i-country span {
 
 .pointer {
   cursor: pointer;
+}
+
+.font-17 {
+  font-size: 17px !important;
+}
+
+.font-18 {
+  font-size: 18px !important;
+}
+
+.font-19 {
+  font-size: 19px !important;
+}
+
+.font-20 {
+  font-size: 20px !important;
+}
+
+.font-21 {
+  font-size: 21px !important;
+}
+
+.font-22 {
+  font-size: 22px !important;
+}
+
+.font-23 {
+  font-size: 23px !important;
+}
+
+.font-24 {
+  font-size: 24px !important;
+}
+
+.font-25 {
+  font-size: 25px !important;
 }
 
 .font-26 {

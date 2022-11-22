@@ -28,6 +28,10 @@
       text-align: center;
     }
 
+    .register-hide {
+      display: none;
+    }
+
     .signin {
       background-color: #fff;
       text-align: center;
@@ -68,14 +72,17 @@
     <div class="all-section tabs user-tabs">
       <div class="tabs-header full">
 
-        <a class="tab-link inline-block" ng-click="showTab($event,'#register_mobile')"> ##word.register_with_mobile_number##</a>
-        <a class="tab-link inline-block" ng-click="showTab($event,'#register_email')">
+        <a class="tab-link inline-block" ng-click="showTab($event,'#register_mobile')">
+          ##word.register_with_mobile_number##</a>
+        <a class="tab-link inline-block" ng-show="##setting.allow_registration_email##"
+          ng-click="showTab($event,'#register_email')">
           ##word.register_with_email##</a>
+
       </div>
       <div class="tabs-content border margin padding border-radius5">
         <div class="row" id="register_mobile">
 
-          <div class="row" id="mobile_mailer">
+          <div class="row register-hide" id="mobile_mailer">
             <div class="col3"></div>
             <div class="col6">
               <div class="row padding">
@@ -91,7 +98,7 @@
             </div>
           </div>
 
-          <div class="row" id="mobile_confirm">
+          <div class="row register-hide" id="mobile_confirm">
             <div class="col3"></div>
 
             <div class="col6">
@@ -100,43 +107,128 @@
             </div>
             <div class="row center">
               <i-button label="##word.continuation##" ng-click="checkSecretCode(secret_code)"></i-button>
-              <i-button label="##word.resend_code##" fa="retweet" ng-click="resendCode(mailer.mobile,'mobile')">
+              <i-button label="##word.resend_code##" fa="retweet" ng-click="resendCode(mailer.mobile)">
               </i-button>
             </div>
           </div>
-          <div class="row" id="mobile_data">
+
+          <div class="row register-hide" id="mobile_data">
             <div class="row">
               <i-image help-id="user_logo" ng-model="user.image_url"></i-image>
             </div>
 
             <div class="row">
-              <i-control class="col4 input-style" label="##word.first_name##" ng-model="user.first_name"> </i-control>
-              <i-control class="col4 input-style" label="##word.last_name##" ng-model="user.last_name"> </i-control>
+              <i-control v="r" class="col4 input-style" label="##word.first_name##" ng-model="user.first_name">
+              </i-control>
+              <i-control v="r" class="col4 input-style" label="##word.last_name##" ng-model="user.last_name">
+              </i-control>
             </div>
             <div class="row">
               <i-control v="r e" class="col4 input-style" label="##word.email##" ng-model="user.email"> </i-control>
             </div>
-            <div class="row">
-              <i-control class="col4 pass input-style" label="##word.password##" type="password" id="pass1"
-                ng-model="user.password"> </i-control>
+            <div class="row" ng-show="##setting.enable_sending_messages_mobile## != true">
+              <i-country v="r" class="col4 center input-style" label="##word.country##" ng-model="user.country"
+                items="countriesList" display="name_##session.lang##" ng-search="user.$countries"></i-country>
+              <i-control v="r" class="col4 center input-style" label="##word.mobile_phone_number##" type="tel"
+                ng-model="user.mobile"> </i-control>
             </div>
             <div class="row">
-              <i-control class="col4 pass input-style" label="##word.retype_password##" type="password" id="pass2"
+              <i-control v="r" class="col4 pass input-style" label="##word.password##" type="password" id="pass1"
+                ng-model="user.password"> </i-control>
+              <i-control v="r" class="col4 pass input-style" label="##word.retype_password##" type="password" id="pass2"
                 ng-model="user.re_password"> </i-control>
             </div>
             <div class="row">
               <i-checkbox class="col2" label="##word.show_password##" ng-change="showPassword()"
                 ng-model="show_password"> </i-checkbox>
             </div>
-
-            <i-button fa="user-plus" label="##word.register_now##" ng-click="registerByMobile(user,'mobile')">
-            </i-button>
+            
+            <i-button fa="user-plus" ng-show="##setting.enable_sending_messages_mobile## == true" label="##word.register_now##" ng-click="register(user)"></i-button>
+            <i-button fa="user-plus" ng-show="##setting.enable_sending_messages_mobile## != true" label="##word.register_now##" ng-click="checkRegister(user)"></i-button>
           </div>
+
         </div>
+
+
+
+
+
         <div class="row" id="register_email">
 
+          <div class="row register-hide" id="email_mailer">
+            <div class="col3"></div>
+            <div class="col6">
+              <div class="row padding">
+                <i-control class="center input-style" v="r e" label="##word.email##" ng-model="mailer.email">
+                </i-control>
+              </div>
+            </div>
+            <div class="row center">
+              <i-button class="center" fa="arrow-left" label="##word.continuation##" ng-click="validEmail(mailer)">
+              </i-button>
+            </div>
+          </div>
+
+          <div class="row register-hide" id="email_confirm">
+            <div class="col3"></div>
+
+            <div class="col6">
+              <i-control class="row center input-style" v="r" label="##word.secret_code_sent_email##"
+                ng-model="secret_code"> </i-control>
+            </div>
+            <div class="row center">
+              <i-button label="##word.continuation##" ng-click="checkSecretCode(secret_code)"></i-button>
+              <i-button label="##word.resend_code##" fa="retweet" ng-click="resendCode(mailer.email)">
+              </i-button>
+            </div>
+          </div>
+
+          <div class="row register-hide" id="email_data">
+            <div class="row">
+              <i-image help-id="user_logo" ng-model="user.image_url"></i-image>
+            </div>
+
+            <div class="row">
+              <i-control v="r" class="col4 input-style" label="##word.first_name##" ng-model="user.first_name">
+              </i-control>
+              <i-control v="r" class="col4 input-style" label="##word.last_name##" ng-model="user.last_name">
+              </i-control>
+            </div>
+
+            <div class="row" ng-show="##setting.enable_sending_messages_email## != true">
+              <i-control v="r e" class="col4 input-style" label="##word.email##" ng-model="user.email"> </i-control>
+            </div>
+
+            <div class="row">
+              <i-country v="r" class="col4 center input-style" label="##word.country##" ng-model="user.country"
+                items="countriesList" display="name_##session.lang##" ng-search="user.$countries"></i-country>
+              <i-control v="r" class="col4 center input-style" label="##word.mobile_phone_number##" type="tel"
+                ng-model="user.mobile"> </i-control>
+            </div>
+
+            <div class="row">
+              <i-control v="r" class="col4 pass input-style" label="##word.password##" type="password" id="pass1"
+                ng-model="user.password"> </i-control>
+              <i-control v="r" class="col4 pass input-style" label="##word.retype_password##" type="password" id="pass2"
+                ng-model="user.re_password"> </i-control>
+            </div>
+
+            <div class="row">
+              <i-checkbox class="col2" label="##word.show_password##" ng-change="showPassword()"
+                ng-model="show_password"> </i-checkbox>
+            </div>
+
+            <i-button fa="user-plus" ng-show="##setting.enable_sending_messages_email## == true" label="##word.register_now##" ng-click="register(user)"></i-button>
+            <i-button fa="user-plus" ng-show="##setting.enable_sending_messages_email## != true" label="##word.register_now##" ng-click="checkRegister(user)"></i-button>
+          </div>
 
         </div>
+
+
+
+
+
+
         <h2 class="bold center green">{{sent_new_code}}</h2>
         <h2 class="bold center red">{{error}}</h2>
       </div>

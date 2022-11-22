@@ -216,7 +216,9 @@
     </div>
 
     <div class="row" x-permissions="login" ng-hide="ad.disable_replies_feature">
-      <i-textarea label="##word.Write_your_question_advertiser_here##" class="input-style" ng-model="activity.comment">
+     
+      <p class="font-22 gray-desc margin">##word.Write_your_question_advertiser_here## <i class="fa-solid fa-down-long"></i></p>
+      <i-textarea class="input-style" ng-model="activity.comment">
       </i-textarea>
       <button class="send-btn center" ng-click="updateFeedback('comment')">
         <i class="fa fa-paper-plane"></i>

@@ -2,19 +2,30 @@
   ._scroll100 {
     max-height: none !important;
   }
-
+  
+  .margin-info-menu {
+    margin-top: -30px !important;
+  }
+  
   .add-button {
     width: auto;
   }
+
   .footer {
     margin-bottom: 50px;
   }
+
   .secondeheader {
     background-color: #f1f1f1;
     height: auto;
     display: grid;
     grid-template-columns: 20% 60% 20%;
     direction: rtl;
+  }
+
+  .online-badge {
+    margin-top: -23px !important;
+    margin-right: 56% !important;
   }
 
   .logo img {

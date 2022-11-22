@@ -69,7 +69,7 @@ module.exports = function init(site) {
 
   site.post('/api/default_setting/get', (req, res) => {
     let response = {
-      doc: site.defaultSettingDoc,
+      doc: site.setting,
       done: true,
     };
     res.json(response);
@@ -77,8 +77,8 @@ module.exports = function init(site) {
 
   site.getDefaultSetting = function (callback) {
     callback = callback || function () {};
-    callback(site.defaultSettingDoc);
-    return site.defaultSettingDoc;
+    callback(site.setting);
+    return site.setting;
   };
 
   site.post('/api/default_setting/save', (req, res) => {

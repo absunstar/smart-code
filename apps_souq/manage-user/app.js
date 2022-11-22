@@ -12,11 +12,9 @@ module.exports = function init(site) {
   });
   site.get('/api/user/update-visit-date', (req, res) => {
     req.session.user.visit_date = new Date();
-    
-    site.security.updateUser(req.session.user, (err, result) => {
-      console.log(err,result);
-    })
-    res.json({done : true})
+
+    site.security.updateUser(req.session.user, (err, result) => { })
+    res.json({ done: true })
   });
 
   site.post('/api/user/follow_category', (req, res) => {
@@ -150,9 +148,9 @@ module.exports = function init(site) {
             } else {
               _user.password = req.body.user.new_password;
             }
-          } else if (type === 'first_name' || type === 'name'  || type === 'cover' || type === 'logo' || type === 'birth_date' || type === 'gender' || type === 'name' || type === 'about_me') {
+          } else if (type === 'first_name' || type === 'name' || type === 'cover' || type === 'logo' || type === 'birth_date' || type === 'gender' || type === 'name' || type === 'about_me') {
             _user.profile = req.body.user.profile;
-          } else if (type === 'mobile'){
+          } else if (type === 'mobile') {
             _user.mobile = req.body.user.mobile;
             _user.hide_mobile = req.body.user.hide_mobile;
             _user.mobile_list = req.body.user.mobile_list;

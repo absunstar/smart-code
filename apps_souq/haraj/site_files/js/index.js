@@ -91,7 +91,7 @@ app.controller('haraj', function ($scope, $http, $timeout) {
     );
   };
 
-  
+
   $scope.loadMore = function () {
     if (!window.autoLoadingPosts) {
       return;
@@ -314,7 +314,6 @@ app.controller('haraj', function ($scope, $http, $timeout) {
       }
     );
   };
-
   $scope.updateFeedback = function (ad, type, status) {
     if (type == 'favorite') {
       ad.$favorite = status;
@@ -359,9 +358,18 @@ app.controller('haraj', function ($scope, $http, $timeout) {
           $scope.category_list = response.data.list;
           $scope.topParentCategoriesList = response.data.top_list;
           $scope.category_list.forEach((_c) => {
-            if (!_c.top_parent_id) {
-              if (site.toNumber('##params.id##') == _c.id) {
+
+            if (site.toNumber('##params.id##') == _c.id) {
+              if (!_c.top_parent_id) {
                 $scope.loadSubCategory(_c);
+              } else if(_c.parent_list_id && _c.parent_list_id.length > 0){
+                if(_c.parent_list_id.length == 1) {
+                  $scope.loadSubCategory2(_c);
+                } else  if(_c.parent_list_id.length == 2) {
+                  $scope.loadSubCategory3(_c);
+                } else if(_c.parent_list_id.length == 3) {
+                  $scope.loadSubCategory4(_c);
+                }
               }
             }
           });

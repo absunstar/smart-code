@@ -25,6 +25,47 @@
     "ar": "متجر جوجل"
   },
   {
+    "name": "apple_store",
+    "en": "APPLE Store",
+    "ar": "متجر أبل"
+  },
+  {
+    "name": "auth_token_mobile",
+    "en": "Auth Token for mobile",
+    "ar": "رمز مصادقة للموبايل"
+  },
+  {
+    "name": "account_id_mobile",
+    "en": "Account ID for mobile",
+    "ar": "هوية الحساب للموبايل"
+  },
+  {
+    "name": "messaging_services_id_mobile",
+    "en": "Messaging Services ID for mobile",
+    "ar": "هوية خدمات المراسلة للموبايل"
+  },
+  {
+    "name": "enable_sending_messages_mobile",
+    "en": "Enable sending messages to the mobile",
+    "ar": "تفعيل إرسال الرسائل للموبايل"
+  },
+  {
+    "name": "enable_sending_messages_email",
+    "en": "Enable sending messages to the email",
+    "ar": "تفعيل إرسال الرسائل للبريد الإلكتروني"
+  },
+  {
+    "name": "commercial_registration_no_show",
+    "en": "Commercial Registration No. show",
+    "ar": "إظهار رقم السجل التجاري"
+  },
+  {
+    "name": "tax_number_show",
+    "en": "Tax Number show",
+    "ar": "إظهار الرقم الضريبي"
+  },
+
+  {
     "name": "allow_registration_through_email",
     "en": "Allow registration through email",
     "ar": "السماح بالتسجيل من خلال البريد الإلكتروني"

@@ -18,13 +18,37 @@
       -ms-user-select: none;
       user-select: none;
     }
+
+    .info-profile-margin {
+      margin-top: -45px !important;
+    }
+
+    .create-user {
+      border-radius: 40%;
+      border: 1px solid #ebebeb;
+      background: #ebebeb;
+      padding: 13px !important;
+    }
+
+    .conversation {
+      margin: 5px 15px 5px 5px;
+    }
+
+    .v_line {
+      border-left: 1px solid rgba(4, 115, 192, .5);
+      height: 81px;
+      padding: 10px 5px 5px 4px !important;
+    }
+
     i-radio .selector.selected {
       width: 83%;
       margin-right: 20px;
     }
+
     i-radio .selector.un-selected {
       width: 90%;
     }
+
     .radius13 {
       border-radius: 13px;
     }
@@ -38,6 +62,21 @@
       border-radius: 10px;
     }
 
+    .online-badge {
+      width: 20px;
+      height: 20px;
+      background: #2fdb6b;
+      display: block;
+      position: absolute;
+      margin-top: -84px;
+      margin-right: 52%;
+      border-radius: 50%;
+    }
+
+    .offline-badge {
+      background: rgb(121, 131, 152) !important;
+    }
+
     .recommend {
       font-size: 22px;
       color: #929aaa;
@@ -46,14 +85,16 @@
       background-color: #ddd;
       border-radius: 10px;
     }
+
     .recommend-notselected {
-    font-size: 22px;
-    color: #ffffff;
-    padding: 10px;
-    background-color: #960000;
-    border-radius: 10px;
-    border: 2px solid #000000;
-}
+      font-size: 22px;
+      color: #ffffff;
+      padding: 10px;
+      background-color: #960000;
+      border-radius: 10px;
+      border: 2px solid #000000;
+    }
+
     .recommend-selected {
       font-size: 22px;
       color: #ffffff;
@@ -152,11 +193,13 @@
     .table td {
       border: unset;
     }
+
     .about-me {
-    white-space: pre-wrap;
-    font-size: 18px;
-    color: #676565;
-}
+      white-space: pre-wrap;
+      font-size: 18px;
+      color: #676565;
+    }
+
     .table th {
       border-radius: 10px;
     }
@@ -214,19 +257,24 @@
 
     @media screen and (max-width: 480px) {
       .user-background img {
-      height: 200px;
+        height: 200px;
+      }
+      .info-profile-margin {
+      margin-top: 0px !important;
     }
-    .user-cover {
-      margin-top: -200px !important;
+      .user-cover {
+        margin-top: -200px !important;
 
+      }
+
+      .user-cover img {
+        width: 150px !important;
+        height: 150px !important;
+        border-radius: 50% !important;
+        margin-right: 55px !important;
+      }
     }
-    .user-cover img {
-    width: 150px !important;
-    height: 150px !important;
-    border-radius: 50% !important;
-    margin-right: 60px !important;
-}
-    }
+
     @media screen and (max-width: 600px) {
       .user-cover {
         width: 256px !important;
@@ -245,7 +293,7 @@
       width: 200px;
       height: 200px;
       border-radius: 50%;
-      margin-right: 40px;
+      margin-right: 65px;
     }
 
     .darkgray {
@@ -285,29 +333,41 @@
 
       <div class="row">
         <i-image class="user-background" view ng-model="user.profile.cover"></i-image>
-        <i-image class="user-cover" view logo ng-model="user.profile.image_url"></i-image>
+        <i-image class="user-cover" view logo ng-model="user.profile.image_url">
+        </i-image>
+        <span class="online-badge" ng-class="{'offline-badge' : !user.$isOnline}"></span>
       </div>
-      <div class="row">
+      <div class="row info-profile-margin">
         <div class="col2 center">
 
           <i-button class="center" x-permissions="login" label="##word.follow##"
             ng-show="!user.$is_follow && !user.$same_email" ng-click="updateFollow(user,true)"></i-button>
           <i-button class="center" x-permissions="login" label="##word.unfollow##"
             ng-show="user.$is_follow && !user.$same_email" ng-click="updateFollow(user,false)"></i-button>
-          <h3 class="darkgray center" ng-show="user.followers_list.length > 0">{{user.followers_list.length}}
+          <h3 class="darkgray font-20 center" ng-show="user.followers_list.length > 0">{{user.followers_list.length}}
             ##word.follower##</h3>
-          <h3 class="darkgray center" ng-show="user.followers_list.length < 1"> ##word.no_followers##</h3>
+          <h3 class="darkgray font-20 center" ng-show="user.followers_list.length < 1"> ##word.no_followers##</h3>
         </div>
 
         <div class="col8">
           <div class="ad-user center">
 
-            <h1 class="user-name-stlye font-22 center">
+            <h1 class="user-name-stlye font-28 center">
               {{user.profile.name}} {{user.profile.last_name}}
             </h1>
-          
+
           </div>
-          <h2 class="user-name-stlye darkgray userPrint center">{{user.email}}</h2>
+          <h2 class="user-name-stlye black font-25 userPrint center">{{user.email}}</h2>
+
+          <div class="row margin darkgray font-22 padding center" ng-show="!user.$isOnline">
+
+            <p> ##word.last_seen## {{user.$last_seen}} </p>
+          </div>
+
+          <div class="row margin darkgray font-22 padding center">
+            <i class="fa-solid fa-calendar-days create-user"></i>
+            <p>{{user.$creat_user}}</p>
+          </div>
           <div class="row margin padding">
             <p class="center about-me">{{user.profile.about_me}}</p>
           </div>
@@ -324,17 +384,22 @@
           </a>
         </div>
       </div>
-      <div class="row center">
 
-        <i-button fa="phone" label="##word.communication##" ng-show="!user.$same_email && !user.hide_mobile" ng-click="showCommunication()">
-        </i-button>
+      <div class="row center">
         <i-button fa="sliders" label="##word.manage_your_personal_account##" ng-show="user.$same_email"
           ng-click="displayManagePersonalAccount()"> </i-button>
-
-        <i-button fa="comments" x-permissions="login" ng-show="!user.$same_email" label="##word.conversation##"
-          onclick="site.showModal('#messageModal');"></i-button>
-
       </div>
+
+      <hr ng-show="!user.$same_email">
+      <div class="row center" ng-show="!user.$same_email">
+        <a class="color-theme font-25 pointer" ng-show="!user.$same_email && !user.hide_mobile"
+          ng-click="showCommunication()"> <i class="fa fa-phone"></i> ##word.communication##</a>
+        <span class="v_line"></span>
+        <a class="color-theme font-25 pointer conversation" x-permissions="login"
+          onclick="site.showModal('#messageModal');"> <i class="fa fa-comments"></i>
+          ##word.conversation##</a>
+      </div>
+      <hr>
       <div x-import="profile/tabs_content.html"></div>
 
 

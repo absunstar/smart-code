@@ -140,7 +140,8 @@
 
             <i-button type="close" label="##word.disagree##" onclick="site.hideModal('#dealModal')"> </i-button>
 
-            <i-button fa="check" label="##word.agree##" ng-click="registerMailer(mailer,'mobile')"> </i-button>
+            <i-button fa="thumbs-up" label="##word.agree##" ng-hide="(type == 'mobile' && ##setting.enable_sending_messages_mobile## != true) || (type == 'email' && ##setting.enable_sending_messages_email## != true)" ng-click="registerMailer(mailer)"> </i-button>
+            <i-button fa="thumbs-up" label="##word.agree##" ng-hide="(type == 'mobile' && ##setting.enable_sending_messages_mobile## == true) || (type == 'email' && ##setting.enable_sending_messages_email## == true)" ng-click="register(user)"> </i-button>
 
         </div>
     </div>
