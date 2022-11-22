@@ -35,7 +35,7 @@ module.exports = function init(site) {
           };
 
           m.users_list.forEach((_u) => {
-            if (m.$user_id == _u.id) {
+            if (_u && m.$user_id == _u.id) {
               obj.user_action = _u;
             } else {
               obj.user = _u;
@@ -205,7 +205,7 @@ module.exports = function init(site) {
     site.message_list.forEach((m) => {
       let found = false;
       m.users_list.forEach((_u, i) => {
-        if (_u.id == req.session.user.id) {
+        if (_u && _u.id == req.session.user.id) {
           _u.name = req.session.user.profile.name;
           _u.last_name = req.session.user.profile.last_name;
           _u.email = req.session.user.email;
