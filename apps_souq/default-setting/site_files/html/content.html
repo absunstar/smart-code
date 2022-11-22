@@ -60,13 +60,20 @@
           <!-- <div class="row">
             <i-control class="col6" label="##word.link## ##word.huawei_store##" ng-model="default_setting.huawei_store"> </i-control>
           </div> -->
-          <div class="row">
-            <i-control class="col6" label="##word.auth_token_mobile##" ng-model="default_setting.auth_token_mobile"> </i-control>
-            <i-control class="col6" label="##word.account_id_mobile##" ng-model="default_setting.account_id_mobile"> </i-control>
-          </div>
-          <div class="row">
-            <i-control class="col6" label="##word.messaging_services_id_mobile##" ng-model="default_setting.messaging_services_id_mobile"> </i-control>
-          </div>
+       
+          <fieldset>
+            <legend>##word.mobile_sms##</legend>
+            <div class="row">
+            <i-checkbox class="col6" label="##word.enable_sending_messages_mobile##" ng-model="default_setting.enable_sending_messages_mobile"> </i-checkbox>
+
+              <i-control class="col6" label="##word.auth_token_mobile##" ng-model="default_setting.auth_token_mobile"> </i-control>
+            </div>
+            <div class="row">
+              <i-control class="col6" label="##word.account_id_mobile##" ng-model="default_setting.account_id_mobile"> </i-control>
+              <i-control class="col6" label="##word.messaging_services_id_mobile##" ng-model="default_setting.messaging_services_id_mobile"> </i-control>
+            </div>
+  
+          </fieldset>
 
           <div class="row">
          
@@ -79,7 +86,6 @@
           <div class="row">
             <i-checkbox class="row" label="##word.tax_number_show##" ng-model="default_setting.tax_number_show"> </i-checkbox>
             <i-checkbox class="row" label="##word.commercial_registration_no_show##" ng-model="default_setting.commercial_registration_no_show"> </i-checkbox>
-            <i-checkbox class="row" label="##word.enable_sending_messages_mobile##" ng-model="default_setting.enable_sending_messages_mobile"> </i-checkbox>
             <i-checkbox class="row" label="##word.enable_sending_messages_email##" ng-model="default_setting.enable_sending_messages_email"> </i-checkbox>
             <i-checkbox class="row" label="##word.allow_registration_through_email##" ng-model="default_setting.allow_registration_email"> </i-checkbox>
           </div>

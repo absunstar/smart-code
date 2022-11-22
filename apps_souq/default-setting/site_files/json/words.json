@@ -30,19 +30,24 @@
     "ar": "متجر أبل"
   },
   {
+    "name": "mobile_sms",
+    "en": "Twilio sms",
+    "ar": "(Twilio) رسائل الجوال"
+  },
+  {
     "name": "auth_token_mobile",
     "en": "Auth Token for mobile",
-    "ar": "رمز مصادقة للموبايل"
+    "ar": "(Auth Token) توكن التفعيل"
   },
   {
     "name": "account_id_mobile",
     "en": "Account ID for mobile",
-    "ar": "هوية الحساب للموبايل"
+    "ar": "(Account ID) كود الحساب"
   },
   {
     "name": "messaging_services_id_mobile",
     "en": "Messaging Services ID for mobile",
-    "ar": "هوية خدمات المراسلة للموبايل"
+    "ar": "(Messaging Services ID) كود الخدمة"
   },
   {
     "name": "enable_sending_messages_mobile",

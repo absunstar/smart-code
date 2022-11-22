@@ -35,7 +35,7 @@ site.get({
 
 site.get(
   {
-    name: ['/','/category/:id'],
+    name: ['/', '/category/:id'],
   },
   (req, res) => {
     if (site.setting.user_design.id == 1) {
@@ -87,19 +87,28 @@ site.security.addKey('0e849095ad8db45384a9cdd28d7d0e20');
 
 
 site.sendMobileMessage = function (options) {
-  console.log(options);
-  // const accountSid = 'ACf8c465f2b02b59f743c837eafe19a1a9';
-  // const authToken = '046e313826666f9ffe41fc96b4964530';
-  const client = require('twilio')(site.setting.account_id_mobile, site.setting.auth_token_mobile);
+  try {
+    if (site.setting.enable_sending_messages_mobile && site.setting.account_id_mobile && site.setting.auth_token_mobile && site.setting.messaging_services_id_mobile) {
 
-  client.messages
-    .create({
-      body: options.message,
-      messagingServiceSid: site.setting.messaging_services_id_mobile,
-      to: '+' + options.to
-    })
-    .then(message => console.log(message.sid))
-    .done();
+      console.log(options);
+      // const accountSid = 'ACf8c465f2b02b59f743c837eafe19a1a9';
+      // const authToken = '046e313826666f9ffe41fc96b4964530';
+      const client = require('twilio')(site.setting.account_id_mobile, site.setting.auth_token_mobile);
+  
+      client.messages
+        .create({
+          body: options.message,
+          messagingServiceSid: site.setting.messaging_services_id_mobile,
+          to: '+' + options.to
+        })
+        .then(message => console.log(message.sid))
+        .done();
+    }
+    return true;
+  } catch (error) {
+      return false;
+  }
+
 
 }
 
