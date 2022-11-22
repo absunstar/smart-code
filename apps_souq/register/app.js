@@ -281,6 +281,7 @@ module.exports = function init(site) {
       country_code: req.body.country_code,
       permissions: ['user'],
       active: true,
+      created_date : new Date(),
       profile: {
         files: [],
         name: req.body.first_name,

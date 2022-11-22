@@ -314,7 +314,7 @@ module.exports = function init(site) {
                 }
               });
             }
-            doc.$creat_user = site.xtime(doc.added_user_info.date, req.session.lang);
+            doc.$created_date = site.xtime(doc.created_date, req.session.lang);
             let date = new Date(doc.visit_date);
             date.setMinutes(date.getMinutes() + 1);
             if (new Date() < date) {
