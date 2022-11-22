@@ -189,7 +189,6 @@ module.exports = function init(site) {
           ads_doc.feedback_list = ads_doc.feedback_list || [];
           site.content_list.push(ads_doc);
 
-          res.json(response);
         }
       }
     );

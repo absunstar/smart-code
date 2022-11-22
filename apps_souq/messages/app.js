@@ -88,9 +88,9 @@ module.exports = function init(site) {
           email: req.session.user.email,
         },
         {
-          id: req.body.user.id,
-          profile: req.body.user.profile,
-          email: req.body.user.email,
+          id: req.body.receiver.id,
+          profile: req.body.receiver.profile,
+          email: req.body.receiver.email,
         },
       ],
       messages_list: [
