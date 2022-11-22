@@ -139,7 +139,7 @@ module.exports = function init(site) {
     let found = false;
     let index = 0;
     site.message_list.forEach((m, i) => {
-      if (m.users_list.some((u) => u.id === messages_doc.sender.id) && m.users_list.some((u) => u.id === messages_doc.receiver.id)) {
+      if (m.users_list.some((u) => u && u.id === messages_doc.sender.id) && m.users_list.some((u) =>u && u.id === messages_doc.receiver.id)) {
         found = true;
         index = i;
       }
