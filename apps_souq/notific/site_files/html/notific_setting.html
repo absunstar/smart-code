@@ -1,0 +1,26 @@
+<div id="notificSettingModal" class="modal small">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="close">&times;</span>
+        <h2>##word.notific_setting## <i class="fa fa-flag"></i></h2>
+      </div>
+      <div class="modal-body">
+  
+        <div class="row center">
+          <i-checkbox class="row" label="##word.instant_alerts##" ng-model="user.notific_setting.instant_alerts"></i-checkbox>
+          <i-checkbox class="row" label="##word.ads_members_follow##" ng-model="user.notific_setting.ads_members_follow"></i-checkbox>
+          <i-checkbox class="row" label="##word.ads_sections_followed##" ng-model="user.notific_setting.ads_sections_followed"></i-checkbox>
+          <i-checkbox class="row" label="##word.ads_searches_followed##" ng-model="user.notific_setting.ads_searches_followed"></i-checkbox>
+          <i-checkbox class="row" label="##word.replies_ads_followed##" ng-model="user.notific_setting.replies_ads_followed"></i-checkbox>
+          <i-checkbox class="row" label="##word.comments_my_ads##" ng-model="user.notific_setting.comments_my_ads"></i-checkbox>
+          <i-checkbox class="row" label="##word.private_messages##" ng-model="user.notific_setting.private_messages"></i-checkbox>
+          <i-checkbox class="row" label="##word.harag_recommendations##" ng-model="user.notific_setting.harag_recommendations"></i-checkbox>
+        </div>
+      </div>
+      <h2 class="error center bold">{{error}}</h2>
+      <div class="modal-footer center">
+        <i-button type="save" label="##word.save##" ng-click="updateUser(user)"></i-button>
+        <i-button type="close" label=" ##word.close##" onclick="site.hideModal('#notificSettingModal')"></i-button>
+      </div>
+    </div>
+  </div>
