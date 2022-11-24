@@ -1,7 +1,7 @@
 [
     {
-        "name": "forgot_your_password",
-        "en": "Forgot your password ?",
+        "name": "forgot_password",
+        "en": "Forgot password ?",
         "ar": "هل نسيت كلمة المرور ؟"
     },
     {

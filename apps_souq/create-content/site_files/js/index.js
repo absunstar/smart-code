@@ -297,12 +297,8 @@ app.controller('create_content', function ($scope, $http, $timeout) {
 
   $scope.doneSelectVideos = function () {
     $scope.error = '';
-
     $('#adVideo').hide();
     $('#adContent').show('slow');
-    console.log($scope.ad.address);
-    console.log($scope.ad.$address_type);
-
   };
 
   $scope.upDownList = function (list, type, index) {
@@ -416,7 +412,7 @@ app.controller('create_content', function ($scope, $http, $timeout) {
 
   $scope.selectAddress = function (index) {
     $scope.error = '';
-
+    $scope.address = $scope.address || {};
     if ($scope.ad.$address_type == 'main') {
       $scope.ad.address = $scope.address.main;
     } else if ($scope.ad.$address_type == 'other') {
