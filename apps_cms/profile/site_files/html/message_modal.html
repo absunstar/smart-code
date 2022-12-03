@@ -1,0 +1,23 @@
+<div id="messageModal" class="modal small">
+  <div class="modal-content">
+    <i class="fa fa-times-circle close-fa" onclick="site.hideModal('#messageModal')" aria-hidden="true"></i>
+    <div class="modal-body">
+      <div class="row center margin">
+        <p class="fms_title">##word.quick_message_to##</p>
+        <p class="user-name-stlye">{{user.profile.name}} {{user.profile.late_name}}</p>
+      </div>
+      <div class="row center">
+        <i-textarea ng-model="send_message" v="r" class="input-style" label="##word.write_your_message_here##">
+        </i-textarea>
+      </div>
+    </div>
+    <h2 class="error center bold">{{error}}</h2>
+    <div class="modal-footer center">
+      <button class="send-btn" ng-click="sendMessage()">
+        <i class="fa fa-paper-plane"></i>
+        ##word.send##
+      </button>
+    </div>
+    <br>
+  </div>
+</div>

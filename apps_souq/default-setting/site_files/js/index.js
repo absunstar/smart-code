@@ -3,7 +3,7 @@ if (btn1) {
   btn1.click();
 }
 
-app.controller("default_setting", function ($scope, $http,$timeout) {
+app.controller("default_setting", function ($scope, $http, $timeout) {
   $scope._search = {};
 
   $scope.default_setting = {};
@@ -177,7 +177,12 @@ app.controller("default_setting", function ($scope, $http,$timeout) {
     );
   };
 
-  $scope.saveSetting = function (where) {
+  $scope.saveSetting = function (id) {
+    const v = site.validated(id);
+    if (!v.ok) {
+      $scope.error = v.messages[0]['##session.lang##'];
+      return;
+    }
     $scope.busy = true;
     $http({
       method: "POST",
@@ -232,8 +237,8 @@ app.controller("default_setting", function ($scope, $http,$timeout) {
     );
   };
 
- 
- 
+
+
 
   $scope.loadUnits();
   $scope.loadCurrencies();

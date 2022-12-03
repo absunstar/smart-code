@@ -1,9 +1,9 @@
 module.exports = function init(site) {
   const $pages = site.connectCollection('pages');
-  site.page_implement_list = [];
+  site.pages_list = [];
   $pages.findMany({}, (err, docs) => {
     if (!err && docs) {
-      site.page_implement_list = [...site.page_implement_list, ...docs];
+      site.pages_list = [...site.pages_list, ...docs];
     }
   });
 
@@ -21,7 +21,7 @@ module.exports = function init(site) {
 
   site.onGET('/page/:url', (req, res) => {
     let exists = false
-    site.page_implement_list.forEach(page => {
+    site.pages_list.forEach(page => {
       if (page.url == req.params.url) {
         exists = true
         res.render('pages/page.html', page);
@@ -55,7 +55,7 @@ module.exports = function init(site) {
       if (!err) {
         response.done = true;
         response.doc = doc;
-        site.page_implement_list.push(doc);
+        site.pages_list.push(doc);
       } else {
         response.error = err.message;
       }
@@ -98,9 +98,9 @@ module.exports = function init(site) {
     }, (err, result) => {
       if (!err && result) {
         response.done = true
-        site.page_implement_list.forEach((a, i) => {
+        site.pages_list.forEach((a, i) => {
           if (a.id === result.doc.id) {
-            site.page_implement_list[i] = result.doc;
+            site.pages_list[i] = result.doc;
           }
         });
       } else {
@@ -123,7 +123,7 @@ module.exports = function init(site) {
     }
 
     let ad = null;
-    site.page_implement_list.forEach((a) => {
+    site.pages_list.forEach((a) => {
       if (a.id == req.body.id) {
         ad = a;
       }
@@ -163,7 +163,7 @@ module.exports = function init(site) {
     }, (err, result) => {
       if (!err) {
         response.done = true
-        site.page_implement_list.splice(site.page_implement_list.findIndex(a => a.id === req.body.id), 1)
+        site.pages_list.splice(site.pages_list.findIndex(a => a.id === req.body.id), 1)
       } else {
         response.error = err.message
       }

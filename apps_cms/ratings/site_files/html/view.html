@@ -1,0 +1,46 @@
+<div ng-hide="busy" class="row">
+    <div id="basicInformation" class=" ">
+        <fieldset>
+            <legend> ##word.basic_information##</legend>
+            <div class="col9">
+                <table id="basicInformationTable" class="table hover bold">
+
+                    <tr>
+                        <td class="title">##word.sender##</td>
+                        <td class="center">{{rating.sender.email}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.receiver##</td>
+                        <td class="center">{{rating.receiver.email}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.do_recommend_dealing_with_him##</td>
+                        <td ng-show="ratings.recommend == 'yes'" class="green center"> ##word.recommend_dealing_with_him## </td>
+                        <td ng-show="ratings.recommend == 'no'" class="red center"> ##word.do_not_recommend_dealing_with_him## </td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.did_you_buy_from_the_member##</td>
+                        <td ng-show="ratings.buy == 'yes'" class="green center"> ##word.yes## </td>
+                        <td ng-show="ratings.buy == 'no'" class="red center"> ##word.no## </td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.rating##</td>
+                        <td class="center pre_text">{{rating.notes}}</td>
+                    </tr>
+        
+                    <tr>
+                        <td class="title">##word.status##</td>
+                        <td ng-show="ratings.approval == true" class="green center"> ##word.yes## </td>
+                        <td ng-show="ratings.approval == false" class="red center"> ##word.no## </td>
+                        <td ng-show="ratings.approval == null" class="red center"> ##word.undefined## </td>
+                    </tr>
+                </table>
+            </div>
+
+        </fieldset>
+    </div>
+</div>

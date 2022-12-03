@@ -49,7 +49,7 @@
     {"name" : "customers_count" , "en" : "Customers Count" , "ar" : "عدد العملاء"},
     {"name" : "employees_count" , "en" : "Employees Count" , "ar" : "عدد الموظفين"},
     {"name" : "companies_city" , "en" : "City" , "ar" : "المدينة"},
-    {"name" : "companies_email" , "en" : "Email" , "ar" : "البريد الالكتروني"},
+    {"name" : "companies_email" , "en" : "Email" , "ar" : "البريد الإلكتروني"},
     {"name" : "companies_fax" , "en" : "Fax" , "ar" : "الفاكس"},
     {"name" : "companies_name_ar" , "en" : "company Name Arabic" , "ar" : "إسم الشركة"},
     {"name" : "companies_name_en" , "en" : "company Name English" , "ar" : "إسم الشركة بالانجليزية"},

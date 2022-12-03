@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "city_admin",
+    "en": "City Admin",
+    "ar": "إدارة المدن",
+    "permissions": ["city_manage"]
+}]

@@ -1,0 +1,39 @@
+<div id="communicationModal" class="modal small">
+  <div class="modal-content">
+    <i class="fa fa-times-circle close-fa" onclick="site.hideModal('#communicationModal')" aria-hidden="true"></i>
+    <!--  <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>##word.communication## <i class="fa fa-flag"></i></h2>
+    </div> -->
+    <div class="modal-body">
+      <!--   <br>
+      <div class="row center">
+        <b class="advertiser-txt">##word.communicate_with_advertiser##</b>
+      </div> -->
+      <br>
+      <br>
+
+      <div class="row pointer center">
+        <a class="contact-ad font-18 bold" href="tel:{{user.mobile}}">
+
+          <p class="underline-hover margin-10"> <p> <i class="fa fa-phone padding"></i> ##word.contact_number##  1  </p>
+          <i class="fa-solid fa-mobile-screen-button"></i> {{user.mobile}} </p>
+        </a>
+        <div class="row center" ng-repeat="m in user.mobile_list">
+          <hr>
+          <a class="contact-ad font-18 bold" href="tel:{{m}}">
+
+            <p class="underline-hover margin-10"> <p>  <i class="fa fa-phone padding"></i> ##word.contact_number##  {{$index +
+              2}}  </p> <i class="fa-solid fa-mobile-screen-button"></i> {{m}}  </p>
+          </a>
+        </div>
+      </div>
+
+      <br>
+      <br>
+
+      <div class="modal-footer center">
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<div class="form">
+  <div id="basicInformation" class="">
+    <fieldset>
+      <legend>##word.basic_information##</legend>
+      <div class="row">
+        <div class="col9">
+          <div class="row">
+            <i-control type="text" help-id="reports_types_name" v="r" class="col5" label="##word.reports_types_name##" ng-model="reports_types.name_ar"></i-control>
+
+            <i-control type="text" help-id="reports_types_name_en" v="r" class="col5" label="##word.name_en##" ng-model="reports_types.name_en"></i-control>
+            <div class="col2">
+              <i-checkbox label="##word.active##" ng-model="reports_types.active"></i-checkbox>
+              <i-checkbox label="##word.report_comments##" ng-model="reports_types.report_comments"></i-checkbox>
+            </div>
+          </div>
+        </div>
+
+        <div class="col3">
+          <i-image help-id="reports_types_logo" ng-model="reports_types.image_url"></i-image>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+</div>

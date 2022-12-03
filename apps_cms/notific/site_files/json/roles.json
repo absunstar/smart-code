@@ -1,0 +1,7 @@
+[{
+    "module_name" : "accounting" ,
+    "name": "currency_admin",
+    "en": "Currency Admin",
+    "ar": "إدارة العملات",
+    "permissions": ["currency_manage"]
+}]

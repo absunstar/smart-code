@@ -1,0 +1,208 @@
+<div class="form">
+  <div class="tabs">
+    <div class="tabs-header full">
+      <a class="tab-link inline-block" onclick="site.showTabContent(event, '#personalInformation')">
+        ##word.basic_information## </a>
+
+      <a class="tab-link inline-block" onclick="site.showTabContent(event, '#contactAndAddress')">
+        ##word.contact_and_addresses## </a>
+
+      <a class="tab-link inline-block" onclick="site.showTabContent(event, '#securityRoles')"> ##word.security_roles##
+      </a>
+      <a class="tab-link inline-block" onclick="site.showTabContent(event, '#securityPublicPermissions')">
+        ##word.security_public_permissions## </a>
+      <a class="tab-link " onclick="site.showTabContent(event, '#Files')">
+        ##word.files## </a>
+    </div>
+
+    <div class="tabs-content">
+      <div id="personalInformation" class="tab-content">
+        <fieldset>
+          <legend>##word.basic_information##</legend>
+          <div class="row">
+            <div class="col9">
+              <div class="row">
+                <i-control help-id="manage_users_name" v="r" class="col6" label="##word.first_name##"
+                  ng-model="manage_users.profile.name"></i-control>
+                <i-control v="r" class="col6" label="##word.last_name##" ng-model="manage_users.profile.last_name">
+                </i-control>
+
+              </div>
+              <div class="row">
+                <i-control v="r" class="col6" label="##word.email##" ng-model="manage_users.email"> </i-control>
+                <i-control v="r" class="col6" label="##word.password##" ng-model="manage_users.password"> </i-control>
+              </div>
+              <div class="row">
+                <i-list label="##word.user_type##" v="r" class="col6" ng-model="manage_users.type"
+                  items="usersTypesList" display="##session.lang##" ng-search="manage_users.$type_search"> </i-list>
+                <i-list ng-search="manage_users.$gender_search" class="col6" label="##word.gender##"
+                  ng-model="manage_users.gender" items="genderList" display="##session.lang##">
+                </i-list>
+              </div>
+
+              <div class="row">
+                <i-control class="col6" label="##word.nathional_id##" ng-model="manage_users.nathional_id">
+                </i-control>
+                <i-date class="col6" ng-model="manage_users.birth_date" label="##word.birth_date##"></i-date>
+              </div>
+
+            </div>
+
+            <div class="col3">
+
+              <i-image help-id="manage_users_logo" ng-model="manage_users.image_url"></i-image>
+
+              <i-checkbox label="##word.active##" ng-model="manage_users.active"> </i-checkbox>
+
+              <i-checkbox label="##word.ability_login##" ng-model="manage_users.ability_login"> </i-checkbox>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <div id="contactAndAddress" class="tab-content">
+
+        <fieldset>
+          <legend> ##word.contact_informations## </legend>
+          <div class="row">
+            <i-control class="col4" label="##word.phone##" ng-model="manage_users.phone"></i-control>
+
+            <i-control class="col4" label="##word.mobile##" ng-model="manage_users.mobile">
+            </i-control>
+
+            <i-control help-id="" class="col4" label="##word.whatsapp##" ng-model="manage_users.whatsapp">
+            </i-control>
+
+
+          </div>
+        </fieldset>
+
+
+        <fieldset>
+          <legend> ##word.web_and_social_accounts## </legend>
+          <div class="row">
+            <i-control class="col4" label="##word.website##" ng-model="manage_users.website">
+            </i-control>
+
+            <i-control class="col4" label="##word.social_facebook_account##" ng-model="manage_users.facebook">
+            </i-control>
+
+            <i-control class="col4" label="##word.social_twitter_account##" ng-model="manage_users.twitter">
+            </i-control>
+
+          </div>
+          <div class="row">
+
+            <i-control class="col4" label="##word.social_instagram##" ng-model="manage_users.instagram">
+            </i-control>
+
+            <i-control class="col4" label="##word.social_google_account##" ng-model="manage_users.google">
+            </i-control>
+
+            <i-control class="col4" label="##word.social_snap##" ng-model="manage_users.snap">
+            </i-control>
+          </div>
+
+        </fieldset>
+
+        <fieldset>
+          <legend> ##word.address_informations## </legend>
+
+          <div class="row">
+            <i-list class="col6" label="##word.country##" ng-change="getGovesList(manage_users.country)"
+              ng-model="manage_users.country" display="name_##session.lang##" items="countriesList"
+              ng-search="_search.$city_country"></i-list>
+
+            <i-list class="col6" label="##word.gov##" ng-model="manage_users.gov" items="govesList"
+              ng-change="getCityList(manage_users.gov)" display="name_##session.lang##"
+              ng-search="_search.$manage_users.$gov_search"> </i-list>
+
+          </div>
+
+          <div class="row">
+            <i-list class="col6" ng-change="getAreaList(manage_users.city)" label="##word.city##"
+              ng-model="manage_users.city" items="cityList" display="name_##session.lang##"
+              ng-search="_search.$manage_users.$city_search"> </i-list>
+
+            <i-list class="col6" label="##word.area##" ng-model="manage_users.area" items="areaList"
+              display="name_##session.lang##" ng-search="_search.$manage_users.$area_search"> </i-list>
+          </div>
+
+          <div class="row">
+            <i-textarea label="##word.detailed_address##" ng-model="manage_users.address">
+            </i-textarea>
+
+          </div>
+
+        </fieldset>
+
+      </div>
+
+      <div id="Files" class="tab-content">
+        <fieldset>
+          <legend>
+            <i-button type="add default" ng-click="addFiles()"></i-button>
+            ##word.files##
+          </legend>
+
+          <div class="row" ng-repeat="f in manage_users.files_list">
+            <div class="row">
+              <div class="row">
+                <i-list class="col6" label="##word.file_type##" ng-model="f.file_type" items="filesTypesList"
+                  display="name" ng-search="_search.$file_type">
+                </i-list>
+
+                <i-date class="col6" ng-model="f.file_date" label="##word.file_date##"></i-date>
+
+              </div>
+              <div class="row">
+                <i-control class="col6" label="##word.file_name##" ng-model="f.file_name">
+                </i-control>
+                <i-file class="col4" ng-model="f.file"></i-file>
+
+                <div class="col2 center">
+                  <i-button type="delete" label="##word.delete##" ng-click="manage_users.files_list.splice($index,1)">
+                  </i-button>
+                </div>
+              </div>
+
+            </div>
+            <br>
+            <hr style="height:4px;color:grey;background-color:rgb(0, 0, 199) ; width: 80%;">
+            <br>
+          </div>
+        </fieldset>
+
+      </div>
+
+      <div id="securityRoles" class="tab-content">
+        <div class="row padding">
+          <fieldset>
+            <legend>
+              ##word.security_public_roles##
+            </legend>
+            <i-checkbox class="col3" label="ALL" ng-model="$public_roles" ng-click="checkAll('public_roles')">
+            </i-checkbox>
+            <i-checklist class2="col3" primary="name" label="" items="public_roles" display="##session.lang##"
+              ng-model="manage_users.roles"></i-checklist>
+          </fieldset>
+        </div>
+
+      
+      </div>
+
+      <div id="securityPublicPermissions" class="tab-content">
+        <div class="row">
+          <div class="row padding">
+            <fieldset ng-repeat="screen in public_screens">
+              <legend>{{screen.name_##session.lang##}}</legend>
+              <i-checklist class2="col3" primary="name" label="" items="screen.permissions" display="##session.lang##"
+                ng-model="manage_users.permissions"></i-checklist>
+            </fieldset>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="login" data-ng-app="myApp">
+
+<head>
+  <title>##setting.title##</title>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/cms.css" />
+  <link rel="stylesheet" href="/x-css/all.css" />
+  <link rel="stylesheet" href="/x-css/font-cairo.css" />
+  <link rel="icon" type="image/x-icon" href="##setting.logo##" />
+  <style>
+    * {
+      max-width: initial;
+    }
+    .my-ads {
+      background: white;
+      border-radius: 5px;
+    }
+
+    .btn:hover {
+      background: #828282;
+      color: white;
+    }
+
+    .dimgray {
+      color: dimgray;
+    }
+    
+
+
+    :root {
+      --body-margin-top: 0px;
+      --body-margin-bottom: 0px;
+      --zoom: 100%;
+      --fieldset-border: none;
+      --fieldset-background: #fff;
+    }
+
+    body {
+      /*  background-color: #bbb !important;
+        background-image: url(/assets/palm.svg) !important; */
+      background-color: #ecf9f6;
+      background-repeat: repeat !important;
+    }
+  </style>
+  <style x-lang="ar">
+    .nav1 {
+      flex-direction: initial;
+      padding: 7px;
+    }
+
+    :root {
+      --direction: rtl;
+      --text-align: right;
+      --float: right;
+    }
+  </style>
+</head>
+
+<body class="##session.lang## loaded" ng-controller="manage_user">
+  <div x-import="cms/header.html"></div>
+
+  <div x-import="manage-user/view_modal.html"></div>
+  <div x-import="manage-user/order_modal.html"></div>
+  <div x-import="manage-user/add_modal_ad.html"></div>
+  <div x-import="manage-user/delete_modal_ad.html"></div>
+  <div x-import="manage-user/update_modal_ad.html"></div>
+  <div x-import="manage-user/view_modal_ad.html"></div>
+
+  <div x-import="manage-user/add_modal_store.html"></div>
+  <div x-import="manage-user/delete_modal_store.html"></div>
+  <div x-import="manage-user/update_modal_store.html"></div>
+  <div x-import="manage-user/view_modal_store.html"></div>
+
+  <div x-import="content/selection_categories.html"></div>
+  <br />
+  <h1 class="center bold black">##word.manage_your_personal_account##</h1>
+  <br />
+  <div class="form" id="manage_user">
+    <div class="all-section tabs user-tabs">
+      <div class="tabs-header full">
+        <a class="tab-link inline-block" onclick="site.showTabContent(event, '#personal_info')"> ##word.personal_info##
+        </a>
+        <a class="tab-link inline-block" ng-click="showTab($event,'#my_addresses')"> ##word.my_addresses## </a>
+        <a class="tab-link inline-block" onclick="site.showTabContent(event, '#cart')"
+          ng-show="defaultSettings.order_settings.activate_orders"> ##word.cart## </a>
+        <a class="tab-link inline-block" ng-click="showTab($event,'#my_orders')"
+          ng-show="defaultSettings.order_settings.activate_orders"> ##word.my_orders## </a>
+        <a class="tab-link inline-block" ng-click="showTab($event,'#my_ads')"> ##word.my_ads## </a>
+        <a class="tab-link inline-block" ng-click="showTab($event,'#my_stores')"
+          ng-show="defaultSettings.stores_settings.activate_stores"> ##word.my_stores## </a>
+        <a class="tab-link inline-block" ng-click="showTab($event,'#favorite_stores')"
+          ng-show="defaultSettings.stores_settings.activate_stores"> ##word.favorite_stores## </a>
+      </div>
+      <div class="tabs-content">
+        <div id="personal_info" class="tab-content">
+          <div>
+            <div class="row">
+              <table class="table loaded hover center bold">
+                <tr>
+                  <td class="blue">
+                    <br />
+                    ##word.profile_photo##
+                  </td>
+
+                  <td>
+                    <i-image view class="logo" ng-model="manage_user.profile.image_url"></i-image>
+                  </td>
+
+                  <td>
+                    <i-button type="update" label="##word.update##" ng-click="view('logo')"> </i-button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="blue">
+                    <br />
+                    ##word.cover_photo##
+                  </td>
+
+                  <td>
+                    <i-image view class="logo" ng-model="manage_user.profile.cover"></i-image>
+                  </td>
+
+                  <td>
+                    <i-button type="update" label="##word.update##" ng-click="view('cover')"> </i-button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="blue">
+                    <br />
+                    ##word.user_name##
+                  </td>
+
+                  <td class="userPrint">
+                    <br />
+                    {{manage_user.email}}
+                  </td>
+
+                  <td>
+                    <i-button type="update" label="##word.update##" ng-click="view('email')"> </i-button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="blue">
+                    <br />
+                    ##word.password##
+                  </td>
+
+                  <td>
+                    <br>
+                    <div class="row">
+
+                      <i class="fa fa-circle font-8"></i>
+                      <i class="fa fa-circle font-8"></i>
+                      <i class="fa fa-circle font-8"></i>
+                      <i class="fa fa-circle font-8"></i>
+                      <i class="fa fa-circle font-8"></i>
+                      <i class="fa fa-circle font-8"></i>
+                      <i class="fa fa-circle font-8"></i>
+                    </div>
+                  </td>
+
+                  <td>
+                    <i-button type="update" label="##word.update##" ng-click="view('password')"> </i-button>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <br />
+          <br />
+
+          <div>
+            <div class="row">
+              <table class="table loaded hover center bold">
+                <tr>
+                  <td class="blue">
+                    <br />
+                    ##word.the_name##
+                  </td>
+
+                  <td class="userPrint">
+                    <br />
+                    {{manage_user.profile.name}} {{manage_user.profile.last_name}}
+                  </td>
+
+                  <td>
+                    <i-button type="update" label="##word.update##" ng-click="view('first_name')"> </i-button>
+                  </td>
+                </tr>
+
+                <tr ng-hide="manage_user.is_company">
+                  <td class="blue">
+                    <br />
+                    ##word.gender##
+                  </td>
+
+                  <td>
+                    <br />
+                    {{manage_user.gender.##session.lang##}}
+                  </td>
+
+                  <td>
+                    <i-button type="update" label="##word.update##" ng-click="view('gender')"> </i-button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="blue">
+                    <br />
+                    ##word.mobile##
+                  </td>
+
+                  <td class="userPrint">
+                    <br />
+                    <a href="tel:{{manage_user.mobile}}">
+                      {{manage_user.mobile}}
+                      <i class="fa-solid fa-mobile-screen-button"></i>
+                    </a>
+                  </td>
+
+                  <td>
+                    <i-button type="update" label="##word.update##" ng-click="view('mobile')"> </i-button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="blue">
+                    <br />
+                    ##word.brief_about_me##
+                  </td>
+
+                  <td class="userPrint">
+                    <br />
+                    {{manage_user.profile.about_me}}
+                  </td>
+
+                  <td>
+                    <i-button type="update" label="##word.update##" ng-click="view('about_me')"> </i-button>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+
+          <i-button type="default left" fa="2x fa-angle-double-left"
+            onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
+        </div>
+
+        <div id="my_addresses" class="tab-content">
+          <div>
+            <div class="row">
+              <fieldset>
+                <legend>##word.main_address##</legend>
+                <i-address ng-model="manage_user.profile.main_address"></i-address>
+              </fieldset>
+
+              <br />
+              <br />
+
+              <fieldset ng-show="##setting.content.other_addresses_appear##">
+                <legend>
+                  ##word.other_addresses##
+                  <i-button type="add default" ng-click=" manage_user.profile.other_addresses_list.push({})"></i-button>
+                </legend>
+                <div class="row border padding" ng-repeat="o in manage_user.profile.other_addresses_list">
+                  <i-address ng-model="o"></i-address>
+                  <i-button type="delete" ng-click="manage_user.profile.other_addresses_list.splice($index,1)">
+                  </i-button>
+                </div>
+              </div>
+            </div>
+            <i-button type="save" label="##word.save##" ng-click="saveUserChanges(manage_user)"> </i-button>
+          </div>
+        </div>
+
+        <div id="cart" ng-show="defaultSettings.order_settings.activate_orders" class="tab-content">
+          <div>
+            <br />
+            <br />
+            <div class="row" ng-hide="manage_user.cart.items.length > 0">
+              <br />
+              <br />
+              <h1 class="blue bold center">##word.there_no_products_cart##</h1>
+              <br />
+              <br />
+            </div>
+            <div class="row" ng-show="manage_user.cart.items.length > 0">
+              <table x-permissions="login" class="table hover bold">
+                <tr>
+                  <th class="not-print">##word.logo##</th>
+                  <th>##word.product_name##</th>
+                  <th>##word.unit##</th>
+                  <th>##word.count##</th>
+                  <th>##word.price##</th>
+                  <th>##word.currency##</th>
+                  <th>##word.total##</th>
+                </tr>
+                <tr ng-repeat="p in manage_user.cart.items">
+                  <td class="center not-print">
+                    <i-image view class="logo" ng-model="p.image_url"></i-image>
+                  </td>
+                  <td class="center title">{{p.name}}</td>
+                  <td class="center title">{{p.select_quantity.unit.name_##session.lang##}}</td>
+                  <td class="center blue">{{p.count}}</td>
+                  <td class="center green">{{p.select_quantity.price}}</td>
+                  <td class="center">{{p.select_quantity.currency.name_##session.lang##}}</td>
+                  <td class="center">{{p.total}}</td>
+                </tr>
+              </table>
+            </div>
+            <div class="row">
+              <div class="col5"></div>
+              <i-control id="item_name" ng-show="manage_user.cart.items.length > 0" class="col2 r_green center"
+                label="##word.total_purchase_price##" type="number" ng-model="manage_user.cart.net_value" disabled>
+              </i-control>
+            </div>
+          </div>
+        </div>
+
+        <div id="my_orders" class="tab-content" ng-show="defaultSettings.order_settings.activate_orders">
+          <div>
+            <br />
+
+            <div class="row" ng-hide="orderslist.length > 0">
+              <br />
+              <br />
+              <h1 class="blue bold center">##word.there_no_ads##</h1>
+              <br />
+              <br />
+            </div>
+
+            <div class="row" ng-show="orderslist.length > 0">
+              <table class="table loaded hover pointer center bold">
+                <tr>
+                  <th>##word.order_code##</th>
+                  <th>##word.date##</th>
+                  <th>##word.payment_method##</th>
+                  <th>##word.delivery_type##</th>
+                  <th>##word.paid_require##</th>
+                  <th>##word.status##</th>
+                </tr>
+
+                <tr ng-repeat="o in orderslist">
+                  <td ng-click="viewOrder(o)" class="indigoD">{{o.code}}</td>
+                  <td ng-click="viewOrder(o)" class="brown">{{o.date | date : 'yyyy - MM - dd'}}</td>
+                  <td ng-click="viewOrder(o)">{{o.payment_method.##session.lang##}}</td>
+                  <td ng-click="viewOrder(o)">{{o.delivery_type.##session.lang##}}</td>
+                  <td ng-click="viewOrder(o)" class="green">{{o.paid_require}}</td>
+                  <td ng-click="viewOrder(o)" class="blue">{{o.status.##session.lang##}}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div id="my_ads" class="tab-content">
+          <div class="my-ads">
+            <br />
+
+            <div class="top-actions">
+
+              <i-button type="add" label="##word.create_content##" ng-click="displayAddAd()"></i-button>
+            </div>
+
+            <div class="row">
+              <div class="ads-section">
+                <table style="width: 100%">
+                  <tr ng-repeat="a in myAdslist" class="">
+                    <td>
+                      <div class="row margin">
+                        <div class="col-9">
+                          <a href="/display-content/{{a.id}}/{{a.name}}/{{a.store.name}}">
+                            <p class="bold underline-hover ad-name pointer ellipsis-txt">{{a.name}}</p>
+                          </a>
+                          <div class="row">
+                            <div class="col-6">
+                              <div class="ad-location">
+                                <i class="fa-solid fa-location-pin adress ellipsis-txt">{{a.address.text}}</i>
+                              
+                              </div>
+                              <div class="u-action">
+    
+                                <a class="btn"
+                                  ng-show="##setting.order_settings.activate_orders## && a.store.user.id != user.id"
+                                  x-permission="login" ng-click="bookList(a,0)">
+                                  <i class="fa fa-shopping-cart"></i>
+                                </a>
+    
+                              </div>
+                            
+                            </div>
+                            <div class="col-6">
+                            
+                              <div class="time-publish">
+                                <i class="fa-solid fa-clock ellipsis-txt"> {{a.$time}} </i>
+                              </div>
+                              <div class="ad-user">
+                                <a class=""
+                                  href="/profile/{{a.store.user.id}}/{{a.store.user.profile.name}}/{{a.store.user.profile.last_name}}">
+                                  <i class="fa fa-user dimgrey" aria-hidden="true"></i>
+                                  <b class="underline-hover dimgrey ellipsis-txt">{{a.store.user.profile.name}} {{a.store.user.profile.last_name}}</b>
+                                </a>
+                              </div>
+                              <div class="row" ng-show="a.set_price == 'yes'" ng-repeat="q in a.quantity_list">
+                                <p class=" price">
+                                  ##word.price## <span class="green"> {{q.net_value}} </span> {{q.currency.name_##session.lang##}}
+                    
+                                  <span ng-show="q.discount > 0" class="line-through red">{{q.price}}
+                                    {{q.currency.name_##session.lang##}}</span>
+                                  <span ng-show="q.unit.id"> / {{q.unit.name_##session.lang##}} </span>
+                    
+                                  <span class="save-money" ng-show="q.discount > 0"> ##word.save_money## {{q.discount}} <span
+                                      ng-show="q.discount_type == 'percent'"> % </span> <span ng-show="q.discount_type == 'number'"> $
+                                    </span> </span>
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+
+                            <i-button type="edit" label="##word.ads_edit##" ng-click="editContent(a.id)"></i-button>
+
+                            <i-button type="delete" label="##word.ads_delete##" ng-click="displayDeleteAd(a)"></i-button>
+                          </div>
+                        </div>
+                        <div class="col-3">
+                          <a class="adarea-link" href="/display-content/{{a.id}}/{{a.name}}/{{a.store.name}}">
+                            <img loading="lazy" class="pointer adarea-image" ng-src="{{a.image_url}}" />
+                          </a>
+                        </div>
+    
+    
+    
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+
+           <!--  <div class="row">
+              <table class="table loaded hover pointer center bold">
+                <tr>
+                  <th>##word.logo##</th>
+                  <th>##word.name##</th>
+                  <th>##word.store##</th>
+                  <th>##word.status##</th>
+                  <th class="not-print">##word.actions##</th>
+                </tr>
+
+                <tr ng-repeat="l in myAdslist">
+                  <td ng-click="viewOrder(l)">
+                    <i-image view class="logo" ng-model="l.image_url"></i-image>
+                  </td>
+                  <td ng-click="viewOrder(l)">{{l.name}}</td>
+                  <td ng-click="viewOrder(l)" class="blue">{{l.store.name}}</td>
+                  <td ng-click="viewOrder(l)" class="">{{l.ad_status.##session.lang##}}</td>
+                  <td class="center not-print">
+                    <i-button type="view" label="##word.details##" ng-click="displayDetailsAd(l)"></i-button>
+
+                    <i-button type="edit" label="##word.edit##" ng-click="displayUpdateAd(l)"></i-button>
+
+                    <i-button type="delete" label="##word.delete##" ng-click="displayDeleteAd(l)"></i-button>
+                  </td>
+                </tr>
+              </table>
+            </div> -->
+          </div>
+        </div>
+
+        <div id="my_stores" ng-show="defaultSettings.stores_settings.activate_stores" class="tab-content">
+          <div>
+            <br />
+
+            <div class="top-actions">
+              <i-button type="add" label="##word.stores_new##" ng-click="displayAddStore()"></i-button>
+            </div>
+            <div class="row">
+              <table class="table loaded hover pointer center bold">
+                <tr>
+                  <th>##word.logo##</th>
+                  <th>##word.name##</th>
+                  <th>##word.store_status##</th>
+                  <th class="not-print">##word.actions##</th>
+                </tr>
+
+                <tr ng-repeat="l in myStoreslist">
+                  <td ng-click="viewOrder(l)">
+                    <i-image view class="logo" ng-model="l.image_url"></i-image>
+                  </td>
+                  <td ng-click="viewOrder(l)">{{l.name}}</td>
+                  <td ng-click="viewOrder(l)" class="">{{l.store_status.##session.lang##}}</td>
+                  <td class="center not-print">
+                    <i-button type="view" label="##word.details##" ng-click="displayDetailsStore(l)"></i-button>
+
+                    <i-button type="edit" label="##word.edit##" ng-click="displayUpdateStore(l)"></i-button>
+
+                    <i-button type="delete" label="##word.delete##" ng-click="displayDeleteStore(l)"></i-button>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+
+
+        <div id="favorite_stores" ng-show="defaultSettings.stores_settings.activate_stores" class="tab-content">
+          <div>
+            <br />
+
+            <div class="row" ng-hide="favoriteStoreslist.length > 0">
+              <br />
+              <br />
+              <h1 class="blue bold center">##word.there_no_stores##</h1>
+              <br />
+              <br />
+            </div>
+
+            <div class="row" ng-show="favoriteStoreslist.length > 0">
+              <table class="table loaded hover pointer center bold">
+                <tr>
+                  <th>##word.logo##</th>
+                  <th>##word.name##</th>
+                  <th>##word.store_owner##</th>
+                </tr>
+
+                <tr ng-repeat="f in favoriteStoreslist" ng-click="displayStore(f.id)">
+                  <td>
+                    <i-image view class="logo" ng-model="f.image_url"></i-image>
+                  </td>
+                  <td>{{f.name}}</td>
+                  <td class="">{{f.user.profile.name}}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <script src="../js/script.js"></script> -->
+  <footer class="footer ng-scope" x-import="cms/footer.html" ng-controller="footer_herag"></footer>
+
+  <div x-import="cms/scripts.html"></div>
+  <script x-import="cms/index2.js"></script>
+
+  <script x-import="manage-user/index.js"></script>
+</body>
+
+</html>

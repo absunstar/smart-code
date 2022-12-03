@@ -179,7 +179,7 @@ app.controller('create_content', function ($scope, $http, $timeout) {
     $scope.subCategoriesList4 = [];
     $scope.subCategoriesList5 = [];
     $scope.category_list.forEach((_c) => {
-      if (c.id == _c.parent_id) {
+      if (c && c.id == _c.parent_id) {
         $scope.subCategoriesList2.push(_c);
       }
     });
@@ -193,7 +193,7 @@ app.controller('create_content', function ($scope, $http, $timeout) {
     $scope.subCategoriesList4 = [];
     $scope.subCategoriesList5 = [];
     $scope.category_list.forEach((_c) => {
-      if (c.id == _c.parent_id) {
+      if (c && c.id == _c.parent_id) {
         $scope.subCategoriesList3.push(_c);
       }
     });
@@ -206,12 +206,11 @@ app.controller('create_content', function ($scope, $http, $timeout) {
     $scope.subCategoriesList4 = [];
     $scope.subCategoriesList5 = [];
     $scope.category_list.forEach((_c) => {
-      if (c.id == _c.parent_id) {
+      if (c && c.id == _c.parent_id) {
         $scope.subCategoriesList4.push(_c);
       }
     });
   };
-
 
   $scope.loadSubCategory5 = function (c) {
     $scope.error = '';
@@ -219,7 +218,7 @@ app.controller('create_content', function ($scope, $http, $timeout) {
     $scope.ad.$category4 = $scope.ad.main_category;
     $scope.subCategoriesList5 = [];
     $scope.category_list.forEach((_c) => {
-      if (c.id == _c.parent_id) {
+      if (c && c.id == _c.parent_id) {
         $scope.subCategoriesList5.push(_c);
       }
     });

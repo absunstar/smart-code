@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "en": "Category",
+    "ar": "قسم"
+  },
+  {
+    "id": 2,
+    "en": "Page",
+    "ar": "صفحة"
+  },
+  {
+    "id": 3,
+    "en": "External Link",
+    "ar": "رابط خارجي"
+  },
+  {
+    "id": 4,
+    "en": "Internal Link",
+    "ar": "رابط داخلي"
+  }
+]

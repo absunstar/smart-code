@@ -1,0 +1,62 @@
+[
+    {
+        "name": "articles",
+        "en": "Articles",
+        "ar": "الأخبار"
+    },
+    {
+        "name": "article",
+        "en": "Article",
+        "ar": "الخبر"
+    },
+    {
+        "name": "articles_new",
+        "en": "New Article",
+        "ar": "خبر جديد"
+    },
+    {
+        "name": "articles_add",
+        "en": "Add Article",
+        "ar": "إضافة خبر "
+    },
+    {
+        "name": "articles_edit",
+        "en": "Edit Article",
+        "ar": "تعديل خبر "
+    },
+    {
+        "name": "articles_details",
+        "en": "Article Details",
+        "ar": "تفاصيل الخبر "
+    },
+    {
+        "name": "articles_delete",
+        "en": "Delete Article",
+        "ar": "حذف خبر "
+    },
+    {
+        "name": "articles_name",
+        "en": "Article Name",
+        "ar": "إسم الخبر "
+    },
+    {
+        "name": "article_title",
+        "en": "Article Title",
+        "ar": "عنوان المقال"
+    },
+    {
+        "name": "article_type",
+        "en": "Article Type",
+        "ar": "نوع المقال"
+    },
+    {
+        "name": "social",
+        "en": "Social",
+        "ar": "إجتماعي"
+    },
+    {
+        "name": "external",
+        "en": "External",
+        "ar": "خارجي"
+    }
+]

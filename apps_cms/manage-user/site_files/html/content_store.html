@@ -1,0 +1,56 @@
+<div class="form">
+  <div id="basicInformation" class="">
+    <fieldset>
+      <legend>##word.basic_information##</legend>
+      <div class="row">
+        <div class="col9">
+          <div class="row">
+            <i-control help-id="store_name_ar" v="r ll2" class="col8" label="##word.store_name##" ng-model="store.name"></i-control>
+
+          </div>
+
+          <div class="row">
+            <i-checkbox class="col3" label="##word.hide_mobile_number##" ng-model="store.hide_mobile"> </i-checkbox> :
+            <br />
+            <i-control class="col4" ng-hide="store.hide_mobile" label="##word.cell_phone_number##" ng-model="store.mobile"></i-control>
+          </div>
+
+          <fieldset>
+            <legend>##word.my_addresses##</legend>
+            <div class="row">
+              <fieldset>
+                <legend>##word.main_address##</legend>
+                <i-address ng-model="address.main"></i-address>
+                <i-checkbox label="##word.select##" ng-model="address.select_main" ng-click="selectAddress(address,'main')"></i-checkbox>
+              </fieldset>
+              <br />
+
+              <fieldset ng-show="address.other_list.length > 0">
+                <legend>##word.other_addresses##</legend>
+                <div class="row" ng-repeat="o in address.other_list">
+                  <i-address ng-model="o"></i-address>
+                  <i-checkbox label="##word.select##" ng-model="o.$select_address" ng-click="selectAddress(address,'other',$index)"></i-checkbox>
+                </div>
+              </fieldset>
+              <br />
+
+              <fieldset>
+                <legend>##word.new_address##</legend>
+                <i-address ng-model="address.new"></i-address>
+                <i-checkbox label="##word.select##" ng-model="address.select_new" ng-click="selectAddress(address,'new')"></i-checkbox>
+              </fieldset>
+            </div>
+          </fieldset>
+
+          <div class="row">
+            <i-textarea ng-model="store.description" label="##word.description##"> </i-textarea>
+          </div>
+        </div>
+
+        <div class="col3">
+          <i-image help-id="stores_logo" ng-model="store.image_url"></i-image>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+</div>

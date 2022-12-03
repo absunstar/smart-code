@@ -1,0 +1,33 @@
+<i-control type="text" class="col4" label="##word.code##" ng-model="ngModel.id"></i-control>
+<i-control type="text" help-id="sub_category_name" class="col4" label="##word.name_sub_category_arabic##" ng-model="ngModel.name_ar"></i-control>
+
+<i-control type="text" help-id="sub_category_name_en" class="col4" label="##word.name_en##" ng-model="ngModel.name_en"></i-control>
+<i-button type="add" label="##word.add_categories##" ng-click="showModal(ngModel)"> </i-button>
+
+<div id="sub_category_{{id2}}" class="modal small">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>##word.sub_categories## <i class="fa fa-plus"></i></h2>
+    </div>
+
+    <div class="modal-body">
+      <div class="row">
+        <fieldset>
+          <legend>
+            ##word.add_categories##
+            <i-button type="add default" ng-click="addSubCategoryList(ngModel)"></i-button>
+          </legend>
+          <div class="row" ng-repeat="c in ngModel.sub_category_list">
+            <i-sub-category ng-model="c"></i-sub-category>
+            <i-button type="delete default" ng-click="ngModel.sub_category_list.splice($index,1)"> </i-button>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+
+    <div class="modal-footer center">
+      <i-button type="save" label="##word.save##" ng-click="hideModal()"> </i-button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+:root {
+    --tabs-content-width: 100%
+}
+
+body {
+    margin-top: 100px;
+    margin-right: 250px;
+}
+
+i-checkbox {
+    padding-right: 20px !important;
+    padding-left: 20px !important;
+    display: block;
+}
+
+legend>i-checkbox {
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+}
+
+.modal-header h2 {
+    text-align: center;
+}

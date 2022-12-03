@@ -1,0 +1,22 @@
+[
+    {
+        "name": "report_communications",
+        "en": "Communications report",
+        "ar": "تقرير البلاغات"
+    },
+    {
+        "name": "make_by",
+        "en": "Make By",
+        "ar": "مقدم من"
+    },
+    {
+        "name": "make_in",
+        "en": "Make In",
+        "ar": "مقدم في"
+    },
+    {
+        "name": "report_description",
+        "en": "Report description",
+        "ar": "وصف البلاغ"
+    }
+]

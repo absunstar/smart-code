@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="login" data-ng-app="myApp">
+
+<head>
+  <title>##setting.title##</title>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/cms.css" />
+  <link rel="stylesheet" href="/x-css/all.css" />
+  <link rel="stylesheet" href="/x-css/font-cairo.css" />
+  <link rel="icon" type="image/x-icon" href="##setting.logo##" />
+  <style>
+    * {
+      max-width: initial;
+    }
+
+    .border-circle img {
+      border-radius: 50% !important;
+    }
+
+    .radius5 {
+      border-radius: 5% !important;
+    }
+
+    .txt-message {
+      color: #7d7d7d;
+      white-space: pre-wrap !important;
+      font-size: 16px;
+      padding: 5px !important;
+      /*  margin: 10px; */
+      line-height: initial;
+      min-width: 200px;
+      font-weight: bold;
+    }
+
+    :root {
+      --body-margin-top: 0px;
+      --body-margin-bottom: 0px;
+      --zoom: 100%;
+      --fieldset-border: none;
+      --fieldset-background: #fff;
+    }
+
+    .userad-logo {
+      border-radius: 50%;
+      height: 25px;
+      width: 25px;
+      margin: -5px 10px -5px 0px !important
+    }
+
+    .bg-msglist {
+      background: #05c28099;
+    }
+
+    .user-selected {
+      background: aquamarine;
+      padding: 5px;
+      border-radius: 13px;
+    }
+
+    .sender-msg {
+      border-top-left-radius: 0;
+      background: #828282;
+      color: #fff;
+      border-radius: 15px;
+      position: initial;
+    }
+
+    .radius13 {
+
+      border-radius: 13px;
+    }
+
+    .reciever-msg {
+      background: #fff;
+      box-shadow: 0 1px 4px 0 rgb(0 0 0 / 20%);
+      border-top-right-radius: 0;
+      color: #454444;
+      border-radius: 15px;
+    }
+
+    ._scroll {
+      max-height: 50vh;
+      overflow: hidden;
+      overflow-y: auto;
+
+    }
+
+    .messages {
+      border-radius: 13px;
+      background-image: linear-gradient(to right, #e9e9e9, #7fffd4);
+    }
+
+    ._scroll::-webkit-scrollbar-thumb {
+      background-color: rgb(0 168 132);
+    }
+
+    ._scroll::-webkit-scrollbar-track {
+      background-color: #f6f6f6;
+      box-shadow: 0 0 10px #ddd inset;
+      border-radius: 20px;
+    }
+    .send-btn {
+      width: 90% !important;
+    }
+    ._scroll100 {
+      max-height: 80vh;
+      overflow: hidden;
+    }
+
+    .msg-parent {
+      padding: 15px !important;
+    }
+
+    body {
+      /* background-color: #bbb !important;
+      background-image: url(/assets/palm.svg) !important; */
+      background-color: #ecf9f6;
+      background-repeat: repeat !important;
+    }
+  </style>
+  <style x-lang="ar">
+    .nav1 {
+      flex-direction: initial;
+      padding: 7px;
+    }
+
+    .reciever {
+      max-width: max-content;
+      float: right;
+      margin-right: -14px !important;
+      /* padding: 0px !important; */
+    }
+
+    :root {
+      --direction: rtl;
+      --text-align: right;
+      --float: right;
+    }
+
+    .sender {
+      max-width: max-content;
+      float: left;
+      text-align: left;
+      color: #fff;
+      /*  margin-right: -14px !important; */
+      /*  padding: 0px !important; */
+    }
+  </style>
+
+  <style x-lang="en">
+    .reciever {
+      max-width: max-content;
+      float: left;
+      margin-left: -14px !important;
+      /*  padding: 0px !important; */
+
+    }
+
+    .sender {
+      max-width: max-content;
+      float: right;
+      color: #fff;
+      /* margin-right: -14px !important; */
+      /*  padding: 0px !important; */
+    }
+  </style>
+
+</head>
+
+<body class="##session.lang## loaded" ng-controller="messages">
+  <div x-import="cms/header.html"></div>
+
+  <div id="main-layout" class="container">
+    <fieldset>
+      <div class="row" ng-show="messagesList.length < 1 && messagesList">
+        <br />
+        <br />
+        <h1 class="blue bold center">##word.there_no_messages##</h1>
+        <br />
+        <br />
+      </div>
+      <div class="row">
+        <div class="col3 scroll-headmsg" ng-show="messagesList.length > 0">
+          <div class="ad-user row  margin" ng-repeat="m in messagesList">
+            <a class="message-icon pointer radius13 display-block" ng-class="{'user-selected' : m.$isSelected == true}"
+              ng-repeat="u in m.users_list" class="center" ng-show="u.id != userId" ng-click="showMessage(m,$event)">
+              <img class="center userad-logo" ng-src="{{u.image_url}}" onerror="this.src='/images/user.png'" alt="" />
+              <b class="user-name-stlye">{{u.name}} {{u.last_name}}
+                <span ng-show="m.$new" class="badge_message"></span>
+              </b>
+
+              <p class="ellipsis-txt dimgrey bold">{{m.messages_list[m.messages_list.length -1].message}}</p>
+            </a>
+          </div>
+
+        </div>
+        <div class="col9" ng-show="message.id">
+          <fieldset>
+            <legend>##word.messages##</legend>
+
+            <div class="row _scroll100">
+              <div class="row _scroll messages">
+                <div class="row padding msg-parent margin" ng-repeat="m in message.messages_list">
+                  <div class="row" ng-class="{'reciever-msg' : m.user_id == userId,'sender-msg' : m.user_id != userId , 'sender' : m.user_id != userId
+                    , 'reciever' : m.user_id == userId}">
+
+                    <div class="row">
+
+                      <h3 ng-class="{'sender' : m.user_id != userId}" class="txt-message">{{m.message}}</h3>
+                    </div>
+                    <div ng-class="{'sender' : m.user_id != userId}" class="row padding margin time-publish">
+                      <i ng-show="m.show && m.user_id == userId" class="fa fa-eye" aria-hidden="true"></i>
+                      <i class="fa-solid fa-clock"> {{m.date | date : 'dd/MM/yyyy - hh:mm'}} </i>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+
+              <div class="row">
+                <div class="col2"></div>
+                <i-textarea class="col8 input-style" label="##word.write_your_message_here##" ng-model="send_message">
+                </i-textarea>
+              </div>
+              <div class="row center">
+                <button class="send-btn" ng-click="sendMessage(message)">
+                  <i class="fa fa-paper-plane"></i>
+                  ##word.send##
+                </button>
+
+              </div>
+          </fieldset>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+  <footer class="footer ng-scope" x-import="cms/footer.html" ng-controller="footer_herag"></footer>
+  <div x-import="cms/scripts.html"></div>
+  <script x-import="messages/index.js"></script>
+  <script x-import="cms/index2.js"></script>
+
+</body>
+
+</html>

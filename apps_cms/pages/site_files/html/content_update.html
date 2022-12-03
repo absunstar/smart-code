@@ -1,0 +1,38 @@
+<div class="form">
+    <div id="basicInformation" class="">
+        <fieldset>
+            <legend> ##word.basic_information## </legend>
+            <div class="row">
+                <div class="col9">
+                    <div class="row">
+
+                        <i-control type="text" v="r" class="col5" label="##word.page_implement_name##"
+                            ng-model="pages.title"></i-control>
+
+                        <i-control type="text" v="r" class="col5" label="##word.url##"
+                            ng-model="pages.url"></i-control>
+                    </div>
+
+                    <div class="row">
+                        <i-textarea class="col" label="##word.description##" ng-model="pages.description">
+                        </i-textarea>
+                  
+                    </div>
+
+                    <div class="row">
+                        <label for="content_area2"> ##word.content## </label>
+                        <textarea id="content_area2" cols="30" rows="50" ng-model="pages.content"></textarea>
+                    </div>
+                </div>
+
+                <div class="col3">
+
+                    <i-image help-id="page_implement_logo" ng-model="pages.image_url"></i-image>
+
+                </div>
+
+            </div>
+        </fieldset>
+
+    </div>
+</div>

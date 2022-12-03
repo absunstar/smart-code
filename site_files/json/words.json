@@ -9,8 +9,11 @@
     "en": "TTL",
     "ar": "TTL"
   },
-  {"name" : "details" , "en":"Details" , "ar" : "التفاصيل"},
-
+  {
+    "name": "details",
+    "en": "Details",
+    "ar": "التفاصيل"
+  },
   {
     "name": "cover_photo",
     "en": "Cover Photo",
@@ -25,6 +28,11 @@
     "name": "publishing",
     "en": "Publishing",
     "ar": "نشر"
+  },
+  {
+    "name": "location",
+    "en": "Location",
+    "ar": "المكان"
   },
   {
     "name": "dashboard",
@@ -55,7 +63,7 @@
     "name": "cancel",
     "en": "Cancel",
     "ar": "إلغاء"
-},
+  },
   {
     "name": "arabic",
     "en": "Arabic",
@@ -81,9 +89,16 @@
     "en": "Medical file",
     "ar": "الملف الطبي"
   },
-  { "name": "admin", "en": "Admin", "ar": "المسئول" },
-  { "name": "free", "en": "Free", "ar": "مجاني" },
-
+  {
+    "name": "admin",
+    "en": "Admin",
+    "ar": "المسئول"
+  },
+  {
+    "name": "free",
+    "en": "Free",
+    "ar": "مجاني"
+  },
   {
     "name": "old_price",
     "en": "Old Price",
@@ -420,7 +435,7 @@
     "ar": "التواصل"
   },
   {
-    "name": "whatsApp",
+    "name": "whatsapp",
     "en": "WhatsApp",
     "ar": "واتساب"
   },
@@ -463,6 +478,21 @@
     "name": "nathional_id",
     "en": "Nathional Id",
     "ar": "الرقم القومي"
+  },
+  {
+    "name": "translation",
+    "en": "Translation",
+    "ar": "الترجمة"
+  },
+  {
+    "name": "language",
+    "en": "Language",
+    "ar": "اللغة"
+  },
+  {
+    "name": "languages",
+    "en": "Languages",
+    "ar": "اللغات"
   },
   {
     "name": "minutes",
@@ -1069,7 +1099,6 @@
     "en": "Price",
     "ar": "السعر"
   },
-  
   {
     "name": "sessions",
     "en": "Sessions",
@@ -1235,8 +1264,16 @@
     "en": "Results files",
     "ar": "ملفات النتائج"
   },
-  { "name": "visit_date", "en": "Visit date", "ar": "تاريخ الزيارة" },
-  { "name": "visit_address", "en": "Visit address", "ar": "عنوان الزيارة" },
+  {
+    "name": "visit_date",
+    "en": "Visit date",
+    "ar": "تاريخ الزيارة"
+  },
+  {
+    "name": "visit_address",
+    "en": "Visit address",
+    "ar": "عنوان الزيارة"
+  },
   {
     "name": "home_visit_date",
     "en": "home visit date",
@@ -1487,7 +1524,6 @@
     "en": "Mobile number",
     "ar": "رقم الجوال"
   },
-
   {
     "name": "advanced_search",
     "en": "Advanced Search",
@@ -1737,12 +1773,12 @@
     "name": "go_back",
     "en": "Back",
     "ar": "الصفحة السابقة"
-},
-{
+  },
+  {
     "name": "go_forward",
     "en": "Forward",
     "ar": "الصفحة التالية"
-},
+  },
   {
     "name": "phone",
     "en": "Phone Number",

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="file_type_ui || file_type_manage" data-ng-app="myApp">
+
+<head x-import="cms/head.html">
+
+</head>
+
+<body class="##session.lang## loaded">
+    <nav x-import="cms/sitebar.html" class="sitebar" data-ng-controller="sitebar"></nav>
+
+    <nav class="sitebottom" x-import="cms/sitebottom.html" ng-controller="sitebottom"></nav>
+
+    <div id="main-layout" class="container">
+        <div class="row">
+            <div class="row" ng-controller="file_type" x-permissions="login">
+                <div x-permissions="file_type_add || file_type_manage" x-import="files-types/add_modal.html"></div>
+                <div x-import="files-types/update_modal.html"></div>
+                <div x-import="files-types/delete_modal.html"></div>
+                <div x-import="files-types/view_modal.html"></div>
+                <div x-permissions="file_type_search || file_type_manage" x-import="files-types/search_all_modal.html"></div>
+
+                <div class="row">
+                    <h1 class="bold text-center"> ##word.files_types## </h1>
+                </div>
+
+                <div class="top-actions">
+                    <i-button type="add" x-permissions="file_type_add || file_type_manage" label="##word.file_type_new##" ng-click="displayAddFileTypes()"></i-button>
+                    <i-button type="search" x-permissions="file_type_search || file_type_manage" label="##word.search_all##" onclick="site.showModal('#fileTypesSearchModal')"></i-button>
+
+                    <span ng-show="busy">
+                        <span class="sr-only">Loading...</span>
+                    </span>
+                    <h3 class="bold text-center"> ##word.count## : {{count}} </h3>
+                    <br>
+                </div>
+
+                <table class="table loaded center hover bold" id="t1">
+                    <tr>
+                        <th> ##word.file_type_name## </th>
+                        <th> ##word.status## </th>
+                        <th class="not-print"> ##word.actions## </th>
+                    </tr>
+                    <tr ng-repeat="c in list | orderBy : '-id'">
+
+                        <td> {{c.name}} </td>
+
+                        <td>
+                            <p ng-show="c.active == true" class="green"> ##word.active## </p>
+                            <p ng-show="c.active == false" class="red"> ##word.not_active## </p>
+                        </td>
+
+                        <td class="center not-print">
+                            <i-button type="details" x-permissions="file_type_view || file_type_manage" label="##word.details##" ng-click="displayDetailsFileTypes(c)"></i-button>
+
+                            <i-button type="update" x-permissions="file_type_edit || file_type_manage" label="##word.update##" ng-click="displayUpdateFileTypes(c)"></i-button>
+
+                            <i-button type="delete" x-permissions="file_type_delete || file_type_manage" label="##word.delete##" ng-click="displayDeleteFileTypes(c)"></i-button>
+                        </td>
+                    </tr>
+                </table>
+
+                <div class="row">
+                    <i-button x-permissions="file_type_print || file_type_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div x-import="cms/scripts.html"></div>
+
+    <script x-permissions="login" x-import="files-types/index.js"></script>
+</body>
+
+</html>

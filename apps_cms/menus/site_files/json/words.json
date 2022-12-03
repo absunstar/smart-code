@@ -1,0 +1,77 @@
+[
+    {
+        "name": "menus",
+        "en": "Menus",
+        "ar": "القوائم"
+    },
+    {
+        "name": "menu",
+        "en": "Menu",
+        "ar": "القائمة"
+    },
+    {
+        "name": "menus_new",
+        "en": "New Menu",
+        "ar": "قائمة جديدة"
+    },
+    {
+        "name": "menus_add",
+        "en": "Add Menu",
+        "ar": "إضافة قائمة "
+    },
+    {
+        "name": "menus_edit",
+        "en": "Edit Menu",
+        "ar": "تعديل قائمة "
+    },
+    {
+        "name": "menus_details",
+        "en": "Menu Details",
+        "ar": "تفاصيل القائمة "
+    },
+    {
+        "name": "menus_delete",
+        "en": "Delete Menu",
+        "ar": "حذف قائمة "
+    },
+    {
+        "name": "menu_name",
+        "en": "Menu Name",
+        "ar": "إسم القائمة "
+    },
+    {
+        "name": "linkage_type",
+        "en": "Linkage Type",
+        "ar": "نوع الربط"
+    },
+    {
+        "name": "external_link",
+        "en": "External Link",
+        "ar": "رابط خارجي"
+    },
+    {
+        "name": "internal_link",
+        "en": "Internal Link",
+        "ar": "رابط داخلي"
+    },
+    {
+        "name": "category_must_selected",
+        "en": "Category must be selected",
+        "ar": "يجب إختيار القسم"
+    },
+    {
+        "name": "page_must_selected",
+        "en": "Page must be selected",
+        "ar": "يجب إختيار الصفحة"
+    },
+    {
+        "name": "internal_link_must_selected",
+        "en": "Internal link must be selected",
+        "ar": "يجب إختيار الرابط الداخلي"
+    },
+    {
+        "name": "external_link_must_selected",
+        "en": "External link must be selected",
+        "ar": "يجب إختيار الرابط الخارجي"
+    }
+]

@@ -11,7 +11,7 @@ const site = require('../isite')({
   },
   theme: 'theme_paper',
   mongodb: {
-    db: 'smart_code_souq_2022',
+    db: 'smart_code_souq',
     limit: 100000,
     events: true,
     identity: {
@@ -112,9 +112,27 @@ site.sendMobileMessage = function (options) {
 
 }
 
-site.sendMailMessage = function (options) {
-  console.log(options);
+site.sendMailMessage = function (obj) {
+  if (site.setting.email_setting
+    && site.setting.email_setting.host
+    && site.setting.email_setting.port
+    && site.setting.email_setting.username
+    && site.setting.email_setting.password
+    && site.setting.email_setting.from
+  ) {
+
+    obj.enabled = true;
+    obj.type = 'smpt';
+    obj.host = site.setting.email_setting.host;
+    obj.port = site.setting.email_setting.port;
+    obj.username = site.setting.email_setting.username;
+    obj.password = site.setting.email_setting.password;
+    obj.from = site.setting.email_setting.from;
+
+    site.sendMail(obj);
+  };
 }
+
 // site.on('zk attend', attend=>{
 //     console.log(attend)
 // })

@@ -15,6 +15,25 @@ svg#Layer_1 {
   direction: ltr;
 }
 
+.login-button {
+  background-color: white;
+  color: black;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  margin: 5px;
+  font-size: 16px;
+  border: 2px solid #4CAF50;
+}
+
+.login-button:hover {
+  padding: 9px;
+  cursor: pointer;
+  background: aliceblue;
+  font-size: 16px;
+  border: 3px solid #4CAF50;
+}
+
 .create-btn {
   position: fixed;
   bottom: 8%;

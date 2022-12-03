@@ -1,0 +1,160 @@
+<div class="row ">
+  <!--  <a class="btn" onclick="$('#user_contents').show();$('#ratings').hide()"> ##word.contents## </a>
+  <a class="btn" onclick="$('#ratings').show();$('#user_contents').hide()"> ##word.ratings## </a> -->
+  <div id="user_contents" class="">
+    <fieldset class="ads-section" ng-show="contentList.length < 1 && contentList">
+      <div class="row" >
+        <h1 class="blue bold center">##word.there_no_ads##</h1>
+      </div>
+    </fieldset>
+
+    <div class="row">
+      <div class="ads-section">
+        <table style="width: 100%">
+          <tr ng-repeat="a in contentList" class="">
+            <td>
+              <div class="row margin">
+                <div class="col-9">
+                  <a href="/display-content/{{a.id}}/{{a.name}}/{{a.store.name}}">
+                    <p class="underline-hover bold ad-name pointer ellipsis-txt">{{a.name}}</p>
+                  </a>
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="ad-location">
+                        <i class="fa-solid fa-location-pin adress ellipsis-txt">{{a.address.text}}</i>
+                      
+                      </div>
+                      <div class="u-action">
+
+                        <a class="btn"
+                          ng-show="##setting.order_settings.activate_orders## && a.store.user.id != user.id"
+                          x-permission="login" ng-click="bookList(a,0)">
+                          <i class="fa fa-shopping-cart"></i>
+                        </a>
+
+                        <a ng-show="!a.$favorite" class="pointer" ng-click="updateFeedback(a,'favorite',true)">
+                          <i class="fa fa-heart dimgrey"> ##word.favorite## </i>
+                        </a>
+                        <a ng-show="a.$favorite" class="pointer" ng-click="updateFeedback(a,'favorite',false)">
+                          <i class="fa fa-heart red"> ##word.cancel## ##word.favorite## </i>
+                        </a>
+                      </div>
+                    
+                    </div>
+                    <div class="col-6">
+                    
+                      <div class="time-publish">
+                        <i class="fa-solid fa-clock ellipsis-txt"> {{a.$time}} </i>
+                      </div>
+                      <div class="ad-user">
+                        <a class=""
+                          href="/profile/{{a.store.user.id}}/{{a.store.user.profile.name}}/{{a.store.user.profile.last_name}}">
+                          <i class="fa fa-user dimgrey" aria-hidden="true"></i>
+                          <b class="underline-hover dimgrey ellipsis-txt">{{a.store.user.profile.name}} {{a.store.user.profile.last_name}}</b>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="col-3">
+                  <a class="adarea-link" href="/display-content/{{a.id}}/{{a.name}}/{{a.store.name}}">
+                    <img loading="lazy" class="pointer adarea-image" ng-src="{{a.image_url}}" />
+                  </a>
+                </div>
+
+
+
+              </div>
+            </td>
+          </tr>
+        </table>
+       
+      </div>
+    </div>
+
+  </div>
+
+  <div id="ratings" class="">
+    <fieldset class="ads-section">
+      <div class="row" ng-show="ratingList.length < 1 && ratingList">
+        <br />
+        <br />
+        <h1 class="blue bold center">##word.there_no_ratings##</h1>
+      </div>
+      <div class="row">
+        <div class="col3 padding margin">
+
+          <a class="pointer" onclick="$('#user_contents').show();$('#ratings').hide()">
+            <i class="fa fa-arrow-circle-right darkgray fa-3x back-style" aria-hidden="true">
+              ##word.contents##
+            </i>
+          </a>
+        </div>
+        <div class="col6">
+          <table ng-show="ratingList.length > 0" class="table hover bold">
+            <tr>
+              <th>##word.number_of_ratings##</th>
+              <th>##word.positive_rating##</th>
+              <th>##word.negative_rating##</th>
+            </tr>
+            <tr>
+              <td class="center title">
+                <button disabled class="like center" type="button"><i class="fa fa-star yellow" aria-hidden="true">
+                    {{ratingList.length}} </i></button>
+              </td>
+              <td class="center">
+
+                <button disabled class="like bg-like center" type="button"><i class="fa fa-thumbs-up green-color"
+                    aria-hidden="true"> {{positive}} </i></button>
+              </td>
+              <td class="center">
+
+                <button disabled class="like bg-unlike center" type="button"><i class="fa fa-thumbs-down red"
+                    aria-hidden="true"> {{negative}} </i></button>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="col2">
+          <i-button fa="star" x-permissions="login" ng-hide=" userId == user.id" label="##word.add_rating##"
+            onclick="site.showModal('#ratingModal')"></i-button>
+
+        </div>
+      </div>
+
+      <div ng-repeat="r in ratingList" class="ads-area even rate-box">
+        <div class="ad-user">
+          <a class="" href="/profile/{{r.sender.id}}/{{r.sender.name}}/{{r.sender.last_name}}">
+            <img class="center userad-logo" ng-src="{{r.sender.image_url}}" onerror="this.src='/images/user.png'"
+              alt="" />
+            <b class="user-name-stlye">{{r.sender.name}} {{r.sender.last_name}}</b>
+          </a>
+        </div>
+
+        <div class="row">
+
+          <div class="col3">
+            <div class="time-publish">
+              <i class="fa-solid fa-clock">{{r.date |date:"dd - MM - yyyy"}} </i>
+            </div>
+          </div>
+
+          <div class="col2">
+
+            <button disabled class="like bg-like center" ng-show="r.recommend == 'yes'" type="button"><i
+                class="fa fa-thumbs-up green-color" aria-hidden="true"></i></button>
+            <button disabled class="like bg-unlike center" ng-show="r.recommend == 'no'" type="button"><i
+                class="fa fa-thumbs-down red" aria-hidden="true"></i></button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="ads-info">
+            <b class="bold dimgray font-16 pre_text" ng-click="displayContent(a.id)">{{r.notes}}</b>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+
+  </div>
+</div>

@@ -116,7 +116,7 @@ module.exports = function init(site) {
                 } else if (result.doc.type == 'email' && site.setting.enable_sending_messages_email) {
                   site.sendMailMessage({
                     to: result.doc.email,
-                    subject: 'Smart Code .. Forget Password',
+                    subject: `Rejester Code`,
                     message: `code : ${result.doc.code}`,
                   });
                   response.done_send_email = true;
@@ -167,7 +167,7 @@ module.exports = function init(site) {
 
                       site.sendMailMessage({
                         to: result.email,
-                        subject: 'Smart Code .. Forget Password',
+                        subject: `Rejester Code`,
                         message: `code : ${result.code}`,
                       });
                       response.done_send_email = true;

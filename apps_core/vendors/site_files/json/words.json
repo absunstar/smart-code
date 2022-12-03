@@ -106,7 +106,7 @@
     {"name" : "vendors_post_number" , "en" : "Post Number" , "ar" : "الرقم البريدي"},
 
     {"name" : "vendors_Web_and_social_accounts" , "en" : "Web And Social Accounts" , "ar" : "المواقع والحسابات الاجتماعية"},   
-    {"name" : "vendors_website" , "en" : "Website" , "ar" : "الموقع الالكتروني"},
+    {"name" : "vendors_website" , "en" : "Website" , "ar" : "الموقع الإلكتروني"},
     {"name" : "vendors_social_facebook_account" , "en" : "FaceBook Account" , "ar" : "حساب الفيس بوك"},
     {"name" : "vendors_social_twitter_account" , "en" : "Twitter Account" , "ar" : "حساب تويتر"},
     {"name" : "vendors_social_google_account" , "en" : "Google Account" , "ar" : "حساب جوجل"},
@@ -126,7 +126,7 @@
     {"name" : "vendors_branch_phone" , "en" : "Branch Phone" , "ar" : "التليفون"},
     {"name" : "vendors_branch_mobile" , "en" : "Branch  Mobile" , "ar" : "الموبايل "},
     {"name" : "vendors_branch_fax" , "en" : "Branch Fax" , "ar" : "الفاكس"},
-    {"name" : "vendors_branch_email" , "en" : "Branch Email" , "ar" : "البريد الالكتروني"},
+    {"name" : "vendors_branch_email" , "en" : "Branch Email" , "ar" : "البريد الإلكتروني"},
 
 
     {"name" : "vendors_charge_contact_informations" , "en" : "Charge Informaion" , "ar" : "بيانات مسئول"},
@@ -135,7 +135,7 @@
     {"name" : "vendors_charge_phone" , "en" : "Charge Phone" , "ar" : "التليفون"},
     {"name" : "vendors_charge_internal_number" , "en" : "Charge Internal Number" , "ar" : "الرقم الداخلي"},
     {"name" : "vendors_charge_mobile" , "en" : "Charge Mobile" , "ar" : "الموبايل "},
-    {"name" : "vendors_charge_email" , "en" : "Charge Email" , "ar" : "البريد الالكتروني"},
+    {"name" : "vendors_charge_email" , "en" : "Charge Email" , "ar" : "البريد الإلكتروني"},
 
 
     {"name" : "vendors_files" , "en" : "Files" , "ar" : "الملفات"},

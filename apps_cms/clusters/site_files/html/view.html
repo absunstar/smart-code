@@ -1,0 +1,33 @@
+<div ng-hide="busy" class="row">
+    <div id="basicInformation" class="">
+        <fieldset>
+            <legend> ##word.basic_information##</legend>
+            <div class="col9">
+                <table id="basicInformationTable" class="table hover bold">
+
+                    <tr>
+                        <td class="title">##word.cluster_name##</td>
+                        <td class="center">{{cluster.name}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.description##</td>
+                        <td class="center">{{cluster.description}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.status##</td>
+                        <td ng-show="cluster.active == true" class="green center"> ##word.active## </td>
+                        <td ng-show="cluster.active == false" class="red center"> ##word.not_active## </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="col3">
+                <i-image view ng-model="cluster.image_url"></i-image>
+            </div>
+
+        </fieldset>
+    </div>
+</div>
+<div x-import="clusters/action_info.html"></div>

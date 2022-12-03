@@ -1,0 +1,35 @@
+[
+  {
+    "name": "rating",
+    "en": "rating",
+    "ar": "التقييم"
+  },
+  {
+    "name": "ratings",
+    "en": "ratings",
+    "ar": "التقييمات"
+  },
+  { "name": "add_rating", "en": "Add a rating", "ar": "أضف تقييم" },
+  {
+    "name": "approval",
+    "en": "Approval",
+    "ar": "موافقة"
+  },
+  {
+    "name": "reject",
+    "en": "Reject",
+    "ar": "رفض"
+  },
+  {
+    "name": "details_evaluation_must_be_mentioned_along_with_typeof_merchandise",
+    "en": "The details of the evaluation must be mentioned, along with the type of merchandise",
+    "ar": "يجب ذكر تفاصيل التقييم مع ذكر نوع السلعه"
+  },
+  { "name": "do_not_recommend_dealing_with_him", "en": "I do not recommend dealing with him", "ar": "لا أنصح بالتعامل معه" },
+  { "name": "recommend_dealing_with_him", "en": "I recommend dealing with him", "ar": "أنصح بالتعامل معه" },
+  { "name": "did_you_buy_from_the_member", "en": "Did you buy from the member?", "ar": "هل قمت بالشراء من العضو؟" },
+  { "name": "do_recommend_dealing_with_him", "en": "Do you recommend dealing with him?", "ar": "هل تنصح بالتعامل معه؟" },
+  { "name": "how_was_your_experience", "en": "How was your experience?", "ar": "كيف كانت تجربتك؟" },
+  { "name": "rating_reject", "en": "Rating Reject", "ar": "تم رفض التقييم" },
+  { "name": "rating_approved", "en": "Rating Approved", "ar": "تم الموافقة على التقييم" }
+]

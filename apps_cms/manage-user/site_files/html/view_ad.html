@@ -1,0 +1,22 @@
+<div ng-hide="busy" class="row">
+    <div id="basicInformation" class="">
+        <fieldset>
+            <legend> ##word.basic_information##</legend>
+            <div class="col9">
+                <table id="basicInformationTable" class="table hover bold">
+
+                    <tr>
+                        <td class="title">##word.ad_title##</td>
+                        <td class="center">{{ad.name}}</td>
+                    </tr>
+
+                </table>
+            </div>
+
+            <div class="col3">
+                <i-image view ng-model="ad.image_url"></i-image>
+            </div>
+
+        </fieldset>
+    </div>
+</div>

@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "ratings_admin",
+    "en": "Ratings Admin",
+    "ar": "إدارة التقييمات",
+    "permissions": ["ratings_manage"]
+}]

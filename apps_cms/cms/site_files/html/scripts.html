@@ -1,0 +1,155 @@
+<script src="/x-js/bootstrap-5-support.js?v=##site.options.version##"></script>
+<script>
+  site.features = '##req.features##';
+  site.feature = (f) => site.features.indexOf(f) !== -1;
+</script>
+
+
+<script x-import="cms/sitebar.js"></script>
+<script x-import="cms/sitebottom.js"></script>
+<script x-import="cms/footer_herag.js"></script>
+<script x-import="0/directive.js"></script>
+
+<script x-permission="login">
+  fetch('/api/user/update-visit-date')
+</script>
+
+<script>
+  function xtime(_time) {
+    let since_few = ' Since few ';
+    let before = ' Ago ';
+    let second = ' Second ';
+    let minute = ' Minute ';
+    let hour = ' Hour ';
+    let day = ' Day ';
+    let month = ' Month ';
+    let year = ' Year ';
+
+    if ('##session.lang##' == 'ar') {
+      since_few = ' منذ قليل ';
+      before = ' منذ ';
+      second = ' ثانية ';
+      minute = ' دقيقة ';
+      hour = ' ساعة ';
+      day = ' يوم ';
+      month = ' شهر ';
+      year = ' سنة ';
+    }
+
+    if (typeof _time == 'undefined' || !_time) {
+      return since_few;
+    }
+    _time = new Date().getTime() - new Date(_time).getTime();
+
+    let _type = null;
+
+    let _time_2 = null;
+    let _type_2 = null;
+
+    let times = [1, 1000, 60, 60, 24, 30, 12];
+    let times_type = ['x', second, minute, hour, day, month, year];
+
+    let offset = new Date().getTimezoneOffset();
+    if (false && offset < 0) {
+      let diff = Math.abs(offset) * 60 * 1000;
+      _time = _time + diff;
+    }
+
+    if (_time <= 10000) {
+      return since_few;
+    }
+
+    for (let i = 0; i < times.length; i++) {
+      if (_time < times[i]) {
+        break;
+      } else {
+        _type = times_type[i];
+        if (i > 0) {
+          _time_2 = _time % times[i];
+          _type_2 = times_type[i - 1];
+        }
+        _time = _time / times[i];
+      }
+    }
+
+    _time = Math.floor(_time);
+    _time_2 = Math.floor(_time_2);
+
+    if (_time_2 == 0 || _type_2 == null || _type_2 == 'x') {
+      return [before, _time, _type].join(' ');
+    } else {
+      return [before, _time, _type, _time_2, _type_2].join(' ');
+    }
+  }
+
+  $(document).on('keydown', 'select', function (e) {
+    if (e.which == 13 || e.keyCode == 13) {
+      e.preventDefault();
+      var $canfocus = $('select');
+      var index = $canfocus.index(document.activeElement) + 1;
+      if (index >= $canfocus.length) index = 0;
+      $canfocus.eq(index).focus();
+    }
+  });
+
+  function string_to_buffer(s) {
+    if (typeof ArrayBuffer !== 'undefined') {
+      var buf = new ArrayBuffer(s.length);
+      var view = new Uint8Array(buf);
+      for (var i = 0; i != s.length; ++i) view[i] = s.charCodeAt(i) & 0xff;
+      return buf;
+    } else {
+      var buf = new Array(s.length);
+      for (var i = 0; i != s.length; ++i) buf[i] = s.charCodeAt(i) & 0xff;
+      return buf;
+    }
+  }
+
+  function export_to_xlsx(id, _fileName) {
+    _fileType = 'xlsx';
+    var workbook = XLSX.utils.table_to_book(document.getElementById(id), {
+      sheet: 'Sheet JS',
+    });
+    var wbout = XLSX.write(workbook, {
+      bookType: _fileType,
+      bookSST: true,
+      type: 'binary',
+    });
+    var fileName = _fileName || 'file.' + _fileType;
+    try {
+      saveAs(
+        new Blob([string_to_buffer(wbout)], {
+          type: 'application/octet-stream',
+        }),
+        fileName
+      );
+    } catch (e) {
+      if (typeof console != 'undefined') console.log(e);
+    }
+    return wbout;
+  }
+</script>
+
+<script>
+  var isMenuShow = false;
+
+  function showMenu() {
+    let menu = document.querySelector('.main-menu');
+    let body = document.querySelector('body');
+    if (isMenuShow) {
+      if (menu) {
+        menu.classList.remove('menu-show');
+      }
+      body.classList.remove('menu-show');
+      isMenuShow = false;
+      $('.tooltip').addClass('tooltip2');
+    } else {
+      $('.tooltip').removeClass('tooltip2');
+      if (menu) {
+        menu.classList.add('menu-show');
+      }
+      body.classList.add('menu-show');
+      isMenuShow = true;
+    }
+  }
+</script>

@@ -1,0 +1,17 @@
+<div id="ad_require_{{id2}}" class="">
+    <div class="row center">
+
+        <b class="font-25 col4">{{ngModel.name_##session.lang##}}</b>
+        <div class="col6">
+            <i-image class="img-style" ng-show="ngModel.type.id == 1" help-id="ads_logo" ng-model="ngModel.image_url">
+            </i-image>
+            <i-control class="input-style" ng-show="ngModel.type.id == 2" ng-model="ngModel.text"></i-control>
+            <i-textarea ng-show="ngModel.type.id == 3" class="input-style" ng-model="ngModel.text">
+            </i-textarea>
+            <i-files ng-show="ngModel.type.id == 4" ng-model="ngModel.files"></i-files>
+            <i-date2 class="input-style" ng-show="ngModel.type.id == 5" ng-model="ngModel.date"></i-date2>
+        </div>
+    </div>
+    <hr>
+    <!-- <hr class="center" style="width: 70%; height: 5px; color: grey; background-color: rgb(76, 199, 0)" /> -->
+</div>

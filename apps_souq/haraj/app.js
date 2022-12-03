@@ -1,5 +1,4 @@
 module.exports = function init(site) {
-  const $login = site.connectCollection('login');
 
   site.get({
     name: 'assets',

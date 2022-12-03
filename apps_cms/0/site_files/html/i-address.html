@@ -1,0 +1,17 @@
+<div id="addresses_{{id2}}" class="row">
+  <div class="row">
+    <i-list class="col3 input-style" label="##word.country##" ng-change="getGovesList(ngModel.country)" ng-model="ngModel.country" display="name_##session.lang##" items="countriesList" ng-search="_search.$city_country"></i-list>
+
+    <i-list class="col3 input-style" label="##word.gov##" ng-model="ngModel.gov" items="govesList" ng-change="getCityList(ngModel.gov)" display="name_##session.lang##" ng-search="_search.$ngModel.$gov_search"> </i-list>
+
+    <i-list class="col3 input-style" ng-change="getAreaList(ngModel.city)" label="##word.city##" ng-model="ngModel.city" items="cityList" display="name_##session.lang##" ng-search="_search.$ngModel.$city_search"> </i-list>
+
+    <i-list class="col3 input-style" label="##word.area##" ng-model="ngModel.area" items="areaList" display="name_##session.lang##" ng-search="_search.$ngModel.$area_search"> </i-list>
+  </div>
+
+  <div class="row">
+    <i-textarea class="col9 input-style" label="##word.detailed_address##" ng-model="ngModel.detailed_address"></i-textarea>
+
+  </div>
+
+</div>

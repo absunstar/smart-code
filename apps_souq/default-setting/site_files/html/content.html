@@ -2,10 +2,15 @@
 
   <div class="tabs">
     <div class="tabs-header full">
-      <a class="tab-link inline-block" onclick="site.showTabContent(event, '#site_settings')"> ##word.site_settings## </a>
-      <a class="tab-link inline-block" onclick="site.showTabContent(event, '#order_settings')"> ##word.order_settings## </a>
+      <a class="tab-link inline-block" onclick="site.showTabContent(event, '#site_settings')"> ##word.site_settings##
+      </a>
+      <a class="tab-link inline-block" onclick="site.showTabContent(event, '#email_and_text_messages')">
+        ##word.email_and_text_messages## </a>
+      <a class="tab-link inline-block" onclick="site.showTabContent(event, '#order_settings')"> ##word.order_settings##
+      </a>
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#ads_settings')"> ##word.ads_settings## </a>
-      <a class="tab-link inline-block" onclick="site.showTabContent(event, '#stores_settings')"> ##word.stores_settings## </a>
+      <a class="tab-link inline-block" onclick="site.showTabContent(event, '#stores_settings')">
+        ##word.stores_settings## </a>
     </div>
 
     <div class="tabs-content">
@@ -15,10 +20,13 @@
           <div class="row">
             <div class="col8">
               <div class="row">
-                <i-list class="col7" ng-model="default_setting.user_design" items="userDesignList" display="##session.lang##" ng-search="_search.$search_user_design" label="##word.user_design##"></i-list>
+                <i-list class="col6" ng-model="default_setting.user_design" items="userDesignList"
+                  display="##session.lang##" ng-search="_search.$search_user_design" label="##word.user_design##">
+                </i-list>
               </div>
               <div class="row">
-                <i-control class="col6" label="##word.order_level_length##" type="number" ng-model="default_setting.length_order"> </i-control>
+                <i-control class="col6" label="##word.order_level_length##" type="number"
+                  ng-model="default_setting.length_order"> </i-control>
               </div>
             </div>
             <div class="col1"></div>
@@ -26,22 +34,14 @@
               <i-image ng-model="default_setting.logo"></i-image>
             </div>
           </div>
-        
- 
-          <div class="row">
-            <i-control class="col6" label="##word.company_name##" ng-model="default_setting.company_name"> </i-control>
-            <i-control class="col6" label="##word.site_name##" ng-model="default_setting.site_name"> </i-control>
-          </div>
 
           <div class="row">
-            <i-control class="col6" label="##word.facebook_account##" ng-model="default_setting.facebook_account"> </i-control>
-            <i-control class="col6" label="##word.instagram_accouunt##" ng-model="default_setting.instagram_accouunt"> </i-control>
+            <i-control class="col4" label="##word.company_name##" ng-model="default_setting.company_name"> </i-control>
+            <i-control class="col4" label="##word.site_name##" ng-model="default_setting.site_name"> </i-control>
+            <i-control class="col4" label="##word.title##" ng-model="default_setting.title"> </i-control>
           </div>
+       
 
-          <div class="row">
-            <i-control class="col6" label="##word.you_tube_accouunt##" ng-model="default_setting.you_tube_accouunt"> </i-control>
-            <i-control class="col6" label="##word.twitter_accouunt##" ng-model="default_setting.twitter_accouunt"> </i-control>
-          </div>
 
           <div class="row">
             <i-control class="col6" label="##word.email##" ng-model="default_setting.email"> </i-control>
@@ -50,60 +50,132 @@
 
           <div class="row">
             <i-control class="col6" label="##word.tax_number##" ng-model="default_setting.tax_number"> </i-control>
-            <i-control class="col6" label="##word.commercial_registration_no##" ng-model="default_setting.commercial_registration_no"> </i-control>
+            <i-control class="col6" label="##word.commercial_registration_no##"
+              ng-model="default_setting.commercial_registration_no"> </i-control>
           </div>
 
           <div class="row">
-            <i-control class="col6" label="##word.link## ##word.google_store##" ng-model="default_setting.google_store"> </i-control>
-            <i-control class="col6" label="##word.link## ##word.apple_store##" ng-model="default_setting.apple_store"> </i-control>
+            <i-control class="col6" label="##word.link## ##word.google_store##" ng-model="default_setting.google_store">
+            </i-control>
+            <i-control class="col6" label="##word.link## ##word.apple_store##" ng-model="default_setting.apple_store">
+            </i-control>
           </div>
           <!-- <div class="row">
             <i-control class="col6" label="##word.link## ##word.huawei_store##" ng-model="default_setting.huawei_store"> </i-control>
           </div> -->
-       
+
           <fieldset>
-            <legend>##word.mobile_sms##</legend>
+            <legend>##word.social_media_accounts##</legend>
             <div class="row">
-            <i-checkbox class="col6" label="##word.enable_sending_messages_mobile##" ng-model="default_setting.enable_sending_messages_mobile"> </i-checkbox>
+              <i-control class="col6" label="##word.facebook_account##" ng-model="default_setting.facebook_account">
+              </i-control>
+              <i-control class="col6" label="##word.instagram_accouunt##" ng-model="default_setting.instagram_accouunt">
+              </i-control>
+            </div>
 
-              <i-control class="col6" label="##word.auth_token_mobile##" ng-model="default_setting.auth_token_mobile"> </i-control>
-            </div>
             <div class="row">
-              <i-control class="col6" label="##word.account_id_mobile##" ng-model="default_setting.account_id_mobile"> </i-control>
-              <i-control class="col6" label="##word.messaging_services_id_mobile##" ng-model="default_setting.messaging_services_id_mobile"> </i-control>
+              <i-control class="col6" label="##word.you_tube_accouunt##" ng-model="default_setting.you_tube_accouunt">
+              </i-control>
+              <i-control class="col6" label="##word.twitter_accouunt##" ng-model="default_setting.twitter_accouunt">
+              </i-control>
             </div>
-  
           </fieldset>
-
           <div class="row">
-         
+
             <div class="col2">
               <br />
-              <i-checkbox label="##word.auto_generate_categories_code##" ng-model="default_setting.auto_generate_categories_code"> </i-checkbox>
+              <i-checkbox label="##word.auto_generate_categories_code##"
+                ng-model="default_setting.auto_generate_categories_code"> </i-checkbox>
             </div>
-            <i-control ng-show="default_setting.auto_generate_categories_code" class="col3" label="##word.categories_level_length##" type="number" ng-model="default_setting.length_category"> </i-control>
+            <i-control ng-show="default_setting.auto_generate_categories_code" class="col3"
+              label="##word.categories_level_length##" type="number" ng-model="default_setting.length_category">
+            </i-control>
           </div>
           <div class="row">
-            <i-checkbox class="row" label="##word.tax_number_show##" ng-model="default_setting.tax_number_show"> </i-checkbox>
-            <i-checkbox class="row" label="##word.commercial_registration_no_show##" ng-model="default_setting.commercial_registration_no_show"> </i-checkbox>
-            <i-checkbox class="row" label="##word.enable_sending_messages_email##" ng-model="default_setting.enable_sending_messages_email"> </i-checkbox>
-            <i-checkbox class="row" label="##word.allow_registration_through_email##" ng-model="default_setting.allow_registration_email"> </i-checkbox>
+            <i-checkbox class="row" label="##word.tax_number_show##" ng-model="default_setting.tax_number_show">
+            </i-checkbox>
+            <i-checkbox class="row" label="##word.commercial_registration_no_show##"
+              ng-model="default_setting.commercial_registration_no_show"> </i-checkbox>
+            <i-checkbox class="row" label="##word.allow_registration_through_email##"
+              ng-model="default_setting.allow_registration_email"> </i-checkbox>
           </div>
         </fieldset>
-        <i-button type="default left" fa="2x fa-angle-double-left" onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
+        <i-button type="save" label="##word.save##" x-permissions="default_setting_edit || default_setting_manage"
+          ng-click="saveSetting('#site_settings')"></i-button>
+        <i-button type="default left" fa="2x fa-angle-double-left"
+          onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
       </div>
+
+      <div id="email_and_text_messages" class="tab-content">
+
+        <fieldset>
+          <legend>##word.mobile_sms##</legend>
+          <div class="row">
+            <i-checkbox class="col6" label="##word.enable_sending_messages_mobile##"
+              ng-model="default_setting.enable_sending_messages_mobile"> </i-checkbox>
+
+            <i-control class="col6" label="##word.auth_token_mobile##" ng-model="default_setting.auth_token_mobile">
+            </i-control>
+          </div>
+          <div class="row">
+            <i-control class="col6" label="##word.account_id_mobile##" ng-model="default_setting.account_id_mobile">
+            </i-control>
+            <i-control class="col6" label="##word.messaging_services_id_mobile##"
+              ng-model="default_setting.messaging_services_id_mobile"> </i-control>
+          </div>
+
+        </fieldset>
+
+        <fieldset>
+          <legend>##word.email_sending_setting##</legend>
+          <i-checkbox class="row" label="##word.enable_sending_messages_email##"
+            ng-model="default_setting.enable_sending_messages_email"> </i-checkbox>
+          <div class="row">
+            <i-control class="col6" label="##word.host##" type="text"
+              ng-model="default_setting.email_setting.host"></i-control>
+            <i-control class="col6" label="##word.port##" type="number"
+              ng-model="default_setting.email_setting.port">
+            </i-control>
+
+          </div>
+
+          <div class="row">
+            <i-control class="col6" label="##word.user_name##" type="text"
+              ng-model="default_setting.email_setting.username"></i-control>
+            <i-control class="col6" label="##word.password##" type="password"
+              ng-model="default_setting.email_setting.password">
+            </i-control>
+          </div>
+
+          <div class="row">
+            <i-control class="col6"  label="##word.sent_from_mail##" type="text"
+              ng-model="default_setting.email_setting.from">
+            </i-control>
+          </div>
+        </fieldset>
+        <i-button type="save" label="##word.save##" x-permissions="default_setting_edit || default_setting_manage"
+          ng-click="saveSetting('#email_and_text_messages')"></i-button>
+        <i-button type="default left" fa="2x fa-angle-double-left"
+          onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
+      </div>
+
 
       <div id="order_settings" class="tab-content">
         <fieldset>
           <legend>##word.order_settings##</legend>
           <div class="row">
-            <i-checkbox class="row" label="##word.activate_orders##" ng-model="default_setting.order_settings.activate_orders"></i-checkbox>
+            <i-checkbox class="row" label="##word.activate_orders##"
+              ng-model="default_setting.order_settings.activate_orders"></i-checkbox>
           </div>
           <div class="row" ng-show="default_setting.order_settings.activate_orders">
-            <i-control class="col2" type="number" label="##word.fee_upon_receipt##" ng-model="default_setting.order_settings.fee_upon_receipt"></i-control>
+            <i-control class="col2" type="number" label="##word.fee_upon_receipt##"
+              ng-model="default_setting.order_settings.fee_upon_receipt"></i-control>
           </div>
         </fieldset>
-        <i-button type="default left" fa="2x fa-angle-double-left" onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
+        <i-button type="save" label="##word.save##" x-permissions="default_setting_edit || default_setting_manage"
+          ng-click="saveSetting('#order_settings')"></i-button>
+        <i-button type="default left" fa="2x fa-angle-double-left"
+          onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
       </div>
 
       <div id="ads_settings" class="tab-content">
@@ -113,19 +185,28 @@
           <div class="row">
             <div class="col8">
               <div class="row">
-                <i-list class="col4" ng-model="default_setting.content.status" items="contentStatusList" display="##session.lang##" ng-search="_search.$search_ad_status" label="##word.ad_status##"></i-list>
-                <i-control label="##word.maximum_ads##" type="number" class="col3" ng-model="default_setting.content.maximum_ads"></i-control>
+                <i-list class="col4" ng-model="default_setting.content.status" items="contentStatusList"
+                  display="##session.lang##" ng-search="_search.$search_ad_status" label="##word.ad_status##"></i-list>
+                <i-control label="##word.maximum_ads##" type="number" class="col3"
+                  ng-model="default_setting.content.maximum_ads"></i-control>
               </div>
 
               <div class="row">
-                <i-list class="col4" ng-model="default_setting.content.publishing_system" items="publishingSystemList" display="##session.lang##" ng-search="_search.$search_publishing_system" label="##word.publishing_system##"></i-list>
+                <i-list class="col4" ng-model="default_setting.content.publishing_system" items="publishingSystemList"
+                  display="##session.lang##" ng-search="_search.$search_publishing_system"
+                  label="##word.publishing_system##"></i-list>
               </div>
 
               <div class="row">
-                <i-list class="col4" ng-model="default_setting.content.closing_system" items="closingSystemList" display="##session.lang##" ng-search="_search.$search_closing_system" label="##word.closing_system##"></i-list>
+                <i-list class="col4" ng-model="default_setting.content.closing_system" items="closingSystemList"
+                  display="##session.lang##" ng-search="_search.$search_closing_system" label="##word.closing_system##">
+                </i-list>
 
-                <i-control ng-show="default_setting.content.closing_system.id == 1" label="##word.duration##" type="number" class="col3" ng-model="default_setting.content.duration"></i-control>
-                <i-list class="col3" ng-model="default_setting.content.duration_type" items="durationExpiryList" ng-show="default_setting.content.closing_system.id == 1" display="##session.lang##" ng-search="_search.$search_duration_type" label="##word.duration_type##"></i-list>
+                <i-control ng-show="default_setting.content.closing_system.id == 1" label="##word.duration##"
+                  type="number" class="col3" ng-model="default_setting.content.duration"></i-control>
+                <i-list class="col3" ng-model="default_setting.content.duration_type" items="durationExpiryList"
+                  ng-show="default_setting.content.closing_system.id == 1" display="##session.lang##"
+                  ng-search="_search.$search_duration_type" label="##word.duration_type##"></i-list>
               </div>
 
             </div>
@@ -139,30 +220,39 @@
           <div class="row">
             <div class="col2">
               <br />
-              <i-checkbox label="##word.upload_photos##" ng-change="default_setting.content.allowed_number_photo = 1" ng-model="default_setting.content.upload_photos"></i-checkbox>
+              <i-checkbox label="##word.upload_photos##" ng-change="default_setting.content.allowed_number_photo = 1"
+                ng-model="default_setting.content.upload_photos"></i-checkbox>
             </div>
-            <i-control label="##word.allowed_number##" ng-show="default_setting.content.upload_photos" type="number" class="col3" ng-model="default_setting.content.allowed_number_photo"></i-control>
+            <i-control label="##word.allowed_number##" ng-show="default_setting.content.upload_photos" type="number"
+              class="col3" ng-model="default_setting.content.allowed_number_photo"></i-control>
           </div>
 
           <div class="row">
-              <div class="col2">
+            <div class="col2">
               <br />
-              <i-checkbox label="##word.upload_video##" ng-change="default_setting.content.allowed_number_video = 1" ng-model="default_setting.content.upload_video"></i-checkbox>
+              <i-checkbox label="##word.upload_video##" ng-change="default_setting.content.allowed_number_video = 1"
+                ng-model="default_setting.content.upload_video"></i-checkbox>
             </div>
-            <i-control label="##word.allowed_number##" ng-show="default_setting.content.upload_video" type="number" class="col3" ng-model="default_setting.content.allowed_number_video"></i-control>
+            <i-control label="##word.allowed_number##" ng-show="default_setting.content.upload_video" type="number"
+              class="col3" ng-model="default_setting.content.allowed_number_video"></i-control>
           </div>
 
           <div class="row">
-            <i-checkbox class="row" label="##word.other_addresses_appear##" ng-model="default_setting.content.other_addresses_appear"></i-checkbox>
-            <i-checkbox class="row" label="##word.new_address_appear##" ng-model="default_setting.content.new_address_appear"></i-checkbox>
-            <i-checkbox class="row" label="##word.quantities_can_be_used##" ng-model="default_setting.content.quantities_can_be_used"></i-checkbox>
-            <i-checkbox class="row" label="##word.currencies_can_be_used##" ng-model="default_setting.content.currencies_can_be_used"></i-checkbox>
+            <i-checkbox class="row" label="##word.other_addresses_appear##"
+              ng-model="default_setting.content.other_addresses_appear"></i-checkbox>
+            <i-checkbox class="row" label="##word.new_address_appear##"
+              ng-model="default_setting.content.new_address_appear"></i-checkbox>
+            <i-checkbox class="row" label="##word.quantities_can_be_used##"
+              ng-model="default_setting.content.quantities_can_be_used"></i-checkbox>
+            <i-checkbox class="row" label="##word.currencies_can_be_used##"
+              ng-model="default_setting.content.currencies_can_be_used"></i-checkbox>
           </div>
 
           <div class="row">
             <h2 class="black">
               ##word.warning_message_inside_ad##
-              <i-button type="add default" ng-click="default_setting.content.warning_message_ad_list.push({})"> </i-button>
+              <i-button type="add default" ng-click="default_setting.content.warning_message_ad_list.push({})">
+              </i-button>
             </h2>
 
             <div ng-repeat="f in default_setting.content.warning_message_ad_list track by $index" class="row">
@@ -170,28 +260,37 @@
 
               <i-textarea class="col8" ng-model="f.name"></i-textarea>
 
-              <i-button class="col1" type="delete default" ng-click="default_setting.content.warning_message_ad_list.length ==1 || default_setting.printer_program.warning_message_ad_list.splice($index,1)"> </i-button>
+              <i-button class="col1" type="delete default"
+                ng-click="default_setting.content.warning_message_ad_list.length ==1 || default_setting.printer_program.warning_message_ad_list.splice($index,1)">
+              </i-button>
             </div>
           </div>
-
+          <i-button type="save" label="##word.save##" x-permissions="default_setting_edit || default_setting_manage"
+            ng-click="saveSetting('#ads_settings')"></i-button>
         </fieldset>
 
-        <i-button type="default left" fa="2x fa-angle-double-left" onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
+        <i-button type="default left" fa="2x fa-angle-double-left"
+          onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
       </div>
 
       <div id="stores_settings" class="tab-content">
         <fieldset>
           <legend>##word.stores_settings##</legend>
           <div class="row">
-            <i-checkbox class="row" label="##word.activate_stores##" ng-model="default_setting.stores_settings.activate_stores"></i-checkbox>
+            <i-checkbox class="row" label="##word.activate_stores##"
+              ng-model="default_setting.stores_settings.activate_stores"></i-checkbox>
           </div>
 
           <div class="row" ng-show="default_setting.stores_settings.activate_stores">
             <div class="col8">
               <div class="row">
-                <i-list class="col4" ng-model="default_setting.stores_settings.store_status" items="contentStatusList" display="##session.lang##" ng-search="_search.$search_store_status" label="##word.store_status##"></i-list>
-                <i-control label="##word.maximum_stores##" type="number" class="col3" ng-model="default_setting.stores_settings.maximum_stores"></i-control>
-                <i-control label="##word.maximum_ads_for_store##" type="number" class="col4" ng-model="default_setting.stores_settings.maximum_ads_for_store"></i-control>
+                <i-list class="col4" ng-model="default_setting.stores_settings.store_status" items="contentStatusList"
+                  display="##session.lang##" ng-search="_search.$search_store_status" label="##word.store_status##">
+                </i-list>
+                <i-control label="##word.maximum_stores##" type="number" class="col3"
+                  ng-model="default_setting.stores_settings.maximum_stores"></i-control>
+                <i-control label="##word.maximum_ads_for_store##" type="number" class="col4"
+                  ng-model="default_setting.stores_settings.maximum_ads_for_store"></i-control>
               </div>
             </div>
             <div class="col4">
@@ -199,8 +298,11 @@
               <i-image help-id="units_logo" ng-model="default_setting.printer_program.default_image_store"> </i-image>
             </div>
           </div>
+          <i-button type="save" label="##word.save##" x-permissions="default_setting_edit || default_setting_manage"
+            ng-click="saveSetting('#stores_settings')"></i-button>
         </fieldset>
-        <i-button type="default left" fa="2x fa-angle-double-left" onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
+        <i-button type="default left" fa="2x fa-angle-double-left"
+          onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
       </div>
     </div>
   </div>

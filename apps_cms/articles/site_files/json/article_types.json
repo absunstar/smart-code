@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "en": "Standred Content",
+    "ar": "محتوى قياسي"
+  },
+  {
+    "id": 2,
+    "en": "Parts Content",
+    "ar": "محتوى له فقرات"
+  },
+  {
+    "id": 3,
+    "en": "Slider Content",
+    "ar": "محتوى صوري متحرك"
+  }
+]

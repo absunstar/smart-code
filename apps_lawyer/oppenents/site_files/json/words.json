@@ -95,7 +95,7 @@
     {"name" : "oppenents_post_number" , "en" : "Post Number" , "ar" : "الرقم البريدي"},
 
     {"name" : "oppenents_Web_and_social_accounts" , "en" : "Web And Social Accounts" , "ar" : "المواقع والحسابات الاجتماعية"},   
-    {"name" : "oppenents_website" , "en" : "Website" , "ar" : "الموقع الالكتروني"},
+    {"name" : "oppenents_website" , "en" : "Website" , "ar" : "الموقع الإلكتروني"},
     {"name" : "oppenents_social_facebook_account" , "en" : "FaceBook Account" , "ar" : "حساب الفيس بوك"},
     {"name" : "oppenents_social_twitter_account" , "en" : "Twitter Account" , "ar" : "حساب تويتر"},
     {"name" : "oppenents_social_google_account" , "en" : "Google Account" , "ar" : "حساب جوجل"},
@@ -111,7 +111,7 @@
     {"name" : "oppenents_branch_phone" , "en" : "Branch Phone" , "ar" : "التليفون"},
     {"name" : "oppenents_branch_mobile" , "en" : "Branch  Mobile" , "ar" : "الموبايل "},
     {"name" : "oppenents_branch_fax" , "en" : "Branch Fax" , "ar" : "الفاكس"},
-    {"name" : "oppenents_branch_email" , "en" : "Branch Email" , "ar" : "البريد الالكتروني"},
+    {"name" : "oppenents_branch_email" , "en" : "Branch Email" , "ar" : "البريد الإلكتروني"},
 
     {"name" : "oppenents_charge_contact_informations" , "en" : "Charge Informaion" , "ar" : "بيانات مسئول"},
     {"name" : "oppenents_charge_name" , "en" : "Charge Name" , "ar" : "الإسم"},
@@ -119,7 +119,7 @@
     {"name" : "oppenents_charge_phone" , "en" : "Charge Phone" , "ar" : "التليفون"},
     {"name" : "oppenents_charge_internal_number" , "en" : "Charge Internal Number" , "ar" : "الرقم الداخلي"},
     {"name" : "oppenents_charge_mobile" , "en" : "Charge Mobile" , "ar" : "الموبايل "},
-    {"name" : "oppenents_charge_email" , "en" : "Charge Email" , "ar" : "البريد الالكتروني"},
+    {"name" : "oppenents_charge_email" , "en" : "Charge Email" , "ar" : "البريد الإلكتروني"},
     {"name" : "oppenents_files" , "en" : "Files" , "ar" : "الملفات"},
 
 

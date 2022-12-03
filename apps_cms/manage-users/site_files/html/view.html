@@ -1,0 +1,36 @@
+<div ng-hide="busy" class="row">
+    <div id="basicInformation" class="">
+        <fieldset>
+            <legend> ##word.basic_information##</legend>
+            <div class="col9">
+                <table id="basicInformationTable" class="table bold hover">
+                    <tr>
+                        <td class="title">##word.first_name##</td>
+                        <td class="center blue userPrint">{{manage_users.profile.name}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.last_name##</td>
+                        <td class="center blue userPrint">{{manage_users.profile.last_name}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.email##</td>
+                        <td class="center blue userPrint">{{manage_users.email}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="title">##word.status##</td>
+                        <td ng-show="manage_users.active == true" class="center green"> ##word.active## </td>
+                        <td ng-show="manage_users.active == false" class="center red"> ##word.not_active## </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="col3">
+                <i-image view ng-model="manage_users.image_url"></i-image>
+            </div>
+
+        </fieldset>
+    </div>
+</div>

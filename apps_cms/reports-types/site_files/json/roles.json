@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "reports_types_admin",
+    "en": "Reports Types Admin",
+    "ar": "إدارة أنواع البلاغات",
+    "permissions": ["reports_types_manage"]
+}]

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ar" data-ng-app="myApp">
+
+<head>
+  <title>##setting.title##</title>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/css/cms.css" />
+  <link rel="icon" type="image/x-icon" href="##setting.logo##" />
+  <style>
+    * {
+      max-width: initial;
+    }
+
+    .level1 {
+      margin-right: 10px;
+      padding-right: 10px;
+      display: block;
+      border-right: 1px solid rgb(225, 129, 129);
+    }
+
+    .level2 {
+      margin-right: 20px;
+      padding-right: 20px;
+      display: block;
+      border-right: 1px solid #bbb;
+    }
+
+    .level3 {
+      margin-right: 30px;
+      padding-right: 30px;
+      display: block;
+      border-right: 1px solid #bbb;
+    }
+
+    .level4 {
+      margin-right: 40px;
+      padding-right: 40px;
+      display: block;
+      border-right: 1px solid #bbb;
+    }
+
+    .main-categories {
+      border: 1px solid #c5c5c5;
+      background: #f1f1f15e;
+      margin: 15px;
+      padding: 15px;
+      border-radius: 10px;
+    }
+
+    .userad-logo {
+      border-radius: 50%;
+      height: 25px;
+      width: 25px;
+      margin: -5px 10px -5px 0px !important
+    }
+
+    :root {
+      --body-margin-top: 0px;
+      --body-margin-bottom: 0px;
+      --zoom: 100%;
+      --fieldset-border: none;
+      --fieldset-background: #fff;
+    }
+
+    body {
+      /* background-color: #bbb !important;
+      background-image: url(/assets/palm.svg) !important; */
+      background-color: #ecf9f6;
+      background-repeat: repeat !important;
+    }
+  </style>
+  <style x-lang="ar">
+    .nav1 {
+      flex-direction: initial;
+      padding: 7px;
+    }
+
+    :root {
+      --direction: rtl;
+      --text-align: right;
+      --float: right;
+    }
+  </style>
+</head>
+
+<body class="##session.lang## loaded" ng-controller="more_categories">
+  <div x-import="cms/header.html"></div>
+
+  <div id="main-layout" class="container">
+
+    <div class="row">
+      <fieldset class="ads-section">
+        <legend class="bold">##word.categories## ##setting.site_name## </legend>
+        <div class="row">
+
+
+          <i-treeview2
+          display="name_##session.lang##"
+          label="##word.main_categories##"
+          ng-model="parent_main_category"
+          ng-click="displayCategory()"
+          nodes="list"
+        >
+        </i-treeview2>
+
+
+        </div>
+      </fieldset>
+    </div>
+  </div>
+  <footer class="footer ng-scope" x-import="cms/footer.html" ng-controller="footer_herag"></footer>
+  <div x-import="cms/scripts.html"></div>
+
+  <script x-import="others/more_categories.js"></script>
+  <script x-import="cms/index2.js"></script>
+
+</body>
+
+</html>

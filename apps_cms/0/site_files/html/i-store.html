@@ -1,0 +1,36 @@
+
+
+
+<b class="font-18 pointer" ng-click="showModal()" ng-show="ngModel.id">##word.the_store## : </b>
+<b class="font-18 pointer blue" ng-show="ngModel.id" ng-click="showModal()"> {{ngModel.name}} </b>
+<b class="font-18 pointer" ng-click="showModal()" ng-show="ngModel.id"> - </b>
+
+<b class="font-18 pointer green" ng-show="ngModel.id" ng-click="showModal()"> {{ngModel.user.profile.name}} </b>
+<b class="font-18 pointer" ng-click="showModal()" ng-show="!ngModel.id">##word.the_store## : </b>
+<b class="font-18 pointer blue" ng-show="!ngModel.id" ng-click="showModal()"> ##word.not_found## </b>
+
+
+<div id="storeMoal_{{id2}}" class="modal small">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>##word.stores_search## <i class="fa fa-search"></i></h2>
+    </div>
+
+    <div class="modal-body">
+      <div class="row">
+        <div class="col2"></div>
+        <div class="col8">
+          <fieldset>
+            <i-control ng-keydown="loadStores($event,search_store)" class="col3" ng-model="search_store" label="##word.search##" type="text"></i-control>
+            <i-list ng-search="_search.$store" class="col6" display="name" display2="user.profile.name" space=" - "  ng-model="ngModel" label="##word.store##" items="stores_list"> </i-list>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer center">
+      <i-button type="save" label="##word.save##" ng-click="hideModal()"> </i-button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,198 @@
+[
+  {
+    "name": "manage_users",
+    "en": "Manage Users",
+    "ar": "إدارة المستخدمين"
+  },
+  {
+    "name": "manage_users_new",
+    "en": "New User",
+    "ar": "مستخدم جديد"
+  },
+  {
+    "name": "manage_users_add",
+    "en": "Add User",
+    "ar": "إضافة مستخدم "
+  },
+  {
+    "name": "manage_users_edit",
+    "en": "Edit User",
+    "ar": "تعديل مستخدم "
+  },
+  {
+    "name": "manage_users_details",
+    "en": "User Details",
+    "ar": "تفاصيل المستخدم "
+  },
+  {
+    "name": "manage_users_delete",
+    "en": "Delete User",
+    "ar": "حذف مستخدم "
+  },
+  {
+    "name": "manage_users_name",
+    "en": "User Name",
+    "ar": "إسم المستخدم "
+  },
+  {
+    "name": "personal_info",
+    "en": "Personal Info",
+    "ar": "معلومات شخصية"
+  },
+  {
+    "name": "current_password",
+    "en": "Current Password",
+    "ar": "كلمة المرور الحالية"
+  },
+  {
+    "name": "current_password_incorrect",
+    "en": "The current password is incorrect",
+    "ar": "كلمة المرور الحالية غير صحيحة"
+  },
+  {
+    "name": "there_no_products_cart",
+    "en": "There are no products in the cart",
+    "ar": "لا يوجد منتجات في السلة"
+  },
+  {
+    "name": "new_password",
+    "en": "New Password",
+    "ar": "كلمة المرور الجديدة"
+  },
+  {
+    "name": "basic_info",
+    "en": "Basic Info",
+    "ar": "معلومات أساسية"
+  },
+  {
+    "name": "companies_branches",
+    "en": "Companies and Branches",
+    "ar": "الشركات و الفروع"
+  },
+  {
+    "name": "contact_info",
+    "en": "Contact Info",
+    "ar": "معلومات الإتصال"
+  },
+  {
+    "name": "general_validity",
+    "en": "General Validity",
+    "ar": "صلاحيات عامة"
+  },
+  {
+    "name": "validity_ar",
+    "en": "Ar. Validity",
+    "ar": "الصلاحية بالعربي"
+  },
+  {
+    "name": "validity_en",
+    "en": "En. Validity",
+    "ar": "الصلاحية بالإنجليزي"
+  },
+  {
+    "name": "public",
+    "en": "Public",
+    "ar": "عام"
+  },
+  {
+    "name": "writer",
+    "en": "Writer",
+    "ar": "كاتب"
+  },
+  {
+    "name": "writers",
+    "en": "Writers",
+    "ar": "الكٌتّاب"
+  },
+  {
+    "name": "editor",
+    "en": "Editor",
+    "ar": "محرر"
+  },
+  {
+    "name": "editors",
+    "en": "Editors",
+    "ar": "المحررين"
+  },
+  {
+    "name": "references",
+    "en": "References",
+    "ar": "المراجعين"
+  },
+  {
+    "name": "reference",
+    "en": "Reference",
+    "ar": "مراجع"
+  },
+  {
+    "name": "photo_reference",
+    "en": "Photo reference",
+    "ar": "مراجع صور"
+  },
+  {
+    "name": "photo_references",
+    "en": "Photo references",
+    "ar": "مراجعين صور"
+  },
+  {
+    "name": "publisher",
+    "en": "Publisher",
+    "ar": "ناشر"
+  },
+  {
+    "name": "publishers",
+    "en": "Publishers",
+    "ar": "الناشرين"
+  },
+  {
+    "name": "hr",
+    "en": "HR",
+    "ar": "شئون موظفين"
+  },
+  {
+    "name": "new_username",
+    "en": "New UserName",
+    "ar": "إسم المستخدم الجديد"
+  },
+  {
+    "name": "user_type",
+    "en": "User Type",
+    "ar": "نوع المستخدم"
+  },
+  {"name" : "contact_informations" , "en" : "Contact Informaion" , "ar" : "بيانات الاتصال"},
+  {"name" : "ability_login" , "en" : "Ability login" , "ar" : "إمكانية تسجيل الدخول"},
+
+  {"name" : "address_informations" , "en" : "Address Informaion" , "ar" : "بيانات العناوين"},
+  {"name" : "website" , "en" : "Website" , "ar" : "الموقع الإلكتروني"},
+  {"name" : "social_snap" , "en" : "Snap Account" , "ar" : "حساب السناب"},
+  {"name" : "social_instagram" , "en" : "Instagram Account" , "ar" : "حساب إنستجرام"},
+  {"name" : "social_facebook_account" , "en" : "FaceBook Account" , "ar" : "حساب الفيس بوك"},
+  {"name" : "social_twitter_account" , "en" : "Twitter Account" , "ar" : "حساب تويتر"},
+  {"name" : "social_google_account" , "en" : "Google Account" , "ar" : "حساب جوجل"},
+
+  {
+    "name": "web_and_social_accounts",
+    "en": "Web And Social Accounts",
+    "ar": "المواقع والحسابات الاجتماعية"
+  },
+  {
+    "name": "contact_and_addresses",
+    "en": "Contact and Addresses",
+    "ar": "الاتصال والعناوين"
+  },
+  {
+    "name": "accounting",
+    "en": "Accounting",
+    "ar": "حسابات"
+  },
+  {
+    "name": "reports",
+    "en": "Reports",
+    "ar": "تقارير"
+  },
+  {
+    "name": "screens_management",
+    "en": "Screens management",
+    "ar": "إدارة الشاشات"
+  }
+]

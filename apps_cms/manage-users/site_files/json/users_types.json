@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "en": "Writer",
+    "ar": "كاتب"
+  },
+  {
+    "id": 2,
+    "en": "Editor",
+    "ar": "محرر"
+  },
+  {
+    "id": 3,
+    "en": "Reference",
+    "ar": "مراجع"
+  },
+  {
+    "id": 4,
+    "en": "Photo reference",
+    "ar": "مراجع صور"
+  },
+  {
+    "id": 5,
+    "en": "Publisher",
+    "ar": "ناشر"
+  }
+]

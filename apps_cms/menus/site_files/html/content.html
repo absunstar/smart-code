@@ -1,0 +1,81 @@
+<div class="form">
+    <div id="basicInformation" class="">
+        <fieldset>
+            <legend> ##word.basic_information## </legend>
+            <div class="row">
+                <div class="col9">
+                    <div class="row">
+
+                        <i-control v="r ll2" class="col6" label="##word.menu_name##" ng-model="menu.name"></i-control>
+
+
+                        <i-checkbox help-id="menus_active" class="col2" label="##word.active##" ng-model="menu.active">
+                        </i-checkbox>
+                    </div>
+
+                    <div class="row">
+                        <i-list class="col6" v="r" ng-model="menu.linkage_type" items="linkTypeList" display="##session.lang##"
+                            ng-search="menu.$search_linkage_type" label="##word.linkage_type##">
+                        </i-list>
+
+                    </div>
+
+                    <div class="row" ng-show="menu.linkage_type.id == 1">
+                        <div class="col6">
+
+                            <i-list class="row input-style" label="##word.category##" ng-model="menu.main_category"
+                                ng-click="loadSubCategory1(menu.main_category)" items="top_category_list" display="name"
+                                ng-search="menu.$category1_search"></i-list>
+
+                            <i-list class="row input-style" label="##word.categories## {{menu.main_category.name}}"
+                                ng-model="menu.sub_category1" ng-click="loadSubCategory2(menu.sub_category1)"
+                                items="subCategoriesList1" ng-show="subCategoriesList1.length > 0 && menu.main_category"
+                                display="name" ng-search="menu.$category2_search"></i-list>
+
+                            <i-list class="row input-style" label="##word.categories## {{menu.sub_category1.name}}"
+                                ng-model="menu.sub_category2" ng-click="loadSubCategory3(menu.$sub_category2)"
+                                items="subCategoriesList2" ng-show="subCategoriesList2.length > 0 && menu.sub_category1"
+                                display="name" ng-search="menu.$category3_search"></i-list>
+
+                            <i-list class="row input-style" label="##word.categories## {{menu.sub_category2.name}}"
+                                ng-model="menu.sub_category3" ng-click="loadSubCategory4(menu.sub_category3)"
+                                items="subCategoriesList3" ng-show="subCategoriesList3.length > 0 && menu.sub_category2"
+                                display="name" ng-search="menu.$category4_search"></i-list>
+
+                            <i-list class="row input-style" label="##word.categories## {{menu.sub_category3.name}}"
+                                ng-model="menu.sub_category4" items="subCategoriesList4"
+                                ng-show="subCategoriesList4.length > 0 && menu.sub_category3" display="name"
+                                ng-search="menu.$category5_search"></i-list>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <i-list class="col6 input-style" ng-show="menu.linkage_type.id == 2" label="##word.page##"
+                            ng-model="menu.page" items="pagesList" display="title" ng-search="menu.$page_search">
+                        </i-list>
+
+                        <i-control class="col6" label="##word.external_link##" ng-show="menu.linkage_type.id == 3" ng-model="menu.external_link">
+                        </i-control>
+
+                        <i-control class="col6" label="##word.internal_link##" ng-show="menu.linkage_type.id == 4" ng-model="menu.internal_link">
+                        </i-control>
+                    </div>
+
+
+                    <div class="row">
+                        <i-textarea ng-model="menu.description" label="##word.description##">
+                        </i-textarea>
+                    </div>
+
+                </div>
+
+                <div class="col3">
+                    <i-image help-id="menus_logo" ng-model="menu.image_url"></i-image>
+                </div>
+            </div>
+        </fieldset>
+
+    </div>
+</div>

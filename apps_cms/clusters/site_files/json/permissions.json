@@ -1,0 +1,11 @@
+[
+    { "module_name" : "public" , "screen_name" : "clusters" , "name":"clusters_manage" , "en":"Manage" , "ar":"إدارة"},
+    { "module_name" : "public" , "screen_name" : "clusters" , "name":"clusters_add" , "en":"Add" , "ar":"إضافة"},
+    { "module_name" : "public" , "screen_name" : "clusters" , "name":"clusters_update" , "en":"Edit" , "ar":"تعديل"},
+    { "module_name" : "public" , "screen_name" : "clusters" , "name":"clusters_delete" , "en":"Delete" , "ar":"حذف"},
+    { "module_name" : "public" , "screen_name" : "clusters" , "name":"clusters_view" , "en":"View" , "ar":"عرض"},
+    { "module_name" : "public" , "screen_name" : "clusters" , "name":"clusters_search" , "en":"Search" , "ar":"بحث"},
+    { "module_name" : "public" , "screen_name" : "clusters" , "name":"clusters_export" , "en":"Export" , "ar":"تصدير"},
+    { "module_name" : "public" , "screen_name" : "clusters" , "name":"clusters_print" , "en":"Print" , "ar":"طباعة"},
+    { "module_name" : "public" , "screen_name" : "clusters" , "name":"clusters_ui" , "en":"UI" , "ar":"الواجهة الرسومية"}
+]
