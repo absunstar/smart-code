@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en" data-ng-app="myApp">
+<html lang="en" data-ng-app="myApp" x-permissions="login">
 
 <head>
   <title>##setting.title##</title>
@@ -46,13 +46,13 @@
     }
 
     .title-require {
-      font-size: 30px;
-      color: #009936;
-      padding: 4px 7px 0px;
-      border-radius: 13px !important;
-      background: #f1fff8;
-      margin: 10px;
-    }
+    font-size: 30px;
+    color: #009936;
+    padding: 4px 7px 6px 9px;
+    border-radius: 13px !important;
+    background: #f1fff8;
+    margin: 10px 0px 10px 0px;
+}
 
     * {
       max-width: initial;
@@ -165,7 +165,7 @@
   </style>
 </head>
 
-<body class="##session.lang## loaded" ng-controller="create_content">
+<body class="##session.lang## loaded" x-permissions="login" ng-controller="create_content">
   <div x-import="haraj/header.html"></div>
 
   <div id="main-layout" class="loaded">

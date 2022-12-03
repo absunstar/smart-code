@@ -196,7 +196,7 @@
           </div>
         </div>
       </div>
-    <hr>
+      <hr>
 
     </div>
 
@@ -292,7 +292,7 @@
               ng-model="ad.expiry_date" label="##word.expiry_date##"></i-date2>
           </div>
         </div>
-      <!--   <div class="col3 center">
+        <!--   <div class="col3 center">
           <i-image help-id="ads_logo" label="##word.main_ad_image##" ng-model="ad.image_url"></i-image>
           <b class="font-18">##word.select## ##word.main_ad_image##</b>
         </div> -->
@@ -303,11 +303,12 @@
       <div class="row" ng-show="ad.address">
         <p class="bold margin blue padding font-20">##word.ad_location##</p>
         <p class=" margin padding font-18">
-          <b ng-show="ad.address.country.id">  {{ad.address.country.name_##session.lang##}} , </b>
-          <b ng-show="ad.address.gov.id">  {{ad.address.gov.name_##session.lang##}} , </b>
-          <b ng-show="ad.address.city.id">  {{ad.address.city.name_##session.lang##}} , </b>
-          <b ng-show="ad.address.area.id">  {{ad.address.area.name_##session.lang##}} , </b>
-          <a class="blue pointer underline-hover" ng-click="adBack('adContent', 'adAddressSelect')"> ##word.change_ad_location## </a>
+          <b ng-show="ad.address.country.id"> {{ad.address.country.name_##session.lang##}} , </b>
+          <b ng-show="ad.address.gov.id"> {{ad.address.gov.name_##session.lang##}} , </b>
+          <b ng-show="ad.address.city.id"> {{ad.address.city.name_##session.lang##}} , </b>
+          <b ng-show="ad.address.area.id"> {{ad.address.area.name_##session.lang##}} , </b>
+          <a class="blue pointer underline-hover" ng-click="adBack('adContent', 'adAddressSelect')">
+            ##word.change_ad_location## </a>
         </p>
       </div>
       <hr>
@@ -352,7 +353,7 @@
       <br>
       <div class="row radius13 padding " ng-show="ad.category_require_list.length > 0">
 
-        <b class="title-require border">##word.ad_require##</b>
+        <span class="title-require center border">##word.ad_require##</span>
         <div class="row center padding margin " ng-repeat="c in ad.category_require_list">
           <i-ad-require ng-model="c"></i-ad-require>
         </div>
@@ -378,12 +379,13 @@
       <hr>
 
       <div class="row">
-        <h2>##word.Do_you_want_set_price##</h2>
-        <div class="col5">
-          <div class="row">
-            <i-radio class="col6" ng-model="ad.set_price" label="##word.no##" ng-value="no"> </i-radio>
-            <i-radio class="col6" ng-model="ad.set_price" label="##word.yes##" ng-value="yes"></i-radio>
-          </div>
+        <div class="row">
+          <span class="title-require border center col4">##word.Do_you_want_set_price##</span>
+        </div>
+
+        <div class="row">
+          <i-radio class="col2" ng-model="ad.set_price" label="##word.no##" ng-value="no"> </i-radio>
+          <i-radio class="col2" ng-model="ad.set_price" label="##word.yes##" ng-value="yes"></i-radio>
         </div>
       </div>
 
@@ -436,11 +438,17 @@
         <br />
       </div>
       <br>
-      <i-button fa="battery-full" class="btn-ad" ng-show="'##query.id##' == 'undefined'" label="##word.publishing## ##word.ad## " ng-click="addAd()">
-      </i-button>
+      <br>
+      <div class="row">
 
-      <i-button fa="pen-to-square" class="btn-ad bg-edit" ng-show="'##query.id##' != 'undefined'" label="##word.ads_edit##" ng-click="updateAd(ad)">
-      </i-button>
+        <i-button fa="battery-full" class="btn-ad" ng-show="'##query.id##' == 'undefined'"
+          label="##word.publishing## ##word.ad## " ng-click="addAd()">
+        </i-button>
+
+        <i-button fa="pen-to-square" class="btn-ad bg-edit" ng-show="'##query.id##' != 'undefined'"
+          label="##word.ads_edit##" ng-click="updateAd(ad)">
+        </i-button>
+      </div>
 
     </div>
 

@@ -15,7 +15,6 @@ app.controller('create_content', function ($scope, $http, $timeout) {
       number_favorites: 0,
       number_reports: 0,
       priority_level: 0,
-      description: '##word.details##',
       active: true,
     };
 

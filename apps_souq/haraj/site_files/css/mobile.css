@@ -10,7 +10,9 @@
   .add-button {
     width: auto;
   }
-
+  i-radio {
+    margin: 10px !important;
+  }
   .footer {
     margin-bottom: 50px;
   }
