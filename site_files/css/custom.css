@@ -2,7 +2,6 @@
   --modal-color: #000;
   --font-size: 13px;
   /* --theme-color: #841a1a; */
-
 }
 #thermalPrint {
   width: 88mm;
@@ -127,7 +126,6 @@ popup item:hover {
 
 .table td {
   padding: 2px;
- 
 }
 
 .main-menu.menu-show .tab-link span {
@@ -187,7 +185,7 @@ popup item:hover {
   width: 45px;
   border-radius: 50%;
   box-shadow: 1px 1px 5px 2px #fff;
-  margin: -5px 10px -5px 0px !important
+  margin: -5px 10px -5px 0px !important;
 }
 .profile img {
   height: 70px;
@@ -198,7 +196,7 @@ popup item:hover {
   background-color: #a6a7b852;
 }
 .broTouchTitle {
-  color : #cfcfcf !important;
+  color: #cfcfcf !important;
 }
 .bg-purple {
   background-color: #610081 !important;
@@ -290,9 +288,13 @@ nav .info .user-name {
 }
 
 #btn_login {
-  color: #bbb;
+  display: block;
+  color: #fff;
   text-shadow: 1px 1px 1px #000000;
-  margin-left: 20px;
+  background: #030303;
+  padding: 5px 9px;
+  text-align: center;
+  border-radius: 15px;
 }
 #btn_logout {
   color: #bbb;
@@ -481,7 +483,7 @@ a.pro-template .description {
 .badge_message {
   top: -3px;
   right: -9px;
-   font-size:xx-small; 
+  font-size: xx-small;
   padding: 0px 6px;
   border-radius: 50%;
   background-color: green !important;
@@ -525,14 +527,8 @@ a.pro-template .description {
   }
 }
 
-
-
-
-
-
 ._scroll {
   overflow: scroll;
-
 }
 ._scroll::-webkit-scrollbar {
   width: 10px;
@@ -540,28 +536,23 @@ a.pro-template .description {
 
 /* Track */
 ._scroll::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey; 
+  box-shadow: inset 0 0 5px grey;
   border-radius: 10px;
 }
- 
+
 /* Handle */
 ._scroll::-webkit-scrollbar-thumb {
-  background: #009688; 
+  background: #009688;
   border-radius: 10px;
 }
 
 /* Handle on hover */
 ._scroll::-webkit-scrollbar-thumb:hover {
-  background: #04AA6D; 
+  background: #04aa6d;
 }
 
-
-
-
-
-
 .full-width {
- /*  border-radius: 15px; */
+  /*  border-radius: 15px; */
   width: 100%;
   margin: 0px;
 }
@@ -598,7 +589,6 @@ i-image img:hover {
   border-style: solid;
   box-shadow: 0 0 2px 1px rgba(0, 3, 175, 0.849);
 }
-
 
 fieldset {
   margin: 15px;
@@ -656,18 +646,6 @@ i-checkbox .selector {
 }
  */
 
-
-
-
-
-
-
-
-
- 
-
-
-
 .post {
   position: relative;
   display: inline-grid;
@@ -709,7 +687,7 @@ i-checkbox .selector {
   text-align: center !important;
   border-radius: 15px;
   color: #ffffff;
-  background: #25D366;
+  background: #25d366;
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
   min-height: 200px;
@@ -748,4 +726,17 @@ i-checkbox .selector {
   border-radius: 20px;
   width: 320px;
   height: 170px;
+}
+
+.main-footer{
+  background: #eee;
+  padding: 20px;
+  text-align: left;
+  direction: ltr;
+  margin-top: 50px;
+}
+.main-footer a{
+  color: #000;
+  font-size: 20px;
+  text-decoration: none;
 }

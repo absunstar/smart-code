@@ -1,7 +1,7 @@
 const site = require('isite')({
     port: [80 , 50001],
     lang: 'ar',
-    version: '2022.10.18',
+    version: '2022.12.05',
     name: 'innovalz',
     theme: 'theme_paper',
     require: {

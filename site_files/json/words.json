@@ -2233,5 +2233,20 @@
     "name": "login_information",
     "en": " Login Information",
     "ar": "بيانات الدخول"
+  },
+  {
+    "name": "download_social_browser",
+    "en": " Download Social Browser to unlock all features",
+    "ar": "اضغط هنا لتحميل المتصفح الاجتماعى لتفعيل كل المميزات"
+  },
+  {
+    "name": "best_app_feautres",
+    "en": "Application Features",
+    "ar": "أهم مميزات البرنامج "
+  },
+  {
+    "name": "see_our_apps",
+    "en": "See More Applications",
+    "ar": "شاهد برامجنا الاخرى "
   }
 ]
