@@ -9,6 +9,15 @@ app.controller("articles", function ($scope, $http, $timeout) {
       image_url: '/images/article.png',
       active: true
     };
+    if ($scope.defaultSettings.article) {
+
+      if ($scope.defaultSettings.article.closing_system) {
+        if ($scope.defaultSettings.article.closing_system.id == 2) {
+          $scope.article.expiry_date = new Date();
+          $scope.article.expiry_date.setDate($scope.article.expiry_date.getDate() + 7);
+        }
+      }
+    }
     site.showModal('#articleAddModal');
     document.querySelector("#articleAddModal .tab-link").click();
   };
@@ -47,6 +56,7 @@ app.controller("articles", function ($scope, $http, $timeout) {
     $scope.viewArticles(article);
     $scope.article = {};
     site.showModal('#articleUpdateModal');
+    document.querySelector("#articleAddModal .tab-link").click();
   };
 
   $scope.updateArticles = function () {
@@ -214,6 +224,33 @@ app.controller("articles", function ($scope, $http, $timeout) {
 
   };
 
+  $scope.loadClusters = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.clusterList = [];
+    $http({
+      method: 'POST',
+      url: '/api/clusters/all',
+      data: {
+        where: {
+          active: true,
+        },
+        select: { id: 1, name: 1 },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.clusterList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.loadMainCategories = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -243,6 +280,87 @@ app.controller("articles", function ($scope, $http, $timeout) {
         $scope.error = err;
       }
     );
+  };
+
+  $scope.getDefaultSetting = function () {
+    $scope.busy = true;
+    $http({
+      method: 'POST',
+      url: '/api/default_setting/get',
+      data: {},
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.defaultSettings = response.data.doc;
+          if ('##query.id##' == 'undefined') {
+
+            $scope.displayAddAd();
+          }
+          if (!$scope.defaultSettings.stores_settings.activate_stores) {
+            $scope.getUser();
+          }
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.loadWriters = function (where) {
+    $scope.error = '';
+    $scope.busy = true;
+    where = where || {};
+    where['type.id'] = 1;
+
+    $http({
+      method: "POST",
+      url: "/api/users/all",
+      data: {
+        where: where,
+        select: { id: 1, profile: 1 }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.writersList = response.data.users;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
+  };
+
+  $scope.loadEditors = function (where) {
+    $scope.error = '';
+    $scope.busy = true;
+    where = where || {};
+    where['type.id'] = 2;
+
+    $http({
+      method: "POST",
+      url: "/api/users/all",
+      data: {
+        where: where,
+        select: { id: 1, profile: 1 }
+      }
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.editorsList = response.data.users;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    )
   };
 
   $scope.loadSubCategory1 = function (c) {
@@ -302,6 +420,24 @@ app.controller("articles", function ($scope, $http, $timeout) {
     });
   };
 
+  $scope.createArticle = function (translate) {
+    $scope.error = "";
+    translate.title = $scope.article.title;
+    translate.image_url = $scope.article.image_url;
+    translate.content = $scope.article.content;
+    translate.social_title = $scope.article.social_title;
+    translate.social_image = $scope.article.social_image;
+    translate.social_description = $scope.article.social_description;
+    translate.external_title = $scope.article.external_title;
+    translate.external_image = $scope.article.external_image;
+    translate.external_description = $scope.article.external_description;
+  };
+
+  $scope.editTranslateArticle = function (t, type) {
+    $scope.translate = t;
+    $scope.translate.$type = type;
+    site.showModal('#translateContentModal');
+  };
 
   $scope.searchAll = function () {
 
@@ -312,6 +448,10 @@ app.controller("articles", function ($scope, $http, $timeout) {
 
   $scope.getArticlesList();
   $scope.getArticleTypesList();
+  $scope.loadClusters();
   $scope.getLanguagesList();
   $scope.loadMainCategories();
+  $scope.loadWriters();
+  $scope.loadEditors();
+  $scope.getDefaultSetting();
 });

@@ -1,13 +1,8 @@
 [
   {
-    "name": "default_setting_tenant_search",
-    "en": "Search",
-    "ar": "بحث"
-  },
-  {
-    "name": "default_setting_tenant_search",
-    "en": "Search",
-    "ar": "بحث"
+    "name": "articles_settings",
+    "en": "Articles Settings",
+    "ar": "إعدادات الأخبار"
   },
   {
     "name": "huawei_store",

@@ -72,7 +72,7 @@ module.exports = function init(site) {
     }
 
     let where = req.body.where || {};
-    if (!site.feature('souq')) {
+    if (!site.feature('souq') || !site.feature('cms')) {
       where['company.id'] = site.get_company(req).id;
       where['branch.code'] = site.get_branch(req).code;
     }
@@ -95,6 +95,7 @@ module.exports = function init(site) {
       delete where['search'];
     }
     where['id'] = { $ne: 1 };
+
     site.security.getUsers(
       {
         where: where,
@@ -103,11 +104,16 @@ module.exports = function init(site) {
       (err, docs, count) => {
         if (!err) {
           response.done = true;
+          let writersList = [];
+          let editorList = [];
+
           for (let i = 0; i < docs.length; i++) {
             let u = docs[i];
             u.profile = u.profile || {};
             u.profile.image_url = u.profile.image_url || '/images/user.png';
+
           }
+
           response.users = docs;
           response.count = count;
         }

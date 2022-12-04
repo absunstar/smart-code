@@ -21,6 +21,33 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/json/users_types.json',
   });
 
+  site.post('/api/manage_users/add', (req, res) => {
+
+    let response = {
+      done: false,
+    };
+
+    if (!req.session.user) {
+      response.error = 'You Are Not Login';
+      res.json(response);
+      return;
+    }
+
+    let user = req.body;
+    user.$req = req;
+    user.$res = res;
+
+    site.security.addUser(user, (err, _id) => {
+      if (!err) {
+        response.done = true;
+      } else {
+        response.error = err.message;
+      }
+      res.json(response);
+    });
+
+  });
+
   site.post('/api/manage_users/view', (req, res) => {
     let response = {
       done: false,
@@ -49,7 +76,7 @@ module.exports = function init(site) {
       }
     );
   });
-  
+
 
   site.post('/api/manage_users/update', (req, res) => {
     let response = {
@@ -175,4 +202,55 @@ module.exports = function init(site) {
       }
     );
   });
+
+  site.post('/api/editors/all', (req, res) => {
+    let response = {
+      done: false,
+    };
+
+    if (!req.session.user) {
+      response.error = 'You Are Not Login';
+      res.json(response);
+      return;
+    }
+
+    let where = req.body.where || {};
+
+    if (where['search']) {
+      where.$or = [];
+
+      where.$or.push({
+        'profile.name': site.get_RegExp(where['search'], 'i'),
+      });
+
+      where.$or.push({
+        'profile.last_name': site.get_RegExp(where['search'], 'i'),
+      });
+
+      where.$or.push({
+        email: site.get_RegExp(where['search'], 'i'),
+      });
+
+      delete where['search'];
+    }
+    where['id'] = { $ne: 1 };
+    where['type'] = 2;
+
+    site.security.getUsers(
+      {
+        where: where,
+        limit: 1000,
+      },
+      (err, docs, count) => {
+        if (!err) {
+          response.done = true;
+
+          response.users = docs;
+          response.count = count;
+        }
+        res.json(response);
+      }
+    );
+  });
+
 };

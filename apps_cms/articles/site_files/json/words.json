@@ -50,6 +50,11 @@
         "ar": "نوع المقال"
     },
     {
+        "name": "create_article",
+        "en": "Create Article",
+        "ar": "إنشاء خبر"
+    },
+    {
         "name": "social",
         "en": "Social",
         "ar": "إجتماعي"

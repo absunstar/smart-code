@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" x-permissions="articles_ui || articles_manage" data-ng-app="myApp">
 
-<head x-import="cms/head.html">
-</head>
+<head x-import="cms/head.html"></head>
 
 <body class="##session.lang## loaded" ng-controller="articles">
   <nav x-import="cms/sitebar.html" class="sitebar" data-ng-controller="sitebar"></nav>
-
   <nav class="sitebottom" x-import="cms/sitebottom.html" ng-controller="sitebottom"></nav>
 
   <div id="main-layout" class="container">
     <div class="row">
       <div class="row">
+
         <div x-permissions="articles_add || articles_manage" x-import="articles/add_modal.html"></div>
         <div x-permissions="articles_update || articles_manage" x-import="articles/update_modal.html"></div>
         <div x-permissions="articles_delete || articles_manage" x-import="articles/delete_modal.html"></div>
         <div x-permissions="articles_view || articles_manage" x-import="articles/view_modal.html"></div>
+        <div x-permissions="articles_add || articles_update || articles_manage"
+          x-import="articles/translate_content_modal.html"></div>
         <div x-permissions="articles_search || articles_manage" x-import="articles/search_all_modal.html"></div>
 
         <div class="row">
@@ -68,7 +69,7 @@
 
   <div x-import="cms/scripts.html"></div>
   <script x-import="articles/index.js"></script>
- 
+
 </body>
 
 </html>

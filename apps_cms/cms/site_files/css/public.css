@@ -21,3 +21,11 @@ legend>i-checkbox {
 .modal-header h2 {
     text-align: center;
 }
+
+.border-right {
+    border-right: 1px solid;
+}
+
+.border-left {
+    border-left: 1px solid;
+}

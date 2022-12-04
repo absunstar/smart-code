@@ -9,12 +9,20 @@ app.controller("manage_users", function ($scope, $http) {
   $scope.manage_users = {};
   $scope.viewText = "";
 
-  $scope.loadManageUsers = function () {
+  $scope.loadManageUsers = function (where) {
     $scope.manage_users_list = [];
     $scope.busy = true;
+    where = where || {};
+    if('##query.type##' != 'undefined') {
+      where['type.id'] = site.toNumber('##query.type##');
+    }
     $http({
       method: "POST",
       url: "/api/users/all",
+      data : {
+
+        where: where,
+      },
     }).then(
       function (response) {
         $scope.busy = false;
@@ -99,6 +107,27 @@ app.controller("manage_users", function ($scope, $http) {
     document.querySelector("#manageUsersAddModal .tab-link").click();
   };
 
+  $scope.addManageUsers = function () {
+    $scope.busy = true;
+    $http({
+      method: "POST",
+      url: "/api/manage_users/add",
+      data: $scope.manage_users
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          site.hideModal('#manageUsersAddModal');
+          $scope.loadManageUsers();
+        } else {
+          $scope.error = response.data.error;
+        }
+      },
+      function (err) {
+
+      }
+    )
+  };
   $scope.displayUpdateManageUsers = function (manage_users) {
     $scope.error = '';
     $scope.viewManageUsers(manage_users);

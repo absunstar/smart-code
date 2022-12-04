@@ -1,65 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" data-ng-app="myApp">
+<html lang="en" x-permissions="!login" data-ng-app="myApp">
 
-<head>
-  <title>##setting.title##</title>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="/css/style.css" />
-  <link rel="stylesheet" href="/css/cms.css" />
-  <link rel="stylesheet" href="/x-css/all.css" />
-  <link rel="stylesheet" href="/x-css/font-cairo.css" />
-  <link rel="icon" type="image/x-icon" href="##setting.logo##" />
-  <style>
-    :root {
-      --body-margin-top: 0px;
-      --body-margin-bottom: 0px;
-      --zoom: 100%;
-      --fieldset-border: none;
-      --fieldset-background: #fff;
-    }
-
-    .darkGray {
-      color: #919191;
-    }
-
-    .input-style input {
-      text-align: center;
-    }
-
-    .register-hide {
-      display: none;
-    }
-
-    .img-country img {
-      width: 44px;
-      height: 40px;
-      display: inline-block;
-    }
-
-    * {
-      max-width: initial;
-    }
-
-  </style>
-  <style x-lang="ar">
-    .nav1 {
-      flex-direction: initial;
-      padding: 7px;
-    }
-
-    :root {
-      --direction: rtl;
-      --text-align: right;
-      --float: right;
-    }
-  </style>
-</head>
+<head x-import="cms/head.html"></head>
 
 <body class="##session.lang## loaded" ng-controller="register_souq">
-  <div x-import="cms/header.html"></div>
-  <div x-import="register/deal.html"></div>
+  <nav x-import="cms/sitebar.html" class="sitebar" data-ng-controller="sitebar"></nav>
+
+  <nav class="sitebottom" x-import="cms/sitebottom.html" ng-controller="sitebottom"></nav>
+
   <div class="row">
     <h1 class="bold text-center">##word.register##</h1>
   </div>
@@ -69,7 +17,7 @@
       <div class="tabs-header full">
 
         <a class="tab-link inline-block" ng-click="showTab($event,'#register_mobile')"
-        ng-hide="##setting.enable_sending_messages_mobile## != true && ##setting.enable_sending_messages_email## != true">
+          ng-hide="##setting.enable_sending_messages_mobile## != true && ##setting.enable_sending_messages_email## != true">
           ##word.register_with_mobile_number##</a>
         <a class="tab-link inline-block" ng-show="##setting.allow_registration_email##"
           ng-click="showTab($event,'#register_email')">
@@ -252,7 +200,6 @@
       <div id="main-layout" class="container">
         <div class="row" id="registersouqModal"></div>
       </div>
-      <footer class="footer ng-scope" x-import="cms/footer.html" ng-controller="footer_herag"></footer>
       <div x-import="cms/scripts.html"></div>
       <script x-import="register/index.js"></script>
 

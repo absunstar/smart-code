@@ -1,0 +1,69 @@
+<div id="translateContentModal" class="modal">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>
+                ##word.articles_details##
+                <i class="fa fa-file"></i>
+            </h2>
+        </div>
+
+        <div class="modal-body">
+            <fieldset ng-show="translate.$type == 'basic_information'">
+                <legend>##word.basic_information##</legend>
+                <div class="row">
+                    <i-control class="col9" label="##word.article_title##" ng-model="translate.title">
+                    </i-control>
+
+                    <div class="col3">
+                        <i-image ng-model="translate.image_url"></i-image>
+                    </div>
+                </div>
+                <div class="row" ng-show="article.type.id == 1">
+                    <i-textarea ng-model="translate.content" label="##word.content##">
+                    </i-textarea>
+                </div>
+            </fieldset>
+
+            <fieldset ng-show="translate.$type == 'social'">
+                <legend>##word.social##</legend>
+                <div class="row">
+                    <i-control class="col9" label="##word.title##" ng-model="translate.social_title">
+                    </i-control>
+
+                    <div class="col3">
+                        <i-image ng-model="translate.social_image"></i-image>
+                    </div>
+                </div>
+                <div class="row" >
+                    <i-textarea ng-model="translate.social_description" label="##word.description##">
+                    </i-textarea>
+                </div>
+            </fieldset>
+
+            <fieldset ng-show="translate.$type == 'external'">
+                <legend>##word.external##</legend>
+                <div class="row">
+                    <i-control class="col9" label="##word.title##" ng-model="translate.external_title">
+                    </i-control>
+
+                    <div class="col3">
+                        <i-image ng-model="translate.external_image"></i-image>
+                    </div>
+                </div>
+                <div class="row" >
+                    <i-textarea ng-model="translate.external_description" label="##word.description##">
+                    </i-textarea>
+                </div>
+            </fieldset>
+        </div>
+
+        <h2 class="error"> {{error}} </h2>
+
+        <div class="modal-footer center">
+            <i-button type="save" label="##word.save##" onclick="site.hideModal('#translateContentModal')"> </i-button>
+        </div>
+    </div>
+
+</div>

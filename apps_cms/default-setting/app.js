@@ -3,14 +3,7 @@ module.exports = function init(site) {
   site.defaultSettingDoc = {
     length_order: 0,
     user_design: { id: 5 },
-    content: {
-      warning_message_ad_list : [],
-      status: {
-        id: 1,
-        en: 'Active',
-        ar: 'نشط',
-      },
-    },
+    article: {},
   };
   site.setting = { ...site.defaultSettingDoc };
 
@@ -80,7 +73,7 @@ module.exports = function init(site) {
   });
 
   site.getDefaultSetting = function (callback) {
-    callback = callback || function () {};
+    callback = callback || function () { };
     callback(site.setting);
     return site.setting;
   };
@@ -97,7 +90,7 @@ module.exports = function init(site) {
     }
 
     let data = req.data;
-    if(!data.content.warning_message_ad_list) {
+    if (!data.content.warning_message_ad_list) {
       data.content.warning_message_ad_list = [];
     }
     $default_setting.update(data, (err, result) => {
