@@ -1,10 +1,10 @@
-<h2 class="brand" >
+<div class="brand">
   <div class="row">
     <div class="col title" help-id="brand_title">
-      <a  x-permissions="lmenu_ui || menu_manage" href="#" onclick="showMenu()"> <i class="fa fa-bars"></i> </a>
-      <a  href="/"> ##setting.site_name## </a>
+      <a x-permissions="lmenu_ui || menu_manage" href="#" onclick="showMenu()"> <i class="fa fa-bars"></i> </a>
+      <a href="/"> ##setting.site_name## </a>
     </div>
-  
+
     <div class="col text-center desktop">
       <div class="info bord" x-features="login">
         <a class="notification" href="/cart" ng-show="##setting.order_settings.activate_orders##">
@@ -13,32 +13,25 @@
         </a>
       </div>
     </div>
-    <div class="col info">
-      <a x-features="login" href="#" onclick="event.stopPropagation(); $('.user-menu').toggle()"> <img src="##user.profile.image_url##" onerror="this.src='/images/user.png'" alt="" /> </a>
-      <a class="btn left bg-green" x-features="!login" href="/login"> ##word.login##</a>
-      <a class="btn left bg-green" x-features="!login" href="/register"> ##word.register##</a>
+    <div class="col user-info">
+      <img x-feature="login" onclick="event.stopPropagation(); $('.user-menu').toggle(100)" src="##user.profile.image_url##" onerror="this.src='/images/user.png'" alt="" />
+      <a class="" x-features="!login" href="/login"> ##word.login##</a>
     </div>
 
     <div class="user-menu">
-      <div class="center profile">
-        <img class="center" src="##user.profile.image_url##" onerror="this.src='/images/user.png'" alt="" /> <br />
-        <span class="user-name"> ##user.profile.name## ##user.profile.last_name## </span> <br />
-        <h5 class="grayDark userPrint center">##user.email##</h5>
-        <br />
-        <div class="center">
-          <a id="bord_edit" href="/manage_user">
-            <span class="black">##word.manage_your_personal_account##</span>
-          </a>
-        </div>
+      <img src="##user.profile.image_url##" onerror="this.src='/images/user.png'" alt="" />
+      <p class="user-name">##user.profile.name## ##user.profile.last_name##</p>
+      <a href="mailto:##user.email##" class="user-email">##user.email##</a>
 
-        <br />
+      <a class="btn" href="/manage_user">
+        <span>##word.manage_your_personal_account##</span>
+      </a>
 
-        <div class="link" ng-click="logout()">##word.security_logout##</div>
-      </div>
+      <a class="btn" ng-click="logout()">
+        <span>##word.security_logout##</span>
+      </a>
     </div>
   </div>
-</h2>
-
-<div class="links">
-  <div x-permission="login" x-import="menu/index.html"></div>
 </div>
+
+

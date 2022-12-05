@@ -1,48 +1,64 @@
 :root {
-    --tabs-content-width: 100%
+  --brand-color: #ffeb3b;
+  --tabs-content-width: 100%;
+  --scrollbar-background-color: var(--brand-color);
+  --scrollbar-box-shadow: inset 0 0 2px #ffffff;
+  --scrollbar-width: 5px;
+  --bs-font-sans-serif: Arabic, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', 'Liberation Sans', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol', 'Noto Color Emoji';
+  --treeview-color2: var(--theme-color);
+  --treeview-background-color2: var(--brand-color);
 }
 
 body {
-    margin-top: 100px;
-    margin-right: 250px;
+  margin-top: 100px;
+  margin-right: 250px;
+  margin-left: 0px;
 }
-
+body.en {
+  margin-top: 100px;
+  margin-left: 250px;
+  margin-right: 0px;
+}
 i-checkbox {
-    padding-right: 20px !important;
-    padding-left: 20px !important;
-    display: block;
+  padding-right: 20px !important;
+  padding-left: 20px !important;
+  display: block;
+}
+i-radio {
+  padding-right: 20px !important;
+  padding-left: 20px !important;
+  display: block;
 }
 
-legend>i-checkbox {
-    padding-right: 0px !important;
-    padding-left: 0px !important;
+legend > i-checkbox {
+  padding-right: 0px !important;
+  padding-left: 0px !important;
 }
 
 .modal-header h2 {
-    text-align: center;
+  text-align: center;
 }
 
 .border-right {
-    border-right: 1px solid;
+  border-right: 1px solid;
 }
 
 .border-left {
-    border-left: 1px solid;
+  border-left: 1px solid;
 }
 
 .delete-key {
-    cursor: pointer;
-
+  cursor: pointer;
 }
 
 .delete-key:hover {
-    color: red;
-
+  color: red;
 }
 
 .key-words {
-    border: 1px solid;
-    inline-size: auto;
-    margin: 3px;
-    border-radius: 15px;
+  border: 1px solid;
+  inline-size: auto;
+  margin: 3px;
+  border-radius: 15px;
 }

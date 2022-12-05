@@ -1,9 +1,5 @@
 module.exports = function init(site) {
 
-  site.get({
-    name: 'assets',
-    path: __dirname + '/site_files/assets/',
-  });
 
   site.get({
     name: 'css',

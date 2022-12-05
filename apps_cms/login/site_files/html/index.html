@@ -1,53 +1,42 @@
 <!DOCTYPE html>
 <html lang="en" x-permissions="!login" data-ng-app="myApp">
+  <head x-import="cms/head.html"></head>
 
-<head x-import="cms/head.html"></head>
+  <body class="##session.lang## loaded" ng-controller="login_souq">
+    <nav x-import="cms/sitebar.html" class="sitebar" data-ng-controller="sitebar"></nav>
 
-<body class="##session.lang## loaded" ng-controller="login_souq">
-  <nav x-import="cms/sitebar.html" class="sitebar" data-ng-controller="sitebar"></nav>
-
-  <nav class="sitebottom" x-import="cms/sitebottom.html" ng-controller="sitebottom"></nav>
-  <div id="main-layout" class="container" id="loginSouqModal">
-    <div class="row" style="background-image: linear-gradient(to right, #e9e9e9, #7fffd4);">
-      <div class="row center">
-        <div class="row">
-          <h1 class="bold text-center">##word.login##</h1>
-        </div>
-
-
+    <nav class="sitebottom" x-import="cms/sitebottom.html" ng-controller="sitebottom"></nav>
+    <div id="main-layout" class="container" id="loginSouqModal">
+      <div class="row">
         <div class="row center">
-          <div class="col3"></div>
-          <div class="col6">
-            <div class="col10"></div>
-            <i-control class="input-style" v="r" label="##word.mobile_email##" ng-model="user.email"> </i-control>
-            <i-control class="input-style pass" label="##word.password##" type="password" v="r"
-              ng-model="user.password"> </i-control>
-            <i-checkbox class="center" label="##word.show_password##" ng-click="showPassword()"
-              ng-model="show_password"> </i-checkbox>
+          <div class="row">
+            <h1 class="bold text-center">##word.login##</h1>
           </div>
-        </div>
-        <br>
-        <br>
-        <div class="row center">
-          <button ng-click="login()" class="login-button">##word.login_now## <i
-              class="fa-solid fa-right-to-bracket"></i></button>
-        </div>
-        <br>
-        <div class="row">
-          <h2 class="bold center red">{{error}}</h2>
-        </div>
 
-        <form class="center">
-          <p class="font-18">##word.not_registered## <a href="/register" class="underline-hover">##word.create_account##
-              ##word.new##</a></p>
+          <div class="row">
+            <div class="col3"></div>
+            <div class="col6">
+              <i-control class="input-style" v="r" label="##word.mobile_email##" ng-model="user.email"> </i-control>
+              <i-control class="input-style pass" label="##word.password##" type="password" v="r" ng-model="user.password"> </i-control>
+              <i-checkbox class="center" label="##word.show_password##" ng-click="showPassword()" ng-model="show_password"> </i-checkbox>
+            </div>
+            <div class="col3"></div>
+          </div>
           <br />
-          <p class="font-17"><a href="/forget_password" class="underline-hover">##word.forgot_password##</a></p>
-        </form>
+          <br />
+          <div class="center padding margin">
+            <i-button type="login" class2="btn-primary" ng-click="login()" class="login-button" label="##word.login_now## "> </i-button>
+          </div>
+          <br />
+          <div class="row">
+            <h2 class="bold center red">{{error}}</h2>
+          </div>
+
+          
+        </div>
       </div>
     </div>
-  </div>
-  <div x-import="cms/scripts.html"></div>
-  <script x-import="login/index.js"></script>
-</body>
-
+    <div x-import="cms/scripts.html"></div>
+    <script x-import="login/index.js"></script>
+  </body>
 </html>

@@ -90,9 +90,7 @@ module.exports = function init(site) {
     }
 
     let data = req.data;
-    if (!data.content.warning_message_ad_list) {
-      data.content.warning_message_ad_list = [];
-    }
+  
     $default_setting.update(data, (err, result) => {
       if (!err) {
         response.done = true;

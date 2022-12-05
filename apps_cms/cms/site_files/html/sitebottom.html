@@ -4,7 +4,8 @@
   }
 </style>
 
-<div class="row sitebottom desktop" x-features="!atm">
+<div x-permission="login" x-import="menu/index.html"></div>
+<div class="sitebottom" >
   <div class="">
     <a x-lang="ar" ng-click="changeLang('en')" class="link left"> <i class="fa fa-globe"></i> ##word.en_lang## </a>
     <a x-lang="en" ng-click="changeLang('ar')" class="link left"> <i class="fa fa-globe"></i> ##word.ar_lang## </a>
