@@ -15,6 +15,16 @@
     "ar": "إضافة تعليق"
   },
   {
+    "name": "follow_comments",
+    "en": "Follow Comments",
+    "ar": "متابعة التعليقات"
+  },
+  {
+    "name": "unfollow_comments",
+    "en": "Unfollow Comments",
+    "ar": "إلغاء متابعة التعليقات"
+  },
+  {
     "name": "reply",
     "en": "Reply",
     "ar": "الرد"

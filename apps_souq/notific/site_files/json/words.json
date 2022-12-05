@@ -5,6 +5,11 @@
     "ar": "يوجد رد جديد على الإعلان"
   },
   {
+    "name": "there_new_response_follow_ad",
+    "en": "There is a new reply to an ad you followed",
+    "ar": "يوجد رد جديد على إعلان قمت بمتابعته"
+  },
+  {
     "name": "new_comment_on",
     "en": "New comment on",
     "ar": "تعليق جديد على"

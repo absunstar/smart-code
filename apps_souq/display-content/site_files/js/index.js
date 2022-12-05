@@ -123,6 +123,7 @@ app.controller('display_content', function ($scope, $http, $timeout) {
           $scope.ad = response.data.doc;
           $scope.ad.$number_favorites = $scope.ad.number_favorites;
           $scope.activity.favorite = $scope.ad.$favorite;
+          $scope.activity.follow = $scope.ad.$follow;
           $scope.getContentList($scope.ad);
           $scope.getUserAd($scope.ad.store.user.id);
           $scope.loadMainCategories($scope.ad.main_category);
@@ -212,6 +213,9 @@ app.controller('display_content', function ($scope, $http, $timeout) {
 
     if (type == 'favorite') {
       $scope.activity.favorite = other;
+
+    } else if (type == 'follow') {
+      $scope.activity.follow = other;
 
     } else if (type == 'reply_comment') {
       let v = site.validated(`#reply_${comment.code}`);

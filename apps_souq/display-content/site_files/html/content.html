@@ -101,9 +101,19 @@
         </div>
       </div>
 
-
       <button ng-click="showCommunication(ad)" ng-hide="ad.hide_mobile" class="contact-button"><i
-          class="fa fa-phone"></i> ##word.communication##</button>
+          class="fa fa-phone"></i> ##word.communication##
+      </button>
+
+      <button ng-click="updateFeedback('follow',true)" ng-show="user.id != ad.store.user.id && !activity.follow" class="follow-button"><i
+          class="fa-solid fa-wifi"></i>
+        ##word.follow_comments##
+      </button>
+
+      <button ng-click="updateFeedback('follow',false)" ng-show="user.id != ad.store.user.id && activity.follow" class="follow-button"><i
+          class="fa-solid fa-wifi"></i>
+        ##word.unfollow_comments##
+      </button>
 
     </div>
 
@@ -216,8 +226,9 @@
     </div>
 
     <div class="row" x-permissions="login" ng-hide="ad.disable_replies_feature">
-     
-      <p class="font-22 gray-desc margin">##word.Write_your_question_advertiser_here## <i class="fa-solid fa-down-long"></i></p>
+
+      <p class="font-22 gray-desc margin">##word.Write_your_question_advertiser_here## <i
+          class="fa-solid fa-down-long"></i></p>
       <i-textarea class="input-style" ng-model="activity.comment">
       </i-textarea>
       <button class="send-btn center" ng-click="updateFeedback('comment')">

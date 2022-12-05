@@ -29,3 +29,20 @@ legend>i-checkbox {
 .border-left {
     border-left: 1px solid;
 }
+
+.delete-key {
+    cursor: pointer;
+
+}
+
+.delete-key:hover {
+    color: red;
+
+}
+
+.key-words {
+    border: 1px solid;
+    inline-size: auto;
+    margin: 3px;
+    border-radius: 15px;
+}

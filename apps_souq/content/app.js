@@ -304,6 +304,7 @@ module.exports = function init(site) {
       res.json(response);
       return;
     }
+
     let user = {
       id: req.session.user.id,
       email: req.session.user.email,
@@ -311,77 +312,95 @@ module.exports = function init(site) {
       last_name: req.session.user.profile.last_name,
       image_url: req.session.user.profile.image_url,
     };
-    let user_ad = req.body;
+
+
     let ad = site.content_list.find((_ad) => {
-      return _ad.id === user_ad.id;
+      return _ad.id === req.body.id;
     });
+
     if (!ad) {
       response.error = 'no id';
       res.json(response);
       return;
     }
-    // ad.feedback_list
+    ad.follow_list = ad.follow_list || [];
+
     ad.feedback_list = ad.feedback_list || [];
-    if (user_ad.feedback.type == 'favorite') {
-      if (user_ad.feedback.favorite === true) {
+    if (req.body.feedback.type == 'favorite') {
+      if (req.body.feedback.favorite === true) {
         ad.number_favorites = ad.number_favorites + 1;
-        req.session.user.feedback_list.push({ type: { id: 2 }, ad: { id: user_ad.id } });
-        site.security.updateUser(req.session.user, (err, user_doc) => { });
+        req.session.user.feedback_list.push({ type: { id: 2 }, ad: { id: req.body.id } });
+        site.security.updateUser(req.session.user);
         ad.favorite_list = ad.favorite_list || [];
         ad.favorite_list.push({
           user: user,
           date: new Date(),
         });
-      } else if (user_ad.feedback.favorite === false) {
+
+      } else if (req.body.feedback.favorite === false) {
         ad.number_favorites = ad.number_favorites - 1;
         req.session.user.feedback_list.splice(
           req.session.user.feedback_list.findIndex((c) => c.type && c.ad && c.type.id == 2 && c.ad.id == ad.id),
           1
         );
-        site.security.updateUser(req.session.user, (err, user_doc) => { });
+        site.security.updateUser(req.session.user);
         ad.favorite_list.splice(
           ad.favorite_list.findIndex((c) => c.user.id == req.session.user.id),
           1
         );
       }
-      req.session.user.feedback_list.forEach((_fl) => {
-        if (_fl.ad && _fl.ad.id && _fl.type && _fl.type.id == 2) {
-        }
-      });
-    } else if (user_ad.feedback.type == 'report') {
+
+    } else if (req.body.feedback.type == 'follow') {
+      if (req.body.feedback.follow === true) {
+
+        ad.follow_list = ad.follow_list || [];
+        ad.follow_list.push({
+          user: user,
+          date: new Date(),
+        });
+
+      } else if (req.body.feedback.follow === false) {
+
+        ad.follow_list.splice(
+          ad.follow_list.findIndex((c) => c.user.id == req.session.user.id),
+          1
+        );
+      }
+
+    } else if (req.body.feedback.type == 'report') {
       ad.number_reports = ad.number_reports + 1;
       ad.report_list = ad.report_list || [];
       ad.report_list.push({
         user: user,
-        report_type: user_ad.feedback.report_type,
-        comment_report: user_ad.feedback.comment_report,
+        report_type: req.body.feedback.report_type,
+        comment_report: req.body.feedback.comment_report,
         date: new Date(),
       });
 
-    } else if (user_ad.feedback.type == 'report_comment') {
+    } else if (req.body.feedback.type == 'report_comment') {
       ad.comment_list.forEach((_c, i) => {
-        if (user_ad.feedback.comment_code == _c.code) {
+        if (req.body.feedback.comment_code == _c.code) {
           _c.report_list = _c.report_list || [];
           _c.report_list.push({
             user: user,
-            report_type: user_ad.feedback.report_type,
-            comment_report: user_ad.feedback.comment_report,
+            report_type: req.body.feedback.report_type,
+            comment_report: req.body.feedback.comment_report,
             date: new Date(),
           });
         }
       });
 
-    } else if (user_ad.feedback.type == 'report_reply') {
+    } else if (req.body.feedback.type == 'report_reply') {
       ad.comment_list.forEach((_c, i) => {
         _c.reply_list = _c.reply_list || [];
         _c.reply_list.forEach(_r => {
           _r.report_list = _r.report_list || []
-          if (user_ad.feedback.comment_code == _r.code) {
+          if (req.body.feedback.comment_code == _r.code) {
 
             _r.report_list.push({
               user: user,
-              report_type: user_ad.feedback.report_type,
-              comment_report: user_ad.feedback.comment_report,
+              report_type: req.body.feedback.report_type,
+              comment_report: req.body.feedback.comment_report,
               date: new Date(),
             });
           }
@@ -389,17 +408,18 @@ module.exports = function init(site) {
 
       });
 
-    } else if (user_ad.feedback.type == 'comment') {
+    } else if (req.body.feedback.type == 'comment') {
       ad.number_comments = ad.number_comments + 1;
       ad.comment_list = ad.comment_list || [];
       let comment = {
         user: user,
-        comment_type: user_ad.feedback.comment_type,
-        comment: user_ad.feedback.comment,
+        comment_type: req.body.feedback.comment_type,
+        comment: req.body.feedback.comment,
         date: new Date(),
         code: ad.number_comments + Math.floor(Math.random() * 1000),
       };
       ad.comment_list.push(comment);
+
       site.call('[notific][replies_ads_followed]', {
         user: ad.store.user,
         store_name: ad.store.name,
@@ -408,6 +428,7 @@ module.exports = function init(site) {
           id: ad.id,
           name: ad.name,
         },
+        follow_list :  ad.follow_list,
       });
       site.call('[notific][comments_my_ads]', {
         user: ad.store.user,
@@ -418,17 +439,17 @@ module.exports = function init(site) {
           name: ad.name,
         },
       });
-    } else if (user_ad.feedback.type == 'reply_comment') {
+    } else if (req.body.feedback.type == 'reply_comment') {
       ad.number_comments = ad.number_comments + 1;
       let comment = {
         user: user,
-        comment_type: user_ad.feedback.comment_type,
-        comment: user_ad.feedback.$comment,
+        comment_type: req.body.feedback.comment_type,
+        comment: req.body.feedback.$comment,
         date: new Date(),
       };
       ad.comment_list = ad.comment_list || [];
       ad.comment_list.forEach((_c, i) => {
-        if (user_ad.feedback.comment_code == _c.code) {
+        if (req.body.feedback.comment_code == _c.code) {
           _c.reply_list = _c.reply_list || [];
           comment.code = (i + 1) + Math.floor(Math.random() * 1000)
           _c.reply_list.push(comment);
@@ -442,6 +463,7 @@ module.exports = function init(site) {
           id: ad.id,
           name: ad.name,
         },
+        follow_list :  ad.follow_list,
       });
       site.call('[notific][comments_my_ads]', {
         user: ad.store.user,
@@ -487,9 +509,10 @@ module.exports = function init(site) {
             });
           }
 
-
-          a.favorite_list = a.favorite_list || []
-          a.favorite_list.find(_f => { return _f.user.id === req.session.user })
+          a.favorite_list = a.favorite_list || [];
+          a.follow_list = a.follow_list || [];
+          a.$favorite = a.favorite_list.some(_f => { return _f.user.id === req.session.user.id })
+          a.$follow = a.follow_list.some(_f => { return _f.user.id === req.session.user.id })
           a.comment_list = a.comment_list || []
           a.comment_list.forEach(_c => {
             _c.$time = site.xtime(_c.date, req.session.lang);
@@ -556,6 +579,7 @@ module.exports = function init(site) {
         store: 1,
         quantity_list: 1,
         address: 1,
+        favorite_list: 1,
         set_price: 1
       }
 
@@ -696,9 +720,9 @@ module.exports = function init(site) {
                   _d.address.text = _d.address.text + ' ' + _d.address.area[lang];
                 }
               }
-              if (req.session.user && req.session.user.feedback_list) {
-                _d.$favorite = req.session.user.feedback_list.some((_f) => _f.type && _f.ad && _f.type.id == 2 && _f.ad.id == _d.id);
-              }
+
+              _d.favorite_list = _d.favorite_list || [];
+              _d.$favorite = _d.favorite_list.some(_f => { return _f.user.id === req.session.user.id })
               _d.$time = site.xtime(_d.date, req.session.lang);
             });
           }

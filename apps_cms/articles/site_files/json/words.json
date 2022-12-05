@@ -35,6 +35,11 @@
         "ar": "حذف خبر "
     },
     {
+        "name": "keywords",
+        "en": "Keywords",
+        "ar": "كلمات مفتاحية"
+    },
+    {
         "name": "articles_name",
         "en": "Article Name",
         "ar": "إسم الخبر "

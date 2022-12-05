@@ -74,6 +74,9 @@ module.exports = function init(site) {
                 type: 'ads_members_follow',
                 date: new Date(),
               });
+              _doc.notific_count = _doc.notific_count || 0;
+              _doc.notific_count += 1;
+              site.security.updateUser(_doc);
             }
           });
         }
@@ -82,38 +85,49 @@ module.exports = function init(site) {
   });
 
   site.on('[notific][replies_ads_followed]', (obj) => {
-    site.security.getUser(
-      {
-        'feedback_list.type.id': 2,
-        'feedback_list.ad.id': obj.action.id,
-      },
-      (err, doc) => {
-        if (!err && doc) {
-          if (doc.notific_setting && doc.notific_setting.replies_ads_followed && doc.id != obj.user_action.id) {
-            site.notific_list.push({
-              $add: true,
-              action: obj.action,
-              show: false,
-              store_name: obj.store_name,
-              user_action: {
-                id: obj.user_action.id,
-                email: obj.user_action.email,
-                name: obj.user_action.profile.name,
-                last_name: obj.user_action.profile.last_name,
-                image_url: obj.user_action.profile.image_url,
-              },
-              user: {
-                id: doc.id,
-                email: doc.email,
-                name: doc.profile.name,
-                last_name: doc.profile.last_name,
-                image_url: doc.profile.image_url,
 
-              },
-              type: 'replies_ads_followed',
-              date: new Date(),
-            });
-          }
+    let follow_list = [];
+    obj.follow_list = obj.follow_list || [];
+    for (let i = 0; i < obj.follow_list.length; i++) {
+      follow_list.push(obj.follow_list[i].user.id)
+    }
+    site.security.getUsers(
+      {
+        where: {
+          id: { $in: follow_list },
+        },
+      },
+      (err, docs) => {
+        if (!err) {
+          docs.forEach((_doc) => {
+            if (_doc.notific_setting && _doc.notific_setting.replies_ads_followed && _doc.id != obj.user_action.id) {
+              site.notific_list.push({
+                $add: true,
+                action: obj.action,
+                show: false,
+                store_name: obj.store_name,
+                user_action: {
+                  id: obj.user.id,
+                  email: obj.user.email,
+                  name: obj.user.profile.name,
+                  last_name: obj.user.profile.last_name,
+                  image_url: obj.user.profile.image_url,
+                },
+                user: {
+                  id: _doc.id,
+                  email: _doc.email,
+                  name: _doc.profile.name,
+                  last_name: _doc.profile.last_name,
+                  image_url: _doc.profile.image_url,
+                },
+                type: 'replies_ads_followed',
+                date: new Date(),
+              });
+              _doc.notific_count = _doc.notific_count || 0;
+              _doc.notific_count += 1;
+              site.security.updateUser(_doc);
+            }
+          });
         }
       }
     );
@@ -122,7 +136,7 @@ module.exports = function init(site) {
   site.on('[notific][comments_my_ads]', (obj) => {
     site.security.getUser(
       {
-        id: obj.user_action.id,
+        id: obj.user.id,
       },
       (err, doc) => {
         if (!err) {
@@ -149,6 +163,9 @@ module.exports = function init(site) {
               type: 'comments_my_ads',
               date: new Date(),
             });
+            doc.notific_count = doc.notific_count || 0;
+            doc.notific_count += 1;
+            site.security.updateUser(doc);
           }
         }
       }
@@ -173,6 +190,9 @@ module.exports = function init(site) {
               type: 'private_messages',
               date: new Date(),
             });
+            doc.notific_count = doc.notific_count || 0;
+            doc.notific_count += 1;
+            site.security.updateUser(doc);
           }
         }
       }
@@ -238,6 +258,45 @@ module.exports = function init(site) {
         site.notific_list[i] = notific_doc;
       }
     });
+    res.json(response);
+  });
+
+
+  site.post('/api/notific/show', (req, res) => {
+    let response = {
+      done: false,
+    };
+
+    if (!req.session.user) {
+      response.error = 'Please Login First';
+      res.json(response);
+      return;
+    }
+
+    let notific_doc = req.body;
+
+    notific_doc.edit_user_info = site.security.getUserFinger({
+      $req: req,
+      $res: res,
+    });
+
+    if (!notific_doc.id) {
+      response.error = 'No id';
+      res.json(response);
+      return;
+    }
+    response.done = true;
+    if (!notific_doc.show) {
+      site.notific_list.forEach((a, i) => {
+        if (a.id === notific_doc.id) {
+          notific_doc.$update = true;
+          notific_doc.show = true;
+          site.notific_list[i] = notific_doc;
+          req.session.user.notific_count -= 1;
+          site.security.updateUser(req.session.user)
+        }
+      });
+    }
     res.json(response);
   });
 

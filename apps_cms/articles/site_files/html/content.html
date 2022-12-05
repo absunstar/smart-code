@@ -17,8 +17,7 @@
 
         <div class="tabs-content">
             <div id="basic" class="tab-content">
-                <fieldset>
-                    <legend>##word.basic_information##</legend>
+              
                     <div class="row">
                         <div class="row">
                             <i-control v="r" class="col10" label="##word.article_title##" ng-model="article.title">
@@ -95,18 +94,33 @@
                                 <i-list label="##word.editor##" ng-model="article.editor" items="editorsList"
                                     display="profile.name" ng-search="article.$editor_search">
                                 </i-list>
+
+
                             </div>
+                            <fieldset>
+
+                                <i-control label="##word.keywords##" ng-keydown="addKeyDown($event , article.$keyword)"
+                                    ng-model="article.$keyword">
+                                </i-control>
+                                <div class="row">
+
+                                    <div class="key-words" ng-repeat="k in article.keywords_list">
+                                        <span>{{k}}</span>
+                                        <i class="fas fa-times delete-key"
+                                            ng-click="article.keywords_list.splice($index,1)"></i>
+                                    </div>
+                                </div>
+                            </fieldset>
+
 
                         </div>
                     </div>
 
 
-                </fieldset>
             </div>
 
             <div id="social" class="tab-content">
-                <fieldset>
-                    <legend>##word.social##</legend>
+             
                     <div class="row">
                         <i-control label="##word.title##" class="col8" ng-model="article.social_title"> </i-control>
                         <div class="col1"></div>
@@ -119,12 +133,10 @@
                         <i-textarea ng-model="article.social_description" label="##word.description##">
                         </i-textarea>
                     </div>
-                </fieldset>
             </div>
 
             <div id="external" class="tab-content">
-                <fieldset>
-                    <legend>##word.external##</legend>
+               
                     <div class="row">
                         <i-control class="col8" label="##word.title##" ng-model="article.external_title"> </i-control>
 
@@ -138,7 +150,6 @@
                         <i-textarea ng-model="article.external_description" label="##word.description##">
                         </i-textarea>
                     </div>
-                </fieldset>
             </div>
 
             <div id="translation" class="tab-content">

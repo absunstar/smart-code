@@ -1,60 +1,60 @@
 <!DOCTYPE html>
 <html lang="##session.lang##" class="loaded" ng-app="myApp">
 
-  <head>
-    <title>##setting.title##</title>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/haraj.css" />
-    <link rel="icon" type="image/x-icon" href="##setting.logo##" />
-    <style>
-      * {
-        max-width: initial;
-      }
-  
-      .userad-logo {
-        border-radius: 50%;
-        height: 25px;
-        width: 25px;
-        margin: -5px 10px -5px 0px !important
-      }
-  
-      :root {
-        --body-margin-top: 0px;
-        --body-margin-bottom: 0px;
-        --zoom: 100%;
-        --fieldset-border: none;
-        --fieldset-background: #fff;
-      }
-  
-      body {
-        /* background-color: #bbb !important;
+<head>
+  <title>##setting.title##</title>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/css/haraj.css" />
+  <link rel="icon" type="image/x-icon" href="##setting.logo##" />
+  <style>
+    * {
+      max-width: initial;
+    }
+
+    .userad-logo {
+      border-radius: 50%;
+      height: 25px;
+      width: 25px;
+      margin: -5px 10px -5px 0px !important
+    }
+
+    :root {
+      --body-margin-top: 0px;
+      --body-margin-bottom: 0px;
+      --zoom: 100%;
+      --fieldset-border: none;
+      --fieldset-background: #fff;
+    }
+
+    body {
+      /* background-color: #bbb !important;
         background-image: url(/assets/palm.svg) !important; */
-        background-color: #ecf9f6;
-        background-repeat: repeat !important;
-      }
-    </style>
-    <style x-lang="ar">
-      .nav1 {
-        flex-direction: initial;
-        padding: 7px;
-      }
-  
-      :root {
-        --direction: rtl;
-        --text-align: right;
-        --float: right;
-      }
-    </style>
-  </head>
+      background-color: #ecf9f6;
+      background-repeat: repeat !important;
+    }
+  </style>
+  <style x-lang="ar">
+    .nav1 {
+      flex-direction: initial;
+      padding: 7px;
+    }
+
+    :root {
+      --direction: rtl;
+      --text-align: right;
+      --float: right;
+    }
+  </style>
+</head>
 
 <body class="##session.lang##" ng-controller="haraj">
   <div class="map">
     <div class="movemab" x-import="haraj/map.html"></div>
   </div>
-  <a class="create-btn" ng-click="createContent()" >
-    <span style="min-height: 22px">##word.add_your_ad##</span> 
+  <a class="create-btn" ng-click="createContent()">
+    <span style="min-height: 22px">##word.add_your_ad##</span>
     <i class="fa-solid fa-plus-circle"></i>
   </a>
   <div x-import="haraj/header.html">
@@ -70,7 +70,7 @@
         </li>
       </div>
     </div>
-    
+
   </div>
   <div class="content loaded">
     <aside class="tagSide">
@@ -112,12 +112,14 @@
           <div class="FilterGroup__ContentWrapper-kok8t0-2 BJDme" id="xtags-filter">
             <div>
               <div class="row">
-                <i-checkbox label="##word.only_new##" class="pointer" ng-click="searchAll(search)" ng-model="search.new"></i-checkbox>
-                <i-checkbox class="pointer" label="##word.nearby_ads##" ng-click="searchAll(search)" ng-model="search.near">
+                <i-checkbox label="##word.only_new##" class="pointer" ng-click="searchAll(search)"
+                  ng-model="search.new"></i-checkbox>
+                <i-checkbox class="pointer" label="##word.nearby_ads##" ng-click="searchAll(search)"
+                  ng-model="search.near">
                 </i-checkbox>
                 <i-checkbox label="##word.only_with_photos##" class="pointer" ng-click="searchAll(search)"
                   ng-model="search.with_photos"></i-checkbox>
-                  <hr>
+                <hr>
 
                 <div class="row">
                   <table>
@@ -188,24 +190,27 @@
       <div class="thirdheader">
         <div class="row">
           <div class="col-1 text-center">
-            <i class="fa fa-arrow-circle-right margin-left-move pointer move-category fa-2x" ng-click="moveCategory('previous')" aria-hidden="true"></i>
+            <i class="fa fa-arrow-circle-right margin-left-move pointer move-category fa-2x"
+              ng-click="moveCategory('previous')" aria-hidden="true"></i>
           </div>
           <div class="col-10">
             <div class="tags">
               <ul class="tag-list">
-                <li id="cat_{{c.id}}" class="tag" ng-class="{'category-selected' : c.$isSelected == true}" ng-repeat="c in topParentCategoriesList">
-                  <a   class="tab_link"  ng-click="loadSubCategory(c)"
-                    href=""><img alt="car" loading="lazy" height="35" width="35" ng-src="{{c.image_url}}" /><span
+                <li id="cat_{{c.id}}" class="tag" ng-class="{'category-selected' : c.$isSelected == true}"
+                  ng-repeat="c in topParentCategoriesList">
+                  <a class="tab_link" ng-click="loadSubCategory(c)" href=""><img alt="car" loading="lazy" height="35"
+                      width="35" ng-src="{{c.image_url}}" /><span
                       style="min-height: 22px">{{c.name_##session.lang##}}</span></a>
                 </li>
               </ul>
             </div>
           </div>
           <div class="col-1 text-center">
-            <i class="fa fa-arrow-circle-left pointer move-category-margin move-category fa-2x" ng-click="moveCategory('next')" aria-hidden="true"></i>
+            <i class="fa fa-arrow-circle-left pointer move-category-margin move-category fa-2x"
+              ng-click="moveCategory('next')" aria-hidden="true"></i>
           </div>
         </div>
-        
+
       </div>
       <div class="all-category">
         <div></div>
@@ -313,7 +318,7 @@
                         <div class="col-6">
                           <div class="ad-location">
                             <i class="fa-solid fa-location-pin adress ellipsis-txt">{{a.address.text}}</i>
-                          
+
                           </div>
                           <div class="u-action">
 
@@ -326,14 +331,16 @@
                             <a ng-show="!a.$favorite" class="pointer" ng-click="updateFeedback(a,'favorite',true)">
                               <i class="fa fa-heart dimgrey"> ##word.favorite## </i>
                             </a>
+
                             <a ng-show="a.$favorite" class="pointer" ng-click="updateFeedback(a,'favorite',false)">
                               <i class="fa fa-heart red"> ##word.cancel## ##word.favorite## </i>
                             </a>
+
                           </div>
-                        
+
                         </div>
                         <div class="col-6">
-                        
+
                           <div class="time-publish">
                             <i class="fa-solid fa-clock ellipsis-txt"> {{a.$time}} </i>
                           </div>
@@ -341,7 +348,8 @@
                             <a class=""
                               href="/profile/{{a.store.user.id}}/{{a.store.user.profile.name}}/{{a.store.user.profile.last_name}}">
                               <i class="fa fa-user dimgrey" aria-hidden="true"></i>
-                              <b class="underline-hover dimgrey ellipsis-txt">{{a.store.user.profile.name}} {{a.store.user.profile.last_name}}</b>
+                              <b class="underline-hover dimgrey ellipsis-txt">{{a.store.user.profile.name}}
+                                {{a.store.user.profile.last_name}}</b>
                             </a>
                           </div>
                           <!--  <div class="row" ng-show="a.set_price == 'yes'" ng-repeat="q in a.quantity_list">

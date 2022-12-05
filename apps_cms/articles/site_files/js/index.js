@@ -293,13 +293,6 @@ app.controller("articles", function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.doc) {
           $scope.defaultSettings = response.data.doc;
-          if ('##query.id##' == 'undefined') {
-
-            $scope.displayAddAd();
-          }
-          if (!$scope.defaultSettings.stores_settings.activate_stores) {
-            $scope.getUser();
-          }
         }
       },
       function (err) {
@@ -432,6 +425,18 @@ app.controller("articles", function ($scope, $http, $timeout) {
     translate.external_image = $scope.article.external_image;
     translate.external_description = $scope.article.external_description;
   };
+
+  $scope.addKeyDown = function (ev,keyWord) {
+    $scope.busy = true;
+
+    if (ev.which !== 13 || !keyWord) {
+      return;
+    };
+
+    $scope.article.keywords_list = $scope.article.keywords_list || [];
+    $scope.article.keywords_list.push(keyWord);
+    $scope.article.$keyword = '';
+  }
 
   $scope.editTranslateArticle = function (t, type) {
     $scope.translate = t;

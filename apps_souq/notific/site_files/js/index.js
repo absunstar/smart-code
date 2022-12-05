@@ -56,10 +56,9 @@ app.controller('notific', function ($scope, $http, $timeout) {
   $scope.updateNotific = function (notific,type) {
     $scope.busy = true;
   
-    notific.show = true;
     $http({
       method: 'POST',
-      url: '/api/notific/update',
+      url: '/api/notific/show',
       data: notific
     }).then(
       function (response) {
