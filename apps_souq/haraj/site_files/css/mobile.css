@@ -2,17 +2,19 @@
   ._scroll100 {
     max-height: none !important;
   }
-  
+
   .margin-info-menu {
     margin-top: -30px !important;
   }
-  
+
   .add-button {
     width: auto;
   }
+
   i-radio {
     margin: 10px !important;
   }
+
   .footer {
     margin-bottom: 50px;
   }
@@ -21,8 +23,24 @@
     background-color: #f1f1f1;
     height: auto;
     display: grid;
-    grid-template-columns: 20% 60% 20%;
+    grid-template-columns: 27% 50% 23%;
     direction: rtl;
+  }
+
+  .haraj_name {
+    font-size: 25px;
+    text-align: center;
+    color: #ffffff;
+    border-bottom: 3px solid #fff;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px #4caf50;
+    background: #009688;
+  }
+
+  .haraj_logo {
+    height: 60px;
+    border-radius: 5px;
+    vertical-align: text-bottom;
   }
 
   .online-badge {
@@ -31,8 +49,9 @@
   }
 
   .logo img {
-    width: 32px;
-    height: 32px;
+    width: 55px;
+    height: 50px;
+    margin: 5px !important;
   }
 
   .scroll-headmsg {

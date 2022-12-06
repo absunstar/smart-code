@@ -162,10 +162,12 @@
   padding: 18px;
 
 }
+
 .statistics {
   margin: 20px !important;
   background: aliceblue;
   border-radius: 13px;
+  display: inline-table;
   padding: 20px;
   border: unset;
   width: 15%;

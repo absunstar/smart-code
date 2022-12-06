@@ -1,19 +1,19 @@
-app.controller('ratings', function ($scope, $http, $timeout) {
-  $scope.rating = {};
+app.controller('pay', function ($scope, $http, $timeout) {
+  $scope.pay = {};
 
-  $scope.updateRatings = function () {
+  $scope.updatePay = function () {
     $scope.error = '';
 
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/ratings/update',
-      data: $scope.rating,
+      url: '/api/pay/update',
+      data: $scope.pay,
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#ratingsUpdateModal');
+          site.hideModal('#payUpdateModal');
         } else {
           $scope.error = 'Please Login First';
         }
@@ -36,7 +36,7 @@ app.controller('ratings', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/ratings/update',
+      url: '/api/pay/update',
       data: $scope.rating,
     }).then(
       function (response) {
@@ -57,27 +57,27 @@ app.controller('ratings', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.displayDetailsRatings = function (ratings) {
+  $scope.displayDetailsPay = function (pay) {
     $scope.error = '';
-    $scope.viewRatings(ratings);
-    $scope.rating = {};
-    site.showModal('#ratingsViewModal');
+    $scope.viewPay(pay);
+    $scope.pay = {};
+    site.showModal('#payViewModal');
   };
 
-  $scope.viewRatings = function (ratings) {
+  $scope.viewPay = function (pay) {
     $scope.busy = true;
     $scope.error = '';
     $http({
       method: 'POST',
-      url: '/api/ratings/view',
+      url: '/api/pay/view',
       data: {
-        id: ratings.id,
+        id: pay.id,
       },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $scope.rating = response.data.doc;
+          $scope.pay = response.data.doc;
         } else {
           $scope.error = response.data.error;
         }
@@ -87,29 +87,29 @@ app.controller('ratings', function ($scope, $http, $timeout) {
       }
     );
   };
-  $scope.displayDeleteRatings = function (ratings) {
+  $scope.displayDeletePay = function (pay) {
     $scope.error = '';
-    $scope.viewRatings(ratings);
-    $scope.rating = {};
-    site.showModal('#ratingsDeleteModal');
+    $scope.viewPay(pay);
+    $scope.pay = {};
+    site.showModal('#payDeleteModal');
   };
 
-  $scope.deleteRatings = function () {
+  $scope.deletePay = function () {
     $scope.busy = true;
     $scope.error = '';
 
     $http({
       method: 'POST',
-      url: '/api/ratings/delete',
+      url: '/api/pay/delete',
       data: {
-        id: $scope.rating.id,
+        id: $scope.pay.id,
       },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#ratingsDeleteModal');
-          $scope.getRatingsList();
+          site.hideModal('#payDeleteModal');
+          $scope.getPayList();
         } else {
           $scope.error = response.data.error;
         }
@@ -120,12 +120,12 @@ app.controller('ratings', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getRatingsList = function (where) {
+  $scope.getPayList = function (where) {
     $scope.busy = true;
     $scope.list = [];
     $http({
       method: 'POST',
-      url: '/api/ratings/all',
+      url: '/api/pay/all',
       data: {
         where: where,
       },
@@ -135,7 +135,7 @@ app.controller('ratings', function ($scope, $http, $timeout) {
         if (response.data.done && response.data.list.length > 0) {
           $scope.list = response.data.list;
           $scope.count = response.data.count;
-          site.hideModal('#ratingsSearchModal');
+          site.hideModal('#paySearchModal');
           $scope.search = {};
         }
       },
@@ -148,14 +148,14 @@ app.controller('ratings', function ($scope, $http, $timeout) {
 
   $scope.displaySearchModal = function () {
     $scope.error = '';
-    site.showModal('#ratingsSearchModal');
+    site.showModal('#paySearchModal');
   };
 
   $scope.searchAll = function () {
-    $scope.getRatingsList($scope.search);
-    site.hideModal('#ratingsSearchModal');
+    $scope.getPayList($scope.search);
+    site.hideModal('#paySearchModal');
     $scope.search = {};
   };
 
-  $scope.getRatingsList();
+  $scope.getPayList();
 });

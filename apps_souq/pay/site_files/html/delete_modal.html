@@ -1,15 +1,16 @@
-<div id="storeViewModal" class="modal">
+<div id="payDeleteModal" class="modal">
+    
     <div class="modal-content">
         <div class="modal-header">
             <span class="close">&times;</span>
             <h2>
-                ##word.stores_details##
-                <i class="fa fa-file"></i>
+                ##word.country_delete##
+                <i class="fa fa-trash"></i>
             </h2>
         </div>
 
         <div class="modal-body">
-            <div x-import="manage-user/view_store.html"></div>
+               <div x-import="pay/view.html"></div>
 
         </div>
 
@@ -18,7 +19,11 @@
         <div class="modal-footer center">
             <i-button type="print" label="##word.print##" onclick="site.print('#v1')"></i-button>
 
-            <i-button type="close" label="##word.close##" onclick="site.hideModal('#storeViewModal')"></i-button>
+            <i-button type="delete" label="##word.delete##" ng-click="deletePay(pay)"> </i-button>
+
+            <i-button type="close" label="##word.close##" onclick="site.hideModal('#payDeleteModal')"> </i-button>
+
         </div>
     </div>
+    
 </div>

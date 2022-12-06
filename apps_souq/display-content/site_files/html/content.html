@@ -3,48 +3,58 @@
     <div class="row bg-white content-ad">
       <div class="row">
         <p class="display-ad-name">{{ad.name}}</p>
-        <div class="col6 bg-ad">
-          <div class="row">
-            <div class="store-name" ng-show="defaultSettings.stores_settings.activate_stores">
-              <i class="fa-solid fa-store fa-style"></i>
-              <h1 class="store-name-stlye">{{ad.store.name}}</h1>
-            </div>
+        <div class="col6">
+          <div class="row bg-ad">
 
-            <div class="ad-user">
-              <a class="" href="/profile/{{userAd.id}}/{{userAd.profile.name}}/{{userAd.profile.last_name}}">
-                <img class="center userad-logo" ng-src="{{userAd.profile.image_url}}"
-                  onerror="this.src='/images/user.png'" alt="" />
-                <b class="user-name-stlye">{{userAd.profile.name}} {{userAd.profile.last_name}}</b>
-              </a>
-            </div>
-            <div class="time-publish margin padding">
-              <i class="fa-solid fa-clock"> {{ad.$time}} </i>
-            </div>
+            <div class="row">
+              <div class="store-name" ng-show="defaultSettings.stores_settings.activate_stores">
+                <i class="fa-solid fa-store fa-style"></i>
+                <h1 class="store-name-stlye">{{ad.store.name}}</h1>
+              </div>
 
-            <div class="ad-location margin padding">
-              <i class="fa-solid fa-location-pin"></i>
-              <div class="adress">
-                <b>{{ad.address.country.name_##session.lang##}} {{ad.address.gov.name_##session.lang##}}
-                  {{ad.address.city.name_##session.lang##}} {{ad.address.area.name_##session.lang##}}</b>
-                <p>{{ad.address.detailed_address}}</p>
+              <div class="ad-user">
+                <a class="" href="/profile/{{userAd.id}}/{{userAd.profile.name}}/{{userAd.profile.last_name}}">
+                  <img class="center userad-logo" ng-src="{{userAd.profile.image_url}}"
+                    onerror="this.src='/images/user.png'" alt="" />
+                  <b class="user-name-stlye font-22">{{userAd.profile.name}} {{userAd.profile.last_name}}</b>
+                </a>
+              </div>
+              <div class="time-publish font-18 margin padding">
+                <i class="fa-solid fa-clock"> {{ad.$time}} </i>
+              </div>
+
+              <div class="ad-location margin padding">
+                <i class="fa-solid fa-location-pin"></i>
+                <div class="adress font-18">
+                  <b>{{ad.address.country.name_##session.lang##}} {{ad.address.gov.name_##session.lang##}}
+                    {{ad.address.city.name_##session.lang##}} {{ad.address.area.name_##session.lang##}}</b>
+                  <p>{{ad.address.detailed_address}}</p>
+                </div>
               </div>
             </div>
+
+            <div class="row" ng-show="ad.set_price == 'yes'" ng-repeat="q in ad.quantity_list">
+              <p class="col4 price">
+                ##word.price## <span class="green"> {{q.net_value}} </span> {{q.currency.name_##session.lang##}}
+
+                <span ng-show="q.discount > 0" class="line-through red">{{q.price}}
+                  {{q.currency.name_##session.lang##}}</span>
+                <span ng-show="q.unit.id"> / {{q.unit.name_##session.lang##}} </span>
+
+                <span class="save-money" ng-show="q.discount > 0"> ##word.save_money## {{q.discount}} <span
+                    ng-show="q.discount_type == 'percent'"> % </span> <span ng-show="q.discount_type == 'number'"> $
+                  </span> </span>
+              </p>
+            </div>
+
           </div>
 
-
-
-          <div class="row" ng-show="ad.set_price == 'yes'" ng-repeat="q in ad.quantity_list">
-            <p class="col4 price">
-              ##word.price## <span class="green"> {{q.net_value}} </span> {{q.currency.name_##session.lang##}}
-
-              <span ng-show="q.discount > 0" class="line-through red">{{q.price}}
-                {{q.currency.name_##session.lang##}}</span>
-              <span ng-show="q.unit.id"> / {{q.unit.name_##session.lang##}} </span>
-
-              <span class="save-money" ng-show="q.discount > 0"> ##word.save_money## {{q.discount}} <span
-                  ng-show="q.discount_type == 'percent'"> % </span> <span ng-show="q.discount_type == 'number'"> $
-                </span> </span>
-            </p>
+          <div class="row category">
+            <a ng-repeat="c in category_list"  href="/category/{{c.id}}/{{c.name_en}} - {{c.name_ar}}" ng-click="selectCategoryHeader(c.id)"
+              class="center bold pointer statistics">
+              <img class="center userad-logo" ng-src="{{c.image_url}}" onerror="this.src='/images/user.png'" alt="" />
+              {{c.name_##session.lang##}}
+            </a>
           </div>
         </div>
 
@@ -105,13 +115,13 @@
           class="fa fa-phone"></i> ##word.communication##
       </button>
 
-      <button ng-click="updateFeedback('follow',true)" ng-show="user.id != ad.store.user.id && !activity.follow" class="follow-button"><i
-          class="fa-solid fa-wifi"></i>
+      <button ng-click="updateFeedback('follow',true)" ng-show="user.id != ad.store.user.id && !activity.follow"
+        class="follow-button"><i class="fa-solid fa-wifi"></i>
         ##word.follow_comments##
       </button>
 
-      <button ng-click="updateFeedback('follow',false)" ng-show="user.id != ad.store.user.id && activity.follow" class="follow-button"><i
-          class="fa-solid fa-wifi"></i>
+      <button ng-click="updateFeedback('follow',false)" ng-show="user.id != ad.store.user.id && activity.follow"
+        class="follow-button"><i class="fa-solid fa-wifi"></i>
         ##word.unfollow_comments##
       </button>
 
@@ -138,14 +148,6 @@
         {{ad.number_views || 0}}</b>
       <b class="col3 center post-statistics"> <i class="fa-solid fa-comments"></i> ##word.number_comments##
         {{ad.number_comments || 0}}</b>
-    </div>
-
-    <div class="row bg-white category">
-      <button ng-repeat="m in category_list" ng-click="selectCategoryHeader(m.id)"
-        class="center bold pointer statistics">
-        <img class="center userad-logo" ng-src="{{m.image_url}}" onerror="this.src='/images/user.png'" alt="" />
-        {{m.name_##session.lang##}}
-      </button>
     </div>
 
     <div class="row border warning_message" ng-show="defaultSettings.content.warning_message_ad_list.length > 0">

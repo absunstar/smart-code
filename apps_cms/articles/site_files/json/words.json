@@ -25,6 +25,11 @@
         "ar": "تعديل خبر "
     },
     {
+        "name": "show_image",
+        "en": "Show image",
+        "ar": "إظهار الصورة"
+    },
+    {
         "name": "articles_details",
         "en": "Article Details",
         "ar": "تفاصيل الخبر "

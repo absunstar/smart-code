@@ -1,17 +1,22 @@
 [
   {
     "id": 1,
-    "en": "Standred Content",
-    "ar": "محتوى قياسي"
+    "en": "Simble",
+    "ar": "بسيط"
   },
   {
     "id": 2,
-    "en": "Parts Content",
-    "ar": "محتوى له فقرات"
+    "en": "developed",
+    "ar": "متطور"
   },
   {
     "id": 3,
-    "en": "Slider Content",
-    "ar": "محتوى صوري متحرك"
+    "en": "multi-paragraph",
+    "ar": "متعدد الفقرات"
+  },
+  {
+    "id": 4,
+    "en": "multi-image",
+    "ar": "متعدد الصور"
   }
 ]

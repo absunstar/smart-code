@@ -721,8 +721,10 @@ module.exports = function init(site) {
                 }
               }
 
+              if(req.session.user){
               _d.favorite_list = _d.favorite_list || [];
               _d.$favorite = _d.favorite_list.some(_f => { return _f.user.id === req.session.user.id })
+            }
               _d.$time = site.xtime(_d.date, req.session.lang);
             });
           }

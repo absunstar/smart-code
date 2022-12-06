@@ -31,9 +31,9 @@
             <th class="not-print">##word.actions##</th>
           </tr>
           <tr ng-repeat="c in list">
-            <td class="center title">{{c.sender.email}}</td>
-            <td class="center title">{{c.receiver.email}}</td>
-            <td class="center pre_text">{{c.notes}}</td>
+            <td ng-click="displayDetailsRatings(c)" class="center pointer title">{{c.sender.email}}</td>
+            <td ng-click="displayDetailsRatings(c)" class="center pointer title">{{c.receiver.email}}</td>
+            <td ng-click="displayDetailsRatings(c)" class="center pointer pre_text">{{c.notes}}</td>
             <td class="center">
               <p ng-show="c.approval ==true" class="green">##word.approval##</p>
               <p ng-show="c.approval ==false" class="red">##word.reject##</p>
@@ -51,7 +51,7 @@
         </table>
         <i-button x-permissions="ratings_print || ratings_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
 
-        <i-button x-permissions="ratings_export || ratings_manage" label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'ratings.xlsx')"></i-button>
+        <i-button x-permissions="ratings_export || ratings_manage" label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'rating.xlsx')"></i-button>
       </div>
     </div>
     <div id="alert" class="modal alert small">

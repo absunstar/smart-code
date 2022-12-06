@@ -17,139 +17,219 @@
 
         <div class="tabs-content">
             <div id="basic" class="tab-content">
-              
+
+                <div class="row">
                     <div class="row">
+                        <i-control v="r" class="col10" label="##word.article_title##" ng-model="article.title">
+                        </i-control>
+
+                        <i-checkbox class="col2" label="##word.active##" ng-model="article.active"> </i-checkbox>
+                    </div>
+                    <div class="col8">
+
                         <div class="row">
-                            <i-control v="r" class="col10" label="##word.article_title##" ng-model="article.title">
-                            </i-control>
-                        </div>
-                        <div class="col8">
+                            <div class="col6">
+                                <i-list v="r" label="##word.article_type##" ng-model="article.type"
+                                    items="articleTypesList" display="##session.lang##"
+                                    ng-search="article.$type_search">
+                                </i-list>
 
-                            <div class="row">
-                                <div class="col6">
-                                    <i-list v="r" label="##word.article_type##" ng-model="article.type"
-                                        items="articleTypesList" display="##session.lang##"
-                                        ng-search="article.$type_search">
-                                    </i-list>
-                                    <i-date2 input-style" ng-show="defaultSettings.content.publishing_system.id == 2"
-                                        ng-model="ad.date" label="##word.publishing_date##"></i-date2>
-                                    <i-date2 input-style" ng-show="defaultSettings.content.closing_system.id == 2"
-                                        ng-model="ad.expiry_date" label="##word.expiry_date##"></i-date2>
-                                </div>
-                            </div>
-                            <div class="row" ng-show="article.type.id == 1">
-                                <i-textarea ng-model="article.content" label="##word.content##">
-                                </i-textarea>
+                                <i-date ng-show="defaultSettings.content.publishing_system.id == 2"
+                                    ng-model="article.date" label="##word.publishing_date##"></i-date>
+
+                                <i-date ng-show="defaultSettings.content.closing_system.id == 2"
+                                    ng-model="article.expiry_date" label="##word.expiry_date##"></i-date>
                             </div>
                         </div>
+                        <div class="row" ng-show="article.type.id == 1">
+                            <i-textarea ng-model="article.content" label="##word.content##">
+                            </i-textarea>
+                        </div>
 
-                        <div class="col4 center border-right">
-                            <div class="row">
-                                <i-image class="center" ng-model="article.image_url"></i-image>
-                            </div>
+                        <div class="row" ng-show="article.type.id == 2">
+                            <i-textarea ng-model="article.content" label="##word.content##">
+                            </i-textarea>
+                        </div>
 
-                            <div class="row">
-                                <i-list label="##word.category##" v="r" ng-model="article.main_category"
-                                    ng-click="loadSubCategory1(article.main_category)" items="top_category_list"
-                                    display="name" ng-search="article.$category1_search">
-                                </i-list>
-
-                                <i-list label="##word.categories## {{article.main_category.name}}"
-                                    ng-model="article.sub_category1" ng-click="loadSubCategory2(article.sub_category1)"
-                                    items="subCategoriesList1"
-                                    ng-show="subCategoriesList1.length > 0 && article.main_category" display="name"
-                                    ng-search="article.$category2_search">
-                                </i-list>
-
-                                <i-list label="##word.categories## {{article.sub_category1.name}}"
-                                    ng-model="article.sub_category2" ng-click="loadSubCategory3(article.$sub_category2)"
-                                    items="subCategoriesList2"
-                                    ng-show="subCategoriesList2.length > 0 && article.sub_category1" display="name"
-                                    ng-search="article.$category3_search">
-                                </i-list>
-
-                                <i-list label="##word.categories## {{article.sub_category2.name}}"
-                                    ng-model="article.sub_category3" ng-click="loadSubCategory4(article.sub_category3)"
-                                    items="subCategoriesList3"
-                                    ng-show="subCategoriesList3.length > 0 && article.sub_category2" display="name"
-                                    ng-search="article.$category4_search">
-                                </i-list>
-
-                                <i-list label="##word.categories## {{article.sub_category3.name}}"
-                                    ng-model="article.sub_category4" items="subCategoriesList4"
-                                    ng-show="subCategoriesList4.length > 0 && article.sub_category3" display="name"
-                                    ng-search="article.$category5_search">
-                                </i-list>
-                            </div>
-
-                            <div class="row">
-                                <i-checklist label="##word.clusters##" v="r" ng-model="article.clusters"
-                                    items="clusterList" display="name" ng-search="article.$cluster_search">
-                                </i-checklist>
-
-                                <i-list label="##word.writer##" ng-model="article.writer" items="writersList"
-                                    display="profile.name" ng-search="article.$writer_search">
-                                </i-list>
-
-                                <i-list label="##word.editor##" ng-model="article.editor" items="editorsList"
-                                    display="profile.name" ng-search="article.$editor_search">
-                                </i-list>
-
-
-                            </div>
+                        <div class="row" ng-show="article.type.id == 3">
                             <fieldset>
+                                <legend>
+                                    <i-button type="add default" ng-click="addMultiParagraph(article)"></i-button>
+                                </legend>
 
-                                <i-control label="##word.keywords##" ng-keydown="addKeyDown($event , article.$keyword)"
-                                    ng-model="article.$keyword">
-                                </i-control>
-                                <div class="row">
+                                <div class="row" ng-repeat="p in article.multi_paragraph_list">
 
-                                    <div class="key-words" ng-repeat="k in article.keywords_list">
-                                        <span>{{k}}</span>
-                                        <i class="fas fa-times delete-key"
-                                            ng-click="article.keywords_list.splice($index,1)"></i>
+                                    <div class="row">
+
+                                        <i-control v="r" class="col9" label="##word.article_title##"
+                                            ng-model="p.title">
+                                        </i-control>
+
+                                        <div class="col3 center">
+                                            <i-image class="center" ng-model="p.image_url"></i-image>
+                                            <i-checkbox class="center" label="##word.show_image##"
+                                                ng-model="p.show_image">
+                                            </i-checkbox>
+                                        </div>
+
                                     </div>
+
+                                    <i-textarea class="row" ng-model="p.content" label="##word.content##"></i-textarea>
+
+                                    <div class="">
+                                        <i-button type="delete" label="##word.delete##"
+                                            ng-click="article.multi_paragraph_list.splice($index,1)">
+                                        </i-button>
+                                    </div>
+                                    <hr>
                                 </div>
                             </fieldset>
+                        </div>
+
+                        <div class="row" ng-show="article.type.id == 4">
+                            <fieldset>
+                                <legend>
+                                    <i-button type="add default" ng-click="addMultiImage(article)"></i-button>
+                                </legend>
+                                <div class="row" ng-repeat="i in article.multi_image_list">
+                                    <div class="row">
+                                        <i-control v="r" class="col9" label="##word.article_title##"
+                                            ng-model="i.title">
+                                        </i-control>
+                                        <div class="col3 center">
+
+                                            <i-image class="center " ng-model="i.image_url"></i-image>
+                                            <i-checkbox class="center" label="##word.show_image##"
+                                                ng-model="i.show_image">
+                                            </i-checkbox>
+                                        </div>
+                                    </div>
+                                    <div class="">
+                                        <i-button type="delete" label="##word.delete##"
+                                            ng-click="article.multi_image_list.splice($index,1)">
+                                        </i-button>
+                                    </div>
+
+                                    <hr>
+                                </div>
+                            </fieldset>
+                        </div>
+
+                    </div>
+
+                    <div class="col4 center border-right">
+                        <div class="row center">
+                            <i-image class="center" ng-model="article.image_url"></i-image>
+                            <i-checkbox class="center" label="##word.show_image##" ng-model="article.show_image">
+                            </i-checkbox>
+                        </div>
+
+                        <div class="row">
+                            <i-list label="##word.category##" v="r" ng-model="article.main_category"
+                                ng-click="loadSubCategory1(article.main_category)" items="top_category_list"
+                                display="name" ng-search="article.$category1_search">
+                            </i-list>
+
+                            <i-list label="##word.categories## {{article.main_category.name}}"
+                                ng-model="article.sub_category1" ng-click="loadSubCategory2(article.sub_category1)"
+                                items="subCategoriesList1"
+                                ng-show="subCategoriesList1.length > 0 && article.main_category" display="name"
+                                ng-search="article.$category2_search">
+                            </i-list>
+
+                            <i-list label="##word.categories## {{article.sub_category1.name}}"
+                                ng-model="article.sub_category2" ng-click="loadSubCategory3(article.$sub_category2)"
+                                items="subCategoriesList2"
+                                ng-show="subCategoriesList2.length > 0 && article.sub_category1" display="name"
+                                ng-search="article.$category3_search">
+                            </i-list>
+
+                            <i-list label="##word.categories## {{article.sub_category2.name}}"
+                                ng-model="article.sub_category3" ng-click="loadSubCategory4(article.sub_category3)"
+                                items="subCategoriesList3"
+                                ng-show="subCategoriesList3.length > 0 && article.sub_category2" display="name"
+                                ng-search="article.$category4_search">
+                            </i-list>
+
+                            <i-list label="##word.categories## {{article.sub_category3.name}}"
+                                ng-model="article.sub_category4" items="subCategoriesList4"
+                                ng-show="subCategoriesList4.length > 0 && article.sub_category3" display="name"
+                                ng-search="article.$category5_search">
+                            </i-list>
+                        </div>
+
+                        <div class="row">
+                            <i-checklist label="##word.clusters##" v="r" ng-model="article.clusters" items="clusterList"
+                                display="name" ng-search="article.$cluster_search">
+                            </i-checklist>
+
+                            <i-list label="##word.writer##" ng-model="article.writer" items="writersList"
+                                display="profile.name" ng-search="article.$writer_search">
+                            </i-list>
+
+                            <i-list label="##word.editor##" ng-model="article.editor" items="editorsList"
+                                display="profile.name" ng-search="article.$editor_search">
+                            </i-list>
 
 
                         </div>
+                        <fieldset>
+
+                            <i-control label="##word.keywords##" ng-keydown="addKeyDown($event , article.$keyword)"
+                                ng-model="article.$keyword">
+                            </i-control>
+                            <div class="row">
+
+                                <div class="key-words" ng-repeat="k in article.keywords_list">
+                                    <span>{{k}}</span>
+                                    <i class="fas fa-times delete-key"
+                                        ng-click="article.keywords_list.splice($index,1)"></i>
+                                </div>
+                            </div>
+                        </fieldset>
+
+
                     </div>
+                </div>
 
 
             </div>
 
             <div id="social" class="tab-content">
-             
-                    <div class="row">
-                        <i-control label="##word.title##" class="col8" ng-model="article.social_title"> </i-control>
-                        <div class="col1"></div>
 
-                        <div class="col3">
-                            <i-image ng-model="article.social_image"></i-image>
-                        </div>
+                <div class="row">
+                    <i-control label="##word.title##" class="col8" ng-model="article.social_title"> </i-control>
+                    <div class="col1"></div>
+
+                    <div class="col3 center">
+                        <i-image ng-model="article.social_image"></i-image>
+                        <i-checkbox class="center" label="##word.show_image##" ng-model="article.show_social_image">
+                        </i-checkbox>
                     </div>
-                    <div class="row">
-                        <i-textarea ng-model="article.social_description" label="##word.description##">
-                        </i-textarea>
-                    </div>
+                </div>
+                <div class="row">
+                    <i-textarea ng-model="article.social_description" label="##word.description##">
+                    </i-textarea>
+                </div>
             </div>
 
             <div id="external" class="tab-content">
-               
-                    <div class="row">
-                        <i-control class="col8" label="##word.title##" ng-model="article.external_title"> </i-control>
 
-                        <div class="col1"></div>
+                <div class="row">
+                    <i-control class="col8" label="##word.title##" ng-model="article.external_title"> </i-control>
 
-                        <div class="col3">
-                            <i-image ng-model="article.external_image"></i-image>
-                        </div>
+                    <div class="col1"></div>
+
+                    <div class="col3 center">
+                        <i-image ng-model="article.external_image"></i-image>
+                        <i-checkbox class="center" label="##word.show_image##" ng-model="article.show_external_image">
+                        </i-checkbox>
                     </div>
-                    <div class="row">
-                        <i-textarea ng-model="article.external_description" label="##word.description##">
-                        </i-textarea>
-                    </div>
+                </div>
+                <div class="row">
+                    <i-textarea ng-model="article.external_description" label="##word.description##">
+                    </i-textarea>
+                </div>
             </div>
 
             <div id="translation" class="tab-content">
@@ -166,7 +246,7 @@
                                 </i-list>
                                 <div class="col3 center">
                                     <br>
-                                    <i-button type="add" label="##word.create_article##" ng-click="createArticle(t)">
+                                    <i-button type="add" ng-show="t.language.id && !t.create" label="##word.create_article##" ng-click="createArticle(t)">
                                     </i-button>
                                 </div>
                                 <div class="col1"></div>
@@ -178,7 +258,8 @@
                                 </div>
 
                             </div>
-                            <div class="row">
+
+                            <div class="row" ng-show="t.language.id && t.create">
                                 <i-button type="edit" label="##word.basic_information##"
                                     ng-click="editTranslateArticle(t,'basic_information')">
                                 </i-button>
@@ -191,10 +272,8 @@
                                     ng-click="editTranslateArticle(t,'external')">
                                 </i-button>
                             </div>
-
+                            <hr>
                         </div>
-
-
 
                     </div>
 

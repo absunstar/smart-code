@@ -1,0 +1,7 @@
+[{
+    "module_name" : "public" ,
+    "name": "pay_admin",
+    "en": "Pay Admin",
+    "ar": "إدارة الدفع",
+    "permissions": ["pay_manage"]
+}]

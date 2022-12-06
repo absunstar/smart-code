@@ -13,16 +13,127 @@
             <fieldset ng-show="translate.$type == 'basic_information'">
                 <legend>##word.basic_information##</legend>
                 <div class="row">
-                    <i-control class="col9" label="##word.article_title##" ng-model="translate.title">
-                    </i-control>
-
-                    <div class="col3">
-                        <i-image ng-model="translate.image_url"></i-image>
+                    <div class="row">
+                        <i-control v="r" class="col10" label="##word.article_title##" ng-model="article.title">
+                        </i-control>
                     </div>
-                </div>
-                <div class="row" ng-show="article.type.id == 1">
-                    <i-textarea ng-model="translate.content" label="##word.content##">
-                    </i-textarea>
+                    <div class="col8">
+
+                        <div class="row" ng-show="article.type.id == 1">
+                            <i-textarea ng-model="article.content" label="##word.content##">
+                            </i-textarea>
+                        </div>
+
+                        <div class="row" ng-show="article.type.id == 2">
+                            <i-textarea ng-model="article.content" label="##word.content##">
+                            </i-textarea>
+                        </div>
+
+                        <div class="row" ng-show="article.type.id == 3">
+                            <fieldset>
+                                <legend>
+                                    <i-button type="add default" ng-click="addMultiParagraph(article)"></i-button>
+                                </legend>
+
+                                <div class="row" ng-repeat="p in article.multi_paragraph_list">
+
+                                    <div class="row">
+
+                                        <i-control v="r" class="col9" label="##word.article_title##"
+                                            ng-model="p.title">
+                                        </i-control>
+
+                                        <div class="col3 center">
+                                            <i-image class="center" ng-model="p.image_url"></i-image>
+                                            <i-checkbox class="center" label="##word.show_image##"
+                                                ng-model="p.show_image">
+                                            </i-checkbox>
+                                        </div>
+
+                                    </div>
+
+                                    <i-textarea class="row" ng-model="p.content" label="##word.content##"></i-textarea>
+
+                                    <div class="">
+                                        <i-button type="delete" label="##word.delete##"
+                                            ng-click="article.multi_paragraph_list.splice($index,1)">
+                                        </i-button>
+                                    </div>
+                                    <hr>
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <div class="row" ng-show="article.type.id == 4">
+                            <fieldset>
+                                <legend>
+                                    <i-button type="add default" ng-click="addMultiImage(article)"></i-button>
+                                </legend>
+                                <div class="row" ng-repeat="i in article.multi_image_list">
+                                    <div class="row">
+                                        <i-control v="r" class="col9" label="##word.article_title##"
+                                            ng-model="i.title">
+                                        </i-control>
+                                        <div class="col3 center">
+
+                                            <i-image class="center " ng-model="i.image_url"></i-image>
+                                            <i-checkbox class="center" label="##word.show_image##"
+                                                ng-model="i.show_image">
+                                            </i-checkbox>
+                                        </div>
+                                    </div>
+                                    <div class="">
+                                        <i-button type="delete" label="##word.delete##"
+                                            ng-click="article.multi_image_list.splice($index,1)">
+                                        </i-button>
+                                    </div>
+
+                                    <hr>
+                                </div>
+                            </fieldset>
+                        </div>
+
+                    </div>
+
+                    <div class="col4 center border-right">
+                        <div class="row center">
+                            <i-image class="center" ng-model="article.image_url"></i-image>
+                            <i-checkbox class="center" label="##word.show_image##" ng-model="article.show_image">
+                            </i-checkbox>
+                        </div>
+
+                        <div class="row">
+                            <i-checklist label="##word.clusters##" v="r" ng-model="article.clusters" items="clusterList"
+                                display="name" ng-search="article.$cluster_search">
+                            </i-checklist>
+
+                            <i-list label="##word.writer##" ng-model="article.writer" items="writersList"
+                                display="profile.name" ng-search="article.$writer_search">
+                            </i-list>
+
+                            <i-list label="##word.editor##" ng-model="article.editor" items="editorsList"
+                                display="profile.name" ng-search="article.$editor_search">
+                            </i-list>
+
+
+                        </div>
+                        <fieldset>
+
+                            <i-control label="##word.keywords##" ng-keydown="addKeyDown($event , article.$keyword)"
+                                ng-model="article.$keyword">
+                            </i-control>
+                            <div class="row">
+
+                                <div class="key-words" ng-repeat="k in article.keywords_list">
+                                    <span>{{k}}</span>
+                                    <i class="fas fa-times delete-key"
+                                        ng-click="article.keywords_list.splice($index,1)"></i>
+                                </div>
+                            </div>
+                        </fieldset>
+
+
+                    </div>
                 </div>
             </fieldset>
 
@@ -34,6 +145,8 @@
 
                     <div class="col3">
                         <i-image ng-model="translate.social_image"></i-image>
+                        <i-checkbox class="center" label="##word.show_image##" ng-model="translate.show_social_image">
+                        </i-checkbox>
                     </div>
                 </div>
                 <div class="row" >
@@ -50,6 +163,8 @@
 
                     <div class="col3">
                         <i-image ng-model="translate.external_image"></i-image>
+                        <i-checkbox class="center" label="##word.show_image##" ng-model="translate.show_external_image">
+                        </i-checkbox>
                     </div>
                 </div>
                 <div class="row" >

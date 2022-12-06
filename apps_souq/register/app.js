@@ -281,6 +281,15 @@ module.exports = function init(site) {
       country_code: req.body.country_code,
       permissions: ['user'],
       active: true,
+      notific_setting: {
+        instant_alerts : true,
+        ads_members_follow : true,
+        ads_sections_followed : true,
+        ads_searches_followed : true,
+        replies_ads_followed : true,
+        comments_my_ads : true,
+        private_messages : true,
+      },
       created_date : new Date(),
       profile: {
         files: [],

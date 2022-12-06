@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" x-permissions="pay_ui || pay_manage" data-ng-app="myApp">
+  <head x-import="haraj/head.html"></head>
+
+  <body class="##session.lang## loaded" ng-controller="pay">
+    <nav x-import="haraj/sitebar.html" class="sitebar" data-ng-controller="sitebar"></nav>
+
+    <nav class="sitebottom" x-import="haraj/sitebottom.html" ng-controller="sitebottom"></nav>
+    <div id="main-layout" class="container">
+      <div class="row">
+        <div x-permissions="pay_delete || pay_manage" x-import="pay/delete_modal.html"></div>
+        <div x-permissions="pay_view || pay_manage" x-import="pay/view_modal.html"></div>
+        <div x-permissions="pay_search || pay_manage" x-import="pay/search_all_modal.html"></div>
+
+        <div class="row">
+          <h1 class="bold text-center">##word.pay##</h1>
+        </div>
+
+        <div class="top-actions">
+          <i-button x-permissions="pay_search || pay_manage" type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
+
+          <h3 class="bold text-center">##word.count## : {{count}}</h3>
+        </div>
+
+        <table x-permissions="login" class="table bold hover loaded" id="t1">
+          <tr>
+            <th>##word.sender##</th>
+            <th>##word.receiver##</th>
+            <th>##word.rating##</th>
+            <th>##word.status##</th>
+            <th class="not-print">##word.actions##</th>
+          </tr>
+          <tr ng-repeat="c in list">
+            <td class="center title">{{c.sender.email}}</td>
+            <td class="center title">{{c.receiver.email}}</td>
+            <td class="center pre_text">{{c.notes}}</td>
+            <td class="center">
+              <p ng-show="c.approval ==true" class="green">##word.approval##</p>
+              <p ng-show="c.approval ==false" class="red">##word.reject##</p>
+              <p ng-show="c.approval == null" class="red">##word.undefined##</p>
+            </td>
+
+            <td class="center not-print">
+<!--               <i-button x-permissions="pay_view || pay_manage" type="view" label="##word.details##" ng-click="displayDetailsPay(c)"></i-button>
+ -->              <i-button x-permissions="pay_update || pay_manage" label="##word.approval##" ng-hide="c.approval" ng-click="updateApproval(c,true)"></i-button>
+              <i-button x-permissions="pay_update || pay_manage" label="##word.reject##" ng-hide="c.approval == false" ng-click="updateApproval(c,false)"></i-button>
+
+              <i-button x-permissions="pay_delete || pay_manage" type="delete" label="##word.delete##" ng-click="displayDeletePay(c)"></i-button>
+            </td>
+          </tr>
+        </table>
+        <i-button x-permissions="pay_print || pay_manage" type="print" label="##word.print##" onclick="site.print('#t1')"></i-button>
+
+        <i-button x-permissions="pay_export || pay_manage" label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'pay.xlsx')"></i-button>
+      </div>
+    </div>
+    <div id="alert" class="modal alert small">
+      <div class="modal-content">
+        <div class="modal-body">
+          <h1 ng-show="!rating.approval" class="blue center">##word.rating_reject##</h1>
+          <h1 ng-show="rating.approval" class="blue center">##word.rating_approved##</h1>
+        </div>
+      </div>
+    </div>
+    <div x-import="haraj/scripts.html"></div>
+    <script x-import="pay/index.js"></script>
+  </body>
+</html>

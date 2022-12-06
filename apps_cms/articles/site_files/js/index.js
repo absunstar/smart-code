@@ -56,7 +56,7 @@ app.controller("articles", function ($scope, $http, $timeout) {
     $scope.viewArticles(article);
     $scope.article = {};
     site.showModal('#articleUpdateModal');
-    document.querySelector("#articleAddModal .tab-link").click();
+    document.querySelector("#articleUpdateModal .tab-link").click();
   };
 
   $scope.updateArticles = function () {
@@ -413,17 +413,44 @@ app.controller("articles", function ($scope, $http, $timeout) {
     });
   };
 
+
+  $scope.addMultiParagraph = function (article) {
+    $scope.error = "";
+    article.multi_paragraph_list = article.multi_paragraph_list || [];
+    article.multi_paragraph_list.push({
+      show_image : true
+    });
+  };
+
+  $scope.addMultiImage = function (article) {
+    $scope.error = "";
+    article.multi_image_list = article.multi_image_list || [];
+    article.multi_image_list.push({
+      show_image : true
+    });
+  };
+
   $scope.createArticle = function (translate) {
     $scope.error = "";
+    translate.create = true;
     translate.title = $scope.article.title;
     translate.image_url = $scope.article.image_url;
     translate.content = $scope.article.content;
     translate.social_title = $scope.article.social_title;
     translate.social_image = $scope.article.social_image;
+    translate.show_social_image = $scope.article.show_social_image;
     translate.social_description = $scope.article.social_description;
     translate.external_title = $scope.article.external_title;
     translate.external_image = $scope.article.external_image;
+    translate.show_external_image = $scope.article.show_external_image;
     translate.external_description = $scope.article.external_description;
+    translate.multi_paragraph_list = $scope.article.multi_paragraph_list;
+    translate.multi_image_list = $scope.article.multi_image_list;
+    translate.clusters = $scope.article.clusters;
+    translate.writer = $scope.article.writer;
+    translate.editor = $scope.article.editor;
+    translate.keywords_list = $scope.article.keywords_list;
+
   };
 
   $scope.addKeyDown = function (ev,keyWord) {
