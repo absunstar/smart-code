@@ -235,7 +235,7 @@ app.controller('display_content', function ($scope, $http, $timeout) {
         $scope.error = v.messages[0].ar;
         return;
       };
-      if(!$scope.activity.report_type || !$scope.activity.report_type.id) {
+      if (!$scope.activity.report_type || !$scope.activity.report_type.id) {
         $scope.error = '##word.must_select_report_type##';
         return;
       }
@@ -247,7 +247,7 @@ app.controller('display_content', function ($scope, $http, $timeout) {
         $scope.error = v.messages[0].ar;
         return;
       };
-      if(!$scope.activity.report_type || !$scope.activity.report_type.id) {
+      if (!$scope.activity.report_type || !$scope.activity.report_type.id) {
         $scope.error = '##word.must_select_report_type##';
         return;
       }
@@ -258,7 +258,7 @@ app.controller('display_content', function ($scope, $http, $timeout) {
         $scope.error = v.messages[0].ar;
         return;
       };
-      if(!$scope.activity.report_type || !$scope.activity.report_type.id) {
+      if (!$scope.activity.report_type || !$scope.activity.report_type.id) {
         $scope.error = '##word.must_select_report_type##';
         return;
       }
@@ -274,9 +274,10 @@ app.controller('display_content', function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
+          /* $scope.ad = response.data.doc; */
           if (type == 'comment') {
             $scope.ad.comment_list.push({
-              user: { name: '##user.profile.name##', last_name: '##user.profile.last_name##', image_url: '##user.profile.image_url##' },
+              user: { name: '##user.profile.name##', id: site.toNumber('##user.id##'), last_name: '##user.profile.last_name##', image_url: '##user.profile.image_url##' },
               comment_type: $scope.activity.comment_type,
               comment: $scope.activity.comment,
               date: new Date(),

@@ -482,7 +482,7 @@ module.exports = function init(site) {
         site.content_list[i] = ad;
       }
     });
-
+    response.doc = ad;
     response.done = true;
     response.error = 'no id';
     res.json(response);
