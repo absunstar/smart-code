@@ -291,7 +291,14 @@
   
     <li class="mobile-header" x-permission="login">
       <a class="tab_link" href="/messages">
+        <span ng-show="##user.message_count## > 0" class="side-badge ng-binding">##user.message_count##</span>
         <i class="fa-solid fa-envelope"></i>
+      </a>
+    </li>
+    <li class="mobile-header" x-permission="login">
+      <a class="tab_link" href="/notific">
+        <span ng-show="##user.notific_count## > 0" class="side-badge ng-binding">##user.notific_count##</span>
+        <i class="fa-solid fa-bell space"></i>
       </a>
     </li>
 
@@ -300,13 +307,7 @@
         <i class="fa-solid fa-heart"></i>
       </a>
     </li>
-
-    <li class="mobile-header" x-permission="login">
-      <a class="tab_link" href="/notific">
-        <i class="fa-solid fa-bell space"></i>
-      </a>
-    </li>
-
+   
     <li class="mobile-header" x-permission="login">
       <a class="tab_link" href="/follow">
         <i class="fa-solid fa-rss space"></i>

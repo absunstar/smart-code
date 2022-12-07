@@ -27,6 +27,20 @@
     direction: rtl;
   }
 
+  .side-badge {
+    position: absolute;
+    bottom: 7px;
+    left: 11px;
+    font-size: x-small;
+    color: white;
+    border: solid red;
+    background-color: red;
+    border-radius: 50%;
+    text-align: center;
+    height: 18px;
+    width: 18px;
+  }
+
   .haraj_name {
     font-size: 25px;
     text-align: center;
