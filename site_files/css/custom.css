@@ -517,10 +517,6 @@ a.pro-template .description {
   .tab-link span {
     padding: 1px;
   }
-  .modal.small .modal-content,
-  .modal-content.small {
-    width: 90%;
-  }
 
 }
 
