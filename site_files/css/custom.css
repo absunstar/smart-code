@@ -88,7 +88,7 @@ a {
 }
 
 .userPrint {
-  user-select: all;
+  user-select: text;
 }
 
 .no_br_img {
@@ -522,9 +522,6 @@ a.pro-template .description {
     width: 90%;
   }
 
-  .userPrint {
-    user-select: all;
-  }
 }
 
 ._scroll {

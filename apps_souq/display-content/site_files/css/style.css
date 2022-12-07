@@ -141,7 +141,7 @@
 }
 
 .text-comment {
-  font-size: 20px;
+  font-size: 23px;
   padding: 5px;
   margin-right: 10px;
   font-family: ui-monospace;
@@ -664,9 +664,10 @@
   background-color: rgb(228, 231, 245);
 }
 
-.content-main-img img {
+.content-main-img {
   width: 100% !important;
-  height: 380px !important;
+  height: 360px !important;
+  border-radius: 0px !important;
 }
 
 .content-ad {
@@ -675,7 +676,7 @@
   padding: 15px !important;
 }
 
-.content-img img {
+.content-img {
   width: 90% !important;
   height: auto !important;
 }

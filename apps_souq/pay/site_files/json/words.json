@@ -3,5 +3,10 @@
     "name": "pay",
     "en": "Pay",
     "ar": "المدفوعات"
+  },
+  {
+    "name": "commission_transfer_form",
+    "en": "Commission transfer form",
+    "ar": "نموذج تحويل العمولة"
   }
 ]

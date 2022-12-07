@@ -6,7 +6,7 @@
       <li class="deskside-header">
         <a class="tab_link side-notification" href="/messages">
           <i class="fa-solid fa-envelope space"></i>
-          <span class="side-badge ng-binding">0</span>
+          <span ng-show="##user.message_count## > 0" class="side-badge ng-binding">##user.message_count##</span>
           <span style="min-height: 22px" id="notif1" class="notif-name"
             onmouseover="mouseoverbox1()">##word.messages##</span>
         </a>
@@ -44,11 +44,10 @@
         <img class="center border-circle" src="##user.profile.image_url##" onerror="this.src='/images/user.png'"
           alt="" />
         <br />
+        <span class="user-name font-20"> ##user.profile.name## ##user.profile.last_name## </span> <br />
       </a>
-      <span class="user-name"> </span> <br />
 
-      <span class="user-name"> ##user.profile.name## ##user.profile.last_name## </span> <br />
-      <h5 class="grayDark userPrint center">##user.email##</h5>
+      <h5 class="dimgray userPrint font-18 center">##user.email##</h5>
       <br />
       <div class="center">
         <a id="bord_edit" class="usermenu-btn center" href="/manage_user">

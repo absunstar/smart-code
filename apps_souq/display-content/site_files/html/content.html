@@ -50,8 +50,8 @@
           </div>
 
           <div class="row category">
-            <a ng-repeat="c in category_list"  href="/category/{{c.id}}/{{c.name_en}} - {{c.name_ar}}" ng-click="selectCategoryHeader(c.id)"
-              class="center bold pointer statistics">
+            <a ng-repeat="c in category_list" href="/category/{{c.id}}/{{c.name_en}} - {{c.name_ar}}"
+              ng-click="selectCategoryHeader(c.id)" class="center bold pointer statistics">
               <img class="center userad-logo" ng-src="{{c.image_url}}" onerror="this.src='/images/user.png'" alt="" />
               {{c.name_##session.lang##}}
             </a>
@@ -59,8 +59,8 @@
         </div>
 
         <div class="col1"></div>
-        <div class="col4 main-image">
-          <i-image class="content-main-img" view ng-model="ad.image_url"></i-image>
+        <div class="col4">
+          <img class="content-main-img" view ng-src="{{ad.image_url}}"/>
         </div>
       </div>
 
@@ -68,17 +68,19 @@
         <p class="text-comment gray-desc">{{ad.description}}</p>
       </div>
 
+      <hr>
+
       <div class="row padding " ng-repeat="c in ad.category_require_list">
 
         <div class="row category bg-ad center" ng-show="c.type.id == 1">
-          <b class="bold blue center font-18"> {{c.name_##session.lang##}} </b>
-          <i-image class="content-img" view ng-model="c.image_url"></i-image>
+          <p class="bold blue padding font-25"> {{c.name_##session.lang##}} </p>
+          <img class="content-img" view ng-src="{{c.image_url}}"/>
         </div>
 
 
         <div class="row bg-ad padding category" ng-show="c.type.id != 1">
           <div class="col4">
-            <b class="bold font-18 blue"> {{c.name_##session.lang##}} </b>
+            <b class="bold font-20 gray-desc blue"> {{c.name_##session.lang##}} </b>
           </div>
           <div class="col8">
             <a ng-show="c.type.id == 4" ng-repeat="link in c.files" href="{{link}}">
@@ -96,9 +98,9 @@
 
       <div class="row product-image">
         <div ng-show="ad.images_list.length > 0" class="row center padding" ng-repeat="i in ad.images_list">
-          <i-image class="content-img" ng-show="i.image_url" view ng-model="i.image_url"></i-image>
+          <img class="content-img" ng-show="i.image_url" view ng-src="{{i.image_url}}"/>
 
-          <p class="pre_text font-18 center">{{i.description}}</p>
+          <p class="pre_text font-20 gray-desc center">{{i.description}}</p>
         </div>
 
         <div ng-show="ad.videos_list.length > 0" class="row center padding" ng-repeat="i in ad.videos_list">
@@ -107,7 +109,7 @@
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen></iframe>
 
-          <p class="pre_text font-18 center">{{i.description}}</p>
+          <p class="pre_text font-20 gray-desc center">{{i.description}}</p>
         </div>
       </div>
 
@@ -115,15 +117,14 @@
           class="fa fa-phone"></i> ##word.communication##
       </button>
 
-      <button ng-click="updateFeedback('follow',true)" ng-show="user.id != ad.store.user.id && !activity.follow"
-        class="follow-button"><i class="fa-solid fa-wifi"></i>
-        ##word.follow_comments##
-      </button>
 
-      <button ng-click="updateFeedback('follow',false)" ng-show="user.id != ad.store.user.id && activity.follow"
-        class="follow-button"><i class="fa-solid fa-wifi"></i>
-        ##word.unfollow_comments##
-      </button>
+    </div>
+
+    <div class="row">
+      <div class="ad-code">
+
+        <span class="ad-code-text"><span class="userPrint">{{ad.code}}</span>#</span>
+      </div>
 
     </div>
 
@@ -160,6 +161,8 @@
         <span>##word.advertiser_disabled_replies_feature##</span>
       </div>
     </div>
+
+
 
     <div class="row bg-white content-ad" ng-hide="ad.disable_replies_feature" ng-repeat="c in ad.comment_list">
       <div class="row">
@@ -226,13 +229,29 @@
       </div>
 
     </div>
+    
+    <div class="row">
+      
+      <button ng-click="updateFeedback('follow',true)" ng-show="user.id != ad.store.user.id && !activity.follow"
+        class="follow-button"><i class="fa-solid fa-wifi"></i>
+        ##word.follow_comments##
+      </button>
 
+      <button ng-click="updateFeedback('follow',false)" ng-show="user.id != ad.store.user.id && activity.follow"
+        class="follow-button"><i class="fa-solid fa-wifi"></i>
+        ##word.unfollow_comments##
+      </button>
+    </div>
     <div class="row" x-permissions="login" ng-hide="ad.disable_replies_feature">
 
-      <p class="font-22 gray-desc margin">##word.Write_your_question_advertiser_here## <i
-          class="fa-solid fa-down-long"></i></p>
+      <p class="font-22 gray-desc margin">
+        ##word.Write_your_question_advertiser_here##
+        <i class="fa-solid fa-down-long"></i>
+      </p>
+
       <i-textarea class="input-style" ng-model="activity.comment">
       </i-textarea>
+
       <button class="send-btn center" ng-click="updateFeedback('comment')">
         <i class="fa fa-paper-plane"></i>
         ##word.send##

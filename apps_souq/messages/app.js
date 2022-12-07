@@ -139,44 +139,61 @@ module.exports = function init(site) {
     let found = false;
     let index = 0;
     site.message_list.forEach((m, i) => {
-      if (m.users_list.some((u) => u && u.id === messages_doc.sender.id) && m.users_list.some((u) =>u && u.id === messages_doc.receiver.id)) {
+      if (m.users_list.some((u) => u && u.id === messages_doc.sender.id) && m.users_list.some((u) => u && u.id === messages_doc.receiver.id)) {
         found = true;
         index = i;
       }
     });
 
-    if (found) {
-      let message = site.message_list.find((_msg, i) => {
-        return index === i;
-      });
+    site.security.getUser(
+      {
+        id: messages_doc.receiver.id
+      },
+      (err, receiver_doc) => {
+        if (!err && receiver_doc) {
+          if (found) {
+            let message = site.message_list.find((_msg, i) => {
+              return index === i;
+            });
 
-      message.messages_list.push({
-        date: new Date(),
-        message: req.body.message,
-        user_id: messages_doc.sender.id,
-        show: false,
-      });
-      message.$update = true;
-      message.$message = req.body.message;
-      message.$user_id = req.session.user.id;
-      site.message_list[index] = message;
-      response.doc = site.message_list[index];
-    } else {
-      let msg_doc = {
-        users_list: [messages_doc.sender, messages_doc.receiver],
-        messages_list: [
-          {
-            date: new Date(),
-            message: req.body.message,
-            user_id: messages_doc.sender.id,
-            show: false,
-          },
-        ],
-      };
-      msg_doc.$add = true;
-      msg_doc.$message = req.body.message;
-      site.message_list.push(msg_doc);
-    }
+            message.messages_list.push({
+              date: new Date(),
+              message: req.body.message,
+              user_id: messages_doc.sender.id,
+              show: false,
+            });
+            message.$update = true;
+            message.$message = req.body.message;
+            message.$user_id = req.session.user.id;
+            site.message_list[index] = message;
+            response.doc = site.message_list[index];
+            receiver_doc.message_count = receiver_doc.message_count || 0;
+            receiver_doc.message_count += 1;
+          } else {
+            let msg_doc = {
+              users_list: [messages_doc.sender, messages_doc.receiver],
+              messages_list: [
+                {
+                  date: new Date(),
+                  message: req.body.message,
+                  user_id: messages_doc.sender.id,
+                  show: false,
+                },
+              ],
+            };
+            msg_doc.$add = true;
+            msg_doc.$message = req.body.message;
+            site.message_list.push(msg_doc);
+            receiver_doc.message_count = receiver_doc.message_count || 0;
+            receiver_doc.message_count += 1;
+          }
+          site.security.updateUser(receiver_doc);
+
+          response.done = true;
+          res.json(response);
+        }
+      })
+
     // } else {
     //   messages_doc.$update = true;
     //   messages_doc.$message = req.body.message;
@@ -186,8 +203,7 @@ module.exports = function init(site) {
     //     }
     //   });
     // }
-    response.done = true;
-    res.json(response);
+
   });
 
   site.post('/api/messages/user_data', (req, res) => {
@@ -234,25 +250,37 @@ module.exports = function init(site) {
     }
 
     let messages_doc = req.body;
-    site.message_list.forEach((a, i) => {
-      if (a.id === messages_doc.id) {
-        let found_update = false;
-        site.message_list[i].messages_list.forEach((_m) => {
-          if (_m.user_id != req.session.user.id) {
-            _m.show = true;
-            found_update = true;
-          }
-        });
-        if (found_update) {
-          site.message_list[i].$show = true;
-          site.message_list[i].$update = true;
+    let user_receiver = messages_doc.users_list.find(el => el.id == req.session.user.id);
+    site.security.getUser(
+      {
+        id: user_receiver.id
+      },
+      (err, receiver_doc) => {
+        if (!err && receiver_doc) {
+          site.message_list.forEach((a, i) => {
+            if (a.id === messages_doc.id) {
+              let found_update = false;
+              site.message_list[i].messages_list.forEach((_m) => {
+                if (_m.user_id != req.session.user.id && !_m.show) {
+                  _m.show = true;
+                  found_update = true;
+                  if(receiver_doc.message_count){
+                    receiver_doc.message_count -= 1;
+                  }
+                }
+              });
+              if (found_update) {
+                site.message_list[i].$show = true;
+                site.message_list[i].$update = true;
+              }
+              response.doc = site.message_list[i];
+            }
+          });
+          site.security.updateUser(receiver_doc);
+          response.done = true;
+          res.json(response);
         }
-        response.doc = site.message_list[i];
-      }
-    });
-
-    response.done = true;
-    res.json(response);
+      });
   });
 
   site.post('/api/messages/view', (req, res) => {

@@ -141,9 +141,11 @@
     </a>
 
     <div class="row">
-
-      <i-image class="col3 img-style" help-id="ads_logo" ng-model="ad.image_url"></i-image>
-
+      <div class="col1"></div>
+      <div class="col3 center">
+        <i-image class="img-style" help-id="ads_logo" ng-model="ad.image_url"></i-image>
+      </div>
+        
     </div>
 
     <i-button label="##word.continuation##" class="btn-ad" fa="battery-three-quarters" ng-click="doneSelectMainImage()">
@@ -162,7 +164,10 @@
     </a>
 
     <div class="row">
-      <i-image class="col3 img-style" help-id="ads_logo" ng-model="ad.$image.image_url"></i-image>
+      <div class="col3 center">
+
+        <i-image class=" img-style" help-id="ads_logo" ng-model="ad.$image.image_url"></i-image>
+      </div>
       <i-textarea class="col6 input-style" label="##word.photo_description##" ng-model="ad.$image.desc"></i-textarea>
       <div class="col1"></div>
       <i-button class="col3" type="add" label="##word.add_to_photos##"

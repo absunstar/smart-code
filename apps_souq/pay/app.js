@@ -14,6 +14,13 @@ module.exports = function init(site) {
     compress: true,
   });
 
+  site.get({
+    name: 'commission_form',
+    path: __dirname + '/site_files/html/index.html',
+    parser: 'html',
+    compress: true,
+  });
+
   site.post('/api/pay/add', (req, res) => {
     let response = {
       done: false,

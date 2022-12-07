@@ -13,8 +13,8 @@
     <div class="modal-body">
       <div class="row center">
 
-        <i-image ng-show="viewText === 'logo'" ng-model="manage_user.profile.image_url"> </i-image>
-        <i-image ng-show="viewText === 'cover'" ng-model="manage_user.profile.cover"> </i-image>
+        <i-image class="img-style" ng-show="viewText === 'logo'" ng-model="manage_user.profile.image_url"> </i-image>
+        <i-image class="img-style" ng-show="viewText === 'cover'" ng-model="manage_user.profile.cover"> </i-image>
 
         <i-control class="input-style" ng-show="viewText === 'name'" label="##word.the_name##"
           ng-model="manage_user.profile.name_ar"> </i-control>
@@ -46,9 +46,9 @@
 
       </div>
 
-      <div class="row">
+      <div class="row" ng-show="viewText === 'mobile'">
         <div class="row">
-          <i-control class="input-style col8" type="tel" ng-show="viewText === 'mobile'" label="##word.mobile##"
+          <i-control class="input-style col8" type="tel"  label="##word.mobile##"
             ng-model="manage_user.mobile"> </i-control>
 
           <div class="col4">
@@ -60,7 +60,7 @@
         <fieldset>
           <legend> ##word.other_mobile_numbers## </legend>
 
-          <div class="row" ng-show="viewText === 'mobile'">
+          <div class="row">
             <i-control class="input-style col8" type="tel" label="##word.mobile##" ng-model="manage_user.$mobile">
             </i-control>
             <div class="col4">

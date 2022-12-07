@@ -41,7 +41,7 @@ module.exports = function init(site) {
     lastCode++
     site.storage('content_last_code_' + user_id, lastCode)
     site.storage('content_last_month_' + user_id, lastMonth)
-    return user_id + '.' + y + lastMonth + addZero(d, 2) + addZero(lastCode, 4)
+    return user_id  + y + lastMonth + addZero(d, 2) + addZero(lastCode, 4)
   }
 
   setInterval(() => {

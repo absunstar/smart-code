@@ -370,6 +370,9 @@ module.exports = function init(site) {
         a.$delete = true;
       }
     });
+
+    req.session.user.notific_count = 0;
+    site.security.updateUser(req.session.user)
     response.done = true;
     res.json(response);
   });

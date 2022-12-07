@@ -303,7 +303,7 @@
   }
 
   .userPrint {
-    user-select: all;
+    user-select: text;
   }
 
   .user-menu .link {

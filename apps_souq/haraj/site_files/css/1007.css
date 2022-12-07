@@ -110,11 +110,7 @@ div.scrollmenu a:hover {
   font-size: large;
 }
 
-.ellipsis-txt {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
+
 
 .tagheader {
   margin-top: 20px;
@@ -140,8 +136,9 @@ div.scrollmenu a:hover {
 
 .follow-button {
   padding: 7px 20px 7px 20px;
-  margin: 0px 20px 4px 1px;
+  margin: 10px 20px 0px 0px;
   border-radius: 10px;
+  float: left;
   font-size: 20px;
   cursor: pointer;
   border: 2px solid #000c80;
@@ -156,7 +153,7 @@ div.scrollmenu a:hover {
 }
 
 .fms_title {
-  font-size: 1.1em;
+  font-size: 1.2em;
   color: #929aaa;
 }
 
@@ -567,7 +564,7 @@ img {
   }
 
   .userPrint {
-    user-select: all;
+    user-select: text;
   }
 
   #bord_edit:hover {

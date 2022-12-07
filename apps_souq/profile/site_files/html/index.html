@@ -61,17 +61,20 @@
     .profile-parent {
       border-radius: 10px;
     }
+    .margin-top-40 {
+      margin-top: 40px !important;
+    }
 
     .online-badge {
-      width: 20px;
-      height: 20px;
-      background: #2fdb6b;
-      display: block;
-      position: absolute;
-      margin-top: -84px;
-      margin-right: 52%;
-      border-radius: 50%;
-    }
+    width: 20px;
+    height: 20px;
+    background: #2fdb6b;
+    display: block;
+    position: absolute;
+    margin-top: -31px;
+    margin-right: 53%;
+    border-radius: 50%;
+}
 
     .offline-badge {
       background: rgb(121, 131, 152) !important;
@@ -204,10 +207,6 @@
       border-radius: 10px;
     }
 
-    .dimgray {
-      color: dimgray;
-    }
-
     .green-color {
       color: #30d158;
     }
@@ -244,24 +243,26 @@
     }
 
     .user-cover {
-      width: 256px !important;
-      height: 256px !important;
-      border: none;
-      border-radius: 5px;
-      background: #ca353500;
-      z-index: 9999;
-      margin-top: -50px;
-      margin-right: 40%;
-      display: block;
-    }
+    width: 256px !important;
+    height: 256px !important;
+    border: none;
+    border-radius: 50%;
+    background: #ca353500;
+    z-index: 9999;
+    margin-top: -50px;
+    margin-right: 42%;
+    display: block;
+}
 
     @media screen and (max-width: 480px) {
       .user-background img {
         height: 200px;
       }
+
       .info-profile-margin {
-      margin-top: 0px !important;
-    }
+        margin-top: 0px !important;
+      }
+
       .user-cover {
         margin-top: -200px !important;
 
@@ -277,14 +278,14 @@
 
     @media screen and (max-width: 600px) {
       .user-cover {
-        width: 256px !important;
-        height: 150px !important;
+        width: 130px !important;
+        height: 130px !important;
         border: none;
-        border-radius: 5px;
+        border-radius: 50%;
         background: #ca353500;
         z-index: 9999;
         margin-top: 0px;
-        margin-right: 10%;
+        margin-right: 32%;
         display: block;
       }
     }
@@ -333,8 +334,7 @@
 
       <div class="row">
         <i-image class="user-background" view ng-model="user.profile.cover"></i-image>
-        <i-image class="user-cover" view logo ng-model="user.profile.image_url">
-        </i-image>
+        <img class="user-cover" view logo ng-src="{{user.profile.image_url}}" />
         <span class="online-badge" ng-class="{'offline-badge' : !user.$isOnline}"></span>
       </div>
       <div class="row info-profile-margin">
@@ -350,7 +350,7 @@
         </div>
 
         <div class="col8">
-          <div class="ad-user center">
+          <div class="ad-user margin-top-40 center">
 
             <h1 class="user-name-stlye font-28 center">
               {{user.profile.name}} {{user.profile.last_name}}

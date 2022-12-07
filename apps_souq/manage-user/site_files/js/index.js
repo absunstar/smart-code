@@ -566,50 +566,6 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
   $scope.displayAddAd = function () {
     window.open(`/create_content`, '_top');
   };
-  /*  $scope.displayAddAd = function () {
-    $scope.error = '';
-    $scope.ad = {
-      mobile: $scope.manage_user.mobile,
-      feedback_list: [],
-      set_price: 'no',
-      ad_rating: 0,
-      number_views: 0,
-      number_comments: 0,
-      number_favorites: 0,
-      number_reports: 0,
-      priority_level: 0,
-      active: true,
-    };
-    if ($scope.defaultSettings.content) {
-      if ($scope.defaultSettings.content.status) {
-        $scope.ad.ad_status = $scope.defaultSettings.content.status;
-      } else {
-        $scope.ad.ad_status = {
-          id: 2,
-          en: 'Under review',
-          ar: 'قيد المراجعة',
-        };
-      }
-      if ($scope.defaultSettings.content.quantities_can_be_used) {
-        $scope.ad.quantity_list = [
-          {
-            price: 0,
-            discount: 0,
-            discount_type: 'number',
-            net_value: 0,
-            available_quantity: 0,
-            maximum_order: 0,
-            minimum_order: 0,
-          },
-        ];
-      }
-      if ($scope.defaultSettings.content.upload_photos) {
-        $scope.ad.images_list = [{}];
-      }
-      $scope.ad.image_url = $scope.defaultSettings.content.default_image_ad || '/images/content.png';
-    }
-    site.showModal('#adAddModal');
-  }; */
 
   $scope.viewCategories = function (c) {
     $scope.category = c;
@@ -623,108 +579,9 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
     }
   };
 
-  $scope.addAd = function () {
-    $scope.error = '';
-    const v = site.validated('#adAddModal');
-    if (!v.ok) {
-      $scope.error = v.messages[0].ar;
-      return;
-    }
 
-    if (!$scope.defaultSettings.stores_settings.activate_stores) {
-      if ($scope.address.select_main) {
-        $scope.ad.address = $scope.address.main;
-      } else if ($scope.address.select_new) {
-        $scope.ad.address = $scope.address.new;
-      } else {
-        $scope.address.other_list = $scope.address.other_list || [];
-        $scope.address.other_list.forEach((_other) => {
-          if (_other.$select_address) {
-            $scope.ad.address = { ..._other };
-          }
-        });
-      }
-    } else if ($scope.ad.store) {
-      $scope.ad.address = $scope.ad.store.address;
-    }
 
-    $scope.busy = true;
-    $http({
-      method: 'POST',
-      url: '/api/contents/add',
-      data: $scope.ad,
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          if (!$scope.defaultSettings.stores_settings.activate_stores) {
-            $scope.address = {};
-          }
-          site.hideModal('#adAddModal');
-          $scope.getMyAdsList();
-        } else {
-          $scope.error = response.data.error;
-          if (response.data.error.like('*Must Enter Code*')) {
-            $scope.error = '##word.must_enter_code##';
-          } else if (response.data.error.like('*maximum number of adds exceeded*')) {
-            $scope.error = '##word.err_maximum_adds##';
-          }
-        }
-      },
-      function (err) {
-        console.log(err);
-      }
-    );
-  };
 
-  $scope.displayUpdateAd = function (ad) {
-    $scope.error = '';
-    $scope.viewAd(ad);
-    $scope.ad = {};
-    site.showModal('#adUpdateModal');
-  };
-
-  $scope.updateAd = function () {
-    $scope.error = '';
-    const v = site.validated('#adUpdateModal');
-    if (!v.ok) {
-      $scope.error = v.messages[0].ar;
-      return;
-    }
-    if ($scope.ad.store) {
-      $scope.ad.address = $scope.ad.store.address;
-    }
-
-    if ($scope.defaultSettings.content.status) {
-      $scope.ad.ad_status = $scope.defaultSettings.content.status;
-    } else {
-      $scope.ad.ad_status = {
-        id: 2,
-        en: 'Under review',
-        ar: 'قيد المراجعة',
-      };
-    }
-
-    $scope.busy = true;
-    $http({
-      method: 'POST',
-      url: '/api/contents/update',
-      data: $scope.ad,
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          site.hideModal('#adUpdateModal');
-          $scope.getMyAdsList();
-        } else {
-          $scope.error = 'Please Login First';
-        }
-      },
-      function (err) {
-        console.log(err);
-      }
-    );
-  };
 
   $scope.displayDetailsAd = function (ad) {
     $scope.error = '';
