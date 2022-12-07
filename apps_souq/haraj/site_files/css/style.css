@@ -259,12 +259,13 @@ i-image img:hover {
 }
 
 .haraj_logo {
-  height: 60px;
+  height: 48px;
   border-radius: 5px;
 }
 
 .haraj_name {
   padding-left: 10px;
+  padding-right: 10px;
 }
 
 .loaded {
