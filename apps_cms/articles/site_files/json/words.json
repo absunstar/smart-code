@@ -12,12 +12,12 @@
     {
         "name": "articles_new",
         "en": "New Article",
-        "ar": "خبر جديد"
+        "ar": "أضافة خبر جديد"
     },
     {
         "name": "articles_add",
         "en": "Add Article",
-        "ar": "إضافة خبر "
+        "ar": "خبر جديد"
     },
     {
         "name": "articles_edit",

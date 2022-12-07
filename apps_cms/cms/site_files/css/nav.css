@@ -25,14 +25,14 @@ nav .brand .title .fa {
   margin-right: 20px;
 }
 
-nav .brand .title a {
+nav .brand a.title {
   font-size: 22px;
   font-weight: bold;
   color: var(--brand-color);
   text-decoration: none;
 }
 
-nav .brand .title a span {
+nav .brand a.title span {
   font-size: 12px;
   color: #ffffff;
 }
@@ -61,52 +61,6 @@ nav .links ul li {
 
 nav .links ul li a {
   color: #030303;
-}
-
-.main-menu {
-  opacity: 1;
-  position: fixed;
-  display: block;
-  z-index: 999999999;
-  width: auto;
-  right: 0px;
-  top: 45px;
-  bottom: 24px;
-  text-align: center;
-  background: var(--theme-color);
-  transition: all 0.5s ease;
-  padding: 20px;
-  min-width: 250px;
-  overflow: auto;
-}
-
-.en .main-menu {
-  left: 0px;
-  right: auto;
-}
-
-a i {
-  margin: 0px 0px 0px 10px;
-}
-
-.menu-item {
-  display: block !important;
-  margin: 0px 0px 10px 0px !important;
-}
-
-.menu-item {
-  display: block !important;
-  margin: 0px 0px 10px 0px !important;
-}
-
-.menu-item a {
-  color: #fff !important;
-  text-decoration: none;
-  padding: 10px;
-  transition: all 0.2s ease;
-}
-.menu-item a:hover {
-  padding-right: 20px;
 }
 
 .user-menu {

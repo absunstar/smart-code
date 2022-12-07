@@ -1,0 +1,50 @@
+.main-menu {
+  opacity: 1;
+  position: fixed;
+  display: block;
+  z-index: 999999999;
+  width: auto;
+  right: 0px;
+  top: 45px;
+  bottom: 24px;
+  text-align: center;
+  background: #fff;
+  padding: 20px;
+  min-width: 250px;
+  overflow: auto;
+}
+
+.en .main-menu {
+  left: 0px;
+  right: auto;
+}
+
+a i {
+  margin: 0px 0px 0px 10px;
+}
+
+.menu-item {
+  display: block !important;
+  margin: 5px 5px 10px 5px !important;
+}
+
+.menu-item {
+  display: block !important;
+  margin: 0px 0px 5px 0px !important;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.menu-item a {
+  color: #272727 !important;
+  text-decoration: none;
+  padding: 10px;
+  transition: all 0.3s ease;
+}
+.menu-item a:hover {
+  padding-right: 25px;
+}
+
+#menu-btn {
+  display: none;
+}

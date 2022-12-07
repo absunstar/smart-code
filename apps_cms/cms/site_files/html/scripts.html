@@ -4,14 +4,13 @@
   site.feature = (f) => site.features.indexOf(f) !== -1;
 </script>
 
-
 <script x-import="cms/sitebar.js"></script>
 <script x-import="cms/sitebottom.js"></script>
 <script x-import="cms/footer_herag.js"></script>
 <script x-import="0/directive.js"></script>
 
 <script x-permission="login">
-  fetch('/api/user/update-visit-date')
+  fetch('/api/user/update-visit-date');
 </script>
 
 <script>
@@ -91,65 +90,10 @@
       $canfocus.eq(index).focus();
     }
   });
-
-  function string_to_buffer(s) {
-    if (typeof ArrayBuffer !== 'undefined') {
-      var buf = new ArrayBuffer(s.length);
-      var view = new Uint8Array(buf);
-      for (var i = 0; i != s.length; ++i) view[i] = s.charCodeAt(i) & 0xff;
-      return buf;
-    } else {
-      var buf = new Array(s.length);
-      for (var i = 0; i != s.length; ++i) buf[i] = s.charCodeAt(i) & 0xff;
-      return buf;
-    }
-  }
-
-  function export_to_xlsx(id, _fileName) {
-    _fileType = 'xlsx';
-    var workbook = XLSX.utils.table_to_book(document.getElementById(id), {
-      sheet: 'Sheet JS',
-    });
-    var wbout = XLSX.write(workbook, {
-      bookType: _fileType,
-      bookSST: true,
-      type: 'binary',
-    });
-    var fileName = _fileName || 'file.' + _fileType;
-    try {
-      saveAs(
-        new Blob([string_to_buffer(wbout)], {
-          type: 'application/octet-stream',
-        }),
-        fileName
-      );
-    } catch (e) {
-      if (typeof console != 'undefined') console.log(e);
-    }
-    return wbout;
-  }
 </script>
 
 <script>
-  var isMenuShow = false;
-
   function showMenu() {
-    let menu = document.querySelector('.main-menu');
-    let body = document.querySelector('body');
-    if (isMenuShow) {
-      if (menu) {
-        menu.classList.remove('menu-show');
-      }
-      body.classList.remove('menu-show');
-      isMenuShow = false;
-      $('.tooltip').addClass('tooltip2');
-    } else {
-      $('.tooltip').removeClass('tooltip2');
-      if (menu) {
-        menu.classList.add('menu-show');
-      }
-      body.classList.add('menu-show');
-      isMenuShow = true;
-    }
+    $('.main-menu').toggle(200);
   }
 </script>

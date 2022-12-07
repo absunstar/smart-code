@@ -1,0 +1,13 @@
+@media screen and (max-width: 480px) {
+  body {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .main-menu {
+    display: none;
+  }
+  #menu-btn{
+    display: inline-block;
+    vertical-align: super;
+  }
+}

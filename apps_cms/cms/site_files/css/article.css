@@ -1,0 +1,22 @@
+.article-part {
+    padding: 10px;
+    border: 2px dashed var(--theme-color);
+    margin-bottom: 10px !important;
+    border-radius: 10px;
+    color: #000;
+    text-align: center;
+}
+.article-part i-checklist .title {
+  font-weight: bold;
+  font-size: 20px;
+  color: #272727;
+}
+.article-part label{
+    font-size: 14px;
+}
+.article-editor{
+    border: 2px dashed var(--theme-color);
+    color: #000;
+    border-radius: 10px;
+    padding: 10px;
+}
