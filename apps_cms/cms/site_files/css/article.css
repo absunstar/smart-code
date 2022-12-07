@@ -1,6 +1,6 @@
 .article-part {
     padding: 10px;
-    border: 2px dashed var(--theme-color);
+    border: 2px solid var(--theme-color);
     margin-bottom: 10px !important;
     border-radius: 10px;
     color: #000;
@@ -15,8 +15,9 @@
     font-size: 14px;
 }
 .article-editor{
-    border: 2px dashed var(--theme-color);
+    border: 2px solid var(--theme-color);
     color: #000;
     border-radius: 10px;
     padding: 10px;
+    margin-bottom: 30px !important;
 }

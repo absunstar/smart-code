@@ -10,7 +10,7 @@
   text-align: center;
   background: #fff;
   padding: 20px;
-  min-width: 250px;
+  min-width: var(--menu-width);
   overflow: auto;
 }
 
@@ -44,7 +44,17 @@ a i {
 .menu-item a:hover {
   padding-right: 25px;
 }
-
+.en .menu-item a:hover {
+    padding-left: 25px;
+  }
 #menu-btn {
   display: none;
+}
+.menu-item2{
+    margin-right: 20px !important;
+    margin-left: 0px !important;
+}
+.en .menu-item2{
+    margin-left: 20px !important;
+    margin-right: 0px;
 }

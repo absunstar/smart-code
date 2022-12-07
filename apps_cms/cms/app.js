@@ -36,6 +36,7 @@ module.exports = function init(site) {
       __dirname + '/site_files/css/public.css',
       __dirname + '/site_files/css/nav.css',
       __dirname + '/site_files/css/main-menu.css',
+      __dirname + '/site_files/css/user-menu.css',
       __dirname + '/site_files/css/article.css',
       __dirname + '/site_files/css/mobile.css',
     ],

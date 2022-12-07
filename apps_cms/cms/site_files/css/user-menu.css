@@ -1,0 +1,91 @@
+.user-info > a {
+  display: inline;
+  float: left;
+  margin-left: 10px;
+  background: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: var(--theme-color);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.user-info a:hover {
+  transform: scale(1.1);
+}
+.en .user-info a,
+.en .user-info > img {
+  float: right;
+}
+.user-info > img {
+  float: left;
+  cursor: pointer;
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+  box-shadow: 1px 1px 5px 2px #fff;
+  margin: 0px;
+  object-fit: contain;
+  mix-blend-mode: luminosity;
+}
+
+.user-info > .btn {
+  display: block;
+  text-align: center;
+  margin: 5px;
+  background: white;
+}
+.user-info:in-range(span, p) {
+  overflow-wrap: break-word;
+  color: #fff;
+}
+
+.user-menu {
+  display: none;
+  position: fixed;
+  width: auto;
+  max-width: 350px;
+  left: 0px;
+  top: 45px;
+  bottom: auto;
+  padding: 15px;
+  text-align: center;
+  border-top: none;
+  background: var(--theme-color);
+  border-radius: 0px 0px 50px 0px;
+  overflow: hidden;
+}
+
+.en .user-menu {
+  right: 5px;
+  left: auto;
+}
+.user-menu > a {
+  display: block;
+  margin-left: 10px;
+  margin-bottom: 20px;
+  background: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: var(--theme-color);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.user-menu > img {
+  width: 128px;
+  height: 128px;
+  margin-bottom: 20px;
+  object-fit: contain;
+}
+
+.user-menu .user-email {
+  color: #8bc34a;
+  background: transparent;
+  text-align: center;
+  font-style: italic;
+}
+.user-menu .user-name {
+  color: #fff;
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+}

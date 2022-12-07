@@ -1,25 +1,29 @@
 :root {
-  --brand-color: #ffeb3b;
+  --theme-color: #607d8b;
+  --brand-color: #8bc34a;
+  --body-background: #fafafa;
+  --bs-body-bg: var(--body-background);
   --tabs-content-width: 100%;
   --scrollbar-background-color: var(--theme-color);
   --scrollbar-box-shadow: inset 0 0 1px #000;
-  --scrollbar-outline : none;
+  --scrollbar-outline: none;
   --scrollbar-width: 5px;
   --bs-font-sans-serif: Arabic, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', 'Liberation Sans', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
     'Segoe UI Symbol', 'Noto Color Emoji';
   --treeview-color2: var(--theme-color);
   --treeview-background-color2: var(--brand-color);
-  --i-image-border : none;
+  --i-image-border: none;
+  --menu-width : 320px;
 }
 
 body {
   margin-top: 100px;
-  margin-right: 250px;
+  margin-right: var(--menu-width);
   margin-left: 0px;
 }
 body.en {
   margin-top: 100px;
-  margin-left: 250px;
+  margin-left: var(--menu-width);
   margin-right: 0px;
 }
 i-checkbox {
@@ -40,6 +44,9 @@ legend > i-checkbox {
 
 .modal-header h2 {
   text-align: center;
+}
+.modal-content {
+  background: var(--body-background);
 }
 
 .border-right {
