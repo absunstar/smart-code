@@ -24,20 +24,20 @@ app.controller('pay', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.updateApproval = function (rating, type) {
+  $scope.updateApproval = function (pay, type) {
     $scope.error = '';
-    $scope.rating = rating;
+    $scope.pay = pay;
     if (type == true) {
-      $scope.rating.approval = true;
+      $scope.pay.approval = true;
     } else if (type == false) {
-      $scope.rating.approval = false;
+      $scope.pay.approval = false;
     }
 
     $scope.busy = true;
     $http({
       method: 'POST',
       url: '/api/pay/update',
-      data: $scope.rating,
+      data: $scope.pay,
     }).then(
       function (response) {
         $scope.busy = false;

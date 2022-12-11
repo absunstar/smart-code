@@ -48,6 +48,16 @@ svg#Layer_1 {
   margin: 25px 10px 12px 13px !important;
 }
 
+.clock {
+  position: relative;
+  bottom: 16px;
+  left: 111px;
+}
+
+.img-clock {
+  height: 293px;
+}
+
 .img-style img {
   border-radius: 13px;
   border: solid;
@@ -55,7 +65,7 @@ svg#Layer_1 {
   min-width: 256px;
 }
 
-.ad-code-text{
+.ad-code-text {
   border: 1px solid #cecece;
   padding: 10px;
   background: #e6e6e6;
@@ -70,6 +80,7 @@ svg#Layer_1 {
   margin-left: 7px !important;
   text-overflow: ellipsis;
 }
+
 .ar .ellipsis-txt {
   margin-right: 7px !important;
 
@@ -150,6 +161,10 @@ i-country span {
   border-radius: 50%;
   box-shadow: 1px 1px 5px 2px #fff;
   margin: -5px 10px -5px 0px !important;
+}
+
+.files {
+  border: 2px solid var(--modal-header-background-color);
 }
 
 .color-theme {

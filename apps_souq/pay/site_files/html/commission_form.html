@@ -1,38 +1,324 @@
 <!DOCTYPE html>
-<html lang="en"  data-ng-app="myApp">
-  <head x-import="haraj/head.html"></head>
+<html lang="en" data-ng-app="myApp">
 
-  <body class="##session.lang## loaded" ng-controller="pay">
-    <nav x-import="haraj/sitebar.html" class="sitebar" data-ng-controller="sitebar"></nav>
+<head>
+  <title>##setting.title## | ##data.name##</title>
+  <link rel="icon" type="image/x-icon" href="##data.image_url##">
+  <meta name="description" content="##data.description##">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/haraj.css" />
+  <link rel="stylesheet" href="/x-css/all.css" />
+  <link rel="stylesheet" href="/x-css/font-cairo.css" />
+  <style>
+    * {
+      max-width: initial;
+    }
 
-    <nav class="sitebottom" x-import="haraj/sitebottom.html" ng-controller="sitebottom"></nav>
-    <div id="main-layout" class="container">
+    .reply-comment {
+      display: none;
+    }
+
+    .reply {
+      font-size: 20px;
+      border: 2px solid #b4b4b4;
+      border-radius: 25px;
+      background: #f4f4f4;
+      color: #5f5f5f;
+      padding: 0px 13px 0px 13px;
+      margin: 5px;
+    }
+
+    .send-reply-btn {
+      font-size: 20px;
+      border: 3px solid #b4b4b4;
+      border-radius: 25px;
+      background: #f4f4f4;
+      color: #5f5f5f;
+      cursor: pointer;
+      padding: 10px 15px 10px 15px;
+    }
+
+    b {
+      overflow-wrap: anywhere;
+    }
+
+    .line-through {
+      text-decoration: line-through;
+    }
+
+    .userad-logo {
+      border-radius: 50%;
+      height: 25px;
+      width: 25px;
+      margin: -5px 10px -5px 0px !important
+    }
+
+    .selling-price {
+      border: 1px solid;
+      border-radius: 10px;
+      padding-bottom: 18px !important;
+      border: 1px solid #ddd;
+    }
+
+    .selling-price p {
+      margin-top: 30px;
+      font-size: 20px;
+      text-align: center;
+    }
+
+    .selling-price input {
+      text-align: center;
+      direction: ltr;
+      margin-top: 30px;
+      color: black;
+      font-weight: bold;
+      font-size: 22px;
+      border: none;
+    }
+
+    .commission-price {
+      border: 1px solid #f8faff;
+      border-radius: 10px;
+      padding-bottom: 18px !important;
+      background: #f8faff;
+    }
+
+    .commission-price p {
+      margin-top: 25px;
+      font-size: 22px;
+      text-align: center;
+      color: #8d8d8d;
+      font-family: system-ui;
+    }
+
+    .commission-due {
+      color: #009688 !important;
+      font-size: 30px !important;
+      margin-top: 8px !important;
+      font-weight: bold;
+    }
+
+    .bank-account {
+      border: 1px solid white;
+      display: inline-block;
+      margin: 35px;
+      background: white;
+      padding: 20px;
+      height: 180px;
+      border-radius: 10px;
+      width: 460px;
+    }
+
+    .bank-account img {
+      height: 30px;
+      width: 40px;
+      float: left;
+    }
+
+    .account-number {
+      color: #009688;
+      font-size: 20px;
+      display: inherit;
+    }
+
+    .iban {
+      color: #959595;
+      font-size: 20px;
+      display: inherit;
+    }
+
+    .bank-account-name {
+      font-size: 21px;
+      float: left;
+      font-family: system-ui;
+      font-weight: bold;
+    }
+
+    input {
+      border: 1px solid #d2d2d2;
+      border-radius: 10px !important;
+    }
+
+    .dropdown-text {
+      border-radius: 10px !important;
+    }
+
+    .send-btn {
+      width: 35% !important;
+    }
+
+    .user-name-pay {
+      margin-right: 40px;
+      font-size: 22px;
+      color: #009688;
+      font-weight: bold;
+    }
+
+    .user-name-txt {
+      margin: 12px;
+      font-size: 16px;
+    }
+
+    :root {
+      --body-margin-top: 0px;
+      --body-margin-bottom: 0px;
+      --zoom: 100%;
+      --fieldset-border: none;
+      --fieldset-background: #fff;
+    }
+
+    body {
+      background-color: #ecf5f2 !important;
+      /*       background-image: url(/assets/palm.svg) !important;
+ */
+      background-repeat: repeat !important;
+    }
+  </style>
+  <style x-lang="ar">
+    .nav1 {
+      flex-direction: initial;
+      padding: 7px;
+    }
+
+    :root {
+      --direction: rtl;
+      --text-align: right;
+      --float: right;
+    }
+  </style>
+  <style x-import="display-content/style.css"></style>
+</head>
+
+
+
+<body class="##session.lang## loaded" ng-controller="commission_form">
+  <div x-import="haraj/header.html"></div>
+
+  <div id="main-layout" class="container">
+    <div class="row">
+      <div x-permissions="pay_delete || pay_manage" x-import="pay/delete_modal.html"></div>
+      <div x-permissions="pay_view || pay_manage" x-import="pay/view_modal.html"></div>
+      <div x-permissions="pay_search || pay_manage" x-import="pay/search_all_modal.html"></div>
+
+
+      <div class="row bg-white">
+        <h1 class="bold color-theme text-center">##word.commission_account##</h1>
+
+        <div class="col4"></div>
+        <div class="col4">
+          <div class="row selling-price ">
+            <div class="col6">
+              <p>##word.enter_selling_price##</p>
+            </div>
+            <div class="col6">
+              <input type="text" ng-change="calc()" name="total" maxlength="15" autocorrect="off" inputmode="numeric"
+                autocomplete="off" placeholder="15000" value="" ng-model="price">
+            </div>
+          </div>
+
+          <div class="row commission-price">
+            <div class="col6">
+              <p>##word.commission_due##</p>
+            </div>
+            <div class="col6">
+              <p class="commission-due">{{commission_due}}</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <br>
+      <br>
+      <br>
+      <br>
+
       <div class="row">
-        <div x-permissions="pay_delete || pay_manage" x-import="pay/delete_modal.html"></div>
-        <div x-permissions="pay_view || pay_manage" x-import="pay/view_modal.html"></div>
-        <div x-permissions="pay_search || pay_manage" x-import="pay/search_all_modal.html"></div>
+        <div class="row">
+          <div class="bank-account" ng-repeat="b in defaultSettings.bank_account_list">
+            <img class="" loading="lazy" ng-src="{{b.image_url}}" />
+            <p class="">##word.account_number##</p>
+            <p class="userPrint account-number bold">{{b.account_number}}</p>
+            <p class="">##word.iban##</p>
+            <p class="userPrint iban bold">{{b.iban}}</p>
+            <p class="userPrint bank-account-name">{{b.name}}</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row bg-white">
 
         <div class="row">
-          <h1 class="bold text-center">##word.commission_transfer_form##</h1>
+
+          <h1 class="bold color-theme text-center">##word.commission_transfer_form##</h1>
+          <br>
+          <p class="bold font-18  text-center">##word.commission_alert##</p>
         </div>
+        <br>
+        <br>
 
-        <div class="top-actions">
+        <fieldset id="payModal">
+          <div class="row">
+            <i-control class="col4 user-name-pay" ng-hide="##user.id## > 0" v="r" label="##word.user_name##"
+              ng-model="pay.user_name"></i-control>
+            <div class="col4" ng-show="##user.id## > 0">
+              <p class="user-name-txt">##word.user_name##</p>
+              <p class="user-name-pay">##user.profile.name## ##user.profile.last_name##</p>
+            </div>
+            <i-control class="col4" v="r" label="##word.commission_amount##" type="number"
+              ng-model="pay.commission_amount"></i-control>
+            <i-date2 class="col4" ng-model="pay.transfer_date" v="r" label="##word.transfer_date##"></i-date2>
+          </div>
+          <div class="row">
+            <i-control class="col4" v="r" label="##word.adapter_name##" ng-model="pay.adapter_name"></i-control>
+            <i-control class="col4" v="r" label="##word.mobile_associated_membership##"
+              ng-model="pay.mobile"></i-control>
+            <i-control class="col4" v="r" label="##word.ad_code##" type="number" ng-model="pay.ad_code"></i-control>
+          </div>
+          <div class="row">
+            <i-files class="col4" v="r" label="##word.transfer_receipt_image##" ng-model="pay.files"></i-files>
+            <i-control class="col8" v="r" label="##word.notes##" ng-model="pay.notes"></i-control>
+          </div>
+          <br>
+          <div class=" center">
+            <h2 class="center red"> {{error}} </h2>
+          </div>
+          <br>
+          <div class="row center">
+            <button class="send-btn center" ng-click="addCommission(pay)">
+              <i class="fa fa-paper-plane"></i>
+              ##word.send##
+            </button>
+          </div>
+          <br>
+          <br>
+        </fieldset>
+      </div>
 
+      <br>
+      <br>
+      <br>
+      <br>
 
-
-        </div>
-
+    </div>
+  </div>
+  <div id="alert" class="modal alert small">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h1 class="blue center">##word.transfer_form_submitted_successfully##</h1>
       </div>
     </div>
-    <div id="alert" class="modal alert small">
-      <div class="modal-content">
-        <div class="modal-body">
-          <h1 ng-show="!rating.approval" class="blue center">##word.rating_reject##</h1>
-          <h1 ng-show="rating.approval" class="blue center">##word.rating_approved##</h1>
-        </div>
-      </div>
-    </div>
-    <div x-import="haraj/scripts.html"></div>
-    <script x-import="pay/index.js"></script>
-  </body>
+  </div>
+  <footer class="footer ng-scope" x-import="haraj/footer.html" ng-controller="footer_herag"></footer>
+  <div x-import="haraj/scripts.html"></div>
+  <script x-import="pay/commission_form.js"></script>
+  <script x-import="haraj/index2.js"></script>
+
+</body>
+
 </html>

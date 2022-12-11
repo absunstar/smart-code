@@ -2,9 +2,10 @@ module.exports = function init(site) {
   const $default_setting = site.connectCollection('default_setting');
   site.defaultSettingDoc = {
     length_order: 0,
+    bank_account_list: [],
     user_design: { id: 5 },
     content: {
-      warning_message_ad_list : [],
+      warning_message_ad_list: [],
       status: {
         id: 1,
         en: 'Active',
@@ -18,6 +19,7 @@ module.exports = function init(site) {
   $default_setting.findOne({}, (err, doc) => {
     if (!err && doc) {
       site.defaultSettingDoc = doc;
+      doc.bank_account_list = doc.bank_account_list || [];
       site.setting = { ...site.defaultSettingDoc };
     } else {
       $default_setting.add(site.defaultSettingDoc, (err, doc) => {
@@ -76,7 +78,7 @@ module.exports = function init(site) {
   });
 
   site.getDefaultSetting = function (callback) {
-    callback = callback || function () {};
+    callback = callback || function () { };
     callback(site.setting);
     return site.setting;
   };
@@ -93,7 +95,7 @@ module.exports = function init(site) {
     }
 
     let data = req.data;
-    if(!data.content.warning_message_ad_list) {
+    if (!data.content.warning_message_ad_list) {
       data.content.warning_message_ad_list = [];
     }
     $default_setting.update(data, (err, result) => {

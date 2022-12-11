@@ -5,9 +5,24 @@
     "ar": "بحث"
   },
   {
-    "name": "default_setting_tenant_search",
-    "en": "Search",
-    "ar": "بحث"
+    "name": "bank_accounts",
+    "en": "Bank accounts",
+    "ar": "الحسابات البنكية"
+  },
+  {
+    "name": "account_number",
+    "en": "Account number",
+    "ar": "رقم الحساب"
+  },
+  {
+    "name": "iban",
+    "en": "Iban",
+    "ar": "الآيبان"
+  },
+  {
+    "name": "add_bank_account",
+    "en": "Add bank account",
+    "ar": "إضافة حساب بنكي"
   },
   {
     "name": "huawei_store",

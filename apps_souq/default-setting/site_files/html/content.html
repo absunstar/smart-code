@@ -6,6 +6,10 @@
       </a>
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#email_and_text_messages')">
         ##word.email_and_text_messages## </a>
+
+      <a class="tab-link inline-block" onclick="site.showTabContent(event, '#bank_accounts')">
+        ##word.bank_accounts## </a>
+
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#order_settings')"> ##word.order_settings##
       </a>
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#ads_settings')"> ##word.ads_settings## </a>
@@ -40,7 +44,7 @@
             <i-control class="col4" label="##word.site_name##" ng-model="default_setting.site_name"> </i-control>
             <i-control class="col4" label="##word.title##" ng-model="default_setting.title"> </i-control>
           </div>
-       
+
 
 
           <div class="row">
@@ -133,8 +137,7 @@
           <div class="row">
             <i-control class="col6" label="##word.host##" type="text"
               ng-model="default_setting.email_setting.host"></i-control>
-            <i-control class="col6" label="##word.port##" type="number"
-              ng-model="default_setting.email_setting.port">
+            <i-control class="col6" label="##word.port##" type="number" ng-model="default_setting.email_setting.port">
             </i-control>
 
           </div>
@@ -148,7 +151,7 @@
           </div>
 
           <div class="row">
-            <i-control class="col6"  label="##word.sent_from_mail##" type="text"
+            <i-control class="col6" label="##word.sent_from_mail##" type="text"
               ng-model="default_setting.email_setting.from">
             </i-control>
           </div>
@@ -159,6 +162,50 @@
           onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
       </div>
 
+      <div id="bank_accounts" class="tab-content">
+
+        <fieldset>
+          <legend>
+            ##word.add_bank_account##
+            <i-button type="add default" ng-click="default_setting.bank_account_list.push({})">
+            </i-button>
+          </legend>
+
+          <div class="row" ng-repeat="b in default_setting.bank_account_list track by $index">
+
+            <div class="col9">
+              <div class="row">
+                <i-control class="col6" label="##word.account_number##"
+                  ng-model="b.account_number">
+                </i-control>
+
+                <i-control class="col6" label="##word.iban##"
+                ng-model="b.iban">
+              </i-control>
+              </div>
+
+              <div class="row">
+                <i-control class="col6" label="##word.name##"
+                ng-model="b.name">
+              </i-control>
+              </div>
+            </div>
+            <div class="col3">
+              <i-image ng-model="b.image_url"> </i-image>
+            </div>
+           
+            <hr>
+            <br>
+            <br>
+            <br>
+          </div>
+
+        </fieldset>
+        <i-button type="save" label="##word.save##" x-permissions="default_setting_edit || default_setting_manage"
+          ng-click="saveSetting('#bank_accounts')"></i-button>
+        <i-button type="default left" fa="2x fa-angle-double-left"
+          onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
+      </div>
 
       <div id="order_settings" class="tab-content">
         <fieldset>
@@ -213,7 +260,7 @@
 
             <div class="col4">
               <h2 class="black center">##word.default_image_for_ad##</h2>
-              <i-image help-id="units_logo" ng-model="default_setting.content.default_image_ad"> </i-image>
+              <i-image ng-model="default_setting.content.default_image_ad"> </i-image>
             </div>
           </div>
 
@@ -256,7 +303,7 @@
             </h2>
 
             <div ng-repeat="f in default_setting.content.warning_message_ad_list track by $index" class="row">
-              <i-image help-id="units_logo" class="col3" ng-model="f.image_url"> </i-image>
+              <i-image class="col3" ng-model="f.image_url"> </i-image>
 
               <i-textarea class="col8" ng-model="f.name"></i-textarea>
 
@@ -295,7 +342,7 @@
             </div>
             <div class="col4">
               <h2 class="black center">##word.default_image_for_store##</h2>
-              <i-image help-id="units_logo" ng-model="default_setting.printer_program.default_image_store"> </i-image>
+              <i-image ng-model="default_setting.printer_program.default_image_store"> </i-image>
             </div>
           </div>
           <i-button type="save" label="##word.save##" x-permissions="default_setting_edit || default_setting_manage"

@@ -20,6 +20,11 @@
     "ar": "أرقام جوالات أخرى"
   },
   {
+    "name": "mobile number associated with your membership",
+    "en": "Mobile number associated with your membership",
+    "ar": "رقم الجوال المرتبط بعضويتك"
+  },
+  {
     "name": "hide_mobile_number",
     "en": "Hide mobile number",
     "ar": "إخفاء رقم الجوال"

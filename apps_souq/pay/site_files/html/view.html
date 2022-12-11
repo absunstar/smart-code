@@ -6,29 +6,47 @@
                 <table id="basicInformationTable" class="table hover bold">
 
                     <tr>
-                        <td class="title">##word.sender##</td>
-                        <td class="center">{{rating.sender.email}}</td>
+                        <td class="title">##word.user_name##</td>
+                        <td class="center">{{pay.user_name}}</td>
+                    </tr>
+                    <tr>
+                        <td class="title">##word.commission_amount##</td>
+                        <td class="center">{{pay.commission_amount}}</td>
+                    </tr>
+                    <tr>
+                        <td class="title">##word.transfer_date##</td>
+                        <td class="center">{{pay.transfer_date | date : 'dd - MM - yyyy'}}</td>
+                    </tr>
+                    <tr>
+                        <td class="title">##word.adapter_name##</td>
+                        <td class="center">{{pay.adapter_name}}</td>
+                    </tr>
+                    <tr>
+                        <td class="title">##word.mobile_associated_membership##</td>
+                        <td class="center blue">{{pay.mobile}}</td>
+                    </tr>
+                    <tr>
+                        <td class="title">##word.ad_code##</td>
+                        <td class="center">{{pay.ad_code}}</td>
                     </tr>
 
+                
                     <tr>
-                        <td class="title">##word.receiver##</td>
-                        <td class="center">{{rating.receiver.email}}</td>
-                    </tr>
-
-                    <tr>
-                        <td class="title">##word.rating##</td>
-                        <td class="center pre_text">{{rating.notes}}</td>
+                        <td class="title">##word.pay##</td>
+                        <td class="center pre_text">{{pay.notes}}</td>
                     </tr>
         
                     <tr>
                         <td class="title">##word.status##</td>
-                        <td ng-show="rating.approval == true" class="center green">##word.approval##</td>
-                        <td ng-show="rating.approval == false" class="center red">##word.reject##</td>
-                        <td ng-show="rating.approval == null" class="center blue">##word.undefined##</td>
+                        <td ng-show="pay.approval == true" class="center green">##word.approval##</td>
+                        <td ng-show="pay.approval == false" class="center red">##word.reject##</td>
+                        <td ng-show="pay.approval == null" class="center blue">##word.undefined##</td>
                     </tr>
                 </table>
             </div>
-
+            <div class="col3">
+                <i-files view label="##word.transfer_receipt_image##" ng-model="pay.files"></i-files>
+            </div>
         </fieldset>
     </div>
 </div>

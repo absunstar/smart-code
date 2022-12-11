@@ -64,11 +64,11 @@
       <div class="link logout-btn center" ng-click="logout()">##word.security_logout##</div>
     </div>
   </div>
-  <header >
+  <header>
     <div class="firstheader">
       <ul class="nav1">
         <li><a href="/" class="nav-link underline-hover">
-          <i class="fa-solid fa-house"></i>
+            <i class="fa-solid fa-house"></i>
             ##word.main##</a>
         </li>
         <li><a
@@ -93,7 +93,7 @@
             href="/category/{{category_header_list[6].id}}/{{category_header_list[6].name_en}}-{{category_header_list[6].name_ar}}"
             class="nav-link underline-hover">{{category_header_list[6].name_##session.lang##}}</a></li>
         <li><a href="/more_categories" class="nav-link underline-hover">
-          <i class="fa-solid fa-sitemap"></i>
+            <i class="fa-solid fa-sitemap"></i>
             ##word.more_categories##
           </a></li>
       </ul>
@@ -117,7 +117,7 @@
           href="/category/{{category_header_list[5].id}}/{{category_header_list[5].name_en}}-{{category_header_list[5].name_ar}}">{{category_header_list[5].name_##session.lang##}}</a>
         <a
           href="/category/{{category_header_list[6].id}}/{{category_header_list[6].name_en}}-{{category_header_list[6].name_ar}}">{{category_header_list[6].name_##session.lang##}}</a>
-       <!--  <a href="/more_categories">
+        <!--  <a href="/more_categories">
           <i class="fa-solid fa-sitemap"></i>
           ##word.more_categories##
         </a> -->
@@ -146,8 +146,9 @@
     </ul> -->
     </div>
     <div class="secondeheader-b">
-    
+
       <div class="secondeheader">
+
         <div class="logo center" href="/">
 
           <img class="center haraj_logo pointer" ng-click="indexLocation()" src="##setting.logo##"
@@ -223,6 +224,7 @@
             </div>
           </div>
 
+         
           <div>
 
             <div class="mobilesection-head hidden"><a>روابط هامه</a></div>
@@ -253,13 +255,13 @@
             <div class="row mobile">
               <div class="row">
                 <a class="row">##word.phone_support##</a>
-                <i class="contact-icon fa-solid fa-phone"></i> <a target="_blank"
-                  href="##setting.phone##"> ##setting.phone## </a>
+                <i class="contact-icon fa-solid fa-phone"></i> <a target="_blank" href="##setting.phone##">
+                  ##setting.phone## </a>
               </div>
               <div class="row">
                 <a class="row">##word.email_support##</a>
-                <i class="contact-icon fa-solid fa-at"></i> <a target="_blank"
-                  href="##setting.email##"> ##setting.email## </a>
+                <i class="contact-icon fa-solid fa-at"></i> <a target="_blank" href="##setting.email##">
+                  ##setting.email## </a>
               </div>
             </div>
 
@@ -272,7 +274,7 @@
             ##word.ar_lang##
           </a>
 
-     
+
         </div>
       </div>
     </div>
@@ -288,7 +290,7 @@
         <!-- <span style="min-height: 22px">##setting.site_name##</span> -->
       </a>
     </li>
-  
+
     <li class="mobile-header" x-permission="login">
       <a class="tab_link" href="/messages">
         <span ng-show="##user.message_count## > 0" class="side-badge ng-binding">##user.message_count##</span>
@@ -307,7 +309,7 @@
         <i class="fa-solid fa-heart"></i>
       </a>
     </li>
-   
+
     <li class="mobile-header" x-permission="login">
       <a class="tab_link" href="/follow">
         <i class="fa-solid fa-rss space"></i>
@@ -319,7 +321,7 @@
         <i class="fa-solid fa-sitemap"></i>
       </a>
     </li>
-  
+
     <li class="mobile-header" x-permission="login" ng-show="##setting.order_settings.activate_orders##">
       <a class="notification" href="/cart">
         <i class="fa-solid fa-cart-shopping"></i>
@@ -348,3 +350,107 @@
   };
 
 </script>
+
+<script>
+  function startTime() {
+    const today = new Date();
+    let h = today.getHours();
+    let m = today.getMinutes();
+    let s = today.getSeconds();
+    m = checkTime(m);
+    s = checkTime(s);
+    document.getElementById('clock').innerHTML =  h + ":" + m + ":" + s;
+    setTimeout(startTime, 1000);
+  }
+
+  function checkTime(i) {
+    if (i < 10) {i = "0" + i};
+    return i;
+  }
+
+  startTime();
+</script>
+
+
+ <!-- <script>
+  var canvas = document.getElementById("canvas");
+  var ctx = canvas.getContext("2d");
+  var radius = canvas.height / 3;
+  ctx.translate(radius, radius);
+  radius = radius * 0.90
+  setInterval(drawClock, 1000);
+
+  function drawClock() {
+    drawFace(ctx, radius);
+    drawNumbers(ctx, radius);
+    drawTime(ctx, radius);
+  }
+
+  function drawFace(ctx, radius) {
+    var grad;
+    ctx.beginPath();
+    ctx.arc(0, 0, radius, 0, 2 * Math.PI);
+    ctx.fillStyle = 'white';
+    ctx.fill();
+    grad = ctx.createRadialGradient(0, 0, radius * 0.95, 0, 0, radius * 1.05);
+    grad.addColorStop(0, '#333');
+    grad.addColorStop(0.5, 'white');
+    grad.addColorStop(1, '#333');
+    ctx.strokeStyle = grad;
+    ctx.lineWidth = radius * 0.1;
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(0, 0, radius * 0.1, 0, 2 * Math.PI);
+    ctx.fillStyle = '#333';
+    ctx.fill();
+  }
+
+  function drawNumbers(ctx, radius) {
+    var ang;
+    var num;
+    ctx.font = radius * 0.15 + "px arial";
+    ctx.textBaseline = "middle";
+    ctx.textAlign = "center";
+    for (num = 1; num < 13; num++) {
+      ang = num * Math.PI / 6;
+      ctx.rotate(ang);
+      ctx.translate(0, -radius * 0.85);
+      ctx.rotate(-ang);
+      ctx.fillText(num.toString(), 0, 0);
+      ctx.rotate(ang);
+      ctx.translate(0, radius * 0.85);
+      ctx.rotate(-ang);
+    }
+  }
+
+  function drawTime(ctx, radius) {
+    var now = new Date();
+    var hour = now.getHours();
+    var minute = now.getMinutes();
+    var second = now.getSeconds();
+    //hour
+    hour = hour % 12;
+    hour = (hour * Math.PI / 6) +
+      (minute * Math.PI / (6 * 60)) +
+      (second * Math.PI / (360 * 60));
+    drawHand(ctx, hour, radius * 0.5, radius * 0.07);
+    //minute
+    minute = (minute * Math.PI / 30) + (second * Math.PI / (30 * 60));
+    drawHand(ctx, minute, radius * 0.8, radius * 0.07);
+    // second
+    second = (second * Math.PI / 30);
+    drawHand(ctx, second, radius * 0.9, radius * 0.02);
+  }
+
+  function drawHand(ctx, pos, length, width) {
+    ctx.beginPath();
+    ctx.lineWidth = width;
+    ctx.lineCap = "round";
+    ctx.moveTo(0, 0);
+    ctx.rotate(pos);
+    ctx.lineTo(0, -length);
+    ctx.stroke();
+    ctx.rotate(-pos);
+  }
+
+</script>  -->

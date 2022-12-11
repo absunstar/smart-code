@@ -8,10 +8,7 @@ module.exports = function init(site) {
     compress: true
   })
 
-  site.get({
-    name: 'images',
-    path: __dirname + '/site_files/images/'
-  })
+
 
   site.post("/api/report_communications/all", (req, res) => {
     let response = {

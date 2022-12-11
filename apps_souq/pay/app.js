@@ -16,7 +16,7 @@ module.exports = function init(site) {
 
   site.get({
     name: 'commission_form',
-    path: __dirname + '/site_files/html/index.html',
+    path: __dirname + '/site_files/html/commission_form.html',
     parser: 'html',
     compress: true,
   });
@@ -35,20 +35,7 @@ module.exports = function init(site) {
     pay_doc.$req = req;
     pay_doc.$res = res;
 
-    if(!pay_doc.notes || !pay_doc.recommend || !pay_doc.buy) {
-      response.error = 'Please complete the rating correctly';
-      res.json(response);
-      return;
-    }
-
     pay_doc.date = new Date();
-    pay_doc.sender = {
-      id: req.session.user.id,
-      email: req.session.user.email,
-      name : req.session.user.profile.name,
-      last_name : req.session.user.profile.last_name,
-      image_url : req.session.user.profile.image_url,
-    };
     pay_doc.approval = null;
     $pay.add(pay_doc, (err, doc) => {
       if (!err) {
