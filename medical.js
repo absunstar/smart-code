@@ -65,7 +65,7 @@ site.importApps(__dirname + '/apps_core');
 site.addFeature('medical');
 setTimeout(() => {
   site.importApp(__dirname + '/apps_private/companies');
-  site.importApp(__dirname + '/apps_private/zk-reader');
+  // site.importApp(__dirname + '/apps_private/zk-reader');
 
 
   // site.zk.load_attendance( {

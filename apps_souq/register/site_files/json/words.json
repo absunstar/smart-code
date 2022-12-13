@@ -139,7 +139,7 @@
     "en": "Not registered?",
     "ar": "غير مسجل؟"
   },
-  { "name": "password_err_match", "en": "password does not match", "ar": "كلمة السر غير متطابقة" },
+  { "name": "password_err_match", "en": "password does not match", "ar": "كلمة المرور غير متطابقة" },
   { "name": "register_now", "en": "Register Now", "ar": "تسجيل الاّن" },
   {
     "name": "create_account",

@@ -54,7 +54,7 @@ site.importApps(__dirname + '/apps_core');
 
 setTimeout(() => {
   site.importApp(__dirname + '/apps_private/companies');
-  site.importApp(__dirname + '/apps_private/zk-reader');
+  // site.importApp(__dirname + '/apps_private/zk-reader');
 }, 1000);
 
 setTimeout(() => {

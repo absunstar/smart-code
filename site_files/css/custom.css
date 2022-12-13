@@ -488,9 +488,9 @@ a.pro-template .description {
   border-radius: 50%;
   background-color: green !important;
 }
-.tabs .tabs-content {
+/* .tabs .tabs-content {
   width: 100% !important;
-}
+} */
 .tabs .full .tab-link {
   border-radius: 5px;
 }

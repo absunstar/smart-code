@@ -907,8 +907,8 @@ module.exports = function init(site) {
       ],
       (err, docs) => {
         let count = docs.length
+        console.log(docs);
         if (docs && docs.length > 0) {
-
 
 
 

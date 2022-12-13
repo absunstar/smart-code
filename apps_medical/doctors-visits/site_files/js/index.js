@@ -1832,7 +1832,6 @@ app.controller('doctors_visits', function ($scope, $http, $timeout) {
     $timeout(() => {
       obj.total_discount = 0;
       obj.total_value = 0;
-
       if (obj.at_home && obj.place_examination.id == 2) {
         if (obj.at_home.type == 'percent') {
           obj.at_home.value = (obj.doctor_visit_price * site.toNumber(obj.at_home.price)) / 100 + obj.doctor_visit_price;
@@ -1875,6 +1874,8 @@ app.controller('doctors_visits', function ($scope, $http, $timeout) {
         });
       }
       obj.net_value = obj.total_value - obj.total_discount;
+      console.log(obj.total_value,obj.total_discount);
+      console.log(obj.net_value);
       obj.remain = obj.net_value - (obj.paid || 0);
       $scope.discount = {
         type: 'number',

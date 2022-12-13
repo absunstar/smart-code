@@ -34,14 +34,13 @@
                     <h3 class="bold text-center"> ##word.count## : {{count}}</h3>
                 </div>
 
-                <table x-permissions="login" class="table bold hover loaded" id="t1">
+                <table x-permissions="login" class="table bold center hover loaded" id="t1">
                     <tr>
                         <th class="not-print">##word.logo##</th>
                         <th>##word.name##</th>
                         <th>##word.scans_name##</th>
                         <th>##word.scans_price##</th>
                         <th>##word.delivery_time##</th>
-                        <th>##word.immediate##</th>
                         <th>##word.status##</th>
                         <th class="not-print">##word.actions##</th>
                     </tr>
@@ -53,14 +52,11 @@
                         <td class="center title">{{c.name_##session.lang##}}</td>
                         <td class="center green">{{c.price}}</td>
                         <td>
-                            <h3 class="blue center">{{c.delivery_time}}</h3>
-                            <h3 class="blue center">{{c.period.ar}}</h3>
+                            <h3 ng-show="!c.immediate" class="blue center">{{c.delivery_time}}</h3>
+                            <h3 ng-show="!c.immediate" class="blue center">{{c.period.ar}}</h3>
+                            <p ng-show="c.immediate ==true" class="green"> ##word.immediate## </p>
                         </td>
 
-                        <td class="center">
-                            <p ng-show="c.immediate ==true" class="green"> ##word.yes## </p>
-                            <p ng-show="c.immediate ==false" class="red"> ##word.no## </p>
-                        </td>
 
                         <td class="center">
                             <p ng-show="c.active ==true" class="green"> ##word.active## </p>

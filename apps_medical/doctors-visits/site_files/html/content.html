@@ -16,34 +16,37 @@
                 </i-control>
 
                 <i-date2
-                  class="col4"
+                  class="col8"
                   ng-model="doctors_visits.date"
                   label="##word.booking_date##"
                   v="r"
                 >
                 </i-date2>
 
-                <i-list
-                  class="col3"
-                  label="##word.visit_type##"
-                  ng-model="doctors_visits.visit_type"
-                  ng-change="changeDoctorsVisitsPrice() ; calc(doctors_visits)"
-                  v="r"
-                  items="doctorsVisitsTypeList"
-                  display="##session.lang##"
-                  ng-search="_search.$doctors_visits_type_search"
-                ></i-list>
+              </div>
 
+              <div class="row">
                 <i-list
-                  class="col3"
-                  label="##word.place_examination##"
-                  ng-model="doctors_visits.place_examination"
-                  ng-change="changeDoctorsVisitsPrice() ; calc(doctors_visits)"
-                  v="r"
-                  items="placeExaminationList"
-                  display="##session.lang##"
-                  ng-search="_search.$doctors_placeExamination_search"
-                ></i-list>
+                class="col3"
+                label="##word.visit_type##"
+                ng-model="doctors_visits.visit_type"
+                ng-change="changeDoctorsVisitsPrice() ; calc(doctors_visits)"
+                v="r"
+                items="doctorsVisitsTypeList"
+                display="##session.lang##"
+                ng-search="_search.$doctors_visits_type_search"
+              ></i-list>
+
+              <i-list
+                class="col3"
+                label="##word.place_examination##"
+                ng-model="doctors_visits.place_examination"
+                ng-change="changeDoctorsVisitsPrice() ; calc(doctors_visits)"
+                v="r"
+                items="placeExaminationList"
+                display="##session.lang##"
+                ng-search="_search.$doctors_placeExamination_search"
+              ></i-list>
               </div>
 
               <div class="row">
@@ -73,7 +76,7 @@
                 </i-button>
 
                 <i-list
-                class="col2"
+                class="col4"
                 label="##word.visit_source##"
                 ng-model="doctors_visits.visit_source"
                 items="visitSourcesList"
@@ -101,7 +104,7 @@
                 </i-button>
 
                 <a
-                  class="btn left bg-black"
+                  class="btn left white bg-black"
                   ng-show="doctors_visits.customer.id"
                   target="blank"
                   href="/patients_files?id={{doctors_visits.customer.id}}"
@@ -292,12 +295,10 @@
 
                 <tr ng-repeat="c in clinicBookList track by $index">
                   <td>
-                    <br />
                     <h3 class="black bold">{{c.name_##session.lang##}}</h3>
                   </td>
 
                   <td>
-                    <br />
                     <h3 class="black bold">
                       {{c.specialty.name_##session.lang##}}
                     </h3>
