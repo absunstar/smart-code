@@ -913,6 +913,7 @@ img {
     display: block;
     font-size: 16px;
     color: var(--theme-color);
+    text-align: center;
   }
 
   .tab_link {

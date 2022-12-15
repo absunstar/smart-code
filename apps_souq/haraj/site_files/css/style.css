@@ -19,7 +19,6 @@ svg#Layer_1 {
 }
 .padding-lang {
   padding-right: 10px;
-
 }
 .time {
   left: 50px;
@@ -42,7 +41,7 @@ svg#Layer_1 {
   cursor: pointer;
   margin: 5px;
   font-size: 16px;
-  border: 2px solid #4CAF50;
+  border: 2px solid #4caf50;
 }
 
 .login-button:hover {
@@ -50,7 +49,7 @@ svg#Layer_1 {
   cursor: pointer;
   background: aliceblue;
   font-size: 16px;
-  border: 3px solid #4CAF50;
+  border: 3px solid #4caf50;
 }
 
 .dimgray {
@@ -98,7 +97,6 @@ svg#Layer_1 {
 
 .ar .ellipsis-txt {
   margin-right: 7px !important;
-
 }
 
 .create-btn {
@@ -119,11 +117,11 @@ svg#Layer_1 {
   transform: scale(1.2);
 }
 
-.create-btn>span {
+.create-btn > span {
   margin-right: 10px;
 }
 
-.create-btn>i {
+.create-btn > i {
   margin-right: 10px;
 }
 
@@ -289,7 +287,7 @@ i-image img:hover {
 }
 
 .haraj_logo {
-  height: 48px;
+  height: 64px;
   border-radius: 5px;
 }
 
@@ -384,7 +382,7 @@ p {
   margin: 10px !important;
 }
 
-.level-1>a {
+.level-1 > a {
   font-weight: bold;
   color: #004f3e;
   font-size: 29px;
@@ -415,7 +413,7 @@ p {
   background-color: #ff90735e !important;
 }
 
-.level-1>a:hover {
+.level-1 > a:hover {
   text-decoration: underline;
 }
 
@@ -426,14 +424,14 @@ p {
   vertical-align: top;
 }
 
-.level-2>a {
+.level-2 > a {
   font-weight: bold;
   color: #007a60;
   font-size: 20px;
   cursor: pointer;
 }
 
-.level-2>a:hover {
+.level-2 > a:hover {
   text-decoration: underline;
 }
 
@@ -459,14 +457,14 @@ i.fa.fa-check {
   vertical-align: top;
 }
 
-.level-3>a {
+.level-3 > a {
   font-weight: bold;
   color: rgb(0 33 161);
   font-size: 18px;
   cursor: pointer;
 }
 
-.level-3>a:hover {
+.level-3 > a:hover {
   text-decoration: underline;
 }
 
@@ -479,14 +477,14 @@ i.fa.fa-check {
   vertical-align: top;
 }
 
-.level-4>a {
+.level-4 > a {
   font-weight: bold;
   color: rgb(0 51 209);
   font-size: 15px;
   cursor: pointer;
 }
 
-.level-4>a:hover {
+.level-4 > a:hover {
   text-decoration: underline;
 }
 
@@ -499,13 +497,38 @@ i.fa.fa-check {
   vertical-align: top;
 }
 
-.level-5>a {
+.level-5 > a {
   font-weight: bold;
   color: rgb(145, 0, 85);
   font-size: 15px;
   cursor: pointer;
 }
 
-.level-5>a:hover {
+.level-5 > a:hover {
   text-decoration: underline;
+}
+
+.clock-area {
+  display: block;
+  position: relative;
+  background: var(--theme-color);
+  padding: 0px 20px;
+  border-radius: 5px;
+}
+.clock-area img {
+  height: 50px;
+  width: 50px;
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+.clock-area span {
+  position: absolute;
+  color: #ffffff;
+  font-family: 'Arabic';
+  font-size: 18px;
+  font-weight: bold;
+  right: 15px;
+  bottom: 0px;
+  text-shadow: 1px 1px 5px #000;
 }

@@ -1,38 +1,32 @@
 <div ng-controller="sitebar">
-
   <div class="user-side-header" x-permissions="login">
     <div class="side-header">
-
       <li class="deskside-header">
         <a class="tab_link side-notification" href="/messages">
           <i class="fa-solid fa-envelope space"></i>
           <span ng-show="##user.message_count## > 0" class="side-badge ng-binding">##user.message_count##</span>
-          <span style="min-height: 22px" id="notif1" class="notif-name"
-            onmouseover="mouseoverbox1()">##word.messages##</span>
+          <span style="min-height: 22px" id="notif1" class="notif-name" onmouseover="mouseoverbox1()">##word.messages##</span>
         </a>
       </li>
       <li class="deskside-header">
         <a class="tab_link side-notification" href="/notific">
           <i class="fa-solid fa-bell space"></i>
           <span ng-show="##user.notific_count## > 0" class="side-badge ng-binding">##user.notific_count##</span>
-          <span style="min-height: 22px" id="notif2" class="notif-name"
-            onmouseover="mouseoverbox1()">##word.notifications##</span>
+          <span style="min-height: 22px" id="notif2" class="notif-name" onmouseover="mouseoverbox1()">##word.notifications##</span>
         </a>
       </li>
       <li class="deskside-header">
         <a class="tab_link side-notification" href="/favorites">
           <i class="fa-solid fa-heart space"></i>
           <!-- <span class="side-badge ng-binding">##user.favorite_ad_count##</span> -->
-          <span style="min-height: 22px" id="notif3" class="notif-name"
-            onmouseover="mouseoverbox1()">##word.favorite##</span>
+          <span style="min-height: 22px" id="notif3" class="notif-name" onmouseover="mouseoverbox1()">##word.favorite##</span>
         </a>
       </li>
       <li class="deskside-header">
         <a class="tab_link side-notification" href="/follow">
           <i class="fa-solid fa-rss space"></i>
           <!-- <span class="side-badge ng-binding">##user.follow_count##</span> -->
-          <span style="min-height: 22px" id="notif4" class="notif-name"
-            onmouseover="mouseoverbox1()">##word.follow##</span>
+          <span style="min-height: 22px" id="notif4" class="notif-name" onmouseover="mouseoverbox1()">##word.follow##</span>
         </a>
       </li>
     </div>
@@ -40,9 +34,7 @@
   <div class="user-menu" style="display: none">
     <div class="center profile" x-permission="login">
       <a class="pointer" href="/profile/##user.id##/##user.profile.name##/##user.profile.last_name##">
-
-        <img class="center border-circle" src="##user.profile.image_url##" onerror="this.src='/images/user.png'"
-          alt="" />
+        <img class="center border-circle" src="##user.profile.image_url##" onerror="this.src='/images/user.png'" alt="" />
         <br />
         <span class="user-name font-20"> ##user.profile.name## ##user.profile.last_name## </span> <br />
       </a>
@@ -53,7 +45,7 @@
         <a id="bord_edit" class="usermenu-btn center" href="/manage_user">
           <span class="black">##word.manage_your_personal_account##</span>
         </a>
-        <br>
+        <br />
         <a id="bord_edit" class="usermenu-btn center" x-permissions="menus" href="/countries">
           <span class="black">##word.dashboard##</span>
         </a>
@@ -67,35 +59,53 @@
   <header>
     <div class="firstheader">
       <ul class="nav1">
-        <li><a href="/" class="nav-link underline-hover">
+        <li>
+          <a href="/" class="nav-link underline-hover">
             <i class="fa-solid fa-house"></i>
-            ##word.main##</a>
+            ##word.main##</a
+          >
         </li>
-        <li><a
-            href="/category/{{category_header_list[0].id}}/{{category_header_list[0].name_en}}-{{category_header_list[0].name_ar}}"
-            class="nav-link underline-hover">{{category_header_list[0].name_##session.lang##}}</a></li>
-        <li><a
-            href="/category/{{category_header_list[1].id}}/{{category_header_list[1].name_en}}-{{category_header_list[1].name_ar}}"
-            class="nav-link underline-hover">{{category_header_list[1].name_##session.lang##}}</a></li>
-        <li><a
-            href="/category/{{category_header_list[2].id}}/{{category_header_list[2].name_en}}-{{category_header_list[2].name_ar}}"
-            class="nav-link underline-hover">{{category_header_list[2].name_##session.lang##}}</a></li>
-        <li><a
-            href="/category/{{category_header_list[3].id}}/{{category_header_list[3].name_en}}-{{category_header_list[3].name_ar}}"
-            class="nav-link underline-hover">{{category_header_list[3].name_##session.lang##}}</a></li>
-        <li><a
-            href="/category/{{category_header_list[4].id}}/{{category_header_list[4].name_en}}-{{category_header_list[4].name_ar}}"
-            class="nav-link underline-hover">{{category_header_list[4].name_##session.lang##}}</a></li>
-        <li><a
-            href="/category/{{category_header_list[5].id}}/{{category_header_list[5].name_en}}-{{category_header_list[5].name_ar}}"
-            class="nav-link underline-hover">{{category_header_list[5].name_##session.lang##}}</a></li>
-        <li><a
-            href="/category/{{category_header_list[6].id}}/{{category_header_list[6].name_en}}-{{category_header_list[6].name_ar}}"
-            class="nav-link underline-hover">{{category_header_list[6].name_##session.lang##}}</a></li>
-        <li><a href="/more_categories" class="nav-link underline-hover">
+        <li>
+          <a href="/category/{{category_header_list[0].id}}/{{category_header_list[0].name_en}}-{{category_header_list[0].name_ar}}" class="nav-link underline-hover"
+            >{{category_header_list[0].name_##session.lang##}}</a
+          >
+        </li>
+        <li>
+          <a href="/category/{{category_header_list[1].id}}/{{category_header_list[1].name_en}}-{{category_header_list[1].name_ar}}" class="nav-link underline-hover"
+            >{{category_header_list[1].name_##session.lang##}}</a
+          >
+        </li>
+        <li>
+          <a href="/category/{{category_header_list[2].id}}/{{category_header_list[2].name_en}}-{{category_header_list[2].name_ar}}" class="nav-link underline-hover"
+            >{{category_header_list[2].name_##session.lang##}}</a
+          >
+        </li>
+        <li>
+          <a href="/category/{{category_header_list[3].id}}/{{category_header_list[3].name_en}}-{{category_header_list[3].name_ar}}" class="nav-link underline-hover"
+            >{{category_header_list[3].name_##session.lang##}}</a
+          >
+        </li>
+        <li>
+          <a href="/category/{{category_header_list[4].id}}/{{category_header_list[4].name_en}}-{{category_header_list[4].name_ar}}" class="nav-link underline-hover"
+            >{{category_header_list[4].name_##session.lang##}}</a
+          >
+        </li>
+        <li>
+          <a href="/category/{{category_header_list[5].id}}/{{category_header_list[5].name_en}}-{{category_header_list[5].name_ar}}" class="nav-link underline-hover"
+            >{{category_header_list[5].name_##session.lang##}}</a
+          >
+        </li>
+        <li>
+          <a href="/category/{{category_header_list[6].id}}/{{category_header_list[6].name_en}}-{{category_header_list[6].name_ar}}" class="nav-link underline-hover"
+            >{{category_header_list[6].name_##session.lang##}}</a
+          >
+        </li>
+        <li>
+          <a href="/more_categories" class="nav-link underline-hover">
             <i class="fa-solid fa-sitemap"></i>
             ##word.more_categories##
-          </a></li>
+          </a>
+        </li>
       </ul>
     </div>
     <div class="mobile">
@@ -103,20 +113,13 @@
     </div>
     <div class="mobile">
       <div class="scrollmenu">
-        <a
-          href="/category/{{category_header_list[0].id}}/{{category_header_list[0].name_en}}-{{category_header_list[0].name_ar}}">{{category_header_list[0].name_##session.lang##}}</a>
-        <a
-          href="/category/{{category_header_list[1].id}}/{{category_header_list[1].name_en}}-{{category_header_list[1].name_ar}}">{{category_header_list[1].name_##session.lang##}}</a>
-        <a
-          href="/category/{{category_header_list[2].id}}/{{category_header_list[2].name_en}}-{{category_header_list[2].name_ar}}">{{category_header_list[2].name_##session.lang##}}</a>
-        <a
-          href="/category/{{category_header_list[3].id}}/{{category_header_list[3].name_en}}-{{category_header_list[3].name_ar}}">{{category_header_list[3].name_##session.lang##}}</a>
-        <a
-          href="/category/{{category_header_list[4].id}}/{{category_header_list[4].name_en}}-{{category_header_list[4].name_ar}}">{{category_header_list[4].name_##session.lang##}}</a>
-        <a
-          href="/category/{{category_header_list[5].id}}/{{category_header_list[5].name_en}}-{{category_header_list[5].name_ar}}">{{category_header_list[5].name_##session.lang##}}</a>
-        <a
-          href="/category/{{category_header_list[6].id}}/{{category_header_list[6].name_en}}-{{category_header_list[6].name_ar}}">{{category_header_list[6].name_##session.lang##}}</a>
+        <a href="/category/{{category_header_list[0].id}}/{{category_header_list[0].name_en}}-{{category_header_list[0].name_ar}}">{{category_header_list[0].name_##session.lang##}}</a>
+        <a href="/category/{{category_header_list[1].id}}/{{category_header_list[1].name_en}}-{{category_header_list[1].name_ar}}">{{category_header_list[1].name_##session.lang##}}</a>
+        <a href="/category/{{category_header_list[2].id}}/{{category_header_list[2].name_en}}-{{category_header_list[2].name_ar}}">{{category_header_list[2].name_##session.lang##}}</a>
+        <a href="/category/{{category_header_list[3].id}}/{{category_header_list[3].name_en}}-{{category_header_list[3].name_ar}}">{{category_header_list[3].name_##session.lang##}}</a>
+        <a href="/category/{{category_header_list[4].id}}/{{category_header_list[4].name_en}}-{{category_header_list[4].name_ar}}">{{category_header_list[4].name_##session.lang##}}</a>
+        <a href="/category/{{category_header_list[5].id}}/{{category_header_list[5].name_en}}-{{category_header_list[5].name_ar}}">{{category_header_list[5].name_##session.lang##}}</a>
+        <a href="/category/{{category_header_list[6].id}}/{{category_header_list[6].name_en}}-{{category_header_list[6].name_ar}}">{{category_header_list[6].name_##session.lang##}}</a>
         <!--  <a href="/more_categories">
           <i class="fa-solid fa-sitemap"></i>
           ##word.more_categories##
@@ -146,13 +149,9 @@
     </ul> -->
     </div>
     <div class="secondeheader-b">
-
       <div class="secondeheader">
-
         <div class="logo center" href="/">
-
-          <img class="center haraj_logo pointer" ng-click="indexLocation()" src="##setting.logo##"
-            onerror="this.src='/images/user.png'" alt="" />
+          <img class="center haraj_logo pointer" ng-click="indexLocation()" src="##setting.logo##" onerror="this.src='/images/user.png'" alt="" />
           <span class="haraj_name pointer" ng-click="indexLocation()">##setting.site_name##</span>
           <i class="burger-icon fa-solid fa-bars fa-sm"></i>
         </div>
@@ -161,13 +160,21 @@
             <div class="searchicon">
               <!-- <img src="/assets/search-svgrepo-com.svg" alt="" width="20px" height="20px" /> -->
             </div>
-            <input type="search" placeholder="##word.search_here_for_what_you_want##" ng-model="search.text_search" id
-              ng-disabled="disabled" autofocus v ng-model="ngModel" ng-change="ngChange()" ngkeydown="ngKeydown()"
-              x-input="true" />
-            <button ng-click="searchAll(search)" class="add-button" type="search"><img class="add-icon"
-                src="/assets/search.png" alt="" width="25px" height="25px" /><a>##word.search##</a></button>
+            <input
+              type="search"
+              placeholder="##word.search_here_for_what_you_want##"
+              ng-model="search.text_search"
+              id
+              ng-disabled="disabled"
+              autofocus
+              v
+              ng-model="ngModel"
+              ng-change="ngChange()"
+              ngkeydown="ngKeydown()"
+              x-input="true"
+            />
+            <button ng-click="searchAll(search)" class="add-button" type="search"><img class="add-icon" src="/assets/search.png" alt="" width="25px" height="25px" /><a>##word.search##</a></button>
           </div>
-
         </form>
         <div class="mobile-filter">
           <i class="burger-icon fa-solid fa-arrow-down-wide-short fa-2xl"></i>
@@ -188,25 +195,20 @@
               <a href="/login">##word.enter##</a>
             </div>
           </div>
-          <a x-lang="ar" ng-click="changeLang('en')" class="padding-lang ds-dv-dc link left"> <i class="fa fa-globe"></i>
-            ##word.en_lang## </a>
-          <a x-lang="en" ng-click="changeLang('ar')" class="padding-lang ds-dv-dc link left"> <i class="fa fa-globe"></i>
-            ##word.ar_lang## </a>
-            <img class="center haraj_logo pointer" src="/images/clock1.png"
-            onerror="this.src='/images/user.png'" alt="" />
-            <span class="time" id="clock">
-
-            </span>
+          <a x-lang="ar" ng-click="changeLang('en')" class="padding-lang ds-dv-dc link left"> <i class="fa fa-globe"></i> ##word.en_lang## </a>
+          <a x-lang="en" ng-click="changeLang('ar')" class="padding-lang ds-dv-dc link left"> <i class="fa fa-globe"></i> ##word.ar_lang## </a>
+          <div class="clock-area">
+            <img src="/images/clock1.png" onerror="this.src='/images/user.png'" alt="" />
+            <span id="clock"> </span>
+          </div>
 
           <div class="info">
             <a x-features="login" class="desktop" href="#" onclick="event.stopPropagation(); $('.user-menu').toggle()">
-              <img class="center border-circle" src="##user.profile.image_url##" onerror="this.src='/images/user.png'"
-                alt="" /> </a>
+              <img class="center border-circle" src="##user.profile.image_url##" onerror="this.src='/images/user.png'" alt="" />
+            </a>
             <div class="center profile mobile margin-info-menu" x-permission="login">
               <a class="pointer" href="/profile/##user.id##/##user.profile.name##/##user.profile.last_name##">
-
-                <img class="center border-circle" src="##user.profile.image_url##" onerror="this.src='/images/user.png'"
-                  alt="" /> <br />
+                <img class="center border-circle" src="##user.profile.image_url##" onerror="this.src='/images/user.png'" alt="" /> <br />
               </a>
 
               <span class="user-name font-21"> ##user.profile.name## ##user.profile.last_name## </span> <br />
@@ -216,7 +218,7 @@
                 <a id="bord_edit" class="usermenu-btn center" href="/manage_user">
                   <span class="black">##word.manage_your_personal_account##</span>
                 </a>
-                <br>
+                <br />
                 <a id="bord_edit" class="usermenu-btn center" x-permissions="menus" href="/countries">
                   <span class="black">##word.dashboard##</span>
                 </a>
@@ -224,69 +226,55 @@
 
               <br />
 
-              <div class="link logout-btn center" x-permission="login" ng-click="logout()">##word.security_logout##
-              </div>
+              <div class="link logout-btn center" x-permission="login" ng-click="logout()">##word.security_logout##</div>
             </div>
           </div>
 
-         
           <div>
-
             <div class="mobilesection-head hidden"><a>روابط هامه</a></div>
             <div class="follow mobile">
               <a>تابعنا على </a>
               <ul>
                 <li>
-                  <a target="_blank" href="https://www.youtube.com/##setting.you_tube_accouunt##"><i
-                      class="social-icon fab fa-youtube fa-social"></i></a>
+                  <a target="_blank" href="https://www.youtube.com/##setting.you_tube_accouunt##"><i class="social-icon fab fa-youtube fa-social"></i></a>
                 </li>
 
                 <li>
-                  <a target="_blank" href="https://www.instagram.com/##setting.instagram_accouunt##" xlink="done"><i
-                      class="social-icon fab fa-instagram fa-social"></i></a>
+                  <a target="_blank" href="https://www.instagram.com/##setting.instagram_accouunt##" xlink="done"><i class="social-icon fab fa-instagram fa-social"></i></a>
                 </li>
 
                 <li>
-                  <a target="_blank" href="https://www.twitter.com/##setting.twitter_accouunt##" xlink="done"><i
-                      class="social-icon fab fa-twitter fa-social"></i></a>
+                  <a target="_blank" href="https://www.twitter.com/##setting.twitter_accouunt##" xlink="done"><i class="social-icon fab fa-twitter fa-social"></i></a>
                 </li>
 
                 <li>
-                  <a target="_blank" class="icon-facebook" href="https://www.facebook.com/##setting.facebook_account##"
-                    xlink="done"><i class="social-icon fab fa-facebook-f fa-social"></i></a>
+                  <a target="_blank" class="icon-facebook" href="https://www.facebook.com/##setting.facebook_account##" xlink="done"><i class="social-icon fab fa-facebook-f fa-social"></i></a>
                 </li>
               </ul>
             </div>
             <div class="row mobile">
               <div class="row">
                 <a class="row">##word.phone_support##</a>
-                <i class="contact-icon fa-solid fa-phone"></i> <a target="_blank" href="##setting.phone##">
-                  ##setting.phone## </a>
+                <i class="contact-icon fa-solid fa-phone"></i> <a target="_blank" href="##setting.phone##"> ##setting.phone## </a>
               </div>
               <div class="row">
                 <a class="row">##word.email_support##</a>
-                <i class="contact-icon fa-solid fa-at"></i> <a target="_blank" href="##setting.email##">
-                  ##setting.email## </a>
+                <i class="contact-icon fa-solid fa-at"></i> <a target="_blank" href="##setting.email##"> ##setting.email## </a>
               </div>
             </div>
-
           </div>
           <hr class="cf-mobile" />
-          <a x-lang="ar" ng-click="changeLang('en')" class="ds-dv link left lang-btn"> <i class="fa fa-globe"></i>
+          <a x-lang="ar" ng-click="changeLang('en')" class="ds-dv link left lang-btn">
+            <i class="fa fa-globe"></i>
             ##word.en_lang##
           </a>
-          <a x-lang="en" ng-click="changeLang('ar')" class="ds-dv link left lang-btn"> <i class="fa fa-globe"></i>
+          <a x-lang="en" ng-click="changeLang('ar')" class="ds-dv link left lang-btn">
+            <i class="fa fa-globe"></i>
             ##word.ar_lang##
           </a>
-
-
         </div>
       </div>
     </div>
-
-
-
-
   </header>
   <div class="addads">
     <li class="mobile-header">
@@ -335,8 +323,6 @@
       </a>
     </li>
 
-
-
     <!--   <li class="mobile-header" x-permission="login">
    
   </li> -->
@@ -347,13 +333,10 @@
   function createContent() {
     if ('##user.id##') {
       window.location.href = '/create_content';
-
     } else {
       window.location.href = '/login';
-
     }
-  };
-
+  }
 </script>
 
 <script>
@@ -364,12 +347,14 @@
     let s = today.getSeconds();
     m = checkTime(m);
     s = checkTime(s);
-    document.getElementById('clock').innerHTML =  h + ":" + m + ":" + s;
+    document.getElementById('clock').innerHTML = h + ':' + m + ':' + s;
     setTimeout(startTime, 1000);
   }
 
   function checkTime(i) {
-    if (i < 10) {i = "0" + i};
+    if (i < 10) {
+      i = '0' + i;
+    }
     return i;
   }
 

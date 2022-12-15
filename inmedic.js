@@ -1,7 +1,7 @@
 const site = require('../isite')({
-  port: [80 , 40015],
+  port: [80, 40015],
   lang: 'ar',
-  version: '2022.12.05',
+  version: '2022.12.15',
   name: 'inmedic',
   theme: 'theme_paper',
   require: {
@@ -16,10 +16,11 @@ const site = require('../isite')({
     db: 'smart_code_medical',
     limit: 100000,
     identity: {
-        enabled: !0,
+      enabled: !0,
     },
   },
   security: {
+    users: [{ email: 'admin', password: 'admin' }],
     keys: ['e698f2679be5ba5c9c0b0031cb5b057c', '9705a3a85c1b21118532fefcee840f99'],
   },
 });
@@ -50,8 +51,6 @@ site.importApps(__dirname + '/apps_hr');
 site.importApps(__dirname + '/apps_medic');
 site.importApps(__dirname + '/apps_core');
 
-
-
 setTimeout(() => {
   site.importApp(__dirname + '/apps_private/companies');
   // site.importApp(__dirname + '/apps_private/zk-reader');
@@ -60,7 +59,6 @@ setTimeout(() => {
 setTimeout(() => {
   site.ready = true;
 }, 1000 * 2);
-
 
 // site.onWS('/notification', (client) => {
 //   client.onMessage = function (message) {
@@ -89,6 +87,5 @@ setTimeout(() => {
 //   subject : 'test mail server 1',
 //   message : 'test message 1'
 // })
-
 
 site.run();
