@@ -20,6 +20,11 @@
     "ar": "الآيبان"
   },
   {
+    "name": "main_currency",
+    "en": "Main Currency",
+    "ar": "العملة االرئيسية"
+  },
+  {
     "name": "add_bank_account",
     "en": "Add bank account",
     "ar": "إضافة حساب بنكي"

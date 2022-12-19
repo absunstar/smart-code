@@ -20,6 +20,16 @@
     "ar": "صورة الغلاف"
   },
   {
+    "name": "bank_name",
+    "en": "Bank Name",
+    "ar": "إسم البنك"
+},
+  {
+    "name": "account_name",
+    "en": "Account Name",
+    "ar": "إسم الحساب"
+  },
+  {
     "name": "notifications",
     "en": "Notifications",
     "ar": "الإشعارات"

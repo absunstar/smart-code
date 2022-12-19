@@ -56,6 +56,35 @@ app.controller("default_setting", function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.getCountriesList = function (where) {
+    $scope.busy = true;
+    $http({
+      method: 'POST',
+      url: '/api/countries/all',
+      data: {
+        where: {
+          active: true,
+        },
+        select: {
+          id: 1,
+          name_ar: 1,
+          name_en: 1,
+        },
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.list.length > 0) {
+          $scope.countriesList = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.getPublishingSystemsList = function () {
     $scope.error = "";
     $scope.busy = true;
@@ -237,12 +266,10 @@ app.controller("default_setting", function ($scope, $http, $timeout) {
     );
   };
 
-
-
-
   $scope.loadUnits();
   $scope.loadCurrencies();
   $scope.loadSetting();
+  $scope.getCountriesList();
   $scope.getUserDesignList();
   $scope.getPublishingSystemsList();
   $scope.getContentStatusList();

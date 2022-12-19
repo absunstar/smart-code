@@ -314,7 +314,7 @@ module.exports = function init(site) {
         id: req.body.id,
       },
       (err, doc) => {
-        if (!err) {
+        if (!err && doc) {
           response.done = true;
           if (req.body.profile) {
             if (doc.followers_list && doc.followers_list.length > 0 && req.session.user) {
@@ -336,7 +336,7 @@ module.exports = function init(site) {
           }
 
           response.doc = doc;
-        } else {
+        } else if (err) {
           response.error = err.message;
         }
         res.json(response);

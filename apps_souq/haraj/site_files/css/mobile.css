@@ -19,6 +19,21 @@
     margin-bottom: 50px;
   }
 
+.clock-area span {
+}
+
+.clock-area { 
+  display: inline-block;
+}
+
+.clock-area img {
+  position: inherit;
+}
+
+.border-bottom-bar {
+  border-bottom: 3px solid #fff;
+}
+
   .secondeheader {
     background-color: #f1f1f1;
     height: auto;
@@ -42,10 +57,11 @@
   }
 
   .haraj_name {
+    position: relative;
     font-size: 25px;
     text-align: center;
     color: #ffffff;
-    border-bottom: 3px solid #fff;
+    bottom: 5px;
     font-weight: bold;
     text-shadow: 1px 1px 1px #4caf50;
     background: #009688;
@@ -63,8 +79,8 @@
   }
 
   .logo img {
-    width: 35px;
-    height: 35px;
+    width: 60px;
+    height: 50px;
     margin: 5px !important;
   }
 

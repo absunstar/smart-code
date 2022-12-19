@@ -1,432 +1,395 @@
 <!DOCTYPE html>
 <html lang="en" data-ng-app="myApp">
-
-<head>
-  <title>##setting.title##</title>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="/css/haraj.css" />
-  <link rel="stylesheet" href="/x-css/all.css" />
-  <style>
-    .popup {
-      position: relative;
-      display: inline-block;
-      cursor: pointer;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
-
-    .info-profile-margin {
-      margin-top: -45px !important;
-    }
-
-    .create-user {
-      border-radius: 40%;
-      border: 1px solid #ebebeb;
-      background: #ebebeb;
-      padding: 13px !important;
-    }
-
-    .conversation {
-      margin: 5px 15px 5px 5px;
-    }
-
-    .v_line {
-      border-left: 1px solid rgba(4, 115, 192, .5);
-      height: 81px;
-      padding: 10px 5px 5px 4px !important;
-    }
-
-    i-radio .selector.selected {
-      width: 83%;
-      margin-right: 20px;
-    }
-
-    i-radio .selector.un-selected {
-      width: 90%;
-    }
-
-    .radius13 {
-      border-radius: 13px;
-    }
-
-    .star {
-      font-size: 25px;
-      color: #929aaa;
-    }
-
-    .profile-parent {
-      border-radius: 10px;
-    }
-
-    .margin-top-40 {
-      margin-top: 40px !important;
-    }
-
-    .online-badge {
-      width: 20px;
-      height: 20px;
-      background: #2fdb6b;
-      display: block;
-      position: absolute;
-      margin-top: -31px;
-      margin-right: 53%;
-      border-radius: 50%;
-    }
-
-    .offline-badge {
-      background: rgb(121, 131, 152) !important;
-    }
-
-    .recommend {
-      font-size: 22px;
-      color: #929aaa;
-      padding: 10px;
-      margin-bottom: 5px !important;
-      background-color: #ddd;
-      border-radius: 10px;
-    }
-
-    .recommend-notselected {
-      font-size: 22px;
-      color: #ffffff;
-      padding: 10px;
-      background-color: #960000;
-      border-radius: 10px;
-      border: 2px solid #000000;
-    }
-
-    .recommend-selected {
-      font-size: 22px;
-      color: #ffffff;
-      padding: 10px;
-      background-color: #009688;
-      border-radius: 10px;
-      border: 2px solid #000000;
-    }
-
-    .like {
-      height: 30px !important;
-      width: 70px;
-      border-radius: 15px;
-      background: white;
-      padding-top: 5px;
-    }
-
-    /* The actual popup */
-    .popup .popuptext {
-      visibility: hidden;
-      width: 160px;
-      background-color: #555;
-      color: #fff;
-      text-align: center;
-      border-radius: 6px;
-      padding: 8px 0;
-      position: absolute;
-      z-index: 1;
-      bottom: 125%;
-      left: 50%;
-      margin-left: -80px;
-    }
-
-    /* Popup arrow */
-    .popup .popuptext::after {
-      content: "";
-      position: absolute;
-      top: 100%;
-      left: 50%;
-      margin-left: -5px;
-      border-width: 5px;
-      border-style: solid;
-      border-color: #555 transparent transparent transparent;
-    }
-
-    .popup .show {
-      visibility: visible;
-      -webkit-animation: fadeIn 1s;
-      animation: fadeIn 1s;
-    }
-
-    /* Add animation (fade in the popup) */
-    @-webkit-keyframes fadeIn {
-      from {
-        opacity: 0;
+  <head>
+    <title>##setting.title##</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/haraj.css" />
+    <link rel="stylesheet" href="/x-css/all.css" />
+    <style>
+      .popup {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
       }
-
-      to {
-        opacity: 1;
-      }
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-
-      to {
-        opacity: 1;
-      }
-    }
-
-    * {
-      max-width: initial;
-    }
-
-    .table {
-      border-collapse: unset;
-      border: unset;
-    }
-
-    .bg-unlike {
-      background-color: rgb(209 48 48 / 20%);
-    }
-
-    .bg-like {
-      background-color: rgba(48, 209, 88, .2);
-    }
-
-    .rate-box {
-      margin: 15px;
-      padding: 15px;
-      border-radius: 10px;
-    }
-
-    .table td {
-      border: unset;
-    }
-
-    .about-me {
-      white-space: pre-wrap;
-      font-size: 18px;
-      color: #676565;
-    }
-
-    .table th {
-      border-radius: 10px;
-    }
-
-    .green-color {
-      color: #30d158;
-    }
-
-    .darkgreen {
-      color: #009688;
-    }
-
-    :root {
-      --body-margin-top: 0px;
-      --body-margin-bottom: 0px;
-      --zoom: 100%;
-      --fieldset-border: none;
-      --fieldset-background: #fff;
-    }
-
-    body {
-      /* background-color: #bbb !important;
-      background-image: url(/assets/palm.svg) !important; */
-      background-color: #ecf9f6;
-      background-repeat: repeat !important;
-    }
-
-    .user-background {
-      border-radius: unset;
-      display: block;
-      margin-right: 85px;
-      width: 90% !important;
-      height: 350px !important;
-    }
-
-    .user-cover {
-    width: 170px !important;
-    height: 170px !important;
-    border: none;
-    border-radius: 50%;
-    background: #ca353500;
-    z-index: 9999;
-    margin-top: -130px;
-    margin-right: 45%;
-    display: block;
-}
-
-    @media screen and (max-width: 480px) {
 
       .info-profile-margin {
-        margin-top: 0px !important;
+        margin-top: -45px !important;
       }
 
-      .user-cover {
-        width: 150px !important;
-        margin-top: -200px !important;
-        height: 150px !important;
-        border-radius: 50% !important;
-        margin-right: 55px !important;
+      .create-user {
+        border-radius: 40%;
+        border: 1px solid #ebebeb;
+        background: #ebebeb;
+        padding: 13px !important;
       }
-    }
 
-    @media screen and (max-width: 600px) {
-      .user-cover {
-        width: 110px !important;
-        height: 110px !important;
-        border: none;
-        border-radius: 50%;
-        background: #ca353500;
-        z-index: 9999;
-        margin-top: -75px !important;
-        margin-right: 34% !important;
+      .conversation {
+        margin: 5px 15px 5px 5px;
+      }
+
+      .v_line {
+        border-left: 1px solid rgba(4, 115, 192, 0.5);
+        height: 81px;
+        padding: 10px 5px 5px 4px !important;
+      }
+
+      i-radio .selector.selected {
+        width: 83%;
+        margin-right: 20px;
+      }
+
+      i-radio .selector.un-selected {
+        width: 90%;
+      }
+
+      .radius13 {
+        border-radius: 13px;
+      }
+
+      .star {
+        font-size: 25px;
+        color: #929aaa;
+      }
+
+      .profile-parent {
+        border-radius: 10px;
+      }
+
+      .margin-top-40 {
+        margin-top: 40px !important;
+      }
+
+      .online-badge {
+        width: 20px;
+        height: 20px;
+        background: #2fdb6b;
         display: block;
+        position: absolute;
+        margin-top: -31px;
+        margin-right: 53%;
+        border-radius: 50%;
+      }
+
+      .offline-badge {
+        background: rgb(121, 131, 152) !important;
+      }
+
+      .recommend {
+        font-size: 22px;
+        color: #929aaa;
+        padding: 10px;
+        margin-bottom: 5px !important;
+        background-color: #ddd;
+        border-radius: 10px;
+      }
+
+      .recommend-notselected {
+        font-size: 22px;
+        color: #ffffff;
+        padding: 10px;
+        background-color: #960000;
+        border-radius: 10px;
+        border: 2px solid #000000;
+      }
+
+      .recommend-selected {
+        font-size: 22px;
+        color: #ffffff;
+        padding: 10px;
+        background-color: #009688;
+        border-radius: 10px;
+        border: 2px solid #000000;
+      }
+
+      .like {
+        height: 30px !important;
+        width: 70px;
+        border-radius: 15px;
+        background: white;
+        padding-top: 5px;
+      }
+
+      /* The actual popup */
+      .popup .popuptext {
+        visibility: hidden;
+        width: 160px;
+        background-color: #555;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 8px 0;
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        left: 50%;
+        margin-left: -80px;
+      }
+
+      /* Popup arrow */
+      .popup .popuptext::after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: #555 transparent transparent transparent;
+      }
+
+      .popup .show {
+        visibility: visible;
+        -webkit-animation: fadeIn 1s;
+        animation: fadeIn 1s;
+      }
+
+      /* Add animation (fade in the popup) */
+      @-webkit-keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+
+        to {
+          opacity: 1;
+        }
+      }
+
+      * {
+        max-width: initial;
+      }
+
+      .table {
+        border-collapse: unset;
+        border: unset;
+      }
+
+      .bg-unlike {
+        background-color: rgb(209 48 48 / 20%);
+      }
+
+      .bg-like {
+        background-color: rgba(48, 209, 88, 0.2);
+      }
+
+      .rate-box {
+        margin: 15px;
+        padding: 15px;
+        border-radius: 10px;
+      }
+
+      .table td {
+        border: unset;
+      }
+
+      .about-me {
+        white-space: pre-wrap;
+        font-size: 18px;
+        color: #676565;
+      }
+
+      .table th {
+        border-radius: 10px;
+      }
+
+      .green-color {
+        color: #30d158;
+      }
+
+      .darkgreen {
+        color: #009688;
+      }
+
+      :root {
+        --body-margin-top: 0px;
+        --body-margin-bottom: 0px;
+        --zoom: 100%;
+        --fieldset-border: none;
+        --fieldset-background: #fff;
+      }
+
+      body {
+        /* background-color: #bbb !important;
+      background-image: url(/assets/palm.svg) !important; */
+        background-color: #ecf9f6;
+        background-repeat: repeat !important;
       }
 
       .user-background {
         border-radius: unset;
-    display: block;
-    margin-right: 18px;
-    width: 90% !important;
-    height: 200px !important;
-}
-    }
+        display: block;
+        margin-right: 85px;
+        width: 90% !important;
+        height: 350px !important;
+      }
 
-    .darkgray {
-      color: #7d7d7d;
-    }
+      .user-cover {
+        width: 170px !important;
+        height: 170px !important;
+        border: none;
+        border-radius: 50%;
+        background: #ca353500;
+        z-index: 9999;
+        margin-top: -130px;
+        margin-right: 45%;
+        display: block;
+      }
 
-    .userad-logo {
-      border-radius: 50%;
-      height: 25px;
-      width: 25px;
-      margin: -5px 10px -5px 0px !important
-    }
-  </style>
-  <style x-lang="ar">
-    .nav1 {
-      flex-direction: initial;
-      padding: 7px;
-    }
+      @media screen and (max-width: 480px) {
+        .info-profile-margin {
+          margin-top: 0px !important;
+        }
 
-    :root {
-      --direction: rtl;
-      --text-align: right;
-      --float: right;
-    }
-  </style>
-</head>
+        .user-cover {
+          width: 150px !important;
+          margin-top: -200px !important;
+          height: 150px !important;
+          border-radius: 50% !important;
+          margin-right: 55px !important;
+        }
+      }
 
-<body class="##session.lang## loaded" ng-controller="profile">
-  <div x-import="haraj/header.html"></div>
+      @media screen and (max-width: 600px) {
+        .user-cover {
+          width: 110px !important;
+          height: 110px !important;
+          border: none;
+          border-radius: 50%;
+          background: #ca353500;
+          z-index: 9999;
+          margin-top: -75px !important;
+          margin-right: 34% !important;
+          display: block;
+        }
 
-  <div id="main-layout" class="container">
-    <div x-import="profile/rating_modal.html"></div>
-    <div x-import="profile/message_modal.html"></div>
-    <div x-import="profile/communication_modal.html"></div>
-    <div class="row bg-white profile-parent">
+        .user-background {
+          border-radius: unset;
+          display: block;
+          margin-right: 18px;
+          width: 90% !important;
+          height: 200px !important;
+        }
+      }
 
+      .userad-logo {
+        border-radius: 50%;
+        height: 25px;
+        width: 25px;
+        margin: -5px 10px -5px 0px !important;
+      }
+    </style>
+    <style x-lang="ar">
+      .nav1 {
+        flex-direction: initial;
+        padding: 7px;
+      }
 
-      <div class="row">
-        <img class="user-background" view ng-src="{{user.profile.cover}}" />
-        <img class="user-cover" view logo ng-src="{{user.profile.image_url}}" />
-        <span class="online-badge" ng-class="{'offline-badge' : !user.$isOnline}"></span>
-      </div>
-      <div class="row info-profile-margin">
-        <div class="col2 center">
+      :root {
+        --direction: rtl;
+        --text-align: right;
+        --float: right;
+      }
+    </style>
+  </head>
 
-          <i-button class="center" x-permissions="login" label="##word.follow##"
-            ng-show="!user.$is_follow && !user.$same_email" ng-click="updateFollow(user,true)"></i-button>
-          <i-button class="center" x-permissions="login" label="##word.unfollow##"
-            ng-show="user.$is_follow && !user.$same_email" ng-click="updateFollow(user,false)"></i-button>
-          <h3 class="darkgray font-20 center" ng-show="user.followers_list.length > 0">{{user.followers_list.length}}
-            ##word.follower##</h3>
-          <h3 class="darkgray font-20 center" ng-show="user.followers_list.length < 1"> ##word.no_followers##</h3>
+  <body class="##session.lang## loaded" ng-controller="profile">
+    <div x-import="haraj/header.html"></div>
+
+    <div id="main-layout" class="container">
+      <div x-import="profile/rating_modal.html"></div>
+      <div x-import="profile/message_modal.html"></div>
+      <div x-import="profile/communication_modal.html"></div>
+      <div class="row bg-white profile-parent">
+        <div class="row">
+          <img class="user-background" view ng-src="{{user.profile.cover}}" />
+          <img class="user-cover" view logo ng-src="{{user.profile.image_url}}" />
+          <span class="online-badge" ng-class="{'offline-badge' : !user.$isOnline}"></span>
         </div>
-
-        <div class="col8">
-          <div class="ad-user margin-top-40 center">
-
-            <h1 class="user-name-stlye font-28 center">
-              {{user.profile.name}} {{user.profile.last_name}}
-            </h1>
-
-          </div>
-          <h2 class="user-name-stlye black font-25 userPrint center">{{user.email}}</h2>
-
-          <div class="row margin darkgray font-22 padding center" ng-show="!user.$isOnline">
-
-            <p> ##word.last_seen## {{user.$last_seen}} </p>
+        <div class="row info-profile-margin">
+          <div class="col2 center">
+            <i-button class="center" x-permissions="login" label="##word.follow##" ng-show="!user.$is_follow && !user.$same_email" ng-click="updateFollow(user,true)"></i-button>
+            <i-button class="center" x-permissions="login" label="##word.unfollow##" ng-show="user.$is_follow && !user.$same_email" ng-click="updateFollow(user,false)"></i-button>
+            <h3 class="darkgray font-20 center" ng-show="user.followers_list.length > 0">{{user.followers_list.length}} ##word.follower##</h3>
+            <h3 class="darkgray font-20 center" ng-show="user.followers_list.length < 1">##word.no_followers##</h3>
           </div>
 
-          <div class="row">
+          <div class="col8">
+            <div class="ad-user margin-top-40 center">
+              <h1 class="user-name-stlye font-28 center">{{user.profile.name}} {{user.profile.last_name}}</h1>
+            </div>
+            <h2 class="user-name-stlye black font-25 userPrint center">{{user.email}}</h2>
 
-            <div class="margin col-6 darkgray font-22 padding center">
-              <i class="fa-solid fa-calendar-days create-user"></i>
-              <p>{{user.$created_date}}</p>
+            <div class="row margin darkgray font-22 padding center" ng-show="!user.$isOnline">
+              <p>##word.last_seen## {{user.$last_seen}}</p>
             </div>
 
-            <div class="margin col-6 darkgray font-22 padding center" ng-show="user.id == ##user.id##">
-              <a href="/commission_form">
-                <i class="fa-solid fa-check"></i>
+            <div class="center">
+              <a href="/commission_form" class="inline-block darkgray font-22 padding center">
+                <i class="fa-solid fa-calendar-days create-user"></i>
+                <p>{{user.$created_date || 'Not set'}}</p>
+              </a>
+
+              <a href="/commission_form" class="inline-block darkgray font-22 padding center" ng-show="user.id == userId">
+                <i class="fa-solid fa-check darkgray create-user"></i>
                 <p>##word.commission_payment##</p>
               </a>
             </div>
-
+            <div class="row margin padding">
+              <span class="center about-me">{{user.profile.about_me}}</span>
+            </div>
           </div>
-          <div class="row margin padding">
-            <span class="center about-me">{{user.profile.about_me}}</span>
+          <div class="col2 center pointer" onclick="$('#ratings').show();$('#user_contents').hide()">
+            <i ng-class="{'yellow' : rate > 90}" class="fa-solid fa-star star"> </i>
+            <i ng-class="{'yellow' : rate > 70}" class="fa-solid fa-star star"> </i>
+            <i ng-class="{'yellow' : rate > 50}" class="fa-solid fa-star star"> </i>
+            <i ng-class="{'yellow' : rate > 30}" class="fa-solid fa-star star"> </i>
+            <i ng-class="{'yellow' : rate > 10}" class="fa-solid fa-star star"> </i>
+            <a href="" class="underline-hover" onclick="$('#ratings').show();$('#user_contents').hide()">
+              <h2 class="darkgreen bold center" ng-show="ratingList.length > 0">{{ratingList.length}} ##word.rating##</h2>
+              <h2 class="darkgreen bold center" ng-show="ratingList.length < 1">##word.no_rating##</h2>
+            </a>
           </div>
         </div>
-        <div class="col2 center pointer" onclick="$('#ratings').show();$('#user_contents').hide()">
-          <i ng-class="{'yellow' : rate > 90}" class="fa-solid fa-star star"> </i>
-          <i ng-class="{'yellow' : rate > 70}" class="fa-solid fa-star star"> </i>
-          <i ng-class="{'yellow' : rate > 50}" class="fa-solid fa-star star"> </i>
-          <i ng-class="{'yellow' : rate > 30}" class="fa-solid fa-star star"> </i>
-          <i ng-class="{'yellow' : rate > 10}" class="fa-solid fa-star star"> </i>
-          <a href="" class="underline-hover" onclick="$('#ratings').show();$('#user_contents').hide()">
-            <h2 class="darkgreen bold center" ng-show="ratingList.length > 0">{{ratingList.length}} ##word.rating##</h2>
-            <h2 class="darkgreen bold center" ng-show="ratingList.length < 1"> ##word.no_rating##</h2>
-          </a>
+
+        <div class="row center">
+          <i-button fa="sliders" label="##word.manage_your_personal_account##" ng-show="user.$same_email" ng-click="displayManagePersonalAccount()"> </i-button>
         </div>
+
+        <hr ng-show="!user.$same_email" />
+        <div class="row center" ng-show="!user.$same_email">
+          <a class="color-theme font-25 pointer" ng-show="!user.$same_email && !user.hide_mobile" ng-click="showCommunication()"> <i class="fa fa-phone"></i> ##word.communication##</a>
+          <span class="v_line"></span>
+          <a class="color-theme font-25 pointer conversation" x-permissions="login" onclick="site.showModal('#messageModal');"> <i class="fa fa-comments"></i> ##word.conversation##</a>
+        </div>
+        <hr />
+        <div x-import="profile/tabs_content.html"></div>
       </div>
-
-      <div class="row center">
-        <i-button fa="sliders" label="##word.manage_your_personal_account##" ng-show="user.$same_email"
-          ng-click="displayManagePersonalAccount()"> </i-button>
-      </div>
-
-      <hr ng-show="!user.$same_email">
-      <div class="row center" ng-show="!user.$same_email">
-        <a class="color-theme font-25 pointer" ng-show="!user.$same_email && !user.hide_mobile"
-          ng-click="showCommunication()"> <i class="fa fa-phone"></i> ##word.communication##</a>
-        <span class="v_line"></span>
-        <a class="color-theme font-25 pointer conversation" x-permissions="login"
-          onclick="site.showModal('#messageModal');"> <i class="fa fa-comments"></i>
-          ##word.conversation##</a>
-      </div>
-      <hr>
-      <div x-import="profile/tabs_content.html"></div>
-
-
-
     </div>
-  </div>
 
+    <footer class="footer ng-scope" x-import="haraj/footer.html" ng-controller="footer_herag"></footer>
+    <div x-import="haraj/scripts.html"></div>
 
+    <script x-import="profile/index.js"></script>
+    <script x-import="haraj/index2.js"></script>
 
-
-
-
-
-
-  <footer class="footer ng-scope" x-import="haraj/footer.html" ng-controller="footer_herag"></footer>
-  <div x-import="haraj/scripts.html"></div>
-
-  <script x-import="profile/index.js"></script>
-  <script x-import="haraj/index2.js"></script>
-
-  <script>
-    $('#user_contents').show();
-    $('#ratings').hide();
-
-  </script>
-</body>
-
+    <script>
+      $('#user_contents').show();
+      $('#ratings').hide();
+    </script>
+  </body>
 </html>

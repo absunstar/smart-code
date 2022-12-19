@@ -34,7 +34,6 @@
     {"name" : "currency_differences_entry" , "en" : "Currency Differences Entry" , "ar" : "قيد فروق عملة"},
 
     {"name" : "statement" , "en" : "Statement" , "ar" : "البيان"},
-    {"name" : "account_name" , "en" : "Account Name" , "ar" : "إسم الحساب"},
     {"name" : "the_difference" , "en" : "The difference" , "ar" : "الفرق"},
     {"name" : "debtor_creditor_must_equal" , "en" : "The debtor must be equal to the creditor" , "ar" : "يجب أن يتساوى المدين مع الدائن"},
     {"name" : "ratios_amounts_cost_centers_account" , "en" : "The ratios and amounts of cost centers are greater than those paid in accounts" , "ar" : "نسب و مبالغ مراكز التكلفة أكبر من المدفوع في الحسابات"},

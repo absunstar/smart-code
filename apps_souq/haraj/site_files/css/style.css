@@ -7,6 +7,12 @@
   --font-family: 'Arabic', sans-serif;
 }
 
+.bg-theme {
+
+  background: var(--theme-color);
+}
+
+
 svg#Layer_1 {
   width: 100% !important;
 }
@@ -287,7 +293,7 @@ i-image img:hover {
 }
 
 .haraj_logo {
-  height: 64px;
+  height: 58px;
   border-radius: 5px;
 }
 
@@ -531,4 +537,7 @@ i.fa.fa-check {
   right: 15px;
   bottom: 0px;
   text-shadow: 1px 1px 5px #000;
+}
+.darkgray {
+  color: #7d7d7d;
 }

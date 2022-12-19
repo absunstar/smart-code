@@ -1,11 +1,15 @@
 app.controller('commission_form', function ($scope, $http, $timeout) {
   $scope.pay = {};
+  $scope.commission_due = 0;
 
 
   $scope.calc = function () {
-    setTimeout(() => {
+    $timeout(() => {
       $scope.commission_due = 0;
-     $scope.commission_due = ($scope.price *10) / 100;
+     $scope.commission_due = ($scope.price *1) / 100;
+     if($scope.commission_due < 1) {
+      $scope.commission_due = 0;
+     }
     }, 300);
 
   },
@@ -35,6 +39,7 @@ app.controller('commission_form', function ($scope, $http, $timeout) {
 
     if(site.toNumber('##user.id##') > 0) {
       pay.user_name = '##user.profile.name##' + ' ' + '##user.profile.last_name##';
+      pay.mobile = '##user.mobile##';
     }
 
     const v = site.validated('#payModal');

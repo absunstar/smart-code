@@ -300,11 +300,7 @@
         "en": "Bank Information",
         "ar": "بيانات البنك"
     },
-    {
-        "name": "companies_bank_name",
-        "en": "Bank Name",
-        "ar": "إسم البنك"
-    },
+
     {
         "name": "companies_bank_account_number",
         "en": "Bank Account Number",
