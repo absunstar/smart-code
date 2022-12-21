@@ -8,10 +8,8 @@
 }
 
 .bg-theme {
-
   background: var(--theme-color);
 }
-
 
 svg#Layer_1 {
   width: 100% !important;
@@ -451,7 +449,9 @@ i-checkbox .selector.un-selected {
   background: transparent !important;
   color: #030303 !important;
 }
-
+.tabs .tabs-content {
+  width: 100% !important;
+}
 i.fa.fa-check {
   border: none !important;
   background-color: transparent !important;
