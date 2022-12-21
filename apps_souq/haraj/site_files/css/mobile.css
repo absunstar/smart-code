@@ -41,7 +41,9 @@
     grid-template-columns: 27% 50% 23%;
     direction: rtl;
   }
-
+.not-mobile {
+  display: none;
+}
   .side-badge {
     position: absolute;
     bottom: 7px;
@@ -56,9 +58,14 @@
     width: 18px;
   }
 
+  .page-nav a {
+    font-size: 18px;
+  }
+
   .haraj_name {
+    font-family: fantasy;
     position: relative;
-    font-size: 25px;
+    font-size: 24px;
     text-align: center;
     color: #ffffff;
     bottom: 5px;

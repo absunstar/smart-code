@@ -298,7 +298,9 @@ i-image img:hover {
 }
 
 .haraj_name {
+  font-size: 26px;
   padding-left: 10px;
+  font-family: fantasy;
   padding-right: 10px;
 }
 
