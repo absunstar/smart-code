@@ -6,6 +6,7 @@ if (btn1) {
 app.controller("manage_users", function ($scope, $http) {
   $scope._search = {};
 
+  $scope.mode = 'add';
   $scope.manage_users = {};
   $scope.viewText = "";
 
@@ -46,7 +47,7 @@ app.controller("manage_users", function ($scope, $http) {
   $scope.editManageUser = function (type) {
     $scope.busy = true;
 
-    const v = site.validated("#viewManageUserModal");
+    const v = site.validated("#manageUsersManageModal");
     if (!v.ok && type == "password") {
       $scope.error = v.messages[0].ar;
       return;
@@ -64,7 +65,7 @@ app.controller("manage_users", function ($scope, $http) {
         $scope.busy = false;
         if (response.data.done) {
           $scope.busy = false;
-          site.hideModal("#viewManageUserModal");
+          site.hideModal("#manageUsersManageModal");
 
         } else {
           $scope.error = response.data.error;
@@ -97,14 +98,15 @@ app.controller("manage_users", function ($scope, $http) {
 
   $scope.displayAddManageUsers = function () {
     $scope.error = '';
+    $scope.mode = 'add';
     $scope.manage_users = {
       active: true,
       ability_login: true,
       image_url: '/images/manage_users.png',
     };
     $scope.manage_users.type = $scope.usersTypesList.find(_t => { return _t.id === site.toNumber('##query.type##') });
-    site.showModal('#manageUsersAddModal');
-    document.querySelector("#manageUsersAddModal .tab-link").click();
+    site.showModal('#manageUsersManageModal');
+    document.querySelector("#manageUsersManageModal .tab-link").click();
   };
 
   $scope.addManageUsers = function () {
@@ -117,7 +119,7 @@ app.controller("manage_users", function ($scope, $http) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#manageUsersAddModal');
+          site.hideModal('#manageUsersManageModal');
           $scope.loadManageUsers();
         } else {
           $scope.error = response.data.error;
@@ -130,15 +132,16 @@ app.controller("manage_users", function ($scope, $http) {
   };
   $scope.displayUpdateManageUsers = function (manage_users) {
     $scope.error = '';
+    $scope.mode = 'edit';
     $scope.viewManageUsers(manage_users);
     $scope.manage_users = {};
-    site.showModal('#manageUsersUpdateModal');
-    document.querySelector("#manageUsersUpdateModal .tab-link").click();
+    site.showModal('#manageUsersManageModal');
+    document.querySelector("#manageUsersManageModal .tab-link").click();
   };
 
   $scope.updateManageUsers = function () {
     $scope.error = '';
-    const v = site.validated('#manageUsersUpdateModal');
+    const v = site.validated('#manageUsersManageModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
@@ -152,7 +155,7 @@ app.controller("manage_users", function ($scope, $http) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#manageUsersUpdateModal');
+          site.hideModal('#manageUsersManageModal');
           $scope.loadManageUsers();
         } else {
           $scope.error = 'Please Login First';
@@ -166,9 +169,10 @@ app.controller("manage_users", function ($scope, $http) {
 
   $scope.displayDetailsManageUsers = function (manage_users) {
     $scope.error = '';
+    $scope.mode = 'view';
     $scope.viewManageUsers(manage_users);
     $scope.manage_users = {};
-    site.showModal('#manageUsersViewModal');
+    site.showModal('#manageUsersManageModal');
   };
 
 
@@ -301,10 +305,11 @@ app.controller("manage_users", function ($scope, $http) {
 
   $scope.displayDeleteManageUsers = function (manage_users) {
     $scope.error = '';
+    $scope.mode = 'delete';
     $scope.viewManageUsers(manage_users);
     $scope.manage_users = {};
-    site.showModal('#manageUsersDeleteModal');
-    document.querySelector("#manageUsersDeleteModal .tab-link").click();
+    site.showModal('#manageUsersManageModal');
+    document.querySelector("#manageUsersManageModal .tab-link").click();
   };
 
   $scope.deleteManageUsers = function () {
@@ -321,7 +326,7 @@ app.controller("manage_users", function ($scope, $http) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#manageUsersDeleteModal');
+          site.hideModal('#manageUsersManageModal');
           $scope.loadManageUsers();
         } else {
           $scope.error = response.data.error;

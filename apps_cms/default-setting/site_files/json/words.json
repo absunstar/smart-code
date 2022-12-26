@@ -156,9 +156,39 @@
     "ar": "توليد آلي لكود الطلبات"
   },
   {
-    "name": "user_design",
-    "en": "User Design",
-    "ar": "تصميم المستخدم"
+    "name": "site_template",
+    "en": "Site template",
+    "ar": "الشكل العام للموقع"
+  },
+  {
+    "name": "site_slogan",
+    "en": "Site slogan",
+    "ar": "شعار الموقع"
+  },
+  {
+    "name": "site_color",
+    "en": "Site color",
+    "ar": "اللون العام للموقع"
+  },
+  {
+    "name": "site_description",
+    "en": "Site description",
+    "ar": "وصف الموقع"
+  },
+  {
+    "name": "article_status",
+    "en": "Article status",
+    "ar": "حالة الخبر"
+  },
+  {
+    "name": "sales_email",
+    "en": "Sales email",
+    "ar": "البريد الإلكتروني للمبيعات"
+  },
+  {
+    "name": "support_email",
+    "en": "Support email",
+    "ar": "البريد الإلكتروني للدعم"
   },
   {
     "name": "site_settings",

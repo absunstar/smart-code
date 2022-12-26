@@ -1,77 +1,157 @@
 [
-    {
-        "name": "articles",
-        "en": "Articles",
-        "ar": "الأخبار"
-    },
-    {
-        "name": "article",
-        "en": "Article",
-        "ar": "الخبر"
-    },
-    {
-        "name": "articles_new",
-        "en": "New Article",
-        "ar": "أضافة خبر جديد"
-    },
-    {
-        "name": "articles_add",
-        "en": "Add Article",
-        "ar": "خبر جديد"
-    },
-    {
-        "name": "articles_edit",
-        "en": "Edit Article",
-        "ar": "تعديل خبر "
-    },
-    {
-        "name": "show_image",
-        "en": "Show image",
-        "ar": "إظهار الصورة"
-    },
-    {
-        "name": "articles_details",
-        "en": "Article Details",
-        "ar": "تفاصيل الخبر "
-    },
-    {
-        "name": "articles_delete",
-        "en": "Delete Article",
-        "ar": "حذف خبر "
-    },
-    {
-        "name": "keywords",
-        "en": "Keywords",
-        "ar": "كلمات مفتاحية"
-    },
-    {
-        "name": "articles_name",
-        "en": "Article Name",
-        "ar": "إسم الخبر "
-    },
-    {
-        "name": "article_title",
-        "en": "Article Title",
-        "ar": "عنوان المقال"
-    },
-    {
-        "name": "article_type",
-        "en": "Article Type",
-        "ar": "نوع المقال"
-    },
-    {
-        "name": "create_article",
-        "en": "Create Article",
-        "ar": "إنشاء خبر"
-    },
-    {
-        "name": "social",
-        "en": "Social",
-        "ar": "إجتماعي"
-    },
-    {
-        "name": "external",
-        "en": "External",
-        "ar": "خارجي"
-    }
+  {
+    "name": "articles",
+    "en": "Articles",
+    "ar": "الأخبار"
+  },
+  {
+    "name": "article",
+    "en": "Article",
+    "ar": "الخبر"
+  },
+  {
+    "name": "articles_new",
+    "en": "New Article",
+    "ar": "إضافة خبر جديد"
+  },
+  {
+    "name": "articles_add",
+    "en": "Add Article",
+    "ar": "خبر جديد"
+  },
+  {
+    "name": "articles_edit",
+    "en": "Edit Article",
+    "ar": "تعديل خبر "
+  },
+  {
+    "name": "show_image",
+    "en": "Show image",
+    "ar": "إظهار الصورة"
+  },
+  {
+    "name": "articles_details",
+    "en": "Article Details",
+    "ar": "تفاصيل الخبر "
+  },
+  {
+    "name": "articles_delete",
+    "en": "Delete Article",
+    "ar": "حذف خبر "
+  },
+  {
+    "name": "keywords",
+    "en": "Keywords",
+    "ar": "كلمات مفتاحية"
+  },
+  {
+    "name": "articles_name",
+    "en": "Article Name",
+    "ar": "إسم الخبر "
+  },
+  {
+    "name": "article_title",
+    "en": "Article Title",
+    "ar": "عنوان المقال"
+  },
+  {
+    "name": "article_template",
+    "en": "Article Template",
+    "ar": "الشكل العام للمقال"
+  },
+  {
+    "name": "create_article",
+    "en": "Create Article",
+    "ar": "إنشاء خبر"
+  },
+  {
+    "name": "social_media",
+    "en": "SocialMedia",
+    "ar": "سوشيال ميديا"
+  },
+  {
+    "name": "social_media_activation",
+    "en": "SocialMedia activation",
+    "ar": "تفعيل السوشيال ميديا"
+  },
+  {
+    "name": "external",
+    "en": "External",
+    "ar": "الغلاف الخارجي"
+  },
+  {
+    "name": "external_activation",
+    "en": "External activation",
+    "ar": "تفعيل الغلاف الخارجي"
+  },
+  {
+    "name": "number_views",
+    "en": "Number of Views",
+    "ar": "عدد المشاهدات"
+  },
+  {
+    "name": "number_likes",
+    "en": "Number of Likes",
+    "ar": "عدد اللايكات"
+  },
+  {
+    "name": "number_comments",
+    "en": "Number of Comments",
+    "ar": "عدد التعليقات"
+  },
+  {
+    "name": "number_posts",
+    "en": "Number of posts",
+    "ar": "عدد المشاركات"
+  },
+  {
+    "name": "number_ratings",
+    "en": "Number of ratings",
+    "ar": "عدد التقييمات"
+  },
+  {
+    "name": "actual_number",
+    "en": "Actual number",
+    "ar": "العدد الفعلي"
+  },
+  {
+    "name": "dummy_number",
+    "en": "Dummy number",
+    "ar": "العدد الوهمي"
+  },
+  {
+    "name": "apparent_number",
+    "en": "Apparent number",
+    "ar": "العدد الظاهر"
+  },
+  {
+    "name": "subscribers_only",
+    "en": "For subscribers only",
+    "ar": "للمشتركين فقط"
+  },
+  {
+    "name": "special_men",
+    "en": "Special for men",
+    "ar": "خاص للرجال"
+  },
+  {
+    "name": "special_women",
+    "en": "Special for women",
+    "ar": "خاص للنساء"
+  },
+  {
+    "name": "appear_in_urgent",
+    "en": "Appear in urgent",
+    "ar": "ظهور في عاجل"
+  },
+  {
+    "name": "exclude_most_viewed",
+    "en": "Exclude from most viewed",
+    "ar": "إستبعاد من الأكثر مشاهدة"
+  },
+  {
+    "name": "exclude_home_page",
+    "en": "Exclude from home page",
+    "ar": "إستبعاد من الصفحة الرئيسية"
+  }
 ]

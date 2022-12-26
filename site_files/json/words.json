@@ -23,7 +23,7 @@
     "name": "bank_name",
     "en": "Bank Name",
     "ar": "إسم البنك"
-},
+  },
   {
     "name": "account_name",
     "en": "Account Name",
@@ -1258,6 +1258,16 @@
     "name": "unit_barcode",
     "en": "Unit Barcode",
     "ar": "باركود الوحدة"
+  },
+  {
+    "name": "birth_date",
+    "en": "Birth Date",
+    "ar": "تاريخ الميلاد"
+  },
+  {
+    "name": "statistics",
+    "en": "Statistics",
+    "ar": "الإحصائيات"
   },
   {
     "name": "longitudes",

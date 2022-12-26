@@ -1,0 +1,82 @@
+<div id="govManageModal" class="modal" fixed>
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+
+      <h2 ng-show="mode == 'add' ">
+        ##word.goves_add##
+        <i class="fa fa-plus"></i>
+      </h2>
+      <h2 ng-show="mode == 'edit' ">
+        ##word.goves_edit##
+        <i class="fa fa-pencil"></i>
+      </h2>
+      <h2 ng-show="mode == 'delete' ">
+        ##word.goves_delete##
+        <i class="fa fa-trash"></i>
+      </h2>
+      <h2 ng-show="mode == 'view' ">
+        ##word.goves_details##
+        <i class="fa fa-file"></i>
+      </h2>
+    </div>
+
+    <div class="modal-body">
+      <fieldset>
+        <legend>##word.basic_information##</legend>
+        <div class="row">
+          <div class="col9">
+            <div class="row">
+              <i-control help-id="goves_name" v="r ll2" class="col4" label="##word.goves_name##" ng-model="gov.name_ar"></i-control>
+
+              <i-control help-id="goves_name_en" v="r" class="col4" label="##word.name_en##" ng-model="gov.name_en"></i-control>
+
+              <i-checkbox help-id="goves_active" class="col2" label="##word.active##" ng-model="gov.active"> </i-checkbox>
+            </div>
+
+            <div class="row">
+              <i-list help-id="" v="r" class="col4" label="##word.country##" ng-model="gov.country" display="name_##session.lang##" items="countriesList" ng-search="_search.$gov_countries"></i-list>
+            </div>
+          </div>
+
+          <div class="col3">
+            <i-image help-id="goves_logo" ng-model="gov.image_url"></i-image>
+          </div>
+        </div>
+      </fieldset>
+
+      <div ng-show="mode !== 'add' " class="row">
+        <table class="table hover border">
+          <tr>
+            <th>##word.useradd_user_info##</th>
+            <th>##word.useredit_user_info##</th>
+          </tr>
+          <tr>
+            <td class="center">
+              <p class="blue">{{gov.add_user_info.name_##session.lang##}}</p>
+              <small class="green"> {{gov.add_user_info.date |date:"hh:mm"}} </small>
+              <small> {{gov.add_user_info.date |date:"dd - MM - yyyy"}} </small>
+              <p class="bold">IP : {{gov.add_user_info.ip}}</p>
+            </td>
+
+            <td class="center">
+              <p class="blue">{{gov.edit_user_info.name_##session.lang##}}</p>
+              <small class="green"> {{gov.edit_user_info.date |date:"hh:mm"}} </small>
+              <small> {{gov.edit_user_info.date |date:"dd - MM - yyyy"}} </small>
+              <p class="bold">IP : {{gov.edit_user_info.ip}}</p>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="modal-footer center">
+      <h2 class="error">{{error}}</h2>
+      <i-button type="add" ng-show="mode == 'add' " label="##word.add##" ng-click="addGov()"></i-button>
+      <i-button type="edit" ng-show="mode == 'edit' " label="##word.edit##" ng-click="updateGov(gov)"></i-button>
+      <i-button type="delete" ng-show="mode == 'delete' " label="##word.delete##" ng-click="deleteGov(gov)"> </i-button>
+
+      <i-button type="close" label="##word.close##" onclick="site.hideModal( '#govManageModal')"></i-button>
+    </div>
+  </div>
+</div>

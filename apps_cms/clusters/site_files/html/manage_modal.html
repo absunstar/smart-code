@@ -1,0 +1,79 @@
+<div id="clusterManageModal" class="modal" fixed>
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+
+      <h2 ng-show="mode == 'add' ">
+        ##word.clusters_add##
+        <i class="fa fa-plus"></i>
+      </h2>
+      <h2 ng-show="mode == 'edit' ">
+        ##word.clusters_edit##
+        <i class="fa fa-pencil"></i>
+      </h2>
+      <h2 ng-show="mode == 'delete' ">
+        ##word.clusters_delete##
+        <i class="fa fa-trash"></i>
+      </h2>
+      <h2 ng-show="mode == 'view' ">
+        ##word.clusters_details##
+        <i class="fa fa-file"></i>
+      </h2>
+    </div>
+
+    <div class="modal-body">
+      <fieldset>
+        <legend>##word.basic_information##</legend>
+        <div class="row">
+          <div class="col9">
+            <div class="row">
+              <i-control v="r ll2" class="col6" label="##word.cluster_name##" ng-model="cluster.name"></i-control>
+
+              <i-checkbox help-id="clusters_active" class="col2" label="##word.active##" ng-model="cluster.active"> </i-checkbox>
+            </div>
+
+            <div class="row">
+              <i-textarea ng-model="cluster.description" label="##word.description##"> </i-textarea>
+            </div>
+          </div>
+
+          <div class="col3">
+            <i-image help-id="clusters_logo" ng-model="cluster.image_url"></i-image>
+          </div>
+        </div>
+      </fieldset>
+      <div ng-show="mode !== 'add' " class="row">
+        <table class="table hover border">
+          <tr>
+            <th>##word.useradd_user_info##</th>
+            <th>##word.useredit_user_info##</th>
+          </tr>
+          <tr>
+            <td class="center">
+              <p class="blue">{{cluster.add_user_info.name_##session.lang##}}</p>
+              <small class="green"> {{cluster.add_user_info.date |date:"hh:mm"}} </small>
+              <small> {{cluster.add_user_info.date |date:"dd - MM - yyyy"}} </small>
+              <p class="bold">IP : {{cluster.add_user_info.ip}}</p>
+            </td>
+
+            <td class="center">
+              <p class="blue">{{cluster.edit_user_info.name_##session.lang##}}</p>
+              <small class="green"> {{cluster.edit_user_info.date |date:"hh:mm"}} </small>
+              <small> {{cluster.edit_user_info.date |date:"dd - MM - yyyy"}} </small>
+              <p class="bold">IP : {{cluster.edit_user_info.ip}}</p>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="modal-footer center">
+      <h2 class="error">{{error}}</h2>
+      <i-button type="add" ng-show="mode == 'add' " label="##word.add##" ng-click="addCluster()"></i-button>
+      <i-button type="edit" ng-show="mode == 'edit' " label="##word.edit##" ng-click="updateCluster(cluster)"></i-button>
+      <i-button type="delete" ng-show="mode == 'delete' " label="##word.delete##" ng-click="deleteCluster(cluster)"> </i-button>
+
+      <i-button type="close" label="##word.close##" onclick="site.hideModal( '#clusterManageModal')"></i-button>
+    </div>
+  </div>
+</div>

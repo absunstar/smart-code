@@ -543,7 +543,7 @@ app.controller('transfer_safes', function ($scope, $http, $timeout) {
         $scope.transfer_safes.safe_transferred_from = site.toNumber($scope.transfer_safes.safe_transferred_from);
         $scope.transfer_safes.safe_transferred_to = site.toNumber($scope.transfer_safes.safe_transferred_to);
       }
-    }, 300);
+    }, 500);
   };
 
   $scope.financialYear = function (date, callback) {

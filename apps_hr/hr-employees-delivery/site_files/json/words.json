@@ -60,11 +60,7 @@
         "en": "Delivery Employee Indentfy",
         "ar": "نوع الموظف"
     },
-    {
-        "name": "birth_date",
-        "en": "Birth Date",
-        "ar": "تاريخ الميلاد"
-    },
+
     {
         "name": "qualification",
         "en": "Qualification",

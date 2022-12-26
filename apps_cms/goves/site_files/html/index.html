@@ -9,10 +9,7 @@
     <div id="main-layout" class="container">
       <div class="row">
         <div class="row">
-          <div x-permissions="goves_add || goves_manage" x-import="goves/add_modal.html"></div>
-          <div x-permissions="goves_update || goves_manage" x-import="goves/update_modal.html"></div>
-          <div x-permissions="goves_delete || goves_manage" x-import="goves/delete_modal.html"></div>
-          <div x-permissions="goves_view || goves_manage" x-import="goves/view_modal.html"></div>
+          <div x-import="goves/manage_modal.html"></div>
           <div x-permissions="goves_search || goves_manage" x-import="goves/search_all_modal.html"></div>
 
           <div class="row">

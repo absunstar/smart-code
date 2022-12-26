@@ -2,7 +2,7 @@ module.exports = function init(site) {
   const $default_setting = site.connectCollection('default_setting');
   site.defaultSettingDoc = {
     length_order: 0,
-    user_design: { id: 5 },
+    site_template: { id: 5 },
     article: {},
   };
   site.setting = { ...site.defaultSettingDoc };
@@ -14,7 +14,6 @@ module.exports = function init(site) {
     } else {
       $default_setting.add(site.defaultSettingDoc, (err, doc) => {
         if (!err && doc) {
-          site.call('[country][add]', {});
           site.defaultSettingDoc = doc;
           site.setting = { ...site.defaultSettingDoc };
         }
@@ -40,8 +39,18 @@ module.exports = function init(site) {
   });
 
   site.post({
-    name: '/api/user_design/all',
-    path: __dirname + '/site_files/json/user_design.json',
+    name: '/api/site_template/all',
+    path: __dirname + '/site_files/json/site_template.json',
+  });
+
+  site.post({
+    name: '/api/site_color/all',
+    path: __dirname + '/site_files/json/site_color.json',
+  });
+
+  site.post({
+    name: '/api/article_status/all',
+    path: __dirname + '/site_files/json/article_status.json',
   });
 
   site.post({
@@ -59,10 +68,6 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/json/location.json',
   });
 
-  site.post({
-    name: '/api/content_status/all',
-    path: __dirname + '/site_files/json/content_status.json',
-  });
 
   site.post('/api/default_setting/get', (req, res) => {
     let response = {

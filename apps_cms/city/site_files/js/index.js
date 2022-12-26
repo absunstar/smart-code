@@ -1,20 +1,21 @@
 app.controller('city', function ($scope, $http, $timeout) {
   $scope._search = {};
-
+  $scope.mode = 'add';
   $scope.city = {};
 
   $scope.displayaddCity = function () {
     $scope.error = '';
+    $scope.mode = 'add';
     $scope.city = {
       image_url: '/images/city.png',
       active: true,
     };
-    site.showModal('#cityAddModal');
+    site.showModal('#cityManageModal');
   };
 
   $scope.addCity = function () {
     $scope.error = '';
-    const v = site.validated('#cityAddModal');
+    const v = site.validated('#cityManageModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
@@ -28,7 +29,7 @@ app.controller('city', function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#cityAddModal');
+          site.hideModal('#cityManageModal');
           $scope.getCityList();
         } else {
           $scope.error = 'Please Login First';
@@ -43,14 +44,15 @@ app.controller('city', function ($scope, $http, $timeout) {
 
   $scope.displayUpdateCity = function (city) {
     $scope.error = '';
+    $scope.mode = 'edit';
     $scope.viewCity(city);
     $scope.city = {};
-    site.showModal('#cityUpdateModal');
+    site.showModal('#cityManageModal');
   };
 
   $scope.updateCity = function () {
     $scope.error = '';
-    const v = site.validated('#cityUpdateModal');
+    const v = site.validated('#cityManageModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
@@ -64,7 +66,7 @@ app.controller('city', function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#cityUpdateModal');
+          site.hideModal('#cityManageModal');
           $scope.getCityList();
         } else {
           $scope.error = 'Please Login First';
@@ -78,9 +80,10 @@ app.controller('city', function ($scope, $http, $timeout) {
 
   $scope.displayDetailsCity = function (city) {
     $scope.error = '';
+    $scope.mode = 'view';
     $scope.viewCity(city);
     $scope.city = {};
-    site.showModal('#cityViewModal');
+    site.showModal('#cityManageModal');
   };
 
   $scope.viewCity = function (city) {
@@ -109,9 +112,10 @@ app.controller('city', function ($scope, $http, $timeout) {
 
   $scope.displaydeleteCity = function (city) {
     $scope.error = '';
+    $scope.mode = 'delete';
     $scope.viewCity(city);
     $scope.city = {};
-    site.showModal('#cityDeleteModal');
+    site.showModal('#cityManageModal');
   };
 
   $scope.deleteCity = function () {
@@ -128,7 +132,7 @@ app.controller('city', function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#cityDeleteModal');
+          site.hideModal('#cityManageModal');
           $scope.getCityList();
         } else {
           $scope.error = response.data.error;

@@ -1,0 +1,86 @@
+<div id="countriesManageModal" class="modal" fixed>
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+
+      <h2 ng-show="mode == 'add' ">
+        ##word.country_add##
+        <i class="fa fa-plus"></i>
+      </h2>
+      <h2 ng-show="mode == 'edit' ">
+        ##word.country_edit##
+        <i class="fa fa-pencil"></i>
+      </h2>
+      <h2 ng-show="mode == 'delete' ">
+        ##word.country_delete##
+        <i class="fa fa-trash"></i>
+      </h2>
+      <h2 ng-show="mode == 'view' ">
+        ##word.country_details##
+        <i class="fa fa-file"></i>
+      </h2>
+    </div>
+
+    <div class="modal-body">
+      <fieldset>
+        <legend>##word.basic_information##</legend>
+
+        <div class="row">
+          <div class="col9">
+            <div class="row">
+              <i-control help-id="countries_name" v="r ll2" class="col4" label="##word.country_name_ar##" ng-model="countries.name_ar"></i-control>
+
+              <i-control help-id="countries_name" v="r" class="col4" label="##word.country_name_en##" ng-model="countries.name_en"></i-control>
+
+              <i-checkbox help-id="countries_active" class="col2" label="##word.active##" ng-model="countries.active"> </i-checkbox>
+            </div>
+
+            <div class="row">
+              <i-control v="r" class="col2" label="##word.code##" ng-model="countries.country_code"></i-control>
+              <i-control v="r" class="col3" type="number" label="##word.length_of_mobile_number##" ng-model="countries.length_mobile"></i-control>
+            </div>
+
+            <div class="row">
+              <i-textarea label="##word.country_notes##" ng-model="countries.notes"></i-textarea>
+            </div>
+          </div>
+
+          <div class="col3">
+            <i-image help-id="countries_logo" ng-model="countries.image_url"></i-image>
+          </div>
+        </div>
+      </fieldset>
+      <div ng-show="mode !== 'add' " class="row">
+        <table class="table hover border">
+          <tr>
+            <th>##word.useradd_user_info##</th>
+            <th>##word.useredit_user_info##</th>
+          </tr>
+          <tr>
+            <td class="center">
+              <p class="blue">{{countries.add_user_info.name_##session.lang##}}</p>
+              <small class="green"> {{countries.add_user_info.date |date:"hh:mm"}} </small>
+              <small> {{countries.add_user_info.date |date:"dd - MM - yyyy"}} </small>
+              <p class="bold">IP : {{countries.add_user_info.ip}}</p>
+            </td>
+
+            <td class="center">
+              <p class="blue">{{countries.edit_user_info.name_##session.lang##}}</p>
+              <small class="green"> {{countries.edit_user_info.date |date:"hh:mm"}} </small>
+              <small> {{countries.edit_user_info.date |date:"dd - MM - yyyy"}} </small>
+              <p class="bold">IP : {{countries.edit_user_info.ip}}</p>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="modal-footer center">
+      <h2 class="red center">{{error}}</h2>
+      <i-button type="add" ng-show="mode == 'add' " label="##word.add##" ng-click="addCountries()"></i-button>
+      <i-button type="edit" ng-show="mode == 'edit' " label="##word.edit##" ng-click="updateCountries(countries)"></i-button>
+      <i-button type="delete" ng-show="mode == 'delete' " label="##word.delete##" ng-click="deleteCountries(countries)"> </i-button>
+      <i-button type="close" label="##word.close##" onclick="site.hideModal( '#countriesManageModal')"></i-button>
+    </div>
+  </div>
+</div>

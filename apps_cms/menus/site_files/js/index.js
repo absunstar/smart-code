@@ -1,20 +1,21 @@
 app.controller("menus", function ($scope, $http, $timeout) {
   $scope._search = {};
-
+  $scope.mode = 'add';
   $scope.menu = {};
 
   $scope.displayAddMenu = function () {
     $scope.error = '';
+    $scope.mode = 'add';
     $scope.menu = {
       image_url: '/images/menu.png',
       active: true
     };
-    site.showModal('#menuAddModal');
+    site.showModal('#menuManageModal');
   };
 
   $scope.addMenu = function () {
     $scope.error = '';
-    const v = site.validated('#menuAddModal');
+    const v = site.validated('#menuManageModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
@@ -29,7 +30,7 @@ app.controller("menus", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#menuAddModal');
+          site.hideModal('#menuManageModal');
           $scope.getMenuList();
         } else {
           $scope.error = response.data.error;
@@ -52,14 +53,15 @@ app.controller("menus", function ($scope, $http, $timeout) {
 
   $scope.displayUpdateMenu = function (menu) {
     $scope.error = '';
+    $scope.mode = 'edit';
     $scope.viewMenu(menu);
     $scope.menu = {};
-    site.showModal('#menuUpdateModal');
+    site.showModal('#menuManageModal');
   };
 
   $scope.updateMenu = function () {
     $scope.error = '';
-    const v = site.validated('#menuUpdateModal');
+    const v = site.validated('#menuManageModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
@@ -73,7 +75,7 @@ app.controller("menus", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#menuUpdateModal');
+          site.hideModal('#menuManageModal');
           $scope.getMenuList();
         } else {
           if (response.data.error.like('*select category*')) {
@@ -96,9 +98,10 @@ app.controller("menus", function ($scope, $http, $timeout) {
 
   $scope.displayDetailsMenu = function (menu) {
     $scope.error = '';
+    $scope.mode = 'view';
     $scope.viewMenu(menu);
     $scope.menu = {};
-    site.showModal('#menuViewModal');
+    site.showModal('#menuManageModal');
   };
 
   $scope.viewMenu = function (menu) {
@@ -128,9 +131,10 @@ app.controller("menus", function ($scope, $http, $timeout) {
   $scope.displayDeleteMenu = function (menu) {
     $scope.error = '';
 
+    $scope.mode = 'delete';
     $scope.viewMenu(menu);
     $scope.menu = {};
-    site.showModal('#menuDeleteModal');
+    site.showModal('#menuManageModal');
   };
 
   $scope.deleteMenu = function () {
@@ -147,7 +151,7 @@ app.controller("menus", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#menuDeleteModal');
+          site.hideModal('#menuManageModal');
           $scope.getMenuList();
         } else {
           $scope.error = response.data.error;

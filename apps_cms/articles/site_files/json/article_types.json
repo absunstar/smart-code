@@ -6,17 +6,22 @@
   },
   {
     "id": 2,
-    "en": "developed",
+    "en": "Developed",
     "ar": "متطور"
   },
   {
     "id": 3,
-    "en": "multi-paragraph",
+    "en": "Multi-Paragraph",
     "ar": "متعدد الفقرات"
   },
   {
     "id": 4,
-    "en": "multi-image",
+    "en": "Multi-Paragraph developed",
+    "ar": "متعدد الفقرات متطور"
+  },
+  {
+    "id": 5,
+    "en": "Multi-Image",
     "ar": "متعدد الصور"
   }
 ]

@@ -65,11 +65,7 @@
         "en": "Delegate Indentfy",
         "ar": "نوع المندوب"
     },
-    {
-        "name": "birth_date",
-        "en": "Birth Date",
-        "ar": "تاريخ الميلاد"
-    },
+
     {
         "name": "qualification",
         "en": "Qualification",

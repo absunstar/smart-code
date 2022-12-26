@@ -10,7 +10,6 @@
       <div class="row">
         <div class="row">
           <div x-permissions="articles_add || articles_manage" x-import="articles/manage_modal.html"></div>
-          <div x-permissions="articles_add || articles_update || articles_manage" x-import="articles/translate_content_modal.html"></div>
           <div x-permissions="articles_search || articles_manage" x-import="articles/search_all_modal.html"></div>
 
           <div class="row">
@@ -25,15 +24,12 @@
 
           <table x-permissions="login" class="table hover bold" id="t1">
             <tr>
-              <th class="not-print">##word.logo##</th>
               <th>##word.article_title##</th>
               <th>##word.status##</th>
               <th class="not-print">##word.actions##</th>
             </tr>
             <tr ng-repeat="c in list">
-              <td class="center not-print">
-                <i-image view class="logo" ng-model="c.image_url"></i-image>
-              </td>
+          
               <td class="center title">{{c.title}}</td>
               <td class="center">
                 <p ng-show="c.active == true" class="green">##word.active##</p>
@@ -57,5 +53,26 @@
 
     <div x-import="cms/scripts.html"></div>
     <script x-import="articles/index.js"></script>
+    <script x-import="cms/editor.js"></script>
+    <script>
+     window.addEditor =  WebShareEditor.create('articleAdvancedContent', {
+        toolbarItem: [
+          ['undo', 'redo'],
+          ['font', 'fontSize', 'formatBlock'],
+          ['bold', 'underline', 'italic', 'strike', 'subscript', 'superscript'],
+          ['removeFormat'],
+          ['fontColor', 'hiliteColor'],
+          ['outdent', 'indent'],
+          ['align', 'horizontalRule', 'list', 'table'],
+          ['link', 'image', 'video'],
+          /* ['fullScreen', 'showBlocks', 'codeView'],
+           ['preview', 'print'],
+           ['save', 'template'], */
+        ],
+        width: '100%',
+        minHeight: '300px',
+      });
+     
+    </script>
   </body>
 </html>

@@ -1,22 +1,24 @@
 app.controller("countries", function ($scope, $http, $timeout) {
 
+  $scope.mode = 'add';
   $scope.countries = {};
 
   $scope.displayAddCountries = function () {
     $scope.error = '';
+    $scope.mode = 'add';
     $scope.countries = {
       image_url: '/images/countries.png',
       active: true
 
     };
 
-    site.showModal('#countriesAddModal');
+    site.showModal('#countriesManageModal');
 
   };
 
   $scope.addCountries = function () {
     $scope.error = '';
-    const v = site.validated('#countriesAddModal');
+    const v = site.validated('#countriesManageModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
@@ -30,7 +32,7 @@ app.controller("countries", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#countriesAddModal');
+          site.hideModal('#countriesManageModal');
           $scope.getCountriesList();
         } else {
           $scope.error = response.data.error;
@@ -45,14 +47,15 @@ app.controller("countries", function ($scope, $http, $timeout) {
 
   $scope.displayUpdateCountries = function (countries) {
     $scope.error = '';
+    $scope.mode = 'edit';
     $scope.viewCountries(countries);
     $scope.countries = {};
-    site.showModal('#countriesUpdateModal');
+    site.showModal('#countriesManageModal');
   };
 
   $scope.updateCountries = function () {
     $scope.error = '';
-    const v = site.validated('#countriesUpdateModal');
+    const v = site.validated('#countriesManageModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
@@ -66,7 +69,7 @@ app.controller("countries", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#countriesUpdateModal');
+          site.hideModal('#countriesManageModal');
           $scope.getCountriesList();
         } else {
           $scope.error = 'Please Login First';
@@ -80,9 +83,10 @@ app.controller("countries", function ($scope, $http, $timeout) {
 
   $scope.displayDetailsCountries = function (countries) {
     $scope.error = '';
+    $scope.mode = 'view';
     $scope.viewCountries(countries);
     $scope.countries = {};
-    site.showModal('#countriesViewModal');
+    site.showModal('#countriesManageModal');
   };
 
   $scope.viewCountries = function (countries) {
@@ -110,9 +114,10 @@ app.controller("countries", function ($scope, $http, $timeout) {
   };
   $scope.displayDeleteCountries = function (countries) {
     $scope.error = '';
+    $scope.mode = 'delete';
     $scope.viewCountries(countries);
     $scope.countries = {};
-    site.showModal('#countriesDeleteModal');
+    site.showModal('#countriesManageModal');
   };
 
   $scope.deleteCountries = function () {
@@ -129,7 +134,7 @@ app.controller("countries", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#countriesDeleteModal');
+          site.hideModal('#countriesManageModal');
           $scope.getCountriesList();
         } else {
           $scope.error = response.data.error;

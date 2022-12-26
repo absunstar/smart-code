@@ -10,10 +10,8 @@
     <div id="main-layout" class="container">
       <div class="row">
         <div class="row" >
-          <div x-permissions="clusters_add || clusters_manage" x-import="clusters/add_modal.html"></div>
-          <div x-permissions="clusters_update || clusters_manage" x-import="clusters/update_modal.html"></div>
-          <div x-permissions="clusters_delete || clusters_manage" x-import="clusters/delete_modal.html"></div>
-          <div x-permissions="clusters_view || clusters_manage" x-import="clusters/view_modal.html"></div>
+          <div x-import="clusters/manage_modal.html"></div>
+  
           <div x-permissions="clusters_search || clusters_manage" x-import="clusters/search_all_modal.html"></div>
 
           <div class="row">
@@ -24,7 +22,6 @@
             <i-button x-permissions="clusters_add || clusters_manage" type="add" label="##word.clusters_new##" ng-click="displayAddCluster()"></i-button>
 
             <i-button x-permissions="clusters_search || clusters_manage" type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
-            <!-- <i-button label="تهيئة الشركة" ng-click="handelCompany()"> </i-button> -->
             <h3 class="bold text-center">##word.count## : {{count}}</h3>
           </div>
 

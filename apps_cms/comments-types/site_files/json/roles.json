@@ -1,7 +1,0 @@
-[{
-    "module_name" : "public" ,
-    "name": "comments_types_admin",
-    "en": "Comments Types Admin",
-    "ar": "إدارة أنواع التعليقات",
-    "permissions": ["comments_types_manage"]
-}]

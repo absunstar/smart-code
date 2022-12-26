@@ -54,11 +54,6 @@
         "ar": "نوع المدرب"
     },
     {
-        "name": "birth_date",
-        "en": "Birth Date",
-        "ar": "تاريخ الميلاد"
-    },
-    {
         "name": "qualification",
         "en": "Qualification",
         "ar": "المؤهل"

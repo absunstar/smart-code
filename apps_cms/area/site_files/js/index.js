@@ -1,22 +1,23 @@
 app.controller("area", function ($scope, $http, $timeout) {
   $scope._search = {};
-
+  $scope.mode = 'add';
   $scope.area = {};
 
   $scope.displayAddArea = function () {
     $scope.error = '';
+    $scope.mode = 'add';
     $scope.area = {
       image_url: '/images/area.png',
       active: true
 
     };
-    site.showModal('#areaAddModal');
+    site.showModal('#areaManageModal');
 
   };
 
   $scope.addArea = function () {
     $scope.error = '';
-    const v = site.validated('#areaAddModal');
+    const v = site.validated('#areaManageModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
@@ -30,7 +31,7 @@ app.controller("area", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#areaAddModal');
+          site.hideModal('#areaManageModal');
           $scope.getAreaList();
         } else {
           $scope.error = 'Please Login First';
@@ -45,14 +46,15 @@ app.controller("area", function ($scope, $http, $timeout) {
 
   $scope.displayUpdateArea = function (area) {
     $scope.error = '';
+    $scope.mode = 'edit';
     $scope.viewArea(area);
     $scope.area = {};
-    site.showModal('#areaUpdateModal');
+    site.showModal('#areaManageModal');
   };
 
   $scope.updateArea = function () {
     $scope.error = '';
-    const v = site.validated('#areaUpdateModal');
+    const v = site.validated('#areaManageModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
@@ -66,7 +68,7 @@ app.controller("area", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#areaUpdateModal');
+          site.hideModal('#areaManageModal');
           $scope.getAreaList();
         } else {
           $scope.error = 'Please Login First';
@@ -80,9 +82,10 @@ app.controller("area", function ($scope, $http, $timeout) {
 
   $scope.displayDetailsArea = function (area) {
     $scope.error = '';
+    $scope.mode = 'view';
     $scope.viewArea(area);
     $scope.area = {};
-    site.showModal('#areaViewModal');
+    site.showModal('#areaManageModal');
   };
 
   $scope.viewArea = function (area) {
@@ -111,9 +114,10 @@ app.controller("area", function ($scope, $http, $timeout) {
 
   $scope.displayDeleteArea = function (area) {
     $scope.error = '';
+    $scope.mode = 'delete';
     $scope.viewArea(area);
     $scope.area = {};
-    site.showModal('#areaDeleteModal');
+    site.showModal('#areaManageModal');
   };
 
   $scope.deleteArea = function () {
@@ -130,7 +134,7 @@ app.controller("area", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#areaDeleteModal');
+          site.hideModal('#areaManageModal');
           $scope.getAreaList();
         } else {
           $scope.error = response.data.error;

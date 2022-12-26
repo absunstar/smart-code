@@ -9,10 +9,8 @@
     <div id="main-layout" class="container">
       <div class="row">
         <div class="row">
-          <div x-permissions="reports_types_add || reports_types_manage" x-import="reports-types/add_modal.html"></div>
-          <div x-permissions="reports_types_update || reports_types_manage" x-import="reports-types/update_modal.html"></div>
-          <div x-permissions="reports_types_delete || reports_types_manage" x-import="reports-types/delete_modal.html"></div>
-          <div x-permissions="reports_types_view || reports_types_manage" x-import="reports-types/view_modal.html"></div>
+          <div x-import="reports-types/manage_modal.html"></div>
+
           <div x-permissions="reports_types_search || reports_types_manage" x-import="reports-types/search_all_modal.html"></div>
 
           <div class="row">
@@ -21,7 +19,6 @@
 
           <div class="top-actions">
             <i-button x-permissions="reports_types_add || reports_types_manage" type="add" label="##word.reports_types_new##" ng-click="displayAddReportsTypes()"></i-button>
-
             <i-button x-permissions="reports_types_search || reports_types_manage" type="search" label="##word.search_all##" ng-click="displaySearchModal()"></i-button>
 
             <h3 class="bold text-center">##word.count## : {{count}}</h3>
@@ -38,7 +35,7 @@
               <td class="center not-print">
                 <i-image view class="logo" ng-model="c.image_url"></i-image>
               </td>
-              <td class="center">{{c.name_##session.lang##}}</td>
+              <td class="center">{{c.name}}</td>
 
               <td class="center">
                 <p ng-show="c.active ==true" class="green">##word.active##</p>

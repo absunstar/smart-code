@@ -1,20 +1,21 @@
 app.controller("clusters", function ($scope, $http, $timeout) {
   $scope._search = {};
-
+  $scope.mode = 'add';
   $scope.cluster = {};
 
   $scope.displayAddCluster = function () {
     $scope.error = '';
+    $scope.mode = 'add';
     $scope.cluster = {
       image_url: '/images/cluster.png',
       active: true
     };
-    site.showModal('#clusterAddModal');
+    site.showModal('#clusterManageModal');
   };
 
   $scope.addCluster = function () {
     $scope.error = '';
-    const v = site.validated('#clusterAddModal');
+    const v = site.validated('#clusterManageModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
@@ -29,7 +30,7 @@ app.controller("clusters", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#clusterAddModal');
+          site.hideModal('#clusterManageModal');
           $scope.getClusterList();
         } else {
           $scope.error = response.data.error;
@@ -46,14 +47,15 @@ app.controller("clusters", function ($scope, $http, $timeout) {
 
   $scope.displayUpdateCluster = function (cluster) {
     $scope.error = '';
+    $scope.mode = 'edit';
     $scope.viewCluster(cluster);
     $scope.cluster = {};
-    site.showModal('#clusterUpdateModal');
+    site.showModal('#clusterManageModal');
   };
 
   $scope.updateCluster = function () {
     $scope.error = '';
-    const v = site.validated('#clusterUpdateModal');
+    const v = site.validated('#clusterManageModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
@@ -67,7 +69,7 @@ app.controller("clusters", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#clusterUpdateModal');
+          site.hideModal('#clusterManageModal');
           $scope.getClusterList();
         } else {
           $scope.error = 'Please Login First';
@@ -81,9 +83,10 @@ app.controller("clusters", function ($scope, $http, $timeout) {
 
   $scope.displayDetailsCluster = function (cluster) {
     $scope.error = '';
+    $scope.mode = 'view';
     $scope.viewCluster(cluster);
     $scope.cluster = {};
-    site.showModal('#clusterViewModal');
+    site.showModal('#clusterManageModal');
   };
 
   $scope.viewCluster = function (cluster) {
@@ -112,10 +115,10 @@ app.controller("clusters", function ($scope, $http, $timeout) {
 
   $scope.displayDeleteCluster = function (cluster) {
     $scope.error = '';
-
+    $scope.mode = 'delete';
     $scope.viewCluster(cluster);
     $scope.cluster = {};
-    site.showModal('#clusterDeleteModal');
+    site.showModal('#clusterManageModal');
   };
 
   $scope.deleteCluster = function () {
@@ -132,7 +135,7 @@ app.controller("clusters", function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#clusterDeleteModal');
+          site.hideModal('#clusterManageModal');
           $scope.getClusterList();
         } else {
           $scope.error = response.data.error;

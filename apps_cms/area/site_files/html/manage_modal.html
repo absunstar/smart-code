@@ -1,0 +1,96 @@
+<div id="areaManageModal" class="modal" fixed>
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+
+      <h2 ng-show="mode == 'add' ">
+        ##word.area_add##
+        <i class="fa fa-plus"></i>
+      </h2>
+      <h2 ng-show="mode == 'edit' ">
+        ##word.area_edit##
+        <i class="fa fa-pencil"></i>
+      </h2>
+      <h2 ng-show="mode == 'delete' ">
+        ##word.area_delete##
+        <i class="fa fa-trash"></i>
+      </h2>
+      <h2 ng-show="mode == 'view' ">
+        ##word.area_details##
+        <i class="fa fa-file"></i>
+      </h2>
+    </div>
+
+    <div class="modal-body">
+      <fieldset>
+        <legend>##word.basic_information##</legend>
+        <div class="row">
+          <div class="col9">
+            <div class="row">
+              <i-control help-id="area_name" v="r ll2" class="col4" label="##word.area_name##" ng-model="area.name_ar"></i-control>
+
+              <i-control help-id="area_name_en" v="r" class="col4" label="##word.name_en##" ng-model="area.name_en"> </i-control>
+
+              <i-checkbox help-id="area_active" class="col2" label="##word.active##" ng-model="area.active"> </i-checkbox>
+            </div>
+
+            <div class="row">
+              <i-list
+                help-id=""
+                v="r"
+                class="col4"
+                label="##word.country##"
+                ng-change="getGovesList(area.country)"
+                ng-model="area.country"
+                display="name_##session.lang##"
+                items="countriesList"
+                ng-search="_search.$city_country"
+              ></i-list>
+
+              <i-list class="col3" label="##word.gov##" ng-model="area.gov" items="govesList" ng-change="getCityList(area.gov)" display="name_##session.lang##" ng-search="_search.$area.$gov_search">
+              </i-list>
+
+              <i-list class="col3" label="##word.city##" ng-model="area.city" items="cityList" display="name_##session.lang##" ng-search="_search.$area.$city_search"> </i-list>
+
+            </div>
+          </div>
+
+          <div class="col3">
+            <i-image help-id="area_logo" ng-model="area.image_url"></i-image>
+          </div>
+        </div>
+      </fieldset>
+      <div ng-show="mode !== 'add' " class="row">
+        <table class="table hover border">
+          <tr>
+            <th>##word.useradd_user_info##</th>
+            <th>##word.useredit_user_info##</th>
+          </tr>
+          <tr>
+            <td class="center">
+              <p class="blue">{{area.add_user_info.name_##session.lang##}}</p>
+              <small class="green"> {{area.add_user_info.date |date:"hh:mm"}} </small>
+              <small> {{area.add_user_info.date |date:"dd - MM - yyyy"}} </small>
+              <p class="bold">IP : {{area.add_user_info.ip}}</p>
+            </td>
+
+            <td class="center">
+              <p class="blue">{{area.edit_user_info.name_##session.lang##}}</p>
+              <small class="green"> {{area.edit_user_info.date |date:"hh:mm"}} </small>
+              <small> {{area.edit_user_info.date |date:"dd - MM - yyyy"}} </small>
+              <p class="bold">IP : {{area.edit_user_info.ip}}</p>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="modal-footer center">
+      <h2 class="error">{{error}}</h2>
+      <i-button type="add" ng-show="mode == 'add' " label="##word.add##" ng-click="addArea()"></i-button>
+      <i-button type="edit" ng-show="mode == 'edit' " label="##word.edit##" ng-click="updateArea(area)"></i-button>
+      <i-button type="delete" ng-show="mode == 'delete' " label="##word.delete##" ng-click="deleteArea(area)"> </i-button>
+      <i-button type="close" label="##word.close##" onclick="site.hideModal( '#areaManageModal')"></i-button>
+    </div>
+  </div>
+</div>

@@ -23,9 +23,9 @@ const site = require('../isite')({
   },
 });
 
-if (site.hasFeature('cms')) {
-}
-site.words.addList(__dirname + '/site_files/json/words-sa.json');
+// if (site.hasFeature('cms')) {
+// }
+// site.words.addList(__dirname + '/site_files/json/words-sa.json');
 
 site.get({
   name: '/',
@@ -38,7 +38,7 @@ site.get(
     name: ['/'],
   },
   (req, res) => {
-    if (site.setting.user_design.id == 1) {
+    if (site.setting.site_template &&site.setting.site_template.id == 1) {
       res.render(
         'cms/index.html',
         {},
@@ -46,7 +46,7 @@ site.get(
           parser: 'html css js',
         }
       );
-    } else if (site.setting.user_design.id == 2) {
+    } else if (site.setting.site_template &&site.setting.site_template.id == 2) {
       res.render(
         'cms/index.html',
         {},

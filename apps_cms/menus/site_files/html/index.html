@@ -4,16 +4,12 @@
 
   <body class="##session.lang## loaded" ng-controller="menus">
     <nav x-import="cms/sitebar.html" class="sitebar" data-ng-controller="sitebar"></nav>
-
     <nav class="sitebottom" x-import="cms/sitebottom.html" ng-controller="sitebottom"></nav>
 
     <div id="main-layout" class="container">
       <div class="row">
         <div class="row" >
-          <div x-permissions="menus_add || menus_manage" x-import="menus/add_modal.html"></div>
-          <div x-permissions="menus_update || menus_manage" x-import="menus/update_modal.html"></div>
-          <div x-permissions="menus_delete || menus_manage" x-import="menus/delete_modal.html"></div>
-          <div x-permissions="menus_view || menus_manage" x-import="menus/view_modal.html"></div>
+          <div x-import="menus/manage_modal.html"></div>
           <div x-permissions="menus_search || menus_manage" x-import="menus/search_all_modal.html"></div>
 
           <div class="row">

@@ -42,25 +42,6 @@ app.controller("default_setting", function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getContentStatusList = function () {
-    $scope.error = "";
-    $scope.busy = true;
-    $scope.contentStatusList = [];
-    $http({
-      method: "POST",
-      url: "/api/content_status/all",
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        $scope.contentStatusList = response.data;
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
   $scope.getClosingSystemList = function () {
     $scope.error = "";
     $scope.busy = true;
@@ -80,17 +61,55 @@ app.controller("default_setting", function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getUserDesignList = function () {
+  $scope.getSiteTemplateList = function () {
     $scope.error = "";
     $scope.busy = true;
-    $scope.userDesignList = [];
+    $scope.siteTemplateList = [];
     $http({
       method: "POST",
-      url: "/api/user_design/all",
+      url: "/api/site_template/all",
     }).then(
       function (response) {
         $scope.busy = false;
-        $scope.userDesignList = response.data;
+        $scope.siteTemplateList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.getSiteColorList = function () {
+    $scope.error = "";
+    $scope.busy = true;
+    $scope.siteColorList = [];
+    $http({
+      method: "POST",
+      url: "/api/site_color/all",
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.siteColorList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.getArticleStatusList = function () {
+    $scope.error = "";
+    $scope.busy = true;
+    $scope.articleStatusList = [];
+    $http({
+      method: "POST",
+      url: "/api/article_status/all",
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.articleStatusList = response.data;
       },
       function (err) {
         $scope.busy = false;
@@ -175,11 +194,27 @@ app.controller("default_setting", function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.addKeyDown = function (ev, keyWord) {
+    $scope.busy = true;
+
+    if (ev.which !== 13 || !keyWord) {
+      return;
+    }
+
+    $scope.default_setting.keywords_list = $scope.default_setting.keywords_list || [];
+    if (!$scope.default_setting.keywords_list.some((k) => k === keyWord)) {
+      $scope.default_setting.keywords_list.push(keyWord);
+    }
+
+    $scope.default_setting.$keyword = '';
+  };
+
   
   $scope.loadSetting();
-  $scope.getUserDesignList();
+  $scope.getSiteTemplateList();
+  $scope.getSiteColorList();
   $scope.getPublishingSystemsList();
-  $scope.getContentStatusList();
+  $scope.getArticleStatusList();
   $scope.getClosingSystemList();
   $scope.getDurationExpiryList();
 });
