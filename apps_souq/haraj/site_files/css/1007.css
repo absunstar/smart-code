@@ -1663,7 +1663,7 @@ img {
     width: 100%;
     height: 100%;
     text-align: center;
-    background-color: #000000db;
+    background-color: transparent;
     z-index: 10000;
   }
 
@@ -1821,7 +1821,7 @@ img {
     fill: white;
     pointer-events: none;
     font-size: x-large;
-    transform: translate(513px, 209px) rotate(376deg);
+    transform: translate(557px, 212px) rotate(376deg);
   }
 
   .jouf {
@@ -1898,7 +1898,7 @@ img {
     fill: #ffffff;
     pointer-events: none;
     font-size: x-large;
-    transform: translate(141px, 92px);
+    transform: translate(159px, 92px);
   }
 
   .iraq {

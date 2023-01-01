@@ -42,7 +42,7 @@
   {
     "name": "hide_map",
     "en": "Hide Map",
-    "ar": "إخفاء الخريطة"
+    "ar": "إخفاء"
   },
   {
     "name": "map_search",
@@ -182,7 +182,7 @@
   {
     "name": "aseer",
     "en": "Aseer",
-    "ar": "العسير"
+    "ar": "عسير"
   },
   {
     "name": "baha",
@@ -212,7 +212,7 @@
   {
     "name": "hail",
     "en": "Al-Hail",
-    "ar": "الحائل"
+    "ar": "حائل"
   },
   {
     "name": "northern_borders",

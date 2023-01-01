@@ -20,6 +20,16 @@
     "ar": "الآيبان"
   },
   {
+    "name": "map_display",
+    "en": "Map display",
+    "ar": "ظهور الخريطة"
+  },
+  {
+    "name": "appearance_clock",
+    "en": "The appearance of the clock",
+    "ar": "ظهور الساعة"
+  },
+  {
     "name": "main_currency",
     "en": "Main Currency",
     "ar": "العملة االرئيسية"

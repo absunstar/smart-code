@@ -8,17 +8,7 @@ app.controller('favorites', function ($scope, $http, $timeout) {
       url: '/api/contents/all',
       data: {
         where: {
-          $and: [
-            {
-              'feedback_list.user.id': site.toNumber('##user.id##'),
-            },
-            {
-              'feedback_list.type.id': 2,
-            },
-            {
-              'ad_status.id': 1,
-            },
-          ],
+          'favorite_list.user.id': site.toNumber('##user.id##'),
         },
         post : true
       },
@@ -27,9 +17,7 @@ app.controller('favorites', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
           $scope.favoriteAdslist = response.data.list;
-        /*   $scope.favoriteAdslist.forEach((ad) => {
-            ad.favorite = $scope.user.feedback_list.some((_f) => _f.type && _f.ad && _f.type.id == 2 && _f.ad.id == ad.id);
-          }); */
+     
         }
       },
       function (err) {

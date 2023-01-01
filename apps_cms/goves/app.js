@@ -54,7 +54,7 @@ module.exports = function init(site) {
         },
         {
           $add: true,
-          name_ar: 'العسير',
+          name_ar: 'عسير',
           name_en: 'Aseer',
           image_url: '/images/gov.png',
           code: 'as',
@@ -138,7 +138,7 @@ module.exports = function init(site) {
         },
         {
           $add: true,
-          name_ar: 'الحائل',
+          name_ar: 'حائل',
           name_en: 'Al-Hail',
           image_url: '/images/gov.png',
           code: 'hl',

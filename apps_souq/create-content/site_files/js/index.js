@@ -121,21 +121,6 @@ app.controller('create_content', function ($scope, $http, $timeout) {
     $('#adCategory').show('slow');
   };
 
-  $scope.acceptCategory = function (ad, cat) {
-
-    $scope.loadSubCategory2(cat);
-    if (cat.type == 'primary') {
-      $('#adCategory').hide();
-      if (cat.category_require_list && cat.category_require_list.length > 0) {
-        $('#adCategoryRequire').show('slow');
-      } else if ($scope.defaultSettings.content.new_address_appear) {
-        $('#adAddressType').show('slow');
-      } else {
-        $scope.showAddress(ad, 'main');
-      }
-    }
-  };
-
   $scope.loadMainCategories = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -166,6 +151,20 @@ app.controller('create_content', function ($scope, $http, $timeout) {
         $scope.error = err;
       }
     );
+  };
+
+  $scope.acceptCategory = function (ad, cat) {
+    $scope.loadSubCategory2(cat);
+    console.log(cat.type);
+      $('#adCategory').hide();
+      if (cat.category_require_list && cat.category_require_list.length > 0) {
+        $('#adCategoryRequire').show('slow');
+      } else if ($scope.defaultSettings.content.new_address_appear) {
+        $('#adAddressType').show('slow');
+      } else {
+        $scope.showAddress(ad, 'main');
+      }
+    
   };
 
   $scope.loadSubCategory2 = function (c) {

@@ -1,142 +1,123 @@
 <!DOCTYPE html>
 <html lang="en" x-permissions="login" data-ng-app="myApp">
+  <head>
+    <title>##setting.title##</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/haraj.css" />
+    <link rel="stylesheet" href="/x-css/all.css" />
+    <link rel="stylesheet" href="/x-css/font-cairo.css" />
+    <link rel="icon" type="image/x-icon" href="##setting.logo##" />
+    <style>
+      * {
+        max-width: initial;
+      }
 
-<head>
-  <title>##setting.title##</title>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="/css/style.css" />
-  <link rel="stylesheet" href="/css/haraj.css" />
-  <link rel="stylesheet" href="/x-css/all.css" />
-  <link rel="stylesheet" href="/x-css/font-cairo.css" />
-  <link rel="icon" type="image/x-icon" href="##setting.logo##" />
-  <style>
-    * {
-      max-width: initial;
-    }
+      .userad-logo {
+        border-radius: 50%;
+        height: 25px;
+        width: 25px;
+        margin: -5px 10px -5px 0px !important;
+      }
 
-    .userad-logo {
-      border-radius: 50%;
-      height: 25px;
-      width: 25px;
-      margin: -5px 10px -5px 0px !important
-    }
+      :root {
+        --body-margin-top: 0px;
+        --body-margin-bottom: 0px;
+        --zoom: 100%;
+        --fieldset-border: none;
+        --fieldset-background: #fff;
+      }
 
-    :root {
-      --body-margin-top: 0px;
-      --body-margin-bottom: 0px;
-      --zoom: 100%;
-      --fieldset-border: none;
-      --fieldset-background: #fff;
-    }
-
-    body {
-      /* background-color: #bbb !important;
+      body {
+        /* background-color: #bbb !important;
       background-image: url(/assets/palm.svg) !important; */
-      background-color: #ecf9f6;
-      background-repeat: repeat !important;
-    }
-  </style>
-  <style x-lang="ar">
-    .nav1 {
-      flex-direction: initial;
-      padding: 7px;
-    }
+        background-color: #ecf9f6;
+        background-repeat: repeat !important;
+      }
+    </style>
+    <style x-lang="ar">
+      .nav1 {
+        flex-direction: initial;
+        padding: 7px;
+      }
 
-    :root {
-      --direction: rtl;
-      --text-align: right;
-      --float: right;
-    }
-  </style>
-</head>
+      :root {
+        --direction: rtl;
+        --text-align: right;
+        --float: right;
+      }
+    </style>
+  </head>
 
-<body class="##session.lang## loaded" ng-controller="favorites">
-  <div x-import="haraj/header.html"></div>
+  <body class="##session.lang## loaded" ng-controller="favorites">
+    <div x-import="haraj/header.html"></div>
 
-  <div id="main-layout" class="container">
+    <div id="main-layout" class="container">
+      <fieldset class="ads-section">
+        <div class="row" ng-show="favoriteAdslist.length < 1 && favoriteAdslist">
+          <h1 class="blue bold center">##word.there_no_ads##</h1>
+        </div>
+        <legend>##word.favorite_ads##</legend>
 
-    <fieldset class="ads-section">
+        <div class="row">
+          <div class="ads-section">
+            <table style="width: 100%">
+              <tr ng-repeat="a in favoriteAdslist" class="">
+                <td>
+                  <div class="row margin">
+                    <div class="col-9">
+                      <a href="/display-content/{{a.id}}/{{a.name}}/{{a.store.name}}">
+                        <p class="bold underline-hover ad-name pointer ellipsis-txt">{{a.name}}</p>
+                      </a>
+                      <div class="row">
+                        <div class="col-6">
+                          <div class="ad-location">
+                            <i class="fa-solid fa-location-pin adress ellipsis-txt">{{a.address.text}}</i>
+                          </div>
+                          <div class="u-action">
+                            <a class="btn" ng-show="##setting.order_settings.activate_orders## && a.store.user.id != user.id" x-permission="login" ng-click="bookList(a,0)">
+                              <i class="fa fa-shopping-cart"></i>
+                            </a>
 
-      <div class="row" ng-show="favoriteAdslist.length < 1 && favoriteAdslist">
-        <h1 class="blue bold center">##word.there_no_ads##</h1>
-      </div>
-      <legend>##word.favorite_ads##</legend>
-
-      <div class="row">
-        <div class="ads-section">
-          <table style="width: 100%">
-            <tr ng-repeat="a in favoriteAdslist" class="">
-              <td>
-                <div class="row margin">
-                  <div class="col-9">
-                    <a href="/display-content/{{a.id}}/{{a.name}}/{{a.store.name}}">
-                      <p class="bold underline-hover ad-name pointer ellipsis-txt">{{a.name}}</p>
-                    </a>
-                    <div class="row">
-                      <div class="col-6">
-                        <div class="ad-location">
-                          <i class="fa-solid fa-location-pin adress ellipsis-txt">{{a.address.text}}</i>
-                        
+                            <a ng-show="!a.$favorite" class="pointer" ng-click="updateFeedback(a,'favorite',true)">
+                              <i class="fa fa-heart dimgrey"> ##word.favorite## </i>
+                            </a>
+                            <a ng-show="a.$favorite" class="pointer" ng-click="updateFeedback(a,'favorite',false)">
+                              <i class="fa fa-heart red"> ##word.cancel## ##word.favorite## </i>
+                            </a>
+                          </div>
                         </div>
-                        <div class="u-action">
-  
-                          <a class="btn"
-                            ng-show="##setting.order_settings.activate_orders## && a.store.user.id != user.id"
-                            x-permission="login" ng-click="bookList(a,0)">
-                            <i class="fa fa-shopping-cart"></i>
-                          </a>
-  
-                          <a ng-show="!a.$favorite" class="pointer" ng-click="updateFeedback(a,'favorite',true)">
-                            <i class="fa fa-heart dimgrey"> ##word.favorite## </i>
-                          </a>
-                          <a ng-show="a.$favorite" class="pointer" ng-click="updateFeedback(a,'favorite',false)">
-                            <i class="fa fa-heart red"> ##word.cancel## ##word.favorite## </i>
-                          </a>
-                        </div>
-                      
-                      </div>
-                      <div class="col-6">
-                      
-                        <div class="time-publish">
-                          <i class="fa-solid fa-clock ellipsis-txt"> {{a.$time}} </i>
-                        </div>
-                        <div class="ad-user">
-                          <a class=""
-                            href="/profile/{{a.store.user.id}}/{{a.store.user.profile.name}}/{{a.store.user.profile.last_name}}">
-                            <i class="fa fa-user dimgrey" aria-hidden="true"></i>
-                            <b class="underline-hover dimgrey ellipsis-txt">{{a.store.user.profile.name}} {{a.store.user.profile.last_name}}</b>
-                          </a>
+                        <div class="col-6">
+                          <div class="time-publish">
+                            <i class="fa-solid fa-clock ellipsis-txt"> {{a.$time}} </i>
+                          </div>
+                          <div class="ad-user">
+                            <a class="" href="/profile/{{a.store.user.id}}/{{a.store.user.profile.name}}/{{a.store.user.profile.last_name}}">
+                              <i class="fa fa-user dimgrey" aria-hidden="true"></i>
+                              <b class="underline-hover dimgrey ellipsis-txt">{{a.store.user.profile.name}} {{a.store.user.profile.last_name}}</b>
+                            </a>
+                          </div>
                         </div>
                       </div>
                     </div>
-  
+                    <div class="col-3">
+                      <a class="adarea-link" href="/display-content/{{a.id}}/{{a.name}}/{{a.store.name}}">
+                        <img loading="lazy" class="pointer adarea-image" ng-src="{{a.image_url}}" />
+                      </a>
+                    </div>
                   </div>
-                  <div class="col-3">
-                    <a class="adarea-link" href="/display-content/{{a.id}}/{{a.name}}/{{a.store.name}}">
-                      <img loading="lazy" class="pointer adarea-image" ng-src="{{a.image_url}}" />
-                    </a>
-                  </div>
-  
-  
-  
-                </div>
-              </td>
-            </tr>
-          </table>
-         
+                </td>
+              </tr>
+            </table>
+          </div>
         </div>
-      </div>
-
-    
-    </fieldset>
-  </div>
-  <footer class="footer ng-scope" x-import="haraj/footer.html" ng-controller="footer_herag"></footer>
-  <div x-import="haraj/scripts.html"></div>
-  <script x-permissions="login" x-import="others/favorites.js"></script>
-  <script x-import="haraj/index2.js"></script>
-
-</body>
-
+      </fieldset>
+    </div>
+    <footer class="footer ng-scope" x-import="haraj/footer.html" ng-controller="footer_herag"></footer>
+    <div x-import="haraj/scripts.html"></div>
+    <script x-permissions="login" x-import="others/favorites.js"></script>
+    <script x-import="haraj/index2.js"></script>
+  </body>
 </html>

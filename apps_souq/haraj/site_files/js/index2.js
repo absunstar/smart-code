@@ -10,7 +10,7 @@ close.addEventListener('click', () => {
   user.classList.remove('open-menu');
 });
 
-function mouseoverbox1() { }
+function mouseoverbox1() {}
 
 taghide();
 
@@ -18,7 +18,6 @@ function taghide() {
   let plus = document.getElementById('open');
   let tags = document.getElementById('tags-filter');
   if (tags) {
-
     if (tags.style.display != 'none') {
       tags.style.display = 'none';
     } else {
@@ -31,7 +30,6 @@ function xtaghide() {
   let plus = document.getElementById('open');
   let tags = document.getElementById('xtags-filter');
   if (tags) {
-
     if (tags.style.display != 'none') {
       tags.style.display = 'none';
     } else {
@@ -43,7 +41,6 @@ xtaghide();
 
 let xbtnFilter = document.querySelector('.xfilter-toggel');
 if (xbtnFilter) {
-
   let xicon = xbtnFilter.querySelector('.fa-plus');
 
   xbtnFilter.onclick = function () {
@@ -57,7 +54,6 @@ if (xbtnFilter) {
 
 let btnFilter = document.querySelector('.filter-toggel');
 if (btnFilter) {
-
   let icon = btnFilter.querySelector('.fa-plus');
 
   btnFilter.onclick = function () {
@@ -66,20 +62,18 @@ if (btnFilter) {
     } else {
       icon.classList.replace('fa-minus', 'fa-plus');
     }
-  }
-};
+  };
+}
 
 let tagSide = document.querySelector('.tagSide');
 let mobileFilter = document.querySelector('.mobile-filter');
 let closeFilter = document.querySelector('.close-filter');
 if (mobileFilter) {
-
   mobileFilter.addEventListener('click', () => {
     tagSide.classList.add('open-filter');
   });
 }
 if (closeFilter) {
-
   closeFilter.addEventListener('click', () => {
     tagSide.classList.remove('open-filter');
   });
@@ -132,13 +126,10 @@ if (sideheader) {
 
   if (notifname6) {
     sideheader.addEventListener('mouseenter', () => {
-
       notifname6.classList.add('show-notif-name');
       notifname6.classList.remove('notif-name');
-
     });
     sideheader.addEventListener('mouseleave', () => {
-
       notifname6.classList.remove('show-notif-name');
       notifname6.classList.add('notif-name');
     });
@@ -147,7 +138,6 @@ if (sideheader) {
 
 let notifname5 = document.getElementById('notif5');
 if (mapheader) {
-
   mapheader.addEventListener('mouseenter', () => {
     notifname5.classList.add('show-notif-name');
     notifname5.classList.remove('notif-name');
@@ -188,9 +178,13 @@ function hsMap(type) {
 
 site.onLoad(() => {
   setTimeout(() => {
+    if ((btn = document.querySelector('#map-toggle'))) {
+    btn.click();
+    }
+
     if (xbtnFilter) {
       xbtnFilter.click();
     }
     xtaghide();
-  }, 1000);
+  }, 2000);
 });

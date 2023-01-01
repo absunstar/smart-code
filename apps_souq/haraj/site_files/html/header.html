@@ -110,7 +110,7 @@
     </div>
     <div class="mobile bg-theme border-bottom-bar">
       <span class="haraj_name pointer" ng-click="indexLocation()">##setting.site_name##</span>
-      <span class="clock-area">
+      <span class="clock-area" x-setting="appearance_clock">
         <img src="/images/clock1.png" onerror="this.src='/images/user.png'" alt="" />
         <span id="time1"> </span>
       </span>
@@ -201,7 +201,7 @@
           </div>
           <a x-lang="ar" ng-click="changeLang('en')" class="padding-lang ds-dv-dc link left"> <i class="fa fa-globe"></i> ##word.en_lang## </a>
           <a x-lang="en" ng-click="changeLang('ar')" class="padding-lang ds-dv-dc link left"> <i class="fa fa-globe"></i> ##word.ar_lang## </a>
-          <div class="clock-area not-mobile">
+          <div class="clock-area not-mobile" x-setting="appearance_clock">
             <img src="/images/clock1.png" onerror="this.src='/images/user.png'" alt="" />
             <span id="time"> </span>
           </div>
@@ -343,12 +343,16 @@
   }
 </script>
 
-<script>
+<script  x-setting="appearance_clock">
   function startTime() {
-    const today = new Date();
-    let h = today.getHours();
-    let m = today.getMinutes();
-    let s = today.getSeconds();
+    var d = new Date();
+    var local = d.getTime();
+    var offset = d.getTimezoneOffset() * (60 * 1000);
+    var utc = new Date(local + offset);
+    var riyadh = new Date(utc.getTime() + 3 * 60 * 60 * 1000);
+    let h = riyadh.getHours();
+    let m = riyadh.getMinutes();
+    let s = riyadh.getSeconds();
     m = checkTime(m);
     s = checkTime(s);
     document.getElementById('time').innerHTML = h + ':' + m + ':' + s;

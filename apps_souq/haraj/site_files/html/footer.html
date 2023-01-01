@@ -295,7 +295,7 @@
           <a id="vat_link" href="" target="_blank" rel="noopener noreferrer"><span>##setting.commercial_registration_no##</span></a>
         </div>
 
-        <div class="souq-data">
+        <div class="souq-data" x-setting="appearance_clock">
           <img class="img-clock" src="/images/clock.png" />
           <canvas class="clock" id="canvas" width="80" height="80"> </canvas>
         </div>
@@ -304,7 +304,7 @@
   </div>
 </div>
 
-<script>
+<script  x-setting="appearance_clock">
   var canvas = document.getElementById('canvas');
   var ctx = canvas.getContext('2d');
   var radius = canvas.height / 3;
@@ -356,10 +356,14 @@
   }
 
   function drawTime(ctx, radius) {
-    var now = new Date();
-    var hour = now.getHours();
-    var minute = now.getMinutes();
-    var second = now.getSeconds();
+    var d = new Date();
+    var local = d.getTime();
+    var offset = d.getTimezoneOffset() * (60 * 1000);
+    var utc = new Date(local + offset);
+    var riyadh = new Date(utc.getTime() + 3 * 60 * 60 * 1000);
+    var hour = riyadh.getHours();
+    var minute = riyadh.getMinutes();
+    var second = riyadh.getSeconds();
     hour = hour % 12;
     hour = (hour * Math.PI) / 6 + (minute * Math.PI) / (6 * 60) + (second * Math.PI) / (360 * 60);
     drawHand(ctx, hour, radius * 0.5, radius * 0.07);
