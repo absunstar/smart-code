@@ -316,24 +316,6 @@ module.exports = function init(site) {
       (err, doc) => {
         if (!err && doc) {
           response.done = true;
-          if (req.body.profile) {
-            if (doc.followers_list && doc.followers_list.length > 0 && req.session.user) {
-              doc.followers_list.forEach((_f) => {
-                if (_f == req.session.user.id) {
-                  response.follow = true;
-                }
-              });
-            }
-            doc.$created_date = site.xtime(doc.created_date, req.session.lang);
-            let date = new Date(doc.visit_date);
-            date.setMinutes(date.getMinutes() + 1);
-            if (new Date() < date) {
-              doc.$isOnline = true;
-            } else {
-              doc.$isOnline = false;
-              doc.$last_seen = site.xtime(doc.visit_date, req.session.lang);
-            }
-          }
 
           response.doc = doc;
         } else if (err) {

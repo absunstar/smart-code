@@ -6,7 +6,11 @@ if (btn1) {
 app.controller('manage_user', function ($scope, $http, $timeout) {
   $scope._search = {};
 
-  $scope.manage_user = {};
+  $scope.manage_user = site.showObject(`##data.#*##`);
+  $scope.address = {
+    main: $scope.manage_user.profile.main_address,
+    other_list: $scope.manage_user.profile.other_addresses_list,
+  };
   $scope.viewText = '';
 
   $scope.loadManageUser = function () {
@@ -794,7 +798,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
     }
   };
 
-  $scope.loadManageUser();
+  /* $scope.loadManageUser(); */
   $scope.getGender();
   $scope.getDefaultSetting();
 });

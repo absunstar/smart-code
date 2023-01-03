@@ -194,6 +194,25 @@ app.controller("default_setting", function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.getLanguagesList = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.languagesList = [];
+    $http({
+      method: 'POST',
+      url: '/api/languages/all',
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        $scope.languagesList = response.data;
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
   $scope.addKeyDown = function (ev, keyWord) {
     $scope.busy = true;
 
@@ -209,6 +228,23 @@ app.controller("default_setting", function ($scope, $http, $timeout) {
     $scope.default_setting.$keyword = '';
   };
 
+  $scope.addMetaTags = function (programming) {
+    $scope.error = '';
+    programming.meta_tags = programming.meta_tags || [];
+    programming.meta_tags.push({});
+  };
+
+  $scope.addStyles = function (programming) {
+    $scope.error = '';
+    programming.styles = programming.styles || [];
+    programming.styles.push({});
+  };
+
+  $scope.addScripts = function (programming) {
+    $scope.error = '';
+    programming.scripts = programming.scripts || [];
+    programming.scripts.push({});
+  };
   
   $scope.loadSetting();
   $scope.getSiteTemplateList();
@@ -217,4 +253,5 @@ app.controller("default_setting", function ($scope, $http, $timeout) {
   $scope.getArticleStatusList();
   $scope.getClosingSystemList();
   $scope.getDurationExpiryList();
+  $scope.getLanguagesList();
 });

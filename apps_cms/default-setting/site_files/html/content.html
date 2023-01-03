@@ -3,14 +3,14 @@
     <div class="tabs-header full">
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#site_settings')"> ##word.site_settings## </a>
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#email_and_text_messages')"> ##word.email_and_text_messages## </a>
-
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#articles_settings')"> ##word.articles_settings## </a>
+      <a class="tab-link inline-block" onclick="site.showTabContent(event, '#programming')"> ##word.programming## </a>
+      <a class="tab-link inline-block" onclick="site.showTabContent(event, '#ads_txt')"> Ads.txt </a>
     </div>
 
     <div class="tabs-content">
       <div id="site_settings" class="tab-content">
         <fieldset>
-          <legend>##word.site_settings##</legend>
           <div class="row">
             <div class="col8">
               <div class="row">
@@ -28,11 +28,9 @@
               </div>
 
               <div class="row">
-                <i-control class="col6" label="##word.tax_number##" ng-model="default_setting.tax_number"> </i-control>
-              </div>
-
-              <div class="row">
-                <i-textarea ng-model="default_setting.site_description" label="##word.site_description##"> </i-textarea>
+                <i-control label="##word.site_name##" ng-model="default_setting.site_name"> </i-control>
+                <i-control label="##word.site_slogan##" ng-model="default_setting.site_slogan"> </i-control>
+                <i-textarea ng-model="default_setting.description" label="##word.site_description##"> </i-textarea>
               </div>
             </div>
             <div class="col1"></div>
@@ -48,22 +46,17 @@
 
           <div class="row">
             <i-control class="col6" label="##word.support_email##" ng-model="default_setting.support_email"> </i-control>
-            <i-control class="col6" label="##word.site_slogan##" ng-model="default_setting.site_slogan"> </i-control>
-          </div>
-
-          <div class="row">
-            <i-control class="col6" label="##word.site_name##" ng-model="default_setting.site_name"> </i-control>
             <i-control class="col6" label="##word.phone##" ng-model="default_setting.phone"> </i-control>
-          </div>
-
-          <div class="row">
-            <i-control class="col6" label="##word.tax_number##" ng-model="default_setting.tax_number"> </i-control>
-            <i-control class="col6" label="##word.commercial_registration_no##" ng-model="default_setting.commercial_registration_no"> </i-control>
           </div>
 
           <div class="row">
             <i-control class="col6" label="##word.link## ##word.google_store##" ng-model="default_setting.google_store"> </i-control>
             <i-control class="col6" label="##word.link## ##word.apple_store##" ng-model="default_setting.apple_store"> </i-control>
+          </div>
+
+          <div class="row">
+            <i-control class="col6" label="##word.tax_number##" ng-model="default_setting.tax_number"> </i-control>
+            <i-control class="col6" label="##word.commercial_registration_no##" ng-model="default_setting.commercial_registration_no"> </i-control>
           </div>
           <!-- <div class="row">
             <i-control class="col6" label="##word.link## ##word.huawei_store##" ng-model="default_setting.huawei_store"> </i-control>
@@ -102,9 +95,27 @@
           </div>
 
           <div class="row">
-            <i-checkbox class="row" label="##word.tax_number_show##" ng-model="default_setting.tax_number_show"> </i-checkbox>
-            <i-checkbox class="row" label="##word.commercial_registration_no_show##" ng-model="default_setting.commercial_registration_no_show"> </i-checkbox>
-            <i-checkbox class="row" label="##word.allow_registration_through_email##" ng-model="default_setting.allow_registration_email"> </i-checkbox>
+            <div class="col3">
+              <br />
+              <i-checkbox label="Auto generate sitemap.xml file" ng-model="default_setting.auto_generate_sitemap_xml_file"> </i-checkbox>
+            </div>
+            <i-control ng-show="default_setting.auto_generate_sitemap_xml_file" class="col3" label="Count Limit" type="number" ng-model="default_setting.sitemap_xml_count">
+            </i-control>
+          </div>
+
+          <div class="row">
+            <div class="col3">
+              <br />
+              <i-checkbox label="Auto generate RSS" ng-model="default_setting.auto_generate_rss"> </i-checkbox>
+            </div>
+            <i-control ng-show="default_setting.auto_generate_rss" class="col3" label="Count Limit" type="number" ng-model="default_setting.rss_count">
+            </i-control>
+          </div>
+          <br>
+          <div class="row">
+            <i-checkbox class="" label="##word.tax_number_show##" ng-model="default_setting.tax_number_show"> </i-checkbox>
+            <i-checkbox class="" label="##word.commercial_registration_no_show##" ng-model="default_setting.commercial_registration_no_show"> </i-checkbox>
+            <i-checkbox class="" label="##word.allow_registration_through_email##" ng-model="default_setting.allow_registration_email"> </i-checkbox>
           </div>
         </fieldset>
         <i-button type="save" label="##word.save##" x-permissions="default_setting_edit || default_setting_manage" ng-click="saveSetting('#site_settings')"></i-button>
@@ -150,8 +161,6 @@
 
       <div id="articles_settings" class="tab-content">
         <fieldset>
-          <legend>##word.articles_settings##</legend>
-
           <div class="row">
             <i-list
               class="col6"
@@ -197,7 +206,96 @@
             ></i-list>
           </div>
 
+          <div class="row">
+            <i-list
+              label="##word.language##"
+              class="col6"
+              ng-model="default_setting.article.language"
+              items="languagesList"
+              display="##session.lang##"
+              ng-search="default_setting.article.language.$lang_search"
+            >
+            </i-list>
+          </div>
+
+          <div class="row">
+            <fieldset>
+              <legend>##word.article_template##</legend>
+              <div class="row" ng-repeat="t in default_setting.article.article_types track by $index">
+                <div class="row">
+                  <p class="col4">{{t.##session.lang##}}</p>
+                  <i-checkbox class="col3" label="##word.active##" ng-model="t.active"> </i-checkbox>
+                </div>
+                <hr />
+              </div>
+            </fieldset>
+          </div>
+
           <i-button type="save" label="##word.save##" x-permissions="default_setting_edit || default_setting_manage" ng-click="saveSetting('#ads_settings')"> </i-button>
+        </fieldset>
+      </div>
+
+      <div id="programming" class="tab-content">
+        <fieldset>
+          <fieldset>
+            <legend>
+              Meta Tags
+              <i-button type="add default" ng-click="addMetaTags(default_setting.programming)"></i-button>
+            </legend>
+
+            <div class="row" ng-repeat="p in default_setting.programming.meta_tags track by $index">
+              <div class="row">
+                <i-control type="text" class="col9" ng-model="p.name"> </i-control>
+                <div class="col1"></div>
+                <i-button type="delete" label="##word.delete##" ng-click="default_setting.programming.meta_tags.splice($index,1)"> </i-button>
+              </div>
+              <hr />
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>
+              Styles
+              <i-button type="add default" ng-click="addStyles(default_setting.programming)"></i-button>
+            </legend>
+
+            <div class="row" ng-repeat="s in default_setting.programming.styles track by $index">
+              <div class="row">
+                <i-control class="col9" type="text" ng-model="s.name"> </i-control>
+                <div class="col1"></div>
+                <i-button type="delete" label="##word.delete##" ng-click="default_setting.programming.styles.splice($index,1)"> </i-button>
+              </div>
+              <hr />
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>
+              Scripts
+              <i-button type="add default" ng-click="addScripts(default_setting.programming)"></i-button>
+            </legend>
+
+            <div class="row" ng-repeat="s in default_setting.programming.scripts track by $index">
+              <i-control type="text" class="col9" ng-model="s.name"> </i-control>
+              <div class="col1"></div>
+              <i-button type="delete" label="##word.delete##" ng-click="default_setting.programming.scripts.splice($index,1)"> </i-button>
+            </div>
+          </fieldset>
+
+          <div class="row">
+            <i-textarea ng-model="default_setting.programming.custom_style" label="Custom Style"> </i-textarea>
+          </div>
+
+          <div class="row">
+            <i-textarea ng-model="default_setting.programming.custom_script" label="Custom Script"> </i-textarea>
+          </div>
+        </fieldset>
+      </div>
+
+      <div id="ads_txt" class="tab-content">
+        <fieldset>
+          <i-textarea ng-model="default_setting.ads_txt" label="Ads.txt"> </i-textarea>
+
         </fieldset>
       </div>
     </div>

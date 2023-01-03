@@ -1,81 +1,72 @@
 <!DOCTYPE html>
 <html lang="##session.lang##" class="loaded" ng-app="myApp">
+  <head x-import="haraj/head.html">
+   
+    <style>
+      * {
+        max-width: initial;
+      }
 
-<head>
-  <title>##setting.title##</title>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="/css/haraj.css" />
-  <link rel="icon" type="image/x-icon" href="##setting.logo##" />
-  <style>
-    * {
-      max-width: initial;
-    }
+      .userad-logo {
+        border-radius: 50%;
+        height: 25px;
+        width: 25px;
+        margin: -5px 10px -5px 0px !important;
+      }
 
-    .userad-logo {
-      border-radius: 50%;
-      height: 25px;
-      width: 25px;
-      margin: -5px 10px -5px 0px !important
-    }
+      :root {
+        --body-margin-top: 0px;
+        --body-margin-bottom: 0px;
+        --zoom: 100%;
+        --fieldset-border: none;
+        --fieldset-background: #fff;
+      }
 
-    :root {
-      --body-margin-top: 0px;
-      --body-margin-bottom: 0px;
-      --zoom: 100%;
-      --fieldset-border: none;
-      --fieldset-background: #fff;
-    }
-
-    body {
-      /* background-color: #bbb !important;
+      body {
+        /* background-color: #bbb !important;
         background-image: url(/assets/palm.svg) !important; */
-      background-color: #ecf9f6;
-      background-repeat: repeat !important;
-    }
-  </style>
-  <style x-lang="ar">
-    .nav1 {
-      flex-direction: initial;
-      padding: 7px;
-    }
+        background-color: #ecf9f6;
+        background-repeat: repeat !important;
+      }
+    </style>
+    <style x-lang="ar">
+      .nav1 {
+        flex-direction: initial;
+        padding: 7px;
+      }
 
-    :root {
-      --direction: rtl;
-      --text-align: right;
-      --float: right;
-    }
-  </style>
-</head>
+      :root {
+        --direction: rtl;
+        --text-align: right;
+        --float: right;
+      }
+    </style>
+  </head>
 
-<body class="##session.lang##" ng-controller="haraj">
-  <div class="map">
-    <div class="movemab" x-import="haraj/map.html"></div>
-  </div>
-  <a class="create-btn" ng-click="createContent()">
-    <span style="min-height: 22px">##word.add_your_ad##</span>
-    <i class="fa-solid fa-plus-circle"></i>
-  </a>
-  <div x-import="haraj/header.html" >
-    <div class="map-side-header">
-      <div id="mapbtn" class="clickmap side-header" x-setting="map_display">
-        <li class="deskside-header">
-          <a class="tab_link" href="" id="map-toggle" class="action-map advanced-search" type="search"
-            onclick="hsMap()">
-            <i class="fa-solid fa-map space"></i>
-            <span style="min-height: 22px" id="notif5" class="notif-name"
-              onmouseover="mouseoverbox1()">##word.map_search##</span>
-          </a>
-        </li>
+  <body class="##session.lang##" ng-controller="haraj">
+    <div class="map">
+      <div class="movemab" x-import="haraj/map.html"></div>
+    </div>
+    <a class="create-btn" ng-click="createContent()">
+      <span style="min-height: 22px">##word.add_your_ad##</span>
+      <i class="fa-solid fa-plus-circle"></i>
+    </a>
+    <div x-import="haraj/header.html">
+      <div class="map-side-header">
+        <div id="mapbtn" class="clickmap side-header" x-setting="map_display">
+          <li class="deskside-header">
+            <a class="tab_link" href="" id="map-toggle" class="action-map advanced-search" type="search" onclick="hsMap()">
+              <i class="fa-solid fa-map space"></i>
+              <span style="min-height: 22px" id="notif5" class="notif-name" onmouseover="mouseoverbox1()">##word.map_search##</span>
+            </a>
+          </li>
+        </div>
       </div>
     </div>
-
-  </div>
-  <div class="content loaded">
-    <aside class="tagSide">
-      <i class="close-filter fa-solid fa-xmark fa-lg"></i>
-      <!-- <div class="sideSearchHistory">
+    <div class="content loaded">
+      <aside class="tagSide">
+        <i class="close-filter fa-solid fa-xmark fa-lg"></i>
+        <!-- <div class="sideSearchHistory">
           <a href="/tags/حراج العقار">حراج العقار</a>
           <hr class="mobile-hr" />
           <div class="smallText">
@@ -88,8 +79,8 @@
           </div>
             <hr class="mobile-hr" /> 
         </div> -->
-      <div id="sideBar_card" class="sc-gsDJrp kiyHpe">
-        <!--   <div class="tag_select_wrapper">
+        <div id="sideBar_card" class="sc-gsDJrp kiyHpe">
+          <!--   <div class="tag_select_wrapper">
             <div class="sc-furvIG lkLLxz">
               <div class="sc-pVTma ojwev">
                 <div class="sc-jrQzUz kFqNHj"><span class="sc-kDThTU iGcJNF">الكل</span></div>
@@ -102,257 +93,247 @@
               </svg>
             </button>
           </div> -->
-        <hr class="mobile-hr" />
-        <div class="FilterGroup__Wrapper-kok8t0-0 iGsYXQ">
-          <span class="FilterGroup__Label-kok8t0-1 bdSIGk">##word.filtering##
-            <div class="xfilter-toggel">
-              <i class="fa-solid fa-plus" id="open" onclick="xtaghide()"></i>
-            </div>
-          </span>
-          <div class="FilterGroup__ContentWrapper-kok8t0-2 BJDme" id="xtags-filter">
-            <div>
-              <div class="row">
-                <i-checkbox label="##word.only_new##" class="pointer" ng-click="searchAll(search)"
-                  ng-model="search.new"></i-checkbox>
-                <i-checkbox class="pointer" label="##word.nearby_ads##" ng-click="searchAll(search)"
-                  ng-model="search.near">
-                </i-checkbox>
-                <i-checkbox label="##word.only_with_photos##" class="pointer" ng-click="searchAll(search)"
-                  ng-model="search.with_photos"></i-checkbox>
-                <hr>
-
+          <hr class="mobile-hr" />
+          <div class="FilterGroup__Wrapper-kok8t0-0 iGsYXQ">
+            <span class="FilterGroup__Label-kok8t0-1 bdSIGk"
+              >##word.filtering##
+              <div class="xfilter-toggel">
+                <i class="fa-solid fa-plus" id="open" onclick="xtaghide()"></i>
+              </div>
+            </span>
+            <div class="FilterGroup__ContentWrapper-kok8t0-2 BJDme" id="xtags-filter">
+              <div>
                 <div class="row">
-                  <table>
-                    <tr>
-                      <td>
-                        <input type="radio" id="lowest" ng-click="searchAll(search)" ng-model="search.price"
-                          name="price" value="lowest" />
-                        <label for="lowest">##word.lowest_price##</label><br />
-                      </td>
-                      <td>
-                        <input type="radio" id="highest" ng-click="searchAll(search)" ng-model="search.price"
-                          name="price" value="highest" />
-                        <label for="highest">##word.highest_price##</label><br />
-                      </td>
-                    </tr>
-                  </table>
-                </div>
+                  <i-checkbox label="##word.only_new##" class="pointer" ng-click="searchAll(search)" ng-model="search.new"></i-checkbox>
+                  <i-checkbox class="pointer" label="##word.nearby_ads##" ng-click="searchAll(search)" ng-model="search.near"> </i-checkbox>
+                  <i-checkbox label="##word.only_with_photos##" class="pointer" ng-click="searchAll(search)" ng-model="search.with_photos"></i-checkbox>
+                  <hr />
 
+                  <div class="row">
+                    <table>
+                      <tr>
+                        <td>
+                          <input type="radio" id="lowest" ng-click="searchAll(search)" ng-model="search.price" name="price" value="lowest" />
+                          <label for="lowest">##word.lowest_price##</label><br />
+                        </td>
+                        <td>
+                          <input type="radio" id="highest" ng-click="searchAll(search)" ng-model="search.price" name="price" value="highest" />
+                          <label for="highest">##word.highest_price##</label><br />
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+
+                  <br />
+                  <hr />
+                  <h3>##word.price##</h3>
+                  <div class="row">
+                    <table>
+                      <tr>
+                        <td>
+                          <i-control type="number" ng-keydown="getContentList($event,search)" ng-model="search.price_from"></i-control>
+                        </td>
+                        <td>
+                          <i-control type="number" ng-keydown="getContentList($event,search)" ng-model="search.price_to"> </i-control>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+                <div class="tag-filters-extra">
+                  <div class="FilterItem__Wrapper-sc-18vvs8g-0 feaUnB">
+                    <label class="FilterItem__Label-sc-18vvs8g-1 bSWGIJ"></label>
+                    <div class="FilterItem__ItemsWrapper-sc-18vvs8g-2 bpYvLN"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="FilterGroup__Wrapper-kok8t0-0 iGsYXQ">
+            <span class="FilterGroup__Label-kok8t0-1 bdSIGk"
+              >##word.quick_navigate##
+              <div class="filter-toggel">
+                <i class="fa-solid fa-plus" id="open" onclick="taghide()"></i>
+              </div>
+            </span>
+            <div class="FilterGroup__ContentWrapper-kok8t0-2 eBJDme" id="tags-filter">
+              <div id="mark">
                 <br />
-                <hr>
-                <h3>##word.price##</h3>
-                <div class="row">
-                  <table>
-                    <tr>
-                      <td>
-                        <i-control type="number" ng-keydown="getContentList($event,search)"
-                          ng-model="search.price_from"></i-control>
-                      </td>
-                      <td>
-                        <i-control type="number" ng-keydown="getContentList($event,search)" ng-model="search.price_to">
-                        </i-control>
-                      </td>
-                    </tr>
-                  </table>
-                </div>
-              </div>
-              <div class="tag-filters-extra">
-                <div class="FilterItem__Wrapper-sc-18vvs8g-0 feaUnB">
-                  <label class="FilterItem__Label-sc-18vvs8g-1 bSWGIJ"></label>
-                  <div class="FilterItem__ItemsWrapper-sc-18vvs8g-2 bpYvLN"></div>
+                <div class="brand-logos">
+                  <div ng-repeat="c in subCategoriesList">
+                    <a title="{{c.name_##session.lang##}}" class="brand-logos--svg tag-link" ng-click="loadSubCategory2(c)"
+                      ><img loading="lazy" height="60" width="60" class="svg-size-5x" ng-src="{{c.image_url}}"
+                    /></a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="FilterGroup__Wrapper-kok8t0-0 iGsYXQ">
-          <span class="FilterGroup__Label-kok8t0-1 bdSIGk">##word.quick_navigate##
-            <div class="filter-toggel">
-              <i class="fa-solid fa-plus" id="open" onclick="taghide()"></i>
+      </aside>
+      <div class="main-content">
+        <div class="thirdheader">
+          <div class="row">
+            <div class="col-1 text-center">
+              <i class="fa fa-arrow-circle-right margin-left-move pointer move-category fa-2x" ng-click="moveCategory('previous')" aria-hidden="true"></i>
             </div>
-          </span>
-          <div class="FilterGroup__ContentWrapper-kok8t0-2 eBJDme" id="tags-filter">
-            <div id="mark">
-              <br />
-              <div class="brand-logos">
-                <div ng-repeat="c in subCategoriesList">
-                  <a title="{{c.name_##session.lang##}}" class="brand-logos--svg tag-link"
-                    ng-click="loadSubCategory2(c)"><img loading="lazy" height="60" width="60" class="svg-size-5x"
-                      ng-src="{{c.image_url}}" /></a>
-                </div>
+            <div class="col-10">
+              <div class="tags">
+                <ul class="tag-list">
+                  <li id="cat_{{c.id}}" class="tag" ng-class="{'category-selected' : c.$isSelected == true}" ng-repeat="c in topParentCategoriesList">
+                    <a class="tab_link" ng-click="loadSubCategory(c)" href=""
+                      ><img alt="car" loading="lazy" height="35" width="35" ng-src="{{c.image_url}}" /><span style="min-height: 22px">{{c.name_##session.lang##}}</span></a
+                    >
+                  </li>
+                </ul>
               </div>
+            </div>
+            <div class="col-1 text-center">
+              <i class="fa fa-arrow-circle-left pointer move-category-margin move-category fa-2x" ng-click="moveCategory('next')" aria-hidden="true"></i>
             </div>
           </div>
         </div>
-      </div>
-    </aside>
-    <div class="main-content">
-      <div class="thirdheader">
-        <div class="row">
-          <div class="col-1 text-center">
-            <i class="fa fa-arrow-circle-right margin-left-move pointer move-category fa-2x"
-              ng-click="moveCategory('previous')" aria-hidden="true"></i>
-          </div>
-          <div class="col-10">
-            <div class="tags">
-              <ul class="tag-list">
-                <li id="cat_{{c.id}}" class="tag" ng-class="{'category-selected' : c.$isSelected == true}"
-                  ng-repeat="c in topParentCategoriesList">
-                  <a class="tab_link" ng-click="loadSubCategory(c)" href=""><img alt="car" loading="lazy" height="35"
-                      width="35" ng-src="{{c.image_url}}" /><span
-                      style="min-height: 22px">{{c.name_##session.lang##}}</span></a>
-                </li>
+        <div class="all-category">
+          <div></div>
+          <div></div>
+          <div class="tagheader">
+            <div class="tags category-1">
+              <div></div>
+              <ul class="tag-link category-list1">
+                <div class="sub-category">
+                  <li class="row" ng-repeat="c in subCategoriesList">
+                    <button class="single tag-link black bold" ng-click="loadSubCategory2(c)">{{c.name_##session.lang##}}</button>
+                  </li>
+                </div>
               </ul>
-            </div>
-          </div>
-          <div class="col-1 text-center">
-            <i class="fa fa-arrow-circle-left pointer move-category-margin move-category fa-2x"
-              ng-click="moveCategory('next')" aria-hidden="true"></i>
-          </div>
-        </div>
-
-      </div>
-      <div class="all-category">
-        <div></div>
-        <div></div>
-        <div class="tagheader">
-          <div class="tags category-1">
-            <div></div>
-            <ul class="tag-link category-list1">
-              <div class="sub-category">
-                <li class="row" ng-repeat="c in subCategoriesList">
-                  <button class="single tag-link black bold"
-                    ng-click="loadSubCategory2(c)">{{c.name_##session.lang##}}</button>
-                </li>
-              </div>
-            </ul>
-            <!-- <button class="add-button" type="submit">
+              <!-- <button class="add-button" type="submit">
               <a class="add-icon-ads" ng-click="createContent()"><img class="add-icon" src="../assets/add.png" alt=""
                   width="18px" height="18px" />##word.add_your_ad##</a>
             </button> -->
-          </div>
+            </div>
 
-          <div class="tags category-2">
-            <div></div>
-            <ul class="tag-link category-list2">
-              <div class="sub-category">
-                <li class="row" ng-repeat="c2 in subCategoriesList2">
-                  <button class="single tag-link black bold"
-                    ng-click="loadSubCategory3(c2)">{{c2.name_##session.lang##}}</button>
-                </li>
-              </div>
-            </ul>
-            <div></div>
-          </div>
+            <div class="tags category-2">
+              <div></div>
+              <ul class="tag-link category-list2">
+                <div class="sub-category">
+                  <li class="row" ng-repeat="c2 in subCategoriesList2">
+                    <button class="single tag-link black bold" ng-click="loadSubCategory3(c2)">{{c2.name_##session.lang##}}</button>
+                  </li>
+                </div>
+              </ul>
+              <div></div>
+            </div>
 
-          <div class="tags category-3">
-            <div></div>
-            <ul class="tag-link category-list3">
-              <div class="sub-category">
-                <li class="row" ng-repeat="c3 in subCategoriesList3">
-                  <button class="single tag-link black bold"
-                    ng-click="loadSubCategory4(c3)">{{c3.name_##session.lang##}}</button>
-                </li>
-              </div>
-            </ul>
-          </div>
+            <div class="tags category-3">
+              <div></div>
+              <ul class="tag-link category-list3">
+                <div class="sub-category">
+                  <li class="row" ng-repeat="c3 in subCategoriesList3">
+                    <button class="single tag-link black bold" ng-click="loadSubCategory4(c3)">{{c3.name_##session.lang##}}</button>
+                  </li>
+                </div>
+              </ul>
+            </div>
 
-          <div class="tags category-4">
-            <div></div>
-            <ul class="tag-link category-list4">
-              <div class="sub-category">
-                <li class="row" ng-repeat="c4 in subCategoriesList4">
-                  <button class="single tag-link black bold"
-                    ng-click="loadSubCategory5(c4)">{{c4.name_##session.lang##}}</button>
-                </li>
-              </div>
-            </ul>
+            <div class="tags category-4">
+              <div></div>
+              <ul class="tag-link category-list4">
+                <div class="sub-category">
+                  <li class="row" ng-repeat="c4 in subCategoriesList4">
+                    <button class="single tag-link black bold" ng-click="loadSubCategory5(c4)">{{c4.name_##session.lang##}}</button>
+                  </li>
+                </div>
+              </ul>
+            </div>
           </div>
         </div>
 
-      </div>
+        <main class="tagMain">
+          <div class="row">
+            <select
+              class="select-style form-select col"
+              ng-model="search.country"
+              ng-change="getGovesList(search.country);searchAll(search)"
+              ng-options="s as (s.name_##session.lang##)   for s in countriesList"
+            >
+              <option value="" selected><img loading="lazy" height="30" width="30" ng-src="{{s.image_url}}" /> (##word.country##)</option>
+            </select>
 
-      <main class="tagMain">
-        <div class="row">
-          <select class="select-style form-select col" ng-model="search.country"
-            ng-change="getGovesList(search.country);searchAll(search)"
-            ng-options="s as (s.name_##session.lang##)   for s in countriesList">
-            <option value="" selected><img loading="lazy" height="30" width="30" ng-src="{{s.image_url}}" />
-              (##word.country##)</option>
-          </select>
+            <select
+              class="select-style form-select col"
+              ng-show="search.country.id"
+              ng-model="search.gov"
+              ng-change="getCityList(search.gov);searchAll(search)"
+              ng-options="s as (s.name_##session.lang##)   for s in govesList"
+            >
+              <option value="" selected>(##word.gov##)</option>
+            </select>
 
-          <select class="select-style form-select col" ng-show="search.country.id" ng-model="search.gov"
-            ng-change="getCityList(search.gov);searchAll(search)"
-            ng-options="s as (s.name_##session.lang##)   for s in govesList">
-            <option value="" selected>(##word.gov##)</option>
-          </select>
+            <select
+              class="select-style form-select col"
+              ng-show="search.gov.id"
+              ng-model="search.city"
+              ng-change="getAreaList(search.city);searchAll(search)"
+              ng-options="s as (s.name_##session.lang##)   for s in cityList"
+            >
+              <option value="" selected>(##word.city##)</option>
+            </select>
 
-          <select class="select-style form-select col" ng-show="search.gov.id" ng-model="search.city"
-            ng-change="getAreaList(search.city);searchAll(search)"
-            ng-options="s as (s.name_##session.lang##)   for s in cityList">
-            <option value="" selected>(##word.city##)</option>
-          </select>
+            <select class="select-style form-select col" ng-show="search.city.id" ng-model="search.area" ng-change="searchAll(search)" ng-options="s as (s.name_##session.lang##)   for s in areaList">
+              <option value="" selected>(##word.area##)</option>
+            </select>
 
-          <select class="select-style form-select col" ng-show="search.city.id" ng-model="search.area"
-            ng-change="searchAll(search)" ng-options="s as (s.name_##session.lang##)   for s in areaList">
-            <option value="" selected>(##word.area##)</option>
-          </select>
+            <i-checkbox
+              class="col"
+              x-permissions="login"
+              ng-show="subCategoriesList"
+              ng-click="updateFollowCategory(category.id ,category.follow )"
+              label="##word.follow## {{category.name_##session.lang##}}"
+              ng-model="category.follow"
+            >
+            </i-checkbox>
+          </div>
 
-          <i-checkbox class="col" x-permissions="login" ng-show="subCategoriesList"
-            ng-click="updateFollowCategory(category.id ,category.follow )"
-            label="##word.follow## {{category.name_##session.lang##}}" ng-model="category.follow">
-          </i-checkbox>
-        </div>
+          <div class="row">
+            <div class="ads-section">
+              <table style="width: 100%">
+                <tr ng-repeat="a in contentList" class="">
+                  <td class="border-bottom-ad">
+                    <div class="row margin">
+                      <div class="col-9">
+                        <a href="/display-content/{{a.id}}/{{a.name}}/{{a.store.name}}">
+                          <p class="bold underline-hover ad-name pointer ellipsis-txt">{{a.name}}</p>
+                        </a>
+                        <div class="row">
+                          <div class="col-6">
+                            <div class="ad-location">
+                              <i class="fa-solid fa-location-pin adress ellipsis-txt">{{a.address.text}}</i>
+                            </div>
+                            <div class="u-action">
+                              <a class="btn" ng-show="##setting.order_settings.activate_orders## && a.store.user.id != user.id" x-permission="login" ng-click="bookList(a,0)">
+                                <i class="fa fa-shopping-cart"></i>
+                              </a>
 
-        <div class="row">
-          <div class="ads-section">
-            <table style="width: 100%">
-              <tr ng-repeat="a in contentList" class="">
-                <td class="border-bottom-ad">
-                  <div class="row margin">
-                    <div class="col-9">
-                      <a href="/display-content/{{a.id}}/{{a.name}}/{{a.store.name}}">
-                        <p class="bold underline-hover ad-name pointer ellipsis-txt">{{a.name}}</p>
-                      </a>
-                      <div class="row">
-                        <div class="col-6">
-                          <div class="ad-location">
-                            <i class="fa-solid fa-location-pin adress ellipsis-txt">{{a.address.text}}</i>
+                              <a ng-show="!a.$favorite" class="pointer" ng-click="updateFeedback(a,'favorite',true)">
+                                <i class="fa fa-heart dimgrey"> ##word.favorite## </i>
+                              </a>
 
+                              <a ng-show="a.$favorite" class="pointer" ng-click="updateFeedback(a,'favorite',false)">
+                                <i class="fa fa-heart red"> ##word.cancel## ##word.favorite## </i>
+                              </a>
+                            </div>
                           </div>
-                          <div class="u-action">
-
-                            <a class="btn"
-                              ng-show="##setting.order_settings.activate_orders## && a.store.user.id != user.id"
-                              x-permission="login" ng-click="bookList(a,0)">
-                              <i class="fa fa-shopping-cart"></i>
-                            </a>
-
-                            <a ng-show="!a.$favorite" class="pointer" ng-click="updateFeedback(a,'favorite',true)">
-                              <i class="fa fa-heart dimgrey"> ##word.favorite## </i>
-                            </a>
-
-                            <a ng-show="a.$favorite" class="pointer" ng-click="updateFeedback(a,'favorite',false)">
-                              <i class="fa fa-heart red"> ##word.cancel## ##word.favorite## </i>
-                            </a>
-
-                          </div>
-
-                        </div>
-                        <div class="col-6">
-
-                          <div class="time-publish">
-                            <i class="fa-solid fa-clock ellipsis-txt"> {{a.$time}} </i>
-                          </div>
-                          <div class="ad-user">
-                            <a class=""
-                              href="/profile/{{a.store.user.id}}/{{a.store.user.profile.name}}/{{a.store.user.profile.last_name}}">
-                              <i class="fa fa-user dimgrey" aria-hidden="true"></i>
-                              <b class="underline-hover dimgrey ellipsis-txt">{{a.store.user.profile.name}}
-                                {{a.store.user.profile.last_name}}</b>
-                            </a>
-                          </div>
-                          <!--  <div class="row" ng-show="a.set_price == 'yes'" ng-repeat="q in a.quantity_list">
+                          <div class="col-6">
+                            <div class="time-publish">
+                              <i class="fa-solid fa-clock ellipsis-txt"> {{a.$time}} </i>
+                            </div>
+                            <div class="ad-user">
+                              <a class="" href="/profile/{{a.store.user.id}}/{{a.store.user.profile.name}}/{{a.store.user.profile.last_name}}">
+                                <i class="fa fa-user dimgrey" aria-hidden="true"></i>
+                                <b class="underline-hover dimgrey ellipsis-txt">{{a.store.user.profile.name}} {{a.store.user.profile.last_name}}</b>
+                              </a>
+                            </div>
+                            <!--  <div class="row" ng-show="a.set_price == 'yes'" ng-repeat="q in a.quantity_list">
                             <b class="price">
                               <small>{{q.unit.name_##session.lang##}} {{q.net_value}}
                                 {{q.currency.name_##session.lang##}}</small>
@@ -363,38 +344,35 @@
                                   ng-show="q.discount_type == 'number'"> $ </span> </small>
                             </b>
                           </div> -->
+                          </div>
                         </div>
                       </div>
-
+                      <div class="col-3">
+                        <a class="adarea-link" href="/display-content/{{a.id}}/{{a.name}}/{{a.store.name}}">
+                          <img loading="lazy" class="pointer adarea-image" ng-src="{{a.image_url}}" />
+                        </a>
+                      </div>
                     </div>
-                    <div class="col-3">
-                      <a class="adarea-link" href="/display-content/{{a.id}}/{{a.name}}/{{a.store.name}}">
-                        <img loading="lazy" class="pointer adarea-image" ng-src="{{a.image_url}}" />
-                      </a>
-                    </div>
-
-                  </div>
-                </td>
-              </tr>
-            </table>
-            <div class="row padding center">
-              <a ng-click="loadMore()" ng-hide="ContentBusy" class="more-btn center"> ##word.see_more## ...</a>
-              <img class="more-loading" src="/images/loading.gif" ng-show="ContentBusy">
-            </div>
-            <div class="row center" ng-show="contentList.length < 1 && contentList.length">
-              <h2>##word.no_content_1##</h2>
-              <h3>##word.no_content_2##</h3>
-              <img src="../assets/sad_search.png" alt="" />
+                  </td>
+                </tr>
+              </table>
+              <div class="row padding center">
+                <a ng-click="loadMore()" ng-hide="ContentBusy" class="more-btn center"> ##word.see_more## ...</a>
+                <img class="more-loading" src="/images/loading.gif" ng-show="ContentBusy" />
+              </div>
+              <div class="row center" ng-show="contentList.length < 1 && contentList.length">
+                <h2>##word.no_content_1##</h2>
+                <h3>##word.no_content_2##</h3>
+                <img src="../assets/sad_search.png" alt="" />
+              </div>
             </div>
           </div>
-        </div>
-      </main>
+        </main>
+      </div>
     </div>
-  </div>
-  <footer class="footer ng-scope" x-import="haraj/footer.html" ng-controller="footer_herag"></footer>
-  <div x-import="haraj/scripts.html"></div>
-  <script x-import="haraj/index.js"></script>
-  <script x-import="haraj/index2.js"></script>
-</body>
-
+    <footer class="footer ng-scope" x-import="haraj/footer.html" ng-controller="footer_herag"></footer>
+    <div x-import="haraj/scripts.html"></div>
+    <script x-import="haraj/index.js"></script>
+    <script x-import="haraj/index2.js"></script>
+  </body>
 </html>

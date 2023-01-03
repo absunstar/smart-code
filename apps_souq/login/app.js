@@ -6,26 +6,37 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/images/'
   })
 
-
   site.get({
     name: 'css',
     path: __dirname + '/site_files/css/'
   })
 
-
   site.get({
     name: "login",
-    path: __dirname + "/site_files/html/index.html",
-    parser: "html",
-    compress: true
+  },
+  (req, res) => {
+    res.render(
+      'login/index.html',
+      { title: site.setting.title, image_url: site.setting.logo, description: site.setting.description },
+      {
+        parser: 'html css js',
+        compress: true,
+      }
+    );
   })
-
 
   site.get({
     name: 'forget_password',
-    path: __dirname + '/site_files/html/forget_password.html',
-    parser: 'html',
-    compress: true,
+  },
+  (req, res) => {
+    res.render(
+      'login/forget_password.html',
+      { title: site.setting.title, image_url: site.setting.logo, description: site.setting.description },
+      {
+        parser: 'html css js',
+        compress: true,
+      }
+    );
   });
 
   site.post('/api/forget_password/send_code', (req, res) => {

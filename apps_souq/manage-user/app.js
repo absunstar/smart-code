@@ -1,10 +1,25 @@
 module.exports = function init(site) {
-  site.get({
-    name: 'manage_user',
-    path: __dirname + '/site_files/html/index.html',
-    parser: 'html',
-    compress: false,
-  });
+  site.get(
+    {
+      name: 'manage_user',
+   
+    },
+    (req, res) => {
+      if (req.session.user) {
+        site.security.getUser({ id: req.session.user.id }, (err, doc) => {
+          if (!err && doc) {
+            doc.title = site.setting.title + ' | ' + doc.profile.name;
+            doc.image_url = doc.profile.image_url;
+            doc.description = doc.profile.about_meabout_me;
+            res.render('manage-user/index.html', doc, {
+              parser: 'html css js',
+              compress: true,
+            });
+          }
+        });
+      }
+    }
+  );
 
   site.get({
     name: '/images',
@@ -13,8 +28,8 @@ module.exports = function init(site) {
   site.get('/api/user/update-visit-date', (req, res) => {
     req.session.user.visit_date = new Date();
 
-    site.security.updateUser(req.session.user, (err, result) => { })
-    res.json({ done: true })
+    site.security.updateUser(req.session.user, (err, result) => {});
+    res.json({ done: true });
   });
 
   site.post('/api/user/follow_category', (req, res) => {
@@ -154,7 +169,6 @@ module.exports = function init(site) {
             _user.mobile = req.body.user.mobile;
             _user.hide_mobile = req.body.user.hide_mobile;
             _user.mobile_list = req.body.user.mobile_list;
-
           }
 
           site.security.isUserExists(_user, function (err, user_found) {

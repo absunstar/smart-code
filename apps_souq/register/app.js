@@ -6,20 +6,37 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/images/',
   });
 
-  site.get({
-    name: 'register',
-    path: __dirname + '/site_files/html/index.html',
-    parser: 'html',
-    compress: true,
-  });
+  site.get(
+    {
+      name: 'register',
+    },
+    (req, res) => {
+      res.render(
+        'register/index.html',
+        { title: site.setting.title, image_url: site.setting.logo, description: site.setting.description },
+        {
+          parser: 'html css js',
+          compress: true,
+        }
+      );
+    }
+  );
 
-
-  site.get({
-    name: 'mailer',
-    path: __dirname + '/site_files/html/mailer.html',
-    parser: 'html',
-    compress: true,
-  });
+  site.get(
+    {
+      name: 'mailer',
+    },
+    (req, res) => {
+      res.render(
+        'register/mailer.html',
+        { title: site.setting.title, image_url: site.setting.logo, description: site.setting.description },
+        {
+          parser: 'html css js',
+          compress: true,
+        }
+      );
+    }
+  );
 
   site.get({
     name: 'css',
@@ -31,7 +48,7 @@ module.exports = function init(site) {
       {
         id: id,
       },
-      (err, result) => { }
+      (err, result) => {}
     );
   });
 
@@ -50,8 +67,8 @@ module.exports = function init(site) {
 
     site.ipList.push({
       ip: req.ip,
-      time: new Date().getTime()
-    })
+      time: new Date().getTime(),
+    });
 
     let mailer_doc = req.body;
     mailer_doc.$req = req;
@@ -81,7 +98,7 @@ module.exports = function init(site) {
             } else {
               response.error = 'have to wait mobile';
               res.json(response);
-              return
+              return;
             }
           } else if (mailer_doc.email) {
             let date = new Date(doc.date);
@@ -92,7 +109,7 @@ module.exports = function init(site) {
             } else {
               response.error = 'have to wait email';
               res.json(response);
-              return
+              return;
             }
           }
           $mailer.edit(
@@ -106,7 +123,6 @@ module.exports = function init(site) {
             },
             (err, result) => {
               if (!err) {
-
                 if (result.doc.type == 'mobile' && site.setting.enable_sending_messages_mobile) {
                   site.sendMobileMessage({
                     to: result.doc.country.country_code + result.doc.mobile,
@@ -124,7 +140,6 @@ module.exports = function init(site) {
                 response.done = true;
                 response.doc = result.doc;
                 delete response.doc.code;
-
               } else {
                 response.error = err.message;
               }
@@ -132,12 +147,11 @@ module.exports = function init(site) {
             }
           );
         } else {
-
           let where = {};
           if (mailer_doc.type == 'email') {
-            where.email = mailer_doc.email
+            where.email = mailer_doc.email;
           } else if (mailer_doc.type == 'mobile') {
-            where.mobile = mailer_doc.mobile
+            where.mobile = mailer_doc.mobile;
           }
           site.security.getUser(where, (err, user_doc) => {
             if (!err) {
@@ -157,14 +171,12 @@ module.exports = function init(site) {
                     response.done = true;
                     response.doc = result;
                     if (result.type == 'mobile' && site.setting.enable_sending_messages_mobile) {
-
                       site.sendMobileMessage({
                         to: result.country.country_code + result.mobile,
                         message: `code : ${result.code}`,
                       });
                       response.done_send_mobile = true;
-                    } else if (result.type == 'email'  && site.setting.enable_sending_messages_email) {
-
+                    } else if (result.type == 'email' && site.setting.enable_sending_messages_email) {
                       site.sendMailMessage({
                         to: result.email,
                         subject: `Rejester Code`,
@@ -204,7 +216,6 @@ module.exports = function init(site) {
       response.error = 'Please enter a valid mobile number';
     }
     res.json(response);
-
   });
 
   site.post('/api/mailer/check_code', (req, res) => {
@@ -242,7 +253,6 @@ module.exports = function init(site) {
 
   site.post('/api/register', (req, res) => {
     let response = { done: false };
-
 
     if (req.body.$encript) {
       if (req.body.$encript === '64') {
@@ -282,15 +292,15 @@ module.exports = function init(site) {
       permissions: ['user'],
       active: true,
       notific_setting: {
-        instant_alerts : true,
-        ads_members_follow : true,
-        ads_sections_followed : true,
-        ads_searches_followed : true,
-        replies_ads_followed : true,
-        comments_my_ads : true,
-        private_messages : true,
+        instant_alerts: true,
+        ads_members_follow: true,
+        ads_sections_followed: true,
+        ads_searches_followed: true,
+        replies_ads_followed: true,
+        comments_my_ads: true,
+        private_messages: true,
       },
-      created_date : new Date(),
+      created_date: new Date(),
       profile: {
         files: [],
         name: req.body.first_name,
@@ -361,7 +371,6 @@ module.exports = function init(site) {
 
     let where = req.body.where || {};
 
-
     $mailer.findMany(
       {
         select: req.body.select || {},
@@ -383,7 +392,4 @@ module.exports = function init(site) {
       }
     );
   });
-
-
-
 };

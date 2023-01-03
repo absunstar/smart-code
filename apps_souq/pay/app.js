@@ -16,9 +16,17 @@ module.exports = function init(site) {
 
   site.get({
     name: 'commission_form',
-    path: __dirname + '/site_files/html/commission_form.html',
-    parser: 'html',
-    compress: true,
+ 
+  },
+  (req, res) => {
+    res.render(
+      'pay/commission_form.html',
+      { title: site.setting.title, image_url: site.setting.logo, description: site.setting.description },
+      {
+        parser: 'html css js',
+        compress: true,
+      }
+    );
   });
 
   site.post('/api/pay/add', (req, res) => {

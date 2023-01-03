@@ -158,7 +158,12 @@
   {
     "name": "site_template",
     "en": "Site template",
-    "ar": "الشكل العام للموقع"
+    "ar": "القالب العام للموقع"
+  },
+  {
+    "name": "programming",
+    "en": "Programming",
+    "ar": "برمجة"
   },
   {
     "name": "site_slogan",

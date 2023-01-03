@@ -3,23 +3,47 @@ module.exports = function init(site) {
 
   site.get({
     name: 'favorites',
-    path: __dirname + '/site_files/html/favorites.html',
-    parser: 'html',
-    compress: true,
+   
+  },
+  (req, res) => {
+    res.render(
+      'others/favorites.html',
+      { title: site.setting.title, image_url: site.setting.logo, description: site.setting.description },
+      {
+        parser: 'html css js',
+        compress: true,
+      }
+    );
   });
 
   site.get({
     name: 'follow',
-    path: __dirname + '/site_files/html/follow.html',
-    parser: 'html',
-    compress: true,
+ 
+  },
+  (req, res) => {
+    res.render(
+      'others/follow.html',
+      { title: site.setting.title, image_url: site.setting.logo, description: site.setting.description },
+      {
+        parser: 'html css js',
+        compress: true,
+      }
+    );
   });
 
   site.get({
     name: 'more_categories',
-    path: __dirname + '/site_files/html/more_categories.html',
-    parser: 'html',
-    compress: true,
+  
+  },
+  (req, res) => {
+    res.render(
+      'others/more_categories.html',
+      { title: site.setting.title, image_url: site.setting.logo, description: site.setting.description },
+      {
+        parser: 'html css js',
+        compress: true,
+      }
+    );
   });
 
   site.get({

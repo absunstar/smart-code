@@ -18,6 +18,10 @@ app.controller('articles', function ($scope, $http, $timeout) {
           $scope.article.expiry_date.setDate($scope.article.expiry_date.getDate() + 7);
         }
       }
+      if ($scope.defaultSettings.article.language) {
+        $scope.article.$language = $scope.defaultSettings.article.language;
+        $scope.addLanguage($scope.article.$language);
+      }
     }
     site.showModal('#articleManageModal');
   };
@@ -189,25 +193,6 @@ app.controller('articles', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getArticleTypesList = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $scope.articleTypesList = [];
-    $http({
-      method: 'POST',
-      url: '/api/article_types/all',
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        $scope.articleTypesList = response.data;
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
   $scope.getLanguagesList = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -300,6 +285,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.doc) {
           $scope.defaultSettings = response.data.doc;
+          $scope.articleTypesList = $scope.defaultSettings.article.article_types.filter((t) => t.active == true);
         }
       },
       function (err) {
@@ -618,13 +604,12 @@ app.controller('articles', function ($scope, $http, $timeout) {
     $scope.search = {};
   };
 
-  $scope.changeLanuage = function (event,lang) {
+  $scope.changeLanuage = function (event, lang) {
     let index = $scope.article.content_list.findIndex((_c) => _c.language && _c.language.id == lang.id);
     $scope.article.$show_create = index >= 0 ? false : true;
-    if (index >= 0) {
-    }
+
     site.showTabContent(event, '#basic');
-   };
+  };
 
   $scope.addLanguage = function (lang) {
     if ($scope.article.content_list.length > 0) {
@@ -648,6 +633,27 @@ app.controller('articles', function ($scope, $http, $timeout) {
         $scope.article.content_list[$scope.article.content_list.length - 1].multi_image_list = [];
         $scope.article.content_list[0].multi_image_list.forEach((_k) => {
           $scope.article.content_list[$scope.article.content_list.length - 1].multi_image_list.push({ ..._k });
+        });
+      }
+
+      if ($scope.article.content_list[0].meta_tags) {
+        $scope.article.content_list[$scope.article.content_list.length - 1].meta_tags = [];
+        $scope.article.content_list[0].meta_tags.forEach((_k) => {
+          $scope.article.content_list[$scope.article.content_list.length - 1].meta_tags.push({ ..._k });
+        });
+      }
+
+      if ($scope.article.content_list[0].styles) {
+        $scope.article.content_list[$scope.article.content_list.length - 1].styles = [];
+        $scope.article.content_list[0].styles.forEach((_k) => {
+          $scope.article.content_list[$scope.article.content_list.length - 1].styles.push({ ..._k });
+        });
+      }
+
+      if ($scope.article.content_list[0].scripts) {
+        $scope.article.content_list[$scope.article.content_list.length - 1].scripts = [];
+        $scope.article.content_list[0].scripts.forEach((_k) => {
+          $scope.article.content_list[$scope.article.content_list.length - 1].scripts.push({ ..._k });
         });
       }
 
@@ -679,10 +685,28 @@ app.controller('articles', function ($scope, $http, $timeout) {
       $scope.article.content_list.push(translate);
     }
     $scope.article.$show_create = false;
+    $scope.article.$auto_translate = false;
+  };
+
+  $scope.addMetaTags = function (programming) {
+    $scope.error = '';
+    programming.meta_tags = programming.meta_tags || [];
+    programming.meta_tags.push({});
+  };
+
+  $scope.addStyles = function (programming) {
+    $scope.error = '';
+    programming.styles = programming.styles || [];
+    programming.styles.push({});
+  };
+
+  $scope.addScripts = function (programming) {
+    $scope.error = '';
+    programming.scripts = programming.scripts || [];
+    programming.scripts.push({});
   };
 
   $scope.getArticlesList();
-  $scope.getArticleTypesList();
   $scope.loadClusters();
   $scope.getLanguagesList();
   $scope.loadMainCategories();

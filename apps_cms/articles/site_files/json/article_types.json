@@ -6,7 +6,7 @@
   },
   {
     "id": 2,
-    "en": "Developed",
+    "en": "advanced",
     "ar": "متطور"
   },
   {
@@ -16,12 +16,22 @@
   },
   {
     "id": 4,
-    "en": "Multi-Paragraph developed",
+    "en": "Multi-Paragraph advanced",
     "ar": "متعدد الفقرات متطور"
   },
   {
     "id": 5,
     "en": "Multi-Image",
     "ar": "متعدد الصور"
+  },
+  {
+    "id": 5,
+    "en": "google-news",
+    "ar": "أخبار جوجل"
+  },
+  {
+    "id": 5,
+    "en": "yts-movie",
+    "ar": "yts-movie"
   }
 ]

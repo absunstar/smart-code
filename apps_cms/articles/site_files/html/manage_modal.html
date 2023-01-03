@@ -26,16 +26,18 @@
           <div class="col9">
             <div class="article-part">
               <div class="row">
+                <i-list class="red col4" v="r" label="##word.article_template##" ng-model="article.type" items="articleTypesList" display="##session.lang##" ng-search="article.$type_search"> </i-list>
                 <i-list
                   label="##word.language##"
-                  class="col5"
+                  class="col3"
                   ng-change="changeLanuage(event,article.$language)"
                   ng-model="article.$language"
                   items="languagesList"
                   display="##session.lang##"
-                  ng-search="t.$type_search"
+                  ng-search="article.$language.$lang_search"
                 >
                 </i-list>
+                <i-checkbox class="col2" label="##word.auto_translate##" ng-show="article.$show_create" ng-model="article.$auto_translate"> </i-checkbox>
                 <div class="col3">
                   <br />
                   <i-button type="add" ng-show="article.$show_create" label="##word.create##" ng-click="addLanguage(article.$language)"> </i-button>
@@ -57,6 +59,7 @@
                   <a class="tab-link inline-block" onclick="site.showTabContent(event, '#statistics')"> ##word.statistics## </a>
                   <a class="tab-link inline-block" onclick="site.showTabContent(event, '#social')"> ##word.social_media## </a>
                   <a class="tab-link inline-block" onclick="site.showTabContent(event, '#external')"> ##word.external## </a>
+                  <a class="tab-link inline-block" onclick="site.showTabContent(event, '#programming')"> ##word.programming## </a>
                 </div>
 
                 <div class="tabs-content">
@@ -206,6 +209,7 @@
                     <div class="row">
                       <div class="col8">
                         <i-control label="##word.title##" ng-model="art.social_title"> </i-control>
+                        <i-textarea ng-model="art.social_description" label="##word.description##"> </i-textarea>
                       </div>
                       <div class="col1"></div>
 
@@ -219,14 +223,14 @@
                         </div>
                       </div>
                     </div>
-                    <div class="row">
-                      <i-textarea ng-model="art.social_description" label="##word.description##"> </i-textarea>
-                    </div>
                   </div>
 
                   <div id="external" class="tab-content">
                     <div class="row">
-                      <i-control class="col8" label="##word.title##" ng-model="art.external_title"> </i-control>
+                      <div class="col8">
+                        <i-control label="##word.title##" ng-model="art.external_title"> </i-control>
+                        <i-textarea ng-model="art.external_description" label="##word.description##"> </i-textarea>
+                      </div>
 
                       <div class="col1"></div>
 
@@ -240,9 +244,58 @@
                         </div>
                       </div>
                     </div>
-                    <div class="row">
-                      <i-textarea ng-model="art.external_description" label="##word.description##"> </i-textarea>
-                    </div>
+                    <div class="row"></div>
+                  </div>
+
+                  <div id="programming" class="tab-content">
+                    <fieldset>
+                      <fieldset>
+                        <legend>
+                          Meta Tags
+                          <i-button type="add default" ng-click="addMetaTags(art)"></i-button>
+                        </legend>
+
+                        <div class="row" ng-repeat="p in art.meta_tags track by $index">
+                          <i-control type="text" class="col9" ng-model="p.name"> </i-control>
+                          <div class="col1"></div>
+                          <i-button type="delete" label="##word.delete##" ng-click="art.meta_tags.splice($index,1)"> </i-button>
+                        </div>
+                      </fieldset>
+
+                      <fieldset>
+                        <legend>
+                          Styles
+                          <i-button type="add default" ng-click="addStyles(art)"></i-button>
+                        </legend>
+
+                        <div class="row" ng-repeat="s in art.styles track by $index">
+                          <i-control type="text" class="col9" ng-model="s.name"> </i-control>
+                          <div class="col1"></div>
+                          <i-button type="delete" label="##word.delete##" ng-click="art.meta_tags.styles($index,1)"> </i-button>
+                        </div>
+                      </fieldset>
+
+                      <fieldset>
+                        <legend>
+                          Scripts
+                          <i-button type="add default" ng-click="addScripts(art)"></i-button>
+                        </legend>
+
+                        <div class="row" ng-repeat="s in art.scripts track by $index">
+                          <i-control type="text" class="col9" ng-model="s.name"> </i-control>
+                          <div class="col1"></div>
+                          <i-button type="delete" label="##word.delete##" ng-click="art.meta_tags.scripts($index,1)"> </i-button>
+                        </div>
+                      </fieldset>
+
+                      <div class="row">
+                        <i-textarea ng-model="art.custom_style" label="Custom Style"> </i-textarea>
+                      </div>
+
+                      <div class="row">
+                        <i-textarea ng-model="art.custom_script" label="Custom Script"> </i-textarea>
+                      </div>
+                    </fieldset>
                   </div>
                 </div>
               </div>
@@ -254,10 +307,6 @@
             </div>
 
             <div class="">
-              <div class="article-part">
-                <i-list class="red" v="r" label="##word.article_template##" ng-model="article.type" items="articleTypesList" display="##session.lang##" ng-search="article.$type_search"> </i-list>
-              </div>
-
               <div class="article-part">
                 <i-list label="##word.writer##" ng-model="article.writer" items="writersList" display="profile.name" ng-search="article.$writer_search"> </i-list>
 

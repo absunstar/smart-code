@@ -6,12 +6,42 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/images/',
   });
 
-  site.get({
-    name: ['profile','profile/:id/:name/:last_name'],
-    path: __dirname + '/site_files/html/index.html',
-    parser: 'html',
-    compress: true,
-  });
+  site.get(
+    {
+      name: ['profile', 'profile/:id/:name/:last_name'],
+    },
+    (req, res) => {
+      site.security.getUser({ id: req.params.id }, (err, doc) => {
+        if (!err && doc) {
+          if (doc.profile) {
+            if (doc.followers_list && doc.followers_list.length > 0 && req.session.user) {
+              doc.followers_list.forEach((_f) => {
+                if (_f == req.session.user.id) {
+                  doc.$is_follow = true;
+                }
+              });
+            }
+            doc.$created_date = site.xtime(doc.created_date, req.session.lang);
+            let date = new Date(doc.visit_date);
+            date.setMinutes(date.getMinutes() + 1);
+            if (new Date() < date) {
+              doc.$isOnline = true;
+            } else {
+              doc.$isOnline = false;
+              doc.$last_seen = site.xtime(doc.visit_date, req.session.lang);
+            }
+          }
+          doc.title = site.setting.title + ' | ' + doc.profile.name;
+          doc.image_url = doc.profile.image_url;
+          doc.description = doc.profile.about_meabout_me;
+          res.render('profile/index.html', doc, {
+            parser: 'html css js',
+            compress: true,
+          });
+        }
+      });
+    }
+  );
 
   site.post('/api/review/add', (req, res) => {
     let response = {

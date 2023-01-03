@@ -125,6 +125,11 @@
     "ar": "العدد الظاهر"
   },
   {
+    "name": "auto_translate",
+    "en": "Auto Translate",
+    "ar": "ترجمة تلقائي"
+  },
+  {
     "name": "subscribers_only",
     "en": "For subscribers only",
     "ar": "للمشتركين فقط"

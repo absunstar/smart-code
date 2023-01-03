@@ -5,7 +5,10 @@ if (btn1) {
 
 app.controller('profile', function ($scope, $http, $timeout) {
   $scope.userId = site.toNumber('##user.id##');
-  
+  $scope.user = site.showObject(`##data.#*##`);
+  if ($scope.user.id == $scope.userId) {
+    $scope.user.$same_email = true;
+  }
   $scope.addRating = function (rating) {
     $scope.error = '';
     const v = site.validated('#ratingModal');
@@ -220,5 +223,5 @@ app.controller('profile', function ($scope, $http, $timeout) {
 
   $scope.getRatingList();
   $scope.getAdsList();
-  $scope.getUser();
+ /*  $scope.getUser(); */
 });

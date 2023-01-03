@@ -65,9 +65,16 @@ module.exports = function init(site) {
 
   site.get({
     name: 'messages',
-    path: __dirname + '/site_files/html/index.html',
-    parser: 'html',
-    compress: true,
+  },
+  (req, res) => {
+    res.render(
+      'messages/index.html',
+      { title: site.setting.title, image_url: site.setting.logo, description: site.setting.description },
+      {
+        parser: 'html css js',
+        compress: true,
+      }
+    );
   });
 
   site.post('/api/messages/add', (req, res) => {

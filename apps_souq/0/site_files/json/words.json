@@ -4,10 +4,16 @@
     "en": "Harag Site",
     "ar": "موقع حـــــراج"
   },
+ 
   {
     "name": "brand_tag",
     "en": "Harag",
     "ar": "حـــــراج"
+  },
+  {
+    "name": "site_description",
+    "en": "Site description",
+    "ar": "وصف الموقع"
   },
   {
     "name": "companies_basic_information",

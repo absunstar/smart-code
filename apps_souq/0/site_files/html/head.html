@@ -1,12 +1,35 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title itemprop="name">##data.title##</title>
-<meta itemprop="description" name="description" content="##data.description##" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<link rel="stylesheet" href="/x-css/all.css?v=##site.options.version##" />
+<link rel="stylesheet" href="/css/mobile.css?v=##site.options.version##" />
+<link rel="stylesheet" href="/css/all.min.css?v=##site.options.version##">
+<link rel="stylesheet" href="/css/custom.css?v=##site.options.version##" />
+<link rel="stylesheet" href="/css/souq.css?v=##site.options.version##" />
+<link rel="icon" type="image/x-icon" href="##setting.logo##">
+
+<style x-lang="ar">
+  :root {
+    --direction: rtl;
+    --text-align: right;
+    --float: right;
+  }
+
+</style>
+<style>
+    .is-invalid{
+  border: 1px solid red;
+}
+</style>
+
+
+<title itemprop="name">##setting.title##</title>
+<meta itemprop="description" name="description" content="##setting.description##" />
 <meta itemprop="keywords" name="keywords" content="##data.page_keywords##" />
 
-<link rel="shortcut icon" type="image/x-icon" href="##data.image_url##" />
-<link rel="icon" type="image/x-icon" href="##data.image_url##" />
-<link itemprop="image" rel="image_src" href="##data.image_url##" />
+<link rel="shortcut icon" type="image/x-icon" href="##setting.logo##" />
+<link rel="icon" type="image/x-icon" href="##setting.logo##" />
+<link itemprop="image" rel="image_src" href="##setting.logo##" />
 
 <meta name="robots" content="index, follow" />
 <meta name="referrer" content="no-referrer" />
@@ -14,9 +37,9 @@
 <meta x-lang="ar" name="language" content="arabic" />
 <meta x-lang="en" name="language" content="English" />
 <meta name="Rating" content="General" />
-<meta name="generator" content="##word.brand_title##" />
-<meta name="copyright" content="##word.brand_title##" />
-<meta name="author" content="##word.brand_title##" />
+<meta name="generator" content="##setting.site_name##" />
+<meta name="copyright" content="##setting.site_name##" />
+<meta name="author" content="##setting.site_name##" />
 
 <meta name="zip code" content="11461" />
 <meta name="city" content="Cairo" />
@@ -29,6 +52,7 @@
 <meta x-lang="en" http-equiv="content-language" content="en" />
 <meta http-equiv="imagetoolbar" content="no" />
 
+
 <link rel="publisher" href="/" />
 <link rel="author" href="/" />
 
@@ -39,23 +63,11 @@
 <meta property="og:type" content="article" />
 <meta property="og:title" content="##data.title##" />
 <meta property="og:description" content="##data.description##" />
-<meta property="og:image" content="##data.image_url##" />
-<meta property="og:site_name" content="##word.brand_title##" />
+<meta property="og:image" content="##setting.logo##" />
+<meta property="og:site_name" content="##setting.site_name##" />
 
 <meta name="twitter:url" content="##req.url##" />
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:description" content="##data.description##" />
 <meta name="twitter:title" content="##data.title##" />
-<meta name="twitter:image" content="##data.image_url##" />
-
-<link rel="stylesheet" href="/css/style.css" />
-<link rel="stylesheet" href="/css/haraj.css" />
-<link rel="stylesheet" href="/x-css/all.css" />
-<link rel="stylesheet" href="/x-css/font-cairo.css" />
-<style x-lang="ar">
-  :root {
-    --direction: rtl;
-    --text-align: right;
-    --float: right;
-  }
-</style>
+<meta name="twitter:image" content="##setting.logo##" />

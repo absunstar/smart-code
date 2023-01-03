@@ -41,7 +41,9 @@ site.get(
     if (site.setting.user_design.id == 1) {
       res.render(
         '0/index.html',
-        {},
+        {
+          
+        },
         {
           parser: 'html css js',
         }
@@ -57,7 +59,11 @@ site.get(
     } else {
       res.render(
         'haraj/index.html',
-        {},
+        {
+          title : site.setting.title,
+          image_url : site.setting.logo,
+          description : site.setting.description,
+        },
         {
           parser: 'html css js',
         }
