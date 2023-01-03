@@ -10,7 +10,7 @@ module.exports = function init(site) {
     name: 'contents',
     path: __dirname + '/site_files/html/index.html',
     parser: 'html',
-    compress: true,
+    compress: true, 
   });
 
   site.content_list = [];

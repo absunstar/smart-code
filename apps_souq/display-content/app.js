@@ -12,7 +12,6 @@ module.exports = function init(site) {
       if (content.id == req.params.id) {
          content.title = site.setting.title + '|' + content.name;
         // content.keywords = content.keywords.join(',');
-
         res.render('display-content/index.html', content);
       }
     })
