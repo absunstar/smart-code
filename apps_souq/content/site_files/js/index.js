@@ -61,8 +61,8 @@ app.controller('contents', function ($scope, $http, $timeout) {
       return;
     }
 
-    if (!$scope.defaultSettings.stores_settings.activate_stores) {
-      if ($scope.address && $scope.address.select_main) {
+    if (!$scope.defaultSettings.stores_settings.activate_stores && $scope.address) {
+      if ( $scope.address.select_main) {
         $scope.ad.address = $scope.address.main;
       } else if ($scope.address.select_new) {
         $scope.ad.address = $scope.address.new;
@@ -144,8 +144,8 @@ app.controller('contents', function ($scope, $http, $timeout) {
       return;
     }
 
-    if (!$scope.defaultSettings.stores_settings.activate_stores) {
-      if ($scope.address && $scope.address.select_main) {
+    if ($scope.address && !$scope.defaultSettings.stores_settings.activate_stores) {
+      if ($scope.address.select_main) {
         $scope.ad.address = $scope.address.main;
       } else if ($scope.address.select_new) {
         $scope.ad.address = $scope.address.new;

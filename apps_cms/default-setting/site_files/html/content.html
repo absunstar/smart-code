@@ -94,23 +94,6 @@
             </i-control>
           </div>
 
-          <div class="row">
-            <div class="col3">
-              <br />
-              <i-checkbox label="Auto generate sitemap.xml file" ng-model="default_setting.auto_generate_sitemap_xml_file"> </i-checkbox>
-            </div>
-            <i-control ng-show="default_setting.auto_generate_sitemap_xml_file" class="col3" label="Count Limit" type="number" ng-model="default_setting.sitemap_xml_count">
-            </i-control>
-          </div>
-
-          <div class="row">
-            <div class="col3">
-              <br />
-              <i-checkbox label="Auto generate RSS" ng-model="default_setting.auto_generate_rss"> </i-checkbox>
-            </div>
-            <i-control ng-show="default_setting.auto_generate_rss" class="col3" label="Count Limit" type="number" ng-model="default_setting.rss_count">
-            </i-control>
-          </div>
           <br>
           <div class="row">
             <i-checkbox class="" label="##word.tax_number_show##" ng-model="default_setting.tax_number_show"> </i-checkbox>
@@ -288,6 +271,24 @@
 
           <div class="row">
             <i-textarea ng-model="default_setting.programming.custom_script" label="Custom Script"> </i-textarea>
+          </div>
+
+          <div class="row">
+            <div class="col3">
+              <br />
+              <i-checkbox label="Auto generate sitemap.xml file" ng-model="default_setting.programming.auto_generate_sitemap_xml_file"> </i-checkbox>
+            </div>
+            <i-control ng-show="default_setting.programming.auto_generate_sitemap_xml_file" class="col3" label="Count Limit" type="number" ng-model="default_setting.programming.sitemap_xml_count">
+            </i-control>
+          </div>
+
+          <div class="row">
+            <div class="col3">
+              <br />
+              <i-checkbox label="Auto generate RSS" ng-model="default_setting.programming.auto_generate_rss"> </i-checkbox>
+            </div>
+            <i-control ng-show="default_setting.programming.auto_generate_rss" class="col3" label="Count Limit" type="number" ng-model="default_setting.programming.rss_count">
+            </i-control>
           </div>
         </fieldset>
       </div>
