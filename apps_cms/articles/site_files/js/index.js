@@ -18,9 +18,29 @@ app.controller('articles', function ($scope, $http, $timeout) {
           $scope.article.expiry_date.setDate($scope.article.expiry_date.getDate() + 7);
         }
       }
+
       if ($scope.defaultSettings.article.language) {
         $scope.article.$language = $scope.defaultSettings.article.language;
         $scope.addLanguage($scope.article.$language);
+      }
+
+      if ($scope.defaultSettings.article.writer && $scope.defaultSettings.article.writer.id) {
+        $scope.article.writer = $scope.writersList.find((_r, i) => {
+          return _r.id === $scope.defaultSettings.article.writer.id;
+        });
+      }
+
+      if ($scope.defaultSettings.article.editor && $scope.defaultSettings.article.editor.id) {
+        $scope.article.editor = $scope.editorsList.find((_e, i) => {
+          return _e.id === $scope.defaultSettings.article.editor.id;
+        });
+      }
+
+      if ($scope.defaultSettings.article.category && $scope.defaultSettings.article.category.id) {
+        $scope.article.main_category = $scope.top_category_list.find((_c, i) => {
+          return _c.id === $scope.defaultSettings.article.category.id;
+        });
+        $scope.loadSubCategory1($scope.article.main_category);
       }
     }
     site.showModal('#articleManageModal');
@@ -193,25 +213,6 @@ app.controller('articles', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.getLanguagesList = function () {
-    $scope.error = '';
-    $scope.busy = true;
-    $scope.languagesList = [];
-    $http({
-      method: 'POST',
-      url: '/api/languages/all',
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        $scope.languagesList = response.data;
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
   $scope.displaySearchModal = function () {
     $scope.error = '';
     site.showModal('#articleSearchModal');
@@ -286,6 +287,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
         if (response.data.done && response.data.doc) {
           $scope.defaultSettings = response.data.doc;
           $scope.articleTypesList = $scope.defaultSettings.article.article_types.filter((t) => t.active == true);
+          $scope.languagesList = $scope.defaultSettings.article.languages.filter((t) => t.active == true);
         }
       },
       function (err) {
@@ -333,8 +335,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name: 1,
           code: 1,
           country_code: 1,
         },
@@ -368,8 +369,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name: 1,
           code: 1,
         },
       },
@@ -399,7 +399,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
           'gov.id': gov.id,
           active: true,
         },
-        select: { id: 1, name_ar: 1, name_en: 1 },
+        select: { id: 1, name: 1 },
       },
     }).then(
       function (response) {
@@ -426,7 +426,7 @@ app.controller('articles', function ($scope, $http, $timeout) {
           'city.id': city.id,
           active: true,
         },
-        select: { id: 1, name_ar: 1, name_en: 1 },
+        select: { id: 1, name: 1 },
       },
     }).then(
       function (response) {
@@ -680,6 +680,8 @@ app.controller('articles', function ($scope, $http, $timeout) {
         actual_ratings: 0,
         dummy_ratings: 0,
         apparent_ratings: 0,
+        number_words: 0,
+        number_letters: 0,
         keywords_list: [],
       };
       $scope.article.content_list.push(translate);
@@ -706,9 +708,39 @@ app.controller('articles', function ($scope, $http, $timeout) {
     programming.scripts.push({});
   };
 
+  $scope.showRelatedTopics = function () {
+    $scope.error = '';
+    site.showModal('#relatedTopics');
+  };
+
+  $scope.calcCount = function (art) {
+    $timeout(() => {
+      $scope.error = '';
+      let titleletters = 0;
+      let contentletters = 0;
+      let titleWords = 0;
+      let contentWords = 0;
+      art.number_letters = 0;
+      art.number_words = 0;
+      if ($scope.article.type) {
+        if ($scope.article.type.id == 1) {
+          if (art.title) {
+            titleletters = art.title.length;
+            titleWords = art.title.trim().split(/\s+/).length;
+          }
+          if (art.content) {
+            contentletters = art.content.length;
+            contentWords = art.content.trim().split(/\s+/).length;
+          }
+          art.number_letters = titleletters + contentletters;
+          art.number_words = titleWords + contentWords;
+        }
+      }
+    }, 500);
+  };
+
   $scope.getArticlesList();
   $scope.loadClusters();
-  $scope.getLanguagesList();
   $scope.loadMainCategories();
   $scope.loadWriters();
   $scope.loadEditors();

@@ -1,0 +1,42 @@
+[
+  {
+    "name": "photo_gallery",
+    "en": "Photo Gallery",
+    "ar": "معرض صور"
+  },
+  {
+    "name": "photo_gallery_new",
+    "en": "New Photo Gallery",
+    "ar": "معرض صور جديد"
+  },
+  {
+    "name": "photo_gallery_add",
+    "en": "Add Photo Gallery",
+    "ar": "إضافة معرض صور "
+  },
+  {
+    "name": "photo_gallery_edit",
+    "en": "Edit Photo Gallery",
+    "ar": "تعديل معرض صور "
+  },
+  {
+    "name": "photo_gallery_details",
+    "en": "Photo Gallery Details",
+    "ar": "تفاصيل معرض صور "
+  },
+  {
+    "name": "photo_gallery_delete",
+    "en": "Delete Photo Gallery",
+    "ar": "حذف معرض صور "
+  },
+  {
+    "name": "photo_gallery_name",
+    "en": "Photo Gallery Name",
+    "ar": "إسم معرض صور"
+  },
+  {
+    "name": "photo_gallery_notes",
+    "en": "Notes Photo Gallery",
+    "ar": "ملاحظات معرض صور "
+  }
+]

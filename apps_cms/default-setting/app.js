@@ -44,21 +44,54 @@ module.exports = function init(site) {
       active: true,
     },
   ];
+
+  let languages = [
+    {
+      id: 1,
+      en: 'Arabic',
+      ar: 'عربي',
+      active: true,
+    },
+    {
+      id: 2,
+      en: 'English',
+      ar: 'إنجليزي',
+      active: true,
+    },
+    {
+      id: 3,
+      en: 'French',
+      ar: 'فرنساوي',
+      active: true,
+    },
+    {
+      id: 4,
+      en: 'Turki',
+      ar: 'تركي',
+      active: true,
+    },
+  ];
+
   site.defaultSettingDoc = {
     length_order: 0,
     site_template: { id: 5 },
     article: {
       article_types: article_types,
+      languages: languages,
     },
-    programming : {},
+    programming: {},
+    block: {},
   };
   site.setting = { ...site.defaultSettingDoc };
 
   $default_setting.findOne({}, (err, doc) => {
     if (!err && doc) {
       site.defaultSettingDoc = doc;
-      if(!site.defaultSettingDoc.article.article_types){
+      if (!site.defaultSettingDoc.article.article_types) {
         site.defaultSettingDoc.article.article_types = article_types;
+      }
+      if (!site.defaultSettingDoc.article.languages) {
+        site.defaultSettingDoc.article.languages = languages;
       }
       site.setting = { ...site.defaultSettingDoc };
     } else {

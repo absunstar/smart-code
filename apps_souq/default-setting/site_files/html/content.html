@@ -4,7 +4,7 @@
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#site_settings')"> ##word.site_settings## </a>
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#email_and_text_messages')"> ##word.email_and_text_messages## </a>
 
-      <a class="tab-link inline-block" onclick="site.showTabContent(event, '#bank_accounts')"> ##word.bank_accounts## </a>
+      <a class="tab-link inline-block" onclick="site.showTabContent(event, '#payment')"> ##word.payment## </a>
 
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#order_settings')"> ##word.order_settings## </a>
       <a class="tab-link inline-block" onclick="site.showTabContent(event, '#ads_settings')"> ##word.ads_settings## </a>
@@ -56,9 +56,9 @@
           <!-- <div class="row">
             <i-control class="col6" label="##word.link## ##word.huawei_store##" ng-model="default_setting.huawei_store"> </i-control>
           </div> -->
-          <div class="row" >
+          <div class="row">
             <i-textarea class="col8" label="##word.site_description##" ng-model="default_setting.description"></i-textarea>
-        </div>
+          </div>
           <fieldset>
             <legend>##word.social_media_accounts##</legend>
             <div class="row">
@@ -126,7 +126,19 @@
         <i-button type="default left" fa="2x fa-angle-double-left" onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
       </div>
 
-      <div id="bank_accounts" class="tab-content">
+      <div id="payment" class="tab-content">
+        <fieldset>
+          <legend>##word.commission##</legend>
+          <div class="col9">
+            <i-control label="##word.social_title##" type="text" ng-model="default_setting.commission_social_title"></i-control>
+            <i-control label="##word.main_title##" type="text" ng-model="default_setting.commission_main_title"></i-control>
+            <i-textarea label="##word.description##" type="text" ng-model="default_setting.commission_description"></i-textarea>
+            <i-textarea label="##word.transfer_form_text##" type="text" ng-model="default_setting.transfer_form_text"></i-textarea>
+          </div>
+          <div class="col3">
+            <i-image ng-model="default_setting.commission_logo"></i-image>
+          </div>
+        </fieldset>
         <fieldset>
           <legend>
             ##word.add_bank_account##
@@ -160,7 +172,7 @@
             <br />
           </div>
         </fieldset>
-        <i-button type="save" label="##word.save##" x-permissions="default_setting_edit || default_setting_manage" ng-click="saveSetting('#bank_accounts')"></i-button>
+        <i-button type="save" label="##word.save##" x-permissions="default_setting_edit || default_setting_manage" ng-click="saveSetting('#payment')"></i-button>
         <i-button type="default left" fa="2x fa-angle-double-left" onclick="document.querySelector('.tab-link.active + .tab-link').click();"></i-button>
       </div>
 

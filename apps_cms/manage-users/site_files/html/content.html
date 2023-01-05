@@ -110,22 +110,22 @@
 
           <div class="row">
             <i-list class="col6" label="##word.country##" ng-change="getGovesList(manage_users.country)"
-              ng-model="manage_users.country" display="name_##session.lang##" items="countriesList"
+              ng-model="manage_users.country" display="name" items="countriesList"
               ng-search="_search.$city_country"></i-list>
 
             <i-list class="col6" label="##word.gov##" ng-model="manage_users.gov" items="govesList"
-              ng-change="getCityList(manage_users.gov)" display="name_##session.lang##"
+              ng-change="getCityList(manage_users.gov)" display="name"
               ng-search="_search.$manage_users.$gov_search"> </i-list>
 
           </div>
 
           <div class="row">
             <i-list class="col6" ng-change="getAreaList(manage_users.city)" label="##word.city##"
-              ng-model="manage_users.city" items="cityList" display="name_##session.lang##"
+              ng-model="manage_users.city" items="cityList" display="name"
               ng-search="_search.$manage_users.$city_search"> </i-list>
 
             <i-list class="col6" label="##word.area##" ng-model="manage_users.area" items="areaList"
-              display="name_##session.lang##" ng-search="_search.$manage_users.$area_search"> </i-list>
+              display="name" ng-search="_search.$manage_users.$area_search"> </i-list>
           </div>
 
           <div class="row">

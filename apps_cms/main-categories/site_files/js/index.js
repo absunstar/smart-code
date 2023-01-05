@@ -25,7 +25,6 @@ app.controller('main_categories', function ($scope, $http, $timeout) {
 
     if ($scope.main_categories.top_parent_id) {
       $scope.main_categories = {
-        code: parent_main_category.code,
         type: 'detailed',
         status: parent_main_category.status,
         image_url: parent_main_category.image_url,
@@ -33,10 +32,6 @@ app.controller('main_categories', function ($scope, $http, $timeout) {
 
       $scope.main_categories.parent_id = parent_main_category.id;
       $scope.main_categories.top_parent_id = parent_main_category.top_parent_id || parent_main_category.id;
-    }
-
-    if ($scope.default_setting.auto_generate_categories_code) {
-      $scope.main_categories.length_category = $scope.default_setting.length_category || 0;
     }
 
     site.showModal('#mainCategoriesAddModal');
@@ -75,11 +70,7 @@ app.controller('main_categories', function ($scope, $http, $timeout) {
           $scope.getMainCategoriesList();
         } else {
           $scope.error = response.data.error;
-          if (response.data.error.like('*duplicate key*')) {
-            $scope.error = '##word.main_categories_code_err##';
-          } else if (response.data.error.like('*enter tree code*')) {
-            $scope.error = '##word.enter_code_tree##';
-          }
+        
         }
       },
       function (err) {
@@ -230,9 +221,6 @@ app.controller('main_categories', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done && response.data.list.length > 0) {
           $scope.list = response.data.list;
-          response.data.list.forEach((n) => {
-            n.name2 = n.code + '-' + n.name;
-          });
           $scope.count = response.data.count;
         }
       },
@@ -250,29 +238,7 @@ app.controller('main_categories', function ($scope, $http, $timeout) {
     $scope.search = {};
   };
 
-  $scope.getCodeType = function () {
-    $scope.busy = true;
-
-    $http({
-      method: 'POST',
-      url: '/api/default_setting/get',
-      data: {},
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data) {
-          $scope.default_setting = response.data.doc;
-          $scope.disabledCode = response.data.doc.auto_generate_categories_code == true ? true : false;
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
-
-  $scope.getCodeType();
+ 
 
   $scope.getMainCategoriesList();
 });

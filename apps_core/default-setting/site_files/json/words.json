@@ -6,8 +6,8 @@
     },
     {
         "name": "default_setting",
-        "en": "Default Setting",
-        "ar": "الإعدادات الإفتراضية"
+        "en": "General Setting",
+        "ar": "الإعدادات العامة"
     },
     {
         "name": "remove_logo",
@@ -216,8 +216,8 @@
     },
     {
         "name": "default_settings",
-        "en": "Default Settings",
-        "ar": "الإعدادت الافتراضية"
+        "en": "General Settings",
+        "ar": "الإعدادت العامة"
     },
     {
         "name": "discount_method",

@@ -15,6 +15,11 @@
     "ar": "التفاصيل"
   },
   {
+    "name": "payment",
+    "en": "Payment",
+    "ar": "الدفع"
+  },
+  {
     "name": "cover_photo",
     "en": "Cover Photo",
     "ar": "صورة الغلاف"

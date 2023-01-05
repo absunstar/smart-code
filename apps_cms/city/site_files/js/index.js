@@ -181,8 +181,7 @@ app.controller('city', function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name: 1,
         },
       },
     }).then(
@@ -210,8 +209,7 @@ app.controller('city', function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name: 1,
           code: 1,
           country_code: 1,
           },

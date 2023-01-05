@@ -1,7 +1,6 @@
 module.exports = function init(site) {
   const $pay = site.connectCollection('pay');
 
-
   site.get({
     name: 'images',
     path: __dirname + '/site_files/images/',
@@ -14,20 +13,22 @@ module.exports = function init(site) {
     compress: true,
   });
 
-  site.get({
-    name: 'commission_form',
- 
-  },
-  (req, res) => {
-    res.render(
-      'pay/commission_form.html',
-      { title: site.setting.title, image_url: site.setting.logo, description: site.setting.description },
-      {
-        parser: 'html css js',
-        compress: true,
-      }
-    );
-  });
+  site.get(
+    {
+      name: 'commission_form',
+    },
+    (req, res) => {
+      let title = site.setting.commission_social_title + ' | ' + site.setting.title;
+      res.render(
+        'pay/commission_form.html',
+        { title: title, image_url: site.setting.commission_logo, description: site.setting.commission_description },
+        {
+          parser: 'html css js',
+          compress: true,
+        }
+      );
+    }
+  );
 
   site.post('/api/pay/add', (req, res) => {
     let response = {
@@ -92,7 +93,6 @@ module.exports = function init(site) {
       (err, result) => {
         if (!err && result) {
           response.done = true;
-        
         } else {
           response.error = 'Code Already Exist';
         }
@@ -101,31 +101,34 @@ module.exports = function init(site) {
     );
   });
 
-  site.post("/api/pay/view", (req, res) => {
+  site.post('/api/pay/view', (req, res) => {
     let response = {
-      done: false
-    }
+      done: false,
+    };
 
     if (!req.session.user) {
-      response.error = 'Please Login First'
-      res.json(response)
-      return
+      response.error = 'Please Login First';
+      res.json(response);
+      return;
     }
 
-    $pay.findOne({
-      where: {
-        id: req.body.id
+    $pay.findOne(
+      {
+        where: {
+          id: req.body.id,
+        },
+      },
+      (err, doc) => {
+        if (!err) {
+          response.done = true;
+          response.doc = doc;
+        } else {
+          response.error = err.message;
+        }
+        res.json(response);
       }
-    }, (err, doc) => {
-      if (!err) {
-        response.done = true
-        response.doc = doc
-      } else {
-        response.error = err.message
-      }
-      res.json(response)
-    })
-  })
+    );
+  });
 
   site.post('/api/pay/delete', (req, res) => {
     let response = {
@@ -153,7 +156,6 @@ module.exports = function init(site) {
       (err, result) => {
         if (!err) {
           response.done = true;
-
         } else {
           response.error = err.message;
         }

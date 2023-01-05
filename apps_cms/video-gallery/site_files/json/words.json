@@ -1,0 +1,47 @@
+[
+  {
+    "name": "videos_gallery",
+    "en": "Videos Gallery",
+    "ar": "معرض فيديوهات"
+  },
+  {
+    "name": "video_gallery",
+    "en": "Video Gallery",
+    "ar": "معرض فيديو"
+  },
+  {
+    "name": "video_gallery_new",
+    "en": "New Video Gallery",
+    "ar": "معرض فيديو جديد"
+  },
+  {
+    "name": "video_gallery_add",
+    "en": "Add Video Gallery",
+    "ar": "إضافة معرض فيديو "
+  },
+  {
+    "name": "video_gallery_edit",
+    "en": "Edit Video Gallery",
+    "ar": "تعديل معرض فيديو "
+  },
+  {
+    "name": "video_gallery_details",
+    "en": "Video Gallery Details",
+    "ar": "تفاصيل معرض فيديو "
+  },
+  {
+    "name": "video_gallery_delete",
+    "en": "Delete Video Gallery",
+    "ar": "حذف معرض فيديو "
+  },
+  {
+    "name": "video_gallery_name",
+    "en": "Video Gallery Name",
+    "ar": "إسم معرض فيديو"
+  },
+  {
+    "name": "video_gallery_notes",
+    "en": "Notes Video Gallery",
+    "ar": "ملاحظات معرض فيديو "
+  }
+]

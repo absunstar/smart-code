@@ -439,8 +439,7 @@ app.controller("manage_users", function ($scope, $http) {
         },
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name: 1,
           code: 1,
           country_code: 1,
         },
@@ -474,8 +473,7 @@ app.controller("manage_users", function ($scope, $http) {
         },
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name: 1,
           code: 1,
         },
       },
@@ -505,7 +503,7 @@ app.controller("manage_users", function ($scope, $http) {
           'gov.id': gov.id,
           active: true,
         },
-        select: { id: 1, name_ar: 1, name_en: 1 },
+        select: { id: 1, name: 1 },
       },
     }).then(
       function (response) {
@@ -532,7 +530,7 @@ app.controller("manage_users", function ($scope, $http) {
           'city.id': city.id,
           active: true,
         },
-        select: { id: 1, name_ar: 1, name_en: 1 },
+        select: { id: 1, name: 1 },
       },
     }).then(
       function (response) {

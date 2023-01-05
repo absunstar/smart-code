@@ -12,183 +12,157 @@ module.exports = function init(site) {
       [
         {
           $add: true,
-          name_ar: 'المنطقة الشرقية',
-          name_en: 'Eastern Province',
+          name: 'المنطقة الشرقية',
           image_url: '/images/gov.png',
           code: 'ep',
           active: true,
           country: {
             id: obj[0].id,
-            name_ar: obj[0].name_ar,
-            name_en: obj[0].name_en,
+            name: obj[0].name,
             code: obj[0].code,
           },
         },
         {
           $add: true,
-          name_ar: 'نجران',
-          name_en: 'Najran',
+          name: 'نجران',
           image_url: '/images/gov.png',
           code: 'ng',
           active: true,
           country: {
             id: obj[0].id,
-            name_ar: obj[0].name_ar,
-            name_en: obj[0].name_en,
+            name: obj[0].name,
             code: obj[0].code,
           },
         },
         {
           $add: true,
-          name_ar: 'جازان',
-          name_en: 'Jazan',
+          name: 'جازان',
           image_url: '/images/gov.png',
           code: 'jz',
           active: true,
           country: {
             id: obj[0].id,
-            name_ar: obj[0].name_ar,
-            name_en: obj[0].name_en,
+            name: obj[0].name,
             code: obj[0].code,
           },
         },
         {
           $add: true,
-          name_ar: 'عسير',
-          name_en: 'Aseer',
+          name: 'عسير',
           image_url: '/images/gov.png',
           code: 'as',
           active: true,
           country: {
             id: obj[0].id,
-            name_ar: obj[0].name_ar,
-            name_en: obj[0].name_en,
+            name: obj[0].name,
             code: obj[0].code,
           },
         },
         {
           $add: true,
-          name_ar: 'الباحة',
-          name_en: 'Al-Baha',
+          name: 'الباحة',
           image_url: '/images/gov.png',
           code: 'bh',
           active: true,
           country: {
             id: obj[0].id,
-            name_ar: obj[0].name_ar,
-            name_en: obj[0].name_en,
+            name: obj[0].name,
             code: obj[0].code,
           },
         },
         {
           $add: true,
-          name_ar: 'مكة المكرمة',
-          name_en: 'Makkah',
+          name: 'مكة المكرمة',
           image_url: '/images/gov.png',
           code: 'mk',
           active: true,
           country: {
             id: obj[0].id,
-            name_ar: obj[0].name_ar,
-            name_en: obj[0].name_en,
+            name: obj[0].name,
             code: obj[0].code,
           },
         },
         {
           $add: true,
-          name_ar: 'المدينة المنورة',
-          name_en: 'Al-Medina',
+          name: 'المدينة المنورة',
           image_url: '/images/gov.png',
           code: 'md',
           active: true,
           country: {
             id: obj[0].id,
-            name_ar: obj[0].name_ar,
-            name_en: obj[0].name_en,
+            name: obj[0].name,
             code: obj[0].code,
           },
         },
         {
           $add: true,
-          name_ar: 'الرياض',
-          name_en: 'Riyadh',
+          name: 'الرياض',
           image_url: '/images/gov.png',
           code: 'rd',
           active: true,
           country: {
             id: obj[0].id,
-            name_ar: obj[0].name_ar,
-            name_en: obj[0].name_en,
+            name: obj[0].name,
             code: obj[0].code,
           },
         },
         {
           $add: true,
-          name_ar: 'القصيم',
-          name_en: 'Qassim',
+          name: 'القصيم',
           image_url: '/images/gov.png',
           code: 'qs',
           active: true,
           country: {
             id: obj[0].id,
-            name_ar: obj[0].name_ar,
-            name_en: obj[0].name_en,
+            name: obj[0].name,
             code: obj[0].code,
           },
         },
         {
           $add: true,
-          name_ar: 'حائل',
-          name_en: 'Al-Hail',
+          name: 'حائل',
           image_url: '/images/gov.png',
           code: 'hl',
           active: true,
           country: {
             id: obj[0].id,
-            name_ar: obj[0].name_ar,
-            name_en: obj[0].name_en,
+            name: obj[0].name,
             code: obj[0].code,
           },
         },
         {
           $add: true,
-          name_ar: 'الحدود الشمالية',
-          name_en: 'Northern borders',
+          name: 'الحدود الشمالية',
           image_url: '/images/gov.png',
           code: 'nb',
           active: true,
           country: {
             id: obj[0].id,
-            name_ar: obj[0].name_ar,
-            name_en: obj[0].name_en,
+            name: obj[0].name,
             code: obj[0].code,
           },
         },
         {
           $add: true,
-          name_ar: 'الجوف',
-          name_en: 'Al-Jouf',
+          name: 'الجوف',
           image_url: '/images/gov.png',
           code: 'jf',
           active: true,
           country: {
             id: obj[0].id,
-            name_ar: obj[0].name_ar,
-            name_en: obj[0].name_en,
+            name: obj[0].name,
             code: obj[0].code,
           },
         },
         {
           $add: true,
-          name_ar: 'تبوك',
-          name_en: 'Tabouk',
+          name: 'تبوك',
           image_url: '/images/gov.png',
           code: 'tk',
           active: true,
           country: {
             id: obj[0].id,
-            name_ar: obj[0].name_ar,
-            name_en: obj[0].name_en,
+            name: obj[0].name,
             code: obj[0].code,
           },
         },
@@ -372,15 +346,10 @@ module.exports = function init(site) {
       delete where.active;
     }
 
+   
     if (where['name']) {
-      where.$or = [];
-      where.$or.push({
-        name_ar: site.get_RegExp(where['name'], 'i'),
-      });
-      where.$or.push({
-        name_en: site.get_RegExp(where['name'], 'i'),
-      });
-      delete where['name'];
+    
+      where['name']= site.get_RegExp(where['name'], 'i');
     }
 
     $goves.findMany(

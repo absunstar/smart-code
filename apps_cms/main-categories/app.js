@@ -20,14 +20,6 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/images/',
   });
 
-  function addZero(code, number) {
-    let c = number - code.toString().length;
-    for (let i = 0; i < c; i++) {
-      code = '0' + code.toString();
-    }
-    return code;
-  }
-
   site.post('/api/main_categories/add', (req, res) => {
     let response = {
       done: false,
@@ -64,67 +56,16 @@ module.exports = function init(site) {
       });
     }
 
-    let exit = false;
-    let code = 0;
-    let l = 0;
-    l = main_categories_doc.length_category || 0;
-    if (site.setting.auto_generate_categories_code) {
-      if (site.main_categories_list.length == 0) {
-        main_categories_doc.code = addZero(1, l);
+    $main_categories.add(main_categories_doc, (err, doc) => {
+      if (!err) {
+        response.done = true;
+        response.doc = doc;
+        site.main_categories_list.push(doc);
       } else {
-        site.main_categories_list.forEach((el) => {
-          if (main_categories_doc.parent_id) {
-            if (main_categories_doc.parent_id === el.id && main_categories_doc.parent_id != el.parent_id) {
-              main_categories_doc.code = main_categories_doc.code + addZero(1, l);
-            } else {
-              exit = true;
-            }
-          } else if (!el.parent_id) {
-            main_categories_doc.code = addZero(site.toNumber(el.code) + site.toNumber(1), l);
-          }
-        });
-
-        if (exit) {
-          let c = 0;
-          let ss = '';
-          site.main_categories_list.forEach((itm) => {
-            if (itm.parent_id === main_categories_doc.parent_id) {
-              c += 1;
-            }
-            if (itm.id === main_categories_doc.parent_id) {
-              ss = itm.code;
-            }
-          });
-          code = site.toNumber(c) + site.toNumber(1);
-          main_categories_doc.code = ss + addZero(code, l);
-        }
+        response.error = err.message;
       }
-
-      $main_categories.add(main_categories_doc, (err, doc) => {
-        if (!err) {
-          response.done = true;
-          response.doc = doc;
-          site.main_categories_list.push(doc);
-        } else {
-          response.error = err.message;
-        }
-        res.json(response);
-      });
-    } else if (site.setting.auto_generate_categories_code == false && !main_categories_doc.code) {
-      response.error = 'enter tree code';
       res.json(response);
-    } else {
-      $main_categories.add(main_categories_doc, (err, doc) => {
-        if (!err) {
-          response.done = true;
-          response.doc = doc;
-          site.main_categories_list.push(doc);
-        } else {
-          response.error = err.message;
-        }
-        res.json(response);
-      });
-    }
+    });
   });
 
   site.post('/api/main_categories/update', (req, res) => {
@@ -179,7 +120,6 @@ module.exports = function init(site) {
         }
       );
     }
-
   });
 
   site.post('/api/main_categories/view', (req, res) => {
@@ -281,9 +221,6 @@ module.exports = function init(site) {
         name_en: site.get_RegExp(search, 'i'),
       });
 
-      where.$or.push({
-        code: site.get_RegExp(search, 'i'),
-      });
     }
 
     if (where['name_ar']) {
@@ -311,14 +248,12 @@ module.exports = function init(site) {
           response.list = docs;
           if (req.body.top) {
             response.top_list = [];
-            docs.forEach(_doc => {
+            docs.forEach((_doc) => {
               if (!_doc.top_parent_id) {
-                response.top_list.push(_doc)
+                response.top_list.push(_doc);
               }
             });
-
           }
-
 
           response.count = count;
         } else {

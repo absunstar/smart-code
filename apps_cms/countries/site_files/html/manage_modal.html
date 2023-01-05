@@ -28,9 +28,7 @@
         <div class="row">
           <div class="col9">
             <div class="row">
-              <i-control help-id="countries_name" v="r ll2" class="col4" label="##word.country_name_ar##" ng-model="countries.name_ar"></i-control>
-
-              <i-control help-id="countries_name" v="r" class="col4" label="##word.country_name_en##" ng-model="countries.name_en"></i-control>
+              <i-control help-id="countries_name" v="r ll2" class="col6" label="##word.country_name##" ng-model="countries.name"></i-control>
 
               <i-checkbox help-id="countries_active" class="col2" label="##word.active##" ng-model="countries.active"> </i-checkbox>
             </div>
@@ -58,14 +56,14 @@
           </tr>
           <tr>
             <td class="center">
-              <p class="blue">{{countries.add_user_info.name_##session.lang##}}</p>
+              <p class="blue">{{countries.add_user_info.name}}</p>
               <small class="green"> {{countries.add_user_info.date |date:"hh:mm"}} </small>
               <small> {{countries.add_user_info.date |date:"dd - MM - yyyy"}} </small>
               <p class="bold">IP : {{countries.add_user_info.ip}}</p>
             </td>
 
             <td class="center">
-              <p class="blue">{{countries.edit_user_info.name_##session.lang##}}</p>
+              <p class="blue">{{countries.edit_user_info.name}}</p>
               <small class="green"> {{countries.edit_user_info.date |date:"hh:mm"}} </small>
               <small> {{countries.edit_user_info.date |date:"dd - MM - yyyy"}} </small>
               <p class="bold">IP : {{countries.edit_user_info.ip}}</p>

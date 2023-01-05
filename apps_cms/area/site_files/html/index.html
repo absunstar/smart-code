@@ -42,10 +42,10 @@
               <td class="center not-print">
                 <i-image view class="logo" ng-model="c.image_url"></i-image>
               </td>
-              <td class="center">{{c.country.name_##session.lang##}}</td>
-              <td class="center">{{c.gov.name_##session.lang##}}</td>
-              <td class="center">{{c.city.name_##session.lang##}}</td>
-              <td class="center title">{{c.name_##session.lang##}}</td>
+              <td class="center">{{c.country.name}}</td>
+              <td class="center">{{c.gov.name}}</td>
+              <td class="center">{{c.city.name}}</td>
+              <td class="center title">{{c.name}}</td>
               <td x-features="restaurant || pos  || erp || ecommerce" class="center green">{{c.price_delivery_service}}</td>
               <td class="center">
                 <p ng-show="c.active ==true" class="green">##word.active##</p>

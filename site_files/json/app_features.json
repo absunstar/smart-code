@@ -650,8 +650,8 @@
     },
     {
         "feature": "public",
-        "title_ar": "الإعدادات الإفتراضية",
-        "title_en": "Default settings",
+        "title_ar": "الإعدادات العامة",
+        "title_en": "General settings",
         "image_url": "/images/default_setting.png",
         "description_ar": "التحكم في إعدادات البرنامج و الطباعة حسب الحاجة و تعريف خانات إفتراضية للمعاملات لسهولة إضافة المعاملات.",
         "description_en": "Control program settings, print as needed, and define default checkboxes for transactions, for ease of adding transactions."

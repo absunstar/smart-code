@@ -1,0 +1,80 @@
+<div id="fileGalleryManageModal" class="modal" fixed>
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+
+      <h2 ng-show="mode == 'add' ">
+        ##word.file_gallery_add##
+        <i class="fa fa-plus"></i>
+      </h2>
+      <h2 ng-show="mode == 'edit' ">
+        ##word.file_gallery_edit##
+        <i class="fa fa-pencil"></i>
+      </h2>
+      <h2 ng-show="mode == 'delete' ">
+        ##word.file_gallery_delete##
+        <i class="fa fa-trash"></i>
+      </h2>
+      <h2 ng-show="mode == 'view' ">
+        ##word.file_gallery_details##
+        <i class="fa fa-file"></i>
+      </h2>
+    </div>
+
+    <div class="modal-body">
+      <fieldset>
+        <legend>##word.basic_information##</legend>
+
+        <div class="row">
+          <div class="col9">
+            <div class="row">
+              <div class="col9">
+                <i-control help-id="fileGallery_name" v="r ll2" label="##word.title##" ng-model="file_gallery.title"></i-control>
+                <i-control help-id="fileGallery_name" class="ltr" v="r ll2" label="##word.url##" ng-model="file_gallery.url"></i-control>
+              </div>
+              <div class="col3">
+                <i-checkbox help-id="fileGallery_active"  label="##word.active##" ng-model="file_gallery.active"> </i-checkbox>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="col3">
+            <i-file ng-change="getFileUrl()" label="##word.file##" ng-model="file_gallery.file"></i-file>
+          </div>
+        </div>
+      </fieldset>
+      <div ng-show="mode !== 'add' " class="row">
+        <table class="table hover border">
+          <tr>
+            <th>##word.useradd_user_info##</th>
+            <th>##word.useredit_user_info##</th>
+          </tr>
+          <tr>
+            <td class="center">
+              <p class="blue">{{file_gallery.add_user_info.name}}</p>
+              <small class="green"> {{file_gallery.add_user_info.date |date:"hh:mm"}} </small>
+              <small> {{file_gallery.add_user_info.date |date:"dd - MM - yyyy"}} </small>
+              <p class="bold">IP : {{file_gallery.add_user_info.ip}}</p>
+            </td>
+
+            <td class="center">
+              <p class="blue">{{file_gallery.edit_user_info.name}}</p>
+              <small class="green"> {{file_gallery.edit_user_info.date |date:"hh:mm"}} </small>
+              <small> {{file_gallery.edit_user_info.date |date:"dd - MM - yyyy"}} </small>
+              <p class="bold">IP : {{file_gallery.edit_user_info.ip}}</p>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="modal-footer center">
+      <h2 class="red center">{{error}}</h2>
+      <i-button type="add" ng-show="mode == 'add' " label="##word.add##" ng-click="addFileGallery()"></i-button>
+      <i-button type="edit" ng-show="mode == 'edit' " label="##word.edit##" ng-click="updateFileGallery(file_gallery)"></i-button>
+      <i-button type="delete" ng-show="mode == 'delete' " label="##word.delete##" ng-click="deleteFileGallery(file_gallery)"> </i-button>
+      <i-button type="close" label="##word.close##" onclick="site.hideModal( '#fileGalleryManageModal')"></i-button>
+    </div>
+  </div>
+</div>

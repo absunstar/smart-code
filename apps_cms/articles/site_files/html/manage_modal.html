@@ -66,12 +66,12 @@
                   <div id="basic" class="tab-content">
                     <div class="article-editor">
                       <div class="row">
-                        <i-control v="r" label="##word.article_title##" ng-model="art.title"> </i-control>
+                        <i-control v="r" label="##word.article_title##" ng-change="calcCount(art)" ng-model="art.title"> </i-control>
                       </div>
                     </div>
 
                     <div class="row" ng-show="article.type.id == 1">
-                      <i-textarea ng-model="art.content" label="##word.content##"> </i-textarea>
+                      <i-textarea ng-change="calcCount(art)" ng-model="art.content" label="##word.content##"> </i-textarea>
                     </div>
 
                     <div class="row" ng-show="article.type.id == 2">
@@ -137,12 +137,26 @@
                             </div>
                           </div>
                         </div>
+                        <div class="article-part">
+                          <div class="row">
+                            <table class="table hover bold">
+                              <tr>
+                                <th>Number of words</th>
+                                <th>number of letters</th>
+                              </tr>
+                              <tr>
+                                <td class="center title">{{art.number_words}}</td>
+                                <td class="center title">{{art.number_letters}}</td>
+                              </tr>
+                            </table>
+                          </div>
+                        </div>
                       </div>
                       <div class="col1"></div>
                       <div class="col5">
                         <div class="article-part">
                           <i-checkbox class="" label="##word.show_image##" ng-model="art.show_image"> </i-checkbox>
-                          <i-image class="img256 full" ng-model="art.image"></i-image>
+                          <i-image class="img256 full" ng-model="art.image_url"></i-image>
                         </div>
                       </div>
                     </div>
@@ -211,14 +225,13 @@
                         <i-control label="##word.title##" ng-model="art.social_title"> </i-control>
                         <i-textarea ng-model="art.social_description" label="##word.description##"> </i-textarea>
                       </div>
-                      <div class="col1"></div>
 
-                      <div class="col3 center">
+                      <div class="col4">
                         <div class="article-part">
-                          <i-checkbox class="" label="##word.social_media_activation##" ng-model="art.social_media_activation"> </i-checkbox>
+                          <i-checkbox  label="##word.social_media_activation##" ng-model="art.social_media_activation"> </i-checkbox>
                         </div>
                         <div class="article-part">
-                          <i-checkbox class="" label="##word.show_image##" ng-model="art.show_social_image"> </i-checkbox>
+                          <i-checkbox  label="##word.show_image##" ng-model="art.show_social_image"> </i-checkbox>
                           <i-image ng-model="art.social_image"></i-image>
                         </div>
                       </div>
@@ -232,14 +245,13 @@
                         <i-textarea ng-model="art.external_description" label="##word.description##"> </i-textarea>
                       </div>
 
-                      <div class="col1"></div>
 
-                      <div class="col3 center">
+                      <div class="col4 center">
                         <div class="article-part">
-                          <i-checkbox class="" label="##word.external_activation##" ng-model="art.external_activation"> </i-checkbox>
+                          <i-checkbox label="##word.external_activation##" ng-model="art.external_activation"> </i-checkbox>
                         </div>
                         <div class="article-part">
-                          <i-checkbox class="" label="##word.show_image##" ng-model="art.show_external_image"> </i-checkbox>
+                          <i-checkbox label="##word.show_image##" ng-model="art.show_external_image"> </i-checkbox>
                           <i-image ng-model="art.external_image"></i-image>
                         </div>
                       </div>
@@ -288,13 +300,15 @@
                         </div>
                       </fieldset>
 
-                      <div class="row">
-                        <i-textarea ng-model="art.custom_style" label="Custom Style"> </i-textarea>
-                      </div>
+                      <fieldset>
+                        <legend>Custom Style</legend>
+                        <i-textarea ng-model="art.custom_style"> </i-textarea>
+                      </fieldset>
 
-                      <div class="row">
-                        <i-textarea ng-model="art.custom_script" label="Custom Script"> </i-textarea>
-                      </div>
+                      <fieldset>
+                        <legend>Custom Script</legend>
+                        <i-textarea ng-model="art.custom_script"> </i-textarea>
+                      </fieldset>
                     </fieldset>
                   </div>
                 </div>
@@ -304,6 +318,12 @@
           <div class="col3">
             <div class="article-part">
               <i-checkbox label="##word.active##" ng-model="article.active"> </i-checkbox>
+            </div>
+            <div class="row">
+              <div class="article-part">
+                <i-checkbox label="Manual related topics" class="col8" ng-model="article.manual_related_topics"> </i-checkbox>
+                <i-button type="add" class="col4" label="##word.add##" ng-show="article.manual_related_topics" ng-click="showRelatedTopics()"> </i-button>
+              </div>
             </div>
 
             <div class="">
@@ -375,6 +395,8 @@
               </div>
 
               <div class="article-part">
+                <i-checkbox label="Hide from search engines" ng-model="article.hide_search_engines"> </i-checkbox>
+                <i-checkbox label="Pin Acticle" ng-model="article.pin_article"> </i-checkbox>
                 <i-checkbox class="" label="##word.subscribers_only##" ng-model="article.subscribers_only"> </i-checkbox>
                 <i-checkbox class="" label="##word.special_men##" ng-model="article.special_men"> </i-checkbox>
                 <i-checkbox class="" label="##word.special_women##" ng-model="article.special_women"> </i-checkbox>
@@ -384,44 +406,46 @@
               </div>
 
               <div class="article-part">
-                <i-list
-                  class="row"
-                  label="##word.country##"
-                  ng-change="getGovesList(article.country)"
-                  ng-model="article.country"
-                  display="name_##session.lang##"
-                  items="countriesList"
-                  ng-search="_search.$city_country"
-                ></i-list>
+                <i-checkbox class="" label="Location Activated" ng-model="article.location_activated"> </i-checkbox>
+                <div ng-show="article.location_activated">
+                  <i-list
+                    class="row"
+                    label="##word.country##"
+                    ng-change="getGovesList(article.country)"
+                    ng-model="article.country"
+                    display="name"
+                    items="countriesList"
+                    ng-search="_search.$city_country"
+                  ></i-list>
 
-                <i-list
-                  class="row"
-                  label="##word.gov##"
-                  ng-model="article.gov"
-                  items="govesList"
-                  ng-change="getCityList(article.gov)"
-                  display="name_##session.lang##"
-                  ng-search="_search.$article.$gov_search"
-                >
-                </i-list>
+                  <i-list
+                    class="row"
+                    label="##word.gov##"
+                    ng-model="article.gov"
+                    items="govesList"
+                    ng-change="getCityList(article.gov)"
+                    display="name"
+                    ng-search="_search.$article.$gov_search"
+                  >
+                  </i-list>
 
-                <i-list
-                  class="row"
-                  ng-change="getAreaList(article.city)"
-                  label="##word.city##"
-                  ng-model="article.city"
-                  items="cityList"
-                  display="name_##session.lang##"
-                  ng-search="_search.$article.$city_search"
-                >
-                </i-list>
+                  <i-list
+                    class="row"
+                    ng-change="getAreaList(article.city)"
+                    label="##word.city##"
+                    ng-model="article.city"
+                    items="cityList"
+                    display="name"
+                    ng-search="_search.$article.$city_search"
+                  >
+                  </i-list>
 
-                <i-list class="row" label="##word.area##" ng-model="article.area" items="areaList" display="name_##session.lang##" ng-search="_search.$article.$area_search"> </i-list>
-              </div>
-              <div class="article-part">
-                <div class="row">
-                  <i-control class="col6" type="number" label="##word.longitudes##" ng-model="article.longitudes"> </i-control>
-                  <i-control class="col6" type="number" label="##word.latitudes##" ng-model="article.latitudes"> </i-control>
+                  <i-list class="row" label="##word.area##" ng-model="article.area" items="areaList" display="name" ng-search="_search.$article.$area_search"> </i-list>
+
+                  <div class="row">
+                    <i-control class="col6" type="number" label="##word.longitudes##" ng-model="article.longitudes"> </i-control>
+                    <i-control class="col6" type="number" label="##word.latitudes##" ng-model="article.latitudes"> </i-control>
+                  </div>
                 </div>
               </div>
             </div>
@@ -435,14 +459,14 @@
             </tr>
             <tr>
               <td class="center">
-                <p class="blue">{{article.add_user_info.name_##session.lang##}}</p>
+                <p class="blue">{{article.add_user_info.name}}</p>
                 <small class="green"> {{article.add_user_info.date |date:"hh:mm"}} </small>
                 <small> {{article.add_user_info.date |date:"dd - MM - yyyy"}} </small>
                 <p class="bold">IP : {{article.add_user_info.ip}}</p>
               </td>
 
               <td class="center">
-                <p class="blue">{{article.edit_user_info.name_##session.lang##}}</p>
+                <p class="blue">{{article.edit_user_info.name}}</p>
                 <small class="green"> {{article.edit_user_info.date |date:"hh:mm"}} </small>
                 <small> {{article.edit_user_info.date |date:"dd - MM - yyyy"}} </small>
                 <p class="bold">IP : {{article.edit_user_info.ip}}</p>

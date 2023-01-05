@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-ng-app="myApp">
   <head x-import="haraj/head.html">
- 
     <style>
       * {
         max-width: initial;
@@ -74,6 +73,7 @@
         border-radius: 10px;
         padding-bottom: 18px !important;
         background: #f8faff;
+        margin-bottom: 40px !important;
       }
 
       .commission-price p {
@@ -94,12 +94,12 @@
       .bank-account {
         border: 1px solid white;
         display: inline-block;
-        margin: 35px;
+        width: 40vw !important;
+        margin: 4vw !important;
         background: white;
-        padding: 20px;
-        height: 180px;
+        padding: 30px;
+        height: 200px;
         border-radius: 10px;
-        width: 460px;
       }
 
       .bank-account img {
@@ -166,6 +166,41 @@
  */
         background-repeat: repeat !important;
       }
+      .radius-10 {
+        border-radius: 10px;
+      }
+      .padding-25 {
+        padding: 25px !important;
+      }
+      .img-commission {
+        border: 10px solid #ffff;
+        height: 350px;
+        width: 650px;
+        border-radius: 20px;
+        aspect-ratio: 1/1;
+      }
+
+      .content-margin {
+        width: 90vw !important;
+        margin: 4vw !important;
+      }
+
+      ::placeholder {
+        color: #a5a5a5;
+      }
+
+      @media screen and (max-width: 480px) {
+        .img-commission {
+          height: 325px;
+          margin-top: 10px;
+          position: relative;
+          left: 22px !important;
+          width: 335px;
+        }
+        .bank-account {
+          width: 90vw !important;
+        }
+      }
     </style>
     <style x-lang="ar">
       .nav1 {
@@ -190,105 +225,117 @@
         <div x-permissions="pay_delete || pay_manage" x-import="pay/delete_modal.html"></div>
         <div x-permissions="pay_view || pay_manage" x-import="pay/view_modal.html"></div>
         <div x-permissions="pay_search || pay_manage" x-import="pay/search_all_modal.html"></div>
-
-        <div class="row bg-white">
-          <h1 class="bold color-theme text-center">##word.commission_account##</h1>
-
-          <div class="col4"></div>
-          <div class="col4">
-            <div class="row selling-price">
-              <div class="col6">
-                <p>##word.enter_selling_price##</p>
-              </div>
-              <div class="col6">
-                <input type="text" ng-change="calc()" name="total" maxlength="15" autocorrect="off" inputmode="numeric" autocomplete="off" placeholder="15000" value="" ng-model="price" />
-              </div>
-            </div>
-
-            <div class="row commission-price">
-              <div class="col6">
-                <p>##word.commission_due##</p>
-              </div>
-              <div class="col6">
-                <p class="commission-due">{{commission_due}} ##setting.currency.name_ar##</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <br />
-        <br />
-        <br />
-        <br />
-
         <div class="row">
-          <div class="row">
-            <div class="bank-account" ng-repeat="b in defaultSettings.bank_account_list">
-              <img class="" loading="lazy" ng-src="{{b.image_url}}" />
-              <p class="">##word.account_number##</p>
-              <p class="userPrint account-number bold">{{b.account_number}}</p>
-              <p class="">##word.iban##</p>
-              <p class="userPrint iban bold">{{b.iban}}</p>
-              <p class="userPrint bank-account-name">{{b.name}}</p>
-              <p class="userPrint darkgray font-20">{{b.bank_name}} - {{b.country.name_##session.lang##}}</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="row bg-white">
-          <div class="row">
-            <h1 class="bold color-theme text-center">##word.commission_transfer_form##</h1>
-            <br />
-            <p class="bold font-18 text-center">##word.commission_alert##</p>
-          </div>
-          <br />
-          <br />
-
-          <fieldset id="payModal">
-            <div class="row">
-              <i-control x-permission="!login" class="col4 user-name-pay" v="r" label="##word.user_name##" ng-model="pay.user_name"></i-control>
-              <div class="col4" x-permission="login">
-                <p class="user-name-txt">##word.user_name##</p>
-                <p class="user-name-pay">##user.profile.name## ##user.profile.last_name##</p>
+          <div class="row padding-25 content-margin radius-10">
+            <div class="col6">
+              <div class="row">
+                <p class="bold font-35 color-theme col9">{{defaultSettings.commission_main_title}}</p>
               </div>
-              <i-control class="col4" v="r" label="##word.commission_amount##" type="number" ng-model="pay.commission_amount"></i-control>
-              <i-date2 class="col4" ng-model="pay.transfer_date" v="r" label="##word.transfer_date##"></i-date2>
+              <br />
+              <p class="font-18 pre_text">{{defaultSettings.commission_description}}</p>
             </div>
-            <div class="row">
-              <i-control class="col4" v="r" label="##word.adapter_name##" ng-model="pay.adapter_name"></i-control>
-              <div class="col4">
-                <i-control x-permission="!login" v="r" label="##word.mobile_associated_membership##" ng-model="pay.mobile"></i-control>
-                <div x-permission="login">
-                  <p class="user-name-txt">##word.mobile_associated_membership##</p>
-                  <p class="user-name-pay">##user.mobile##</p>
+            <div class="col6">
+              <div>
+                <img class="img-commission" ng-src="{{defaultSettings.commission_logo}}" />
+              </div>
+            </div>
+          </div>
+          <br />
+          <br />
+          <div class="row bg-white content-margin radius-10">
+            <h1 class="bold color-theme text-center">##word.commission_account##</h1>
+
+            <div class="col4"></div>
+            <div class="col4">
+              <div class="row selling-price">
+                <div class="col6">
+                  <p>##word.enter_selling_price##</p>
+                </div>
+                <div class="col6">
+                  <input type="text" ng-change="calc()" name="total" maxlength="15" autocorrect="off" inputmode="numeric" autocomplete="off" placeholder="15000" value="" ng-model="price" />
                 </div>
               </div>
-              <i-control class="col4" v="r" label="##word.ad_code##" type="number" ng-model="pay.ad_code"></i-control>
-            </div>
-            <div class="row">
-              <i-files class="col4" v="r" label="##word.transfer_receipt_image##" ng-model="pay.files"></i-files>
-              <i-textarea class="input-style col8" v="r" label="##word.notes##" ng-model="pay.notes"></i-textarea>
-            </div>
-            <br />
-            <div class="center">
-              <h2 class="center red">{{error}}</h2>
-            </div>
-            <br />
-            <div class="row center">
-              <button class="send-btn center" ng-click="addCommission(pay)">
-                <i class="fa fa-paper-plane"></i>
-                ##word.send##
-              </button>
-            </div>
-            <br />
-            <br />
-          </fieldset>
-        </div>
 
-        <br />
-        <br />
-        <br />
-        <br />
+              <div class="row commission-price">
+                <div class="col6">
+                  <p>##word.commission_due##</p>
+                </div>
+                <div class="col6">
+                  <p class="commission-due">{{commission_due}} ##setting.currency.name_ar##</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="row">
+              <div class="bank-account" ng-repeat="b in defaultSettings.bank_account_list">
+                <img class="" loading="lazy" ng-src="{{b.image_url}}" />
+                <p class="">##word.account_number##</p>
+                <p class="userPrint account-number bold">{{b.account_number}}</p>
+                <p class="">##word.iban##</p>
+                <p class="userPrint iban bold">{{b.iban}}</p>
+                <p class="userPrint bank-account-name">{{b.name}}</p>
+                <p class="userPrint darkgray font-20">{{b.bank_name}} - {{b.country.name_##session.lang##}}</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="row bg-white content-margin radius-10">
+            <div class="row">
+              <h1 class="bold color-theme text-center">##word.commission_transfer_form##</h1>
+              <br />
+              <p class="bold font-18 margin darkgray text-center">{{defaultSettings.transfer_form_text}}</p>
+            </div>
+            <br />
+            <br />
+
+            <fieldset id="payModal">
+              <div class="row">
+                <i-control x-permission="!login" class="col4 user-name-pay" v="r" label="##word.user_name##" ng-model="pay.user_name"></i-control>
+                <div class="col4" x-permission="login">
+                  <p class="user-name-txt">##word.user_name##</p>
+                  <p class="user-name-pay">##user.profile.name## ##user.profile.last_name##</p>
+                </div>
+                <i-control class="col4" v="r" label="##word.commission_amount##" type="number" ng-model="pay.commission_amount"></i-control>
+                <i-date2 class="col4" ng-model="pay.transfer_date" v="r" label="##word.transfer_date##"></i-date2>
+              </div>
+              <div class="row">
+                <i-control class="col4" v="r" label="##word.adapter_name##" ng-model="pay.adapter_name"></i-control>
+                <div class="col4">
+                  <i-control x-permission="!login" v="r" label="##word.mobile_associated_membership##" ng-model="pay.mobile"></i-control>
+                  <div x-permission="login">
+                    <p class="user-name-txt">##word.mobile_associated_membership##</p>
+                    <p class="user-name-pay">##user.mobile##</p>
+                  </div>
+                </div>
+                <i-control class="col4" v="r" label="##word.ad_code##" type="number" ng-model="pay.ad_code"></i-control>
+              </div>
+              <div class="row">
+                <i-files class="col4" v="r" label="##word.transfer_receipt_image##" ng-model="pay.files"></i-files>
+                <i-textarea class="input-style col8" v="r" label="##word.notes##" ng-model="pay.notes"></i-textarea>
+              </div>
+              <br />
+              <div class="center">
+                <h2 class="center red">{{error}}</h2>
+              </div>
+              <br />
+              <div class="row center">
+                <button class="send-btn center" ng-click="addCommission(pay)">
+                  <i class="fa fa-paper-plane"></i>
+                  ##word.send##
+                </button>
+              </div>
+              <br />
+              <br />
+            </fieldset>
+          </div>
+
+          <br />
+          <br />
+          <br />
+          <br />
+        </div>
       </div>
     </div>
     <div id="alert" class="modal alert small">

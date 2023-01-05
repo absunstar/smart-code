@@ -167,8 +167,8 @@
   },
   {
     "name": "default_setting",
-    "en": "Default Setting",
-    "ar": "الإعدادات الإفتراضية"
+    "en": "General Setting",
+    "ar": "الإعدادات العامة"
   },
   {
     "name": "order_level_length",
@@ -422,8 +422,8 @@
   },
   {
     "name": "default_settings",
-    "en": "Default Settings",
-    "ar": "الإعدادت الافتراضية"
+    "en": "General Settings",
+    "ar": "الإعدادت العامة"
   },
   {
     "name": "discount_method",
@@ -629,5 +629,20 @@
     "name": "activate_orders",
     "en": "Activate the Orders system",
     "ar": "تفعيل نظام الطلبات"
+  },
+  {
+    "name": "transfer_form_text",
+    "en": "Transfer form text",
+    "ar": "نص نموذج التحويل"
+  },
+  {
+    "name": "social_title",
+    "en": "Social Title",
+    "ar": "عنوان السوشيال"
+  },
+  {
+    "name": "main_title",
+    "en": "Mail Title",
+    "ar": "العنوان الرئيسي"
   }
 ]
