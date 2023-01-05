@@ -58,7 +58,7 @@ module.exports = function init(site) {
         response.doc = doc;
         site.articles_list.push(doc);
       } else {
-        response.error = err.mesage;
+        response.error = err.message;
       }
       res.json(response);
     });
@@ -175,7 +175,7 @@ module.exports = function init(site) {
             1
           );
         } else {
-          response.error = err.mesage;
+          response.error = err.message;
         }
         res.json(response);
       }
@@ -219,7 +219,7 @@ module.exports = function init(site) {
           response.list = docs;
           response.count = count;
         } else {
-          response.error = err.mesage;
+          response.error = err.message;
         }
         res.json(response);
       }
