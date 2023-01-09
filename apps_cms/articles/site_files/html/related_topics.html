@@ -1,23 +1,41 @@
 <div id="relatedTopics" class="modal" fixed>
-    
   <div class="modal-content">
-      <div class="modal-header">
-          <span class="close">&times;</span>
-          <h2>
-              Related Topics
-              <i class="fa fa-plus "></i>
-          </h2>
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>
+        Related Topics
+        <i class="fa fa-plus"></i>
+      </h2>
+    </div>
 
+    <div class="modal-body">
+      <div class="row">
+        <i-control class="col6" label="##word.search##" ng-model="relatedSearch" ng-keydown="getArticlesRelatedList($event,relatedSearch)"> </i-control>
       </div>
+      <br>
+      <div class="row" ng-show="relatedTopicslist.length > 0">
+        <table class="table bold hover loaded">
+          <tr>
+            <th class="not-print">##word.logo##</th>
+            <th>##word.title##</th>
+            <th>##word.actions##</th>
+          </tr>
+          <tr ng-repeat="c in relatedTopicslist">
+            <td class="center not-print">
+              <i-image view class="logo" ng-model="c.translatedList[0].imageUrl"></i-image>
+            </td>
+            <td class="center userPrint">{{c.translatedList[0].title}}</td>
+            <td class="center not-print">
+              <i-button type="add" label="##word.add##" ng-hide="c.$add" ng-click="addRelatedArticle(c)"></i-button>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
 
-      <div class="modal-body">
-          
-      </div>
-
-      <div class="modal-footer center">
-          <h2 class="error"> {{error}} </h2>
-          <i-button type="close" label="##word.close##" onclick="site.hideModal( '#relatedTopics')"></i-button>
-      </div>
+    <div class="modal-footer center">
+      <h2 class="error">{{error}}</h2>
+      <i-button type="close" label="##word.close##" onclick="site.hideModal( '#relatedTopics')"></i-button>
+    </div>
   </div>
-  
 </div>

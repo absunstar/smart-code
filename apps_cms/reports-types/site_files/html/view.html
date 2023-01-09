@@ -7,23 +7,23 @@
 
                     <tr>
                         <td class="title">##word.reports_types_name##</td>
-                        <td class="center">{{reports_types.name_##session.lang##}}</td>
+                        <td class="center">{{reportsTypes.name}}</td>
                     </tr>
                     <tr>
                         <td class="title">##word.status##</td>
-                        <td ng-show="reports_types.active == true" class="green center"> ##word.active## </td>
-                        <td ng-show="reports_types.active == false" class="red center"> ##word.not_active## </td>
+                        <td ng-show="reportsTypes.active == true" class="green center"> ##word.active## </td>
+                        <td ng-show="reportsTypes.active == false" class="red center"> ##word.not_active## </td>
                     </tr>
                     <tr>
                         <td class="title">##word.report_comments##</td>
-                        <td ng-show="reports_types.report_comments == true" class="green center"> ##word.yes## </td>
-                        <td ng-show="reports_types.report_comments == false" class="red center"> ##word.no## </td>
+                        <td ng-show="reportsTypes.report_comments == true" class="green center"> ##word.yes## </td>
+                        <td ng-show="reportsTypes.report_comments == false" class="red center"> ##word.no## </td>
                     </tr>
                 </table>
             </div>
 
             <div class="col3">
-                <i-image view ng-model="reports_types.image_url"></i-image>
+                <i-image view ng-model="reportsTypes.imageUrl"></i-image>
             </div>
 
         </fieldset>

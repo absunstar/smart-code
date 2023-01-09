@@ -5,7 +5,7 @@
         "ar": "معلومات شخصية"
     },
     {
-        "name": "current_password",
+        "name": "currentPassword",
         "en": "Current Password",
         "ar": "كلمة المرور الحالية"
     },
@@ -95,7 +95,7 @@
         "ar": "نبذة عني"
     },
     {
-        "name": "new_password",
+        "name": "newPassword",
         "en": "New Password",
         "ar": "كلمة المرور الجديدة"
     },

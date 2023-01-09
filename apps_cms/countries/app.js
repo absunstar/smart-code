@@ -1,9 +1,9 @@
 module.exports = function init(site) {
   const $countries = site.connectCollection('countries');
-  site.country_list = [];
+  site.countryList = [];
   $countries.findMany({}, (err, docs) => {
     if (!err && docs) {
-      site.country_list = [...site.country_list, ...docs];
+      site.countryList = [...site.countryList, ...docs];
     }
   });
 
@@ -29,24 +29,24 @@ module.exports = function init(site) {
       return;
     }
 
-    let countries_doc = req.body;
-    countries_doc.$req = req;
-    countries_doc.$res = res;
+    let countriesDoc = req.body;
+    countriesDoc.$req = req;
+    countriesDoc.$res = res;
 
-    countries_doc.add_user_info = site.security.getUserFinger({
+    countriesDoc.addUserInfo = site.security.getUserFinger({
       $req: req,
       $res: res,
     });
 
-    if (typeof countries_doc.active === 'undefined') {
-      countries_doc.active = true;
+    if (typeof countriesDoc.active === 'undefined') {
+      countriesDoc.active = true;
     }
 
-    $countries.add(countries_doc, (err, doc) => {
+    $countries.add(countriesDoc, (err, doc) => {
       if (!err) {
         response.done = true;
         response.doc = doc;
-        site.country_list.push(doc);
+        site.countryList.push(doc);
       } else {
         response.error = err.message;
       }
@@ -66,14 +66,14 @@ module.exports = function init(site) {
       return;
     }
 
-    let countries_doc = req.body;
+    let countriesDoc = req.body;
 
-    countries_doc.edit_user_info = site.security.getUserFinger({
+    countriesDoc.editUserInfo = site.security.getUserFinger({
       $req: req,
       $res: res,
     });
 
-    if (!countries_doc.id) {
+    if (!countriesDoc.id) {
       response.error = 'No id';
       res.json(response);
       return;
@@ -82,18 +82,18 @@ module.exports = function init(site) {
     $countries.edit(
       {
         where: {
-          id: countries_doc.id,
+          id: countriesDoc.id,
         },
-        set: countries_doc,
+        set: countriesDoc,
         $req: req,
         $res: res,
       },
       (err, result) => {
         if (!err && result) {
           response.done = true;
-          site.country_list.forEach((a, i) => {
+          site.countryList.forEach((a, i) => {
             if (a.id === result.doc.id) {
-              site.country_list[i] = result.doc;
+              site.countryList[i] = result.doc;
             }
           });
         } else {
@@ -117,7 +117,7 @@ module.exports = function init(site) {
     }
 
     let ad = null;
-    site.country_list.forEach((a) => {
+    site.countryList.forEach((a) => {
       if (a.id == req.body.id) {
         ad = a;
       }
@@ -159,8 +159,8 @@ module.exports = function init(site) {
       (err, result) => {
         if (!err) {
           response.done = true;
-          site.country_list.splice(
-            site.country_list.findIndex((a) => a.id === req.body.id),
+          site.countryList.splice(
+            site.countryList.findIndex((a) => a.id === req.body.id),
             1
           );
         } else {

@@ -1,7 +1,7 @@
 module.exports = function init(site) {
-  const $reports_types = site.connectCollection('reports_types');
+  const $reportsTypes = site.connectCollection('reportsTypes');
   site.report_type_list = [];
-  $reports_types.findMany({}, (err, docs) => {
+  $reportsTypes.findMany({}, (err, docs) => {
     if (!err && docs) {
       site.report_type_list = [...site.report_type_list, ...docs];
     }
@@ -13,13 +13,13 @@ module.exports = function init(site) {
   });
 
   site.get({
-    name: 'reports_types',
+    name: 'reportsTypes',
     path: __dirname + '/site_files/html/index.html',
     parser: 'html',
     compress: true,
   });
 
-  site.post('/api/reports_types/add', (req, res) => {
+  site.post('/api/reportsTypes/add', (req, res) => {
     let response = {
       done: false,
     };
@@ -33,7 +33,7 @@ module.exports = function init(site) {
     reports_types_doc.$req = req;
     reports_types_doc.$res = res;
 
-    reports_types_doc.add_user_info = site.security.getUserFinger({
+    reports_types_doc.addUserInfo = site.security.getUserFinger({
       $req: req,
       $res: res,
     });
@@ -42,7 +42,7 @@ module.exports = function init(site) {
       reports_types_doc.active = true;
     }
 
-    $reports_types.add(reports_types_doc, (err, doc) => {
+    $reportsTypes.add(reports_types_doc, (err, doc) => {
       if (!err) {
         response.done = true;
         response.doc = doc;
@@ -55,7 +55,7 @@ module.exports = function init(site) {
 
   });
 
-  site.post('/api/reports_types/update', (req, res) => {
+  site.post('/api/reportsTypes/update', (req, res) => {
     let response = {
       done: false,
     };
@@ -68,7 +68,7 @@ module.exports = function init(site) {
 
     let reports_types_doc = req.body;
 
-    reports_types_doc.edit_user_info = site.security.getUserFinger({
+    reports_types_doc.editUserInfo = site.security.getUserFinger({
       $req: req,
       $res: res,
     });
@@ -78,7 +78,7 @@ module.exports = function init(site) {
       res.json(response);
       return;
     }
-    $reports_types.edit(
+    $reportsTypes.edit(
       {
         where: {
           id: reports_types_doc.id,
@@ -103,7 +103,7 @@ module.exports = function init(site) {
     );
   });
 
-  site.post('/api/reports_types/view', (req, res) => {
+  site.post('/api/reportsTypes/view', (req, res) => {
     let response = {
       done: false,
     };
@@ -131,7 +131,7 @@ module.exports = function init(site) {
     }
   });
 
-  site.post('/api/reports_types/delete', (req, res) => {
+  site.post('/api/reportsTypes/delete', (req, res) => {
     let response = {
       done: false,
     };
@@ -148,7 +148,7 @@ module.exports = function init(site) {
       return;
     }
 
-    $reports_types.delete(
+    $reportsTypes.delete(
       {
         id: req.body.id,
         $req: req,
@@ -169,7 +169,7 @@ module.exports = function init(site) {
     );
   });
 
-  site.post('/api/reports_types/all', (req, res) => {
+  site.post('/api/reportsTypes/all', (req, res) => {
     let response = {
       done: false,
     };
@@ -181,18 +181,8 @@ module.exports = function init(site) {
     }
 
     let where = req.body.where || {};
-    if (where['name']) {
-      where.$or = [];
-      where.$or.push({
-        name_ar: site.get_RegExp(where['name'], 'i'),
-      });
-      where.$or.push({
-        name_en: site.get_RegExp(where['name'], 'i'),
-      });
-      delete where['name']
-    }
 
-    $reports_types.findMany(
+    $reportsTypes.findMany(
       {
         select: req.body.select || {},
         where: where,

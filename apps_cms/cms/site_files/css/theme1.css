@@ -1,0 +1,61 @@
+* {
+  max-width: initial;
+}
+
+.level1 {
+  margin-right: 10px;
+  padding-right: 10px;
+  display: block;
+  border-right: 1px solid rgb(225, 129, 129);
+}
+
+.level2 {
+  margin-right: 20px;
+  padding-right: 20px;
+  display: block;
+  border-right: 1px solid #bbb;
+}
+
+.level3 {
+  margin-right: 30px;
+  padding-right: 30px;
+  display: block;
+  border-right: 1px solid #bbb;
+}
+
+.level4 {
+  margin-right: 40px;
+  padding-right: 40px;
+  display: block;
+  border-right: 1px solid #bbb;
+}
+
+.main-categories {
+  border: 1px solid #c5c5c5;
+  background: #f1f1f15e;
+  margin: 15px;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.userad-logo {
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+  margin: -5px 10px -5px 0px !important
+}
+
+:root {
+  --body-margin-top: 0px;
+  --body-margin-bottom: 0px;
+  --zoom: 100%;
+  --fieldset-border: none;
+  --fieldset-background: #fff;
+}
+
+body {
+  /* background-color: #bbb !important;
+  background-image: url(/assets/palm.svg) !important; */
+  background-color: #ecf9f6;
+  background-repeat: repeat !important;
+}

@@ -7,7 +7,7 @@ app.controller("countries", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.mode = 'add';
     $scope.countries = {
-      image_url: '/images/countries.png',
+      imageUrl: '/images/countries.png',
       active: true
 
     };

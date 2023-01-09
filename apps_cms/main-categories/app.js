@@ -1,15 +1,15 @@
 module.exports = function init(site) {
-  const $main_categories = site.connectCollection('main_categories');
+  const $mainCategories = site.connectCollection('mainCategories');
 
-  site.main_categories_list = [];
-  $main_categories.findMany({}, (err, docs) => {
+  site.mainCategoriesList = [];
+  $mainCategories.findMany({}, (err, docs) => {
     if (!err && docs) {
-      site.main_categories_list = [...site.main_categories_list, ...docs];
+      site.mainCategoriesList = [...site.mainCategoriesList, ...docs];
     }
   });
 
   site.get({
-    name: 'main_categories',
+    name: 'mainCategories',
     path: __dirname + '/site_files/html/index.html',
     parser: 'html',
     compress: true,
@@ -20,7 +20,7 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/images/',
   });
 
-  site.post('/api/main_categories/add', (req, res) => {
+  site.post('/api/mainCategories/add', (req, res) => {
     let response = {
       done: false,
     };
@@ -31,36 +31,36 @@ module.exports = function init(site) {
       return;
     }
 
-    let main_categories_doc = req.body;
-    main_categories_doc.$req = req;
-    main_categories_doc.$res = res;
-    main_categories_doc.add_user_info = site.security.getUserFinger({
+    let mainCategoriesDoc = req.body;
+    mainCategoriesDoc.$req = req;
+    mainCategoriesDoc.$res = res;
+    mainCategoriesDoc.addUserInfo = site.security.getUserFinger({
       $req: req,
       $res: res,
     });
 
     let where = {};
-    if (main_categories_doc.top_parent_id) {
-      site.main_categories_list.forEach((a) => {
-        if (a.id === main_categories_doc.parent_id) {
-          if (a.parent_list_id) {
-            main_categories_doc.parent_list_id = [];
-            for (let i = 0; i < a.parent_list_id.length; i++) {
-              main_categories_doc.parent_list_id.push(a.parent_list_id[i]);
+    if (mainCategoriesDoc.topParentId) {
+      site.mainCategoriesList.forEach((a) => {
+        if (a.id === mainCategoriesDoc.parentId) {
+          if (a.parentListId) {
+            mainCategoriesDoc.parentListId = [];
+            for (let i = 0; i < a.parentListId.length; i++) {
+              mainCategoriesDoc.parentListId.push(a.parentListId[i]);
             }
-            main_categories_doc.parent_list_id.push(main_categories_doc.parent_id);
+            mainCategoriesDoc.parentListId.push(mainCategoriesDoc.parentId);
           } else {
-            main_categories_doc.parent_list_id = [main_categories_doc.parent_id];
+            mainCategoriesDoc.parentListId = [mainCategoriesDoc.parentId];
           }
         }
       });
     }
 
-    $main_categories.add(main_categories_doc, (err, doc) => {
+    $mainCategories.add(mainCategoriesDoc, (err, doc) => {
       if (!err) {
         response.done = true;
         response.doc = doc;
-        site.main_categories_list.push(doc);
+        site.mainCategoriesList.push(doc);
       } else {
         response.error = err.message;
       }
@@ -68,7 +68,7 @@ module.exports = function init(site) {
     });
   });
 
-  site.post('/api/main_categories/update', (req, res) => {
+  site.post('/api/mainCategories/update', (req, res) => {
     let response = {
       done: false,
     };
@@ -79,38 +79,38 @@ module.exports = function init(site) {
       return;
     }
 
-    let main_categories_doc = req.body;
+    let mainCategoriesDoc = req.body;
 
-    main_categories_doc.edit_user_info = site.security.getUserFinger({
+    mainCategoriesDoc.editUserInfo = site.security.getUserFinger({
       $req: req,
       $res: res,
     });
 
     let category = null;
-    site.main_categories_list.forEach((c) => {
-      if (c.parent_id == main_categories_doc.id) {
+    site.mainCategoriesList.forEach((c) => {
+      if (c.parentId == mainCategoriesDoc.id) {
         category = c;
       }
     });
-    if (category && main_categories_doc.type == 'detailed') {
+    if (category && mainCategoriesDoc.type == 'detailed') {
       response.error = 'Cant Change Detailed Err';
       res.json(response);
     } else {
-      $main_categories.edit(
+      $mainCategories.edit(
         {
           where: {
-            id: main_categories_doc.id,
+            id: mainCategoriesDoc.id,
           },
-          set: main_categories_doc,
+          set: mainCategoriesDoc,
           $req: req,
           $res: res,
         },
         (err, result) => {
           if (!err && result) {
             response.done = true;
-            site.main_categories_list.forEach((a, i) => {
+            site.mainCategoriesList.forEach((a, i) => {
               if (a.id === result.doc.id) {
-                site.main_categories_list[i] = result.doc;
+                site.mainCategoriesList[i] = result.doc;
               }
             });
           } else {
@@ -122,7 +122,7 @@ module.exports = function init(site) {
     }
   });
 
-  site.post('/api/main_categories/view', (req, res) => {
+  site.post('/api/mainCategories/view', (req, res) => {
     let response = {
       done: false,
     };
@@ -134,7 +134,7 @@ module.exports = function init(site) {
     }
 
     let ad = null;
-    site.main_categories_list.forEach((a) => {
+    site.mainCategoriesList.forEach((a) => {
       if (a.id == req.body.id) {
         ad = a;
       }
@@ -150,7 +150,7 @@ module.exports = function init(site) {
     }
   });
 
-  site.post('/api/main_categories/delete', (req, res) => {
+  site.post('/api/mainCategories/delete', (req, res) => {
     let response = {
       done: false,
     };
@@ -164,10 +164,10 @@ module.exports = function init(site) {
     let id = req.body.id;
 
     if (id) {
-      $main_categories.findMany(
+      $mainCategories.findMany(
         {
           where: {
-            parent_id: id,
+            parentId: id,
           },
         },
         (err, docs, count) => {
@@ -175,7 +175,7 @@ module.exports = function init(site) {
             response.error = 'Cant Delete Acc Err';
             res.json(response);
           } else {
-            $main_categories.delete(
+            $mainCategories.delete(
               {
                 id: req.body.id,
                 $req: req,
@@ -184,8 +184,8 @@ module.exports = function init(site) {
               (err, result) => {
                 if (!err) {
                   response.done = true;
-                  site.main_categories_list.splice(
-                    site.main_categories_list.findIndex((a) => a.id === req.body.id),
+                  site.mainCategoriesList.splice(
+                    site.mainCategoriesList.findIndex((a) => a.id === req.body.id),
                     1
                   );
                 } else {
@@ -203,64 +203,77 @@ module.exports = function init(site) {
     }
   });
 
-  site.post({ name: '/api/main_categories/all', public: true }, (req, res) => {
+  site.post({ name: '/api/mainCategories/all', public: true }, (req, res) => {
     let response = {
       done: false,
     };
 
-    let where = req.data.where || {};
-    let search = req.body.search;
-
-    if (search) {
-      where.$or = [];
-      where.$or.push({
-        name_ar: site.get_RegExp(search, 'i'),
-      });
-
-      where.$or.push({
-        name_en: site.get_RegExp(search, 'i'),
-      });
-
-    }
-
-    if (where['name_ar']) {
-      where['name_ar'] = new RegExp(where['name_ar'], 'i');
-    }
-
-    if (where['name_en']) {
-      where['name_en'] = new RegExp(where['name_en'], 'i');
-    }
-
-    if (where['address']) {
-      where['address'] = new RegExp(where['address'], 'i');
-    }
-
-    $main_categories.findMany(
-      {
-        select: req.body.select || {},
-        where: where,
-        sort: req.body.sort || {},
-        limit: req.body.limit,
-      },
-      (err, docs, count) => {
-        if (!err) {
-          response.done = true;
-          response.list = docs;
-          if (req.body.top) {
-            response.top_list = [];
-            docs.forEach((_doc) => {
-              if (!_doc.top_parent_id) {
-                response.top_list.push(_doc);
-              }
+    if (req.data.lang) {
+      // response.list = list[req.session.lang];
+      response.list = [];
+      response.topList = [];
+      site.mainCategoriesList.forEach((doc) => {
+        if ((doc2 = doc.translatedList.find((t) => t.language.id == req.session.lang))) {
+          if (!doc.topParentId) {
+            response.topList.push({
+              id: doc.id,
+              parentListId: doc.parentListId,
+              topParentId: doc.topParentId,
+              parentId: doc.parentId,
+              status: doc.status,
+              type: doc.type,
+              name: doc2.name,
             });
           }
-
-          response.count = count;
-        } else {
-          response.error = err.message;
+          response.list.push({
+            id: doc.id,
+            parentListId: doc.parentListId,
+            topParentId: doc.topParentId,
+            parentId: doc.parentId,
+            status: doc.status,
+            type: doc.type,
+            name: doc2.name,
+          });
         }
-        res.json(response);
-      }
-    );
+
+        // if(doc.language.id == 'ar'){
+        //   list['ar'].push({...doc , ...doc2 , translatedList : null})
+        // } else if(doc.language.id == 'en'){
+        //   list['en'].push({...doc , ...doc2 , translatedList : null})
+        // }
+      });
+      response.done = true;
+      res.json(response);
+    } else {
+      let where = req.data.where || {};
+
+      $mainCategories.findMany(
+        {
+          select: req.body.select || {},
+          where: where,
+          sort: req.body.sort || {},
+          limit: req.body.limit,
+        },
+        (err, docs, count) => {
+          if (!err) {
+            response.done = true;
+            response.list = docs;
+            if (req.body.top) {
+              response.topList = [];
+              docs.forEach((_doc) => {
+                if (!_doc.topParentId) {
+                  response.topList.push(_doc);
+                }
+              });
+            }
+
+            response.count = count;
+          } else {
+            response.error = err.message;
+          }
+          res.json(response);
+        }
+      );
+    }
   });
 };

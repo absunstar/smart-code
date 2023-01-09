@@ -1,17 +1,17 @@
-let btn1 = document.querySelector("#manage_users .tab-link");
+let btn1 = document.querySelector("#manageUsers .tab-link");
 if (btn1) {
   btn1.click();
 }
 
-app.controller("manage_users", function ($scope, $http) {
+app.controller("manageUsers", function ($scope, $http) {
   $scope._search = {};
 
   $scope.mode = 'add';
-  $scope.manage_users = {};
+  $scope.manageUsers = {};
   $scope.viewText = "";
 
   $scope.loadManageUsers = function (where) {
-    $scope.manage_users_list = [];
+    $scope.manageUsers_list = [];
     $scope.busy = true;
     where = where || {};
     if('##query.type##' != 'undefined') {
@@ -28,13 +28,13 @@ app.controller("manage_users", function ($scope, $http) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $scope.manage_users_list = response.data.users;
+          $scope.manageUsers_list = response.data.users;
           $scope.count = response.data.users.length;
-          $scope.manage_users.$permissions_info;
+          $scope.manageUsers.$permissions_info;
           $scope.permissions_list = [];
 
         } else {
-          $scope.manage_users = {};
+          $scope.manageUsers = {};
         }
       },
       function (err) {
@@ -55,9 +55,9 @@ app.controller("manage_users", function ($scope, $http) {
 
     $http({
       method: "POST",
-      url: "/api/manage_users/update",
+      url: "/api/manageUsers/update",
       data: {
-        user: $scope.manage_users,
+        user: $scope.manageUsers,
         type: type,
       },
     }).then(
@@ -99,12 +99,12 @@ app.controller("manage_users", function ($scope, $http) {
   $scope.displayAddManageUsers = function () {
     $scope.error = '';
     $scope.mode = 'add';
-    $scope.manage_users = {
+    $scope.manageUsers = {
       active: true,
       ability_login: true,
-      image_url: '/images/manage_users.png',
+      imageUrl: '/images/manageUsers.png',
     };
-    $scope.manage_users.type = $scope.usersTypesList.find(_t => { return _t.id === site.toNumber('##query.type##') });
+    $scope.manageUsers.type = $scope.usersTypesList.find(_t => { return _t.id === site.toNumber('##query.type##') });
     site.showModal('#manageUsersManageModal');
     document.querySelector("#manageUsersManageModal .tab-link").click();
   };
@@ -113,8 +113,8 @@ app.controller("manage_users", function ($scope, $http) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/manage_users/add",
-      data: $scope.manage_users
+      url: "/api/manageUsers/add",
+      data: $scope.manageUsers
     }).then(
       function (response) {
         $scope.busy = false;
@@ -130,11 +130,11 @@ app.controller("manage_users", function ($scope, $http) {
       }
     )
   };
-  $scope.displayUpdateManageUsers = function (manage_users) {
+  $scope.displayUpdateManageUsers = function (manageUsers) {
     $scope.error = '';
     $scope.mode = 'edit';
-    $scope.viewManageUsers(manage_users);
-    $scope.manage_users = {};
+    $scope.viewManageUsers(manageUsers);
+    $scope.manageUsers = {};
     site.showModal('#manageUsersManageModal');
     document.querySelector("#manageUsersManageModal .tab-link").click();
   };
@@ -150,7 +150,7 @@ app.controller("manage_users", function ($scope, $http) {
     $http({
       method: "POST",
       url: "/api/user/update",
-      data: $scope.manage_users
+      data: $scope.manageUsers
     }).then(
       function (response) {
         $scope.busy = false;
@@ -167,31 +167,31 @@ app.controller("manage_users", function ($scope, $http) {
     )
   };
 
-  $scope.displayDetailsManageUsers = function (manage_users) {
+  $scope.displayDetailsManageUsers = function (manageUsers) {
     $scope.error = '';
     $scope.mode = 'view';
-    $scope.viewManageUsers(manage_users);
-    $scope.manage_users = {};
+    $scope.viewManageUsers(manageUsers);
+    $scope.manageUsers = {};
     site.showModal('#manageUsersManageModal');
   };
 
 
-  $scope.viewManageUsers = function (manage_users) {
-    $scope.manage_users = {};
+  $scope.viewManageUsers = function (manageUsers) {
+    $scope.manageUsers = {};
     $scope.busy = true;
     $http({
       method: "POST",
       url: "/api/manage_user/view",
-      data: { id: manage_users.id, all: true },
+      data: { id: manageUsers.id, all: true },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $scope.manage_users = response.data.doc;
+          $scope.manageUsers = response.data.doc;
 
-          $scope.manage_users.$permissions_info;
+          $scope.manageUsers.$permissions_info;
           $scope.permissions_list = [];
-          $scope.manage_users.$permissions_info.forEach((_p) => {
+          $scope.manageUsers.$permissions_info.forEach((_p) => {
             $scope.permissions_list.push({
               name: _p.screen_name,
               module_name: _p.module_name,
@@ -214,8 +214,7 @@ app.controller("manage_users", function ($scope, $http) {
                       (el) => el.name == _s.name.replace(/-/g, "_")
                     );
                     if (newname) {
-                      _s.name_ar = newname.ar;
-                      _s.name_en = newname.en;
+                      _s.name = newname;
                     }
                   }
                 });
@@ -224,7 +223,7 @@ app.controller("manage_users", function ($scope, $http) {
             function (err) { }
           );
         } else {
-          $scope.manage_users = {};
+          $scope.manageUsers = {};
         }
       },
       function (err) {
@@ -277,8 +276,7 @@ app.controller("manage_users", function ($scope, $http) {
                 $scope.screens.forEach(s => {
                   let newname = data.find(el => el.name == s.name.replace(/-/g, '_'));
                   if (newname) {
-                    s.name_ar = newname.ar;
-                    s.name_en = newname.en;
+                    s.name = newname;
                   }
 
                 })
@@ -303,11 +301,11 @@ app.controller("manage_users", function ($scope, $http) {
 
 
 
-  $scope.displayDeleteManageUsers = function (manage_users) {
+  $scope.displayDeleteManageUsers = function (manageUsers) {
     $scope.error = '';
     $scope.mode = 'delete';
-    $scope.viewManageUsers(manage_users);
-    $scope.manage_users = {};
+    $scope.viewManageUsers(manageUsers);
+    $scope.manageUsers = {};
     site.showModal('#manageUsersManageModal');
     document.querySelector("#manageUsersManageModal .tab-link").click();
   };
@@ -320,7 +318,7 @@ app.controller("manage_users", function ($scope, $http) {
       method: "POST",
       url: "/api/user/delete",
       data: {
-        id: $scope.manage_users.id
+        id: $scope.manageUsers.id
       }
     }).then(
       function (response) {
@@ -352,7 +350,7 @@ app.controller("manage_users", function ($scope, $http) {
     $scope.usersTypesList = [];
     $http({
       method: "POST",
-      url: "/api/users_types/all",
+      url: "/api/usersTypes/all",
     }).then(
       function (response) {
         $scope.busy = false;
@@ -441,7 +439,7 @@ app.controller("manage_users", function ($scope, $http) {
           id: 1,
           name: 1,
           code: 1,
-          country_code: 1,
+          countryCode: 1,
         },
       },
     }).then(
@@ -552,7 +550,7 @@ app.controller("manage_users", function ($scope, $http) {
     $scope.filesTypesList = [];
     $http({
       method: "POST",
-      url: "/api/file_type/all",
+      url: "/api/fileType/all",
       data: {
         where: {
           active: true,
@@ -575,8 +573,8 @@ app.controller("manage_users", function ($scope, $http) {
 
   $scope.addFiles = function () {
     $scope.error = "";
-    $scope.manage_users.files_list = $scope.manage_users.files_list || [];
-    $scope.manage_users.files_list.push({
+    $scope.manageUsers.files_list = $scope.manageUsers.files_list || [];
+    $scope.manageUsers.files_list.push({
       file_date: new Date(),
       file_upload_date: new Date(),
       upload_by: "##user.profile.name##",

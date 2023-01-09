@@ -2,13 +2,13 @@ module.exports = function init(site) {
   const $content = site.connectCollection("content")
 
   site.get({
-    name: "report-communications",
+    name: "reportCommunications",
     path: __dirname + "/site_files/html/index.html",
     parser: "html",
     compress: true
   })
 
-  site.post("/api/report_communications/all", (req, res) => {
+  site.post("/api/reportCommunications/all", (req, res) => {
     let response = {
       done: false
     };
@@ -29,43 +29,43 @@ module.exports = function init(site) {
     }
 
     if (search.type == 'ads') {
-      req.body.select['report_list'] = 1;
-      where['report_list.report_type.id'] = { $gt: 0 }
+      req.body.select['reportList'] = 1;
+      where['reportList.reportType.id'] = { $gt: 0 }
       if (search.date) {
         let d1 = site.toDate(search.date)
         let d2 = site.toDate(search.date)
         d2.setDate(d2.getDate() + 1)
-        where['report_list.date'] = {
+        where['reportList.date'] = {
           '$gte': d1,
           '$lt': d2
         }
-      } else if (search && search.date_from) {
-        let d1 = site.toDate(search.date_from)
-        let d2 = site.toDate(search.date_to)
+      } else if (search && search.dateFrom) {
+        let d1 = site.toDate(search.dateFrom)
+        let d2 = site.toDate(search.dateTo)
         d2.setDate(d2.getDate() + 1);
-        where['report_list.date'] = {
+        where['reportList.date'] = {
           '$gte': d1,
           '$lt': d2
         }
 
       }
     } else if (search.type == 'comments') {
-      req.body.select['comment_list'] = 1;
-      where['comment_list.report_list.report_type.id'] = { $gt: 0 }
+      req.body.select['commentList'] = 1;
+      where['commentList.reportList.reportType.id'] = { $gt: 0 }
 
       if (search.date) {
         let d1 = site.toDate(search.date)
         let d2 = site.toDate(search.date)
         d2.setDate(d2.getDate() + 1)
-        where['comment_list.report_list.date'] = {
+        where['commentList.reportList.date'] = {
           '$gte': d1,
           '$lt': d2
         }
-      } else if (search && search.date_from) {
-        let d1 = site.toDate(search.date_from)
-        let d2 = site.toDate(search.date_to)
+      } else if (search && search.dateFrom) {
+        let d1 = site.toDate(search.dateFrom)
+        let d2 = site.toDate(search.dateTo)
         d2.setDate(d2.getDate() + 1);
-        where['comment_list.report_list.date'] = {
+        where['commentList.reportList.date'] = {
           '$gte': d1,
           '$lt': d2
         }
@@ -73,21 +73,21 @@ module.exports = function init(site) {
       }
 
     } else if (search.type == 'replies') {
-      req.body.select['comment_list'] = 1;
-      where['comment_list.reply_list.report_list.report_type.id'] = { $gt: 0 }
+      req.body.select['commentList'] = 1;
+      where['commentList.replyList.reportList.reportType.id'] = { $gt: 0 }
       if (search.date) {
         let d1 = site.toDate(search.date)
         let d2 = site.toDate(search.date)
         d2.setDate(d2.getDate() + 1)
-        where['comment_list.reply_list.report_list.date'] = {
+        where['commentList.replyList.reportList.date'] = {
           '$gte': d1,
           '$lt': d2
         }
-      } else if (search && search.date_from) {
-        let d1 = site.toDate(search.date_from)
-        let d2 = site.toDate(search.date_to)
+      } else if (search && search.dateFrom) {
+        let d1 = site.toDate(search.dateFrom)
+        let d2 = site.toDate(search.dateTo)
         d2.setDate(d2.getDate() + 1);
-        where['comment_list.reply_list.report_list.date'] = {
+        where['commentList.replyList.reportList.date'] = {
           '$gte': d1,
           '$lt': d2
         }
@@ -121,16 +121,16 @@ module.exports = function init(site) {
         let list = [];
         if (search.type == 'ads') {
           docs.forEach(_doc => {
-            _doc.report_list = _doc.report_list || [];
-            _doc.report_list.forEach(_r => {
+            _doc.reportList = _doc.reportList || [];
+            _doc.reportList.forEach(_r => {
 
-              if (_r.report_type && _r.report_type.id) {
+              if (_r.reportType && _r.reportType.id) {
                 list.push({
-                  ad_name: _doc.name,
-                  ad_user: _doc.store.user,
-                  report_user: _r.user,
-                  report_type: _r.report_type,
-                  comment_report: _r.comment_report,
+                  adName: _doc.name,
+                  adUser: _doc.store.user,
+                  reportUser: _r.user,
+                  reportType: _r.reportType,
+                  commentReport: _r.commentReport,
                   date: _r.date,
                 })
               }
@@ -138,19 +138,19 @@ module.exports = function init(site) {
           });
         } else if (search.type == 'comments') {
           docs.forEach(_doc => {
-            _doc.comment_list = _doc.comment_list || [];
-            _doc.comment_list.forEach(_c => {
-              _c.report_list = _c.report_list || [];
-              _c.report_list.forEach(_r => {
-                if (_r.report_type && _r.report_type.id) {
+            _doc.commentList = _doc.commentList || [];
+            _doc.commentList.forEach(_c => {
+              _c.reportList = _c.reportList || [];
+              _c.reportList.forEach(_r => {
+                if (_r.reportType && _r.reportType.id) {
                   list.push({
-                    ad_name: _doc.name,
-                    ad_user: _doc.store.user,
+                    adName: _doc.name,
+                    adUser: _doc.store.user,
                     comment_user: _c.user,
                     comment: _c.comment,
-                    report_user: _r.user,
-                    report_type: _r.report_type,
-                    comment_report: _r.comment_report,
+                    reportUser: _r.user,
+                    reportType: _r.reportType,
+                    commentReport: _r.commentReport,
                     date: _r.date,
                   })
                 }
@@ -159,23 +159,23 @@ module.exports = function init(site) {
           });
         } else if (search.type == 'replies') {
           docs.forEach(_doc => {
-            _doc.comment_list = _doc.comment_list || [];
-            _doc.comment_list.forEach(_c => {
-              _c.reply_list = _c.reply_list || [];
-              _c.reply_list.forEach(_reply => {
-                _reply.report_list = _reply.report_list || [];
-                _reply.report_list.forEach(_r => {
-                  if (_r.report_type && _r.report_type.id) {
+            _doc.commentList = _doc.commentList || [];
+            _doc.commentList.forEach(_c => {
+              _c.replyList = _c.replyList || [];
+              _c.replyList.forEach(_reply => {
+                _reply.reportList = _reply.reportList || [];
+                _reply.reportList.forEach(_r => {
+                  if (_r.reportType && _r.reportType.id) {
                     list.push({
-                      ad_name: _doc.name,
-                      ad_user: _doc.store.user,
+                      adName: _doc.name,
+                      adUser: _doc.store.user,
                       comment_user: _c.user,
                       comment: _c.comment,
-                      reply_user: _reply.user,
+                      replyUser: _reply.user,
                       reply: _reply.comment,
-                      report_user: _r.user,
-                      report_type: _r.report_type,
-                      comment_report: _r.comment_report,
+                      reportUser: _r.user,
+                      reportType: _r.reportType,
+                      commentReport: _r.commentReport,
                       date: _r.date,
                     })
                   }

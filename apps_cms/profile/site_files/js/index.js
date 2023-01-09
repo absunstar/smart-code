@@ -122,19 +122,19 @@ app.controller('profile', function ($scope, $http, $timeout) {
       $scope.error = v.messages[0].ar;
       return;
     }
-    if (!$scope.send_message) {
+    if (!$scope.sendMessage) {
       $scope.error = '##word.must_write_message##';
       return;
     }
     let message_obj = {
       date: new Date(),
-      message: $scope.send_message,
+      message: $scope.sendMessage,
       receiver: {
         id: $scope.user.id,
         name: $scope.user.profile.name,
-        last_name: $scope.user.profile.last_name,
+        lastName: $scope.user.profile.lastName,
         email: $scope.user.email,
-        image_url: $scope.user.profile.image_url,
+        imageUrl: $scope.user.profile.imageUrl,
       },
       show: false,
     };
@@ -146,7 +146,7 @@ app.controller('profile', function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $scope.send_message = undefined;
+          $scope.sendMessage = undefined;
           site.hideModal('#messageModal');
           $scope.busy = false;
         } else {

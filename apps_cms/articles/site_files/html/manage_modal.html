@@ -26,7 +26,7 @@
           <div class="col9">
             <div class="article-part">
               <div class="row">
-                <i-list class="red col4" v="r" label="##word.article_template##" ng-model="article.type" items="articleTypesList" display="##session.lang##" ng-search="article.$type_search"> </i-list>
+                <i-list class="red col4" v="r" label="##word.article_template##" ng-model="article.type" items="articleTypesList" display="##session.lang##" ng-search="article.$typeSearch"> </i-list>
                 <i-list
                   label="##word.language##"
                   class="col3"
@@ -34,10 +34,10 @@
                   ng-model="article.$language"
                   items="languagesList"
                   display="##session.lang##"
-                  ng-search="article.$language.$lang_search"
+                  ng-search="article.$language.$langSearch"
                 >
                 </i-list>
-                <i-checkbox class="col2" label="##word.auto_translate##" ng-show="article.$show_create" ng-model="article.$auto_translate"> </i-checkbox>
+                <i-checkbox class="col2" label="##word.auto_translate##" ng-show="article.$showCreate" ng-model="article.$autoTranslate"> </i-checkbox>
                 <div class="col3">
                   <br />
                   <i-button type="add" ng-show="article.$show_create" label="##word.create##" ng-click="addLanguage(article.$language)"> </i-button>
@@ -47,12 +47,12 @@
 
             <div class="row">
               <div class="col6">
-                <i-date ng-show="defaultSettings.content.publishing_system.id == 2" ng-model="article.date" label="##word.publishing_date##"></i-date>
-                <i-date ng-show="defaultSettings.content.closing_system.id == 2" ng-model="article.expiry_date" label="##word.expiry_date##"></i-date>
+                <i-date ng-show="defaultSettings.content.publishingSystem.id == 2" ng-model="article.date" label="##word.publishing_date##"></i-date>
+                <i-date ng-show="defaultSettings.content.closingSystem.id == 2" ng-model="article.expiryDate" label="##word.expiry_date##"></i-date>
               </div>
             </div>
 
-            <div class="row" ng-repeat="art in article.content_list track by $index" ng-show="art.language.id == article.$language.id">
+            <div class="row" ng-repeat="art in article.translatedList track by $index" ng-show="art.language.id == article.$language.id">
               <div class="tabs">
                 <div class="tabs-header full">
                   <a class="tab-link inline-block" onclick="site.showTabContent(event, '#basic')"> ##word.basic_information## </a>
@@ -85,20 +85,20 @@
                           <i-button type="add default" ng-click="addMultiParagraph(art)"></i-button>
                         </legend>
 
-                        <div class="row" ng-repeat="p in art.multi_paragraph_list">
+                        <div class="row" ng-repeat="p in art.multiParagraphList">
                           <div class="row">
                             <i-control v="r" class="col9" label="##word.article_title##" ng-model="p.title"> </i-control>
 
                             <div class="col3 center">
-                              <i-image class="center" ng-model="p.image_url"></i-image>
-                              <i-checkbox class="center" label="##word.show_image##" ng-model="p.show_image"> </i-checkbox>
+                              <i-image class="center" ng-model="p.imageUrl"></i-image>
+                              <i-checkbox class="center" label="##word.show_image##" ng-model="p.showImage"> </i-checkbox>
                             </div>
                           </div>
 
                           <i-textarea class="row" ng-model="p.content" label="##word.content##"></i-textarea>
 
                           <div class="">
-                            <i-button type="delete" label="##word.delete##" ng-click="art.multi_paragraph_list.splice($index,1)"> </i-button>
+                            <i-button type="delete" label="##word.delete##" ng-click="art.multiParagraphList.splice($index,1)"> </i-button>
                           </div>
                           <hr />
                         </div>
@@ -110,16 +110,16 @@
                         <legend>
                           <i-button type="add default" ng-click="addMultiImage(art)"></i-button>
                         </legend>
-                        <div class="row" ng-repeat="i in art.multi_image_list">
+                        <div class="row" ng-repeat="i in art.multiImageList">
                           <div class="row">
                             <i-control v="r" class="col9" label="##word.article_title##" ng-model="i.title"> </i-control>
                             <div class="col3 center">
-                              <i-image class="center" ng-model="i.image_url"></i-image>
-                              <i-checkbox class="center" label="##word.show_image##" ng-model="i.show_image"> </i-checkbox>
+                              <i-image class="center" ng-model="i.imageUrl"></i-image>
+                              <i-checkbox class="center" label="##word.show_image##" ng-model="i.showImage"> </i-checkbox>
                             </div>
                           </div>
                           <div class="">
-                            <i-button type="delete" label="##word.delete##" ng-click="art.multi_image_list.splice($index,1)"> </i-button>
+                            <i-button type="delete" label="##word.delete##" ng-click="art.multiImageList.splice($index,1)"> </i-button>
                           </div>
 
                           <hr />
@@ -129,14 +129,25 @@
                     <div class="row">
                       <div class="col6">
                         <div class="article-part">
-                          <i-control class="blue bold" label="##word.keywords##" ng-keydown="addKeyDown($event , art)" ng-model="art.$keyword"> </i-control>
+                          <i-control class="blue bold" label="##word.keywords##" ng-keydown="addKeyWords($event , art)" ng-model="art.$keyword"> </i-control>
                           <div class="row">
-                            <div class="key-words" ng-repeat="k in art.keywords_list">
+                            <div class="key-words" ng-repeat="k in art.keyWordsList">
                               <span>{{k}}</span>
-                              <i class="fas fa-times delete-key" ng-click="art.keywords_list.splice($index,1)"></i>
+                              <i class="fas fa-times delete-key" ng-click="art.keyWordsList.splice($index,1)"></i>
                             </div>
                           </div>
                         </div>
+
+                        <div class="article-part">
+                          <i-control class="blue bold" label="Tags" ng-keydown="addTags($event , art)" ng-model="art.$tag"> </i-control>
+                          <div class="row">
+                            <div class="key-words" ng-repeat="t in art.tagsList">
+                              <span>{{t}}</span>
+                              <i class="fas fa-times delete-key" ng-click="art.tagsList.splice($index,1)"></i>
+                            </div>
+                          </div>
+                        </div>
+
                         <div class="article-part">
                           <div class="row">
                             <table class="table hover bold">
@@ -145,8 +156,8 @@
                                 <th>number of letters</th>
                               </tr>
                               <tr>
-                                <td class="center title">{{art.number_words}}</td>
-                                <td class="center title">{{art.number_letters}}</td>
+                                <td class="center title">{{art.numberWords}}</td>
+                                <td class="center title">{{art.numberLetters}}</td>
                               </tr>
                             </table>
                           </div>
@@ -155,8 +166,8 @@
                       <div class="col1"></div>
                       <div class="col5">
                         <div class="article-part">
-                          <i-checkbox class="" label="##word.show_image##" ng-model="art.show_image"> </i-checkbox>
-                          <i-image class="img256 full" ng-model="art.image_url"></i-image>
+                          <i-checkbox class="" label="##word.show_image##" ng-model="art.showImage"> </i-checkbox>
+                          <i-image class="img256 full" ng-model="art.imageUrl"></i-image>
                         </div>
                       </div>
                     </div>
@@ -173,47 +184,47 @@
                         </tr>
                         <tr>
                           <td class="center title">##word.number_views##</td>
-                          <td class="center title">{{art.actual_views}}</td>
+                          <td class="center title">{{art.actualViews}}</td>
                           <td class="center title">
-                            <i-control type="number" ng-model="art.dummy_views" ng-change="calc('views',art)"> </i-control>
+                            <i-control type="number" ng-model="art.dummyViews" ng-change="calc('views',art)"> </i-control>
                           </td>
-                          <td class="center title">{{art.apparent_views}}</td>
+                          <td class="center title">{{art.apparentViews}}</td>
                         </tr>
 
                         <tr>
-                          <td class="center title">##word.number_likes##</td>
-                          <td class="center title">{{art.actual_likes}}</td>
+                          <td class="center title">##word.numberLikes##</td>
+                          <td class="center title">{{art.actualLikes}}</td>
                           <td class="center title">
-                            <i-control type="number" ng-model="art.dummy_likes" ng-change="calc('likes',art)"> </i-control>
+                            <i-control type="number" ng-model="art.dummyLikes" ng-change="calc('likes',art)"> </i-control>
                           </td>
-                          <td class="center title">{{art.apparent_likes}}</td>
+                          <td class="center title">{{art.apparentLikes}}</td>
                         </tr>
 
                         <tr>
-                          <td class="center title">##word.number_comments##</td>
-                          <td class="center title">{{art.actual_comments}}</td>
+                          <td class="center title">##word.numberComments##</td>
+                          <td class="center title">{{art.actualComments}}</td>
                           <td class="center title">
-                            <i-control type="number" ng-model="art.dummy_comments" ng-change="calc('comments',art)"> </i-control>
+                            <i-control type="number" ng-model="art.dummyComments" ng-change="calc('comments',art)"> </i-control>
                           </td>
-                          <td class="center title">{{art.apparent_comments}}</td>
+                          <td class="center title">{{art.apparentComments}}</td>
                         </tr>
 
                         <tr>
-                          <td class="center title">##word.number_posts##</td>
-                          <td class="center title">{{art.actual_posts}}</td>
+                          <td class="center title">##word.numberPosts##</td>
+                          <td class="center title">{{art.actualPosts}}</td>
                           <td class="center title">
-                            <i-control type="number" ng-model="art.dummy_posts" ng-change="calc('posts',art)"> </i-control>
+                            <i-control type="number" ng-model="art.dummyPosts" ng-change="calc('posts',art)"> </i-control>
                           </td>
-                          <td class="center title">{{art.apparent_posts}}</td>
+                          <td class="center title">{{art.apparentPosts}}</td>
                         </tr>
 
                         <tr>
-                          <td class="center title">##word.number_ratings##</td>
-                          <td class="center title">{{art.actual_ratings}}</td>
+                          <td class="center title">##word.numberRatings##</td>
+                          <td class="center title">{{art.actualRatings}}</td>
                           <td class="center title">
-                            <i-control type="number" ng-model="art.dummy_ratings" ng-change="calc('ratings',art)"> </i-control>
+                            <i-control type="number" ng-model="art.dummyRatings" ng-change="calc('ratings',art)"> </i-control>
                           </td>
-                          <td class="center title">{{art.apparent_ratings}}</td>
+                          <td class="center title">{{art.apparentRatings}}</td>
                         </tr>
                       </table>
                     </div>
@@ -222,17 +233,17 @@
                   <div id="social" class="tab-content">
                     <div class="row">
                       <div class="col8">
-                        <i-control label="##word.title##" ng-model="art.social_title"> </i-control>
-                        <i-textarea ng-model="art.social_description" label="##word.description##"> </i-textarea>
+                        <i-control label="##word.title##" ng-model="art.socialTitle"> </i-control>
+                        <i-textarea ng-model="art.socialDescription" label="##word.description##"> </i-textarea>
                       </div>
 
                       <div class="col4">
                         <div class="article-part">
-                          <i-checkbox  label="##word.social_media_activation##" ng-model="art.social_media_activation"> </i-checkbox>
+                          <i-checkbox label="##word.social_media_activation##" ng-model="art.socialMediaActivation"> </i-checkbox>
                         </div>
                         <div class="article-part">
-                          <i-checkbox  label="##word.show_image##" ng-model="art.show_social_image"> </i-checkbox>
-                          <i-image ng-model="art.social_image"></i-image>
+                          <i-checkbox label="##word.show_image##" ng-model="art.showSocialImage"> </i-checkbox>
+                          <i-image ng-model="art.socialImage"></i-image>
                         </div>
                       </div>
                     </div>
@@ -241,18 +252,17 @@
                   <div id="external" class="tab-content">
                     <div class="row">
                       <div class="col8">
-                        <i-control label="##word.title##" ng-model="art.external_title"> </i-control>
-                        <i-textarea ng-model="art.external_description" label="##word.description##"> </i-textarea>
+                        <i-control label="##word.title##" ng-model="art.externalTitle"> </i-control>
+                        <i-textarea ng-model="art.externalDescription" label="##word.description##"> </i-textarea>
                       </div>
-
 
                       <div class="col4 center">
                         <div class="article-part">
-                          <i-checkbox label="##word.external_activation##" ng-model="art.external_activation"> </i-checkbox>
+                          <i-checkbox label="##word.external_activation##" ng-model="art.externalActivation"> </i-checkbox>
                         </div>
                         <div class="article-part">
-                          <i-checkbox label="##word.show_image##" ng-model="art.show_external_image"> </i-checkbox>
-                          <i-image ng-model="art.external_image"></i-image>
+                          <i-checkbox label="##word.show_image##" ng-model="art.showExternalImage"> </i-checkbox>
+                          <i-image ng-model="art.externalImage"></i-image>
                         </div>
                       </div>
                     </div>
@@ -266,11 +276,15 @@
                           Meta Tags
                           <i-button type="add default" ng-click="addMetaTags(art)"></i-button>
                         </legend>
+                        <i-checkbox label="Don't use site meta tags" ng-model="art.notUseSiteMetaTags"> </i-checkbox>
 
-                        <div class="row" ng-repeat="p in art.meta_tags track by $index">
-                          <i-control type="text" class="col9" ng-model="p.name"> </i-control>
-                          <div class="col1"></div>
-                          <i-button type="delete" label="##word.delete##" ng-click="art.meta_tags.splice($index,1)"> </i-button>
+                        <div class="row" ng-repeat="p in art.metaTags track by $index">
+                          <div class="row">
+                            <i-control type="text" class="col8" ng-model="p.name"> </i-control>
+                            <i-checkbox class="col2" label="active" ng-model="p.active"> </i-checkbox>
+                            <i-button type="delete" class="col2" label="##word.delete##" ng-click="art.metaTags.splice($index,1)"> </i-button>
+                          </div>
+                          <hr />
                         </div>
                       </fieldset>
 
@@ -279,11 +293,15 @@
                           Styles
                           <i-button type="add default" ng-click="addStyles(art)"></i-button>
                         </legend>
+                        <i-checkbox label="Don't use site styles" ng-model="art.notUseSiteStyles"> </i-checkbox>
 
                         <div class="row" ng-repeat="s in art.styles track by $index">
-                          <i-control type="text" class="col9" ng-model="s.name"> </i-control>
-                          <div class="col1"></div>
-                          <i-button type="delete" label="##word.delete##" ng-click="art.meta_tags.styles($index,1)"> </i-button>
+                          <div class="row">
+                            <i-control type="text" class="col8" ng-model="s.name"> </i-control>
+                            <i-checkbox class="col2" label="active" ng-model="s.active"> </i-checkbox>
+                            <i-button type="delete" class="col2" label="##word.delete##" ng-click="art.metaTags.styles($index,1)"> </i-button>
+                          </div>
+                          <hr />
                         </div>
                       </fieldset>
 
@@ -292,22 +310,28 @@
                           Scripts
                           <i-button type="add default" ng-click="addScripts(art)"></i-button>
                         </legend>
+                        <i-checkbox label="Don't use site scripts" ng-model="art.notUseSiteScripts"> </i-checkbox>
 
                         <div class="row" ng-repeat="s in art.scripts track by $index">
-                          <i-control type="text" class="col9" ng-model="s.name"> </i-control>
-                          <div class="col1"></div>
-                          <i-button type="delete" label="##word.delete##" ng-click="art.meta_tags.scripts($index,1)"> </i-button>
+                          <div class="row">
+                            <i-control type="text" class="col8" ng-model="s.name"> </i-control>
+                            <i-checkbox class="col2" label="active" ng-model="s.active"> </i-checkbox>
+                            <i-button class="col2" type="delete" label="##word.delete##" ng-click="art.metaTags.scripts($index,1)"> </i-button>
+                          </div>
+                          <hr />
                         </div>
                       </fieldset>
 
                       <fieldset>
                         <legend>Custom Style</legend>
-                        <i-textarea ng-model="art.custom_style"> </i-textarea>
+                        <i-checkbox label="Don't use site custom style" ng-model="art.notUseSiteCustomStyle"> </i-checkbox>
+                        <i-textarea ng-model="art.customStyle"> </i-textarea>
                       </fieldset>
 
                       <fieldset>
                         <legend>Custom Script</legend>
-                        <i-textarea ng-model="art.custom_script"> </i-textarea>
+                        <i-checkbox label="Don't use site custom script" ng-model="art.notUseSiteCustomScript"> </i-checkbox>
+                        <i-textarea ng-model="art.customScript"> </i-textarea>
                       </fieldset>
                     </fieldset>
                   </div>
@@ -321,16 +345,16 @@
             </div>
             <div class="row">
               <div class="article-part">
-                <i-checkbox label="Manual related topics" class="col8" ng-model="article.manual_related_topics"> </i-checkbox>
-                <i-button type="add" class="col4" label="##word.add##" ng-show="article.manual_related_topics" ng-click="showRelatedTopics()"> </i-button>
+                <i-checkbox label="Manual related topics" class="col8" ng-model="article.manualRelatedTopics"> </i-checkbox>
+                <i-button type="add" class="col4" label="##word.add##" ng-show="article.manualRelatedTopics" ng-click="showRelatedTopics()"> </i-button>
               </div>
             </div>
 
             <div class="">
               <div class="article-part">
-                <i-list label="##word.writer##" ng-model="article.writer" items="writersList" display="profile.name" ng-search="article.$writer_search"> </i-list>
+                <i-list label="##word.writer##" ng-model="article.writer" items="writersList" display="profile.name" ng-search="article.$writerSearch"> </i-list>
 
-                <i-list label="##word.editor##" ng-model="article.editor" items="editorsList" display="profile.name" ng-search="article.$editor_search"> </i-list>
+                <i-list label="##word.editor##" ng-model="article.editor" items="editorsList" display="profile.name" ng-search="article.$editorSearch"> </i-list>
               </div>
 
               <div class="article-part">
@@ -338,54 +362,54 @@
                   class="red"
                   label="##word.category##"
                   v="r"
-                  ng-model="article.main_category"
-                  ng-click="loadSubCategory1(article.main_category)"
-                  items="top_category_list"
+                  ng-model="article.mainCategory"
+                  ng-click="loadSubCategory1(article.mainCategory)"
+                  items="topCategoryList"
                   display="name"
-                  ng-search="article.$category1_search"
+                  ng-search="article.$category1Search"
                 >
                 </i-list>
 
                 <i-list
-                  label="##word.categories## {{article.main_category.name}}"
-                  ng-model="article.sub_category1"
-                  ng-click="loadSubCategory2(article.sub_category1)"
+                  label="##word.categories## {{article.mainCategory.name}}"
+                  ng-model="article.subCategory1"
+                  ng-click="loadSubCategory2(article.subCategory1)"
                   items="subCategoriesList1"
-                  ng-show="subCategoriesList1.length > 0 && article.main_category"
+                  ng-show="subCategoriesList1.length > 0 && article.mainCategory"
                   display="name"
-                  ng-search="article.$category2_search"
+                  ng-search="article.$category2Search"
                 >
                 </i-list>
 
                 <i-list
-                  label="##word.categories## {{article.sub_category1.name}}"
-                  ng-model="article.sub_category2"
-                  ng-click="loadSubCategory3(article.$sub_category2)"
+                  label="##word.categories## {{article.subCategory1.name}}"
+                  ng-model="article.subCategory2"
+                  ng-click="loadSubCategory3(article.$subCategory2)"
                   items="subCategoriesList2"
-                  ng-show="subCategoriesList2.length > 0 && article.sub_category1"
+                  ng-show="subCategoriesList2.length > 0 && article.subCategory1"
                   display="name"
-                  ng-search="article.$category3_search"
+                  ng-search="article.$category3Search"
                 >
                 </i-list>
 
                 <i-list
-                  label="##word.categories## {{article.sub_category2.name}}"
-                  ng-model="article.sub_category3"
-                  ng-click="loadSubCategory4(article.sub_category3)"
+                  label="##word.categories## {{article.subCategory2.name}}"
+                  ng-model="article.subCategory3"
+                  ng-click="loadSubCategory4(article.subCategory3)"
                   items="subCategoriesList3"
-                  ng-show="subCategoriesList3.length > 0 && article.sub_category2"
+                  ng-show="subCategoriesList3.length > 0 && article.subCategory2"
                   display="name"
-                  ng-search="article.$category4_search"
+                  ng-search="article.$category4Search"
                 >
                 </i-list>
 
                 <i-list
-                  label="##word.categories## {{article.sub_category3.name}}"
-                  ng-model="article.sub_category4"
+                  label="##word.categories## {{article.subCategory3.name}}"
+                  ng-model="article.subCategory4"
                   items="subCategoriesList4"
-                  ng-show="subCategoriesList4.length > 0 && article.sub_category3"
+                  ng-show="subCategoriesList4.length > 0 && article.subCategory3"
                   display="name"
-                  ng-search="article.$category5_search"
+                  ng-search="article.$category5Search"
                 >
                 </i-list>
               </div>
@@ -395,19 +419,19 @@
               </div>
 
               <div class="article-part">
-                <i-checkbox label="Hide from search engines" ng-model="article.hide_search_engines"> </i-checkbox>
+                <i-checkbox label="Hide from search engines" ng-model="article.hideSearchEngines"> </i-checkbox>
                 <i-checkbox label="Pin Acticle" ng-model="article.pin_article"> </i-checkbox>
-                <i-checkbox class="" label="##word.subscribers_only##" ng-model="article.subscribers_only"> </i-checkbox>
-                <i-checkbox class="" label="##word.special_men##" ng-model="article.special_men"> </i-checkbox>
-                <i-checkbox class="" label="##word.special_women##" ng-model="article.special_women"> </i-checkbox>
-                <i-checkbox class="" label="##word.appear_in_urgent##" ng-model="article.appear_in_urgent"> </i-checkbox>
-                <i-checkbox class="" label="##word.exclude_most_viewed##" ng-model="article.exclude_most_viewed"> </i-checkbox>
-                <i-checkbox class="" label="##word.exclude_home_page##" ng-model="article.exclude_home_page"> </i-checkbox>
+                <i-checkbox class="" label="##word.subscribers_only##" ng-model="article.subscribersOnly"> </i-checkbox>
+                <i-checkbox class="" label="##word.special_men##" ng-model="article.specialMen"> </i-checkbox>
+                <i-checkbox class="" label="##word.special_women##" ng-model="article.specialWomen"> </i-checkbox>
+                <i-checkbox class="" label="##word.appear_in_urgent##" ng-model="article.appearInUrgent"> </i-checkbox>
+                <i-checkbox class="" label="##word.exclude_most_viewed##" ng-model="article.excludeMostViewed"> </i-checkbox>
+                <i-checkbox class="" label="##word.exclude_home_page##" ng-model="article.excludeHomePage"> </i-checkbox>
               </div>
 
               <div class="article-part">
-                <i-checkbox class="" label="Location Activated" ng-model="article.location_activated"> </i-checkbox>
-                <div ng-show="article.location_activated">
+                <i-checkbox class="" label="Location Activated" ng-model="article.locationActivated"> </i-checkbox>
+                <div ng-show="article.locationActivated">
                   <i-list
                     class="row"
                     label="##word.country##"
@@ -415,32 +439,16 @@
                     ng-model="article.country"
                     display="name"
                     items="countriesList"
-                    ng-search="_search.$city_country"
+                    ng-search="_search.$cityCountry"
                   ></i-list>
 
-                  <i-list
-                    class="row"
-                    label="##word.gov##"
-                    ng-model="article.gov"
-                    items="govesList"
-                    ng-change="getCityList(article.gov)"
-                    display="name"
-                    ng-search="_search.$article.$gov_search"
-                  >
+                  <i-list class="row" label="##word.gov##" ng-model="article.gov" items="govesList" ng-change="getCityList(article.gov)" display="name" ng-search="_search.$article.$govSearch">
                   </i-list>
 
-                  <i-list
-                    class="row"
-                    ng-change="getAreaList(article.city)"
-                    label="##word.city##"
-                    ng-model="article.city"
-                    items="cityList"
-                    display="name"
-                    ng-search="_search.$article.$city_search"
-                  >
+                  <i-list class="row" ng-change="getAreaList(article.city)" label="##word.city##" ng-model="article.city" items="cityList" display="name" ng-search="_search.$article.$citySearch">
                   </i-list>
 
-                  <i-list class="row" label="##word.area##" ng-model="article.area" items="areaList" display="name" ng-search="_search.$article.$area_search"> </i-list>
+                  <i-list class="row" label="##word.area##" ng-model="article.area" items="areaList" display="name" ng-search="_search.$article.$areaSearch"> </i-list>
 
                   <div class="row">
                     <i-control class="col6" type="number" label="##word.longitudes##" ng-model="article.longitudes"> </i-control>
@@ -459,17 +467,17 @@
             </tr>
             <tr>
               <td class="center">
-                <p class="blue">{{article.add_user_info.name}}</p>
-                <small class="green"> {{article.add_user_info.date |date:"hh:mm"}} </small>
-                <small> {{article.add_user_info.date |date:"dd - MM - yyyy"}} </small>
-                <p class="bold">IP : {{article.add_user_info.ip}}</p>
+                <p class="blue">{{article.addUserInfo.name}}</p>
+                <small class="green"> {{article.addUserInfo.date |date:"hh:mm"}} </small>
+                <small> {{article.addUserInfo.date |date:"dd - MM - yyyy"}} </small>
+                <p class="bold">IP : {{article.addUserInfo.ip}}</p>
               </td>
 
               <td class="center">
-                <p class="blue">{{article.edit_user_info.name}}</p>
-                <small class="green"> {{article.edit_user_info.date |date:"hh:mm"}} </small>
-                <small> {{article.edit_user_info.date |date:"dd - MM - yyyy"}} </small>
-                <p class="bold">IP : {{article.edit_user_info.ip}}</p>
+                <p class="blue">{{article.editUserInfo.name}}</p>
+                <small class="green"> {{article.editUserInfo.date |date:"hh:mm"}} </small>
+                <small> {{article.editUserInfo.date |date:"dd - MM - yyyy"}} </small>
+                <p class="bold">IP : {{article.editUserInfo.ip}}</p>
               </td>
             </tr>
           </table>

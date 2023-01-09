@@ -38,7 +38,7 @@
           </div>
 
           <div class="col3">
-            <i-image help-id="goves_logo" ng-model="gov.image_url"></i-image>
+            <i-image help-id="goves_logo" ng-model="gov.imageUrl"></i-image>
           </div>
         </div>
       </fieldset>
@@ -51,17 +51,17 @@
           </tr>
           <tr>
             <td class="center">
-              <p class="blue">{{gov.add_user_info.name_##session.lang##}}</p>
-              <small class="green"> {{gov.add_user_info.date |date:"hh:mm"}} </small>
-              <small> {{gov.add_user_info.date |date:"dd - MM - yyyy"}} </small>
-              <p class="bold">IP : {{gov.add_user_info.ip}}</p>
+              <p class="blue">{{gov.addUserInfo.name}}</p>
+              <small class="green"> {{gov.addUserInfo.date |date:"hh:mm"}} </small>
+              <small> {{gov.addUserInfo.date |date:"dd - MM - yyyy"}} </small>
+              <p class="bold">IP : {{gov.addUserInfo.ip}}</p>
             </td>
 
             <td class="center">
-              <p class="blue">{{gov.edit_user_info.name_##session.lang##}}</p>
-              <small class="green"> {{gov.edit_user_info.date |date:"hh:mm"}} </small>
-              <small> {{gov.edit_user_info.date |date:"dd - MM - yyyy"}} </small>
-              <p class="bold">IP : {{gov.edit_user_info.ip}}</p>
+              <p class="blue">{{gov.editUserInfo.name}}</p>
+              <small class="green"> {{gov.editUserInfo.date |date:"hh:mm"}} </small>
+              <small> {{gov.editUserInfo.date |date:"dd - MM - yyyy"}} </small>
+              <p class="bold">IP : {{gov.editUserInfo.ip}}</p>
             </td>
           </tr>
         </table>

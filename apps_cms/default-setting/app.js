@@ -1,6 +1,6 @@
 module.exports = function init(site) {
-  const $default_setting = site.connectCollection('default_setting');
-  let article_types = [
+  const $defaultSetting = site.connectCollection('defaultSetting');
+  let articleTypes = [
     {
       id: 1,
       en: 'Simble',
@@ -47,55 +47,63 @@ module.exports = function init(site) {
 
   let languages = [
     {
-      id: 1,
+      id: 'ar',
       en: 'Arabic',
       ar: 'عربي',
       active: true,
+      direction: 'rtl',
     },
     {
-      id: 2,
+      id: 'en',
       en: 'English',
       ar: 'إنجليزي',
       active: true,
+      direction: 'ltr',
     },
     {
-      id: 3,
+      id: 'fr',
       en: 'French',
       ar: 'فرنساوي',
       active: true,
+      direction: 'ltr',
     },
     {
-      id: 4,
+      id: 'tr',
       en: 'Turki',
       ar: 'تركي',
       active: true,
+      direction: 'rtl',
     },
   ];
 
   site.defaultSettingDoc = {
-    length_order: 0,
-    site_template: { id: 5 },
-    article: {
-      article_types: article_types,
-      languages: languages,
-    },
+    lengthOrder: 0,
+    siteTemplate: { id: 5 },
     programming: {},
+    languagesList: [],
+    article: {
+      articleTypes: articleTypes,
+    },
     block: {},
   };
   site.setting = { ...site.defaultSettingDoc };
 
-  $default_setting.findOne({}, (err, doc) => {
+  languages.forEach((l) => {
+    site.defaultSettingDoc.languagesList.push({ language: l });
+  });
+
+  $defaultSetting.findOne({}, (err, doc) => {
     if (!err && doc) {
       site.defaultSettingDoc = doc;
-      if (!site.defaultSettingDoc.article.article_types) {
-        site.defaultSettingDoc.article.article_types = article_types;
+      if (!site.defaultSettingDoc.article.articleTypes) {
+        site.defaultSettingDoc.article.articleTypes = articleTypes;
       }
       if (!site.defaultSettingDoc.article.languages) {
         site.defaultSettingDoc.article.languages = languages;
       }
       site.setting = { ...site.defaultSettingDoc };
     } else {
-      $default_setting.add(site.defaultSettingDoc, (err, doc) => {
+      $defaultSetting.add(site.defaultSettingDoc, (err, doc) => {
         if (!err && doc) {
           site.defaultSettingDoc = doc;
           site.setting = { ...site.defaultSettingDoc };
@@ -105,7 +113,7 @@ module.exports = function init(site) {
   });
 
   site.get({
-    name: 'default_setting',
+    name: 'defaultSetting',
     path: __dirname + '/site_files/html/index.html',
     parser: 'html',
     compress: false,
@@ -117,33 +125,33 @@ module.exports = function init(site) {
   });
 
   site.post({
-    name: '/api/publishing_system/all',
-    path: __dirname + '/site_files/json/publishing_system.json',
+    name: '/api/publishingSystem/all',
+    path: __dirname + '/site_files/json/publishingSystem.json',
   });
 
   site.post({
-    name: '/api/site_template/all',
-    path: __dirname + '/site_files/json/site_template.json',
+    name: '/api/siteTemplate/all',
+    path: __dirname + '/site_files/json/siteTemplate.json',
   });
 
   site.post({
-    name: '/api/site_color/all',
-    path: __dirname + '/site_files/json/site_color.json',
+    name: '/api/siteColor/all',
+    path: __dirname + '/site_files/json/siteColor.json',
   });
 
   site.post({
-    name: '/api/article_status/all',
-    path: __dirname + '/site_files/json/article_status.json',
+    name: '/api/articleStatus/all',
+    path: __dirname + '/site_files/json/articleStatus.json',
   });
 
   site.post({
-    name: '/api/duration_expiry/all',
-    path: __dirname + '/site_files/json/duration_expiry.json',
+    name: '/api/durationExpiry/all',
+    path: __dirname + '/site_files/json/durationExpiry.json',
   });
 
   site.post({
     name: '/api/closing_system/all',
-    path: __dirname + '/site_files/json/closing_system.json',
+    path: __dirname + '/site_files/json/closingSystem.json',
   });
 
   site.post({
@@ -151,7 +159,7 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/json/location.json',
   });
 
-  site.post('/api/default_setting/get', (req, res) => {
+  site.post('/api/defaultSetting/get', (req, res) => {
     let response = {
       doc: site.setting,
       done: true,
@@ -165,7 +173,7 @@ module.exports = function init(site) {
     return site.setting;
   };
 
-  site.post('/api/default_setting/save', (req, res) => {
+  site.post('/api/defaultSetting/save', (req, res) => {
     let response = {
       done: false,
     };
@@ -178,7 +186,7 @@ module.exports = function init(site) {
 
     let data = req.data;
 
-    $default_setting.update(data, (err, result) => {
+    $defaultSetting.update(data, (err, result) => {
       if (!err) {
         response.done = true;
         site.defaultSettingDoc = data;

@@ -39,7 +39,7 @@ module.exports = function init(site) {
     menus_doc.$req = req;
     menus_doc.$res = res;
 
-    menus_doc.add_user_info = site.security.getUserFinger({
+    menus_doc.addUserInfo = site.security.getUserFinger({
       $req: req,
       $res: res,
     });
@@ -49,7 +49,7 @@ module.exports = function init(site) {
     }
 
     if (menus_doc.linkage_type.id == 1) {
-      if (!menus_doc.main_category || !menus_doc.main_category.id) {
+      if (!menus_doc.mainCategory || !menus_doc.mainCategory.id) {
         response.error = 'must select category';
         res.json(response);
         return;
@@ -100,7 +100,7 @@ module.exports = function init(site) {
 
     let menus_doc = req.body;
 
-    menus_doc.edit_user_info = site.security.getUserFinger({
+    menus_doc.editUserInfo = site.security.getUserFinger({
       $req: req,
       $res: res,
     });
@@ -112,7 +112,7 @@ module.exports = function init(site) {
     }
 
     if (menus_doc.linkage_type.id == 1) {
-      if (!menus_doc.main_category || !menus_doc.main_category.id) {
+      if (!menus_doc.mainCategory || !menus_doc.mainCategory.id) {
         response.error = 'must select category';
         res.json(response);
         return;
@@ -239,17 +239,6 @@ module.exports = function init(site) {
     };
 
     let where = req.body.where || {};
-
-    if (where['name']) {
-      where.$or = [];
-      where.$or.push({
-        name_ar: site.get_RegExp(where['name'], 'i'),
-      });
-      where.$or.push({
-        name_en: site.get_RegExp(where['name'], 'i'),
-      });
-      delete where['name']
-    }
 
     // site.menu_list.filter(u => u.name.contains(where['name']))
 

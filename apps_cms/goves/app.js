@@ -1,9 +1,9 @@
 module.exports = function init(site) {
   const $goves = site.connectCollection('goves');
-  site.gov_list = [];
+  site.govList = [];
   $goves.findMany({}, (err, docs) => {
     if (!err && docs) {
-      site.gov_list = [...site.gov_list, ...docs];
+      site.govList = [...site.govList, ...docs];
     }
   });
 
@@ -13,7 +13,7 @@ module.exports = function init(site) {
         {
           $add: true,
           name: 'المنطقة الشرقية',
-          image_url: '/images/gov.png',
+          imageUrl: '/images/gov.png',
           code: 'ep',
           active: true,
           country: {
@@ -25,7 +25,7 @@ module.exports = function init(site) {
         {
           $add: true,
           name: 'نجران',
-          image_url: '/images/gov.png',
+          imageUrl: '/images/gov.png',
           code: 'ng',
           active: true,
           country: {
@@ -37,7 +37,7 @@ module.exports = function init(site) {
         {
           $add: true,
           name: 'جازان',
-          image_url: '/images/gov.png',
+          imageUrl: '/images/gov.png',
           code: 'jz',
           active: true,
           country: {
@@ -49,7 +49,7 @@ module.exports = function init(site) {
         {
           $add: true,
           name: 'عسير',
-          image_url: '/images/gov.png',
+          imageUrl: '/images/gov.png',
           code: 'as',
           active: true,
           country: {
@@ -61,7 +61,7 @@ module.exports = function init(site) {
         {
           $add: true,
           name: 'الباحة',
-          image_url: '/images/gov.png',
+          imageUrl: '/images/gov.png',
           code: 'bh',
           active: true,
           country: {
@@ -73,7 +73,7 @@ module.exports = function init(site) {
         {
           $add: true,
           name: 'مكة المكرمة',
-          image_url: '/images/gov.png',
+          imageUrl: '/images/gov.png',
           code: 'mk',
           active: true,
           country: {
@@ -85,7 +85,7 @@ module.exports = function init(site) {
         {
           $add: true,
           name: 'المدينة المنورة',
-          image_url: '/images/gov.png',
+          imageUrl: '/images/gov.png',
           code: 'md',
           active: true,
           country: {
@@ -97,7 +97,7 @@ module.exports = function init(site) {
         {
           $add: true,
           name: 'الرياض',
-          image_url: '/images/gov.png',
+          imageUrl: '/images/gov.png',
           code: 'rd',
           active: true,
           country: {
@@ -109,7 +109,7 @@ module.exports = function init(site) {
         {
           $add: true,
           name: 'القصيم',
-          image_url: '/images/gov.png',
+          imageUrl: '/images/gov.png',
           code: 'qs',
           active: true,
           country: {
@@ -121,7 +121,7 @@ module.exports = function init(site) {
         {
           $add: true,
           name: 'حائل',
-          image_url: '/images/gov.png',
+          imageUrl: '/images/gov.png',
           code: 'hl',
           active: true,
           country: {
@@ -133,7 +133,7 @@ module.exports = function init(site) {
         {
           $add: true,
           name: 'الحدود الشمالية',
-          image_url: '/images/gov.png',
+          imageUrl: '/images/gov.png',
           code: 'nb',
           active: true,
           country: {
@@ -145,7 +145,7 @@ module.exports = function init(site) {
         {
           $add: true,
           name: 'الجوف',
-          image_url: '/images/gov.png',
+          imageUrl: '/images/gov.png',
           code: 'jf',
           active: true,
           country: {
@@ -157,7 +157,7 @@ module.exports = function init(site) {
         {
           $add: true,
           name: 'تبوك',
-          image_url: '/images/gov.png',
+          imageUrl: '/images/gov.png',
           code: 'tk',
           active: true,
           country: {
@@ -194,24 +194,24 @@ module.exports = function init(site) {
       return;
     }
 
-    let goves_doc = req.body;
-    goves_doc.$req = req;
-    goves_doc.$res = res;
+    let govesDoc = req.body;
+    govesDoc.$req = req;
+    govesDoc.$res = res;
 
-    goves_doc.add_user_info = site.security.getUserFinger({
+    govesDoc.addUserInfo = site.security.getUserFinger({
       $req: req,
       $res: res,
     });
 
-    if (typeof goves_doc.active === 'undefined') {
-      goves_doc.active = true;
+    if (typeof govesDoc.active === 'undefined') {
+      govesDoc.active = true;
     }
 
-    $goves.add(goves_doc, (err, doc) => {
+    $goves.add(govesDoc, (err, doc) => {
       if (!err) {
         response.done = true;
         response.doc = doc;
-        site.gov_list.push(doc);
+        site.govList.push(doc);
       } else {
         response.error = err.message;
       }
@@ -230,14 +230,14 @@ module.exports = function init(site) {
       return;
     }
 
-    let goves_doc = req.body;
+    let govesDoc = req.body;
 
-    goves_doc.edit_user_info = site.security.getUserFinger({
+    govesDoc.editUserInfo = site.security.getUserFinger({
       $req: req,
       $res: res,
     });
 
-    if (!goves_doc.id) {
+    if (!govesDoc.id) {
       response.error = 'No id';
       res.json(response);
       return;
@@ -246,18 +246,18 @@ module.exports = function init(site) {
     $goves.edit(
       {
         where: {
-          id: goves_doc.id,
+          id: govesDoc.id,
         },
-        set: goves_doc,
+        set: govesDoc,
         $req: req,
         $res: res,
       },
       (err, result) => {
         if (!err && result) {
           response.done = true;
-          site.gov_list.forEach((a, i) => {
+          site.govList.forEach((a, i) => {
             if (a.id === result.doc.id) {
-              site.gov_list[i] = result.doc;
+              site.govList[i] = result.doc;
             }
           });
         } else {
@@ -280,7 +280,7 @@ module.exports = function init(site) {
     }
 
     let ad = null;
-    site.gov_list.forEach((a) => {
+    site.govList.forEach((a) => {
       if (a.id == req.body.id) {
         ad = a;
       }
@@ -322,8 +322,8 @@ module.exports = function init(site) {
       (err, result) => {
         if (!err) {
           response.done = true;
-          site.gov_list.splice(
-            site.gov_list.findIndex((a) => a.id === req.body.id),
+          site.govList.splice(
+            site.govList.findIndex((a) => a.id === req.body.id),
             1
           );
         } else {

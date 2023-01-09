@@ -17,7 +17,7 @@
       <div class="tabs-header full">
 
         <a class="tab-link inline-block" ng-click="showTab($event,'#register_mobile')"
-          ng-hide="##setting.enable_sending_messages_mobile## != true && ##setting.enable_sending_messages_email## != true">
+          ng-hide="##setting.enableSendingMessagesMobile## != true && ##setting.enableSendingMessagesEmail## != true">
           ##word.register_with_mobile_number##</a>
         <a class="tab-link inline-block" ng-show="##setting.allow_registration_email##"
           ng-click="showTab($event,'#register_email')">
@@ -33,7 +33,7 @@
             <div class="col6">
               <div class="row padding">
                 <i-country class="col3 center input-style" v="r" label="##word.country##" ng-model="mailer.country"
-                  items="countriesList" display="name_##session.lang##" ng-search="mailer.$countries"></i-country>
+                  items="countriesList" display="name" ng-search="mailer.$countries"></i-country>
                 <i-control class="col9 center input-style" v="r" label="##word.mobile_phone_number##" type="tel"
                   ng-model="mailer.mobile"> </i-control>
               </div>
@@ -64,21 +64,21 @@
 
           <div class="row register-hide" id="mobile_data">
             <div class="row">
-              <i-image help-id="user_logo" ng-model="user.image_url"></i-image>
+              <i-image help-id="user_logo" ng-model="user.imageUrl"></i-image>
             </div>
 
             <div class="row">
-              <i-control v="r" class="col4 input-style" label="##word.first_name##" ng-model="user.first_name">
+              <i-control v="r" class="col4 input-style" label="##word.firstName##" ng-model="user.firstName">
               </i-control>
-              <i-control v="r" class="col4 input-style" label="##word.last_name##" ng-model="user.last_name">
+              <i-control v="r" class="col4 input-style" label="##word.lastName##" ng-model="user.lastName">
               </i-control>
             </div>
             <div class="row">
               <i-control v="r e" class="col4 input-style" label="##word.email##" ng-model="user.email"> </i-control>
             </div>
-            <div class="row" ng-show="##setting.enable_sending_messages_mobile## != true">
+            <div class="row" ng-show="##setting.enableSendingMessagesMobile## != true">
               <i-country v="r" class="col4 center input-style" label="##word.country##" ng-model="user.country"
-                items="countriesList" display="name_##session.lang##" ng-search="user.$countries"></i-country>
+                items="countriesList" display="name" ng-search="user.$countries"></i-country>
               <i-control v="r" class="col4 center input-style" label="##word.mobile_phone_number##" type="tel"
                 ng-model="user.mobile"> </i-control>
             </div>
@@ -86,16 +86,16 @@
               <i-control v="r" class="col4 pass input-style" label="##word.password##" type="password" id="pass1"
                 ng-model="user.password"> </i-control>
               <i-control v="r" class="col4 pass input-style" label="##word.retype_password##" type="password" id="pass2"
-                ng-model="user.re_password"> </i-control>
+                ng-model="user.rePassword"> </i-control>
             </div>
             <div class="row">
               <i-checkbox class="col2" label="##word.show_password##" ng-change="showPassword()"
                 ng-model="show_password"> </i-checkbox>
             </div>
 
-            <button ng-click="register(user)" ng-show="##setting.enable_sending_messages_mobile## == true"
+            <button ng-click="register(user)" ng-show="##setting.enableSendingMessagesMobile## == true"
               class="login-button">##word.register_now## <i class="fa fa-user-plus"></i> </button>
-            <button ng-click="checkRegister(user)" ng-show="##setting.enable_sending_messages_mobile## != true"
+            <button ng-click="checkRegister(user)" ng-show="##setting.enableSendingMessagesMobile## != true"
               class="login-button">##word.register_now## <i class="fa fa-user-plus"></i> </button>
           </div>
 
@@ -140,23 +140,23 @@
 
           <div class="row register-hide" id="email_data">
             <div class="row">
-              <i-image help-id="user_logo" ng-model="user.image_url"></i-image>
+              <i-image help-id="user_logo" ng-model="user.imageUrl"></i-image>
             </div>
 
             <div class="row">
-              <i-control v="r" class="col4 input-style" label="##word.first_name##" ng-model="user.first_name">
+              <i-control v="r" class="col4 input-style" label="##word.firstName##" ng-model="user.firstName">
               </i-control>
-              <i-control v="r" class="col4 input-style" label="##word.last_name##" ng-model="user.last_name">
+              <i-control v="r" class="col4 input-style" label="##word.lastName##" ng-model="user.lastName">
               </i-control>
             </div>
 
-            <div class="row" ng-show="##setting.enable_sending_messages_email## != true">
+            <div class="row" ng-show="##setting.enableSendingMessagesEmail## != true">
               <i-control v="r e" class="col4 input-style" label="##word.email##" ng-model="user.email"> </i-control>
             </div>
 
             <div class="row">
               <i-country v="r" class="col4 center input-style" label="##word.country##" ng-model="user.country"
-                items="countriesList" display="name_##session.lang##" ng-search="user.$countries"></i-country>
+                items="countriesList" display="name" ng-search="user.$countries"></i-country>
               <i-control v="r" class="col4 center input-style" label="##word.mobile_phone_number##" type="tel"
                 ng-model="user.mobile"> </i-control>
             </div>
@@ -165,7 +165,7 @@
               <i-control v="r" class="col4 pass input-style" label="##word.password##" type="password" id="pass1"
                 ng-model="user.password"> </i-control>
               <i-control v="r" class="col4 pass input-style" label="##word.retype_password##" type="password" id="pass2"
-                ng-model="user.re_password"> </i-control>
+                ng-model="user.rePassword"> </i-control>
             </div>
 
             <div class="row">
@@ -173,9 +173,9 @@
                 ng-model="show_password"> </i-checkbox>
             </div>
 
-            <button ng-click="register(user)" ng-show="##setting.enable_sending_messages_email## == true"
+            <button ng-click="register(user)" ng-show="##setting.enableSendingMessagesEmail## == true"
               class="login-button">##word.register_now## <i class="fa fa-user-plus"></i> </button>
-            <button ng-click="checkRegister(user)" ng-show="##setting.enable_sending_messages_email## != true"
+            <button ng-click="checkRegister(user)" ng-show="##setting.enableSendingMessagesEmail## != true"
               class="login-button">##word.register_now## <i class="fa fa-user-plus"></i> </button>
 
           </div>

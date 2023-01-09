@@ -12,19 +12,18 @@ app.controller('cms', function ($scope, $http, $timeout) {
       where['ad_status.id'] = 1;
       if (where['category_id']) {
 
-        window.history.pushState(null, null, '/category/' + where['category_id'] + '/' + where['category_name_en'] + '-' + where['category_name_ar']);
+        window.history.pushState(null, null, '/category/' + where['category_id'] + '/' + where['category_name']);
 
-        delete where['category_name_ar'];
-        delete where['category_name_en'];
+        delete where['category_name'];
 
       }
 
-      if (where['country_code'] || where['gov_code']) {
+      if (where['countryCode'] || where['gov_code']) {
         hsMap('hide');
-        if (where['country_code']) {
+        if (where['countryCode']) {
           delete where['gov_code'];
         } else if (where['gov_code']) {
-          delete where['country_code'];
+          delete where['countryCode'];
         }
       }
 
@@ -113,10 +112,9 @@ app.controller('cms', function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name: 1,
           code: 1,
-          country_code: 1,
+          countryCode: 1,
         },
       },
     }).then(
@@ -148,8 +146,7 @@ app.controller('cms', function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+          name: 1,
           code: 1,
         },
       },
@@ -179,7 +176,7 @@ app.controller('cms', function ($scope, $http, $timeout) {
           'gov.id': gov.id,
           active: true,
         },
-        select: { id: 1, name_ar: 1, name_en: 1 },
+        select: { id: 1, name: 1 },
       },
     }).then(
       function (response) {
@@ -206,7 +203,7 @@ app.controller('cms', function ($scope, $http, $timeout) {
           'city.id': city.id,
           active: true,
         },
-        select: { id: 1, name_ar: 1, name_en: 1 },
+        select: { id: 1,   name: 1 },
       },
     }).then(
       function (response) {
@@ -256,79 +253,35 @@ app.controller('cms', function ($scope, $http, $timeout) {
       function (err) { }
     );
   };
-  $scope.bookList = function (ad, i) {
-    $scope.error = '';
-    $scope.user.cart.items = $scope.user.cart.items || [];
-    let exist = false;
-
-    $scope.user.cart.items.forEach((el) => {
-      if (ad.id == el.id && el.select_quantity.unit.id == ad.quantity_list[i].unit.id) {
-        exist = true;
-        el.count += 1;
-      }
-    });
-
-    if (!exist) {
-      let obj = {
-        id: ad.id,
-        code: ad.code,
-        image_url: ad.image_url,
-        name_ar: ad.name_ar,
-        name_en: ad.name_en,
-        select_quantity: ad.quantity_list[i],
-        count: 1,
-      };
-      $scope.user.cart.items.unshift(obj);
-    }
-
-    $scope.updateCart($scope.user);
-  };
-
-  $scope.updateCart = function (obj) {
-    $scope.error = '';
-
-    $http({
-      method: 'POST',
-      url: '/api/user/update',
-      data: obj,
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-        } else {
-          $scope.error = response.data.error;
-        }
-      },
-      function (err) {
-        $scope.getUser();
-      }
-    );
-  };
-  $scope.updateFeedback = function (ad, type, status) {
-    if (type == 'favorite') {
-      ad.$favorite = status;
-    }
-    let data = { id: ad.id, feedback: { favorite: ad.$favorite, type: type } };
-
-    $http({
-      method: 'POST',
-      url: '/api/contents/update_feedback',
-      data: data,
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-        } else {
-          $scope.error = 'Please Login First';
-        }
-      },
-      function (err) {
-        console.log(err);
-      }
-    );
-  };
 
   $scope.loadMainCategories = function () {
+    $scope.error = '';
+    $scope.busy = true;
+    $scope.mainCategories = [];
+    $http({
+      method: 'POST',
+      url: '/api/main_categories/all',
+      data: {
+        where: {
+          status: 'active',
+        },
+        select: { id: 1, name: 1, topParentId: 1, parent_id: 1 ,parent_list_id : 1},
+      },
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done) {
+          $scope.category_list = response.data.list;
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+/*   $scope.loadMainCategories = function () {
     $scope.error = '';
     $scope.busy = true;
     $scope.mainCategories = [];
@@ -350,7 +303,7 @@ app.controller('cms', function ($scope, $http, $timeout) {
           $scope.category_list.forEach((_c) => {
 
             if (site.toNumber('##params.id##') == _c.id) {
-              if (!_c.top_parent_id) {
+              if (!_c.topParentId) {
                 $scope.loadSubCategory(_c);
               } else if(_c.parent_list_id && _c.parent_list_id.length > 0){
                 if(_c.parent_list_id.length == 1) {
@@ -370,40 +323,7 @@ app.controller('cms', function ($scope, $http, $timeout) {
         $scope.error = err;
       }
     );
-  };
-  $scope.moveCategory = function (type) {
-
-    let index = $scope.topParentCategoriesList.findIndex(_c => {
-      return _c.$isSelected == true;
-    });
-    if (type == 'next') {
-
-      if (index < 0) {
-        $scope.loadSubCategory($scope.topParentCategoriesList[0]);
-        if (el = document.querySelector('#cat_' + $scope.topParentCategoriesList[0].id)) {
-          el.scrollIntoView()
-        }
-      } else if (index + 1 != $scope.topParentCategoriesList.length) {
-        $scope.loadSubCategory($scope.topParentCategoriesList[index + 1])
-        if (el = document.querySelector('#cat_' + $scope.topParentCategoriesList[index + 1].id)) {
-          el.scrollIntoView();
-          document.querySelector('.tag-list').scrollLeft = el.offsetLeft;
-        }
-      }
-
-    } else if (type == 'previous') {
-      if (index > 0) {
-
-        $scope.loadSubCategory($scope.topParentCategoriesList[index - 1])
-        if (el = document.querySelector('#cat_' + $scope.topParentCategoriesList[index - 1].id)) {
-          el.scrollIntoView()
-          document.querySelector('.tag-list').scrollLeft += 50;
-        }
-      }
-    }
-  };
-
-
+  }; */
 
   $scope.loadSubCategory = function (c) {
     if (c && c.id) {
@@ -415,8 +335,7 @@ app.controller('cms', function ($scope, $http, $timeout) {
 
       $scope.error = '';
       $scope.search.category_id = c.id;
-      $scope.search.category_name_ar = c.name_ar;
-      $scope.search.category_name_en = c.name_en;
+      $scope.search.category_name = c.name;
       $scope.searchAll($scope.search);
       $scope.subCategoriesList = [];
       $scope.subCategoriesList2 = [];
@@ -430,7 +349,7 @@ app.controller('cms', function ($scope, $http, $timeout) {
       $scope.getContentList({ which: 13 }, $scope.search);
       $scope.category = c;
       if ($scope.user) {
-        $scope.user.follow_category_list.forEach((_f) => {
+        $scope.user.followCategoryList.forEach((_f) => {
           if (c.id == _f) {
             $scope.category.follow = true;
           }
@@ -443,8 +362,7 @@ app.controller('cms', function ($scope, $http, $timeout) {
   $scope.loadSubCategory2 = function (c) {
     $scope.error = '';
     $scope.search.category_id = c.id;
-    $scope.search.category_name_ar = c.name_ar;
-    $scope.search.category_name_en = c.name_en;
+    $scope.search.category_name = c.name;
     $scope.searchAll($scope.search);
     $scope.subCategoriesList2 = [];
     $scope.subCategoriesList3 = [];
@@ -457,7 +375,7 @@ app.controller('cms', function ($scope, $http, $timeout) {
     $scope.getContentList({ which: 13 }, $scope.search);
     $scope.category = c;
     if ($scope.user) {
-      $scope.user.follow_category_list.forEach((_f) => {
+      $scope.user.followCategoryList.forEach((_f) => {
         if (c.id == _f) {
           $scope.category.follow = true;
         }
@@ -479,7 +397,7 @@ app.controller('cms', function ($scope, $http, $timeout) {
     $scope.getContentList({ which: 13 }, $scope.search);
     $scope.category = c;
     if ($scope.user) {
-      $scope.user.follow_category_list.forEach((_f) => {
+      $scope.user.followCategoryList.forEach((_f) => {
         if (c.id == _f) {
           $scope.category.follow = true;
         }
@@ -501,32 +419,12 @@ app.controller('cms', function ($scope, $http, $timeout) {
     $scope.getContentList({ which: 13 }, $scope.search);
     $scope.category = c;
     if ($scope.user) {
-      $scope.user.follow_category_list.forEach((_f) => {
+      $scope.user.followCategoryList.forEach((_f) => {
         if (c.id == _f) {
           $scope.category.follow = true;
         }
       });
     }
-  };
-
-  $scope.updateFollowCategory = function (categoryId, follow) {
-    $scope.error = '';
-    $scope.busy = true;
-    $http({
-      method: 'POST',
-      url: '/api/user/follow_category',
-      data: { follow: follow, id: categoryId },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
   };
 
   $scope.displayAdvancedSearch = function () {
@@ -578,7 +476,6 @@ app.controller('cms', function ($scope, $http, $timeout) {
   };
 
   $scope.loadMainCategories();
-
   if ('##params.id##' == 'undefined') {
     $scope.getContentList({ which: 13 }, {});
   }

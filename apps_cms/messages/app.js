@@ -1,15 +1,15 @@
 module.exports = function init(site) {
   const $messages = site.connectCollection('messages');
 
-  site.message_list = [];
+  site.messageList = [];
   $messages.findMany({}, (err, docs) => {
     if (!err && docs) {
-      site.message_list = [...site.message_list, ...docs];
+      site.messageList = [...site.messageList, ...docs];
     }
   });
 
   setInterval(() => {
-    site.message_list.forEach((m, i) => {
+    site.messageList.forEach((m, i) => {
       if (m.$add) {
         let message = m.$message;
         $messages.add(m, (err, doc) => {
@@ -106,7 +106,7 @@ module.exports = function init(site) {
     messages_doc.$req = req;
     messages_doc.$res = res;
     messages_doc.$add = true;
-    site.message_list.push(messages_doc);
+    site.messageList.push(messages_doc);
 
     res.json(response);
   });
@@ -124,7 +124,7 @@ module.exports = function init(site) {
 
     let messages_doc = req.body;
 
-    messages_doc.edit_user_info = site.security.getUserFinger({
+    messages_doc.editUserInfo = site.security.getUserFinger({
       $req: req,
       $res: res,
     });
@@ -132,13 +132,13 @@ module.exports = function init(site) {
     messages_doc.sender = {
       id: req.session.user.id,
       name: req.session.user.profile.name,
-      last_name: req.session.user.profile.last_name,
+      lastName: req.session.user.profile.lastName,
       email: req.session.user.email,
-      image_url: req.session.user.profile.image_url,
+      imageUrl: req.session.user.profile.imageUrl,
     };
     let found = false;
     let index = 0;
-    site.message_list.forEach((m, i) => {
+    site.messageList.forEach((m, i) => {
       if (m.users_list.some((u) => u && u.id === messages_doc.sender.id) && m.users_list.some((u) =>u && u.id === messages_doc.receiver.id)) {
         found = true;
         index = i;
@@ -146,7 +146,7 @@ module.exports = function init(site) {
     });
 
     if (found) {
-      let message = site.message_list.find((_msg, i) => {
+      let message = site.messageList.find((_msg, i) => {
         return index === i;
       });
 
@@ -159,8 +159,8 @@ module.exports = function init(site) {
       message.$update = true;
       message.$message = req.body.message;
       message.$user_id = req.session.user.id;
-      site.message_list[index] = message;
-      response.doc = site.message_list[index];
+      site.messageList[index] = message;
+      response.doc = site.messageList[index];
     } else {
       let msg_doc = {
         users_list: [messages_doc.sender, messages_doc.receiver],
@@ -175,14 +175,14 @@ module.exports = function init(site) {
       };
       msg_doc.$add = true;
       msg_doc.$message = req.body.message;
-      site.message_list.push(msg_doc);
+      site.messageList.push(msg_doc);
     }
     // } else {
     //   messages_doc.$update = true;
     //   messages_doc.$message = req.body.message;
-    //   site.message_list.forEach((a, i) => {
+    //   site.messageList.forEach((a, i) => {
     //     if (a.id === messages_doc.id) {
-    //       site.message_list[i] = messages_doc;
+    //       site.messageList[i] = messages_doc;
     //     }
     //   });
     // }
@@ -202,14 +202,14 @@ module.exports = function init(site) {
     }
 
     let id = req.body.id;
-    site.message_list.forEach((m) => {
+    site.messageList.forEach((m) => {
       let found = false;
       m.users_list.forEach((_u, i) => {
         if (_u && _u.id == req.session.user.id) {
           _u.name = req.session.user.profile.name;
-          _u.last_name = req.session.user.profile.last_name;
+          _u.lastName = req.session.user.profile.lastName;
           _u.email = req.session.user.email;
-          _u.image_url = req.session.user.profile.image_url;
+          _u.imageUrl = req.session.user.profile.imageUrl;
           found = true;
         }
       });
@@ -234,20 +234,20 @@ module.exports = function init(site) {
     }
 
     let messages_doc = req.body;
-    site.message_list.forEach((a, i) => {
+    site.messageList.forEach((a, i) => {
       if (a.id === messages_doc.id) {
         let found_update = false;
-        site.message_list[i].messages_list.forEach((_m) => {
+        site.messageList[i].messages_list.forEach((_m) => {
           if (_m.user_id != req.session.user.id) {
             _m.show = true;
             found_update = true;
           }
         });
         if (found_update) {
-          site.message_list[i].$show = true;
-          site.message_list[i].$update = true;
+          site.messageList[i].$show = true;
+          site.messageList[i].$update = true;
         }
-        response.doc = site.message_list[i];
+        response.doc = site.messageList[i];
       }
     });
 
@@ -267,7 +267,7 @@ module.exports = function init(site) {
     }
 
     let message = null;
-    site.message_list.forEach((a) => {
+    site.messageList.forEach((a) => {
       if (a.id == req.body.id) {
         message = a;
       }
@@ -293,7 +293,7 @@ module.exports = function init(site) {
       return;
     }
 
-    site.message_list.forEach((a) => {
+    site.messageList.forEach((a) => {
       if (req.body.id && a.id === req.body.id) {
         a.$delete = true;
       }

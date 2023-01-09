@@ -11,7 +11,7 @@
     </div>
 
     <div class="row padding center dropdown-item " ng-repeat="item in items | filter:{ $display : ngSearch}" ng-click="updateModel(item)">
-     <img ng-src="{{item.image_url}}" /> <span class="bold">  {{item.country_code}} + </span>  </div>
+     <img ng-src="{{item.imageUrl}}" /> <span class="bold">  {{item.countryCode}} + </span>  </div>
 
     <div class="row center padding pointer">
       <a class="btn red" ng-click="updateModel({})"> <i class="fa fa-trash"></i> Clear </a>

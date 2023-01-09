@@ -1,12 +1,12 @@
-app.controller("reports_types", function ($scope, $http, $timeout) {
+app.controller("reportsTypes", function ($scope, $http, $timeout) {
   $scope._search = {};
 
-  $scope.reports_types = {};
+  $scope.reportsTypes = {};
 
   $scope.displayAddReportsTypes = function () {
     $scope.error = '';
-    $scope.reports_types = {
-      image_url: '/images/reports_types.png',
+    $scope.reportsTypes = {
+      imageUrl: '/images/reportsTypes.png',
       active: true/* ,
       immediate : false */
     };
@@ -26,8 +26,8 @@ app.controller("reports_types", function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/reports_types/add",
-      data: $scope.reports_types
+      url: "/api/reportsTypes/add",
+      data: $scope.reportsTypes
     }).then(
       function (response) {
         $scope.busy = false;
@@ -45,10 +45,10 @@ app.controller("reports_types", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.displayUpdateReportsTypes = function (reports_types) {
+  $scope.displayUpdateReportsTypes = function (reportsTypes) {
     $scope.error = '';
-    $scope.viewReportsTypes(reports_types);
-    $scope.reports_types = {};
+    $scope.viewReportsTypes(reportsTypes);
+    $scope.reportsTypes = {};
     site.showModal('#reportsTypesUpdateModal');
   };
 
@@ -62,8 +62,8 @@ app.controller("reports_types", function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/reports_types/update",
-      data: $scope.reports_types
+      url: "/api/reportsTypes/update",
+      data: $scope.reportsTypes
     }).then(
       function (response) {
         $scope.busy = false;
@@ -80,27 +80,27 @@ app.controller("reports_types", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.displayDetailsReportsTypes = function (reports_types) {
+  $scope.displayDetailsReportsTypes = function (reportsTypes) {
     $scope.error = '';
-    $scope.viewReportsTypes(reports_types);
-    $scope.reports_types = {};
+    $scope.viewReportsTypes(reportsTypes);
+    $scope.reportsTypes = {};
     site.showModal('#reportsTypesViewModal');
   };
 
-  $scope.viewReportsTypes = function (reports_types) {
+  $scope.viewReportsTypes = function (reportsTypes) {
     $scope.busy = true;
     $scope.error = '';
     $http({
       method: "POST",
-      url: "/api/reports_types/view",
+      url: "/api/reportsTypes/view",
       data: {
-        id: reports_types.id
+        id: reportsTypes.id
       }
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $scope.reports_types = response.data.doc;
+          $scope.reportsTypes = response.data.doc;
         } else {
           $scope.error = response.data.error;
         }
@@ -111,10 +111,10 @@ app.controller("reports_types", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.displayDeleteReportsTypes = function (reports_types) {
+  $scope.displayDeleteReportsTypes = function (reportsTypes) {
     $scope.error = '';
-    $scope.viewReportsTypes(reports_types);
-    $scope.reports_types = {};
+    $scope.viewReportsTypes(reportsTypes);
+    $scope.reportsTypes = {};
     site.showModal('#reportsTypesDeleteModal');
 
   };
@@ -125,9 +125,9 @@ app.controller("reports_types", function ($scope, $http, $timeout) {
 
     $http({
       method: "POST",
-      url: "/api/reports_types/delete",
+      url: "/api/reportsTypes/delete",
       data: {
-        id: $scope.reports_types.id
+        id: $scope.reportsTypes.id
       }
     }).then(
       function (response) {
@@ -150,7 +150,7 @@ app.controller("reports_types", function ($scope, $http, $timeout) {
     $scope.list = [];
     $http({
       method: "POST",
-      url: "/api/reports_types/all",
+      url: "/api/reportsTypes/all",
       data: {
         where: where
       }

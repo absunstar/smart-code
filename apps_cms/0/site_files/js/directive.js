@@ -224,11 +224,11 @@ app.directive('iFeedback', [
           $scope.reportsTypesList = [];
           $http({
             method: 'POST',
-            url: '/api/reports_types/all',
+            url: '/api/reportsTypes/all',
             data: {
               where: { active: true },
               post: true,
-              select: { id: 1, name_ar: 1, name_en: 1 },
+              select: { id: 1, name: 1 },
             },
           }).then(
             function (response) {
@@ -306,10 +306,9 @@ app.directive('iAddress', [
               },
               select: {
                 id: 1,
-                name_ar: 1,
-                name_en: 1,
+                name: 1,
                 code: 1,
-                country_code: 1,
+                countryCode: 1,
               },
             },
           }).then(
@@ -341,8 +340,7 @@ app.directive('iAddress', [
               },
               select: {
                 id: 1,
-                name_ar: 1,
-                name_en: 1,
+                name: 1,
                 code: 1,
               },
             },
@@ -372,7 +370,7 @@ app.directive('iAddress', [
                 'gov.id': gov.id,
                 active: true,
               },
-              select: { id: 1, name_ar: 1, name_en: 1 },
+              select: { id: 1, name: 1 },
             },
           }).then(
             function (response) {
@@ -399,7 +397,7 @@ app.directive('iAddress', [
                 'city.id': city.id,
                 active: true,
               },
-              select: { id: 1, name_ar: 1, name_en: 1 },
+              select: { id: 1, name: 1 },
             },
           }).then(
             function (response) {
@@ -657,7 +655,7 @@ app.directive('iCountry', [
 
           if (items) {
             items.forEach((item) => {
-              item.$display = $scope.getValue(item) + ' ' + item.country_code + ' + ';
+              item.$display = $scope.getValue(item) + ' ' + item.countryCode + ' + ';
             });
           }
 
@@ -665,7 +663,7 @@ app.directive('iCountry', [
             items.forEach((item) => {
               if (isite.getValue(item, $scope.primary) == isite.getValue($scope.ngModel, $scope.primary)) {
                 $scope.ngModel = item;
-                item.$display = $scope.getValue(item) + ' ' + item.country_code + ' + ';
+                item.$display = $scope.getValue(item) + ' ' + item.countryCode + ' + ';
                 input.val(item.$display);
               }
             });
@@ -678,7 +676,7 @@ app.directive('iCountry', [
           $scope.ngModel = ngModel;
 
           if (ngModel) {
-            input.val($scope.getNgModelValue(ngModel) + ' ' + ngModel.country_code + ' + ');
+            input.val($scope.getNgModelValue(ngModel) + ' ' + ngModel.countryCode + ' + ');
           }
         });
 

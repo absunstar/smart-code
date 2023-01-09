@@ -31,7 +31,7 @@ app.controller('messages', function ($scope, $http, $timeout) {
 
   $scope.sendMessage = function (message) {
     $scope.busy = true;
-    if (!$scope.send_message) {
+    if (!$scope.sendMessage) {
       $scope.error = '##word.must_write_message##';
       return;
     };
@@ -45,13 +45,13 @@ app.controller('messages', function ($scope, $http, $timeout) {
 
     let message_obj = {
       date: new Date(),
-      message: $scope.send_message,
+      message: $scope.sendMessage,
       receiver: {
         id: user.id,
         name: user.name,
-        last_name: user.last_name,
+        lastName: user.lastName,
         email: user.email,
-        image_url: user.image_url,
+        imageUrl: user.imageUrl,
       },
       show: false,
     };
@@ -64,7 +64,7 @@ app.controller('messages', function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $scope.send_message = undefined;
+          $scope.sendMessage = undefined;
           $scope.message = response.data.doc;
           $scope.busy = false;
         } else {

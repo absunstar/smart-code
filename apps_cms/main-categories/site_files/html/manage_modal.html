@@ -1,0 +1,212 @@
+<div id="mainCategoriesManageModal" class="modal" fixed>
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2 ng-show="mode == 'add' ">
+        ##word.main_categories_new##
+        <i class="fa fa-plus"></i>
+      </h2>
+      <h2 ng-show="mode == 'edit' ">
+        ##word.main_categories_edit##
+        <i class="fa fa-pencil"></i>
+      </h2>
+      <h2 ng-show="mode == 'delete' ">
+        ##word.main_categories_delete##
+        <i class="fa fa-trash"></i>
+      </h2>
+      <h2 ng-show="mode == 'view' ">
+        ##word.main_categories_details##
+        <i class="fa fa-file"></i>
+      </h2>
+    </div>
+
+    <div class="modal-body">
+      <div class="form">
+        <div class="row">
+          <div class="article-part">
+            <fieldset ng-repeat="lang in mainCategories.translatedList track by $index">
+              <legend>{{lang.language.##session.lang##}}</legend>
+
+              <div class="tabs">
+                <div class="tabs-header full">
+                  <a class="tab-link inline-block" onclick="site.showTabContent(event, '#basic')"> ##word.basic_information## </a>
+                  <a class="tab-link inline-block" onclick="site.showTabContent(event, '#statistics')"> ##word.statistics## </a>
+                  <a class="tab-link inline-block" onclick="site.showTabContent(event, '#social')"> ##word.social_media## </a>
+                </div>
+
+                <div class="tabs-content">
+                  <div id="basic" class="tab-content">
+                    <div class="row">
+                      <div class="col9">
+                        <div class="row">
+                          <i-control v="r" label="##word.main_categories_name##" ng-model="lang.name"></i-control>
+                        </div>
+                        <div class="row">
+                          <i-textarea ng-model="lang.description" label="##word.description##"> </i-textarea>
+                        </div>
+
+                        <div class="col6">
+                          <div class="article-part">
+                            <i-control class="blue bold" label="##word.keywords##" ng-keydown="addKeyWords($event , lang)" ng-model="lang.$keyword"> </i-control>
+                            <div class="row">
+                              <div class="key-words" ng-repeat="k in lang.keyWordsList">
+                                <span>{{k}}</span>
+                                <i class="fas fa-times delete-key" ng-click="lang.keyWordsList.splice($index,1)"></i>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col3">
+                        <div class="row">
+                          <div class="article-part">
+                            <p class="center">Logo</p>
+                            <i-image class="center" ng-model="lang.imageUrl"></i-image>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="article-part">
+                            <p class="center">Cover</p>
+                            <i-image class="center" ng-model="lang.coverUrl"></i-image>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div id="statistics" class="tab-content">
+                    <table class="table hover bold">
+                      <tr>
+                        <th>##word.statistics##</th>
+                        <th>##word.actual_number##</th>
+                        <th class="w250">##word.dummy_number##</th>
+                        <th>##word.apparent_number##</th>
+                      </tr>
+                      <tr>
+                        <td class="center title">##word.number_views##</td>
+                        <td class="center title">{{lang.actualViews}}</td>
+                        <td class="center title">
+                          <i-control type="number" ng-model="lang.dummyViews" ng-change="calc('views',lang)"> </i-control>
+                        </td>
+                        <td class="center title">{{lang.apparentViews}}</td>
+                      </tr>
+
+                      <tr>
+                        <td class="center title">##word.number_likes##</td>
+                        <td class="center title">{{lang.actualLikes}}</td>
+                        <td class="center title">
+                          <i-control type="number" ng-model="lang.dummyLikes" ng-change="calc('likes',lang)"> </i-control>
+                        </td>
+                        <td class="center title">{{lang.apparentLikes}}</td>
+                      </tr>
+
+                      <tr>
+                        <td class="center title">##word.number_comments##</td>
+                        <td class="center title">{{lang.actualComments}}</td>
+                        <td class="center title">
+                          <i-control type="number" ng-model="lang.dummyComments" ng-change="calc('comments',lang)"> </i-control>
+                        </td>
+                        <td class="center title">{{lang.apparentComments}}</td>
+                      </tr>
+
+                      <tr>
+                        <td class="center title">##word.number_posts##</td>
+                        <td class="center title">{{lang.actualPosts}}</td>
+                        <td class="center title">
+                          <i-control type="number" ng-model="lang.dummyPosts" ng-change="calc('posts',lang)"> </i-control>
+                        </td>
+                        <td class="center title">{{lang.apparentPosts}}</td>
+                      </tr>
+
+                      <tr>
+                        <td class="center title">##word.number_ratings##</td>
+                        <td class="center title">{{lang.actualRatings}}</td>
+                        <td class="center title">
+                          <i-control type="number" ng-model="lang.dummyRatings" ng-change="calc('ratings',lang)"> </i-control>
+                        </td>
+                        <td class="center title">{{lang.apparentRatings}}</td>
+                      </tr>
+                    </table>
+                  </div>
+
+                  <div id="social" class="tab-content">
+                    <div class="row">
+                      <div class="col8">
+                        <i-control label="##word.title##" ng-model="lang.socialTitle"> </i-control>
+                        <i-textarea ng-model="lang.socialDescription" label="##word.description##"> </i-textarea>
+                      </div>
+
+                      <div class="col4">
+                        <div class="article-part">
+                          <i-checkbox label="##word.social_media_activation##" ng-model="lang.socialMediaActivation"> </i-checkbox>
+                        </div>
+                        <div class="article-part">
+                          <i-checkbox label="##word.show_image##" ng-model="lang.showSocialImage"> </i-checkbox>
+                          <i-image ng-model="lang.socialImage"></i-image>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+
+            <br />
+            <br />
+
+            <div class="row">
+              <i-checkbox label="Show in home page" ng-model="mainCategories.showHome"> </i-checkbox>
+            </div>
+            <div class="row">
+              <i-checkbox label="Active" ng-model="mainCategories.active"> </i-checkbox>
+            </div>
+            <br />
+            <div class="row">
+              <h2 class="brown col2">##word.main_categories_type## :</h2>
+
+              <div class="col6" id="type_{{print.id}}">
+                <div class="row">
+                  <i-radio class="col2" ng-value="primary" label="##word.main_categories_primary##" ng-model="mainCategories.type"> </i-radio>
+
+                  <i-radio class="col2" ng-value="detailed" label="##word.main_categories_final##" ng-model="mainCategories.type"> </i-radio>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div ng-show="mode !== 'add' " class="row">
+          <table class="table hover border">
+            <tr>
+              <th>##word.useradd_user_info##</th>
+              <th>##word.useredit_user_info##</th>
+            </tr>
+            <tr>
+              <td class="center">
+                <p class="blue">{{mainCategories.addUserInfo.name}}</p>
+                <small class="green"> {{mainCategories.addUserInfo.date |date:"hh:mm"}} </small>
+                <small> {{mainCategories.addUserInfo.date |date:"dd - MM - yyyy"}} </small>
+                <p class="bold">IP : {{mainCategories.addUserInfo.ip}}</p>
+              </td>
+
+              <td class="center">
+                <p class="blue">{{mainCategories.editUserInfo.name}}</p>
+                <small class="green"> {{mainCategories.editUserInfo.date |date:"hh:mm"}} </small>
+                <small> {{mainCategories.editUserInfo.date |date:"dd - MM - yyyy"}} </small>
+                <p class="bold">IP : {{mainCategories.editUserInfo.ip}}</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer center">
+      <h2 class="center red">{{error}}</h2>
+      <h2 class="green center">{{success}}</h2>
+      <i-button type="add" ng-show="mode == 'add' " label="##word.add##" ng-click="addMainCategories()"></i-button>
+      <i-button type="edit" ng-show="mode == 'edit' " label="##word.edit##" ng-click="updateMainCategories(mainCategories)"></i-button>
+      <i-button type="delete" ng-show="mode == 'delete' " label="##word.delete##" ng-click="deleteMainCategories(mainCategories)"> </i-button>
+      <i-button type="close" label="##word.close##" onclick="site.hideModal( '#mainCategoriesManageModal')"></i-button>
+    </div>
+  </div>
+</div>

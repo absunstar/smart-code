@@ -1,6 +1,6 @@
 module.exports = function init(site) {
 
-  let collection_name = 'menus'
+  let collectionName = 'menus'
 
 
   let source = {
@@ -8,32 +8,31 @@ module.exports = function init(site) {
     ar : 'نظام القوائم'
   }
 
-  let image_url = '/images/unit.png'
-  let add_message = {
+  let imageUrl = '/images/unit.png'
+  let addMessage = {
     en: 'New Menu Added',
     ar: 'تم إضافة قائمة جديدة'
   }
-  let update_message = {
+  let updateMessage = {
     en: ' Menu Updated',
     ar: 'تم تعديل قائمة'
   }
-  let delete_message = {
+  let deleteMessage = {
     en: ' Menu Deleted',
     ar: 'تم حذف قائمة '
   }
 
 
   site.on('mongodb after insert', function (result) {
-    if (result.collection === collection_name) {
+    if (result.collection === collectionName) {
       site.call('please monitor action', {
         obj: {
-          icon: image_url,
+          icon: imageUrl,
           source: source,
-          message: add_message,
+          message: addMessage,
           value: {
             code: result.doc.code,
-            name_en: result.doc.name_en,
-            name_ar: result.doc.name_ar
+            name: result.doc.name,
           },
           add: result.doc,
           action: 'add'
@@ -44,18 +43,17 @@ module.exports = function init(site) {
   })
 
   site.on('mongodb after update', function (result) {
-    if (result.collection === collection_name) {
+    if (result.collection === collectionName) {
       site.call('please monitor action', {
         obj: {
-          icon: image_url,
+          icon: imageUrl,
           source: source,
-          message: update_message,
+          message: updateMessage,
           value: {
-            code: result.old_doc.code,
-            name_en: result.old_doc.name_en,
-            name_ar: result.old_doc.name_ar
+            code: result.oldDoc.code,
+            name: result.oldDoc.name,
           },
-          update: site.objectDiff(result.update.$set, result.old_doc),
+          update: site.objectDiff(result.update.$set, result.oldDoc),
           action: 'update'
         },
         result: result
@@ -65,16 +63,15 @@ module.exports = function init(site) {
 
 
   site.on('mongodb after delete', function (result) {
-    if (result.collection === collection_name) {
+    if (result.collection === collectionName) {
       site.call('please monitor action', {
         obj: {
-          icon: image_url,
+          icon: imageUrl,
           source: source,
-          message: delete_message,
+          message: deleteMessage,
           value: {
             code: result.doc.code,
-            name_en: result.doc.name_en,
-            name_ar: result.doc.name_ar
+            name: result.doc.name,
           },
           delete: result.doc,
           action: 'delete'

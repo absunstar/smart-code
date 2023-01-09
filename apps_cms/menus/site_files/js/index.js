@@ -7,7 +7,7 @@ app.controller("menus", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.mode = 'add';
     $scope.menu = {
-      image_url: '/images/menu.png',
+      imageUrl: '/images/menu.png',
       active: true
     };
     site.showModal('#menuManageModal');
@@ -228,7 +228,7 @@ app.controller("menus", function ($scope, $http, $timeout) {
         where: {
           status: 'active',
         },
-        select: { id: 1, name: 1, parent_list_id: 1, top_parent_id: 1, parent_id: 1, image_url: 1, type: 1 },
+        select: { id: 1, name: 1, parent_list_id: 1, topParentId: 1, parent_id: 1, imageUrl: 1, type: 1 },
         top: true,
       },
     }).then(

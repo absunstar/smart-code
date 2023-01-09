@@ -30,10 +30,10 @@ app.controller('sitebar', ($scope, $http) => {
       data: {
         where: {
           status: 'active', 
-          top_parent_id: { $exists: false }
+          topParentId: { $exists: false }
         },
         select : {
-          id : 1, name_ar : 1 , name_en : 1 , image_url : 1 
+          id : 1, name : 1 , imageUrl : 1 
         },
         limit : 8
       },
@@ -53,7 +53,7 @@ app.controller('sitebar', ($scope, $http) => {
 
   $scope.showRegisterModal = function () {
     $scope.customer = {
-      image_url: '/images/customer.png',
+      imageUrl: '/images/customer.png',
       active: true,
       balance_creditor: 0,
       balance_debtor: 0,

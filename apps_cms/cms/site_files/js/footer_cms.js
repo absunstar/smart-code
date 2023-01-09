@@ -1,6 +1,6 @@
 var app = app || angular.module('myApp', []);
 
-app.controller('footer_herag' , ($scope , $http)=>{
+app.controller('footer_cms' , ($scope , $http)=>{
 
     $scope.changeLang = function(lang){
         $http({

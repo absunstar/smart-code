@@ -7,7 +7,7 @@ app.controller('city', function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.mode = 'add';
     $scope.city = {
-      image_url: '/images/city.png',
+      imageUrl: '/images/city.png',
       active: true,
     };
     site.showModal('#cityManageModal');
@@ -211,7 +211,7 @@ app.controller('city', function ($scope, $http, $timeout) {
           id: 1,
           name: 1,
           code: 1,
-          country_code: 1,
+          countryCode: 1,
           },
       },
     }).then(

@@ -10,11 +10,11 @@
     <nav class="sitebottom" x-import="cms/sitebottom.html" ng-controller="sitebottom"></nav>
 
     <div id="main-layout" class="container">
-        <div class="row loaded" ng-controller="report_communications" x-permissions="login">
+        <div class="row loaded" ng-controller="reportCommunications" x-permissions="login">
 
             <div x-import="report-communications/search_all_modal.html"></div>
             <div class="row">
-                <h1 class="bold text-center"> ##word.report_communications## </h1>
+                <h1 class="bold text-center"> ##word.reportCommunications## </h1>
             </div>
 
             <div class="top-actions">
@@ -30,7 +30,7 @@
             </div>
 
 
-            <div class="form" id="report_communications">
+            <div class="form" id="reportCommunications">
                 <div class="all-section tabs user-tabs">
                     <div class="tabs-header full">
 
@@ -49,7 +49,7 @@
                                         <tr>
                                             <th>##word.make_by##</th>
                                             <th>##word.make_in##</th>
-                                            <th>##word.report_type##</th>
+                                            <th>##word.reportType##</th>
                                             <th>##word.report_description##</th>
                                             <th>##word.date##</th>
                                         </tr>
@@ -57,20 +57,20 @@
                                         <tr ng-repeat="l in list">
                                             <td>
                                                 <a target="_blank"
-                                                    href="/profile/{{l.report_user.id}}/{{l.report_user.name}}/{{l.report_user.last_name}}">
-                                                    <p>{{l.report_user.name}} {{l.report_user.last_name}}</p>
-                                                    <p>{{l.report_user.email}}</p>
+                                                    href="/profile/{{l.reportUser.id}}/{{l.reportUser.name}}/{{l.reportUser.lastName}}">
+                                                    <p>{{l.reportUser.name}} {{l.reportUser.lastName}}</p>
+                                                    <p>{{l.reportUser.email}}</p>
                                                 </a>
                                             </td>
                                             <td>
                                                 <a target="_blank"
-                                                    href="/profile/{{l.ad_user.id}}/{{l.ad_user.profile.name}}/{{l.ad_user.profile.last_name}}">
-                                                    <p>{{l.ad_user.profile.name}} {{l.ad_user.profile.last_name}}</p>
-                                                    <p>{{l.ad_user.email}}</p>
+                                                    href="/profile/{{l.adUser.id}}/{{l.adUser.profile.name}}/{{l.adUser.profile.lastName}}">
+                                                    <p>{{l.adUser.profile.name}} {{l.adUser.profile.lastName}}</p>
+                                                    <p>{{l.adUser.email}}</p>
                                                 </a>
                                             </td>
-                                            <td class="">{{l.report_type.name_##session.lang##}}</td>
-                                            <td class="pre_text">{{l.comment_report}}</td>
+                                            <td class="">{{l.reportType.name}}</td>
+                                            <td class="pre_text">{{l.commentReport}}</td>
                                             <td class="">{{l.date | date : 'dd - MM - yyyy'}}</td>
                                         </tr>
                                     </table>
@@ -86,7 +86,7 @@
                                             <th>##word.make_by##</th>
                                             <th>##word.make_in##</th>
                                             <th>##word.comment##</th>
-                                            <th>##word.report_type##</th>
+                                            <th>##word.reportType##</th>
                                             <th>##word.report_description##</th>
                                             <th>##word.date##</th>
                                         </tr>
@@ -94,21 +94,21 @@
                                         <tr ng-repeat="l in list">
                                             <td>
                                                 <a target="_blank"
-                                                    href="/profile/{{l.report_user.id}}/{{l.report_user.name}}/{{l.report_user.last_name}}">
-                                                    <p>{{l.report_user.name}} {{l.report_user.last_name}}</p>
-                                                    <p>{{l.report_user.email}}</p>
+                                                    href="/profile/{{l.reportUser.id}}/{{l.reportUser.name}}/{{l.reportUser.lastName}}">
+                                                    <p>{{l.reportUser.name}} {{l.reportUser.lastName}}</p>
+                                                    <p>{{l.reportUser.email}}</p>
                                                 </a>
                                             </td>
                                             <td>
                                                 <a target="_blank"
-                                                    href="/profile/{{l.comment_user.id}}/{{l.comment_user.name}}/{{l.comment_user.last_name}}">
-                                                    <p>{{l.comment_user.name}} {{l.comment_user.last_name}}</p>
+                                                    href="/profile/{{l.comment_user.id}}/{{l.comment_user.name}}/{{l.comment_user.lastName}}">
+                                                    <p>{{l.comment_user.name}} {{l.comment_user.lastName}}</p>
                                                     <p>{{l.comment_user.email}}</p>
                                                 </a>
                                             </td>
                                             <td class="pre_text">{{l.comment}}</td>
-                                            <td class="">{{l.report_type.name_##session.lang##}}</td>
-                                            <td class="pre_text">{{l.comment_report}}</td>
+                                            <td class="">{{l.reportType.name}}</td>
+                                            <td class="pre_text">{{l.commentReport}}</td>
                                             <td class="">{{l.date | date : 'dd - MM - yyyy'}}</td>
                                         </tr>
                                     </table>
@@ -124,7 +124,7 @@
                                             <th>##word.make_by##</th>
                                             <th>##word.make_in##</th>
                                             <th>##word.comment##</th>
-                                            <th>##word.report_type##</th>
+                                            <th>##word.reportType##</th>
                                             <th>##word.report_description##</th>
                                             <th>##word.date##</th>
                                         </tr>
@@ -132,21 +132,21 @@
                                         <tr ng-repeat="l in list">
                                             <td>
                                                 <a target="_blank"
-                                                    href="/profile/{{l.report_user.id}}/{{l.report_user.name}}/{{l.report_user.last_name}}">
-                                                    <p>{{l.report_user.name}} {{l.report_user.last_name}}</p>
-                                                    <p>{{l.report_user.email}}</p>
+                                                    href="/profile/{{l.reportUser.id}}/{{l.reportUser.name}}/{{l.reportUser.lastName}}">
+                                                    <p>{{l.reportUser.name}} {{l.reportUser.lastName}}</p>
+                                                    <p>{{l.reportUser.email}}</p>
                                                 </a>
                                             </td>
                                             <td>
                                                 <a target="_blank"
-                                                    href="/profile/{{l.reply_user.id}}/{{l.reply_user.name}}/{{l.reply_user.last_name}}">
-                                                    <p>{{l.reply_user.name}} {{l.reply_user.last_name}}</p>
-                                                    <p>{{l.reply_user.email}}</p>
+                                                    href="/profile/{{l.replyUser.id}}/{{l.replyUser.name}}/{{l.replyUser.lastName}}">
+                                                    <p>{{l.replyUser.name}} {{l.replyUser.lastName}}</p>
+                                                    <p>{{l.replyUser.email}}</p>
                                                 </a>
                                             </td>
                                             <td class="pre_text">{{l.reply}}</td>
-                                            <td class="">{{l.report_type.name_##session.lang##}}</td>
-                                            <td class="pre_text">{{l.comment_report}}</td>
+                                            <td class="">{{l.reportType.name}}</td>
+                                            <td class="pre_text">{{l.commentReport}}</td>
                                             <td class="">{{l.date | date : 'dd - MM - yyyy'}}</td>
                                         </tr>
                                     </table>
@@ -161,7 +161,7 @@
                 <i-button x-permissions="report_communications_print || report_communications_manage" type="print"
                     label="##word.print##" onclick="site.print('#t1')"></i-button>
                 <i-button x-permissions="report_communications_export || report_communications_manage" type="export"
-                    label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'report_communications.xlsx')">
+                    label="##word.export_to_excel##" onclick="export_to_xlsx('t1' , 'reportCommunications.xlsx')">
                 </i-button>
             </div>
         </div>

@@ -29,19 +29,19 @@
           <div class="col9">
             <div class="row">
               <div class="col9">
-                <i-control help-id="videoGallery_name" v="r ll2" label="##word.title##" ng-model="video_gallery.title"></i-control>
-                <i-control help-id="videoGallery_name" class="ltr" v="r ll2" label="##word.url##" ng-model="video_gallery.url"></i-control>
+                <i-control help-id="videoGallery_name" v="r ll2" label="##word.title##" ng-model="videoGallery.title"></i-control>
+                <i-control help-id="videoGallery_name" class="ltr" v="r ll2" label="##word.url##" ng-model="videoGallery.url"></i-control>
               </div>
               <div class="col3">
 
-                <i-checkbox help-id="videoGallery_active" label="##word.active##" ng-model="video_gallery.active"> </i-checkbox>
+                <i-checkbox help-id="videoGallery_active" label="##word.active##" ng-model="videoGallery.active"> </i-checkbox>
               </div>
             </div>
 
           </div>
 
           <div class="col3">
-            <i-file ng-change="getFileUrl()" label="##word.video##" ng-model="video_gallery.file"></i-file>
+            <i-file ng-change="getFileUrl()" label="##word.video##" ng-model="videoGallery.file"></i-file>
           </div>
         </div>
       </fieldset>
@@ -53,17 +53,17 @@
           </tr>
           <tr>
             <td class="center">
-              <p class="blue">{{video_gallery.add_user_info.name_##session.lang##}}</p>
-              <small class="green"> {{video_gallery.add_user_info.date |date:"hh:mm"}} </small>
-              <small> {{video_gallery.add_user_info.date |date:"dd - MM - yyyy"}} </small>
-              <p class="bold">IP : {{video_gallery.add_user_info.ip}}</p>
+              <p class="blue">{{videoGallery.addUserInfo.name}}</p>
+              <small class="green"> {{videoGallery.addUserInfo.date |date:"hh:mm"}} </small>
+              <small> {{videoGallery.addUserInfo.date |date:"dd - MM - yyyy"}} </small>
+              <p class="bold">IP : {{videoGallery.addUserInfo.ip}}</p>
             </td>
 
             <td class="center">
-              <p class="blue">{{video_gallery.edit_user_info.name_##session.lang##}}</p>
-              <small class="green"> {{video_gallery.edit_user_info.date |date:"hh:mm"}} </small>
-              <small> {{video_gallery.edit_user_info.date |date:"dd - MM - yyyy"}} </small>
-              <p class="bold">IP : {{video_gallery.edit_user_info.ip}}</p>
+              <p class="blue">{{videoGallery.editUserInfo.name}}</p>
+              <small class="green"> {{videoGallery.editUserInfo.date |date:"hh:mm"}} </small>
+              <small> {{videoGallery.editUserInfo.date |date:"dd - MM - yyyy"}} </small>
+              <p class="bold">IP : {{videoGallery.editUserInfo.ip}}</p>
             </td>
           </tr>
         </table>
@@ -73,8 +73,8 @@
     <div class="modal-footer center">
       <h2 class="red center">{{error}}</h2>
       <i-button type="add" ng-show="mode == 'add' " label="##word.add##" ng-click="addVideoGallery()"></i-button>
-      <i-button type="edit" ng-show="mode == 'edit' " label="##word.edit##" ng-click="updateVideoGallery(video_gallery)"></i-button>
-      <i-button type="delete" ng-show="mode == 'delete' " label="##word.delete##" ng-click="deleteVideoGallery(video_gallery)"> </i-button>
+      <i-button type="edit" ng-show="mode == 'edit' " label="##word.edit##" ng-click="updateVideoGallery(videoGallery)"></i-button>
+      <i-button type="delete" ng-show="mode == 'delete' " label="##word.delete##" ng-click="deleteVideoGallery(videoGallery)"> </i-button>
       <i-button type="close" label="##word.close##" onclick="site.hideModal( '#videoGalleryManageModal')"></i-button>
     </div>
   </div>

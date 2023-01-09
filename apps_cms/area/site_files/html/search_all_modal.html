@@ -13,11 +13,11 @@
                 <fieldset>
                     <legend>##word.search_all##</legend>
                     <div class="row">
-                        <i-list help-id="" class="col4" label="##word.country##" ng-change="getGovesList(search.country)" ng-model="search.country" display="name" items="countriesList" ng-search="_search.$city_country"></i-list>
+                        <i-list help-id="" class="col4" label="##word.country##" ng-change="getGovesList(search.country)" ng-model="search.country" display="name" items="countriesList" ng-search="_search.$cityCountry"></i-list>
 
                         <i-list class="col3" label="##word.gov##" ng-model="search.gov" items="govesList"
                             ng-change="getCityList(search.gov)" display="name"
-                            ng-search="_search.$search.$gov_search">
+                            ng-search="_search.$search.$govSearch">
                         </i-list>
 
                         <i-list class="col4" label="##word.city##" ng-model="search.city" items="cityList"

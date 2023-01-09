@@ -1,76 +1,114 @@
-app.controller('main_categories', function ($scope, $http, $timeout) {
+app.controller('mainCategories', function ($scope, $http, $timeout) {
   $scope._search = {};
+  $scope.mode = 'add';
 
-  $scope.main_categories = {};
+  $scope.mainCategories = {};
 
-  $scope.displayAddMainCategories = function (parent_main_category) {
+  $scope.displayAddMainCategories = function (parentMainCategory) {
     $scope._search = {};
 
     $scope.error = '';
+    $scope.mode = 'add';
 
-    if (parent_main_category && parent_main_category.type == 'detailed') {
+    if (parentMainCategory && parentMainCategory.type == 'detailed') {
       return;
     }
 
-    $scope.main_categories = {
+    $scope.mainCategories = {
       type: 'detailed',
-      status: 'active',
-      image_url: '/images/main_categories.png',
+      active: true,
+      showHome: true,
+      translatedList: [],
     };
 
-    if (parent_main_category) {
-      $scope.main_categories.parent_id = parent_main_category.id;
-      $scope.main_categories.top_parent_id = parent_main_category.top_parent_id || parent_main_category.id;
+    if (parentMainCategory) {
+      $scope.mainCategories.parentId = parentMainCategory.id;
+      $scope.mainCategories.topParentId = parentMainCategory.topParentId || parentMainCategory.id;
     }
 
-    if ($scope.main_categories.top_parent_id) {
-      $scope.main_categories = {
+    if ($scope.mainCategories.topParentId) {
+      $scope.mainCategories = {
         type: 'detailed',
-        status: parent_main_category.status,
-        image_url: parent_main_category.image_url,
+        active: true,
+        showHome: true,
+        status: parentMainCategory.status,
+        imageUrl: parentMainCategory.imageUrl,
       };
 
-      $scope.main_categories.parent_id = parent_main_category.id;
-      $scope.main_categories.top_parent_id = parent_main_category.top_parent_id || parent_main_category.id;
+      $scope.mainCategories.parentId = parentMainCategory.id;
+      $scope.mainCategories.topParentId = parentMainCategory.topParentId || parentMainCategory.id;
     }
 
-    site.showModal('#mainCategoriesAddModal');
+    $scope.mainCategories.translatedList = [];
+    $scope.defaultSettings.languagesList.forEach((l) => {
+      if (l.language.active == true) {
+        $scope.mainCategories.translatedList.push({
+          language: {
+            id: l.language.id,
+            en: l.language.en,
+            ar: l.language.ar,
+            direction: l.language.direction,
+          },
+          actualViews: 0,
+          dummyViews: 0,
+          apparentViews: 0,
+          actualLikes: 0,
+          dummyLikes: 0,
+          apparentLikes: 0,
+          actualComments: 0,
+          dummyComments: 0,
+          apparentComments: 0,
+          actualPosts: 0,
+          dummyPosts: 0,
+          apparentPosts: 0,
+          actualRatings: 0,
+          dummyRatings: 0,
+          apparentRatings: 0,
+          numberWords: 0,
+          numberLetters: 0,
+          showSocialmage: true,
+          socialMediaActivation: true,
+          keyWordsList: [],
+        });
+      }
+    });
+
+    site.showModal('#mainCategoriesManageModal');
   };
 
   $scope.addMainCategories = function () {
     $scope.error = '';
-    if ($scope.busy) {
+    if ($scope.busyAdd) {
       return;
     }
 
-    const v = site.validated('#mainCategoriesAddModal');
+    const v = site.validated('#mainCategoriesManageModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       return;
     }
 
-    $scope.busy = true;
+    $scope.busyAdd = true;
     $http({
       method: 'POST',
-      url: '/api/main_categories/add',
-      data: $scope.main_categories,
+      url: '/api/mainCategories/add',
+      data: $scope.mainCategories,
     }).then(
       function (response) {
-        $scope.busy = false;
+        $scope.busyAdd = false;
         if (response.data.done) {
-          $scope.main_categories = {
+          $scope.mainCategories = {
             type: 'detailed',
             status: 'active',
-            image_url: '/images/main_categories.jpg',
+            imageUrl: '/images/mainCategories.jpg',
           };
 
-          site.hideModal('#mainCategoriesAddModal');
+          site.hideModal('#mainCategoriesManageModal');
 
           $scope.list.push(response.data.doc);
           $scope.getMainCategoriesList();
         } else {
           $scope.error = response.data.error;
-        
         }
       },
       function (err) {
@@ -79,14 +117,15 @@ app.controller('main_categories', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.displayUpdateMainCategories = function (main_categories) {
+  $scope.displayUpdateMainCategories = function (mainCategories) {
     $scope._search = {};
+    $scope.mode = 'edit';
 
     $scope.error = '';
-    $scope.viewMainCategories(main_categories ,'update');
-    $scope.main_categories = {};
+    $scope.viewMainCategories(mainCategories, 'update');
+    $scope.mainCategories = {};
 
-    site.showModal('#mainCategoriesUpdateModal');
+    site.showModal('#mainCategoriesManageModal');
   };
 
   $scope.updateMainCategories = function () {
@@ -95,7 +134,7 @@ app.controller('main_categories', function ($scope, $http, $timeout) {
       return;
     }
 
-    const v = site.validated('#mainCategoriesUpdateModal');
+    const v = site.validated('#mainCategoriesManageModal');
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
       $scope.busy = false;
@@ -106,14 +145,14 @@ app.controller('main_categories', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/main_categories/update',
-      data: $scope.main_categories,
+      url: '/api/mainCategories/update',
+      data: $scope.mainCategories,
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#mainCategoriesUpdateModal');
-      
+          site.hideModal('#mainCategoriesManageModal');
+
           $scope.getMainCategoriesList();
         } else {
           $scope.error = response.data.error;
@@ -128,32 +167,32 @@ app.controller('main_categories', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.displayViewMainCategories = function (main_categories) {
+  $scope.displayViewMainCategories = function (mainCategories) {
     $scope.error = '';
-    $scope.viewMainCategories(main_categories);
-    $scope.main_categories = {};
-    site.showModal('#mainCategoriesDetailsModal');
+    $scope.mode = 'view';
+    $scope.viewMainCategories(mainCategories);
+    $scope.mainCategories = {};
+    site.showModal('#mainCategoriesManageModal');
   };
 
-  $scope.viewMainCategories = function (main_categories, type) {
+  $scope.viewMainCategories = function (mainCategories, type) {
     $scope.error = '';
     $scope.busy = true;
 
     $http({
       method: 'POST',
-      url: '/api/main_categories/view',
+      url: '/api/mainCategories/view',
       data: {
-        id: main_categories.id,
+        id: mainCategories.id,
       },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
           if (type == 'update') {
-            console.log("Dddddddddddddddddddd");
-            $scope.main_categories = response.data.doc;
+            $scope.mainCategories = response.data.doc;
           } else {
-            $scope.main_categories_view = response.data.doc;
+            $scope.mainCategories = response.data.doc;
           }
         } else {
           $scope.error = response.data.error;
@@ -165,31 +204,31 @@ app.controller('main_categories', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.displayDeleteMainCategories = function (main_categories) {
+  $scope.displayDeleteMainCategories = function (mainCategories) {
     $scope.error = '';
-    $scope.viewMainCategories(main_categories);
-    $scope.main_categories_view = {};
-    site.showModal('#mainCategoriesDeleteModal');
+    $scope.mode = 'delete';
+    $scope.viewMainCategories(mainCategories);
+    $scope.mainCategories = {};
+    site.showModal('#mainCategoriesManageModal');
   };
 
-  $scope.deleteMainCategories = function (main_category) {
+  $scope.deleteMainCategories = function (mainCategory) {
     $scope.error = '';
     if ($scope.busy) {
       return;
     }
-
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/main_categories/delete',
+      url: '/api/mainCategories/delete',
       data: {
-        id: main_category.id,
+        id: mainCategory.id,
       },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          site.hideModal('#mainCategoriesDeleteModal');
+          site.hideModal('#mainCategoriesManageModal');
 
           $scope.getMainCategoriesList();
         } else {
@@ -212,9 +251,10 @@ app.controller('main_categories', function ($scope, $http, $timeout) {
 
     $http({
       method: 'POST',
-      url: '/api/main_categories/all',
+      url: '/api/mainCategories/all',
       data: {
         where: where,
+        lang: true,
       },
     }).then(
       function (response) {
@@ -231,6 +271,57 @@ app.controller('main_categories', function ($scope, $http, $timeout) {
     );
   };
 
+  $scope.getDefaultSetting = function () {
+    $scope.busy = true;
+    $http({
+      method: 'POST',
+      url: '/api/defaultSetting/get',
+      data: {},
+    }).then(
+      function (response) {
+        $scope.busy = false;
+        if (response.data.done && response.data.doc) {
+          $scope.defaultSettings = response.data.doc;
+          $scope.articleTypesList = $scope.defaultSettings.article.articleTypes.filter((t) => t.active == true);
+        }
+      },
+      function (err) {
+        $scope.busy = false;
+        $scope.error = err;
+      }
+    );
+  };
+
+  $scope.calc = function (type, lang) {
+    $timeout(() => {
+      if (type == 'views') {
+        lang.apparentViews = lang.actualViews + lang.dummyViews;
+      } else if (type == 'likes') {
+        lang.apparentLikes = lang.actualLikes + lang.dummyLikes;
+      } else if (type == 'comments') {
+        lang.apparentComments = lang.actualComments + lang.dummyComments;
+      } else if (type == 'posts') {
+        lang.apparentPosts = lang.actualPosts + lang.dummyPosts;
+      } else if (type == 'ratings') {
+        lang.apparentRatings = lang.actualRatings + lang.dummyRatings;
+      }
+    }, 500);
+  };
+
+  $scope.addKeyWords = function (ev, obj) {
+    $scope.busy = true;
+
+    if (ev.which !== 13 || !obj.$keyword) {
+      return;
+    }
+
+    if (!obj.keyWordsList.some((k) => k === obj.$keyword)) {
+      obj.keyWordsList.push(obj.$keyword);
+    }
+
+    obj.$keyword = '';
+  };
+
   $scope.searchAll = function () {
     $scope._search = {};
     $scope.getMainCategoriesList(where);
@@ -238,7 +329,6 @@ app.controller('main_categories', function ($scope, $http, $timeout) {
     $scope.search = {};
   };
 
- 
-
   $scope.getMainCategoriesList();
+  $scope.getDefaultSetting();
 });

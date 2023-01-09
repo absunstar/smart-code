@@ -1,12 +1,12 @@
-let btn1 = document.querySelector('#setting_default .tab-link');
+let btn1 = document.querySelector('#settingDefault .tab-link');
 if (btn1) {
   btn1.click();
 }
 
-app.controller('default_setting', function ($scope, $http, $timeout) {
+app.controller('defaultSetting', function ($scope, $http, $timeout) {
   $scope._search = {};
 
-  $scope.default_setting = {};
+  $scope.defaultSetting = {};
 
   $scope.getPublishingSystemsList = function () {
     $scope.error = '';
@@ -14,7 +14,7 @@ app.controller('default_setting', function ($scope, $http, $timeout) {
     $scope.publishingSystemList = [];
     $http({
       method: 'POST',
-      url: '/api/publishing_system/all',
+      url: '/api/publishingSystem/all',
     }).then(
       function (response) {
         $scope.busy = false;
@@ -33,7 +33,7 @@ app.controller('default_setting', function ($scope, $http, $timeout) {
     $scope.closingSystemList = [];
     $http({
       method: 'POST',
-      url: '/api/closing_system/all',
+      url: '/api/closingSystem/all',
     }).then(
       function (response) {
         $scope.busy = false;
@@ -52,7 +52,7 @@ app.controller('default_setting', function ($scope, $http, $timeout) {
     $scope.siteTemplateList = [];
     $http({
       method: 'POST',
-      url: '/api/site_template/all',
+      url: '/api/siteTemplate/all',
     }).then(
       function (response) {
         $scope.busy = false;
@@ -71,7 +71,7 @@ app.controller('default_setting', function ($scope, $http, $timeout) {
     $scope.siteColorList = [];
     $http({
       method: 'POST',
-      url: '/api/site_color/all',
+      url: '/api/siteColor/all',
     }).then(
       function (response) {
         $scope.busy = false;
@@ -90,7 +90,7 @@ app.controller('default_setting', function ($scope, $http, $timeout) {
     $scope.articleStatusList = [];
     $http({
       method: 'POST',
-      url: '/api/article_status/all',
+      url: '/api/articleStatus/all',
     }).then(
       function (response) {
         $scope.busy = false;
@@ -109,7 +109,7 @@ app.controller('default_setting', function ($scope, $http, $timeout) {
     $scope.durationExpiryList = [];
     $http({
       method: 'POST',
-      url: '/api/duration_expiry/all',
+      url: '/api/durationExpiry/all',
     }).then(
       function (response) {
         $scope.busy = false;
@@ -123,12 +123,12 @@ app.controller('default_setting', function ($scope, $http, $timeout) {
   };
 
   $scope.loadSetting = function (where) {
-    $scope.default_setting = {};
+    $scope.defaultSetting = {};
     $scope.busy = true;
 
     $http({
       method: 'POST',
-      url: '/api/default_setting/get',
+      url: '/api/defaultSetting/get',
       data: {
         where: where,
       },
@@ -136,9 +136,9 @@ app.controller('default_setting', function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $scope.default_setting = response.data.doc;
+          $scope.defaultSetting = response.data.doc;
         } else {
-          $scope.default_setting = {};
+          $scope.defaultSetting = {};
         }
       },
       function (err) {
@@ -157,8 +157,8 @@ app.controller('default_setting', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/default_setting/save',
-      data: $scope.default_setting,
+      url: '/api/defaultSetting/save',
+      data: $scope.defaultSetting,
     }).then(
       function (response) {
         $scope.busy = false;
@@ -235,23 +235,23 @@ app.controller('default_setting', function ($scope, $http, $timeout) {
   $scope.loadMainCategories = function () {
     $scope.error = '';
     $scope.busy = true;
-    $scope.category_list = [];
-    $scope.top_category_list = [];
+    $scope.categoryList = [];
+    $scope.topCategoryList = [];
     $http({
       method: 'POST',
-      url: '/api/main_categories/all',
+      url: '/api/mainCategories/all',
       data: {
         where: {
           status: 'active',
         },
-        select: { id: 1, name: 1, parent_list_id: 1, top_parent_id: 1, parent_id: 1, image_url: 1, type: 1 },
+        select: { id: 1, name: 1, parentListId: 1, topParentId: 1, parentId: 1, imageUrl: 1, type: 1 },
         top: true,
       },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $scope.top_category_list = response.data.top_list;
+          $scope.topCategoryList = response.data.topList;
         }
       },
       function (err) {
@@ -261,71 +261,71 @@ app.controller('default_setting', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.addKeyDown = function (ev, keyWord) {
+  $scope.addKeyWords = function (ev, keyWord) {
     $scope.busy = true;
 
     if (ev.which !== 13 || !keyWord) {
       return;
     }
 
-    $scope.default_setting.keywords_list = $scope.default_setting.keywords_list || [];
-    if (!$scope.default_setting.keywords_list.some((k) => k === keyWord)) {
-      $scope.default_setting.keywords_list.push(keyWord);
+    $scope.defaultSetting.keyWordsList = $scope.defaultSetting.keyWordsList || [];
+    if (!$scope.defaultSetting.keyWordsList.some((k) => k === keyWord)) {
+      $scope.defaultSetting.keyWordsList.push(keyWord);
     }
 
-    $scope.default_setting.$keyword = '';
+    $scope.defaultSetting.$keyword = '';
   };
 
   $scope.addMetaTags = function (programming) {
     $scope.error = '';
-    programming.meta_tags = programming.meta_tags || [];
-    programming.meta_tags.unshift({});
+    programming.metaTags = programming.metaTags || [];
+    programming.metaTags.unshift({ active: true });
   };
 
   $scope.addStyles = function (programming) {
     $scope.error = '';
     programming.styles = programming.styles || [];
-    programming.styles.unshift({});
+    programming.styles.unshift({ active: true });
   };
 
   $scope.addScripts = function (programming) {
     $scope.error = '';
     programming.scripts = programming.scripts || [];
-    programming.scripts.unshift({});
+    programming.scripts.unshift({ active: true });
   };
 
   $scope.addBlockIp = function (block) {
     $scope.error = '';
-    block.ip_list = block.ip_list || [];
-    block.ip_list.unshift({});
+    block.ipList = block.ipList || [];
+    block.ipList.unshift({});
   };
 
   $scope.addBlockDomains = function (block) {
     $scope.error = '';
-    block.domains_list = block.domains_list || [];
-    block.domains_list.unshift({});
+    block.domainsList = block.domainsList || [];
+    block.domainsList.unshift({});
   };
 
   $scope.addBlockUserAgent = function (block) {
     $scope.error = '';
-    block.user_agent_list = block.user_agent_list || [];
-    block.user_agent_list.unshift({});
+    block.userAgentList = block.userAgentList || [];
+    block.userAgentList.unshift({});
   };
 
-  $scope.addDynamicRoutes = function (dynamic_route) {
+  $scope.addDynamicRoutes = function (dynamicRoute) {
     $scope.error = '';
     const v = site.validated('#dynamicRoutes');
     if (!v.ok) {
       $scope.error = v.messages[0]['##session.lang##'];
       return;
     }
-    $scope.default_setting.programming.dynamic_routes = $scope.default_setting.programming.dynamic_routes || [];
-    $scope.default_setting.programming.dynamic_routes.unshift({ ...dynamic_route });
+    $scope.defaultSetting.programming.dynamicRoutes = $scope.defaultSetting.programming.dynamicRoutes || [];
+    $scope.defaultSetting.programming.dynamicRoutes.unshift({ ...dynamicRoute });
     site.hideModal('#dynamicRoutes');
   };
 
   $scope.showDynamicRoutes = function () {
-    $scope.dynamic_route = {};
+    $scope.dynamicRoute = { active: true };
     site.showModal('#dynamicRoutes');
   };
 

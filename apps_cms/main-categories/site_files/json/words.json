@@ -7,7 +7,7 @@
   { "name": "main_categories_new", "en": "New Main Category", "ar": "قسم رئيسي جديد" },
   { "name": "main_categories", "en": "Main Categories", "ar": "الأقسام الرئيسية" },
   { "name": "categories", "en": "Categories", "ar": "أقسام" },
-  { "name": "main_category", "en": "Main Category", "ar": "القسم الرئيسي" },
+  { "name": "mainCategory", "en": "Main Category", "ar": "القسم الرئيسي" },
   { "name": "category", "en": "Category", "ar": "القسم" },
   { "name": "main_categories_code_err", "en": "Code Exist", "ar": "الكود مكرر" },
   { "name": "detailed_err", "en": "Can nott Change", "ar": "لا يمكن تحويله يحتوي على قسم فرعي" },

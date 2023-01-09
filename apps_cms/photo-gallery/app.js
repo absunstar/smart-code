@@ -1,20 +1,20 @@
 module.exports = function init(site) {
-  const $photo_gallery = site.connectCollection('photo_gallery');
-  site.photo_gallery_list = [];
-  $photo_gallery.findMany({}, (err, docs) => {
+  const $photoGallery = site.connectCollection('photoGallery');
+  site.photoGalleryList = [];
+  $photoGallery.findMany({}, (err, docs) => {
     if (!err && docs) {
-      site.photo_gallery_list = [...site.photo_gallery_list, ...docs];
+      site.photoGalleryList = [...site.photoGalleryList, ...docs];
     }
   });
 
   site.get({
-    name: 'photo_gallery',
+    name: 'photoGallery',
     path: __dirname + '/site_files/html/index.html',
     parser: 'html',
     compress: true,
   });
 
-  site.post('/api/photo_gallery/add', (req, res) => {
+  site.post('/api/photoGallery/add', (req, res) => {
     let response = {
       done: false,
     };
@@ -24,24 +24,24 @@ module.exports = function init(site) {
       return;
     }
 
-    let photo_gallery_doc = req.body;
-    photo_gallery_doc.$req = req;
-    photo_gallery_doc.$res = res;
+    let photoGalleryDoc = req.body;
+    photoGalleryDoc.$req = req;
+    photoGalleryDoc.$res = res;
 
-    photo_gallery_doc.add_user_info = site.security.getUserFinger({
+    photoGalleryDoc.addUserInfo = site.security.getUserFinger({
       $req: req,
       $res: res,
     });
 
-    if (typeof photo_gallery_doc.active === 'undefined') {
-      photo_gallery_doc.active = true;
+    if (typeof photoGalleryDoc.active === 'undefined') {
+      photoGalleryDoc.active = true;
     }
 
-    $photo_gallery.add(photo_gallery_doc, (err, doc) => {
+    $photoGallery.add(photoGalleryDoc, (err, doc) => {
       if (!err) {
         response.done = true;
         response.doc = doc;
-        site.photo_gallery_list.push(doc);
+        site.photoGalleryList.push(doc);
       } else {
         response.error = err.message;
       }
@@ -50,7 +50,7 @@ module.exports = function init(site) {
 
   });
 
-  site.post('/api/photo_gallery/update', (req, res) => {
+  site.post('/api/photoGallery/update', (req, res) => {
     let response = {
       done: false,
     };
@@ -61,34 +61,34 @@ module.exports = function init(site) {
       return;
     }
 
-    let photo_gallery_doc = req.body;
+    let photoGalleryDoc = req.body;
 
-    photo_gallery_doc.edit_user_info = site.security.getUserFinger({
+    photoGalleryDoc.editUserInfo = site.security.getUserFinger({
       $req: req,
       $res: res,
     });
 
-    if (!photo_gallery_doc.id) {
+    if (!photoGalleryDoc.id) {
       response.error = 'No id';
       res.json(response);
       return;
     }
     
-    $photo_gallery.edit(
+    $photoGallery.edit(
       {
         where: {
-          id: photo_gallery_doc.id,
+          id: photoGalleryDoc.id,
         },
-        set: photo_gallery_doc,
+        set: photoGalleryDoc,
         $req: req,
         $res: res,
       },
       (err, result) => {
         if (!err && result) {
           response.done = true;
-          site.photo_gallery_list.forEach((a, i) => {
+          site.photoGalleryList.forEach((a, i) => {
             if (a.id === result.doc.id) {
-              site.photo_gallery_list[i] = result.doc;
+              site.photoGalleryList[i] = result.doc;
             }
           });
         } else {
@@ -100,7 +100,7 @@ module.exports = function init(site) {
 
   });
 
-  site.post('/api/photo_gallery/view', (req, res) => {
+  site.post('/api/photoGallery/view', (req, res) => {
     let response = {
       done: false,
     };
@@ -112,7 +112,7 @@ module.exports = function init(site) {
     }
 
     let ad = null;
-    site.photo_gallery_list.forEach((a) => {
+    site.photoGalleryList.forEach((a) => {
       if (a.id == req.body.id) {
         ad = a;
       }
@@ -128,7 +128,7 @@ module.exports = function init(site) {
     }
   });
 
-  site.post('/api/photo_gallery/delete', (req, res) => {
+  site.post('/api/photoGallery/delete', (req, res) => {
     let response = {
       done: false,
     };
@@ -145,7 +145,7 @@ module.exports = function init(site) {
       return;
     }
 
-    $photo_gallery.delete(
+    $photoGallery.delete(
       {
         id: req.body.id,
         $req: req,
@@ -154,8 +154,8 @@ module.exports = function init(site) {
       (err, result) => {
         if (!err) {
           response.done = true;
-          site.photo_gallery_list.splice(
-            site.photo_gallery_list.findIndex((a) => a.id === req.body.id),
+          site.photoGalleryList.splice(
+            site.photoGalleryList.findIndex((a) => a.id === req.body.id),
             1
           );
         } else {
@@ -167,7 +167,7 @@ module.exports = function init(site) {
 
   });
 
-  site.post('/api/photo_gallery/all', (req, res) => {
+  site.post('/api/photoGallery/all', (req, res) => {
     let response = {
       done: false,
     };
@@ -184,7 +184,7 @@ module.exports = function init(site) {
       where['title'] = site.get_RegExp(where['title'], 'i');
     }
 
-    $photo_gallery.findMany(
+    $photoGallery.findMany(
       {
         select: req.body.select || {},
         where: where,

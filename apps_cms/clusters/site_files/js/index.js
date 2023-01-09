@@ -7,7 +7,7 @@ app.controller("clusters", function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.mode = 'add';
     $scope.cluster = {
-      image_url: '/images/cluster.png',
+      imageUrl: '/images/cluster.png',
       active: true
     };
     site.showModal('#clusterManageModal');

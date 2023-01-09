@@ -6,7 +6,7 @@
     {"name" : "file_type_name" , "en" : "File Type Name" , "ar" : "إسم نوع الملف"},
     {"name" : "file_type_new" , "en" : "New File Type" , "ar" : "نوع ملف جديد"},
     {"name" : "file" , "en" : "File" , "ar" : "الملف"},
-    {"name" : "file_type" , "en" : "File Type" , "ar" : "نوع الملف"},
+    {"name" : "fileType" , "en" : "File Type" , "ar" : "نوع الملف"},
     {"name" : "file_name" , "en" : "File Name" , "ar" : "إسم الملف"},
     {"name" : "file_date" , "en" : "File Date" , "ar" : "تاريخ الملف"},
     {"name" : "file_upload_date" , "en" : "File Date Uploaded" , "ar" : "تاريخ رفع الملف"},

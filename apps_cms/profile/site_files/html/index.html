@@ -333,7 +333,7 @@
 
       <div class="row">
         <i-image class="user-background" view ng-model="user.profile.cover"></i-image>
-        <i-image class="user-cover" view logo ng-model="user.profile.image_url">
+        <i-image class="user-cover" view logo ng-model="user.profile.imageUrl">
         </i-image>
         <span class="online-badge" ng-class="{'offline-badge' : !user.$isOnline}"></span>
       </div>
@@ -344,16 +344,16 @@
             ng-show="!user.$is_follow && !user.$same_email" ng-click="updateFollow(user,true)"></i-button>
           <i-button class="center" x-permissions="login" label="##word.unfollow##"
             ng-show="user.$is_follow && !user.$same_email" ng-click="updateFollow(user,false)"></i-button>
-          <h3 class="darkgray font-20 center" ng-show="user.followers_list.length > 0">{{user.followers_list.length}}
+          <h3 class="darkgray font-20 center" ng-show="user.followersList.length > 0">{{user.followersList.length}}
             ##word.follower##</h3>
-          <h3 class="darkgray font-20 center" ng-show="user.followers_list.length < 1"> ##word.no_followers##</h3>
+          <h3 class="darkgray font-20 center" ng-show="user.followersList.length < 1"> ##word.no_followers##</h3>
         </div>
 
         <div class="col8">
           <div class="ad-user center">
 
             <h1 class="user-name-stlye font-28 center">
-              {{user.profile.name}} {{user.profile.last_name}}
+              {{user.profile.name}} {{user.profile.lastName}}
             </h1>
 
           </div>

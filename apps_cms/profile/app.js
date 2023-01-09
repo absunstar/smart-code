@@ -7,7 +7,7 @@ module.exports = function init(site) {
   });
 
   site.get({
-    name: ['profile','profile/:id/:name/:last_name'],
+    name: ['profile','profile/:id/:name/:lastName'],
     path: __dirname + '/site_files/html/index.html',
     parser: 'html',
     compress: true,
@@ -28,7 +28,7 @@ module.exports = function init(site) {
     review.$req = req;
     review.$res = res;
 
-    review.add_user_info = site.security.getUserFinger({
+    review.addUserInfo = site.security.getUserFinger({
       $req: req,
       $res: res,
     });
@@ -64,7 +64,7 @@ module.exports = function init(site) {
 
     let review = req.body;
 
-    review.edit_user_info = site.security.getUserFinger({
+    review.editUserInfo = site.security.getUserFinger({
       $req: req,
       $res: res,
     });

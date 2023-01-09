@@ -1,20 +1,20 @@
 module.exports = function init(site) {
-  const $video_gallery = site.connectCollection('video_gallery');
-  site.video_gallery_list = [];
-  $video_gallery.findMany({}, (err, docs) => {
+  const $videoGallery = site.connectCollection('videoGallery');
+  site.videoGalleryList = [];
+  $videoGallery.findMany({}, (err, docs) => {
     if (!err && docs) {
-      site.video_gallery_list = [...site.video_gallery_list, ...docs];
+      site.videoGalleryList = [...site.videoGalleryList, ...docs];
     }
   });
 
   site.get({
-    name: 'video_gallery',
+    name: 'videoGallery',
     path: __dirname + '/site_files/html/index.html',
     parser: 'html',
     compress: true,
   });
 
-  site.post('/api/video_gallery/add', (req, res) => {
+  site.post('/api/videoGallery/add', (req, res) => {
     let response = {
       done: false,
     };
@@ -24,24 +24,24 @@ module.exports = function init(site) {
       return;
     }
 
-    let video_gallery_doc = req.body;
-    video_gallery_doc.$req = req;
-    video_gallery_doc.$res = res;
+    let videoGalleryDoc = req.body;
+    videoGalleryDoc.$req = req;
+    videoGalleryDoc.$res = res;
 
-    video_gallery_doc.add_user_info = site.security.getUserFinger({
+    videoGalleryDoc.addUserInfo = site.security.getUserFinger({
       $req: req,
       $res: res,
     });
 
-    if (typeof video_gallery_doc.active === 'undefined') {
-      video_gallery_doc.active = true;
+    if (typeof videoGalleryDoc.active === 'undefined') {
+      videoGalleryDoc.active = true;
     }
 
-    $video_gallery.add(video_gallery_doc, (err, doc) => {
+    $videoGallery.add(videoGalleryDoc, (err, doc) => {
       if (!err) {
         response.done = true;
         response.doc = doc;
-        site.video_gallery_list.push(doc);
+        site.videoGalleryList.push(doc);
       } else {
         response.error = err.message;
       }
@@ -50,7 +50,7 @@ module.exports = function init(site) {
 
   });
 
-  site.post('/api/video_gallery/update', (req, res) => {
+  site.post('/api/videoGallery/update', (req, res) => {
     let response = {
       done: false,
     };
@@ -61,34 +61,34 @@ module.exports = function init(site) {
       return;
     }
 
-    let video_gallery_doc = req.body;
+    let videoGalleryDoc = req.body;
 
-    video_gallery_doc.edit_user_info = site.security.getUserFinger({
+    videoGalleryDoc.editUserInfo = site.security.getUserFinger({
       $req: req,
       $res: res,
     });
 
-    if (!video_gallery_doc.id) {
+    if (!videoGalleryDoc.id) {
       response.error = 'No id';
       res.json(response);
       return;
     }
     
-    $video_gallery.edit(
+    $videoGallery.edit(
       {
         where: {
-          id: video_gallery_doc.id,
+          id: videoGalleryDoc.id,
         },
-        set: video_gallery_doc,
+        set: videoGalleryDoc,
         $req: req,
         $res: res,
       },
       (err, result) => {
         if (!err && result) {
           response.done = true;
-          site.video_gallery_list.forEach((a, i) => {
+          site.videoGalleryList.forEach((a, i) => {
             if (a.id === result.doc.id) {
-              site.video_gallery_list[i] = result.doc;
+              site.videoGalleryList[i] = result.doc;
             }
           });
         } else {
@@ -100,7 +100,7 @@ module.exports = function init(site) {
 
   });
 
-  site.post('/api/video_gallery/view', (req, res) => {
+  site.post('/api/videoGallery/view', (req, res) => {
     let response = {
       done: false,
     };
@@ -112,7 +112,7 @@ module.exports = function init(site) {
     }
 
     let ad = null;
-    site.video_gallery_list.forEach((a) => {
+    site.videoGalleryList.forEach((a) => {
       if (a.id == req.body.id) {
         ad = a;
       }
@@ -128,7 +128,7 @@ module.exports = function init(site) {
     }
   });
 
-  site.post('/api/video_gallery/delete', (req, res) => {
+  site.post('/api/videoGallery/delete', (req, res) => {
     let response = {
       done: false,
     };
@@ -145,7 +145,7 @@ module.exports = function init(site) {
       return;
     }
 
-    $video_gallery.delete(
+    $videoGallery.delete(
       {
         id: req.body.id,
         $req: req,
@@ -154,8 +154,8 @@ module.exports = function init(site) {
       (err, result) => {
         if (!err) {
           response.done = true;
-          site.video_gallery_list.splice(
-            site.video_gallery_list.findIndex((a) => a.id === req.body.id),
+          site.videoGalleryList.splice(
+            site.videoGalleryList.findIndex((a) => a.id === req.body.id),
             1
           );
         } else {
@@ -167,7 +167,7 @@ module.exports = function init(site) {
 
   });
 
-  site.post('/api/video_gallery/all', (req, res) => {
+  site.post('/api/videoGallery/all', (req, res) => {
     let response = {
       done: false,
     };
@@ -184,7 +184,7 @@ module.exports = function init(site) {
       where['title'] = site.get_RegExp(where['title'], 'i');
     }
 
-    $video_gallery.findMany(
+    $videoGallery.findMany(
       {
         select: req.body.select || {},
         where: where,

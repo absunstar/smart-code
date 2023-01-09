@@ -4,10 +4,10 @@ if (btn1) {
 }
 
 app.controller('forget_password', function ($scope, $http, $timeout) {
-  $scope.user = { image_url: '/images/user_logo.png' };
+  $scope.user = { imageUrl: '/images/user_logo.png' };
   document.getElementById('enter_mobile_or_email').style.display = 'block';
   document.getElementById('code_confirm').style.display = 'none';
-  document.getElementById('new_password').style.display = 'none';
+  document.getElementById('newPassword').style.display = 'none';
   /*  
     document.getElementById('mobile_data').style.display = 'none'; */
 
@@ -69,7 +69,7 @@ app.controller('forget_password', function ($scope, $http, $timeout) {
           }
           $scope.busy = false;
         } else if (response.data.done) {
-          if (response.data.done_send_mobile) {
+          if (response.data.doneSendMobile) {
 
             $scope.sent_new_code = '##word.the_new_code_has_been_sent_to_your_phone##';
           }
@@ -106,7 +106,7 @@ app.controller('forget_password', function ($scope, $http, $timeout) {
         $scope.busy = false;
         if (response.data.done) {
           document.getElementById('code_confirm').style.display = 'none';
-          document.getElementById('new_password').style.display = 'block';
+          document.getElementById('newPassword').style.display = 'block';
           $scope.type = response.data.type;
           $scope.mobile_or_email = response.data.mobile_or_email;
         } else {
@@ -122,10 +122,10 @@ app.controller('forget_password', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.setNewPassword = function (new_password) {
+  $scope.setNewPassword = function (newPassword) {
     $scope.error = '';
     $scope.sent_new_code = '';
-    const v = site.validated('#new_password');
+    const v = site.validated('#newPassword');
 
     if (!v.ok) {
       $scope.error = v.messages[0].ar;
@@ -135,11 +135,11 @@ app.controller('forget_password', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/forget_password/new_password',
+      url: '/api/forget_password/newPassword',
       data: {
         $encript: '123',
         mobile_or_email: site.to123($scope.mobile_or_email),
-        new_password: site.to123(new_password),
+        newPassword: site.to123(newPassword),
         code: site.to123($scope.secret_code),
       },
     }).then(

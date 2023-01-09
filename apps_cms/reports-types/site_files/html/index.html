@@ -2,7 +2,7 @@
 <html lang="en" x-permissions="reports_types_ui || reports_types_manage" data-ng-app="myApp">
   <head x-import="cms/head.html"></head>
 
-  <body class="##session.lang## loaded" ng-controller="reports_types">
+  <body class="##session.lang## loaded" ng-controller="reportsTypes">
     <nav x-import="cms/sitebar.html" class="sitebar" data-ng-controller="sitebar"></nav>
 
     <nav class="sitebottom" x-import="cms/sitebottom.html" ng-controller="sitebottom"></nav>
@@ -14,7 +14,7 @@
           <div x-permissions="reports_types_search || reports_types_manage" x-import="reports-types/search_all_modal.html"></div>
 
           <div class="row">
-            <h1 class="bold text-center">##word.reports_types##</h1>
+            <h1 class="bold text-center">##word.reportsTypes##</h1>
           </div>
 
           <div class="top-actions">
@@ -33,7 +33,7 @@
             </tr>
             <tr ng-repeat="c in list">
               <td class="center not-print">
-                <i-image view class="logo" ng-model="c.image_url"></i-image>
+                <i-image view class="logo" ng-model="c.imageUrl"></i-image>
               </td>
               <td class="center">{{c.name}}</td>
 

@@ -1,20 +1,20 @@
 module.exports = function init(site) {
-  const $file_gallery = site.connectCollection('file_gallery');
-  site.file_gallery_list = [];
-  $file_gallery.findMany({}, (err, docs) => {
+  const $fileGallery = site.connectCollection('fileGallery');
+  site.fileGalleryList = [];
+  $fileGallery.findMany({}, (err, docs) => {
     if (!err && docs) {
-      site.file_gallery_list = [...site.file_gallery_list, ...docs];
+      site.fileGalleryList = [...site.fileGalleryList, ...docs];
     }
   });
 
   site.get({
-    name: 'file_gallery',
+    name: 'fileGallery',
     path: __dirname + '/site_files/html/index.html',
     parser: 'html',
     compress: true,
   });
 
-  site.post('/api/file_gallery/add', (req, res) => {
+  site.post('/api/fileGallery/add', (req, res) => {
     let response = {
       done: false,
     };
@@ -24,24 +24,24 @@ module.exports = function init(site) {
       return;
     }
 
-    let file_gallery_doc = req.body;
-    file_gallery_doc.$req = req;
-    file_gallery_doc.$res = res;
+    let fileGalleryDoc = req.body;
+    fileGalleryDoc.$req = req;
+    fileGalleryDoc.$res = res;
 
-    file_gallery_doc.add_user_info = site.security.getUserFinger({
+    fileGalleryDoc.addUserInfo = site.security.getUserFinger({
       $req: req,
       $res: res,
     });
 
-    if (typeof file_gallery_doc.active === 'undefined') {
-      file_gallery_doc.active = true;
+    if (typeof fileGalleryDoc.active === 'undefined') {
+      fileGalleryDoc.active = true;
     }
 
-    $file_gallery.add(file_gallery_doc, (err, doc) => {
+    $fileGallery.add(fileGalleryDoc, (err, doc) => {
       if (!err) {
         response.done = true;
         response.doc = doc;
-        site.file_gallery_list.push(doc);
+        site.fileGalleryList.push(doc);
       } else {
         response.error = err.message;
       }
@@ -49,7 +49,7 @@ module.exports = function init(site) {
     });
   });
 
-  site.post('/api/file_gallery/update', (req, res) => {
+  site.post('/api/fileGallery/update', (req, res) => {
     let response = {
       done: false,
     };
@@ -60,34 +60,34 @@ module.exports = function init(site) {
       return;
     }
 
-    let file_gallery_doc = req.body;
+    let fileGalleryDoc = req.body;
 
-    file_gallery_doc.edit_user_info = site.security.getUserFinger({
+    fileGalleryDoc.editUserInfo = site.security.getUserFinger({
       $req: req,
       $res: res,
     });
 
-    if (!file_gallery_doc.id) {
+    if (!fileGalleryDoc.id) {
       response.error = 'No id';
       res.json(response);
       return;
     }
 
-    $file_gallery.edit(
+    $fileGallery.edit(
       {
         where: {
-          id: file_gallery_doc.id,
+          id: fileGalleryDoc.id,
         },
-        set: file_gallery_doc,
+        set: fileGalleryDoc,
         $req: req,
         $res: res,
       },
       (err, result) => {
         if (!err && result) {
           response.done = true;
-          site.file_gallery_list.forEach((a, i) => {
+          site.fileGalleryList.forEach((a, i) => {
             if (a.id === result.doc.id) {
-              site.file_gallery_list[i] = result.doc;
+              site.fileGalleryList[i] = result.doc;
             }
           });
         } else {
@@ -98,7 +98,7 @@ module.exports = function init(site) {
     );
   });
 
-  site.post('/api/file_gallery/view', (req, res) => {
+  site.post('/api/fileGallery/view', (req, res) => {
     let response = {
       done: false,
     };
@@ -110,7 +110,7 @@ module.exports = function init(site) {
     }
 
     let ad = null;
-    site.file_gallery_list.forEach((a) => {
+    site.fileGalleryList.forEach((a) => {
       if (a.id == req.body.id) {
         ad = a;
       }
@@ -126,7 +126,7 @@ module.exports = function init(site) {
     }
   });
 
-  site.post('/api/file_gallery/delete', (req, res) => {
+  site.post('/api/fileGallery/delete', (req, res) => {
     let response = {
       done: false,
     };
@@ -143,7 +143,7 @@ module.exports = function init(site) {
       return;
     }
 
-    $file_gallery.delete(
+    $fileGallery.delete(
       {
         id: req.body.id,
         $req: req,
@@ -152,8 +152,8 @@ module.exports = function init(site) {
       (err, result) => {
         if (!err) {
           response.done = true;
-          site.file_gallery_list.splice(
-            site.file_gallery_list.findIndex((a) => a.id === req.body.id),
+          site.fileGalleryList.splice(
+            site.fileGalleryList.findIndex((a) => a.id === req.body.id),
             1
           );
         } else {
@@ -164,7 +164,7 @@ module.exports = function init(site) {
     );
   });
 
-  site.post('/api/file_gallery/all', (req, res) => {
+  site.post('/api/fileGallery/all', (req, res) => {
     let response = {
       done: false,
     };
@@ -181,7 +181,7 @@ module.exports = function init(site) {
       where['title'] = site.get_RegExp(where['title'], 'i');
     }
 
-    $file_gallery.findMany(
+    $fileGallery.findMany(
       {
         select: req.body.select || {},
         where: where,

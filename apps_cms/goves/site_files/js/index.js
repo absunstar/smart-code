@@ -7,7 +7,7 @@ app.controller('goves', function ($scope, $http, $timeout) {
     $scope.error = '';
     $scope.mode = 'add';
     $scope.gov = {
-      image_url: '/images/gov.png',
+      imageUrl: '/images/gov.png',
       active: true,
     };
 
@@ -190,7 +190,7 @@ app.controller('goves', function ($scope, $http, $timeout) {
           id: 1,
           name: 1,
           code: 1,
-          country_code: 1,
+          countryCode: 1,
         },
       },
     }).then(

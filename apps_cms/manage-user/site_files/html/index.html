@@ -31,7 +31,7 @@
                   </td>
 
                   <td>
-                    <i-image view class="logo" ng-model="manage_user.profile.image_url"></i-image>
+                    <i-image view class="logo" ng-model="manage_user.profile.imageUrl"></i-image>
                   </td>
 
                   <td>
@@ -111,11 +111,11 @@
 
                   <td class="userPrint">
                     <br />
-                    {{manage_user.profile.name}} {{manage_user.profile.last_name}}
+                    {{manage_user.profile.name}} {{manage_user.profile.lastName}}
                   </td>
 
                   <td>
-                    <i-button type="update" label="##word.update##" ng-click="view('first_name')"> </i-button>
+                    <i-button type="update" label="##word.update##" ng-click="view('firstName')"> </i-button>
                   </td>
                 </tr>
 
@@ -191,11 +191,11 @@
               <fieldset ng-show="##setting.content.other_addresses_appear##">
                 <legend>
                   ##word.other_addresses##
-                  <i-button type="add default" ng-click=" manage_user.profile.other_addresses_list.push({})"></i-button>
+                  <i-button type="add default" ng-click=" manage_user.profile.otherAddressesList.push({})"></i-button>
                 </legend>
-                <div class="row border padding" ng-repeat="o in manage_user.profile.other_addresses_list">
+                <div class="row border padding" ng-repeat="o in manage_user.profile.otherAddressesList">
                   <i-address ng-model="o"></i-address>
-                  <i-button type="delete" ng-click="manage_user.profile.other_addresses_list.splice($index,1)">
+                  <i-button type="delete" ng-click="manage_user.profile.otherAddressesList.splice($index,1)">
                   </i-button>
                 </div>
             </div>

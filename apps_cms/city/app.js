@@ -1,9 +1,9 @@
 module.exports = function init(site) {
   const $city = site.connectCollection("city")
-  site.city_list = [];
+  site.cityList = [];
   $city.findMany({}, (err, docs) => {
     if (!err && docs) {
-      site.city_list = [...site.city_list, ...docs];
+      site.cityList = [...site.cityList, ...docs];
     }
   });
 
@@ -34,24 +34,24 @@ module.exports = function init(site) {
       return
     }
 
-    let city_doc = req.body
-    city_doc.$req = req
-    city_doc.$res = res
+    let cityDoc = req.body
+    cityDoc.$req = req
+    cityDoc.$res = res
 
-    city_doc.add_user_info = site.security.getUserFinger({
+    cityDoc.addUserInfo = site.security.getUserFinger({
       $req: req,
       $res: res
     })
 
-    if (typeof city_doc.active === 'undefined') {
-      city_doc.active = true
+    if (typeof cityDoc.active === 'undefined') {
+      cityDoc.active = true
     }
 
-    $city.add(city_doc, (err, doc) => {
+    $city.add(cityDoc, (err, doc) => {
       if (!err) {
         response.done = true;
         response.doc = doc;
-        site.city_list.push(doc);
+        site.cityList.push(doc);
       } else {
         response.error = err.message;
       }
@@ -71,13 +71,13 @@ module.exports = function init(site) {
       return
     }
 
-    let city_doc = req.body
+    let cityDoc = req.body
 
-    city_doc.edit_user_info = site.security.getUserFinger({
+    cityDoc.editUserInfo = site.security.getUserFinger({
       $req: req,
       $res: res
     })
-    if (!city_doc.id) {
+    if (!cityDoc.id) {
       response.error = 'No id';
       res.json(response);
       return;
@@ -86,18 +86,18 @@ module.exports = function init(site) {
     $city.edit(
       {
         where: {
-          id: city_doc.id,
+          id: cityDoc.id,
         },
-        set: city_doc,
+        set: cityDoc,
         $req: req,
         $res: res,
       },
       (err, result) => {
         if (!err && result) {
           response.done = true;
-          site.city_list.forEach((a, i) => {
+          site.cityList.forEach((a, i) => {
             if (a.id === result.doc.id) {
-              site.city_list[i] = result.doc;
+              site.cityList[i] = result.doc;
             }
           });
         } else {
@@ -120,7 +120,7 @@ module.exports = function init(site) {
       return
     }
     let ad = null;
-    site.city_list.forEach((a) => {
+    site.cityList.forEach((a) => {
       if (a.id == req.body.id) {
         ad = a;
       }
@@ -162,8 +162,8 @@ module.exports = function init(site) {
       (err, result) => {
         if (!err) {
           response.done = true;
-          site.city_list.splice(
-            site.city_list.findIndex((a) => a.id === req.body.id),
+          site.cityList.splice(
+            site.cityList.findIndex((a) => a.id === req.body.id),
             1
           );
         } else {

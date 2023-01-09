@@ -14,27 +14,27 @@
         </i-list>
         <i-list
           ng-show="c.type.id == 3"
-          ng-search="_search.$report_type"
+          ng-search="_search.$reportType"
           class="col2"
-          display="name_##session.lang##"
-          ng-model="c.report_type"
-          label="##word.report_type##"
+          display="name"
+          ng-model="c.reportType"
+          label="##word.reportType##"
           items="reportsTypesList"
         >
         </i-list>
-        <i-textarea class="col5" ng-show="c.type.id == 3" ng-model="c.comment_report" label="##word.comment_on_report##"> </i-textarea>
+        <i-textarea class="col5" ng-show="c.type.id == 3" ng-model="c.commentReport" label="##word.comment_on_report##"> </i-textarea>
       <!--   <i-list
           ng-search="_search.$comment_type"
           ng-show="c.type.id == 4"
           class="col2"
-          display="name_##session.lang##"
+          display="name"
           ng-model="c.comment_type"
           label="##word.comment_type##"
           items="commentsTypesList"
         >
         </i-list> -->
         <i-textarea class="col5" ng-show="c.type.id == 4" ng-model="c.comment" label="##word.comment##"> </i-textarea>
-        <i-button type="view" class="col2" label="##word.reports_comment##" ng-show="c.report_list.length > 0" ng-click="showModal(c)"> </i-button>
+        <i-button type="view" class="col2" label="##word.reports_comment##" ng-show="c.reportList.length > 0" ng-click="showModal(c)"> </i-button>
 
         <div class="col1 center">
           <br />
@@ -59,13 +59,13 @@
         <table x-permissions="login" class="table hover bold">
           <tr>
             <th>##word.user_name##</th>
-            <th>##word.report_type##</th>
+            <th>##word.reportType##</th>
             <th>##word.comment##</th>
           </tr>
-          <tr ng-repeat="c in comment.report_list">
-            <td class="center blue">{{c.user.profile.name}} {{c.user.profile.last_name}}</td>
-            <td class="center title">{{c.report_type.name_##session.lang##}}</td>
-            <td class="center pre_text title">{{c.comment_report}}</td>
+          <tr ng-repeat="c in comment.reportList">
+            <td class="center blue">{{c.user.profile.name}} {{c.user.profile.lastName}}</td>
+            <td class="center title">{{c.reportType.name}}</td>
+            <td class="center pre_text title">{{c.commentReport}}</td>
           </tr>
         </table>
       </div>

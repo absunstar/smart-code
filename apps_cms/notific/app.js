@@ -45,7 +45,7 @@ module.exports = function init(site) {
     site.security.getUsers(
       {
         where: {
-          id: { $in: obj.user.followers_list },
+          id: { $in: obj.user.followersList },
         },
       },
       (err, docs) => {
@@ -61,15 +61,15 @@ module.exports = function init(site) {
                   id: obj.user.id,
                   email: obj.user.email,
                   name: obj.user.profile.name,
-                  last_name: obj.user.profile.last_name,
-                  image_url: obj.user.profile.image_url,
+                  lastName: obj.user.profile.lastName,
+                  imageUrl: obj.user.profile.imageUrl,
                 },
                 user: {
                   id: _doc.id,
                   email: _doc.email,
                   name: _doc.profile.name,
-                  last_name: _doc.profile.last_name,
-                  image_url: _doc.profile.image_url,
+                  lastName: _doc.profile.lastName,
+                  imageUrl: _doc.profile.imageUrl,
                 },
                 type: 'ads_members_follow',
                 date: new Date(),
@@ -99,15 +99,15 @@ module.exports = function init(site) {
                 id: obj.user_action.id,
                 email: obj.user_action.email,
                 name: obj.user_action.profile.name,
-                last_name: obj.user_action.profile.last_name,
-                image_url: obj.user_action.profile.image_url,
+                lastName: obj.user_action.profile.lastName,
+                imageUrl: obj.user_action.profile.imageUrl,
               },
               user: {
                 id: doc.id,
                 email: doc.email,
                 name: doc.profile.name,
-                last_name: doc.profile.last_name,
-                image_url: doc.profile.image_url,
+                lastName: doc.profile.lastName,
+                imageUrl: doc.profile.imageUrl,
 
               },
               type: 'replies_ads_followed',
@@ -136,15 +136,15 @@ module.exports = function init(site) {
                 id: obj.user_action.id,
                 email: obj.user_action.email,
                 name: obj.user_action.profile.name,
-                last_name: obj.user_action.profile.last_name,
-                image_url: obj.user_action.profile.image_url,
+                lastName: obj.user_action.profile.lastName,
+                imageUrl: obj.user_action.profile.imageUrl,
               },
               user: {
                 id: doc.id,
                 email: doc.email,
                 name: doc.profile.name,
-                last_name: doc.profile.last_name,
-                image_url: doc.profile.image_url,
+                lastName: doc.profile.lastName,
+                imageUrl: doc.profile.imageUrl,
               },
               type: 'comments_my_ads',
               date: new Date(),
@@ -193,7 +193,7 @@ module.exports = function init(site) {
     notific_doc.$req = req;
     notific_doc.$res = res;
 
-    notific_doc.add_user_info = site.security.getUserFinger({
+    notific_doc.addUserInfo = site.security.getUserFinger({
       $req: req,
       $res: res,
     });
@@ -221,7 +221,7 @@ module.exports = function init(site) {
 
     let notific_doc = req.body;
 
-    notific_doc.edit_user_info = site.security.getUserFinger({
+    notific_doc.editUserInfo = site.security.getUserFinger({
       $req: req,
       $res: res,
     });
@@ -327,23 +327,6 @@ module.exports = function init(site) {
     }
 
     let where = req.body.where || {};
-
-    if (where['name']) {
-      where.$or = [];
-      where.$or.push({
-        name_ar: site.get_RegExp(where['name'], 'i'),
-      });
-      where.$or.push({
-        name_en: site.get_RegExp(where['name'], 'i'),
-      });
-      where.$or.push({
-        minor_currency_ar: site.get_RegExp(where['name'], 'i'),
-      });
-      where.$or.push({
-        minor_currency_en: site.get_RegExp(where['name'], 'i'),
-      });
-      delete where['name'];
-    }
 
     $notific.findMany(
       {

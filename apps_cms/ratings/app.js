@@ -44,8 +44,8 @@ module.exports = function init(site) {
       id: req.session.user.id,
       email: req.session.user.email,
       name : req.session.user.profile.name,
-      last_name : req.session.user.profile.last_name,
-      image_url : req.session.user.profile.image_url,
+      lastName : req.session.user.profile.lastName,
+      imageUrl : req.session.user.profile.imageUrl,
     };
     ratings_doc.approval = null;
     $ratings.add(ratings_doc, (err, doc) => {
@@ -73,7 +73,7 @@ module.exports = function init(site) {
 
     let ratings_doc = req.body;
 
-    ratings_doc.edit_user_info = site.security.getUserFinger({
+    ratings_doc.editUserInfo = site.security.getUserFinger({
       $req: req,
       $res: res,
     });
@@ -181,17 +181,6 @@ module.exports = function init(site) {
     };
 
     let where = req.body.where || {};
-
-    if (where['name']) {
-      where.$or = [];
-      where.$or.push({
-        name_ar: site.get_RegExp(where['name'], 'i'),
-      });
-      where.$or.push({
-        name_en: site.get_RegExp(where['name'], 'i'),
-      });
-      delete where['name'];
-    }
 
     $ratings.findMany(
       {

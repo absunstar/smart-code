@@ -27,7 +27,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
           $scope.permissions_list = [];
           $scope.address = {
             main: $scope.manage_user.profile.main_address,
-            other_list: $scope.manage_user.profile.other_addresses_list,
+            other_list: $scope.manage_user.profile.otherAddressesList,
           };
           $scope.manage_user.$permissions_info.forEach((_p) => {
             $scope.permissions_list.push({
@@ -48,8 +48,7 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
                   if (_s.name) {
                     let newname = data.find((el) => el.name == _s.name.replace(/-/g, '_'));
                     if (newname) {
-                      _s.name_ar = newname.ar;
-                      _s.name_en = newname.en;
+                      _s.name = newname;
                     }
                   }
                 });
@@ -332,284 +331,9 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.displayAddStore = function () {
-    $scope.error = '';
-    $scope.store = {
-      image_url: '/images/stores.png',
-      mobile: $scope.manage_user.mobile,
-      feedback_list: [],
-      store_rating: 0,
-      number_views: 0,
-      number_comments: 0,
-      number_favorites: 0,
-      number_reports: 0,
-      priority_level: 0,
-      active: true,
-    };
-    if ($scope.defaultSettings) {
-      if ($scope.defaultSettings.stores_settings && $scope.defaultSettings.stores_settings.store_status) {
-        $scope.store.store_status = $scope.defaultSettings.stores_settings.store_status;
-      } else {
-        $scope.store.store_status = {
-          id: 2,
-          en: 'Under review',
-          ar: 'قيد المراجعة',
-        };
-      }
-    }
-    site.showModal('#storeAddModal');
-  };
-
-  $scope.addStore = function () {
-    $scope.error = '';
-    const v = site.validated('#storeAddModal');
-    if (!v.ok) {
-      $scope.error = v.messages[0].ar;
-      return;
-    }
-
-    $scope.store.user = {
-      id: $scope.manage_user.id,
-      profile: $scope.manage_user,
-      email: $scope.manage_user.email,
-    };
-
-    if ($scope.address.select_main) {
-      $scope.store.address = $scope.address.main;
-    } else if ($scope.address.select_new) {
-      $scope.store.address = $scope.address.new;
-    } else {
-      $scope.address.other_list = $scope.address.other_list || [];
-      $scope.address.other_list.forEach((_other) => {
-        if (_other.$select_address) {
-          $scope.store.address = { ..._other };
-        }
-      });
-    }
-
-    $scope.busy = true;
-    $http({
-      method: 'POST',
-      url: '/api/stores/add',
-      data: $scope.store,
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.address = {};
-          site.hideModal('#storeAddModal');
-          $scope.getStoreList();
-        } else {
-          $scope.error = response.data.error;
-          if (response.data.error.like('*Must Enter Code*')) {
-            $scope.error = '##word.must_enter_code##';
-          } else if (response.data.error.like('*maximum stores to user*')) {
-            $scope.error = '##word.maximum_number_stores_exceeded##';
-          }
-        }
-      },
-      function (err) {
-        console.log(err);
-      }
-    );
-  };
-
-  $scope.displayUpdateStore = function (store) {
-    $scope.error = '';
-    $scope.viewStore(store);
-    $scope.store = {};
-    site.showModal('#storeUpdateModal');
-  };
-
-  $scope.updateStore = function () {
-    $scope.error = '';
-    const v = site.validated('#storeUpdateModal');
-    if (!v.ok) {
-      $scope.error = v.messages[0].ar;
-      return;
-    }
-
-    if ($scope.address.select_main) {
-      $scope.store.address = $scope.address.main;
-    } else if ($scope.address.select_new) {
-      $scope.store.address = $scope.address.new;
-    } else {
-      $scope.address.other_list = $scope.address.other_list || [];
-      $scope.address.other_list.forEach((_other) => {
-        if (_other.$select_address) {
-          $scope.store.address = { ..._other };
-        }
-      });
-    }
-
-    if ($scope.defaultSettings.stores_settings && $scope.defaultSettings.stores_settings.store_status) {
-      $scope.store.store_status = $scope.defaultSettings.stores_settings.store_status;
-    } else {
-      $scope.store.store_status = {
-        id: 2,
-        en: 'Under review',
-        ar: 'قيد المراجعة',
-      };
-    }
-    $scope.busy = true;
-    $http({
-      method: 'POST',
-      url: '/api/stores/update',
-      data: $scope.store,
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.address = {};
-          site.hideModal('#storeUpdateModal');
-          $scope.getStoreList();
-        } else {
-          $scope.error = 'Please Login First';
-        }
-      },
-      function (err) {
-        console.log(err);
-      }
-    );
-  };
-
-  $scope.displayDetailsStore = function (store) {
-    $scope.error = '';
-    $scope.viewStore(store);
-    $scope.store = {};
-    site.showModal('#storeViewModal');
-  };
-
-  $scope.viewStore = function (store) {
-    $scope.busy = true;
-    $scope.error = '';
-    $http({
-      method: 'POST',
-      url: '/api/stores/view',
-      data: {
-        id: store.id,
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          $scope.store = response.data.doc;
-        } else {
-          $scope.error = response.data.error;
-        }
-      },
-      function (err) {
-        console.log(err);
-      }
-    );
-  };
-
-  $scope.displayDeleteStore = function (store) {
-    $scope.error = '';
-
-    $scope.viewStore(store);
-    $scope.store = {};
-    site.showModal('#storeDeleteModal');
-  };
-
-  $scope.deleteStore = function () {
-    $scope.busy = true;
-    $scope.error = '';
-
-    $http({
-      method: 'POST',
-      url: '/api/stores/delete',
-      data: {
-        id: $scope.store.id,
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-          site.hideModal('#storeDeleteModal');
-          $scope.getStoreList();
-        } else {
-          $scope.error = response.data.error;
-        }
-      },
-      function (err) {
-        console.log(err);
-      }
-    );
-  };
-
-  $scope.getStoreList = function (where) {
-    $scope.busy = true;
-    $scope.list = [];
-    $http({
-      method: 'POST',
-      url: '/api/stores/all',
-      data: {
-        where: where,
-      },
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done && response.data.list.length > 0) {
-          $scope.list = response.data.list;
-          $scope.count = response.data.count;
-          site.hideModal('#storeSearchModal');
-          $scope.search = {};
-        }
-      },
-      function (err) {
-        $scope.busy = false;
-        $scope.error = err;
-      }
-    );
-  };
   $scope.displayAddAd = function () {
     window.open(`/create_content`, '_top');
   };
-  /*  $scope.displayAddAd = function () {
-    $scope.error = '';
-    $scope.ad = {
-      mobile: $scope.manage_user.mobile,
-      feedback_list: [],
-      set_price: 'no',
-      ad_rating: 0,
-      number_views: 0,
-      number_comments: 0,
-      number_favorites: 0,
-      number_reports: 0,
-      priority_level: 0,
-      active: true,
-    };
-    if ($scope.defaultSettings.content) {
-      if ($scope.defaultSettings.content.status) {
-        $scope.ad.ad_status = $scope.defaultSettings.content.status;
-      } else {
-        $scope.ad.ad_status = {
-          id: 2,
-          en: 'Under review',
-          ar: 'قيد المراجعة',
-        };
-      }
-      if ($scope.defaultSettings.content.quantities_can_be_used) {
-        $scope.ad.quantity_list = [
-          {
-            price: 0,
-            discount: 0,
-            discount_type: 'number',
-            net_value: 0,
-            available_quantity: 0,
-            maximum_order: 0,
-            minimum_order: 0,
-          },
-        ];
-      }
-      if ($scope.defaultSettings.content.upload_photos) {
-        $scope.ad.images_list = [{}];
-      }
-      $scope.ad.image_url = $scope.defaultSettings.content.default_image_ad || '/images/content.png';
-    }
-    site.showModal('#adAddModal');
-  }; */
 
   $scope.viewCategories = function (c) {
     $scope.category = c;
@@ -617,9 +341,9 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
   };
 
   $scope.selectCategory = function (c) {
-    $scope.ad.main_category = c;
-    if (c && !c.top_parent_id) {
-      $scope.ad.category_require_list = c.category_require_list;
+    $scope.ad.mainCategory = c;
+    if (c && !c.topParentId) {
+      $scope.ad.categoryRequireList = c.categoryRequireList;
     }
   };
 
@@ -631,23 +355,6 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
       return;
     }
 
-    if (!$scope.defaultSettings.stores_settings.activate_stores) {
-      if ($scope.address.select_main) {
-        $scope.ad.address = $scope.address.main;
-      } else if ($scope.address.select_new) {
-        $scope.ad.address = $scope.address.new;
-      } else {
-        $scope.address.other_list = $scope.address.other_list || [];
-        $scope.address.other_list.forEach((_other) => {
-          if (_other.$select_address) {
-            $scope.ad.address = { ..._other };
-          }
-        });
-      }
-    } else if ($scope.ad.store) {
-      $scope.ad.address = $scope.ad.store.address;
-    }
-
     $scope.busy = true;
     $http({
       method: 'POST',
@@ -657,9 +364,6 @@ app.controller('manage_user', function ($scope, $http, $timeout) {
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          if (!$scope.defaultSettings.stores_settings.activate_stores) {
-            $scope.address = {};
-          }
           site.hideModal('#adAddModal');
           $scope.getMyAdsList();
         } else {

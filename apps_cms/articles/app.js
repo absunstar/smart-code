@@ -1,9 +1,9 @@
 module.exports = function init(site) {
   const $articles = site.connectCollection('articles');
-  site.articles_list = [];
+  site.articlesList = [];
   $articles.findMany({}, (err, docs) => {
     if (!err && docs) {
-      site.articles_list = [...site.articles_list, ...docs];
+      site.articlesList = [...site.articlesList, ...docs];
     }
   });
 
@@ -20,8 +20,8 @@ module.exports = function init(site) {
   });
 
   site.post({
-    name: '/api/article_types/all',
-    path: __dirname + '/site_files/json/article_types.json',
+    name: '/api/articleTypes/all',
+    path: __dirname + '/site_files/json/articleTypes.json',
   });
 
   site.post({
@@ -39,30 +39,29 @@ module.exports = function init(site) {
       return;
     }
 
-    let articles_doc = req.body;
-    articles_doc.$req = req;
-    articles_doc.$res = res;
+    let articlesDoc = req.body;
+    articlesDoc.$req = req;
+    articlesDoc.$res = res;
 
-    articles_doc.add_user_info = site.security.getUserFinger({
+    articlesDoc.addUserInfo = site.security.getUserFinger({
       $req: req,
       $res: res,
     });
 
-    if (typeof articles_doc.active === 'undefined') {
-      articles_doc.active = true;
+    if (typeof articlesDoc.active === 'undefined') {
+      articlesDoc.active = true;
     }
 
-    $articles.add(articles_doc, (err, doc) => {
+    $articles.add(articlesDoc, (err, doc) => {
       if (!err) {
         response.done = true;
         response.doc = doc;
-        site.articles_list.push(doc);
+        site.articlesList.push(doc);
       } else {
         response.error = err.message;
       }
       res.json(response);
     });
-
   });
 
   site.post('/api/articles/update', (req, res) => {
@@ -76,14 +75,14 @@ module.exports = function init(site) {
       return;
     }
 
-    let articles_doc = req.body;
+    let articlesDoc = req.body;
 
-    articles_doc.edit_user_info = site.security.getUserFinger({
+    articlesDoc.editUserInfo = site.security.getUserFinger({
       $req: req,
       $res: res,
     });
 
-    if (!articles_doc.id) {
+    if (!articlesDoc.id) {
       response.error = 'No id';
       res.json(response);
       return;
@@ -92,18 +91,18 @@ module.exports = function init(site) {
     $articles.edit(
       {
         where: {
-          id: articles_doc.id,
+          id: articlesDoc.id,
         },
-        set: articles_doc,
+        set: articlesDoc,
         $req: req,
         $res: res,
       },
       (err, result) => {
         if (!err && result) {
           response.done = true;
-          site.articles_list.forEach((a, i) => {
+          site.articlesList.forEach((a, i) => {
             if (a.id === result.doc.id) {
-              site.articles_list[i] = result.doc;
+              site.articlesList[i] = result.doc;
             }
           });
         } else {
@@ -112,7 +111,6 @@ module.exports = function init(site) {
         res.json(response);
       }
     );
-
   });
 
   site.post('/api/articles/view', (req, res) => {
@@ -127,7 +125,7 @@ module.exports = function init(site) {
     }
 
     let ad = null;
-    site.articles_list.forEach((a) => {
+    site.articlesList.forEach((a) => {
       if (a.id == req.body.id) {
         ad = a;
       }
@@ -138,7 +136,7 @@ module.exports = function init(site) {
       response.doc = ad;
       res.json(response);
     } else {
-      response.error = 'no id'
+      response.error = 'no id';
       res.json(response);
     }
   });
@@ -154,7 +152,6 @@ module.exports = function init(site) {
       return;
     }
 
-   
     if (!req.body.id) {
       response.error = 'no id';
       res.json(response);
@@ -170,8 +167,8 @@ module.exports = function init(site) {
       (err, result) => {
         if (!err) {
           response.done = true;
-          site.articles_list.splice(
-            site.articles_list.findIndex((a) => a.id === req.body.id),
+          site.articlesList.splice(
+            site.articlesList.findIndex((a) => a.id === req.body.id),
             1
           );
         } else {
@@ -180,8 +177,6 @@ module.exports = function init(site) {
         res.json(response);
       }
     );
-
-  
   });
 
   site.post('/api/articles/all', (req, res) => {
@@ -191,19 +186,25 @@ module.exports = function init(site) {
 
     let where = req.body.where || {};
 
-    if (where['name']) {
+    if (req.body.search) {
       where.$or = [];
-      where.$or.push({
-        name_ar: site.get_RegExp(where['name'], 'i'),
-      });
-      where.$or.push({
-        name_en: site.get_RegExp(where['name'], 'i'),
-      });
-      delete where['name']
+      where.$or.push(
+        {
+          'translatedList.title': site.get_RegExp(req.body.search, 'i'),
+        },
+        {
+          'translatedList.content': site.get_RegExp(req.body.search, 'i'),
+        },
+        {
+          'keyWordsList': site.get_RegExp(req.body.search, 'i'),
+        },
+        {
+          'tagsList': site.get_RegExp(req.body.search, 'i'),
+        }
+      );
     }
 
-    // site.articles_list.filter(u => u.name.contains(where['name']))
-
+    // site.articlesList.filter(u => u.name.contains(where['name']))
     $articles.findMany(
       {
         select: req.body.select || {},
@@ -217,6 +218,14 @@ module.exports = function init(site) {
         if (!err) {
           response.done = true;
           response.list = docs;
+          // docs.forEach(_d => {
+          //   _d.translatedList.forEach(_t => {
+          //     if(_t.id == site.setting.languages_list.find((_l)=> {return _l.id == _t.id})){
+          //       _d.$name = _t.name;
+          //     }
+          //   });
+          // });
+
           response.count = count;
         } else {
           response.error = err.message;
@@ -225,6 +234,4 @@ module.exports = function init(site) {
       }
     );
   });
-
-
 };

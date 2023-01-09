@@ -28,7 +28,7 @@ app.controller('follow', function ($scope, $http, $timeout) {
       method: 'POST',
       url: '/api/users/all',
       data: {
-        where:{'followers_list' : site.toNumber('##user.id##')},
+        where:{'followersList' : site.toNumber('##user.id##')},
       },
     }).then(
       function (response) {

@@ -40,7 +40,7 @@ site.get(
   (req, res) => {
     if (site.setting.site_template &&site.setting.site_template.id == 1) {
       res.render(
-        'cms/index.html',
+        'cms/theme1.html',
         {},
         {
           parser: 'html css js',

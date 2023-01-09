@@ -1,9 +1,9 @@
 module.exports = function init(site) {
   const $clusters = site.connectCollection('clusters');
-  site.cluster_list = [];
+  site.clusterList = [];
   $clusters.findMany({}, (err, docs) => {
     if (!err && docs) {
-      site.cluster_list = [...site.cluster_list, ...docs];
+      site.clusterList = [...site.clusterList, ...docs];
     }
   });
 
@@ -30,24 +30,24 @@ module.exports = function init(site) {
       return;
     }
 
-    let clusters_doc = req.body;
-    clusters_doc.$req = req;
-    clusters_doc.$res = res;
+    let clustersDoc = req.body;
+    clustersDoc.$req = req;
+    clustersDoc.$res = res;
 
-    clusters_doc.add_user_info = site.security.getUserFinger({
+    clustersDoc.addUserInfo = site.security.getUserFinger({
       $req: req,
       $res: res,
     });
 
-    if (typeof clusters_doc.active === 'undefined') {
-      clusters_doc.active = true;
+    if (typeof clustersDoc.active === 'undefined') {
+      clustersDoc.active = true;
     }
 
-    $clusters.add(clusters_doc, (err, doc) => {
+    $clusters.add(clustersDoc, (err, doc) => {
       if (!err) {
         response.done = true;
         response.doc = doc;
-        site.cluster_list.push(doc);
+        site.clusterList.push(doc);
       } else {
         response.error = err.message;
       }
@@ -67,14 +67,14 @@ module.exports = function init(site) {
       return;
     }
 
-    let clusters_doc = req.body;
+    let clustersDoc = req.body;
 
-    clusters_doc.edit_user_info = site.security.getUserFinger({
+    clustersDoc.editUserInfo = site.security.getUserFinger({
       $req: req,
       $res: res,
     });
 
-    if (!clusters_doc.id) {
+    if (!clustersDoc.id) {
       response.error = 'No id';
       res.json(response);
       return;
@@ -83,18 +83,18 @@ module.exports = function init(site) {
     $clusters.edit(
       {
         where: {
-          id: clusters_doc.id,
+          id: clustersDoc.id,
         },
-        set: clusters_doc,
+        set: clustersDoc,
         $req: req,
         $res: res,
       },
       (err, result) => {
         if (!err && result) {
           response.done = true;
-          site.cluster_list.forEach((a, i) => {
+          site.clusterList.forEach((a, i) => {
             if (a.id === result.doc.id) {
-              site.cluster_list[i] = result.doc;
+              site.clusterList[i] = result.doc;
             }
           });
         } else {
@@ -118,7 +118,7 @@ module.exports = function init(site) {
     }
 
     let ad = null;
-    site.cluster_list.forEach((a) => {
+    site.clusterList.forEach((a) => {
       if (a.id == req.body.id) {
         ad = a;
       }
@@ -161,8 +161,8 @@ module.exports = function init(site) {
       (err, result) => {
         if (!err) {
           response.done = true;
-          site.cluster_list.splice(
-            site.cluster_list.findIndex((a) => a.id === req.body.id),
+          site.clusterList.splice(
+            site.clusterList.findIndex((a) => a.id === req.body.id),
             1
           );
         } else {
@@ -181,19 +181,6 @@ module.exports = function init(site) {
     };
 
     let where = req.body.where || {};
-
-    if (where['name']) {
-      where.$or = [];
-      where.$or.push({
-        name_ar: site.get_RegExp(where['name'], 'i'),
-      });
-      where.$or.push({
-        name_en: site.get_RegExp(where['name'], 'i'),
-      });
-      delete where['name']
-    }
-
-    // site.cluster_list.filter(u => u.name.contains(where['name']))
 
     $clusters.findMany(
       {

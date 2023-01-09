@@ -1,5 +1,5 @@
 app.controller('register_souq', function ($scope, $http, $timeout) {
-  $scope.user = { image_url: '/images/user_logo.png' };
+  $scope.user = { imageUrl: '/images/user_logo.png' };
   $scope.type = 'mobile';
 
   $scope.showTab = function (event, selector) {
@@ -11,7 +11,7 @@ app.controller('register_souq', function ($scope, $http, $timeout) {
       site.showTabContent(event, selector);
       document.getElementById('register_email').style.display = 'none';
       document.getElementById('register_mobile').style.display = 'block';
-      if ('##setting.enable_sending_messages_mobile##' == 'true') {
+      if ('##setting.enableSendingMessagesMobile##' == 'true') {
         document.getElementById('mobile_mailer').style.display = 'block';
       } else {
         document.getElementById('mobile_data').style.display = 'block';
@@ -24,7 +24,7 @@ app.controller('register_souq', function ($scope, $http, $timeout) {
       document.getElementById('register_mobile').style.display = 'none';
       document.getElementById('register_email').style.display = 'block';
 
-      if ('##setting.enable_sending_messages_email##' == 'true') {
+      if ('##setting.enableSendingMessagesEmail##' == 'true') {
         document.getElementById('email_mailer').style.display = 'block';
       } else {
         document.getElementById('email_data').style.display = 'block';
@@ -63,10 +63,10 @@ app.controller('register_souq', function ($scope, $http, $timeout) {
           $scope.busy = false;
         } else if (response.data.done) {
           $scope.mailer = response.data.doc;
-          if (response.data.done_send_mobile) {
+          if (response.data.doneSendMobile) {
 
             $scope.sent_new_code = '##word.the_new_code_has_been_sent_to_your_phone##';
-          } else if (response.data.done_send_email) {
+          } else if (response.data.doneSendEmail) {
 
             $scope.sent_new_code = '##word.the_new_code_has_been_sent_to_your_email##';
           }
@@ -93,7 +93,7 @@ app.controller('register_souq', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/register/validate_mobile',
+      url: '/api/register/validateMobile',
       data: obj,
     }).then(
       function (response) {
@@ -271,8 +271,8 @@ app.controller('register_souq', function ($scope, $http, $timeout) {
 
     let regex = /^\d*(\.\d+)?$/;
 
-    if (user.country.length_mobile && user.mobile.match(regex)) {
-      if (user.mobile.toString().length != user.country.length_mobile) {
+    if (user.country.lengthMobile && user.mobile.match(regex)) {
+      if (user.mobile.toString().length != user.country.lengthMobile) {
 
         $scope.error = '##word.please_enter_valid_mobile_number##';
         return;
@@ -294,19 +294,19 @@ app.controller('register_souq', function ($scope, $http, $timeout) {
       email: site.to123(user.email),
       password: site.to123(user.password),
       mobile: user.mobile,
-      first_name: user.first_name,
-      last_name: user.last_name,
-      image_url: user.image_url,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      imageUrl: user.imageUrl,
     };
 
     if ($scope.mailer) {
       obj.mailer_id = $scope.mailer.id;
-      obj.country_code = $scope.mailer.country.country_code;
+      obj.countryCode = $scope.mailer.country.countryCode;
       user.country = $scope.mailer.country;
-      obj.length_mobile = user.country.length_mobile;
+      obj.lengthMobile = user.country.lengthMobile;
     } else {
-      obj.country_code = user.country.country_code;
-      obj.length_mobile = user.country.length_mobile;
+      obj.countryCode = user.country.countryCode;
+      obj.lengthMobile = user.country.lengthMobile;
 
     }
 
@@ -334,7 +334,7 @@ app.controller('register_souq', function ($scope, $http, $timeout) {
 
 
     if (user) {
-      if (user.password === user.re_password) {
+      if (user.password === user.rePassword) {
         $scope.busy = true;
         $http({
           method: 'POST',
@@ -376,12 +376,12 @@ app.controller('register_souq', function ($scope, $http, $timeout) {
         },
         select: {
           id: 1,
-          name_ar: 1,
-          name_en: 1,
+           
+          name: 1,
           code: 1,
-          image_url: 1,
-          country_code: 1,
-          length_mobile: 1
+          imageUrl: 1,
+          countryCode: 1,
+          lengthMobile: 1
         },
       },
     }).then(

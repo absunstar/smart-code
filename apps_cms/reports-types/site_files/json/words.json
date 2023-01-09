@@ -1,11 +1,11 @@
 [
   {
-    "name": "reports_types",
+    "name": "reportsTypes",
     "en": "Reports Types",
     "ar": "أنواع البلاغات"
   },
   {
-    "name": "report_type",
+    "name": "reportType",
     "en": "Report Type",
     "ar": "نوع البلاغ"
   },

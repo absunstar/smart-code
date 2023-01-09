@@ -31,12 +31,12 @@
         "ar": "أنشئ حساب"
     },
     {
-        "name": "first_name",
+        "name": "firstName",
         "en": "First Name",
         "ar": "الإسم الأول"
     },
     {
-        "name": "last_name",
+        "name": "lastName",
         "en": "Last Name",
         "ar": "الإسم الأخير"
     },

@@ -1,11 +1,11 @@
-app.controller('video_gallery', function ($scope, $http, $timeout) {
+app.controller('videoGallery', function ($scope, $http, $timeout) {
   $scope.mode = 'add';
-  $scope.video_gallery = {};
+  $scope.videoGallery = {};
 
   $scope.displayAddVideoGallery = function () {
     $scope.error = '';
     $scope.mode = 'add';
-    $scope.video_gallery = {
+    $scope.videoGallery = {
       active: true,
     };
 
@@ -22,8 +22,8 @@ app.controller('video_gallery', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/video_gallery/add',
-      data: $scope.video_gallery,
+      url: '/api/videoGallery/add',
+      data: $scope.videoGallery,
     }).then(
       function (response) {
         $scope.busy = false;
@@ -40,11 +40,11 @@ app.controller('video_gallery', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.displayUpdateVideoGallery = function (video_gallery) {
+  $scope.displayUpdateVideoGallery = function (videoGallery) {
     $scope.error = '';
     $scope.mode = 'edit';
-    $scope.viewVideoGallery(video_gallery);
-    $scope.video_gallery = {};
+    $scope.viewVideoGallery(videoGallery);
+    $scope.videoGallery = {};
     site.showModal('#videoGalleryManageModal');
   };
 
@@ -58,8 +58,8 @@ app.controller('video_gallery', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/video_gallery/update',
-      data: $scope.video_gallery,
+      url: '/api/videoGallery/update',
+      data: $scope.videoGallery,
     }).then(
       function (response) {
         $scope.busy = false;
@@ -76,28 +76,28 @@ app.controller('video_gallery', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.displayDetailsVideoGallery = function (video_gallery) {
+  $scope.displayDetailsVideoGallery = function (videoGallery) {
     $scope.error = '';
     $scope.mode = 'view';
-    $scope.viewVideoGallery(video_gallery);
-    $scope.video_gallery = {};
+    $scope.viewVideoGallery(videoGallery);
+    $scope.videoGallery = {};
     site.showModal('#videoGalleryManageModal');
   };
 
-  $scope.viewVideoGallery = function (video_gallery) {
+  $scope.viewVideoGallery = function (videoGallery) {
     $scope.busy = true;
     $scope.error = '';
     $http({
       method: 'POST',
-      url: '/api/video_gallery/view',
+      url: '/api/videoGallery/view',
       data: {
-        id: video_gallery.id,
+        id: videoGallery.id,
       },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $scope.video_gallery = response.data.doc;
+          $scope.videoGallery = response.data.doc;
         } else {
           $scope.error = response.data.error;
         }
@@ -107,11 +107,11 @@ app.controller('video_gallery', function ($scope, $http, $timeout) {
       }
     );
   };
-  $scope.displayDeleteVideoGallery = function (video_gallery) {
+  $scope.displayDeleteVideoGallery = function (videoGallery) {
     $scope.error = '';
     $scope.mode = 'delete';
-    $scope.viewVideoGallery(video_gallery);
-    $scope.video_gallery = {};
+    $scope.viewVideoGallery(videoGallery);
+    $scope.videoGallery = {};
     site.showModal('#videoGalleryManageModal');
   };
 
@@ -121,9 +121,9 @@ app.controller('video_gallery', function ($scope, $http, $timeout) {
 
     $http({
       method: 'POST',
-      url: '/api/video_gallery/delete',
+      url: '/api/videoGallery/delete',
       data: {
-        id: $scope.video_gallery.id,
+        id: $scope.videoGallery.id,
       },
     }).then(
       function (response) {
@@ -146,7 +146,7 @@ app.controller('video_gallery', function ($scope, $http, $timeout) {
     $scope.list = [];
     $http({
       method: 'POST',
-      url: '/api/video_gallery/all',
+      url: '/api/videoGallery/all',
       data: {
         where: where,
       },
@@ -170,8 +170,8 @@ app.controller('video_gallery', function ($scope, $http, $timeout) {
   $scope.getFileUrl = function () {
     $scope.error = '';
 
-    if ($scope.video_gallery.file) {
-      $scope.video_gallery.url = $scope.video_gallery.file.url;
+    if ($scope.videoGallery.file) {
+      $scope.videoGallery.url = $scope.videoGallery.file.url;
     }
   };
 

@@ -65,76 +65,6 @@ app.controller('haraj', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.bookList = function (ad, i) {
-    $scope.error = '';
-    $scope.user.cart.items = $scope.user.cart.items || [];
-    let exist = false;
-
-    $scope.user.cart.items.forEach((el) => {
-      if (ad.id == el.id && el.select_quantity.unit.id == ad.quantity_list[i].unit.id) {
-        exist = true;
-        el.count += 1;
-      }
-    });
-
-    if (!exist) {
-      let obj = {
-        id: ad.id,
-        code: ad.code,
-        image_url: ad.image_url,
-        name_ar: ad.name_ar,
-        name_en: ad.name_en,
-        select_quantity: ad.quantity_list[i],
-        count: 1,
-      };
-      $scope.user.cart.items.unshift(obj);
-    }
-
-    $scope.updateCart($scope.user);
-  };
-
-  $scope.updateCart = function (obj) {
-    $scope.error = '';
-
-    $http({
-      method: 'POST',
-      url: '/api/user/update',
-      data: obj,
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-        } else {
-          $scope.error = response.data.error;
-        }
-      },
-      function (err) {
-        $scope.getUser();
-      }
-    );
-  };
-
-  $scope.updateFeedback = function (ad, type) {
-    let data = { id: ad.id, feedback: { like: ad.like, favorite: ad.favorite, type: type } };
-
-    $http({
-      method: 'POST',
-      url: '/api/contents/update_feedback',
-      data: data,
-    }).then(
-      function (response) {
-        $scope.busy = false;
-        if (response.data.done) {
-        } else {
-          $scope.error = 'Please Login First';
-        }
-      },
-      function (err) {
-        console.log(err);
-      }
-    );
-  };
-
   $scope.loadMainCategories = function () {
     $scope.error = '';
     $scope.busy = true;
@@ -155,8 +85,7 @@ app.controller('haraj', function ($scope, $http, $timeout) {
           $scope.category_list.forEach((l) => {
             $scope.mainCategories.push({
               id: l.id,
-              name_ar: l.name_ar,
-              idname_en: l.idname_en,
+              name: l.name,
             });
           });
         }
@@ -175,7 +104,7 @@ app.controller('haraj', function ($scope, $http, $timeout) {
 
   $scope.loadSubCategory1 = function (c) {
     $scope.error = '';
-    $scope.search.main_category = c;
+    $scope.search.mainCategory = c;
     if (c.sub_category_list && c.sub_category_list.length) {
       $scope.sub_category_list1 = c.sub_category_list[0].sub_category_list;
     }

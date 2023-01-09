@@ -1,11 +1,11 @@
-app.controller('file_gallery', function ($scope, $http, $timeout) {
+app.controller('fileGallery', function ($scope, $http, $timeout) {
   $scope.mode = 'add';
-  $scope.file_gallery = {};
+  $scope.fileGallery = {};
 
   $scope.displayAddFileGallery = function () {
     $scope.error = '';
     $scope.mode = 'add';
-    $scope.file_gallery = {
+    $scope.fileGallery = {
       active: true,
     };
 
@@ -22,8 +22,8 @@ app.controller('file_gallery', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/file_gallery/add',
-      data: $scope.file_gallery,
+      url: '/api/fileGallery/add',
+      data: $scope.fileGallery,
     }).then(
       function (response) {
         $scope.busy = false;
@@ -40,11 +40,11 @@ app.controller('file_gallery', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.displayUpdateFileGallery = function (file_gallery) {
+  $scope.displayUpdateFileGallery = function (fileGallery) {
     $scope.error = '';
     $scope.mode = 'edit';
-    $scope.viewFileGallery(file_gallery);
-    $scope.file_gallery = {};
+    $scope.viewFileGallery(fileGallery);
+    $scope.fileGallery = {};
     site.showModal('#fileGalleryManageModal');
   };
 
@@ -58,8 +58,8 @@ app.controller('file_gallery', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/file_gallery/update',
-      data: $scope.file_gallery,
+      url: '/api/fileGallery/update',
+      data: $scope.fileGallery,
     }).then(
       function (response) {
         $scope.busy = false;
@@ -76,28 +76,28 @@ app.controller('file_gallery', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.displayDetailsFileGallery = function (file_gallery) {
+  $scope.displayDetailsFileGallery = function (fileGallery) {
     $scope.error = '';
     $scope.mode = 'view';
-    $scope.viewFileGallery(file_gallery);
-    $scope.file_gallery = {};
+    $scope.viewFileGallery(fileGallery);
+    $scope.fileGallery = {};
     site.showModal('#fileGalleryManageModal');
   };
 
-  $scope.viewFileGallery = function (file_gallery) {
+  $scope.viewFileGallery = function (fileGallery) {
     $scope.busy = true;
     $scope.error = '';
     $http({
       method: 'POST',
-      url: '/api/file_gallery/view',
+      url: '/api/fileGallery/view',
       data: {
-        id: file_gallery.id,
+        id: fileGallery.id,
       },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $scope.file_gallery = response.data.doc;
+          $scope.fileGallery = response.data.doc;
         } else {
           $scope.error = response.data.error;
         }
@@ -107,11 +107,11 @@ app.controller('file_gallery', function ($scope, $http, $timeout) {
       }
     );
   };
-  $scope.displayDeleteFileGallery = function (file_gallery) {
+  $scope.displayDeleteFileGallery = function (fileGallery) {
     $scope.error = '';
     $scope.mode = 'delete';
-    $scope.viewFileGallery(file_gallery);
-    $scope.file_gallery = {};
+    $scope.viewFileGallery(fileGallery);
+    $scope.fileGallery = {};
     site.showModal('#fileGalleryManageModal');
   };
 
@@ -121,9 +121,9 @@ app.controller('file_gallery', function ($scope, $http, $timeout) {
 
     $http({
       method: 'POST',
-      url: '/api/file_gallery/delete',
+      url: '/api/fileGallery/delete',
       data: {
-        id: $scope.file_gallery.id,
+        id: $scope.fileGallery.id,
       },
     }).then(
       function (response) {
@@ -146,7 +146,7 @@ app.controller('file_gallery', function ($scope, $http, $timeout) {
     $scope.list = [];
     $http({
       method: 'POST',
-      url: '/api/file_gallery/all',
+      url: '/api/fileGallery/all',
       data: {
         where: where,
       },
@@ -170,8 +170,8 @@ app.controller('file_gallery', function ($scope, $http, $timeout) {
   $scope.getFileUrl = function () {
     $scope.error = '';
 
-    if ($scope.file_gallery.file) {
-      $scope.file_gallery.url = $scope.file_gallery.file.url;
+    if ($scope.fileGallery.file) {
+      $scope.fileGallery.url = $scope.fileGallery.file.url;
     }
   };
 

@@ -1,6 +1,6 @@
 module.exports = function init(site) {
   site.get({
-    name: 'manage_user',
+    name: 'manageUser',
     path: __dirname + '/site_files/html/index.html',
     parser: 'html',
     compress: false,
@@ -35,13 +35,13 @@ module.exports = function init(site) {
       },
       (err, doc) => {
         if (!err && doc) {
-          let foundId = doc.follow_category_list.some((_f) => _f === obj.id);
+          let foundId = doc.followCategoryList.some((_f) => _f === obj.id);
 
           if (obj.follow && !foundId) {
-            doc.follow_category_list.push(obj.id);
+            doc.followCategoryList.push(obj.id);
           } else if (!obj.follow && foundId) {
-            doc.follow_category_list.splice(
-              doc.follow_category_list.findIndex((c) => c == obj.id),
+            doc.followCategoryList.splice(
+              doc.followCategoryList.findIndex((c) => c == obj.id),
               1
             );
           }
@@ -113,18 +113,18 @@ module.exports = function init(site) {
         if (!err && user) {
           let _user = { ...user };
           if (type === 'email') {
-            if (req.body.user.new_email) {
+            if (req.body.user.newEmail) {
               if (site.feature('souq')) {
-                _user.email = req.body.user.new_email;
+                _user.email = req.body.user.newEmail;
               } else {
-                if (!req.body.user.new_email.contains('@') && !req.body.user.new_email.contains('.')) {
-                  _user.email = req.body.user.new_email + '@' + site.get_company(req).host;
+                if (!req.body.user.newEmail.contains('@') && !req.body.user.newEmail.contains('.')) {
+                  _user.email = req.body.user.newEmail + '@' + site.get_company(req).host;
                 } else {
-                  if (req.body.user.new_email.contains('@') && !req.body.user.new_email.contains('.')) {
+                  if (req.body.user.newEmail.contains('@') && !req.body.user.newEmail.contains('.')) {
                     response.error = 'Email must be typed correctly';
                     res.json(response);
                     return;
-                  } else if (!req.body.user.new_email.contains('@') && req.body.user.new_email.contains('.')) {
+                  } else if (!req.body.user.newEmail.contains('@') && req.body.user.newEmail.contains('.')) {
                     response.error = 'Email must be typed correctly';
                     res.json(response);
                     return;
@@ -137,18 +137,18 @@ module.exports = function init(site) {
               return;
             }
           } else if (type === 'password') {
-            if (req.body.user.current_password !== _user.password) {
+            if (req.body.user.currentPassword !== _user.password) {
               response.error = 'Current Password Error';
               res.json(response);
               return;
-            } else if (req.body.user.re_password !== req.body.user.new_password) {
+            } else if (req.body.user.rePassword !== req.body.user.newPassword) {
               response.error = 'Password does not match';
               res.json(response);
               return;
             } else {
-              _user.password = req.body.user.new_password;
+              _user.password = req.body.user.newPassword;
             }
-          } else if (type === 'first_name' || type === 'name' || type === 'cover' || type === 'logo' || type === 'birth_date' || type === 'gender' || type === 'name' || type === 'about_me') {
+          } else if (type === 'firstName' || type === 'name' || type === 'cover' || type === 'logo' || type === 'birthDate' || type === 'gender' || type === 'name' || type === 'about_me') {
             _user.profile = req.body.user.profile;
           } else if (type === 'mobile') {
             _user.mobile = req.body.user.mobile;
@@ -163,10 +163,10 @@ module.exports = function init(site) {
               res.json(response);
               return;
             }
-            site.security.updateUser(_user, (err1, user_doc) => {
+            site.security.updateUser(_user, (err1, userDoc) => {
               response.done = true;
-              if (!err1 && user_doc) {
-                response.doc = user_doc.doc;
+              if (!err1 && userDoc) {
+                response.doc = userDoc.doc;
                 response.doc.company = site.get_company(req);
                 response.doc.branch = site.get_branch(req);
                 res.json(response);
@@ -207,14 +207,14 @@ module.exports = function init(site) {
           };
           site.getCheckMailer(where, (callBack) => {
             if (callBack) {
-              user.password = req.body.new_password;
+              user.password = req.body.newPassword;
               response.error = 'Code Is Not Correct';
               res.json(response);
               return;
             }
-            site.security.updateUser(user, (err, user_doc) => {
+            site.security.updateUser(user, (err, userDoc) => {
               response.done = true;
-              response.doc = user_doc.doc;
+              response.doc = userDoc.doc;
               response.doc.company = site.get_company(req);
               response.doc.branch = site.get_branch(req);
               res.json(response);

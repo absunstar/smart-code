@@ -29,19 +29,19 @@
           <div class="col9">
             <div class="row">
               <div class="col9">
-                <i-control help-id="photoGallery_name" v="r ll2" label="##word.title##" ng-model="photo_gallery.title"></i-control>
-                <i-control help-id="photoGallery_name" class="ltr" v="r ll2" label="##word.url##" ng-model="photo_gallery.url"></i-control>
+                <i-control help-id="photoGallery_name" v="r ll2" label="##word.title##" ng-model="photoGallery.title"></i-control>
+                <i-control help-id="photoGallery_name" class="ltr" v="r ll2" label="##word.url##" ng-model="photoGallery.url"></i-control>
               </div>
               <div class="col3">
 
-                <i-checkbox help-id="photoGallery_active" label="##word.active##" ng-model="photo_gallery.active"> </i-checkbox>
+                <i-checkbox help-id="photoGallery_active" label="##word.active##" ng-model="photoGallery.active"> </i-checkbox>
               </div>
             </div>
 
           </div>
 
           <div class="col3">
-            <i-image help-id="photoGallery_logo" ng-change="getImageUrl()" ng-model="photo_gallery.image_url"></i-image>
+            <i-image help-id="photoGallery_logo" ng-change="getImageUrl()" ng-model="photoGallery.imageUrl"></i-image>
           </div>
         </div>
       </fieldset>
@@ -53,17 +53,17 @@
           </tr>
           <tr>
             <td class="center">
-              <p class="blue">{{photo_gallery.add_user_info.name_##session.lang##}}</p>
-              <small class="green"> {{photo_gallery.add_user_info.date |date:"hh:mm"}} </small>
-              <small> {{photo_gallery.add_user_info.date |date:"dd - MM - yyyy"}} </small>
-              <p class="bold">IP : {{photo_gallery.add_user_info.ip}}</p>
+              <p class="blue">{{photoGallery.addUserInfo.name}}</p>
+              <small class="green"> {{photoGallery.addUserInfo.date |date:"hh:mm"}} </small>
+              <small> {{photoGallery.addUserInfo.date |date:"dd - MM - yyyy"}} </small>
+              <p class="bold">IP : {{photoGallery.addUserInfo.ip}}</p>
             </td>
 
             <td class="center">
-              <p class="blue">{{photo_gallery.edit_user_info.name_##session.lang##}}</p>
-              <small class="green"> {{photo_gallery.edit_user_info.date |date:"hh:mm"}} </small>
-              <small> {{photo_gallery.edit_user_info.date |date:"dd - MM - yyyy"}} </small>
-              <p class="bold">IP : {{photo_gallery.edit_user_info.ip}}</p>
+              <p class="blue">{{photoGallery.editUserInfo.name}}</p>
+              <small class="green"> {{photoGallery.editUserInfo.date |date:"hh:mm"}} </small>
+              <small> {{photoGallery.editUserInfo.date |date:"dd - MM - yyyy"}} </small>
+              <p class="bold">IP : {{photoGallery.editUserInfo.ip}}</p>
             </td>
           </tr>
         </table>
@@ -73,8 +73,8 @@
     <div class="modal-footer center">
       <h2 class="red center">{{error}}</h2>
       <i-button type="add" ng-show="mode == 'add' " label="##word.add##" ng-click="addPhotoGallery()"></i-button>
-      <i-button type="edit" ng-show="mode == 'edit' " label="##word.edit##" ng-click="updatePhotoGallery(photo_gallery)"></i-button>
-      <i-button type="delete" ng-show="mode == 'delete' " label="##word.delete##" ng-click="deletePhotoGallery(photo_gallery)"> </i-button>
+      <i-button type="edit" ng-show="mode == 'edit' " label="##word.edit##" ng-click="updatePhotoGallery(photoGallery)"></i-button>
+      <i-button type="delete" ng-show="mode == 'delete' " label="##word.delete##" ng-click="deletePhotoGallery(photoGallery)"> </i-button>
       <i-button type="close" label="##word.close##" onclick="site.hideModal( '#photoGalleryManageModal')"></i-button>
     </div>
   </div>

@@ -1,10 +1,10 @@
 
 
 
-app.controller("report_communications", function ($scope, $http, $timeout) {
+app.controller("reportCommunications", function ($scope, $http, $timeout) {
   $scope.search = {};
 
-  $scope.report_communications = {};
+  $scope.reportCommunications = {};
   $scope.showTab = function (event, selector) {
     if (selector == '#ads') {
       site.showTabContent(event, selector);
@@ -26,7 +26,7 @@ app.controller("report_communications", function ($scope, $http, $timeout) {
     $scope.notific_list = [];
     $http({
       method: 'POST',
-      url: '/api/report_communications/all',
+      url: '/api/reportCommunications/all',
       data: {
         where: search,
       },
@@ -57,7 +57,7 @@ app.controller("report_communications", function ($scope, $http, $timeout) {
 });
 site.onLoad(() => {
   setTimeout(() => {
-    let btn1 = document.querySelector('#report_communications .tab-link');
+    let btn1 = document.querySelector('#reportCommunications .tab-link');
     if (btn1) {
       btn1.click();
     }

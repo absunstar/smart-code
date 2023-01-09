@@ -45,12 +45,12 @@ module.exports = function init(site) {
       (err, doc) => {
         if (!err && doc) {
           if (req.body.follow) {
-            doc.followers_list.push(req.session.user.id);
+            doc.followersList.push(req.session.user.id);
           } else {
-          let followers_list =  doc.followers_list.filter(x => {
+          let followersList =  doc.followersList.filter(x => {
               return x != req.session.user.id;
             })
-            doc.followers_list = followers_list
+            doc.followersList = followersList
           }
           site.security.updateUser(doc, (err) => {
             if (!err) {

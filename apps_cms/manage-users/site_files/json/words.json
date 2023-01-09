@@ -1,36 +1,36 @@
 [
   {
-    "name": "manage_users",
+    "name": "manageUsers",
     "en": "Manage Users",
     "ar": "إدارة المستخدمين"
   },
   {
-    "name": "manage_users_new",
+    "name": "manageUsers_new",
     "en": "New User",
     "ar": "مستخدم جديد"
   },
   {
-    "name": "manage_users_add",
+    "name": "manageUsers_add",
     "en": "Add User",
     "ar": "إضافة مستخدم "
   },
   {
-    "name": "manage_users_edit",
+    "name": "manageUsers_edit",
     "en": "Edit User",
     "ar": "تعديل مستخدم "
   },
   {
-    "name": "manage_users_details",
+    "name": "manageUsers_details",
     "en": "User Details",
     "ar": "تفاصيل المستخدم "
   },
   {
-    "name": "manage_users_delete",
+    "name": "manageUsers_delete",
     "en": "Delete User",
     "ar": "حذف مستخدم "
   },
   {
-    "name": "manage_users_name",
+    "name": "manageUsers_name",
     "en": "User Name",
     "ar": "إسم المستخدم "
   },
@@ -40,7 +40,7 @@
     "ar": "معلومات شخصية"
   },
   {
-    "name": "current_password",
+    "name": "currentPassword",
     "en": "Current Password",
     "ar": "كلمة المرور الحالية"
   },
@@ -55,7 +55,7 @@
     "ar": "لا يوجد منتجات في السلة"
   },
   {
-    "name": "new_password",
+    "name": "newPassword",
     "en": "New Password",
     "ar": "كلمة المرور الجديدة"
   },

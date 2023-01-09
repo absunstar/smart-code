@@ -1,8 +1,8 @@
 module.exports = function init(site) {
-  const $file_type = site.connectCollection("file_type")
+  const $fileType = site.connectCollection("fileType")
 
   site.get({
-    name: "file_type",
+    name: "fileTypes",
     path: __dirname + "/site_files/html/index.html",
     parser: "html",
     compress: true
@@ -13,7 +13,7 @@ module.exports = function init(site) {
     path: __dirname + '/site_files/images/'
   })
 
-  site.post("/api/file_type/add", (req, res) => {
+  site.post("/api/fileType/add", (req, res) => {
     let response = {}
     response.done = false
 
@@ -23,15 +23,15 @@ module.exports = function init(site) {
       return
     }
 
-    let file_type_doc = req.body
-    file_type_doc.$req = req
-    file_type_doc.$res = res
-    file_type_doc.add_user_info = site.security.getUserFinger({
+    let fileTypeDoc = req.body
+    fileTypeDoc.$req = req
+    fileTypeDoc.$res = res
+    fileTypeDoc.addUserInfo = site.security.getUserFinger({
       $req: req,
       $res: res
     })
 
-    $file_type.add(file_type_doc, (err, doc) => {
+    $fileType.add(fileTypeDoc, (err, doc) => {
       if (!err) {
         response.done = true
         response.doc = doc
@@ -42,7 +42,7 @@ module.exports = function init(site) {
     })
   })
 
-  site.post("/api/file_type/update", (req, res) => {
+  site.post("/api/fileType/update", (req, res) => {
     let response = {
       done: false
     }
@@ -53,17 +53,17 @@ module.exports = function init(site) {
       return
     }
 
-    let file_type_doc = req.body
-    file_type_doc.edit_user_info = site.security.getUserFinger({
+    let fileTypeDoc = req.body
+    fileTypeDoc.editUserInfo = site.security.getUserFinger({
       $req: req,
       $res: res
     })
-    if (file_type_doc.id) {
-      $file_type.edit({
+    if (fileTypeDoc.id) {
+      $fileType.edit({
         where: {
-          id: file_type_doc.id
+          id: fileTypeDoc.id
         },
-        set: file_type_doc,
+        set: fileTypeDoc,
         $req: req,
         $req: req,
         $res: res
@@ -82,7 +82,7 @@ module.exports = function init(site) {
     }
   })
 
-  site.post("/api/file_type/view", (req, res) => {
+  site.post("/api/fileType/view", (req, res) => {
     let response = {
       done: false
     }
@@ -93,7 +93,7 @@ module.exports = function init(site) {
       return
     }
 
-    $file_type.findOne({
+    $fileType.findOne({
       where: {
         id: req.body.id
       }
@@ -108,7 +108,7 @@ module.exports = function init(site) {
     })
   })
 
-  site.post("/api/file_type/delete", (req, res) => {
+  site.post("/api/fileType/delete", (req, res) => {
     let response = {
       done: false
     }
@@ -122,7 +122,7 @@ module.exports = function init(site) {
     let id = req.body.id
 
     if (id) {
-      $file_type.delete({
+      $fileType.delete({
         id: id,
         $req: req,
         $res: res
@@ -141,7 +141,7 @@ module.exports = function init(site) {
     }
   })
 
-  site.post("/api/file_type/all", (req, res) => {
+  site.post("/api/fileType/all", (req, res) => {
     let response = {
       done: false
     }
@@ -169,7 +169,7 @@ module.exports = function init(site) {
     // }
 
 
-    $file_type.findMany({
+    $fileType.findMany({
       select: req.body.select || {},
       where: where,
       sort: req.body.sort || { id: -1 },

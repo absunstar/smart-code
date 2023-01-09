@@ -64,23 +64,23 @@ module.exports = function init(site) {
               date: new Date(),
             }
           }
-          site.security.updateUser(user, (err, user_doc) => {
+          site.security.updateUser(user, (err, userDoc) => {
 
             if (where.mobile) {
               site.sendMobileMessage({
-                to: user_doc.doc.country_code + user_doc.doc.mobile,
-                message: `code : ${user_doc.doc.forget_password.code}`,
+                to: userDoc.doc.countryCode + userDoc.doc.mobile,
+                message: `code : ${userDoc.doc.forget_password.code}`,
               });
               response.type = 'mobile'
-              response.done_send_mobile = true;
+              response.doneSendMobile = true;
             } else if (where.email) {
               site.sendMailMessage({
-                to: user_doc.doc.country_code + user_doc.doc.mobile,
+                to: userDoc.doc.countryCode + userDoc.doc.mobile,
                 subject: `Forget Password COde`,
-                message: `code : ${user_doc.doc.forget_password.code}`,
+                message: `code : ${userDoc.doc.forget_password.code}`,
               });
               response.type = 'email'
-              response.done_send_email = true;
+              response.doneSendEmail = true;
             }
 
             response.mobile_or_email = mobile_or_email;
@@ -144,7 +144,7 @@ module.exports = function init(site) {
     });
   });
 
-  site.post('/api/forget_password/new_password', (req, res) => {
+  site.post('/api/forget_password/newPassword', (req, res) => {
     let response = {
       done: false,
     };
@@ -152,7 +152,7 @@ module.exports = function init(site) {
 
     if (req.body.$encript === '123') {
       req.body.mobile_or_email = site.from123(req.body.mobile_or_email);
-      req.body.new_password = site.from123(req.body.new_password);
+      req.body.newPassword = site.from123(req.body.newPassword);
       req.body.code = site.from123(req.body.code);
 
     }
@@ -170,10 +170,10 @@ module.exports = function init(site) {
       if (!err) {
         if (user) {
           if (user.forget_password && user.forget_password.code == site.toNumber(code)) {
-            user.password = req.body.new_password
+            user.password = req.body.newPassword
 
             delete user.forget_password;
-            site.security.updateUser(user, (err, user_doc) => {
+            site.security.updateUser(user, (err, userDoc) => {
               if (!err) {
                 response.done = true;
                 res.json(response);

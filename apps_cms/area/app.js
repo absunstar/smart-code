@@ -1,9 +1,9 @@
 module.exports = function init(site) {
   const $area = site.connectCollection('area');
-  site.area_list = [];
+  site.areaList = [];
   $area.findMany({}, (err, docs) => {
     if (!err && docs) {
-      site.area_list = [...site.area_list, ...docs];
+      site.areaList = [...site.areaList, ...docs];
     }
   });
 
@@ -29,24 +29,24 @@ module.exports = function init(site) {
       return;
     }
 
-    let area_doc = req.body;
-    area_doc.$req = req;
-    area_doc.$res = res;
+    let areaDoc = req.body;
+    areaDoc.$req = req;
+    areaDoc.$res = res;
 
-    area_doc.add_user_info = site.security.getUserFinger({
+    areaDoc.addUserInfo = site.security.getUserFinger({
       $req: req,
       $res: res,
     });
 
-    if (typeof area_doc.active === 'undefined') {
-      area_doc.active = true;
+    if (typeof areaDoc.active === 'undefined') {
+      areaDoc.active = true;
     }
 
-    $area.add(area_doc, (err, doc) => {
+    $area.add(areaDoc, (err, doc) => {
       if (!err) {
         response.done = true;
         response.doc = doc;
-        site.area_list.push(doc);
+        site.areaList.push(doc);
       } else {
         response.error = err.message;
       }
@@ -65,13 +65,13 @@ module.exports = function init(site) {
       return;
     }
 
-    let area_doc = req.body;
+    let areaDoc = req.body;
 
-    area_doc.edit_user_info = site.security.getUserFinger({
+    areaDoc.editUserInfo = site.security.getUserFinger({
       $req: req,
       $res: res,
     });
-    if (!area_doc.id) {
+    if (!areaDoc.id) {
       response.error = 'No id';
       res.json(response);
       return;
@@ -80,18 +80,18 @@ module.exports = function init(site) {
     $area.edit(
       {
         where: {
-          id: area_doc.id,
+          id: areaDoc.id,
         },
-        set: area_doc,
+        set: areaDoc,
         $req: req,
         $res: res,
       },
       (err, result) => {
         if (!err && result) {
           response.done = true;
-          site.area_list.forEach((a, i) => {
+          site.areaList.forEach((a, i) => {
             if (a.id === result.doc.id) {
-              site.area_list[i] = result.doc;
+              site.areaList[i] = result.doc;
             }
           });
         } else {
@@ -114,7 +114,7 @@ module.exports = function init(site) {
     }
 
     let ad = null;
-    site.area_list.forEach((a) => {
+    site.areaList.forEach((a) => {
       if (a.id == req.body.id) {
         ad = a;
       }
@@ -156,8 +156,8 @@ module.exports = function init(site) {
       (err, result) => {
         if (!err) {
           response.done = true;
-          site.area_list.splice(
-            site.area_list.findIndex((a) => a.id === req.body.id),
+          site.areaList.splice(
+            site.areaList.findIndex((a) => a.id === req.body.id),
             1
           );
         } else {

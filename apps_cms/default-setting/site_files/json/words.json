@@ -90,12 +90,12 @@
     "ar": "(Messaging Services ID) كود الخدمة"
   },
   {
-    "name": "enable_sending_messages_mobile",
+    "name": "enableSendingMessagesMobile",
     "en": "Enable sending messages to the mobile",
     "ar": "تفعيل إرسال الرسائل للموبايل"
   },
   {
-    "name": "enable_sending_messages_email",
+    "name": "enableSendingMessagesEmail",
     "en": "Enable sending messages to the email",
     "ar": "تفعيل إرسال الرسائل للبريد الإلكتروني"
   },
@@ -614,20 +614,5 @@
     "name": "duration",
     "en": "Duration",
     "ar": "المدة"
-  },
-  {
-    "name": "stores_settings",
-    "en": "Stores settings",
-    "ar": "إعدادات المتاجر"
-  },
-  {
-    "name": "activate_stores",
-    "en": "Activate the stores system",
-    "ar": "تفعيل نظام المتاجر"
-  },
-  {
-    "name": "activate_orders",
-    "en": "Activate the Orders system",
-    "ar": "تفعيل نظام الطلبات"
   }
 ]

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="##session.lang##" class="loaded" ng-app="myApp">
+  <head x-import="cms/head.html">
+    <style x-import="cms/theme1.css"></style>
+  </head>
+
+  <body class="##session.lang##" ng-controller="cms">
+    <nav x-import="cms/sitebar.html" class="sitebar" data-ng-controller="sitebar"></nav>
+
+    <div id="main-layout" class="container">
+      <h1 class="center">Home</h1>
+    </div>
+
+    <footer class="footer ng-scope" x-import="cms/footer.html"></footer>
+    <div x-import="cms/scripts.html"></div>
+    <script x-import="cms/index.js"></script>
+  </body>
+</html>

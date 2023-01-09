@@ -13,36 +13,33 @@
     <div class="modal-body">
       <div class="row center">
 
-        <i-image ng-show="viewText === 'logo'" ng-model="manage_user.profile.image_url"> </i-image>
+        <i-image ng-show="viewText === 'logo'" ng-model="manage_user.profile.imageUrl"> </i-image>
         <i-image ng-show="viewText === 'cover'" ng-model="manage_user.profile.cover"> </i-image>
 
-        <i-control class="input-style" ng-show="viewText === 'name'" label="##word.the_name##"
-          ng-model="manage_user.profile.name_ar"> </i-control>
-
-        <i-control class="input-style" ng-show="viewText === 'name'" label="##word.name_en##"
-          ng-model="manage_user.profile.name_en"> </i-control>
-
-        <i-control class="input-style" ng-show="viewText === 'first_name'" label="##word.the_name##"
+        <i-control class="input-style" ng-show="viewText === 'name'" label="##word.name##"
           ng-model="manage_user.profile.name"> </i-control>
 
-        <i-control class="input-style" ng-show="viewText === 'first_name'" label="##word.last_name##"
-          ng-model="manage_user.profile.last_name"> </i-control>
+        <i-control class="input-style" ng-show="viewText === 'firstName'" label="##word.the_name##"
+          ng-model="manage_user.profile.name"> </i-control>
 
-        <i-date ng-show="viewText === 'birth_date'" ng-model="manage_user.profile.birth_date"
-          label="##word.birth_date##"> </i-date>
+        <i-control class="input-style" ng-show="viewText === 'firstName'" label="##word.lastName##"
+          ng-model="manage_user.profile.lastName"> </i-control>
+
+        <i-date ng-show="viewText === 'birthDate'" ng-model="manage_user.profile.birthDate"
+          label="##word.birthDate##"> </i-date>
 
         <i-list ng-show="viewText === 'gender'" ng-search="_search.$gender_search" label="##word.gender##"
           ng-model="manage_user.gender" primary="##session.lang##" items="genderList" display="##session.lang##">
         </i-list>
 
         <i-control class="input-style" ng-show="viewText === 'email'" label="##word.new_username##"
-          ng-model="manage_user.new_email"> </i-control>
+          ng-model="manage_user.newEmail"> </i-control>
 
         <i-textarea class="input-style" ng-show="viewText === 'about_me'" label="##word.brief_about_me##"
           ng-model="manage_user.profile.about_me"> </i-textarea>
 
         <i-control class="input-style" v="r" ng-show="viewText === 'password'" type="password"
-          label="##word.current_password##" ng-model="manage_user.current_password"> </i-control>
+          label="##word.currentPassword##" ng-model="manage_user.currentPassword"> </i-control>
 
       </div>
 
@@ -96,12 +93,12 @@
 
       <div class="row center" ng-show="viewText === 'password'">
         <div class="col2"></div>
-        <i-control v="r" class="col4 input-style" type="password" label="##word.new_password##"
-          ng-model="manage_user.new_password"> </i-control>
+        <i-control v="r" class="col4 input-style" type="password" label="##word.newPassword##"
+          ng-model="manage_user.newPassword"> </i-control>
         <i-button class="inline-block" type="add" ng-show="viewText === 'password'" label="##word.save##"
           ng-click="editPersonalInfoUser('password')"></i-button>
         <i-control v="r" class="col4 input-style" type="password" label="##word.security_user_password_return##"
-          ng-model="manage_user.re_password"> </i-control>
+          ng-model="manage_user.rePassword"> </i-control>
       </div>
     </div>
 
@@ -116,8 +113,8 @@
           ng-click="editPersonalInfoUser('logo')"></i-button>
         <i-button class="inline-block" type="save" ng-show="viewText === 'name'" label="##word.save##"
           ng-click="editPersonalInfoUser('name')"></i-button>
-        <i-button class="inline-block" type="save" ng-show="viewText === 'birth_date'" label="##word.save##"
-          ng-click="editPersonalInfoUser('birth_date')"></i-button>
+        <i-button class="inline-block" type="save" ng-show="viewText === 'birthDate'" label="##word.save##"
+          ng-click="editPersonalInfoUser('birthDate')"></i-button>
         <i-button class="inline-block" type="save" ng-show="viewText === 'gender'" label="##word.save##"
           ng-click="editPersonalInfoUser('gender')"></i-button>
         <i-button class="inline-block" type="save" ng-show="viewText === 'email'" label="##word.save##"

@@ -41,8 +41,8 @@
                 <i-list
                   class="row input-style"
                   label="##word.category##"
-                  ng-model="menu.main_category"
-                  ng-click="loadSubCategory1(menu.main_category)"
+                  ng-model="menu.mainCategory"
+                  ng-click="loadSubCategory1(menu.mainCategory)"
                   items="top_category_list"
                   display="name"
                   ng-search="menu.$category1_search"
@@ -50,11 +50,11 @@
 
                 <i-list
                   class="row input-style"
-                  label="##word.categories## {{menu.main_category.name}}"
+                  label="##word.categories## {{menu.mainCategory.name}}"
                   ng-model="menu.sub_category1"
                   ng-click="loadSubCategory2(menu.sub_category1)"
                   items="subCategoriesList1"
-                  ng-show="subCategoriesList1.length > 0 && menu.main_category"
+                  ng-show="subCategoriesList1.length > 0 && menu.mainCategory"
                   display="name"
                   ng-search="menu.$category2_search"
                 ></i-list>
@@ -107,7 +107,7 @@
           </div>
 
           <div class="col3">
-            <i-image help-id="menus_logo" ng-model="menu.image_url"></i-image>
+            <i-image help-id="menus_logo" ng-model="menu.imageUrl"></i-image>
           </div>
         </div>
       </fieldset>
@@ -119,17 +119,17 @@
           </tr>
           <tr>
             <td class="center">
-              <p class="blue">{{menu.add_user_info.name_##session.lang##}}</p>
-              <small class="green"> {{menu.add_user_info.date |date:"hh:mm"}} </small>
-              <small> {{menu.add_user_info.date |date:"dd - MM - yyyy"}} </small>
-              <p class="bold">IP : {{menu.add_user_info.ip}}</p>
+              <p class="blue">{{menu.addUserInfo.name}}</p>
+              <small class="green"> {{menu.addUserInfo.date |date:"hh:mm"}} </small>
+              <small> {{menu.addUserInfo.date |date:"dd - MM - yyyy"}} </small>
+              <p class="bold">IP : {{menu.addUserInfo.ip}}</p>
             </td>
 
             <td class="center">
-              <p class="blue">{{menu.edit_user_info.name_##session.lang##}}</p>
-              <small class="green"> {{menu.edit_user_info.date |date:"hh:mm"}} </small>
-              <small> {{menu.edit_user_info.date |date:"dd - MM - yyyy"}} </small>
-              <p class="bold">IP : {{menu.edit_user_info.ip}}</p>
+              <p class="blue">{{menu.editUserInfo.name}}</p>
+              <small class="green"> {{menu.editUserInfo.date |date:"hh:mm"}} </small>
+              <small> {{menu.editUserInfo.date |date:"dd - MM - yyyy"}} </small>
+              <p class="bold">IP : {{menu.editUserInfo.ip}}</p>
             </td>
           </tr>
         </table>

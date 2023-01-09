@@ -11,8 +11,8 @@
                         <legend>##word.search_all##</legend>
                         <div class="row">
                             <i-date2 class="col3" ng-model="search.date" label="##word.date##"></i-date2>
-                            <i-date2 class="col3" ng-model="search.date_from" label="##word.date_from##"></i-date2>
-                            <i-date2 class="col3" ng-model="search.date_to" label="##word.date_to##"></i-date2>
+                            <i-date2 class="col3" ng-model="search.dateFrom" label="##word.dateFrom##"></i-date2>
+                            <i-date2 class="col3" ng-model="search.dateTo" label="##word.dateTo##"></i-date2>
                         </div>
 
                         <div class="row">
@@ -20,7 +20,7 @@
                                 label="##word.search##" type="text"></i-control>
                             <i-list help-id="" ng-search="_search.$customer_search" class="col3" label="##word.customer##"
                                 space=" - " display2="code" ng-model="search.customer" items="customersList"
-                                display="name_##session.lang##"></i-list>
+                                display="name"></i-list>
                         </div>
                     </fieldset>
                 </form>

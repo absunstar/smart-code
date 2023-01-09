@@ -1,11 +1,11 @@
-app.controller('photo_gallery', function ($scope, $http, $timeout) {
+app.controller('photoGallery', function ($scope, $http, $timeout) {
   $scope.mode = 'add';
-  $scope.photo_gallery = {};
+  $scope.photoGallery = {};
 
   $scope.displayAddPhotoGallery = function () {
     $scope.error = '';
     $scope.mode = 'add';
-    $scope.photo_gallery = {
+    $scope.photoGallery = {
       active: true,
     };
 
@@ -22,8 +22,8 @@ app.controller('photo_gallery', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/photo_gallery/add',
-      data: $scope.photo_gallery,
+      url: '/api/photoGallery/add',
+      data: $scope.photoGallery,
     }).then(
       function (response) {
         $scope.busy = false;
@@ -40,11 +40,11 @@ app.controller('photo_gallery', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.displayUpdatePhotoGallery = function (photo_gallery) {
+  $scope.displayUpdatePhotoGallery = function (photoGallery) {
     $scope.error = '';
     $scope.mode = 'edit';
-    $scope.viewPhotoGallery(photo_gallery);
-    $scope.photo_gallery = {};
+    $scope.viewPhotoGallery(photoGallery);
+    $scope.photoGallery = {};
     site.showModal('#photoGalleryManageModal');
   };
 
@@ -58,8 +58,8 @@ app.controller('photo_gallery', function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: 'POST',
-      url: '/api/photo_gallery/update',
-      data: $scope.photo_gallery,
+      url: '/api/photoGallery/update',
+      data: $scope.photoGallery,
     }).then(
       function (response) {
         $scope.busy = false;
@@ -76,28 +76,28 @@ app.controller('photo_gallery', function ($scope, $http, $timeout) {
     );
   };
 
-  $scope.displayDetailsPhotoGallery = function (photo_gallery) {
+  $scope.displayDetailsPhotoGallery = function (photoGallery) {
     $scope.error = '';
     $scope.mode = 'view';
-    $scope.viewPhotoGallery(photo_gallery);
-    $scope.photo_gallery = {};
+    $scope.viewPhotoGallery(photoGallery);
+    $scope.photoGallery = {};
     site.showModal('#photoGalleryManageModal');
   };
 
-  $scope.viewPhotoGallery = function (photo_gallery) {
+  $scope.viewPhotoGallery = function (photoGallery) {
     $scope.busy = true;
     $scope.error = '';
     $http({
       method: 'POST',
-      url: '/api/photo_gallery/view',
+      url: '/api/photoGallery/view',
       data: {
-        id: photo_gallery.id,
+        id: photoGallery.id,
       },
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
-          $scope.photo_gallery = response.data.doc;
+          $scope.photoGallery = response.data.doc;
         } else {
           $scope.error = response.data.error;
         }
@@ -107,11 +107,11 @@ app.controller('photo_gallery', function ($scope, $http, $timeout) {
       }
     );
   };
-  $scope.displayDeletePhotoGallery = function (photo_gallery) {
+  $scope.displayDeletePhotoGallery = function (photoGallery) {
     $scope.error = '';
     $scope.mode = 'delete';
-    $scope.viewPhotoGallery(photo_gallery);
-    $scope.photo_gallery = {};
+    $scope.viewPhotoGallery(photoGallery);
+    $scope.photoGallery = {};
     site.showModal('#photoGalleryManageModal');
   };
 
@@ -121,9 +121,9 @@ app.controller('photo_gallery', function ($scope, $http, $timeout) {
 
     $http({
       method: 'POST',
-      url: '/api/photo_gallery/delete',
+      url: '/api/photoGallery/delete',
       data: {
-        id: $scope.photo_gallery.id,
+        id: $scope.photoGallery.id,
       },
     }).then(
       function (response) {
@@ -146,7 +146,7 @@ app.controller('photo_gallery', function ($scope, $http, $timeout) {
     $scope.list = [];
     $http({
       method: 'POST',
-      url: '/api/photo_gallery/all',
+      url: '/api/photoGallery/all',
       data: {
         where: where,
       },
@@ -170,8 +170,8 @@ app.controller('photo_gallery', function ($scope, $http, $timeout) {
   $scope.getImageUrl = function () {
     $scope.error = '';
 
-    if ($scope.photo_gallery.image_url) {
-      $scope.photo_gallery.url = $scope.photo_gallery.image_url.url;
+    if ($scope.photoGallery.imageUrl) {
+      $scope.photoGallery.url = $scope.photoGallery.imageUrl.url;
     }
   };
 

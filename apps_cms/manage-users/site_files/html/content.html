@@ -22,39 +22,39 @@
           <div class="row">
             <div class="col9">
               <div class="row">
-                <i-control help-id="manage_users_name" v="r" class="col6" label="##word.first_name##"
-                  ng-model="manage_users.profile.name"></i-control>
-                <i-control v="r" class="col6" label="##word.last_name##" ng-model="manage_users.profile.last_name">
+                <i-control help-id="manageUsers_name" v="r" class="col6" label="##word.firstName##"
+                  ng-model="manageUsers.profile.name"></i-control>
+                <i-control v="r" class="col6" label="##word.lastName##" ng-model="manageUsers.profile.lastName">
                 </i-control>
 
               </div>
               <div class="row">
-                <i-control v="r" class="col6" label="##word.email##" ng-model="manage_users.email"> </i-control>
-                <i-control v="r" class="col6" label="##word.password##" ng-model="manage_users.password"> </i-control>
+                <i-control v="r" class="col6" label="##word.email##" ng-model="manageUsers.email"> </i-control>
+                <i-control v="r" class="col6" label="##word.password##" ng-model="manageUsers.password"> </i-control>
               </div>
               <div class="row">
-                <i-list label="##word.user_type##" v="r" class="col6" ng-model="manage_users.type"
-                  items="usersTypesList" display="##session.lang##" ng-search="manage_users.$type_search"> </i-list>
-                <i-list ng-search="manage_users.$gender_search" class="col6" label="##word.gender##"
-                  ng-model="manage_users.gender" items="genderList" display="##session.lang##">
+                <i-list label="##word.user_type##" v="r" class="col6" ng-model="manageUsers.type"
+                  items="usersTypesList" display="##session.lang##" ng-search="manageUsers.$type_search"> </i-list>
+                <i-list ng-search="manageUsers.$gender_search" class="col6" label="##word.gender##"
+                  ng-model="manageUsers.gender" items="genderList" display="##session.lang##">
                 </i-list>
               </div>
 
               <div class="row">
-                <i-control class="col6" label="##word.nathional_id##" ng-model="manage_users.nathional_id">
+                <i-control class="col6" label="##word.nathional_id##" ng-model="manageUsers.nathional_id">
                 </i-control>
-                <i-date class="col6" ng-model="manage_users.birth_date" label="##word.birth_date##"></i-date>
+                <i-date class="col6" ng-model="manageUsers.birthDate" label="##word.birthDate##"></i-date>
               </div>
 
             </div>
 
             <div class="col3">
 
-              <i-image help-id="manage_users_logo" ng-model="manage_users.image_url"></i-image>
+              <i-image help-id="manageUsers_logo" ng-model="manageUsers.imageUrl"></i-image>
 
-              <i-checkbox label="##word.active##" ng-model="manage_users.active"> </i-checkbox>
+              <i-checkbox label="##word.active##" ng-model="manageUsers.active"> </i-checkbox>
 
-              <i-checkbox label="##word.ability_login##" ng-model="manage_users.ability_login"> </i-checkbox>
+              <i-checkbox label="##word.ability_login##" ng-model="manageUsers.ability_login"> </i-checkbox>
             </div>
           </div>
         </fieldset>
@@ -65,12 +65,12 @@
         <fieldset>
           <legend> ##word.contact_informations## </legend>
           <div class="row">
-            <i-control class="col4" label="##word.phone##" ng-model="manage_users.phone"></i-control>
+            <i-control class="col4" label="##word.phone##" ng-model="manageUsers.phone"></i-control>
 
-            <i-control class="col4" label="##word.mobile##" ng-model="manage_users.mobile">
+            <i-control class="col4" label="##word.mobile##" ng-model="manageUsers.mobile">
             </i-control>
 
-            <i-control help-id="" class="col4" label="##word.whatsapp##" ng-model="manage_users.whatsapp">
+            <i-control help-id="" class="col4" label="##word.whatsapp##" ng-model="manageUsers.whatsapp">
             </i-control>
 
 
@@ -81,25 +81,25 @@
         <fieldset>
           <legend> ##word.web_and_social_accounts## </legend>
           <div class="row">
-            <i-control class="col4" label="##word.website##" ng-model="manage_users.website">
+            <i-control class="col4" label="##word.website##" ng-model="manageUsers.website">
             </i-control>
 
-            <i-control class="col4" label="##word.social_facebook_account##" ng-model="manage_users.facebook">
+            <i-control class="col4" label="##word.social_facebook_account##" ng-model="manageUsers.facebook">
             </i-control>
 
-            <i-control class="col4" label="##word.social_twitter_account##" ng-model="manage_users.twitter">
+            <i-control class="col4" label="##word.social_twitter_account##" ng-model="manageUsers.twitter">
             </i-control>
 
           </div>
           <div class="row">
 
-            <i-control class="col4" label="##word.social_instagram##" ng-model="manage_users.instagram">
+            <i-control class="col4" label="##word.social_instagram##" ng-model="manageUsers.instagram">
             </i-control>
 
-            <i-control class="col4" label="##word.social_google_account##" ng-model="manage_users.google">
+            <i-control class="col4" label="##word.social_google_account##" ng-model="manageUsers.google">
             </i-control>
 
-            <i-control class="col4" label="##word.social_snap##" ng-model="manage_users.snap">
+            <i-control class="col4" label="##word.social_snap##" ng-model="manageUsers.snap">
             </i-control>
           </div>
 
@@ -109,27 +109,27 @@
           <legend> ##word.address_informations## </legend>
 
           <div class="row">
-            <i-list class="col6" label="##word.country##" ng-change="getGovesList(manage_users.country)"
-              ng-model="manage_users.country" display="name" items="countriesList"
+            <i-list class="col6" label="##word.country##" ng-change="getGovesList(manageUsers.country)"
+              ng-model="manageUsers.country" display="name" items="countriesList"
               ng-search="_search.$city_country"></i-list>
 
-            <i-list class="col6" label="##word.gov##" ng-model="manage_users.gov" items="govesList"
-              ng-change="getCityList(manage_users.gov)" display="name"
-              ng-search="_search.$manage_users.$gov_search"> </i-list>
+            <i-list class="col6" label="##word.gov##" ng-model="manageUsers.gov" items="govesList"
+              ng-change="getCityList(manageUsers.gov)" display="name"
+              ng-search="_search.$manageUsers.$gov_search"> </i-list>
 
           </div>
 
           <div class="row">
-            <i-list class="col6" ng-change="getAreaList(manage_users.city)" label="##word.city##"
-              ng-model="manage_users.city" items="cityList" display="name"
-              ng-search="_search.$manage_users.$city_search"> </i-list>
+            <i-list class="col6" ng-change="getAreaList(manageUsers.city)" label="##word.city##"
+              ng-model="manageUsers.city" items="cityList" display="name"
+              ng-search="_search.$manageUsers.$city_search"> </i-list>
 
-            <i-list class="col6" label="##word.area##" ng-model="manage_users.area" items="areaList"
-              display="name" ng-search="_search.$manage_users.$area_search"> </i-list>
+            <i-list class="col6" label="##word.area##" ng-model="manageUsers.area" items="areaList"
+              display="name" ng-search="_search.$manageUsers.$area_search"> </i-list>
           </div>
 
           <div class="row">
-            <i-textarea label="##word.detailed_address##" ng-model="manage_users.address">
+            <i-textarea label="##word.detailed_address##" ng-model="manageUsers.address">
             </i-textarea>
 
           </div>
@@ -145,11 +145,11 @@
             ##word.files##
           </legend>
 
-          <div class="row" ng-repeat="f in manage_users.files_list">
+          <div class="row" ng-repeat="f in manageUsers.files_list">
             <div class="row">
               <div class="row">
-                <i-list class="col6" label="##word.file_type##" ng-model="f.file_type" items="filesTypesList"
-                  display="name" ng-search="_search.$file_type">
+                <i-list class="col6" label="##word.fileType##" ng-model="f.fileType" items="filesTypesList"
+                  display="name" ng-search="_search.$fileType">
                 </i-list>
 
                 <i-date class="col6" ng-model="f.file_date" label="##word.file_date##"></i-date>
@@ -161,7 +161,7 @@
                 <i-file class="col4" ng-model="f.file"></i-file>
 
                 <div class="col2 center">
-                  <i-button type="delete" label="##word.delete##" ng-click="manage_users.files_list.splice($index,1)">
+                  <i-button type="delete" label="##word.delete##" ng-click="manageUsers.files_list.splice($index,1)">
                   </i-button>
                 </div>
               </div>
@@ -184,7 +184,7 @@
             <i-checkbox class="col3" label="ALL" ng-model="$public_roles" ng-click="checkAll('public_roles')">
             </i-checkbox>
             <i-checklist class2="col3" primary="name" label="" items="public_roles" display="##session.lang##"
-              ng-model="manage_users.roles"></i-checklist>
+              ng-model="manageUsers.roles"></i-checklist>
           </fieldset>
         </div>
 
@@ -195,9 +195,9 @@
         <div class="row">
           <div class="row padding">
             <fieldset ng-repeat="screen in public_screens">
-              <legend>{{screen.name_##session.lang##}}</legend>
+              <legend>{{screen.name}}</legend>
               <i-checklist class2="col3" primary="name" label="" items="screen.permissions" display="##session.lang##"
-                ng-model="manage_users.permissions"></i-checklist>
+                ng-model="manageUsers.permissions"></i-checklist>
             </fieldset>
           </div>
         </div>

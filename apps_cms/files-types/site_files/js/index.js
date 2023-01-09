@@ -1,10 +1,10 @@
-app.controller("file_type", function ($scope, $http, $timeout) {
+app.controller("fileType", function ($scope, $http, $timeout) {
 
-  $scope.file_type = {};
+  $scope.fileType = {};
 
   $scope.displayAddFileTypes = function () {
     $scope.error = '';
-    $scope.file_type = {
+    $scope.fileType = {
       active: true
     };
     site.showModal('#fileTypesAddModal');
@@ -25,8 +25,8 @@ app.controller("file_type", function ($scope, $http, $timeout) {
 
     $http({
       method: "POST",
-      url: "/api/file_type/add",
-      data: $scope.file_type
+      url: "/api/fileType/add",
+      data: $scope.fileType
     }).then(
       function (response) {
         $scope.busy = false;
@@ -48,12 +48,12 @@ app.controller("file_type", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.displayUpdateFileTypes = function (file_type) {
+  $scope.displayUpdateFileTypes = function (fileType) {
     $scope._search = {};
 
     $scope.error = '';
-    $scope.detailsFileTypes(file_type);
-    $scope.file_type = {};
+    $scope.detailsFileTypes(fileType);
+    $scope.fileType = {};
     site.showModal('#fileTypesUpdateModal');
   };
 
@@ -71,8 +71,8 @@ app.controller("file_type", function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/file_type/update",
-      data: $scope.file_type
+      url: "/api/fileType/update",
+      data: $scope.fileType
     }).then(
       function (response) {
         $scope.busy = false;
@@ -93,27 +93,27 @@ app.controller("file_type", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.displayDetailsFileTypes = function (file_type) {
+  $scope.displayDetailsFileTypes = function (fileType) {
     $scope.error = '';
-    $scope.detailsFileTypes(file_type);
-    $scope.file_type = {};
+    $scope.detailsFileTypes(fileType);
+    $scope.fileType = {};
     site.showModal('#fileTypesDetailsModal');
   };
 
-  $scope.detailsFileTypes = function (file_type) {
+  $scope.detailsFileTypes = function (fileType) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/file_type/view",
+      url: "/api/fileType/view",
       data: {
-        id: file_type.id
+        id: fileType.id
       }
     }).then(
       function (response) {
         $scope.busy = false;
         if (response.data.done) {
           response.data.doc.date = new Date(response.data.doc.date);
-          $scope.file_type = response.data.doc;
+          $scope.fileType = response.data.doc;
         } else {
           $scope.error = response.data.error;
         }
@@ -124,10 +124,10 @@ app.controller("file_type", function ($scope, $http, $timeout) {
     )
   };
 
-  $scope.displayDeleteFileTypes = function (file_type) {
+  $scope.displayDeleteFileTypes = function (fileType) {
     $scope.error = '';
-    $scope.detailsFileTypes(file_type);
-    $scope.file_type = {};
+    $scope.detailsFileTypes(fileType);
+    $scope.fileType = {};
     site.showModal('#fileTypesDeleteModal');
   };
 
@@ -136,9 +136,9 @@ app.controller("file_type", function ($scope, $http, $timeout) {
     $scope.busy = true;
     $http({
       method: "POST",
-      url: "/api/file_type/delete",
+      url: "/api/fileType/delete",
       data: {
-        id: $scope.file_type.id
+        id: $scope.fileType.id
 
       }
     }).then(
@@ -168,7 +168,7 @@ app.controller("file_type", function ($scope, $http, $timeout) {
     $scope.count = 0;
     $http({
       method: "POST",
-      url: "/api/file_type/all",
+      url: "/api/fileType/all",
       data: {
         where: where
       }

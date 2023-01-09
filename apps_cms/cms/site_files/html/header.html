@@ -37,15 +37,15 @@
   </div> -->
   <div class="user-menu" style="display: none">
     <div class="center profile" x-permission="login">
-      <a class="pointer" href="/profile/##user.id##/##user.profile.name##/##user.profile.last_name##">
+      <a class="pointer" href="/profile/##user.id##/##user.profile.name##/##user.profile.lastName##">
 
-        <img class="center border-circle" src="##user.profile.image_url##" onerror="this.src='/images/user.png'"
+        <img class="center border-circle" src="##user.profile.imageUrl##" onerror="this.src='/images/user.png'"
           alt="" />
         <br />
       </a>
       <span class="user-name"> </span> <br />
 
-      <span class="user-name"> ##user.profile.name## ##user.profile.last_name## </span> <br />
+      <span class="user-name"> ##user.profile.name## ##user.profile.lastName## </span> <br />
       <h5 class="grayDark userPrint center">##user.email##</h5>
       <br />
       <div class="center">
@@ -71,26 +71,26 @@
             ##word.main##</a>
         </li>
         <li><a
-            href="/category/{{category_header_list[0].id}}/{{category_header_list[0].name_en}}-{{category_header_list[0].name_ar}}"
-            class="nav-link underline-hover">{{category_header_list[0].name_##session.lang##}}</a></li>
+            href="/category/{{category_header_list[0].id}}/{{category_header_list[0].name}}"
+            class="nav-link underline-hover">{{category_header_list[0].name}}</a></li>
         <li><a
-            href="/category/{{category_header_list[1].id}}/{{category_header_list[1].name_en}}-{{category_header_list[1].name_ar}}"
-            class="nav-link underline-hover">{{category_header_list[1].name_##session.lang##}}</a></li>
+            href="/category/{{category_header_list[1].id}}/{{category_header_list[1].name}}"
+            class="nav-link underline-hover">{{category_header_list[1].name}}</a></li>
         <li><a
-            href="/category/{{category_header_list[2].id}}/{{category_header_list[2].name_en}}-{{category_header_list[2].name_ar}}"
-            class="nav-link underline-hover">{{category_header_list[2].name_##session.lang##}}</a></li>
+            href="/category/{{category_header_list[2].id}}/{{category_header_list[2].name}}"
+            class="nav-link underline-hover">{{category_header_list[2].name}}</a></li>
         <li><a
-            href="/category/{{category_header_list[3].id}}/{{category_header_list[3].name_en}}-{{category_header_list[3].name_ar}}"
-            class="nav-link underline-hover">{{category_header_list[3].name_##session.lang##}}</a></li>
+            href="/category/{{category_header_list[3].id}}/{{category_header_list[3].name}}"
+            class="nav-link underline-hover">{{category_header_list[3].name}}</a></li>
         <li><a
-            href="/category/{{category_header_list[4].id}}/{{category_header_list[4].name_en}}-{{category_header_list[4].name_ar}}"
-            class="nav-link underline-hover">{{category_header_list[4].name_##session.lang##}}</a></li>
+            href="/category/{{category_header_list[4].id}}/{{category_header_list[4].name}}"
+            class="nav-link underline-hover">{{category_header_list[4].name}}</a></li>
         <li><a
-            href="/category/{{category_header_list[5].id}}/{{category_header_list[5].name_en}}-{{category_header_list[5].name_ar}}"
-            class="nav-link underline-hover">{{category_header_list[5].name_##session.lang##}}</a></li>
+            href="/category/{{category_header_list[5].id}}/{{category_header_list[5].name}}"
+            class="nav-link underline-hover">{{category_header_list[5].name}}</a></li>
         <li><a
-            href="/category/{{category_header_list[6].id}}/{{category_header_list[6].name_en}}-{{category_header_list[6].name_ar}}"
-            class="nav-link underline-hover">{{category_header_list[6].name_##session.lang##}}</a></li>
+            href="/category/{{category_header_list[6].id}}/{{category_header_list[6].name}}"
+            class="nav-link underline-hover">{{category_header_list[6].name}}</a></li>
         <li><a href="/more_categories" class="nav-link underline-hover">
           <i class="fa-solid fa-sitemap"></i>
             ##word.more_categories##
@@ -100,19 +100,19 @@
     <div class="mobile">
       <div class="scrollmenu">
         <a
-          href="/category/{{category_header_list[0].id}}/{{category_header_list[0].name_en}}-{{category_header_list[0].name_ar}}">{{category_header_list[0].name_##session.lang##}}</a>
+          href="/category/{{category_header_list[0].id}}/{{category_header_list[0].name}}">{{category_header_list[0].name}}</a>
         <a
-          href="/category/{{category_header_list[1].id}}/{{category_header_list[1].name_en}}-{{category_header_list[1].name_ar}}">{{category_header_list[1].name_##session.lang##}}</a>
+          href="/category/{{category_header_list[1].id}}/{{category_header_list[1].name}}">{{category_header_list[1].name}}</a>
         <a
-          href="/category/{{category_header_list[2].id}}/{{category_header_list[2].name_en}}-{{category_header_list[2].name_ar}}">{{category_header_list[2].name_##session.lang##}}</a>
+          href="/category/{{category_header_list[2].id}}/{{category_header_list[2].name}}">{{category_header_list[2].name}}</a>
         <a
-          href="/category/{{category_header_list[3].id}}/{{category_header_list[3].name_en}}-{{category_header_list[3].name_ar}}">{{category_header_list[3].name_##session.lang##}}</a>
+          href="/category/{{category_header_list[3].id}}/{{category_header_list[3].name}}">{{category_header_list[3].name}}</a>
         <a
-          href="/category/{{category_header_list[4].id}}/{{category_header_list[4].name_en}}-{{category_header_list[4].name_ar}}">{{category_header_list[4].name_##session.lang##}}</a>
+          href="/category/{{category_header_list[4].id}}/{{category_header_list[4].name}}">{{category_header_list[4].name}}</a>
         <a
-          href="/category/{{category_header_list[5].id}}/{{category_header_list[5].name_en}}-{{category_header_list[5].name_ar}}">{{category_header_list[5].name_##session.lang##}}</a>
+          href="/category/{{category_header_list[5].id}}/{{category_header_list[5].name}}">{{category_header_list[5].name}}</a>
         <a
-          href="/category/{{category_header_list[6].id}}/{{category_header_list[6].name_en}}-{{category_header_list[6].name_ar}}">{{category_header_list[6].name_##session.lang##}}</a>
+          href="/category/{{category_header_list[6].id}}/{{category_header_list[6].name}}">{{category_header_list[6].name}}</a>
        <!--  <a href="/more_categories">
           <i class="fa-solid fa-sitemap"></i>
           ##word.more_categories##
@@ -122,19 +122,19 @@
       <!-- <ul class="nav1">
     
       <li><a href="" ng-click="selectCategoryHeader(category_header_list[0].id)"
-          class="nav-link underline-hover">{{category_header_list[0].name_##session.lang##}}</a></li>
+          class="nav-link underline-hover">{{category_header_list[0].name}}</a></li>
       <li><a href="" ng-click="selectCategoryHeader(category_header_list[1].id)"
-          class="nav-link underline-hover">{{category_header_list[1].name_##session.lang##}}</a></li>
+          class="nav-link underline-hover">{{category_header_list[1].name}}</a></li>
       <li><a href="" ng-click="selectCategoryHeader(category_header_list[2].id)"
-          class="nav-link underline-hover">{{category_header_list[2].name_##session.lang##}}</a></li>
+          class="nav-link underline-hover">{{category_header_list[2].name}}</a></li>
       <li><a href="" ng-click="selectCategoryHeader(category_header_list[3].id)"
-          class="nav-link underline-hover">{{category_header_list[3].name_##session.lang##}}</a></li>
+          class="nav-link underline-hover">{{category_header_list[3].name}}</a></li>
       <li><a href="" ng-click="selectCategoryHeader(category_header_list[4].id)"
-          class="nav-link underline-hover">{{category_header_list[4].name_##session.lang##}}</a></li>
+          class="nav-link underline-hover">{{category_header_list[4].name}}</a></li>
       <li><a href="" ng-click="selectCategoryHeader(category_header_list[5].id)"
-          class="nav-link underline-hover">{{category_header_list[5].name_##session.lang##}}</a></li>
+          class="nav-link underline-hover">{{category_header_list[5].name}}</a></li>
       <li><a href="" ng-click="selectCategoryHeader(category_header_list[6].id)"
-          class="nav-link underline-hover">{{category_header_list[6].name_##session.lang##}}</a></li>
+          class="nav-link underline-hover">{{category_header_list[6].name}}</a></li>
       <li><a href="/more_categories" class="nav-link underline-hover">
           ##word.more_categories##
           <i class="fa-solid fa-sitemap"></i>
@@ -189,16 +189,16 @@
 
           <div class="info">
             <a x-features="login" class="desktop" href="#" onclick="event.stopPropagation(); $('.user-menu').toggle()">
-              <img class="center border-circle" src="##user.profile.image_url##" onerror="this.src='/images/user.png'"
+              <img class="center border-circle" src="##user.profile.imageUrl##" onerror="this.src='/images/user.png'"
                 alt="" /> </a>
             <div class="center profile mobile margin-info-menu" x-permission="login">
-              <a class="pointer" href="/profile/##user.id##/##user.profile.name##/##user.profile.last_name##">
+              <a class="pointer" href="/profile/##user.id##/##user.profile.name##/##user.profile.lastName##">
 
-                <img class="center border-circle" src="##user.profile.image_url##" onerror="this.src='/images/user.png'"
+                <img class="center border-circle" src="##user.profile.imageUrl##" onerror="this.src='/images/user.png'"
                   alt="" /> <br />
               </a>
 
-              <span class="user-name font-21"> ##user.profile.name## ##user.profile.last_name## </span> <br />
+              <span class="user-name font-21"> ##user.profile.name## ##user.profile.lastName## </span> <br />
               <p class="grayDark userPrint font-19 center">##user.email##</p>
               <br />
               <div class="center">

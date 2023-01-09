@@ -34,8 +34,8 @@
             </div>
 
             <div class="row">
-              <i-control v="r" class="col2" label="##word.code##" ng-model="countries.country_code"></i-control>
-              <i-control v="r" class="col3" type="number" label="##word.length_of_mobile_number##" ng-model="countries.length_mobile"></i-control>
+              <i-control v="r" class="col2" label="##word.code##" ng-model="countries.countryCode"></i-control>
+              <i-control v="r" class="col3" type="number" label="##word.length_of_mobile_number##" ng-model="countries.lengthMobile"></i-control>
             </div>
 
             <div class="row">
@@ -44,7 +44,7 @@
           </div>
 
           <div class="col3">
-            <i-image help-id="countries_logo" ng-model="countries.image_url"></i-image>
+            <i-image help-id="countries_logo" ng-model="countries.imageUrl"></i-image>
           </div>
         </div>
       </fieldset>
@@ -56,17 +56,17 @@
           </tr>
           <tr>
             <td class="center">
-              <p class="blue">{{countries.add_user_info.name}}</p>
-              <small class="green"> {{countries.add_user_info.date |date:"hh:mm"}} </small>
-              <small> {{countries.add_user_info.date |date:"dd - MM - yyyy"}} </small>
-              <p class="bold">IP : {{countries.add_user_info.ip}}</p>
+              <p class="blue">{{countries.addUserInfo.name}}</p>
+              <small class="green"> {{countries.addUserInfo.date |date:"hh:mm"}} </small>
+              <small> {{countries.addUserInfo.date |date:"dd - MM - yyyy"}} </small>
+              <p class="bold">IP : {{countries.addUserInfo.ip}}</p>
             </td>
 
             <td class="center">
-              <p class="blue">{{countries.edit_user_info.name}}</p>
-              <small class="green"> {{countries.edit_user_info.date |date:"hh:mm"}} </small>
-              <small> {{countries.edit_user_info.date |date:"dd - MM - yyyy"}} </small>
-              <p class="bold">IP : {{countries.edit_user_info.ip}}</p>
+              <p class="blue">{{countries.editUserInfo.name}}</p>
+              <small class="green"> {{countries.editUserInfo.date |date:"hh:mm"}} </small>
+              <small> {{countries.editUserInfo.date |date:"dd - MM - yyyy"}} </small>
+              <p class="bold">IP : {{countries.editUserInfo.ip}}</p>
             </td>
           </tr>
         </table>
